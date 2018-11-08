@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -13,10 +9,11 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Graphics;
 
+using TiledSharp;
+
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
-using SecretProject.Class.ObjectFolder;
 using Object = SecretProject.Class.ObjectFolder.Object;
 
 namespace SecretProject.Class.Stage
@@ -33,6 +30,8 @@ namespace SecretProject.Class.Stage
         //Declare Map
         TiledMapRenderer mapRenderer;
 
+        
+        
 
         TiledMapLayer backGround;
         TiledMapLayer buildings;

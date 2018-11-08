@@ -29,16 +29,24 @@ namespace SecretProject.Class.UI
 
         private Button _inGameMenu;
 
+        private List<Button> allButtons;
+
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseState mouse) : base(game, graphicsDevice, content, mouse)
         {
 
             _font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
             this._toolBarButton = content.Load<Texture2D>("Button/ToolBarButton");
+            
 
             this.Background = content.Load<Texture2D>("Button/ToolBar");
 
-            _openInventory = new Button(_toolBarButton, graphicsDevice, new Vector2(367, 635));
+            _inGameMenu = new Button(_toolBarButton, graphicsDevice, new Vector2(367, 635));
+            _openInventory = new Button(_toolBarButton, graphicsDevice, new Vector2(433, 635));
+
+            allButtons = new List<Button>(20);
+            allButtons.Add(_openInventory);
+            allButtons.Add(_inGameMenu);
         }
 
 
@@ -46,15 +54,25 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Begin();
             spriteBatch.Draw(Background, new Vector2(320, 635));
-            _openInventory.Draw(spriteBatch);
+            foreach(Button button in allButtons)
+            {
+                button.Draw(spriteBatch);
+            }
+          ;
             spriteBatch.DrawString(_font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
+            spriteBatch.DrawString(_font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
             spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime, MouseState mouse)
         {
-            _openInventory.Update(mouse);
-            if (_openInventory.isClicked == true)
+            foreach(Button button in allButtons)
+            {
+                button.Update(mouse);
+                
+            }
+            
+            if (_inGameMenu.isClicked == true)
                 game.gameStages = Stages.MainMenu;
             _openInventory.isClicked = false;
             ;
