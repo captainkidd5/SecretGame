@@ -33,16 +33,6 @@ namespace SecretProject.Class.Stage
         //Declare Map
         TiledMapRenderer mapRenderer;
 
-
-
-        /*
-                TiledMapLayer backGround;
-                TiledMapLayer buildings;
-                TiledMapLayer midGround;
-                TiledMapLayer foreGround;
-                TiledMapLayer alwaysFront;
-                */
-
         int tileWidth;
         int tileHeight;
         int tilesetTilesWide;
@@ -72,13 +62,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Textures
         
-        //Texture2D woodenPost;
-       // Texture2D basicHouse;
-      //  Texture2D greatPine;
-
-        //PlayerInventory playerOneInv;
-
-
+ 
 
         //AnimatedSprite TestSprite;
 
@@ -88,6 +72,10 @@ namespace SecretProject.Class.Stage
         private List<Object> allObjects;
 
         private List<Sprite> allSprites;
+
+        TmxLayer buildings;
+        TmxLayer background;
+        TmxLayer midGround;
 
         #endregion
 
@@ -102,20 +90,6 @@ namespace SecretProject.Class.Stage
             player = new Player("joe", new Vector2(800, 800), joeSprite) { Activate = true, Right = Keys.D };
             Player basicRaft = new Player("basicRaft", new Vector2(480, 820), joeSprite) { Activate = false };
 
-            //UI Textures
-            toolBar = new ToolBar(game, graphicsDevice, content, mouse);
-
-            map = new TmxMap("Content/Map/worldMap.tmx");
-
-            tileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
-
-
-            tileWidth = map.Tilesets[0].TileWidth;
-            tileHeight = map.Tilesets[0].TileHeight;
-
-            tilesetTilesWide = tileSet.Width / tileWidth;
-            tilesetTilesHigh = tileSet.Height / tileHeight;
-
             allSprites = new List<Sprite>()
             {
 
@@ -126,7 +100,41 @@ namespace SecretProject.Class.Stage
 
             };
 
+            //UI Textures
+            toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
+            map = new TmxMap("Content/Map/worldMap.tmx");
+
+            tileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+
+            background= map.Layers["background"];
+            buildings = map.Layers["buildings"];
+            midGround = map.Layers["midGround"];
+
+            //var treee = map.ObjectGroups["buildings"].Objects["Tree"];
+
+            
+
+            
+            var buildingLayer = map.ObjectGroups["collision"];
+
+            foreach (var tree in buildingLayer.Objects)
+            {
+                if(tree.Name == "Tree")
+                {
+                    allObjects.Add(new Object(new Vector2((float)tree.X, (float)tree.Y), (int)tree.Height, (int)tree.Width));
+
+                }
+            }
+            
+
+            tileWidth = map.Tilesets[0].TileWidth;
+            tileHeight = map.Tilesets[0].TileHeight;
+
+            tilesetTilesWide = tileSet.Width / tileWidth;
+            tilesetTilesHigh = tileSet.Height / tileHeight;
+
+            
             //joe animation textures
             var joeDown = content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
             var joeUp = content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
@@ -206,71 +214,22 @@ namespace SecretProject.Class.Stage
         {
            // var tileSet = map.Tilesets["MasterSpriteSheet"];
 
-            var treeLayer = map.Layers["Tile Layer 2"];
 
             graphicsDevice.Clear(Color.Black);
             if (player.Health > 0)
             {
             spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.GetViewMatrix());
                 player.anim.ShowRectangle = showBorders;
-                player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).2);
-                
-                for (var i = 0; i < treeLayer.Tiles.Count; i++)
-                {
-                    int gid = treeLayer.Tiles[i].Gid;
+                player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
 
 
-                    if (gid == 0)
-                    {
+                DrawTiles(spriteBatch, tileSet, map, midGround, (float).4, tilesetTilesWide, tileWidth, tileHeight);
 
-                    }
+                DrawTiles(spriteBatch, tileSet, map, buildings, (float).2, tilesetTilesWide, tileWidth, tileHeight);
 
-                    else
-                    {
-                        int tileFrame = gid - 1;
-                        int column = tileFrame % tilesetTilesWide;
-                        int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+              
 
-                        float x = (i % map.Width) * map.TileWidth;
-                        float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
-
-                        Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-
-                        spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0,0), SpriteEffects.None, (float).3);
-                    }
-                }
-                
-
-
-                
-                for (var i = 0; i < map.Layers["Tile Layer 1"].Tiles.Count; i++)
-                    {
-                        int gid = map.Layers["Tile Layer 1"].Tiles[i].Gid;
-
-
-                        if (gid == 0)
-                        {
-
-                        }
-
-                        else
-                        {
-                            int tileFrame = gid - 1;
-                            int column = tileFrame % tilesetTilesWide;
-                            int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-
-                            float x = (i % map.Width) * map.TileWidth;
-                            float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
-
-                            Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-
-                        spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, (float).1);
-                    }
-                    }
-                    
-               
-
-
+                DrawTiles(spriteBatch, tileSet, map, background, (float).1, tilesetTilesWide, tileWidth, tileHeight);
 
 
                 foreach (var sprite in allSprites)
@@ -288,6 +247,35 @@ namespace SecretProject.Class.Stage
             toolBar.Draw(gameTime, spriteBatch);
         }
         #endregion
+
+        public static void DrawTiles(SpriteBatch spriteBatch, Texture2D tileSet, TmxMap map, TmxLayer layerName, float depth, int tilesetTilesWide, int tileWidth, int tileHeight)
+        {
+            for (var i = 0; i < layerName.Tiles.Count; i++)
+            {
+                int gid = layerName.Tiles[i].Gid;
+
+
+                if (gid == 0)
+                {
+
+                }
+
+                else
+                {
+                    int tileFrame = gid - 1;
+                    int column = tileFrame % tilesetTilesWide;
+                    int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+
+                    float x = (i % map.Width) * map.TileWidth;
+                    float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
+
+                    Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+
+                    spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                }
+            }
+
+        }
         
 
     }

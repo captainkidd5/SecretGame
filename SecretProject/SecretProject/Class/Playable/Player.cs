@@ -112,15 +112,15 @@ namespace SecretProject.Class.Playable
 
 
                     if (this.Velocity.X > 0 && this.IsTouchingLeft(obj))
-                        this.Velocity.X -= this.Velocity.X + (float).25;
+                        this.Velocity.X -= this.Velocity.X; //+ (float).25;
 
                     if (this.Velocity.X < 0 && this.IsTouchingRight(obj))
-                        this.Velocity.X -= this.Velocity.X - (float).25;
+                        this.Velocity.X -= this.Velocity.X; //- (float).25;
 
                     if (this.Velocity.Y > 0 && this.IsTouchingTop(obj))
-                        this.Velocity.Y -= this.Velocity.Y + (float).25;
+                        this.Velocity.Y -= this.Velocity.Y; //+ (float).25;
                     if (this.Velocity.Y < 0 && this.IsTouchingBottom(obj))
-                        this.Velocity.Y -= this.Velocity.Y - (float).25;
+                        this.Velocity.Y -= this.Velocity.Y;// - (float).25;
 
                 }
 
