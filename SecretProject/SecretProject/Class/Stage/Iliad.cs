@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -15,11 +16,13 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
 using Object = SecretProject.Class.ObjectFolder.Object;
+using System;
 
 namespace SecretProject.Class.Stage
 {
     class Iliad : Component
     {
+        
         #region FIELDS
 
         private bool showBorders = false;
@@ -30,19 +33,28 @@ namespace SecretProject.Class.Stage
         //Declare Map
         TiledMapRenderer mapRenderer;
 
-        
-        
 
-        TiledMapLayer backGround;
-        TiledMapLayer buildings;
-        TiledMapLayer midGround;
-        TiledMapLayer foreGround;
-        TiledMapLayer alwaysFront;
+
+        /*
+                TiledMapLayer backGround;
+                TiledMapLayer buildings;
+                TiledMapLayer midGround;
+                TiledMapLayer foreGround;
+                TiledMapLayer alwaysFront;
+                */
+
+        int tileWidth;
+        int tileHeight;
+        int tilesetTilesWide;
+        int tilesetTilesHigh;
+
+        TmxMap map;
+        Texture2D tileSet;
 
         Texture2D joeSprite;
         Texture2D raftDown;
 
-        public TiledMap IliadMap;
+       // public TiledMap IliadMap;
 
         public Vector2 TileSize = new Vector2(32, 32);
 
@@ -59,9 +71,10 @@ namespace SecretProject.Class.Stage
 
         //--------------------------------------
         //Declare Textures
-        Texture2D woodenPost;
-        Texture2D basicHouse;
-        Texture2D greatPine;
+        
+        //Texture2D woodenPost;
+       // Texture2D basicHouse;
+      //  Texture2D greatPine;
 
         //PlayerInventory playerOneInv;
 
@@ -76,7 +89,6 @@ namespace SecretProject.Class.Stage
 
         private List<Sprite> allSprites;
 
-        private List<TiledMapTile> allTiles;
         #endregion
 
         #region CONSTRUCTOR
@@ -90,23 +102,19 @@ namespace SecretProject.Class.Stage
             player = new Player("joe", new Vector2(800, 800), joeSprite) { Activate = true, Right = Keys.D };
             Player basicRaft = new Player("basicRaft", new Vector2(480, 820), joeSprite) { Activate = false };
 
-            IliadMap = content.Load<TiledMap>("Map/Iliad");
-            alwaysFront = IliadMap.GetLayer<TiledMapTileLayer>("FrontAlways");
-            foreGround = IliadMap.GetLayer<TiledMapLayer>("ForeGround");
-            midGround = IliadMap.GetLayer<TiledMapLayer>("MidGround");
-            buildings = IliadMap.GetLayer<TiledMapLayer>("Buildings");
-            backGround = IliadMap.GetLayer<TiledMapLayer>("BackGround");
-
             //UI Textures
             toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
+            map = new TmxMap("Content/Map/worldMap.tmx");
 
-            //static textures
-            //woodenPost = content.Load<Texture2D>("Objects/woodenPost");
+            tileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
 
-            //greatPine = content.Load<Texture2D>("Objects/GreatPineFixed");
 
-            //Texture Lists
+            tileWidth = map.Tilesets[0].TileWidth;
+            tileHeight = map.Tilesets[0].TileHeight;
+
+            tilesetTilesWide = tileSet.Width / tileWidth;
+            tilesetTilesHigh = tileSet.Height / tileHeight;
 
             allSprites = new List<Sprite>()
             {
@@ -118,26 +126,12 @@ namespace SecretProject.Class.Stage
 
             };
 
-            allTiles = new List<TiledMapTile>();
-
-            //TestSprite = new AnimatedSprite(content.Load<Texture2D>("character/joe"), 1, 4);
-
 
             //joe animation textures
             var joeDown = content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
             var joeUp = content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
             var joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
             var joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
-
-            //raft animation textures
-           /* var raftDown = content.Load<Texture2D>("character/Boats/Rafts/raftDown");
-            var raftUp = content.Load<Texture2D>("character/Boats/Rafts/raftUp");
-            var raftRight = content.Load<Texture2D>("character/Boats/Rafts/raftRight");
-            var raftLeft = content.Load<Texture2D>("character/Boats/Rafts/raftLeft");
-            */
-
-
-            //basicHouse = content.Load<Texture2D>("Objects/basichouse");
 
 
 
@@ -151,35 +145,6 @@ namespace SecretProject.Class.Stage
             player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
 
             cam = new Camera2D(graphicsDevice);
-
-            /*Song song = content.Load<Song>("Music/TheCarnival");
-            MediaPlayer.Volume = 0.7F;
-            MediaPlayer.Play(song);
-            */
-
-            //Increasing TextureAdjustment.X moves the top left corner of the sprite rectangle to the right
-            //Increasing TextureAdjustment.y moves the top left corner of the sprite rectangle down
-            //Decreasing WidthSubtractor moves the right of the rectangle left
-            //Decreasing HeightSubtractor moves the bottom of the rectangle up
-
-
-            TiledMapObject[] objectLayer = IliadMap.GetLayer<TiledMapObjectLayer>("Objects").Objects;
-            foreach (var objl in objectLayer)
-            {
-                string type;
-                objl.Properties.TryGetValue("type", out type);
-
-                if (type == "building")
-                {
-                    allObjects.Add(new Object(graphicsDevice, objl.Position, (int)objl.Size.Height, (int)objl.Size.Width));
-                }
-
-            
-
-
-
-            }
-            
 
         }
 
@@ -212,9 +177,9 @@ namespace SecretProject.Class.Stage
 
 
 
-            cam.LookAt(new Vector2(player.Position.X, player.Position.Y));
-            cam.ZoomIn(2);
-            cam.MaximumZoom = 2;
+           cam.LookAt(new Vector2(player.Position.X, player.Position.Y));
+           // cam.ZoomIn(1);
+        //    cam.MaximumZoom = (float)1.5;
 
            // if ((oldKeyboardState.IsKeyDown(Keys.R)) && (kState.IsKeyUp(Keys.R)))
               //  game.gameStages = Stages.WorldMap;
@@ -237,30 +202,75 @@ namespace SecretProject.Class.Stage
         #endregion
 
         #region DRAW
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, TiledMapRenderer renderer)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+           // var tileSet = map.Tilesets["MasterSpriteSheet"];
 
+            var treeLayer = map.Layers["Tile Layer 2"];
 
-
+            graphicsDevice.Clear(Color.Black);
             if (player.Health > 0)
             {
-
-
-                spriteBatch.Begin();
-
-                renderer.Draw(backGround, cam.GetViewMatrix(), depth: (float).1);
-                renderer.Draw(buildings, cam.GetViewMatrix(), depth: (float).2);
-                spriteBatch.End();
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.GetViewMatrix());
-
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.GetViewMatrix());
                 player.anim.ShowRectangle = showBorders;
-                player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
-
-                foreach (var obj in allObjects)
+                player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).2);
+                
+                for (var i = 0; i < treeLayer.Tiles.Count; i++)
                 {
-                    obj.ShowRectangle = showBorders;
-                    obj.Draw(spriteBatch);
+                    int gid = treeLayer.Tiles[i].Gid;
+
+
+                    if (gid == 0)
+                    {
+
+                    }
+
+                    else
+                    {
+                        int tileFrame = gid - 1;
+                        int column = tileFrame % tilesetTilesWide;
+                        int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+
+                        float x = (i % map.Width) * map.TileWidth;
+                        float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
+
+                        Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+
+                        spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0,0), SpriteEffects.None, (float).3);
+                    }
                 }
+                
+
+
+                
+                for (var i = 0; i < map.Layers["Tile Layer 1"].Tiles.Count; i++)
+                    {
+                        int gid = map.Layers["Tile Layer 1"].Tiles[i].Gid;
+
+
+                        if (gid == 0)
+                        {
+
+                        }
+
+                        else
+                        {
+                            int tileFrame = gid - 1;
+                            int column = tileFrame % tilesetTilesWide;
+                            int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+
+                            float x = (i % map.Width) * map.TileWidth;
+                            float y = (float)Math.Floor(i / (double)map.Width) * map.TileHeight;
+
+                            Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+
+                        spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, (float).1);
+                    }
+                    }
+                    
+               
+
+
 
 
                 foreach (var sprite in allSprites)
@@ -268,30 +278,17 @@ namespace SecretProject.Class.Stage
                     sprite.ShowRectangle = showBorders;
                     sprite.Draw(spriteBatch);
                 }
-                //player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).1);
-                //basicRaft.anim.Draw(spriteBatch, new Vector2(basicRaft.Position.X, basicRaft.Position.Y), basicRaft.playerDepth);
+
 
                 spriteBatch.End();
             }
 
 
 
-
-            spriteBatch.End();
-            spriteBatch.Begin();
-            renderer.Draw(midGround, cam.GetViewMatrix(), depth: (float).4);
-            renderer.Draw(foreGround, cam.GetViewMatrix(), depth: (float).5);
-            renderer.Draw(alwaysFront, cam.GetViewMatrix(), depth: (float).6);
-           // playerOneInv.Draw(spriteBatch);
-            spriteBatch.End();
-
-
-
-
-
-            toolBar.Draw(gameTime, spriteBatch, renderer);
+            toolBar.Draw(gameTime, spriteBatch);
         }
         #endregion
+        
 
     }
 }

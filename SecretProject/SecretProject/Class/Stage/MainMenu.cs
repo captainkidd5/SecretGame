@@ -57,7 +57,7 @@ namespace SecretProject.Class.Stage
 
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, TiledMapRenderer renderer)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();

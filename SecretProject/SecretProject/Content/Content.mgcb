@@ -86,18 +86,6 @@
 /processorParam:TextureFormat=Color
 /build:Enemy/enemyship1.png
 
-#begin Map/MasterSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/MasterSpriteSheet.png
-
 #begin Player/Joe/joe.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -164,9 +152,4 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
-
-#begin Map/Iliad.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:Map/Iliad.tmx
 

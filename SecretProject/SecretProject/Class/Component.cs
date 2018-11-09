@@ -47,7 +47,7 @@ namespace SecretProject.Class
             this.content = content;
             this.mouse = mouse;
         }
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch, TiledMapRenderer renderer);
+        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
         public abstract void Update(GameTime gameTime, MouseState mouse);
         #endregion

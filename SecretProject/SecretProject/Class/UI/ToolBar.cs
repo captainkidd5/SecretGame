@@ -50,7 +50,7 @@ namespace SecretProject.Class.UI
         }
 
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, TiledMapRenderer renderer)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(Background, new Vector2(320, 635));

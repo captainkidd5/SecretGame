@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretProject/SecretProject/SecretProject/Content/Map/MasterSpriteSheet.png</SourceFile>
-  <SourceTime>2018-09-08T09:44:19.1066733-07:00</SourceTime>
+  <SourceTime>2018-11-05T08:23:09.5220883-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretProject/SecretProject/SecretProject/Content/bin/DesktopGL/Map/MasterSpriteSheet.xnb</DestFile>
-  <DestTime>2018-09-08T16:27:32.8772281-07:00</DestTime>
+  <DestTime>2018-11-08T08:07:59.0947727-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

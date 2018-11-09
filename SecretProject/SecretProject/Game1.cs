@@ -7,6 +7,8 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Graphics;
 using SecretProject.Class.Stage;
+using System;
+using TiledSharp;
 
 namespace SecretProject
 {
@@ -30,8 +32,6 @@ namespace SecretProject
     public class Game1 : Game
     {
         #region FIELDS
-
-        
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -93,11 +93,9 @@ namespace SecretProject
 
             //Load Stages
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, mouse);
-            _iliad = new Iliad(this, graphics.GraphicsDevice, Content, mouse);
+           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, mouse);
 
-
-
-
+            
         }
         #endregion
 
@@ -128,16 +126,10 @@ namespace SecretProject
 
                     break;
 
-                //case Stages.WorldMap:
-                  //  worldStage.Update(gameTime, mouse);
-                   // break;
-
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
                     _iliad.Update(gameTime, mouse);
                     break;
-
-
 
             }
 
@@ -153,27 +145,20 @@ namespace SecretProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            switch (gameStages)
+
+                switch (gameStages)
             {
                 case Stages.MainMenu:
                     GraphicsDevice.Clear(Color.Black);
-                    _mainMenu.Draw(gameTime, spriteBatch, mapRenderer);
+                    _mainMenu.Draw(gameTime, spriteBatch);
                     break;
-
-                //case Stages.WorldMap:
-                  //  GraphicsDevice.Clear(Color.Black);
-                  //  worldStage.Draw(gameTime, spriteBatch, mapRenderer);
-                   // break;
 
                 case Stages.Iliad:
-                    GraphicsDevice.Clear(Color.Black);
-                    _iliad.Draw(gameTime, spriteBatch, mapRenderer);
+                    
+
+
+                    _iliad.Draw(gameTime, spriteBatch);
                     break;
-
-
-
-
-
             }
 
 
