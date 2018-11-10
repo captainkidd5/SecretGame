@@ -13,6 +13,9 @@ using TiledSharp;
 namespace SecretProject
 {
 
+    //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
+    // also need this for mouseover events. Possible use of a 2D array?
+
     public enum Dir
     {
         Down,

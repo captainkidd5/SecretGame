@@ -118,13 +118,13 @@ namespace SecretProject.Class.Stage
             
             var buildingLayer = map.ObjectGroups["collision"];
 
-            foreach (var tree in buildingLayer.Objects)
+            foreach (var obj in buildingLayer.Objects)
             {
-                if(tree.Name == "Tree")
-                {
-                    allObjects.Add(new Object(new Vector2((float)tree.X, (float)tree.Y), (int)tree.Height, (int)tree.Width));
+                //if(obj.Name == "Tree")
+                //{
+                    allObjects.Add(new Object(new Vector2((float)obj.X, (float)obj.Y), (int)obj.Height, (int)obj.Width));
 
-                }
+                //}
             }
             
 
@@ -186,8 +186,8 @@ namespace SecretProject.Class.Stage
 
 
            cam.LookAt(new Vector2(player.Position.X, player.Position.Y));
-           // cam.ZoomIn(1);
-        //    cam.MaximumZoom = (float)1.5;
+           //cam.ZoomIn(2);
+           //cam.MaximumZoom = 2;
 
            // if ((oldKeyboardState.IsKeyDown(Keys.R)) && (kState.IsKeyUp(Keys.R)))
               //  game.gameStages = Stages.WorldMap;
