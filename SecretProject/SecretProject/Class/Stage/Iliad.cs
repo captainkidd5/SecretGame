@@ -6,9 +6,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoGame.Extended;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Tiled.Graphics;
+
+
 
 using TiledSharp;
 
@@ -17,6 +16,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
 using Object = SecretProject.Class.ObjectFolder.Object;
 using System;
+using SecretProject.Class.Camera;
 
 namespace SecretProject.Class.Stage
 {
@@ -31,7 +31,7 @@ namespace SecretProject.Class.Stage
 
         //--------------------------------------
         //Declare Map
-        TiledMapRenderer mapRenderer;
+
 
         int tileWidth;
         int tileHeight;
@@ -56,8 +56,12 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare input stuff
         Camera2D cam;
+
+
         KeyboardState kState;
+
         ToolBar toolBar;
+
 
         //--------------------------------------
         //Declare Textures
@@ -152,7 +156,9 @@ namespace SecretProject.Class.Stage
             player.animations[2] = new AnimatedSprite(graphicsDevice, joeLeft, 1, 4);
             player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
 
-            cam = new Camera2D(graphicsDevice);
+            cam = new Camera2D();
+
+            cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
         }
 
@@ -182,10 +188,14 @@ namespace SecretProject.Class.Stage
 
             toolBar.Update(gameTime, mouse);
 
+            cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+
+            
 
 
 
-           cam.LookAt(new Vector2(player.Position.X, player.Position.Y));
+
+           //cam.LookAt(new Vector2(player.Position.X, player.Position.Y));
            //cam.ZoomIn(2);
            //cam.MaximumZoom = 2;
 
@@ -218,7 +228,7 @@ namespace SecretProject.Class.Stage
             graphicsDevice.Clear(Color.Black);
             if (player.Health > 0)
             {
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.GetViewMatrix());
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.getTransformation(graphicsDevice));
                 player.anim.ShowRectangle = showBorders;
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
 

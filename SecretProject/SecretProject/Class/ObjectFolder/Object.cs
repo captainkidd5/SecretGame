@@ -9,9 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-using MonoGame.Extended;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Tiled.Graphics;
+
+
 using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.ObjectFolder
@@ -52,7 +51,6 @@ namespace SecretProject.Class.ObjectFolder
 
         
 
-        TiledMapObject obj;
 
         public int Rows { get; set; }
 
