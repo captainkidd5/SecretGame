@@ -157,6 +157,7 @@ namespace SecretProject.Class.Stage
             player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
 
             cam = new Camera2D();
+           // cam.Zoom = 1f;
 
             cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
@@ -188,6 +189,7 @@ namespace SecretProject.Class.Stage
 
             toolBar.Update(gameTime, mouse);
 
+            
             cam.Follow(new Vector2(player.Position.X, player.Position.Y));
 
             
