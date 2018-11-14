@@ -12,18 +12,22 @@ namespace SecretProject.Class.TileStuff
     class TileManager
     {
         protected int iD;
-        SpriteBatch spriteBatch;
-        Texture2D tileSet;
-        TmxMap mapName;
-        TmxLayer layerName;
-        float depth;
-        int tilesetTilesWide;
-        int tilesetTilesHigh;
-        int tileWidth;
-        int tileHeight;
+        protected SpriteBatch spriteBatch;
+        protected Texture2D tileSet;
+        protected TmxMap mapName;
+        protected TmxLayer layerName;
+        protected float depth;
+        protected int tilesetTilesWide;
+        protected int tilesetTilesHigh;
+        protected int tileWidth;
+        protected int tileHeight;
+
+        protected int mapWidth;
+        protected int mapHeight;
+        
         
 
-        protected int[,] tiles;
+        protected Tile[,] tiles;
 
         public TileManager(SpriteBatch spriteBatch, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, float depth, int tilesetTilesWide)
         {
@@ -40,45 +44,50 @@ namespace SecretProject.Class.TileStuff
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
 
+            mapWidth = mapName.Width;
+            mapHeight = mapName.Height;
 
 
-            tiles = new int[tilesetTilesHigh, tilesetTilesWide];
+
+            tiles = new Tile[tilesetTilesHigh, tilesetTilesWide];
         }
 
         //TODO: fill array correctly with tiles from tileset.
+        //need "is closest to" method
+        //need "replace" method
 
-        public void AddTiles()
+        public void LoadTiles()
         {
-            for (var i = 0; i < layerName.Tiles.Count; i++)
+            foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
-                int gid = layerName.Tiles[i].Gid;
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight);
 
-
-                if (gid == 0)
-                {
-
-                }
-
-                else
-                {
-                    int tileFrame = gid - 1;
-                    int column = tileFrame % tilesetTilesWide;
-                    int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-
-                    float x = (i % mapName.Width) * mapName.TileWidth;
-                    float y = (float)Math.Floor(i / (double)mapName.Width) * mapName.TileHeight;
-
-                    Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-
-                    spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-
-                }
             }
+        }
+
+        public void DrawTiles()
+        {
+            int column = 0;
+            for (var i = 0; i < tileHeight; i++)
+            {
+                for(var j = 0; j < tileWidth; j++)
+                {
+                    if(tiles[j, i].GID != 0)
+                    {
+                        spriteBatch.Draw(tileSet, tiles[j, i].SetSourceRectangle(), tiles[j, i].SetDestinationRectangle(), Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                    }  
+                }
+
+            }
+
         }
 
 
 
-        public void DrawTiles()
+
+
+
+        public void DrawTiles2()
         {
             for (var i = 0; i < layerName.Tiles.Count; i++)
             {
