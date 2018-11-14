@@ -17,6 +17,7 @@ using SecretProject.Class.UI;
 using Object = SecretProject.Class.ObjectFolder.Object;
 using System;
 using SecretProject.Class.Camera;
+using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.Stage
 {
@@ -62,6 +63,7 @@ namespace SecretProject.Class.Stage
 
         ToolBar toolBar;
 
+        TileManager backGroundTiles;
 
         //--------------------------------------
         //Declare Textures
@@ -161,6 +163,9 @@ namespace SecretProject.Class.Stage
 
             cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
+            backGroundTiles = new TileManager(tileSet, map, background);
+           // backGroundTiles.LoadTiles();
+
         }
 
         #endregion
@@ -234,7 +239,13 @@ namespace SecretProject.Class.Stage
                 player.anim.ShowRectangle = showBorders;
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
 
+                backGroundTiles.DrawTiles(spriteBatch, (float).1);
 
+               // backGroundTiles.DrawTiles3(spriteBatch, (float).1);
+
+               // backGroundTiles.DrawTiles2(spriteBatch, (float).1);
+
+                /*
                 DrawTiles(spriteBatch, tileSet, map, midGround, (float).4, tilesetTilesWide, tileWidth, tileHeight);
 
                 DrawTiles(spriteBatch, tileSet, map, buildings, (float).2, tilesetTilesWide, tileWidth, tileHeight);
@@ -243,6 +254,7 @@ namespace SecretProject.Class.Stage
 
                 DrawTiles(spriteBatch, tileSet, map, background, (float).1, tilesetTilesWide, tileWidth, tileHeight);
 
+    */
 
                 foreach (var sprite in allSprites)
                 {

@@ -12,11 +12,9 @@ namespace SecretProject.Class.TileStuff
     class TileManager
     {
         protected int iD;
-        protected SpriteBatch spriteBatch;
         protected Texture2D tileSet;
         protected TmxMap mapName;
         protected TmxLayer layerName;
-        protected float depth;
         protected int tilesetTilesWide;
         protected int tilesetTilesHigh;
         protected int tileWidth;
@@ -24,19 +22,18 @@ namespace SecretProject.Class.TileStuff
 
         protected int mapWidth;
         protected int mapHeight;
+
+        protected int tileNumber;
         
         
 
         protected Tile[,] tiles;
 
-        public TileManager(SpriteBatch spriteBatch, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, float depth, int tilesetTilesWide)
+        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName)
         {
-            this.spriteBatch = spriteBatch;
             this.tileSet = tileSet;
             this.mapName = mapName;
             this.layerName = layerName;
-            this.depth = depth;
-            this.tilesetTilesWide = tilesetTilesWide;
 
             tileWidth = mapName.Tilesets[0].TileWidth;
             tileHeight = mapName.Tilesets[0].TileHeight;
@@ -49,33 +46,34 @@ namespace SecretProject.Class.TileStuff
 
 
 
-            tiles = new Tile[tilesetTilesHigh, tilesetTilesWide];
+            tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
+            tileNumber = 0;
+
+            foreach (TmxLayerTile layerNameTile in layerName.Tiles)
+            {
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                tileNumber++;
+
+            }
         }
 
         //TODO: fill array correctly with tiles from tileset.
         //need "is closest to" method
         //need "replace" method
 
-        public void LoadTiles()
-        {
-            foreach (TmxLayerTile layerNameTile in layerName.Tiles)
-            {
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight);
 
-            }
-        }
-
-        public void DrawTiles()
+        public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
-            int column = 0;
-            for (var i = 0; i < tileHeight; i++)
+
+            for (var i = 0; i < tilesetTilesWide; i++)
             {
-                for(var j = 0; j < tileWidth; j++)
+                for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    if(tiles[j, i].GID != 0)
+                    if(tiles[i, j].GID != 0)
                     {
-                        spriteBatch.Draw(tileSet, tiles[j, i].SetSourceRectangle(), tiles[j, i].SetDestinationRectangle(), Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-                    }  
+                        spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                    }  //need to change x and y
+                    
                 }
 
             }
@@ -83,11 +81,7 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-
-
-
-
-        public void DrawTiles2()
+        public void DrawTiles2(SpriteBatch spriteBatch, float depth)
         {
             for (var i = 0; i < layerName.Tiles.Count; i++)
             {
@@ -114,6 +108,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        
     }
 
 }

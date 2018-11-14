@@ -21,10 +21,18 @@ namespace SecretProject.Class.TileStuff
 
         private int tileFrame;
 
-        private Texture2D texture;
 
         private int tileHeight = 16;
         private int tileWidth = 16;
+
+        private int column;
+        private int row;
+
+        public Rectangle SourceRectangle;
+        public Rectangle DestinationRectangle;
+
+        private int tileNumber;
+
 
 
 
@@ -32,10 +40,11 @@ namespace SecretProject.Class.TileStuff
         public float Y { get { return y; } set { y = value; } }
         public int GID { get { return gID; } set { gID = value; } }
 
-        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
+        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
         {
-            this.x = x;
-            this.y = y;
+            this.tileNumber = tileNumber;
+
+            
             this.gID = gID;
             this.tilesetTilesWide = tilesetTilesWide;
             this.tilesetTilesHigh = tilesetTilesHigh;
@@ -43,27 +52,19 @@ namespace SecretProject.Class.TileStuff
             this.mapHeight = mapHeight;
 
             tileFrame = gID - 1;
-        }
 
-        public Rectangle SetDestinationRectangle()
-        {
+            column = tileFrame % tilesetTilesWide;
+            row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+
+            this.x = (tileNumber % mapWidth) * tileWidth;
+            this.y = (float)Math.Floor(tileNumber / (double)mapWidth) * tileHeight;
+
+            SourceRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
+            DestinationRectangle = new Rectangle((int)x, (int)y, tileWidth, tileHeight);
             
 
-
-                    int column = tileFrame % tilesetTilesWide;
-                    int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-
-                    Rectangle tileRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-                    return tileRectangle;
-
-                    //spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-
         }
 
-        public Rectangle SetSourceRectangle()
-        {
-            Rectangle soureRectangle = new Rectangle((int)x, (int)y, tileWidth, tileHeight);
-            return soureRectangle;
-        }
+        
     }
 }
