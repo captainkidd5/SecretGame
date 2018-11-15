@@ -60,7 +60,7 @@ namespace SecretProject.Class.TileStuff
             this.y = (float)Math.Floor(tileNumber / (double)mapWidth) * tileHeight;
 
             SourceRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-            DestinationRectangle = new Rectangle((int)x, (int)y, tileWidth, tileHeight);
+            DestinationRectangle = new Rectangle((int)X, (int)Y, tileWidth, tileHeight);
             
 
         }

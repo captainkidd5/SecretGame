@@ -79,35 +79,6 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
-
-
-        public void DrawTiles2(SpriteBatch spriteBatch, float depth)
-        {
-            for (var i = 0; i < layerName.Tiles.Count; i++)
-            {
-                int gid = layerName.Tiles[i].Gid;
-
-
-                if (gid == 0)
-                {
-
-                }
-
-                else
-                {
-                    int tileFrame = gid - 1;
-                    int column = tileFrame % tilesetTilesWide;
-                    int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
-
-                    float x = (i % mapName.Width) * mapName.TileWidth;
-                    float y = (float)Math.Floor(i / (double)mapName.Width) * mapName.TileHeight;
-
-                    Rectangle tileSetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-
-                    spriteBatch.Draw(tileSet, new Rectangle((int)x, (int)y, tileWidth, tileHeight), tileSetRec, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-                }
-            }
-        }
         
     }
 
