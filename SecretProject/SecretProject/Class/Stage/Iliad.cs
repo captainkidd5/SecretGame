@@ -97,7 +97,7 @@ namespace SecretProject.Class.Stage
             //playerOneInv = new PlayerInventory("player1", graphicsDevice, content);
 
             joeSprite = content.Load<Texture2D>("Player/Joe/joe");
-            player = new Player("joe", new Vector2(0, 0), joeSprite) { Activate = true, Right = Keys.D };
+            player = new Player("joe", new Vector2(800, 800), joeSprite) { Activate = true, Right = Keys.D };
             Player basicRaft = new Player("basicRaft", new Vector2(480, 820), joeSprite) { Activate = false };
 
             allSprites = new List<Sprite>()
@@ -113,6 +113,9 @@ namespace SecretProject.Class.Stage
             //UI Textures
             toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
+
+
+            //load tile stuff
             map = new TmxMap("Content/Map/worldMap.tmx");
 
             tileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
@@ -162,8 +165,10 @@ namespace SecretProject.Class.Stage
             player.animations[2] = new AnimatedSprite(graphicsDevice, joeLeft, 1, 4);
             player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
 
+
+            //load camera stuff
             cam = new Camera2D();
-           // cam.Zoom = 1f;
+           // cam.Zoom = 2.0f;
 
             cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
@@ -223,7 +228,6 @@ namespace SecretProject.Class.Stage
 
         }
 
-
         #endregion
 
         #region DRAW
@@ -260,10 +264,6 @@ namespace SecretProject.Class.Stage
             toolBar.Draw(gameTime, spriteBatch);
         }
         #endregion
-
-       
-        
-        
 
     }
 }

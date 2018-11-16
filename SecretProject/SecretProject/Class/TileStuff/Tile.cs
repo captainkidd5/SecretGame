@@ -33,9 +33,6 @@ namespace SecretProject.Class.TileStuff
 
         private int tileNumber;
 
-
-
-
         public float X { get { return x; } set { x = value; } }
         public float Y { get { return y; } set { y = value; } }
         public int GID { get { return gID; } set { gID = value; } }
@@ -56,8 +53,8 @@ namespace SecretProject.Class.TileStuff
             column = tileFrame % tilesetTilesWide;
             row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
 
-            this.x = (tileNumber % mapWidth) * tileWidth;
-            this.y = (float)Math.Floor(tileNumber / (double)mapWidth) * tileHeight;
+            this.x = (x % mapWidth) * tileWidth;
+            this.y = (y % mapWidth) * tileHeight;
 
             SourceRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, tileWidth, tileHeight);

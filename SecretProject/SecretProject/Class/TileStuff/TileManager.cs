@@ -24,8 +24,6 @@ namespace SecretProject.Class.TileStuff
         protected int mapHeight;
 
         protected int tileNumber;
-        
-        
 
         protected Tile[,] tiles;
 
@@ -47,17 +45,16 @@ namespace SecretProject.Class.TileStuff
 
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
-            tileNumber = 0;
+
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
                 tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-                tileNumber++;
 
             }
         }
 
-        //TODO: fill array correctly with tiles from tileset.
+        //TODO: 
         //need "is closest to" method
         //need "replace" method
 
@@ -72,7 +69,7 @@ namespace SecretProject.Class.TileStuff
                     if(tiles[i, j].GID != 0)
                     {
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-                    }  //need to change x and y
+                    }  
                     
                 }
 
