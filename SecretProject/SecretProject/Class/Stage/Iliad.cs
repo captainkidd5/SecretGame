@@ -18,6 +18,7 @@ using Object = SecretProject.Class.ObjectFolder.Object;
 using System;
 using SecretProject.Class.Camera;
 using SecretProject.Class.TileStuff;
+using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.Stage
 {
@@ -86,6 +87,9 @@ namespace SecretProject.Class.Stage
         TmxLayer buildings;
         TmxLayer background;
         TmxLayer midGround;
+
+        //Declare Music
+        Song mainTheme;
 
         #endregion
 
@@ -176,8 +180,12 @@ namespace SecretProject.Class.Stage
             buildingsTiles = new TileManager(tileSet, map, buildings);
             midGroundTiles = new TileManager(tileSet, map, midGround);
 
-            
-           // backGroundTiles.LoadTiles();
+
+            // backGroundTiles.LoadTiles();
+
+            //Songs
+            mainTheme = content.Load<Song>("Music/IntheForest");
+            MediaPlayer.Play(mainTheme);
 
         }
 
