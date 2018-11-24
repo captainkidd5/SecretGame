@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    class AnimatedSprite
+    public class AnimatedSprite
     {
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }

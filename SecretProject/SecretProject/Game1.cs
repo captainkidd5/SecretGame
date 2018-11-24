@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using SecretProject.Class.Camera;
+using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Stage;
 using System;
 using TiledSharp;
@@ -50,8 +50,14 @@ namespace SecretProject
         //Camera
         Camera2D cam;
 
+        
+
         //Initialize Starting Stage
         public Stages gameStages = Stages.MainMenu;
+
+        //screen stuff
+        public static int ScreenHeight;
+        public static int ScreenWidth;
 
 
 
@@ -65,7 +71,9 @@ namespace SecretProject
 
             //set window dimensions
             graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+             graphics.PreferredBackBufferHeight = 720;
+
+            //graphics.IsFullScreen = true;
 
         }
         #endregion
@@ -77,6 +85,9 @@ namespace SecretProject
 
 
             cam = new Camera2D();
+
+            ScreenHeight = graphics.PreferredBackBufferHeight;
+            ScreenWidth = graphics.PreferredBackBufferWidth;
 
             base.Initialize();
         }

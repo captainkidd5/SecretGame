@@ -16,7 +16,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
 using Object = SecretProject.Class.ObjectFolder.Object;
 using System;
-using SecretProject.Class.Camera;
+using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
 
@@ -58,6 +58,8 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare input stuff
         Camera2D cam;
+
+        Camera camera;
 
 
         KeyboardState kState;
@@ -171,10 +173,13 @@ namespace SecretProject.Class.Stage
 
 
             //load camera stuff
-            cam = new Camera2D();
-           // cam.Zoom = 2.0f;
+            //camera = new Camera();
+           // camera.Zoom = 2;
 
-            cam.Move(new Vector2(player.Position.X, player.Position.Y));
+           cam = new Camera2D();
+           cam.Zoom = 2.5f;
+
+           cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             backGroundTiles = new TileManager(tileSet, map, background);
             buildingsTiles = new TileManager(tileSet, map, buildings);
@@ -215,8 +220,10 @@ namespace SecretProject.Class.Stage
 
             toolBar.Update(gameTime, mouse);
 
-            
+
             cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+
+            //camera.follow(player.Position, player.Rectangle);
 
 
            // if ((oldKeyboardState.IsKeyDown(Keys.R)) && (kState.IsKeyUp(Keys.R)))
@@ -246,7 +253,7 @@ namespace SecretProject.Class.Stage
             graphicsDevice.Clear(Color.Black);
             if (player.Health > 0)
             {
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: cam.getTransformation(graphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphicsDevice));
                 player.anim.ShowRectangle = showBorders;
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
 

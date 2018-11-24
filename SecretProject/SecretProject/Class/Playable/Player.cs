@@ -16,7 +16,7 @@ using Object = SecretProject.Class.ObjectFolder.Object;
 
 namespace SecretProject.Class.Playable
 {
-    class Player
+    public class Player
     {
         private Vector2 _position = new Vector2(300, 300);
         private int _health = 3;

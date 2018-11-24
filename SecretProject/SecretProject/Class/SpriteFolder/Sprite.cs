@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    class Sprite
+    public class Sprite
     {
         protected Texture2D _texture;
         public Vector2 Position;

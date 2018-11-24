@@ -15,7 +15,7 @@ using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.ObjectFolder
 {
-    class Object
+    public class Object
     {
 
         protected Texture2D rectangleTexture;
