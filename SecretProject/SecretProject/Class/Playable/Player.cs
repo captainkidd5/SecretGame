@@ -30,7 +30,12 @@ namespace SecretProject.Class.Playable
 
         private Texture2D _texture;
 
+        public AnimatedSprite anim;
+        public AnimatedSprite[] animations;
+
         public string Name { get; set; }
+
+        public int frameNumber;
 
         public Rectangle Rectangle
         {
@@ -68,16 +73,18 @@ namespace SecretProject.Class.Playable
 
 
 
-        public Player(string name, Vector2 position, Texture2D texture)
+        public Player(string name, Vector2 position, Texture2D texture, int frameNumber)
         {
             Name = name;
             Position = position;
             this._texture = texture;
+            this.frameNumber = frameNumber;
+            animations = new AnimatedSprite[frameNumber];
 
         }
 
-        public AnimatedSprite anim;
-        public AnimatedSprite[] animations = new AnimatedSprite[4];
+        
+        
 
         public void Update(GameTime gameTime, List<Sprite> sprites, List<Object> objects)
         {

@@ -98,7 +98,7 @@ namespace SecretProject.Class.ObjectFolder
             this.Height = height;
             this.Width = width;
 
-            ShowRectangle = false;
+            ShowRectangle = true;
         }
 
         public Object(GraphicsDevice graphicsDevice, Vector2 position, int height, int width)
@@ -140,7 +140,7 @@ namespace SecretProject.Class.ObjectFolder
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
-        public virtual void Update(GameTime gameTime, List<Object> objects)
+        public virtual void Update(GameTime gameTime)
         {
 
         }

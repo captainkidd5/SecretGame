@@ -1,11 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Stage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
+
+using SecretProject.Class.ObjectFolder;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -46,10 +49,18 @@ namespace SecretProject.Class.TileStuff
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
+            //add all tiles in buildings layer to object list.
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
+
+                
                 tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+
+                if (layerName == Iliad.map.Layers["buildings"])
+                {
+                    Iliad.allObjects.Add(new ObjectFolder.Object(new Vector2(layerNameTile.X, layerNameTile.Y), 16, 16));
+                }
 
             }
         }

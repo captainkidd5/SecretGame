@@ -22,7 +22,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.Stage
 {
-    class Iliad : Component
+    public class Iliad : Component
     {
         
         #region FIELDS
@@ -40,7 +40,7 @@ namespace SecretProject.Class.Stage
         int tilesetTilesWide;
         int tilesetTilesHigh;
 
-        TmxMap map;
+       public static TmxMap map;
         Texture2D tileSet;
 
         Texture2D joeSprite;
@@ -53,7 +53,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Instantiate playables
         Player player;
-        Player basicRaft;
+        Player mastodon;
 
         //--------------------------------------
         //Declare input stuff
@@ -80,7 +80,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Lists of stuff
 
-        private List<Object> allObjects;
+        public static List<Object> allObjects;
 
         private List<Sprite> allSprites;
 
@@ -103,8 +103,8 @@ namespace SecretProject.Class.Stage
             //playerOneInv = new PlayerInventory("player1", graphicsDevice, content);
 
             joeSprite = content.Load<Texture2D>("Player/Joe/joe");
-            player = new Player("joe", new Vector2(800, 800), joeSprite) { Activate = true, Right = Keys.D };
-            Player basicRaft = new Player("basicRaft", new Vector2(480, 820), joeSprite) { Activate = false };
+            player = new Player("joe", new Vector2(800, 650), joeSprite, 4) { Activate = false, Right = Keys.D };
+            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4) { Activate = true };
 
             allSprites = new List<Sprite>()
             {
@@ -137,6 +137,7 @@ namespace SecretProject.Class.Stage
             
             var buildingLayer = map.ObjectGroups["collision"];
 
+            /*
             foreach (var obj in buildingLayer.Objects)
             {
                 //if(obj.Name == "Tree")
@@ -145,6 +146,7 @@ namespace SecretProject.Class.Stage
 
                 //}
             }
+            */
             
 
             tileWidth = map.Tilesets[0].TileWidth;
@@ -160,6 +162,13 @@ namespace SecretProject.Class.Stage
             var joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
             var joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
+            var mUp = content.Load<Texture2D>("NPC/Mastodon/MastodonBack");
+            var mDown = content.Load<Texture2D>("NPC/Mastodon/MastodonFront");
+            var mLeft = content.Load<Texture2D>("NPC/Mastodon/MastodonLeftSide");
+            var mRight = content.Load<Texture2D>("NPC/Mastodon/MastodonRightSide");
+
+            var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
+
 
 
             //declare animations
@@ -171,12 +180,19 @@ namespace SecretProject.Class.Stage
             player.animations[2] = new AnimatedSprite(graphicsDevice, joeLeft, 1, 4);
             player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
 
+            mastodon.anim = new AnimatedSprite(graphicsDevice, mIdle, 1, 2);
+
+            mastodon.animations[0] = new AnimatedSprite(graphicsDevice, mDown, 1, 2);
+            mastodon.animations[1] = new AnimatedSprite(graphicsDevice, mUp, 1, 4);
+            mastodon.animations[2] = new AnimatedSprite(graphicsDevice, mLeft, 1, 4);
+            mastodon.animations[3] = new AnimatedSprite(graphicsDevice, mRight, 1, 4);
+
 
             //load camera stuff
             //camera = new Camera();
-           // camera.Zoom = 2;
+            // camera.Zoom = 2;
 
-           cam = new Camera2D();
+            cam = new Camera2D();
            cam.Zoom = 2.5f;
 
            cam.Move(new Vector2(player.Position.X, player.Position.Y));
@@ -190,7 +206,7 @@ namespace SecretProject.Class.Stage
 
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest");
-            MediaPlayer.Play(mainTheme);
+            //MediaPlayer.Play(mainTheme);
 
         }
 
@@ -212,16 +228,26 @@ namespace SecretProject.Class.Stage
 
             player.Update(gameTime, allSprites, allObjects);
 
+            mastodon.Update(gameTime, allSprites, allObjects);
+
+            /*
+
             foreach (Sprite sprite in allSprites)
             {
                 sprite.Update(gameTime);
             }
 
+            foreach(Object obj in allObjects)
+            {
+                obj.Update(gameTime);
+            }
+            */
+
 
             toolBar.Update(gameTime, mouse);
 
 
-            cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+            cam.Follow(new Vector2(mastodon.Position.X, mastodon.Position.Y));
 
             //camera.follow(player.Position, player.Rectangle);
 
@@ -256,6 +282,7 @@ namespace SecretProject.Class.Stage
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphicsDevice));
                 player.anim.ShowRectangle = showBorders;
                 player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
+                mastodon.anim.Draw(spriteBatch, new Vector2(mastodon.Position.X, mastodon.Position.Y), (float).3);
 
                 backGroundTiles.DrawTiles(spriteBatch, (float).1);
                 buildingsTiles.DrawTiles(spriteBatch, (float).2);
@@ -268,6 +295,12 @@ namespace SecretProject.Class.Stage
                 {
                     sprite.ShowRectangle = showBorders;
                     sprite.Draw(spriteBatch);
+                }
+
+                foreach(var obj in allObjects)
+                {
+                    obj.ShowRectangle = showBorders;
+                    obj.Draw(spriteBatch);
                 }
 
 
