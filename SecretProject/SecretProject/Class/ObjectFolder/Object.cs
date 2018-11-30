@@ -61,57 +61,32 @@ namespace SecretProject.Class.ObjectFolder
         int Width;
         int Height;
 
+        public Rectangle Rectangle { get; set; }
 
-        public Rectangle Rectangle
+        
+
+        public Object(GraphicsDevice graphicsDevice, Rectangle rectangle)
         {
-            get
-            {
+            this.Rectangle = rectangle;
+            this.Width = rectangle.Width;
+            this.Height = rectangle.Height;
 
-                return new Rectangle((int)Position.X + TextureAdjustmentX, (int)Position.Y + TextureAdjustmentY, (int)Width + WidthSubtractor, (int)Height + HeightSubtractor);
-
-
-            }
-
-        }
-
-        public Object(float layerDepth, int adjustingPoint, Vector2 position, int height, int width)
-        {
-
-
-            this.Position = position;
-
-            this.LayerDepth = layerDepth;
-
-
-
-            touchingPoint = new Vector2(this.Rectangle.X, (this.Rectangle.Y + adjustingPoint));
-
-            this.Height = height;
-            this.Width = width;
-
-        }
-
-        public Object(Vector2 position, int height, int width)
-        {
-            this.Position = position;
-
-            this.Height = height;
-            this.Width = width;
+            SetRectangleTexture(graphicsDevice);
 
             ShowRectangle = true;
         }
 
+
+
         public Object(GraphicsDevice graphicsDevice, Vector2 position, int height, int width)
         {
-
-
-
             this.Position = position;
 
             this.Height = height;
             this.Width = width;
-
             SetRectangleTexture(graphicsDevice);
+
+            ShowRectangle = true;
         }
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
@@ -149,10 +124,10 @@ namespace SecretProject.Class.ObjectFolder
         {
             if (ShowRectangle)
             {
-                if (rectangleTexture != null)
-                {
+               // if (rectangleTexture != null)
+              //  {
                     spriteBatch.Draw(rectangleTexture, Position, Color.White);
-                }
+               // }
             }
         }
 

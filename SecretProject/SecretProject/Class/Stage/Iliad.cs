@@ -69,18 +69,19 @@ namespace SecretProject.Class.Stage
         TileManager backGroundTiles;
         TileManager buildingsTiles;
         TileManager midGroundTiles;
+        TileManager testTiles;
 
         //--------------------------------------
         //Declare Textures
-        
- 
+
+
 
         //AnimatedSprite TestSprite;
 
         //--------------------------------------
         //Declare Lists of stuff
 
-        public static List<Object> allObjects;
+        public List<Object> allObjects;
 
         private List<Sprite> allSprites;
 
@@ -89,6 +90,8 @@ namespace SecretProject.Class.Stage
         TmxLayer buildings;
         TmxLayer background;
         TmxLayer midGround;
+        TmxLayer testLayer;
+
 
         //Declare Music
         Song mainTheme;
@@ -103,8 +106,8 @@ namespace SecretProject.Class.Stage
             //playerOneInv = new PlayerInventory("player1", graphicsDevice, content);
 
             joeSprite = content.Load<Texture2D>("Player/Joe/joe");
-            player = new Player("joe", new Vector2(800, 650), joeSprite, 4) { Activate = false, Right = Keys.D };
-            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4) { Activate = true };
+            player = new Player("joe", new Vector2(1000, 650), joeSprite, 4) { Activate = true, Right = Keys.D };
+            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4) { Activate = false };
 
             allSprites = new List<Sprite>()
             {
@@ -115,6 +118,7 @@ namespace SecretProject.Class.Stage
             {
 
             };
+            
 
             //UI Textures
             toolBar = new ToolBar(game, graphicsDevice, content, mouse);
@@ -130,6 +134,8 @@ namespace SecretProject.Class.Stage
             buildings = map.Layers["buildings"];
             midGround = map.Layers["midGround"];
 
+            testLayer = map.Layers["test"];
+
             //var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
             
@@ -137,17 +143,7 @@ namespace SecretProject.Class.Stage
             
             var buildingLayer = map.ObjectGroups["collision"];
 
-            /*
-            foreach (var obj in buildingLayer.Objects)
-            {
-                //if(obj.Name == "Tree")
-                //{
-                    allObjects.Add(new Object(new Vector2((float)obj.X, (float)obj.Y), (int)obj.Height, (int)obj.Width));
 
-                //}
-            }
-            */
-            
 
             tileWidth = map.Tilesets[0].TileWidth;
             tileHeight = map.Tilesets[0].TileHeight;
@@ -200,6 +196,19 @@ namespace SecretProject.Class.Stage
             backGroundTiles = new TileManager(tileSet, map, background);
             buildingsTiles = new TileManager(tileSet, map, buildings);
             midGroundTiles = new TileManager(tileSet, map, midGround);
+            testTiles = new TileManager(tileSet, map, testLayer);
+
+
+
+            foreach (Tile someTile in buildingsTiles.Tiles)
+            {
+                if(someTile.GID != 0)
+                {
+                    allObjects.Add(new Object(graphicsDevice, someTile.DestinationRectangle));
+                }
+               
+                
+            }
 
 
             // backGroundTiles.LoadTiles();
@@ -228,7 +237,7 @@ namespace SecretProject.Class.Stage
 
             player.Update(gameTime, allSprites, allObjects);
 
-            mastodon.Update(gameTime, allSprites, allObjects);
+           // mastodon.Update(gameTime, allSprites, allObjects);
 
             /*
 
@@ -247,7 +256,7 @@ namespace SecretProject.Class.Stage
             toolBar.Update(gameTime, mouse);
 
 
-            cam.Follow(new Vector2(mastodon.Position.X, mastodon.Position.Y));
+            cam.Follow(new Vector2(player.Position.X, player.Position.Y));
 
             //camera.follow(player.Position, player.Rectangle);
 

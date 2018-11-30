@@ -30,6 +30,8 @@ namespace SecretProject.Class.TileStuff
 
         protected Tile[,] tiles;
 
+        public Tile[,] Tiles { get { return tiles; } }
+
         public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName)
         {
             this.tileSet = tileSet;
@@ -54,13 +56,10 @@ namespace SecretProject.Class.TileStuff
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
 
-                
+
                 tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
-                if (layerName == Iliad.map.Layers["buildings"])
-                {
-                    Iliad.allObjects.Add(new ObjectFolder.Object(new Vector2(layerNameTile.X, layerNameTile.Y), 16, 16));
-                }
+                
 
             }
         }
