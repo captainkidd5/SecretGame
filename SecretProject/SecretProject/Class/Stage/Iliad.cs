@@ -210,6 +210,8 @@ namespace SecretProject.Class.Stage
                 
             }
 
+            //buildingsTiles.Tiles.
+
 
             // backGroundTiles.LoadTiles();
 
@@ -233,6 +235,14 @@ namespace SecretProject.Class.Stage
             {
                 showBorders = !showBorders;
             }
+
+
+            if ((mouse.LeftButton == ButtonState.Released) && (mouse.LeftButton == ButtonState.Pressed))
+            {
+                backGroundTiles.ReplaceTile(mouse.X, mouse.Y);
+
+            }
+                
 
 
             player.Update(gameTime, allSprites, allObjects);

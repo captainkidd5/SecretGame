@@ -28,6 +28,13 @@ namespace SecretProject.Class.TileStuff
 
         protected int tileNumber;
 
+
+
+        protected int tileCounter;
+
+
+
+
         protected Tile[,] tiles;
 
         public Tile[,] Tiles { get { return tiles; } }
@@ -47,6 +54,8 @@ namespace SecretProject.Class.TileStuff
             mapWidth = mapName.Width;
             mapHeight = mapName.Height;
 
+            this.tileCounter = 0;
+
 
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
@@ -55,7 +64,10 @@ namespace SecretProject.Class.TileStuff
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
-
+                if(layerNameTile.Gid != 0)
+                {
+                    tileCounter++;
+                }
 
                 tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
@@ -65,6 +77,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         //TODO: 
+        //need to assign specific replacable objects their own tile properties
         //need "is closest to" method
         //need "replace" method
 
@@ -85,6 +98,13 @@ namespace SecretProject.Class.TileStuff
 
             }
 
+        }
+
+        public void ReplaceTile(int oldX, int oldY)
+        {
+            //tiles[oldX, oldY] = new Tile(newX, newY, 3528, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+
+            tiles[oldX, oldY].GID = 3528;
         }
         
     }

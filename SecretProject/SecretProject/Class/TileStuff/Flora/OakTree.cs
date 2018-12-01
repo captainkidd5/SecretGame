@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecretProject.Class.TileStuff
+namespace SecretProject.Class.TileStuff.Flora
 {
-    public class Tile
+    class OakTree : ITree
     {
         private int gID;
 
@@ -35,11 +34,11 @@ namespace SecretProject.Class.TileStuff
         public float Y { get; set; }
         public int GID { get { return gID; } set { gID = value; } }
 
-        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
+        public OakTree(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
         {
             this.tileNumber = tileNumber;
 
-            
+
             this.gID = gID;
             this.tilesetTilesWide = tilesetTilesWide;
             this.tilesetTilesHigh = tilesetTilesHigh;
@@ -56,10 +55,6 @@ namespace SecretProject.Class.TileStuff
 
             SourceRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, tileWidth, tileHeight);
-            
-
         }
-
-        
     }
 }
