@@ -16,13 +16,13 @@ namespace SecretProject.Class.Controls
         //public Vector2 Position { get { return position; } set { position = value; } }
 
 
-        public MouseManager()
+        public MouseManager(MouseState myMouse)
         {
-            
+            this.myMouse = myMouse;
             
         }
 
-        public void Update(MouseState mouse)
+        public void Update()
         {
             IsClicked = false;
             MouseState oldMouse = myMouse;

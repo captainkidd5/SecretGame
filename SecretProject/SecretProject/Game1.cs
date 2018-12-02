@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.CameraStuff;
+using SecretProject.Class.Controls;
 using SecretProject.Class.Stage;
 using System;
 using TiledSharp;
@@ -47,6 +48,8 @@ namespace SecretProject
         MouseState mouse;
         KeyboardState kState;
 
+        MouseManager myMouseManager;
+
         //Camera
         Camera2D cam;
 
@@ -81,11 +84,15 @@ namespace SecretProject
         #region INITIALIZE
         protected override void Initialize()
         {
+
+            //initialize mouse
             this.IsMouseVisible = true;
+            myMouseManager = new MouseManager(mouse);
 
-
+            //camera
             cam = new Camera2D();
 
+            //screen dimensions
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
 
@@ -97,8 +104,6 @@ namespace SecretProject
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            IsMouseVisible = true;
 
             //Load Stages
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, mouse);
@@ -121,13 +126,16 @@ namespace SecretProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            //music
             MediaPlayer.IsRepeating = true;
+            
+            //input
             MouseState myMouse = Mouse.GetState();
             KeyboardState oldKeyboardState = kState;
             kState = Keyboard.GetState();
 
 
-
+            //switch between stages for updating
             switch (gameStages)
             {
                 case Stages.MainMenu:
@@ -154,7 +162,7 @@ namespace SecretProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-
+            //switch between stages for drawing
                 switch (gameStages)
             {
                 case Stages.MainMenu:
@@ -163,9 +171,6 @@ namespace SecretProject
                     break;
 
                 case Stages.Iliad:
-                    
-
-
                     _iliad.Draw(gameTime, spriteBatch);
                     break;
             }

@@ -25,6 +25,9 @@ namespace SecretProject.Class.MenuStuff
 
         public Vector2 size;
 
+        bool down;
+        public bool isClicked;
+
         public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
         {
             Texture = newtexture;
@@ -36,16 +39,11 @@ namespace SecretProject.Class.MenuStuff
 
         }
 
-        bool down;
-        public bool isClicked;
 
         public void Update(MouseState mouse)
         {
             MouseState oldMouse = myMouse;
             myMouse = Mouse.GetState();
-
-
-
 
             Rectangle mouseRectangle = new Rectangle(myMouse.X, myMouse.Y, 1, 1);
 
@@ -57,7 +55,6 @@ namespace SecretProject.Class.MenuStuff
                 if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed)) isClicked = true;
             }
             else Color = Color.White;
-
 
 
         }
