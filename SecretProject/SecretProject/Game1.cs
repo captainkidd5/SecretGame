@@ -98,8 +98,6 @@ namespace SecretProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            //Load Player Controls
             IsMouseVisible = true;
 
             //Load Stages

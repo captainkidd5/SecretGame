@@ -10,40 +10,47 @@ namespace SecretProject.Class.Controls
 {
     class MouseManager
     {
-        private MouseState oldState;
-        private MouseState newState;
-        private int x;
-        private int y;
-        Rectangle mouseRectangle;
+        public MouseState myMouse;
+        public bool IsClicked { get; set; }
+        Vector2 position;
+        //public Vector2 Position { get { return position; } set { position = value; } }
+
 
         public MouseManager()
         {
-            newState = Mouse.GetState();
-            oldState = Mouse.GetState();
-            mouseRectangle = new Rectangle(newState.X, newState.Y, 1, 1);
+            
+            
         }
 
-
-        public void GetPosition()
+        public void Update(MouseState mouse)
         {
-            x = newState.X;
-            y = newState.Y;
+            IsClicked = false;
+            MouseState oldMouse = myMouse;
+            myMouse = Mouse.GetState();
+
+            position.X = myMouse.Position.X;
+            position.Y = myMouse.Position.Y;
+
+            if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed)) IsClicked = true;
+
 
         }
 
-
-        public bool IsClicked()
+        public bool IsHovering(Rectangle rectangle)
         {
-            if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            Rectangle mouseRectangle = new Rectangle(myMouse.X, myMouse.Y, 1, 1);
+
+            if (mouseRectangle.Intersects(rectangle))
             {
-                oldState = newState;
-                return true;
-                
+                return true;  
             }
             else
             {
                 return false;
             }
+            
         }
+
+
     }
 }
