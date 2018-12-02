@@ -9,13 +9,18 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
-
-
+using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.UI
 {
+    public enum toolBarButtons
+    {
+        none,
+        menu,
+        inv,
+    }
+
     class ToolBar : Component
     {
         //--------------------------------------
@@ -36,9 +41,11 @@ namespace SecretProject.Class.UI
         //button List
         private List<Button> allButtons;
 
+        public toolBarButtons toolBarState = toolBarButtons.none;
 
 
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseState mouse) : base(game, graphicsDevice, content, mouse)
+
+        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
         {
             //--------------------------------------
             //initialize SpriteFonts
@@ -51,8 +58,8 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Initialize Buttons
-            _inGameMenu = new Button(_toolBarButton, graphicsDevice, new Vector2(367, 635));
-            _openInventory = new Button(_toolBarButton, graphicsDevice, new Vector2(433, 635));
+            _inGameMenu = new Button(_toolBarButton, graphicsDevice, customMouse, new Vector2(367, 635));
+            _openInventory = new Button(_toolBarButton, graphicsDevice, customMouse, new Vector2(433, 635));
 
             //--------------------------------------
             //Button List Stuff
@@ -72,35 +79,33 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Buttons
-            foreach (Button button in allButtons)
-            {
-                button.Draw(spriteBatch);
-            }
-
-            //--------------------------------------
-            //Draw Text
-            spriteBatch.DrawString(_font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
-            spriteBatch.DrawString(_font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
-
+            _openInventory.Draw(spriteBatch, _font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
+            _inGameMenu.Draw(spriteBatch, _font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
 
             spriteBatch.End();
         }
 
-        public override void Update(GameTime gameTime, MouseState mouse)
+        public override void Update(GameTime gameTime)
         {
 
             //--------------------------------------
             //Update Buttons
-            foreach (Button button in allButtons)
+            
+
+            
+            _inGameMenu.Update();
+            if (_inGameMenu.isClicked)
             {
-                button.Update(mouse);
-                
+              game.gameStages = Stages.MainMenu;
             }
+
+            _openInventory.Update();
+
+
 
             //--------------------------------------
             //Switch GameStages on click
-            if (_inGameMenu.isClicked == true)
-                game.gameStages = Stages.MainMenu;
+
             _openInventory.isClicked = false;
             
         }

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.MenuStuff
 {
@@ -21,14 +22,16 @@ namespace SecretProject.Class.MenuStuff
 
         Color Color;
 
-        MouseState myMouse;
+        MouseManager myMouse;
 
         public Vector2 size;
 
         bool down;
         public bool isClicked;
 
-        public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
+        SpriteFont font;
+
+        public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, MouseManager myMouse, Vector2 position)
         {
             Texture = newtexture;
             Position = position;
@@ -37,26 +40,29 @@ namespace SecretProject.Class.MenuStuff
 
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
+            this.myMouse = myMouse;
+
         }
 
 
-        public void Update(MouseState mouse)
+
+        public void Update()
         {
-            MouseState oldMouse = myMouse;
-            myMouse = Mouse.GetState();
+            myMouse.Update();
 
-            Rectangle mouseRectangle = new Rectangle(myMouse.X, myMouse.Y, 1, 1);
-
-            if (mouseRectangle.Intersects(Rectangle))
+            if(myMouse.IsHovering(Rectangle))
             {
                 Color = Color.White * .5f;
-
-
-                if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed)) isClicked = true;
+                if(myMouse.IsClicked)
+                {
+                    isClicked = true;
+                }
             }
-            else Color = Color.White;
+            else
+            {
+                Color = Color.White;
 
-
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -64,6 +70,14 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(Texture, Rectangle, Color);
         }
 
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint)
+        {
+            spriteBatch.Draw(Texture, Rectangle, Color);
+            spriteBatch.DrawString(font, text, fontLocation, tint);
+
+        }
+
+        
 
     }
 

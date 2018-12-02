@@ -14,29 +14,34 @@ namespace SecretProject.Class.TileStuff
 {
     class TileManager
     {
-        protected int iD;
+        
         protected Texture2D tileSet;
         protected TmxMap mapName;
         protected TmxLayer layerName;
+
+
+        //--------------------------------------
+        //Map Specifications
         protected int tilesetTilesWide;
         protected int tilesetTilesHigh;
-        protected int tileWidth;
-        protected int tileHeight;
-
         protected int mapWidth;
         protected int mapHeight;
-
+        //--------------------------------------
+        //Tile Specificications
+        protected int iD;
+        protected int tileWidth;
+        protected int tileHeight;
         protected int tileNumber;
 
 
-
+        //--------------------------------------
+        //Counting
         protected int tileCounter;
 
 
-
-
+        //--------------------------------------
+        //2D Array of All Tiles
         protected Tile[,] tiles;
-
         public Tile[,] Tiles { get { return tiles; } }
 
         public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName)

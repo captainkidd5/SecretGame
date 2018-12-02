@@ -9,9 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
-
-
+using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.Stage
@@ -35,7 +33,7 @@ namespace SecretProject.Class.Stage
 
 
 
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseState mouse) : base(game, graphicsDevice, content, mouse)
+        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
         {
             //--------------------------------------
             //Load button textures
@@ -44,8 +42,8 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Initialize Buttons
-            Join = new Button(join, graphicsDevice, new Vector2(500, 100));
-            Exit = new Button(exit, graphicsDevice, new Vector2(500, 300));
+            Join = new Button(join, graphicsDevice, customMouse, new Vector2(500, 100));
+            Exit = new Button(exit, graphicsDevice, customMouse, new Vector2(500, 300));
 
             //--------------------------------------
             //Load spritefonts
@@ -54,21 +52,28 @@ namespace SecretProject.Class.Stage
 
         }
 
-        public override void Update(GameTime gameTime, MouseState mouse)
+        public override void Update(GameTime gameTime)
         {
+            Join.isClicked = false;
+            Exit.isClicked = false;
 
             //--------------------------------------
-            //Update Join (play)
-            Join.Update(mouse);
+            //Update Buttons
+            Join.Update();
+            Exit.Update();
+            
+
+            
+
+            //--------------------------------------
+            //Check Conditions
+            
+            if (Exit.isClicked == true)
+                game.Exit();
             if (Join.isClicked == true)
                 game.gameStages = Stages.Iliad;
 
-            Join.isClicked = false;
-
-            //--------------------------------------
-            //Update Exit
-            Exit.Update(mouse);
-            if (Exit.isClicked == true) game.Exit();
+            
 
         }
 
@@ -79,13 +84,8 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Draw Buttons
-            Join.Draw(spriteBatch);
-            Exit.Draw(spriteBatch);
-
-            //--------------------------------------
-            //Draw Text
-            spriteBatch.DrawString(font, "Exit", new Vector2(530, 310), Color.CornflowerBlue);
-            spriteBatch.DrawString(font, "Play", new Vector2(530, 110), Color.CornflowerBlue);
+            Join.Draw(spriteBatch, font, "Exit", new Vector2(530, 310), Color.CornflowerBlue);
+            Exit.Draw(spriteBatch, font, "Play", new Vector2(530, 110), Color.CornflowerBlue);
 
             spriteBatch.End();
 

@@ -10,30 +10,32 @@ namespace SecretProject.Class.TileStuff
 {
     public class Tile
     {
-        private int gID;
-
+        //--------------------------------------
+        //Map Specifications
         private int tilesetTilesWide;
         private int tilesetTilesHigh;
         private int mapWidth;
         private int mapHeight;
 
+        //--------------------------------------
+        //Tile Specifications
         private int tileFrame;
-
-
         private int tileHeight = 16;
         private int tileWidth = 16;
-
         private int column;
         private int row;
+        private int tileNumber;
+        public float X { get; set; }
+        public float Y { get; set; }
+        private int gID;
+        public int GID { get { return gID; } set { gID = value; } }
 
+        //--------------------------------------
+        //Rectangles
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
-        private int tileNumber;
 
-        public float X { get; set; }
-        public float Y { get; set; }
-        public int GID { get { return gID; } set { gID = value; } }
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
         {

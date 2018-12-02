@@ -16,6 +16,7 @@ using System;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
+using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.Stage
 {
@@ -85,7 +86,7 @@ namespace SecretProject.Class.Stage
 
         #region CONSTRUCTOR
 
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseState mouse) : base(game, graphicsDevice, content, mouse)
+        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
         {
 
             //Lists
@@ -203,7 +204,7 @@ namespace SecretProject.Class.Stage
         #endregion
 
         #region UPDATE
-        public override void Update(GameTime gameTime, MouseState mouse)
+        public override void Update(GameTime gameTime)
         {
             //--------------------------------------
             //input
@@ -220,11 +221,14 @@ namespace SecretProject.Class.Stage
 
             //mouse
 
-            if ((mouse.LeftButton == ButtonState.Released) && (mouse.LeftButton == ButtonState.Pressed))
-            {
-                backGroundTiles.ReplaceTile(mouse.X, mouse.Y);
+           
+                if(customMouse.IsClicked)
+                {
 
-            }
+                }
+                //backGroundTiles.ReplaceTile(customMouse.pos, mouse.Y);
+
+            
 
             //--------------------------------------
             //Update Players
@@ -249,7 +253,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            toolBar.Update(gameTime, mouse);
+            toolBar.Update(gameTime);
 
             //--------------------------------------
             //update camera

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SecretProject.Class.Controls
 {
-    class MouseManager
+   public class MouseManager
     {
         public MouseState myMouse;
         public bool IsClicked { get; set; }

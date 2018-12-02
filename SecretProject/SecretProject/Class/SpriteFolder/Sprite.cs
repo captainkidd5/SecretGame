@@ -13,6 +13,8 @@ namespace SecretProject.Class.SpriteFolder
 {
     public class Sprite
     {
+
+
         protected Texture2D _texture;
         public Vector2 Position;
         public Vector2 Velocity;

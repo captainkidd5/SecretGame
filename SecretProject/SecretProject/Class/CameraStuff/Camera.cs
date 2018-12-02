@@ -14,9 +14,11 @@ namespace SecretProject.Class.CameraStuff
     {
         public Matrix Transform { get; private set; }
 
+        //--------------------------------------
+        //Zoom
         private float zoom = 1;
-
         public float Zoom { get { return zoom; } set { zoom = value; } }
+
 
         public Camera()
         {

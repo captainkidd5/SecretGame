@@ -14,6 +14,8 @@ namespace SecretProject
     //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
     // also need this for mouseover events. Possible use of a 2D array?
 
+    //Fix menu button in game to have click function
+
     public enum Dir
     {
         Down,
@@ -106,8 +108,8 @@ namespace SecretProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Load Stages
-            _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, mouse);
-           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, mouse);
+            _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager);
+           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager);
 
             
         }
@@ -139,13 +141,13 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
-                    _mainMenu.Update(gameTime, mouse);
+                    _mainMenu.Update(gameTime);
 
                     break;
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    _iliad.Update(gameTime, mouse);
+                    _iliad.Update(gameTime);
                     break;
 
             }
