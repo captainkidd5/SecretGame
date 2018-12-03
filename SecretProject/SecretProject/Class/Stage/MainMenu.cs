@@ -83,12 +83,7 @@ namespace SecretProject.Class.Stage
             
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 322), Color.CornflowerBlue);
             Join.Draw(spriteBatch, font, "Play", new Vector2(545, 120), Color.CornflowerBlue);
-
-
-
             spriteBatch.End();
-
-
         }
 
     }

@@ -22,35 +22,12 @@ namespace SecretProject.Class.ObjectFolder
 
         public bool ShowRectangle { get; set; }
 
-
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Color = Color.White;
         public float Speed;
 
         public string Name;
-
-        public float LayerDepth;
-
-        public delegate bool isTouchingTop(bool touch);
-
-        public bool WalkBehind;
-
-        public int HeightSubtractor { get; set; }
-        public int WidthSubtractor { get; set; }
-
-        public Vector2 touchingPoint;
-        public int AdjustingPoint;
-
-        public Vector2 TouchingPoint { get; set; }
-
-        public int TextureAdjustmentX { get; set; }
-
-
-        public int TextureAdjustmentY { get; set; }
-
-        
-
 
         public int Rows { get; set; }
 
