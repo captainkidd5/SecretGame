@@ -14,7 +14,7 @@ namespace SecretProject
     //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
     // also need this for mouseover events. Possible use of a 2D array?
 
-    //Fix menu button in game to have click function
+    //Fix menu button in game to have click function - problem is that isClicked variable stays active after one click
 
     public enum Dir
     {
@@ -29,6 +29,7 @@ namespace SecretProject
         MainMenu = 0,
         //WorldMap = 1,
         Iliad = 2,
+        Exit = 3,
 
     }
 

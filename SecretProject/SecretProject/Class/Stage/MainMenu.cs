@@ -54,26 +54,30 @@ namespace SecretProject.Class.Stage
 
         public override void Update(GameTime gameTime)
         {
-            Join.isClicked = false;
-            Exit.isClicked = false;
+
 
             //--------------------------------------
             //Update Buttons
-            Join.Update();
-            Exit.Update();
-            
 
-            
+
+            Join.Update();
+            if (Join.ClickRegister())
+                game.gameStages = Stages.Iliad;
+            Exit.Update();
+            if (Exit.ClickRegister())
+                game.Exit();
+
+
+
+
 
             //--------------------------------------
             //Check Conditions
-            
-            if (Exit.isClicked == true)
-                game.Exit();
-            if (Join.isClicked == true)
-                game.gameStages = Stages.Iliad;
 
-            
+
+
+
+
 
         }
 

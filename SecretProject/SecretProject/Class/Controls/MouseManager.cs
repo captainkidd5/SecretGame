@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SecretProject.Class.Controls
 {
-   public class MouseManager
+    public class MouseManager
     {
         public MouseState myMouse;
         public bool IsClicked { get; set; }
@@ -19,12 +19,14 @@ namespace SecretProject.Class.Controls
         public MouseManager(MouseState myMouse)
         {
             this.myMouse = myMouse;
-            
+            IsClicked = false;
+
         }
 
         public void Update()
         {
             IsClicked = false;
+
             MouseState oldMouse = myMouse;
             myMouse = Mouse.GetState();
 
@@ -32,6 +34,7 @@ namespace SecretProject.Class.Controls
             position.Y = myMouse.Position.Y;
 
             if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed)) IsClicked = true;
+
 
 
         }
@@ -42,15 +45,15 @@ namespace SecretProject.Class.Controls
 
             if (mouseRectangle.Intersects(rectangle))
             {
-                return true;  
+                return true;
             }
             else
             {
                 return false;
             }
-            
+
         }
 
-
     }
+        
 }

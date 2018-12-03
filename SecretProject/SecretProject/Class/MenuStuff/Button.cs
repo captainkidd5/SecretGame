@@ -77,6 +77,18 @@ namespace SecretProject.Class.MenuStuff
 
         }
 
+        public bool ClickRegister()
+        {
+            if(myMouse.IsClicked)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         
 
     }

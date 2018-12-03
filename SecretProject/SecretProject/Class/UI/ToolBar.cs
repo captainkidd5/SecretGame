@@ -94,7 +94,7 @@ namespace SecretProject.Class.UI
 
             
             _inGameMenu.Update();
-            if (_inGameMenu.isClicked)
+            if (_inGameMenu.ClickRegister())
             {
               game.gameStages = Stages.MainMenu;
             }
