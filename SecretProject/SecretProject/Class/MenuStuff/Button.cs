@@ -48,7 +48,6 @@ namespace SecretProject.Class.MenuStuff
 
         public void Update()
         {
-            myMouse.Update();
 
             if(myMouse.IsHovering(Rectangle))
             {
@@ -61,6 +60,7 @@ namespace SecretProject.Class.MenuStuff
             else
             {
                 Color = Color.White;
+                isClicked = false;
 
             }
         }
@@ -72,24 +72,11 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint)
         {
+            
             spriteBatch.Draw(Texture, Rectangle, Color);
             spriteBatch.DrawString(font, text, fontLocation, tint);
 
         }
-
-        public bool ClickRegister()
-        {
-            if(myMouse.IsClicked)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        
 
     }
 

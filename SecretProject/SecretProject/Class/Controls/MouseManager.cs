@@ -33,8 +33,10 @@ namespace SecretProject.Class.Controls
             position.X = myMouse.Position.X;
             position.Y = myMouse.Position.Y;
 
-            if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed)) IsClicked = true;
-
+            if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
+            {
+                IsClicked = true;
+            }
 
 
         }

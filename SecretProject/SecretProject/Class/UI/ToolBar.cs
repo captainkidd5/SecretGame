@@ -90,11 +90,11 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Update Buttons
-            
+            customMouse.Update();
 
             
             _inGameMenu.Update();
-            if (_inGameMenu.ClickRegister())
+            if (_inGameMenu.isClicked)
             {
               game.gameStages = Stages.MainMenu;
             }
