@@ -14,7 +14,7 @@ namespace SecretProject
     //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
     // also need this for mouseover events. Possible use of a 2D array?
     
-    //Refactor object and sprite collisions into new collider class
+    //
 
     public enum Dir
     {

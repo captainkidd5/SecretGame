@@ -107,9 +107,10 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTile(int oldX, int oldY)
         {
-            //tiles[oldX, oldY] = new Tile(newX, newY, 3528, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
-            tiles[oldX, oldY].GID = 3528;
+
+            Tile ReplaceMenttile = new Tile(oldX, oldY, 2848, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            tiles[oldX, oldY] = ReplaceMenttile;
         }
         
     }

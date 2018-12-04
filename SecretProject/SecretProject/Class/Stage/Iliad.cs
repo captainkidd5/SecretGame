@@ -34,7 +34,7 @@ namespace SecretProject.Class.Stage
         int tileHeight;
         int tilesetTilesWide;
         int tilesetTilesHigh;
-        public Vector2 TileSize = new Vector2(32, 32);
+        public Vector2 TileSize = new Vector2(16, 16); // what?
         public static TmxMap map;
         Texture2D tileSet;
 
@@ -88,7 +88,7 @@ namespace SecretProject.Class.Stage
 
         public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
         {
-
+            //ORDER MATTERS!
             //Lists
             //--------------------------------------
             allSprites = new List<Sprite>()
@@ -198,6 +198,12 @@ namespace SecretProject.Class.Stage
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest");
             //MediaPlayer.Play(mainTheme);
+
+
+            // backGroundTiles.ReplaceTile(32, 32);
+            backGroundTiles.ReplaceTile(3, 3);
+            backGroundTiles.ReplaceTile(50, 50);
+            backGroundTiles.ReplaceTile(30, 30);
 
         }
 
