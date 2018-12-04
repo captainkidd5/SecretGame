@@ -15,7 +15,7 @@ using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.ObjectFolder
 {
-    public class Object
+    public class ObjectBody
     {
 
         protected Texture2D rectangleTexture;
@@ -42,7 +42,7 @@ namespace SecretProject.Class.ObjectFolder
 
         
 
-        public Object(GraphicsDevice graphicsDevice, Rectangle rectangle)
+        public ObjectBody(GraphicsDevice graphicsDevice, Rectangle rectangle)
         {
             this.Rectangle = rectangle;
             this.Width = rectangle.Width;
@@ -55,7 +55,7 @@ namespace SecretProject.Class.ObjectFolder
 
 
 
-        public Object(GraphicsDevice graphicsDevice, Vector2 position, int height, int width)
+        public ObjectBody(GraphicsDevice graphicsDevice, Vector2 position, int height, int width)
         {
             this.Position = position;
 
@@ -139,28 +139,28 @@ namespace SecretProject.Class.ObjectFolder
 
 
         #region COLLISION
-        protected bool IsTouchingLeft(Object obj)
+        protected bool IsTouchingLeft(ObjectBody obj)
         {
             return this.Rectangle.Right + this.Velocity.X > obj.Rectangle.Left &&
                 this.Rectangle.Left < obj.Rectangle.Left &&
                 this.Rectangle.Bottom > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Bottom;
         }
-        protected bool IsTouchingRight(Object obj)
+        protected bool IsTouchingRight(ObjectBody obj)
         {
             return this.Rectangle.Left + this.Velocity.X < obj.Rectangle.Right &&
                 this.Rectangle.Right > obj.Rectangle.Right &&
                 this.Rectangle.Bottom > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Bottom;
         }
-        protected bool IsTouchingTop(Object obj)
+        protected bool IsTouchingTop(ObjectBody obj)
         {
             return this.Rectangle.Bottom + this.Velocity.Y > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Top &&
                 this.Rectangle.Right > obj.Rectangle.Left &&
                 this.Rectangle.Left < obj.Rectangle.Right;
         }
-        protected bool IsTouchingBottom(Object obj)
+        protected bool IsTouchingBottom(ObjectBody obj)
         {
             return this.Rectangle.Top + this.Velocity.Y < obj.Rectangle.Bottom &&
                 this.Rectangle.Bottom > obj.Rectangle.Bottom &&

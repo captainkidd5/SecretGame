@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.ObjectFolder;
-using Object = SecretProject.Class.ObjectFolder.Object;
+
 
 namespace SecretProject.Class.Playable
 {
@@ -86,7 +86,7 @@ namespace SecretProject.Class.Playable
         
         
 
-        public void Update(GameTime gameTime, List<Sprite> sprites, List<Object> objects)
+        public void Update(GameTime gameTime, List<Sprite> sprites, List<ObjectFolder.ObjectBody> objects)
         {
             if (Activate)
             {
@@ -226,28 +226,28 @@ namespace SecretProject.Class.Playable
                 this.Rectangle.Left < sprite.Rectangle.Right;
         }
 
-        protected bool IsTouchingLeft(ObjectFolder.Object obj)
+        protected bool IsTouchingLeft(ObjectFolder.ObjectBody obj)
         {
             return this.Rectangle.Right + this.Velocity.X > obj.Rectangle.Left &&
                 this.Rectangle.Left < obj.Rectangle.Left &&
                 this.Rectangle.Bottom > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Bottom;
         }
-        protected bool IsTouchingRight(ObjectFolder.Object obj)
+        protected bool IsTouchingRight(ObjectFolder.ObjectBody obj)
         {
             return this.Rectangle.Left + this.Velocity.X < obj.Rectangle.Right &&
                 this.Rectangle.Right > obj.Rectangle.Right &&
                 this.Rectangle.Bottom > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Bottom;
         }
-        protected bool IsTouchingTop(ObjectFolder.Object obj)
+        protected bool IsTouchingTop(ObjectFolder.ObjectBody obj)
         {
             return this.Rectangle.Bottom + this.Velocity.Y > obj.Rectangle.Top &&
                 this.Rectangle.Top < obj.Rectangle.Top &&
                 this.Rectangle.Right > obj.Rectangle.Left &&
                 this.Rectangle.Left < obj.Rectangle.Right;
         }
-        protected bool IsTouchingBottom(ObjectFolder.Object obj)
+        protected bool IsTouchingBottom(ObjectFolder.ObjectBody obj)
         {
             return this.Rectangle.Top + this.Velocity.Y < obj.Rectangle.Bottom &&
                 this.Rectangle.Bottom > obj.Rectangle.Bottom &&

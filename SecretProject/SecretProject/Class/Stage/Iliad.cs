@@ -11,7 +11,7 @@ using TiledSharp;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
-using Object = SecretProject.Class.ObjectFolder.Object;
+using ObjectBody = SecretProject.Class.ObjectFolder.ObjectBody;
 using System;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
@@ -74,7 +74,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Lists
 
-        public List<Object> allObjects;
+        public List<ObjectBody> allObjects;
 
         private List<Sprite> allSprites;
 
@@ -96,7 +96,7 @@ namespace SecretProject.Class.Stage
 
             };
 
-            allObjects = new List<Object>()
+            allObjects = new List<ObjectBody>()
             {
 
             };
@@ -139,7 +139,7 @@ namespace SecretProject.Class.Stage
             {
                 if (someTile.GID != 0)
                 {
-                    allObjects.Add(new Object(graphicsDevice, someTile.DestinationRectangle));
+                    allObjects.Add(new ObjectBody(graphicsDevice, someTile.DestinationRectangle));
                 }
             }
 
