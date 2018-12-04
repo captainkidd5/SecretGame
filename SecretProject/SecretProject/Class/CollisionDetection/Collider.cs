@@ -6,25 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SecretProject.Class.ObjectFolder;
+using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.CollisionDetection
 {
     public class Collider
     {
-        private List<ObjectBody> ObjectBody;
+        private Vector2 velocity;
+        private Rectangle rectangle;
 
-        public Collider(List<ObjectBody> objectBody)
+        public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
+        public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
+
+        public Collider(Vector2 velocity, Rectangle rectangle)
         {
-            this.ObjectBody = objectBody;
+            this.velocity = velocity;
+            this.rectangle = rectangle;
         }
 
 
 
-        public void DidCollide(Rectangle rectangle, Vector2 velocity)
+        public void DidCollide(List<ObjectBody> objectBody)
         {
-            foreach (var body in ObjectBody)
+            
+            foreach (var body in objectBody)
             {
-
 
                 if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
                     velocity.X -= velocity.X; //+ (float).25;
@@ -35,6 +41,27 @@ namespace SecretProject.Class.CollisionDetection
                 if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
                     velocity.Y -= velocity.Y; //+ (float).25;
                 if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
+                    velocity.Y -= velocity.Y;// - (float).25;
+            }
+
+        }
+
+        public void DidCollide(List<Sprite> sprite)
+        {
+
+            foreach (var spr in sprite)
+            {
+
+
+                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
+                    velocity.X -= velocity.X; //+ (float).25;
+
+                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
+                    velocity.X -= velocity.X; //- (float).25;
+
+                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
+                    velocity.Y -= velocity.Y; //+ (float).25;
+                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
                     velocity.Y -= velocity.Y;// - (float).25;
 
             }
@@ -70,6 +97,37 @@ namespace SecretProject.Class.CollisionDetection
                 rectangle.Bottom > obj.Rectangle.Bottom &&
                 rectangle.Right > obj.Rectangle.Left &&
                 rectangle.Left < obj.Rectangle.Right;
+        }
+
+        //Sprite part
+
+        public bool IsTouchingLeft(Rectangle rectangle, Sprite sprite, Vector2 velocity)
+        {
+            return rectangle.Right + velocity.X > sprite.Rectangle.Left &&
+                rectangle.Left < sprite.Rectangle.Left &&
+                rectangle.Bottom > sprite.Rectangle.Top &&
+                rectangle.Top < sprite.Rectangle.Bottom;
+        }
+        public bool IsTouchingRight(Rectangle rectangle, Sprite sprite, Vector2 velocity)
+        {
+            return rectangle.Left + velocity.X < sprite.Rectangle.Right &&
+                rectangle.Right > sprite.Rectangle.Right &&
+                rectangle.Bottom > sprite.Rectangle.Top &&
+                rectangle.Top < sprite.Rectangle.Bottom;
+        }
+        public bool IsTouchingTop(Rectangle rectangle, Sprite sprite, Vector2 velocity)
+        {
+            return rectangle.Bottom + velocity.Y > sprite.Rectangle.Top &&
+                rectangle.Top < sprite.Rectangle.Top &&
+                rectangle.Right > sprite.Rectangle.Left &&
+                rectangle.Left < sprite.Rectangle.Right;
+        }
+        public bool IsTouchingBottom(Rectangle rectangle, Sprite sprite, Vector2 velocity)
+        {
+            return rectangle.Top + velocity.Y < sprite.Rectangle.Bottom &&
+                rectangle.Bottom > sprite.Rectangle.Bottom &&
+                rectangle.Right > sprite.Rectangle.Left &&
+                rectangle.Left < sprite.Rectangle.Right;
         }
     }
 }
