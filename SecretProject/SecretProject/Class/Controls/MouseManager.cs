@@ -13,7 +13,7 @@ namespace SecretProject.Class.Controls
         public MouseState myMouse;
         public bool IsClicked { get; set; }
         Vector2 position;
-        //public Vector2 Position { get { return position; } set { position = value; } }
+        public Vector2 Position { get { return position; } set { position = value; } }
 
 
         public MouseManager(MouseState myMouse)

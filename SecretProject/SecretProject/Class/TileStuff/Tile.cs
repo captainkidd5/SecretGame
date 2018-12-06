@@ -30,6 +30,12 @@ namespace SecretProject.Class.TileStuff
         private int gID;
         public int GID { get { return gID; } set { gID = value; } }
 
+        private bool isMoving = false;
+        public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
+
+        private bool isSelected = false;
+        public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
+
         //--------------------------------------
         //Rectangles
         public Rectangle SourceRectangle;

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TiledSharp;
 
 using SecretProject.Class.ObjectFolder;
+using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -44,7 +45,11 @@ namespace SecretProject.Class.TileStuff
         protected Tile[,] tiles;
         public Tile[,] Tiles { get { return tiles; } }
 
-        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName)
+        public bool isBuilding = false;
+
+        MouseManager myMouse;
+
+        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -64,6 +69,8 @@ namespace SecretProject.Class.TileStuff
 
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
+
+            myMouse = mouse;
 
             //add all tiles in buildings layer to object list.
 
@@ -94,9 +101,25 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    if(tiles[i, j].GID != 0)
+                    if (myMouse.IsHovering(tiles[i, j].DestinationRectangle))
                     {
+                        ReplaceTile(i, j);
+                    }
+
+                    if (tiles[i, j].GID != 0)
+                    {
+                        
+
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+
+                       // if (tiles[i, j].DestinationRectangle.Contains(myMouse.Position))
+                        //{
+                         //   ReplaceTile(i, j);
+                       // }
+
+                      
+                        
+
                     }  
                     
                 }
@@ -107,7 +130,8 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTile(int oldX, int oldY)
         {
-
+            oldX = oldX + 15;
+            oldY = oldY + 15;
 
             Tile ReplaceMenttile = new Tile(oldX, oldY, 2848, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             tiles[oldX, oldY] = ReplaceMenttile;

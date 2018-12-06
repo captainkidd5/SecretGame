@@ -128,10 +128,12 @@ namespace SecretProject.Class.Stage
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
 
-            backGroundTiles = new TileManager(tileSet, map, background);
-            buildingsTiles = new TileManager(tileSet, map, buildings);
-            midGroundTiles = new TileManager(tileSet, map, midGround);
-            testTiles = new TileManager(tileSet, map, testLayer);
+            backGroundTiles = new TileManager(tileSet, map, background, mouse);
+            buildingsTiles = new TileManager(tileSet, map, buildings, mouse);
+            midGroundTiles = new TileManager(tileSet, map, midGround, mouse);
+            testTiles = new TileManager(tileSet, map, testLayer, mouse);
+
+            buildingsTiles.isBuilding = true;
 
             //add objects to object layer
 
@@ -228,10 +230,10 @@ namespace SecretProject.Class.Stage
             //mouse
 
            
-                if(customMouse.IsClicked)
-                {
+                //if(customMouse.IsClicked)
+               // {
 
-                }
+               // }
                 //backGroundTiles.ReplaceTile(customMouse.pos, mouse.Y);
 
             
