@@ -76,7 +76,7 @@ namespace SecretProject
             Content.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1280;
+             graphics.PreferredBackBufferWidth = 1280;
              graphics.PreferredBackBufferHeight = 720;
 
             //graphics.IsFullScreen = true;
@@ -90,10 +90,11 @@ namespace SecretProject
 
             //initialize mouse
             this.IsMouseVisible = true;
-            myMouseManager = new MouseManager(mouse);
+            cam = new Camera2D(GraphicsDevice.Viewport);
+            myMouseManager = new MouseManager(mouse, cam, graphics.GraphicsDevice);
 
             //camera
-            cam = new Camera2D();
+            
 
             //screen dimensions
             ScreenHeight = graphics.PreferredBackBufferHeight;
@@ -110,7 +111,7 @@ namespace SecretProject
 
             //Load Stages
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager);
-           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager);
+           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam);
 
             
         }

@@ -19,6 +19,8 @@ namespace SecretProject.Class.CameraStuff
         private float zoom = 1;
         public float Zoom { get { return zoom; } set { zoom = value; } }
 
+        
+
 
         public Camera()
         {

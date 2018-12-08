@@ -61,7 +61,6 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //camera
         Camera2D cam;
-        Camera camera;
 
         //--------------------------------------
         //keyboard
@@ -86,7 +85,7 @@ namespace SecretProject.Class.Stage
 
         #region CONSTRUCTOR
 
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
+        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera) : base(game, graphicsDevice, content, mouse)
         {
             //ORDER MATTERS!
             //Lists
@@ -192,9 +191,9 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //camera
-            cam = new Camera2D();
+            this.cam = camera;
             cam.Zoom = 2.5f;
-            cam.Move(new Vector2(player.Position.X, player.Position.Y));
+            //cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
@@ -203,9 +202,9 @@ namespace SecretProject.Class.Stage
 
 
             // backGroundTiles.ReplaceTile(32, 32);
-            backGroundTiles.ReplaceTile(3, 3);
-            backGroundTiles.ReplaceTile(50, 50);
-            backGroundTiles.ReplaceTile(30, 30);
+           // backGroundTiles.ReplaceTile(3, 3);
+            //backGroundTiles.ReplaceTile(50, 50);
+           // backGroundTiles.ReplaceTile(30, 30);
 
         }
 
@@ -229,13 +228,7 @@ namespace SecretProject.Class.Stage
 
             //mouse
 
-           
-                //if(customMouse.IsClicked)
-               // {
-
-               // }
-                //backGroundTiles.ReplaceTile(customMouse.pos, mouse.Y);
-
+            customMouse.Update();
             
 
             //--------------------------------------
@@ -245,18 +238,6 @@ namespace SecretProject.Class.Stage
 
             // mastodon.Update(gameTime, allSprites, allObjects);
 
-            /* E
-
-            foreach (Sprite sprite in allSprites)
-            {
-                sprite.Update(gameTime);
-            }
-
-            foreach(Object obj in allObjects)
-            {
-                obj.Update(gameTime);
-            }
-            */
 
             //--------------------------------------
             //Update Toolbar

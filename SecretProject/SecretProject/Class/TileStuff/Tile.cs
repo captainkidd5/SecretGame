@@ -36,6 +36,9 @@ namespace SecretProject.Class.TileStuff
         private bool isSelected = false;
         public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
 
+        public float oldX;
+        public float oldY;
+
         //--------------------------------------
         //Rectangles
         public Rectangle SourceRectangle;
@@ -47,6 +50,8 @@ namespace SecretProject.Class.TileStuff
         {
             this.tileNumber = tileNumber;
 
+            this.oldX = x;
+            this.oldY = y;
             
             this.gID = gID;
             this.tilesetTilesWide = tilesetTilesWide;

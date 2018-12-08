@@ -90,7 +90,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Update Buttons
-            customMouse.Update();
+
 
             
             _inGameMenu.Update();

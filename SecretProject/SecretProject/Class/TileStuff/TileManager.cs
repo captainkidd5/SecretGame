@@ -81,7 +81,7 @@ namespace SecretProject.Class.TileStuff
                     tileCounter++;
                 }
 
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
                 
 
@@ -101,24 +101,25 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    if (myMouse.IsHovering(tiles[i, j].DestinationRectangle))
+                    if (isBuilding)
                     {
-                        ReplaceTile(i, j);
+                        if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
+                        {
+                            if(myMouse.IsClicked)
+                            {
+                                ReplaceTile(i, j);
+
+                            }
+                            
+                        }
                     }
+
 
                     if (tiles[i, j].GID != 0)
                     {
                         
-
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
 
-                       // if (tiles[i, j].DestinationRectangle.Contains(myMouse.Position))
-                        //{
-                         //   ReplaceTile(i, j);
-                       // }
-
-                      
-                        
 
                     }  
                     
@@ -130,10 +131,11 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTile(int oldX, int oldY)
         {
-            oldX = oldX + 15;
-            oldY = oldY + 15;
+            //oldX = oldX + 15;
+          //  oldY = oldY + 15;
 
-            Tile ReplaceMenttile = new Tile(oldX, oldY, 2848, tilesetTilesHigh, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+
+            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, 3335, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             tiles[oldX, oldY] = ReplaceMenttile;
         }
         
