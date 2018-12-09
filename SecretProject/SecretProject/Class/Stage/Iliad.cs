@@ -73,7 +73,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Lists
 
-        public List<ObjectBody> allObjects;
+        public static List<ObjectBody> allObjects;
 
         private List<Sprite> allSprites;
 
@@ -127,12 +127,14 @@ namespace SecretProject.Class.Stage
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
 
-            backGroundTiles = new TileManager(tileSet, map, background, mouse);
-            buildingsTiles = new TileManager(tileSet, map, buildings, mouse);
-            midGroundTiles = new TileManager(tileSet, map, midGround, mouse);
-            testTiles = new TileManager(tileSet, map, testLayer, mouse);
+            backGroundTiles = new TileManager(tileSet, map, background, mouse, graphicsDevice);
+            buildingsTiles = new TileManager(tileSet, map, buildings, mouse, graphicsDevice);
+            midGroundTiles = new TileManager(tileSet, map, midGround, mouse, graphicsDevice);
+            testTiles = new TileManager(tileSet, map, testLayer, mouse, graphicsDevice);
 
-            buildingsTiles.isBuilding = true;
+            
+
+            //buildingsTiles.isBuilding = true;
 
             //add objects to object layer
 
@@ -197,14 +199,15 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Songs
-            mainTheme = content.Load<Song>("Music/IntheForest");
+            mainTheme = content.Load<Song>("Music/IntheForest"); 
             //MediaPlayer.Play(mainTheme);
 
+            // midGroundTiles.isActive = true;
+            buildingsTiles.isActive = true;
+            buildingsTiles.isBuilding = true;
 
-            // backGroundTiles.ReplaceTile(32, 32);
-           // backGroundTiles.ReplaceTile(3, 3);
-            //backGroundTiles.ReplaceTile(50, 50);
-           // backGroundTiles.ReplaceTile(30, 30);
+            buildingsTiles.ReplaceTileGid = 3235;
+            
 
         }
 

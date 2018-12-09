@@ -46,10 +46,17 @@ namespace SecretProject.Class.TileStuff
         public Tile[,] Tiles { get { return tiles; } }
 
         public bool isBuilding = false;
+        public bool isActive = false;
 
         MouseManager myMouse;
 
-        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse)
+        GraphicsDevice graphicsDevice;
+
+        private int replaceTileGid;
+
+        public int ReplaceTileGid { get { return replaceTileGid; } set { replaceTileGid = value; } }
+
+        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -66,6 +73,9 @@ namespace SecretProject.Class.TileStuff
 
             this.tileCounter = 0;
 
+            this.graphicsDevice = graphicsDevice;
+
+
 
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
@@ -76,10 +86,12 @@ namespace SecretProject.Class.TileStuff
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
+                /*
                 if(layerNameTile.Gid != 0)
                 {
                     tileCounter++;
                 }
+                */
 
                 tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
@@ -92,6 +104,7 @@ namespace SecretProject.Class.TileStuff
         //need to assign specific replacable objects their own tile properties
         //need "is closest to" method
         //need "replace" method
+        //replaced background is not transparent ?
 
 
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
@@ -101,17 +114,27 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    if (isBuilding)
+
+
+                    if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
-                        if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
+                        if(isActive)
                         {
-                            if(myMouse.IsClicked)
+                            if (myMouse.IsClicked)
                             {
                                 ReplaceTile(i, j);
 
+                                if(isBuilding)
+                                {
+                                    Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
+                                }
+
+
                             }
-                            
+
                         }
+                        
+
                     }
 
 
@@ -121,21 +144,19 @@ namespace SecretProject.Class.TileStuff
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
 
 
-                    }  
+                    }
                     
+
                 }
 
             }
 
         }
 
+
         public void ReplaceTile(int oldX, int oldY)
         {
-            //oldX = oldX + 15;
-          //  oldY = oldY + 15;
-
-
-            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, 3335, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
             tiles[oldX, oldY] = ReplaceMenttile;
         }
         
