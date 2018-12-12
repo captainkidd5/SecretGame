@@ -75,9 +75,6 @@ namespace SecretProject.Class.TileStuff
 
             this.graphicsDevice = graphicsDevice;
 
-
-
-
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
             myMouse = mouse;
@@ -92,21 +89,14 @@ namespace SecretProject.Class.TileStuff
                     tileCounter++;
                 }
                 */
-
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-
-                
-
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);                
             }
         }
-
         //TODO: 
         //need to assign specific replacable objects their own tile properties
         //need "is closest to" method
         //need "replace" method
         //replaced background is not transparent ?
-
-
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
 
@@ -114,8 +104,6 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-
-
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
                         if(isActive)
@@ -123,43 +111,24 @@ namespace SecretProject.Class.TileStuff
                             if (myMouse.IsClicked)
                             {
                                 ReplaceTile(i, j);
-
                                 if(isBuilding)
                                 {
                                     Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
                                 }
-
-
                             }
-
-                        }
-                        
-
+                        }                    
                     }
-
-
                     if (tiles[i, j].GID != 0)
-                    {
-                        
+                    {    
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-
-
-                    }
-                    
-
+                    }                   
                 }
-
             }
-
         }
-
-
         public void ReplaceTile(int oldX, int oldY)
         {
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
             tiles[oldX, oldY] = ReplaceMenttile;
-        }
-        
+        }        
     }
-
 }

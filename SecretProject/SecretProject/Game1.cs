@@ -14,6 +14,9 @@ namespace SecretProject
     //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
     // also need this for mouseover events. Possible use of a 2D array?
     
+
+        //IDEAS
+        //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge
     //
 
     public enum Dir

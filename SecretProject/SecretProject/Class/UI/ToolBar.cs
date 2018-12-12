@@ -63,7 +63,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Button List Stuff
-            allButtons = new List<Button>(20);
+            allButtons = new List<Button>();
             allButtons.Add(_openInventory);
             allButtons.Add(_inGameMenu);
         }
