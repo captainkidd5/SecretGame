@@ -106,8 +106,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
-                        if(isActive)
-                        {
+                       // if(isActive)
+                        //{
                             /*if (myMouse.IsClicked)
                             {
                                 ReplaceTile(i, j);
@@ -117,7 +117,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                             */
-                        }                    
+                        //}                    
                     }
                     if (tiles[i, j].GID != 0)
                     {    

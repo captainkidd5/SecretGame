@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Microsoft.Xna.Framework.Media;
@@ -22,6 +24,8 @@ namespace SecretProject.Class.SpriteFolder
         public Color Color = Color.White;
         public float Speed;
         public string Name;
+
+        private SoundEffect bubble;
 
         public float scaleX;
         public float scaleY;
@@ -41,7 +45,10 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool isBobbing = false;
         public bool isMagnetized = false;
-       
+
+        SoundEffectInstance bubbleInstance;
+
+
         public Rectangle Rectangle
         {
             get
@@ -55,7 +62,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
 
-        public Sprite(GraphicsDevice graphicsDevice, Texture2D texture, Vector2 position, bool bob)
+        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob)
         {
 
             _texture = texture;
@@ -69,6 +76,11 @@ namespace SecretProject.Class.SpriteFolder
 
             scaleX = 1f;
             scaleY = 1f;
+
+            bubble = content.Load<SoundEffect>("SoundEffects/bubble");
+
+            bubbleInstance = bubble.CreateInstance();
+            bubbleInstance.IsLooped = false;
         }
 
 
@@ -158,12 +170,20 @@ namespace SecretProject.Class.SpriteFolder
         {
             if(scaleX <= 0f || scaleY <=0f)
             {
+                if(isDrawn)
+                {
+                    bubbleInstance.Play();
+                }
+                
                 isDrawn = false;
+
+                
             }
             this.Position.X -= playerpos.X;
             this.Position.Y -= playerpos.Y;
             scaleX -= .1f;
             scaleY -= .1f;
+            
         }
 
     }

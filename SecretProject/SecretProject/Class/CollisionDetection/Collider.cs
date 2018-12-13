@@ -18,8 +18,6 @@ namespace SecretProject.Class.CollisionDetection
         public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
-        public bool activateMagnetize = false;
-
         public Collider(Vector2 velocity, Rectangle rectangle)
         {
             this.velocity = velocity;

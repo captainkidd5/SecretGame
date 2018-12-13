@@ -198,9 +198,6 @@ namespace SecretProject.Class.Stage
             //sprite textures
             puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
 
-            allSprites.Add(new Sprite(graphicsDevice, puzzleFish, new Vector2(1000, 700), true));
-
-
             //--------------------------------------
             //camera
             this.cam = camera;
@@ -244,7 +241,7 @@ namespace SecretProject.Class.Stage
             customMouse.Update();
             if(customMouse.IsClicked)
             {
-                allSprites.Add(new Sprite(graphicsDevice, puzzleFish, customMouse.WorldMousePosition, true));
+                allSprites.Add(new Sprite(graphicsDevice, content, puzzleFish, customMouse.WorldMousePosition, true));
             }
             
 
@@ -260,6 +257,7 @@ namespace SecretProject.Class.Stage
             foreach(Sprite spr in allSprites)
             {
                 spr.Update(gameTime);
+                
             }
 
 

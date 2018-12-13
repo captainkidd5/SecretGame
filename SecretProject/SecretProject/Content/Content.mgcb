@@ -255,3 +255,9 @@
 /processorParam:TextureFormat=Color
 /build:Item/PuzzleFish.png
 
+#begin SoundEffects/bubble.WAV
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bubble.WAV
+
