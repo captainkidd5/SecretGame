@@ -101,7 +101,7 @@ namespace SecretProject.Class.Playable
                 myCollider.Rectangle = this.Rectangle;
                 myCollider.Velocity = this.Velocity;
 
-                myCollider.DidCollide(sprites);
+                myCollider.DidCollideMagnet(sprites);
 
 
                 myCollider.DidCollide(objects);

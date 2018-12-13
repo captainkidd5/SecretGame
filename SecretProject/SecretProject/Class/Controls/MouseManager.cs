@@ -18,6 +18,9 @@ namespace SecretProject.Class.Controls
         Vector2 position;
         public Vector2 Position { get { return position; } set { position = value; } }
 
+        Vector2 worldMousePosition;
+        public Vector2 WorldMousePosition { get { return worldMousePosition; } set { worldMousePosition = value; } }
+
         float relativeMouseX;
         float relativeMouseY;
 
@@ -51,6 +54,8 @@ namespace SecretProject.Class.Controls
 
             position.X = myMouse.Position.X;
             position.Y = myMouse.Position.Y;
+
+            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet, (int)worldPosition.Y - YOffSet);
             //relativeMouseX = position.X + Camera
 
             mouseRectangle = new Rectangle(myMouse.X, myMouse.Y, 1, 1);

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Microsoft.Xna.Framework.Media;
+using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -22,30 +23,15 @@ namespace SecretProject.Class.SpriteFolder
         public float Speed;
         public string Name;
 
+        public float scaleX;
+        public float scaleY;
+        public bool isDrawn = true;
+
         protected Texture2D rectangleTexture;
 
         public bool ShowRectangle { get; set; }
 
         public float LayerDepth;
-
-        public delegate bool isTouchingTop(bool touch);
-
-        public bool WalkBehind;
-
-        public int HeightSubtractor { get; set; }
-        public int WidthSubtractor { get; set; }
-
-        public Vector2 touchingPoint;
-        public int AdjustingPoint;
-
-        public Vector2 TouchingPoint { get; set; }
-
-        public int TextureAdjustmentX { get; set; }
-
-
-        public int TextureAdjustmentY { get; set; }
-
-
 
         public int Rows { get; set; }
 
@@ -53,51 +39,36 @@ namespace SecretProject.Class.SpriteFolder
 
         AnimatedSprite anim;
 
-        int Width;
-        int Height;
-
-
+        public bool isBobbing = false;
+        public bool isMagnetized = false;
+       
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)Position.X + TextureAdjustmentX, (int)Position.Y + TextureAdjustmentY, _texture.Width + WidthSubtractor, _texture.Height + HeightSubtractor);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
             }
 
         }
 
-        public Sprite(Texture2D texture)
-        {
-
-        }
-
-        public Sprite(GraphicsDevice graphicsDevice, Texture2D texture, float layerDepth, int adjustingPoint)
-        {
-            _texture = texture;
-
-            this.LayerDepth = layerDepth;
-
-            //TextureAdjustmentX = 0;
-            //TextureAdjustmentY = 0;
+        public double timer;
 
 
-            touchingPoint = new Vector2(this.Rectangle.X, (this.Rectangle.Y + adjustingPoint));
 
-            anim = new AnimatedSprite(graphicsDevice, _texture, Rows, Columns);
-
-
-        }
-
-        public Sprite(GraphicsDevice graphicsDevice, Texture2D texture, Vector2 position) : this(texture)
+        public Sprite(GraphicsDevice graphicsDevice, Texture2D texture, Vector2 position, bool bob)
         {
 
             _texture = texture;
             this.rectangleTexture = texture;
             this.Position = position;
-
-
+            this.isBobbing = bob;
 
             SetRectangleTexture(graphicsDevice, texture);
+
+            timer = 0d;
+
+            scaleX = 1f;
+            scaleY = 1f;
         }
 
 
@@ -131,14 +102,18 @@ namespace SecretProject.Class.SpriteFolder
 
         public virtual void Update(GameTime gameTime)
         {
-
+            Bobber(gameTime);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            LayerDepth = layerDepth;
+            if (isDrawn)
+            {
+                LayerDepth = layerDepth;
 
-            spriteBatch.Draw(_texture, Position, color: Color.White, layerDepth: layerDepth);
+                spriteBatch.Draw(_texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(scaleX, scaleY));
+            }
+            
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -155,41 +130,41 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
+        public void Bobber(GameTime gameTime)
+        {
 
-        #region COLLISION
-        bool IsTouchingLeft(Sprite sprite)
-        {
-            return this.Rectangle.Right + this.Velocity.X > sprite.Rectangle.Left &&
-                this.Rectangle.Left < sprite.Rectangle.Left &&
-                this.Rectangle.Bottom > sprite.Rectangle.Top &&
-                this.Rectangle.Top < sprite.Rectangle.Bottom;
-        }
-        bool IsTouchingRight(Sprite sprite)
-        {
-            return this.Rectangle.Left + this.Velocity.X < sprite.Rectangle.Right &&
-                this.Rectangle.Right > sprite.Rectangle.Right &&
-                this.Rectangle.Bottom > sprite.Rectangle.Top &&
-                this.Rectangle.Top < sprite.Rectangle.Bottom;
-        }
-        bool IsTouchingTop(Sprite sprite)
-        {
-            return this.Rectangle.Bottom + this.Velocity.Y > sprite.Rectangle.Top &&
-                this.Rectangle.Top < sprite.Rectangle.Top &&
-                this.Rectangle.Right > sprite.Rectangle.Left &&
-                this.Rectangle.Left < sprite.Rectangle.Right;
-        }
-        bool IsTouchingBottom(Sprite sprite)
-        {
-            return this.Rectangle.Top + this.Velocity.Y < sprite.Rectangle.Bottom &&
-                this.Rectangle.Bottom > sprite.Rectangle.Bottom &&
-                this.Rectangle.Right > sprite.Rectangle.Left &&
-                this.Rectangle.Left < sprite.Rectangle.Right;
+            
+            if(isBobbing)
+            {
+                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (timer > 2d)
+                {
+                    timer = 0d;
+                }
+                if (timer < 1d)
+                {
+                    this.Position.Y += (.03f);
+                }
+                
+                if(timer >= 1d && timer < 2d)
+                {
+                    this.Position.Y -= (.03f);
+                }
+                
+            }
         }
 
-
-
-        #endregion
-
+        public void Magnetize(Vector2 playerpos)
+        {
+            if(scaleX <= 0f || scaleY <=0f)
+            {
+                isDrawn = false;
+            }
+            this.Position.X -= playerpos.X;
+            this.Position.Y -= playerpos.Y;
+            scaleX -= .1f;
+            scaleY -= .1f;
+        }
 
     }
 }

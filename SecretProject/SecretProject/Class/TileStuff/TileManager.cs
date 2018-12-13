@@ -108,7 +108,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if(isActive)
                         {
-                            if (myMouse.IsClicked)
+                            /*if (myMouse.IsClicked)
                             {
                                 ReplaceTile(i, j);
                                 if(isBuilding)
@@ -116,6 +116,7 @@ namespace SecretProject.Class.TileStuff
                                     Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
                                 }
                             }
+                            */
                         }                    
                     }
                     if (tiles[i, j].GID != 0)

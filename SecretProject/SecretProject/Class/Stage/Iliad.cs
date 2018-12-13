@@ -53,6 +53,11 @@ namespace SecretProject.Class.Stage
         Texture2D joeSprite;
         Texture2D raftDown;
 
+
+        //--------------------------------------
+        //item sprites
+        Texture2D puzzleFish;
+
         //--------------------------------------
         //players
         Player player;
@@ -190,6 +195,11 @@ namespace SecretProject.Class.Stage
             //UI Textures
             toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
+            //sprite textures
+            puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
+
+            allSprites.Add(new Sprite(graphicsDevice, puzzleFish, new Vector2(1000, 700), true));
+
 
             //--------------------------------------
             //camera
@@ -232,6 +242,10 @@ namespace SecretProject.Class.Stage
             //mouse
 
             customMouse.Update();
+            if(customMouse.IsClicked)
+            {
+                allSprites.Add(new Sprite(graphicsDevice, puzzleFish, customMouse.WorldMousePosition, true));
+            }
             
 
             //--------------------------------------
@@ -240,6 +254,13 @@ namespace SecretProject.Class.Stage
             player.Update(gameTime, allSprites, allObjects);
 
             // mastodon.Update(gameTime, allSprites, allObjects);
+
+            //--------------------------------------
+            //Update sprites
+            foreach(Sprite spr in allSprites)
+            {
+                spr.Update(gameTime);
+            }
 
 
             //--------------------------------------
@@ -304,7 +325,7 @@ namespace SecretProject.Class.Stage
                 foreach (var sprite in allSprites)
                 {
                     sprite.ShowRectangle = showBorders;
-                    sprite.Draw(spriteBatch);
+                    sprite.Draw(spriteBatch, .4f);
                 }
 
                 //--------------------------------------

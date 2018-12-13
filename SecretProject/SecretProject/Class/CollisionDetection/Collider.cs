@@ -18,6 +18,8 @@ namespace SecretProject.Class.CollisionDetection
         public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
+        public bool activateMagnetize = false;
+
         public Collider(Vector2 velocity, Rectangle rectangle)
         {
             this.velocity = velocity;
@@ -63,6 +65,43 @@ namespace SecretProject.Class.CollisionDetection
                     velocity.Y -= velocity.Y; //+ (float).25;
                 if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
                     velocity.Y -= velocity.Y;// - (float).25;
+
+            }
+
+        }
+
+        public void DidCollideMagnet(List<Sprite> sprite)
+        {
+
+            foreach (var spr in sprite)
+            {
+                if(spr.isMagnetized)
+                {
+                    spr.Magnetize(velocity);
+                }
+
+                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
+                {
+                    spr.isMagnetized = true;
+                }
+               
+
+                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
+                {
+                    spr.isMagnetized = true;
+                }
+              
+
+                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
+                {
+                    spr.isMagnetized = true;
+                }
+                
+                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
+                {
+                    spr.isMagnetized = true;
+                }
+                
 
             }
 
