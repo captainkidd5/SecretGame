@@ -175,9 +175,7 @@ namespace SecretProject.Class.SpriteFolder
                     bubbleInstance.Play();
                 }
                 
-                isDrawn = false;
-
-                
+                isDrawn = false;             
             }
             this.Position.X -= playerpos.X;
             this.Position.Y -= playerpos.Y;

@@ -64,9 +64,7 @@ namespace SecretProject.Class.Controls
             {
                 IsClicked = true;
             }
-
         }
-
         public bool IsHovering(Rectangle rectangle)
         {
 
@@ -81,7 +79,6 @@ namespace SecretProject.Class.Controls
             }
 
         }
-
         public bool IsHoveringTile(Rectangle rectangle)
         {
             Rectangle offSetRectange = new Rectangle((int)worldPosition.X - XOffSet,(int)worldPosition.Y - YOffSet, 1, 1);

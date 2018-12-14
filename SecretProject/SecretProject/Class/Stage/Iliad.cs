@@ -57,6 +57,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //item sprites
         Texture2D puzzleFish;
+        Texture2D houseKey;
 
         //--------------------------------------
         //players
@@ -197,6 +198,7 @@ namespace SecretProject.Class.Stage
 
             //sprite textures
             puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
+            houseKey = content.Load<Texture2D>("Item/houseKey");
 
             //--------------------------------------
             //camera
@@ -207,14 +209,18 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest"); 
-            //MediaPlayer.Play(mainTheme);
+            MediaPlayer.Play(mainTheme);
 
             // midGroundTiles.isActive = true;
             buildingsTiles.isActive = true;
             buildingsTiles.isBuilding = true;
 
             buildingsTiles.ReplaceTileGid = 3235;
-            
+
+            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(845, 680), true));
+            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(900, 680), true));
+            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(1200, 680), true));
+
 
         }
 

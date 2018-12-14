@@ -43,9 +43,6 @@ namespace SecretProject.Class.MenuStuff
             this.myMouse = myMouse;
 
         }
-
-
-
         public void Update()
         {
 
@@ -64,7 +61,6 @@ namespace SecretProject.Class.MenuStuff
 
             }
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Rectangle, Color);
@@ -75,7 +71,6 @@ namespace SecretProject.Class.MenuStuff
             
             spriteBatch.Draw(Texture, Rectangle, Color);
             spriteBatch.DrawString(font, text, fontLocation, tint);
-
         }
 
     }
