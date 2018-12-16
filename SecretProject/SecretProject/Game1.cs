@@ -56,6 +56,9 @@ namespace SecretProject
 
         MouseManager myMouseManager;
 
+        public static bool isMyMouseVisible = true;
+        //public bool IsMyMouseVisible { get { return isMyMouseVisible; } set { isMyMouseVisible = value; } }
+
         //Camera
         Camera2D cam;
 
@@ -92,7 +95,7 @@ namespace SecretProject
         {
 
             //initialize mouse
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = isMyMouseVisible;
             cam = new Camera2D(GraphicsDevice.Viewport);
             myMouseManager = new MouseManager(mouse, cam, graphics.GraphicsDevice);
 
@@ -132,14 +135,15 @@ namespace SecretProject
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            this.IsMouseVisible = isMyMouseVisible;
 
             //music
             MediaPlayer.IsRepeating = true;
             
             //input
-            MouseState myMouse = Mouse.GetState();
+           // MouseState myMouse = Mouse.GetState();
             KeyboardState oldKeyboardState = kState;
-            kState = Keyboard.GetState();
+            //kState = Keyboard.GetState();
 
 
             //switch between stages for updating

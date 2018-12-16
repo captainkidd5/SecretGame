@@ -133,10 +133,10 @@ namespace SecretProject.Class.Stage
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
 
-            backGroundTiles = new TileManager(tileSet, map, background, mouse, graphicsDevice);
-            buildingsTiles = new TileManager(tileSet, map, buildings, mouse, graphicsDevice);
-            midGroundTiles = new TileManager(tileSet, map, midGround, mouse, graphicsDevice);
-            testTiles = new TileManager(tileSet, map, testLayer, mouse, graphicsDevice);
+            backGroundTiles = new TileManager(game,tileSet, map, background, mouse, graphicsDevice);
+            buildingsTiles = new TileManager(game, tileSet, map, buildings, mouse, graphicsDevice);
+            midGroundTiles = new TileManager(game, tileSet, map, midGround, mouse, graphicsDevice);
+            testTiles = new TileManager(game, tileSet, map, testLayer, mouse, graphicsDevice);
 
             
 
@@ -209,7 +209,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest"); 
-            MediaPlayer.Play(mainTheme);
+           // MediaPlayer.Play(mainTheme);
 
             // midGroundTiles.isActive = true;
             buildingsTiles.isActive = true;

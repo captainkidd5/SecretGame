@@ -18,7 +18,7 @@ namespace SecretProject.Class.TileStuff
         private int mapHeight;
 
         //--------------------------------------
-        //Tile Specifications
+        //Tile General Specifications
         private int tileFrame;
         private int tileHeight = 16;
         private int tileWidth = 16;

@@ -15,7 +15,8 @@ namespace SecretProject.Class.TileStuff
 {
     class TileManager
     {
-        
+        protected Game1 game;
+
         protected Texture2D tileSet;
         protected TmxMap mapName;
         protected TmxLayer layerName;
@@ -56,7 +57,7 @@ namespace SecretProject.Class.TileStuff
 
         public int ReplaceTileGid { get { return replaceTileGid; } set { replaceTileGid = value; } }
 
-        public TileManager(Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice)
+        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -79,6 +80,7 @@ namespace SecretProject.Class.TileStuff
 
             myMouse = mouse;
 
+            this.game = game;
             //add all tiles in buildings layer to object list.
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
@@ -104,8 +106,11 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
+
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
+
+                        IsBeingSelected(i, j);
                        // if(isActive)
                         //{
                             /*if (myMouse.IsClicked)
@@ -131,5 +136,27 @@ namespace SecretProject.Class.TileStuff
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
             tiles[oldX, oldY] = ReplaceMenttile;
         }        
+
+        //NEEDS WORK
+        public void IsBeingSelected(int oldX, int oldY)
+        {
+            
+
+            if(tiles[oldX, oldY].IsSelected == true)
+            {
+                Game1.isMyMouseVisible = false;
+                
+                if(myMouse.IsClicked)
+                {
+                   tiles[oldX, oldY].IsSelected = false;
+                    Game1.isMyMouseVisible = true;
+                }
+            }
+            if(myMouse.IsClicked)
+            {
+                tiles[oldX, oldY].IsSelected = true;
+            }
+
+        }
     }
 }
