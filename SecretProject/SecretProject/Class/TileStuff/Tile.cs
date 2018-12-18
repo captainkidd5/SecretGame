@@ -44,6 +44,9 @@ namespace SecretProject.Class.TileStuff
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
+        //objectgroup stuff
+
+
 
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)

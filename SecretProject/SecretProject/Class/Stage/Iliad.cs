@@ -209,7 +209,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest"); 
-           // MediaPlayer.Play(mainTheme);
+            MediaPlayer.Play(mainTheme);
 
             // midGroundTiles.isActive = true;
             buildingsTiles.isActive = true;

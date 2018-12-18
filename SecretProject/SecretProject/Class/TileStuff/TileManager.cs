@@ -10,6 +10,7 @@ using TiledSharp;
 
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Controls;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -57,6 +58,11 @@ namespace SecretProject.Class.TileStuff
 
         public int ReplaceTileGid { get { return replaceTileGid; } set { replaceTileGid = value; } }
 
+        List<TmxObject> tileObjects;
+
+
+     
+
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice)
         {
             this.tileSet = tileSet;
@@ -72,6 +78,10 @@ namespace SecretProject.Class.TileStuff
             mapWidth = mapName.Width;
             mapHeight = mapName.Height;
 
+            //mapName.Tilesets[0].TmxDirectory
+
+            
+            
             this.tileCounter = 0;
 
             this.graphicsDevice = graphicsDevice;
@@ -83,17 +93,36 @@ namespace SecretProject.Class.TileStuff
             this.game = game;
             //add all tiles in buildings layer to object list.
 
+
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
-                /*
-                if(layerNameTile.Gid != 0)
-                {
-                    tileCounter++;
-                }
-                */
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);                
+
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);      
+                
             }
+
+            tileObjects = new List<TmxObject>();
+
+            //tilecustomobjects
+
+            for (int i = 1; i < layerName.Tiles.Count; i++)
+            {
+                if (mapName.Tilesets[0].Tiles.ContainsKey(i))
+                { 
+                    
+                    tileObjects.Add(mapName.Tilesets[0].Tiles[i].ObjectGroups[0].Objects[0]);
+                }
+            }
+            
+            foreach(TmxObject obj in tileObjects)
+            {
+                if (obj.ObjectType == TmxObjectType.Polygon)
+                    game.Exit();
+            }
+
         }
+
+
         //TODO: 
         //need to assign specific replacable objects their own tile properties
         //need "is closest to" method
@@ -106,6 +135,8 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
+
+                    
 
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
@@ -144,7 +175,7 @@ namespace SecretProject.Class.TileStuff
 
             if(tiles[oldX, oldY].IsSelected == true)
             {
-                Game1.isMyMouseVisible = false;
+               // Game1.isMyMouseVisible = false;
                 
                 if(myMouse.IsClicked)
                 {
@@ -158,5 +189,6 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+
     }
 }
