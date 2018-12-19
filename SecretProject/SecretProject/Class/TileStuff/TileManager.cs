@@ -63,7 +63,7 @@ namespace SecretProject.Class.TileStuff
 
      
 
-        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice)
+        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, bool isBuilding)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -87,6 +87,8 @@ namespace SecretProject.Class.TileStuff
             myMouse = mouse;
 
             this.game = game;
+
+            this.isBuilding = isBuilding;
             //add all tiles in buildings layer to object list.
 
 
@@ -111,9 +113,14 @@ namespace SecretProject.Class.TileStuff
 
             }
 
+            //Iliad.allObjects.Add(new ObjectBody(graphicsDevice, new Rectangle((int)mapName.Tilesets[0].Tiles[3532].ObjectGroups[0].Objects[0].X,
+            //  (int)mapName.Tilesets[0].Tiles[3532].ObjectGroups[0].Objects[0].Y, 5, 5)));
             //TODO: Need to adjust rectangles so they draw to tile destination position +- offset etc
-           // if (isBuilding)
-           // {
+            // if (isBuilding)
+            // {
+
+            if (isBuilding)
+            {
 
 
                 for (var i = 0; i < tilesetTilesWide; i++)
@@ -128,21 +135,31 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
                                     Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
-                                        new Rectangle(tiles[i + 1, j].DestinationRectangle.X + (int)tempObj.X,
+                                        new Rectangle(tiles[i , j].DestinationRectangle.X + (int)tempObj.X,
                                         tiles[i, j].DestinationRectangle.Y + (int)tempObj.Y, (int)tempObj.Width,
                                         (int)tempObj.Height)));
                                 }
-
-
                             }
 
                         }
                     }
 
                 }
-           // }
+            }
+                
+                /*
+            if(mapName.Tilesets[0].Tiles.ContainsKey(3532))
+                {
+                Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
+                                        new Rectangle(tiles[45,41].DestinationRectangle.X,
+                                        tiles[45, 41].DestinationRectangle.Y, (int)10,
+                                        (int)10)));
+            }
+            */
 
-    
+            // }
+
+
         }
 
 
@@ -161,7 +178,7 @@ namespace SecretProject.Class.TileStuff
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
 
-                        IsBeingSelected(i, j);
+                       // IsBeingSelected(i, j);
                        // if(isActive)
                         //{
                             /*if (myMouse.IsClicked)

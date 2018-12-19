@@ -133,14 +133,14 @@ namespace SecretProject.Class.Stage
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
 
-            backGroundTiles = new TileManager(game,tileSet, map, background, mouse, graphicsDevice);
-            buildingsTiles = new TileManager(game, tileSet, map, buildings, mouse, graphicsDevice);
-            midGroundTiles = new TileManager(game, tileSet, map, midGround, mouse, graphicsDevice);
-            testTiles = new TileManager(game, tileSet, map, testLayer, mouse, graphicsDevice);
+            backGroundTiles = new TileManager(game,tileSet, map, background, mouse, graphicsDevice, false);
+            buildingsTiles = new TileManager(game, tileSet, map, buildings, mouse, graphicsDevice, true);
+            midGroundTiles = new TileManager(game, tileSet, map, midGround, mouse, graphicsDevice, false);
+            testTiles = new TileManager(game, tileSet, map, testLayer, mouse, graphicsDevice, false);
 
             
 
-            buildingsTiles.isBuilding = true;
+            //buildingsTiles.isBuilding = true;
 
             //add objects to object layer
             /*
@@ -216,7 +216,7 @@ namespace SecretProject.Class.Stage
             buildingsTiles.isActive = true;
             buildingsTiles.isBuilding = true;
 
-            buildingsTiles.ReplaceTileGid = 3235;
+           // buildingsTiles.ReplaceTileGid = 3235;
 
             allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(845, 680), true));
             allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(900, 680), true));

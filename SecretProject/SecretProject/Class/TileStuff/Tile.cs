@@ -29,7 +29,7 @@ namespace SecretProject.Class.TileStuff
         public float X { get; set; }
         public float Y { get; set; }
         private int gID;
-        public int GID { get { return gID; } set { gID = value; } }
+        public int GID { get { return gID -1; } set { gID = value; } }
 
         private bool isMoving = false;
         public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
