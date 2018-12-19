@@ -335,7 +335,11 @@ namespace SecretProject.Class.Stage
 
                 foreach (var obj in allObjects)
                 {
-                    obj.Draw(spriteBatch, .4f);
+                    if(showBorders)
+                    {
+                      obj.Draw(spriteBatch, .4f);
+                    }
+                    
                 }
                 //--------------------------------------
                 //Draw object list

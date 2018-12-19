@@ -135,9 +135,9 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
                                     Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
-                                        new Rectangle(tiles[i , j].DestinationRectangle.X + (int)tempObj.X,
-                                        tiles[i, j].DestinationRectangle.Y + (int)tempObj.Y, (int)tempObj.Width,
-                                        (int)tempObj.Height)));
+                                        new Rectangle(tiles[i , j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                                        tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                                        (int)Math.Ceiling(tempObj.Height))));
                                 }
                             }
 

@@ -95,13 +95,16 @@ namespace SecretProject.Class.ObjectFolder
 
         public virtual void Update(GameTime gameTime)
         {
+            
 
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+                spriteBatch.Draw(rectangleTexture, new Vector2(Position.X, Position.Y), Color.White);
 
-         spriteBatch.Draw(rectangleTexture, new Vector2(Position.X, Position.Y), Color.White);
+            
+         
 
         }
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
