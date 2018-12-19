@@ -140,10 +140,10 @@ namespace SecretProject.Class.Stage
 
             
 
-            //buildingsTiles.isBuilding = true;
+            buildingsTiles.isBuilding = true;
 
             //add objects to object layer
-
+            /*
             foreach (Tile someTile in buildingsTiles.Tiles)
             {
                 if (someTile.GID != 0)
@@ -151,6 +151,7 @@ namespace SecretProject.Class.Stage
                     allObjects.Add(new ObjectBody(graphicsDevice, someTile.DestinationRectangle));
                 }
             }
+            */
 
             //--------------------------------------
             //Player Stuff
@@ -209,7 +210,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             mainTheme = content.Load<Song>("Music/IntheForest"); 
-            MediaPlayer.Play(mainTheme);
+            //MediaPlayer.Play(mainTheme);
 
             // midGroundTiles.isActive = true;
             buildingsTiles.isActive = true;
@@ -332,14 +333,14 @@ namespace SecretProject.Class.Stage
                     sprite.Draw(spriteBatch, .4f);
                 }
 
+                foreach (var obj in allObjects)
+                {
+                    obj.Draw(spriteBatch, .4f);
+                }
                 //--------------------------------------
                 //Draw object list
 
-                foreach (var obj in allObjects)
-                {
-                    obj.ShowRectangle = showBorders;
-                    obj.Draw(spriteBatch);
-                }
+
 
 
                 spriteBatch.End();

@@ -40,6 +40,8 @@ namespace SecretProject.Class.ObjectFolder
 
         public Rectangle Rectangle { get; set; }
 
+        float layerDepth;
+
         
 
         public ObjectBody(GraphicsDevice graphicsDevice, Rectangle rectangle)
@@ -63,7 +65,6 @@ namespace SecretProject.Class.ObjectFolder
             this.Width = width;
             SetRectangleTexture(graphicsDevice);
 
-            ShowRectangle = true;
         }
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
@@ -88,7 +89,7 @@ namespace SecretProject.Class.ObjectFolder
 
                 }
             }
-            rectangleTexture = new Texture2D(graphicsDevice, Width, Height);
+            rectangleTexture = new Texture2D(graphicsDevice, this.Width, this.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
@@ -99,13 +100,16 @@ namespace SecretProject.Class.ObjectFolder
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (ShowRectangle)
-            {
-               // if (rectangleTexture != null)
-              //  {
-                    spriteBatch.Draw(rectangleTexture, Position, Color.White);
-               // }
-            }
+
+         spriteBatch.Draw(rectangleTexture, new Vector2(Position.X, Position.Y), Color.White);
+
+        }
+        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
+        {
+
+                this.layerDepth = layerDepth;
+                spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+            
         }
 
         protected bool IsTouchingLeft(Sprite sprite)

@@ -77,10 +77,6 @@ namespace SecretProject.Class.TileStuff
 
             mapWidth = mapName.Width;
             mapHeight = mapName.Height;
-
-            //mapName.Tilesets[0].TmxDirectory
-
-            
             
             this.tileCounter = 0;
 
@@ -94,32 +90,59 @@ namespace SecretProject.Class.TileStuff
             //add all tiles in buildings layer to object list.
 
 
-            foreach (TmxLayerTile layerNameTile in layerName.Tiles)
-            {
-
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);      
-                
-            }
-
-            tileObjects = new List<TmxObject>();
-
             //tilecustomobjects
+            //TODO: assign rectangles to corresponding Gid tiles
 
+            /*
             for (int i = 1; i < layerName.Tiles.Count; i++)
             {
                 if (mapName.Tilesets[0].Tiles.ContainsKey(i))
-                { 
-                    
+                {
+
                     tileObjects.Add(mapName.Tilesets[0].Tiles[i].ObjectGroups[0].Objects[0]);
+                    tileHitInfo.Add(new TileHitboxInfo(i, mapName.Tilesets[0].Tiles[i].ObjectGroups[0].Objects[0]));
                 }
             }
-            
-            foreach(TmxObject obj in tileObjects)
+            */
+            foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
-                if (obj.ObjectType == TmxObjectType.Polygon)
-                    game.Exit();
+
+                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+
             }
 
+            //TODO: Need to adjust rectangles so they draw to tile destination position +- offset etc
+           // if (isBuilding)
+           // {
+
+
+                for (var i = 0; i < tilesetTilesWide; i++)
+                {
+                    for (var j = 0; j < tilesetTilesHigh; j++)
+                    {
+                        if (tiles[i, j].GID != 0)
+                        {
+                            if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
+                            {
+                                for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                {
+                                    TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
+                                    Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
+                                        new Rectangle(tiles[i + 1, j].DestinationRectangle.X + (int)tempObj.X,
+                                        tiles[i, j].DestinationRectangle.Y + (int)tempObj.Y, (int)tempObj.Width,
+                                        (int)tempObj.Height)));
+                                }
+
+
+                            }
+
+                        }
+                    }
+
+                }
+           // }
+
+    
         }
 
 
@@ -135,9 +158,6 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-
-                    
-
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
 
@@ -156,7 +176,8 @@ namespace SecretProject.Class.TileStuff
                         //}                    
                     }
                     if (tiles[i, j].GID != 0)
-                    {    
+                    {
+                     
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                     }                   
                 }

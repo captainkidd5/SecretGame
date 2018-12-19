@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -77,5 +78,17 @@ namespace SecretProject.Class.TileStuff
         }
 
         
+    }
+
+    public class TileHitboxInfo
+    {
+        public int iD;
+        public Rectangle hitBox;
+
+        public TileHitboxInfo(int iD, TmxObject obj)
+        {
+            this.iD = iD;
+            hitBox = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
+        }
     }
 }
