@@ -242,11 +242,11 @@ namespace SecretProject.Class.Stage
             KeyboardState oldKeyboardState = kState;
             kState = Keyboard.GetState();
 
+            //--------------------------------------
+            //Update Toolbar
 
-            if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (kState.IsKeyUp(Keys.F1)))
-            {
-                showBorders = !showBorders;
-            }
+            mainUserInterface.Update(gameTime, kState, oldKeyboardState);
+
 
             //mouse
 
@@ -255,58 +255,53 @@ namespace SecretProject.Class.Stage
             {
                 allSprites.Add(new Sprite(graphicsDevice, content, puzzleFish, customMouse.WorldMousePosition, true));
             }
-            
 
-            //--------------------------------------
-            //Update Players
 
-            player.Update(gameTime, allSprites, allObjects);
-
-            // mastodon.Update(gameTime, allSprites, allObjects);
-
-            //--------------------------------------
-            //Update sprites
-            foreach(Sprite spr in allSprites)
+            if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (kState.IsKeyUp(Keys.F1)))
             {
-                spr.Update(gameTime);
-                
+                showBorders = !showBorders;
             }
 
-
-            //--------------------------------------
-            //Update Toolbar
-
-            mainUserInterface.Update(gameTime);
-
-            //--------------------------------------
-            //update camera
-
-            cam.Follow(new Vector2(player.Position.X, player.Position.Y));
-
-            // E camera.follow(player.Position, player.Rectangle);
-
-
-            //--------------------------------------
-            //Change Game Stages
-
-            // E if ((oldKeyboardState.IsKeyDown(Keys.R)) && (kState.IsKeyUp(Keys.R)))
-            //  game.gameStages = Stages.WorldMap;
-
-            if ((oldKeyboardState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
+            if (!Game1.freeze)
             {
-                game.gameStages = Stages.MainMenu;
 
-            }
 
-            //--------------------------------------
-            //Open Menus
+                //--------------------------------------
+                //Update Players
 
-            if ((oldKeyboardState.IsKeyDown(Keys.E)) && (kState.IsKeyUp(Keys.E)))
-            {
-               // playerOneInv.IsOpen = !playerOneInv.IsOpen;
+                player.Update(gameTime, allSprites, allObjects);
+
+                // mastodon.Update(gameTime, allSprites, allObjects);
+
+                //--------------------------------------
+                //Update sprites
+                foreach (Sprite spr in allSprites)
+                {
+                    spr.Update(gameTime);
+
+                }
+
+
+
+
+                //--------------------------------------
+                //update camera
+
+                cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+
+                // E camera.follow(player.Position, player.Rectangle);
+
+
+
+                //--------------------------------------
+                //Open Menus
+
+                //if ((oldKeyboardState.IsKeyDown(Keys.E)) && (kState.IsKeyUp(Keys.E)))
+                // {
+                // playerOneInv.IsOpen = !playerOneInv.IsOpen;
                 //playerOneInv.UpdateInventory();
+                // }
             }
-
         }
 
         #endregion

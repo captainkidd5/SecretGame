@@ -31,6 +31,8 @@ namespace SecretProject.Class.MenuStuff
 
         SpriteFont font;
 
+        public Vector2 FontLocation { get { return new Vector2(Position.X -30  + (Texture.Width / 2), Position.Y + (Texture.Height / 2)); } }
+
         public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, MouseManager myMouse, Vector2 position)
         {
             Texture = newtexture;
@@ -47,13 +49,17 @@ namespace SecretProject.Class.MenuStuff
         public void Update()
         {
 
-            if(myMouse.IsHovering(Rectangle))
+            if (myMouse.IsHovering(Rectangle) && myMouse.IsClicked)
             {
                 Color = Color.White * .5f;
-                if(myMouse.IsClicked)
-                {
-                    isClicked = true;
-                }
+                // if(myMouse.IsClicked)
+                //{
+                isClicked = true;
+                //}
+            }
+            else if (myMouse.IsHovering(Rectangle) && isClicked == false)
+            {
+                Color = Color.White * .5f;
             }
             else
             {

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.MenuStuff
@@ -22,27 +23,54 @@ namespace SecretProject.Class.MenuStuff
         Button settingsButton;
         Button returnButton;
 
+        SpriteFont font;
+
+        List<Button> allButtons;
+
+        Game1 game;
+
         public EscMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
-            menuButtonTexture = content.Load<Texture2D>("basicButton");
-            settingsButtonTexture = content.Load<Texture2D>("basicButton");
-            returnButtonTexture = content.Load<Texture2D>("basicButton");
+            this.game = game;
+            menuButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            settingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            returnButtonTexture = content.Load<Texture2D>("Button/basicButton");
 
-            menuButton = new Button(menuButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
+            font = content.Load<SpriteFont>("SpriteFont/MenuText");
+
+            menuButton = new Button(menuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
             settingsButton = new Button(settingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
-            returnButton = new Button(returnButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
+            returnButton = new Button(returnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
 
+            allButtons = new List<Button>() { menuButton, settingsButton, returnButton };
 
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            foreach (Button button in allButtons)
+            {
+                button.Update();
+            }
+
+            if(menuButton.isClicked)
+            {
+                game.gameStages = Stages.MainMenu;
+            }
+
+            if(returnButton.isClicked)
+            {
+                UserInterface.IsEscMenu = false;
+            }
         }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            menuButton.Draw(spriteBatch, font, "Menu", menuButton.FontLocation, Color.BlueViolet);
+            returnButton.Draw(spriteBatch, font, "Return", returnButton.FontLocation, Color.BlueViolet);
+            settingsButton.Draw(spriteBatch, font, "Settings", settingsButton.FontLocation, Color.BlueViolet);
+        }
+
+       
     }
 }

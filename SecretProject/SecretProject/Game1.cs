@@ -146,8 +146,8 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+           // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+             //   Exit();
             this.IsMouseVisible = isMyMouseVisible;
 
             //music
@@ -163,21 +163,21 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
-                    if(Game1.freeze == false)
-                    {
+                   // if(Game1.freeze == false)
+                   // {
                         _mainMenu.Update(gameTime);
 
-                    }
+                    //}
                     
 
                     break;
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    if (Game1.freeze == false)
-                    {
+                    //if (Game1.freeze == false)
+                    //{
                         _iliad.Update(gameTime);
-                    }
+                    //}
                     break;
 
             }

@@ -93,7 +93,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
 
             //--------------------------------------
             //Draw Background
@@ -104,7 +104,7 @@ namespace SecretProject.Class.UI
             _openInventory.Draw(spriteBatch, _font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
             _inGameMenu.Draw(spriteBatch, _font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
 
-            spriteBatch.End();
+           // spriteBatch.End();
         }
 
         public void Update(GameTime gameTime)
@@ -141,7 +141,7 @@ namespace SecretProject.Class.UI
             
             if (_inGameMenu.isClicked)
             {
-              game.gameStages = Stages.MainMenu;
+                UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
             }
             else if(_openInventory.isClicked)
             {

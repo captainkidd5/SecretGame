@@ -67,6 +67,7 @@ namespace SecretProject.Class.Stage
             if (Join.isClicked)
             {
                 game.gameStages = Stages.Iliad;
+                UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)
             {
