@@ -38,6 +38,18 @@
 /processorParam:TextureFormat=Color
 /build:Button/ButtonInventory1.png
 
+#begin Button/escBackDrop.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/escBackDrop.png
+
 #begin Button/Inventory1.png
 /importer:TextureImporter
 /processor:TextureProcessor

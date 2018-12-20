@@ -19,6 +19,8 @@ namespace SecretProject.Class.MenuStuff
         Texture2D settingsButtonTexture;
         Texture2D returnButtonTexture;
 
+        Texture2D backDrop;
+
         Button menuButton;
         Button settingsButton;
         Button returnButton;
@@ -36,11 +38,18 @@ namespace SecretProject.Class.MenuStuff
             settingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
             returnButtonTexture = content.Load<Texture2D>("Button/basicButton");
 
+            backDrop = content.Load<Texture2D>("Button/escBackDrop");
+
             font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-            menuButton = new Button(menuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
+            returnButton = new Button(returnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
+            
             settingsButton = new Button(settingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
-            returnButton = new Button(returnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
+
+            menuButton = new Button(menuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
+
+
+
 
             allButtons = new List<Button>() { menuButton, settingsButton, returnButton };
 
@@ -66,6 +75,7 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(backDrop, new Vector2(435, 170), Color.White);
             menuButton.Draw(spriteBatch, font, "Menu", menuButton.FontLocation, Color.BlueViolet);
             returnButton.Draw(spriteBatch, font, "Return", returnButton.FontLocation, Color.BlueViolet);
             settingsButton.Draw(spriteBatch, font, "Settings", settingsButton.FontLocation, Color.BlueViolet);

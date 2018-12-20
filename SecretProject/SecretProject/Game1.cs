@@ -15,7 +15,6 @@ namespace SecretProject
     //TODO:
     //figure out what I want to do with component
     //drag and drop items
-    //main menu
     //SAVE GAME
     
 

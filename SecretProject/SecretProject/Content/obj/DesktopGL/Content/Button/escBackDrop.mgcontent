@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Mastodon/MastodonIdle.png</SourceFile>
-  <SourceTime>2018-12-17T09:14:31.9071874-08:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/NPC/Mastodon/MastodonIdle.xnb</DestFile>
-  <DestTime>2018-12-20T09:11:53.1997147-08:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/escBackDrop.png</SourceFile>
+  <SourceTime>2018-12-20T09:11:16.4975953-08:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Button/escBackDrop.xnb</DestFile>
+  <DestTime>2018-12-20T09:11:57.0855603-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

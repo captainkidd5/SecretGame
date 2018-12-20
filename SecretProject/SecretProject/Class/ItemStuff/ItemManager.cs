@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecretProject.Class.TileStuff.Flora
+namespace SecretProject.Class.ItemStuff
 {
-    interface ITree
+    class ItemManager
     {
-
     }
 }
