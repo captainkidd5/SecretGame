@@ -56,17 +56,6 @@ namespace SecretProject.Class.ObjectFolder
         }
 
 
-
-        public ObjectBody(GraphicsDevice graphicsDevice, Vector2 position, int height, int width)
-        {
-            this.Position = position;
-
-            this.Height = height;
-            this.Width = width;
-            SetRectangleTexture(graphicsDevice);
-
-        }
-
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {
             var Colors = new List<Color>();

@@ -14,14 +14,15 @@ using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.UI
 {
-    public enum toolBarButtons
+    //TODO: Switch statements on buttons
+    public enum buttonIsClicked
     {
-        none,
-        menu,
-        inv,
+        none = 0,
+        menu = 1,
+        inv = 2,
     }
 
-    class ToolBar : Component
+    class ToolBar : IGeneral
     {
         //--------------------------------------
         //Textures
@@ -41,12 +42,27 @@ namespace SecretProject.Class.UI
         //button List
         private List<Button> allButtons;
 
-        public toolBarButtons toolBarState = toolBarButtons.none;
+
+
+        public buttonIsClicked toolBarState = buttonIsClicked.none;
+
+        private MouseManager customMouse;
+
+        Game1 game;
+        GraphicsDevice graphicsDevice;
+        ContentManager content;
 
 
 
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
+
+        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
+
+            this.customMouse = mouse;
+
+            this.game = game;
+            this.graphicsDevice = graphicsDevice;
+            this.content = content;
             //--------------------------------------
             //initialize SpriteFonts
             _font = content.Load<SpriteFont>("SpriteFont/MenuText");
@@ -66,10 +82,16 @@ namespace SecretProject.Class.UI
             allButtons = new List<Button>();
             allButtons.Add(_openInventory);
             allButtons.Add(_inGameMenu);
+
+
+
+            
+
+            
         }
 
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
@@ -85,21 +107,48 @@ namespace SecretProject.Class.UI
             spriteBatch.End();
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
 
             //--------------------------------------
             //Update Buttons
 
+            _inGameMenu.Update();
+            _openInventory.Update();
+            /*
+            switch (toolBarState)
+            {
+                case toolBarButtons.none:
+
+                    break;
+
+
+                case toolBarButtons.menu:
+                    _inGameMenu.Update();
+                    break;
+
+                case toolBarButtons.inv:
+                    _openInventory.Update(); 
+                    break;
+
+                default:
+
+                    break;
+            }
+            */
 
             
-            _inGameMenu.Update();
+            
             if (_inGameMenu.isClicked)
             {
               game.gameStages = Stages.MainMenu;
             }
+            else if(_openInventory.isClicked)
+            {
 
-            _openInventory.Update();
+            }
+
+            
 
 
 

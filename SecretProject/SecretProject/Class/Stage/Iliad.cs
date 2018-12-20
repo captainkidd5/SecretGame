@@ -87,11 +87,13 @@ namespace SecretProject.Class.Stage
         //Declare Music
         Song mainTheme;
 
+        
+
         #endregion
 
         #region CONSTRUCTOR
 
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera) : base(game, graphicsDevice, content, mouse)
+        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface) : base(game, graphicsDevice, content, mouse, userInterface)
         {
             //ORDER MATTERS!
             //Lists
@@ -195,7 +197,7 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //UI Textures
-            toolBar = new ToolBar(game, graphicsDevice, content, mouse);
+            //toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
             //sprite textures
             puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
@@ -221,6 +223,9 @@ namespace SecretProject.Class.Stage
             allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(845, 680), true));
             allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(900, 680), true));
             allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(1200, 680), true));
+
+            //UserInterface
+            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
 
 
         }
@@ -271,7 +276,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            toolBar.Update(gameTime);
+            mainUserInterface.Update(gameTime);
 
             //--------------------------------------
             //update camera
@@ -353,7 +358,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Draw Toolbar
 
-            toolBar.Draw(gameTime, spriteBatch);
+            mainUserInterface.Draw(spriteBatch);
         }
         #endregion
 

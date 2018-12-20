@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Stage
 {
@@ -29,7 +30,7 @@ namespace SecretProject.Class.Stage
 
 
 
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse) : base(game, graphicsDevice, content, mouse)
+        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface) : base(game, graphicsDevice, content, mouse, userInterface)
         {
             //--------------------------------------
             //Load button textures

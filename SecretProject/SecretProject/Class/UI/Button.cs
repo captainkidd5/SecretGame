@@ -35,12 +35,13 @@ namespace SecretProject.Class.MenuStuff
         {
             Texture = newtexture;
             Position = position;
+            this.myMouse = myMouse;
             //128x64
             size = new Vector2((graphicsDevice.Viewport.Width / 10), (graphicsDevice.Viewport.Height / 11));
 
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
-            this.myMouse = myMouse;
+            
 
         }
         public void Update()

@@ -60,9 +60,6 @@ namespace SecretProject.Class.TileStuff
 
         List<TmxObject> tileObjects;
 
-
-     
-
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, bool isBuilding)
         {
             this.tileSet = tileSet;
@@ -89,23 +86,7 @@ namespace SecretProject.Class.TileStuff
             this.game = game;
 
             this.isBuilding = isBuilding;
-            //add all tiles in buildings layer to object list.
 
-
-            //tilecustomobjects
-            //TODO: assign rectangles to corresponding Gid tiles
-
-            /*
-            for (int i = 1; i < layerName.Tiles.Count; i++)
-            {
-                if (mapName.Tilesets[0].Tiles.ContainsKey(i))
-                {
-
-                    tileObjects.Add(mapName.Tilesets[0].Tiles[i].ObjectGroups[0].Objects[0]);
-                    tileHitInfo.Add(new TileHitboxInfo(i, mapName.Tilesets[0].Tiles[i].ObjectGroups[0].Objects[0]));
-                }
-            }
-            */
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
 
@@ -113,16 +94,9 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            //Iliad.allObjects.Add(new ObjectBody(graphicsDevice, new Rectangle((int)mapName.Tilesets[0].Tiles[3532].ObjectGroups[0].Objects[0].X,
-            //  (int)mapName.Tilesets[0].Tiles[3532].ObjectGroups[0].Objects[0].Y, 5, 5)));
-            //TODO: Need to adjust rectangles so they draw to tile destination position +- offset etc
-            // if (isBuilding)
-            // {
 
             if (isBuilding)
             {
-
-
                 for (var i = 0; i < tilesetTilesWide; i++)
                 {
                     for (var j = 0; j < tilesetTilesHigh; j++)
@@ -140,34 +114,16 @@ namespace SecretProject.Class.TileStuff
                                         (int)Math.Ceiling(tempObj.Height))));
                                 }
                             }
-
                         }
                     }
-
                 }
-            }
-                
-                /*
-            if(mapName.Tilesets[0].Tiles.ContainsKey(3532))
-                {
-                Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
-                                        new Rectangle(tiles[45,41].DestinationRectangle.X,
-                                        tiles[45, 41].DestinationRectangle.Y, (int)10,
-                                        (int)10)));
-            }
-            */
-
-            // }
-
-
+            }      
         }
-
 
         //TODO: 
         //need to assign specific replacable objects their own tile properties
         //need "is closest to" method
         //need "replace" method
-        //replaced background is not transparent ?
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
 

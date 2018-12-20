@@ -5,19 +5,21 @@ using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.Stage;
+using SecretProject.Class.UI;
 using System;
 using TiledSharp;
 
 namespace SecretProject
 {
 
-    //TODO: need to be able to draw new tiles such as a tree to the screen and simulanteously create a hitbox around it. 
-    // also need this for mouseover events. Possible use of a 2D array?
+    //TODO:
+    //figure out what I want to do with component
+    //drag and drop items
+    //main menu
+    //SAVE GAME
     
 
-        //IDEAS
-        //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge
-    //
+        
 
     public enum Dir
     {
@@ -71,6 +73,13 @@ namespace SecretProject
         public static int ScreenHeight;
         public static int ScreenWidth;
 
+        //game freeze
+
+        public static bool freeze;
+
+        //UserInterface
+        public UserInterface userInterface;
+
 
 
         #endregion
@@ -86,6 +95,8 @@ namespace SecretProject
              graphics.PreferredBackBufferHeight = 720;
 
             //graphics.IsFullScreen = true;
+
+            freeze = false;
 
         }
         #endregion
@@ -106,6 +117,8 @@ namespace SecretProject
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
 
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
+
             base.Initialize();
         }
         #endregion
@@ -116,8 +129,8 @@ namespace SecretProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //Load Stages
-            _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager);
-           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam);
+            _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
+           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface);
 
             
         }
@@ -150,13 +163,21 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
-                    _mainMenu.Update(gameTime);
+                    if(Game1.freeze == false)
+                    {
+                        _mainMenu.Update(gameTime);
+
+                    }
+                    
 
                     break;
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    _iliad.Update(gameTime);
+                    if (Game1.freeze == false)
+                    {
+                        _iliad.Update(gameTime);
+                    }
                     break;
 
             }
@@ -191,4 +212,7 @@ namespace SecretProject
         }
         #endregion
     }
+    //IDEAS
+    //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge
+    //
 }

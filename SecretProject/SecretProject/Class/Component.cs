@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
+using SecretProject.Class.UI;
 
 namespace SecretProject.Class
 {
@@ -27,15 +28,17 @@ namespace SecretProject.Class
 
         protected MouseManager customMouse;
 
+        protected UserInterface mainUserInterface;
 
         #endregion
 
-        public Component(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public Component(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
             this.game = game;
             this.graphicsDevice = graphicsDevice;
             this.content = content;
             this.customMouse = mouse;
+            this.mainUserInterface = userInterface;
         }
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
