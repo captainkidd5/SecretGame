@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 
@@ -31,8 +32,12 @@ namespace SecretProject.Class.MenuStuff
 
         Game1 game;
 
+      //  SaveLoadManager saveManager;
+        SaveFile mySave;
+
         public EscMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
+            mySave = new SaveFile();
             this.game = game;
             menuButtonTexture = content.Load<Texture2D>("Button/basicButton");
             settingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
@@ -71,6 +76,11 @@ namespace SecretProject.Class.MenuStuff
             {
                 UserInterface.IsEscMenu = false;
             }
+
+            if(settingsButton.isClicked)
+            {
+                mySave.Save();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -78,7 +88,7 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(backDrop, new Vector2(435, 170), Color.White);
             menuButton.Draw(spriteBatch, font, "Menu", menuButton.FontLocation, Color.BlueViolet);
             returnButton.Draw(spriteBatch, font, "Return", returnButton.FontLocation, Color.BlueViolet);
-            settingsButton.Draw(spriteBatch, font, "Settings", settingsButton.FontLocation, Color.BlueViolet);
+            settingsButton.Draw(spriteBatch, font, "Save Game", settingsButton.FontLocation, Color.BlueViolet);
         }
 
        

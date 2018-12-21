@@ -16,7 +16,7 @@ namespace SecretProject
     //TODO:
     //figure out what I want to do with component
     //drag and drop items
-    //SAVE GAME
+    //SAVE GAME is not done and I'm drunk, future tuck finish pls - gotchu
 
     public enum Dir
     {
@@ -43,8 +43,8 @@ namespace SecretProject
         SpriteBatch spriteBatch;
 
         //Declare Stages
-        private MainMenu _mainMenu;
-        private Iliad _iliad;
+        public static MainMenu _mainMenu;
+        public static Iliad _iliad;
         
         //Renderers
 

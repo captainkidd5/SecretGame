@@ -5,17 +5,20 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Stage
 {
-    class MainMenu : Component
+    public class MainMenu : Component
     {
 
         //--------------------------------------
         //buttons
         Button Join;
+        Button Save;
         Button Exit;
+        
 
         List<Button> allButtons;
 
@@ -26,7 +29,10 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //button textures
         Texture2D join;
+        Texture2D save;
         Texture2D exit;
+
+        SaveFile mySave;
 
 
 
@@ -35,19 +41,22 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Load button textures
             join = content.Load<Texture2D>("Button/basicButton");
+            save = content.Load<Texture2D>("Button/basicButton");
             exit = content.Load<Texture2D>("Button/basicButton");
 
             //--------------------------------------
             //Initialize Buttons
             Join = new Button(join, graphicsDevice, customMouse, new Vector2(500, 100));
+            Save = new Button(save, graphicsDevice, customMouse, new Vector2(500, 200));
             Exit = new Button(exit, graphicsDevice, customMouse, new Vector2(500, 300));
 
-            allButtons = new List<Button>() { Join, Exit };
+            allButtons = new List<Button>() { Join, Save, Exit };
 
             //--------------------------------------
             //Load spritefonts
             font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
+            mySave = new SaveFile();
 
         }
 
@@ -69,6 +78,12 @@ namespace SecretProject.Class.Stage
                 game.gameStages = Stages.Iliad;
                 UserInterface.IsEscMenu = false;
             }
+            if(Save.isClicked)
+            {
+                mySave.Load();
+                game.gameStages = Stages.Iliad;
+                UserInterface.IsEscMenu = false;
+            }
             if (Exit.isClicked)
             {
                 game.Exit();
@@ -85,6 +100,7 @@ namespace SecretProject.Class.Stage
             
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 322), Color.CornflowerBlue);
             Join.Draw(spriteBatch, font, "Play", new Vector2(545, 120), Color.CornflowerBlue);
+            Save.Draw(spriteBatch, font, "Load", new Vector2(545, 220), Color.CornflowerBlue);
             spriteBatch.End();
         }
 

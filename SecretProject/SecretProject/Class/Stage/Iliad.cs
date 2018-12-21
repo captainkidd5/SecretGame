@@ -17,6 +17,7 @@ using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
+using System.Runtime.Serialization;
 
 namespace SecretProject.Class.Stage
 {
@@ -62,6 +63,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //players
         Player player;
+        public Player Player { get { return player; } set { player = value; } }
         Player mastodon;
 
         //--------------------------------------
@@ -86,6 +88,9 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Music
         Song mainTheme;
+
+        //SAVE STUFF
+
 
         
 
@@ -355,6 +360,8 @@ namespace SecretProject.Class.Stage
 
             mainUserInterface.Draw(spriteBatch);
         }
+
+        
         #endregion
 
     }

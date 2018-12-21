@@ -39,6 +39,11 @@ namespace SecretProject.Class.SpriteFolder
             SetRectangleTexture(graphicsDevice, texture);
 
         }
+
+        public AnimatedSprite()
+        {
+
+        }
         //rectangle constructor
 
 

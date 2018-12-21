@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 
 using SecretProject.Class.SpriteFolder;
@@ -16,19 +19,20 @@ using SecretProject.Class.CollisionDetection;
 
 namespace SecretProject.Class.Playable
 {
-    public class Player
+    [Serializable()]
+    public class Player : ISerializable
     {
-        private Vector2 _position = new Vector2(300, 300);
+        private Vector2 position = new Vector2(300, 300);
         private int _health = 3;
 
 
-        private Dir _direction = Dir.Down;
-        private bool _isMoving = false;
+        private Dir direction = Dir.Down;
+        private bool isMoving = false;
         public float Speed = 2f;
         public Vector2 Velocity;
         public bool Activate { get; set; }
 
-        private Texture2D _texture;
+        private Texture2D texture;
 
         public AnimatedSprite anim;
         public AnimatedSprite[] animations;
@@ -43,25 +47,25 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)_position.X, (int)_position.Y + 5, (int)_texture.Width, (int)_texture.Height -5);
+                return new Rectangle((int)position.X, (int)position.Y + 5, (int)texture.Width, (int)texture.Height -5);
             }
 
         }
 
         public Vector2 Position
         {
-            get { return _position; }
-            set { _position = value; }
+            get { return position; }
+            set { position = value; }
         }
 
         public void SetX(float newX)
         {
-            _position.X = newX;
+            position.X = newX;
         }
 
         public void SetY(float newY)
         {
-            _position.Y = newY;
+            position.Y = newY;
         }
 
         public int Health { get { return _health; } set { value = _health; } }
@@ -79,13 +83,18 @@ namespace SecretProject.Class.Playable
         {
             Name = name;
             Position = position;
-            this._texture = texture;
+            this.texture = texture;
             this.frameNumber = frameNumber;
             animations = new AnimatedSprite[frameNumber];
 
             myCollider = new Collider(Velocity, Rectangle);
 
 
+
+        }
+
+        public Player()
+        {
 
         }
 
@@ -96,7 +105,7 @@ namespace SecretProject.Class.Playable
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                anim = animations[(int)_direction];
+                anim = animations[(int)direction];
 
                 myCollider.Rectangle = this.Rectangle;
                 myCollider.Velocity = this.Velocity;
@@ -112,41 +121,41 @@ namespace SecretProject.Class.Playable
                 Velocity = Vector2.Zero;
 
 
-                if (_isMoving)
+                if (isMoving)
                     anim.Update(gameTime);
                 else anim.setFrame(0);
 
-                _isMoving = false;
+                isMoving = false;
 
                 if (kState.IsKeyDown(Keys.D))
                 {
-                    _direction = Dir.Right;
-                    _isMoving = true;
+                    direction = Dir.Right;
+                    isMoving = true;
 
                 }
 
                 if (kState.IsKeyDown(Keys.A))
                 {
-                    _direction = Dir.Left;
-                    _isMoving = true;
+                    direction = Dir.Left;
+                    isMoving = true;
                 }
 
                 if (kState.IsKeyDown(Keys.W))
                 {
-                    _direction = Dir.Up;
-                    _isMoving = true;
+                    direction = Dir.Up;
+                    isMoving = true;
                 }
 
                 if (kState.IsKeyDown(Keys.S))
                 {
-                    _direction = Dir.Down;
-                    _isMoving = true;
+                    direction = Dir.Down;
+                    isMoving = true;
                 }
 
 
-                if (_isMoving)
+                if (isMoving)
                 {
-                    switch (_direction)
+                    switch (direction)
                     {
                         case Dir.Right:
                             Velocity.X = Speed;
@@ -174,6 +183,16 @@ namespace SecretProject.Class.Playable
 
                 }
             }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Position", Position);
+        }
+
+        public Player(SerializationInfo info, StreamingContext context)
+        {
+            Position = (Vector2)info.GetValue("Position", typeof(Vector2));
         }
     }
 }
