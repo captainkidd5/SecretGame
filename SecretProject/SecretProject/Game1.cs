@@ -9,16 +9,14 @@ using SecretProject.Class.UI;
 using System;
 using TiledSharp;
 
+using System.Runtime.Serialization;
+
 namespace SecretProject
 {
-
     //TODO:
     //figure out what I want to do with component
     //drag and drop items
     //SAVE GAME
-    
-
-        
 
     public enum Dir
     {
