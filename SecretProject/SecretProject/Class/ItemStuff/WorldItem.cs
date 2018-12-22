@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-   public class Item
+    class WorldItem
     {
-        string name;
-        int iD;
-
-        public Item()
-        {
-
-        }
     }
 }

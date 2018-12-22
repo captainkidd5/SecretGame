@@ -99,8 +99,10 @@ namespace SecretProject.Class.Stage
             //Draw Buttons
             
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 322), Color.CornflowerBlue);
-            Join.Draw(spriteBatch, font, "Play", new Vector2(545, 120), Color.CornflowerBlue);
-            Save.Draw(spriteBatch, font, "Load", new Vector2(545, 220), Color.CornflowerBlue);
+            Join.Draw(spriteBatch, font, "New Game", new Vector2(525, 122), Color.CornflowerBlue);
+            Save.Draw(spriteBatch, font, "Load Game", new Vector2(520, 222), Color.CornflowerBlue);
+
+
             spriteBatch.End();
         }
 

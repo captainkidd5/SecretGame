@@ -256,10 +256,7 @@ namespace SecretProject.Class.Stage
             //mouse
 
             customMouse.Update();
-            if(customMouse.IsClicked)
-            {
-                allSprites.Add(new Sprite(graphicsDevice, content, puzzleFish, customMouse.WorldMousePosition, true));
-            }
+            
 
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (kState.IsKeyUp(Keys.F1)))
@@ -269,6 +266,11 @@ namespace SecretProject.Class.Stage
 
             if (!Game1.freeze)
             {
+
+                if (customMouse.IsClicked)
+                {
+                    allSprites.Add(new Sprite(graphicsDevice, content, puzzleFish, customMouse.WorldMousePosition, true));
+                }
 
 
                 //--------------------------------------
@@ -294,18 +296,9 @@ namespace SecretProject.Class.Stage
 
                 cam.Follow(new Vector2(player.Position.X, player.Position.Y));
 
-                // E camera.follow(player.Position, player.Rectangle);
 
 
 
-                //--------------------------------------
-                //Open Menus
-
-                //if ((oldKeyboardState.IsKeyDown(Keys.E)) && (kState.IsKeyUp(Keys.E)))
-                // {
-                // playerOneInv.IsOpen = !playerOneInv.IsOpen;
-                //playerOneInv.UpdateInventory();
-                // }
             }
         }
 

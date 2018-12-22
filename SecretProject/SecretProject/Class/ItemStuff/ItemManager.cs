@@ -8,5 +8,6 @@ namespace SecretProject.Class.ItemStuff
 {
     class ItemManager
     {
+        List<InventoryItem> BackPack = new List<InventoryItem>();
     }
 }

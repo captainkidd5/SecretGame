@@ -16,28 +16,19 @@ namespace SecretProject.Class.SavingStuff
 
         public SaveData mySave;
 
-        // SaveLoadManager manager;
-
         public void Save()
         {
             mySave = new SaveData();
-
-            //  Stream stream = File.Open("gametest.dat", FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
             using (TextWriter tw = new StreamWriter(@"C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml"))
             {
                 serializer.Serialize(tw, mySave);
                 tw.Close();
             }
-
-            //stream.Close();
         }
-
 
         public void Load()
         {
-            //mySave = null;
-
             XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
 
             StreamReader reader = new StreamReader(@"C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml");

@@ -50,6 +50,12 @@ namespace SecretProject.Class.UI
             {
                 isEscMenu = !isEscMenu;
 
+                if (isEscMenu == false)
+                {
+                    esc.isTextChanged = false;
+                }
+                    
+
             }
 
             if(isEscMenu)
@@ -60,6 +66,7 @@ namespace SecretProject.Class.UI
             if(!isEscMenu)
             {
                 Game1.freeze = false;
+
             }
                 
         }
