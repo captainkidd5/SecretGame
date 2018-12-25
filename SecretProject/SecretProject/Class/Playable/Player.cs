@@ -16,6 +16,9 @@ using System.Runtime.Serialization;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.ItemStuff;
+using Microsoft.Xna.Framework.Content;
+using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.Playable
 {
@@ -42,6 +45,10 @@ namespace SecretProject.Class.Playable
         public int frameNumber;
 
         public Collider myCollider;
+
+        Inventory inventory;
+        public Inventory Inventory { get { return inventory; } set { inventory = value; } }
+        ContentManager content;
 
         public Rectangle Rectangle
         {
@@ -79,7 +86,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public Player(string name, Vector2 position, Texture2D texture, int frameNumber)
+        public Player(string name, Vector2 position, Texture2D texture, int frameNumber, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             Name = name;
             Position = position;
@@ -88,6 +95,10 @@ namespace SecretProject.Class.Playable
             animations = new AnimatedSprite[frameNumber];
 
             myCollider = new Collider(Velocity, Rectangle);
+
+            inventory = new Inventory(content, graphics, mouse);
+
+            this.content = content;
 
 
 

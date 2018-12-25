@@ -15,6 +15,7 @@ namespace SecretProject.Class.Controls
         public MouseState myMouse;
         public Rectangle mouseRectangle;
         public bool IsClicked { get; set; }
+        public bool IsRightClicked { get; set; }
         Vector2 position;
         public Vector2 Position { get { return position; } set { position = value; } }
 
@@ -47,6 +48,7 @@ namespace SecretProject.Class.Controls
         public void Update()
         {
             IsClicked = false;
+            IsRightClicked = false;
 
             MouseState oldMouse = myMouse;
             myMouse = Mouse.GetState();
@@ -63,6 +65,11 @@ namespace SecretProject.Class.Controls
             if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
             {
                 IsClicked = true;
+            }
+
+            if ((myMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))
+            {
+                IsRightClicked = true;
             }
         }
         public bool IsHovering(Rectangle rectangle)

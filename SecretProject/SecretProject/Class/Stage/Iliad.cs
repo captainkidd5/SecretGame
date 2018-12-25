@@ -18,6 +18,7 @@ using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
+using SecretProject.Class.ItemStuff.Items;
 
 namespace SecretProject.Class.Stage
 {
@@ -83,7 +84,7 @@ namespace SecretProject.Class.Stage
 
         public static List<ObjectBody> allObjects;
 
-        private List<Sprite> allSprites;
+        public static List<Sprite> allSprites;
 
         //--------------------------------------
         //Declare Music
@@ -180,8 +181,8 @@ namespace SecretProject.Class.Stage
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
-            player = new Player("joe", new Vector2(1000, 650), joeSprite, 4) { Activate = true, Right = Keys.D };
-            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4) { Activate = false };
+            player = new Player("joe", new Vector2(1000, 650), joeSprite, 4, content, graphicsDevice, customMouse) { Activate = true, Right = Keys.D };
+            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4, content, graphicsDevice, customMouse) { Activate = false };
             //declare animations
             player.anim = new AnimatedSprite(graphicsDevice, joeDown, 1, 4);
 
@@ -269,7 +270,12 @@ namespace SecretProject.Class.Stage
 
                 if (customMouse.IsClicked)
                 {
-                    allSprites.Add(new Sprite(graphicsDevice, content, puzzleFish, customMouse.WorldMousePosition, true));
+                    allSprites.Add(new Sprite(graphicsDevice, content, customMouse.WorldMousePosition, true, new Food("shrimp", content)));
+                }
+
+                if(customMouse.IsRightClicked)
+                {
+                    player.Inventory.DropItemFromInventory(new Food("shrimp", content));
                 }
 
 
@@ -284,7 +290,7 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    spr.Update(gameTime);
+                    spr.Update(gameTime, player);
 
                 }
 

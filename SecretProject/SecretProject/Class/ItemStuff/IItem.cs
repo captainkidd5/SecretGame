@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-    interface IItem
+    public interface IItem
     {
         string Name { get; set; }
         int ID { get; set; }
+        int Count { get; set; }
+        int InvMaximum { get; set; }
+        int WorldMaximum { get; set; }
         Texture2D Texture { get; set; }
     }
 }

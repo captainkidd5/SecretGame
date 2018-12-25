@@ -34,8 +34,14 @@ namespace SecretProject.Class.ItemStuff.Items
             set { texture = value; }
         }
 
+        public int Count { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int InvMaximum { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int WorldMaximum { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        
+        // Food Specific
+
+
+
         public Food(string name, ContentManager content)
         {
             switch(name)
@@ -45,7 +51,7 @@ namespace SecretProject.Class.ItemStuff.Items
                     break;
 
                 case "shrimp":
-                    this.texture = content.Load<Texture2D>("");
+                    this.texture = content.Load<Texture2D>("Item/puzzleFish");
                     break;
 
                 default:

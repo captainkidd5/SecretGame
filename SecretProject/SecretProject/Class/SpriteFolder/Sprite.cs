@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Microsoft.Xna.Framework.Media;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.Stage;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -18,7 +20,7 @@ namespace SecretProject.Class.SpriteFolder
     {
 
 
-        protected Texture2D _texture;
+        protected Texture2D texture;
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Color = Color.White;
@@ -45,6 +47,9 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool isBobbing = false;
         public bool isMagnetized = false;
+        public bool pickedUp = false;
+
+        public IItem item;
 
         SoundEffectInstance bubbleInstance;
 
@@ -53,7 +58,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
             }
 
         }
@@ -65,7 +70,7 @@ namespace SecretProject.Class.SpriteFolder
         public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob)
         {
 
-            _texture = texture;
+            this.texture = texture;
             this.rectangleTexture = texture;
             this.Position = position;
             this.isBobbing = bob;
@@ -81,6 +86,28 @@ namespace SecretProject.Class.SpriteFolder
 
             bubbleInstance = bubble.CreateInstance();
             bubbleInstance.IsLooped = false;
+        }
+
+        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Vector2 position, bool bob, IItem item)
+        {
+
+            this.texture = item.Texture;
+            this.rectangleTexture = item.Texture;
+            this.Position = position;
+            this.isBobbing = bob;
+
+            SetRectangleTexture(graphicsDevice, item.Texture);
+
+            timer = 0d;
+
+            scaleX = 1f;
+            scaleY = 1f;
+
+            bubble = content.Load<SoundEffect>("SoundEffects/bubble");
+
+            bubbleInstance = bubble.CreateInstance();
+            bubbleInstance.IsLooped = false;
+            this.item = item;
         }
 
 
@@ -112,9 +139,14 @@ namespace SecretProject.Class.SpriteFolder
         }
 
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Player player)
         {
             Bobber(gameTime);
+            if(pickedUp)
+            {
+                player.Inventory.AddItemToInventory(item);
+            }
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
@@ -123,14 +155,14 @@ namespace SecretProject.Class.SpriteFolder
             {
                 LayerDepth = layerDepth;
 
-                spriteBatch.Draw(_texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(scaleX, scaleY));
+                spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(scaleX, scaleY));
             }
             
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, Color.White);
+            spriteBatch.Draw(texture, Position, Color.White);
 
             if (ShowRectangle)
             {
@@ -173,6 +205,7 @@ namespace SecretProject.Class.SpriteFolder
                 if(isDrawn)
                 {
                     bubbleInstance.Play();
+                    pickedUp = true;
                 }
                 
                 isDrawn = false;             
