@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.UI
@@ -27,67 +28,61 @@ namespace SecretProject.Class.UI
         //--------------------------------------
         //Textures
         public Texture2D Background { get; set; }
-        private Texture2D _toolBarButton;
+        public Button InGameMenu { get; set; }
+        public Button OpenInventory { get; set; }
+        public Button InvSlot1 { get; set; }
+        public Texture2D ToolBarButton { get; set; }
+        public SpriteFont Font { get; set; }
+        public List<Button> AllButtons { get; set; }
+        public MouseManager CustomMouse { get; set; }
 
-        //--------------------------------------
-        //Fonts
-        private SpriteFont _font;
-
-
-        //--------------------------------------
-        //Buttons
-        private Button _openInventory;
-        private Button _inGameMenu;
-
-        //button List
-        private List<Button> allButtons;
-
-
+        public Texture2D InvSlot1Texture { get; set; }
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
-
-        private MouseManager customMouse;
-
         Game1 game;
         GraphicsDevice graphicsDevice;
         ContentManager content;
 
+        private int itemCounter1;
+        public int ItemCounter1 { get { return itemCounter1; } set { itemCounter1 = value; } }
+
+        Inventory inventory;
 
 
-
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Inventory inventory)
         {
 
-            this.customMouse = mouse;
+            this.CustomMouse = mouse;
 
             this.game = game;
             this.graphicsDevice = graphicsDevice;
             this.content = content;
             //--------------------------------------
             //initialize SpriteFonts
-            _font = content.Load<SpriteFont>("SpriteFont/MenuText");
+            Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
             //--------------------------------------
             //Initialize Textures
-            this._toolBarButton = content.Load<Texture2D>("Button/ToolBarButton");
+            this.ToolBarButton = content.Load<Texture2D>("Button/ToolBarButton");
             this.Background = content.Load<Texture2D>("Button/ToolBar");
+
+            //
+            ItemCounter1 = 0;
 
             //--------------------------------------
             //Initialize Buttons
-            _inGameMenu = new Button(_toolBarButton, graphicsDevice, customMouse, new Vector2(367, 635));
-            _openInventory = new Button(_toolBarButton, graphicsDevice, customMouse, new Vector2(433, 635));
+            InGameMenu = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(367, 635));
+            OpenInventory = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(433, 635));
+            InvSlot1 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(500, 635));
 
             //--------------------------------------
             //Button List Stuff
-            allButtons = new List<Button>();
-            allButtons.Add(_openInventory);
-            allButtons.Add(_inGameMenu);
+            AllButtons = new List<Button>();
+            AllButtons.Add(OpenInventory);
+            AllButtons.Add(InGameMenu);
 
-
-
-            
-
-            
+            this.inventory = inventory;
+  
         }
 
 
@@ -101,8 +96,9 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Buttons
-            _openInventory.Draw(spriteBatch, _font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
-            _inGameMenu.Draw(spriteBatch, _font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
+            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
+            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
+            InvSlot1.Draw(spriteBatch, Font, ItemCounter1.ToString(), new Vector2(543, 670), Color.CadetBlue);
 
            // spriteBatch.End();
         }
@@ -113,8 +109,9 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Update Buttons
 
-            _inGameMenu.Update();
-            _openInventory.Update();
+            InGameMenu.Update();
+            OpenInventory.Update();
+            this.itemCounter1 = inventory.ItemCount;
             /*
             switch (toolBarState)
             {
@@ -139,11 +136,11 @@ namespace SecretProject.Class.UI
 
             
             
-            if (_inGameMenu.isClicked)
+            if (InGameMenu.isClicked)
             {
                 UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
             }
-            else if(_openInventory.isClicked)
+            else if(OpenInventory.isClicked)
             {
 
             }
@@ -155,7 +152,7 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Switch GameStages on click
 
-            _openInventory.isClicked = false;
+            OpenInventory.isClicked = false;
             
         }
     }

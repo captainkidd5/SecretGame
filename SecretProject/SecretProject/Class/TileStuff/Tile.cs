@@ -11,34 +11,27 @@ namespace SecretProject.Class.TileStuff
 {
     public class Tile
     {
-        //--------------------------------------
-        //Map Specifications
-        private int tilesetTilesWide;
-        private int tilesetTilesHigh;
-        private int mapWidth;
-        private int mapHeight;
-
-        //--------------------------------------
-        //Tile General Specifications
-        private int tileFrame;
-        private int tileHeight = 16;
-        private int tileWidth = 16;
-        private int column;
-        private int row;
-        private int tileNumber;
         public float X { get; set; }
         public float Y { get; set; }
-        private int gID;
-        public int GID { get { return gID -1; } set { gID = value; } }
 
-        private bool isMoving = false;
-        public bool IsMoving { get { return isMoving; } set { isMoving = value; } }
+        public int GID { get { return GID1 -1; } set { GID1 = value; } }
+        public bool IsMoving { get; set; } = false;
+        public bool IsSelected { get; set; } = false;
 
-        private bool isSelected = false;
-        public bool IsSelected { get { return isSelected; } set { isSelected = value; } }
-
-        public float oldX;
-        public float oldY;
+        public int TilesetTilesWide { get; set; }
+        public int TilesetTilesHigh { get; set; }
+        public int MapWidth { get; set; }
+        public int MapHeight { get; set; }
+        public int TileFrame { get; set; }
+        public int TileHeight { get; set; } = 16;
+        public int TileWidth { get; set; } = 16;
+        public int Column { get; set; }
+        public int Row { get; set; }
+        public int TileNumber { get; set; }
+        public int GID1 { get; set; }
+        public float OldY { get => OldY1; set => OldY1 = value; }
+        public float OldY1 { get; set; }
+        public float OldX { get; set; }
 
         //--------------------------------------
         //Rectangles
@@ -52,27 +45,27 @@ namespace SecretProject.Class.TileStuff
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
         {
-            this.tileNumber = tileNumber;
+            this.TileNumber = tileNumber;
 
-            this.oldX = x;
-            this.oldY = y;
+            this.OldX = x;
+            this.OldY = y;
             
-            this.gID = gID;
-            this.tilesetTilesWide = tilesetTilesWide;
-            this.tilesetTilesHigh = tilesetTilesHigh;
-            this.mapWidth = mapWidth;
-            this.mapHeight = mapHeight;
+            this.GID1 = gID;
+            this.TilesetTilesWide = tilesetTilesWide;
+            this.TilesetTilesHigh = tilesetTilesHigh;
+            this.MapWidth = mapWidth;
+            this.MapHeight = mapHeight;
 
-            tileFrame = gID - 1;
+            TileFrame = gID - 1;
 
-            column = tileFrame % tilesetTilesWide;
-            row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
+            Column = TileFrame % tilesetTilesWide;
+            Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
 
-            this.X = (x % mapWidth) * tileWidth;
-            this.Y = (y % mapWidth) * tileHeight;
+            this.X = (x % mapWidth) * TileWidth;
+            this.Y = (y % mapWidth) * TileHeight;
 
-            SourceRectangle = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-            DestinationRectangle = new Rectangle((int)X, (int)Y, tileWidth, tileHeight);
+            SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
+            DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
             
 
         }

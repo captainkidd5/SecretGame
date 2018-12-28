@@ -16,26 +16,27 @@ namespace SecretProject.Class.ItemStuff
    public class Inventory
 
     {
-        string name;
-        int iD;
-        int itemCount;
-        Sprite itemSprite;
-
-        ContentManager content;
 
         MouseManager mouse;
 
         List<IItem> currentInventory;
 
-        GraphicsDevice graphicsDevice;
 
-        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, MouseManager mouse)
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int ItemCount { get; set; }
+        public Sprite ItemSprite { get; set; }
+
+        GraphicsDevice graphics;
+        ContentManager content;
+
+        public Inventory(GraphicsDevice graphics, ContentManager content, MouseManager mouse)
         {
-            this.content = content;
             currentInventory = new List<IItem>();
-            itemCount = 0;
+            ItemCount = 0;
             this.mouse = mouse;
-            this.graphicsDevice = graphicsDevice;
+            this.graphics = graphics;
+            this.content = content;
         }
 
         public void Update(GameTime gameTime)
@@ -43,30 +44,40 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
+
         public void AddItemToInventory(IItem item)
         {
-            currentInventory.Add(item);
+            if(ItemCount <= 5)
+            {
+                if (item.IsDropped)
+                {
+
+                }
+                ItemCount++;
+                currentInventory.Add(item);
+                
+            }
+            
             
 
         }
 
 
         
-        public void RemoveItemFromInventory(IItem item)
+        public void RemoveItemFromInventory(IItem item, Vector2 position)
         {
-            currentInventory.Remove(item);
-        }
-
-        public void DropItemFromInventory(IItem item)
-        {
-            if(currentInventory.Contains(item))
+            if(ItemCount > 0)
             {
+                item.Drop(graphics, content, position);
                 currentInventory.Remove(item);
-                Iliad.allSprites.Add(new Sprite(graphicsDevice, content, mouse.WorldMousePosition, true, item));
+                ItemCount--;
             }
-
+            
             
         }
+
+
+
         
     }
 }

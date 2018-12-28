@@ -3,40 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Playable;
+using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.Stage;
 
 namespace SecretProject.Class.ItemStuff.Items
 {
     class Food : IItem
     {
-        private string name;
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        public int ID { get; set; } = 1;
 
-        private int iD = 1;
+        public Texture2D Texture { get; set; }
 
-        public int ID
-        {
-            get { return iD; }
-            set { iD = value; }
-        }
-
-        private Texture2D texture;
-
-        public Texture2D Texture
-        {
-            get { return texture; }
-            set { texture = value; }
-        }
-
-        public int Count { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int InvMaximum { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int WorldMaximum { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Count { get; set; }
+        public int InvMaximum { get; set; }
+        public int WorldMaximum { get; set; }
+        public bool IsDropped { get ; set ; }
 
         // Food Specific
 
@@ -44,14 +31,15 @@ namespace SecretProject.Class.ItemStuff.Items
 
         public Food(string name, ContentManager content)
         {
+            IsDropped = false;
             switch(name)
             {
                 case "pie":
-                    this.texture = content.Load<Texture2D>("");
+                    this.Texture = content.Load<Texture2D>("Item/pie");
                     break;
 
                 case "shrimp":
-                    this.texture = content.Load<Texture2D>("Item/puzzleFish");
+                    this.Texture = content.Load<Texture2D>("Item/puzzleFish");
                     break;
 
                 default:
@@ -61,5 +49,14 @@ namespace SecretProject.Class.ItemStuff.Items
             }
         }
 
+        public void PickUp()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Drop(GraphicsDevice graphics, ContentManager content, Vector2 position)
+        {
+            Iliad.allSprites.Add(new Sprite(graphics, content, Texture, position, true));
+        }
     }
 }

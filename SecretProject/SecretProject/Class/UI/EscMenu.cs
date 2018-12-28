@@ -15,25 +15,7 @@ namespace SecretProject.Class.MenuStuff
 {
     public class EscMenu : IGeneral
     {
-
-        Texture2D menuButtonTexture;
-        Texture2D settingsButtonTexture;
-        Texture2D returnButtonTexture;
-
-        Texture2D backDrop;
-
-        Button menuButton;
-        Button settingsButton;
-        Button returnButton;
-
-       public bool isTextChanged = false;
-
-        string menuText;
-       public string settingsText;
-        string returnText;
-
-        SpriteFont font;
-
+        public bool isTextChanged = false;
         List<Button> allButtons;
 
         Game1 game;
@@ -41,31 +23,43 @@ namespace SecretProject.Class.MenuStuff
       //  SaveLoadManager saveManager;
         SaveFile mySave;
 
+        public Texture2D MenuButtonTexture { get; set; }
+        public Texture2D SettingsButtonTexture { get; set; }
+        public Texture2D ReturnButtonTexture { get; set; }
+        public Texture2D BackDrop { get; set; }
+        internal Button MenuButton { get; set; }
+        internal Button SettingsButton { get; set; }
+        internal Button ReturnButton { get; set; }
+        public string ReturnText { get; set; }
+        public string SettingsText { get; set; }
+        public string MenuText { get; set; }
+        public SpriteFont Font { get; set; }
+
         public EscMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
             mySave = new SaveFile();
             this.game = game;
-            menuButtonTexture = content.Load<Texture2D>("Button/basicButton");
-            settingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
-            returnButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            MenuButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            SettingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            ReturnButtonTexture = content.Load<Texture2D>("Button/basicButton");
 
-            backDrop = content.Load<Texture2D>("Button/escBackDrop");
+            BackDrop = content.Load<Texture2D>("Button/escBackDrop");
 
-            font = content.Load<SpriteFont>("SpriteFont/MenuText");
+            Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-            returnButton = new Button(returnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
+            ReturnButton = new Button(ReturnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
             
-            settingsButton = new Button(settingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
+            SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
 
-            menuButton = new Button(menuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
+            MenuButton = new Button(MenuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
 
-            menuText = "Exit Game";
-            settingsText = "Save Game";
-            returnText = "Return";
+            MenuText = "Exit Game";
+            SettingsText = "Save Game";
+            ReturnText = "Return";
 
 
 
-            allButtons = new List<Button>() { menuButton, settingsButton, returnButton };
+            allButtons = new List<Button>() { MenuButton, SettingsButton, ReturnButton };
 
         }
 
@@ -73,11 +67,11 @@ namespace SecretProject.Class.MenuStuff
         {
             if (isTextChanged == true)
             {
-                settingsText = "Game Saved!";
+                SettingsText = "Game Saved!";
             }
             if(isTextChanged == false)
             {
-                settingsText = "Save Game";
+                SettingsText = "Save Game";
             }
 
             foreach (Button button in allButtons)
@@ -85,17 +79,17 @@ namespace SecretProject.Class.MenuStuff
                 button.Update();
             }
 
-            if(menuButton.isClicked)
+            if(MenuButton.isClicked)
             {
                 game.gameStages = Stages.MainMenu;
             }
 
-            if(returnButton.isClicked)
+            if(ReturnButton.isClicked)
             {
                 UserInterface.IsEscMenu = false;
             }
 
-            if(settingsButton.isClicked)
+            if(SettingsButton.isClicked)
             {
                 mySave.Save();
                 isTextChanged = true;
@@ -104,10 +98,10 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(backDrop, new Vector2(435, 170), Color.White);
-            menuButton.Draw(spriteBatch, font, menuText, menuButton.FontLocation, Color.BlueViolet);
-            returnButton.Draw(spriteBatch, font, returnText, returnButton.FontLocation, Color.BlueViolet);
-            settingsButton.Draw(spriteBatch, font, settingsText, settingsButton.FontLocation, Color.BlueViolet);
+            spriteBatch.Draw(BackDrop, new Vector2(435, 170), Color.White);
+            MenuButton.Draw(spriteBatch, Font, MenuText, MenuButton.FontLocation, Color.BlueViolet);
+            ReturnButton.Draw(spriteBatch, Font, ReturnText, ReturnButton.FontLocation, Color.BlueViolet);
+            SettingsButton.Draw(spriteBatch, Font, SettingsText, SettingsButton.FontLocation, Color.BlueViolet);
 
 
             

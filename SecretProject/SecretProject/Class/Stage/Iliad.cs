@@ -28,56 +28,38 @@ namespace SecretProject.Class.Stage
         #region FIELDS
 
         private bool showBorders = false;
-
-
-        //--------------------------------------
-        //tile information
-        int tileWidth;
-        int tileHeight;
-        int tilesetTilesWide;
-        int tilesetTilesHigh;
         public Vector2 TileSize = new Vector2(16, 16); // what?
         public static TmxMap map;
-        Texture2D tileSet;
+        public Player Player { get; set; }
 
-        TileManager backGroundTiles;
-        TileManager buildingsTiles;
-        TileManager midGroundTiles;
-        TileManager testTiles;
-
-        TmxLayer buildings;
-        TmxLayer background;
-        TmxLayer midGround;
-        TmxLayer testLayer;
-
-        //--------------------------------------
-        //character sprites
-        Texture2D joeSprite;
-        Texture2D raftDown;
-
-
-        //--------------------------------------
-        //item sprites
-        Texture2D puzzleFish;
-        Texture2D houseKey;
-
-        //--------------------------------------
-        //players
-        Player player;
-        public Player Player { get { return player; } set { player = value; } }
-        Player mastodon;
-
-        //--------------------------------------
-        //camera
-        Camera2D cam;
-
-        //--------------------------------------
-        //keyboard
-        KeyboardState kState;
-
-        //--------------------------------------
-        //menu
-        ToolBar toolBar;
+        public int TileWidth { get; set; }
+        public int TileHeight { get; set; }
+        public int TilesetTilesWide { get; set; }
+        public int TilesetTilesHigh { get; set; }
+        public Texture2D TileSet { get; set; }
+        internal TileManager BackGroundTiles { get; set; }
+        internal TileManager BuildingsTiles { get => BuildingsTiles1; set => BuildingsTiles1 = value; }
+        internal TileManager BuildingsTiles1 { get; set; }
+        internal TileManager MidGroundTiles { get => MidGroundTiles1; set => MidGroundTiles1 = value; }
+        internal TileManager MidGroundTiles1 { get; set; }
+        internal TileManager TestTiles { get; set; }
+        public TmxLayer Buildings { get => Buildings1; set => Buildings1 = value; }
+        public TmxLayer Buildings1 { get => Buildings2; set => Buildings2 = value; }
+        public TmxLayer Buildings2 { get => Buildings3; set => Buildings3 = value; }
+        public TmxLayer Buildings3 { get; set; }
+        public TmxLayer Background { get => Background1; set => Background1 = value; }
+        public TmxLayer Background1 { get; set; }
+        public TmxLayer MidGround { get; set; }
+        public TmxLayer TestLayer { get; set; }
+        public Texture2D JoeSprite { get; set; }
+        public Texture2D RaftDown { get; set; }
+        public Texture2D PuzzleFish { get; set; }
+        public Texture2D HouseKey { get; set; }
+        public Song MainTheme { get; set; }
+        public KeyboardState KState { get; set; }
+        internal ToolBar ToolBar { get; set; }
+        public Player Mastodon { get; set; }
+        public Camera2D Cam { get; set; }
 
         //--------------------------------------
         //Declare Lists
@@ -86,20 +68,16 @@ namespace SecretProject.Class.Stage
 
         public static List<Sprite> allSprites;
 
-        //--------------------------------------
-        //Declare Music
-        Song mainTheme;
-
         //SAVE STUFF
 
 
-        
+
 
         #endregion
 
         #region CONSTRUCTOR
 
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface) : base(game, graphicsDevice, content, mouse, userInterface)
+        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player) : base(game, graphicsDevice, content, mouse, userInterface)
         {
             //ORDER MATTERS!
             //Lists
@@ -120,13 +98,13 @@ namespace SecretProject.Class.Stage
             map = new TmxMap("Content/Map/worldMap.tmx");
 
             //tileset
-            tileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
 
             //layers
-            background = map.Layers["background"];
-            buildings = map.Layers["buildings"];
-            midGround = map.Layers["midGround"];
-            testLayer = map.Layers["test"];
+            Background = map.Layers["background"];
+            Buildings = map.Layers["buildings"];
+            MidGround = map.Layers["midGround"];
+            TestLayer = map.Layers["test"];
 
             //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
@@ -135,18 +113,18 @@ namespace SecretProject.Class.Stage
 
 
             //map specifications
-            tileWidth = map.Tilesets[0].TileWidth;
-            tileHeight = map.Tilesets[0].TileHeight;
+            TileWidth = map.Tilesets[0].TileWidth;
+            TileHeight = map.Tilesets[0].TileHeight;
 
-            tilesetTilesWide = tileSet.Width / tileWidth;
-            tilesetTilesHigh = tileSet.Height / tileHeight;
+            TilesetTilesWide = TileSet.Width / TileWidth;
+            TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            backGroundTiles = new TileManager(game,tileSet, map, background, mouse, graphicsDevice, false);
-            buildingsTiles = new TileManager(game, tileSet, map, buildings, mouse, graphicsDevice, true);
-            midGroundTiles = new TileManager(game, tileSet, map, midGround, mouse, graphicsDevice, false);
-            testTiles = new TileManager(game, tileSet, map, testLayer, mouse, graphicsDevice, false);
+            BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice, false);
+            BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, true);
+            MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, false);
+            TestTiles = new TileManager(game, TileSet, map, TestLayer, mouse, graphicsDevice, false);
 
-            
+
 
             //buildingsTiles.isBuilding = true;
 
@@ -164,74 +142,62 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Player Stuff
 
-            //joe
-            joeSprite = content.Load<Texture2D>("Player/Joe/joe");
-
-            var joeDown = content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
-            var joeUp = content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
-            var joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
-            var joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
+            this.Player = player;
 
             //mastodon
-            var mUp = content.Load<Texture2D>("NPC/Mastodon/MastodonBack");
-            var mDown = content.Load<Texture2D>("NPC/Mastodon/MastodonFront");
-            var mLeft = content.Load<Texture2D>("NPC/Mastodon/MastodonLeftSide");
-            var mRight = content.Load<Texture2D>("NPC/Mastodon/MastodonRightSide");
+      //      var mUp = content.Load<Texture2D>("NPC/Mastodon/MastodonBack");
+        //    var mDown = content.Load<Texture2D>("NPC/Mastodon/MastodonFront");
+        //    var mLeft = content.Load<Texture2D>("NPC/Mastodon/MastodonLeftSide");
+         //   var mRight = content.Load<Texture2D>("NPC/Mastodon/MastodonRightSide");
 
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
-            player = new Player("joe", new Vector2(1000, 650), joeSprite, 4, content, graphicsDevice, customMouse) { Activate = true, Right = Keys.D };
-            mastodon = new Player("basicRaft", new Vector2(850, 850), joeSprite, 4, content, graphicsDevice, customMouse) { Activate = false };
+            
+          //  Mastodon = new Player("basicRaft", new Vector2(850, 850), JoeSprite, 4, content, graphicsDevice, customMouse) { Activate = false };
             //declare animations
-            player.anim = new AnimatedSprite(graphicsDevice, joeDown, 1, 4);
 
-            //joe animation 
-            player.animations[0] = new AnimatedSprite(graphicsDevice, joeDown, 1, 4);
-            player.animations[1] = new AnimatedSprite(graphicsDevice, joeUp, 1, 4);
-            player.animations[2] = new AnimatedSprite(graphicsDevice, joeLeft, 1, 4);
-            player.animations[3] = new AnimatedSprite(graphicsDevice, joeRight, 1, 4);
-
+          //  Player.Texture = JoeSprite;
 
             //mastodon animation
-            mastodon.anim = new AnimatedSprite(graphicsDevice, mIdle, 1, 2);
-
-            mastodon.animations[0] = new AnimatedSprite(graphicsDevice, mDown, 1, 2);
-            mastodon.animations[1] = new AnimatedSprite(graphicsDevice, mUp, 1, 4);
-            mastodon.animations[2] = new AnimatedSprite(graphicsDevice, mLeft, 1, 4);
-            mastodon.animations[3] = new AnimatedSprite(graphicsDevice, mRight, 1, 4);
+          //  Mastodon.Anim = new AnimatedSprite(graphicsDevice, mIdle, 1, 2);
+          
+           // Mastodon.animations[0] = new AnimatedSprite(graphicsDevice, mDown, 1, 2);
+          //  Mastodon.animations[1] = new AnimatedSprite(graphicsDevice, mUp, 1, 4);
+          //  Mastodon.animations[2] = new AnimatedSprite(graphicsDevice, mLeft, 1, 4);
+          //  Mastodon.animations[3] = new AnimatedSprite(graphicsDevice, mRight, 1, 4);
 
             //--------------------------------------
             //UI Textures
             //toolBar = new ToolBar(game, graphicsDevice, content, mouse);
 
             //sprite textures
-            puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
-            houseKey = content.Load<Texture2D>("Item/houseKey");
+            PuzzleFish = content.Load<Texture2D>("Item/puzzleFish");
+            HouseKey = content.Load<Texture2D>("Item/houseKey");
 
             //--------------------------------------
             //camera
-            this.cam = camera;
-            cam.Zoom = 2.5f;
+            this.Cam = camera;
+            Cam.Zoom = 2.5f;
             //cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
-            mainTheme = content.Load<Song>("Music/IntheForest"); 
+            MainTheme = content.Load<Song>("Music/IntheForest"); 
             //MediaPlayer.Play(mainTheme);
 
             // midGroundTiles.isActive = true;
-            buildingsTiles.isActive = true;
-            buildingsTiles.isBuilding = true;
+            BuildingsTiles.isActive = true;
+            BuildingsTiles.isBuilding = true;
 
            // buildingsTiles.ReplaceTileGid = 3235;
 
-            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(845, 680), true));
-            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(900, 680), true));
-            allSprites.Add(new Sprite(graphicsDevice, content, houseKey, new Vector2(1200, 680), true));
+            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true));
+            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
+            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
 
             //UserInterface
-            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
+            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse, Player.Inventory);
 
 
         }
@@ -245,13 +211,13 @@ namespace SecretProject.Class.Stage
             //input
 
             //keyboard
-            KeyboardState oldKeyboardState = kState;
-            kState = Keyboard.GetState();
+            KeyboardState oldKeyboardState = KState;
+            KState = Keyboard.GetState();
 
             //--------------------------------------
             //Update Toolbar
 
-            mainUserInterface.Update(gameTime, kState, oldKeyboardState);
+            mainUserInterface.Update(gameTime, KState, oldKeyboardState);
 
 
             //mouse
@@ -260,7 +226,7 @@ namespace SecretProject.Class.Stage
             
 
 
-            if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (kState.IsKeyUp(Keys.F1)))
+            if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
             {
                 showBorders = !showBorders;
             }
@@ -270,19 +236,19 @@ namespace SecretProject.Class.Stage
 
                 if (customMouse.IsClicked)
                 {
-                    allSprites.Add(new Sprite(graphicsDevice, content, customMouse.WorldMousePosition, true, new Food("shrimp", content)));
+                    allSprites.Add(new Sprite(graphicsDevice, content, PuzzleFish, customMouse.WorldMousePosition, true) { IsItem = true });
                 }
 
                 if(customMouse.IsRightClicked)
                 {
-                    player.Inventory.DropItemFromInventory(new Food("shrimp", content));
+                    //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
                 }
 
 
                 //--------------------------------------
                 //Update Players
 
-                player.Update(gameTime, allSprites, allObjects);
+                Player.Update(gameTime, allSprites, allObjects);
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
 
@@ -290,7 +256,7 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    spr.Update(gameTime, player);
+                    spr.Update(gameTime, Player);
 
                 }
 
@@ -300,7 +266,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //update camera
 
-                cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+                Cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
 
 
 
@@ -316,16 +282,16 @@ namespace SecretProject.Class.Stage
 
 
             graphicsDevice.Clear(Color.Black);
-            if (player.Health > 0)
+            if (Player.Health > 0)
             {
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphicsDevice));
-                player.anim.ShowRectangle = showBorders;
-                player.anim.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).3);
-                mastodon.anim.Draw(spriteBatch, new Vector2(mastodon.Position.X, mastodon.Position.Y), (float).3);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphicsDevice));
+                Player.Anim.ShowRectangle = showBorders;
+                Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).3);
+               // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
-                backGroundTiles.DrawTiles(spriteBatch, (float).1);
-                buildingsTiles.DrawTiles(spriteBatch, (float).2);
-                midGroundTiles.DrawTiles(spriteBatch, (float).4);
+                BackGroundTiles.DrawTiles(spriteBatch, (float).1);
+                BuildingsTiles.DrawTiles(spriteBatch, (float).2);
+                MidGroundTiles.DrawTiles(spriteBatch, (float).4);
 
 
                 //--------------------------------------

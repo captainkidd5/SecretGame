@@ -12,8 +12,6 @@ namespace SecretProject.Class.Controls
 {
     public class MouseManager
     {
-        public MouseState myMouse;
-        public Rectangle mouseRectangle;
         public bool IsClicked { get; set; }
         public bool IsRightClicked { get; set; }
         Vector2 position;
@@ -22,25 +20,24 @@ namespace SecretProject.Class.Controls
         Vector2 worldMousePosition;
         public Vector2 WorldMousePosition { get { return worldMousePosition; } set { worldMousePosition = value; } }
 
-        float relativeMouseX;
-        float relativeMouseY;
-
-        public Camera2D Camera;
+        public MouseState MyMouse { get; set; }
+        public Rectangle MouseRectangle { get; set; }
+        public float RelativeMouseX { get; set; }
+        public float RelativeMouseY { get; set; }
+        public int YOffSet1 { get; set; } = 360;
+        public int XOffSet1 { get => XOffSet2; set => XOffSet2 = value; }
+        public int XOffSet2 { get; set; } = 640;
+        public Camera2D Camera1 { get; set; }
 
         Vector2 worldPosition;
 
         GraphicsDevice graphicsDevice;
 
-        int XOffSet = 640;
-        int YOffSet = 360;
-
-
-
         public MouseManager(MouseState myMouse, Camera2D camera, GraphicsDevice graphicsDevice)
         {
-            this.myMouse = myMouse;
+            this.MyMouse = myMouse;
             IsClicked = false;
-            this.Camera = camera;
+            this.Camera1 = camera;
             this.graphicsDevice = graphicsDevice;
 
         }
@@ -50,24 +47,24 @@ namespace SecretProject.Class.Controls
             IsClicked = false;
             IsRightClicked = false;
 
-            MouseState oldMouse = myMouse;
-            myMouse = Mouse.GetState();
-            worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera.GetViewMatrix(Vector2.One)));
+            MouseState oldMouse = MyMouse;
+            MyMouse = Mouse.GetState();
+            worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera1.GetViewMatrix(Vector2.One)));
 
-            position.X = myMouse.Position.X;
-            position.Y = myMouse.Position.Y;
+            position.X = MyMouse.Position.X;
+            position.Y = MyMouse.Position.Y;
 
-            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet, (int)worldPosition.Y - YOffSet);
+            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
             //relativeMouseX = position.X + Camera
 
-            mouseRectangle = new Rectangle(myMouse.X, myMouse.Y, 1, 1);
+            MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
 
-            if ((myMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
+            if ((MyMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
             {
                 IsClicked = true;
             }
 
-            if ((myMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))
+            if ((MyMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))
             {
                 IsRightClicked = true;
             }
@@ -76,7 +73,7 @@ namespace SecretProject.Class.Controls
         {
 
 
-            if (mouseRectangle.Intersects(rectangle))
+            if (MouseRectangle.Intersects(rectangle))
             {
                 return true;
             }
@@ -88,7 +85,7 @@ namespace SecretProject.Class.Controls
         }
         public bool IsHoveringTile(Rectangle rectangle)
         {
-            Rectangle offSetRectange = new Rectangle((int)worldPosition.X - XOffSet,(int)worldPosition.Y - YOffSet, 1, 1);
+            Rectangle offSetRectange = new Rectangle((int)worldPosition.X - XOffSet1,(int)worldPosition.Y - YOffSet1, 1, 1);
             if (offSetRectange.Intersects(rectangle))
             {
                 return true;

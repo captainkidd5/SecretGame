@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.Playable;
 using SecretProject.Class.Stage;
 
@@ -22,37 +23,15 @@ namespace SecretProject.Class.SpriteFolder
 
         protected Texture2D texture;
         public Vector2 Position;
-        public Vector2 Velocity;
-        public Color Color = Color.White;
-        public float Speed;
-        public string Name;
-
-        private SoundEffect bubble;
-
-        public float scaleX;
-        public float scaleY;
-        public bool isDrawn = true;
-
         protected Texture2D rectangleTexture;
 
         public bool ShowRectangle { get; set; }
-
-        public float LayerDepth;
 
         public int Rows { get; set; }
 
         public int Columns { get; set; }
 
-        AnimatedSprite anim;
-
-        public bool isBobbing = false;
-        public bool isMagnetized = false;
-        public bool pickedUp = false;
-
         public IItem item;
-
-        SoundEffectInstance bubbleInstance;
-
 
         public Rectangle Rectangle
         {
@@ -63,9 +42,24 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
-        public double timer;
+        public float ScaleX { get; set; }
+        public float ScaleY { get; set; }
+        public bool IsDrawn { get; set; } = true;
+        public float LayerDepth { get; set; }
+        public SoundEffect Bubble { get; set; }
+        public string Name { get; set; }
+        public float Speed { get; set; }
+        public Color Color { get; set; } = Color.White;
+        public Vector2 Velocity { get; set; }
+        public bool IsBobbing { get; set; } = false;
+        public bool IsMagnetized { get; set; } = false;
+        public bool PickedUp { get; set; } = false;
+        public bool IsItem { get; set; } = false;
+        public double Timer { get; set; }
+        public SoundEffectInstance BubbleInstance { get; set; }
+        public AnimatedSprite Anim { get; set; }
 
-
+        ContentManager content;
 
         public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob)
         {
@@ -73,44 +67,94 @@ namespace SecretProject.Class.SpriteFolder
             this.texture = texture;
             this.rectangleTexture = texture;
             this.Position = position;
-            this.isBobbing = bob;
+            this.IsBobbing = bob;
 
             SetRectangleTexture(graphicsDevice, texture);
 
-            timer = 0d;
+            Timer = 0d;
 
-            scaleX = 1f;
-            scaleY = 1f;
+            ScaleX = 1f;
+            ScaleY = 1f;
 
-            bubble = content.Load<SoundEffect>("SoundEffects/bubble");
+            Bubble = content.Load<SoundEffect>("SoundEffects/bubble");
 
-            bubbleInstance = bubble.CreateInstance();
-            bubbleInstance.IsLooped = false;
+            BubbleInstance = Bubble.CreateInstance();
+            BubbleInstance.IsLooped = false;
+            this.content = content;
         }
 
-        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Vector2 position, bool bob, IItem item)
+      
+
+        public virtual void Update(GameTime gameTime, Player player)
+        {
+            Bobber(gameTime);
+            if(PickedUp && IsItem)
+            {
+                player.Inventory.AddItemToInventory(new Food("shrimp", content));
+                PickedUp = !PickedUp;
+            }
+
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
+        {
+            if (IsDrawn)
+            {
+                LayerDepth = layerDepth;
+
+                spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
+            }
+            
+        }
+
+        public void Bobber(GameTime gameTime)
         {
 
-            this.texture = item.Texture;
-            this.rectangleTexture = item.Texture;
-            this.Position = position;
-            this.isBobbing = bob;
-
-            SetRectangleTexture(graphicsDevice, item.Texture);
-
-            timer = 0d;
-
-            scaleX = 1f;
-            scaleY = 1f;
-
-            bubble = content.Load<SoundEffect>("SoundEffects/bubble");
-
-            bubbleInstance = bubble.CreateInstance();
-            bubbleInstance.IsLooped = false;
-            this.item = item;
+            
+            if(IsBobbing)
+            {
+                Timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (Timer > 2d)
+                {
+                    Timer = 0d;
+                }
+                if (Timer < 1d)
+                {
+                    this.Position.Y += (.03f);
+                }
+                
+                if(Timer >= 1d && Timer < 2d)
+                {
+                    this.Position.Y -= (.03f);
+                }
+                
+            }
         }
 
+        public void Magnetize(Vector2 playerpos)
+        {
+            if (IsItem)
+            {
 
+                if (ScaleX <= 0f || ScaleY <= 0f)
+                {
+                    if (IsDrawn)
+                    {
+                        BubbleInstance.Play();
+                        PickedUp = true;
+                    }
+
+                    IsDrawn = false;
+                }
+                this.Position.X -= playerpos.X;
+                this.Position.Y -= playerpos.Y;
+                ScaleX -= .1f;
+                ScaleY -= .1f;
+            }
+            
+        }
+
+        
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice, Texture2D texture)
         {
@@ -136,85 +180,6 @@ namespace SecretProject.Class.SpriteFolder
             }
             rectangleTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
-        }
-
-
-        public virtual void Update(GameTime gameTime, Player player)
-        {
-            Bobber(gameTime);
-            if(pickedUp)
-            {
-                player.Inventory.AddItemToInventory(item);
-            }
-
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
-        {
-            if (isDrawn)
-            {
-                LayerDepth = layerDepth;
-
-                spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(scaleX, scaleY));
-            }
-            
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, Position, Color.White);
-
-            if (ShowRectangle)
-            {
-                if (rectangleTexture != null)
-                {
-                    spriteBatch.Draw(rectangleTexture, Position, Color.White);
-                }
-
-            }
-        }
-
-        public void Bobber(GameTime gameTime)
-        {
-
-            
-            if(isBobbing)
-            {
-                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (timer > 2d)
-                {
-                    timer = 0d;
-                }
-                if (timer < 1d)
-                {
-                    this.Position.Y += (.03f);
-                }
-                
-                if(timer >= 1d && timer < 2d)
-                {
-                    this.Position.Y -= (.03f);
-                }
-                
-            }
-        }
-
-        public void Magnetize(Vector2 playerpos)
-        {
-            if(scaleX <= 0f || scaleY <=0f)
-            {
-                if(isDrawn)
-                {
-                    bubbleInstance.Play();
-                    pickedUp = true;
-                }
-                
-                isDrawn = false;             
-            }
-            this.Position.X -= playerpos.X;
-            this.Position.Y -= playerpos.Y;
-            scaleX -= .1f;
-            scaleY -= .1f;
-            
         }
 
     }

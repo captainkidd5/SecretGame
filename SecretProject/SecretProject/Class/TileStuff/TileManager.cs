@@ -54,9 +54,7 @@ namespace SecretProject.Class.TileStuff
 
         GraphicsDevice graphicsDevice;
 
-        private int replaceTileGid;
-
-        public int ReplaceTileGid { get { return replaceTileGid; } set { replaceTileGid = value; } }
+        public int ReplaceTileGid { get; set; }
 
         List<TmxObject> tileObjects;
 
@@ -158,7 +156,7 @@ namespace SecretProject.Class.TileStuff
         }
         public void ReplaceTile(int oldX, int oldY)
         {
-            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].oldX, tiles[oldX, oldY].oldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
+            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
             tiles[oldX, oldY] = ReplaceMenttile;
         }        
 

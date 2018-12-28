@@ -25,39 +25,17 @@ namespace SecretProject.Class.Playable
     [Serializable()]
     public class Player : ISerializable
     {
-        private Vector2 position = new Vector2(300, 300);
-        private int _health = 3;
-
-
-        private Dir direction = Dir.Down;
-        private bool isMoving = false;
-        public float Speed = 2f;
+        public Vector2 position = new Vector2(300, 300);
         public Vector2 Velocity;
         public bool Activate { get; set; }
 
-        private Texture2D texture;
-
-        public AnimatedSprite anim;
         public AnimatedSprite[] animations;
 
         public string Name { get; set; }
-
-        public int frameNumber;
-
-        public Collider myCollider;
-
-        Inventory inventory;
-        public Inventory Inventory { get { return inventory; } set { inventory = value; } }
+        public Inventory Inventory { get; set; }
         ContentManager content;
 
-        public Rectangle Rectangle
-        {
-            get
-            {
-                return new Rectangle((int)position.X, (int)position.Y + 5, (int)texture.Width, (int)texture.Height -5);
-            }
-
-        }
+        
 
         public Vector2 Position
         {
@@ -75,30 +53,47 @@ namespace SecretProject.Class.Playable
             position.Y = newY;
         }
 
-        public int Health { get { return _health; } set { value = _health; } }
+        public int Health { get { return Health1; } set { value = Health1; } }
 
-
+        public int Health1 { get; set; } = 3;
+        public Dir Direction { get; set; } = Dir.Down;
+        public bool IsMoving { get; set; } = false;
+        public float Speed1 { get; set; } = 2f;
+        public AnimatedSprite Anim { get; set; }
+        public Texture2D Texture { get; set; }
+        public int FrameNumber { get; set; }
+        public Collider MyCollider { get; set; }
 
         public Keys Up;
         public Keys Left;
         public Keys Right;
         public Keys Down;
 
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y + 5, (int)Texture.Width, (int)Texture.Height - 5);
+            }
+
+        }
+
 
 
         public Player(string name, Vector2 position, Texture2D texture, int frameNumber, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
+            this.content = content;
             Name = name;
             Position = position;
-            this.texture = texture;
-            this.frameNumber = frameNumber;
+            this.Texture = texture;
+            this.FrameNumber = frameNumber;
             animations = new AnimatedSprite[frameNumber];
 
-            myCollider = new Collider(Velocity, Rectangle);
+            MyCollider = new Collider(Velocity, Rectangle);
 
-            inventory = new Inventory(content, graphics, mouse);
+            Inventory = new Inventory(graphics, content, mouse);
 
-            this.content = content;
+           
 
 
 
@@ -116,78 +111,76 @@ namespace SecretProject.Class.Playable
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                anim = animations[(int)direction];
+                Anim = animations[(int)Direction];
 
-                myCollider.Rectangle = this.Rectangle;
-                myCollider.Velocity = this.Velocity;
+                MyCollider.Rectangle = this.Rectangle;
+                MyCollider.Velocity = this.Velocity;
 
-                myCollider.DidCollideMagnet(sprites);
+                MyCollider.DidCollideMagnet(sprites);
 
 
-                myCollider.DidCollide(objects);
-                this.Velocity = myCollider.Velocity;
+                MyCollider.DidCollide(objects);
+                this.Velocity = MyCollider.Velocity;
                 
                 Position += Velocity;
 
                 Velocity = Vector2.Zero;
 
 
-                if (isMoving)
-                    anim.Update(gameTime);
-                else anim.setFrame(0);
+                if (IsMoving)
+                    Anim.Update(gameTime);
+                else Anim.setFrame(0);
 
-                isMoving = false;
+                IsMoving = false;
 
                 if (kState.IsKeyDown(Keys.D))
                 {
-                    direction = Dir.Right;
-                    isMoving = true;
+                    Direction = Dir.Right;
+                    IsMoving = true;
 
                 }
 
                 if (kState.IsKeyDown(Keys.A))
                 {
-                    direction = Dir.Left;
-                    isMoving = true;
+                    Direction = Dir.Left;
+                    IsMoving = true;
                 }
 
                 if (kState.IsKeyDown(Keys.W))
                 {
-                    direction = Dir.Up;
-                    isMoving = true;
+                    Direction = Dir.Up;
+                    IsMoving = true;
                 }
 
                 if (kState.IsKeyDown(Keys.S))
                 {
-                    direction = Dir.Down;
-                    isMoving = true;
+                    Direction = Dir.Down;
+                    IsMoving = true;
                 }
 
 
-                if (isMoving)
+                if (IsMoving)
                 {
-                    switch (direction)
+                    switch (Direction)
                     {
                         case Dir.Right:
-                            Velocity.X = Speed;
+                            Velocity.X = Speed1;
                             break;
 
                         case Dir.Left:
-                            Velocity.X = -Speed;
+                            Velocity.X = -Speed1;
                             break;
 
                         case Dir.Down:
-                            Velocity.Y = Speed;
+                            Velocity.Y = Speed1;
                             break;
 
                         case Dir.Up:
-                            Velocity.Y = -Speed;
+                            Velocity.Y = -Speed1;
                             break;
 
                         default:
                             break;
-
-
 
                     }
 

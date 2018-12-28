@@ -10,13 +10,15 @@ using System;
 using TiledSharp;
 
 using System.Runtime.Serialization;
+using SecretProject.Class.Playable;
+using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject
 {
     //TODO:
     //figure out what I want to do with component
     //drag and drop items
-    //SAVE GAME is not done and I'm drunk, future tuck finish pls - gotchu
+   
 
     public enum Dir
     {
@@ -34,6 +36,7 @@ namespace SecretProject
         Exit = 3,
 
     }
+
 
     public class Game1 : Game
     {
@@ -77,6 +80,16 @@ namespace SecretProject
         //UserInterface
         public UserInterface userInterface;
 
+        //player
+        public Texture2D JoeSprite { get; set; }
+
+        Texture2D joeDown;
+        Texture2D joeUp;
+        Texture2D joeRight;
+        Texture2D joeLeft;
+        public Player Player { get; set; }
+        
+
 
 
         #endregion
@@ -101,7 +114,7 @@ namespace SecretProject
         #region INITIALIZE
         protected override void Initialize()
         {
-
+            
             //initialize mouse
             this.IsMouseVisible = isMyMouseVisible;
             cam = new Camera2D(GraphicsDevice.Viewport);
@@ -114,7 +127,7 @@ namespace SecretProject
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
 
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
+
 
             base.Initialize();
         }
@@ -125,11 +138,30 @@ namespace SecretProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            JoeSprite = Content.Load<Texture2D>("Player/Joe/joe");
+
+             joeDown = Content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
+             joeUp = Content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
+             joeRight = Content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
+             joeLeft = Content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
+
+            Player = new Player("joe", new Vector2(1000, 650), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, Right = Keys.D };
+
+            Player.Anim = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4);
+
+            //joe animation 
+            Player.animations[0] = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4);
+            Player.animations[1] = new AnimatedSprite(GraphicsDevice, joeUp, 1, 4);
+            Player.animations[2] = new AnimatedSprite(GraphicsDevice, joeLeft, 1, 4);
+            Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4);
+
             //Load Stages
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface);
+           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
-            
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager, Player.Inventory);
+
+
         }
         #endregion
 

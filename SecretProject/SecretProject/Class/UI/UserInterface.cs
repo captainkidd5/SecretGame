@@ -8,16 +8,13 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.UI
 {
     public class UserInterface
     {
-        ToolBar bottomBar;
-        EscMenu esc;
-        Game1 game;
-        GraphicsDevice graphicsDevice;
         ContentManager content;
         MouseManager mouse;
 
@@ -25,26 +22,31 @@ namespace SecretProject.Class.UI
 
         public static bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
 
+        public GraphicsDevice GraphicsDevice { get; set; }
+        public Game1 Game { get; set; }
+        public EscMenu Esc { get; set; }
+        internal ToolBar BottomBar { get; set; }
+
         //keyboard
 
 
-        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Inventory inventory)
         {
-            this.game = game;
-            this.graphicsDevice = graphicsDevice;
+            this.Game = game;
+            this.GraphicsDevice = graphicsDevice;
             this.content = content;
             this.mouse = mouse;
             isEscMenu = false;
             
-            bottomBar = new ToolBar(game, graphicsDevice, content, mouse);
-            esc = new EscMenu(game, graphicsDevice, content, mouse);
+            BottomBar = new ToolBar(game, graphicsDevice, content, mouse, inventory);
+            Esc = new EscMenu(game, graphicsDevice, content, mouse);
             
         }
 
 
         public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState)
         {
-            bottomBar.Update(gameTime);
+            BottomBar.Update(gameTime);
 
             if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
             {
@@ -52,7 +54,7 @@ namespace SecretProject.Class.UI
 
                 if (isEscMenu == false)
                 {
-                    esc.isTextChanged = false;
+                    Esc.isTextChanged = false;
                 }
                     
 
@@ -60,7 +62,7 @@ namespace SecretProject.Class.UI
 
             if(isEscMenu)
             {
-                esc.Update(gameTime);
+                Esc.Update(gameTime);
                 Game1.freeze = true;
             }
             if(!isEscMenu)
@@ -74,10 +76,10 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            bottomBar.Draw(spriteBatch);
+            BottomBar.Draw(spriteBatch);
             if(isEscMenu)
             {
-                esc.Draw(spriteBatch);
+                Esc.Draw(spriteBatch);
             }
             spriteBatch.End();
         }

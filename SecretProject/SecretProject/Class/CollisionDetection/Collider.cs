@@ -73,31 +73,31 @@ namespace SecretProject.Class.CollisionDetection
 
             foreach (var spr in sprite)
             {
-                if(spr.isMagnetized)
+                if(spr.IsMagnetized)
                 {
                     spr.Magnetize(velocity);
                 }
 
                 if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
                 {
-                    spr.isMagnetized = true;
+                    spr.IsMagnetized = true;
                 }
                
 
                 if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
                 {
-                    spr.isMagnetized = true;
+                    spr.IsMagnetized = true;
                 }
               
 
                 if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
                 {
-                    spr.isMagnetized = true;
+                    spr.IsMagnetized = true;
                 }
                 
                 if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
                 {
-                    spr.isMagnetized = true;
+                    spr.IsMagnetized = true;
                 }
             }
         }

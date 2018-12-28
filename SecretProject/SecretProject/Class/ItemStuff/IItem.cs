@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +17,11 @@ namespace SecretProject.Class.ItemStuff
         int InvMaximum { get; set; }
         int WorldMaximum { get; set; }
         Texture2D Texture { get; set; }
+        bool IsDropped { get; set; }
+
+        void PickUp();
+
+        void Drop(GraphicsDevice graphics, ContentManager content, Vector2 position);
+
     }
 }
