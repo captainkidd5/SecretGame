@@ -145,7 +145,7 @@ namespace SecretProject
              joeRight = Content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
              joeLeft = Content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
-            Player = new Player("joe", new Vector2(1000, 650), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, Right = Keys.D };
+            Player = new Player("joe", new Vector2(1000, 650), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 
             Player.Anim = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4);
 

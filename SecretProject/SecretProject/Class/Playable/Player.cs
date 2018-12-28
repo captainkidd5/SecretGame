@@ -35,7 +35,7 @@ namespace SecretProject.Class.Playable
         public Inventory Inventory { get; set; }
         ContentManager content;
 
-        
+        PlayerControls controls;
 
         public Vector2 Position
         {
@@ -64,10 +64,6 @@ namespace SecretProject.Class.Playable
         public int FrameNumber { get; set; }
         public Collider MyCollider { get; set; }
 
-        public Keys Up;
-        public Keys Left;
-        public Keys Right;
-        public Keys Down;
 
         public Rectangle Rectangle
         {
@@ -93,7 +89,7 @@ namespace SecretProject.Class.Playable
 
             Inventory = new Inventory(graphics, content, mouse);
 
-           
+            controls = new PlayerControls(0);
 
 
 
@@ -111,7 +107,7 @@ namespace SecretProject.Class.Playable
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                Anim = animations[(int)Direction];
+                Anim = animations[(int)controls.Direction];
 
                 MyCollider.Rectangle = this.Rectangle;
                 MyCollider.Velocity = this.Velocity;
@@ -127,41 +123,17 @@ namespace SecretProject.Class.Playable
                 Velocity = Vector2.Zero;
 
 
-                if (IsMoving)
+                if (controls.IsMoving)
                     Anim.Update(gameTime);
                 else Anim.setFrame(0);
 
                 IsMoving = false;
 
-                if (kState.IsKeyDown(Keys.D))
+                controls.Update();
+
+                if (controls.IsMoving)
                 {
-                    Direction = Dir.Right;
-                    IsMoving = true;
-
-                }
-
-                if (kState.IsKeyDown(Keys.A))
-                {
-                    Direction = Dir.Left;
-                    IsMoving = true;
-                }
-
-                if (kState.IsKeyDown(Keys.W))
-                {
-                    Direction = Dir.Up;
-                    IsMoving = true;
-                }
-
-                if (kState.IsKeyDown(Keys.S))
-                {
-                    Direction = Dir.Down;
-                    IsMoving = true;
-                }
-
-
-                if (IsMoving)
-                {
-                    switch (Direction)
+                    switch (controls.Direction)
                     {
                         case Dir.Right:
                             Velocity.X = Speed1;
