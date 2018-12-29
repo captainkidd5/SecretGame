@@ -31,8 +31,6 @@ namespace SecretProject.Class.SpriteFolder
 
         public int Columns { get; set; }
 
-        public IItem item;
-
         public Rectangle Rectangle
         {
             get
@@ -54,7 +52,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsBobbing { get; set; } = false;
         public bool IsMagnetized { get; set; } = false;
         public bool PickedUp { get; set; } = false;
-        public bool IsItem { get; set; } = false;
+        public bool IsWorldItem { get; set; } = false;
         public double Timer { get; set; }
         public SoundEffectInstance BubbleInstance { get; set; }
         public AnimatedSprite Anim { get; set; }
@@ -85,13 +83,11 @@ namespace SecretProject.Class.SpriteFolder
 
       
 
-        public virtual void Update(GameTime gameTime, Player player)
+        public virtual void Update(GameTime gameTime)
         {
-            Bobber(gameTime);
-            if(PickedUp && IsItem)
+            if(IsWorldItem)
             {
-                player.Inventory.AddItemToInventory(new Food("shrimp", content));
-                PickedUp = !PickedUp;
+                Bobber(gameTime);
             }
 
         }
@@ -133,7 +129,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Magnetize(Vector2 playerpos)
         {
-            if (IsItem)
+            if (IsWorldItem)
             {
 
                 if (ScaleX <= 0f || ScaleY <= 0f)

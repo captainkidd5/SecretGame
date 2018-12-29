@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff.Items;
+using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage
 {
@@ -68,6 +69,8 @@ namespace SecretProject.Class.Stage
 
         public static List<Sprite> allSprites;
 
+        public static List<WorldItem> allItems;
+
         //SAVE STUFF
 
 
@@ -91,6 +94,13 @@ namespace SecretProject.Class.Stage
             {
 
             };
+
+            allItems = new List<WorldItem>()
+            {
+
+            };
+
+
 
 
             //--------------------------------------
@@ -236,7 +246,7 @@ namespace SecretProject.Class.Stage
 
                 if (customMouse.IsClicked)
                 {
-                    allSprites.Add(new Sprite(graphicsDevice, content, PuzzleFish, customMouse.WorldMousePosition, true) { IsItem = true });
+                    allItems.Add(new WorldItem("pie", graphicsDevice, content, customMouse.WorldMousePosition));
                 }
 
                 if(customMouse.IsRightClicked)
@@ -248,7 +258,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //Update Players
 
-                Player.Update(gameTime, allSprites, allObjects);
+                Player.Update(gameTime, allItems, allObjects);
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
 
@@ -256,8 +266,13 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    spr.Update(gameTime, Player);
+                    spr.Update(gameTime);
 
+                }
+
+                foreach(WorldItem item in allItems)
+                {
+                    item.Update(gameTime);
                 }
 
 
@@ -301,6 +316,11 @@ namespace SecretProject.Class.Stage
                 {
                     sprite.ShowRectangle = showBorders;
                     sprite.Draw(spriteBatch, .4f);
+                }
+
+                foreach(WorldItem item in allItems)
+                {
+                    item.Draw(spriteBatch);
                 }
 
                 foreach (var obj in allObjects)

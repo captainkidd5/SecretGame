@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -98,6 +99,40 @@ namespace SecretProject.Class.CollisionDetection
                 if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
                 {
                     spr.IsMagnetized = true;
+                }
+            }
+        }
+
+        public void DidCollideMagnet(List<WorldItem> item)
+        {
+
+            foreach (var it in item)
+            {
+                if (it.ItemSprite.IsMagnetized)
+                {
+                    it.ItemSprite.Magnetize(velocity);
+                }
+
+                if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))
+                {
+                    it.ItemSprite.IsMagnetized = true;
+                }
+
+
+                if (velocity.X < 0 && IsTouchingRight(rectangle, it.ItemSprite, velocity))
+                {
+                    it.ItemSprite.IsMagnetized = true;
+                }
+
+
+                if (velocity.Y > 0 && IsTouchingTop(rectangle, it.ItemSprite, velocity))
+                {
+                    it.ItemSprite.IsMagnetized = true;
+                }
+
+                if (velocity.Y < 0 && IsTouchingBottom(rectangle, it.ItemSprite, velocity))
+                {
+                    it.ItemSprite.IsMagnetized = true;
                 }
             }
         }

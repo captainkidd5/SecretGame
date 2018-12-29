@@ -19,7 +19,7 @@ namespace SecretProject.Class.ItemStuff
 
         MouseManager mouse;
 
-        List<IItem> currentInventory;
+        List<InventoryItem> currentInventory;
 
 
         public int ID { get; set; }
@@ -32,7 +32,7 @@ namespace SecretProject.Class.ItemStuff
 
         public Inventory(GraphicsDevice graphics, ContentManager content, MouseManager mouse)
         {
-            currentInventory = new List<IItem>();
+            currentInventory = new List<InventoryItem>();
             ItemCount = 0;
             this.mouse = mouse;
             this.graphics = graphics;
@@ -45,14 +45,11 @@ namespace SecretProject.Class.ItemStuff
         }
 
 
-        public void AddItemToInventory(IItem item)
+        public void AddItemToInventory(InventoryItem item)
         {
-            if(ItemCount <= 5)
+            if(ItemCount <= item.InvMaximum)
             {
-                if (item.IsDropped)
-                {
 
-                }
                 ItemCount++;
                 currentInventory.Add(item);
                 
@@ -64,11 +61,11 @@ namespace SecretProject.Class.ItemStuff
 
 
         
-        public void RemoveItemFromInventory(IItem item, Vector2 position)
+        public void RemoveItemFromInventory(InventoryItem item)
         {
             if(ItemCount > 0)
             {
-                item.Drop(graphics, content, position);
+                
                 currentInventory.Remove(item);
                 ItemCount--;
             }

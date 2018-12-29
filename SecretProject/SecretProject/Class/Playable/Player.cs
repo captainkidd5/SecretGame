@@ -100,7 +100,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void Update(GameTime gameTime, List<Sprite> sprites, List<ObjectFolder.ObjectBody> objects)
+        public void Update(GameTime gameTime, List<WorldItem> items, List<ObjectFolder.ObjectBody> objects)
         {
             if (Activate)
             {
@@ -111,8 +111,9 @@ namespace SecretProject.Class.Playable
 
                 MyCollider.Rectangle = this.Rectangle;
                 MyCollider.Velocity = this.Velocity;
+                MyCollider.DidCollideMagnet(items);
 
-                MyCollider.DidCollideMagnet(sprites);
+               // MyCollider.DidCollideMagnet(sprites);
 
 
                 MyCollider.DidCollide(objects);

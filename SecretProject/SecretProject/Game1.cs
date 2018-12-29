@@ -87,7 +87,7 @@ namespace SecretProject
         Texture2D joeUp;
         Texture2D joeRight;
         Texture2D joeLeft;
-        public Player Player { get; set; }
+        public static Player Player { get; set; }
         
 
 
