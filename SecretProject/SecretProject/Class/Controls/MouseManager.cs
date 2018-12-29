@@ -54,7 +54,7 @@ namespace SecretProject.Class.Controls
             position.X = MyMouse.Position.X;
             position.Y = MyMouse.Position.Y;
 
-            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
+            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1 - 7, (int)worldPosition.Y - YOffSet1 - 7);
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);

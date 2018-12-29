@@ -16,7 +16,9 @@ namespace SecretProject.Class.MenuStuff
     class Button
     {
         Game1 game;
-        Texture2D Texture;
+       // Texture2D Texture;
+
+        public Texture2D Texture { get; set; }
         public Vector2 Position;
         public Rectangle Rectangle;
 

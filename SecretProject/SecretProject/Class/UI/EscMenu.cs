@@ -13,7 +13,7 @@ using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.MenuStuff
 {
-    public class EscMenu : IGeneral
+    public class EscMenu
     {
         public bool isTextChanged = false;
         List<Button> allButtons;

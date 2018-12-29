@@ -159,7 +159,7 @@ namespace SecretProject
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
            _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager, Player.Inventory);
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
 
 
         }

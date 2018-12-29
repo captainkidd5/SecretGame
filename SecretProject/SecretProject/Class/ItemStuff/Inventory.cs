@@ -19,7 +19,7 @@ namespace SecretProject.Class.ItemStuff
 
         MouseManager mouse;
 
-        List<InventoryItem> currentInventory;
+        public List<InventoryItem> currentInventory;
 
 
         public int ID { get; set; }
@@ -47,7 +47,7 @@ namespace SecretProject.Class.ItemStuff
 
         public void AddItemToInventory(InventoryItem item)
         {
-            if(ItemCount <= item.InvMaximum)
+            if(currentInventory.Count(x => x.Name == item.Name) < item.InvMaximum)
             {
 
                 ItemCount++;

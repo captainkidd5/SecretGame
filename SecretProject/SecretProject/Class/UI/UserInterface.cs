@@ -30,7 +30,7 @@ namespace SecretProject.Class.UI
         //keyboard
 
 
-        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Inventory inventory)
+        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
             this.Game = game;
             this.GraphicsDevice = graphicsDevice;
@@ -38,15 +38,15 @@ namespace SecretProject.Class.UI
             this.mouse = mouse;
             isEscMenu = false;
             
-            BottomBar = new ToolBar(game, graphicsDevice, content, mouse, inventory);
+            BottomBar = new ToolBar(game, graphicsDevice, content, mouse);
             Esc = new EscMenu(game, graphicsDevice, content, mouse);
             
         }
 
 
-        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState)
+        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory)
         {
-            BottomBar.Update(gameTime);
+            BottomBar.Update(gameTime, inventory);
 
             if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
             {

@@ -23,7 +23,7 @@ namespace SecretProject.Class.UI
         inv = 2,
     }
 
-    class ToolBar : IGeneral
+    class ToolBar
     {
         //--------------------------------------
         //Textures
@@ -31,12 +31,14 @@ namespace SecretProject.Class.UI
         public Button InGameMenu { get; set; }
         public Button OpenInventory { get; set; }
         public Button InvSlot1 { get; set; }
+        public Button InvSlot2 { get; set; }
         public Texture2D ToolBarButton { get; set; }
         public SpriteFont Font { get; set; }
         public List<Button> AllButtons { get; set; }
         public MouseManager CustomMouse { get; set; }
 
         public Texture2D InvSlot1Texture { get; set; }
+        public Texture2D InvSlot2Texture { get; set; }
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
         Game1 game;
@@ -46,10 +48,12 @@ namespace SecretProject.Class.UI
         private int itemCounter1;
         public int ItemCounter1 { get { return itemCounter1; } set { itemCounter1 = value; } }
 
+        public int ItemCounter2 { get; set; }
+
         Inventory inventory;
 
 
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Inventory inventory)
+        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
 
             this.CustomMouse = mouse;
@@ -74,6 +78,7 @@ namespace SecretProject.Class.UI
             InGameMenu = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(367, 635));
             OpenInventory = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(433, 635));
             InvSlot1 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(500, 635));
+            InvSlot2 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(577, 635));
 
             //--------------------------------------
             //Button List Stuff
@@ -98,20 +103,46 @@ namespace SecretProject.Class.UI
             //Draw Buttons
             OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
             InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
-            InvSlot1.Draw(spriteBatch, Font, ItemCounter1.ToString(), new Vector2(543, 670), Color.CadetBlue);
+            InvSlot1.Draw(spriteBatch, Font, ItemCounter1.ToString(), new Vector2(543, 670), Color.DarkRed);
+            InvSlot2.Draw(spriteBatch, Font, ItemCounter2.ToString(), new Vector2(600, 670), Color.DarkRed);
 
-           // spriteBatch.End();
+            // spriteBatch.End();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Inventory inventory)
         {
 
             //--------------------------------------
             //Update Buttons
 
+            this.inventory = inventory;
+
+
+            ItemCounter1 = inventory.currentInventory.Count(x => x.Name == "shrimp");
+            ItemCounter2 = inventory.currentInventory.Count(x => x.Name == "pie");
+            if (ItemCounter1 != 0)
+            {
+                InvSlot1.Texture = inventory.currentInventory.Find(x => x.Name == "shrimp").Texture;
+            }
+            else
+            {
+                InvSlot1.Texture = ToolBarButton;
+            }
+
+            if (ItemCounter2 != 0)
+            {
+                InvSlot2.Texture = inventory.currentInventory.Find(x => x.Name == "pie").Texture;
+            }
+            else
+            {
+                InvSlot2.Texture = ToolBarButton;
+            }
+
             InGameMenu.Update();
             OpenInventory.Update();
-            this.itemCounter1 = inventory.ItemCount;
+            InvSlot1.Update();
+            InvSlot2.Update();
+            //this.itemCounter1 = inventory.ItemCount;
             /*
             switch (toolBarState)
             {
@@ -144,6 +175,10 @@ namespace SecretProject.Class.UI
             {
 
             }
+           // else if(InvSlot1.isClicked)
+          //  {
+            //    inventory.
+          //  }
 
             
 

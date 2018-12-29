@@ -61,7 +61,7 @@ namespace SecretProject.Class.ItemStuff.Items
 
         public void Update(GameTime gameTime)
         {
-            this.ItemSprite.Update(gameTime);
+            //this.ItemSprite.Update(gameTime);
         }
     }
 }

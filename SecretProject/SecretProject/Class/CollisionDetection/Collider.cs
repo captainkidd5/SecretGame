@@ -69,39 +69,7 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public void DidCollideMagnet(List<Sprite> sprite)
-        {
-
-            foreach (var spr in sprite)
-            {
-                if(spr.IsMagnetized)
-                {
-                    spr.Magnetize(velocity);
-                }
-
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-               
-
-                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-              
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-                
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-            }
-        }
+        
 
         public void DidCollideMagnet(List<WorldItem> item)
         {
@@ -196,5 +164,41 @@ namespace SecretProject.Class.CollisionDetection
                 rectangle.Right > sprite.Rectangle.Left &&
                 rectangle.Left < sprite.Rectangle.Right;
         }
+
+        /*
+        public void DidCollideMagnet(List<Sprite> sprite)
+        {
+
+            foreach (var spr in sprite)
+            {
+                if(spr.IsMagnetized)
+                {
+                    spr.Magnetize(velocity);
+                }
+
+                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
+                {
+                    spr.IsMagnetized = true;
+                }
+               
+
+                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
+                {
+                    spr.IsMagnetized = true;
+                }
+              
+
+                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
+                {
+                    spr.IsMagnetized = true;
+                }
+                
+                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
+                {
+                    spr.IsMagnetized = true;
+                }
+            }
+        }
+        */
     }
 }

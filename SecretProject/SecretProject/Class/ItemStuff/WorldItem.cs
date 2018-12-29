@@ -22,6 +22,7 @@ namespace SecretProject.Class.ItemStuff
         public Texture2D Texture { get; set; }
         public bool IsDropped { get; set; }
         public Sprite ItemSprite { get; set; }
+        public bool IsFull { get; set; }
 
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
@@ -31,7 +32,7 @@ namespace SecretProject.Class.ItemStuff
         {
             this.Content = content;
             this.Graphics = graphics;
-
+            IsDropped = true;
             this.Name = Name;
 
             switch (Name)
@@ -61,18 +62,25 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
             this.ItemSprite.Update(gameTime);
-            if(ItemSprite.PickedUp == true)
+            if(ItemSprite.PickedUp == true && IsDropped == true)
             {
                // InventoryItem invItem = new InventoryItem()
                 Game1.Player.Inventory.AddItemToInventory(new InventoryItem(this.Name, this.Graphics, this.Content));
-
+                IsDropped = false;
             }
+
+          //  if(Game1.Player.Inventory.)
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (IsDropped == true)
+            {
+                this.ItemSprite.Draw(spriteBatch, .4f);
+            }
             
-            this.ItemSprite.Draw(spriteBatch, .4f);
         }
     }
 }

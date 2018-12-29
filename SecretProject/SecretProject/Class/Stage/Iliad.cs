@@ -154,33 +154,11 @@ namespace SecretProject.Class.Stage
 
             this.Player = player;
 
-            //mastodon
-      //      var mUp = content.Load<Texture2D>("NPC/Mastodon/MastodonBack");
-        //    var mDown = content.Load<Texture2D>("NPC/Mastodon/MastodonFront");
-        //    var mLeft = content.Load<Texture2D>("NPC/Mastodon/MastodonLeftSide");
-         //   var mRight = content.Load<Texture2D>("NPC/Mastodon/MastodonRightSide");
 
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
             
-          //  Mastodon = new Player("basicRaft", new Vector2(850, 850), JoeSprite, 4, content, graphicsDevice, customMouse) { Activate = false };
-            //declare animations
-
-          //  Player.Texture = JoeSprite;
-
-            //mastodon animation
-          //  Mastodon.Anim = new AnimatedSprite(graphicsDevice, mIdle, 1, 2);
-          
-           // Mastodon.animations[0] = new AnimatedSprite(graphicsDevice, mDown, 1, 2);
-          //  Mastodon.animations[1] = new AnimatedSprite(graphicsDevice, mUp, 1, 4);
-          //  Mastodon.animations[2] = new AnimatedSprite(graphicsDevice, mLeft, 1, 4);
-          //  Mastodon.animations[3] = new AnimatedSprite(graphicsDevice, mRight, 1, 4);
-
-            //--------------------------------------
-            //UI Textures
-            //toolBar = new ToolBar(game, graphicsDevice, content, mouse);
-
             //sprite textures
             PuzzleFish = content.Load<Texture2D>("Item/puzzleFish");
             HouseKey = content.Load<Texture2D>("Item/houseKey");
@@ -202,12 +180,14 @@ namespace SecretProject.Class.Stage
 
            // buildingsTiles.ReplaceTileGid = 3235;
 
-            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true));
-            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
-            allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
+           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true));
+           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
+           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
+
+            
 
             //UserInterface
-            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse, Player.Inventory);
+            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
 
 
         }
@@ -227,7 +207,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            mainUserInterface.Update(gameTime, KState, oldKeyboardState);
+            mainUserInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
 
 
             //mouse
@@ -252,6 +232,7 @@ namespace SecretProject.Class.Stage
                 if(customMouse.IsRightClicked)
                 {
                     //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
+                    allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
                 }
 
 
