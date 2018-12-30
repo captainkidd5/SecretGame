@@ -175,6 +175,10 @@ namespace SecretProject.Class.UI
             {
 
             }
+            else if(InvSlot1.isClicked)
+            {
+                //Game1.Player.Inventory.
+            }
            // else if(InvSlot1.isClicked)
           //  {
             //    inventory.

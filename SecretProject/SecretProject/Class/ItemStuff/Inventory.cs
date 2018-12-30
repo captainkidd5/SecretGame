@@ -26,6 +26,7 @@ namespace SecretProject.Class.ItemStuff
         public string Name { get; set; }
         public int ItemCount { get; set; }
         public Sprite ItemSprite { get; set; }
+        public int Capacity { get; set; }
 
         GraphicsDevice graphics;
         ContentManager content;
@@ -37,6 +38,7 @@ namespace SecretProject.Class.ItemStuff
             this.mouse = mouse;
             this.graphics = graphics;
             this.content = content;
+            this.Capacity = 6;
         }
 
         public void Update(GameTime gameTime)
@@ -53,17 +55,14 @@ namespace SecretProject.Class.ItemStuff
                 ItemCount++;
                 currentInventory.Add(item);
                 
-            }
-            
-            
-
+            }      
         }
 
 
         
         public void RemoveItemFromInventory(InventoryItem item)
         {
-            if(ItemCount > 0)
+            if(currentInventory.Count(x => x.Name == item.Name) > 0)
             {
                 
                 currentInventory.Remove(item);
@@ -73,8 +72,26 @@ namespace SecretProject.Class.ItemStuff
             
         }
 
+        public void GetNextAvailableSlot()
+        {
+
+        }
+
+        
+
 
 
         
+    }
+
+    public class InventorySlot
+    {
+        public List<InventoryItem> Slot { get; set; }
+
+        public InventorySlot()
+        {
+
+        }
+
     }
 }
