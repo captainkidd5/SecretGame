@@ -32,6 +32,8 @@ namespace SecretProject.Class.UI
         public Button OpenInventory { get; set; }
         public Button InvSlot1 { get; set; }
         public Button InvSlot2 { get; set; }
+        public Button InvSlot3 { get; set; }
+        public Button InvSlot4 { get; set; }
         public Texture2D ToolBarButton { get; set; }
         public SpriteFont Font { get; set; }
         public List<Button> AllButtons { get; set; }
@@ -39,6 +41,8 @@ namespace SecretProject.Class.UI
 
         public Texture2D InvSlot1Texture { get; set; }
         public Texture2D InvSlot2Texture { get; set; }
+        public Texture2D InvSlot3Texture { get; set; }
+        public Texture2D InvSlot4Texture { get; set; }
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
         Game1 game;
@@ -49,6 +53,8 @@ namespace SecretProject.Class.UI
         public int ItemCounter1 { get { return itemCounter1; } set { itemCounter1 = value; } }
 
         public int ItemCounter2 { get; set; }
+        public int ItemCounter3 { get; set; }
+        public int ItemCounter4 { get; set; }
 
         Inventory inventory;
 
@@ -79,6 +85,8 @@ namespace SecretProject.Class.UI
             OpenInventory = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(433, 635));
             InvSlot1 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(500, 635));
             InvSlot2 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(577, 635));
+            InvSlot3 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(630, 635));
+            InvSlot4 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(690, 635));
 
             //--------------------------------------
             //Button List Stuff
@@ -105,6 +113,9 @@ namespace SecretProject.Class.UI
             InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
             InvSlot1.Draw(spriteBatch, Font, ItemCounter1.ToString(), new Vector2(543, 670), Color.DarkRed);
             InvSlot2.Draw(spriteBatch, Font, ItemCounter2.ToString(), new Vector2(600, 670), Color.DarkRed);
+            InvSlot3.Draw(spriteBatch, Font, ItemCounter3.ToString(), new Vector2(660, 670), Color.DarkRed);
+            InvSlot4.Draw(spriteBatch, Font, ItemCounter4.ToString(), new Vector2(720, 670), Color.DarkRed);
+           
 
             // spriteBatch.End();
         }
@@ -117,25 +128,84 @@ namespace SecretProject.Class.UI
 
             this.inventory = inventory;
 
+            if (inventory.currentInventory.ElementAt(0) == null)
+            {
+                itemCounter1 = 0;
+            }
+            else
+            {
+                ItemCounter1 = inventory.currentInventory.ElementAt(0).SlotItems.Count;
+            }
 
-            ItemCounter1 = inventory.currentInventory.Count(x => x.Name == "shrimp");
-            ItemCounter2 = inventory.currentInventory.Count(x => x.Name == "pie");
+
+
+
+            if (inventory.currentInventory.ElementAt(1) == null)
+            {
+                ItemCounter2 = 0;
+            }
+            else
+            {
+                ItemCounter2 = inventory.currentInventory.ElementAt(1).SlotItems.Count;
+            }
+
+
+            if (inventory.currentInventory.ElementAt(2) == null)
+            {
+                ItemCounter3 = 0;
+            }
+            else
+            {
+                ItemCounter3 = inventory.currentInventory.ElementAt(2).SlotItems.Count;
+            }
+
+            if (inventory.currentInventory.ElementAt(3) == null)
+            {
+                ItemCounter3 = 0;
+            }
+            else
+            {
+                ItemCounter3 = inventory.currentInventory.ElementAt(3).SlotItems.Count;
+            }
+
+
+
             if (ItemCounter1 != 0)
             {
-                InvSlot1.Texture = inventory.currentInventory.Find(x => x.Name == "shrimp").Texture;
+                InvSlot1.Texture = inventory.currentInventory.ElementAt(0).SlotItems[0].Texture;
             }
             else
             {
                 InvSlot1.Texture = ToolBarButton;
             }
 
+
+
             if (ItemCounter2 != 0)
             {
-                InvSlot2.Texture = inventory.currentInventory.Find(x => x.Name == "pie").Texture;
+                InvSlot2.Texture = inventory.currentInventory.ElementAt(1).SlotItems[0].Texture;
             }
             else
             {
                 InvSlot2.Texture = ToolBarButton;
+            }
+
+            if (ItemCounter3 != 0)
+            {
+                InvSlot3.Texture = inventory.currentInventory.ElementAt(2).SlotItems[0].Texture;
+            }
+            else
+            {
+                InvSlot3.Texture = ToolBarButton;
+            }
+
+            if (ItemCounter4 != 0)
+            {
+                InvSlot4.Texture = inventory.currentInventory.ElementAt(3).SlotItems[0].Texture;
+            }
+            else
+            {
+                InvSlot4.Texture = ToolBarButton;
             }
 
             InGameMenu.Update();

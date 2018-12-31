@@ -65,7 +65,7 @@ namespace SecretProject.Class.ItemStuff
             if(ItemSprite.PickedUp == true && IsDropped == true)
             {
                // InventoryItem invItem = new InventoryItem()
-                Game1.Player.Inventory.AddItemToInventory(new InventoryItem(this.Name, this.Graphics, this.Content));
+                Game1.Player.Inventory.AddItem(new InventoryItem(this.Name, this.Graphics, this.Content));
                 IsDropped = false;
             }
 
