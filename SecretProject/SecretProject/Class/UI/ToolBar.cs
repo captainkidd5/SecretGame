@@ -50,12 +50,6 @@ namespace SecretProject.Class.UI
         GraphicsDevice graphicsDevice;
         ContentManager content;
 
-        private int itemCounter1;
-        public int ItemCounter1 { get { return itemCounter1; } set { itemCounter1 = value; } }
-
-        public int ItemCounter2 { get; set; }
-        public int ItemCounter3 { get; set; }
-        public int ItemCounter4 { get; set; }
 
         Inventory inventory;
 
@@ -78,7 +72,7 @@ namespace SecretProject.Class.UI
             this.Background = content.Load<Texture2D>("Button/ToolBar");
 
             //
-            ItemCounter1 = 0;
+
 
             //--------------------------------------
             //Initialize Buttons
@@ -102,7 +96,7 @@ namespace SecretProject.Class.UI
             AllButtons.Add(OpenInventory);
             AllButtons.Add(InGameMenu);
 
-            this.inventory = inventory;
+
   
         }
 

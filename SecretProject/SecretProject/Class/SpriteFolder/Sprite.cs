@@ -50,7 +50,6 @@ namespace SecretProject.Class.SpriteFolder
         public Color Color { get; set; } = Color.White;
         public Vector2 Velocity { get; set; }
         public bool IsBobbing { get; set; } = false;
-        public bool IsMagnetized { get; set; } = false;
         public bool PickedUp { get; set; } = false;
         public bool IsWorldItem { get; set; } = false;
         public double Timer { get; set; }
@@ -127,6 +126,7 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
+        /*
         public void Magnetize(Vector2 playerpos)
         {
             if (IsWorldItem)
@@ -149,6 +149,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             
         }
+        */
 
         
 

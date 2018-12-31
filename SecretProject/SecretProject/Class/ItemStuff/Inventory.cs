@@ -33,18 +33,17 @@ namespace SecretProject.Class.ItemStuff
 
         public Inventory(GraphicsDevice graphics, ContentManager content, MouseManager mouse)
         {
-            currentInventory = new List<InventorySlot>(6);
+            currentInventory = new List<InventorySlot>(3);
             currentInventory.Add(new InventorySlot());
             currentInventory.Add(new InventorySlot());
             currentInventory.Add(new InventorySlot());
             currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
+
             ItemCount = 0;
             this.mouse = mouse;
             this.graphics = graphics;
             this.content = content;
-            this.Capacity = 6;
+            this.Capacity = 4;
         }
 
         public void Update(GameTime gameTime)
@@ -52,7 +51,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void AddItem(InventoryItem item)
+        public bool TryAddItem(InventoryItem item)
         {
             bool itemFilled = false;
             bool slotsAvailable = false;
@@ -87,6 +86,14 @@ namespace SecretProject.Class.ItemStuff
                         itemFilled = true;
                     }
                 }
+            }
+            if(itemFilled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

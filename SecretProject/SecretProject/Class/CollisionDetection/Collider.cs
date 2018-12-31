@@ -76,31 +76,31 @@ namespace SecretProject.Class.CollisionDetection
 
             foreach (var it in item)
             {
-                if (it.ItemSprite.IsMagnetized)
+                if (it.IsMagnetized)
                 {
-                    it.ItemSprite.Magnetize(velocity);
+                    it.Magnetize(velocity);
                 }
 
                 if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))
                 {
-                    it.ItemSprite.IsMagnetized = true;
+                    it.IsMagnetizable = true;
                 }
 
 
                 if (velocity.X < 0 && IsTouchingRight(rectangle, it.ItemSprite, velocity))
                 {
-                    it.ItemSprite.IsMagnetized = true;
+                    it.IsMagnetizable = true;
                 }
 
 
                 if (velocity.Y > 0 && IsTouchingTop(rectangle, it.ItemSprite, velocity))
                 {
-                    it.ItemSprite.IsMagnetized = true;
+                    it.IsMagnetizable = true;
                 }
 
                 if (velocity.Y < 0 && IsTouchingBottom(rectangle, it.ItemSprite, velocity))
                 {
-                    it.ItemSprite.IsMagnetized = true;
+                    it.IsMagnetizable = true;
                 }
             }
         }

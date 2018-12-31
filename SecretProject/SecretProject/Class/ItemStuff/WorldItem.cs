@@ -24,6 +24,9 @@ namespace SecretProject.Class.ItemStuff
         public Sprite ItemSprite { get; set; }
         public bool IsFull { get; set; }
 
+        public bool IsMagnetized { get; set; }
+        public bool IsMagnetizable { get; set; }
+
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
 
@@ -61,26 +64,50 @@ namespace SecretProject.Class.ItemStuff
 
         public void Update(GameTime gameTime)
         {
-            this.ItemSprite.Update(gameTime);
-            if(ItemSprite.PickedUp == true && IsDropped == true)
+            if(!ItemSprite.PickedUp)
             {
-               // InventoryItem invItem = new InventoryItem()
-                Game1.Player.Inventory.AddItem(new InventoryItem(this.Name, this.Graphics, this.Content));
-                IsDropped = false;
+                this.ItemSprite.Update(gameTime);
             }
+            
 
-          //  if(Game1.Player.Inventory.)
-
+            if(IsDropped)
+            {
+                if(IsMagnetizable && Game1.Player.Inventory.TryAddItem(new InventoryItem(this.Name, this.Graphics, this.Content)))
+                {
+                    IsMagnetized = true;
+                    IsDropped = false;
+                    //ItemSprite.IsWorldItem = false;
+                }
+            }
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (IsDropped == true)
-            {
-                this.ItemSprite.Draw(spriteBatch, .4f);
-            }
+
+          this.ItemSprite.Draw(spriteBatch, .4f);
+
             
+        }
+
+        public void Magnetize(Vector2 playerpos)
+        {
+
+                if (ItemSprite.ScaleX <= 0f || ItemSprite.ScaleY <= 0f)
+                {
+                    if (ItemSprite.IsDrawn)
+                    {
+                    ItemSprite.BubbleInstance.Play();
+                    ItemSprite.PickedUp = true;
+                    }
+
+                    ItemSprite.IsDrawn = false;
+                }
+            ItemSprite.Position.X -= playerpos.X;
+            ItemSprite.Position.Y -= playerpos.Y;
+            ItemSprite.ScaleX -= .1f;
+            ItemSprite.ScaleY -= .1f;
+
         }
     }
 }
