@@ -54,41 +54,37 @@ namespace SecretProject.Class.ItemStuff
 
         public void AddItem(InventoryItem item)
         {
-            bool inventoryHasItem = false;
+            bool itemFilled = false;
             bool slotsAvailable = false;
             foreach(InventorySlot s in currentInventory)
             {
-                if(s.SlotItems.Count == 0)
+                if(s.SlotItems.Any(x => x.Name == item.Name) && s.SlotItems.Count(x => x.Name == item.Name) < item.InvMaximum)
+                {
+                    s.AddItemToSlot(item);
+                    itemFilled = true;
+                    break;
+                }  
+                else if(s.SlotItems.Count == 0)
                 {
                     slotsAvailable = true;
-                }
-                if(s.SlotItems.Contains(item))
-                {
-                    inventoryHasItem = true;
-                    s.TryAddItemToSlot(item);
-                }
-                else if(!s.SlotItems.Contains(item) && currentInventory.Count < Capacity)
-                {
-                    currentInventory.Add(new InventorySlot(item));
                 }
                 else
                 {
 
                 }
             }
-            bool filled = false;
-            if(inventoryHasItem == false && slotsAvailable == true)
+            if(itemFilled == false && slotsAvailable == true)
             {
                 foreach(InventorySlot s in currentInventory)
                 {
-                    if(filled == true)
+                    if(itemFilled == true)
                     {
                         break;
                     }
                     if(s.SlotItems.Count == 0)
                     {
-                        s.TryAddItemToSlot(item);
-                        filled = true;
+                        s.AddItemToSlot(item);
+                        itemFilled = true;
                     }
                 }
             }
@@ -142,13 +138,11 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void TryAddItemToSlot(InventoryItem item)
+        public void AddItemToSlot(InventoryItem item)
         {
-            if (SlotItems.Count(x => x.Name == item.Name) < item.InvMaximum)
-            {
-                SlotItems.Add(item);
-
-            }
+            
+          SlotItems.Add(item);
+   
         }
 
     }

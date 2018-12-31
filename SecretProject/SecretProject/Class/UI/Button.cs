@@ -35,6 +35,8 @@ namespace SecretProject.Class.MenuStuff
 
         public Vector2 FontLocation { get { return new Vector2(Position.X -35  + (Texture.Width / 2), Position.Y + (Texture.Height / 2)); } }
 
+        public int ItemCounter { get; set; }
+
         public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, MouseManager myMouse, Vector2 position)
         {
             Texture = newtexture;
