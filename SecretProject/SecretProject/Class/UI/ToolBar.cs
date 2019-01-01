@@ -225,31 +225,8 @@ namespace SecretProject.Class.UI
             {
                 MouseOverToolBar = false;
             }
-            //this.itemCounter1 = inventory.ItemCount;
-            /*
-            switch (toolBarState)
-            {
-                case toolBarButtons.none:
-
-                    break;
-
-
-                case toolBarButtons.menu:
-                    _inGameMenu.Update();
-                    break;
-
-                case toolBarButtons.inv:
-                    _openInventory.Update(); 
-                    break;
-
-                default:
-
-                    break;
-            }
-            */
-
-            
-            
+           
+ 
             if (InGameMenu.isClicked)
             {
                 UserInterface.IsEscMenu = !UserInterface.IsEscMenu;

@@ -52,7 +52,7 @@ namespace SecretProject.Class.SpriteFolder
             var Colors = new List<Color>();
             for (int y = 0; y < texture.Height; y++)
             {
-                for (int x = 0; x < texture.Width; x++)
+                for (int x = 0; x < (texture.Width / 4); x++)
                 {
                     if (x == 0 || //left side
                         y == 0 || //top side
@@ -69,7 +69,7 @@ namespace SecretProject.Class.SpriteFolder
 
                 }
             }
-            rectangleTexture = new Texture2D(graphicsDevice, texture.Width, texture.Height);
+            rectangleTexture = new Texture2D(graphicsDevice, texture.Width / 4, texture.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
@@ -105,7 +105,7 @@ namespace SecretProject.Class.SpriteFolder
             {
                 if (rectangleTexture != null)
                 {
-                    spriteBatch.Draw(rectangleTexture, location, Color.White);
+                    spriteBatch.Draw(rectangleTexture, location, color: Color.White, layerDepth: MyDepth);
                 }
 
 
