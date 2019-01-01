@@ -63,14 +63,13 @@ namespace SecretProject.Class.ItemStuff
                     itemFilled = true;
                     break;
                 }  
-                else if(s.SlotItems.Count == 0)
+                if(s.SlotItems.Count == 0)
                 {
                     slotsAvailable = true;
                 }
-                else
-                {
+               
+                    
 
-                }
             }
             if(itemFilled == false && slotsAvailable == true)
             {

@@ -31,6 +31,8 @@ namespace SecretProject.Class.MenuStuff
         bool down;
         public bool isClicked;
 
+        public bool IsHovered { get; set; }
+
         SpriteFont font;
 
         public Vector2 FontLocation { get { return new Vector2(Position.X -35  + (Texture.Width / 2), Position.Y + (Texture.Height / 2)); } }
@@ -65,10 +67,15 @@ namespace SecretProject.Class.MenuStuff
             {
                 Color = Color.White * .5f;
             }
+            else if(myMouse.IsHovering(Rectangle))
+            {
+                IsHovered = true;
+            }
             else
             {
                 Color = Color.White;
                 isClicked = false;
+                IsHovered = false;
 
             }
         }

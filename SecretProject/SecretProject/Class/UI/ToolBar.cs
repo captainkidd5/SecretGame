@@ -45,10 +45,16 @@ namespace SecretProject.Class.UI
         public Texture2D InvSlot3Texture { get; set; }
         public Texture2D InvSlot4Texture { get; set; }
 
+        public Rectangle BackGroundTextureRectangle { get; set; }
+
+        public bool MouseOverToolBar { get; set; }
+
         public buttonIsClicked toolBarState = buttonIsClicked.none;
         Game1 game;
         GraphicsDevice graphicsDevice;
         ContentManager content;
+
+        public Vector2 BackGroundTexturePosition { get; set; }
 
 
         Inventory inventory;
@@ -56,6 +62,8 @@ namespace SecretProject.Class.UI
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
+            BackGroundTexturePosition = new Vector2(320, 635);
+
 
             this.CustomMouse = mouse;
 
@@ -70,6 +78,8 @@ namespace SecretProject.Class.UI
             //Initialize Textures
             this.ToolBarButton = content.Load<Texture2D>("Button/ToolBarButton");
             this.Background = content.Load<Texture2D>("Button/ToolBar");
+
+            this.BackGroundTextureRectangle = new Rectangle((int)BackGroundTexturePosition.X, (int)BackGroundTexturePosition.Y, Background.Width, Background.Height);
 
             //
 
@@ -191,13 +201,29 @@ namespace SecretProject.Class.UI
                 InvSlot4.Texture = ToolBarButton;
             }
 
-            InGameMenu.Update();
-            OpenInventory.Update();
+            //InGameMenu.Update();
+           // OpenInventory.Update();
             //InvSlot1.Update();
            // InvSlot2.Update();
             foreach(Button slot in AllSlots)
             {
                 slot.Update();
+
+            }
+
+            foreach(Button button in AllButtons)
+            {
+                button.Update();
+
+
+            }
+            if(CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = true;
+            }
+            if(!CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = false;
             }
             //this.itemCounter1 = inventory.ItemCount;
             /*
@@ -257,7 +283,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Background
-            spriteBatch.Draw(Background, new Vector2(320, 635));
+            spriteBatch.Draw(Background, BackGroundTexturePosition);
 
             //--------------------------------------
             //Draw Buttons

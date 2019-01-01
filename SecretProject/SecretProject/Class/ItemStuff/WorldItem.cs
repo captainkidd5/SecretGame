@@ -24,6 +24,8 @@ namespace SecretProject.Class.ItemStuff
         public Sprite ItemSprite { get; set; }
         public bool IsFull { get; set; }
 
+        public bool Ignored { get; set; }
+
         public bool IsMagnetized { get; set; }
         public bool IsMagnetizable { get; set; }
 
@@ -38,17 +40,18 @@ namespace SecretProject.Class.ItemStuff
             IsDropped = true;
             this.Name = Name;
 
+            Ignored = false;
             switch (Name)
             {
                 case "pie":
                     this.Texture = content.Load<Texture2D>("Item/pie");
                     this.WorldMaximum = 5;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true) { IsWorldItem = true } ;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true);
                     break;
 
                 case "shrimp":
                     this.Texture = content.Load<Texture2D>("Item/puzzleFish");
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true) { IsWorldItem = true};
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true);
                     this.WorldMaximum = 10;
 
                     break;
@@ -66,7 +69,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if(!ItemSprite.PickedUp)
             {
-                this.ItemSprite.Update(gameTime);
+                this.ItemSprite.Bobber(gameTime);
             }
             
 
@@ -76,9 +79,12 @@ namespace SecretProject.Class.ItemStuff
                 {
                     IsMagnetized = true;
                     IsDropped = false;
-                    //ItemSprite.IsWorldItem = false;
+                    ItemSprite.PickedUp = true;
+
                 }
             }
+
+            
 
         }
 
@@ -99,8 +105,9 @@ namespace SecretProject.Class.ItemStuff
                     {
                     ItemSprite.BubbleInstance.Play();
                     ItemSprite.PickedUp = true;
+                    Ignored = true;
                     }
-
+                
                     ItemSprite.IsDrawn = false;
                 }
             ItemSprite.Position.X -= playerpos.X;

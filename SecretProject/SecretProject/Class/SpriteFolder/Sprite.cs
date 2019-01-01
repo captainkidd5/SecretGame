@@ -84,11 +84,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public virtual void Update(GameTime gameTime)
         {
-            if(IsWorldItem)
-            {
-                Bobber(gameTime);
-            }
-
+ 
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)

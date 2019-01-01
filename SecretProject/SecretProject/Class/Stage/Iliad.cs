@@ -224,12 +224,12 @@ namespace SecretProject.Class.Stage
             if (!Game1.freeze)
             {
 
-                if (customMouse.IsClicked)
+                if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
                 {
                     allItems.Add(new WorldItem("pie", graphicsDevice, content, customMouse.WorldMousePosition));
                 }
 
-                if(customMouse.IsRightClicked)
+                if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
                 {
                     //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
                     allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));

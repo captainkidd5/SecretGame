@@ -76,32 +76,41 @@ namespace SecretProject.Class.CollisionDetection
 
             foreach (var it in item)
             {
-                if (it.IsMagnetized)
+                if (it.Ignored == false)
                 {
-                    it.Magnetize(velocity);
+                    if (it.IsMagnetized)
+                    {
+                        it.Magnetize(velocity);
+                    }
+
+                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))
+                    {
+                        it.IsMagnetizable = true;
+                    }
+
+
+                    else if (velocity.X < 0 && IsTouchingRight(rectangle, it.ItemSprite, velocity))
+                    {
+                        it.IsMagnetizable = true;
+                    }
+
+
+                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, it.ItemSprite, velocity))
+                    {
+                        it.IsMagnetizable = true;
+                    }
+
+                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, it.ItemSprite, velocity))
+                    {
+                        it.IsMagnetizable = true;
+                    }
+
+                    else
+                    {
+                        it.IsMagnetizable = false;
+                    }
                 }
-
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))
-                {
-                    it.IsMagnetizable = true;
-                }
-
-
-                if (velocity.X < 0 && IsTouchingRight(rectangle, it.ItemSprite, velocity))
-                {
-                    it.IsMagnetizable = true;
-                }
-
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, it.ItemSprite, velocity))
-                {
-                    it.IsMagnetizable = true;
-                }
-
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, it.ItemSprite, velocity))
-                {
-                    it.IsMagnetizable = true;
-                }
+                
             }
         }
 
@@ -165,40 +174,6 @@ namespace SecretProject.Class.CollisionDetection
                 rectangle.Left < sprite.Rectangle.Right;
         }
 
-        /*
-        public void DidCollideMagnet(List<Sprite> sprite)
-        {
-
-            foreach (var spr in sprite)
-            {
-                if(spr.IsMagnetized)
-                {
-                    spr.Magnetize(velocity);
-                }
-
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-               
-
-                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-              
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-                
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
-                {
-                    spr.IsMagnetized = true;
-                }
-            }
-        }
-        */
+       
     }
 }
