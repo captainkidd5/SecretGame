@@ -56,6 +56,8 @@ namespace SecretProject.Class.SpriteFolder
         public SoundEffectInstance BubbleInstance { get; set; }
         public AnimatedSprite Anim { get; set; }
 
+        public bool IsBeingDragged { get; set; } = false;
+
         ContentManager content;
 
         public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob)
@@ -82,8 +84,12 @@ namespace SecretProject.Class.SpriteFolder
 
       
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Vector2 position)
         {
+            if(IsBeingDragged)
+            {
+                this.Position -= position;
+            }
  
         }
 

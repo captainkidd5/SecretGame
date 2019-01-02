@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Stage;
 
 namespace SecretProject.Class.UI
 {
@@ -59,6 +60,7 @@ namespace SecretProject.Class.UI
 
         Inventory inventory;
 
+        public bool Added { get; set; } = false;
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -121,95 +123,29 @@ namespace SecretProject.Class.UI
 
             this.inventory = inventory;
 
-            if (inventory.currentInventory.ElementAt(0) == null)
+            for(int i = 0; i < 4; i ++)
             {
-                InvSlot1.ItemCounter = 0;
-            }
-            else
-            {
-                InvSlot1.ItemCounter = inventory.currentInventory.ElementAt(0).SlotItems.Count;
-            }
+                if (inventory.currentInventory.ElementAt(i) == null)
+                {
+                    AllSlots[i].ItemCounter = 0;
+                }
+                else
+                {
+                    AllSlots[i].ItemCounter = inventory.currentInventory.ElementAt(i).SlotItems.Count;
+                }
+                
+                if(AllSlots[i].ItemCounter != 0)
+                {
+                    AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].Texture;
+                }
+                else
+                {
+                    AllSlots[i].Texture = ToolBarButton;
+                }
 
-
-
-
-            if (inventory.currentInventory.ElementAt(1) == null)
-            {
-                InvSlot2.ItemCounter = 0;
-            }
-            else
-            {
-                InvSlot2.ItemCounter = inventory.currentInventory.ElementAt(1).SlotItems.Count;
-            }
-
-
-            if (inventory.currentInventory.ElementAt(2) == null)
-            {
-                InvSlot3.ItemCounter = 0;
-            }
-            else
-            {
-                InvSlot3.ItemCounter = inventory.currentInventory.ElementAt(2).SlotItems.Count;
+                AllSlots[i].Update();
             }
 
-            if (inventory.currentInventory.ElementAt(3) == null)
-            {
-                InvSlot4.ItemCounter = 0;
-            }
-            else
-            {
-                InvSlot4.ItemCounter = inventory.currentInventory.ElementAt(3).SlotItems.Count;
-            }
-
-
-
-            if (InvSlot1.ItemCounter != 0)
-            {
-                InvSlot1.Texture = inventory.currentInventory.ElementAt(0).SlotItems[0].Texture;
-            }
-            else
-            {
-                InvSlot1.Texture = ToolBarButton;
-            }
-
-
-
-            if (InvSlot2.ItemCounter != 0)
-            {
-                InvSlot2.Texture = inventory.currentInventory.ElementAt(1).SlotItems[0].Texture;
-            }
-            else
-            {
-                InvSlot2.Texture = ToolBarButton;
-            }
-
-            if (InvSlot3.ItemCounter != 0)
-            {
-                InvSlot3.Texture = inventory.currentInventory.ElementAt(2).SlotItems[0].Texture;
-            }
-            else
-            {
-                InvSlot3.Texture = ToolBarButton;
-            }
-
-            if (InvSlot4.ItemCounter != 0)
-            {
-                InvSlot4.Texture = inventory.currentInventory.ElementAt(3).SlotItems[0].Texture;
-            }
-            else
-            {
-                InvSlot4.Texture = ToolBarButton;
-            }
-
-            //InGameMenu.Update();
-           // OpenInventory.Update();
-            //InvSlot1.Update();
-           // InvSlot2.Update();
-            foreach(Button slot in AllSlots)
-            {
-                slot.Update();
-
-            }
 
             foreach(Button button in AllButtons)
             {
@@ -225,28 +161,24 @@ namespace SecretProject.Class.UI
             {
                 MouseOverToolBar = false;
             }
-           
- 
+
+
             if (InGameMenu.isClicked)
             {
                 UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
             }
-            else if(OpenInventory.isClicked)
+            else if (OpenInventory.isClicked)
             {
 
             }
-            else if(InvSlot1.isClicked)
-            {
-                //Game1.Player.Inventory.
+            else if (InvSlot1.isClickedAndHeld)
+            {             
+                if (Added == false)
+                {
+                    Iliad.allSprites.Add(new SpriteFolder.Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false) { IsBeingDragged = true });
+                    Added = true;
+                }
             }
-           // else if(InvSlot1.isClicked)
-          //  {
-            //    inventory.
-          //  }
-
-            
-
-
 
             //--------------------------------------
             //Switch GameStages on click

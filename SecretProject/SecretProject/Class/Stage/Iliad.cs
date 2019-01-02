@@ -172,7 +172,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             MainTheme = content.Load<Song>("Music/IntheForest"); 
-          //  MediaPlayer.Play(MainTheme);
+           // MediaPlayer.Play(MainTheme);
 
             // midGroundTiles.isActive = true;
             BuildingsTiles.isActive = true;
@@ -247,7 +247,11 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    spr.Update(gameTime);
+                    if(spr.IsBeingDragged == true)
+                    {
+                        spr.Update(gameTime, customMouse.Position);
+                    }
+                    
 
                 }
 

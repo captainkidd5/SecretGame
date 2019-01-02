@@ -30,6 +30,7 @@ namespace SecretProject.Class.MenuStuff
 
         bool down;
         public bool isClicked;
+        public bool isClickedAndHeld;
 
         public bool IsHovered { get; set; }
 
@@ -63,6 +64,11 @@ namespace SecretProject.Class.MenuStuff
                 isClicked = true;
                 //}
             }
+            else if(myMouse.IsHovering(Rectangle) && myMouse.IsClickedAndHeld)
+            {
+                isClickedAndHeld = true;
+                Color = Color.White * .5f;
+            }
             else if (myMouse.IsHovering(Rectangle) && isClicked == false)
             {
                 Color = Color.White * .5f;
@@ -76,6 +82,7 @@ namespace SecretProject.Class.MenuStuff
                 Color = Color.White;
                 isClicked = false;
                 IsHovered = false;
+                isClickedAndHeld = false;
 
             }
         }

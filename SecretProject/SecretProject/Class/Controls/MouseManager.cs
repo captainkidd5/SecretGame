@@ -14,6 +14,9 @@ namespace SecretProject.Class.Controls
     {
         public bool IsClicked { get; set; }
         public bool IsRightClicked { get; set; }
+
+        public bool IsClickedAndHeld { get; set; }
+
         Vector2 position;
         public Vector2 Position { get { return position; } set { position = value; } }
 
@@ -58,6 +61,15 @@ namespace SecretProject.Class.Controls
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
+
+            if((MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Pressed))
+            {
+                IsClickedAndHeld = true;
+            }
+            else
+            {
+                IsClickedAndHeld = false;
+            }
 
             if ((MyMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
             {
