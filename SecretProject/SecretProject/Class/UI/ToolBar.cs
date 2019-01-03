@@ -167,6 +167,12 @@ namespace SecretProject.Class.UI
 
             for (int i = 0; i < 4; i++)
             {
+                if(AllSlots[i].isClickedAndHeld == false && AllSlots[i].Toggle == true)
+                {
+                    //TODO: need to remove item
+                    // inventory.
+                }
+
                 AllSlots[i].Toggle = false;
 
                 if (AllSlots[i].isClickedAndHeld)
@@ -189,40 +195,6 @@ namespace SecretProject.Class.UI
                 }
 
             }
-
-            /*
-            InvSlot1.Toggle = false;
-            if (InvSlot1.isClickedAndHeld)
-            {
-                InvSlot1.Toggle = true;
-
-
-              
-            }
-
-            
-            if (InvSlot1.Toggle == true && InvSlot1.ItemCounter != 0)
-            {
-                Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
-                DragSprite = tempSprite;
-
-                InvSlot1.Toggle = false;
-
-            }
-
-
-            if (InvSlot1.isClickedAndHeld && InvSlot1.ItemCounter != 0)
-            {
-                DragSprite.Update(gameTime, CustomMouse.UIPosition);
-            }
-            */
-
-
-
-
-
-            //game.Exit();
-
 
 
             //--------------------------------------

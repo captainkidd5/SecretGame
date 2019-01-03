@@ -895,4 +895,9 @@
    <object id="1" x="0.181818" y="0.181818" width="15.8182" height="4.36364"/>
   </objectgroup>
  </tile>
+ <tile id="6474">
+  <objectgroup draworder="index">
+   <object id="1" x="0.545455" y="0.727273" width="14.8182" height="13.8182"/>
+  </objectgroup>
+ </tile>
 </tileset>

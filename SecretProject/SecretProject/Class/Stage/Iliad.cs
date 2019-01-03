@@ -135,20 +135,6 @@ namespace SecretProject.Class.Stage
             TestTiles = new TileManager(game, TileSet, map, TestLayer, mouse, graphicsDevice, false);
 
 
-
-            //buildingsTiles.isBuilding = true;
-
-            //add objects to object layer
-            /*
-            foreach (Tile someTile in buildingsTiles.Tiles)
-            {
-                if (someTile.GID != 0)
-                {
-                    allObjects.Add(new ObjectBody(graphicsDevice, someTile.DestinationRectangle));
-                }
-            }
-            */
-
             //--------------------------------------
             //Player Stuff
 
@@ -166,7 +152,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Cam.Zoom = 2.5f;
+            Cam.Zoom = 3f;
             //cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
