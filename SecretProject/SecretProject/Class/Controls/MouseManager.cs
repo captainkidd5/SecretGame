@@ -17,8 +17,13 @@ namespace SecretProject.Class.Controls
 
         public bool IsClickedAndHeld { get; set; }
 
+        public bool IsReleased { get; set; }
+
         Vector2 position;
         public Vector2 Position { get { return position; } set { position = value; } }
+
+        Vector2 uIPosition;
+        public Vector2 UIPosition { get { return uIPosition; } set { uIPosition = value; } }
 
         Vector2 worldMousePosition;
         public Vector2 WorldMousePosition { get { return worldMousePosition; } set { worldMousePosition = value; } }
@@ -27,9 +32,8 @@ namespace SecretProject.Class.Controls
         public Rectangle MouseRectangle { get; set; }
         public float RelativeMouseX { get; set; }
         public float RelativeMouseY { get; set; }
-        public int YOffSet1 { get; set; } = 360;
-        public int XOffSet1 { get => XOffSet2; set => XOffSet2 = value; }
-        public int XOffSet2 { get; set; } = 640;
+        public int YOffSet1 { get; set; } = 367;
+        public int XOffSet1 { get; set; } = 647;
         public Camera2D Camera1 { get; set; }
 
         Vector2 worldPosition;
@@ -55,19 +59,31 @@ namespace SecretProject.Class.Controls
             MyMouse = Mouse.GetState();
             worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera1.GetViewMatrix(Vector2.One)));
 
-            position.X = MyMouse.Position.X;
+            position.X = MyMouse.Position.X ;
             position.Y = MyMouse.Position.Y;
 
-            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1 - 7, (int)worldPosition.Y - YOffSet1 - 7);
+            uIPosition.X = MyMouse.Position.X - 20;
+            uIPosition.Y = MyMouse.Position.Y - 20;
+
+
+
+            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
 
-            if((MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Pressed))
+            if((MyMouse.LeftButton == ButtonState.Pressed &&oldMouse.LeftButton == ButtonState.Pressed))
             {
                 IsClickedAndHeld = true;
+                IsReleased = false;
             }
-            else
+
+            if(MyMouse.LeftButton == ButtonState.Pressed)
+            {
+                IsReleased = false;
+            }
+
+            if (MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
             {
                 IsClickedAndHeld = false;
             }
@@ -75,6 +91,7 @@ namespace SecretProject.Class.Controls
             if ((MyMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
             {
                 IsClicked = true;
+                IsReleased = true;
             }
 
             if ((MyMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))

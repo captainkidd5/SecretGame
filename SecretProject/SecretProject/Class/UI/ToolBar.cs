@@ -61,6 +61,9 @@ namespace SecretProject.Class.UI
 
         Inventory inventory;
 
+        public Sprite DragSprite { get; set; }
+        public Texture2D DragSpriteTexture { get; set; }
+        public bool DragToggle { get; set; }
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -109,7 +112,8 @@ namespace SecretProject.Class.UI
                 InvSlot3,
                 InvSlot4
             };
-          
+
+           //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
   
         }
 
@@ -160,28 +164,66 @@ namespace SecretProject.Class.UI
             {
 
             }
-          
-                if(InvSlot1.isClicked && InvSlot1.ItemCounter != 0)
+
+            for (int i = 0; i < 4; i++)
+            {
+                AllSlots[i].Toggle = false;
+
+                if (AllSlots[i].isClickedAndHeld)
                 {
-                 
-                  InvSlot1.Toggle = !InvSlot1.Toggle;
-                  if(InvSlot1.Toggle == true)
-                  {
-                    Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true };
-                    Iliad.allSprites.Add(tempSprite);
-                  }
-                  else if(InvSlot1.Toggle == false)
-                  {
-                     Iliad.allSprites.Remove(Iliad.allSprites.Find(x => x.IsBeingDragged == true));
-                   // Iliad.allSprites.Remove(tempSprite);
-                  }
-                
-                   
+                    AllSlots[i].Toggle = true;
                 }
-                    
-                    //game.Exit();
-                
+
+                if (AllSlots[i].Toggle == true && AllSlots[i].ItemCounter != 0)
+                {
+                    Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                    DragSprite = tempSprite;
+
+                    AllSlots[i].Toggle = false;
+
+                }
+
+                if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
+                {
+                    DragSprite.Update(gameTime, CustomMouse.UIPosition);
+                }
+
+            }
+
+            /*
+            InvSlot1.Toggle = false;
+            if (InvSlot1.isClickedAndHeld)
+            {
+                InvSlot1.Toggle = true;
+
+
+              
+            }
+
             
+            if (InvSlot1.Toggle == true && InvSlot1.ItemCounter != 0)
+            {
+                Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                DragSprite = tempSprite;
+
+                InvSlot1.Toggle = false;
+
+            }
+
+
+            if (InvSlot1.isClickedAndHeld && InvSlot1.ItemCounter != 0)
+            {
+                DragSprite.Update(gameTime, CustomMouse.UIPosition);
+            }
+            */
+
+
+
+
+
+            //game.Exit();
+
+
 
             //--------------------------------------
             //Switch GameStages on click
@@ -205,6 +247,19 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Draw Background
             spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .4f);
+
+            for(int i = 0; i < 4; i++)
+            {
+                if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
+                {
+                    DragSprite.Draw(spriteBatch, .5f);
+                }
+            }
+
+            if(InvSlot1.isClickedAndHeld && InvSlot1.ItemCounter != 0)
+            {
+                DragSprite.Draw(spriteBatch, .5f);
+            }
 
             //--------------------------------------
             //Draw Buttons

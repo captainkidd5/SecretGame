@@ -65,12 +65,8 @@ namespace SecretProject.Class.MenuStuff
                 // if(myMouse.IsClicked)
                 //{
                 isClicked = true;
+              //  isClickedAndHeld = true;
                 //}
-            }
-            else if(myMouse.IsHovering(Rectangle) && myMouse.IsClickedAndHeld)
-            {
-                isClickedAndHeld = true;
-                Color = Color.White * .5f;
             }
             else if (myMouse.IsHovering(Rectangle) && isClicked == false)
             {
@@ -88,7 +84,17 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if(myMouse.IsClickedAndHeld == false)
+            if(myMouse.IsHovering(Rectangle) && myMouse.IsReleased == false)
+            {
+                Toggle = true;
+            }
+
+            if(Toggle == true)
+            {
+                this.isClickedAndHeld = true;
+            }
+
+            if(myMouse.IsReleased == true)
             {
                 isClickedAndHeld = false;
             }
