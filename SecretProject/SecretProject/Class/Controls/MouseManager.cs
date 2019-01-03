@@ -49,6 +49,7 @@ namespace SecretProject.Class.Controls
         {
             IsClicked = false;
             IsRightClicked = false;
+             
 
             MouseState oldMouse = MyMouse;
             MyMouse = Mouse.GetState();
@@ -81,9 +82,10 @@ namespace SecretProject.Class.Controls
                 IsRightClicked = true;
             }
         }
+
+
         public bool IsHovering(Rectangle rectangle)
         {
-
 
             if (MouseRectangle.Intersects(rectangle))
             {
@@ -93,8 +95,9 @@ namespace SecretProject.Class.Controls
             {
                 return false;
             }
-
         }
+
+
         public bool IsHoveringTile(Rectangle rectangle)
         {
             Rectangle offSetRectange = new Rectangle((int)worldPosition.X - XOffSet1,(int)worldPosition.Y - YOffSet1, 1, 1);

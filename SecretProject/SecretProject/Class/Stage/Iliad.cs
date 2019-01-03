@@ -178,9 +178,9 @@ namespace SecretProject.Class.Stage
             BuildingsTiles.isActive = true;
             BuildingsTiles.isBuilding = true;
 
-           // buildingsTiles.ReplaceTileGid = 3235;
+            // buildingsTiles.ReplaceTileGid = 3235;
 
-           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true));
+           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true) { IsBeingDragged = true });
            // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
            // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
 
@@ -249,7 +249,7 @@ namespace SecretProject.Class.Stage
                 {
                     if(spr.IsBeingDragged == true)
                     {
-                        spr.Update(gameTime, customMouse.Position);
+                        spr.Update(gameTime, customMouse.WorldMousePosition);
                     }
                     
 
@@ -300,7 +300,7 @@ namespace SecretProject.Class.Stage
                 foreach (var sprite in allSprites)
                 {
                     sprite.ShowRectangle = showBorders;
-                    sprite.Draw(spriteBatch, .4f);
+                    sprite.Draw(spriteBatch);
                 }
 
                 foreach(WorldItem item in allItems)

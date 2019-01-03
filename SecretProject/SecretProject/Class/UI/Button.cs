@@ -32,6 +32,10 @@ namespace SecretProject.Class.MenuStuff
         public bool isClicked;
         public bool isClickedAndHeld;
 
+        public bool Toggle { get; set; } = false;
+
+        public bool Added { get; set; } = false;
+
         public bool IsHovered { get; set; }
 
         SpriteFont font;
@@ -50,11 +54,10 @@ namespace SecretProject.Class.MenuStuff
 
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
-            
-
         }
         public void Update()
         {
+
 
             if (myMouse.IsHovering(Rectangle) && myMouse.IsClicked)
             {
@@ -82,9 +85,15 @@ namespace SecretProject.Class.MenuStuff
                 Color = Color.White;
                 isClicked = false;
                 IsHovered = false;
-                isClickedAndHeld = false;
 
             }
+
+            if(myMouse.IsClickedAndHeld == false)
+            {
+                isClickedAndHeld = false;
+            }
+
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -94,7 +103,7 @@ namespace SecretProject.Class.MenuStuff
         public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint)
         {
             
-            spriteBatch.Draw(Texture, Rectangle, Color);
+            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
             spriteBatch.DrawString(font, text, fontLocation, tint);
         }
 

@@ -60,7 +60,7 @@ namespace SecretProject.Class.SpriteFolder
 
         ContentManager content;
 
-        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob)
+        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob, float layerDepth)
         {
 
             this.texture = texture;
@@ -79,6 +79,7 @@ namespace SecretProject.Class.SpriteFolder
 
             BubbleInstance = Bubble.CreateInstance();
             BubbleInstance.IsLooped = false;
+            this.LayerDepth = layerDepth;
             this.content = content;
         }
 
@@ -88,7 +89,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             if(IsBeingDragged)
             {
-                this.Position -= position;
+                this.Position = position;
             }
  
         }
@@ -100,6 +101,17 @@ namespace SecretProject.Class.SpriteFolder
                 LayerDepth = layerDepth;
 
                 spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
+            }
+            
+        }
+
+         public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            if (IsDrawn)
+            {
+ 
+
+                spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: LayerDepth, scale: new Vector2(ScaleX, ScaleY));
             }
             
         }

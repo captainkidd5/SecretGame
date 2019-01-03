@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
 
 namespace SecretProject.Class.UI
@@ -60,7 +61,6 @@ namespace SecretProject.Class.UI
 
         Inventory inventory;
 
-        public bool Added { get; set; } = false;
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -97,7 +97,11 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Button List Stuff
-            AllButtons = new List<Button>();
+            AllButtons = new List<Button>()
+            {
+                OpenInventory,
+                InGameMenu
+            };
             AllSlots = new List<Button>()
             {
                 InvSlot1,
@@ -105,21 +109,13 @@ namespace SecretProject.Class.UI
                 InvSlot3,
                 InvSlot4
             };
-            AllButtons.Add(OpenInventory);
-            AllButtons.Add(InGameMenu);
-
-
+          
   
         }
 
-
-        
-
         public void Update(GameTime gameTime, Inventory inventory)
         {
-
-            //--------------------------------------
-            //Update Buttons
+            
 
             this.inventory = inventory;
 
@@ -146,45 +142,61 @@ namespace SecretProject.Class.UI
                 AllSlots[i].Update();
             }
 
-
-            foreach(Button button in AllButtons)
+            for(int i = 0; i < AllButtons.Count; i++)
             {
-                button.Update();
+                AllButtons[i].Update();
+            }
 
-
-            }
-            if(CustomMouse.IsHovering(BackGroundTextureRectangle))
-            {
-                MouseOverToolBar = true;
-            }
-            if(!CustomMouse.IsHovering(BackGroundTextureRectangle))
-            {
-                MouseOverToolBar = false;
-            }
+           
+            
 
 
             if (InGameMenu.isClicked)
             {
+                
                 UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
             }
             else if (OpenInventory.isClicked)
             {
 
             }
-            else if (InvSlot1.isClickedAndHeld)
-            {             
-                if (Added == false)
+          
+                if(InvSlot1.isClicked && InvSlot1.ItemCounter != 0)
                 {
-                    Iliad.allSprites.Add(new SpriteFolder.Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false) { IsBeingDragged = true });
-                    Added = true;
+                 
+                  InvSlot1.Toggle = !InvSlot1.Toggle;
+                  if(InvSlot1.Toggle == true)
+                  {
+                    Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(0).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true };
+                    Iliad.allSprites.Add(tempSprite);
+                  }
+                  else if(InvSlot1.Toggle == false)
+                  {
+                     Iliad.allSprites.Remove(Iliad.allSprites.Find(x => x.IsBeingDragged == true));
+                   // Iliad.allSprites.Remove(tempSprite);
+                  }
+                
+                   
                 }
-            }
+                    
+                    //game.Exit();
+                
+            
 
             //--------------------------------------
             //Switch GameStages on click
 
             OpenInventory.isClicked = false;
-            
+
+            if (CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = true;
+            }
+            if (!CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = false;
+            }
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -192,7 +204,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Background
-            spriteBatch.Draw(Background, BackGroundTexturePosition);
+            spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .4f);
 
             //--------------------------------------
             //Draw Buttons

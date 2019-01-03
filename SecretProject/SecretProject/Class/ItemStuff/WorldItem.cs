@@ -46,12 +46,12 @@ namespace SecretProject.Class.ItemStuff
                 case "pie":
                     this.Texture = content.Load<Texture2D>("Item/pie");
                     this.WorldMaximum = 5;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     break;
 
                 case "shrimp":
                     this.Texture = content.Load<Texture2D>("Item/puzzleFish");
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 10;
 
                     break;

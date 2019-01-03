@@ -40,12 +40,12 @@ namespace SecretProject.Class.ItemStuff.Items
                 case "pie":
                     this.Texture = content.Load<Texture2D>("Item/pie");
                     this.InvMaximum = 5;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     break;
 
                 case "shrimp":
                     this.Texture = content.Load<Texture2D>("Item/puzzleFish");
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     this.InvMaximum = 10;
                     
                     break;
