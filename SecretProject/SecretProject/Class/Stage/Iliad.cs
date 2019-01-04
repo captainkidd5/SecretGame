@@ -158,7 +158,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Songs
             MainTheme = content.Load<Song>("Music/IntheForest"); 
-           // MediaPlayer.Play(MainTheme);
+            MediaPlayer.Play(MainTheme);
 
             // midGroundTiles.isActive = true;
             BuildingsTiles.isActive = true;
@@ -175,7 +175,10 @@ namespace SecretProject.Class.Stage
             //UserInterface
             mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
 
-
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(600, 650)));
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(700, 600)));
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(750, 700)));
+            allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(800, 700)));
         }
 
         #endregion
@@ -210,17 +213,17 @@ namespace SecretProject.Class.Stage
             if (!Game1.freeze)
             {
 
-                if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
-                {
-                    allItems.Add(new WorldItem("pie", graphicsDevice, content, customMouse.WorldMousePosition));
-                }
+               // if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
+                //{
+                   
+               // }
 
-                if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
-                {
+               // if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
+               // {
                     //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
-                    allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
-                }
-
+                  //  allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
+                //}
+                
 
                 //--------------------------------------
                 //Update Players

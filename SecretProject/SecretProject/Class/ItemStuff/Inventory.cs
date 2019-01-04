@@ -98,11 +98,16 @@ namespace SecretProject.Class.ItemStuff
 
         public void RemoveItem(InventoryItem item)
         {
+            bool removed = false;
             foreach (InventorySlot s in currentInventory)
             {
-                if (s.SlotItems.Contains(item))
+                if (removed == false)
                 {
-                    s.RemoveItemFromSlot(item);
+                    if (s.SlotItems.Contains(item))
+                    {
+                        s.RemoveItemFromSlot();
+                        removed = true;
+                    }
                 }
             }
         }
@@ -120,12 +125,15 @@ namespace SecretProject.Class.ItemStuff
     public class InventorySlot
     {
         public List<InventoryItem> SlotItems { get; set; }
-       // public int InventoryQueuePosition { get; set; }
+        // public int InventoryQueuePosition { get; set; }
+
+        public InventoryItem Item { get; set; }
 
         public InventorySlot(InventoryItem item)
         {
             SlotItems = new List<InventoryItem>(1);
             SlotItems.Add(item);
+            this.Item = item;
         }
 
         public InventorySlot()
@@ -133,14 +141,17 @@ namespace SecretProject.Class.ItemStuff
             SlotItems = new List<InventoryItem>(1);
         }
 
-        public void RemoveItemFromSlot(InventoryItem item)
+        public InventoryItem GetItem()
         {
-            if (SlotItems.Count(x => x.Name == item.Name) > 0)
-            {
+            return SlotItems[0];
+        }
 
-                SlotItems.Remove(item);
+        public void RemoveItemFromSlot()
+        {
+
+            SlotItems.RemoveAt(SlotItems.Count - 1);
                 
-            }
+            
 
         }
 

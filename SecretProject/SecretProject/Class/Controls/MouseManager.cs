@@ -19,6 +19,8 @@ namespace SecretProject.Class.Controls
 
         public bool IsReleased { get; set; }
 
+        public bool WasJustPressed { get; set; }
+
         Vector2 position;
         public Vector2 Position { get { return position; } set { position = value; } }
 
@@ -53,6 +55,7 @@ namespace SecretProject.Class.Controls
         {
             IsClicked = false;
             IsRightClicked = false;
+            WasJustPressed = false;
              
 
             MouseState oldMouse = MyMouse;
@@ -72,20 +75,14 @@ namespace SecretProject.Class.Controls
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
 
-            if((MyMouse.LeftButton == ButtonState.Pressed &&oldMouse.LeftButton == ButtonState.Pressed))
-            {
-                IsClickedAndHeld = true;
-                IsReleased = false;
-            }
-
             if(MyMouse.LeftButton == ButtonState.Pressed)
             {
                 IsReleased = false;
             }
 
-            if (MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+            if(MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
             {
-                IsClickedAndHeld = false;
+                WasJustPressed = true;
             }
 
             if ((MyMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
@@ -97,6 +94,15 @@ namespace SecretProject.Class.Controls
             if ((MyMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))
             {
                 IsRightClicked = true;
+            }
+
+            if(!IsReleased)
+            {
+                IsClickedAndHeld = true;
+            }
+            else
+            {
+                IsClickedAndHeld = false;
             }
         }
 

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
@@ -151,10 +152,6 @@ namespace SecretProject.Class.UI
                 AllButtons[i].Update();
             }
 
-           
-            
-
-
             if (InGameMenu.isClicked)
             {
                 
@@ -167,26 +164,18 @@ namespace SecretProject.Class.UI
 
             for (int i = 0; i < 4; i++)
             {
-                if(AllSlots[i].isClickedAndHeld == false && AllSlots[i].Toggle == true)
+                if(AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
-                    //TODO: need to remove item
-                    // inventory.
+                    InventoryItem tempItem = inventory.currentInventory[i].GetItem();
+                    inventory.currentInventory[i].RemoveItemFromSlot();
+                    AllSlots[i].ItemCounter--;
+                    Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
                 }
 
-                AllSlots[i].Toggle = false;
-
-                if (AllSlots[i].isClickedAndHeld)
-                {
-                    AllSlots[i].Toggle = true;
-                }
-
-                if (AllSlots[i].Toggle == true && AllSlots[i].ItemCounter != 0)
+                if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
                 {
                     Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
                     DragSprite = tempSprite;
-
-                    AllSlots[i].Toggle = false;
-
                 }
 
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)

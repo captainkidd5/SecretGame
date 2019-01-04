@@ -31,8 +31,8 @@ namespace SecretProject.Class.MenuStuff
         bool down;
         public bool isClicked;
         public bool isClickedAndHeld;
+        public bool wasJustReleased { get; set; }
 
-        public bool Toggle { get; set; } = false;
 
         public bool Added { get; set; } = false;
 
@@ -57,20 +57,18 @@ namespace SecretProject.Class.MenuStuff
         }
         public void Update()
         {
-
+            wasJustReleased = false;
 
             if (myMouse.IsHovering(Rectangle) && myMouse.IsClicked)
             {
                 Color = Color.White * .5f;
-                // if(myMouse.IsClicked)
-                //{
                 isClicked = true;
-              //  isClickedAndHeld = true;
-                //}
+
             }
             else if (myMouse.IsHovering(Rectangle) && isClicked == false)
             {
                 Color = Color.White * .5f;
+                
             }
             else if(myMouse.IsHovering(Rectangle))
             {
@@ -84,20 +82,20 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if(myMouse.IsHovering(Rectangle) && myMouse.IsReleased == false)
-            {
-                Toggle = true;
-            }
-
-            if(Toggle == true)
+            if(myMouse.IsHovering(Rectangle) && myMouse.WasJustPressed == true && myMouse.IsClickedAndHeld == true)
             {
                 this.isClickedAndHeld = true;
             }
-
-            if(myMouse.IsReleased == true)
+            if(this.isClickedAndHeld == true && myMouse.IsHovering(Rectangle) == false)
             {
-                isClickedAndHeld = false;
+                if(myMouse.IsReleased)
+                {
+                    this.isClickedAndHeld = false;
+                    wasJustReleased = true;
+                }
             }
+
+
 
             
         }
