@@ -11,6 +11,8 @@ using TiledSharp;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Controls;
 using SecretProject.Class.Universal;
+using SecretProject.Class.ItemStuff;
+using Microsoft.Xna.Framework.Content;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -51,14 +53,14 @@ namespace SecretProject.Class.TileStuff
         public bool isActive = false;
 
         MouseManager myMouse;
-
+        ContentManager content;
         GraphicsDevice graphicsDevice;
 
         public int ReplaceTileGid { get; set; }
 
         List<TmxObject> tileObjects;
 
-        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, bool isBuilding)
+        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -76,6 +78,7 @@ namespace SecretProject.Class.TileStuff
             this.tileCounter = 0;
 
             this.graphicsDevice = graphicsDevice;
+            this.content = content;
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
@@ -122,9 +125,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         //TODO: 
-        //need to assign specific replacable objects their own tile properties
-        //need "is closest to" method
-        //need "replace" method
+
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
             
@@ -141,7 +142,7 @@ namespace SecretProject.Class.TileStuff
                         //{
                         if (isBuilding)
                         {
-                            if (myMouse.IsRightClicked)
+                            if (myMouse.IsClicked)
                             {
                                 ReplaceTile(i, j);
                                 //if (isBuilding)
@@ -169,6 +170,7 @@ namespace SecretProject.Class.TileStuff
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
                     Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                    Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)));
 
                     Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
                     tiles[oldX, oldY] = ReplaceMenttile;

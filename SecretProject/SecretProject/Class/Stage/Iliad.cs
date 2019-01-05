@@ -129,10 +129,10 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice, false);
-            BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, true);
-            MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, false);
-            TestTiles = new TileManager(game, TileSet, map, TestLayer, mouse, graphicsDevice, false);
+            BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice,content, false);
+            BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
+            MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
+            TestTiles = new TileManager(game, TileSet, map, TestLayer, mouse, graphicsDevice, content, false);
 
 
             //--------------------------------------

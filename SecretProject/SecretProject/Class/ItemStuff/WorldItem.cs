@@ -53,6 +53,12 @@ namespace SecretProject.Class.ItemStuff
                     this.Texture = content.Load<Texture2D>("Item/puzzleFish");
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 10;
+                    break;
+
+                case "grass":
+                    this.Texture = content.Load<Texture2D>("Item/grass");
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.WorldMaximum = 5;
 
                     break;
 

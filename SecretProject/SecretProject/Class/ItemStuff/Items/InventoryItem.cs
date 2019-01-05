@@ -50,6 +50,13 @@ namespace SecretProject.Class.ItemStuff.Items
                     
                     break;
 
+                case "grass":
+                    this.Texture = content.Load<Texture2D>("Item/grass");
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+                    this.InvMaximum = 10;
+
+                    break;
+
                 default:
                     throw new NotImplementedException();
 
