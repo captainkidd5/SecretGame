@@ -36,6 +36,9 @@ namespace SecretProject.Class.Controls
         public float RelativeMouseY { get; set; }
         public int YOffSet1 { get; set; } = 367;
         public int XOffSet1 { get; set; } = 647;
+
+        public int XTileOffSet { get; set; } = 360;
+        public int YTileOffSet { get; set; } = 640;
         public Camera2D Camera1 { get; set; }
 
         Vector2 worldPosition;
@@ -123,7 +126,7 @@ namespace SecretProject.Class.Controls
 
         public bool IsHoveringTile(Rectangle rectangle)
         {
-            Rectangle offSetRectange = new Rectangle((int)worldPosition.X - XOffSet1,(int)worldPosition.Y - YOffSet1, 1, 1);
+            Rectangle offSetRectange = new Rectangle((int)WorldMousePosition.X + 8,(int)WorldMousePosition.Y + 8, 1, 1);
             if (offSetRectange.Intersects(rectangle))
             {
                 return true;

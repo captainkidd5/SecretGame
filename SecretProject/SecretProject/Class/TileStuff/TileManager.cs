@@ -174,7 +174,7 @@ namespace SecretProject.Class.TileStuff
                    // {
                         Iliad.allObjects.RemoveAt(index);
                     //}
-                    
+                    //index is constant vertically
                 }
                 else
                 {
