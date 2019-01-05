@@ -106,10 +106,13 @@ namespace SecretProject.Class.TileStuff
                                 for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
                                 {
                                     TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
-                                    Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
-                                        new Rectangle(tiles[i , j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+
+                                    tiles[i,j].TileObject = new ObjectBody(graphicsDevice,
+                                        new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                                         tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                        (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X));
+                                        (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
+
+                                    Iliad.allObjects.Add(tiles[i,j].TileObject);
                                 }
                             }
                         }
@@ -162,19 +165,13 @@ namespace SecretProject.Class.TileStuff
         {
             if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
             {
-                //TODO: Find correct hitbox
 
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
-                    int index = Iliad.allObjects.FindIndex(x => x.Identifier == tiles[oldX, oldY].DestinationRectangle.X);
+                    Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+
                     Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
                     tiles[oldX, oldY] = ReplaceMenttile;
-
-                   // if(index >= 0)
-                   // {
-                        Iliad.allObjects.RemoveAt(index);
-                    //}
-                    //index is constant vertically
                 }
                 else
                 {

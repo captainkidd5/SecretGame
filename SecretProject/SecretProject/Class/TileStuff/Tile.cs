@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ObjectFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace SecretProject.Class.TileStuff
         public Rectangle DestinationRectangle;
 
         //objectgroup stuff
+        public ObjectBody TileObject { get; set; }
 
 
 
