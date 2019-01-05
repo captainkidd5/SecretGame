@@ -896,6 +896,9 @@
   </objectgroup>
  </tile>
  <tile id="6474">
+  <properties>
+   <property name="grass" value="grass"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.545455" y="0.727273" width="14.8182" height="13.8182"/>
   </objectgroup>

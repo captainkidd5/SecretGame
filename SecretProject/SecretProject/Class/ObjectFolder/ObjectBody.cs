@@ -42,9 +42,11 @@ namespace SecretProject.Class.ObjectFolder
 
         float layerDepth;
 
-        
+        public float Identifier { get; set; }
 
-        public ObjectBody(GraphicsDevice graphicsDevice, Rectangle rectangle)
+
+
+        public ObjectBody(GraphicsDevice graphicsDevice, Rectangle rectangle, float Identifier)
         {
             this.Rectangle = rectangle;
             this.Width = rectangle.Width;
@@ -53,6 +55,7 @@ namespace SecretProject.Class.ObjectFolder
             SetRectangleTexture(graphicsDevice);
 
             ShowRectangle = true;
+            this.Identifier = Identifier;
         }
 
 

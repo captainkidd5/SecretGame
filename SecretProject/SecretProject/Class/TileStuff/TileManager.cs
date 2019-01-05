@@ -109,7 +109,7 @@ namespace SecretProject.Class.TileStuff
                                     Iliad.allObjects.Add(new ObjectBody(graphicsDevice,
                                         new Rectangle(tiles[i , j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                                         tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                        (int)Math.Ceiling(tempObj.Height))));
+                                        (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X));
                                 }
                             }
                         }
@@ -124,6 +124,7 @@ namespace SecretProject.Class.TileStuff
         //need "replace" method
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
+            
 
             for (var i = 0; i < tilesetTilesWide; i++)
             {
@@ -132,18 +133,21 @@ namespace SecretProject.Class.TileStuff
                     if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                     {
 
-                       // IsBeingSelected(i, j);
-                       // if(isActive)
+                        // IsBeingSelected(i, j);
+                        // if(isActive)
                         //{
-                            /*if (myMouse.IsClicked)
+                        if (isBuilding)
+                        {
+                            if (myMouse.IsRightClicked)
                             {
                                 ReplaceTile(i, j);
-                                if(isBuilding)
-                                {
-                                    Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
-                                }
+                                //if (isBuilding)
+                                //{
+                                 //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
+                                //}
                             }
-                            */
+                        }
+                            
                         //}                    
                     }
                     if (tiles[i, j].GID != 0)
@@ -156,9 +160,29 @@ namespace SecretProject.Class.TileStuff
         }
         public void ReplaceTile(int oldX, int oldY)
         {
-            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, ReplaceTileGid + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber); //gid is plus 1 for some reason
-            tiles[oldX, oldY] = ReplaceMenttile;
-        }        
+            if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
+            {
+                //TODO: Find correct hitbox
+
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
+                {
+                    int index = Iliad.allObjects.FindIndex(x => x.Identifier == tiles[oldX, oldY].DestinationRectangle.X);
+                    Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                    tiles[oldX, oldY] = ReplaceMenttile;
+
+                   // if(index >= 0)
+                   // {
+                        Iliad.allObjects.RemoveAt(index);
+                    //}
+                    
+                }
+                else
+                {
+
+                }
+            }
+        }
+        
 
         //NEEDS WORK
         public void IsBeingSelected(int oldX, int oldY)
