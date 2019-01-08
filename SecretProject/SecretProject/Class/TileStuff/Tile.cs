@@ -34,6 +34,7 @@ namespace SecretProject.Class.TileStuff
         public float OldX { get; set; }
 
         public bool IsAnimated { get; set; } = false;
+        public bool IsAnimating { get; set; } = false;
 
         public double Timer { get; set; } = 0;
         public int CurrentFrame { get; set; } = 0;
@@ -81,7 +82,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Animate(GameTime gameTime, int totalFrames, double speed)
         {
-
+            
             Timer -= gameTime.ElapsedGameTime.TotalSeconds;
         
             if(Timer <= 0)
@@ -97,6 +98,28 @@ namespace SecretProject.Class.TileStuff
                 AddAmount = 0;
             }
   
+            SourceRectangle = new Rectangle(TileWidth * Column + AddAmount, TileHeight * Row, TileWidth, TileHeight);
+
+        }
+
+        public void AnimateOnce(GameTime gameTime, int totalFrames, double speed)
+        {
+
+            Timer -= gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (Timer <= 0)
+            {
+                Timer = speed;
+                CurrentFrame++;
+                AddAmount += CurrentFrame * 16;
+            }
+
+            if (CurrentFrame == totalFrames)
+            {
+                CurrentFrame = 0;
+                AddAmount = 0;
+            }
+
             SourceRectangle = new Rectangle(TileWidth * Column + AddAmount, TileHeight * Row, TileWidth, TileHeight);
 
         }

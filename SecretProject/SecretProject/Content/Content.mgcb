@@ -176,6 +176,12 @@
 /processorParam:Quality=Best
 /build:Music/IntheForest.mp3
 
+#begin Music/walkGrass1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/walkGrass1.mp3
+
 #begin NPC/Mastodon/MastodonBack.png
 /importer:TextureImporter
 /processor:TextureProcessor

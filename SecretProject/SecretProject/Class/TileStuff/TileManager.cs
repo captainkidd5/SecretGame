@@ -110,7 +110,8 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     tiles[i, j].IsAnimated = true;
                                 tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
-                                tiles[i, j].Speed = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
+                                tiles[i, j].Speed = double.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
+                                tiles[i, j].IsAnimating = true;
 
                             }
 
@@ -148,6 +149,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (tiles[i, j].IsAnimated)
                         {
+                           // if(tiles[i,j])
                             tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, tiles[i, j].Speed);
                         }
                     }
