@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (tiles[i, j].IsAnimated)
                         {
-                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, 4);
+                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, 1d);
                         }
                     }
                 }

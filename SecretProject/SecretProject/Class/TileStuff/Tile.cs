@@ -36,9 +36,10 @@ namespace SecretProject.Class.TileStuff
 
         public bool IsAnimated { get; set; } = false;
 
-        public int Timer { get; set; }
+        public double Timer { get; set; } = 0;
         public int CurrentFrame { get; set; } = 0;
         public int TotalFrames { get; set; }
+        public int AddAmount { get; set; } = 0;
 
         //--------------------------------------
         //Rectangles
@@ -78,25 +79,32 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void Animate(GameTime gameTime, int totalFrames, int speed)
+        public void Animate(GameTime gameTime, int totalFrames, double speed)
         {
+
+            Timer -= gameTime.ElapsedGameTime.TotalSeconds;
+        
+            if(Timer <= 0)
+            {
+                Timer = speed;
+                CurrentFrame++;
+                AddAmount += CurrentFrame * 16;
+
+
+            }
+
+            
+            if(CurrentFrame == totalFrames)
+            {
+                CurrentFrame = 0;
+                AddAmount = 0;
+            }
             
 
-            Timer -= (int)gameTime.ElapsedGameTime.TotalSeconds;
 
-            int addAmount = CurrentFrame * 16;
 
-            if (Timer <= 0)
-            {
-                CurrentFrame++;
-                Timer = speed;
-            }
-            if (CurrentFrame == totalFrames)
-                CurrentFrame = 0;
 
-         //   this.X = (OldX % MapWidth) * TileWidth + addAmount;
-         //   this.Y = (OldY % MapWidth) * TileHeight;
-            SourceRectangle = new Rectangle(TileWidth * Column + addAmount, TileHeight * Row, TileWidth, TileHeight);
+            SourceRectangle = new Rectangle(TileWidth * Column + AddAmount, TileHeight * Row, TileWidth, TileHeight);
 
         }
 
