@@ -110,8 +110,9 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     tiles[i, j].IsAnimated = true;
                                 tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
+                                tiles[i, j].Speed = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
 
-                                }
+                            }
 
                                 if (isBuilding)
                                 {
@@ -136,7 +137,6 @@ namespace SecretProject.Class.TileStuff
                 }
             
         }
-        
 
         public void Update(GameTime gameTime)
         {
@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (tiles[i, j].IsAnimated)
                         {
-                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, 1d);
+                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, tiles[i, j].Speed);
                         }
                     }
                 }
@@ -207,7 +207,6 @@ namespace SecretProject.Class.TileStuff
                     Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
                     tiles[oldX, oldY] = ReplaceMenttile;
                 }
-                //If tile has property IsAnimating, contructor takes 3 arguments, number of frames, frame time, and is repeating
                 else
                 {
 

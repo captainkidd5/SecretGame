@@ -16,7 +16,6 @@ namespace SecretProject.Class.TileStuff
         public float Y { get; set; }
 
         public int GID { get { return GID1 -1; } set { GID1 = value; } }
-        public bool IsMoving { get; set; } = false;
         public bool IsSelected { get; set; } = false;
 
         public int TilesetTilesWide { get; set; }
@@ -40,6 +39,7 @@ namespace SecretProject.Class.TileStuff
         public int CurrentFrame { get; set; } = 0;
         public int TotalFrames { get; set; }
         public int AddAmount { get; set; } = 0;
+        public double Speed { get; set; }
 
         //--------------------------------------
         //Rectangles
@@ -89,21 +89,14 @@ namespace SecretProject.Class.TileStuff
                 Timer = speed;
                 CurrentFrame++;
                 AddAmount += CurrentFrame * 16;
-
-
             }
-
             
             if(CurrentFrame == totalFrames)
             {
                 CurrentFrame = 0;
                 AddAmount = 0;
             }
-            
-
-
-
-
+  
             SourceRectangle = new Rectangle(TileWidth * Column + AddAmount, TileHeight * Row, TileWidth, TileHeight);
 
         }
