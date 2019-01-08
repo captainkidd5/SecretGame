@@ -14,6 +14,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.Playable;
 using SecretProject.Class.Stage;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -50,11 +51,20 @@ namespace SecretProject.Class.SpriteFolder
         public Color Color { get; set; } = Color.White;
         public Vector2 Velocity { get; set; }
         public bool IsBobbing { get; set; } = false;
+        public bool IsTossed { get; set; } = false;
         public bool PickedUp { get; set; } = false;
         public bool IsWorldItem { get; set; } = false;
-        public double Timer { get; set; }
+        public double BobberTimer { get; set; }
+        public double TossTimer { get; set; }
         public SoundEffectInstance BubbleInstance { get; set; }
+
+        public bool IsAnimated { get; set; } = false;
+        public bool IsAnimating { get; set; } = false;
         public AnimatedSprite Anim { get; set; }
+
+
+
+
 
         public bool IsBeingDragged { get; set; } = false;
 
@@ -70,8 +80,8 @@ namespace SecretProject.Class.SpriteFolder
 
             SetRectangleTexture(graphicsDevice, texture);
 
-            Timer = 0d;
-
+            BobberTimer = 0d;
+            TossTimer = 0d;
             ScaleX = 1f;
             ScaleY = 1f;
 
@@ -81,6 +91,12 @@ namespace SecretProject.Class.SpriteFolder
             BubbleInstance.IsLooped = false;
             this.LayerDepth = layerDepth;
             this.content = content;
+
+            if(IsAnimated)
+            {
+                Anim = new AnimatedSprite(graphicsDevice, Game1.ItemAtlas, Rows, Columns, Rows * Columns);
+            }
+
         }
 
       
@@ -91,6 +107,11 @@ namespace SecretProject.Class.SpriteFolder
             {
                 this.Position = position;
             }
+
+            if(IsAnimating)
+            {
+                Anim.Update(gameTime);
+            }
  
         }
 
@@ -100,8 +121,18 @@ namespace SecretProject.Class.SpriteFolder
             {
                 LayerDepth = layerDepth;
 
-                spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
+                if (IsAnimating)
+                {
+                    Anim.Draw(spriteBatch, Position, layerDepth);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
+                }
+
+                
             }
+
             
         }
 
@@ -122,17 +153,17 @@ namespace SecretProject.Class.SpriteFolder
             
             if(IsBobbing)
             {
-                Timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (Timer > 2d)
+                BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (BobberTimer > 2d)
                 {
-                    Timer = 0d;
+                    BobberTimer = 0d;
                 }
-                if (Timer < 1d)
+                if (BobberTimer < 1d)
                 {
                     this.Position.Y += (.03f);
                 }
                 
-                if(Timer >= 1d && Timer < 2d)
+                if(BobberTimer >= 1d && BobberTimer < 2d)
                 {
                     this.Position.Y -= (.03f);
                 }
@@ -140,32 +171,29 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
-        /*
-        public void Magnetize(Vector2 playerpos)
+        public void Toss(GameTime gameTime, float x, float y)
         {
-            if (IsWorldItem)
+            if (IsTossed == false)
             {
 
-                if (ScaleX <= 0f || ScaleY <= 0f)
+
+
+                TossTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (TossTimer < .5)
                 {
-                    if (IsDrawn)
-                    {
-                        BubbleInstance.Play();
-                        PickedUp = true;
-                    }
-
-                    IsDrawn = false;
+                    this.Position.X += x * .1f;
+                    this.Position.Y += y * .1f;
+                    
                 }
-                this.Position.X -= playerpos.X;
-                this.Position.Y -= playerpos.Y;
-                ScaleX -= .1f;
-                ScaleY -= .1f;
+                if (TossTimer >= .5)
+                {
+                    IsTossed = true;
+                }
             }
-            
         }
-        */
 
-        
+      
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice, Texture2D texture)
         {

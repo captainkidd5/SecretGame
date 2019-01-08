@@ -12,6 +12,7 @@ using TiledSharp;
 using System.Runtime.Serialization;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.Universal;
 
 namespace SecretProject
 {
@@ -88,8 +89,10 @@ namespace SecretProject
         Texture2D joeRight;
         Texture2D joeLeft;
         public static Player Player { get; set; }
-        
 
+        public static Texture2D ItemAtlas;
+
+        public static Random RGenerator = new Random();
 
 
         #endregion
@@ -107,6 +110,9 @@ namespace SecretProject
             //graphics.IsFullScreen = true;
 
             freeze = false;
+
+            //RGenerator = Utility.RGenerator;
+            
 
         }
         #endregion
@@ -138,6 +144,8 @@ namespace SecretProject
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
+
             JoeSprite = Content.Load<Texture2D>("Player/Joe/joe");
 
              joeDown = Content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
@@ -147,13 +155,13 @@ namespace SecretProject
 
             Player = new Player("joe", new Vector2(900, 650), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 
-            Player.Anim = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4);
+            Player.Anim = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4, 4);
 
             //joe animation 
-            Player.animations[0] = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4);
-            Player.animations[1] = new AnimatedSprite(GraphicsDevice, joeUp, 1, 4);
-            Player.animations[2] = new AnimatedSprite(GraphicsDevice, joeLeft, 1, 4);
-            Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4);
+            Player.animations[0] = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4, 4);
+            Player.animations[1] = new AnimatedSprite(GraphicsDevice, joeUp, 1, 4, 4);
+            Player.animations[2] = new AnimatedSprite(GraphicsDevice, joeLeft, 1, 4, 4);
+            Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4, 4);
 
             //Load Stages
             _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);

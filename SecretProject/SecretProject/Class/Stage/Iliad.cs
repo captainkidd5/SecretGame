@@ -244,7 +244,11 @@ namespace SecretProject.Class.Stage
 
                 }
 
-                foreach(WorldItem item in allItems)
+                BackGroundTiles.Update(gameTime);
+                BuildingsTiles.Update(gameTime);
+                MidGroundTiles.Update(gameTime);
+
+                foreach (WorldItem item in allItems)
                 {
                     item.Update(gameTime);
                 }

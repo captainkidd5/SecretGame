@@ -29,8 +29,13 @@ namespace SecretProject.Class.ItemStuff
         public bool IsMagnetized { get; set; }
         public bool IsMagnetizable { get; set; }
 
+        public bool IsTossable { get; set; } = false;
+
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
+
+        int directionX = Game1.RGenerator.Next(-2, 2);
+        int directionY = Game1.RGenerator.Next(-2, 2);
 
 
         public WorldItem(string Name, GraphicsDevice graphics, ContentManager content, Vector2 WorldPosition)
@@ -39,6 +44,9 @@ namespace SecretProject.Class.ItemStuff
             this.Graphics = graphics;
             IsDropped = true;
             this.Name = Name;
+
+            
+            
 
             Ignored = false;
             switch (Name)
@@ -59,9 +67,18 @@ namespace SecretProject.Class.ItemStuff
                     this.Texture = content.Load<Texture2D>("Item/grass");
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 5;
-
+                    ItemSprite.ScaleX = .5f;
+                    ItemSprite.ScaleY = .5f;
                     break;
-
+/*
+                case "animatedGrass":
+                    this.Texture = content.Load<Texture2D>("Item/grass");
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f) { IsAnimated = true, Rows = 1, Columns =4 }  ;
+                    this.WorldMaximum = 5;
+                    ItemSprite.ScaleX = .5f;
+                    ItemSprite.ScaleY = .5f;
+                    break;
+                    */
                 default:
                     throw new NotImplementedException();
 
@@ -90,6 +107,11 @@ namespace SecretProject.Class.ItemStuff
                 }
             }
 
+            if(IsTossable == true)
+            {
+                ItemSprite.Toss(gameTime, directionX, directionY);
+                //IsTossable = false;
+            }
             
 
         }

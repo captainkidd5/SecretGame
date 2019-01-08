@@ -25,7 +25,9 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool ShowRectangle { get; set; }
 
-        public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns)
+        public int HitBoxFrames { get; set; }
+
+        public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames)
         {
             Texture = texture;
             Rows = rows;
@@ -34,9 +36,10 @@ namespace SecretProject.Class.SpriteFolder
             _totalFrames = Rows * Columns;
             _speed = 0.15D;
             _timer = _speed;
-
+            this.HitBoxFrames = hitBoxFrames;
             this.rectangleTexture = texture;
             SetRectangleTexture(graphicsDevice, texture);
+            
 
         }
 
@@ -52,11 +55,11 @@ namespace SecretProject.Class.SpriteFolder
             var Colors = new List<Color>();
             for (int y = 0; y < texture.Height; y++)
             {
-                for (int x = 0; x < (texture.Width / 4); x++)
+                for (int x = 0; x < (texture.Width / HitBoxFrames); x++)
                 {
                     if (x == 0 || //left side
                         y == 0 || //top side
-                        x == texture.Width / 4 - 1 || //right side
+                        x == texture.Width / HitBoxFrames - 1 || //right side
                         y == texture.Height - 1) //bottom side
                     {
                         Colors.Add(new Color(255, 255, 255, 255));

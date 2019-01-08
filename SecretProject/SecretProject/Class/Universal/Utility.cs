@@ -19,5 +19,12 @@ namespace SecretProject.Class.Universal
             return obj.GetType().GetProperty(propertyName) != null;
         }
 
+        public static Random RGenerator;
+
+        public static int RNumber(int min, int max)
+        {
+            return RGenerator.Next(min, max - 1);
+        }
+
     }
 }

@@ -37,6 +37,9 @@ namespace SecretProject.Class.UI
         public Button InvSlot2 { get; set; }
         public Button InvSlot3 { get; set; }
         public Button InvSlot4 { get; set; }
+        public Button InvSlot5 { get; set; }
+        public Button InvSlot6 { get; set; }
+        public Button InvSlot7 { get; set; }
         public Texture2D ToolBarButton { get; set; }
         public SpriteFont Font { get; set; }
         public List<Button> AllButtons { get; set; }
@@ -47,6 +50,9 @@ namespace SecretProject.Class.UI
         public Texture2D InvSlot2Texture { get; set; }
         public Texture2D InvSlot3Texture { get; set; }
         public Texture2D InvSlot4Texture { get; set; }
+        public Texture2D InvSlot5Texture { get; set; }
+        public Texture2D InvSlot6Texture { get; set; }
+        public Texture2D InvSlot7Texture { get; set; }
 
         public Rectangle BackGroundTextureRectangle { get; set; }
 
@@ -95,9 +101,12 @@ namespace SecretProject.Class.UI
             InGameMenu = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(367, 635));
             OpenInventory = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(433, 635));
             InvSlot1 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(500, 635)) { ItemCounter = 0 };
-            InvSlot2 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(577, 635)) { ItemCounter = 0 };
+            InvSlot2 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(565, 635)) { ItemCounter = 0 };
             InvSlot3 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(630, 635)) { ItemCounter = 0 };
-            InvSlot4 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(690, 635)) { ItemCounter = 0 };
+            InvSlot4 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(695, 635)) { ItemCounter = 0 };
+            InvSlot5 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(765, 635)) { ItemCounter = 0 };
+            InvSlot6 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(830, 635)) { ItemCounter = 0 };
+            InvSlot7 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(895, 635)) { ItemCounter = 0 };
 
             //--------------------------------------
             //Button List Stuff
@@ -111,7 +120,11 @@ namespace SecretProject.Class.UI
                 InvSlot1,
                 InvSlot2,
                 InvSlot3,
-                InvSlot4
+                InvSlot4,
+                InvSlot5,
+                InvSlot6,
+                InvSlot7
+
             };
 
            //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
@@ -124,7 +137,7 @@ namespace SecretProject.Class.UI
 
             this.inventory = inventory;
 
-            for(int i = 0; i < 4; i ++)
+            for(int i = 0; i < 7; i ++)
             {
                 if (inventory.currentInventory.ElementAt(i) == null)
                 {
@@ -162,7 +175,7 @@ namespace SecretProject.Class.UI
 
             }
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if(AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
@@ -209,7 +222,7 @@ namespace SecretProject.Class.UI
             //Draw Background
             spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .4f);
 
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 7; i++)
             {
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
@@ -228,9 +241,12 @@ namespace SecretProject.Class.UI
             InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
             InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);
             InvSlot2.Draw(spriteBatch, Font, InvSlot2.ItemCounter.ToString(), new Vector2(600, 670), Color.DarkRed);
-            InvSlot3.Draw(spriteBatch, Font, InvSlot3.ItemCounter.ToString(), new Vector2(660, 670), Color.DarkRed);
-            InvSlot4.Draw(spriteBatch, Font, InvSlot4.ItemCounter.ToString(), new Vector2(720, 670), Color.DarkRed);
-           
+            InvSlot3.Draw(spriteBatch, Font, InvSlot3.ItemCounter.ToString(), new Vector2(670, 670), Color.DarkRed);
+            InvSlot4.Draw(spriteBatch, Font, InvSlot4.ItemCounter.ToString(), new Vector2(730, 670), Color.DarkRed);
+            InvSlot5.Draw(spriteBatch, Font, InvSlot5.ItemCounter.ToString(), new Vector2(810, 670), Color.DarkRed);
+            InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
+            InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
+
 
             // spriteBatch.End();
         }

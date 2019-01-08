@@ -895,6 +895,11 @@
    <object id="1" x="0.181818" y="0.181818" width="15.8182" height="4.36364"/>
   </objectgroup>
  </tile>
+ <tile id="6274">
+  <properties>
+   <property name="Animated" value="4"/>
+  </properties>
+ </tile>
  <tile id="6474">
   <properties>
    <property name="grass" value="grass"/>

@@ -74,7 +74,7 @@ namespace SecretProject.Class.TileStuff
 
             mapWidth = mapName.Width;
             mapHeight = mapName.Height;
-            
+
             this.tileCounter = 0;
 
             this.graphicsDevice = graphicsDevice;
@@ -90,14 +90,14 @@ namespace SecretProject.Class.TileStuff
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
+                Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
-                tiles[layerNameTile.X, layerNameTile.Y] = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                tiles[layerNameTile.X, layerNameTile.Y] = tempTile;
 
             }
 
 
-            if (isBuilding)
-            {
+            
                 for (var i = 0; i < tilesetTilesWide; i++)
                 {
                     for (var j = 0; j < tilesetTilesHigh; j++)
@@ -106,24 +106,54 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
                             {
-                                for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
                                 {
-                                    TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
+                                    tiles[i, j].IsAnimated = true;
+                                tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
 
-                                    tiles[i,j].TileObject = new ObjectBody(graphicsDevice,
-                                        new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                                        tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                        (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
+                                }
 
-                                    Iliad.allObjects.Add(tiles[i,j].TileObject);
+                                if (isBuilding)
+                                {
+
+                                    for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                    {
+                                        TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
+
+                                        tiles[i, j].TileObject = new ObjectBody(graphicsDevice,
+                                            new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                                            tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                                            (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
+
+                                        Iliad.allObjects.Add(tiles[i, j].TileObject);
+                                    }
+
+
                                 }
                             }
                         }
                     }
                 }
-            }      
+            
         }
+        
 
+        public void Update(GameTime gameTime)
+        {
+            for (var i = 0; i < tilesetTilesWide; i++)
+            {
+                for (var j = 0; j < tilesetTilesHigh; j++)
+                {
+                    if (tiles[i, j].GID != 0)
+                    {
+                        if (tiles[i, j].IsAnimated)
+                        {
+                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, 4);
+                        }
+                    }
+                }
+            }
+        }
         //TODO: 
 
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
@@ -156,6 +186,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     if (tiles[i, j].GID != 0)
                     {
+                        
                      
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                     }                   
@@ -170,11 +201,13 @@ namespace SecretProject.Class.TileStuff
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
                     Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
-                    Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)));
+
+                    Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
                     tiles[oldX, oldY] = ReplaceMenttile;
                 }
+                //If tile has property IsAnimating, contructor takes 3 arguments, number of frames, frame time, and is repeating
                 else
                 {
 
