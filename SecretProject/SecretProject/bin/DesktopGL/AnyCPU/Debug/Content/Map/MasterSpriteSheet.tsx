@@ -899,12 +899,13 @@
   <properties>
    <property name="Animated" value="4"/>
    <property name="Speed" value="1"/>
+   <property name="start" value="true"/>
   </properties>
  </tile>
  <tile id="6474">
   <properties>
    <property name="Animated" value="6"/>
-   <property name="Speed" value=".5"/>
+   <property name="Speed" value=".25"/>
    <property name="grass" value="grass"/>
   </properties>
   <objectgroup draworder="index">

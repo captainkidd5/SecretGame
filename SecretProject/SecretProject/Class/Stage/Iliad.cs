@@ -282,9 +282,9 @@ namespace SecretProject.Class.Stage
                 Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).3);
                // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
-                BackGroundTiles.DrawTiles(spriteBatch, (float).1);
-                BuildingsTiles.DrawTiles(spriteBatch, (float).2);
-                MidGroundTiles.DrawTiles(spriteBatch, (float).4);
+                BackGroundTiles.DrawTiles(spriteBatch, (float).1, gameTime);
+                BuildingsTiles.DrawTiles(spriteBatch, (float).2, gameTime);
+                MidGroundTiles.DrawTiles(spriteBatch, (float).4, gameTime);
 
 
                 //--------------------------------------

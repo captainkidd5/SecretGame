@@ -52,6 +52,7 @@ namespace SecretProject.Class.TileStuff
         public bool isBuilding = false;
         public bool isActive = false;
 
+
         MouseManager myMouse;
         ContentManager content;
         GraphicsDevice graphicsDevice;
@@ -111,8 +112,16 @@ namespace SecretProject.Class.TileStuff
                                     tiles[i, j].IsAnimated = true;
                                 tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
                                 tiles[i, j].Speed = double.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
-                                tiles[i, j].IsAnimating = true;
+                                
 
+                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
+                                {
+                                    tiles[i, j].IsAnimating = true;
+                                }
+                                else
+                                {
+                                    tiles[i, j].IsAnimating = false;
+                                }
                             }
 
                                 if (isBuilding)
@@ -149,8 +158,12 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (tiles[i, j].IsAnimated)
                         {
-                           // if(tiles[i,j])
-                            tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, tiles[i, j].Speed);
+                            if (tiles[i, j].IsAnimating == true && tiles[i,j].IsFinishedAnimating == false)
+                            {
+
+
+                                tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, tiles[i, j].Speed);
+                            }
                         }
                     }
                 }
@@ -158,7 +171,7 @@ namespace SecretProject.Class.TileStuff
         }
         //TODO: 
 
-        public void DrawTiles(SpriteBatch spriteBatch, float depth)
+        public void DrawTiles(SpriteBatch spriteBatch, float depth, GameTime gameTime)
         {
             
 
@@ -176,7 +189,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (myMouse.IsClicked)
                             {
-                                ReplaceTile(i, j);
+                                ReplaceTile(i, j, gameTime);
                                 //if (isBuilding)
                                 //{
                                  //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
@@ -195,19 +208,28 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public void ReplaceTile(int oldX, int oldY)
+        public void ReplaceTile(int oldX, int oldY, GameTime gameTime)
         {
             if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
             {
 
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
-                    Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                    tiles[oldX, oldY].IsAnimating = true;
+                    tiles[oldX, oldY].KillAnimation = true;
 
-                    Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    if (tiles[oldX, oldY].IsFinishedAnimating)
+                    {
 
-                    Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-                    tiles[oldX, oldY] = ReplaceMenttile;
+
+
+                        Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+
+                        Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+
+                        Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                        tiles[oldX, oldY] = ReplaceMenttile;
+                    }
                 }
                 else
                 {
