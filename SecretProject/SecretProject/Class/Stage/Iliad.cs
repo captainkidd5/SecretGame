@@ -43,6 +43,7 @@ namespace SecretProject.Class.Stage
         internal TileManager BuildingsTiles1 { get; set; }
         internal TileManager MidGroundTiles { get => MidGroundTiles1; set => MidGroundTiles1 = value; }
         internal TileManager MidGroundTiles1 { get; set; }
+        internal TileManager ForeGroundTiles { get; set; }
         internal TileManager TestTiles { get; set; }
         public TmxLayer Buildings { get => Buildings1; set => Buildings1 = value; }
         public TmxLayer Buildings1 { get => Buildings2; set => Buildings2 = value; }
@@ -51,6 +52,7 @@ namespace SecretProject.Class.Stage
         public TmxLayer Background { get => Background1; set => Background1 = value; }
         public TmxLayer Background1 { get; set; }
         public TmxLayer MidGround { get; set; }
+        public TmxLayer foreGround { get; set; }
         public TmxLayer TestLayer { get; set; }
         public Texture2D JoeSprite { get; set; }
         public Texture2D RaftDown { get; set; }
@@ -114,12 +116,12 @@ namespace SecretProject.Class.Stage
             Background = map.Layers["background"];
             Buildings = map.Layers["buildings"];
             MidGround = map.Layers["midGround"];
-            TestLayer = map.Layers["test"];
+            foreGround = map.Layers["foreGround"];
 
             //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
             //object layer
-            var buildingLayer = map.ObjectGroups["collision"];
+           // var buildingLayer = map.ObjectGroups["collision"];
 
 
             //map specifications
@@ -132,7 +134,9 @@ namespace SecretProject.Class.Stage
             BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice,content, false);
             BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
             MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
-            TestTiles = new TileManager(game, TileSet, map, TestLayer, mouse, graphicsDevice, content, false);
+            ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
+
+
 
 
             //--------------------------------------
@@ -178,6 +182,7 @@ namespace SecretProject.Class.Stage
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(600, 650)));
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(700, 600)));
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(750, 700)));
+
             allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(800, 700)));
         }
 
@@ -279,12 +284,13 @@ namespace SecretProject.Class.Stage
             {
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphicsDevice));
                 Player.Anim.ShowRectangle = showBorders;
-                Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).3);
+                Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
                 BackGroundTiles.DrawTiles(spriteBatch, (float).1);
                 BuildingsTiles.DrawTiles(spriteBatch, (float).2);
-                MidGroundTiles.DrawTiles(spriteBatch, (float).4);
+                MidGroundTiles.DrawTiles(spriteBatch, (float).3);
+                ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
 
 
                 //--------------------------------------

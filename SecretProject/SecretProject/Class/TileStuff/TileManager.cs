@@ -171,13 +171,10 @@ namespace SecretProject.Class.TileStuff
                             if (isBuilding)
                             {
                                 
-                                if (myMouse.IsClicked)
+                                if (myMouse.IsRightClicked)
                                 {
                                     Interact(i, j);
-                                    
-                                        
-                                    
-                                    
+
                                     //if (isBuilding)
                                     //{
                                     //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
