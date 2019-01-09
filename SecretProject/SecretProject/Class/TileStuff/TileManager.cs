@@ -147,6 +147,7 @@ namespace SecretProject.Class.TileStuff
                 }
             
         }
+        public bool TileInteraction { get; set; } = false;
 
         public void Update(GameTime gameTime)
         {
@@ -156,6 +157,37 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (tiles[i, j].GID != 0)
                     {
+                        if(tiles[i,j].IsFinishedAnimating)
+                        {
+                            ReplaceTile(i, j);
+                            tiles[i, j].IsFinishedAnimating = false;
+                        }
+                        if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
+                        {
+
+                            // IsBeingSelected(i, j);
+                            // if(isActive)
+                            //{
+                            if (isBuilding)
+                            {
+                                
+                                if (myMouse.IsClicked)
+                                {
+                                    Interact(i, j);
+                                    
+                                        
+                                    
+                                    
+                                    //if (isBuilding)
+                                    //{
+                                    //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
+                                    //}
+                                }
+    
+                            }
+
+                            //}                    
+                        }
                         if (tiles[i, j].IsAnimated)
                         {
                             if (tiles[i, j].IsAnimating == true && tiles[i,j].IsFinishedAnimating == false)
@@ -171,7 +203,7 @@ namespace SecretProject.Class.TileStuff
         }
         //TODO: 
 
-        public void DrawTiles(SpriteBatch spriteBatch, float depth, GameTime gameTime)
+        public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
             
 
@@ -179,26 +211,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
-                    {
-
-                        // IsBeingSelected(i, j);
-                        // if(isActive)
-                        //{
-                        if (isBuilding)
-                        {
-                            if (myMouse.IsClicked)
-                            {
-                                ReplaceTile(i, j, gameTime);
-                                //if (isBuilding)
-                                //{
-                                 //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
-                                //}
-                            }
-                        }
-                            
-                        //}                    
-                    }
+                   
                     if (tiles[i, j].GID != 0)
                     {
                         
@@ -208,7 +221,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public void ReplaceTile(int oldX, int oldY, GameTime gameTime)
+
+        public void Interact(int oldX, int oldY)
         {
             if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
             {
@@ -217,8 +231,15 @@ namespace SecretProject.Class.TileStuff
                 {
                     tiles[oldX, oldY].IsAnimating = true;
                     tiles[oldX, oldY].KillAnimation = true;
+                }
+             }
+        }
 
-                    if (tiles[oldX, oldY].IsFinishedAnimating)
+        public void ReplaceTile(int oldX, int oldY)
+        {
+
+
+                   if (tiles[oldX, oldY].IsFinishedAnimating)
                     {
 
 
@@ -228,14 +249,11 @@ namespace SecretProject.Class.TileStuff
                         Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                         Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-                        tiles[oldX, oldY] = ReplaceMenttile;
+                       tiles[oldX, oldY] = ReplaceMenttile;
                     }
-                }
-                else
-                {
-
-                }
-            }
+                
+               
+            
         }
         
 

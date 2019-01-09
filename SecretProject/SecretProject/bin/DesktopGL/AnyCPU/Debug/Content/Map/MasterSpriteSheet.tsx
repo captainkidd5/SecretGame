@@ -905,7 +905,7 @@
  <tile id="6474">
   <properties>
    <property name="Animated" value="6"/>
-   <property name="Speed" value=".25"/>
+   <property name="Speed" value=".1"/>
    <property name="grass" value="grass"/>
   </properties>
   <objectgroup draworder="index">
