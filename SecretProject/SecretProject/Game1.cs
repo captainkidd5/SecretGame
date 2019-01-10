@@ -13,6 +13,7 @@ using System.Runtime.Serialization;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
+using SecretProject.Class.SoundStuff;
 
 namespace SecretProject
 {
@@ -49,8 +50,11 @@ namespace SecretProject
         //Declare Stages
         public static MainMenu _mainMenu;
         public static Iliad _iliad;
-        
+
         //Renderers
+
+        //sound
+        public static SoundBoard SoundManager;
 
 
         //Input Fields
@@ -63,7 +67,7 @@ namespace SecretProject
         //public bool IsMyMouseVisible { get { return isMyMouseVisible; } set { isMyMouseVisible = value; } }
 
         //Camera
-        Camera2D cam;
+       public static Camera2D cam;
 
         
 
@@ -142,6 +146,7 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
+            SoundManager = new SoundBoard(this, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");

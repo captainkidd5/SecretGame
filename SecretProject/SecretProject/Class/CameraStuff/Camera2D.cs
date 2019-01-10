@@ -24,6 +24,8 @@ namespace SecretProject.Class.CameraStuff
         public float Rotation { get { return rotation; } set { rotation = value; } }
         public Vector2 Pos { get { return pos; } set { pos = value; } }
 
+        public Viewport MyViewPort { get; set; }
+
 
         public Camera2D(Viewport viewport)
         {
@@ -32,6 +34,10 @@ namespace SecretProject.Class.CameraStuff
             pos = Vector2.Zero;
 
             Origin = new Vector2(viewport.Width / 2.0f, viewport.Height / 2.0f);
+
+            MyViewPort = viewport;
+
+
         }
 
 

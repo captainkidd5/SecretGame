@@ -44,6 +44,8 @@ namespace SecretProject.Class.TileStuff
         public int AddAmount { get; set; } = 0;
         public double Speed { get; set; }
 
+        public bool HasSound { get; set; }
+
         //--------------------------------------
         //Rectangles
         public Rectangle SourceRectangle;

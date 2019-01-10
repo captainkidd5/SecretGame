@@ -58,7 +58,7 @@ namespace SecretProject.Class.Playable
         public int Health1 { get; set; } = 3;
         public Dir Direction { get; set; } = Dir.Down;
         public bool IsMoving { get; set; } = false;
-        public float Speed1 { get; set; } = 2f;
+        public float Speed1 { get; set; } = 50f;
         public AnimatedSprite Anim { get; set; }
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -118,7 +118,7 @@ namespace SecretProject.Class.Playable
 
                 MyCollider.DidCollide(objects);
                 this.Velocity = MyCollider.Velocity;
-                
+
                 Position += Velocity;
 
                 Velocity = Vector2.Zero;
@@ -137,19 +137,19 @@ namespace SecretProject.Class.Playable
                     switch (controls.Direction)
                     {
                         case Dir.Right:
-                            Velocity.X = Speed1;
+                            Velocity.X = Speed1 * dt;
                             break;
 
                         case Dir.Left:
-                            Velocity.X = -Speed1;
+                            Velocity.X = -Speed1 * dt;
                             break;
 
                         case Dir.Down:
-                            Velocity.Y = Speed1;
+                            Velocity.Y = Speed1 * dt;
                             break;
 
                         case Dir.Up:
-                            Velocity.Y = -Speed1;
+                            Velocity.Y = -Speed1 * dt;
                             break;
 
                         default:

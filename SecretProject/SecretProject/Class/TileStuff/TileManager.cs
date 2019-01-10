@@ -13,6 +13,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Content;
+using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -114,14 +115,29 @@ namespace SecretProject.Class.TileStuff
                                 tiles[i, j].Speed = double.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
                                 
 
-                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
+                                if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
                                 {
+                                    
                                     tiles[i, j].IsAnimating = true;
+                                    
                                 }
                                 else
                                 {
                                     tiles[i, j].IsAnimating = false;
                                 }
+
+                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("step"))
+                                {
+                                  //  game.Exit();
+                                    tiles[i, j].HasSound = true;
+                                    
+                                }
+                                else
+                                {
+                                    tiles[i, j].HasSound = false;
+                                }
+
+                                
                             }
 
                                 if (isBuilding)
@@ -161,6 +177,11 @@ namespace SecretProject.Class.TileStuff
                         {
                             ReplaceTile(i, j);
                             tiles[i, j].IsFinishedAnimating = false;
+                        }
+
+                        if(tiles[i,j].HasSound == true)
+                        {
+                            Intersect(i, j, Game1.Player);
                         }
                         if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
@@ -208,14 +229,24 @@ namespace SecretProject.Class.TileStuff
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
                 {
+
                    
                     if (tiles[i, j].GID != 0)
                     {
-                        
+                        if(tiles[i,j].DestinationRectangle.Left < Game1.cam.MyViewPort.Width && tiles[i, j].DestinationRectangle.Left > Game1.cam.MyViewPort.X
+                             && tiles[i, j].DestinationRectangle.Y < Game1.cam.MyViewPort.Height && tiles[i, j].DestinationRectangle.Y > Game1.cam.MyViewPort.Y)
                      
                         spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                     }                   
                 }
+            }
+        }
+
+        public void Intersect(int XCor, int YCor, Player player)
+        {
+            if(player.Rectangle.Intersects(tiles[XCor,YCor].DestinationRectangle))
+            {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneStepInstance, false, 0);
             }
         }
 

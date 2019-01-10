@@ -748,6 +748,26 @@
    <object id="1" x="-0.181818" y="-0.0909091" width="11.5455" height="15.9091"/>
   </objectgroup>
  </tile>
+ <tile id="4922">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="4923">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="4924">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="4925">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
  <tile id="4930">
   <objectgroup draworder="index">
    <object id="1" x="0.181818" y="-0.272727" width="1.27273" height="16.4545"/>
@@ -769,6 +789,26 @@
   <objectgroup draworder="index">
    <object id="1" x="0.181818" y="0.0909091" width="10.6364" height="15.9091"/>
   </objectgroup>
+ </tile>
+ <tile id="5022">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5023">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5024">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5025">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
  </tile>
  <tile id="5030">
   <objectgroup draworder="index">
@@ -875,6 +915,26 @@
    <object id="1" x="0" y="-0.272727" width="8" height="2.09091"/>
   </objectgroup>
  </tile>
+ <tile id="5122">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5123">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5124">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5125">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
  <tile id="5130">
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="-0.0909091" width="15.6364" height="2.36364"/>
@@ -894,6 +954,26 @@
   <objectgroup draworder="index">
    <object id="1" x="0.181818" y="0.181818" width="15.8182" height="4.36364"/>
   </objectgroup>
+ </tile>
+ <tile id="5222">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5223">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5224">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
+ </tile>
+ <tile id="5225">
+  <properties>
+   <property name="step" value="brick"/>
+  </properties>
  </tile>
  <tile id="6274">
   <properties>

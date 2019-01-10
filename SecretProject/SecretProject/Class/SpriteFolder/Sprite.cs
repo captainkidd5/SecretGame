@@ -45,8 +45,7 @@ namespace SecretProject.Class.SpriteFolder
         public float ScaleY { get; set; }
         public bool IsDrawn { get; set; } = true;
         public float LayerDepth { get; set; }
-        public SoundEffect Bubble { get; set; }
-        public string Name { get; set; }
+        public SoundEffect Bubble { get; set; }        public string Name { get; set; }
         public float Speed { get; set; }
         public Color Color { get; set; } = Color.White;
         public Vector2 Velocity { get; set; }
@@ -56,7 +55,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsWorldItem { get; set; } = false;
         public double BobberTimer { get; set; }
         public double TossTimer { get; set; }
-        public SoundEffectInstance BubbleInstance { get; set; }
+
 
         public bool IsAnimated { get; set; } = false;
         public bool IsAnimating { get; set; } = false;
@@ -85,10 +84,7 @@ namespace SecretProject.Class.SpriteFolder
             ScaleX = 1f;
             ScaleY = 1f;
 
-            Bubble = content.Load<SoundEffect>("SoundEffects/bubble");
 
-            BubbleInstance = Bubble.CreateInstance();
-            BubbleInstance.IsLooped = false;
             this.LayerDepth = layerDepth;
             this.content = content;
 

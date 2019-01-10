@@ -179,11 +179,11 @@ namespace SecretProject.Class.Stage
             //UserInterface
             mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
 
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(600, 650)));
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(700, 600)));
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(750, 700)));
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
+            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
 
-            allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(800, 700)));
+            allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
         }
 
         #endregion
@@ -264,7 +264,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //update camera
 
-                Cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
+                Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
 
 
 

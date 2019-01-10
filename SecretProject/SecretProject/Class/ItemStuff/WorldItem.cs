@@ -131,7 +131,7 @@ namespace SecretProject.Class.ItemStuff
                 {
                     if (ItemSprite.IsDrawn)
                     {
-                    ItemSprite.BubbleInstance.Play();
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
                     ItemSprite.PickedUp = true;
                     Ignored = true;
                     }
