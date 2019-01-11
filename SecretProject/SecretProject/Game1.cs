@@ -14,6 +14,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
 using SecretProject.Class.SoundStuff;
+using SecretProject.Class.TextureStuff;
 
 namespace SecretProject
 {
@@ -55,6 +56,8 @@ namespace SecretProject
 
         //sound
         public static SoundBoard SoundManager;
+
+        
 
 
         //Input Fields
@@ -98,6 +101,8 @@ namespace SecretProject
 
         public static Random RGenerator = new Random();
 
+        public static TextureBook AllTextures;
+
 
         #endregion
 
@@ -110,7 +115,7 @@ namespace SecretProject
             //set window dimensions
              graphics.PreferredBackBufferWidth = 1280;
              graphics.PreferredBackBufferHeight = 720;
-
+              IsFixedTimeStep = false;
             //graphics.IsFullScreen = true;
 
             freeze = false;
@@ -146,17 +151,18 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
+            AllTextures = new TextureBook(Content, spriteBatch);
             SoundManager = new SoundBoard(this, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
 
-            JoeSprite = Content.Load<Texture2D>("Player/Joe/joe");
+            JoeSprite = AllTextures.JoeSprite;
 
-             joeDown = Content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
-             joeUp = Content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
-             joeRight = Content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
-             joeLeft = Content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
+            joeDown = AllTextures.joeDown;
+            joeUp = AllTextures.joeUp;
+            joeRight = AllTextures.joeRight;
+            joeLeft = AllTextures.joeLeft;
 
             Player = new Player("joe", new Vector2(900, 250), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 

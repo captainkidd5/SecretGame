@@ -235,9 +235,12 @@ namespace SecretProject.Class.TileStuff
                     {
                         if(tiles[i,j].DestinationRectangle.Left < Game1.cam.MyViewPort.Width && tiles[i, j].DestinationRectangle.Left > Game1.cam.MyViewPort.X
                              && tiles[i, j].DestinationRectangle.Y < Game1.cam.MyViewPort.Height && tiles[i, j].DestinationRectangle.Y > Game1.cam.MyViewPort.Y)
+                        {
+                            spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                        }
+                    }
                      
-                        spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
-                    }                   
+                        
                 }
             }
         }

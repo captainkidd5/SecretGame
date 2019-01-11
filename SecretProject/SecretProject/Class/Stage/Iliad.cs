@@ -156,8 +156,8 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Cam.Zoom = 3f;
-            //cam.Move(new Vector2(player.Position.X, player.Position.Y));
+           Game1.cam.Zoom = 3f;
+           //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
@@ -218,21 +218,21 @@ namespace SecretProject.Class.Stage
             if (!Game1.freeze)
             {
 
-               // if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
+                // if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
                 //{
-                   
-               // }
 
-               // if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
-               // {
-                    //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
-                  //  allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
+                // }
+
+                // if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
+                // {
+                //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
+                //  allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
                 //}
-                
+
 
                 //--------------------------------------
                 //Update Players
-
+                Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
                 Player.Update(gameTime, allItems, allObjects);
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
@@ -264,7 +264,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //update camera
 
-                Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
+                
 
 
 

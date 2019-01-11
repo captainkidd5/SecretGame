@@ -14,10 +14,10 @@ namespace SecretProject.Class.SpriteFolder
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
         public int Columns { get; set; }
-        private int _currentFrame;
-        private int _totalFrames;
-        private double _timer;
-        private double _speed;
+        private int currentFrame;
+        private int totalFrames;
+        private double timer;
+        private double speed;
 
         public float MyDepth { get; set; }
 
@@ -32,10 +32,10 @@ namespace SecretProject.Class.SpriteFolder
             Texture = texture;
             Rows = rows;
             Columns = columns;
-            _currentFrame = 0;
-            _totalFrames = Rows * Columns;
-            _speed = 0.15D;
-            _timer = _speed;
+            currentFrame = 0;
+            totalFrames = Rows * Columns;
+            speed = 0.15D;
+            timer = speed;
             this.HitBoxFrames = hitBoxFrames;
             this.rectangleTexture = texture;
             SetRectangleTexture(graphicsDevice, texture);
@@ -79,15 +79,15 @@ namespace SecretProject.Class.SpriteFolder
         public void Update(GameTime gameTime)
         {
 
-            _timer -= gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (_timer <= 0)
+            if (timer <= 0)
             {
-                _currentFrame++;
-                _timer = _speed;
+                currentFrame++;
+                timer = speed;
             }
-            if (_currentFrame == _totalFrames)
-                _currentFrame = 0;
+            if (currentFrame == totalFrames)
+                currentFrame = 0;
 
         }
 
@@ -96,8 +96,8 @@ namespace SecretProject.Class.SpriteFolder
             this.MyDepth = layerDepth;
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
-            int row = (int)((float)_currentFrame / (float)Columns);
-            int column = _currentFrame % Columns;
+            int row = (int)((float)currentFrame / (float)Columns);
+            int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
@@ -118,7 +118,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void setFrame(int newFrame)
         {
-            _currentFrame = newFrame;
+            currentFrame = newFrame;
         }
     }
 }
