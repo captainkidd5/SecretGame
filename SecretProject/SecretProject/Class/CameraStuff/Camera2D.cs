@@ -49,7 +49,8 @@ namespace SecretProject.Class.CameraStuff
         public void Follow(Vector2 amount)
         {
 
-                pos = amount;
+                pos.X = (int)amount.X;
+            pos.Y = (int)amount.Y;
             
             
         }

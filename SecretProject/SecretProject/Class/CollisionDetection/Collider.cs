@@ -32,17 +32,20 @@ namespace SecretProject.Class.CollisionDetection
             
             foreach (var body in objectBody)
             {
+                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2)
+                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2))
+                {
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
+                        velocity.X -= velocity.X; //+ (float).25;
 
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
-                    velocity.X -= velocity.X; //+ (float).25;
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
+                        velocity.X -= velocity.X; //- (float).25;
 
-                if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
-                    velocity.X -= velocity.X; //- (float).25;
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
-                    velocity.Y -= velocity.Y; //+ (float).25;
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
-                    velocity.Y -= velocity.Y;// - (float).25;
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
+                        velocity.Y -= velocity.Y; //+ (float).25;
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
+                        velocity.Y -= velocity.Y;// - (float).25;
+                }
             }
 
         }
