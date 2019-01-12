@@ -233,8 +233,8 @@ namespace SecretProject.Class.TileStuff
                    
                     if (tiles[i, j].GID != 0)
                     {
-                        if(tiles[i,j].DestinationRectangle.Left < Game1.cam.MyViewPort.Width && tiles[i, j].DestinationRectangle.Left > Game1.cam.MyViewPort.X
-                             && tiles[i, j].DestinationRectangle.Y < Game1.cam.MyViewPort.Height && tiles[i, j].DestinationRectangle.Y > Game1.cam.MyViewPort.Y)
+                        if(tiles[i,j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2) && tiles[i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2)
+                             && tiles[i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2) && tiles[i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight /2))
                         {
                             spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                         }
