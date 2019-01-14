@@ -20,7 +20,7 @@ namespace SecretProject.Class.SavingStuff
         {
             mySave = new SaveData();
             XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            using (TextWriter tw = new StreamWriter(@"C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml"))
+            using (TextWriter tw = new StreamWriter(@"C:\Users\armad\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml"))
             {
                 serializer.Serialize(tw, mySave);
                 tw.Close();
@@ -31,7 +31,7 @@ namespace SecretProject.Class.SavingStuff
         {
             XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
 
-            StreamReader reader = new StreamReader(@"C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml");
+            StreamReader reader = new StreamReader(@"C:\Users\armad\Desktop\SecretGame\SecretProject\SecretProject\GameSave.xml");
             
                 mySave = (SaveData)deSerializer.Deserialize(reader);
                 //mySave = save;

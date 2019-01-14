@@ -168,6 +168,8 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
+
+           // TempTile = new Tile(1, 1, 0, 1, 1, 1, 1, 1);
             
         }
         #endregion
@@ -311,15 +313,21 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTileTemporary(int oldX, int oldY, int GID)
         {
-          //if (TempTile != null)
-          //{
-               //tiles[oldX, oldY] = TempTile;
+         // if (TempTile != null && TempTile.DestinationRectangle != tiles[oldX, oldY].DestinationRectangle)
+        //  {
+          //      tiles[oldX, oldY] = TempTile;
+          //}
+            //else
+           // {
+                Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                TempTile = tiles[oldX, oldY];
+                tiles[oldX, oldY] = ReplaceMenttile;
            // }
-            
+            //{
+                
+            //}
 
-            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-            TempTile = tiles[oldX, oldY];
-            tiles[oldX, oldY] = ReplaceMenttile;
+            
         }
         
 

@@ -46,6 +46,8 @@ namespace SecretProject.Class.TileStuff
 
         public bool HasSound { get; set; }
 
+      //  public bool WasJustReplaced { get; set; } = false;
+
         //--------------------------------------
         //Rectangles
         public Rectangle SourceRectangle;
