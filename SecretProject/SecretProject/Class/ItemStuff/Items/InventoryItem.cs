@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff.BuildingItems;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
 using System;
@@ -25,6 +26,9 @@ namespace SecretProject.Class.ItemStuff.Items
 
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
+
+        public bool IsPlaceable { get; set; } = false;
+        public PlaceableBuilding Building { get; set; }
 
 
 
@@ -54,6 +58,14 @@ namespace SecretProject.Class.ItemStuff.Items
                     this.Texture = content.Load<Texture2D>("Item/grass");
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     this.InvMaximum = 10;
+                    break;
+
+                case "barrel":
+                    this.Texture = content.Load<Texture2D>("Item/Barrel");
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+                    this.InvMaximum = 3;
+                    this.IsPlaceable = true;
+                    this.Building = new PlaceableBuilding(Name);
 
                     break;
 

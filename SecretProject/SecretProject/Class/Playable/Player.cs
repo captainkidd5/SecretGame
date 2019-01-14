@@ -25,6 +25,8 @@ namespace SecretProject.Class.Playable
     [Serializable()]
     public class Player : ISerializable
     {
+
+        //TODO: Work on gametime
         public Vector2 position;
         public Vector2 Velocity;
         public bool Activate { get; set; }
@@ -58,7 +60,7 @@ namespace SecretProject.Class.Playable
         public int Health1 { get; set; } = 3;
         public Dir Direction { get; set; } = Dir.Down;
         public bool IsMoving { get; set; } = false;
-        public float Speed1 { get; set; } = 200f;
+        public float Speed1 { get; set; } = 3f;
         public AnimatedSprite Anim { get; set; }
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -117,6 +119,8 @@ namespace SecretProject.Class.Playable
                 MyCollider.DidCollide(objects);
                 this.Velocity = MyCollider.Velocity;
 
+                //Velocity = Velocity * dt;
+
                 Position += Velocity;
 
                 Velocity = Vector2.Zero;
@@ -135,19 +139,19 @@ namespace SecretProject.Class.Playable
                     switch (controls.Direction)
                     {
                         case Dir.Right:
-                            Velocity.X = Speed1 * dt;
+                            Velocity.X = Speed1 ;
                             break;
 
                         case Dir.Left:
-                            Velocity.X = -Speed1 * dt;
+                            Velocity.X = -Speed1;
                             break;
 
                         case Dir.Down:
-                            Velocity.Y = Speed1 * dt;
+                            Velocity.Y = Speed1;
                             break;
 
                         case Dir.Up:
-                            Velocity.Y = -Speed1 * dt;
+                            Velocity.Y = -Speed1;
                             break;
 
                         default:

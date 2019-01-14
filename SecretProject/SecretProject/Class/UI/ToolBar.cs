@@ -182,18 +182,45 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                    if (game.gameStages == Stages.Iliad)
+                    {
+
+
+                        Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                    }
                 }
 
                 if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
                 {
-                    Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
-                    DragSprite = tempSprite;
+                    InventoryItem tempItem = inventory.currentInventory[i].GetItem();
+                    if(tempItem.IsPlaceable == true)
+                    {
+                        for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
+                        {
+                            //SO CLOSE!
+                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j]);
+                        }
+                        for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
+                        {
+                            //Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX, Iliad.ForeGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z]);
+                        }
+                    }
+                    else
+                    {
+                        Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                        DragSprite = tempSprite;
+
+                    }
+                    
                 }
 
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
-                    DragSprite.Update(gameTime, CustomMouse.UIPosition);
+                    if(DragSprite != null)
+                    {
+                        DragSprite.Update(gameTime, CustomMouse.UIPosition);
+                    }
+                   
                 }
 
             }
@@ -226,13 +253,21 @@ namespace SecretProject.Class.UI
             {
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
-                    DragSprite.Draw(spriteBatch, .5f);
+                    if(DragSprite != null)
+                    {
+                        DragSprite.Draw(spriteBatch, .5f);
+                    }
+                    
                 }
             }
 
             if(InvSlot1.isClickedAndHeld && InvSlot1.ItemCounter != 0)
             {
-                DragSprite.Draw(spriteBatch, .5f);
+                if(DragSprite != null)
+                {
+                    DragSprite.Draw(spriteBatch, .5f);
+                }
+                
             }
 
             //--------------------------------------

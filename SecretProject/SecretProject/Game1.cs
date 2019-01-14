@@ -20,7 +20,7 @@ namespace SecretProject
 {
     //TODO:
     //figure out what I want to do with component
-    //drag and drop items
+    //Figure out why the placeable buildings arent drawing correctly
    
 
     public enum Dir

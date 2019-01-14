@@ -38,13 +38,13 @@ namespace SecretProject.Class.Stage
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
         public Texture2D TileSet { get; set; }
-        internal TileManager BackGroundTiles { get; set; }
-        internal TileManager BuildingsTiles { get => BuildingsTiles1; set => BuildingsTiles1 = value; }
-        internal TileManager BuildingsTiles1 { get; set; }
-        internal TileManager MidGroundTiles { get => MidGroundTiles1; set => MidGroundTiles1 = value; }
-        internal TileManager MidGroundTiles1 { get; set; }
-        internal TileManager ForeGroundTiles { get; set; }
-        internal TileManager TestTiles { get; set; }
+        public static TileManager BackGroundTiles { get; set; }
+        public static TileManager BuildingsTiles { get => BuildingsTiles1; set => BuildingsTiles1 = value; }
+        public static TileManager BuildingsTiles1 { get; set; }
+        public static TileManager MidGroundTiles { get => MidGroundTiles1; set => MidGroundTiles1 = value; }
+        public static TileManager MidGroundTiles1 { get; set; }
+        public static TileManager ForeGroundTiles { get; set; }
+        public static TileManager TestTiles { get; set; }
         public TmxLayer Buildings { get => Buildings1; set => Buildings1 = value; }
         public TmxLayer Buildings1 { get => Buildings2; set => Buildings2 = value; }
         public TmxLayer Buildings2 { get => Buildings3; set => Buildings3 = value; }
@@ -184,6 +184,8 @@ namespace SecretProject.Class.Stage
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
 
             allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
+
+            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
         }
 
         #endregion

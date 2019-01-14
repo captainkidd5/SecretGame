@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff.BuildingItems;
 using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -33,6 +34,11 @@ namespace SecretProject.Class.ItemStuff
 
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
+
+        //placeable part
+
+        public bool IsPlaceable { get; set; } = false;
+        public PlaceableBuilding Building { get; set; }
 
         int directionX = Game1.RGenerator.Next(-2, 2);
         int directionY = Game1.RGenerator.Next(-2, 2);
@@ -70,6 +76,16 @@ namespace SecretProject.Class.ItemStuff
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
                     break;
+
+                case "barrel":
+                    this.Texture = content.Load<Texture2D>("Item/Barrel");
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.WorldMaximum = 3;
+                    ItemSprite.ScaleX = .5f;
+                    ItemSprite.ScaleY = .5f;
+                    this.IsPlaceable = true;
+                    Building = new PlaceableBuilding(Name);
+                    break;
 /*
                 case "animatedGrass":
                     this.Texture = content.Load<Texture2D>("Item/grass");
@@ -80,6 +96,8 @@ namespace SecretProject.Class.ItemStuff
                     break;
                     */
                 default:
+
+
                     throw new NotImplementedException();
 
 

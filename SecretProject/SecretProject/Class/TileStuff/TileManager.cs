@@ -17,7 +17,7 @@ using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.TileStuff
 {
-    class TileManager
+    public class TileManager
     {
         protected Game1 game;
 
@@ -61,6 +61,11 @@ namespace SecretProject.Class.TileStuff
         public int ReplaceTileGid { get; set; }
 
         List<TmxObject> tileObjects;
+
+        public int CurrentIndexX { get; set; }
+        public int CurrentIndexY { get; set; }
+
+        #region CONSTRUCTOR
 
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
         {
@@ -163,8 +168,11 @@ namespace SecretProject.Class.TileStuff
                 }
             
         }
+        #endregion
         public bool TileInteraction { get; set; } = false;
 
+
+        #region UPDATE
         public void Update(GameTime gameTime)
         {
             for (var i = 0; i < tilesetTilesWide; i++)
@@ -175,7 +183,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if(tiles[i,j].IsFinishedAnimating)
                         {
-                            ReplaceTile(i, j);
+                            Destroy(i, j);
                             tiles[i, j].IsFinishedAnimating = false;
                         }
 
@@ -185,7 +193,8 @@ namespace SecretProject.Class.TileStuff
                         }
                         if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
-
+                            CurrentIndexX = i;
+                            CurrentIndexY = j;
                             // IsBeingSelected(i, j);
                             // if(isActive)
                             //{
@@ -219,8 +228,11 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+
+        #endregion
         //TODO: 
 
+        #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
             
@@ -244,7 +256,9 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        #endregion
 
+        //TODO: get sounds to play when walked over
         public void Intersect(int XCor, int YCor, Player player)
         {
             if(player.Rectangle.Intersects(tiles[XCor,YCor].DestinationRectangle))
@@ -252,6 +266,8 @@ namespace SecretProject.Class.TileStuff
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneStepInstance, false, 0);
             }
         }
+
+
 
         public void Interact(int oldX, int oldY)
         {
@@ -266,10 +282,8 @@ namespace SecretProject.Class.TileStuff
              }
         }
 
-        public void ReplaceTile(int oldX, int oldY)
+        public void Destroy(int oldX, int oldY)
         {
-
-
                    if (tiles[oldX, oldY].IsFinishedAnimating)
                     {
 
@@ -279,12 +293,24 @@ namespace SecretProject.Class.TileStuff
 
                         Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
-                        Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-                       tiles[oldX, oldY] = ReplaceMenttile;
-                    }
-                
-               
-            
+                    ReplaceTilePermanent(oldX, oldY);
+                    }                
+   
+        }
+
+        public void ReplaceTilePermanent(int oldX, int oldY)
+        {
+ 
+
+
+                Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                tiles[oldX, oldY] = ReplaceMenttile;
+        }
+
+        public void ReplaceTileTemporary(int oldX, int oldY, int GID)
+        {
+            Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            tiles[oldX, oldY] = ReplaceMenttile;
         }
         
 
