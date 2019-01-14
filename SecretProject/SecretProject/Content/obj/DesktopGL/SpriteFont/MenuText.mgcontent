@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</SourceFile>
-  <SourceTime>2019-01-12T14:38:32.5520321-08:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SpriteFont/MenuText.xnb</DestFile>
-  <DestTime>2019-01-13T16:07:30.6575437-08:00</DestTime>
+  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</SourceFile>
+  <SourceTime>2019-01-13T22:43:27.4056378-08:00</SourceTime>
+  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SpriteFont/MenuText.xnb</DestFile>
+  <DestTime>2019-01-13T22:44:45.5648716-08:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
   <Parameters>
     <Key>PremultiplyAlpha</Key>
     <Value>True</Value>

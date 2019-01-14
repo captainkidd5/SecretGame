@@ -65,6 +65,8 @@ namespace SecretProject.Class.TileStuff
         public int CurrentIndexX { get; set; }
         public int CurrentIndexY { get; set; }
 
+        public Tile TempTile { get; set; }
+
         #region CONSTRUCTOR
 
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
@@ -309,7 +311,14 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTileTemporary(int oldX, int oldY, int GID)
         {
+          //if (TempTile != null)
+          //{
+               //tiles[oldX, oldY] = TempTile;
+           // }
+            
+
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            TempTile = tiles[oldX, oldY];
             tiles[oldX, oldY] = ReplaceMenttile;
         }
         

@@ -22,8 +22,8 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
             switch(name)
             {
                 case "barrel":
-                    ForeGroundID = new int[2] { 3432, 3433 };
-                    BuildingID = new int[2] { 3532, 3533 };
+                    ForeGroundID = new int[2] { 3433, 3434 };
+                    BuildingID = new int[2] { 3533, 3534 };
                     break;
             }
         }

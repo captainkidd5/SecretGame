@@ -188,6 +188,8 @@ namespace SecretProject.Class.UI
 
                         Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
                     }
+
+                    DragSprite = null;
                 }
 
                 if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
@@ -198,11 +200,11 @@ namespace SecretProject.Class.UI
                         for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
                         {
                             //SO CLOSE!
-                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j]);
+                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j]);
                         }
                         for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
                         {
-                            //Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX, Iliad.ForeGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z]);
+                            Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles1.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z]);
                         }
                     }
                     else
