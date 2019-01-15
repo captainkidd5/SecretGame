@@ -12,6 +12,8 @@ namespace SecretProject.Class.Universal
         public static int centerScreenX = 500;
         public static int centerScreenY = 300;
 
+       // public static Color = new Color(100, 100, 100, 100);
+
         public static Vector2 centerScreen = new Vector2(centerScreenX, centerScreenY);
 
         public static bool HasProperty(object obj, string propertyName)

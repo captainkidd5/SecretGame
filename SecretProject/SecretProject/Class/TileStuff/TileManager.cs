@@ -67,6 +67,8 @@ namespace SecretProject.Class.TileStuff
 
         public Tile TempTile { get; set; }
 
+        public int OldIndexX { get; set; }
+        public int OldIndexY { get; set; }
         #region CONSTRUCTOR
 
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
@@ -252,7 +254,7 @@ namespace SecretProject.Class.TileStuff
                         if(tiles[i,j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2) && tiles[i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2)
                              && tiles[i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2) && tiles[i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight /2))
                         {
-                            spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, Color.White, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                            spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, tiles[i, j].TileColor * tiles[i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                         }
                     }
                      
@@ -311,21 +313,23 @@ namespace SecretProject.Class.TileStuff
                 tiles[oldX, oldY] = ReplaceMenttile;
         }
 
-        public void ReplaceTileTemporary(int oldX, int oldY, int GID)
+        public void ReplaceTileTemporary(int oldX, int oldY, int GID, int dontReplace, float colorMultiplier)
         {
-         // if (TempTile != null && TempTile.DestinationRectangle != tiles[oldX, oldY].DestinationRectangle)
-        //  {
-          //      tiles[oldX, oldY] = TempTile;
-          //}
-            //else
-           // {
-                Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            if(TempTile != null)
+            {
+                
+
+            }
+            
+
+                Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier };
+
                 TempTile = tiles[oldX, oldY];
                 tiles[oldX, oldY] = ReplaceMenttile;
-           // }
-            //{
-                
-            //}
+            
+            OldIndexX = oldX;
+            OldIndexY = oldY;
+
 
             
         }

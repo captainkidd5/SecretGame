@@ -46,7 +46,10 @@ namespace SecretProject.Class.TileStuff
 
         public bool HasSound { get; set; }
 
-      //  public bool WasJustReplaced { get; set; } = false;
+        public Color TileColor { get; set; }
+        public float ColorMultiplier { get; set; } = 1;
+
+        //  public bool WasJustReplaced { get; set; } = false;
 
         //--------------------------------------
         //Rectangles
@@ -82,7 +85,8 @@ namespace SecretProject.Class.TileStuff
 
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
-            
+
+            TileColor = Color.White * ColorMultiplier;
 
         }
 

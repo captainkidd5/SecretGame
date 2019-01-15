@@ -177,36 +177,43 @@ namespace SecretProject.Class.UI
 
             for (int i = 0; i < 7; i++)
             {
+
                 if(AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    if (game.gameStages == Stages.Iliad)
+                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
                     {
 
 
                         Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
                     }
 
+                    //tempItem.ItemSprite.Color = Color.White;
                     DragSprite = null;
                 }
 
                 if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
                 {
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
-                    if(tempItem.IsPlaceable == true)
+                    if (tempItem.IsPlaceable == true)
                     {
+                       // tempItem.ItemSprite.Color = Color.White * .5f;
+                        //Draw building tiles of placeable object
                         for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
                         {
                             //SO CLOSE!
-                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j]);
+                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
                         }
+
+                        //Draw foreground tiles of placeable object
                         for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
                         {
-                            Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles1.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z]);
+                            Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles1.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
                         }
                     }
+                    //if not placeable, just drag the temp sprite instead
                     else
                     {
                         Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
