@@ -39,21 +39,16 @@ namespace SecretProject.Class.Stage
         public int TilesetTilesHigh { get; set; }
         public Texture2D TileSet { get; set; }
         public static TileManager BackGroundTiles { get; set; }
-        public static TileManager BuildingsTiles { get => BuildingsTiles1; set => BuildingsTiles1 = value; }
-        public static TileManager BuildingsTiles1 { get; set; }
-        public static TileManager MidGroundTiles { get => MidGroundTiles1; set => MidGroundTiles1 = value; }
-        public static TileManager MidGroundTiles1 { get; set; }
-        public static TileManager ForeGroundTiles { get; set; }
-        public static TileManager TestTiles { get; set; }
-        public TmxLayer Buildings { get => Buildings1; set => Buildings1 = value; }
-        public TmxLayer Buildings1 { get => Buildings2; set => Buildings2 = value; }
-        public TmxLayer Buildings2 { get => Buildings3; set => Buildings3 = value; }
-        public TmxLayer Buildings3 { get; set; }
-        public TmxLayer Background { get => Background1; set => Background1 = value; }
+        public static TileManager BuildingsTiles { get; set; }
+        public static TileManager MidGroundTiles { get; set; }
+        public static TileManager ForeGroundTiles{ get; set; }
+        public static TileManager PlacementTiles { get; set; }
+        public TmxLayer Buildings { get; set; }     
+        public TmxLayer Background { get ; set; }
         public TmxLayer Background1 { get; set; }
         public TmxLayer MidGround { get; set; }
         public TmxLayer foreGround { get; set; }
-        public TmxLayer TestLayer { get; set; }
+        public TmxLayer Placement { get; set; }
         public Texture2D JoeSprite { get; set; }
         public Texture2D RaftDown { get; set; }
         public Texture2D PuzzleFish { get; set; }
@@ -117,6 +112,7 @@ namespace SecretProject.Class.Stage
             Buildings = map.Layers["buildings"];
             MidGround = map.Layers["midGround"];
             foreGround = map.Layers["foreGround"];
+            Placement = map.Layers["placement"];
 
             //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
@@ -135,6 +131,7 @@ namespace SecretProject.Class.Stage
             BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
             MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
             ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
+            PlacementTiles = new TileManager(game, TileSet, map, Placement, mouse, graphicsDevice, content, false);
 
 
 
@@ -254,6 +251,7 @@ namespace SecretProject.Class.Stage
                 BackGroundTiles.Update(gameTime);
                 BuildingsTiles.Update(gameTime);
                 MidGroundTiles.Update(gameTime);
+                PlacementTiles.Update(gameTime);
 
                 foreach (WorldItem item in allItems)
                 {
@@ -293,6 +291,7 @@ namespace SecretProject.Class.Stage
                 BuildingsTiles.DrawTiles(spriteBatch, (float).2);
                 MidGroundTiles.DrawTiles(spriteBatch, (float).3);
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
+                PlacementTiles.DrawTiles(spriteBatch, (float).6);
 
 
                 //--------------------------------------

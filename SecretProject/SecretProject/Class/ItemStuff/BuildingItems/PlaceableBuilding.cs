@@ -12,6 +12,7 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
 
         public int[] ForeGroundID { get; set; }
         public int[] BuildingID { get; set; }
+        public int[,] TotalTiles { get; set; }
 
         public bool HasInteraction { get; set; }
 
@@ -24,6 +25,11 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
                 case "barrel":
                     ForeGroundID = new int[2] { 3433, 3434 };
                     BuildingID = new int[2] { 3533, 3534 };
+
+                    TotalTiles = new int[2, 2] {
+                        {3433, 3434 },
+                        {3533, 3534 }
+                    };
                     break;
             }
         }

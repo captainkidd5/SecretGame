@@ -313,7 +313,7 @@ namespace SecretProject.Class.TileStuff
                 tiles[oldX, oldY] = ReplaceMenttile;
         }
 
-        public void ReplaceTileTemporary(int oldX, int oldY, int GID, int dontReplace, float colorMultiplier)
+        public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier)
         {
             if(TempTile != null)
             {

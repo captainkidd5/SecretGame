@@ -183,7 +183,7 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
+                    if (game.gameStages == Stages.Iliad) //&& tempItem.IsPlaceable == false)
                     {
 
 
@@ -199,19 +199,33 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     if (tempItem.IsPlaceable == true)
                     {
-                       // tempItem.ItemSprite.Color = Color.White * .5f;
+                        // tempItem.ItemSprite.Color = Color.White * .5f;
                         //Draw building tiles of placeable object
-                        for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
+                        int j = 0;
+                        int k =0;
+
+                        for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
                         {
-                            //SO CLOSE!
-                            Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
+                            for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
+                            {
+                                Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f);
+                            }
                         }
 
-                        //Draw foreground tiles of placeable object
-                        for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
-                        {
-                            Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles1.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
-                        }
+
+
+                            /* for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
+                             {
+                                 //SO CLOSE!
+                                 Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
+                             }
+
+                             //Draw foreground tiles of placeable object
+                             for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
+                             {
+                                 Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
+                             }
+                             */
                     }
                     //if not placeable, just drag the temp sprite instead
                     else
