@@ -208,7 +208,7 @@ namespace SecretProject.Class.UI
                         {
                             for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
                             {
-                                Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f);
+                                Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, tempItem.Building.TotalTiles.GetLength(0), tempItem.Building.TotalTiles.GetLength(1));
                             }
                         }
 

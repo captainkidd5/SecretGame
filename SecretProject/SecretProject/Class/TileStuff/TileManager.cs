@@ -313,14 +313,25 @@ namespace SecretProject.Class.TileStuff
                 tiles[oldX, oldY] = ReplaceMenttile;
         }
 
-        public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier)
+        public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
         {
             if(TempTile != null)
             {
                 
 
             }
-            
+
+          /*  for(int i = xArrayLength; i < xArrayLength + 2; i ++)
+            {
+                for(int j = yArrayLength; j < yArrayLength + 2; j ++)
+                {
+                    if (tiles[oldX + j, oldY + i].GID != 0)
+                    {
+                        tiles[oldX + j, oldY + i].GID = 0;
+                    }
+                }
+            }
+            */
 
                 Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier };
 

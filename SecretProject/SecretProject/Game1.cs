@@ -49,13 +49,15 @@ namespace SecretProject
         SpriteBatch spriteBatch;
 
         //Declare Stages
-        public static MainMenu _mainMenu;
-        public static Iliad _iliad;
+        public static MainMenu mainMenu;
+        public static Iliad iliad;
 
         //Renderers
 
         //sound
         public static SoundBoard SoundManager;
+
+        public static int CurrentStage;
 
         
 
@@ -175,8 +177,8 @@ namespace SecretProject
             Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4, 4);
 
             //Load Stages
-            _mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-           _iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
+           iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
 
@@ -213,7 +215,7 @@ namespace SecretProject
                 case Stages.MainMenu:
                    // if(Game1.freeze == false)
                    // {
-                        _mainMenu.Update(gameTime);
+                        mainMenu.Update(gameTime);
 
                     //}
                     
@@ -224,7 +226,7 @@ namespace SecretProject
                     GraphicsDevice.Clear(Color.Black);
                     //if (Game1.freeze == false)
                     //{
-                        _iliad.Update(gameTime);
+                        iliad.Update(gameTime);
                     //}
                     break;
 
@@ -247,11 +249,13 @@ namespace SecretProject
             {
                 case Stages.MainMenu:
                     GraphicsDevice.Clear(Color.Black);
-                    _mainMenu.Draw(gameTime, spriteBatch);
+                    mainMenu.Draw(gameTime, spriteBatch);
+                    
                     break;
 
                 case Stages.Iliad:
-                    _iliad.Draw(gameTime, spriteBatch);
+                    iliad.Draw(gameTime, spriteBatch);
+                    
                     break;
             }
 
@@ -259,6 +263,8 @@ namespace SecretProject
             base.Draw(gameTime);
         }
         #endregion
+
+        
     }
     //IDEAS
     //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge
