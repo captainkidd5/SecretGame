@@ -131,7 +131,7 @@ namespace SecretProject.Class.Stage
             BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
             MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
             ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
-            PlacementTiles = new TileManager(game, TileSet, map, Placement, mouse, graphicsDevice, content, false);
+            PlacementTiles = new TileManager(game, TileSet, map, Placement, mouse, graphicsDevice, content, false) { isPlacement = true };
 
 
 

@@ -13,6 +13,7 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
         public int[] ForeGroundID { get; set; }
         public int[] BuildingID { get; set; }
         public int[,] TotalTiles { get; set; }
+        public int CurrentCoordinate { get; set; }
 
         public bool HasInteraction { get; set; }
 

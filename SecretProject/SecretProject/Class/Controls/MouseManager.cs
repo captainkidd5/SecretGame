@@ -41,6 +41,8 @@ namespace SecretProject.Class.Controls
         public int YTileOffSet { get; set; } = 640;
         public Camera2D Camera1 { get; set; }
 
+        public Vector2 SquarePosition { get; set; }
+
         Vector2 worldPosition;
 
         GraphicsDevice graphicsDevice;
@@ -71,14 +73,14 @@ namespace SecretProject.Class.Controls
             uIPosition.X = MyMouse.Position.X - 20;
             uIPosition.Y = MyMouse.Position.Y - 20;
 
-
+            
 
             WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
-
-            if(MyMouse.LeftButton == ButtonState.Pressed)
+            SquarePosition = GetMouseSquarePosition(WorldMousePosition);
+            if (MyMouse.LeftButton == ButtonState.Pressed)
             {
                 IsReleased = false;
             }
@@ -107,6 +109,11 @@ namespace SecretProject.Class.Controls
             {
                 IsClickedAndHeld = false;
             }
+        }
+
+        public Vector2 GetMouseSquarePosition(Vector2 mousePosition)
+        {
+            return new Vector2((int)(mousePosition.X / 16), (int)(mousePosition.Y / 16));
         }
 
 

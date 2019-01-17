@@ -49,6 +49,8 @@ namespace SecretProject.Class.TileStuff
         public Color TileColor { get; set; }
         public float ColorMultiplier { get; set; } = 1;
 
+        public bool IsTemporary { get; set; } = false;
+
         //  public bool WasJustReplaced { get; set; } = false;
 
         //--------------------------------------
@@ -75,7 +77,7 @@ namespace SecretProject.Class.TileStuff
             this.MapWidth = mapWidth;
             this.MapHeight = mapHeight;
 
-            TileFrame = gID - 1;
+            TileFrame = GID1 - 1;
 
             Column = TileFrame % tilesetTilesWide;
             Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
