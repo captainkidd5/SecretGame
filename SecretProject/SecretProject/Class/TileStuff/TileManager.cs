@@ -249,6 +249,10 @@ namespace SecretProject.Class.TileStuff
         #endregion
         //TODO: 
 
+
+
+
+
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
         {
@@ -272,6 +276,8 @@ namespace SecretProject.Class.TileStuff
                         
                 }
             }
+
+
         }
         #endregion
 
@@ -310,15 +316,6 @@ namespace SecretProject.Class.TileStuff
                 {
                     tiles[OldIndexX, OldIndexY].GID = 1;
                 }
-
-
-
-                /*
-                if (CurrentIndexY != OldIndexY + yArrayLength)
-                {
-                    tiles[OldIndexX, OldIndexY].GID = 1;
-                }
-                */
 
             }
 

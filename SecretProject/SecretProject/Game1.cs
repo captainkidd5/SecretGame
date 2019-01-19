@@ -19,8 +19,7 @@ using SecretProject.Class.TextureStuff;
 namespace SecretProject
 {
     //TODO:
-    //figure out what I want to do with component
-    //Figure out why the placeable buildings arent drawing correctly
+    //Mini draw tiles in Toolbar
    
 
     public enum Dir
@@ -199,6 +198,8 @@ namespace SecretProject
            // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
              //   Exit();
             this.IsMouseVisible = isMyMouseVisible;
+
+            myMouseManager.Update();
 
             //music
             MediaPlayer.IsRepeating = true;

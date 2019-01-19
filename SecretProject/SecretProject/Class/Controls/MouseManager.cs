@@ -32,6 +32,11 @@ namespace SecretProject.Class.Controls
 
         public MouseState MyMouse { get; set; }
         public Rectangle MouseRectangle { get; set; }
+        public Rectangle MouseSquareCoordinateRectangle { get; set; }
+
+        public int MouseSquareCoordinateX { get; set; }
+        public int MouseSquareCoordinateY { get; set; }
+
         public float RelativeMouseX { get; set; }
         public float RelativeMouseY { get; set; }
         public int YOffSet1 { get; set; } = 367;
@@ -79,7 +84,12 @@ namespace SecretProject.Class.Controls
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
+            MouseSquareCoordinateRectangle = new Rectangle((int)SquarePosition.X, (int)SquarePosition.Y, 16, 16);
             SquarePosition = GetMouseSquarePosition(WorldMousePosition);
+
+            MouseSquareCoordinateX = (int)(WorldMousePosition.X / 16);
+            MouseSquareCoordinateY = (int)(WorldMousePosition.Y / 16);
+
             if (MyMouse.LeftButton == ButtonState.Pressed)
             {
                 IsReleased = false;
@@ -115,6 +125,8 @@ namespace SecretProject.Class.Controls
         {
             return new Vector2((int)(mousePosition.X / 16), (int)(mousePosition.Y / 16));
         }
+
+        
 
 
         public bool IsHovering(Rectangle rectangle)

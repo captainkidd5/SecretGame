@@ -62,7 +62,7 @@ namespace SecretProject.Class.Stage
 
         public override void Update(GameTime gameTime)
         {
-            customMouse.Update();
+           // customMouse.Update();
             //--------------------------------------
             //Update Buttons
 

@@ -37,7 +37,7 @@ namespace SecretProject.Class.Stage
         public int TileHeight { get; set; }
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
-        public Texture2D TileSet { get; set; }
+        public static Texture2D TileSet { get; set; }
         public static TileManager BackGroundTiles { get; set; }
         public static TileManager BuildingsTiles { get; set; }
         public static TileManager MidGroundTiles { get; set; }
@@ -205,7 +205,7 @@ namespace SecretProject.Class.Stage
 
             //mouse
 
-            customMouse.Update();
+           // customMouse.Update();
             
 
 

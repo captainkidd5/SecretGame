@@ -15,6 +15,7 @@ using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
+using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -54,6 +55,8 @@ namespace SecretProject.Class.UI
         public Texture2D InvSlot6Texture { get; set; }
         public Texture2D InvSlot7Texture { get; set; }
 
+        public InventoryItem TempItem { get; set; }
+
         public Rectangle BackGroundTextureRectangle { get; set; }
 
         public bool MouseOverToolBar { get; set; }
@@ -71,6 +74,8 @@ namespace SecretProject.Class.UI
         public Sprite DragSprite { get; set; }
         public Texture2D DragSpriteTexture { get; set; }
         public bool DragToggle { get; set; }
+
+        public bool DragToggleBuilding { get; set; } = false;
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -179,6 +184,8 @@ namespace SecretProject.Class.UI
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime)
         {
+
+            DragToggleBuilding = false;
             for (int i = 0; i < 7; i++)
             {
                 if (inventory.currentInventory.ElementAt(i) == null)
@@ -228,35 +235,24 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     if (tempItem.IsPlaceable == true)
                     {
+                        DragToggleBuilding = true;
+                        this.TempItem = tempItem;
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // tempItem.ItemSprite.Color = Color.White * .5f;
                         //Draw building tiles of placeable object
-                        int j = 0;
-                        int k = 0;
+                      //  int j = 0;
+                       // int k = 0;
 
-                        for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
-                        {
-                            for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
-                            {
-                                Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
-                            }
-                        }
+                       // for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
+                       // {
+                        //    for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
+                         //   {
+                         //       Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
+                           // }
+                      //  }
 
-                        //  tempItem.Building.CurrentCoordinate = 
-
-                        /* for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
-                         {
-                             //SO CLOSE!
-                             Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
-                         }
-
-                         //Draw foreground tiles of placeable object
-                         for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
-                         {
-                             Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
-                         }
-                         */
                     }
-                    //if not placeable, just drag the temp sprite instead
+
                     else
                     {
                         Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
@@ -276,6 +272,23 @@ namespace SecretProject.Class.UI
                 }
 
             }
+        }
+
+        public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < GIDArray.GetLength(0); i++)
+            {
+                for(int j = 0; j < GIDArray.GetLength(1); j++)
+                {
+                    Tile tempTile = new Tile(CustomMouse.MouseSquareCoordinateX + (i*16), CustomMouse.MouseSquareCoordinateY + (j*16), GIDArray[i, j], 100, 100, 100, 100, 0);
+                    spriteBatch.Draw(Iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
+                }
+                
+            }
+
+           
+            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -319,6 +332,11 @@ namespace SecretProject.Class.UI
             InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
             InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
 
+
+            if(DragToggleBuilding)
+            {
+                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
+            }
 
             // spriteBatch.End();
         }
