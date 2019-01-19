@@ -15,7 +15,8 @@ namespace SecretProject.Class.TileStuff
         public float X { get; set; }
         public float Y { get; set; }
 
-        public int GID { get { return GID1 -1; } set { GID1 = value; } }
+        private int gid;
+        public int GID { get { return gid -1; } set { gid = value; } }
         public bool IsSelected { get; set; } = false;
 
         public int TilesetTilesWide { get; set; }
@@ -28,7 +29,6 @@ namespace SecretProject.Class.TileStuff
         public int Column { get; set; }
         public int Row { get; set; }
         public int TileNumber { get; set; }
-        public int GID1 { get; set; }
         public float OldY { get => OldY1; set => OldY1 = value; }
         public float OldY1 { get; set; }
         public float OldX { get; set; }
@@ -71,13 +71,13 @@ namespace SecretProject.Class.TileStuff
             this.OldX = x;
             this.OldY = y;
             
-            this.GID1 = gID;
+            this.GID = gID;
             this.TilesetTilesWide = tilesetTilesWide;
             this.TilesetTilesHigh = tilesetTilesHigh;
             this.MapWidth = mapWidth;
             this.MapHeight = mapHeight;
 
-            TileFrame = GID1 - 1;
+            TileFrame = GID;
 
             Column = TileFrame % tilesetTilesWide;
             Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
@@ -133,15 +133,4 @@ namespace SecretProject.Class.TileStuff
 
     }
 
-    public class TileHitboxInfo
-    {
-        public int iD;
-        public Rectangle hitBox;
-
-        public TileHitboxInfo(int iD, TmxObject obj)
-        {
-            this.iD = iD;
-            hitBox = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
-        }
-    }
 }

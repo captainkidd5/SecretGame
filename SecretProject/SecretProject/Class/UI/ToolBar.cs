@@ -42,7 +42,7 @@ namespace SecretProject.Class.UI
         public Button InvSlot7 { get; set; }
         public Texture2D ToolBarButton { get; set; }
         public SpriteFont Font { get; set; }
-        public List<Button> AllButtons { get; set; }
+        public List<Button> AllNonInventoryButtons { get; set; }
         public List<Button> AllSlots { get; set; }
         public MouseManager CustomMouse { get; set; }
 
@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Button List Stuff
-            AllButtons = new List<Button>()
+            AllNonInventoryButtons = new List<Button>()
             {
                 OpenInventory,
                 InGameMenu
@@ -137,7 +137,49 @@ namespace SecretProject.Class.UI
 
             this.inventory = inventory;
 
-            for(int i = 0; i < 7; i ++)
+            UpdateNonInventoryButtons();
+
+            UpdateInventoryButtons(inventory, gameTime);
+
+
+            //--------------------------------------
+            //Switch GameStages on click
+
+            
+
+            if (CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = true;
+            }
+            if (!CustomMouse.IsHovering(BackGroundTextureRectangle))
+            {
+                MouseOverToolBar = false;
+            }
+
+        }
+
+        public void UpdateNonInventoryButtons()
+        {
+            for (int i = 0; i < AllNonInventoryButtons.Count; i++)
+            {
+                AllNonInventoryButtons[i].Update();
+            }
+
+            if (InGameMenu.isClicked)
+            {
+
+                UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
+            }
+            else if (OpenInventory.isClicked)
+            {
+
+            }
+            OpenInventory.isClicked = false;
+        }
+
+        public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime)
+        {
+            for (int i = 0; i < 7; i++)
             {
                 if (inventory.currentInventory.ElementAt(i) == null)
                 {
@@ -147,8 +189,8 @@ namespace SecretProject.Class.UI
                 {
                     AllSlots[i].ItemCounter = inventory.currentInventory.ElementAt(i).SlotItems.Count;
                 }
-                
-                if(AllSlots[i].ItemCounter != 0)
+
+                if (AllSlots[i].ItemCounter != 0)
                 {
                     AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].Texture;
                 }
@@ -160,25 +202,12 @@ namespace SecretProject.Class.UI
                 AllSlots[i].Update();
             }
 
-            for(int i = 0; i < AllButtons.Count; i++)
-            {
-                AllButtons[i].Update();
-            }
 
-            if (InGameMenu.isClicked)
-            {
-                
-                UserInterface.IsEscMenu = !UserInterface.IsEscMenu;
-            }
-            else if (OpenInventory.isClicked)
-            {
-
-            }
 
             for (int i = 0; i < 7; i++)
             {
 
-                if(AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
+                if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
@@ -202,7 +231,7 @@ namespace SecretProject.Class.UI
                         // tempItem.ItemSprite.Color = Color.White * .5f;
                         //Draw building tiles of placeable object
                         int j = 0;
-                        int k =0;
+                        int k = 0;
 
                         for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
                         {
@@ -212,20 +241,20 @@ namespace SecretProject.Class.UI
                             }
                         }
 
-                      //  tempItem.Building.CurrentCoordinate = 
+                        //  tempItem.Building.CurrentCoordinate = 
 
-                            /* for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
-                             {
-                                 //SO CLOSE!
-                                 Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
-                             }
+                        /* for(int j = 0; j < tempItem.Building.BuildingID.Length; j++)
+                         {
+                             //SO CLOSE!
+                             Iliad.BuildingsTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + j, Iliad.BuildingsTiles.CurrentIndexY, tempItem.Building.BuildingID[j], 3, .5f);
+                         }
 
-                             //Draw foreground tiles of placeable object
-                             for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
-                             {
-                                 Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
-                             }
-                             */
+                         //Draw foreground tiles of placeable object
+                         for(int z = 0; z < tempItem.Building.ForeGroundID.Length; z++)
+                         {
+                             Iliad.ForeGroundTiles.ReplaceTileTemporary(Iliad.BuildingsTiles.CurrentIndexX + z, Iliad.MidGroundTiles.CurrentIndexY - 1, tempItem.Building.ForeGroundID[z], 3, .5f);
+                         }
+                         */
                     }
                     //if not placeable, just drag the temp sprite instead
                     else
@@ -234,36 +263,21 @@ namespace SecretProject.Class.UI
                         DragSprite = tempSprite;
 
                     }
-                    
+
                 }
 
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
-                    if(DragSprite != null)
+                    if (DragSprite != null)
                     {
                         DragSprite.Update(gameTime, CustomMouse.UIPosition);
                     }
-                   
+
                 }
 
             }
-
-
-            //--------------------------------------
-            //Switch GameStages on click
-
-            OpenInventory.isClicked = false;
-
-            if (CustomMouse.IsHovering(BackGroundTextureRectangle))
-            {
-                MouseOverToolBar = true;
-            }
-            if (!CustomMouse.IsHovering(BackGroundTextureRectangle))
-            {
-                MouseOverToolBar = false;
-            }
-
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Begin();
