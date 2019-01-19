@@ -68,6 +68,8 @@ namespace SecretProject.Class.Stage
 
         public static List<WorldItem> allItems;
 
+        public UserInterface MainUserInterface { get; set; }
+
         //SAVE STUFF
 
 
@@ -167,14 +169,14 @@ namespace SecretProject.Class.Stage
 
             // buildingsTiles.ReplaceTileGid = 3235;
 
-           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true) { IsBeingDragged = true });
-           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
-           // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
+            // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(845, 680), true) { IsBeingDragged = true });
+            // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(900, 680), true));
+            // allSprites.Add(new Sprite(graphicsDevice, content, HouseKey, new Vector2(1200, 680), true));
 
-            
+
 
             //UserInterface
-            mainUserInterface = new UserInterface(game, graphicsDevice, content, mouse);
+            this.MainUserInterface = mainUserInterface;
 
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
@@ -200,7 +202,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            mainUserInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
+            MainUserInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
 
 
             //mouse
@@ -293,6 +295,24 @@ namespace SecretProject.Class.Stage
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
 
+                if(MainUserInterface.BottomBar.DragToggleBuilding)
+                {
+                    MainUserInterface.BottomBar.MiniDrawTiles(MainUserInterface.BottomBar.TempItem.Building.TotalTiles, spriteBatch);
+                    if(MainUserInterface.BottomBar.DragToggleBuilding == false)
+                    {
+                        for (int i = 0; i < MainUserInterface.BottomBar.TempItem.Building.BuildingID.GetLength(0); i++)
+                        {
+                            for (int j = 0; j < MainUserInterface.BottomBar.TempItem.Building.BuildingID.GetLength(1); j++)
+                            {
+                                BuildingsTiles.Tiles[customMouse.MouseSquareCoordinateX + i, customMouse.MouseSquareCoordinateY + j].GID = MainUserInterface.BottomBar.TempItem.Building.BuildingID[0];
+                            }
+                        }
+                       // BuildingsTiles.Tiles[customMouse.MouseSquareCoordinateX, customMouse.MouseSquareCoordinateY].GID = MainUserInterface.BottomBar.TempItem.Building.BuildingID[0];
+                    }
+                }
+
+                //drawn in wrong spot
+
 
                 //--------------------------------------
                 //Draw sprite list
@@ -328,7 +348,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Draw Toolbar
 
-            mainUserInterface.Draw(spriteBatch);
+            MainUserInterface.Draw(spriteBatch);
         }
 
         

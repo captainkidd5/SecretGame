@@ -280,7 +280,7 @@ namespace SecretProject.Class.UI
             {
                 for(int j = 0; j < GIDArray.GetLength(1); j++)
                 {
-                    Tile tempTile = new Tile(CustomMouse.MouseSquareCoordinateX + (i*16), CustomMouse.MouseSquareCoordinateY + (j*16), GIDArray[i, j], 100, 100, 100, 100, 0);
+                    Tile tempTile = new Tile(CustomMouse.MouseSquareCoordinateX + j , CustomMouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
                     spriteBatch.Draw(Iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
                 
@@ -333,10 +333,10 @@ namespace SecretProject.Class.UI
             InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
 
 
-            if(DragToggleBuilding)
-            {
-                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
-            }
+           // if(DragToggleBuilding)
+           // {
+            //    MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
+           // }
 
             // spriteBatch.End();
         }

@@ -87,7 +87,7 @@ namespace SecretProject
         public static bool freeze;
 
         //UserInterface
-        public UserInterface userInterface;
+        public static UserInterface userInterface;
 
         //player
         public Texture2D JoeSprite { get; set; }
@@ -175,11 +175,13 @@ namespace SecretProject
             Player.animations[2] = new AnimatedSprite(GraphicsDevice, joeLeft, 1, 4, 4);
             Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4, 4);
 
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
+
             //Load Stages
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
            iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
+            
 
 
         }
