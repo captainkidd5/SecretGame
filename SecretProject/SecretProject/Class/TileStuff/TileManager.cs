@@ -393,26 +393,7 @@ namespace SecretProject.Class.TileStuff
         
 
         //NEEDS WORK
-        public void IsBeingSelected(int oldX, int oldY)
-        {
-            
-
-            if(tiles[oldX, oldY].IsSelected == true)
-            {
-               // Game1.isMyMouseVisible = false;
-                
-                if(myMouse.IsClicked)
-                {
-                   tiles[oldX, oldY].IsSelected = false;
-                    Game1.isMyMouseVisible = true;
-                }
-            }
-            if(myMouse.IsClicked)
-            {
-                tiles[oldX, oldY].IsSelected = true;
-            }
-
-        }
+       
 
     }
 }

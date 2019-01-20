@@ -230,7 +230,7 @@ namespace SecretProject.Class.UI
 
                     if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
                     {
-                        Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                       // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
 
                         DragoToggleBuildingDropped = true;
                     }

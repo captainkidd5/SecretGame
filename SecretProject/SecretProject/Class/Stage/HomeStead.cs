@@ -23,9 +23,8 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage
 {
-    public class Iliad : Component
+    public class HomeStead : Component
     {
-        
         #region FIELDS
 
         private bool showBorders = false;
@@ -41,18 +40,15 @@ namespace SecretProject.Class.Stage
         public static TileManager BackGroundTiles { get; set; }
         public static TileManager BuildingsTiles { get; set; }
         public static TileManager MidGroundTiles { get; set; }
-        public static TileManager ForeGroundTiles{ get; set; }
+        public static TileManager ForeGroundTiles { get; set; }
         public static TileManager PlacementTiles { get; set; }
-        public TmxLayer Buildings { get; set; }     
-        public TmxLayer Background { get ; set; }
+        public TmxLayer Buildings { get; set; }
+        public TmxLayer Background { get; set; }
         public TmxLayer Background1 { get; set; }
         public TmxLayer MidGround { get; set; }
         public TmxLayer foreGround { get; set; }
         public TmxLayer Placement { get; set; }
         public Texture2D JoeSprite { get; set; }
-        public Texture2D RaftDown { get; set; }
-        public Texture2D PuzzleFish { get; set; }
-        public Texture2D HouseKey { get; set; }
         public Song MainTheme { get; set; }
         public KeyboardState KState { get; set; }
         internal ToolBar ToolBar { get; set; }
@@ -77,9 +73,7 @@ namespace SecretProject.Class.Stage
 
         #endregion
 
-        #region CONSTRUCTOR
-
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player) : base(game, graphicsDevice, content, mouse, userInterface)
+        public HomeStead(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player) : base(game, graphicsDevice, content, mouse, userInterface)
         {
             //ORDER MATTERS!
             //Lists
@@ -104,7 +98,7 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Tile/map
-            map = new TmxMap("Content/Map/worldMap.tmx");
+            map = new TmxMap("Content/Map/HomeStead.tmx");
 
             //tileset
             TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
@@ -119,7 +113,7 @@ namespace SecretProject.Class.Stage
             //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
             //object layer
-           // var buildingLayer = map.ObjectGroups["collision"];
+            // var buildingLayer = map.ObjectGroups["collision"];
 
 
             //map specifications
@@ -129,7 +123,7 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice,content, false);
+            BackGroundTiles = new TileManager(game, TileSet, map, Background, mouse, graphicsDevice, content, false);
             BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
             MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
             ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
@@ -147,20 +141,19 @@ namespace SecretProject.Class.Stage
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
-            
+
             //sprite textures
-            PuzzleFish = content.Load<Texture2D>("Item/puzzleFish");
-            HouseKey = content.Load<Texture2D>("Item/houseKey");
+
 
             //--------------------------------------
             //camera
             this.Cam = camera;
-           Game1.cam.Zoom = 3f;
-           //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
+            Game1.cam.Zoom = 3f;
+            //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
-            MainTheme = content.Load<Song>("Music/IntheForest"); 
+            MainTheme = content.Load<Song>("Music/IntheForest");
             //MediaPlayer.Play(MainTheme);
 
             // midGroundTiles.isActive = true;
@@ -195,7 +188,7 @@ namespace SecretProject.Class.Stage
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
         }
 
-        #endregion
+
 
         #region UPDATE
         public override void Update(GameTime gameTime)
@@ -215,8 +208,8 @@ namespace SecretProject.Class.Stage
 
             //mouse
 
-           // customMouse.Update();
-            
+            // customMouse.Update();
+
 
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
@@ -250,11 +243,11 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    if(spr.IsBeingDragged == true)
+                    if (spr.IsBeingDragged == true)
                     {
                         spr.Update(gameTime, customMouse.WorldMousePosition);
                     }
-                    
+
 
                 }
 
@@ -274,7 +267,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //update camera
 
-                
+
 
 
 

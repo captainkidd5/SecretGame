@@ -36,6 +36,7 @@ namespace SecretProject
         //WorldMap = 1,
         Iliad = 2,
         Exit = 3,
+        HomeStead = 4,
 
     }
 
@@ -50,6 +51,7 @@ namespace SecretProject
         //Declare Stages
         public static MainMenu mainMenu;
         public static Iliad iliad;
+        public static HomeStead homeStead;
 
         //Renderers
 
@@ -180,8 +182,9 @@ namespace SecretProject
             //Load Stages
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
            iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+            homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
-            
+
 
 
         }
@@ -233,6 +236,15 @@ namespace SecretProject
                     //}
                     break;
 
+                case Stages.HomeStead:
+                    GraphicsDevice.Clear(Color.Black);
+                    //if (Game1.freeze == false)
+                    //{
+                    homeStead.Update(gameTime);
+                    //}
+                    break;
+
+
             }
 
 
@@ -259,6 +271,11 @@ namespace SecretProject
                 case Stages.Iliad:
                     iliad.Draw(gameTime, spriteBatch);
                     
+                    break;
+
+                case Stages.HomeStead:
+                    homeStead.Draw(gameTime, spriteBatch);
+
                     break;
             }
 
