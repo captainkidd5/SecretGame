@@ -177,6 +177,26 @@ namespace SecretProject.Class.TileStuff
         public bool TileInteraction { get; set; } = false;
 
 
+        public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY)
+        {
+            if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[indexX, indexY].GID))
+            {
+
+
+                for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[indexX, indexY].GID].ObjectGroups[0].Objects.Count; k++)
+                {
+                    TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[indexX, indexY].GID].ObjectGroups[0].Objects[k];
+
+                    tiles[indexX, indexY].TileObject = new ObjectBody(graphicsDevice,
+                        new Rectangle(tiles[indexX, indexY].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                        tiles[indexX, indexY].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                        (int)Math.Ceiling(tempObj.Height)), tiles[indexX, indexY].DestinationRectangle.X);
+
+                    Iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
+                }
+            }
+        }
+
         #region UPDATE
         public void Update(GameTime gameTime)
         {
