@@ -76,6 +76,7 @@ namespace SecretProject.Class.UI
         public bool DragToggle { get; set; }
 
         public bool DragToggleBuilding { get; set; } = false;
+        public bool DragoToggleBuildingDropped { get; set; } = false;
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -186,6 +187,7 @@ namespace SecretProject.Class.UI
         {
 
             DragToggleBuilding = false;
+            DragoToggleBuildingDropped = false;
             for (int i = 0; i < 7; i++)
             {
                 if (inventory.currentInventory.ElementAt(i) == null)
@@ -219,11 +221,18 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    if (game.gameStages == Stages.Iliad) //&& tempItem.IsPlaceable == false)
+                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
                     {
 
 
                         Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                    }
+
+                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
+                    {
+                        Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+
+                        DragoToggleBuildingDropped = true;
                     }
 
                     //tempItem.ItemSprite.Color = Color.White;
@@ -285,10 +294,6 @@ namespace SecretProject.Class.UI
                 }
                 
             }
-
-           
-            
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

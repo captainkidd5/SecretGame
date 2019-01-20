@@ -298,16 +298,24 @@ namespace SecretProject.Class.Stage
                 if(MainUserInterface.BottomBar.DragToggleBuilding)
                 {
                     MainUserInterface.BottomBar.MiniDrawTiles(MainUserInterface.BottomBar.TempItem.Building.TotalTiles, spriteBatch);
-                    if(MainUserInterface.BottomBar.DragToggleBuilding == false)
+                    
+                }
+                if (MainUserInterface.BottomBar.DragoToggleBuildingDropped == true)
+                {
+                    for (int i = 0; i < MainUserInterface.BottomBar.TempItem.Building.BuildingID.Length; i++)
                     {
-                        for (int i = 0; i < MainUserInterface.BottomBar.TempItem.Building.BuildingID.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < MainUserInterface.BottomBar.TempItem.Building.BuildingID.GetLength(1); j++)
-                            {
-                                BuildingsTiles.Tiles[customMouse.MouseSquareCoordinateX + i, customMouse.MouseSquareCoordinateY + j].GID = MainUserInterface.BottomBar.TempItem.Building.BuildingID[0];
-                            }
-                        }
-                       // BuildingsTiles.Tiles[customMouse.MouseSquareCoordinateX, customMouse.MouseSquareCoordinateY].GID = MainUserInterface.BottomBar.TempItem.Building.BuildingID[0];
+                          
+                        Tile TempTile;
+                        TempTile = new Tile(customMouse.MouseSquareCoordinateX + i, customMouse.MouseSquareCoordinateY + 1, MainUserInterface.BottomBar.TempItem.Building.BuildingID[i], 100, 100, 100, 100, 0);
+                        BuildingsTiles.Tiles[customMouse.MouseSquareCoordinateX + i + 1, customMouse.MouseSquareCoordinateY] = TempTile;
+
+                        
+                    }
+                    for (int j = 0; j < MainUserInterface.BottomBar.TempItem.Building.ForeGroundID.Length; j++)
+                    {
+                        Tile TempTile;
+                        TempTile = new Tile(customMouse.MouseSquareCoordinateX + j, customMouse.MouseSquareCoordinateY, MainUserInterface.BottomBar.TempItem.Building.ForeGroundID[j], 100, 100, 100, 100, 0);
+                        ForeGroundTiles.Tiles[customMouse.MouseSquareCoordinateX + j + 1, customMouse.MouseSquareCoordinateY] = TempTile;
                     }
                 }
 
