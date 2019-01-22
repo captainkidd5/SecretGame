@@ -171,7 +171,7 @@ namespace SecretProject
             joeRight = AllTextures.joeRight;
             joeLeft = AllTextures.joeLeft;
 
-            Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 7, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 
             Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 7, 28);
 

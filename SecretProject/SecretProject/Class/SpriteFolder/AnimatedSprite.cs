@@ -45,6 +45,7 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
+        //constructor for more complicated sprite atlases
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames, int desiredColumnStart, int desiredRowStart, int desiredColumnFinish)
         {
             Texture = texture;
@@ -53,7 +54,7 @@ namespace SecretProject.Class.SpriteFolder
             currentFrame = 0;
             //totalFrames = Rows * Columns;
             totalFrames = desiredColumnFinish - desiredColumnStart * rows;
-            speed = 0.15D;
+            speed = 0.10D;
             timer = speed;
             this.DesiredColumnStart = desiredColumnStart;
             this.HitBoxFrames = hitBoxFrames;
