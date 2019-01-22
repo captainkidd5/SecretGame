@@ -16,6 +16,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D joeRight;
         public Texture2D joeLeft;
 
+        public Texture2D MainCharacterSpriteStrip;
+
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -25,6 +27,9 @@ namespace SecretProject.Class.TextureStuff
             joeUp = content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
             joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
             joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
+
+            MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
+
         }
 
     }

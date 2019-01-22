@@ -71,7 +71,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y + 5, (int)Texture.Width, (int)Texture.Height - 5);
+                return new Rectangle((int)position.X, (int)position.Y + 5, (int)Texture.Width / FrameNumber, (int)Texture.Height - 5);
             }
 
         }

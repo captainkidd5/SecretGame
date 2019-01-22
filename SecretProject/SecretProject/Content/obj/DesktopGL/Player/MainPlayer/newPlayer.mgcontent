@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Mastodon/MastodonLeftSide.png</SourceFile>
-  <SourceTime>2019-01-20T16:23:48.6990573-08:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/NPC/Mastodon/MastodonLeftSide.xnb</DestFile>
-  <DestTime>2019-01-20T16:24:15.7230906-08:00</DestTime>
+  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/newPlayer.png</SourceFile>
+  <SourceTime>2019-01-21T15:40:47.2755906-08:00</SourceTime>
+  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Player/MainPlayer/newPlayer.xnb</DestFile>
+  <DestTime>2019-01-21T15:41:33.5654049-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

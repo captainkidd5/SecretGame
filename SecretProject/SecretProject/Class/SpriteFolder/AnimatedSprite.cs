@@ -27,6 +27,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public int HitBoxFrames { get; set; }
 
+        public int DesiredColumnStart { get; set; }
+
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames)
         {
             Texture = texture;
@@ -39,7 +41,25 @@ namespace SecretProject.Class.SpriteFolder
             this.HitBoxFrames = hitBoxFrames;
             this.rectangleTexture = texture;
             SetRectangleTexture(graphicsDevice, texture);
-            
+
+
+        }
+
+        public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames, int desiredColumnStart, int desiredRowStart, int desiredColumnFinish)
+        {
+            Texture = texture;
+            Rows = rows;
+            Columns = columns;
+            currentFrame = 0;
+            //totalFrames = Rows * Columns;
+            totalFrames = desiredColumnFinish - desiredColumnStart * rows;
+            speed = 0.15D;
+            timer = speed;
+            this.DesiredColumnStart = desiredColumnStart;
+            this.HitBoxFrames = hitBoxFrames;
+            this.rectangleTexture = texture;
+            SetRectangleTexture(graphicsDevice, texture);
+
 
         }
 
@@ -52,6 +72,7 @@ namespace SecretProject.Class.SpriteFolder
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice, Texture2D texture)
         {
+            
             var Colors = new List<Color>();
             for (int y = 0; y < texture.Height; y++)
             {
@@ -72,8 +93,9 @@ namespace SecretProject.Class.SpriteFolder
 
                 }
             }
-            rectangleTexture = new Texture2D(graphicsDevice, texture.Width / 4, texture.Height);
+            rectangleTexture = new Texture2D(graphicsDevice, texture.Width / HitBoxFrames, texture.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
+            
         }
 
         public void Update(GameTime gameTime)
@@ -97,7 +119,7 @@ namespace SecretProject.Class.SpriteFolder
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
             int row = (int)((float)currentFrame / (float)Columns);
-            int column = currentFrame % Columns;
+            int column = (currentFrame % Columns) + DesiredColumnStart;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
@@ -122,4 +144,3 @@ namespace SecretProject.Class.SpriteFolder
         }
     }
 }
-

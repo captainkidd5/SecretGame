@@ -100,6 +100,8 @@ namespace SecretProject
         Texture2D joeLeft;
         public static Player Player { get; set; }
 
+        public Texture2D MainCharacterTexture { get; set; }
+
         public static Texture2D ItemAtlas;
 
         public static Random RGenerator = new Random();
@@ -162,20 +164,22 @@ namespace SecretProject
 
             JoeSprite = AllTextures.JoeSprite;
 
+            MainCharacterTexture = AllTextures.MainCharacterSpriteStrip;
+
             joeDown = AllTextures.joeDown;
             joeUp = AllTextures.joeUp;
             joeRight = AllTextures.joeRight;
             joeLeft = AllTextures.joeLeft;
 
-            Player = new Player("joe", new Vector2(900, 250), JoeSprite, 4, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 7, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 
-            Player.Anim = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4, 4);
+            Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 7, 28);
 
             //joe animation 
-            Player.animations[0] = new AnimatedSprite(GraphicsDevice, joeDown, 1, 4, 4);
-            Player.animations[1] = new AnimatedSprite(GraphicsDevice, joeUp, 1, 4, 4);
-            Player.animations[2] = new AnimatedSprite(GraphicsDevice, joeLeft, 1, 4, 4);
-            Player.animations[3] = new AnimatedSprite(GraphicsDevice, joeRight, 1, 4, 4);
+            Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 0, 1, 7);
+            Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28,21, 1, 28);
+            Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 7, 1, 14);
+            Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 14, 1, 21);
 
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Enemy/enemyship1.png</SourceFile>
-  <SourceTime>2019-01-13T22:43:27.3797072-08:00</SourceTime>
+  <SourceTime>2019-01-20T16:23:48.6811054-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Enemy/enemyship1.xnb</DestFile>
-  <DestTime>2019-01-20T12:51:58.9614707-08:00</DestTime>
+  <DestTime>2019-01-20T16:24:14.2817972-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

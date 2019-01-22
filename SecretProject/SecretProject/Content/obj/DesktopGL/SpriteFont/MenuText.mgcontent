@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</SourceFile>
-  <SourceTime>2019-01-13T22:43:27.4056378-08:00</SourceTime>
+  <SourceTime>2019-01-20T16:23:48.7140167-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SpriteFont/MenuText.xnb</DestFile>
-  <DestTime>2019-01-20T12:52:00.9981494-08:00</DestTime>
+  <DestTime>2019-01-20T16:24:16.1485234-08:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
