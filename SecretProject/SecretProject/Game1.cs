@@ -173,13 +173,15 @@ namespace SecretProject
 
             Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
 
-            Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 7, 28);
+            Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //joe animation 
-            Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 0, 1, 7);
-            Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28,21, 1, 28);
-            Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 7, 1, 14);
-            Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 28, 28, 14, 1, 21);
+            Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
+
+            //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
+            Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25,18, 1, 25);
+            Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 6, 1, 12);
+            Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 12, 1, 18);
 
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
 

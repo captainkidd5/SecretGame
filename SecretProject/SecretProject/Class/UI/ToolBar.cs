@@ -345,5 +345,33 @@ namespace SecretProject.Class.UI
 
             // spriteBatch.End();
         }
+
+        public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles)
+        {
+            if (DragToggleBuilding)
+            {
+                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
+
+            }
+            if (DragoToggleBuildingDropped == true)
+            {
+                for (int i = 0; i < TempItem.Building.BuildingID.Length; i++)
+                {
+
+                    Tile TempTile;
+                    TempTile = new Tile(CustomMouse.MouseSquareCoordinateX + i, CustomMouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100, 0);
+                    buildingsTiles.Tiles[CustomMouse.MouseSquareCoordinateX + i + 1, CustomMouse.MouseSquareCoordinateY] = TempTile;
+                    buildingsTiles.AddObjectToBuildingTile(TempTile, CustomMouse.MouseSquareCoordinateX + i + 1, CustomMouse.MouseSquareCoordinateY);
+
+
+                }
+                for (int j = 0; j < TempItem.Building.ForeGroundID.Length; j++)
+                {
+                    Tile TempTile;
+                    TempTile = new Tile(CustomMouse.MouseSquareCoordinateX + j, CustomMouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100, 0);
+                    foreGroundTiles.Tiles[CustomMouse.MouseSquareCoordinateX + j + 1, CustomMouse.MouseSquareCoordinateY] = TempTile;
+                }
+            }
+        }
     }
 }
