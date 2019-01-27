@@ -66,6 +66,8 @@ namespace SecretProject.Class.Stage
 
         public UserInterface MainUserInterface { get; set; }
 
+        
+
         //SAVE STUFF
 
 

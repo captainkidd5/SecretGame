@@ -29,6 +29,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public int DesiredColumnStart { get; set; }
 
+        public bool IsAnimating { get; set; }
+
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames)
         {
             Texture = texture;
@@ -114,6 +116,21 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
+        public void PlayOnce(GameTime gameTime)
+        {
+            
+            timer -= gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (timer <= 0)
+            {
+                currentFrame++;
+                timer = speed;
+            }
+            if (currentFrame == totalFrames)
+                currentFrame = 0;
+           // Draw(gameTime, location, layerDepth);
+        }
+
         public void Draw(SpriteBatch spriteBatch, Vector2 location, float layerDepth)
         {
             this.MyDepth = layerDepth;
@@ -136,6 +153,9 @@ namespace SecretProject.Class.SpriteFolder
 
 
             }
+
+
+
         }
 
 

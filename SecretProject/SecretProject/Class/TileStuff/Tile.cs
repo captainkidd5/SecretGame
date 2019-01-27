@@ -83,7 +83,7 @@ namespace SecretProject.Class.TileStuff
             Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
 
             this.X = (x % mapWidth) * TileWidth;
-            this.Y = (y % mapWidth) * TileHeight;
+            this.Y = (y % mapHeight) * TileHeight;
 
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);

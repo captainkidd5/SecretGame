@@ -58,6 +58,11 @@ namespace SecretProject.Class.ObjectFolder
             this.Identifier = Identifier;
         }
 
+        public ObjectBody()
+        {
+
+        }
+
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {

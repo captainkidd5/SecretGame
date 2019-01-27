@@ -67,6 +67,9 @@ namespace SecretProject.Class.Playable
         public Collider MyCollider { get; set; }
 
 
+        public AnimatedSprite CutGrassDown { get; set; }
+
+
         public Rectangle Rectangle
         {
             get
@@ -93,12 +96,25 @@ namespace SecretProject.Class.Playable
 
             controls = new PlayerControls(0);
 
+            CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
+
 
 
         }
 
         public Player()
         {
+
+        }
+
+        public void PlayAnimation(GameTime gameTime, string action)
+        {
+            switch (action)
+            {
+                case "CutGrassDown":
+                    CutGrassDown.PlayOnce(gameTime);
+                    break;
+            }
 
         }
 

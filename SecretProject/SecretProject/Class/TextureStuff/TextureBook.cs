@@ -18,6 +18,8 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D MainCharacterSpriteStrip;
 
+        public Texture2D CutGrassDown;
+
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -29,6 +31,8 @@ namespace SecretProject.Class.TextureStuff
             joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
+
+            CutGrassDown = content.Load<Texture2D>("Player/MainPlayer/ClippingForward");
 
         }
 

@@ -36,7 +36,7 @@ namespace SecretProject
         //WorldMap = 1,
         Iliad = 2,
         Exit = 3,
-        HomeStead = 4,
+        //HomeStead = 4,
 
     }
 
@@ -51,7 +51,7 @@ namespace SecretProject
         //Declare Stages
         public static MainMenu mainMenu;
         public static Iliad iliad;
-        public static HomeStead homeStead;
+        //public static HomeStead homeStead;
 
         //Renderers
 
@@ -188,7 +188,7 @@ namespace SecretProject
             //Load Stages
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
            iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+            //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
 
 
@@ -202,6 +202,8 @@ namespace SecretProject
 
         }
         #endregion
+
+        //public 
 
         #region UPDATE
         protected override void Update(GameTime gameTime)
@@ -227,6 +229,7 @@ namespace SecretProject
                 case Stages.MainMenu:
                    // if(Game1.freeze == false)
                    // {
+
                         mainMenu.Update(gameTime);
 
                     //}
@@ -242,13 +245,13 @@ namespace SecretProject
                     //}
                     break;
 
-                case Stages.HomeStead:
-                    GraphicsDevice.Clear(Color.Black);
+               // case Stages.HomeStead:
+                  //  GraphicsDevice.Clear(Color.Black);
                     //if (Game1.freeze == false)
                     //{
-                    homeStead.Update(gameTime);
+                   // homeStead.Update(gameTime);
                     //}
-                    break;
+                   // break;
 
 
             }
@@ -279,10 +282,10 @@ namespace SecretProject
                     
                     break;
 
-                case Stages.HomeStead:
-                    homeStead.Draw(gameTime, spriteBatch);
+               // case Stages.HomeStead:
+                  //  homeStead.Draw(gameTime, spriteBatch);
 
-                    break;
+                  //  break;
             }
 
 

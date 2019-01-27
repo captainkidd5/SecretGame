@@ -62,16 +62,17 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Lists
 
-        public static List<ObjectBody> allObjects;
+        public List<ObjectBody> allObjects;
 
-        public static List<Sprite> allSprites;
+        public List<Sprite> allSprites;
 
-        public static List<WorldItem> allItems;
+        public List<WorldItem> allItems;
 
         public UserInterface MainUserInterface { get; set; }
 
         //SAVE STUFF
 
+        public bool TilesLoaded { get; set; } = false;
 
 
 
@@ -91,7 +92,7 @@ namespace SecretProject.Class.Stage
 
             allObjects = new List<ObjectBody>()
             {
-
+            
             };
 
             allItems = new List<WorldItem>()
@@ -193,6 +194,8 @@ namespace SecretProject.Class.Stage
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
 
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+
+            
         }
 
         #endregion
@@ -259,6 +262,11 @@ namespace SecretProject.Class.Stage
                 }
 
                 BackGroundTiles.Update(gameTime);
+                if(TilesLoaded == false)
+                {
+                    BuildingsTiles.LoadInitialTileObjects();
+                    TilesLoaded = true;
+                }
                 BuildingsTiles.Update(gameTime);
                 MidGroundTiles.Update(gameTime);
                 PlacementTiles.Update(gameTime);

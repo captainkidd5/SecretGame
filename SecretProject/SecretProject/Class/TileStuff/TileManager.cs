@@ -70,6 +70,8 @@ namespace SecretProject.Class.TileStuff
 
         public int OldIndexX { get; set; }
         public int OldIndexY { get; set; }
+
+
         #region CONSTRUCTOR
 
         public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
@@ -109,72 +111,83 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            
-                for (var i = 0; i < tilesetTilesWide; i++)
+
+            for (var i = 0; i < tilesetTilesWide; i++)
+            {
+                for (var j = 0; j < tilesetTilesHigh; j++)
                 {
-                    for (var j = 0; j < tilesetTilesHigh; j++)
+                    if (tiles[i, j].GID != 0)
                     {
-                        if (tiles[i, j].GID != 0)
+                        if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
                         {
-                            if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
+                            if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
                             {
-                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
-                                {
-                                    tiles[i, j].IsAnimated = true;
+                                tiles[i, j].IsAnimated = true;
                                 tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
                                 tiles[i, j].Speed = double.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
-                                
+
 
                                 if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
                                 {
-                                    
+
                                     tiles[i, j].IsAnimating = true;
-                                    
+
                                 }
                                 else
                                 {
                                     tiles[i, j].IsAnimating = false;
                                 }
 
-                                if(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("step"))
+                                if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("step"))
                                 {
-                                  //  game.Exit();
+                                    //  game.Exit();
                                     tiles[i, j].HasSound = true;
-                                    
+
                                 }
                                 else
                                 {
                                     tiles[i, j].HasSound = false;
                                 }
-
-                                
-                            }
-
-                                if (isBuilding)
-                                {
-
-                                    for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
-                                    {
-                                        TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
-
-                                        tiles[i, j].TileObject = new ObjectBody(graphicsDevice,
-                                            new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                                            tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                            (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
-
-                                        Iliad.allObjects.Add(tiles[i, j].TileObject);
-                                    }
-
-
-                                }
                             }
                         }
                     }
                 }
-            
+            }
+
+                                 
         }
         #endregion
         public bool TileInteraction { get; set; } = false;
+
+        public void LoadInitialTileObjects()
+        {
+            for (var i = 0; i < tilesetTilesWide; i++)
+            {
+                for (var j = 0; j < tilesetTilesHigh; j++)
+                {
+                    if (tiles[i, j].GID != 0)
+                    {
+                        if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
+                        {
+
+                            for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                            {
+                                TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
+
+                                tiles[i, j].TileObject = new ObjectBody(graphicsDevice,
+                                    new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                                    tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                                    (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
+
+                                Game1.iliad.allObjects.Add(tiles[i, j].TileObject);
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
 
 
         public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY)
@@ -192,7 +205,7 @@ namespace SecretProject.Class.TileStuff
                         tiles[indexX, indexY].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                         (int)Math.Ceiling(tempObj.Height)), tiles[indexX, indexY].DestinationRectangle.X);
 
-                    Iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
+                    Game1.iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
                 }
             }
         }
@@ -231,7 +244,7 @@ namespace SecretProject.Class.TileStuff
                                 
                                 if (myMouse.IsRightClicked)
                                 {
-                                    Interact(i, j);
+                                    Interact(gameTime, i, j);
 
                                     //if (isBuilding)
                                     //{
@@ -356,10 +369,15 @@ namespace SecretProject.Class.TileStuff
           //  AddTemporaryTiles(TempTile);
         }
 
-        
 
+        //public event EventHandler OnGrassInteraction; /// <summary>
+        /// ///////////
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="oldX"></param>
+        /// <param name="oldY"></param>
 
-        public void Interact(int oldX, int oldY)
+        public void Interact(GameTime gameTime, int oldX, int oldY)
         {
             if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
             {
@@ -368,6 +386,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     tiles[oldX, oldY].IsAnimating = true;
                     tiles[oldX, oldY].KillAnimation = true;
+                  //  OnGrassInteraction(this, EventArgs.Empty); ///////////////////////////////////////////////
+                    Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
                 }
              }
         }
@@ -379,9 +399,9 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                        Game1.iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                        Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                        Game1.iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                     }                

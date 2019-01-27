@@ -225,7 +225,7 @@ namespace SecretProject.Class.UI
                     {
 
 
-                        Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                        Game1.iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
                     }
 
                     if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
