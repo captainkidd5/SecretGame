@@ -48,14 +48,10 @@ namespace SecretProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //Declare Stages
+
         public static MainMenu mainMenu;
         public static Iliad iliad;
-        //public static HomeStead homeStead;
 
-        //Renderers
-
-        //sound
         public static SoundBoard SoundManager;
 
         public static int CurrentStage;
@@ -64,10 +60,10 @@ namespace SecretProject
 
 
         //Input Fields
-        MouseState mouse;
-        KeyboardState kState;
+        private MouseState mouse;
+        private KeyboardState kState;
 
-        MouseManager myMouseManager;
+        private MouseManager myMouseManager;
 
         public static bool isMyMouseVisible = true;
         //public bool IsMyMouseVisible { get { return isMyMouseVisible; } set { isMyMouseVisible = value; } }
@@ -86,7 +82,7 @@ namespace SecretProject
 
         //game freeze
 
-        public static bool freeze;
+        public static bool freeze = false;
 
         //UserInterface
         public static UserInterface userInterface;
@@ -94,11 +90,13 @@ namespace SecretProject
         //player
         public Texture2D JoeSprite { get; set; }
 
-        Texture2D joeDown;
-        Texture2D joeUp;
-        Texture2D joeRight;
-        Texture2D joeLeft;
+        private Texture2D joeDown;
+        private Texture2D joeUp;
+        private Texture2D joeRight;
+        private Texture2D joeLeft;
         public static Player Player { get; set; }
+
+        public static bool ToggleFullScreen = false;
 
         public Texture2D MainCharacterTexture { get; set; }
 
@@ -123,7 +121,7 @@ namespace SecretProject
               IsFixedTimeStep = false;
             //graphics.IsFullScreen = true;
 
-            freeze = false;
+          //  freeze = false;
 
             //RGenerator = Utility.RGenerator;
             
@@ -147,6 +145,7 @@ namespace SecretProject
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
 
+           // graphics.ToggleFullScreen();
 
 
             base.Initialize();
@@ -221,7 +220,14 @@ namespace SecretProject
            // MouseState myMouse = Mouse.GetState();
             KeyboardState oldKeyboardState = kState;
             //kState = Keyboard.GetState();
+            if(ToggleFullScreen)
+            {
+                graphics.IsFullScreen = !graphics.IsFullScreen;
+                graphics.ApplyChanges();
+                ToggleFullScreen = false;
+            }
 
+            
 
             //switch between stages for updating
             switch (gameStages)

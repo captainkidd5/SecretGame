@@ -20,20 +20,25 @@ namespace SecretProject.Class.MenuStuff
 
         Game1 game;
 
-      //  SaveLoadManager saveManager;
+
+
+        //  SaveLoadManager saveManager;
         SaveFile mySave;
 
-        public Texture2D MenuButtonTexture { get; set; }
-        public Texture2D SettingsButtonTexture { get; set; }
-        public Texture2D ReturnButtonTexture { get; set; }
-        public Texture2D BackDrop { get; set; }
+        private Texture2D MenuButtonTexture { get; set; }
+        private Texture2D SettingsButtonTexture { get; set; }
+        private Texture2D ReturnButtonTexture { get; set; }
+        private Texture2D ToggleFullScreenButtonTexture { get; set; }
+        private Texture2D BackDrop { get; set; }
         internal Button MenuButton { get; set; }
         internal Button SettingsButton { get; set; }
         internal Button ReturnButton { get; set; }
-        public string ReturnText { get; set; }
-        public string SettingsText { get; set; }
-        public string MenuText { get; set; }
-        public SpriteFont Font { get; set; }
+        internal Button ToggleFullScreenButton { get; set; }
+        private string ReturnText { get; set; }
+        private string SettingsText { get; set; }
+        private string MenuText { get; set; }
+        private string ToggleFullScreenButtonText;
+        private SpriteFont Font { get; set; }
 
         public EscMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
         {
@@ -42,6 +47,7 @@ namespace SecretProject.Class.MenuStuff
             MenuButtonTexture = content.Load<Texture2D>("Button/basicButton");
             SettingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
             ReturnButtonTexture = content.Load<Texture2D>("Button/basicButton");
+            ToggleFullScreenButtonTexture = content.Load<Texture2D>("Button/basicButton");
 
             BackDrop = content.Load<Texture2D>("Button/escBackDrop");
 
@@ -52,14 +58,16 @@ namespace SecretProject.Class.MenuStuff
             SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
 
             MenuButton = new Button(MenuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
+            ToggleFullScreenButton = new Button(ToggleFullScreenButtonTexture, graphicsDevice,mouse, new Vector2(Utility.centerScreenX, Utility.centerScreenY + 200));
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";
             ReturnText = "Return";
+            ToggleFullScreenButtonText = "FullScreen Mode";
 
 
 
-            allButtons = new List<Button>() { MenuButton, SettingsButton, ReturnButton };
+            allButtons = new List<Button>() { MenuButton, SettingsButton, ReturnButton, ToggleFullScreenButton };
 
         }
 
@@ -94,6 +102,11 @@ namespace SecretProject.Class.MenuStuff
                 mySave.Save();
                 isTextChanged = true;
             }
+
+            if(ToggleFullScreenButton.isClicked)
+            {
+                Game1.ToggleFullScreen = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -102,6 +115,7 @@ namespace SecretProject.Class.MenuStuff
             MenuButton.Draw(spriteBatch, Font, MenuText, MenuButton.FontLocation, Color.BlueViolet);
             ReturnButton.Draw(spriteBatch, Font, ReturnText, ReturnButton.FontLocation, Color.BlueViolet);
             SettingsButton.Draw(spriteBatch, Font, SettingsText, SettingsButton.FontLocation, Color.BlueViolet);
+            ToggleFullScreenButton.Draw(spriteBatch, Font, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.BlueViolet);
 
 
             
