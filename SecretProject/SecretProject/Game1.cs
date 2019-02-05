@@ -187,6 +187,7 @@ namespace SecretProject
             //Load Stages
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
            iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+            iliad.BuildingsTiles.LoadInitialTileObjects();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
 
@@ -222,8 +223,7 @@ namespace SecretProject
             //kState = Keyboard.GetState();
             if(ToggleFullScreen)
             {
-                graphics.IsFullScreen = !graphics.IsFullScreen;
-                graphics.ApplyChanges();
+                graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
 

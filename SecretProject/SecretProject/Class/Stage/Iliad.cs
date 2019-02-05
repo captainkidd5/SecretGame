@@ -37,12 +37,12 @@ namespace SecretProject.Class.Stage
         public int TileHeight { get; set; }
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
-        public static Texture2D TileSet { get; set; }
-        public static TileManager BackGroundTiles { get; set; }
-        public static TileManager BuildingsTiles { get; set; }
-        public static TileManager MidGroundTiles { get; set; }
-        public static TileManager ForeGroundTiles{ get; set; }
-        public static TileManager PlacementTiles { get; set; }
+        public Texture2D TileSet { get; set; }
+        public TileManager BackGroundTiles { get; set; }
+        public TileManager BuildingsTiles { get; set; }
+        public TileManager MidGroundTiles { get; set; }
+        public TileManager ForeGroundTiles{ get; set; }
+        public TileManager PlacementTiles { get; set; }
         public TmxLayer Buildings { get; set; }     
         public TmxLayer Background { get ; set; }
         public TmxLayer Background1 { get; set; }
@@ -262,11 +262,6 @@ namespace SecretProject.Class.Stage
                 }
 
                 BackGroundTiles.Update(gameTime);
-                if(TilesLoaded == false)
-                {
-                    BuildingsTiles.LoadInitialTileObjects();
-                    TilesLoaded = true;
-                }
                 BuildingsTiles.Update(gameTime);
                 MidGroundTiles.Update(gameTime);
                 PlacementTiles.Update(gameTime);

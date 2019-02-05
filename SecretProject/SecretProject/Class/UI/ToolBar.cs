@@ -290,7 +290,7 @@ namespace SecretProject.Class.UI
                 for(int j = 0; j < GIDArray.GetLength(1); j++)
                 {
                     Tile tempTile = new Tile(CustomMouse.MouseSquareCoordinateX + j , CustomMouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
-                    spriteBatch.Draw(Iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
+                    spriteBatch.Draw(Game1.iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
                 
             }
