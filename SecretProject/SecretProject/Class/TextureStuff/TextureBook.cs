@@ -18,8 +18,14 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D MainCharacterSpriteStrip;
 
+
+
+        //playeractions
         public Texture2D CutGrassDown;
 
+
+        //UiStuff
+        public Texture2D ToolBarButtonSelector;
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -33,6 +39,8 @@ namespace SecretProject.Class.TextureStuff
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
             CutGrassDown = content.Load<Texture2D>("Player/MainPlayer/ClippingForward");
+
+            ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
 
         }
 

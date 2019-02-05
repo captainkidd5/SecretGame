@@ -118,6 +118,11 @@ namespace SecretProject.Class.Playable
 
         }
 
+        public void PerformActionOnClick(GameTime gameTime, string action)
+        {
+            //need current inventory selection
+        }
+
         public void Update(GameTime gameTime, List<WorldItem> items, List<ObjectFolder.ObjectBody> objects)
         {
             if (Activate)

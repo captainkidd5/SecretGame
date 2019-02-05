@@ -337,6 +337,8 @@ namespace SecretProject.Class.UI
             InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
             InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
 
+            spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, Color.White);
+
 
            // if(DragToggleBuilding)
            // {
@@ -348,6 +350,7 @@ namespace SecretProject.Class.UI
 
         public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles)
         {
+           
             if (DragToggleBuilding)
             {
                 MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
@@ -372,6 +375,7 @@ namespace SecretProject.Class.UI
                     foreGroundTiles.Tiles[CustomMouse.MouseSquareCoordinateX + j + 1, CustomMouse.MouseSquareCoordinateY] = TempTile;
                 }
             }
+           
         }
     }
 }

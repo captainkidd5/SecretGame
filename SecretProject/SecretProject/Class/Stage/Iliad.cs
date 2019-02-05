@@ -25,7 +25,7 @@ namespace SecretProject.Class.Stage
 {
     public class Iliad : Component
     {
-        
+
         #region FIELDS
 
         private bool showBorders = false;
@@ -41,10 +41,10 @@ namespace SecretProject.Class.Stage
         public TileManager BackGroundTiles { get; set; }
         public TileManager BuildingsTiles { get; set; }
         public TileManager MidGroundTiles { get; set; }
-        public TileManager ForeGroundTiles{ get; set; }
+        public TileManager ForeGroundTiles { get; set; }
         public TileManager PlacementTiles { get; set; }
-        public TmxLayer Buildings { get; set; }     
-        public TmxLayer Background { get ; set; }
+        public TmxLayer Buildings { get; set; }
+        public TmxLayer Background { get; set; }
         public TmxLayer Background1 { get; set; }
         public TmxLayer MidGround { get; set; }
         public TmxLayer foreGround { get; set; }
@@ -92,7 +92,7 @@ namespace SecretProject.Class.Stage
 
             allObjects = new List<ObjectBody>()
             {
-            
+
             };
 
             allItems = new List<WorldItem>()
@@ -120,7 +120,7 @@ namespace SecretProject.Class.Stage
             //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
 
             //object layer
-           // var buildingLayer = map.ObjectGroups["collision"];
+            // var buildingLayer = map.ObjectGroups["collision"];
 
 
             //map specifications
@@ -130,7 +130,7 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(game,TileSet, map, Background, mouse, graphicsDevice,content, false);
+            BackGroundTiles = new TileManager(game, TileSet, map, Background, mouse, graphicsDevice, content, false);
             BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
             MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
             ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
@@ -148,7 +148,7 @@ namespace SecretProject.Class.Stage
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
-            
+
             //sprite textures
             PuzzleFish = content.Load<Texture2D>("Item/puzzleFish");
             HouseKey = content.Load<Texture2D>("Item/houseKey");
@@ -156,12 +156,12 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-           Game1.cam.Zoom = 3f;
-           //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
+            Game1.cam.Zoom = 3f;
+            //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
-            MainTheme = content.Load<Song>("Music/IntheForest"); 
+            MainTheme = content.Load<Song>("Music/IntheForest");
             //MediaPlayer.Play(MainTheme);
 
             // midGroundTiles.isActive = true;
@@ -195,7 +195,7 @@ namespace SecretProject.Class.Stage
 
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-            
+
         }
 
         #endregion
@@ -218,8 +218,8 @@ namespace SecretProject.Class.Stage
 
             //mouse
 
-           // customMouse.Update();
-            
+            // customMouse.Update();
+
 
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
@@ -253,11 +253,11 @@ namespace SecretProject.Class.Stage
                 //Update sprites
                 foreach (Sprite spr in allSprites)
                 {
-                    if(spr.IsBeingDragged == true)
+                    if (spr.IsBeingDragged == true)
                     {
                         spr.Update(gameTime, customMouse.WorldMousePosition);
                     }
-                    
+
 
                 }
 
@@ -277,7 +277,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //update camera
 
-                
+
 
 
 
