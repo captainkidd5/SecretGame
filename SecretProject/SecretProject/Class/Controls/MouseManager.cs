@@ -48,6 +48,11 @@ namespace SecretProject.Class.Controls
 
         public Vector2 SquarePosition { get; set; }
 
+        private int OldScrollWheelValue;
+        private int NewScrollWheelValue;
+
+        public bool HasScrollWheelValueIncreased = false;
+
         Vector2 worldPosition;
 
         GraphicsDevice graphicsDevice;
@@ -66,10 +71,20 @@ namespace SecretProject.Class.Controls
             IsClicked = false;
             IsRightClicked = false;
             WasJustPressed = false;
+            HasScrollWheelValueIncreased = false;
              
 
             MouseState oldMouse = MyMouse;
             MyMouse = Mouse.GetState();
+            ///
+            OldScrollWheelValue = oldMouse.ScrollWheelValue;
+            NewScrollWheelValue = MyMouse.ScrollWheelValue;
+
+            if(NewScrollWheelValue > OldScrollWheelValue)
+            {
+                HasScrollWheelValueIncreased = true;
+            }
+            ///
             worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera1.GetViewMatrix(Vector2.One)));
 
             position.X = MyMouse.Position.X ;

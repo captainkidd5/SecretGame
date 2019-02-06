@@ -213,7 +213,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            MainUserInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
+            Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
 
 
             //mouse
@@ -305,7 +305,7 @@ namespace SecretProject.Class.Stage
                 MidGroundTiles.DrawTiles(spriteBatch, (float).3);
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
-                MainUserInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles);
+                Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles);
 
                 //drawn in wrong spot
 
@@ -344,7 +344,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Draw Toolbar
 
-            MainUserInterface.Draw(spriteBatch);
+            Game1.userInterface.Draw(spriteBatch);
         }
 
 

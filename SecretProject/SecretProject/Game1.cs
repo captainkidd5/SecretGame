@@ -63,7 +63,7 @@ namespace SecretProject
         private MouseState mouse;
         private KeyboardState kState;
 
-        private MouseManager myMouseManager;
+        public static MouseManager myMouseManager;
 
         public static bool isMyMouseVisible = true;
         //public bool IsMyMouseVisible { get { return isMyMouseVisible; } set { isMyMouseVisible = value; } }
