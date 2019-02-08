@@ -77,6 +77,8 @@ namespace SecretProject.Class.UI
         public bool DragToggleBuilding { get; set; } = false;
         public bool DragoToggleBuildingDropped { get; set; } = false;
 
+        public int currentSliderPosition = 1;
+
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);
@@ -104,13 +106,13 @@ namespace SecretProject.Class.UI
             //Initialize Buttons
             InGameMenu = new Button(ToolBarButton, graphicsDevice, new Vector2(367, 635));
             OpenInventory = new Button(ToolBarButton, graphicsDevice, new Vector2(433, 635));
-            InvSlot1 = new Button(ToolBarButton, graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0 };
-            InvSlot2 = new Button(ToolBarButton, graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0 };
-            InvSlot3 = new Button(ToolBarButton, graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0 };
-            InvSlot4 = new Button(ToolBarButton, graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0 };
-            InvSlot5 = new Button(ToolBarButton, graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0 };
-            InvSlot6 = new Button(ToolBarButton, graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0 };
-            InvSlot7 = new Button(ToolBarButton, graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0 };
+            InvSlot1 = new Button(ToolBarButton, graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1 };
+            InvSlot2 = new Button(ToolBarButton, graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2 };
+            InvSlot3 = new Button(ToolBarButton, graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3 };
+            InvSlot4 = new Button(ToolBarButton, graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
+            InvSlot5 = new Button(ToolBarButton, graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
+            InvSlot6 = new Button(ToolBarButton, graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6 };
+            InvSlot7 = new Button(ToolBarButton, graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7 };
 
             //--------------------------------------
             //Button List Stuff
@@ -137,7 +139,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
         {
-            
+            UpdateScrollWheel(mouse);
 
             this.inventory = inventory;
 
@@ -149,7 +151,7 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Switch GameStages on click
 
-            
+
 
             if (mouse.IsHovering(BackGroundTextureRectangle))
             {
@@ -160,6 +162,27 @@ namespace SecretProject.Class.UI
                 MouseOverToolBar = false;
             }
 
+        }
+
+        private void UpdateScrollWheel(MouseManager mouse)
+        {
+            if (mouse.HasScrollWheelValueIncreased)
+            {
+                currentSliderPosition += 1;
+            }
+            else if (mouse.HasScrollWheelValueDecreased)
+            {
+                currentSliderPosition -= 1;
+            }
+
+            if (currentSliderPosition > 7)
+            {
+                currentSliderPosition = 7;
+            }
+            if (currentSliderPosition < 1)
+            {
+                currentSliderPosition = 1;
+            }
         }
 
         public void UpdateNonInventoryButtons(MouseManager mouse)
@@ -183,6 +206,8 @@ namespace SecretProject.Class.UI
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
+
+
 
             DragToggleBuilding = false;
             DragoToggleBuildingDropped = false;
@@ -335,7 +360,37 @@ namespace SecretProject.Class.UI
             InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
             InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
 
-            spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, Color.White);
+            switch(currentSliderPosition)
+            {
+                case 1:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot1.Position, Color.White);
+                    break;
+
+                case 2:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, Color.White);
+                    break;
+
+                case 3:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot3.Position, Color.White);
+                    break;
+
+                case 4:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot4.Position, Color.White);
+                    break;
+
+                case 5:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot5.Position, Color.White);
+                    break;
+
+                case 6:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot6.Position, Color.White);
+                    break;
+
+                case 7:
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot7.Position, Color.White);
+                    break;
+            }
+            
 
 
            // if(DragToggleBuilding)

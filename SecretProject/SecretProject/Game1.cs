@@ -30,19 +30,14 @@ namespace SecretProject
     public enum Stages
     {
         MainMenu = 0,
-        //WorldMap = 1,
         Iliad = 2,
         Exit = 3,
-        //HomeStead = 4,
-
     }
 
 
     public class Game1 : Game
     {
         #region FIELDS
-
-
 
         //STAGES
         public static MainMenu mainMenu;
@@ -54,8 +49,7 @@ namespace SecretProject
         public static SoundBoard SoundManager;
 
         //INPUT
-        private MouseState mouse;
-        private KeyboardState kState;
+
         public static MouseManager myMouseManager;
         public static bool isMyMouseVisible = true;
 
@@ -114,7 +108,7 @@ namespace SecretProject
             cam = new Camera2D(GraphicsDevice.Viewport);
             //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
-            myMouseManager = new MouseManager(mouse, cam, graphics.GraphicsDevice);
+            myMouseManager = new MouseManager(cam, graphics.GraphicsDevice);
 
             //SCREEN
             ScreenHeight = graphics.PreferredBackBufferHeight;
@@ -185,15 +179,12 @@ namespace SecretProject
             MediaPlayer.IsRepeating = true;
 
             //KEYBOARD
-            KeyboardState oldKeyboardState = kState;
 
             if (ToggleFullScreen)
             {
                 graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
-
-
 
             //switch between stages for updating
             switch (gameStages)

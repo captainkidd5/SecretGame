@@ -74,7 +74,7 @@ namespace SecretProject.Class.TileStuff
 
         #region CONSTRUCTOR
 
-        public TileManager(Game1 game, Texture2D tileSet, TmxMap mapName, TmxLayer layerName, MouseManager mouse, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
+        public TileManager( Texture2D tileSet, TmxMap mapName, TmxLayer layerName, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -96,9 +96,6 @@ namespace SecretProject.Class.TileStuff
 
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
-            myMouse = mouse;
-
-            this.game = game;
 
             this.isBuilding = isBuilding;
 
@@ -211,7 +208,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region UPDATE
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, MouseManager mouse)
         {
             for (var i = 0; i < tilesetTilesWide; i++)
             {
@@ -232,7 +229,7 @@ namespace SecretProject.Class.TileStuff
                        // {
                        //     Intersect(i, j, Game1.Player);
                        // }
-                        if (myMouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
+                        if (mouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
                             CurrentIndexX = i;
                             CurrentIndexY = j;
@@ -242,7 +239,7 @@ namespace SecretProject.Class.TileStuff
                             if (isBuilding)
                             {
                                 
-                                if (myMouse.IsRightClicked)
+                                if (mouse.IsRightClicked)
                                 {
                                     Interact(gameTime, i, j);
 

@@ -124,11 +124,11 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(game, TileSet, map, Background, mouse, graphicsDevice, content, false);
-            BuildingsTiles = new TileManager(game, TileSet, map, Buildings, mouse, graphicsDevice, content, true);
-            MidGroundTiles = new TileManager(game, TileSet, map, MidGround, mouse, graphicsDevice, content, false);
-            ForeGroundTiles = new TileManager(game, TileSet, map, foreGround, mouse, graphicsDevice, content, false);
-            PlacementTiles = new TileManager(game, TileSet, map, Placement, mouse, graphicsDevice, content, false) { isPlacement = true };
+            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false);
+            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true);
+            MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false);
+            ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false);
+            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false) { isPlacement = true };
 
 
 
@@ -210,11 +210,6 @@ namespace SecretProject.Class.Stage
             Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory, mouse, game);
 
 
-            //mouse
-
-            // customMouse.Update();
-
-
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
             {
@@ -223,18 +218,6 @@ namespace SecretProject.Class.Stage
 
             if (!Game1.freeze)
             {
-
-                // if (customMouse.IsClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
-                //{
-
-                // }
-
-                // if(customMouse.IsRightClicked && !mainUserInterface.BottomBar.MouseOverToolBar)
-                // {
-                //Player.Inventory.DropItemFromInventory(new Food("shrimp", content));
-                //  allItems.Add(new WorldItem("shrimp", graphicsDevice, content, customMouse.WorldMousePosition));
-                //}
-
 
                 //--------------------------------------
                 //Update Players
@@ -255,26 +238,15 @@ namespace SecretProject.Class.Stage
 
                 }
 
-                BackGroundTiles.Update(gameTime);
-                BuildingsTiles.Update(gameTime);
-                MidGroundTiles.Update(gameTime);
-                PlacementTiles.Update(gameTime);
+                BackGroundTiles.Update(gameTime, mouse);
+                BuildingsTiles.Update(gameTime, mouse);
+                MidGroundTiles.Update(gameTime, mouse);
+                PlacementTiles.Update(gameTime, mouse);
 
                 foreach (WorldItem item in allItems)
                 {
                     item.Update(gameTime);
                 }
-
-
-
-
-                //--------------------------------------
-                //update camera
-
-
-
-
-
 
             }
         }
