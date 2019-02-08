@@ -18,9 +18,6 @@ using SecretProject.Class.TextureStuff;
 
 namespace SecretProject
 {
-    //TODO:
-    //Mini draw tiles in Toolbar
-
 
     public enum Dir
     {
@@ -45,33 +42,26 @@ namespace SecretProject
     {
         #region FIELDS
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
 
 
+        //STAGES
         public static MainMenu mainMenu;
         public static Iliad iliad;
+        public static int CurrentStage;
+        public static bool freeze = false;
 
+        //SOUND
         public static SoundBoard SoundManager;
 
-        public static int CurrentStage;
-
-
-
-
-        //Input Fields
+        //INPUT
         private MouseState mouse;
         private KeyboardState kState;
-
         public static MouseManager myMouseManager;
-
         public static bool isMyMouseVisible = true;
-        //public bool IsMyMouseVisible { get { return isMyMouseVisible; } set { isMyMouseVisible = value; } }
 
         //Camera
         public static Camera2D cam;
-
-
+        public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
         public Stages gameStages = Stages.MainMenu;
@@ -80,31 +70,24 @@ namespace SecretProject
         public static int ScreenHeight;
         public static int ScreenWidth;
 
-        //game freeze
-
-        public static bool freeze = false;
-
-        //UserInterface
+        //UI
         public static UserInterface userInterface;
 
-        //player
+        //TEXTURES
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
         public Texture2D JoeSprite { get; set; }
-
         private Texture2D joeDown;
         private Texture2D joeUp;
         private Texture2D joeRight;
         private Texture2D joeLeft;
         public static Player Player { get; set; }
-
-        public static bool ToggleFullScreen = false;
-
         public Texture2D MainCharacterTexture { get; set; }
-
         public static Texture2D ItemAtlas;
-
-        public static Random RGenerator = new Random();
-
         public static TextureBook AllTextures;
+
+        //TOOLS
+        public static Random RGenerator = new Random();
 
 
         #endregion
@@ -119,12 +102,6 @@ namespace SecretProject
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             IsFixedTimeStep = false;
-            //graphics.IsFullScreen = true;
-
-            //  freeze = false;
-
-            //RGenerator = Utility.RGenerator;
-
 
         }
         #endregion
@@ -133,20 +110,15 @@ namespace SecretProject
         protected override void Initialize()
         {
 
-            //initialize mouse
-            this.IsMouseVisible = isMyMouseVisible;
+            //CAMERA
             cam = new Camera2D(GraphicsDevice.Viewport);
+            //MOUSE
+            this.IsMouseVisible = isMyMouseVisible;
             myMouseManager = new MouseManager(mouse, cam, graphics.GraphicsDevice);
 
-            //camera
-
-
-            //screen dimensions
+            //SCREEN
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
-
-            // graphics.ToggleFullScreen();
-
 
             base.Initialize();
         }
@@ -155,43 +127,39 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
-            AllTextures = new TextureBook(Content, spriteBatch);
-            SoundManager = new SoundBoard(this, Content);
+            //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
-
-            JoeSprite = AllTextures.JoeSprite;
-
+            AllTextures = new TextureBook(Content, spriteBatch);
             MainCharacterTexture = AllTextures.MainCharacterSpriteStrip;
-
+            JoeSprite = AllTextures.JoeSprite;
             joeDown = AllTextures.joeDown;
             joeUp = AllTextures.joeUp;
             joeRight = AllTextures.joeRight;
             joeLeft = AllTextures.joeLeft;
 
+            //SOUND
+            SoundManager = new SoundBoard(this, Content);
+            
+
+            //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
+
+            //PLAYERS
             Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
-
             Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
-
-            //joe animation 
             Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
-
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
             Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 18, 1, 25);
             Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 6, 1, 12);
             Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 12, 1, 18);
 
+            //UI
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content);
 
-            //Load Stages
+            //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
             iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
             iliad.BuildingsTiles.LoadInitialTileObjects();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-
-
-
 
         }
         #endregion
@@ -209,19 +177,16 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
-            // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //   Exit();
+            //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
-
             myMouseManager.Update();
 
-            //music
+            //SOUND
             MediaPlayer.IsRepeating = true;
 
-            //input
-            // MouseState myMouse = Mouse.GetState();
+            //KEYBOARD
             KeyboardState oldKeyboardState = kState;
-            //kState = Keyboard.GetState();
+
             if (ToggleFullScreen)
             {
                 graphics.ToggleFullScreen();
@@ -234,36 +199,14 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
-                    // if(Game1.freeze == false)
-                    // {
-
                     mainMenu.Update(gameTime, myMouseManager, this);
-
-                    //}
-
-
                     break;
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    //if (Game1.freeze == false)
-                    //{
                     iliad.Update(gameTime, myMouseManager, this);
-                    //}
                     break;
-
-                    // case Stages.HomeStead:
-                    //  GraphicsDevice.Clear(Color.Black);
-                    //if (Game1.freeze == false)
-                    //{
-                    // homeStead.Update(gameTime);
-                    //}
-                    // break;
-
-
             }
-
-
 
             base.Update(gameTime);
         }
@@ -274,33 +217,21 @@ namespace SecretProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-            //switch between stages for drawing
             switch (gameStages)
             {
                 case Stages.MainMenu:
                     GraphicsDevice.Clear(Color.Black);
-                    mainMenu.Draw(gameTime, spriteBatch);
-
+                    mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
                 case Stages.Iliad:
                     iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
-
                     break;
-
-                    // case Stages.HomeStead:
-                    //  homeStead.Draw(gameTime, spriteBatch);
-
-                    //  break;
             }
-
 
             base.Draw(gameTime);
         }
         #endregion
-
-
     }
     //IDEAS
     //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge

@@ -10,7 +10,7 @@ using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Stage
 {
-    public class MainMenu
+    public class MainMenu : IStage
     {
 
         //--------------------------------------
@@ -92,7 +92,8 @@ namespace SecretProject.Class.Stage
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
+
         {
             //GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();

@@ -23,7 +23,7 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage
 {
-    public class Iliad
+    public class Iliad : IStage
     {
 
         #region FIELDS
@@ -73,9 +73,6 @@ namespace SecretProject.Class.Stage
         //SAVE STUFF
 
         public bool TilesLoaded { get; set; } = false;
-
-
-
         #endregion
 
         #region CONSTRUCTOR
@@ -99,9 +96,6 @@ namespace SecretProject.Class.Stage
             {
 
             };
-
-
-
 
             //--------------------------------------
             //Tile/map
