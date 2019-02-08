@@ -10,7 +10,7 @@ using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Stage
 {
-    public class MainMenu : Component
+    public class MainMenu
     {
 
         //--------------------------------------
@@ -36,7 +36,9 @@ namespace SecretProject.Class.Stage
 
 
 
-        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface) : base(game, graphicsDevice, content, mouse, userInterface)
+
+
+        public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
             //--------------------------------------
             //Load button textures
@@ -46,9 +48,9 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Initialize Buttons
-            Join = new Button(join, graphicsDevice, customMouse, new Vector2(500, 100));
-            Save = new Button(save, graphicsDevice, customMouse, new Vector2(500, 200));
-            Exit = new Button(exit, graphicsDevice, customMouse, new Vector2(500, 300));
+            Join = new Button(join, graphicsDevice, new Vector2(500, 100));
+            Save = new Button(save, graphicsDevice, new Vector2(500, 200));
+            Exit = new Button(exit, graphicsDevice, new Vector2(500, 300));
 
             allButtons = new List<Button>() { Join, Save, Exit };
 
@@ -60,7 +62,7 @@ namespace SecretProject.Class.Stage
 
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
            // customMouse.Update();
             //--------------------------------------
@@ -68,7 +70,7 @@ namespace SecretProject.Class.Stage
 
             foreach(Button button in allButtons)
             {
-                button.Update();
+                button.Update(mouse);
             }
 
             //--------------------------------------
@@ -90,7 +92,7 @@ namespace SecretProject.Class.Stage
             }
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();

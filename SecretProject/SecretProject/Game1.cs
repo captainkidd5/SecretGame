@@ -182,7 +182,7 @@ namespace SecretProject
             Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 6, 1, 12);
             Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 12, 1, 18);
 
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, myMouseManager);
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content);
 
             //Load Stages
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
@@ -202,6 +202,7 @@ namespace SecretProject
 
         }
         #endregion
+
 
         //public 
 
@@ -236,7 +237,7 @@ namespace SecretProject
                     // if(Game1.freeze == false)
                     // {
 
-                    mainMenu.Update(gameTime);
+                    mainMenu.Update(gameTime, myMouseManager, this);
 
                     //}
 
@@ -247,7 +248,7 @@ namespace SecretProject
                     GraphicsDevice.Clear(Color.Black);
                     //if (Game1.freeze == false)
                     //{
-                    iliad.Update(gameTime);
+                    iliad.Update(gameTime, myMouseManager, this);
                     //}
                     break;
 
@@ -284,7 +285,7 @@ namespace SecretProject
                     break;
 
                 case Stages.Iliad:
-                    iliad.Draw(gameTime, spriteBatch);
+                    iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
 
                     break;
 

@@ -45,7 +45,6 @@ namespace SecretProject.Class.UI
         public SpriteFont Font { get; set; }
         public List<Button> AllNonInventoryButtons { get; set; }
         public List<Button> AllSlots { get; set; }
-        public MouseManager CustomMouse { get; set; }
 
         public Texture2D InvSlot1Texture { get; set; }
         public Texture2D InvSlot2Texture { get; set; }
@@ -78,12 +77,11 @@ namespace SecretProject.Class.UI
         public bool DragToggleBuilding { get; set; } = false;
         public bool DragoToggleBuildingDropped { get; set; } = false;
 
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);
 
 
-            this.CustomMouse = mouse;
 
             this.game = game;
             this.graphicsDevice = graphicsDevice;
@@ -104,15 +102,15 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Initialize Buttons
-            InGameMenu = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(367, 635));
-            OpenInventory = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(433, 635));
-            InvSlot1 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(500, 635)) { ItemCounter = 0 };
-            InvSlot2 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(565, 635)) { ItemCounter = 0 };
-            InvSlot3 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(630, 635)) { ItemCounter = 0 };
-            InvSlot4 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(695, 635)) { ItemCounter = 0 };
-            InvSlot5 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(765, 635)) { ItemCounter = 0 };
-            InvSlot6 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(830, 635)) { ItemCounter = 0 };
-            InvSlot7 = new Button(ToolBarButton, graphicsDevice, CustomMouse, new Vector2(895, 635)) { ItemCounter = 0 };
+            InGameMenu = new Button(ToolBarButton, graphicsDevice, new Vector2(367, 635));
+            OpenInventory = new Button(ToolBarButton, graphicsDevice, new Vector2(433, 635));
+            InvSlot1 = new Button(ToolBarButton, graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0 };
+            InvSlot2 = new Button(ToolBarButton, graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0 };
+            InvSlot3 = new Button(ToolBarButton, graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0 };
+            InvSlot4 = new Button(ToolBarButton, graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0 };
+            InvSlot5 = new Button(ToolBarButton, graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0 };
+            InvSlot6 = new Button(ToolBarButton, graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0 };
+            InvSlot7 = new Button(ToolBarButton, graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0 };
 
             //--------------------------------------
             //Button List Stuff
@@ -137,15 +135,15 @@ namespace SecretProject.Class.UI
   
         }
 
-        public void Update(GameTime gameTime, Inventory inventory)
+        public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
         {
             
 
             this.inventory = inventory;
 
-            UpdateNonInventoryButtons();
+            UpdateNonInventoryButtons(mouse);
 
-            UpdateInventoryButtons(inventory, gameTime);
+            UpdateInventoryButtons(inventory, gameTime, mouse);
 
 
             //--------------------------------------
@@ -153,22 +151,22 @@ namespace SecretProject.Class.UI
 
             
 
-            if (CustomMouse.IsHovering(BackGroundTextureRectangle))
+            if (mouse.IsHovering(BackGroundTextureRectangle))
             {
                 MouseOverToolBar = true;
             }
-            if (!CustomMouse.IsHovering(BackGroundTextureRectangle))
+            if (!mouse.IsHovering(BackGroundTextureRectangle))
             {
                 MouseOverToolBar = false;
             }
 
         }
 
-        public void UpdateNonInventoryButtons()
+        public void UpdateNonInventoryButtons(MouseManager mouse)
         {
             for (int i = 0; i < AllNonInventoryButtons.Count; i++)
             {
-                AllNonInventoryButtons[i].Update();
+                AllNonInventoryButtons[i].Update(mouse);
             }
 
             if (InGameMenu.isClicked)
@@ -183,7 +181,7 @@ namespace SecretProject.Class.UI
             OpenInventory.isClicked = false;
         }
 
-        public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime)
+        public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
             DragToggleBuilding = false;
@@ -208,7 +206,7 @@ namespace SecretProject.Class.UI
                     AllSlots[i].Texture = ToolBarButton;
                 }
 
-                AllSlots[i].Update();
+                AllSlots[i].Update(mouse);
             }
 
 
@@ -225,12 +223,12 @@ namespace SecretProject.Class.UI
                     {
 
 
-                        Game1.iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                        Game1.iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
                     }
 
                     if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
                     {
-                       // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, CustomMouse.WorldMousePosition));
+                       // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
 
                         DragoToggleBuildingDropped = true;
                     }
@@ -264,7 +262,7 @@ namespace SecretProject.Class.UI
 
                     else
                     {
-                        Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, CustomMouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                        Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].Texture, mouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
                         DragSprite = tempSprite;
 
                     }
@@ -275,7 +273,7 @@ namespace SecretProject.Class.UI
                 {
                     if (DragSprite != null)
                     {
-                        DragSprite.Update(gameTime, CustomMouse.UIPosition);
+                        DragSprite.Update(gameTime, mouse.UIPosition);
                     }
 
                 }
@@ -283,13 +281,13 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch)
+        public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch, MouseManager mouse)
         {
             for (int i = 0; i < GIDArray.GetLength(0); i++)
             {
                 for(int j = 0; j < GIDArray.GetLength(1); j++)
                 {
-                    Tile tempTile = new Tile(CustomMouse.MouseSquareCoordinateX + j , CustomMouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
+                    Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j , mouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
                     spriteBatch.Draw(Game1.iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
                 
@@ -348,12 +346,12 @@ namespace SecretProject.Class.UI
             // spriteBatch.End();
         }
 
-        public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles)
+        public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles, MouseManager mouse)
         {
            
             if (DragToggleBuilding)
             {
-                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
+                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch, mouse);
 
             }
             if (DragoToggleBuildingDropped == true)
@@ -362,17 +360,17 @@ namespace SecretProject.Class.UI
                 {
 
                     Tile TempTile;
-                    TempTile = new Tile(CustomMouse.MouseSquareCoordinateX + i, CustomMouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100, 0);
-                    buildingsTiles.Tiles[CustomMouse.MouseSquareCoordinateX + i + 1, CustomMouse.MouseSquareCoordinateY] = TempTile;
-                    buildingsTiles.AddObjectToBuildingTile(TempTile, CustomMouse.MouseSquareCoordinateX + i + 1, CustomMouse.MouseSquareCoordinateY);
+                    TempTile = new Tile(mouse.MouseSquareCoordinateX + i, mouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100, 0);
+                    buildingsTiles.Tiles[mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY] = TempTile;
+                    buildingsTiles.AddObjectToBuildingTile(TempTile, mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY);
 
 
                 }
                 for (int j = 0; j < TempItem.Building.ForeGroundID.Length; j++)
                 {
                     Tile TempTile;
-                    TempTile = new Tile(CustomMouse.MouseSquareCoordinateX + j, CustomMouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100, 0);
-                    foreGroundTiles.Tiles[CustomMouse.MouseSquareCoordinateX + j + 1, CustomMouse.MouseSquareCoordinateY] = TempTile;
+                    TempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100, 0);
+                    foreGroundTiles.Tiles[mouse.MouseSquareCoordinateX + j + 1, mouse.MouseSquareCoordinateY] = TempTile;
                 }
             }
            

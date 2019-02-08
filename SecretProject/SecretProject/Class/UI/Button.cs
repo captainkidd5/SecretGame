@@ -24,8 +24,6 @@ namespace SecretProject.Class.MenuStuff
 
         Color Color;
 
-        MouseManager myMouse;
-
         public Vector2 size;
 
         bool down;
@@ -44,33 +42,32 @@ namespace SecretProject.Class.MenuStuff
 
         public int ItemCounter { get; set; }
 
-        public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, MouseManager myMouse, Vector2 position)
+        public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
         {
             Texture = newtexture;
             Position = position;
-            this.myMouse = myMouse;
             //128x64
             size = new Vector2((graphicsDevice.Viewport.Width / 10), (graphicsDevice.Viewport.Height / 11));
 
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
         }
-        public void Update()
+        public void Update(MouseManager mouse)
         {
             wasJustReleased = false;
 
-            if (myMouse.IsHovering(Rectangle) && myMouse.IsClicked)
+            if (mouse.IsHovering(Rectangle) && mouse.IsClicked)
             {
                 Color = Color.White * .5f;
                 isClicked = true;
 
             }
-            else if (myMouse.IsHovering(Rectangle) && isClicked == false)
+            else if (mouse.IsHovering(Rectangle) && isClicked == false)
             {
                 Color = Color.White * .5f;
                 
             }
-            else if(myMouse.IsHovering(Rectangle))
+            else if(mouse.IsHovering(Rectangle))
             {
                 IsHovered = true;
             }
@@ -82,13 +79,13 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if(myMouse.IsHovering(Rectangle) && myMouse.WasJustPressed == true && myMouse.IsClickedAndHeld == true)
+            if(mouse.IsHovering(Rectangle) && mouse.WasJustPressed == true && mouse.IsClickedAndHeld == true)
             {
                 this.isClickedAndHeld = true;
             }
-            if(this.isClickedAndHeld == true && myMouse.IsHovering(Rectangle) == false)
+            if(this.isClickedAndHeld == true && mouse.IsHovering(Rectangle) == false)
             {
-                if(myMouse.IsReleased)
+                if(mouse.IsReleased)
                 {
                     this.isClickedAndHeld = false;
                     wasJustReleased = true;

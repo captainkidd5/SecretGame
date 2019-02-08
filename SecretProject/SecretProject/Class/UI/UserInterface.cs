@@ -16,7 +16,6 @@ namespace SecretProject.Class.UI
     public class UserInterface
     {
         ContentManager content;
-        MouseManager mouse;
 
         static bool isEscMenu;
 
@@ -30,23 +29,22 @@ namespace SecretProject.Class.UI
         //keyboard
 
 
-        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
         {
             this.Game = game;
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
-            this.mouse = mouse;
             isEscMenu = false;
             
-            BottomBar = new ToolBar(game, graphicsDevice, content, mouse);
-            Esc = new EscMenu(game, graphicsDevice, content, mouse);
+            BottomBar = new ToolBar(game, graphicsDevice, content);
+            Esc = new EscMenu(graphicsDevice, content);
             
         }
 
 
-        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory)
+        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory, MouseManager mouse, Game1 game)
         {
-            BottomBar.Update(gameTime, inventory);
+            BottomBar.Update(gameTime, inventory, mouse);
 
             if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
             {
@@ -62,7 +60,7 @@ namespace SecretProject.Class.UI
 
             if(isEscMenu)
             {
-                Esc.Update(gameTime);
+                Esc.Update(gameTime, mouse, game );
                 Game1.freeze = true;
             }
             if(!isEscMenu)

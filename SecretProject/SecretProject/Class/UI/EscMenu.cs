@@ -18,7 +18,6 @@ namespace SecretProject.Class.MenuStuff
         public bool isTextChanged = false;
         List<Button> allButtons;
 
-        Game1 game;
 
 
 
@@ -40,10 +39,9 @@ namespace SecretProject.Class.MenuStuff
         private string ToggleFullScreenButtonText;
         private SpriteFont Font { get; set; }
 
-        public EscMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse)
+        public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
         {
             mySave = new SaveFile();
-            this.game = game;
             MenuButtonTexture = content.Load<Texture2D>("Button/basicButton");
             SettingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
             ReturnButtonTexture = content.Load<Texture2D>("Button/basicButton");
@@ -53,12 +51,12 @@ namespace SecretProject.Class.MenuStuff
 
             Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-            ReturnButton = new Button(ReturnButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
+            ReturnButton = new Button(ReturnButtonTexture, graphicsDevice, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
             
-            SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, mouse, Utility.centerScreen);
+            SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, Utility.centerScreen);
 
-            MenuButton = new Button(MenuButtonTexture, graphicsDevice, mouse, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
-            ToggleFullScreenButton = new Button(ToggleFullScreenButtonTexture, graphicsDevice,mouse, new Vector2(Utility.centerScreenX, Utility.centerScreenY + 200));
+            MenuButton = new Button(MenuButtonTexture, graphicsDevice, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
+            ToggleFullScreenButton = new Button(ToggleFullScreenButtonTexture, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY + 200));
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";
@@ -71,7 +69,7 @@ namespace SecretProject.Class.MenuStuff
 
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
             if (isTextChanged == true)
             {
@@ -84,7 +82,7 @@ namespace SecretProject.Class.MenuStuff
 
             foreach (Button button in allButtons)
             {
-                button.Update();
+                button.Update(mouse);
             }
 
             if(MenuButton.isClicked)

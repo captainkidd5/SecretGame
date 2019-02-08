@@ -23,7 +23,7 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage
 {
-    public class Iliad : Component
+    public class Iliad
     {
 
         #region FIELDS
@@ -80,7 +80,7 @@ namespace SecretProject.Class.Stage
 
         #region CONSTRUCTOR
 
-        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player) : base(game, graphicsDevice, content, mouse, userInterface)
+        public Iliad(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player)
         {
             //ORDER MATTERS!
             //Lists
@@ -177,7 +177,7 @@ namespace SecretProject.Class.Stage
 
 
             //UserInterface
-            this.MainUserInterface = mainUserInterface;
+
 
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
             allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
@@ -201,7 +201,7 @@ namespace SecretProject.Class.Stage
         #endregion
 
         #region UPDATE
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
             //--------------------------------------
             //input
@@ -213,7 +213,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Update Toolbar
 
-            Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory);
+            Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory, mouse, game);
 
 
             //mouse
@@ -255,7 +255,7 @@ namespace SecretProject.Class.Stage
                 {
                     if (spr.IsBeingDragged == true)
                     {
-                        spr.Update(gameTime, customMouse.WorldMousePosition);
+                        spr.Update(gameTime, mouse.WorldMousePosition);
                     }
 
 
@@ -288,14 +288,14 @@ namespace SecretProject.Class.Stage
         #endregion
 
         #region DRAW
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
         {
 
 
-            graphicsDevice.Clear(Color.Black);
+            graphics.Clear(Color.Black);
             if (Player.Health > 0)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphicsDevice));
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 Player.Anim.ShowRectangle = showBorders;
                 Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
@@ -305,7 +305,7 @@ namespace SecretProject.Class.Stage
                 MidGroundTiles.DrawTiles(spriteBatch, (float).3);
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
-                Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles);
+                Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
                 //drawn in wrong spot
 
