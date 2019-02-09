@@ -74,6 +74,8 @@ namespace SecretProject.Class.Playable
 
         public AnimatedSprite CutGrassDown { get; set; }
 
+        public Texture2D BigHitBoxRectangleTexture;
+
 
         public Rectangle Rectangle
         {
@@ -82,6 +84,14 @@ namespace SecretProject.Class.Playable
                 return new Rectangle((int)position.X, (int)position.Y + 5, (int)Texture.Width / FrameNumber, (int)Texture.Height - 5);
             }
 
+        }
+
+        public Rectangle ClickRangeRectangle
+        {
+            get
+            {
+                return new Rectangle((int)position.X - 15, (int)position.Y - 15, ((int)Texture.Width / FrameNumber) + 30, (int)Texture.Height + 30);
+            }
         }
 
 
@@ -106,6 +116,8 @@ namespace SecretProject.Class.Playable
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
 
             CurrentAction = CutGrassDown;
+
+            SetRectangleTexture(graphics, ClickRangeRectangle);
 
         }
 
@@ -132,6 +144,33 @@ namespace SecretProject.Class.Playable
 
         }
 
+
+
+        private void SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < rectangleToDraw.Height; y++)
+            {
+                for (int x = 0; x < rectangleToDraw.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == rectangleToDraw.Width - 1 || //right side
+                        y == rectangleToDraw.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            BigHitBoxRectangleTexture = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
+            BigHitBoxRectangleTexture.SetData<Color>(Colors.ToArray());
+        }
 
 
         public void Update(GameTime gameTime, List<WorldItem> items, List<ObjectFolder.ObjectBody> objects)
@@ -176,7 +215,11 @@ namespace SecretProject.Class.Playable
 
                 IsMoving = false;
 
-                controls.Update();
+                if(!CurrentAction.IsAnimating)
+                {
+                    controls.Update();
+                }
+                
 
                 if (controls.IsMoving)
                 {

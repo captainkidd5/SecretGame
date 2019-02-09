@@ -54,6 +54,8 @@ namespace SecretProject.Class.TileStuff
         public bool isActive = false;
         public bool isPlacement { get; set; } = false;
 
+        public bool isInClickingRangeOfPlayer = false;
+
 
         MouseManager myMouse;
         ContentManager content;
@@ -223,6 +225,8 @@ namespace SecretProject.Class.TileStuff
                             tiles[i, j].IsFinishedAnimating = false;
                         }
 
+                        
+
 
                         if (mouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
@@ -233,15 +237,19 @@ namespace SecretProject.Class.TileStuff
                             //{
                             if (isBuilding)
                             {
-                                
-                                if (mouse.IsRightClicked)
+                                if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                 {
-                                    Interact(gameTime, i, j);
 
-                                    //if (isBuilding)
-                                    //{
-                                    //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
-                                    //}
+
+                                    if (mouse.IsRightClicked)
+                                    {
+                                        Interact(gameTime, i, j);
+
+                                        //if (isBuilding)
+                                        //{
+                                        //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
+                                        //}
+                                    }
                                 }
     
                             }
