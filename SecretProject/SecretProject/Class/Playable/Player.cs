@@ -68,6 +68,9 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
+        private bool PlayingSecondaryAnimation = false;
+
+        public AnimatedSprite CurrentAction;
 
         public AnimatedSprite CutGrassDown { get; set; }
 
@@ -100,8 +103,6 @@ namespace SecretProject.Class.Playable
 
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
 
-
-
         }
 
         public Player()
@@ -109,14 +110,20 @@ namespace SecretProject.Class.Playable
 
         }
 
+        
+
         public void PlayAnimation(GameTime gameTime, string action)
         {
             switch (action)
             {
                 case "CutGrassDown":
+                    IsPerformingAction = true;
                     CutGrassDown.PlayOnce(gameTime);
+                    CurrentAction = CutGrassDown;
                     break;
             }
+
+            
 
         }
 
@@ -151,14 +158,15 @@ namespace SecretProject.Class.Playable
                 {
                     PlayerMovementAnimations.Update(gameTime);
                 }
-                else if(IsPerformingAction)
+                else if(IsPerformingAction )
                 {
-
+                    CurrentAction.Update(gameTime);
                 }
                 else
                 {
                     PlayerMovementAnimations.setFrame(0);
                 } 
+
 
                 IsMoving = false;
 
@@ -192,6 +200,11 @@ namespace SecretProject.Class.Playable
 
                 }
             }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)

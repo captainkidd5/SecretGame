@@ -127,8 +127,7 @@ namespace SecretProject.Class.SpriteFolder
                 timer = speed;
             }
             if (currentFrame == totalFrames)
-                currentFrame = 0;
-           // Draw(gameTime, location, layerDepth);
+                IsAnimating = false;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, float layerDepth)

@@ -224,11 +224,6 @@ namespace SecretProject.Class.TileStuff
                         }
 
 
-
-                      //  if(tiles[i,j].HasSound == true)
-                       // {
-                       //     Intersect(i, j, Game1.Player);
-                       // }
                         if (mouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
                             CurrentIndexX = i;
@@ -277,23 +272,14 @@ namespace SecretProject.Class.TileStuff
         }
 
         #endregion
-        //TODO: 
-
-
-
-
 
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch, float depth)
-        {
-            
-
+        {           
             for (var i = 0; i < tilesetTilesWide; i++)
             {
                 for(var j = 0; j < tilesetTilesHigh; j++)
-                {
-
-                   
+                {                   
                     if (tiles[i, j].GID != 0)
                     {
                         if(tiles[i,j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2) && tiles[i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2)
@@ -301,42 +287,19 @@ namespace SecretProject.Class.TileStuff
                         {
                             spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, tiles[i, j].TileColor * tiles[i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
                         }
-                    }
-                     
-                        
+                    }                                            
                 }
             }
-
-
         }
         #endregion
 
-        //TODO: get sounds to play when walked over
-        /*
-        public void Intersect(int XCor, int YCor, Player player)
-        {
-            if(player.Rectangle.Intersects(tiles[XCor,YCor].DestinationRectangle))
-            {
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneStepInstance, false, 0);
-            }
-        }
-        */
-
         public void ReplaceTilePermanent(int oldX, int oldY)
         {
-
-
-
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             tiles[oldX, oldY] = ReplaceMenttile;
         }
         public Tile[] temporaryTiles = new Tile[20];
 
-
-
-
-
-        //TODO: Work on
 
         public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
         {
@@ -353,12 +316,8 @@ namespace SecretProject.Class.TileStuff
 
             TempTile = tiles[oldX, oldY];
             
-            
-            
-            
             tiles[oldX, oldY] = ReplaceMenttile;
              // tiles[oldX, oldY].IsTemporary = true;
-
 
             OldIndexX = oldX;
             OldIndexY = oldY;
@@ -366,13 +325,6 @@ namespace SecretProject.Class.TileStuff
           //  AddTemporaryTiles(TempTile);
         }
 
-
-        //public event EventHandler OnGrassInteraction; /// <summary>
-        /// ///////////
-        /// </summary>
-        /// <param name="gameTime"></param>
-        /// <param name="oldX"></param>
-        /// <param name="oldY"></param>
 
         public void Interact(GameTime gameTime, int oldX, int oldY)
         {
@@ -383,7 +335,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     tiles[oldX, oldY].IsAnimating = true;
                     tiles[oldX, oldY].KillAnimation = true;
-                  //  OnGrassInteraction(this, EventArgs.Empty); ///////////////////////////////////////////////
+
+                    //Game1.Player.IsMoving = false;
                     Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
                 }
              }
@@ -393,9 +346,6 @@ namespace SecretProject.Class.TileStuff
         {
                    if (tiles[oldX, oldY].IsFinishedAnimating)
                     {
-
-
-
                         Game1.iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
                         Game1.iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
@@ -403,14 +353,7 @@ namespace SecretProject.Class.TileStuff
                     ReplaceTilePermanent(oldX, oldY);
                     }                
    
-        }
-
-        
-
-        
-
-        //NEEDS WORK
-       
+        }   
 
     }
 }
