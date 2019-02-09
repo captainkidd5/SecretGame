@@ -101,7 +101,11 @@ namespace SecretProject.Class.Playable
 
             controls = new PlayerControls(0);
 
+            
+
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
+
+            CurrentAction = CutGrassDown;
 
         }
 
@@ -120,6 +124,7 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CutGrassDown.PlayOnce(gameTime);
                     CurrentAction = CutGrassDown;
+                    CurrentAction.IsAnimating = true;
                     break;
             }
 
@@ -154,15 +159,16 @@ namespace SecretProject.Class.Playable
                 Velocity = Vector2.Zero;
 
 
-                if (controls.IsMoving)
+                if (controls.IsMoving && CurrentAction.IsAnimating == false)
                 {
                     PlayerMovementAnimations.Update(gameTime);
                 }
-                else if(IsPerformingAction )
+                else if (CurrentAction.IsAnimating == true)
                 {
-                    CurrentAction.Update(gameTime);
+                    CurrentAction.PlayOnce(gameTime);
+
                 }
-                else
+                else if (CurrentAction.IsAnimating == false && controls.IsMoving == false)
                 {
                     PlayerMovementAnimations.setFrame(0);
                 } 

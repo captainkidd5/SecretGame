@@ -119,6 +119,7 @@ namespace SecretProject.Class.SpriteFolder
         public void PlayOnce(GameTime gameTime)
         {
             
+
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
 
             if (timer <= 0)
@@ -127,7 +128,11 @@ namespace SecretProject.Class.SpriteFolder
                 timer = speed;
             }
             if (currentFrame == totalFrames)
+            {
+                currentFrame = 0;
                 IsAnimating = false;
+            }
+                
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, float layerDepth)

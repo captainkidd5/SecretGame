@@ -263,10 +263,15 @@ namespace SecretProject.Class.Stage
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 Player.PlayerMovementAnimations.ShowRectangle = showBorders;
-                Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
+
+                if (Player.CurrentAction.IsAnimating == false)
+                {
+                    Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
+                }
+                
 
                 //????
-                if(Player.IsPerformingAction)
+                if(Player.CurrentAction.IsAnimating == true)
                 {
                     Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 }
