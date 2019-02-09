@@ -61,10 +61,12 @@ namespace SecretProject.Class.Playable
         public Dir Direction { get; set; } = Dir.Down;
         public bool IsMoving { get; set; } = false;
         public float Speed1 { get; set; } = 3f;
-        public AnimatedSprite Anim { get; set; }
+        public AnimatedSprite PlayerMovementAnimations { get; set; }
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
         public Collider MyCollider { get; set; }
+
+        public bool IsPerformingAction = false;
 
 
         public AnimatedSprite CutGrassDown { get; set; }
@@ -118,10 +120,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void PerformActionOnClick(GameTime gameTime, string action)
-        {
-            //need current inventory selection
-        }
+
 
         public void Update(GameTime gameTime, List<WorldItem> items, List<ObjectFolder.ObjectBody> objects)
         {
@@ -130,7 +129,8 @@ namespace SecretProject.Class.Playable
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                Anim = animations[(int)controls.Direction];
+                //animation set changes depending on which key is pressed, as shown in playercontrols
+                PlayerMovementAnimations = animations[(int)controls.Direction];
 
                 MyCollider.Rectangle = this.Rectangle;
                 MyCollider.Velocity = this.Velocity;
@@ -148,8 +148,17 @@ namespace SecretProject.Class.Playable
 
 
                 if (controls.IsMoving)
-                    Anim.Update(gameTime);
-                else Anim.setFrame(0);
+                {
+                    PlayerMovementAnimations.Update(gameTime);
+                }
+                else if(IsPerformingAction)
+                {
+
+                }
+                else
+                {
+                    PlayerMovementAnimations.setFrame(0);
+                } 
 
                 IsMoving = false;
 

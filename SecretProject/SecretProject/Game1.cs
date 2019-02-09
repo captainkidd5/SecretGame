@@ -139,7 +139,7 @@ namespace SecretProject
 
             //PLAYERS
             Player = new Player("joe", new Vector2(900, 250), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
-            Player.Anim = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
+            Player.PlayerMovementAnimations = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
             Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
             Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 18, 1, 25);

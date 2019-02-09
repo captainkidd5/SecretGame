@@ -262,8 +262,8 @@ namespace SecretProject.Class.Stage
             if (Player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
-                Player.Anim.ShowRectangle = showBorders;
-                Player.Anim.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
+                Player.PlayerMovementAnimations.ShowRectangle = showBorders;
+                Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
                 BackGroundTiles.DrawTiles(spriteBatch, (float).1);
