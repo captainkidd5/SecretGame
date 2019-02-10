@@ -375,3 +375,21 @@
 /processorParam:TextureFormat=Color
 /build:Button/ToolBarButtonSelector.png
 
+#begin Music/grassBreak.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/grassBreak.mp3
+
+#begin Music/grassBreakWav.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/grassBreakWav.wav
+
+#begin Music/placeBarrel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/placeBarrel.wav
+

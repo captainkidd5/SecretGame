@@ -12,10 +12,20 @@ namespace SecretProject.Class.SoundStuff
 {
     public class SoundBoard
     {
+
+        //Sound Effects are WAV
+        //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
         public SoundEffectInstance PickUpItemInstance { get; set; }
         public SoundEffect StoneStep { get; set; }
         public SoundEffectInstance StoneStepInstance { get; set; }
+
+        public SoundEffect GrassBreak;
+        public SoundEffectInstance GrassBreakInstance;
+        public SoundEffect PlaceBarrel;
+        public SoundEffectInstance PlaceBarrelInstance;
+
+
         public SoundBoard(Game1 game, ContentManager content)
         {
             PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -23,6 +33,12 @@ namespace SecretProject.Class.SoundStuff
 
             StoneStep = content.Load<SoundEffect>("SoundEffects/bubble");
             StoneStepInstance = StoneStep.CreateInstance();
+
+            GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
+            GrassBreakInstance = GrassBreak.CreateInstance();
+
+            PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
+            PlaceBarrelInstance = PlaceBarrel.CreateInstance();
 
         }
 

@@ -346,6 +346,7 @@ namespace SecretProject.Class.TileStuff
 
                     //Game1.Player.IsMoving = false;
                     Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
                 }
              }
         }

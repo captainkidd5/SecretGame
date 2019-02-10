@@ -21,7 +21,7 @@ using SecretProject.Class.TextureStuff;
 // fix player clipping around when performing action
 // diagonal movement
 // inside of house
-//fix screen edges so they don't move when character reaches them
+// change screen edge stuff from hardcode
 //make screen width/height stuff better
 
 namespace SecretProject
@@ -146,7 +146,7 @@ namespace SecretProject
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
 
             //PLAYERS
-            Player = new Player("joe", new Vector2(1200, 1200), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(600, 600), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             Player.PlayerMovementAnimations = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
             Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement

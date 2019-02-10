@@ -266,7 +266,7 @@ namespace SecretProject.Class.Stage
 
                 if (Player.CurrentAction.IsAnimating == false)
                 {
-                    Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
+                    Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
                 }
                 
 

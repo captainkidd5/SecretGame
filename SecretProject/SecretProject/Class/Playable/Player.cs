@@ -68,7 +68,7 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
-        private bool PlayingSecondaryAnimation = false;
+       // private bool PlayingSecondaryAnimation = false;
 
         public AnimatedSprite CurrentAction;
 
