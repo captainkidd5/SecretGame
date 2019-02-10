@@ -139,9 +139,6 @@ namespace SecretProject.Class.Playable
                     CurrentAction.IsAnimating = true;
                     break;
             }
-
-            
-
         }
 
 
@@ -247,6 +244,23 @@ namespace SecretProject.Class.Playable
                     }
 
 
+                }
+
+                if(position.X < 0)
+                {
+                    position.X = 0;
+                }
+                if(position.X > 1580)
+                {
+                    position.X = 1580;
+                }
+                if(position.Y < 0)
+                {
+                    position.Y = 0;
+                }
+                if(position.Y > 1560)
+                {
+                    position.Y = 1560;
                 }
             }
         }

@@ -30,7 +30,7 @@ namespace SecretProject.Class.Stage
 
         private bool showBorders = false;
         public Vector2 TileSize = new Vector2(16, 16); // what?
-        public static TmxMap map;
+        public TmxMap map;
         public Player Player { get; set; }
 
         public int TileWidth { get; set; }
@@ -150,7 +150,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Game1.cam.Zoom = 3f;
+            Game1.cam.Zoom = 2.5f;
             //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
