@@ -23,13 +23,14 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
 
             switch(name)
             {
+                //should be GID + 1 for all cases
                 case "barrel":
-                    ForeGroundID = new int[2] { 3433, 3434 };
-                    BuildingID = new int[2] { 3533, 3534 };
+                    ForeGroundID = new int[2] { 3437, 3438 };
+                    BuildingID = new int[2] { 3537, 3538 };
 
                     TotalTiles = new int[2, 2] {
-                        {3433, 3434 },
-                        {3533, 3534 }
+                        {3437, 3438 },
+                        {3537, 3538 }
                     };
                     break;
             }

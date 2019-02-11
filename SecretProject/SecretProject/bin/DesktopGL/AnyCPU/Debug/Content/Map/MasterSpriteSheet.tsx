@@ -174,6 +174,16 @@
    <object id="1" x="0" y="0" width="8.875" height="1.9375"/>
   </objectgroup>
  </tile>
+ <tile id="3536">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="3537">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="2"/>
+  </objectgroup>
+ </tile>
  <tile id="3643">
   <objectgroup draworder="index">
    <object id="1" x="9.90909" y="3" width="5.72727" height="0.909091"/>
