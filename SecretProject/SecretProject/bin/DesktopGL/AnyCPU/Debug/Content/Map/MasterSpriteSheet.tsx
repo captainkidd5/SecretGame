@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="2141">
   <objectgroup draworder="index">
@@ -147,6 +147,11 @@
  <tile id="2748">
   <objectgroup draworder="index">
    <object id="1" x="3.45455" y="-0.181818" width="1.72727" height="16.5455"/>
+  </objectgroup>
+ </tile>
+ <tile id="3319">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="4"/>
   </objectgroup>
  </tile>
  <tile id="3428">
