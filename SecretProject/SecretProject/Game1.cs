@@ -35,6 +35,14 @@ namespace SecretProject
         Right
     }
 
+    public enum SecondaryDir
+    {
+        Down,
+        Up,
+        Left,
+        Right
+    }
+
     public enum Stages
     {
         MainMenu = 0,
