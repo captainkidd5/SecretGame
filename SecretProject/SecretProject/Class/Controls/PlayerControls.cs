@@ -51,14 +51,12 @@ namespace SecretProject.Class.Controls
 
         public void Update()
         {
-            //IsMoving = false;
             switch (controls)
             {
                 case ControlType.Keyboard:
                    KeyboardState currentKeys = Keyboard.GetState();
 
 
-                  //  MovementKey = Keys.None;
 
 
                     if (currentKeys.IsKeyDown(Keys.D) && !MovementKeys.Contains(Keys.D))
@@ -108,6 +106,8 @@ namespace SecretProject.Class.Controls
                         MovementKeys.Remove(Keys.S);
                     }
 
+                    //active movement key is the one at the front of the list
+
                     MovementKey = MovementKeys[MovementKeys.Count - 1];
 
                     oldKeys = currentKeys;
@@ -148,59 +148,3 @@ namespace SecretProject.Class.Controls
     }
 }
 
-
-/*
- if(!currentKeys.IsKeyDown(MovementKey) && oldKeys.IsKeyDown(MovementKey))
-                    {
-                        MovementKey = Keys.None;
-                    }
-                    else
-                    {
-                        if (currentKeys.IsKeyDown(Keys.D) && !oldKeys.IsKeyDown(Keys.D))
-                        {
-                            MovementKey = Keys.D;
-                        }
-
-                        else if (currentKeys.IsKeyDown(Keys.A) && !oldKeys.IsKeyDown(Keys.A))
-                        {
-                            MovementKey = Keys.A;
-                        }
-
-                        else if (currentKeys.IsKeyDown(Keys.W) && !oldKeys.IsKeyDown(Keys.W))
-                        {
-                            MovementKey = Keys.W;
-                        }
-
-                        else if (currentKeys.IsKeyDown(Keys.S) && !oldKeys.IsKeyDown(Keys.S))
-                        {
-                            MovementKey = Keys.S;
-                        }
-                    }
-
-                    
-
-                    oldKeys = currentKeys;
-
-                    switch(MovementKey)
-                    {
-                        case Keys.D:
-                            Direction = Dir.Right;
-                            IsMoving = true;
-                            break;
-
-                        case Keys.A:
-                            Direction = Dir.Left;
-                            break;
-
-                        case Keys.W:
-                            Direction = Dir.Up;
-                            break;
-
-                        case Keys.S:
-                            Direction = Dir.Down;
-                            break;
-
-                        case Keys.None:
-                            break;
-                    }
-                    */

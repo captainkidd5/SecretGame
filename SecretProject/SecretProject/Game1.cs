@@ -23,6 +23,7 @@ using SecretProject.Class.TextureStuff;
 // inside of house
 // change screen edge stuff from hardcode
 //make screen width/height stuff better
+//placeable objects needs two new layers so stuff underneat is preserved.
 
 namespace SecretProject
 {
