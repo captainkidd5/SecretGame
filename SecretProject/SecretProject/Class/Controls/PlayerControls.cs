@@ -13,7 +13,7 @@ namespace SecretProject.Class.Controls
         Keyboard = 0,
         JoyStick = 1,
     }
-    class PlayerControls
+    public class PlayerControls
     {
         public ControlType controls { get; set; } = ControlType.Keyboard;
         public Dir Direction { get; set; }

@@ -317,7 +317,6 @@ namespace SecretProject.Class.TileStuff
                 {
                     tiles[OldIndexX, OldIndexY].GID = 1;
                 }
-
             }
 
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier};
@@ -345,8 +344,18 @@ namespace SecretProject.Class.TileStuff
                     tiles[oldX, oldY].KillAnimation = true;
 
                     //Game1.Player.IsMoving = false;
-                    Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                    if(Game1.Player.controls.Direction == Dir.Down)
+                    {
+                        Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                    }
+                    else if(Game1.Player.controls.Direction == Dir.Right)
+                    {
+                        Game1.Player.PlayAnimation(gameTime, "CutGrassRight");
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                    }
+                    
+                    
                 }
              }
         }

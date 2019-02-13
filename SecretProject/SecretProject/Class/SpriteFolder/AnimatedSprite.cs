@@ -31,6 +31,9 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool IsAnimating { get; set; }
 
+        public int AdjustedLocationX { get; set; } = 0;
+        public int AdjustedLocationY { get; set; } = 0;
+
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames)
         {
             Texture = texture;
@@ -144,7 +147,7 @@ namespace SecretProject.Class.SpriteFolder
             int column = (currentFrame % Columns) + DesiredColumnStart;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X, (int)location.Y, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)location.X + AdjustedLocationX, (int)location.Y + AdjustedLocationY, width, height);
 
 
             spriteBatch.Draw(Texture, destinationRectangle: destinationRectangle, sourceRectangle: sourceRectangle, color: Color.White, layerDepth: MyDepth);

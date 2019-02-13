@@ -37,7 +37,7 @@ namespace SecretProject.Class.Playable
         public Inventory Inventory { get; set; }
         ContentManager content;
 
-        PlayerControls controls;
+        public PlayerControls controls;
 
         public Vector2 Position
         {
@@ -73,6 +73,7 @@ namespace SecretProject.Class.Playable
         public AnimatedSprite CurrentAction;
 
         public AnimatedSprite CutGrassDown { get; set; }
+        public AnimatedSprite CutGrassRight { get; set; }
 
         public Texture2D BigHitBoxRectangleTexture;
 
@@ -111,9 +112,10 @@ namespace SecretProject.Class.Playable
 
             controls = new PlayerControls(0);
 
-            
+
 
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
+            CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
 
             CurrentAction = CutGrassDown;
 
@@ -136,6 +138,13 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CutGrassDown.PlayOnce(gameTime);
                     CurrentAction = CutGrassDown;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "CutGrassRight":
+                    IsPerformingAction = true;
+                    CutGrassRight.PlayOnce(gameTime);
+                    CurrentAction = CutGrassRight;
                     CurrentAction.IsAnimating = true;
                     break;
             }
