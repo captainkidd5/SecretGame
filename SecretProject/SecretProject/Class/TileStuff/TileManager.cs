@@ -341,10 +341,32 @@ namespace SecretProject.Class.TileStuff
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
                     tiles[oldX, oldY].IsAnimating = true;
-                    tiles[oldX, oldY].KillAnimation = true;
+                    tiles[oldX, oldY].KillAnimation = true; 
+
+                    if(Game1.Player.Position.Y < tiles[oldX, oldY].Y - 30)
+                    {
+                        Game1.Player.controls.Direction = Dir.Down;
+                    }
+
+                    else if (Game1.Player.Position.Y > tiles[oldX, oldY].Y)
+                    {
+                        Game1.Player.controls.Direction = Dir.Up;
+                    }
+
+                    else if (Game1.Player.Position.X < tiles[oldX, oldY].X)
+                    {
+                        Game1.Player.controls.Direction = Dir.Right;
+                    }
+                    else if (Game1.Player.Position.X > tiles[oldX, oldY].X)
+                    {
+                        Game1.Player.controls.Direction = Dir.Left;
+                    }
+
+                    
+
 
                     //Game1.Player.IsMoving = false;
-                    if(Game1.Player.controls.Direction == Dir.Down)
+                    if (Game1.Player.controls.Direction == Dir.Down)
                     {
                         Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
