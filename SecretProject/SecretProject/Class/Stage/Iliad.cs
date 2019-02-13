@@ -150,7 +150,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Game1.cam.Zoom = 2.5f;
+            Game1.cam.Zoom = 3f;
             //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------

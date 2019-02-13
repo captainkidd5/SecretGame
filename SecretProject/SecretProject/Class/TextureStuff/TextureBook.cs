@@ -24,6 +24,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D CutGrassDown;
         public Texture2D CutGrassRight;
         public Texture2D CutGrassLeft;
+        public Texture2D CutGrassUp;
 
 
         //UiStuff
@@ -43,6 +44,7 @@ namespace SecretProject.Class.TextureStuff
             CutGrassDown = content.Load<Texture2D>("Player/MainPlayer/ClippingForward");
             CutGrassRight = content.Load<Texture2D>("Player/MainPlayer/ClippingRight");
             CutGrassLeft = content.Load<Texture2D>("Player/MainPlayer/ClippingLeft");
+            CutGrassUp = content.Load<Texture2D>("Player/MainPlayer/ClippingUp");
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
 

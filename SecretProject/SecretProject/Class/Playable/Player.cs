@@ -75,6 +75,8 @@ namespace SecretProject.Class.Playable
         public AnimatedSprite CutGrassDown { get; set; }
         public AnimatedSprite CutGrassRight { get; set; }
         public AnimatedSprite CutGrassLeft { get; set; }
+        public AnimatedSprite CutGrassUp { get; set; }
+
 
         public Texture2D BigHitBoxRectangleTexture;
 
@@ -118,6 +120,7 @@ namespace SecretProject.Class.Playable
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
             CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
             CutGrassLeft = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassLeft, 1, 3, 3) { AdjustedLocationX = -18 };
+            CutGrassUp = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassUp, 1, 3, 3) { AdjustedLocationX = -1, AdjustedLocationY = -7 };
 
             CurrentAction = CutGrassDown;
 
@@ -154,6 +157,13 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CutGrassLeft.PlayOnce(gameTime);
                     CurrentAction = CutGrassLeft;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "CutGrassUp":
+                    IsPerformingAction = true;
+                    CutGrassUp.PlayOnce(gameTime);
+                    CurrentAction = CutGrassUp;
                     CurrentAction.IsAnimating = true;
                     break;
 

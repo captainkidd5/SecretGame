@@ -359,6 +359,11 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.PlayAnimation(gameTime, "CutGrassLeft");
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
                     }
+                    else if (Game1.Player.controls.Direction == Dir.Up)
+                    {
+                        Game1.Player.PlayAnimation(gameTime, "CutGrassUp");
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                    }
 
 
                 }
