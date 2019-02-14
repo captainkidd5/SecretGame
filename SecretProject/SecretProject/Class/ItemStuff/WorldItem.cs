@@ -86,15 +86,23 @@ namespace SecretProject.Class.ItemStuff
                     this.IsPlaceable = true;
                     Building = new PlaceableBuilding(Name);
                     break;
-/*
-                case "animatedGrass":
-                    this.Texture = content.Load<Texture2D>("Item/grass");
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f) { IsAnimated = true, Rows = 1, Columns =4 }  ;
+
+                case "secateur":
+                    this.Texture = Game1.AllTextures.Secateurs;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 5;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
                     break;
-                    */
+                /*
+                                case "animatedGrass":
+                                    this.Texture = content.Load<Texture2D>("Item/grass");
+                                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f) { IsAnimated = true, Rows = 1, Columns =4 }  ;
+                                    this.WorldMaximum = 5;
+                                    ItemSprite.ScaleX = .5f;
+                                    ItemSprite.ScaleY = .5f;
+                                    break;
+                                    */
                 default:
 
 

@@ -66,8 +66,15 @@ namespace SecretProject.Class.ItemStuff.Items
                     this.InvMaximum = 3;
                     this.IsPlaceable = true;
                     this.Building = new PlaceableBuilding(Name);
-
                     break;
+
+                case "secateur":
+                    this.Texture = Game1.AllTextures.Secateurs;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+                    this.InvMaximum = 1;               
+                    break;
+
+                    
 
                 default:
                     throw new NotImplementedException();

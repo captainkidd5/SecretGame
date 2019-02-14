@@ -189,6 +189,7 @@ namespace SecretProject.Class.Stage
 
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
+            allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
         }
 
@@ -203,6 +204,7 @@ namespace SecretProject.Class.Stage
             //keyboard
             KeyboardState oldKeyboardState = KState;
             KState = Keyboard.GetState();
+            Game1.myMouseManager.ToggleNewMouseMode = false;
 
             //--------------------------------------
             //Update Toolbar
@@ -290,8 +292,9 @@ namespace SecretProject.Class.Stage
                 MidGroundTiles.DrawTiles(spriteBatch, (float).3);
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
-                Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
                 mouse.Draw(spriteBatch, 1);
+                Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
+                
 
                 //drawn in wrong spot
 

@@ -212,7 +212,7 @@ namespace SecretProject.Class.TileStuff
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            Game1.myMouseManager.ToggleNewMouseMode = false;
+            
             for (var i = 0; i < tilesetTilesWide; i++)
             {
                 for (var j = 0; j < tilesetTilesHigh; j++)
@@ -231,6 +231,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (mouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
+                            
                             CurrentIndexX = i;
                             CurrentIndexY = j;
                             // IsBeingSelected(i, j);
@@ -238,19 +239,21 @@ namespace SecretProject.Class.TileStuff
                             //{
                             if (isBuilding)
                             {
-                                if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                                
+                                if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
                                 {
+                                    Game1.isMyMouseVisible = false;
                                     Game1.myMouseManager.ToggleNewMouseMode = true;
 
                                     if (mouse.IsRightClicked)
                                     {
                                         Interact(gameTime, i, j);
 
-                                        //if (isBuilding)
-                                        //{
-                                        //   Iliad.allObjects.Add(new ObjectBody(graphicsDevice, tiles[i, j].DestinationRectangle));
-                                        //}
                                     }
+                                }
+                                else
+                                {
+                                    Game1.isMyMouseVisible = true;
                                 }
                                 
                                 
@@ -340,8 +343,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Interact(GameTime gameTime, int oldX, int oldY)
         {
-            if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID))
-            {
+            
 
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
@@ -394,7 +396,7 @@ namespace SecretProject.Class.TileStuff
 
 
                 }
-             }
+             
         }
 
         public void Destroy(int oldX, int oldY)
