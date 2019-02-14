@@ -29,6 +29,7 @@ namespace SecretProject.Class.TextureStuff
 
         //UiStuff
         public Texture2D ToolBarButtonSelector;
+        public Texture2D CursorWhiteHand;
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -47,6 +48,7 @@ namespace SecretProject.Class.TextureStuff
             CutGrassUp = content.Load<Texture2D>("Player/MainPlayer/ClippingUp");
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
+            CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
 
         }
 

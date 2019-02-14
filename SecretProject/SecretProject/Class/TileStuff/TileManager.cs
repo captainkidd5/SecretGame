@@ -212,6 +212,7 @@ namespace SecretProject.Class.TileStuff
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+            Game1.myMouseManager.ToggleNewMouseMode = false;
             for (var i = 0; i < tilesetTilesWide; i++)
             {
                 for (var j = 0; j < tilesetTilesHigh; j++)
@@ -239,7 +240,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                 {
-
+                                    Game1.myMouseManager.ToggleNewMouseMode = true;
 
                                     if (mouse.IsRightClicked)
                                     {
@@ -251,6 +252,10 @@ namespace SecretProject.Class.TileStuff
                                         //}
                                     }
                                 }
+                                
+                                
+                                    
+                                
     
                             }
 

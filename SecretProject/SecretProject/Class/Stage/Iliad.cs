@@ -264,6 +264,8 @@ namespace SecretProject.Class.Stage
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 Player.PlayerMovementAnimations.ShowRectangle = showBorders;
 
+                
+
                 if (Player.CurrentAction.IsAnimating == false)
                 {
                     Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
@@ -289,6 +291,7 @@ namespace SecretProject.Class.Stage
                 ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
                 Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
+                mouse.Draw(spriteBatch, 1);
 
                 //drawn in wrong spot
 

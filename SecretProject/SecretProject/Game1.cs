@@ -24,6 +24,7 @@ using SecretProject.Class.TextureStuff;
 // change screen edge stuff from hardcode
 //make screen width/height stuff better
 //placeable objects needs two new layers so stuff underneat is preserved.
+//fix mouse cursor texture in tilemanager class
 
 namespace SecretProject
 {
@@ -224,6 +225,7 @@ namespace SecretProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            
 
             switch (gameStages)
             {
@@ -236,6 +238,7 @@ namespace SecretProject
                     iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
             }
+
 
             base.Draw(gameTime);
         }

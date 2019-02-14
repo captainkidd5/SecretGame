@@ -54,6 +54,8 @@ namespace SecretProject.Class.Controls
         public bool HasScrollWheelValueIncreased = false;
         public bool HasScrollWheelValueDecreased = false;
 
+        public bool ToggleNewMouseMode { get; set; } = false;
+
         Vector2 worldPosition;
 
         GraphicsDevice graphicsDevice;
@@ -139,6 +141,16 @@ namespace SecretProject.Class.Controls
             {
                 IsClickedAndHeld = false;
             }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, float depth)
+        {      
+            if(ToggleNewMouseMode)
+            {
+                spriteBatch.Draw(Game1.AllTextures.CursorWhiteHand, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
+            }
+            
+
         }
 
         public Vector2 GetMouseSquarePosition(Vector2 mousePosition)
