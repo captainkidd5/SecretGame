@@ -166,11 +166,46 @@ namespace SecretProject.Class.UI
 
         private void UpdateScrollWheel(MouseManager mouse)
         {
-            if (mouse.HasScrollWheelValueIncreased)
+            if ((Game1.Player.controls.pressedKeys != null))
+            {
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D1))
+                {
+                    currentSliderPosition = 1;
+                }
+
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D2))
+                {
+                    currentSliderPosition = 2;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D3))
+                {
+                    currentSliderPosition = 3;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D4))
+                {
+                    currentSliderPosition = 4;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D5))
+                {
+                    currentSliderPosition = 5;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D6))
+                {
+                    currentSliderPosition = 6;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D7))
+                {
+                    currentSliderPosition = 7;
+                }
+            }
+
+            
+
+            if (mouse.HasScrollWheelValueDecreased)
             {
                 currentSliderPosition += 1;
             }
-            else if (mouse.HasScrollWheelValueDecreased)
+            else if (mouse.HasScrollWheelValueIncreased)
             {
                 currentSliderPosition -= 1;
             }
@@ -183,6 +218,8 @@ namespace SecretProject.Class.UI
             {
                 currentSliderPosition = 1;
             }
+
+
         }
 
         public void UpdateNonInventoryButtons(MouseManager mouse)

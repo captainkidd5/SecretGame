@@ -28,6 +28,8 @@ namespace SecretProject.Class.Controls
 
         public Keys MovementKey { get; set; } = Keys.None;
 
+        public Keys[] pressedKeys;
+
         public bool IsMoving { get; set; } = false;
 
         List<Keys> MovementKeys = new List<Keys>() { Keys.None };
@@ -49,6 +51,8 @@ namespace SecretProject.Class.Controls
             }
         }
 
+
+
         public void Update()
         {
             switch (controls)
@@ -56,7 +60,7 @@ namespace SecretProject.Class.Controls
                 case ControlType.Keyboard:
                    KeyboardState currentKeys = Keyboard.GetState();
 
-
+                    pressedKeys = currentKeys.GetPressedKeys();
 
 
                     if (currentKeys.IsKeyDown(Keys.D) && !MovementKeys.Contains(Keys.D))
