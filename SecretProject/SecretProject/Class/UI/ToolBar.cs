@@ -204,6 +204,20 @@ namespace SecretProject.Class.UI
             OpenInventory.isClicked = false;
         }
 
+        public string GetCurrentEquippedTool()
+        {
+            if(inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            {
+                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().Name;
+            }
+            else
+            {
+                return "null";
+            }
+
+            
+        }
+
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
@@ -213,6 +227,8 @@ namespace SecretProject.Class.UI
             DragoToggleBuildingDropped = false;
             for (int i = 0; i < 7; i++)
             {
+
+
                 if (inventory.currentInventory.ElementAt(i) == null)
                 {
                     AllSlots[i].ItemCounter = 0;

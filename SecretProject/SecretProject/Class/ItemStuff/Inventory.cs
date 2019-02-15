@@ -132,6 +132,8 @@ namespace SecretProject.Class.ItemStuff
 
         public InventoryItem Item { get; set; }
 
+        public bool IsCurrentSelection = false;
+
         public InventorySlot(InventoryItem item)
         {
             SlotItems = new List<InventoryItem>(1);
@@ -146,6 +148,8 @@ namespace SecretProject.Class.ItemStuff
 
         public InventoryItem GetItem()
         {
+            
+
             return SlotItems[0];
         }
 

@@ -343,14 +343,17 @@ namespace SecretProject.Class.TileStuff
 
         public void Interact(GameTime gameTime, int oldX, int oldY)
         {
-            
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "secateur")
+            {
+
+
 
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
                     tiles[oldX, oldY].IsAnimating = true;
-                    tiles[oldX, oldY].KillAnimation = true; 
+                    tiles[oldX, oldY].KillAnimation = true;
 
-                    if(Game1.Player.Position.Y < tiles[oldX, oldY].Y - 30)
+                    if (Game1.Player.Position.Y < tiles[oldX, oldY].Y - 30)
                     {
                         Game1.Player.controls.Direction = Dir.Down;
                     }
@@ -369,7 +372,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.controls.Direction = Dir.Left;
                     }
 
-                    
+
 
 
                     //Game1.Player.IsMoving = false;
@@ -378,7 +381,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
                     }
-                    else if(Game1.Player.controls.Direction == Dir.Right)
+                    else if (Game1.Player.controls.Direction == Dir.Right)
                     {
                         Game1.Player.PlayAnimation(gameTime, "CutGrassRight");
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
@@ -396,6 +399,7 @@ namespace SecretProject.Class.TileStuff
 
 
                 }
+            }
              
         }
 
