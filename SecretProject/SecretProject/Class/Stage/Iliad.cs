@@ -266,7 +266,11 @@ namespace SecretProject.Class.Stage
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 Player.PlayerMovementAnimations.ShowRectangle = showBorders;
 
-                
+                //fix to stay longer
+                if (Game1.userInterface.BottomBar.WasSliderUpdated)
+                {
+                    spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
+                }
 
                 if (Player.CurrentAction.IsAnimating == false)
                 {

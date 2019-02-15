@@ -54,6 +54,8 @@ namespace SecretProject.Class.UI
         public Texture2D InvSlot6Texture { get; set; }
         public Texture2D InvSlot7Texture { get; set; }
 
+        public Texture2D ItemSwitchTexture;
+
         public InventoryItem TempItem { get; set; }
 
         public Rectangle BackGroundTextureRectangle { get; set; }
@@ -78,6 +80,7 @@ namespace SecretProject.Class.UI
         public bool DragoToggleBuildingDropped { get; set; } = false;
 
         public int currentSliderPosition = 1;
+        public bool WasSliderUpdated = false;
 
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
         {
@@ -141,6 +144,11 @@ namespace SecretProject.Class.UI
         {
             UpdateScrollWheel(mouse);
 
+            if(WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            {
+                ItemSwitchTexture = GetCurrentItemTexture();
+            }
+
             this.inventory = inventory;
 
             UpdateNonInventoryButtons(mouse);
@@ -166,6 +174,9 @@ namespace SecretProject.Class.UI
 
         private void UpdateScrollWheel(MouseManager mouse)
         {
+            WasSliderUpdated = false;
+            int oldSliderPosition = currentSliderPosition;
+
             if ((Game1.Player.controls.pressedKeys != null))
             {
                 if (Game1.Player.controls.pressedKeys.Contains(Keys.D1))
@@ -219,6 +230,10 @@ namespace SecretProject.Class.UI
                 currentSliderPosition = 1;
             }
 
+            if(oldSliderPosition != currentSliderPosition)
+            {
+                WasSliderUpdated = true;
+            }
 
         }
 
@@ -253,6 +268,13 @@ namespace SecretProject.Class.UI
             }
 
             
+        }
+
+        public Texture2D GetCurrentItemTexture()
+        {
+
+                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().Texture;
+
         }
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
@@ -443,6 +465,7 @@ namespace SecretProject.Class.UI
                     spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot7.Position, Color.White);
                     break;
             }
+            
             
 
 
