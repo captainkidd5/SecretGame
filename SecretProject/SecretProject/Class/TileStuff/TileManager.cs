@@ -178,7 +178,7 @@ namespace SecretProject.Class.TileStuff
                                     tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                                     (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
 
-                                Game1.iliad.allObjects.Add(tiles[i, j].TileObject);
+                                Game1.Iliad.allObjects.Add(tiles[i, j].TileObject);
 
                             }
                         }
@@ -204,7 +204,7 @@ namespace SecretProject.Class.TileStuff
                         tiles[indexX, indexY].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                         (int)Math.Ceiling(tempObj.Height)), tiles[indexX, indexY].DestinationRectangle.X);
 
-                    Game1.iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
+                    Game1.Iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
                 }
             }
         }
@@ -407,9 +407,9 @@ namespace SecretProject.Class.TileStuff
         {
                    if (tiles[oldX, oldY].IsFinishedAnimating)
                     {
-                        Game1.iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                        Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                        Game1.iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                        Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                     }                

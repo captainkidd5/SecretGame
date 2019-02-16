@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using TiledSharp;
+
 namespace SecretProject.Class.TextureStuff
 {
    public class TextureBook
@@ -34,6 +36,13 @@ namespace SecretProject.Class.TextureStuff
         //Items
         public Texture2D Secateurs;
 
+        
+
+        //Maps
+        public TmxMap Iliad;
+
+        public TmxMap LodgeInterior;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             JoeSprite = content.Load<Texture2D>("Player/Joe/joe");
@@ -55,6 +64,10 @@ namespace SecretProject.Class.TextureStuff
 
             Secateurs = content.Load<Texture2D>("Item/secateurs");
 
+            Iliad = new TmxMap("Content/Map/worldMap.tmx");
+
+            LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx")
+;
         }
 
     }

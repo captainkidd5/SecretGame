@@ -323,7 +323,7 @@ namespace SecretProject.Class.UI
                     {
 
 
-                        Game1.iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                        Game1.Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
                     }
 
                     if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
@@ -388,7 +388,7 @@ namespace SecretProject.Class.UI
                 for(int j = 0; j < GIDArray.GetLength(1); j++)
                 {
                     Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j , mouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
-                    spriteBatch.Draw(Game1.iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
+                    spriteBatch.Draw(Game1.Iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
                 
             }

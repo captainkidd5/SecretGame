@@ -18,8 +18,8 @@ namespace SecretProject.Class.SavingStuff
         [XmlElement("Position")]
         public Vector2 Position
         {
-            get { return Game1.iliad.Player.Position; }
-            set { Game1.iliad.Player.Position = value; }
+            get { return Game1.Iliad.Player.Position; }
+            set { Game1.Iliad.Player.Position = value; }
 
         }
 

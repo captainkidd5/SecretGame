@@ -36,7 +36,7 @@ namespace SecretProject.Class.SavingStuff
                 mySave = (SaveData)deSerializer.Deserialize(reader);
                 //mySave = save;
                 reader.Close();
-                Game1.iliad.Player.Position = mySave.Position;
+                Game1.Iliad.Player.Position = mySave.Position;
             
         }
     }

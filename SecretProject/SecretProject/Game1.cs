@@ -48,6 +48,7 @@ namespace SecretProject
     public enum Stages
     {
         MainMenu = 0,
+        LodgeInteior = 1,
         Iliad = 2,
         Exit = 3,
     }
@@ -59,7 +60,8 @@ namespace SecretProject
 
         //STAGES
         public static MainMenu mainMenu;
-        public static Iliad iliad;
+        public static Stage Iliad;
+        public static Stage LodgeInterior;
         public static int CurrentStage;
         public static bool freeze = false;
 
@@ -169,8 +171,10 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            iliad = new Iliad(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            iliad.BuildingsTiles.LoadInitialTileObjects();
+            Iliad = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad);
+            Iliad.BuildingsTiles.LoadInitialTileObjects();
+            LodgeInterior = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior);
+            LodgeInterior.BuildingsTiles.LoadInitialTileObjects();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
         }
@@ -211,9 +215,13 @@ namespace SecretProject
                     mainMenu.Update(gameTime, myMouseManager, this);
                     break;
 
+                case Stages.LodgeInteior:
+                    LodgeInterior.Update(gameTime, myMouseManager, this);
+                    break;
+
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    iliad.Update(gameTime, myMouseManager, this);
+                    Iliad.Update(gameTime, myMouseManager, this);
                     break;
             }
 
@@ -234,8 +242,12 @@ namespace SecretProject
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
+                case Stages.LodgeInteior:
+                    LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    break;
+
                 case Stages.Iliad:
-                    iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
             }
 
