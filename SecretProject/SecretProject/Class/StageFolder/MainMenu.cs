@@ -77,13 +77,13 @@ namespace SecretProject.Class.Stage
             //Check Conditions
             if (Join.isClicked)
             {
-                game.gameStages = Stages.LodgeInteior;
+                Game1.gameStages = Stages.Iliad;
                 UserInterface.IsEscMenu = false;
             }
             if(Save.isClicked)
             {
                 mySave.Load();
-                game.gameStages = Stages.Iliad;
+                Game1.gameStages = Stages.Iliad;
                 UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)

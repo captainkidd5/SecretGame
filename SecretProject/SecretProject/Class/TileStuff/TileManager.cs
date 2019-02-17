@@ -76,14 +76,14 @@ namespace SecretProject.Class.TileStuff
 
         #region CONSTRUCTOR
 
-        public TileManager( Texture2D tileSet, TmxMap mapName, TmxLayer layerName, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding)
+        public TileManager( Texture2D tileSet, TmxMap mapName, TmxLayer layerName, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding, int tileSetNumber)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
             this.layerName = layerName;
 
-            tileWidth = mapName.Tilesets[0].TileWidth;
-            tileHeight = mapName.Tilesets[0].TileHeight;
+            tileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
+            tileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
 
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
@@ -117,16 +117,16 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (tiles[i, j].GID != 0)
                     {
-                        if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
+                        if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tiles[i, j].GID))
                         {
-                            if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
+                            if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
                             {
                                 tiles[i, j].IsAnimated = true;
-                                tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Animated"]);
-                                tiles[i, j].Speed = double.Parse(mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties["Speed"]);
+                                tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties["Animated"]);
+                                tiles[i, j].Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties["Speed"]);
 
 
-                                if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
+                                if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("start"))
                                 {
 
                                     tiles[i, j].IsAnimating = true;
@@ -137,7 +137,7 @@ namespace SecretProject.Class.TileStuff
                                     tiles[i, j].IsAnimating = false;
                                 }
 
-                                if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].Properties.ContainsKey("step"))
+                                if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("step"))
                                 {
                                     //  game.Exit();
                                     tiles[i, j].HasSound = true;

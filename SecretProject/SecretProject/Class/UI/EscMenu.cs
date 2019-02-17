@@ -87,7 +87,7 @@ namespace SecretProject.Class.MenuStuff
 
             if(MenuButton.isClicked)
             {
-                game.gameStages = Stages.MainMenu;
+                Game1.gameStages = Stages.MainMenu;
             }
 
             if(ReturnButton.isClicked)

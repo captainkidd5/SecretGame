@@ -319,14 +319,14 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
+                    if (Game1.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
                     {
 
 
                         Game1.Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
                     }
 
-                    if (game.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
+                    if (Game1.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
                     {
                        // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
 

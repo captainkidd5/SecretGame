@@ -43,6 +43,10 @@ namespace SecretProject.Class.TextureStuff
 
         public TmxMap LodgeInterior;
 
+        //TileSets
+        public Texture2D MasterTileSet;
+        public Texture2D LodgeInteriorTileSet;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             JoeSprite = content.Load<Texture2D>("Player/Joe/joe");
@@ -66,8 +70,12 @@ namespace SecretProject.Class.TextureStuff
 
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
-            LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx")
-;
+            LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
+
+            MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
+           
+
         }
 
     }

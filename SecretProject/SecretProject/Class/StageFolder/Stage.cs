@@ -59,6 +59,8 @@ namespace SecretProject.Class.Stage
         public Player Mastodon { get; set; }
         public Camera2D Cam { get; set; }
 
+        public int TileSetNumber { get; set; }
+
         //--------------------------------------
         //Declare Lists
 
@@ -77,7 +79,7 @@ namespace SecretProject.Class.Stage
 
         #region CONSTRUCTOR
 
-        public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map)
+        public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
         {
             //ORDER MATTERS!
             //Lists
@@ -96,15 +98,17 @@ namespace SecretProject.Class.Stage
             {
 
             };
+            this.TileSetNumber = TileSetNumber;
 
             //--------------------------------------
             //Tile/map
 
             this.map = map;
-            map = new TmxMap("Content/Map/worldMap.tmx");
+            // map = new TmxMap("Content/Map/worldMap.tmx");
 
             //tileset
-            TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            this.TileSet = TileSet;
+           // TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
 
             //layers
             Background = map.Layers["background"];
@@ -126,11 +130,11 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false);
-            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true);
-            MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false);
-            ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false);
-            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false) { isPlacement = true };
+            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false, TileSetNumber);
+            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber);
+            MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false, TileSetNumber);
+            ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false, TileSetNumber);
+            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber) { isPlacement = true };
 
 
 
@@ -152,7 +156,7 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Game1.cam.Zoom = 3f;
+            Game1.cam.Zoom = 1f;
             //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
