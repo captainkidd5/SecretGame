@@ -14,10 +14,12 @@ namespace SecretProject.Class.UI
     public class TextBox
     {
        public bool IsActivated { get; set; } = false;
-        SpriteFont textFont;
-        Vector2 textBoxLocation;
-        string TextToWrite { get; set; }
-        Texture2D backDrop;
+        protected SpriteFont textFont;
+        protected Vector2 textBoxLocation;
+        protected string TextToWrite { get; set; }
+        protected Texture2D backDrop;
+
+        public KeyboardState oldKeys = Keyboard.GetState();
 
         public TextBox(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop)
         {
@@ -27,7 +29,20 @@ namespace SecretProject.Class.UI
             this.backDrop = backDrop;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Update(GameTime gameTime)
+        {
+            KeyboardState currentKeys = Keyboard.GetState();
+
+            if(oldKeys.IsKeyDown(Keys.F1) && !currentKeys.IsKeyDown(Keys.F1))
+            {
+                IsActivated = !IsActivated;
+            }
+
+
+            oldKeys = currentKeys;
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 

@@ -346,7 +346,7 @@ namespace SecretProject.Class.Stage
             //Draw Toolbar
 
             Game1.userInterface.Draw(spriteBatch);
-            Game1.TestTextBox.Draw(spriteBatch);
+            
         }
 
 

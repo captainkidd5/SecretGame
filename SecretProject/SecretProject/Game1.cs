@@ -87,7 +87,7 @@ namespace SecretProject
         //UI
         public static UserInterface userInterface;
 
-        public static TextBox TestTextBox;
+        public static DebugWindow DebugWindow;
 
         //TEXTURES
         GraphicsDeviceManager graphics;
@@ -104,6 +104,7 @@ namespace SecretProject
 
         //TOOLS
         public static Random RGenerator = new Random();
+        public static float FrameRate = 0f;
 
 
         #endregion
@@ -189,7 +190,7 @@ namespace SecretProject
 
             //UI
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content);
-            TestTextBox = new TextBox(AllTextures.MenuText, new Vector2(500, 500), "This is a goddamn test", AllTextures.TransparentTextBox) { IsActivated = true };
+            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox);
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
@@ -215,9 +216,11 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
+            FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
             //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
             myMouseManager.Update();
+            DebugWindow.Update(gameTime);
 
             //SOUND
             MediaPlayer.IsRepeating = true;
@@ -276,6 +279,7 @@ namespace SecretProject
                     break;
             }
 
+            Game1.DebugWindow.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
