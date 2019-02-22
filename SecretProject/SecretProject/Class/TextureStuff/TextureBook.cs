@@ -32,6 +32,10 @@ namespace SecretProject.Class.TextureStuff
         //UiStuff
         public Texture2D ToolBarButtonSelector;
         public Texture2D CursorWhiteHand;
+        public Texture2D TransparentTextBox;
+
+        //Fonts
+        public SpriteFont MenuText;
 
         //Items
         public Texture2D Secateurs;
@@ -65,6 +69,10 @@ namespace SecretProject.Class.TextureStuff
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
+            TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
+
+            MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
+
 
             Secateurs = content.Load<Texture2D>("Item/secateurs");
 

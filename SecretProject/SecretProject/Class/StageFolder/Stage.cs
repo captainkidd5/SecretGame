@@ -156,8 +156,8 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //camera
             this.Cam = camera;
-            Game1.cam.Zoom = 1f;
-            //Cam.Move(new Vector2(player.Position.X, player.Position.Y));
+            Game1.cam.Zoom = 2.5f;
+            Cam.Move(new Vector2(player.Position.X, player.Position.Y));
 
             //--------------------------------------
             //Songs
@@ -278,6 +278,8 @@ namespace SecretProject.Class.Stage
                     spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
                 }
 
+                
+
                 if (Player.CurrentAction.IsAnimating == false)
                 {
                     Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
@@ -344,6 +346,7 @@ namespace SecretProject.Class.Stage
             //Draw Toolbar
 
             Game1.userInterface.Draw(spriteBatch);
+            Game1.TestTextBox.Draw(spriteBatch);
         }
 
 

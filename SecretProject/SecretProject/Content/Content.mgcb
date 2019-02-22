@@ -482,3 +482,15 @@
 /processorParam:TextureFormat=Color
 /build:Map/InteriorSpriteSheet1.png
 
+#begin Button/transparentTextBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/transparentTextBox.png
+

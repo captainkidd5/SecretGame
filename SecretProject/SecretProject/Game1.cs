@@ -78,7 +78,7 @@ namespace SecretProject
         public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
-        public static Stages gameStages = Stages.LodgeInteior;
+        public static Stages gameStages = Stages.MainMenu;
 
         //screen stuff
         public static int ScreenHeight;
@@ -86,6 +86,8 @@ namespace SecretProject
 
         //UI
         public static UserInterface userInterface;
+
+        public static TextBox TestTextBox;
 
         //TEXTURES
         GraphicsDeviceManager graphics;
@@ -187,6 +189,7 @@ namespace SecretProject
 
             //UI
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content);
+            TestTextBox = new TextBox(AllTextures.MenuText, new Vector2(500, 500), "This is a goddamn test", AllTextures.TransparentTextBox) { IsActivated = true };
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
@@ -235,6 +238,7 @@ namespace SecretProject
                     break;
 
                 case Stages.LodgeInteior:
+                    GraphicsDevice.Clear(Color.Black);
                     LodgeInterior.Update(gameTime, myMouseManager, this);
                     break;
 
@@ -267,6 +271,8 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    
+                    
                     break;
             }
 

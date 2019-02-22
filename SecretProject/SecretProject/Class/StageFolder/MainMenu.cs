@@ -56,7 +56,7 @@ namespace SecretProject.Class.Stage
 
             //--------------------------------------
             //Load spritefonts
-            font = content.Load<SpriteFont>("SpriteFont/MenuText");
+            font = Game1.AllTextures.MenuText;
 
             mySave = new SaveFile();
 
