@@ -119,7 +119,14 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tiles[i, j].GID))
                         {
-                            if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
+                            if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("portal"))
+                            {
+                                tiles[i, j].IsPortal = true;
+                                tiles[i, j].portalDestination = mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties["portal"];
+
+                            }
+
+                                if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
                             {
                                 tiles[i, j].IsAnimated = true;
                                 tiles[i, j].TotalFrames = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties["Animated"]);
@@ -343,6 +350,15 @@ namespace SecretProject.Class.TileStuff
 
         public void Interact(GameTime gameTime, int oldX, int oldY)
         {
+
+            if(Tiles[oldX, oldY].IsPortal)
+            {
+                if(Tiles[oldX,oldY].portalDestination == "lodgeInterior")
+                {
+                    Game1.gameStages = Stages.LodgeInteior;
+                }
+            }
+
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "secateur")
             {
 

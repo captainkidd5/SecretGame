@@ -51,6 +51,9 @@ namespace SecretProject.Class.TileStuff
 
         public bool IsTemporary { get; set; } = false;
 
+        public bool IsPortal { get; set; } = false;
+        public string portalDestination { get; set; }
+
         //  public bool WasJustReplaced { get; set; } = false;
 
         //--------------------------------------

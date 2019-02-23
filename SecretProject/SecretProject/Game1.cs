@@ -78,7 +78,7 @@ namespace SecretProject
         public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
-        public static Stages gameStages = Stages.MainMenu;
+        public static Stages gameStages = Stages.Iliad;
 
         //screen stuff
         public static int ScreenHeight;
@@ -160,6 +160,26 @@ namespace SecretProject
             }
         }
 
+        public static int GetCurrentStageInt()
+        {
+            switch (gameStages)
+            {
+
+
+
+                case Stages.LodgeInteior:
+                    return 1;
+
+                case Stages.Iliad:
+                    return 2;
+
+                default:
+                    return 0;
+
+            }
+
+        }
+
         #region LOADCONTENT
         protected override void LoadContent()
         {
@@ -197,7 +217,7 @@ namespace SecretProject
             Iliad = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
             Iliad.BuildingsTiles.LoadInitialTileObjects();
             LodgeInterior = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
-          //  LodgeInterior.BuildingsTiles.LoadInitialTileObjects();
+            LodgeInterior.BuildingsTiles.LoadInitialTileObjects();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
         }
@@ -270,6 +290,9 @@ namespace SecretProject
 
                 case Stages.LodgeInteior:
                     LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                   // spriteBatch.Begin();
+                   // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
+                   // spriteBatch.End();
                     break;
 
                 case Stages.Iliad:

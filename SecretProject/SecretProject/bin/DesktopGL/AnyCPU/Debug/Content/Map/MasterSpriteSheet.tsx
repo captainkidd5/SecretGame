@@ -605,11 +605,17 @@
   </objectgroup>
  </tile>
  <tile id="4386">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="-0.0909091" y="3" width="15.8182" height="3.27273"/>
   </objectgroup>
  </tile>
  <tile id="4387">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="-0.363636" y="3.72727" width="16.4545" height="2.63636"/>
   </objectgroup>
@@ -678,6 +684,16 @@
   <objectgroup draworder="index">
    <object id="1" x="-0.0909091" y="13.5455" width="16.0909" height="2.45455"/>
   </objectgroup>
+ </tile>
+ <tile id="4486">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
+ </tile>
+ <tile id="4487">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
  </tile>
  <tile id="4492">
   <objectgroup draworder="index">
