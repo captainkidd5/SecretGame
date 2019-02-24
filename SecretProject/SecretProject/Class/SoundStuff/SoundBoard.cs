@@ -24,6 +24,8 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffectInstance GrassBreakInstance;
         public SoundEffect PlaceBarrel;
         public SoundEffectInstance PlaceBarrelInstance;
+        public SoundEffect DoorOpen;
+        public SoundEffectInstance DoorOpenInstance;
 
 
         public SoundBoard(Game1 game, ContentManager content)
@@ -39,6 +41,9 @@ namespace SecretProject.Class.SoundStuff
 
             PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
             PlaceBarrelInstance = PlaceBarrel.CreateInstance();
+
+            DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
+            DoorOpenInstance = DoorOpen.CreateInstance();
 
         }
 
@@ -59,7 +64,7 @@ namespace SecretProject.Class.SoundStuff
 
 
             
-            instance.Play();
+          //  instance.Play();
 
         }
     }

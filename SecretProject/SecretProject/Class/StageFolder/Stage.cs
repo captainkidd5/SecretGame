@@ -20,6 +20,7 @@ using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.NPCStuff;
 
 namespace SecretProject.Class.Stage
 {
@@ -75,6 +76,8 @@ namespace SecretProject.Class.Stage
         //SAVE STUFF
 
         public bool TilesLoaded { get; set; } = false;
+
+        Joe joeNPC;
         #endregion
 
         #region CONSTRUCTOR
@@ -197,6 +200,7 @@ namespace SecretProject.Class.Stage
 
             allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
+            joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
         }
 
         #endregion
@@ -231,6 +235,7 @@ namespace SecretProject.Class.Stage
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
                 Player.Update(gameTime, allItems, allObjects);
+                joeNPC.Update(gameTime);
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
 
@@ -291,6 +296,8 @@ namespace SecretProject.Class.Stage
                 {
                     Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 }
+
+                joeNPC.Draw(spriteBatch);
 
                 if(showBorders)
                 {

@@ -25,6 +25,7 @@ using SecretProject.Class.TextureStuff;
 //make screen width/height stuff better
 //placeable objects needs two new layers so stuff underneat is preserved.
 //fix mouse cursor texture in tilemanager class
+//Work on NPC collision detection
 
 namespace SecretProject
 {

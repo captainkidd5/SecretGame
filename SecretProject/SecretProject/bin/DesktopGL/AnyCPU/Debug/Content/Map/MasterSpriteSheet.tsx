@@ -1023,4 +1023,36 @@
    <object id="1" x="0.545455" y="0.727273" width="14.8182" height="13.8182"/>
   </objectgroup>
  </tile>
+ <tile id="7841">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="3" y="0" width="13" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="7842">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="7941">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4" y="0" width="13" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="7942">
+  <properties>
+   <property name="portal" value="lodgeInterior"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
 </tileset>

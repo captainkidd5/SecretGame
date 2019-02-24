@@ -494,3 +494,9 @@
 /processorParam:TextureFormat=Color
 /build:Button/transparentTextBox.png
 
+#begin Music/doorOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/doorOpen.wav
+

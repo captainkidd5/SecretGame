@@ -158,9 +158,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-            }
-
-                                 
+            }                            
         }
         #endregion
         public bool TileInteraction { get; set; } = false;
@@ -194,7 +192,6 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
-
 
         public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY)
         {
@@ -233,9 +230,6 @@ namespace SecretProject.Class.TileStuff
                             tiles[i, j].IsFinishedAnimating = false;
                         }
 
-                        
-
-
                         if (mouse.IsHoveringTile(tiles[i, j].DestinationRectangle))
                         {
                             
@@ -261,12 +255,7 @@ namespace SecretProject.Class.TileStuff
                                 else
                                 {
                                     Game1.isMyMouseVisible = true;
-                                }
-                                
-                                
-                                    
-                                
-    
+                                }         
                             }
 
                             //}                    
@@ -355,7 +344,11 @@ namespace SecretProject.Class.TileStuff
             {
                 if(Tiles[oldX,oldY].portalDestination == "lodgeInterior")
                 {
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                    Game1.Player.controls.Direction = Dir.Up;
                     Game1.gameStages = Stages.LodgeInteior;
+                    Game1.Player.position.X = 878;
+                    Game1.Player.position.Y = 809;
                 }
             }
 
