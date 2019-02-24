@@ -7,7 +7,10 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.Stage;
 using SecretProject.Class.UI;
 using System;
+
 using TiledSharp;
+
+using System.Collections.Generic;
 
 using System.Runtime.Serialization;
 using SecretProject.Class.Playable;
@@ -102,10 +105,13 @@ namespace SecretProject
         public Texture2D MainCharacterTexture { get; set; }
         public static Texture2D ItemAtlas;
         public static TextureBook AllTextures;
+        
+        
 
         //TOOLS
         public static Random RGenerator = new Random();
         public static float FrameRate = 0f;
+        public static List<ActionTimer> AllActions;
 
 
         #endregion
@@ -137,6 +143,8 @@ namespace SecretProject
             //SCREEN
             ScreenHeight = graphics.PreferredBackBufferHeight;
             ScreenWidth = graphics.PreferredBackBufferWidth;
+
+            AllActions = new List<ActionTimer>();
 
             base.Initialize();
         }

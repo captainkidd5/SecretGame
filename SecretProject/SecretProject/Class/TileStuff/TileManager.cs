@@ -342,7 +342,7 @@ namespace SecretProject.Class.TileStuff
 
             if(Tiles[oldX, oldY].IsPortal)
             {
-                if(Tiles[oldX,oldY].portalDestination == "lodgeInterior")
+                if(Tiles[oldX,oldY].portalDestination == "lodgeInterior" && Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "lodgeKey")
                 {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
                     Game1.Player.controls.Direction = Dir.Up;

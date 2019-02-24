@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +22,7 @@ using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.Stage
 {
@@ -70,6 +72,8 @@ namespace SecretProject.Class.Stage
         public List<Sprite> allSprites;
 
         public List<WorldItem> allItems;
+
+        public List<ActionTimer> AllActions;
 
         public UserInterface MainUserInterface { get; set; }
 
@@ -182,25 +186,29 @@ namespace SecretProject.Class.Stage
             //UserInterface
 
 
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
+          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
+          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
+          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
 
-            allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
+           // allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
 
-            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
+           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
+         //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
+           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
+          //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
 
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
             allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
+            allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
+
             joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
+
+            AllActions = new List<ActionTimer>();
         }
 
         #endregion
@@ -256,6 +264,11 @@ namespace SecretProject.Class.Stage
                 MidGroundTiles.Update(gameTime, mouse);
                 PlacementTiles.Update(gameTime, mouse);
 
+                foreach(ActionTimer action in Game1.AllActions)
+                {
+                    action.Update(gameTime);
+                }
+
                 foreach (WorldItem item in allItems)
                 {
                     item.Update(gameTime);
@@ -281,6 +294,7 @@ namespace SecretProject.Class.Stage
                 if (Game1.userInterface.BottomBar.WasSliderUpdated)
                 {
                     spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
+                    
                 }
 
                 

@@ -74,7 +74,14 @@ namespace SecretProject.Class.ItemStuff.Items
                     this.InvMaximum = 1;               
                     break;
 
-                    
+                case "lodgeKey":
+                    this.Texture = Game1.AllTextures.lodgeKey;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+                    this.InvMaximum = 1;
+                    break;
+
+
+
 
                 default:
                     throw new NotImplementedException();
