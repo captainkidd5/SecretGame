@@ -50,7 +50,12 @@ namespace SecretProject.Class.TileStuff
         protected Tile[,] tiles;
         public Tile[,] Tiles { get { return tiles; } }
 
-        public bool isBuilding = false;
+        public bool IsBuilding { get; set; } = false;
+        public bool isBackground { get; set; } = false;
+        public bool IsMidground { get; set; } = false;
+        public bool IsForeGround { get; set; } = false;
+
+
         public bool isActive = false;
         public bool isPlacement { get; set; } = false;
 
@@ -99,7 +104,7 @@ namespace SecretProject.Class.TileStuff
             tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
 
-            this.isBuilding = isBuilding;
+            this.IsBuilding = isBuilding;
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
@@ -163,6 +168,7 @@ namespace SecretProject.Class.TileStuff
         #endregion
         public bool TileInteraction { get; set; } = false;
 
+        #region LOADTILESOBJECTS
         public void LoadInitialTileObjects()
         {
             for (var i = 0; i < tilesetTilesWide; i++)
@@ -192,6 +198,9 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+        #endregion
+
+        #region ADDOBJECTSTOBUILDINGS
 
         public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY)
         {
@@ -212,6 +221,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        #endregion
 
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -238,7 +248,21 @@ namespace SecretProject.Class.TileStuff
                             // IsBeingSelected(i, j);
                             // if(isActive)
                             //{
-                            if (isBuilding)
+
+                            if(isBackground)
+                            {
+                                if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
+                                {
+
+                                    if (mouse.IsRightClicked)
+                                    {
+                                        InteractWithBackground(gameTime, i, j);
+
+                                    }
+                                }
+                            }
+
+                            if (IsBuilding)
                             {
                                 
                                 if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
@@ -248,7 +272,7 @@ namespace SecretProject.Class.TileStuff
 
                                     if (mouse.IsRightClicked)
                                     {
-                                        Interact(gameTime, i, j);
+                                        InteractWithBuilding(gameTime, i, j);
 
                                     }
                                 }
@@ -305,12 +329,15 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
+        #region REPLACETILES
+
+        
         public void ReplaceTilePermanent(int oldX, int oldY)
         {
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             tiles[oldX, oldY] = ReplaceMenttile;
         }
-        public Tile[] temporaryTiles = new Tile[20];
+        //public Tile[] temporaryTiles = new Tile[20];
 
 
         public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
@@ -336,10 +363,33 @@ namespace SecretProject.Class.TileStuff
           //  AddTemporaryTiles(TempTile);
         }
 
-
-        public void Interact(GameTime gameTime, int oldX, int oldY)
+        public void ReplaceTileWithNewTile(int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
+            Tile ReplaceMenttile = new Tile(tiles[tileToReplaceX, tileToReplaceY].OldX, tiles[tileToReplaceX, tileToReplaceY].OldY, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            tiles[tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
+        }
+        #endregion
 
+        #region INTERACTIONS
+
+        public void InteractWithBackground(GameTime gameTime, int oldX, int oldY)
+        {
+            if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("diggable"))
+            {
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsValue("dirt"))
+                {
+                    ReplaceTileWithNewTile(oldX, oldY, 6074);
+                }
+
+            }
+        }
+
+        public void InteractWithBuilding(GameTime gameTime, int oldX, int oldY)
+        {
+          //  if(mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID)
+               // {
+
+            
             if(Tiles[oldX, oldY].IsPortal)
             {
                 if(Tiles[oldX,oldY].portalDestination == "lodgeInterior" && Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "lodgeKey")
@@ -351,6 +401,8 @@ namespace SecretProject.Class.TileStuff
                     Game1.Player.position.Y = 809;
                 }
             }
+
+            
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "secateur")
             {
@@ -412,6 +464,12 @@ namespace SecretProject.Class.TileStuff
              
         }
 
+        #endregion
+
+        #region DESTROYTILES
+
+        
+
         public void Destroy(int oldX, int oldY)
         {
                    if (tiles[oldX, oldY].IsFinishedAnimating)
@@ -423,7 +481,8 @@ namespace SecretProject.Class.TileStuff
                     ReplaceTilePermanent(oldX, oldY);
                     }                
    
-        }   
+        }
+        #endregion
 
     }
 }

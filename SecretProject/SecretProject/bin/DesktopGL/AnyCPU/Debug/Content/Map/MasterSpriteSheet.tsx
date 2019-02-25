@@ -685,16 +685,6 @@
    <object id="1" x="-0.0909091" y="13.5455" width="16.0909" height="2.45455"/>
   </objectgroup>
  </tile>
- <tile id="4486">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
- </tile>
- <tile id="4487">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
- </tile>
  <tile id="4492">
   <objectgroup draworder="index">
    <object id="1" x="13.0909" y="0.181818" width="2.81818" height="1.90909"/>
@@ -1006,11 +996,190 @@
    <property name="step" value="brick"/>
   </properties>
  </tile>
+ <tile id="6065">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6066">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6067">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6068">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6073">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="seedPlanted" value="false"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6074">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="seedPlanted" value="false"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6075">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="1"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6076">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="1"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6077">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="2"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6078">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="2"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6079">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="3"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6080">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="3"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6081">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="4"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6082">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="4"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6083">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="5"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="false"/>
+  </properties>
+ </tile>
+ <tile id="6084">
+  <properties>
+   <property name="dugDirt" value="true"/>
+   <property name="plantPhase" value="5"/>
+   <property name="seedPlanted" value="true"/>
+   <property name="watered" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6085">
+  <properties>
+   <property name="dugDirt" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6165">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6166">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6167">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6168">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6265">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6266">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6267">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6268">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="6274">
   <properties>
    <property name="Animated" value="4"/>
    <property name="Speed" value="1"/>
    <property name="start" value="true"/>
+  </properties>
+ </tile>
+ <tile id="6365">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6366">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6367">
+  <properties>
+   <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6368">
+  <properties>
+   <property name="diggable" value="dirt"/>
   </properties>
  </tile>
  <tile id="6474">
@@ -1021,38 +1190,6 @@
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.545455" y="0.727273" width="14.8182" height="13.8182"/>
-  </objectgroup>
- </tile>
- <tile id="7841">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="3" y="0" width="13" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="7842">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="0" width="9" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="7941">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="4" y="0" width="13" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="7942">
-  <properties>
-   <property name="portal" value="lodgeInterior"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="0" width="8" height="16"/>
   </objectgroup>
  </tile>
 </tileset>

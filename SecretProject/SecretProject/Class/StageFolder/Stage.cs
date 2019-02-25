@@ -137,8 +137,8 @@ namespace SecretProject.Class.Stage
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false, TileSetNumber);
-            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber);
+            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false, TileSetNumber) { isBackground = true };
+            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber) { IsBuilding = true };
             MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false, TileSetNumber);
             ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false, TileSetNumber);
             PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber) { isPlacement = true };
@@ -173,7 +173,7 @@ namespace SecretProject.Class.Stage
 
             // midGroundTiles.isActive = true;
             BuildingsTiles.isActive = true;
-            BuildingsTiles.isBuilding = true;
+            BuildingsTiles.IsBuilding = true;
 
             // buildingsTiles.ReplaceTileGid = 3235;
 
@@ -291,7 +291,7 @@ namespace SecretProject.Class.Stage
                 Player.PlayerMovementAnimations.ShowRectangle = showBorders;
 
                 //fix to stay longer
-                if (Game1.userInterface.BottomBar.WasSliderUpdated)
+                if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
                 {
                     spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
                     
