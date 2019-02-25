@@ -206,6 +206,8 @@ namespace SecretProject.Class.Stage
 
             allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
 
+            allItems.Add(new WorldItem("shovel", graphicsDevice, content, new Vector2(710, 970)));
+
             joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
 
             AllActions = new List<ActionTimer>();

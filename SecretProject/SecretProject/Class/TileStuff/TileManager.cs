@@ -374,14 +374,19 @@ namespace SecretProject.Class.TileStuff
 
         public void InteractWithBackground(GameTime gameTime, int oldX, int oldY)
         {
-            if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("diggable"))
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "shovel")
             {
-                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsValue("dirt"))
+
+            
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("diggable"))
                 {
+                  if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsValue("dirt"))
+                  {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(oldX, oldY, 6074);
-                }
+                  }
 
+                }
             }
         }
 
