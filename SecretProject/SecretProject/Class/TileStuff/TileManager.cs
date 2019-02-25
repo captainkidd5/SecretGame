@@ -378,6 +378,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsValue("dirt"))
                 {
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(oldX, oldY, 6074);
                 }
 

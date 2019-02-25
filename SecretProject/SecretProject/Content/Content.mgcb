@@ -500,3 +500,9 @@
 /processorParam:Quality=Best
 /build:Music/doorOpen.wav
 
+#begin SoundEffects/diggingDirt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/diggingDirt.wav
+

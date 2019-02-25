@@ -26,6 +26,8 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffectInstance PlaceBarrelInstance;
         public SoundEffect DoorOpen;
         public SoundEffectInstance DoorOpenInstance;
+        public SoundEffect DigDirt;
+        public SoundEffectInstance DigDirtInstance;
 
 
         public SoundBoard(Game1 game, ContentManager content)
@@ -44,6 +46,9 @@ namespace SecretProject.Class.SoundStuff
 
             DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
             DoorOpenInstance = DoorOpen.CreateInstance();
+
+            DigDirt = content.Load<SoundEffect>("SoundEffects/diggingDirt");
+            DigDirtInstance = DigDirt.CreateInstance();
 
         }
 
