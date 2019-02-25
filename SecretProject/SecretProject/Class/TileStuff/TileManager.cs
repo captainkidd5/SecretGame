@@ -179,18 +179,22 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
                         {
-
-                            for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                            if (mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups.Count > 0)
                             {
-                                TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
 
-                                tiles[i, j].TileObject = new ObjectBody(graphicsDevice,
-                                    new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                                    tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                    (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
 
-                                Game1.Iliad.allObjects.Add(tiles[i, j].TileObject);
+                                for (int k = 0; k < mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                {
+                                    TmxObject tempObj = mapName.Tilesets[0].Tiles[tiles[i, j].GID].ObjectGroups[0].Objects[k];
 
+                                    tiles[i, j].TileObject = new ObjectBody(graphicsDevice,
+                                        new Rectangle(tiles[i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                                        tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                                        (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
+
+                                    Game1.Iliad.allObjects.Add(tiles[i, j].TileObject);
+
+                                }
                             }
                         }
                     }
@@ -322,10 +326,12 @@ namespace SecretProject.Class.TileStuff
                              && tiles[i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2) && tiles[i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight /2))
                         {
                             spriteBatch.Draw(tileSet, tiles[i, j].DestinationRectangle, tiles[i, j].SourceRectangle, tiles[i, j].TileColor * tiles[i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, depth);
+                            
                         }
                     }                                            
                 }
             }
+            
         }
         #endregion
 

@@ -319,9 +319,10 @@ namespace SecretProject.Class.Stage
                 {
                 //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
                 }
-                
+
                 // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
+                
                 BackGroundTiles.DrawTiles(spriteBatch, (float).1);
                 BuildingsTiles.DrawTiles(spriteBatch, (float).2);
                 MidGroundTiles.DrawTiles(spriteBatch, (float).3);
@@ -329,7 +330,10 @@ namespace SecretProject.Class.Stage
                 PlacementTiles.DrawTiles(spriteBatch, (float).6);
                 mouse.Draw(spriteBatch, 1);
                 Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
-                
+
+               // spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(mouse.MouseSquareCoordinateX, mouse.MouseSquareCoordinateY), layerDepth: 1);
+
+
 
                 //drawn in wrong spot
 

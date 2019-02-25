@@ -21,6 +21,8 @@ namespace SecretProject.Class.UI
 
         public static bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
 
+        public bool DrawTileSelector { get; set; } = true;
+
         public GraphicsDevice GraphicsDevice { get; set; }
         public Game1 Game { get; set; }
         public EscMenu Esc { get; set; }
@@ -74,6 +76,11 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
+            if(DrawTileSelector)
+            {
+                spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.myMouseManager.MouseSquareCoordinateX, Game1.myMouseManager.MouseSquareCoordinateY), Color.White);
+            }
+
             BottomBar.Draw(spriteBatch);
             if(isEscMenu)
             {
