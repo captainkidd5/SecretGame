@@ -1183,6 +1183,9 @@
   </properties>
  </tile>
  <tile id="6472">
+  <properties>
+   <property name="stone" value="stone"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>

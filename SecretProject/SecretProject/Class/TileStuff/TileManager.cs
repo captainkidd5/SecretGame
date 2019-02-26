@@ -375,6 +375,7 @@ namespace SecretProject.Class.TileStuff
           //  AddTemporaryTiles(TempTile);
         }
 
+        //Basic Replacement.
         public void ReplaceTileWithNewTile(int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
             Tile ReplaceMenttile = new Tile(tiles[tileToReplaceX, tileToReplaceY].OldX, tiles[tileToReplaceX, tileToReplaceY].OldY, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
@@ -384,6 +385,7 @@ namespace SecretProject.Class.TileStuff
 
         #region INTERACTIONS
 
+        //Used for interactions with background tiles only
         public void InteractWithBackground(GameTime gameTime, int oldX, int oldY)
         {
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "shovel")
@@ -402,6 +404,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        //must be a building tile
         public void InteractWithBuilding(GameTime gameTime, int oldX, int oldY)
         {
           //  if(mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID)
@@ -420,7 +423,13 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            
+
+           if(mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
+            {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
+            }
+
+
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "secateur")
             {
@@ -429,57 +438,63 @@ namespace SecretProject.Class.TileStuff
 
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
-                    tiles[oldX, oldY].IsAnimating = true;
-                    tiles[oldX, oldY].KillAnimation = true;
-
-                    if (Game1.Player.Position.Y < tiles[oldX, oldY].Y - 30)
-                    {
-                        Game1.Player.controls.Direction = Dir.Down;
-                    }
-
-                    else if (Game1.Player.Position.Y > tiles[oldX, oldY].Y)
-                    {
-                        Game1.Player.controls.Direction = Dir.Up;
-                    }
-
-                    else if (Game1.Player.Position.X < tiles[oldX, oldY].X)
-                    {
-                        Game1.Player.controls.Direction = Dir.Right;
-                    }
-                    else if (Game1.Player.Position.X > tiles[oldX, oldY].X)
-                    {
-                        Game1.Player.controls.Direction = Dir.Left;
-                    }
-
-
-
-
-                    //Game1.Player.IsMoving = false;
-                    if (Game1.Player.controls.Direction == Dir.Down)
-                    {
-                        Game1.Player.PlayAnimation(gameTime, "CutGrassDown");
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
-                    }
-                    else if (Game1.Player.controls.Direction == Dir.Right)
-                    {
-                        Game1.Player.PlayAnimation(gameTime, "CutGrassRight");
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
-                    }
-                    else if (Game1.Player.controls.Direction == Dir.Left)
-                    {
-                        Game1.Player.PlayAnimation(gameTime, "CutGrassLeft");
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
-                    }
-                    else if (Game1.Player.controls.Direction == Dir.Up)
-                    {
-                        Game1.Player.PlayAnimation(gameTime, "CutGrassUp");
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
-                    }
-
+                    SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
 
                 }
             }
              
+        }
+
+        //specify which animations you want to use depending on where the player is in relation to the object
+        public void SpecificInteraction(GameTime gameTime, int oldX, int oldY, string down, string right, string left, string up)
+        {
+            tiles[oldX, oldY].IsAnimating = true;
+            tiles[oldX, oldY].KillAnimation = true;
+
+            if (Game1.Player.Position.Y < tiles[oldX, oldY].Y - 30)
+            {
+                Game1.Player.controls.Direction = Dir.Down;
+            }
+
+            else if (Game1.Player.Position.Y > tiles[oldX, oldY].Y)
+            {
+                Game1.Player.controls.Direction = Dir.Up;
+            }
+
+            else if (Game1.Player.Position.X < tiles[oldX, oldY].X)
+            {
+                Game1.Player.controls.Direction = Dir.Right;
+            }
+            else if (Game1.Player.Position.X > tiles[oldX, oldY].X)
+            {
+                Game1.Player.controls.Direction = Dir.Left;
+            }
+
+
+
+
+            //Game1.Player.IsMoving = false;
+            if (Game1.Player.controls.Direction == Dir.Down)
+            {
+                Game1.Player.PlayAnimation(gameTime, down);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+            }
+            else if (Game1.Player.controls.Direction == Dir.Right)
+            {
+                Game1.Player.PlayAnimation(gameTime, right);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+            }
+            else if (Game1.Player.controls.Direction == Dir.Left)
+            {
+                Game1.Player.PlayAnimation(gameTime, left);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+            }
+            else if (Game1.Player.controls.Direction == Dir.Up)
+            {
+                Game1.Player.PlayAnimation(gameTime, up);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+            }
         }
 
         #endregion

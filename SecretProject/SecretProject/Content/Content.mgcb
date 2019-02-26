@@ -530,3 +530,9 @@
 /processorParam:TextureFormat=Color
 /build:Button/tileSelector.png
 
+#begin SoundEffects/stoneSmash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stoneSmash.wav
+
