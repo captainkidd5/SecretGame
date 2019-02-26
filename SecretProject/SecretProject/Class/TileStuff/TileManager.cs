@@ -257,12 +257,18 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (tiles[i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID))
                                 {
-
+                                    Game1.userInterface.DrawTileSelector = true;
+                                    Game1.userInterface.TileSelectorX = tiles[i, j].DestinationRectangle.X;
+                                    Game1.userInterface.TileSelectorY = tiles[i, j].DestinationRectangle.Y;
                                     if (mouse.IsRightClicked)
                                     {
                                         InteractWithBackground(gameTime, i, j);
 
                                     }
+                                }
+                                else
+                                {
+                                    Game1.userInterface.DrawTileSelector = false;
                                 }
                             }
 

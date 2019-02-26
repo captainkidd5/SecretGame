@@ -33,7 +33,8 @@ namespace SecretProject.Class.UI
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + " \n \n PlayerLocationX: " + Game1.Player.Position.X  +
                     " \n \n PlayerWorldPositionY: " + Game1.Player.Position.Y + "\n \n MouseScreenPositionX: " + Game1.myMouseManager.Position.X + " \n \n MouseScreenPositionY: " +
                     Game1.myMouseManager.Position.Y + " \n \n MouseWorldPositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MouseWorldPositionY: "
-                    + Game1.myMouseManager.WorldMousePosition.Y, textBoxLocation, Color.Red);
+                    + Game1.myMouseManager.WorldMousePosition.Y + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n MouseSquarePositionY: " +
+                    Game1.myMouseManager.MouseSquareCoordinateY, textBoxLocation, Color.Red);
             }
             spriteBatch.End();
         }

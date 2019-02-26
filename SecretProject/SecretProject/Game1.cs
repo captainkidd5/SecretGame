@@ -218,8 +218,8 @@ namespace SecretProject
             Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 12, 1, 18);
 
             //UI
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content);
-            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox);
+            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox) ;
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
@@ -28,10 +29,16 @@ namespace SecretProject.Class.UI
         public EscMenu Esc { get; set; }
         internal ToolBar BottomBar { get; set; }
 
+        public Camera2D cam;
+        public GraphicsDevice graphics { get; set; }
+
+        public int TileSelectorX { get; set; } = 0;
+        public int TileSelectorY { get; set; } = 0;
+
         //keyboard
 
 
-        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
+        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
         {
             this.Game = game;
             this.GraphicsDevice = graphicsDevice;
@@ -40,6 +47,8 @@ namespace SecretProject.Class.UI
             
             BottomBar = new ToolBar(game, graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
+
+            this.cam = cam;
             
         }
 
@@ -75,18 +84,31 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             spriteBatch.Begin();
-            if(DrawTileSelector)
-            {
-                spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.myMouseManager.MouseSquareCoordinateX, Game1.myMouseManager.MouseSquareCoordinateY), Color.White);
-            }
+
+            
+            
 
             BottomBar.Draw(spriteBatch);
             if(isEscMenu)
             {
                 Esc.Draw(spriteBatch);
             }
+
+
             spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphics));
+            if (DrawTileSelector)
+            {
+                spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(TileSelectorX, TileSelectorY), Color.White);
+            }
+
+            spriteBatch.End();
+
+
+
         }
 
 
