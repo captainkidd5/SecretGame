@@ -331,7 +331,13 @@ namespace SecretProject.Class.Stage
                 mouse.Draw(spriteBatch, 1);
                 Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
-               // spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(mouse.MouseSquareCoordinateX, mouse.MouseSquareCoordinateY), layerDepth: 1);
+                if(Game1.userInterface.DrawTileSelector)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
+                }
+                
+
+                // spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(mouse.MouseSquareCoordinateX, mouse.MouseSquareCoordinateY), layerDepth: 1);
 
 
 

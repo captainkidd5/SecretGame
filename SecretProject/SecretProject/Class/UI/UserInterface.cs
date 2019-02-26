@@ -99,13 +99,13 @@ namespace SecretProject.Class.UI
 
             spriteBatch.End();
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphics));
-            if (DrawTileSelector)
-            {
-                spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(TileSelectorX, TileSelectorY), Color.White);
-            }
+           // spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphics));
+           // if (DrawTileSelector)
+           // {
+                
+            //}
 
-            spriteBatch.End();
+         //   spriteBatch.End();
 
 
 
