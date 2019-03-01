@@ -131,6 +131,11 @@ namespace SecretProject.Class.TileStuff
 
                             }
 
+                            if(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Probability"))
+                            {
+                                tiles[i, j].Probability = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties["Probability"]);
+                            }
+
                                 if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Animated"))
                             {
                                 tiles[i, j].IsAnimated = true;
@@ -226,6 +231,13 @@ namespace SecretProject.Class.TileStuff
             }
         }
         #endregion
+
+
+        public void GenerateRandomTiles(int tileX, int tileY)
+        {
+          //  if tiles[tileX, tileY].
+        }
+
 
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)

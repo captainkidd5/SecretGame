@@ -44,6 +44,8 @@ namespace SecretProject.Class.TileStuff
         public int AddAmount { get; set; } = 0;
         public double Speed { get; set; }
 
+        public int Probability { get; set; } = 1;
+
         public bool HasSound { get; set; }
 
         public Color TileColor { get; set; }

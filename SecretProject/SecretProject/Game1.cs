@@ -27,7 +27,7 @@ using SecretProject.Class.TextureStuff;
 // change screen edge stuff from hardcode
 //make screen width/height stuff better
 //placeable objects needs two new layers so stuff underneat is preserved.
-//fix mouse cursor texture in tilemanager class
+//Tile random generation
 //Work on NPC collision detection
 
 namespace SecretProject
