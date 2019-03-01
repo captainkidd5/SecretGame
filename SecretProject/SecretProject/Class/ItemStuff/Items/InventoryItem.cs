@@ -86,6 +86,12 @@ namespace SecretProject.Class.ItemStuff.Items
                     this.InvMaximum = 1;
                     break;
 
+                case "stone":
+                    this.Texture = Game1.AllTextures.stone;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+                    this.InvMaximum = 10;
+                    break;
+
 
 
 

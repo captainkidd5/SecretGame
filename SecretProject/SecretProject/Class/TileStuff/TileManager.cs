@@ -349,7 +349,7 @@ namespace SecretProject.Class.TileStuff
             Tile ReplaceMenttile = new Tile(tiles[oldX, oldY].OldX, tiles[oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             tiles[oldX, oldY] = ReplaceMenttile;
         }
-        //public Tile[] temporaryTiles = new Tile[20];
+
 
 
         public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
@@ -426,6 +426,8 @@ namespace SecretProject.Class.TileStuff
 
            if(mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
             {
+                //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
+                GeneralInteraction(gameTime, oldX, oldY);
                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
             }
 
@@ -446,7 +448,18 @@ namespace SecretProject.Class.TileStuff
              
         }
 
+        //interact without any animations
+        public void GeneralInteraction(GameTime gameTime, int oldX, int oldY)
+        {
+            tiles[oldX, oldY].IsAnimating = true;
+            tiles[oldX, oldY].KillAnimation = true;
+
+        }
+
         //specify which animations you want to use depending on where the player is in relation to the object
+
+
+
         public void SpecificInteraction(GameTime gameTime, int oldX, int oldY, string down, string right, string left, string up)
         {
             tiles[oldX, oldY].IsAnimating = true;
@@ -501,21 +514,39 @@ namespace SecretProject.Class.TileStuff
 
         #region DESTROYTILES
 
-        
+
 
         public void Destroy(int oldX, int oldY)
         {
-                   if (tiles[oldX, oldY].IsFinishedAnimating)
-                    {
-                        Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+            if (tiles[oldX, oldY].IsFinishedAnimating)
+            {
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
+                {
+                    Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                        Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
-                    }                
+                }
+
+
+
+                else if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
+                {
+                    Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+
+                    Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+
+                    ReplaceTilePermanent(oldX, oldY);
+                }
+            }
+
+        }
+
+                        
    
         }
         #endregion
 
-    }
+    
 }

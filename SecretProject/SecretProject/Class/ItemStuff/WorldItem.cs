@@ -110,6 +110,14 @@ namespace SecretProject.Class.ItemStuff
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
                     break;
+
+                case "stone":
+                    this.Texture = Game1.AllTextures.stone;
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.WorldMaximum = 1;
+                    ItemSprite.ScaleX = .5f;
+                    ItemSprite.ScaleY = .5f;
+                    break;
                 /*
                                 case "animatedGrass":
                                     this.Texture = content.Load<Texture2D>("Item/grass");

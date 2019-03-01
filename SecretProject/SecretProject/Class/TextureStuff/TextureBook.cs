@@ -42,6 +42,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D Secateurs;
         public Texture2D lodgeKey;
         public Texture2D shovel;
+        public Texture2D stone;
 
         
 
@@ -81,6 +82,7 @@ namespace SecretProject.Class.TextureStuff
             Secateurs = content.Load<Texture2D>("Item/secateurs");
             lodgeKey = content.Load<Texture2D>("Item/HouseKey");
             shovel = content.Load<Texture2D>("Item/Shovel");
+            stone = content.Load<Texture2D>("Item/stone");
 
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 

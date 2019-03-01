@@ -1200,4 +1200,14 @@
    <object id="1" x="1" y="2" width="14" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="6674">
+  <properties>
+   <property name="Animated" value="5"/>
+   <property name="Speed" value=".1"/>
+   <property name="stone" value="stone"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
 </tileset>
