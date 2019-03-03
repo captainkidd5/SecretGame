@@ -58,19 +58,19 @@ namespace SecretProject.Class.ItemStuff
             switch (Name)
             {
                 case "pie":
-                    this.Texture = content.Load<Texture2D>("Item/pie");
+                    this.Texture = Game1.AllTextures.pie;
                     this.WorldMaximum = 5;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     break;
 
                 case "shrimp":
-                    this.Texture = content.Load<Texture2D>("Item/puzzleFish");
+                    this.Texture = Game1.AllTextures.puzzleFish;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 10;
                     break;
 
                 case "grass":
-                    this.Texture = content.Load<Texture2D>("Item/grass");
+                    this.Texture = Game1.AllTextures.grass;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 5;
                     ItemSprite.ScaleX = .5f;
@@ -78,7 +78,7 @@ namespace SecretProject.Class.ItemStuff
                     break;
 
                 case "barrel":
-                    this.Texture = content.Load<Texture2D>("Item/Barrel");
+                    this.Texture = Game1.AllTextures.barrel;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
                     this.WorldMaximum = 3;
                     ItemSprite.ScaleX = .5f;

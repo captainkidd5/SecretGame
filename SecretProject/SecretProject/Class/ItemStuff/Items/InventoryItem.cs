@@ -42,26 +42,26 @@ namespace SecretProject.Class.ItemStuff.Items
             switch (Name)
             {
                 case "pie":
-                    this.Texture = content.Load<Texture2D>("Item/pie");
+                    this.Texture = Game1.AllTextures.pie;
                     this.InvMaximum = 5;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     break;
 
                 case "shrimp":
-                    this.Texture = content.Load<Texture2D>("Item/puzzleFish");
+                    this.Texture = Game1.AllTextures.puzzleFish;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     this.InvMaximum = 10;
                     
                     break;
 
                 case "grass":
-                    this.Texture = content.Load<Texture2D>("Item/grass");
+                    this.Texture = Game1.AllTextures.grass;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     this.InvMaximum = 10;
                     break;
 
                 case "barrel":
-                    this.Texture = content.Load<Texture2D>("Item/Barrel");
+                    this.Texture = Game1.AllTextures.barrel;
                     this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
                     this.InvMaximum = 3;
                     this.IsPlaceable = true;

@@ -44,6 +44,11 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D shovel;
         public Texture2D stone;
 
+        public Texture2D pie;
+        public Texture2D puzzleFish;
+        public Texture2D grass;
+        public Texture2D barrel;
+
         
 
         //Maps
@@ -83,6 +88,10 @@ namespace SecretProject.Class.TextureStuff
             lodgeKey = content.Load<Texture2D>("Item/HouseKey");
             shovel = content.Load<Texture2D>("Item/Shovel");
             stone = content.Load<Texture2D>("Item/stone");
+            pie = content.Load<Texture2D>("Item/pie");
+            puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
+            grass = content.Load<Texture2D>("Item/grass");
+            barrel = content.Load<Texture2D>("Item/Barrel");
 
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
