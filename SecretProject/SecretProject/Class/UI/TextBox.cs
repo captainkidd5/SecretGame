@@ -16,7 +16,7 @@ namespace SecretProject.Class.UI
        public bool IsActivated { get; set; } = false;
         protected SpriteFont textFont;
         protected Vector2 textBoxLocation;
-        protected string TextToWrite { get; set; }
+        public string TextToWrite { get; set; }
         protected Texture2D backDrop;
 
         public KeyboardState oldKeys = Keyboard.GetState();
@@ -40,6 +40,11 @@ namespace SecretProject.Class.UI
 
 
             oldKeys = currentKeys;
+        }
+
+        public virtual void Update(GameTime gameTime, bool stayActivated)
+        {
+            IsActivated = stayActivated;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

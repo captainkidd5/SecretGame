@@ -240,7 +240,7 @@ namespace SecretProject.Class.Stage
 
             if (!Game1.freeze)
             {
-
+                Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
@@ -379,6 +379,7 @@ namespace SecretProject.Class.Stage
             //Draw Toolbar
 
             Game1.userInterface.Draw(spriteBatch);
+            Game1.GlobalClock.Draw(spriteBatch);
             
         }
 

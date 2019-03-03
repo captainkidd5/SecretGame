@@ -113,6 +113,9 @@ namespace SecretProject
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
 
+        //CLOCK
+        public static Clock GlobalClock;
+
 
         #endregion
 
@@ -228,6 +231,9 @@ namespace SecretProject
             LodgeInterior = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
             LodgeInterior.BuildingsTiles.LoadInitialTileObjects();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+
+            GlobalClock = new Clock();
+
 
         }
         #endregion

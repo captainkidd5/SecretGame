@@ -34,6 +34,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D CursorWhiteHand;
         public Texture2D TransparentTextBox;
         public Texture2D TileSelector;
+        public Texture2D ClockBackground;
 
         //Fonts
         public SpriteFont MenuText;
@@ -80,6 +81,7 @@ namespace SecretProject.Class.TextureStuff
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
             TileSelector = content.Load<Texture2D>("Button/tileSelector");
+            ClockBackground = content.Load<Texture2D>("Button/clockBackground");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
