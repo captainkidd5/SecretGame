@@ -17,7 +17,7 @@ namespace SecretProject.Class.Universal
         public int GlobalTime { get; private set; } = 0;
         public Vector2 ClockPosition;
 
-        public TimeSpan UnpausedTime;
+        //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
         public int TotalHours { get; set; } = 0;
@@ -28,7 +28,7 @@ namespace SecretProject.Class.Universal
         public Clock()
         {
             ClockPosition = new Vector2(900, 100);
-            UnpausedTime = TimeSpan.Zero;
+           // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.ClockBackground);
 
@@ -36,7 +36,7 @@ namespace SecretProject.Class.Universal
 
         public void Update(GameTime gameTime)
         {
-            UnpausedTime += gameTime.ElapsedGameTime;
+            //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
             if(LocalTime.TotalSeconds > 10)
@@ -47,10 +47,11 @@ namespace SecretProject.Class.Universal
             if(TotalHours > 10)
             {
                 TotalDays++;
+                TotalHours = 0;
             }
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
-            ClockDisplay.TextToWrite = TotalHours.ToString();
+            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Total Days: " + TotalDays.ToString();
             ClockDisplay.Update(gameTime, true);
 
         }
