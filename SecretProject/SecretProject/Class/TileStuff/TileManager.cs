@@ -12,6 +12,7 @@ using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Controls;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ItemStuff;
+
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Playable;
 
@@ -174,7 +175,7 @@ namespace SecretProject.Class.TileStuff
         public bool TileInteraction { get; set; } = false;
 
         #region LOADTILESOBJECTS
-        public void LoadInitialTileObjects()
+        public void LoadInitialTileObjects(IStage stage)
         {
             for (var i = 0; i < tilesetTilesWide; i++)
             {

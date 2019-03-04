@@ -319,14 +319,14 @@ namespace SecretProject.Class.UI
                     InventoryItem tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
-                    if (Game1.gameStages == Stages.Iliad && tempItem.IsPlaceable == false)
+                    if (tempItem.IsPlaceable == false)
                     {
 
 
-                        Game1.Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                        Game1.GetCurrentStage().allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
                     }
 
-                    if (Game1.gameStages == Stages.Iliad && tempItem.IsPlaceable == true)
+                    if (tempItem.IsPlaceable == true)
                     {
                        // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
 
@@ -388,7 +388,7 @@ namespace SecretProject.Class.UI
                 for(int j = 0; j < GIDArray.GetLength(1); j++)
                 {
                     Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j , mouse.MouseSquareCoordinateY  + i, GIDArray[i, j], 100, 100, 100, 100, 0);
-                    spriteBatch.Draw(Game1.Iliad.TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
+                    spriteBatch.Draw(Game1.GetCurrentStage().TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
                 
             }

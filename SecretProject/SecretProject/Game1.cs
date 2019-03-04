@@ -116,6 +116,8 @@ namespace SecretProject
         //CLOCK
         public static Clock GlobalClock;
 
+        
+
 
         #endregion
 
@@ -227,9 +229,9 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
             Iliad = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
-            Iliad.BuildingsTiles.LoadInitialTileObjects();
+            Iliad.BuildingsTiles.LoadInitialTileObjects(Iliad);
             LodgeInterior = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
-            LodgeInterior.BuildingsTiles.LoadInitialTileObjects();
+            LodgeInterior.BuildingsTiles.LoadInitialTileObjects(LodgeInterior);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();

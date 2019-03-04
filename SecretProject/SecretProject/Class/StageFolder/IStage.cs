@@ -19,7 +19,7 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage
 {
-    interface IStage
+    public interface IStage
     {
         void Update(GameTime gameTime, MouseManager mouse, Game1 game);
         void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse);
