@@ -600,7 +600,7 @@
  </tile>
  <tile id="4385">
   <objectgroup draworder="index">
-   <object id="1" x="1" y="14" width="15" height="2"/>
+   <object id="1" x="1.09091" y="3.63636" width="15" height="2"/>
    <object id="2" x="0.181818" y="1.72727" width="1.45455" height="14.3636"/>
   </objectgroup>
  </tile>
@@ -609,7 +609,7 @@
    <property name="portal" value="lodgeInterior"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="1" y="13" width="15.8182" height="3.27273"/>
+   <object id="1" x="-0.0909091" y="3" width="15.8182" height="3.27273"/>
   </objectgroup>
  </tile>
  <tile id="4387">
@@ -617,22 +617,22 @@
    <property name="portal" value="lodgeInterior"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="0" y="13" width="16.4545" height="2.63636"/>
+   <object id="1" x="-0.363636" y="3.72727" width="16.4545" height="2.63636"/>
   </objectgroup>
  </tile>
  <tile id="4388">
   <objectgroup draworder="index">
-   <object id="1" x="0" y="14" width="15.8182" height="2.09091"/>
+   <object id="1" x="-0.0909094" y="3.27273" width="15.8182" height="2.09091"/>
   </objectgroup>
  </tile>
  <tile id="4389">
   <objectgroup draworder="index">
-   <object id="1" x="0" y="14" width="16.0909" height="2"/>
+   <object id="1" x="-0.0909089" y="4" width="16.0909" height="2"/>
   </objectgroup>
  </tile>
  <tile id="4390">
   <objectgroup draworder="index">
-   <object id="1" x="0" y="13" width="15.2727" height="2.36364"/>
+   <object id="1" x="0.727273" y="4" width="15.2727" height="2.36364"/>
   </objectgroup>
  </tile>
  <tile id="4442">
@@ -1183,9 +1183,6 @@
   </properties>
  </tile>
  <tile id="6472">
-  <properties>
-   <property name="stone" value="stone"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="2" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -1197,17 +1194,7 @@
    <property name="grass" value="grass"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="1" y="2" width="14" height="11"/>
-  </objectgroup>
- </tile>
- <tile id="6674">
-  <properties>
-   <property name="Animated" value="5"/>
-   <property name="Speed" value=".1"/>
-   <property name="stone" value="stone"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0.545455" y="0.727273" width="14.8182" height="13.8182"/>
   </objectgroup>
  </tile>
 </tileset>
