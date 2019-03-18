@@ -15,6 +15,7 @@ namespace SecretProject.Class.SavingStuff
     [XmlRoot("SaveData")]
     public class SaveData
     {
+        #region player
         [XmlElement("Position")]
         public Vector2 Position
         {
@@ -23,8 +24,17 @@ namespace SecretProject.Class.SavingStuff
 
         }
 
+        [XmlElement("PlayerHealth")]
+        public int PlayerHealth
+        {
+            get { return Game1.Iliad.Player.Health; }
+            set { Game1.Iliad.Player.Health = value; }
+        }
+
+        #endregion
+
         //[XmlElement("Position")]
-       //public int MyProperty { get; set; }
+        //public int MyProperty { get; set; }
 
     }
 }

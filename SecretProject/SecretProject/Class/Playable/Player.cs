@@ -303,11 +303,13 @@ namespace SecretProject.Class.Playable
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("Position", Position);
+            info.AddValue("Health", Health);
         }
 
         public Player(SerializationInfo info, StreamingContext context)
         {
             Position = (Vector2)info.GetValue("Position", typeof(Vector2));
+            Health = (int)info.GetValue("Health", typeof(int));
         }
     }
 }

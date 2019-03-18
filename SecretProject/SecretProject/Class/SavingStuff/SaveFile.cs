@@ -36,8 +36,10 @@ namespace SecretProject.Class.SavingStuff
                 mySave = (SaveData)deSerializer.Deserialize(reader);
                 //mySave = save;
                 reader.Close();
-                Game1.Iliad.Player.Position = mySave.Position;
-            
+            #region Player
+            Game1.Iliad.Player.Position = mySave.Position;
+                Game1.Iliad.Player.Health = mySave.PlayerHealth;
+            #endregion
         }
     }
 }
