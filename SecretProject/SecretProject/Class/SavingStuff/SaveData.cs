@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
+using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -29,6 +30,16 @@ namespace SecretProject.Class.SavingStuff
         {
             get { return Game1.Iliad.Player.Health; }
             set { Game1.Iliad.Player.Health = value; }
+        }
+
+        #endregion
+
+        #region playerInventory
+        [XmlElement("PlayerInventory")]
+        public List<InventorySlot> PlayerInventory
+        {
+            get { return Game1.Player.Inventory.currentInventory; }
+            set { Game1.Player.Inventory.currentInventory = value; }
         }
 
         #endregion

@@ -8,12 +8,14 @@ using SecretProject.Class.Stage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-   public class Inventory
+    [Serializable()]
+    public class Inventory : ISerializable
 
     {
 
@@ -122,7 +124,16 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-       
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("currentInventory", typeof(List<InventorySlot>));
+        }
+
+        public Inventory(SerializationInfo info, StreamingContext context)
+        {
+            currentInventory = (List<InventorySlot>)info.GetValue("currentInventory", typeof(List<InventorySlot>));
+        }
+
     }
 
     public class InventorySlot
@@ -145,6 +156,7 @@ namespace SecretProject.Class.ItemStuff
         {
             SlotItems = new List<InventoryItem>(1);
         }
+
 
         public InventoryItem GetItem()
         {

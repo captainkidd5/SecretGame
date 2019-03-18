@@ -128,10 +128,10 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public Player()
-        {
+       // public Player()
+     //   {
 
-        }
+       // }
 
         
 
