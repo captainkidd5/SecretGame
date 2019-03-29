@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+  <Asset Type="ItemStuff.Items.InventoryItem">
+
+    <InventoryItem>
+      <Name>"pie"</Name>
+      <Texture>Game1.AllTextures.pie</Texture>
+        <ID>1</ID>
+        <InvMaximum>5</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"shrimp"</Name>
+      <Texture>Game1.AllTextures.puzzleFish</Texture>
+        <ID>2</ID>
+        <InvMaximum>10</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"grass"</Name>
+      <Texture>Game1.AllTextures.grass</Texture>
+        <ID>3</ID>
+        <InvMaximum>10</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"barrel"</Name>
+      <Texture>Game1.AllTextures.barrel</Texture>
+        <ID>4</ID>
+        <InvMaximum>3</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"secateur"</Name>
+      <Texture>Game1.AllTextures.Secateurs</Texture>
+        <ID>5</ID>
+        <InvMaximum>1</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"lodgeKey"</Name>
+      <Texture>Game1.AllTextures.lodgeKey</Texture>
+        <ID>6</ID>
+        <InvMaximum>1</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"shovel"</Name>
+      <Texture>Game1.AllTextures.shovel</Texture>
+        <ID>7</ID>
+        <InvMaximum>1</InvMaximum>
+      </InventoryItem>
+
+      <InventoryItem>
+      <Name>"stone"</Name>
+      <Texture>Game1.AllTextures.stone</Texture>
+        <ID>7</ID>
+        <InvMaximum>10</InvMaximum>
+      </InventoryItem>
+
+    </Asset>
+  </XnaContent>

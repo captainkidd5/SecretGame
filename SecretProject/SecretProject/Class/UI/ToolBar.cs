@@ -323,7 +323,8 @@ namespace SecretProject.Class.UI
                     {
 
 
-                        Game1.GetCurrentStage().allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                       // Game1.GetCurrentStage().allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                        Game1.GetCurrentStage().allItems.Add(Game1.allItems.GetWorldItem(tempItem.ID, mouse.WorldMousePosition, true));
                     }
 
                     if (tempItem.IsPlaceable == true)

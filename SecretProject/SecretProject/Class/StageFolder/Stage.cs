@@ -141,7 +141,7 @@ namespace SecretProject.Class.Stage
             BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber) { IsBuilding = true };
             MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false, TileSetNumber);
             ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false, TileSetNumber);
-            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber) { isPlacement = true };
+            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber) { IsPlacement = true };
 
 
 
@@ -172,7 +172,7 @@ namespace SecretProject.Class.Stage
             //MediaPlayer.Play(MainTheme);
 
             // midGroundTiles.isActive = true;
-            BuildingsTiles.isActive = true;
+            BuildingsTiles.IsActive = true;
             BuildingsTiles.IsBuilding = true;
 
             // buildingsTiles.ReplaceTileGid = 3235;
@@ -186,27 +186,29 @@ namespace SecretProject.Class.Stage
             //UserInterface
 
 
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
 
-           // allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
+            // allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
 
-           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
+            // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
-         //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
+            //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
 
-           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
+            // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
 
-          //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
+            //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+            allItems.Add(Game1.allItems.GetWorldItem(1, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50), false));
 
-            allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
+           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
+          //  allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("shovel", graphicsDevice, content, new Vector2(710, 970)));
+            //allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
+
+           // allItems.Add(new WorldItem("shovel", graphicsDevice, content, new Vector2(710, 970)));
 
             joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
 

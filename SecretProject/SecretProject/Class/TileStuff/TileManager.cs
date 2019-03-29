@@ -57,10 +57,10 @@ namespace SecretProject.Class.TileStuff
         public bool IsForeGround { get; set; } = false;
 
 
-        public bool isActive = false;
-        public bool isPlacement { get; set; } = false;
+        public bool IsActive = false;
+        public bool IsPlacement { get; set; } = false;
 
-        public bool isInClickingRangeOfPlayer = false;
+        public bool IsInClickingRangeOfPlayer = false;
 
 
         MouseManager myMouse;
@@ -537,7 +537,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                    Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    Game1.Iliad.allItems.Add(Game1.allItems.GetWorldItem(3, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
+                    //Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                 }
@@ -547,8 +548,9 @@ namespace SecretProject.Class.TileStuff
                 else if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
                 {
                     Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                    Game1.Iliad.allItems.Add(Game1.allItems.GetWorldItem(7, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), false));
 
-                    Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                   // Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                 }

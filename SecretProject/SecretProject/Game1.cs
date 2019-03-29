@@ -18,6 +18,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
 using SecretProject.Class.SoundStuff;
 using SecretProject.Class.TextureStuff;
+using SecretProject.Class.ItemStuff.Items;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -115,6 +116,9 @@ namespace SecretProject
 
         //CLOCK
         public static Clock GlobalClock;
+
+        //ITEMS
+        public static ItemBank allItems;
 
         
 
@@ -235,6 +239,9 @@ namespace SecretProject
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
+
+            //ITEMS
+            allItems = new ItemBank(graphics.GraphicsDevice,Content);
 
 
         }

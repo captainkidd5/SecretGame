@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace SecretProject.Class.ItemStuff
 {
     [Serializable()]
-    public class Inventory : ISerializable
+    public class Inventory //: ISerializable
 
     {
 
@@ -123,7 +123,7 @@ namespace SecretProject.Class.ItemStuff
         {
 
         }
-
+        /*
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("currentInventory", typeof(List<InventorySlot>));
@@ -133,9 +133,9 @@ namespace SecretProject.Class.ItemStuff
         {
             currentInventory = (List<InventorySlot>)info.GetValue("currentInventory", typeof(List<InventorySlot>));
         }
-
+        */
     }
-
+    [Serializable()]
     public class InventorySlot
     {
         public List<InventoryItem> SlotItems { get; set; }
@@ -180,6 +180,17 @@ namespace SecretProject.Class.ItemStuff
           SlotItems.Add(item);
    
         }
+        /*
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("SlotItems", typeof(List<InventoryItem>));
+        }
+
+        public InventorySlot(SerializationInfo info, StreamingContext context)
+        {
+            SlotItems = (List<InventoryItem>)info.GetValue("InventoryItem", typeof(List<InventoryItem>));
+        }
+        */
 
     }
 }

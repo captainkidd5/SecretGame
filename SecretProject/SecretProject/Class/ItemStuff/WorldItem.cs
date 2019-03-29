@@ -9,17 +9,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SecretProject.Class.ItemStuff
 {
+    [Serializable()]
     public class WorldItem
     {
 
-
+        
         public string Name { get; set; }
         public int ID { get; set; }
         public int Count { get; set; }
         public int WorldMaximum { get; set; }
+        public int InventoryMaximum { get; set; }
         public Texture2D Texture { get; set; }
         public bool IsDropped { get; set; }
         public Sprite ItemSprite { get; set; }
@@ -35,6 +38,8 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
 
+        public Vector2 WorldPosition { get; set; }
+
         //placeable part
 
         public bool IsPlaceable { get; set; } = false;
@@ -44,7 +49,7 @@ namespace SecretProject.Class.ItemStuff
         int directionY = Game1.RGenerator.Next(-2, 2);
 
 
-        public WorldItem(string Name, GraphicsDevice graphics, ContentManager content, Vector2 WorldPosition)
+        public WorldItem(GraphicsDevice graphics, ContentManager content)//string Name, GraphicsDevice graphics, ContentManager content, Vector2 WorldPosition)
         {
             this.Content = content;
             this.Graphics = graphics;
@@ -55,85 +60,85 @@ namespace SecretProject.Class.ItemStuff
             
 
             Ignored = false;
-            switch (Name)
-            {
-                case "pie":
-                    this.Texture = Game1.AllTextures.pie;
-                    this.WorldMaximum = 5;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    break;
+            //switch (Name)
+            //{
+            //    case "pie":
+            //        this.Texture = Game1.AllTextures.pie;
+            //        this.WorldMaximum = 5;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        break;
 
-                case "shrimp":
-                    this.Texture = Game1.AllTextures.puzzleFish;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 10;
-                    break;
+            //    case "shrimp":
+            //        this.Texture = Game1.AllTextures.puzzleFish;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 10;
+            //        break;
 
-                case "grass":
-                    this.Texture = Game1.AllTextures.grass;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 5;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    break;
+            //    case "grass":
+            //        this.Texture = Game1.AllTextures.grass;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 5;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        break;
 
-                case "barrel":
-                    this.Texture = Game1.AllTextures.barrel;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 3;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    this.IsPlaceable = true;
-                    Building = new PlaceableBuilding(Name);
-                    break;
+            //    case "barrel":
+            //        this.Texture = Game1.AllTextures.barrel;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 3;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        this.IsPlaceable = true;
+            //        Building = new PlaceableBuilding(Name);
+            //        break;
 
-                case "secateur":
-                    this.Texture = Game1.AllTextures.Secateurs;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 5;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    break;
+            //    case "secateur":
+            //        this.Texture = Game1.AllTextures.Secateurs;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 5;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        break;
 
-                case "lodgeKey":
-                    this.Texture = Game1.AllTextures.lodgeKey;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 1;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    break;
+            //    case "lodgeKey":
+            //        this.Texture = Game1.AllTextures.lodgeKey;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 1;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        break;
 
-                case "shovel":
-                    this.Texture = Game1.AllTextures.shovel;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 1;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    break;
+            //    case "shovel":
+            //        this.Texture = Game1.AllTextures.shovel;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 1;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        break;
 
-                case "stone":
-                    this.Texture = Game1.AllTextures.stone;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
-                    this.WorldMaximum = 1;
-                    ItemSprite.ScaleX = .5f;
-                    ItemSprite.ScaleY = .5f;
-                    break;
-                /*
-                                case "animatedGrass":
-                                    this.Texture = content.Load<Texture2D>("Item/grass");
-                                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f) { IsAnimated = true, Rows = 1, Columns =4 }  ;
-                                    this.WorldMaximum = 5;
-                                    ItemSprite.ScaleX = .5f;
-                                    ItemSprite.ScaleY = .5f;
-                                    break;
-                                    */
-                default:
-
-
-                    throw new NotImplementedException();
+            //    case "stone":
+            //        this.Texture = Game1.AllTextures.stone;
+            //        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+            //        this.WorldMaximum = 1;
+            //        ItemSprite.ScaleX = .5f;
+            //        ItemSprite.ScaleY = .5f;
+            //        break;
+            //    /*
+            //                    case "animatedGrass":
+            //                        this.Texture = content.Load<Texture2D>("Item/grass");
+            //                        this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f) { IsAnimated = true, Rows = 1, Columns =4 }  ;
+            //                        this.WorldMaximum = 5;
+            //                        ItemSprite.ScaleX = .5f;
+            //                        ItemSprite.ScaleY = .5f;
+            //                        break;
+            //                        */
+            //    default:
 
 
-            }
+            //        throw new NotImplementedException();
+
+
+            //}
 
 
         }

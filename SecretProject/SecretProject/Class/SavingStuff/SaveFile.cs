@@ -38,10 +38,10 @@ namespace SecretProject.Class.SavingStuff
                 reader.Close();
             #region Player
             Game1.Iliad.Player.Position = mySave.Position;
-                Game1.Iliad.Player.Health = mySave.PlayerHealth;
+            Game1.Iliad.Player.Health = mySave.PlayerHealth;
             #endregion
             #region PlayerInventory
-            Game1.Player.Inventory.currentInventory = mySave.PlayerInventory;
+           // Game1.Player.Inventory.currentInventory = mySave.PlayerInventory;
 
             #endregion
         }
