@@ -46,7 +46,7 @@ namespace SecretProject.Class.ItemStuff.Items
         public WorldItem GetWorldItem(int ID, Vector2 location, bool isTossable)
         {
             if(allItems.ContainsKey(ID))
-            return new WorldItem(graphics, content) { Name = allItems[ID].Name, Texture = allItems[ID].Texture, ID = allItems[ID].ID,
+            return new WorldItem(graphics, content) { Name = allItems[ID].Name,  ID = allItems[ID].ID,
                 InventoryMaximum = allItems[ID].InventoryMaximum, WorldMaximum = allItems[ID].WorldMaximum, WorldPosition = location, IsTossable = isTossable};
             else
             {

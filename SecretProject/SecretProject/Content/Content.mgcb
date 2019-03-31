@@ -548,3 +548,13 @@
 /processorParam:TextureFormat=Color
 /build:Button/clockBackground.png
 
+#begin XMLData/InventoryItem.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:XMLData/InventoryItem.xml
+
+#begin XMLData/ItemBank.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:XMLData/ItemBank.xml
+

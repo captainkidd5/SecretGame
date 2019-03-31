@@ -211,6 +211,9 @@ namespace SecretProject
             joeRight = AllTextures.joeRight;
             joeLeft = AllTextures.joeLeft;
 
+            //ITEMS
+            allItems = new ItemBank(graphics.GraphicsDevice, Content);
+
             //SOUND
             SoundManager = new SoundBoard(this, Content);
             
@@ -240,8 +243,7 @@ namespace SecretProject
 
             GlobalClock = new Clock();
 
-            //ITEMS
-            allItems = new ItemBank(graphics.GraphicsDevice,Content);
+            
 
 
         }

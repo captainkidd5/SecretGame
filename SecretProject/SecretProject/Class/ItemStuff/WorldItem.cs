@@ -23,8 +23,12 @@ namespace SecretProject.Class.ItemStuff
         public int Count { get; set; }
         public int WorldMaximum { get; set; }
         public int InventoryMaximum { get; set; }
+
+        [XmlIgnore]
         public Texture2D Texture { get; set; }
         public bool IsDropped { get; set; }
+
+        [XmlIgnore]
         public Sprite ItemSprite { get; set; }
         public bool IsFull { get; set; }
 
@@ -35,7 +39,9 @@ namespace SecretProject.Class.ItemStuff
 
         public bool IsTossable { get; set; } = false;
 
+        [XmlIgnore]
         public GraphicsDevice Graphics { get; set; }
+        [XmlIgnore]
         public ContentManager Content { get; set; }
 
         public Vector2 WorldPosition { get; set; }
@@ -43,6 +49,8 @@ namespace SecretProject.Class.ItemStuff
         //placeable part
 
         public bool IsPlaceable { get; set; } = false;
+
+        [XmlIgnore]
         public PlaceableBuilding Building { get; set; }
 
         int directionX = Game1.RGenerator.Next(-2, 2);
@@ -140,6 +148,11 @@ namespace SecretProject.Class.ItemStuff
 
             //}
 
+
+        }
+
+        private WorldItem()
+        {
 
         }
 

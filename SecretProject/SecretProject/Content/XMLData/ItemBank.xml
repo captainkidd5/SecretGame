@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-  <Asset Type="ItemStuff.Items.WorldItem">
-
+  <Asset Type="Object">
     <WorldItem>
       <Name>"pie"</Name>
       <Texture>Game1.AllTextures.pie</Texture>
@@ -9,7 +8,6 @@
         <InvMaximum>5</InvMaximum>
         <WorldMaximum>5</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"shrimp"</Name>
       <Texture>Game1.AllTextures.puzzleFish</Texture>
@@ -17,7 +15,6 @@
         <InvMaximum>10</InvMaximum>
         <WorldMaximum>10</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"grass"</Name>
       <Texture>Game1.AllTextures.grass</Texture>
@@ -25,7 +22,6 @@
         <InvMaximum>10</InvMaximum>
         <WorldMaximum>5</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"barrel"</Name>
       <Texture>Game1.AllTextures.barrel</Texture>
@@ -33,7 +29,6 @@
         <InvMaximum>3</InvMaximum>
         <WorldMaximum>3</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"secateur"</Name>
       <Texture>Game1.AllTextures.Secateurs</Texture>
@@ -41,7 +36,6 @@
         <InvMaximum>1</InvMaximum>
         <WorldMaximum>5</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"lodgeKey"</Name>
       <Texture>Game1.AllTextures.lodgeKey</Texture>
@@ -49,7 +43,6 @@
         <InvMaximum>1</InvMaximum>
         <WorldMaximum>1</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"shovel"</Name>
       <Texture>Game1.AllTextures.shovel</Texture>
@@ -57,7 +50,6 @@
         <InvMaximum>1</InvMaximum>
         <WorldMaximum>1</WorldMaximum>
       </WorldItem>
-
       <WorldItem>
       <Name>"stone"</Name>
       <Texture>Game1.AllTextures.stone</Texture>
@@ -65,6 +57,5 @@
         <InvMaximum>10</InvMaximum>
         <WorldMaximum>1</WorldMaximum>
       </WorldItem>
-
     </Asset>
   </XnaContent>
