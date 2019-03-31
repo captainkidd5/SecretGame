@@ -1,0 +1,9 @@
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\bin\Debug\netstandard2.0\XMLDataLib.deps.json
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\bin\Debug\netstandard2.0\XMLDataLib.dll
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\bin\Debug\netstandard2.0\XMLDataLib.pdb
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.csprojAssemblyReference.cache
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.csproj.CoreCompileInputs.cache
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.AssemblyInfoInputs.cache
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.AssemblyInfo.cs
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.dll
+C:\Users\armad\Desktop\SecretGame\SecretProject\XMLDataLib\obj\Debug\netstandard2.0\XMLDataLib.pdb
