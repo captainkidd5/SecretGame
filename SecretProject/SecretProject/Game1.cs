@@ -9,6 +9,7 @@ using SecretProject.Class.UI;
 using System;
 
 using TiledSharp;
+//using XMLDataLib;
 
 using System.Collections.Generic;
 
@@ -116,6 +117,7 @@ namespace SecretProject
         //CLOCK
         public static Clock GlobalClock;
 
+     //   public Item testItem;
         
 
 
@@ -206,6 +208,8 @@ namespace SecretProject
             joeUp = AllTextures.joeUp;
             joeRight = AllTextures.joeRight;
             joeLeft = AllTextures.joeLeft;
+
+          //  testItem = Content.Load&lt;XMLDataLib.Item&gt;("Level1");
 
             //SOUND
             SoundManager = new SoundBoard(this, Content);
