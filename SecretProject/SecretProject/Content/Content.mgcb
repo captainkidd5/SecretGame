@@ -11,7 +11,7 @@
 #-------------------------------- References --------------------------------#
 
 /reference:..\..\packages\MonoGame.Extended.Content.Pipeline.1.1.0\tools\MonoGame.Extended.Content.Pipeline.dll
-/reference:..\..\XMLDataLib\bin\Debug\netstandard2.0\XMLDataLib.dll
+/reference:..\..\XMLDataLib\bin\Release\netstandard2.0\XMLDataLib.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -442,11 +442,6 @@
 /processorParam:TextureFormat=Color
 /build:Item/secateurs.png
 
-#begin XMLData/File.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:XMLData/File.xml
-
 #begin Map/MasterSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -525,6 +520,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/stoneSmash.wav
 
+#begin Button/clockBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/clockBackground.png
+
 #begin Item/stone.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -537,15 +544,8 @@
 /processorParam:TextureFormat=Color
 /build:Item/stone.png
 
-#begin Button/clockBackground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/clockBackground.png
+#begin ..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
 

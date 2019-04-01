@@ -43,7 +43,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/ClippingUp.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/Cursor1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/secateurs.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/XMLData/File.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Map/MasterSpriteSheet.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Map/InteriorSpriteSheet1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/transparentTextBox.png</File>
@@ -52,7 +51,8 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/shovel.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/tileSelector.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/stoneSmash.wav</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/stone.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/clockBackground.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/stone.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/../../XMLDataLib/bin/Release/netstandard2.0/Item.xml</File>
   </SourceFiles>
 </SourceFileCollection>
