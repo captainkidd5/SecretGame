@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/stoneSmash.wav</SourceFile>
+  <SourceTime>2019-04-02T09:44:56.0041409-07:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/stoneSmash.xnb</DestFile>
+  <DestTime>2019-04-02T09:45:33.6411284-07:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
