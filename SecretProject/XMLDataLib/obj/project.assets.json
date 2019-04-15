@@ -176,23 +176,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SecretDingo\\.nuget\\packages\\": {},
+    "C:\\Users\\armad\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
+      "projectUniqueName": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
       "projectName": "XMLDataLib",
-      "projectPath": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
-      "packagesPath": "C:\\Users\\SecretDingo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SecretDingo\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\obj\\",
+      "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
+      "packagesPath": "C:\\Users\\armad\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\SecretDingo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\armad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
