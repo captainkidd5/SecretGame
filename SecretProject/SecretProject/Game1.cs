@@ -47,7 +47,8 @@ namespace SecretProject
         Down,
         Up,
         Left,
-        Right
+        Right, 
+        None
     }
 
     public enum Stages

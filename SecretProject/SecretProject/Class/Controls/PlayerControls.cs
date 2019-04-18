@@ -27,6 +27,7 @@ namespace SecretProject.Class.Controls
 
 
         public Keys MovementKey { get; set; } = Keys.None;
+        public Keys SecondMovementKey { get; set; } = Keys.None;
 
         public Keys[] pressedKeys;
 
@@ -113,8 +114,22 @@ namespace SecretProject.Class.Controls
                     //active movement key is the one at the front of the list
 
                     MovementKey = MovementKeys[MovementKeys.Count - 1];
+                    if((MovementKeys.Count -2) >= 0)
+                    {
+                        SecondMovementKey = MovementKeys[MovementKeys.Count - 2];
+                    }
+                    else
+                    {
+                        SecondMovementKey = Keys.None;
+                    }
+                    
 
                     oldKeys = currentKeys;
+
+
+                    ////////
+                    ///
+                    
 
                     switch (MovementKey)
                     {
@@ -141,6 +156,35 @@ namespace SecretProject.Class.Controls
                         case Keys.None:
                             IsMoving = false;
                             break;
+                    }
+
+                    switch(SecondMovementKey)
+                    {
+                        case Keys.D:
+                            SecondaryDirection = SecondaryDir.Right;
+                            
+                            break;
+
+                        case Keys.A:
+                            SecondaryDirection = SecondaryDir.Left;
+                            
+                            break;
+
+                        case Keys.W:
+                            SecondaryDirection = SecondaryDir.Up;
+                            
+                            break;
+
+                        case Keys.S:
+                            SecondaryDirection = SecondaryDir.Down;
+                          
+                            break;
+
+                        case Keys.None:
+                            SecondaryDirection = SecondaryDir.None;
+                            
+                            break;
+
                     }
 
 

@@ -17,6 +17,7 @@ namespace SecretProject.Class.CollisionDetection
         private Rectangle rectangle;
 
         public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
+
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
         public Collider(Vector2 velocity, Rectangle rectangle)

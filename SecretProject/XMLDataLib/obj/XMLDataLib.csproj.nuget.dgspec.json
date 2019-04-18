@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
+        "projectName": "XMLDataLib",
+        "projectPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\XMLDataLib.csproj",
+        "packagesPath": "C:\\Users\\armad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\armad\\Desktop\\SecretGame\\SecretProject\\XMLDataLib\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\armad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

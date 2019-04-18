@@ -28,7 +28,9 @@ namespace SecretProject.Class.Playable
 
         //TODO: Work on gametime
         public Vector2 position;
-        public Vector2 Velocity;
+        public Vector2 PrimaryVelocity;
+        public Vector2 SecondaryVelocity;
+        public Vector2 TotalVelocity;
         public bool Activate { get; set; }
 
         public AnimatedSprite[] animations;
@@ -59,8 +61,10 @@ namespace SecretProject.Class.Playable
 
         public int Health1 { get; set; } = 3;
         public Dir Direction { get; set; } = Dir.Down;
+        public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public bool IsMoving { get; set; } = false;
         public float Speed1 { get; set; } = 3f;
+        public float SecondarySpeed { get; set; } = 1f;
         public AnimatedSprite PlayerMovementAnimations { get; set; }
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -109,7 +113,7 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = frameNumber;
             animations = new AnimatedSprite[frameNumber];
 
-            MyCollider = new Collider(Velocity, Rectangle);
+            MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
             Inventory = new Inventory(graphics, content, mouse);
 
@@ -211,18 +215,21 @@ namespace SecretProject.Class.Playable
                 PlayerMovementAnimations = animations[(int)controls.Direction];
 
                 MyCollider.Rectangle = this.Rectangle;
-                MyCollider.Velocity = this.Velocity;
+                MyCollider.Velocity = this.PrimaryVelocity;
                 MyCollider.DidCollideMagnet(items);
 
 
                 MyCollider.DidCollide(objects);
-                this.Velocity = MyCollider.Velocity;
+                this.PrimaryVelocity = MyCollider.Velocity;
 
                 //Velocity = Velocity * dt;
+                TotalVelocity = PrimaryVelocity + SecondaryVelocity;
 
-                Position += Velocity;
+                Position += TotalVelocity ;
 
-                Velocity = Vector2.Zero;
+                PrimaryVelocity = Vector2.Zero;
+                SecondaryVelocity = Vector2.Zero;
+                TotalVelocity = Vector2.Zero;
 
 
                 if (controls.IsMoving && CurrentAction.IsAnimating == false)
@@ -253,24 +260,48 @@ namespace SecretProject.Class.Playable
                     switch (controls.Direction)
                     {
                         case Dir.Right:
-                            Velocity.X = Speed1 ;
+                            PrimaryVelocity.X = Speed1 ;
                             break;
 
                         case Dir.Left:
-                            Velocity.X = -Speed1;
+                            PrimaryVelocity.X = -Speed1;
                             break;
 
                         case Dir.Down:
-                            Velocity.Y = Speed1;
+                            PrimaryVelocity.Y = Speed1;
                             break;
 
                         case Dir.Up:
-                            Velocity.Y = -Speed1;
+                            PrimaryVelocity.Y = -Speed1;
                             break;
 
                         default:
                             break;
 
+                    }
+
+
+                    switch(controls.SecondaryDirection)
+                    {
+                        case SecondaryDir.Right:
+                            SecondaryVelocity.X = SecondarySpeed;
+                            break;
+                        case SecondaryDir.Left:
+                            SecondaryVelocity.X = -SecondarySpeed; 
+                            break;
+                        case SecondaryDir.Down:
+                            SecondaryVelocity.Y = SecondarySpeed;
+                            break;
+                        case SecondaryDir.Up:
+                            SecondaryVelocity.Y = -SecondarySpeed;
+                            break;
+                       // case SecondaryDir.None:
+
+                        
+
+                        default:
+                            break;
+                        
                     }
 
 
