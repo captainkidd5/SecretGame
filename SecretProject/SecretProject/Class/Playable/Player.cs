@@ -63,7 +63,7 @@ namespace SecretProject.Class.Playable
         public Dir Direction { get; set; } = Dir.Down;
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public bool IsMoving { get; set; } = false;
-        public float Speed1 { get; set; } = 3f;
+        public float Speed1 { get; set; } = 2f;
         public float SecondarySpeed { get; set; } = 1f;
         public AnimatedSprite PlayerMovementAnimations { get; set; }
         public Texture2D Texture { get; set; }
@@ -71,8 +71,6 @@ namespace SecretProject.Class.Playable
         public Collider MyCollider { get; set; }
 
         public bool IsPerformingAction = false;
-
-       // private bool PlayingSecondaryAnimation = false;
 
         public AnimatedSprite CurrentAction;
 
@@ -131,11 +129,6 @@ namespace SecretProject.Class.Playable
             SetRectangleTexture(graphics, ClickRangeRectangle);
 
         }
-
-       // public Player()
-     //   {
-
-       // }
 
         
 
@@ -233,8 +226,16 @@ namespace SecretProject.Class.Playable
                 }
                 
 
-                Position += TotalVelocity ;
+                if (controls.IsSprinting)
+                {
+                    TotalVelocity = TotalVelocity * 2f;
+                }
+                else
+                {
 
+                }
+
+                Position += TotalVelocity;
                 PrimaryVelocity = Vector2.Zero;
                 SecondaryVelocity = Vector2.Zero;
                 TotalVelocity = Vector2.Zero;
@@ -294,16 +295,22 @@ namespace SecretProject.Class.Playable
                         case SecondaryDir.Right:
                             SecondaryVelocity.X = SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Right];
+                            PlayerMovementAnimations.Update(gameTime);
                             break;
                         case SecondaryDir.Left:
                             SecondaryVelocity.X = -SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Left];
+                            PlayerMovementAnimations.Update(gameTime);
                             break;
                         case SecondaryDir.Down:
                             SecondaryVelocity.Y = SecondarySpeed;
+                            //PlayerMovementAnimations = animations[(int)Dir.Down];
+                            //PlayerMovementAnimations.Update(gameTime);
                             break;
                         case SecondaryDir.Up:
                             SecondaryVelocity.Y = -SecondarySpeed;
+                            //PlayerMovementAnimations = animations[(int)Dir.Up];
+                            //PlayerMovementAnimations.Update(gameTime);
                             break;
                        // case SecondaryDir.None:
 

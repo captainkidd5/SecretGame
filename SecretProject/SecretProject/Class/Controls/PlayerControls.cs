@@ -32,6 +32,7 @@ namespace SecretProject.Class.Controls
         public Keys[] pressedKeys;
 
         public bool IsMoving { get; set; } = false;
+        public bool IsSprinting { get; set; } = false;
 
         List<Keys> MovementKeys = new List<Keys>() { Keys.None };
 
@@ -185,6 +186,14 @@ namespace SecretProject.Class.Controls
                             
                             break;
 
+                    }
+                    if(oldKeys.IsKeyDown(Keys.LeftShift))
+                    {
+                        this.IsSprinting = true;
+                    }
+                    else
+                    {
+                        this.IsSprinting = false;
                     }
 
 
