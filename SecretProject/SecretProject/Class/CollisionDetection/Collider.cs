@@ -28,7 +28,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public void DidCollide(List<ObjectBody> objectBody)
+        public bool DidCollide(List<ObjectBody> objectBody)
         {
             
             foreach (var body in objectBody)
@@ -37,17 +37,37 @@ namespace SecretProject.Class.CollisionDetection
                              && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2))
                 {
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
+                    {
                         velocity.X -= velocity.X; //+ (float).25;
+                        return true;
+                    }
+                        
+
 
                     if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
+                    {
                         velocity.X -= velocity.X; //- (float).25;
+                        return true;
+                    }
+                        
 
                     if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
+                    {
                         velocity.Y -= velocity.Y; //+ (float).25;
+                        return true;
+                    }
+                        
                     if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
+                    {
                         velocity.Y -= velocity.Y;// - (float).25;
+                        return true;
+                    }
+
+                 
+                        
                 }
             }
+            return false;
 
         }
 

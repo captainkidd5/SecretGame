@@ -218,12 +218,20 @@ namespace SecretProject.Class.Playable
                 MyCollider.Velocity = this.PrimaryVelocity;
                 MyCollider.DidCollideMagnet(items);
 
+                
 
-                MyCollider.DidCollide(objects);
+                bool collideOccurred = MyCollider.DidCollide(objects); //did a collision with an object happen this loop?
                 this.PrimaryVelocity = MyCollider.Velocity;
 
-                //Velocity = Velocity * dt;
-                TotalVelocity = PrimaryVelocity + SecondaryVelocity;
+                if(collideOccurred) //if collision occurred we don't want to take diagonal movement into account
+                {
+                    TotalVelocity = PrimaryVelocity;
+                }
+                else
+                {
+                    TotalVelocity = PrimaryVelocity + SecondaryVelocity;
+                }
+                
 
                 Position += TotalVelocity ;
 
@@ -285,9 +293,11 @@ namespace SecretProject.Class.Playable
                     {
                         case SecondaryDir.Right:
                             SecondaryVelocity.X = SecondarySpeed;
+                            PlayerMovementAnimations = animations[(int)Dir.Right];
                             break;
                         case SecondaryDir.Left:
-                            SecondaryVelocity.X = -SecondarySpeed; 
+                            SecondaryVelocity.X = -SecondarySpeed;
+                            PlayerMovementAnimations = animations[(int)Dir.Left];
                             break;
                         case SecondaryDir.Down:
                             SecondaryVelocity.Y = SecondarySpeed;
