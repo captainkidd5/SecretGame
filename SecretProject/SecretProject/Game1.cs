@@ -30,6 +30,7 @@ using SecretProject.Class.TextureStuff;
 //placeable objects needs two new layers so stuff underneat is preserved.
 //Tile random generation
 //Work on NPC collision detection
+//set IDs for worlditems
 
 namespace SecretProject
 {

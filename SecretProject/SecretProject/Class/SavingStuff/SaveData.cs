@@ -32,20 +32,36 @@ namespace SecretProject.Class.SavingStuff
             set { Game1.Iliad.Player.Health = value; }
         }
 
-        #endregion
-
-        #region playerInventory
-        [XmlElement("PlayerInventory")]
-        public List<InventorySlot> PlayerInventory
+        [XmlElement("WorldItems")]
+        public List<SerializableKeyValue<int, Vector2>> WorldItems
         {
-            get { return Game1.Player.Inventory.currentInventory; }
-            set { Game1.Player.Inventory.currentInventory = value; }
+            get { return GetWorldItems(); }
+                
+        }
+
+        public List<SerializableKeyValue<int, Vector2>> GetWorldItems()
+        {
+            List<SerializableKeyValue<int, Vector2>> WorldItems = new List<SerializableKeyValue<int, Vector2>>();
+            foreach (WorldItem item in Game1.GetCurrentStage().allItems)
+            {
+                WorldItems.Add(new SerializableKeyValue<int, Vector2> { Key = item.ID, Value = item.WorldPosition });
+            }
+            return WorldItems;
         }
 
         #endregion
 
-        //[XmlElement("Position")]
-        //public int MyProperty { get; set; }
+
+
+                //used so we can get around serializing dictionary items...
+        public class SerializableKeyValue<T1, T2>
+        {
+            public T1 Key { get; set; }
+            public T2 Value { get; set; }
+
+
+        }
+
 
     }
 }

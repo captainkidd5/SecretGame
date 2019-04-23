@@ -35,6 +35,8 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice Graphics { get; set; }
         public ContentManager Content { get; set; }
 
+        public Vector2 WorldPosition;
+
         //placeable part
 
         public bool IsPlaceable { get; set; } = false;
@@ -44,12 +46,13 @@ namespace SecretProject.Class.ItemStuff
         int directionY = Game1.RGenerator.Next(-2, 2);
 
 
-        public WorldItem(string Name, GraphicsDevice graphics, ContentManager content, Vector2 WorldPosition)
+        public WorldItem(string Name, GraphicsDevice graphics, ContentManager content, Vector2 worldPosition)
         {
             this.Content = content;
             this.Graphics = graphics;
             IsDropped = true;
             this.Name = Name;
+            this.WorldPosition = worldPosition;
 
             
             
@@ -60,18 +63,18 @@ namespace SecretProject.Class.ItemStuff
                 case "pie":
                     this.Texture = Game1.AllTextures.pie;
                     this.WorldMaximum = 5;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     break;
 
                 case "shrimp":
                     this.Texture = Game1.AllTextures.puzzleFish;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 10;
                     break;
 
                 case "grass":
                     this.Texture = Game1.AllTextures.grass;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 5;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
@@ -79,7 +82,7 @@ namespace SecretProject.Class.ItemStuff
 
                 case "barrel":
                     this.Texture = Game1.AllTextures.barrel;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 3;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
@@ -89,7 +92,7 @@ namespace SecretProject.Class.ItemStuff
 
                 case "secateur":
                     this.Texture = Game1.AllTextures.Secateurs;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 5;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
@@ -97,7 +100,7 @@ namespace SecretProject.Class.ItemStuff
 
                 case "lodgeKey":
                     this.Texture = Game1.AllTextures.lodgeKey;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 1;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
@@ -105,7 +108,7 @@ namespace SecretProject.Class.ItemStuff
 
                 case "shovel":
                     this.Texture = Game1.AllTextures.shovel;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 1;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;
@@ -113,7 +116,7 @@ namespace SecretProject.Class.ItemStuff
 
                 case "stone":
                     this.Texture = Game1.AllTextures.stone;
-                    this.ItemSprite = new Sprite(graphics, content, this.Texture, WorldPosition, true, .4f);
+                    this.ItemSprite = new Sprite(graphics, content, this.Texture, this.WorldPosition, true, .4f);
                     this.WorldMaximum = 1;
                     ItemSprite.ScaleX = .5f;
                     ItemSprite.ScaleY = .5f;

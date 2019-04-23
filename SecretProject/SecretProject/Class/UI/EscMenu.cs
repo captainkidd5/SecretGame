@@ -22,7 +22,7 @@ namespace SecretProject.Class.MenuStuff
 
 
         //  SaveLoadManager saveManager;
-        SaveFile mySave;
+        SaveLoadManager mySave;
 
         private Texture2D MenuButtonTexture { get; set; }
         private Texture2D SettingsButtonTexture { get; set; }
@@ -41,7 +41,7 @@ namespace SecretProject.Class.MenuStuff
 
         public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
         {
-            mySave = new SaveFile();
+            mySave = new SaveLoadManager();
             MenuButtonTexture = content.Load<Texture2D>("Button/basicButton");
             SettingsButtonTexture = content.Load<Texture2D>("Button/basicButton");
             ReturnButtonTexture = content.Load<Texture2D>("Button/basicButton");

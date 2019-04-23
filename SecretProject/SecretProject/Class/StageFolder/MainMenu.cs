@@ -32,7 +32,8 @@ namespace SecretProject.Class.Stage
         Texture2D save;
         Texture2D exit;
 
-        SaveFile mySave;
+        SaveLoadManager mySave;
+        
 
 
 
@@ -58,7 +59,7 @@ namespace SecretProject.Class.Stage
             //Load spritefonts
             font = Game1.AllTextures.MenuText;
 
-            mySave = new SaveFile();
+            mySave = new SaveLoadManager();
 
         }
 
