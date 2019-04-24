@@ -103,7 +103,7 @@ namespace SecretProject.Class.MenuStuff
 
             if(ToggleFullScreenButton.isClicked)
             {
-                Game1.ToggleFullScreen = true;
+                game.FullScreenToggle();
             }
         }
 

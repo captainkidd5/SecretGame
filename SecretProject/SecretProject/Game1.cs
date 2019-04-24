@@ -253,7 +253,10 @@ namespace SecretProject
         }
         #endregion
 
-
+        public void FullScreenToggle()
+        {
+            graphics.ToggleFullScreen();
+        }
         //public 
 
         #region UPDATE

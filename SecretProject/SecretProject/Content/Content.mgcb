@@ -15,6 +15,11 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
+
 #begin Button/basicButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -38,6 +43,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Button/ButtonInventory1.png
+
+#begin Button/clockBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/clockBackground.png
+
+#begin Button/Cursor1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/Cursor1.png
 
 #begin Button/escBackDrop.png
 /importer:TextureImporter
@@ -63,6 +92,18 @@
 /processorParam:TextureFormat=Color
 /build:Button/Inventory1.png
 
+#begin Button/tileSelector.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/tileSelector.png
+
 #begin Button/ToolBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -86,6 +127,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Button/ToolBarButton.png
+
+#begin Button/ToolBarButtonSelector.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/ToolBarButtonSelector.png
+
+#begin Button/transparentTextBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/transparentTextBox.png
 
 #begin Enemy/enemyship1.png
 /importer:TextureImporter
@@ -171,11 +236,95 @@
 /processorParam:TextureFormat=Color
 /build:Item/PuzzleFish.png
 
+#begin Item/secateurs.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/secateurs.png
+
+#begin Item/shovel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/shovel.png
+
+#begin Item/stone.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/stone.png
+
+#begin Map/InteriorSpriteSheet1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/InteriorSpriteSheet1.png
+
+#begin Map/MasterSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/MasterSpriteSheet.png
+
+#begin Music/doorOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/doorOpen.wav
+
+#begin Music/grassBreak.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/grassBreak.mp3
+
+#begin Music/grassBreakWav.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/grassBreakWav.wav
+
 #begin Music/IntheForest.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/IntheForest.mp3
+
+#begin Music/placeBarrel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/placeBarrel.wav
 
 #begin Music/walkGrass1.mp3
 /importer:Mp3Importer
@@ -315,31 +464,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Joe/JoeWalkRightNew.png
 
-#begin SoundEffects/bubble.WAV
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/bubble.WAV
-
-#begin SpriteFont/MenuText.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:SpriteFont/MenuText.spritefont
-
-#begin Player/MainPlayer/newPlayer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/newPlayer.png
-
 #begin Player/MainPlayer/ClippingForward.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -351,48 +475,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/ClippingForward.png
-
-#begin Button/ToolBarButtonSelector.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/ToolBarButtonSelector.png
-
-#begin Music/grassBreak.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/grassBreak.mp3
-
-#begin Music/grassBreakWav.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/grassBreakWav.wav
-
-#begin Music/placeBarrel.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Music/placeBarrel.wav
-
-#begin Player/MainPlayer/ClippingRight.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/ClippingRight.png
 
 #begin Player/MainPlayer/ClippingLeft.png
 /importer:TextureImporter
@@ -406,6 +488,18 @@
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/ClippingLeft.png
 
+#begin Player/MainPlayer/ClippingRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/MainPlayer/ClippingRight.png
+
 #begin Player/MainPlayer/ClippingUp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -418,7 +512,7 @@
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/ClippingUp.png
 
-#begin Button/Cursor1.png
+#begin Player/MainPlayer/newPlayer.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -428,61 +522,13 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Button/Cursor1.png
+/build:Player/MainPlayer/newPlayer.png
 
-#begin Item/secateurs.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/secateurs.png
-
-#begin Map/MasterSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/MasterSpriteSheet.png
-
-#begin Map/InteriorSpriteSheet1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/InteriorSpriteSheet1.png
-
-#begin Button/transparentTextBox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/transparentTextBox.png
-
-#begin Music/doorOpen.wav
+#begin SoundEffects/bubble.WAV
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Music/doorOpen.wav
+/build:SoundEffects/bubble.WAV
 
 #begin SoundEffects/diggingDirt.wav
 /importer:WavImporter
@@ -490,62 +536,16 @@
 /processorParam:Quality=Best
 /build:SoundEffects/diggingDirt.wav
 
-#begin Item/shovel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/shovel.png
-
-#begin Button/tileSelector.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/tileSelector.png
-
 #begin SoundEffects/stoneSmash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/stoneSmash.wav
 
-#begin Button/clockBackground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin SpriteFont/MenuText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/clockBackground.png
-
-#begin Item/stone.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/stone.png
-
-#begin ..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
+/processorParam:TextureFormat=Compressed
+/build:SpriteFont/MenuText.spritefont
 

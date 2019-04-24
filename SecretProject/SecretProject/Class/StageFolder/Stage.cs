@@ -201,8 +201,10 @@ namespace SecretProject.Class.Stage
           //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
 
             allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+            allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
+            allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
             allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
 

@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml.Serialization;
 using SecretProject.Class.Playable;
 using Microsoft.Xna.Framework;
+using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -46,9 +47,18 @@ namespace SecretProject.Class.SavingStuff
             #endregion
         }
         //yah
-        public void SetWorldItems()
+        public void SetWorldItems(List<KeyValuePair<int, Vector2>> items)
         {
 
+        }
+
+        public WorldItem CheckItemDataBase(int id)
+        {
+            switch(id)
+            {
+                //case 1: return new WorldItem()
+                //    break:
+            }
         }
     }
 }
