@@ -8,61 +8,21 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using SecretProject.Class.ItemStuff.Items;
 
 namespace SecretProject.Class.ItemStuff
 {
     //xml bin data is saved to bin as xnb!
-    [Serializable()]
-    [XmlRoot("WorldItem")]
+    
     public class ItemBank
     {
-        /*
-        XmlSerializer serializer;
-        public readonly Dictionary<int, WorldItem> allItems;
-        List<WorldItem> intermediateList;
-        string path = "Content/WorldItem.xml";
-        GraphicsDevice graphics;
-        ContentManager content;
+        public Dictionary<string, InventoryItem> Items;
 
-        public ItemBank(GraphicsDevice graphics, ContentManager content)
+        public ItemBank()
         {
-            this.graphics = graphics;
-            this.content = content;
-            serializer = new XmlSerializer(typeof(List<WorldItem>));
-            allItems = new Dictionary<int, WorldItem>();
-            StreamReader reader = new StreamReader(path);
-            reader.ReadToEnd();
-
-            intermediateList = (List<WorldItem>)serializer.Deserialize(reader);
-            reader.Close();
-
-
-
-            foreach (WorldItem item in intermediateList)
-            {
-                allItems.Add(item.ID, item);
-            }
+             Items = new Dictionary<string, InventoryItem>();
 
         }
-
-        public WorldItem GetWorldItem(int ID, Vector2 location, bool isTossable)
-        {
-            if (allItems.ContainsKey(ID))
-                return new WorldItem(graphics, content)
-                {
-                    Name = allItems[ID].Name,
-                    ID = allItems[ID].ID,
-                    InventoryMaximum = allItems[ID].InventoryMaximum,
-                    WorldMaximum = allItems[ID].WorldMaximum,
-                    WorldPosition = location,
-                    IsTossable = isTossable
-                };
-            else
-            {
-                return null;
-            }
-        }
-        */
     }
     
 }

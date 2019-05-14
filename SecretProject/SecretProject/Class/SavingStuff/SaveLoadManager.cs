@@ -15,36 +15,42 @@ namespace SecretProject.Class.SavingStuff
     {
         public string fileName;
 
-        public SaveData mySave;
 
         public void Save()
         {
-            mySave = new SaveData();
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            using (TextWriter tw = new StreamWriter(@"Content/SaveFiles/GameTestSave.xml"))
-            {
-                serializer.Serialize(tw, mySave);
-                tw.Close();
-            }
+            //XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            //using (TextWriter tw = new StreamWriter(@"Content/SaveFiles/GameTestSave.xml"))
+            //{
+            //    serializer.Serialize(tw, mySave);
+            //    tw.Close();
+            //}
         }
 
         public void Load()
         {
-            XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
+            //Load XML file with all pre-made items into itemVault.
+            Game1.ItemVault.Items.Load(@"Content/StartUpData/itemData.xml");
+            //for(int i = 0; i < Game1.ItemVault.Items.Count; i++)
+            //{
 
-            StreamReader reader = new StreamReader(@"Content/SaveFiles/GameTestSave.xml");
+            //}
+
+
+         //   XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
+
+         //   StreamReader reader = new StreamReader(@"Content/SaveFiles/GameTestSave.xml");
             
-                mySave = (SaveData)deSerializer.Deserialize(reader);
-                //mySave = save;
-                reader.Close();
-            #region Player
-            Game1.Iliad.Player.Position = mySave.Position;
-                Game1.Iliad.Player.Health = mySave.PlayerHealth;
-            #endregion
-            #region PlayerInventory
-         //   Game1.Player.Inventory.currentInventory = mySave.PlayerInventory;
+         //       mySave = (SaveData)deSerializer.Deserialize(reader);
+         //       //mySave = save;
+         //       reader.Close();
+         //   #region Player
+         //   Game1.Iliad.Player.Position = mySave.Position;
+         //       Game1.Iliad.Player.Health = mySave.PlayerHealth;
+         //   #endregion
+         //   #region PlayerInventory
+         ////   Game1.Player.Inventory.currentInventory = mySave.PlayerInventory;
 
-            #endregion
+           // #endregion
         }
         //yah
         public void SetWorldItems(List<KeyValuePair<int, Vector2>> items)
@@ -52,14 +58,14 @@ namespace SecretProject.Class.SavingStuff
 
         }
 
-        public WorldItem CheckItemDataBase(int id)
-        {
-            switch(id)
-            {
-                //case 1: return new WorldItem()
-                //    break:
-            }
-        }
+    //    public WorldItem CheckItemDataBase(int id)
+    //    {
+    //        switch(id)
+    //        {
+    //            //case 1: return new WorldItem()
+    //            //    break:
+    //        }
+    //    }
     }
 }
         

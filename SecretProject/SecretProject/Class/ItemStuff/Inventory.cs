@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-    [Serializable()]
+    [Serializable]
     public class Inventory : ISerializable
 
     {

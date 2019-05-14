@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SaveData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Position>
-    <X>826</X>
-    <Y>635</Y>
+    <X>646</X>
+    <Y>626</Y>
   </Position>
   <PlayerHealth>3</PlayerHealth>
-  <WorldItems>
-    <Key>0</Key>
+  <WorldItems Key="0">
     <Value>
       <X>700</X>
       <Y>650</Y>
     </Value>
   </WorldItems>
-  <WorldItems>
-    <Key>0</Key>
+  <WorldItems Key="0">
     <Value>
-      <X>650</X>
+      <X>700</X>
       <Y>650</Y>
     </Value>
   </WorldItems>
-  <WorldItems>
-    <Key>0</Key>
+  <WorldItems Key="0">
+    <Value>
+      <X>700</X>
+      <Y>650</Y>
+    </Value>
+  </WorldItems>
+  <WorldItems Key="0">
+    <Value>
+      <X>700</X>
+      <Y>650</Y>
+    </Value>
+  </WorldItems>
+  <WorldItems Key="0">
     <Value>
       <X>885</X>
       <Y>920</Y>
     </Value>
   </WorldItems>
-  <WorldItems>
-    <Key>0</Key>
+  <WorldItems Key="0">
     <Value>
       <X>710</X>
       <Y>970</Y>

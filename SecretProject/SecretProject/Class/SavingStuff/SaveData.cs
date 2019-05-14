@@ -9,53 +9,67 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.ItemStuff.Items;
 
 namespace SecretProject.Class.SavingStuff
 {
     [Serializable]
     [XmlRoot("SaveData")]
-    public class SaveData
+    public static class SaveData
     {
         #region player
-        [XmlElement("Position")]
-        public Vector2 Position
-        {
-            get { return Game1.Iliad.Player.Position; }
-            set { Game1.Iliad.Player.Position = value; }
 
-        }
-
-        [XmlElement("PlayerHealth")]
-        public int PlayerHealth
-        {
-            get { return Game1.Iliad.Player.Health; }
-            set { Game1.Iliad.Player.Health = value; }
-        }
-
-        [XmlElement("WorldItems")]
-        public List<SerializableKeyValue<int, Vector2>> WorldItems
-        {
-            get { return GetWorldItems(); }
-                
-        }
-
-        public List<SerializableKeyValue<int, Vector2>> GetWorldItems()
-        {
-            List<SerializableKeyValue<int, Vector2>> WorldItems = new List<SerializableKeyValue<int, Vector2>>();
-            foreach (WorldItem item in Game1.GetCurrentStage().allItems)
-            {
-                WorldItems.Add(new SerializableKeyValue<int, Vector2> { Key = item.ID, Value = item.WorldPosition });
-            }
-            return WorldItems;
-        }
 
         #endregion
+
+        //Generic Loader
+        public static void LoadItems<T1, T2>(this Dictionary<T1, T2> dic, Stream stream)
+        {
+            var reader = new XmlSerializer(typeof(List<Entry<T1, T2>>));
+            var list = (List<Entry<T1, T2>>)reader.Deserialize(stream);
+
+            foreach(var item in list)
+            {
+                dic.Add(item.Key, item.Value);
+            }
+        }
+
+
+        public static void Load<T1, T2>(this Dictionary<T1, T2> dic, string path)
+        {
+            using (var f = File.OpenRead(path))
+            {
+                LoadItems(dic, f);
+            }
+        }
+
+        public static void Save<T1, T2>(this Dictionary<T1, T2> dic, Stream stream)
+        {
+            var list = new List<Entry<T1, T2>>();
+            foreach(var pair in dic)
+            {
+                list.Add(new Entry<T1, T2> { Key = pair.Key, Value = pair.Value });
+            }
+
+            var writer = new XmlSerializer(typeof(List<Entry<T1, T2>>));
+            writer.Serialize(stream, list);
+        }
+
+        public static void Save<T1, T2>(this Dictionary<T1, T2> dic, string path)
+        {
+            using (var f = File.OpenWrite(path))
+            {
+                Save(dic, f);
+
+            }
+        }
 
 
 
                 //used so we can get around serializing dictionary items...
-        public class SerializableKeyValue<T1, T2>
+        public class Entry<T1, T2>
         {
+            [XmlAttribute]
             public T1 Key { get; set; }
             public T2 Value { get; set; }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ArrayOfEntryOfStringInventoryItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntryOfStringInventoryItem Key="0">
+    <Value>
+      <Name>pie</Name>
+      <ID>0</ID>
+      <InvMaximum>3</InvMaximum>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>0</id>
+      <TextureString>Item/pie</TextureString>
+    </Value>
+  </EntryOfStringInventoryItem>
+</ArrayOfEntryOfStringInventoryItem>

@@ -19,6 +19,9 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
 using SecretProject.Class.SoundStuff;
 using SecretProject.Class.TextureStuff;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.SavingStuff;
+using SecretProject.Class.ItemStuff.Items;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -85,7 +88,7 @@ namespace SecretProject
         public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
-        public static Stages gameStages = Stages.Iliad;
+        public static Stages gameStages = Stages.MainMenu;
 
         //screen stuff
         public static int ScreenHeight;
@@ -119,7 +122,8 @@ namespace SecretProject
         //CLOCK
         public static Clock GlobalClock;
 
-     //   public Item testItem;
+        //ITEMS
+        public static ItemBank ItemVault;
         
 
 
@@ -241,6 +245,13 @@ namespace SecretProject
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
+
+            //ITEMS
+            ItemVault = new ItemBank();
+            //InventoryItem item = new InventoryItem { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
+            //ItemVault.Items.Add(item.id, item);
+            //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
+            ItemVault.Items.Load(@"Content/StartUpData/itemData.xml");
 
 
         }
