@@ -79,23 +79,39 @@ namespace SecretProject.Class.ItemStuff
             this.Texture = content.Load<Texture2D>(TextureString);
             this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
 
-            this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
+            this.Graphics = graphics;
+            this.Content = content;
+
+            
+            
         }
 
-        public Item(int id, GraphicsDevice graphics, ContentManager content, Vector2 worldPosition)
+        public void Load()
         {
-            string ID = id.ToString();
-            this.Name = Game1.ItemVault.RawItems[ID].Name;
-            this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
-            this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
-            this.Texture = content.Load<Texture2D>(TextureString);
-            this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+            if (IsWorldItem)
+            {
+                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f);
+            }
+            if (!IsWorldItem)
+            {
+                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, new Vector2(500, 635), false, .4f);
+            }
+        }
 
-            this.ItemSprite = new Sprite(graphics, content, this.Texture, worldPosition, true, .4f);
+        //public Item(int id, GraphicsDevice graphics, ContentManager content, Vector2 worldPosition)
+        //{
+        //    string ID = id.ToString();
+        //    this.Name = Game1.ItemVault.RawItems[ID].Name;
+        //    this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
+        //    this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
+        //    this.Texture = content.Load<Texture2D>(TextureString);
+        //    this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+
+        //    this.ItemSprite = new Sprite(graphics, content, this.Texture, worldPosition, true, .4f);
             
 
-            this.WorldPosition = worldPosition;
-        }
+        //    this.WorldPosition = worldPosition;
+        //}
 
         public void Update(GameTime gameTime)
         {
@@ -112,7 +128,7 @@ namespace SecretProject.Class.ItemStuff
 
                 if (IsDropped)
                 {
-                    if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID)))
+                    if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                     {
                         IsMagnetized = true;
                         IsDropped = false;

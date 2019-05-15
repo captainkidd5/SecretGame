@@ -185,29 +185,32 @@ namespace SecretProject.Class.Stage
 
             //UserInterface
 
-            allItems.Add(new Item(0, graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)) { IsDropped = true,IsWorldItem = true, IsMagnetizable = true });
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
-          //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
+            
+            allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
 
-           // allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
+            allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50), true));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
+            //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
 
-           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
+            // allItems.Add(new WorldItem("shrimp", graphicsDevice, content, new Vector2(200, 500)));
 
-         //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
+            // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)));
 
-           // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
+            //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 70, Game1.Player.position.Y + 50)));
 
-          //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
+            // allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 30, Game1.Player.position.Y + 50)));
 
-          //  allItems.Add(new Item("pie", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+            //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
+
+            //  allItems.Add(new Item("pie", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
             //allItems.Add(new Item("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-           // allItems.Add(new Item("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
+            // allItems.Add(new Item("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
 
             //allItems.Add(new WorldItem("shovel", graphicsDevice, content, new Vector2(710, 970)));
 

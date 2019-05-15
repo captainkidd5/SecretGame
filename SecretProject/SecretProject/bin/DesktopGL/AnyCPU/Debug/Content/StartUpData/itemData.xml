@@ -26,4 +26,43 @@
       <TextureString>Item/puzzleFish</TextureString>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="2">
+    <Value>
+      <Name>grass</Name>
+      <ID>2</ID>
+      <InvMaximum>10</InvMaximum>
+      <WorldMaximum>50</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>2</id>
+      <TextureString>Item/grass</TextureString>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="3">
+    <Value>
+      <Name>barrel</Name>
+      <ID>3</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>true</IsPlaceable>
+      <id>3</id>
+      <TextureString>Item/barrel</TextureString>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="4">
+    <Value>
+      <Name>secateur</Name>
+      <ID>4</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>true</IsPlaceable>
+      <id>4</id>
+      <TextureString>Item/Secateurs</TextureString>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>
