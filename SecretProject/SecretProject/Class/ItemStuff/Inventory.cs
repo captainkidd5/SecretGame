@@ -72,9 +72,6 @@ namespace SecretProject.Class.ItemStuff
                 {
                     slotsAvailable = true;
                 }
-               
-                    
-
             }
             if(itemFilled == false && slotsAvailable == true)
             {
@@ -117,7 +114,6 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-   
 
         public void GetNextAvailableSlot()
         {
@@ -139,7 +135,6 @@ namespace SecretProject.Class.ItemStuff
     public class InventorySlot
     {
         public List<Item> SlotItems { get; set; }
-        // public int InventoryQueuePosition { get; set; }
 
         public Item Item { get; set; }
 
@@ -157,28 +152,19 @@ namespace SecretProject.Class.ItemStuff
             SlotItems = new List<Item>(1);
         }
 
-
         public Item GetItem()
         {
-            
-
             return SlotItems[0];
         }
 
         public void RemoveItemFromSlot()
         {
-
             SlotItems.RemoveAt(SlotItems.Count - 1);
-                
-            
-
         }
 
         public void AddItemToSlot(Item item)
-        {
-            
+        {  
           SlotItems.Add(item);
-   
         }
 
     }

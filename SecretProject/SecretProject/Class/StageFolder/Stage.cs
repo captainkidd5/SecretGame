@@ -278,9 +278,9 @@ namespace SecretProject.Class.Stage
                     action.Update(gameTime);
                 }
 
-                foreach (Item item in allItems)
+                for(int i = 0; i < allItems.Count; i++)
                 {
-                    item.Update(gameTime);
+                    allItems[i].Update(gameTime);
                 }
 
             }
@@ -360,9 +360,9 @@ namespace SecretProject.Class.Stage
                     sprite.Draw(spriteBatch);
                 }
 
-                foreach (Item item in allItems)
+                for (int i = 0; i < allItems.Count; i++)
                 {
-                    item.Draw(spriteBatch);
+                    allItems[i].Draw(spriteBatch);
                 }
 
                 foreach (var obj in allObjects)

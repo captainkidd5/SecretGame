@@ -171,7 +171,7 @@ namespace SecretProject.Class.UI
             }
 
         }
-
+        #region SCROLLWHEEL
         private void UpdateScrollWheel(MouseManager mouse)
         {
             WasSliderUpdated = false;
@@ -210,8 +210,6 @@ namespace SecretProject.Class.UI
                 }
             }
 
-            
-
             if (mouse.HasScrollWheelValueDecreased)
             {
                 currentSliderPosition += 1;
@@ -236,7 +234,11 @@ namespace SecretProject.Class.UI
             }
 
         }
+        #endregion
 
+        #region NONINVENTORYBUTTONS
+
+        
         public void UpdateNonInventoryButtons(MouseManager mouse)
         {
             for (int i = 0; i < AllNonInventoryButtons.Count; i++)
@@ -255,6 +257,7 @@ namespace SecretProject.Class.UI
             }
             OpenInventory.isClicked = false;
         }
+        #endregion
 
         public string GetCurrentEquippedTool()
         {
@@ -266,28 +269,20 @@ namespace SecretProject.Class.UI
             {
                 return "null";
             }
-
-            
         }
 
         public Texture2D GetCurrentItemTexture()
         {
-
                 return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().Texture;
-
         }
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
-
-
             DragToggleBuilding = false;
             DragoToggleBuildingDropped = false;
             for (int i = 0; i < 7; i++)
             {
-
-
                 if (inventory.currentInventory.ElementAt(i) == null)
                 {
                     AllSlots[i].ItemCounter = 0;
@@ -308,8 +303,6 @@ namespace SecretProject.Class.UI
 
                 AllSlots[i].Update(mouse);
             }
-
-
 
             for (int i = 0; i < 7; i++)
             {

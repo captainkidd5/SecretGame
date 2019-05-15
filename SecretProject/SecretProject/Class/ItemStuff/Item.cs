@@ -86,11 +86,12 @@ namespace SecretProject.Class.ItemStuff
             
         }
 
+        //Load to add proper texture to the itemsprite.
         public void Load()
         {
             if (IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f);
+                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f) { IsBobbing = true };
             }
             if (!IsWorldItem)
             {
@@ -133,6 +134,7 @@ namespace SecretProject.Class.ItemStuff
                         IsMagnetized = true;
                         IsDropped = false;
                         ItemSprite.PickedUp = true;
+                        Game1.GetCurrentStage().allItems.Remove(this);
 
                     }
                 }
