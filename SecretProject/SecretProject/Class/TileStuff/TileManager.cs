@@ -308,8 +308,6 @@ namespace SecretProject.Class.TileStuff
                             //}                    
                         }
 
-                        
-
                         if (tiles[i, j].IsAnimated)
                         {
                             if (tiles[i, j].IsAnimating == true && tiles[i,j].IsFinishedAnimating == false)

@@ -132,6 +132,7 @@ namespace SecretProject.Class.SpriteFolder
             
         }
 
+        //stage uses this one mostly
          public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (IsDrawn)

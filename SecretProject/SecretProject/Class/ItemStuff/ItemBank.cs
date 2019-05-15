@@ -44,8 +44,10 @@ namespace SecretProject.Class.ItemStuff
         //creates copy of item in dictionary.
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false)
         {
-            Item newItem = this.Items[id];
-            if(!(location == null))
+
+            Item newItem = new Item(this.Items[id]);
+                
+            if (!(location == null))
             {
                 newItem.WorldPosition = (Vector2)location;
             }

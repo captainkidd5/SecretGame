@@ -64,10 +64,26 @@ namespace SecretProject.Class.ItemStuff
         int directionY = Game1.RGenerator.Next(-2, 2);
 
 
+       
 
         public Item()
         {
 
+        }
+
+        //for every cloned item
+        public Item(Item item)
+        {
+            //string ID = item.id.ToString();
+            this.Name = item.Name;
+            this.InvMaximum = item.InvMaximum;
+            this.TextureString = item.TextureString;
+            this.Texture = item.Texture;
+            this.IsPlaceable = item.IsPlaceable;
+            this.ID = item.ID;
+
+            this.Graphics = item.Graphics;
+            this.Content = item.Content;
         }
 
         public Item(int id, GraphicsDevice graphics, ContentManager content)
@@ -154,7 +170,7 @@ namespace SecretProject.Class.ItemStuff
 
                 if (ItemSprite.ScaleX <= 0f || ItemSprite.ScaleY <= 0f)
                 {
-                    if (ItemSprite.IsDrawn)
+                    if (!ItemSprite.PickedUp)
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
                         ItemSprite.PickedUp = true;
@@ -163,7 +179,7 @@ namespace SecretProject.Class.ItemStuff
                         Game1.GetCurrentStage().allItems.Remove(this);
                     }
 
-                    ItemSprite.IsDrawn = false;
+                    //ItemSprite.IsDrawn = false;
                 }
                 ItemSprite.Position.X -= playerpos.X;
                 ItemSprite.Position.Y -= playerpos.Y;
