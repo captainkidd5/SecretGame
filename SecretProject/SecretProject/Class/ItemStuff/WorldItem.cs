@@ -151,7 +151,7 @@ namespace SecretProject.Class.ItemStuff
 
             if(IsDropped)
             {
-                if(IsMagnetizable && Game1.Player.Inventory.TryAddItem(new InventoryItem(this.ID, this.Graphics, this.Content)))
+                if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID)))
                 {
                     IsMagnetized = true;
                     IsDropped = false;

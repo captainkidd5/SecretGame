@@ -49,11 +49,11 @@ namespace SecretProject.Class.ItemStuff.Items
         public InventoryItem(int id, GraphicsDevice graphics, ContentManager content)
         {
             string ID = id.ToString();
-            this.Name = Game1.ItemVault.Items[ID].Name;
-            this.InvMaximum = Game1.ItemVault.Items[ID].InvMaximum;
-            this.TextureString = Game1.ItemVault.Items[ID].TextureString;
+            this.Name = Game1.ItemVault.RawItems[ID].Name;
+            this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
+            this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
             this.Texture = content.Load<Texture2D>(TextureString);
-            this.IsPlaceable = Game1.ItemVault.Items[ID].IsPlaceable;
+            this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
 
             this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
         }

@@ -537,7 +537,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                    Game1.Iliad.allItems.Add(new WorldItem("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    //Game1.Iliad.allItems.Add(new Item("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                 }
@@ -548,7 +548,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                    Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                  //  Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
 
                     ReplaceTilePermanent(oldX, oldY);
                 }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-    [Serializable]
+    [Serializable,]
     public class Inventory : ISerializable
 
     {
@@ -56,13 +56,13 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public bool TryAddItem(InventoryItem item)
+        public bool TryAddItem(Item item)
         {
             bool itemFilled = false;
             bool slotsAvailable = false;
             foreach(InventorySlot s in currentInventory)
             {
-                if(s.SlotItems.Any(x => x.Name == item.Name) && s.SlotItems.Count(x => x.Name == item.Name) < item.InvMaximum)
+                if(s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum)
                 {
                     s.AddItemToSlot(item);
                     itemFilled = true;
@@ -101,7 +101,7 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void RemoveItem(InventoryItem item)
+        public void RemoveItem(Item item)
         {
             bool removed = false;
             foreach (InventorySlot s in currentInventory)
@@ -138,27 +138,27 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
-        public List<InventoryItem> SlotItems { get; set; }
+        public List<Item> SlotItems { get; set; }
         // public int InventoryQueuePosition { get; set; }
 
-        public InventoryItem Item { get; set; }
+        public Item Item { get; set; }
 
         public bool IsCurrentSelection = false;
 
-        public InventorySlot(InventoryItem item)
+        public InventorySlot(Item item)
         {
-            SlotItems = new List<InventoryItem>(1);
+            SlotItems = new List<Item>(1);
             SlotItems.Add(item);
             this.Item = item;
         }
 
         public InventorySlot()
         {
-            SlotItems = new List<InventoryItem>(1);
+            SlotItems = new List<Item>(1);
         }
 
 
-        public InventoryItem GetItem()
+        public Item GetItem()
         {
             
 
@@ -174,7 +174,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void AddItemToSlot(InventoryItem item)
+        public void AddItemToSlot(Item item)
         {
             
           SlotItems.Add(item);

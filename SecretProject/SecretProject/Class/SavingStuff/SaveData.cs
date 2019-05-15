@@ -30,7 +30,11 @@ namespace SecretProject.Class.SavingStuff
 
             foreach(var item in list)
             {
-                dic.Add(item.Key, item.Value);
+                //if(!list.Contains(item))
+               // {
+                    dic.Add(item.Key, item.Value);
+               // }
+                
             }
         }
 

@@ -71,7 +71,7 @@ namespace SecretProject.Class.Stage
 
         public List<Sprite> allSprites;
 
-        public List<WorldItem> allItems;
+        public List<Item> allItems;
 
         public List<ActionTimer> AllActions;
 
@@ -101,7 +101,7 @@ namespace SecretProject.Class.Stage
 
             };
 
-            allItems = new List<WorldItem>()
+            allItems = new List<Item>()
             {
 
             };
@@ -185,7 +185,7 @@ namespace SecretProject.Class.Stage
 
             //UserInterface
 
-
+            allItems.Add(new Item(0, graphicsDevice, content, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50)) { IsDropped = true,IsWorldItem = true, IsMagnetizable = true });
           //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 450)));
           //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(200, 300)));
           //  allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(350, 200)));
@@ -200,14 +200,14 @@ namespace SecretProject.Class.Stage
 
           //  allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 50)));
 
-            allItems.Add(new WorldItem("pie", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+          //  allItems.Add(new Item("pie", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
             //allItems.Add(new WorldItem("barrel", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-            //allItems.Add(new WorldItem("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
+            //allItems.Add(new Item("secateur", graphicsDevice, content, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50)));
 
-            //allItems.Add(new WorldItem("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
+           // allItems.Add(new Item("lodgeKey", graphicsDevice, content, new Vector2(885, 920)));
 
             //allItems.Add(new WorldItem("shovel", graphicsDevice, content, new Vector2(710, 970)));
 
@@ -275,7 +275,7 @@ namespace SecretProject.Class.Stage
                     action.Update(gameTime);
                 }
 
-                foreach (WorldItem item in allItems)
+                foreach (Item item in allItems)
                 {
                     item.Update(gameTime);
                 }
@@ -357,7 +357,7 @@ namespace SecretProject.Class.Stage
                     sprite.Draw(spriteBatch);
                 }
 
-                foreach (WorldItem item in allItems)
+                foreach (Item item in allItems)
                 {
                     item.Draw(spriteBatch);
                 }

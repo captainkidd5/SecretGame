@@ -16,12 +16,36 @@ namespace SecretProject.Class.ItemStuff
     
     public class ItemBank
     {
-        public Dictionary<string, InventoryItem> Items;
+        public Dictionary<string, Item> RawItems;
+
+        public Dictionary<int, Item> Items;
 
         public ItemBank()
         {
-             Items = new Dictionary<string, InventoryItem>();
+             RawItems = new Dictionary<string, Item>();
+             Items = new Dictionary<int, Item>();
 
+            
+
+        }
+
+        public void LoadItems(GraphicsDevice graphics, ContentManager content)
+        {
+            for (int i = 0; i < RawItems.Count; i++)
+            {
+                if (RawItems.ContainsKey(i.ToString()))
+                {
+                    Items.Add(i, new Item(i, graphics, content));
+                }
+
+            }
+        }
+
+        //creates copy of item in dictionary.
+        public Item GenerateNewItem(int id)
+        {
+            Item newItem = this.Items[id];
+            return newItem;
         }
     }
     

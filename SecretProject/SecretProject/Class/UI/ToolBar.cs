@@ -56,7 +56,7 @@ namespace SecretProject.Class.UI
 
         public Texture2D ItemSwitchTexture;
 
-        public InventoryItem TempItem { get; set; }
+        public Item TempItem { get; set; }
 
         public Rectangle BackGroundTextureRectangle { get; set; }
 
@@ -316,14 +316,14 @@ namespace SecretProject.Class.UI
 
                 if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
-                    InventoryItem tempItem = inventory.currentInventory[i].GetItem();
+                    Item tempItem = inventory.currentInventory[i].GetItem();
                     inventory.currentInventory[i].RemoveItemFromSlot();
                     AllSlots[i].ItemCounter--;
                     if (tempItem.IsPlaceable == false)
                     {
 
 
-                        Game1.GetCurrentStage().allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                        Game1.GetCurrentStage().allItems.Add(new Item(tempItem.ID, graphicsDevice, content, mouse.WorldMousePosition));
                     }
 
                     if (tempItem.IsPlaceable == true)
@@ -339,7 +339,7 @@ namespace SecretProject.Class.UI
 
                 if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
                 {
-                    InventoryItem tempItem = inventory.currentInventory[i].GetItem();
+                    Item tempItem = inventory.currentInventory[i].GetItem();
                     if (tempItem.IsPlaceable == true)
                     {
                         DragToggleBuilding = true;

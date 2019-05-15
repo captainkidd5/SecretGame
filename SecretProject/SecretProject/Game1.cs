@@ -236,6 +236,14 @@ namespace SecretProject
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
             DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox) ;
 
+            //ITEMS
+            ItemVault = new ItemBank();
+            //Item item = new Item { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
+            //ItemVault.Items.Add(item.id, item);
+            //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
+            ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
+            ItemVault.LoadItems(GraphicsDevice, Content);
+
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
             Iliad = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
@@ -246,13 +254,7 @@ namespace SecretProject
 
             GlobalClock = new Clock();
 
-            //ITEMS
-            ItemVault = new ItemBank();
-            //InventoryItem item = new InventoryItem { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
-            //ItemVault.Items.Add(item.id, item);
-            //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
-            ItemVault.Items.Load(@"Content/StartUpData/itemData.xml");
-
+            
 
         }
         #endregion

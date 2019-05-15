@@ -29,7 +29,7 @@ namespace SecretProject.Class.SavingStuff
         public void Load()
         {
             //Load XML file with all pre-made items into itemVault.
-            Game1.ItemVault.Items.Load(@"Content/StartUpData/itemData.xml");
+            Game1.ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
             //for(int i = 0; i < Game1.ItemVault.Items.Count; i++)
             //{
 

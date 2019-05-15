@@ -95,7 +95,7 @@ namespace SecretProject.Class.CollisionDetection
 
         
 
-        public void DidCollideMagnet(List<WorldItem> item)
+        public void DidCollideMagnet(List<Item> item)
         {
 
             foreach (var it in item)

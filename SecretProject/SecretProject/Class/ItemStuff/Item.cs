@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace SecretProject.Class.ItemStuff
 {
     [Serializable, XmlRoot("Item")]
-    class Item
+    public class Item
     {
         public string Name { get; set; }
         public int ID { get; set; }
@@ -22,15 +22,19 @@ namespace SecretProject.Class.ItemStuff
         public int InvMaximum { get; set; }
         public int WorldMaximum { get; set; }
 
+        [XmlIgnore]
         public bool IsFull { get; set; }
         public bool Ignored { get; set; }
 
+        [XmlIgnore]
         public bool IsMagnetized { get; set; }
+        [XmlIgnore]
         public bool IsMagnetizable { get; set; }
 
         [XmlIgnore]
         public Vector2 WorldPosition;
 
+        [XmlIgnore]
         public bool IsTossable { get; set; } = false;
 
         [XmlIgnore]
@@ -52,6 +56,9 @@ namespace SecretProject.Class.ItemStuff
         public string TextureString { get; set; }
 
         [XmlIgnore]
+        public bool IsWorldItem { get; set; }
+
+        [XmlIgnore]
         int directionX = Game1.RGenerator.Next(-2, 2);
         [XmlIgnore]
         int directionY = Game1.RGenerator.Next(-2, 2);
@@ -66,38 +73,59 @@ namespace SecretProject.Class.ItemStuff
         public Item(int id, GraphicsDevice graphics, ContentManager content)
         {
             string ID = id.ToString();
-            this.Name = Game1.ItemVault.Items[ID].Name;
-            this.InvMaximum = Game1.ItemVault.Items[ID].InvMaximum;
-            this.TextureString = Game1.ItemVault.Items[ID].TextureString;
+            this.Name = Game1.ItemVault.RawItems[ID].Name;
+            this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
+            this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
             this.Texture = content.Load<Texture2D>(TextureString);
-            this.IsPlaceable = Game1.ItemVault.Items[ID].IsPlaceable;
+            this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
 
             this.ItemSprite = new Sprite(graphics, content, this.Texture, new Vector2(500, 635), false, .4f);
         }
 
+        public Item(int id, GraphicsDevice graphics, ContentManager content, Vector2 worldPosition)
+        {
+            string ID = id.ToString();
+            this.Name = Game1.ItemVault.RawItems[ID].Name;
+            this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
+            this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
+            this.Texture = content.Load<Texture2D>(TextureString);
+            this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+
+            this.ItemSprite = new Sprite(graphics, content, this.Texture, worldPosition, true, .4f);
+            
+
+            this.WorldPosition = worldPosition;
+        }
+
         public void Update(GameTime gameTime)
         {
-            if (!ItemSprite.PickedUp)
+            if (IsWorldItem)
             {
-                this.ItemSprite.Bobber(gameTime);
-            }
 
 
-            if (IsDropped)
-            {
-                //if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(new Item(this.ID, this.Graphics, this.Content)))
-                //{
-                //    IsMagnetized = true;
-                //    IsDropped = false;
-                //    ItemSprite.PickedUp = true;
 
-                //}
-            }
+                if (!ItemSprite.PickedUp)
+                {
+                    this.ItemSprite.Bobber(gameTime);
+                }
 
-            if (IsTossable == true)
-            {
-                ItemSprite.Toss(gameTime, directionX, directionY);
-                //IsTossable = false;
+
+                if (IsDropped)
+                {
+                    if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID)))
+                    {
+                        IsMagnetized = true;
+                        IsDropped = false;
+                        ItemSprite.PickedUp = true;
+
+                    }
+                }
+
+                if (IsTossable == true)
+                {
+                    ItemSprite.Toss(gameTime, directionX, directionY);
+                    //IsTossable = false;
+                }
             }
 
 
@@ -105,31 +133,37 @@ namespace SecretProject.Class.ItemStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            this.ItemSprite.Draw(spriteBatch, .4f);
+            if(IsWorldItem)
+            {
+                this.ItemSprite.Draw(spriteBatch, .4f);
+            }
+            
 
 
         }
 
         public void Magnetize(Vector2 playerpos)
         {
-
-            if (ItemSprite.ScaleX <= 0f || ItemSprite.ScaleY <= 0f)
+            if (IsWorldItem)
             {
-                if (ItemSprite.IsDrawn)
+
+
+                if (ItemSprite.ScaleX <= 0f || ItemSprite.ScaleY <= 0f)
                 {
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
-                    ItemSprite.PickedUp = true;
-                    Ignored = true;
+                    if (ItemSprite.IsDrawn)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
+                        ItemSprite.PickedUp = true;
+                        Ignored = true;
+                    }
+
+                    ItemSprite.IsDrawn = false;
                 }
-
-                ItemSprite.IsDrawn = false;
+                ItemSprite.Position.X -= playerpos.X;
+                ItemSprite.Position.Y -= playerpos.Y;
+                ItemSprite.ScaleX -= .1f;
+                ItemSprite.ScaleY -= .1f;
             }
-            ItemSprite.Position.X -= playerpos.X;
-            ItemSprite.Position.Y -= playerpos.Y;
-            ItemSprite.ScaleX -= .1f;
-            ItemSprite.ScaleY -= .1f;
-
         }
     }
 }
