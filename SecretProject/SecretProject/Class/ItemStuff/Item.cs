@@ -113,18 +113,17 @@ namespace SecretProject.Class.ItemStuff
                 }
 
 
-                if (!ItemSprite.PickedUp)
-                {
+                
                     if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                     {
                         IsMagnetized = true;
                         IsDropped = false;
-                        ItemSprite.PickedUp = true;
-                        Game1.GetCurrentStage().allItems.Remove(this);
+                        //ItemSprite.PickedUp = true;
+                        
                         IsMagnetizable = false;
 
                     }
-                }
+                
 
                 if (IsTossable == true)
                 {
@@ -160,6 +159,8 @@ namespace SecretProject.Class.ItemStuff
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
                         ItemSprite.PickedUp = true;
                         Ignored = true;
+                        this.IsMagnetized = false;
+                        Game1.GetCurrentStage().allItems.Remove(this);
                     }
 
                     ItemSprite.IsDrawn = false;

@@ -91,4 +91,17 @@
       <TextureString>Item/Shovel</TextureString>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="7">
+    <Value>
+      <Name>stone</Name>
+      <ID>7</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>7</id>
+      <TextureString>Item/stone</TextureString>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

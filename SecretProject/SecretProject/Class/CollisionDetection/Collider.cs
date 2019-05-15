@@ -97,46 +97,49 @@ namespace SecretProject.Class.CollisionDetection
 
         public void DidCollideMagnet(List<Item> item)
         {
-
-            foreach (var it in item)
+            for(int i = 0; i < item.Count; i ++)
             {
-                if (it.Ignored == false)
+                if (item[i].Ignored == false)
                 {
-                    if (it.IsMagnetized)
+                    if (item[i].IsMagnetized)
                     {
-                        it.Magnetize(velocity);
-                        it.IsMagnetized = false;
+                        item[i].Magnetize(velocity);
+                        //it.IsMagnetized = false;
                     }
 
-                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))
+                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, item[i].ItemSprite, velocity))
                     {
-                        it.IsMagnetizable = true;
-                    }
-
-
-                    else if (velocity.X < 0 && IsTouchingRight(rectangle, it.ItemSprite, velocity))
-                    {
-                        it.IsMagnetizable = true;
+                        item[i].IsMagnetizable = true;
                     }
 
 
-                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, it.ItemSprite, velocity))
+                    else if (velocity.X < 0 && IsTouchingRight(rectangle, item[i].ItemSprite, velocity))
                     {
-                        it.IsMagnetizable = true;
+                        item[i].IsMagnetizable = true;
                     }
 
-                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, it.ItemSprite, velocity))
+
+                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, item[i].ItemSprite, velocity))
                     {
-                        it.IsMagnetizable = true;
+                        item[i].IsMagnetizable = true;
+                    }
+
+                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, item[i].ItemSprite, velocity))
+                    {
+                        item[i].IsMagnetizable = true;
                     }
 
                     else
                     {
-                        it.IsMagnetizable = false;
+                        item[i].IsMagnetizable = false;
                     }
                 }
-                
             }
+
+            
+                
+                
+            
         }
 
         public bool IsTouchingLeft(Rectangle rectangle, ObjectBody obj, Vector2 velocity)

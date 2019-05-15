@@ -549,7 +549,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
 
-                  //  Game1.Iliad.allItems.Add(new WorldItem("stone", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(7, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
 
                     ReplaceTilePermanent(oldX, oldY);
                 }
