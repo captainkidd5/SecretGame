@@ -84,7 +84,16 @@ namespace SecretProject.Class.ItemStuff
 
             this.Graphics = item.Graphics;
             this.Content = item.Content;
-        }
+
+            if(this.IsPlaceable)
+            {
+
+             this.Building = new PlaceableBuilding(this.ID);
+
+            }
+
+         }
+        
 
         public Item(int id, GraphicsDevice graphics, ContentManager content)
         {

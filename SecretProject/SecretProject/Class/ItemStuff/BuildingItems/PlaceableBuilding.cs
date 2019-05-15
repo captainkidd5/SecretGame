@@ -10,6 +10,8 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
     {
         public string Name { get; set; }
 
+        public int ID { get; set; }
+
         public int[] ForeGroundID { get; set; }
         public int[] BuildingID { get; set; }
         public int[,] TotalTiles { get; set; }
@@ -17,14 +19,14 @@ namespace SecretProject.Class.ItemStuff.BuildingItems
 
         public bool HasInteraction { get; set; }
 
-        public PlaceableBuilding(string name)
+        public PlaceableBuilding(int id)
         {
-            this.Name = name;
+            this.ID = id;
 
-            switch(name)
+            switch(ID)
             {
                 //should be GID + 1 for all cases
-                case "barrel":
+                case 3:
                     ForeGroundID = new int[2] { 3437, 3438 };
                     BuildingID = new int[2] { 3537, 3538 };
 
