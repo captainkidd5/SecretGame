@@ -19,7 +19,6 @@ using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
-using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;

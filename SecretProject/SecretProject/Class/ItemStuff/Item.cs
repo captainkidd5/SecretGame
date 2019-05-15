@@ -117,7 +117,7 @@ namespace SecretProject.Class.ItemStuff
         {
             if (IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f) { IsBobbing = true };
+                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f };
             }
             if (!IsWorldItem)
             {

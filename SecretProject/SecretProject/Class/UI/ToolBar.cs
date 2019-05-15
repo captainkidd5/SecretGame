@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
-using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;

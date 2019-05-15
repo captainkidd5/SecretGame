@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
-using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
 using System;

@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.ItemStuff;
-using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.Playable;
 using SecretProject.Class.Stage;
 using SecretProject.Class.Universal;

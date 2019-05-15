@@ -14,7 +14,6 @@ using SecretProject.Class.TileStuff;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
-using SecretProject.Class.ItemStuff.Items;
 using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.Stage

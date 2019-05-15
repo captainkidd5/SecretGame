@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
-using SecretProject.Class.ItemStuff.Items;
+
 
 namespace SecretProject.Class.SavingStuff
 {

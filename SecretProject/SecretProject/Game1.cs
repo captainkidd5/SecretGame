@@ -21,7 +21,6 @@ using SecretProject.Class.SoundStuff;
 using SecretProject.Class.TextureStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SavingStuff;
-using SecretProject.Class.ItemStuff.Items;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
