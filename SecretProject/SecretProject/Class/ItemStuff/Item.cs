@@ -78,6 +78,7 @@ namespace SecretProject.Class.ItemStuff
             this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
             this.Texture = content.Load<Texture2D>(TextureString);
             this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+            this.ID = id;
 
             this.Graphics = graphics;
             this.Content = content;
@@ -127,7 +128,7 @@ namespace SecretProject.Class.ItemStuff
                 }
 
 
-                if (IsDropped)
+                if (!ItemSprite.PickedUp)
                 {
                     if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                     {

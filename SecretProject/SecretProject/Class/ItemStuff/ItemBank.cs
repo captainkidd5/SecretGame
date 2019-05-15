@@ -53,7 +53,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 newItem.IsWorldItem = true;
                 newItem.IsDropped = true;
-                newItem.IsMagnetizable = true;
+                //newItem.IsMagnetizable = true;
             }
             newItem.Load();
             return newItem;

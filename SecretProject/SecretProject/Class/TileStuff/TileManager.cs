@@ -401,7 +401,7 @@ namespace SecretProject.Class.TileStuff
         //Used for interactions with background tiles only
         public void InteractWithBackground(GameTime gameTime, int oldX, int oldY)
         {
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "shovel")
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 6)
             {
 
             
@@ -426,7 +426,7 @@ namespace SecretProject.Class.TileStuff
             
             if(Tiles[oldX, oldY].IsPortal)
             {
-                if(Tiles[oldX,oldY].portalDestination == "lodgeInterior" && Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "lodgeKey")
+                if(Tiles[oldX,oldY].portalDestination == "lodgeInterior" && Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 5)
                 {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
                     Game1.Player.controls.Direction = Dir.Up;
@@ -446,7 +446,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == "secateur")
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
             {
 
 

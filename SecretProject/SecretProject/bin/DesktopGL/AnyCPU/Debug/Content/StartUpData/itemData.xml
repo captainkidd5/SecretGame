@@ -60,7 +60,7 @@
       <WorldMaximum>5</WorldMaximum>
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
-      <IsPlaceable>true</IsPlaceable>
+      <IsPlaceable>false</IsPlaceable>
       <id>4</id>
       <TextureString>Item/Secateurs</TextureString>
     </Value>

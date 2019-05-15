@@ -259,15 +259,15 @@ namespace SecretProject.Class.UI
         }
         #endregion
 
-        public string GetCurrentEquippedTool()
+        public int GetCurrentEquippedTool()
         {
             if(inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
-                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().Name;
+                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().ID;
             }
             else
             {
-                return "null";
+                return 666; //Placeholder, kinda funny I guess
             }
         }
 
