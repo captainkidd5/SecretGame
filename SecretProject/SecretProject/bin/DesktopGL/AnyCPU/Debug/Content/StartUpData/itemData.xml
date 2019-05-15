@@ -65,4 +65,30 @@
       <TextureString>Item/Secateurs</TextureString>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="5">
+    <Value>
+      <Name>lodgeKey</Name>
+      <ID>5</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>5</id>
+      <TextureString>Item/HouseKey</TextureString>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="6">
+    <Value>
+      <Name>shovel</Name>
+      <ID>6</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>6</id>
+      <TextureString>Item/Shovel</TextureString>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

@@ -535,9 +535,10 @@ namespace SecretProject.Class.TileStuff
             {
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
                 {
-                    Game1.Iliad.allObjects.Remove(tiles[oldX, oldY].TileObject);
+                    Game1.GetCurrentStage().allObjects.Remove(tiles[oldX, oldY].TileObject);
 
                     //Game1.Iliad.allItems.Add(new Item("grass", graphicsDevice, content, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y)) { IsTossable = true });
+                    Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(2, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
 
                     ReplaceTilePermanent(oldX, oldY);
                 }

@@ -27,9 +27,9 @@ namespace SecretProject.Class.ItemStuff
         public bool Ignored { get; set; }
 
         [XmlIgnore]
-        public bool IsMagnetized { get; set; }
+        public bool IsMagnetized { get; set; } = false;
         [XmlIgnore]
-        public bool IsMagnetizable { get; set; }
+        public bool IsMagnetizable { get; set; } = false;
 
         [XmlIgnore]
         public Vector2 WorldPosition;
@@ -100,21 +100,6 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        //public Item(int id, GraphicsDevice graphics, ContentManager content, Vector2 worldPosition)
-        //{
-        //    string ID = id.ToString();
-        //    this.Name = Game1.ItemVault.RawItems[ID].Name;
-        //    this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
-        //    this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
-        //    this.Texture = content.Load<Texture2D>(TextureString);
-        //    this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
-
-        //    this.ItemSprite = new Sprite(graphics, content, this.Texture, worldPosition, true, .4f);
-            
-
-        //    this.WorldPosition = worldPosition;
-        //}
-
         public void Update(GameTime gameTime)
         {
             if (IsWorldItem)
@@ -136,6 +121,7 @@ namespace SecretProject.Class.ItemStuff
                         IsDropped = false;
                         ItemSprite.PickedUp = true;
                         Game1.GetCurrentStage().allItems.Remove(this);
+                        IsMagnetizable = false;
 
                     }
                 }

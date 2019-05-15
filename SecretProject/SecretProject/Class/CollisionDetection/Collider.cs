@@ -105,6 +105,7 @@ namespace SecretProject.Class.CollisionDetection
                     if (it.IsMagnetized)
                     {
                         it.Magnetize(velocity);
+                        it.IsMagnetized = false;
                     }
 
                     else if (velocity.X > 0 && IsTouchingLeft(rectangle, it.ItemSprite, velocity))

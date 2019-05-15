@@ -184,6 +184,7 @@ namespace SecretProject.Class.Stage
 
             allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50), true));
             allItems.Add(Game1.ItemVault.GenerateNewItem(3, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
+            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
 
             joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
 
