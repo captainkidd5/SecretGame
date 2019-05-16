@@ -313,7 +313,6 @@ namespace SecretProject.Class.TileStuff
                             if (tiles[i, j].IsAnimating == true && tiles[i,j].IsFinishedAnimating == false)
                             {
 
-
                                 tiles[i, j].Animate(gameTime, tiles[i, j].TotalFrames, tiles[i, j].Speed);
                             }
                         }
@@ -361,8 +360,6 @@ namespace SecretProject.Class.TileStuff
             tiles[oldX, oldY] = ReplaceMenttile;
         }
 
-
-
         public void ReplaceTileTemporary(int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
         {
             if (TempTile != null)
@@ -400,9 +397,7 @@ namespace SecretProject.Class.TileStuff
         public void InteractWithBackground(GameTime gameTime, int oldX, int oldY)
         {
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 6)
-            {
-
-            
+            {     
                 if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("diggable"))
                 {
                   if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsValue("dirt"))
@@ -436,10 +431,10 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 8)
             {
-                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone") && !tiles[oldX, oldY].IsAnimating)
                 {
                     //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
-                    SpecificInteraction(gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp");
+                    SpecificInteraction(gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
                 }
             }
@@ -448,11 +443,9 @@ namespace SecretProject.Class.TileStuff
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
             {
 
-
-
-                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass"))
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("grass") && !tiles[oldX, oldY].IsAnimating)
                 {
-                    SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
+                    SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp", .25f);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
 
                 }
@@ -460,7 +453,7 @@ namespace SecretProject.Class.TileStuff
              
         }
 
-        //interact without any animations
+        //interact without any player animations
         public void GeneralInteraction(GameTime gameTime, int oldX, int oldY)
         {
             tiles[oldX, oldY].IsAnimating = true;
@@ -472,8 +465,12 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void SpecificInteraction(GameTime gameTime, int oldX, int oldY, string down, string right, string left, string up)
+        public void SpecificInteraction(GameTime gameTime, int oldX, int oldY, string down, string right, string left, string up, float delayTimer  = 0f)
         {
+            if (delayTimer != 0f)
+            {
+                tiles[oldX, oldY].DelayTimer = delayTimer;
+            }
             tiles[oldX, oldY].IsAnimating = true;
             tiles[oldX, oldY].KillAnimation = true;
 

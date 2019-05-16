@@ -13,7 +13,7 @@ namespace SecretProject.Class.Universal
 {
     public class ActionTimer
     {
-        float timeUntilAction;
+        //float timeUntilAction;
         float timer = 0;
 
         public ActionToPerform Action { get; set; }
