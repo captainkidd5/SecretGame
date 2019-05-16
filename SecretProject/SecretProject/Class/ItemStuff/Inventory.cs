@@ -18,7 +18,6 @@ namespace SecretProject.Class.ItemStuff
 
     {
 
-        MouseManager mouse;
 
         public List<InventorySlot> currentInventory;
 
@@ -29,25 +28,18 @@ namespace SecretProject.Class.ItemStuff
         public Sprite ItemSprite { get; set; }
         public int Capacity { get; set; }
 
-        GraphicsDevice graphics;
-        ContentManager content;
 
-        public Inventory(GraphicsDevice graphics, ContentManager content, MouseManager mouse)
+
+        public Inventory(int capacity)
         {
-            currentInventory = new List<InventorySlot>(6);
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-            currentInventory.Add(new InventorySlot());
-
             ItemCount = 0;
-            this.mouse = mouse;
-            this.graphics = graphics;
-            this.content = content;
-            this.Capacity = 7;
+            this.Capacity = capacity;
+            currentInventory = new List<InventorySlot>(Capacity - 1);
+            for(int i = 0; i < Capacity; i++)
+            {
+                currentInventory.Add(new InventorySlot());
+            }
+            
         }
 
         public void Update(GameTime gameTime)

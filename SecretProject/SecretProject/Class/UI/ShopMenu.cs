@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -20,6 +21,8 @@ namespace SecretProject.Class.UI
         public string Name;
         public Vector2 ShopMenuPosition;
 
+        public Inventory ShopInventory;
+
         public ShopMenu(string name, GraphicsDevice graphicsDevice)
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
@@ -32,6 +35,8 @@ namespace SecretProject.Class.UI
 
             int menuItemOffsetX = 0;
             int menuItemOffsetY = 0;
+
+            ShopInventory = new Inventory(25);
 
             for (int i = 1; i <= 25; i++)
             {                

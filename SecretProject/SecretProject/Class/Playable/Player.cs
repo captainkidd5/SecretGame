@@ -118,7 +118,7 @@ namespace SecretProject.Class.Playable
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
-            Inventory = new Inventory(graphics, content, mouse);
+            Inventory = new Inventory(7);
 
             controls = new PlayerControls(0);
 

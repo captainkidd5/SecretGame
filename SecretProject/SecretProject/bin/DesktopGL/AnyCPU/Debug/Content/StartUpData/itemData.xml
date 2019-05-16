@@ -30,7 +30,7 @@
     <Value>
       <Name>grass</Name>
       <ID>2</ID>
-      <InvMaximum>10</InvMaximum>
+      <InvMaximum>15</InvMaximum>
       <WorldMaximum>50</WorldMaximum>
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
@@ -95,7 +95,7 @@
     <Value>
       <Name>stone</Name>
       <ID>7</ID>
-      <InvMaximum>3</InvMaximum>
+      <InvMaximum>15</InvMaximum>
       <WorldMaximum>5</WorldMaximum>
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
