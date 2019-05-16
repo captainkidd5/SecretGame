@@ -79,6 +79,11 @@ namespace SecretProject.Class.Playable
         public AnimatedSprite CutGrassLeft { get; set; }
         public AnimatedSprite CutGrassUp { get; set; }
 
+        public AnimatedSprite MiningDown { get; set; }
+        public AnimatedSprite MiningRight { get; set; }
+        public AnimatedSprite MiningLeft { get; set; }
+        public AnimatedSprite MiningUp { get; set; }
+
 
         public Texture2D BigHitBoxRectangleTexture;
 
@@ -124,6 +129,11 @@ namespace SecretProject.Class.Playable
             CutGrassLeft = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassLeft, 1, 3, 3) { AdjustedLocationX = -18 };
             CutGrassUp = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassUp, 1, 3, 3) { AdjustedLocationX = -1, AdjustedLocationY = -7 };
 
+            MiningDown = new AnimatedSprite(graphics, Game1.AllTextures.MiningDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
+            MiningRight = new AnimatedSprite(graphics, Game1.AllTextures.MiningRight, 1, 5, 5);
+            MiningLeft = new AnimatedSprite(graphics, Game1.AllTextures.MiningLeft, 1, 5, 5);
+            MiningUp = new AnimatedSprite(graphics, Game1.AllTextures.MiningUp, 1, 5, 5);
+
             CurrentAction = CutGrassDown;
 
             SetRectangleTexture(graphics, ClickRangeRectangle);
@@ -163,6 +173,36 @@ namespace SecretProject.Class.Playable
                     CurrentAction = CutGrassUp;
                     CurrentAction.IsAnimating = true;
                     break;
+
+                case "MiningDown":
+                    IsPerformingAction = true;
+                    MiningDown.PlayOnce(gameTime);
+                    CurrentAction = MiningDown;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "MiningRight":
+                    IsPerformingAction = true;
+                    MiningRight.PlayOnce(gameTime);
+                    CurrentAction = MiningRight;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "MiningLeft":
+                    IsPerformingAction = true;
+                    MiningLeft.PlayOnce(gameTime);
+                    CurrentAction = MiningLeft;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "MiningUp":
+                    IsPerformingAction = true;
+                    MiningUp.PlayOnce(gameTime);
+                    CurrentAction = MiningUp;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+
 
 
             }

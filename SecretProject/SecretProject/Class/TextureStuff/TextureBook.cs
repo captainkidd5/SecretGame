@@ -28,6 +28,11 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D CutGrassLeft;
         public Texture2D CutGrassUp;
 
+        public Texture2D MiningDown;
+        public Texture2D MiningRight;
+        public Texture2D MiningLeft;
+        public Texture2D MiningUp;
+
 
         //UiStuff
         public Texture2D ToolBarButtonSelector;
@@ -76,6 +81,11 @@ namespace SecretProject.Class.TextureStuff
             CutGrassRight = content.Load<Texture2D>("Player/MainPlayer/ClippingRight");
             CutGrassLeft = content.Load<Texture2D>("Player/MainPlayer/ClippingLeft");
             CutGrassUp = content.Load<Texture2D>("Player/MainPlayer/ClippingUp");
+
+            MiningDown = content.Load<Texture2D>("Player/MainPlayer/MiningDown");
+            MiningRight = content.Load<Texture2D>("Player/MainPlayer/MiningRight");
+            MiningLeft = content.Load<Texture2D>("Player/MainPlayer/MiningLeft");
+            MiningUp = content.Load<Texture2D>("Player/MainPlayer/MiningUp");
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");

@@ -17,7 +17,7 @@ namespace SecretProject.Class.SpriteFolder
         private int currentFrame;
         private int totalFrames;
         private double timer;
-        private double speed;
+        public double speed;
 
         public float MyDepth { get; set; }
 
@@ -160,12 +160,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
             }
-
-
-
         }
-
-
         public void setFrame(int newFrame)
         {
             currentFrame = newFrame;

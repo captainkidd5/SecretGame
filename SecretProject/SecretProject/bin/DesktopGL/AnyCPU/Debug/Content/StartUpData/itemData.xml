@@ -104,4 +104,17 @@
       <TextureString>Item/stone</TextureString>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="8">
+    <Value>
+      <Name>hammer</Name>
+      <ID>8</ID>
+      <InvMaximum>3</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <id>8</id>
+      <TextureString>Item/hammer</TextureString>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

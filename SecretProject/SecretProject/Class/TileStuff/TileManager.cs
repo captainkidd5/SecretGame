@@ -434,14 +434,15 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
-           if(mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 8)
             {
-                //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
-                GeneralInteraction(gameTime, oldX, oldY);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
+                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("stone"))
+                {
+                    //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
+                    SpecificInteraction(gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp");
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
+                }
             }
-
 
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
@@ -502,22 +503,22 @@ namespace SecretProject.Class.TileStuff
             if (Game1.Player.controls.Direction == Dir.Down)
             {
                 Game1.Player.PlayAnimation(gameTime, down);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Right)
             {
                 Game1.Player.PlayAnimation(gameTime, right);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Left)
             {
                 Game1.Player.PlayAnimation(gameTime, left);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Up)
             {
                 Game1.Player.PlayAnimation(gameTime, up);
-                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
+                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
         }
 
