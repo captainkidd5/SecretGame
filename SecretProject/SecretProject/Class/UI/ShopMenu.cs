@@ -33,21 +33,16 @@ namespace SecretProject.Class.UI
             int menuItemOffsetX = 0;
             int menuItemOffsetY = 0;
 
-            for (int i = 0; i <= 16; i++)
-            {
-                
-                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194, ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
-                if(i%4 == 0 && i!=0)
+            for (int i = 1; i <= 25; i++)
+            {                
+                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194,
+                    ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
+                if(i%5 == 0)
                 {
-                    menuItemOffsetX = 0;
+                    menuItemOffsetX = -1;
                     menuItemOffsetY++;
                 }
-                if(i != 0)
-                {
-                    menuItemOffsetX++;
-                }
-                
-
+                    menuItemOffsetX++;             
             }
         }
 
