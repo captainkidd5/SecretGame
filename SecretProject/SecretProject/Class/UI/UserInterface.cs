@@ -21,12 +21,14 @@ namespace SecretProject.Class.UI
         static bool isEscMenu;
 
         public static bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
+        public static bool IsShopMenu { get; set; }
 
         public bool DrawTileSelector { get; set; } = true;
 
         public GraphicsDevice GraphicsDevice { get; set; }
         public Game1 Game { get; set; }
         public EscMenu Esc { get; set; }
+        public ShopMenu ShopMenu { get; set; }
         internal ToolBar BottomBar { get; set; }
 
         public Camera2D cam;
@@ -47,6 +49,7 @@ namespace SecretProject.Class.UI
             
             BottomBar = new ToolBar(game, graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
+            this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
 
             this.cam = cam;
             
@@ -69,7 +72,16 @@ namespace SecretProject.Class.UI
 
             }
 
-            if(isEscMenu)
+
+            if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)))
+            {
+                ShopMenu.Update(gameTime, mouse);
+                Game1.freeze = !Game1.freeze;
+                IsShopMenu = !IsShopMenu;
+            }
+
+
+                if (isEscMenu)
             {
                 Esc.Update(gameTime, mouse, game );
                 Game1.freeze = true;
@@ -96,21 +108,14 @@ namespace SecretProject.Class.UI
                 Esc.Draw(spriteBatch);
             }
 
+            if(IsShopMenu)
+            {
+                ShopMenu.Draw(spriteBatch);
+            }
+
 
             spriteBatch.End();
 
-           // spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: cam.getTransformation(graphics));
-           // if (DrawTileSelector)
-           // {
-                
-            //}
-
-         //   spriteBatch.End();
-
-
-
         }
-
-
     }
 }

@@ -41,6 +41,10 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D TileSelector;
         public Texture2D ClockBackground;
 
+        public Texture2D ShopMenu;
+        public Texture2D ShopMenuItemButton;
+        public Texture2D RedEsc;
+
         //Fonts
         public SpriteFont MenuText;
 
@@ -92,6 +96,10 @@ namespace SecretProject.Class.TextureStuff
             TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
             TileSelector = content.Load<Texture2D>("Button/tileSelector");
             ClockBackground = content.Load<Texture2D>("Button/clockBackground");
+
+            ShopMenu = content.Load<Texture2D>("Button/shopMenu");
+            ShopMenuItemButton = content.Load<Texture2D>("Button/shopMenuItemButton");
+            RedEsc = content.Load<Texture2D>("Button/redEsc");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
