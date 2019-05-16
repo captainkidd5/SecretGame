@@ -181,14 +181,11 @@ namespace SecretProject.Class.Stage
             
             allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
 
-            allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 50, Game1.Player.position.Y + 50), true));
+            allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 150), true));
             allItems.Add(Game1.ItemVault.GenerateNewItem(3, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
-
-            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 200, Game1.Player.position.Y + 50), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 250, Game1.Player.position.Y + 50), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 300, Game1.Player.position.Y + 50), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(8, new Vector2(Game1.Player.position.X, Game1.Player.position.Y + 50), true));
+            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+            
+            allItems.Add(Game1.ItemVault.GenerateNewItem(8, new Vector2(Game1.Player.position.X+50, Game1.Player.position.Y + 200), true));
             joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
 
             AllActions = new List<ActionTimer>();

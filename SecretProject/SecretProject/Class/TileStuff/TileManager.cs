@@ -503,22 +503,18 @@ namespace SecretProject.Class.TileStuff
             if (Game1.Player.controls.Direction == Dir.Down)
             {
                 Game1.Player.PlayAnimation(gameTime, down);
-                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Right)
             {
                 Game1.Player.PlayAnimation(gameTime, right);
-                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Left)
             {
                 Game1.Player.PlayAnimation(gameTime, left);
-                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
             else if (Game1.Player.controls.Direction == Dir.Up)
             {
                 Game1.Player.PlayAnimation(gameTime, up);
-                //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
             }
         }
 
