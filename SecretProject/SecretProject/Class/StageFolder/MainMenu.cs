@@ -37,8 +37,6 @@ namespace SecretProject.Class.Stage
 
 
 
-
-
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
             //--------------------------------------

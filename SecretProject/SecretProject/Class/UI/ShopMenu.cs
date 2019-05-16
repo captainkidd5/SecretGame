@@ -18,6 +18,7 @@ namespace SecretProject.Class.UI
         private Button redEsc;
         private SpriteFont mainFont;
         public string Name;
+        public Vector2 ShopMenuPosition;
 
         public ShopMenu(string name, GraphicsDevice graphicsDevice)
         {
@@ -25,22 +26,27 @@ namespace SecretProject.Class.UI
             this.Name = name;
             this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             this.mainFont = Game1.AllTextures.MenuText;
+            ShopMenuPosition = new Vector2(Utility.centerScreenX - 432, Utility.centerScreenY - 270);
 
             allShopMenuItemButtons = new List<Button>();
 
-            for(int i = 0; i < 16; i++)
-            {
+            int menuItemOffsetX = 0;
+            int menuItemOffsetY = 0;
 
-                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX + i * 64, Utility.centerScreenY)));
-                if(i >= 4 && i < 8)
+            for (int i = 0; i <= 16; i++)
+            {
+                
+                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194, ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
+                if(i%4 == 0 && i!=0)
                 {
-                    allShopMenuItemButtons[i].Rectangle.X = Utility.centerScreenY + (i * 8 - i) + 46;
-                    allShopMenuItemButtons[i].Rectangle.Y = Utility.centerScreenY + 46;
+                    menuItemOffsetX = 0;
+                    menuItemOffsetY++;
                 }
-                if (i >= 8 && i < 12)
+                if(i != 0)
                 {
-                    allShopMenuItemButtons[i].Rectangle.Y = Utility.centerScreenY + 46 * 2;
+                    menuItemOffsetX++;
                 }
+                
 
             }
         }
@@ -55,7 +61,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.ShopMenu, new Vector2(Utility.centerScreenX - 432, Utility.centerScreenY - 270), Color.White);
+            spriteBatch.Draw(Game1.AllTextures.ShopMenu,ShopMenuPosition , Color.White);
             for (int i = 0; i < allShopMenuItemButtons.Count; i++)
             {
                 allShopMenuItemButtons[i].Draw(spriteBatch);

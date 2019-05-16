@@ -63,9 +63,7 @@ namespace SecretProject.Class.ItemStuff
         [XmlIgnore]
         int directionY = Game1.RGenerator.Next(-2, 2);
 
-
-       
-
+        //Need empty constructor for serialization!
         public Item()
         {
 
@@ -94,7 +92,6 @@ namespace SecretProject.Class.ItemStuff
 
          }
         
-
         public Item(int id, GraphicsDevice graphics, ContentManager content)
         {
             string ID = id.ToString();
@@ -106,10 +103,7 @@ namespace SecretProject.Class.ItemStuff
             this.ID = id;
 
             this.Graphics = graphics;
-            this.Content = content;
-
-            
-            
+            this.Content = content;                
         }
 
         //Load to add proper texture to the itemsprite.
@@ -130,15 +124,11 @@ namespace SecretProject.Class.ItemStuff
             if (IsWorldItem)
             {
 
-
-
                 if (!ItemSprite.PickedUp)
                 {
                     this.ItemSprite.Bobber(gameTime);
                 }
 
-
-                
                     if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                     {
                         IsMagnetized = true;
@@ -149,15 +139,12 @@ namespace SecretProject.Class.ItemStuff
 
                     }
                 
-
                 if (IsTossable == true)
                 {
                     ItemSprite.Toss(gameTime, directionX, directionY);
                     //IsTossable = false;
                 }
             }
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -167,8 +154,6 @@ namespace SecretProject.Class.ItemStuff
                 this.ItemSprite.Draw(spriteBatch, .4f);
             }
             
-
-
         }
 
         public void Magnetize(Vector2 playerpos)

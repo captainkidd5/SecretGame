@@ -75,9 +75,13 @@ namespace SecretProject.Class.UI
 
             if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)))
             {
-                ShopMenu.Update(gameTime, mouse);
-                Game1.freeze = !Game1.freeze;
                 IsShopMenu = !IsShopMenu;
+            }
+
+            if(IsShopMenu)
+            {
+                ShopMenu.Update(gameTime,mouse);
+                Game1.freeze = !Game1.freeze;
             }
 
 
