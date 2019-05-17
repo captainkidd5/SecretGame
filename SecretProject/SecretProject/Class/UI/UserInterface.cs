@@ -50,6 +50,12 @@ namespace SecretProject.Class.UI
             BottomBar = new ToolBar(game, graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
+            ShopMenu.TryAddStock(1);
+            ShopMenu.TryAddStock(1);
+            ShopMenu.TryAddStock(1);
+            ShopMenu.TryAddStock(2);
+            ShopMenu.TryAddStock(3);
+            ShopMenu.TryAddStock(4);
 
             this.cam = cam;
             

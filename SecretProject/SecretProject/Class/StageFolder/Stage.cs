@@ -245,10 +245,10 @@ namespace SecretProject.Class.Stage
                 PlacementTiles.Update(gameTime, mouse);
 
                 //oopsie what is this mama mia
-                foreach(ActionTimer action in Game1.AllActions)
-                {
-                    action.Update(gameTime);
-                }
+                //foreach(ActionTimer action in Game1.AllActions)
+                //{
+                //    action.Update(gameTime);
+                //}
 
                 for(int i = 0; i < allItems.Count; i++)
                 {
@@ -274,6 +274,7 @@ namespace SecretProject.Class.Stage
                 //fix to stay longer
                 if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
                 {
+                    //ActionTimer wasSliderUpdatedTimer = new ActionTimer(2);
                     spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
                     
                 }

@@ -313,9 +313,6 @@ namespace SecretProject.Class.UI
                     AllSlots[i].ItemCounter--;
                     if (tempItem.IsPlaceable == false)
                     {
-
-
-                        //Game1.GetCurrentStage().allItems.Add(new Item(tempItem.ID, graphicsDevice, content, mouse.WorldMousePosition));
                         Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
                     }
 
