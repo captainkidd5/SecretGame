@@ -78,11 +78,19 @@ namespace SecretProject.Class.UI
                 }
 
                 allShopMenuItemButtons[i].Update(mouse);
-            }
 
-            for (int i = 0; i < allShopMenuItemButtons.Count; i++)
-            {
-                allShopMenuItemButtons[i].Update(mouse);
+                //Make a transaction
+                if(allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
+                {
+                    if(Game1.Player.Inventory.Money >= ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price)
+                    {
+                        Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(i).SlotItems[0]);
+                        Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price; //reduce players money if transaction goes through!
+                        ShopInventory.currentInventory.ElementAt(i).RemoveItemFromSlot();
+                        allShopMenuItemButtons[i].ItemCounter--;
+                    }
+                    //ShopInventory.currentInventory
+                }
             }
         }
 
@@ -91,13 +99,26 @@ namespace SecretProject.Class.UI
             spriteBatch.Draw(Game1.AllTextures.ShopMenu,ShopMenuPosition , Color.White);
             for (int i = 0; i < allShopMenuItemButtons.Count; i++)
             {
-                allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
+                if(allShopMenuItemButtons[i].ItemCounter != 0)
+                {
+                   allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
+                    new Vector2(allShopMenuItemButtons[i].Position.X +45, allShopMenuItemButtons[i].Position.Y + 80), ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price);
+                }
+                else
+                {
+                    allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
+                }
+                
             }
         }
 
-        public void TryAddStock(int id)
+        public void TryAddStock(int id, int amountToAdd)
         {
-            this.ShopInventory.TryAddItem(Game1.ItemVault.GenerateNewItem(id, null, false));
+            for(int i = 0; i < amountToAdd; i++)
+            {
+                this.ShopInventory.TryAddItem(Game1.ItemVault.GenerateNewItem(id, null, false));
+            }
+            
         }
 
 

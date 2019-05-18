@@ -16,18 +16,26 @@ namespace SecretProject.Class.Universal
         public float TimeUntilAction { get; set; }
         public bool ActionComplete { get; set; } = false;
 
-        public ActionTimer(float timeUntilAction)
+        public int Signature;
+
+
+        public ActionTimer(float timeUntilAction, int signature)
         {
             this.TimeUntilAction = timeUntilAction;
             Game1.AllActions.Add(this);
+            this.Signature = signature;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<ActionTimer> actionTimers)
         {
-            if(TimeUntilAction == 0)
+            if(TimeUntilAction <= 0)
             {
+                if(ActionComplete)
+                {
+                    actionTimers.Remove(this);
+                }
                 ActionComplete = true;
-                Game1.AllActions.Remove(this);
+               
             }
             TimeUntilAction -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 

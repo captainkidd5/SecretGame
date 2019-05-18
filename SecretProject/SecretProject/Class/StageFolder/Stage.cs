@@ -74,13 +74,19 @@ namespace SecretProject.Class.Stage
 
         public List<ActionTimer> AllActions;
 
+        //public List<object> ThingsToDraw;
+
         public UserInterface MainUserInterface { get; set; }
+
+        
 
         //SAVE STUFF
 
         public bool TilesLoaded { get; set; } = false;
 
-        Joe joeNPC;
+
+        Character ElixerNPC;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -179,16 +185,24 @@ namespace SecretProject.Class.Stage
             //UserInterface
 
             
-            allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
 
-            allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 150), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(3, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
-            allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 150), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(3, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
             
-            allItems.Add(Game1.ItemVault.GenerateNewItem(8, new Vector2(Game1.Player.position.X+50, Game1.Player.position.Y + 200), true));
-            joeNPC = new Joe("Joe", new Vector2(500, 500), graphicsDevice);
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(8, new Vector2(Game1.Player.position.X+50, Game1.Player.position.Y + 200), true));
+
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
+
+            ElixerNPC = new Character("Elixer", new Vector2(800, 800), graphicsDevice);
 
             AllActions = new List<ActionTimer>();
+
+            
         }
 
         #endregion
@@ -202,7 +216,7 @@ namespace SecretProject.Class.Stage
             //keyboard
             KeyboardState oldKeyboardState = KState;
             KState = Keyboard.GetState();
-            Game1.myMouseManager.ToggleNewMouseMode = false;
+            Game1.myMouseManager.ToggleGeneralInteraction = false;
 
             //--------------------------------------
             //Update Toolbar
@@ -223,7 +237,7 @@ namespace SecretProject.Class.Stage
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
                 Player.Update(gameTime, allItems, allObjects);
-                joeNPC.Update(gameTime);
+
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
 
@@ -245,9 +259,10 @@ namespace SecretProject.Class.Stage
                 PlacementTiles.Update(gameTime, mouse);
 
                 //oopsie what is this mama mia
-                //foreach(ActionTimer action in Game1.AllActions)
+
+                //for(int i = 0; i < this.AllActions.Count; i++)
                 //{
-                //    action.Update(gameTime);
+                //    AllActions[i].Update(gameTime, AllActions);
                 //}
 
                 for(int i = 0; i < allItems.Count; i++)
@@ -272,12 +287,16 @@ namespace SecretProject.Class.Stage
                 Player.PlayerMovementAnimations.ShowRectangle = showBorders;
 
                 //fix to stay longer
-                if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
-                {
-                    //ActionTimer wasSliderUpdatedTimer = new ActionTimer(2);
-                    spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
-                    
-                }
+                //if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
+                //{
+                //    //ActionTimer wasSliderUpdatedTimer = new ActionTimer(1);
+                //    //if(wasSliderUpdatedTimer.ActionComplete)
+                //    //{
+                //    //    spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
+
+                //    //}
+
+                //}
 
                 
 
@@ -293,7 +312,8 @@ namespace SecretProject.Class.Stage
                     Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 }
 
-                joeNPC.Draw(spriteBatch);
+
+                ElixerNPC.Draw(spriteBatch);
 
                 if(showBorders)
                 {
@@ -349,7 +369,7 @@ namespace SecretProject.Class.Stage
                 //--------------------------------------
                 //Draw object list
 
-
+                Game1.userInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
 
                 spriteBatch.End();
@@ -361,6 +381,11 @@ namespace SecretProject.Class.Stage
             Game1.userInterface.Draw(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
             
+        }
+
+        public Camera2D GetCamera()
+        {
+            return this.Cam;
         }
 
 

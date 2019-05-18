@@ -118,7 +118,7 @@ namespace SecretProject.Class.Playable
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
-            Inventory = new Inventory(7);
+            Inventory = new Inventory(7) { Money = 100 };
 
             controls = new PlayerControls(0);
 
@@ -144,6 +144,7 @@ namespace SecretProject.Class.Playable
 
         public void PlayAnimation(GameTime gameTime, string action)
         {
+            
             switch (action)
             {
                 case "CutGrassDown":
@@ -280,7 +281,7 @@ namespace SecretProject.Class.Playable
                 SecondaryVelocity = Vector2.Zero;
                 TotalVelocity = Vector2.Zero;
 
-
+                
                 if (controls.IsMoving && CurrentAction.IsAnimating == false)
                 {
                     PlayerMovementAnimations.Update(gameTime);

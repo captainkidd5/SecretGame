@@ -55,6 +55,8 @@ namespace SecretProject.Class.ItemStuff
 
         public string TextureString { get; set; }
 
+        public int Price { get; set; }
+
         [XmlIgnore]
         public bool IsWorldItem { get; set; }
 
@@ -79,6 +81,7 @@ namespace SecretProject.Class.ItemStuff
             this.Texture = item.Texture;
             this.IsPlaceable = item.IsPlaceable;
             this.ID = item.ID;
+            this.Price = item.Price;
 
             this.Graphics = item.Graphics;
             this.Content = item.Content;
@@ -92,6 +95,7 @@ namespace SecretProject.Class.ItemStuff
 
          }
         
+        //only used on startup for raw items
         public Item(int id, GraphicsDevice graphics, ContentManager content)
         {
             string ID = id.ToString();
@@ -100,6 +104,7 @@ namespace SecretProject.Class.ItemStuff
             this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
             this.Texture = content.Load<Texture2D>(TextureString);
             this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+            this.Price = Game1.ItemVault.RawItems[ID].Price;
             this.ID = id;
 
             this.Graphics = graphics;

@@ -27,7 +27,7 @@ namespace SecretProject.Class.Universal
 
         public Clock()
         {
-            ClockPosition = new Vector2(900, 100);
+            ClockPosition = new Vector2(1100, 25);
            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.ClockBackground);

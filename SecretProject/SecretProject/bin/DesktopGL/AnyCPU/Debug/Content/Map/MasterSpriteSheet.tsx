@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
+ <tile id="5680">
+  <properties>
+   <property name="Animated" value="7"/>
+   <property name="AssociatedTiles" value="5580"/>
+   <property name="Speed" value=".15"/>
+   <property name="redRuneStone" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1" y="0" width="14" height="12"/>
+  </objectgroup>
+ </tile>
  <tile id="6065">
   <properties>
    <property name="diggable" value="dirt"/>
@@ -19,6 +30,11 @@
  <tile id="6068">
   <properties>
    <property name="diggable" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="6073">
+  <properties>
+   <property name="plantable" value="dirt"/>
   </properties>
  </tile>
  <tile id="6165">

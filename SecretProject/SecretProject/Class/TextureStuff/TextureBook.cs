@@ -20,6 +20,8 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D MainCharacterSpriteStrip;
 
+        public Texture2D Elixer;
+
 
 
         //playeractions
@@ -37,6 +39,7 @@ namespace SecretProject.Class.TextureStuff
         //UiStuff
         public Texture2D ToolBarButtonSelector;
         public Texture2D CursorWhiteHand;
+        public Texture2D CursorPlant;
         public Texture2D TransparentTextBox;
         public Texture2D TileSelector;
         public Texture2D ClockBackground;
@@ -79,6 +82,8 @@ namespace SecretProject.Class.TextureStuff
             joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
             joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
+            Elixer = content.Load<Texture2D>("NPC/ElixerTest");
+
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
             CutGrassDown = content.Load<Texture2D>("Player/MainPlayer/ClippingForward");
@@ -93,6 +98,7 @@ namespace SecretProject.Class.TextureStuff
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
+            CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
             TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
             TileSelector = content.Load<Texture2D>("Button/tileSelector");
             ClockBackground = content.Load<Texture2D>("Button/clockBackground");

@@ -295,10 +295,10 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            for(int i = 0; i < AllActions.Count; i++)
-            {
-                AllActions[i].Update(gameTime);
-            }
+            //for(int i = 0; i < AllActions.Count; i++)
+            //{
+            //    AllActions[i].Update(gameTime);
+            //}
 
             //switch between stages for updating
             switch (gameStages)

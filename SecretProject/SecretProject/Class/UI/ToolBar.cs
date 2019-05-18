@@ -15,6 +15,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Stage;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI
 {
@@ -81,6 +82,8 @@ namespace SecretProject.Class.UI
         public int currentSliderPosition = 1;
         public bool WasSliderUpdated = false;
 
+        public List<ActionTimer> AllActions;
+
         public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);
@@ -135,8 +138,9 @@ namespace SecretProject.Class.UI
 
             };
 
-           //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
-  
+            //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
+
+            AllActions = new List<ActionTimer>();
         }
 
         public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
@@ -167,6 +171,16 @@ namespace SecretProject.Class.UI
             if (!mouse.IsHovering(BackGroundTextureRectangle))
             {
                 MouseOverToolBar = false;
+            }
+
+            if(this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
+            {
+                AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
+            }
+
+            for(int i = 0; i < AllActions.Count; i++)
+            {
+                AllActions[i].Update(gameTime, AllActions);
             }
 
         }
@@ -458,13 +472,24 @@ namespace SecretProject.Class.UI
             
             
 
-
            // if(DragToggleBuilding)
            // {
             //    MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
            // }
 
             // spriteBatch.End();
+        }
+
+        //use this when we want to draw relative to another camera.
+        public void DrawToStageMatrix(SpriteBatch spriteBatch)
+        {
+            //if action still exists and isn't complete we'll still draw it. 
+            if (AllActions.Count > 0 && !AllActions[AllActions.Count - 1].ActionComplete)
+            {
+                spriteBatch.Draw(ItemSwitchTexture, new Vector2(Game1.GetCurrentStage().Player.position.X + 3,
+                    Game1.GetCurrentStage().Player.position.Y - 15), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
+            }
+
         }
 
         public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles, MouseManager mouse)

@@ -28,6 +28,8 @@ namespace SecretProject.Class.ItemStuff
         public Sprite ItemSprite { get; set; }
         public int Capacity { get; set; }
 
+        public int Money { get; set; } = 0;
+
 
 
         public Inventory(int capacity)
@@ -97,6 +99,22 @@ namespace SecretProject.Class.ItemStuff
                 if (removed == false)
                 {
                     if (s.SlotItems.Contains(item))
+                    {
+                        s.RemoveItemFromSlot();
+                        removed = true;
+                    }
+                }
+            }
+        }
+
+        public void RemoveItem(int id)
+        {
+            bool removed = false;
+            foreach (InventorySlot s in currentInventory)
+            {
+                if (removed == false)
+                {
+                    if (s.SlotItems.Any(x => x.ID == id))
                     {
                         s.RemoveItemFromSlot();
                         removed = true;

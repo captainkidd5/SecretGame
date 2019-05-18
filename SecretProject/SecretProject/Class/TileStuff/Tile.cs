@@ -57,6 +57,11 @@ namespace SecretProject.Class.TileStuff
         public bool IsPortal { get; set; } = false;
         public string portalDestination { get; set; }
 
+        public Dictionary<string, bool> Properties;
+
+        public int[] ObjectProperties;
+       // public List<Tile> AssociatedTiles;
+
         //  public bool WasJustReplaced { get; set; } = false;
 
         //--------------------------------------
@@ -96,15 +101,17 @@ namespace SecretProject.Class.TileStuff
 
             TileColor = Color.White * ColorMultiplier;
 
+            Properties = new Dictionary<string, bool>();
+            ObjectProperties = new int[10];
+            //AssociatedTiles = new List<Tile>();
+
         }
 
-        public void Animate(GameTime gameTime, int totalFrames, double speed)
+        public void Animate(GameTime gameTime, int totalFramesX, double speed)
         {
 
             if (DelayTimer <= 0)
             {
-
-
 
                 Timer -= gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -115,7 +122,7 @@ namespace SecretProject.Class.TileStuff
                     AddAmount += 16;
                 }
 
-                if (CurrentFrame == totalFrames)
+                if (CurrentFrame == totalFramesX)
                 {
                     CurrentFrame = 0;
                     if (KillAnimation == true)

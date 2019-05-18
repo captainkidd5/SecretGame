@@ -43,6 +43,7 @@ namespace SecretProject.Class.MenuStuff
         public int Index { get; set; }
 
         public int ItemCounter { get; set; }
+        public int Price { get; set; }
 
         public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
         {
@@ -56,6 +57,7 @@ namespace SecretProject.Class.MenuStuff
         }
         public void Update(MouseManager mouse)
         {
+            isClicked = false;
             wasJustReleased = false;
 
             if (mouse.IsHovering(Rectangle) && mouse.IsClicked)
@@ -108,6 +110,14 @@ namespace SecretProject.Class.MenuStuff
             
             spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
             spriteBatch.DrawString(font, text, fontLocation, tint);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, int price)
+        {
+
+            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
+            spriteBatch.DrawString(font, text, fontLocation, tint);
+            spriteBatch.DrawString(font, price.ToString(), priceLocation, Color.OrangeRed);
         }
 
     }

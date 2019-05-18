@@ -50,13 +50,14 @@ namespace SecretProject.Class.UI
             BottomBar = new ToolBar(game, graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
-            ShopMenu.TryAddStock(1);
-            ShopMenu.TryAddStock(1);
-            ShopMenu.TryAddStock(1);
-            ShopMenu.TryAddStock(2);
-            ShopMenu.TryAddStock(3);
-            ShopMenu.TryAddStock(4);
-
+            ShopMenu.TryAddStock(5, 1);
+            ShopMenu.TryAddStock(7, 1);
+            ShopMenu.TryAddStock(8, 1);
+            ShopMenu.TryAddStock(4, 1);
+            ShopMenu.TryAddStock(3, 1);
+            ShopMenu.TryAddStock(2, 1);
+            ShopMenu.TryAddStock(9, 5);
+            ShopMenu.TryAddStock(6, 1);
             this.cam = cam;
             
         }
@@ -109,6 +110,7 @@ namespace SecretProject.Class.UI
             
             spriteBatch.Begin();
 
+
             
             
 
@@ -122,7 +124,7 @@ namespace SecretProject.Class.UI
             {
                 ShopMenu.Draw(spriteBatch);
             }
-
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red);
 
             spriteBatch.End();
 

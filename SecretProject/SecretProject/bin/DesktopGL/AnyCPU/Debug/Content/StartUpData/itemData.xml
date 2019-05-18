@@ -11,6 +11,7 @@
       <IsPlaceable>false</IsPlaceable>
       <id>0</id>
       <TextureString>Item/pie</TextureString>
+      <Price>5</Price>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="1">
@@ -22,6 +23,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
       <id>1</id>
       <TextureString>Item/puzzleFish</TextureString>
     </Value>
@@ -35,6 +37,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>1</Price>
       <id>2</id>
       <TextureString>Item/grass</TextureString>
     </Value>
@@ -48,6 +51,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>true</IsPlaceable>
+      <Price>10</Price>
       <id>3</id>
       <TextureString>Item/barrel</TextureString>
     </Value>
@@ -61,6 +65,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
       <id>4</id>
       <TextureString>Item/Secateurs</TextureString>
     </Value>
@@ -74,6 +79,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>100</Price>
       <id>5</id>
       <TextureString>Item/HouseKey</TextureString>
     </Value>
@@ -87,6 +93,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
       <id>6</id>
       <TextureString>Item/Shovel</TextureString>
     </Value>
@@ -100,6 +107,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>1</Price>
       <id>7</id>
       <TextureString>Item/stone</TextureString>
     </Value>
@@ -113,8 +121,23 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
       <id>8</id>
       <TextureString>Item/hammer</TextureString>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="9">
+    <Value>
+      <Name>bloomBerrySeedBag</Name>
+      <ID>9</ID>
+      <InvMaximum>15</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>10</Price>
+      <id>9</id>
+      <TextureString>Item/BloomBerrySeedBag</TextureString>
     </Value>
   </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

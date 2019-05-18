@@ -13,11 +13,11 @@ using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.NPCStuff
 {
-    internal class Joe : NPC
+    internal class Character : NPC
     {
-        public Joe(string name, Vector2 position, GraphicsDevice graphics) : base(name, position, graphics)
+        public Character(string name, Vector2 position, GraphicsDevice graphics) : base(name, position, graphics)
         {
-            NPCAnimatedSprite = new AnimatedSprite(graphics, Game1.AllTextures.joeDown, 1, 4, 4);
+            NPCAnimatedSprite = new AnimatedSprite(graphics, Game1.AllTextures.Elixer, 1, 1, 1);
             
         }
 
