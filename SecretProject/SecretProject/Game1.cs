@@ -69,9 +69,9 @@ namespace SecretProject
 
         //STAGES
         public static MainMenu mainMenu;
-        public static Stage Iliad;
-        public static Stage LodgeInterior;
-        public static List<Stage> AllStages;
+        public static Home Iliad;
+        public static Home LodgeInterior;
+        public static List<Home> AllStages;
         public static int CurrentStage;
         public static bool freeze = false;
 
@@ -163,7 +163,7 @@ namespace SecretProject
         }
         #endregion
 
-        public static Stage GetCurrentStage()
+        public static Home GetCurrentStage()
         {
             switch(gameStages)
             {
@@ -250,15 +250,15 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
+            Iliad = new Home(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
             Iliad.BuildingsTiles.LoadInitialTileObjects(Iliad);
-            LodgeInterior = new Stage(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
+            LodgeInterior = new Home(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
             LodgeInterior.BuildingsTiles.LoadInitialTileObjects(LodgeInterior);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
 
-            AllStages = new List<Stage>() { Iliad, LodgeInterior };
+            AllStages = new List<Home>() { Iliad, LodgeInterior };
 
             
 

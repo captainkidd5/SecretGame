@@ -57,6 +57,7 @@ namespace SecretProject.Class.TileStuff
 
         public bool HasSound { get; set; }
 
+        [XmlIgnore]
         public Color TileColor { get; set; }
         public float ColorMultiplier { get; set; } = 1;
 
@@ -67,7 +68,7 @@ namespace SecretProject.Class.TileStuff
 
         //[XmlIgnore]
         //public Dictionary<string, bool> Properties;
-
+        [XmlArray("TileProperties")]
         public List<string> TileProperties;
 
        // public List<Tile> AssociatedTiles;

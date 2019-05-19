@@ -27,16 +27,18 @@ using SecretProject.Class.Universal;
 namespace SecretProject.Class.StageFolder
 {
     [XmlRoot("SaveData")]
-    public class Stage : IStage
+    public class Home : IStage
     {
 
         #region FIELDS
 
-        private bool showBorders = false;
+        public bool ShowBorders { get; set; }
+
         [XmlIgnore]
         public Vector2 TileSize = new Vector2(16, 16); // what?
         [XmlIgnore]
-        public TmxMap map;
+
+        public TmxMap Map { get; set; }
 
         [XmlIgnore]
         public Player Player { get; set; }
@@ -81,7 +83,7 @@ namespace SecretProject.Class.StageFolder
         public KeyboardState KState { get; set; }
 
         [XmlIgnore]
-        internal ToolBar ToolBar { get; set; }
+        public ToolBar ToolBar { get; set; }
         public Player Mastodon { get; set; }
         [XmlIgnore]
         public Camera2D Cam { get; set; }
@@ -90,18 +92,13 @@ namespace SecretProject.Class.StageFolder
 
         //--------------------------------------
         //Declare Lists
+        public List<ObjectBody> AllObjects { get; set; }
 
-        [XmlArray("allObjects"), XmlArrayItem(typeof(ObjectBody), ElementName = "ObjectBody")]
-        public List<ObjectBody> allObjects;
+        public List<Sprite> AllSprites { get; set; }
 
-        [XmlArray("allSprites"), XmlArrayItem(typeof(Sprite), ElementName = "Sprite")]
-        public List<Sprite> allSprites;
+        public List<Item> AllItems { get; set; }
 
-        [XmlArray("allItems"), XmlArrayItem(typeof(Item), ElementName = "Item")]
-        public List<Item> allItems;
-
-        [XmlArray("AllActions"), XmlArrayItem(typeof(ActionTimer), ElementName = "ActionTimer")]
-        public List<ActionTimer> AllActions;
+        public List<ActionTimer> AllActions { get; set; }
 
         //public List<object> ThingsToDraw;
 
@@ -121,27 +118,27 @@ namespace SecretProject.Class.StageFolder
 
         #region CONSTRUCTOR
 
-        public Stage()
+        public Home()
         {
 
         }
 
-        public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
+        public Home(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
         {
             //ORDER MATTERS!
             //Lists
             //--------------------------------------
-            allSprites = new List<Sprite>()
+            AllSprites = new List<Sprite>()
             {
 
             };
 
-            allObjects = new List<ObjectBody>()
+            AllObjects = new List<ObjectBody>()
             {
 
             };
 
-            allItems = new List<Item>()
+            AllItems = new List<Item>()
             {
 
             };
@@ -150,7 +147,7 @@ namespace SecretProject.Class.StageFolder
             //--------------------------------------
             //Tile/map
 
-            this.map = map;
+            this.Map = map;
             // map = new TmxMap("Content/Map/worldMap.tmx");
 
             //tileset
@@ -264,7 +261,7 @@ namespace SecretProject.Class.StageFolder
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
             {
-                showBorders = !showBorders;
+                ShowBorders = !ShowBorders;
             }
 
             if (!Game1.freeze)
@@ -273,14 +270,14 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
-                Player.Update(gameTime, allItems, allObjects);
+                Player.Update(gameTime, AllItems, AllObjects);
 
 
                 // mastodon.Update(gameTime, allSprites, allObjects);
 
                 //--------------------------------------
                 //Update sprites
-                foreach (Sprite spr in allSprites)
+                foreach (Sprite spr in AllSprites)
                 {
                     if (spr.IsBeingDragged == true)
                     {
@@ -308,9 +305,9 @@ namespace SecretProject.Class.StageFolder
                 //    AllActions[i].Update(gameTime, AllActions);
                 //}
 
-                for(int i = 0; i < allItems.Count; i++)
+                for(int i = 0; i < AllItems.Count; i++)
                 {
-                    allItems[i].Update(gameTime);
+                    AllItems[i].Update(gameTime);
                 }
 
             }
@@ -327,7 +324,7 @@ namespace SecretProject.Class.StageFolder
             if (Player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
-                Player.PlayerMovementAnimations.ShowRectangle = showBorders;
+                Player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
                 //fix to stay longer
                 //if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
@@ -358,7 +355,7 @@ namespace SecretProject.Class.StageFolder
 
                 ElixerNPC.Draw(spriteBatch);
 
-                if(showBorders)
+                if(ShowBorders)
                 {
                 //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
                 }
@@ -394,20 +391,20 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Draw sprite list
 
-                foreach (var sprite in allSprites)
+                foreach (var sprite in AllSprites)
                 {
-                    sprite.ShowRectangle = showBorders;
+                    sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch);
                 }
 
-                for (int i = 0; i < allItems.Count; i++)
+                for (int i = 0; i < AllItems.Count; i++)
                 {
-                    allItems[i].Draw(spriteBatch);
+                    AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in allObjects)
+                foreach (var obj in AllObjects)
                 {
-                    if (showBorders)
+                    if (ShowBorders)
                     {
                         obj.Draw(spriteBatch, .4f);
                     }

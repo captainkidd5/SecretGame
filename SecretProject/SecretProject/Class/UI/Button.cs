@@ -13,7 +13,7 @@ using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.MenuStuff
 {
-    class Button
+    public class Button
     {
         Game1 game;
        // Texture2D Texture;

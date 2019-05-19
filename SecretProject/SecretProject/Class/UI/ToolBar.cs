@@ -27,7 +27,7 @@ namespace SecretProject.Class.UI
         inv = 2,
     }
 
-    class ToolBar
+    public class ToolBar
     {
         //--------------------------------------
         //Textures
@@ -329,7 +329,7 @@ namespace SecretProject.Class.UI
                     AllSlots[i].ItemCounter--;
                     if (tempItem.IsPlaceable == false)
                     {
-                        Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                        Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
                     }
 
                     if (tempItem.IsPlaceable == true)

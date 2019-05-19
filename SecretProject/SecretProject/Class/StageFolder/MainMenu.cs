@@ -10,7 +10,7 @@ using SecretProject.Class.UI;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class MainMenu : IStage
+    public class MainMenu// : IStage
     {
 
         //--------------------------------------

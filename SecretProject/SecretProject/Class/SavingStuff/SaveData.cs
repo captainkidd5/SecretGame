@@ -30,17 +30,16 @@ namespace SecretProject.Class.SavingStuff
 
         
         public float PlayerPosX { get; set; }
-
-        
         public float PlayerPosY { get; set; }
-
         public string PlayerName { get; set; }
-
         public int PlayerHealth { get; set; }
-
         public Inventory PlayerInventory { get; set; }
 
-        public List<Stage> AllStages;
+        /// <summary>
+        /// stage
+        /// </summary>
+        
+        public List<Home> AllStages;
         public List<TileManager> StageTiles;
 
 
@@ -68,10 +67,11 @@ namespace SecretProject.Class.SavingStuff
         {
             for(int i =0; i < Game1.AllStages.Count; i++)
             {
-                for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
-                {
+                AllStages[0] = Game1.AllStages[0];
+                //for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
+                //{
 
-                }
+                //}
             }
 
             //for(int i=0; i < Game1.GetCurrentStage().AllStageTiles.Count; i++)

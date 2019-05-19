@@ -175,7 +175,7 @@ namespace SecretProject.Class.ItemStuff
                         ItemSprite.PickedUp = true;
                         Ignored = true;
                         this.IsMagnetized = false;
-                        Game1.GetCurrentStage().allItems.Remove(this);
+                        Game1.GetCurrentStage().AllItems.Remove(this);
                     }
 
                     //ItemSprite.IsDrawn = false;

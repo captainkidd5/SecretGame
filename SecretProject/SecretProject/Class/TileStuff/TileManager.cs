@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TiledSharp;
 
+using System.Xml.Serialization;
+
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Controls;
 using SecretProject.Class.Universal;
@@ -50,6 +52,7 @@ namespace SecretProject.Class.TileStuff
         //--------------------------------------
         //2D Array of All Tiles
         protected Tile[,] tiles;
+        [XmlArray("Tiles")]
         public Tile[,] Tiles { get { return tiles; } }
 
         public bool IsBuilding { get; set; } = false;
@@ -63,9 +66,11 @@ namespace SecretProject.Class.TileStuff
 
         public bool isInClickingRangeOfPlayer = false;
 
-
+        [XmlIgnore]
         MouseManager myMouse;
+        [XmlIgnore]
         ContentManager content;
+        [XmlIgnore]
         GraphicsDevice graphicsDevice;
 
         public int ReplaceTileGid { get; set; }
@@ -217,7 +222,7 @@ namespace SecretProject.Class.TileStuff
         public bool TileInteraction { get; set; } = false;
 
         #region LOADTILESOBJECTS
-        public void LoadInitialTileObjects(Stage stage)
+        public void LoadInitialTileObjects(Home stage)
         {
             for (var i = 0; i < tilesetTilesWide; i++)
             {
@@ -240,7 +245,7 @@ namespace SecretProject.Class.TileStuff
                                         tiles[i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                                         (int)Math.Ceiling(tempObj.Height)), tiles[i, j].DestinationRectangle.X);
 
-                                    Game1.Iliad.allObjects.Add(tiles[i, j].TileObject);
+                                    Game1.Iliad.AllObjects.Add(tiles[i, j].TileObject);
 
                                 }
                             }
@@ -269,7 +274,7 @@ namespace SecretProject.Class.TileStuff
                         tiles[indexX, indexY].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                         (int)Math.Ceiling(tempObj.Height)), tiles[indexX, indexY].DestinationRectangle.X);
 
-                    Game1.Iliad.allObjects.Add(tiles[indexX, indexY].TileObject);
+                    Game1.Iliad.AllObjects.Add(tiles[indexX, indexY].TileObject);
                 }
             }
         }
@@ -603,8 +608,8 @@ namespace SecretProject.Class.TileStuff
             {
                 if(tiles[oldX, oldY].TileProperties.Count > 0)
                 {
-                    Game1.GetCurrentStage().allObjects.Remove(tiles[oldX, oldY].TileObject);
-                    Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(tiles[oldX, oldY].AssociatedItem, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
+                    Game1.GetCurrentStage().AllObjects.Remove(tiles[oldX, oldY].TileObject);
+                    Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tiles[oldX, oldY].AssociatedItem, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
                     ReplaceTilePermanent(oldX, oldY);
                 }
             }
