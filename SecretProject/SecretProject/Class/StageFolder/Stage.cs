@@ -38,6 +38,7 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public TmxMap map;
 
+        [XmlIgnore]
         public Player Player { get; set; }
 
         public int TileWidth { get; set; }
@@ -51,6 +52,9 @@ namespace SecretProject.Class.StageFolder
         public TileManager MidGroundTiles { get; set; }
         public TileManager ForeGroundTiles { get; set; }
         public TileManager PlacementTiles { get; set; }
+
+        [XmlArray("AllStageTiles")]
+        public List<TileManager> AllStageTiles { get; set; }
         [XmlIgnore]
         public TmxLayer Buildings { get; set; }
         [XmlIgnore]
@@ -173,11 +177,13 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
-            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false, TileSetNumber) { isBackground = true };
-            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber) { IsBuilding = true };
-            MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false, TileSetNumber);
-            ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false, TileSetNumber);
-            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber) { isPlacement = true };
+            BackGroundTiles = new TileManager(TileSet, map, Background, graphicsDevice, content, false, TileSetNumber, .1f) { isBackground = true };
+            BuildingsTiles = new TileManager(TileSet, map, Buildings, graphicsDevice, content, true, TileSetNumber, .2f) { IsBuilding = true };
+            MidGroundTiles = new TileManager(TileSet, map, MidGround, graphicsDevice, content, false, TileSetNumber, .3f);
+            ForeGroundTiles = new TileManager(TileSet, map, foreGround, graphicsDevice, content, false, TileSetNumber, .5f);
+            PlacementTiles = new TileManager(TileSet, map, Placement, graphicsDevice, content, false, TileSetNumber, .6f) { isPlacement = true };
+
+            AllStageTiles = new List<TileManager>() { BackGroundTiles, BuildingsTiles, MidGroundTiles, ForeGroundTiles, PlacementTiles };
 
 
 
@@ -284,10 +290,16 @@ namespace SecretProject.Class.StageFolder
 
                 }
 
-                BackGroundTiles.Update(gameTime, mouse);
-                BuildingsTiles.Update(gameTime, mouse);
-                MidGroundTiles.Update(gameTime, mouse);
-                PlacementTiles.Update(gameTime, mouse);
+
+                for(int i = 0; i < AllStageTiles.Count; i++)
+                {
+                    AllStageTiles[i].Update(gameTime, mouse);
+                }
+
+                //BackGroundTiles.Update(gameTime, mouse);
+                //BuildingsTiles.Update(gameTime, mouse);
+                //MidGroundTiles.Update(gameTime, mouse);
+                //PlacementTiles.Update(gameTime, mouse);
 
                 //oopsie what is this mama mia
 
@@ -353,12 +365,16 @@ namespace SecretProject.Class.StageFolder
 
                 // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
 
+                for(int i =0; i < AllStageTiles.Count; i++)
+                {
+                    AllStageTiles[i].DrawTiles(spriteBatch);
+                }
                 
-                BackGroundTiles.DrawTiles(spriteBatch, (float).1);
-                BuildingsTiles.DrawTiles(spriteBatch, (float).2);
-                MidGroundTiles.DrawTiles(spriteBatch, (float).3);
-                ForeGroundTiles.DrawTiles(spriteBatch, (float).5);
-                PlacementTiles.DrawTiles(spriteBatch, (float).6);
+                //BackGroundTiles.DrawTiles(spriteBatch);
+                //BuildingsTiles.DrawTiles(spriteBatch);
+                //MidGroundTiles.DrawTiles(spriteBatch);
+                //ForeGroundTiles.DrawTiles(spriteBatch);
+                //PlacementTiles.DrawTiles(spriteBatch);
                 mouse.Draw(spriteBatch, 1);
                 Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 

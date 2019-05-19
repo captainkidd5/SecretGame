@@ -71,6 +71,7 @@ namespace SecretProject
         public static MainMenu mainMenu;
         public static Stage Iliad;
         public static Stage LodgeInterior;
+        public static List<Stage> AllStages;
         public static int CurrentStage;
         public static bool freeze = false;
 
@@ -256,6 +257,8 @@ namespace SecretProject
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
+
+            AllStages = new List<Stage>() { Iliad, LodgeInterior };
 
             
 

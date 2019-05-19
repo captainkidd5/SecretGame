@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -19,9 +20,9 @@ namespace SecretProject.Class.SavingStuff
 
         //THINGS TO SAVE:
         //PLAYER: 
-        //Position, Name, Inventory, Health, 
+        //Position, Name, Inventory, Health, (DONE)
         //PLAYERINVENTORY: 
-        //currentInventory: List Inventory slots: Item ID for each item
+        //currentInventory: List Inventory slots: Item ID for each item (DONE)
         //STAGE:
         //allTileManagers: List<Tile>: Dictionary Properties (Serialize with savemodule)
         //allObjects: Destination
@@ -39,11 +40,15 @@ namespace SecretProject.Class.SavingStuff
 
         public Inventory PlayerInventory { get; set; }
 
+        public List<Stage> AllStages;
+        public List<TileManager> StageTiles;
+
 
         public SaveData()
         {
             //Player
             SavePlayer();
+            //SaveStages();
 
 
 
@@ -57,6 +62,23 @@ namespace SecretProject.Class.SavingStuff
             PlayerHealth = Game1.Player.Health;
 
             PlayerInventory = Game1.Player.Inventory;
+        }
+
+        public void SaveStages()
+        {
+            for(int i =0; i < Game1.AllStages.Count; i++)
+            {
+                for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
+                {
+
+                }
+            }
+
+            //for(int i=0; i < Game1.GetCurrentStage().AllStageTiles.Count; i++)
+            //{
+            //    StageTiles.Add(Game1.GetCurrentStage().AllStageTiles[i]);
+            //}
+
         }
 
 

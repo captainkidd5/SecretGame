@@ -65,8 +65,10 @@ namespace SecretProject.Class.TileStuff
         public bool IsPortal { get; set; } = false;
         public string portalDestination { get; set; }
 
-        [XmlIgnore]
-        public Dictionary<string, bool> Properties;
+        //[XmlIgnore]
+        //public Dictionary<string, bool> Properties;
+
+        public List<string> TileProperties;
 
        // public List<Tile> AssociatedTiles;
 
@@ -112,7 +114,8 @@ namespace SecretProject.Class.TileStuff
 
             TileColor = Color.White * ColorMultiplier;
 
-            Properties = new Dictionary<string, bool>();
+            //Properties = new Dictionary<string, bool>();
+            TileProperties = new List<string>();
             //AssociatedTiles = new List<Tile>();
 
         }

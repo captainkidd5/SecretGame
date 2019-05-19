@@ -67,8 +67,8 @@ namespace SecretProject.Class.SavingStuff
             PlayerInventoryClone.Capacity = mySave.PlayerInventory.Capacity;
             PlayerInventoryClone.Money = mySave.PlayerInventory.Money;
 
-            
-
+            //loops through all the slots and items in the saved inventory, creates a new inventory, and adds item data to that inventory for each item in the saved on. Then 
+            //sets our inventory equal to the cloned one!
             for(int i = 0; i < mySave.PlayerInventory.Capacity; i++)
             {
                 if (mySave.PlayerInventory.currentInventory[i].SlotItems.Count > 0)
@@ -79,10 +79,7 @@ namespace SecretProject.Class.SavingStuff
                     }
                 }
             }
-
-            
             Game1.Player.Inventory = PlayerInventoryClone;
-            //Game1.Player.Inventory.currentInventory
         }
 
 
