@@ -38,7 +38,10 @@ namespace SecretProject.Class.SavingStuff
         /// <summary>
         /// stage
         /// </summary>
-        
+
+
+        public Home HomeIsland { get; set; }
+
         public List<Home> AllStages;
         public List<TileManager> StageTiles;
 
@@ -65,14 +68,18 @@ namespace SecretProject.Class.SavingStuff
 
         public void SaveStages()
         {
-            for(int i =0; i < Game1.AllStages.Count; i++)
-            {
-                AllStages[0] = Game1.AllStages[0];
-                //for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
-                //{
 
-                //}
-            }
+
+
+
+            //for(int i =0; i < Game1.AllStages.Count; i++)
+            //{
+            //    AllStages[0] = Game1.AllStages[0];
+            //    //for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
+            //    //{
+
+            //    //}
+            //}
 
             //for(int i=0; i < Game1.GetCurrentStage().AllStageTiles.Count; i++)
             //{

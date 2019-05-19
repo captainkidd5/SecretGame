@@ -63,9 +63,10 @@ namespace SecretProject.Class.StageFolder
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
-           // customMouse.Update();
+            // customMouse.Update();
             //--------------------------------------
             //Update Buttons
+            Game1.isMyMouseVisible = true;
 
             foreach(Button button in allButtons)
             {

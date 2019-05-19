@@ -62,8 +62,6 @@ namespace SecretProject.Class.StageFolder
 
         KeyboardState KState { get; set; }
 
-
-        ToolBar ToolBar { get; set; }
         Player Mastodon { get; set; }
 
         Camera2D Cam { get; set; }

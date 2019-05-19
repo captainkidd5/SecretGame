@@ -82,8 +82,6 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public KeyboardState KState { get; set; }
 
-        [XmlIgnore]
-        public ToolBar ToolBar { get; set; }
         public Player Mastodon { get; set; }
         [XmlIgnore]
         public Camera2D Cam { get; set; }
@@ -92,12 +90,16 @@ namespace SecretProject.Class.StageFolder
 
         //--------------------------------------
         //Declare Lists
+        [XmlArray("AllObjects")]
         public List<ObjectBody> AllObjects { get; set; }
 
+        [XmlArray("AllSprites")]
         public List<Sprite> AllSprites { get; set; }
 
+        [XmlArray("AllItems")]
         public List<Item> AllItems { get; set; }
 
+        [XmlArray("AllActions")]
         public List<ActionTimer> AllActions { get; set; }
 
         //public List<object> ThingsToDraw;
@@ -105,13 +107,11 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public UserInterface MainUserInterface { get; set; }
 
-        
-
         //SAVE STUFF
 
         public bool TilesLoaded { get; set; } = false;
 
-
+        [XmlIgnore]
         Character ElixerNPC;
 
         #endregion
@@ -161,12 +161,6 @@ namespace SecretProject.Class.StageFolder
             foreGround = map.Layers["foreGround"];
             Placement = map.Layers["placement"];
 
-            //E   var treee = map.ObjectGroups["buildings"].Objects["Tree"];
-
-            //object layer
-            // var buildingLayer = map.ObjectGroups["collision"];
-
-
             //map specifications
             TileWidth = map.Tilesets[0].TileWidth;
             TileHeight = map.Tilesets[0].TileHeight;
@@ -182,15 +176,10 @@ namespace SecretProject.Class.StageFolder
 
             AllStageTiles = new List<TileManager>() { BackGroundTiles, BuildingsTiles, MidGroundTiles, ForeGroundTiles, PlacementTiles };
 
-
-
-
             //--------------------------------------
             //Player Stuff
 
             this.Player = player;
-
-
             var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
 
             //load players
@@ -214,29 +203,12 @@ namespace SecretProject.Class.StageFolder
             BuildingsTiles.isActive = true;
             BuildingsTiles.IsBuilding = true;
 
-
-
             //UserInterface
-
-            
             //allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
-
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(4, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 150), true));
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(3, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 50), true));
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(6, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
-            
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(8, new Vector2(Game1.Player.position.X+50, Game1.Player.position.Y + 200), true));
-
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
 
             ElixerNPC = new Character("Elixer", new Vector2(800, 600), graphicsDevice);
 
             AllActions = new List<ActionTimer>();
-
-            
         }
 
         #endregion
@@ -244,20 +216,12 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
-            //--------------------------------------
-            //input
-
             //keyboard
             KeyboardState oldKeyboardState = KState;
             KState = Keyboard.GetState();
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
-            //--------------------------------------
-            //Update Toolbar
-
             Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory, mouse, game);
-
-
 
             if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
             {
@@ -272,9 +236,6 @@ namespace SecretProject.Class.StageFolder
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
                 Player.Update(gameTime, AllItems, AllObjects);
 
-
-                // mastodon.Update(gameTime, allSprites, allObjects);
-
                 //--------------------------------------
                 //Update sprites
                 foreach (Sprite spr in AllSprites)
@@ -283,23 +244,12 @@ namespace SecretProject.Class.StageFolder
                     {
                         spr.Update(gameTime, mouse.WorldMousePosition);
                     }
-
-
                 }
-
 
                 for(int i = 0; i < AllStageTiles.Count; i++)
                 {
                     AllStageTiles[i].Update(gameTime, mouse);
                 }
-
-                //BackGroundTiles.Update(gameTime, mouse);
-                //BuildingsTiles.Update(gameTime, mouse);
-                //MidGroundTiles.Update(gameTime, mouse);
-                //PlacementTiles.Update(gameTime, mouse);
-
-                //oopsie what is this mama mia
-
                 //for(int i = 0; i < this.AllActions.Count; i++)
                 //{
                 //    AllActions[i].Update(gameTime, AllActions);
@@ -309,43 +259,25 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
-
             }
         }
-
         #endregion
 
         #region DRAW
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
         {
-
-
             graphics.Clear(Color.Black);
             if (Player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 Player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
-                //fix to stay longer
-                //if (Game1.userInterface.BottomBar.WasSliderUpdated && Game1.userInterface.BottomBar.ItemSwitchTexture != null)
-                //{
-                //    //ActionTimer wasSliderUpdatedTimer = new ActionTimer(1);
-                //    //if(wasSliderUpdatedTimer.ActionComplete)
-                //    //{
-                //    //    spriteBatch.Draw(Game1.userInterface.BottomBar.ItemSwitchTexture, new Vector2(Player.position.X - 5, Player.position.Y - 30), color: Color.White, layerDepth: 1);
-
-                //    //}
-
-                //}
-
-                
 
                 if (Player.CurrentAction.IsAnimating == false)
                 {
                     Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
                 }
                 
-
                 //????
                 if(Player.CurrentAction.IsAnimating == true)
                 {
@@ -360,18 +292,11 @@ namespace SecretProject.Class.StageFolder
                 //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
                 }
 
-                // Mastodon.Anim.Draw(spriteBatch, new Vector2(Mastodon.Position.X, Mastodon.Position.Y), (float).3);
-
                 for(int i =0; i < AllStageTiles.Count; i++)
                 {
                     AllStageTiles[i].DrawTiles(spriteBatch);
                 }
                 
-                //BackGroundTiles.DrawTiles(spriteBatch);
-                //BuildingsTiles.DrawTiles(spriteBatch);
-                //MidGroundTiles.DrawTiles(spriteBatch);
-                //ForeGroundTiles.DrawTiles(spriteBatch);
-                //PlacementTiles.DrawTiles(spriteBatch);
                 mouse.Draw(spriteBatch, 1);
                 Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
@@ -380,14 +305,6 @@ namespace SecretProject.Class.StageFolder
                     spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
                 }
                 
-
-                // spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(mouse.MouseSquareCoordinateX, mouse.MouseSquareCoordinateY), layerDepth: 1);
-
-
-
-                //drawn in wrong spot
-
-
                 //--------------------------------------
                 //Draw sprite list
 
@@ -408,32 +325,18 @@ namespace SecretProject.Class.StageFolder
                     {
                         obj.Draw(spriteBatch, .4f);
                     }
-
                 }
-                //--------------------------------------
-                //Draw object list
 
                 Game1.userInterface.BottomBar.DrawToStageMatrix(spriteBatch);
-
-
                 spriteBatch.End();
             }
-
-            //--------------------------------------
-            //Draw Toolbar
-
             Game1.userInterface.Draw(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
-            
         }
-
         public Camera2D GetCamera()
         {
             return this.Cam;
         }
-
-
         #endregion
-
     }
 }

@@ -163,7 +163,7 @@ namespace SecretProject
         }
         #endregion
 
-        public static Home GetCurrentStage()
+        public static IStage GetCurrentStage()
         {
             switch(gameStages)
             {
@@ -297,11 +297,6 @@ namespace SecretProject
                 graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
-
-            //for(int i = 0; i < AllActions.Count; i++)
-            //{
-            //    AllActions[i].Update(gameTime);
-            //}
 
             //switch between stages for updating
             switch (gameStages)

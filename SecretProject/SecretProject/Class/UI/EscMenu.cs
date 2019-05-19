@@ -71,6 +71,7 @@ namespace SecretProject.Class.MenuStuff
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
+            Game1.isMyMouseVisible = true;
             if (isTextChanged == true)
             {
                 SettingsText = "Game Saved!";

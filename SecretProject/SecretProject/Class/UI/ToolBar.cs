@@ -488,8 +488,8 @@ namespace SecretProject.Class.UI
             //if action still exists and isn't complete we'll still draw it. 
             if (AllActions.Count > 0 && !AllActions[AllActions.Count - 1].ActionComplete)
             {
-                spriteBatch.Draw(ItemSwitchTexture, new Vector2(Game1.GetCurrentStage().Player.position.X + 3,
-                    Game1.GetCurrentStage().Player.position.Y - 15), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
+                spriteBatch.Draw(ItemSwitchTexture, new Vector2(Game1.Player.position.X + 3,
+                    Game1.Player.position.Y - 15), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
             }
 
         }
