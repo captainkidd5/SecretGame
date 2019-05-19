@@ -57,6 +57,32 @@ namespace SecretProject.Class.SavingStuff
             Game1.Player.Position = new Vector2(mySave.PlayerPosX, mySave.PlayerPosY);
             Game1.Player.Health = mySave.PlayerHealth;
             Game1.Player.Name = mySave.PlayerName;
+
+
+            Inventory PlayerInventoryClone = new Inventory(mySave.PlayerInventory.Capacity);
+
+            PlayerInventoryClone.ID = mySave.PlayerInventory.ID;
+            PlayerInventoryClone.Name = mySave.PlayerInventory.Name;
+            PlayerInventoryClone.ItemCount = mySave.PlayerInventory.ItemCount;
+            PlayerInventoryClone.Capacity = mySave.PlayerInventory.Capacity;
+            PlayerInventoryClone.Money = mySave.PlayerInventory.Money;
+
+            
+
+            for(int i = 0; i < mySave.PlayerInventory.Capacity; i++)
+            {
+                if (mySave.PlayerInventory.currentInventory[i].SlotItems.Count > 0)
+                {
+                    for (int j = 0; j < mySave.PlayerInventory.currentInventory[i].SlotItems.Count; j++)
+                    {
+                        PlayerInventoryClone.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(mySave.PlayerInventory.currentInventory[i].SlotItems[0].ID, null, false));
+                    }
+                }
+            }
+
+            
+            Game1.Player.Inventory = PlayerInventoryClone;
+            //Game1.Player.Inventory.currentInventory
         }
 
 
