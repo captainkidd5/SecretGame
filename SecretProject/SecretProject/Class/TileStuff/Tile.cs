@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TiledSharp;
 
 namespace SecretProject.Class.TileStuff
@@ -39,6 +40,13 @@ namespace SecretProject.Class.TileStuff
         public bool KillAnimation { get; set; } = false;
         public float DelayTimer { get; set; } = 0;
 
+        /// <summary>
+        /// ////////////////
+        /// </summary>
+        public bool Plantable { get; set; } = false;
+        public int AssociatedItem { get; set; }
+
+
         public double Timer { get; set; } = 0;
         public int CurrentFrame { get; set; } = 0;
         public int TotalFrames { get; set; }
@@ -57,9 +65,9 @@ namespace SecretProject.Class.TileStuff
         public bool IsPortal { get; set; } = false;
         public string portalDestination { get; set; }
 
+        [XmlIgnore]
         public Dictionary<string, bool> Properties;
 
-        public int[] ObjectProperties;
        // public List<Tile> AssociatedTiles;
 
         //  public bool WasJustReplaced { get; set; } = false;
@@ -73,7 +81,10 @@ namespace SecretProject.Class.TileStuff
         public ObjectBody TileObject { get; set; }
 
 
+        private Tile()
+        {
 
+        }
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
         {
@@ -102,7 +113,6 @@ namespace SecretProject.Class.TileStuff
             TileColor = Color.White * ColorMultiplier;
 
             Properties = new Dictionary<string, bool>();
-            ObjectProperties = new int[10];
             //AssociatedTiles = new List<Tile>();
 
         }

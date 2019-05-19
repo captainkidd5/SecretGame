@@ -18,6 +18,10 @@ namespace SecretProject.Class.Universal
 
         public int Signature;
 
+        private ActionTimer()
+        {
+
+        }
 
         public ActionTimer(float timeUntilAction, int signature)
         {

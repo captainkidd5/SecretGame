@@ -3,13 +3,15 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.Stage;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+
+using System.Xml.Serialization;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -18,19 +20,24 @@ namespace SecretProject.Class.ItemStuff
 
     {
 
-
+        [XmlArray("currentInventory")]
         public List<InventorySlot> currentInventory;
 
 
         public int ID { get; set; }
         public string Name { get; set; }
         public int ItemCount { get; set; }
+        [XmlIgnore]
         public Sprite ItemSprite { get; set; }
         public int Capacity { get; set; }
 
         public int Money { get; set; } = 0;
 
 
+        private Inventory()
+        {
+
+        }
 
         public Inventory(int capacity)
         {
@@ -143,8 +150,10 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
+        [XmlArray("SlotItems")]
         public List<Item> SlotItems { get; set; }
 
+        [XmlIgnore]
         public Item Item { get; set; }
 
         public bool IsCurrentSelection = false;

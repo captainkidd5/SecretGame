@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Playable;
-using SecretProject.Class.Stage;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.SpriteFolder
@@ -20,9 +20,10 @@ namespace SecretProject.Class.SpriteFolder
     public class Sprite
     {
 
-
+        [XmlIgnore]
         protected Texture2D texture;
         public Vector2 Position;
+        [XmlIgnore]
         protected Texture2D rectangleTexture;
 
         public bool ShowRectangle { get; set; }
@@ -44,9 +45,12 @@ namespace SecretProject.Class.SpriteFolder
         public float ScaleY { get; set; }
         public bool IsDrawn { get; set; } = true;
         public float LayerDepth { get; set; }
-        public SoundEffect Bubble { get; set; }        public string Name { get; set; }
+        [XmlIgnore]
+        public SoundEffect Bubble { get; set; }
+        public string Name { get; set; }
         public float Speed { get; set; }
         public Color Color { get; set; } = Color.White;
+
         public Vector2 Velocity { get; set; }
         public bool IsBobbing { get; set; } = false;
         public bool IsTossed { get; set; } = false;
@@ -66,7 +70,13 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool IsBeingDragged { get; set; } = false;
 
+        [XmlIgnore]
         ContentManager content;
+
+        public Sprite()
+        {
+
+        }
 
         public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Texture2D texture, Vector2 position, bool bob, float layerDepth)
         {

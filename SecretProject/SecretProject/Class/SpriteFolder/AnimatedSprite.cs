@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Xml.Serialization;
 
 namespace SecretProject.Class.SpriteFolder
 {
     public class AnimatedSprite
     {
+        [XmlIgnore]
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
         public int Columns { get; set; }
@@ -21,6 +23,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public float MyDepth { get; set; }
 
+        [XmlIgnore]
         protected Texture2D rectangleTexture;
 
         public bool ShowRectangle { get; set; }

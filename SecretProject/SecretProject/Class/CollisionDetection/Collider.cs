@@ -20,6 +20,11 @@ namespace SecretProject.Class.CollisionDetection
 
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
+        private Collider()
+        {
+
+        }
+
         public Collider(Vector2 velocity, Rectangle rectangle)
         {
             this.velocity = velocity;

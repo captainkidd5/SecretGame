@@ -14,45 +14,53 @@ namespace SecretProject.Class.SavingStuff
     public class SaveLoadManager
     {
         public string fileName;
+        public SaveData mySave;
 
+        public SaveLoadManager()
+        {
+            mySave = new SaveData();
+        }
 
         public void Save()
         {
-            //XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            //using (TextWriter tw = new StreamWriter(@"Content/SaveFiles/GameTestSave.xml"))
-            //{
-            //    serializer.Serialize(tw, mySave);
-            //    tw.Close();
-            //}
+            mySave = new SaveData();
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            using (FileStream tw = new FileStream(@"Content/SaveFiles/GameTestSave3.xml", FileMode.Create))
+            {
+                serializer.Serialize(tw, mySave);
+                tw.Close();
+            }
         }
 
         public void Load()
         {
             //Load XML file with all pre-made items into itemVault.
-            Game1.ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
-            //for(int i = 0; i < Game1.ItemVault.Items.Count; i++)
-            //{
+            //Game1.ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
 
-            //}
+            XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
 
-
-         //   XmlSerializer deSerializer = new XmlSerializer(typeof(SaveData));
-
-         //   StreamReader reader = new StreamReader(@"Content/SaveFiles/GameTestSave.xml");
+            StreamReader reader = new StreamReader(@"Content/SaveFiles/GameTestSave3.xml");
             
-         //       mySave = (SaveData)deSerializer.Deserialize(reader);
-         //       //mySave = save;
-         //       reader.Close();
-         //   #region Player
-         //   Game1.Iliad.Player.Position = mySave.Position;
-         //       Game1.Iliad.Player.Health = mySave.PlayerHealth;
-         //   #endregion
-         //   #region PlayerInventory
-         ////   Game1.Player.Inventory.currentInventory = mySave.PlayerInventory;
+                mySave = (SaveData)deSerializer.Deserialize(reader);
+            AssignLoad();
+                reader.Close();
 
-           // #endregion
         }
-        //yah
+
+        public void AssignLoad()
+        {
+            LoadPlayer();
+        }
+
+        public void LoadPlayer()
+        {
+            Game1.Player.Position = new Vector2(mySave.PlayerPosX, mySave.PlayerPosY);
+            Game1.Player.Health = mySave.PlayerHealth;
+            Game1.Player.Name = mySave.PlayerName;
+        }
+
+
+
         public void SetWorldItems(List<KeyValuePair<int, Vector2>> items)
         {
 

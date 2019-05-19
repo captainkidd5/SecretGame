@@ -40,6 +40,11 @@ namespace SecretProject.Class.UI
         //keyboard
 
 
+
+        private UserInterface()
+        {
+
+        }
         public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
         {
             this.Game = game;

@@ -13,7 +13,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.Stage;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
 
@@ -41,6 +41,8 @@ namespace SecretProject.Class.UI
         public Button InvSlot5 { get; set; }
         public Button InvSlot6 { get; set; }
         public Button InvSlot7 { get; set; }
+
+
         public Texture2D ToolBarButton { get; set; }
         public SpriteFont Font { get; set; }
         public List<Button> AllNonInventoryButtons { get; set; }

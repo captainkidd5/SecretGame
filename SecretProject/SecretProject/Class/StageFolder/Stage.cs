@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Xml.Serialization;
 
 using TiledSharp;
 
@@ -23,42 +24,62 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 
-namespace SecretProject.Class.Stage
+namespace SecretProject.Class.StageFolder
 {
+    [XmlRoot("SaveData")]
     public class Stage : IStage
     {
 
         #region FIELDS
 
         private bool showBorders = false;
+        [XmlIgnore]
         public Vector2 TileSize = new Vector2(16, 16); // what?
+        [XmlIgnore]
         public TmxMap map;
+
         public Player Player { get; set; }
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
+        [XmlIgnore]
         public Texture2D TileSet { get; set; }
         public TileManager BackGroundTiles { get; set; }
         public TileManager BuildingsTiles { get; set; }
         public TileManager MidGroundTiles { get; set; }
         public TileManager ForeGroundTiles { get; set; }
         public TileManager PlacementTiles { get; set; }
+        [XmlIgnore]
         public TmxLayer Buildings { get; set; }
+        [XmlIgnore]
         public TmxLayer Background { get; set; }
+        [XmlIgnore]
         public TmxLayer Background1 { get; set; }
+        [XmlIgnore]
         public TmxLayer MidGround { get; set; }
+        [XmlIgnore]
         public TmxLayer foreGround { get; set; }
+        [XmlIgnore]
         public TmxLayer Placement { get; set; }
+        [XmlIgnore]
         public Texture2D JoeSprite { get; set; }
+        [XmlIgnore]
         public Texture2D RaftDown { get; set; }
+        [XmlIgnore]
         public Texture2D PuzzleFish { get; set; }
+        [XmlIgnore]
         public Texture2D HouseKey { get; set; }
+        [XmlIgnore]
         public Song MainTheme { get; set; }
+        [XmlIgnore]
         public KeyboardState KState { get; set; }
+
+        [XmlIgnore]
         internal ToolBar ToolBar { get; set; }
         public Player Mastodon { get; set; }
+        [XmlIgnore]
         public Camera2D Cam { get; set; }
 
         public int TileSetNumber { get; set; }
@@ -66,16 +87,21 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //Declare Lists
 
+        [XmlArray("allObjects"), XmlArrayItem(typeof(ObjectBody), ElementName = "ObjectBody")]
         public List<ObjectBody> allObjects;
 
+        [XmlArray("allSprites"), XmlArrayItem(typeof(Sprite), ElementName = "Sprite")]
         public List<Sprite> allSprites;
 
+        [XmlArray("allItems"), XmlArrayItem(typeof(Item), ElementName = "Item")]
         public List<Item> allItems;
 
+        [XmlArray("AllActions"), XmlArrayItem(typeof(ActionTimer), ElementName = "ActionTimer")]
         public List<ActionTimer> AllActions;
 
         //public List<object> ThingsToDraw;
 
+        [XmlIgnore]
         public UserInterface MainUserInterface { get; set; }
 
         
@@ -90,6 +116,11 @@ namespace SecretProject.Class.Stage
         #endregion
 
         #region CONSTRUCTOR
+
+        public Stage()
+        {
+
+        }
 
         public Stage(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
         {
@@ -198,7 +229,7 @@ namespace SecretProject.Class.Stage
             //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
             //allItems.Add(Game1.ItemVault.GenerateNewItem(9, new Vector2(Game1.Player.position.X + 150, Game1.Player.position.Y + 60), true));
 
-            ElixerNPC = new Character("Elixer", new Vector2(800, 800), graphicsDevice);
+            ElixerNPC = new Character("Elixer", new Vector2(800, 600), graphicsDevice);
 
             AllActions = new List<ActionTimer>();
 

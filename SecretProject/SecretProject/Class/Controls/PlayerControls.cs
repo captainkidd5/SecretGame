@@ -36,6 +36,11 @@ namespace SecretProject.Class.Controls
 
         List<Keys> MovementKeys = new List<Keys>() { Keys.None };
 
+        private PlayerControls()
+        {
+
+        }
+
         public PlayerControls(int type)
         {
 

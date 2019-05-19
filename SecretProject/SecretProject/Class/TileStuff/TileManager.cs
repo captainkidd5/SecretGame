@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.Stage;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ using SecretProject.Class.ItemStuff;
 
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Playable;
+using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -69,7 +70,7 @@ namespace SecretProject.Class.TileStuff
 
         public int ReplaceTileGid { get; set; }
 
-        List<TmxObject> tileObjects;
+       // List<TmxObject> tileObjects;
 
         public int CurrentIndexX { get; set; }
         public int CurrentIndexY { get; set; }
@@ -81,6 +82,11 @@ namespace SecretProject.Class.TileStuff
 
 
         #region CONSTRUCTOR
+
+        private TileManager()
+        {
+
+        }
 
         public TileManager( Texture2D tileSet, TmxMap mapName, TmxLayer layerName, GraphicsDevice graphicsDevice, ContentManager content, bool isBuilding, int tileSetNumber)
         {
@@ -129,8 +135,8 @@ namespace SecretProject.Class.TileStuff
 
                             }
                             if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("plantable"))
-                            {
-                                tiles[i, j].Properties.Add("plantable", true);
+                            {///////////
+                                tiles[i, j].Plantable = true;
                             }
 
                                 if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("Probability"))
@@ -154,21 +160,21 @@ namespace SecretProject.Class.TileStuff
                                 if(mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("grass"))
                                 {
                                     tiles[i, j].Properties.Add("grass", true);
-                                    tiles[i, j].ObjectProperties[0] = 2;
+                                    tiles[i, j].AssociatedItem = 2;
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("stone"))
                                 {
                                     tiles[i, j].Properties.Add("stone", true);
-                                    tiles[i, j].ObjectProperties[0] = 7;
+                                    tiles[i, j].AssociatedItem = 7;
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[tiles[i, j].GID].Properties.ContainsKey("redRuneStone"))
                                 {
                                     tiles[i, j].Properties.Add("redRuneStone", true);
-                                    tiles[i, j].ObjectProperties[0] = 7;
+                                    tiles[i, j].AssociatedItem = 7;
 
                                     //-1 means the tile above the current one
                                     //tiles[i, j].AssociatedTiles.Add = tiles[i, j - 10];
-                                    
+
                                 }
                                 else
                                 {
@@ -194,7 +200,7 @@ namespace SecretProject.Class.TileStuff
         public bool TileInteraction { get; set; } = false;
 
         #region LOADTILESOBJECTS
-        public void LoadInitialTileObjects(IStage stage)
+        public void LoadInitialTileObjects(Stage stage)
         {
             for (var i = 0; i < tilesetTilesWide; i++)
             {
@@ -436,6 +442,7 @@ namespace SecretProject.Class.TileStuff
                   {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(oldX, oldY, 6074);
+                        tiles[oldX, oldY].Plantable = true;
                   }
 
                 }
@@ -443,7 +450,7 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 9)
             {
-                if (mapName.Tilesets[0].Tiles[tiles[oldX, oldY].GID].Properties.ContainsKey("plantable"))
+                if (tiles[oldX, oldY].Plantable)
                 {
 
                         //Game1.myMouseManager.TogglePlantInteraction = true;
@@ -580,7 +587,7 @@ namespace SecretProject.Class.TileStuff
                 if(tiles[oldX, oldY].Properties.Count > 0)
                 {
                     Game1.GetCurrentStage().allObjects.Remove(tiles[oldX, oldY].TileObject);
-                    Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(tiles[oldX, oldY].ObjectProperties[0], new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
+                    Game1.GetCurrentStage().allItems.Add(Game1.ItemVault.GenerateNewItem(tiles[oldX, oldY].AssociatedItem, new Vector2(tiles[oldX, oldY].DestinationRectangle.X, tiles[oldX, oldY].DestinationRectangle.Y), true));
                     ReplaceTilePermanent(oldX, oldY);
                 }
             }

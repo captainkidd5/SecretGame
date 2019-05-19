@@ -61,6 +61,11 @@ namespace SecretProject.Class.Controls
 
         GraphicsDevice graphicsDevice;
 
+        private MouseManager()
+        {
+
+        }
+
         public MouseManager( Camera2D camera, GraphicsDevice graphicsDevice)
         {
             IsClicked = false;

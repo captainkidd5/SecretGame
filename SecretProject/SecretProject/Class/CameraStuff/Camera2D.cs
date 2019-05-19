@@ -26,6 +26,10 @@ namespace SecretProject.Class.CameraStuff
 
         public Viewport MyViewPort { get; set; }
 
+        private Camera2D()
+        {
+
+        }
 
         public Camera2D(Viewport viewport)
         {

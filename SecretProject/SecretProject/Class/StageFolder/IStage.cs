@@ -16,7 +16,7 @@ using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff;
 
-namespace SecretProject.Class.Stage
+namespace SecretProject.Class.StageFolder
 {
     public interface IStage
     {

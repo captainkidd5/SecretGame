@@ -8,7 +8,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
 
-namespace SecretProject.Class.Stage
+namespace SecretProject.Class.StageFolder
 {
     public class MainMenu : IStage
     {
@@ -16,7 +16,7 @@ namespace SecretProject.Class.Stage
         //--------------------------------------
         //buttons
         Button Join;
-        Button Save;
+        Button Load;
         Button Exit;
         
 
@@ -48,10 +48,10 @@ namespace SecretProject.Class.Stage
             //--------------------------------------
             //Initialize Buttons
             Join = new Button(join, graphicsDevice, new Vector2(500, 100));
-            Save = new Button(save, graphicsDevice, new Vector2(500, 200));
+            Load = new Button(save, graphicsDevice, new Vector2(500, 200));
             Exit = new Button(exit, graphicsDevice, new Vector2(500, 300));
 
-            allButtons = new List<Button>() { Join, Save, Exit };
+            allButtons = new List<Button>() { Join, Load, Exit };
 
             //--------------------------------------
             //Load spritefonts
@@ -79,7 +79,7 @@ namespace SecretProject.Class.Stage
                 Game1.gameStages = Stages.Iliad;
                 UserInterface.IsEscMenu = false;
             }
-            if(Save.isClicked)
+            if(Load.isClicked)
             {
                 mySave.Load();
                 Game1.gameStages = Stages.Iliad;
@@ -102,7 +102,7 @@ namespace SecretProject.Class.Stage
             
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 322), Color.CornflowerBlue);
             Join.Draw(spriteBatch, font, "New Game", new Vector2(525, 122), Color.CornflowerBlue);
-            Save.Draw(spriteBatch, font, "Load Game", new Vector2(520, 222), Color.CornflowerBlue);
+            Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 222), Color.CornflowerBlue);
 
 
             spriteBatch.End();

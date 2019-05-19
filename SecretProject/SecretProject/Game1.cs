@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Controls;
-using SecretProject.Class.Stage;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.UI;
 using System;
 

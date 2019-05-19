@@ -17,7 +17,7 @@ namespace SecretProject.Class.ItemStuff
     {
         public string Name { get; set; }
         public int ID { get; set; }
-        [XmlIgnore]
+        
         public int Count { get; set; } = 0;
         public int InvMaximum { get; set; }
         public int WorldMaximum { get; set; }

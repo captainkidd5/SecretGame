@@ -37,8 +37,10 @@ namespace SecretProject.Class.Playable
 
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
+        [XmlIgnore]
         ContentManager content;
 
+        [XmlIgnore]
         public PlayerControls controls;
 
         public Vector2 Position
@@ -66,25 +68,34 @@ namespace SecretProject.Class.Playable
         public float Speed1 { get; set; } = 2f;
         public float SecondarySpeed { get; set; } = 1f;
         public AnimatedSprite PlayerMovementAnimations { get; set; }
+        [XmlIgnore]
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
+        [XmlIgnore]
         public Collider MyCollider { get; set; }
 
         public bool IsPerformingAction = false;
 
         public AnimatedSprite CurrentAction;
-
+        [XmlIgnore]
         public AnimatedSprite CutGrassDown { get; set; }
+        [XmlIgnore]
         public AnimatedSprite CutGrassRight { get; set; }
+        [XmlIgnore]
         public AnimatedSprite CutGrassLeft { get; set; }
+        [XmlIgnore]
         public AnimatedSprite CutGrassUp { get; set; }
 
+        [XmlIgnore]
         public AnimatedSprite MiningDown { get; set; }
+        [XmlIgnore]
         public AnimatedSprite MiningRight { get; set; }
+        [XmlIgnore]
         public AnimatedSprite MiningLeft { get; set; }
+        [XmlIgnore]
         public AnimatedSprite MiningUp { get; set; }
 
-
+        [XmlIgnore]
         public Texture2D BigHitBoxRectangleTexture;
 
 
@@ -105,6 +116,10 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        private Player()
+        {
+
+        }
 
 
         public Player(string name, Vector2 position, Texture2D texture, int frameNumber, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
