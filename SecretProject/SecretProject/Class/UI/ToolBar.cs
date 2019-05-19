@@ -325,19 +325,35 @@ namespace SecretProject.Class.UI
                 if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
-                    inventory.currentInventory[i].RemoveItemFromSlot();
-                    AllSlots[i].ItemCounter--;
-                    if (tempItem.IsPlaceable == false)
+                    if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
                     {
-                        Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                        for(int j =0; i < AllSlots[i].ItemCounter + 1; j +=0)
+                        {
+                            inventory.currentInventory[i].RemoveItemFromSlot();
+                            AllSlots[i].ItemCounter--;
+                            if (tempItem.IsPlaceable == false)
+                            {
+                                Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                            }
+                        }
                     }
-
-                    if (tempItem.IsPlaceable == true)
+                    else
                     {
-                       // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+                        inventory.currentInventory[i].RemoveItemFromSlot();
+                        AllSlots[i].ItemCounter--;
+                        if (tempItem.IsPlaceable == false)
+                        {
+                            Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                        }
 
-                        DragoToggleBuildingDropped = true;
+                        if (tempItem.IsPlaceable == true)
+                        {
+                            // Iliad.allItems.Add(new WorldItem(tempItem.Name, graphicsDevice, content, mouse.WorldMousePosition));
+
+                            DragoToggleBuildingDropped = true;
+                        }
                     }
+                    
 
                     //tempItem.ItemSprite.Color = Color.White;
                     DragSprite = null;

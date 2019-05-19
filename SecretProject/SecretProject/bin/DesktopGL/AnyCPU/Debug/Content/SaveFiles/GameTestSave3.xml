@@ -1,45 +1,11 @@
 <?xml version="1.0"?>
 <SaveData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <PlayerPosX>799</PlayerPosX>
-  <PlayerPosY>747</PlayerPosY>
+  <PlayerPosX>754</PlayerPosX>
+  <PlayerPosY>612</PlayerPosY>
   <PlayerName>joe</PlayerName>
   <PlayerHealth>3</PlayerHealth>
   <PlayerInventory>
     <currentInventory>
-      <InventorySlot>
-        <IsCurrentSelection>false</IsCurrentSelection>
-        <SlotItems>
-          <Item>
-            <Name>shovel</Name>
-            <ID>6</ID>
-            <Count>0</Count>
-            <InvMaximum>3</InvMaximum>
-            <WorldMaximum>0</WorldMaximum>
-            <Ignored>false</Ignored>
-            <IsDropped>false</IsDropped>
-            <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/Shovel</TextureString>
-            <Price>15</Price>
-          </Item>
-        </SlotItems>
-      </InventorySlot>
-      <InventorySlot>
-        <IsCurrentSelection>false</IsCurrentSelection>
-        <SlotItems>
-          <Item>
-            <Name>hammer</Name>
-            <ID>8</ID>
-            <Count>0</Count>
-            <InvMaximum>3</InvMaximum>
-            <WorldMaximum>0</WorldMaximum>
-            <Ignored>false</Ignored>
-            <IsDropped>false</IsDropped>
-            <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/hammer</TextureString>
-            <Price>15</Price>
-          </Item>
-        </SlotItems>
-      </InventorySlot>
       <InventorySlot>
         <IsCurrentSelection>false</IsCurrentSelection>
         <SlotItems>
@@ -61,131 +27,138 @@
         <IsCurrentSelection>false</IsCurrentSelection>
         <SlotItems>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
           <Item>
-            <Name>stone</Name>
-            <ID>7</ID>
+            <Name>grass</Name>
+            <ID>2</ID>
             <Count>0</Count>
             <InvMaximum>15</InvMaximum>
             <WorldMaximum>0</WorldMaximum>
             <Ignored>false</Ignored>
             <IsDropped>false</IsDropped>
             <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/stone</TextureString>
+            <TextureString>Item/grass</TextureString>
+            <Price>1</Price>
+          </Item>
+          <Item>
+            <Name>grass</Name>
+            <ID>2</ID>
+            <Count>0</Count>
+            <InvMaximum>15</InvMaximum>
+            <WorldMaximum>0</WorldMaximum>
+            <Ignored>false</Ignored>
+            <IsDropped>false</IsDropped>
+            <IsPlaceable>false</IsPlaceable>
+            <TextureString>Item/grass</TextureString>
+            <Price>1</Price>
+          </Item>
+          <Item>
+            <Name>grass</Name>
+            <ID>2</ID>
+            <Count>0</Count>
+            <InvMaximum>15</InvMaximum>
+            <WorldMaximum>0</WorldMaximum>
+            <Ignored>false</Ignored>
+            <IsDropped>false</IsDropped>
+            <IsPlaceable>false</IsPlaceable>
+            <TextureString>Item/grass</TextureString>
+            <Price>1</Price>
+          </Item>
+          <Item>
+            <Name>grass</Name>
+            <ID>2</ID>
+            <Count>0</Count>
+            <InvMaximum>15</InvMaximum>
+            <WorldMaximum>0</WorldMaximum>
+            <Ignored>false</Ignored>
+            <IsDropped>false</IsDropped>
+            <IsPlaceable>false</IsPlaceable>
+            <TextureString>Item/grass</TextureString>
             <Price>1</Price>
           </Item>
         </SlotItems>
+      </InventorySlot>
+      <InventorySlot>
+        <IsCurrentSelection>false</IsCurrentSelection>
+        <SlotItems />
       </InventorySlot>
       <InventorySlot>
         <IsCurrentSelection>false</IsCurrentSelection>
-        <SlotItems>
-          <Item>
-            <Name>grass</Name>
-            <ID>2</ID>
-            <Count>0</Count>
-            <InvMaximum>15</InvMaximum>
-            <WorldMaximum>0</WorldMaximum>
-            <Ignored>false</Ignored>
-            <IsDropped>false</IsDropped>
-            <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/grass</TextureString>
-            <Price>1</Price>
-          </Item>
-          <Item>
-            <Name>grass</Name>
-            <ID>2</ID>
-            <Count>0</Count>
-            <InvMaximum>15</InvMaximum>
-            <WorldMaximum>0</WorldMaximum>
-            <Ignored>false</Ignored>
-            <IsDropped>false</IsDropped>
-            <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/grass</TextureString>
-            <Price>1</Price>
-          </Item>
-          <Item>
-            <Name>grass</Name>
-            <ID>2</ID>
-            <Count>0</Count>
-            <InvMaximum>15</InvMaximum>
-            <WorldMaximum>0</WorldMaximum>
-            <Ignored>false</Ignored>
-            <IsDropped>false</IsDropped>
-            <IsPlaceable>false</IsPlaceable>
-            <TextureString>Item/grass</TextureString>
-            <Price>1</Price>
-          </Item>
-        </SlotItems>
+        <SlotItems />
+      </InventorySlot>
+      <InventorySlot>
+        <IsCurrentSelection>false</IsCurrentSelection>
+        <SlotItems />
       </InventorySlot>
       <InventorySlot>
         <IsCurrentSelection>false</IsCurrentSelection>
@@ -199,6 +172,6 @@
     <ID>0</ID>
     <ItemCount>0</ItemCount>
     <Capacity>7</Capacity>
-    <Money>5</Money>
+    <Money>85</Money>
   </PlayerInventory>
 </SaveData>
