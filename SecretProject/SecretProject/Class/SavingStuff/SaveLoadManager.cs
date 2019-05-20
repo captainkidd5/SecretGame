@@ -18,7 +18,7 @@ namespace SecretProject.Class.SavingStuff
 
         public SaveLoadManager()
         {
-            mySave = new SaveData();
+            //mySave = new SaveData();
         }
 
         public void Save()
@@ -57,8 +57,6 @@ namespace SecretProject.Class.SavingStuff
             Game1.Player.Position = new Vector2(mySave.PlayerPosX, mySave.PlayerPosY);
             Game1.Player.Health = mySave.PlayerHealth;
             Game1.Player.Name = mySave.PlayerName;
-
-
             Inventory PlayerInventoryClone = new Inventory(mySave.PlayerInventory.Capacity);
 
             PlayerInventoryClone.ID = mySave.PlayerInventory.ID;
@@ -80,6 +78,11 @@ namespace SecretProject.Class.SavingStuff
                 }
             }
             Game1.Player.Inventory = PlayerInventoryClone;
+        }
+
+        public void LoadHome()
+        {
+
         }
 
 

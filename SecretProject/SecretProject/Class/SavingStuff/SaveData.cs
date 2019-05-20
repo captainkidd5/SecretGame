@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Playable;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -38,6 +41,28 @@ namespace SecretProject.Class.SavingStuff
         /// <summary>
         /// stage
         /// </summary>
+        /// 
+
+        public int HomeTileWidth { get; set; }
+        public int HomeTileHeight { get; set; }
+        public int HomeTilesetTilesWide { get; set; }
+        public int HomeTilesetTilesHigh { get; set; }
+
+        TileManager HomeBackGroundTiles;
+        TileManager HomeBuildingsTiles;
+        TileManager HomeMidGroundTiles;
+        TileManager HomeForeGroundTiles;
+        TileManager HomePlaceMentTiles;
+
+        List<ObjectBody> HomeAllObjects;
+        List<Sprite> HomeAllSprites;
+        List<Item> HomeAllItems;
+        List<ActionTimer> HomeAllActions;
+        public bool HomeTilesLoaded { get; set; }
+
+        public int HomeTilesetNumber { get; set; }
+
+
 
 
         public Home HomeIsland { get; set; }
@@ -50,7 +75,8 @@ namespace SecretProject.Class.SavingStuff
         {
             //Player
             SavePlayer();
-            //SaveStages();
+            SaveHome();
+            
 
 
 
@@ -66,25 +92,29 @@ namespace SecretProject.Class.SavingStuff
             PlayerInventory = Game1.Player.Inventory;
         }
 
-        public void SaveStages()
+        public void SaveHome()
         {
 
+            HomeTileWidth = Game1.Iliad.TileWidth;
+            HomeTileHeight = Game1.Iliad.TileHeight;
+            HomeTilesetTilesWide = Game1.Iliad.TilesetTilesWide;
+            HomeTilesetTilesHigh = Game1.Iliad.TilesetTilesHigh;
 
+            HomeBackGroundTiles = Game1.Iliad.BackGroundTiles;
+            HomeBuildingsTiles = Game1.Iliad.BuildingsTiles;
+            HomeMidGroundTiles = Game1.Iliad.MidGroundTiles;
+            HomeForeGroundTiles = Game1.Iliad.ForeGroundTiles;
+            HomePlaceMentTiles = Game1.Iliad.PlacementTiles;
 
+            HomeTilesetNumber = Game1.Iliad.TileSetNumber;
 
-            //for(int i =0; i < Game1.AllStages.Count; i++)
-            //{
-            //    AllStages[0] = Game1.AllStages[0];
-            //    //for(int j =0; j < Game1.AllStages[i].AllStageTiles.Count; j++)
-            //    //{
+            HomeAllObjects = Game1.Iliad.AllObjects;
+            HomeAllSprites = Game1.Iliad.AllSprites;
+            HomeAllItems = Game1.Iliad.AllItems;
+            HomeAllActions= Game1.Iliad.AllActions;
 
-            //    //}
-            //}
+            HomeTilesLoaded = Game1.Iliad.TilesLoaded;
 
-            //for(int i=0; i < Game1.GetCurrentStage().AllStageTiles.Count; i++)
-            //{
-            //    StageTiles.Add(Game1.GetCurrentStage().AllStageTiles[i]);
-            //}
 
         }
 

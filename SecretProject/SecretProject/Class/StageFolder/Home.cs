@@ -82,6 +82,7 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public KeyboardState KState { get; set; }
 
+        [XmlIgnore]
         public Player Mastodon { get; set; }
         [XmlIgnore]
         public Camera2D Cam { get; set; }
