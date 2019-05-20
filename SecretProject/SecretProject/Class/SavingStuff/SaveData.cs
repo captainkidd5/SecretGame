@@ -14,7 +14,6 @@ using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.SavingStuff
 {
-    [Serializable]
     public class SaveData
     {
         //public Stage Iliad { get; set; } = Game1.Iliad;

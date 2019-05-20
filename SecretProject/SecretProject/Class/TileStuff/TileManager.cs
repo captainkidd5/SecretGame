@@ -50,8 +50,11 @@ namespace SecretProject.Class.TileStuff
         //--------------------------------------
         //2D Array of All Tiles
         
-        [XmlArray("Tiles")]
+        [XmlIgnore]
         public Tile[,] Tiles { get; set; }
+
+        [XmlArray("JaggedTiles")]
+        public Tile[][] JaggedTiles { get; set; }  
 
         public bool IsBuilding { get; set; } = false;
         public bool isBackground { get; set; } = false;
@@ -214,7 +217,9 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-            }                            
+            }
+
+            this.JaggedTiles = GetJaggedTiles();
         }
         #endregion
         public bool TileInteraction { get; set; } = false;
@@ -614,9 +619,36 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public Tile[][] GetJaggedTiles()
+        {
+            Tile[][] jaggedArray = new Tile[100][];
+            for(int i =0; i < Tiles.GetLength(0); i++)
+            {
+                jaggedArray[i] = new Tile[Tiles.GetLength(1)];
+                for(int j=0; j< Tiles.GetLength(1); j++)
+                {
+                    jaggedArray[i][j] = Tiles[i, j];
+                }
+            }
+            return jaggedArray;
+        }
+
+        public Tile[,] GetDimensionalTiles(Tile[][] jaggedTiles)
+        {
+            Tile[,] dimensionalTiles = new Tile[100, 100];
+            for(int i=0; i<jaggedTiles.Length; i++)
+            {
+                for(int j=0; j<jaggedTiles[0].Length; j++)
+                {
+                    dimensionalTiles[i, j] = jaggedTiles[i][j];
+                }
+            }
+            return dimensionalTiles;
+        }
+
                         
    
-        }
+    }
         #endregion
 
     
