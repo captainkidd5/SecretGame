@@ -48,7 +48,7 @@ namespace SecretProject.Class.SavingStuff
         public int HomeTilesetTilesWide { get; set; }
         public int HomeTilesetTilesHigh { get; set; }
 
-        TileManager HomeBackGroundTiles;
+        public TileManager HomeBackGroundTiles { get; set; }
         TileManager HomeBuildingsTiles;
         TileManager HomeMidGroundTiles;
         TileManager HomeForeGroundTiles;
@@ -65,10 +65,10 @@ namespace SecretProject.Class.SavingStuff
 
 
 
-        public Home HomeIsland { get; set; }
+        //public Home HomeIsland { get; set; }
 
-        public List<Home> AllStages;
-        public List<TileManager> StageTiles;
+        //public List<Home> AllStages;
+        //public List<TileManager> StageTiles;
 
 
         public SaveData()

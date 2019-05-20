@@ -44,6 +44,31 @@
   <HomeTileHeight>16</HomeTileHeight>
   <HomeTilesetTilesWide>100</HomeTilesetTilesWide>
   <HomeTilesetTilesHigh>100</HomeTilesetTilesHigh>
+  <HomeBackGroundTiles>
+    <isActive>false</isActive>
+    <isInClickingRangeOfPlayer>false</isInClickingRangeOfPlayer>
+    <tilesetTilesWide>100</tilesetTilesWide>
+    <tilesetTilesHigh>100</tilesetTilesHigh>
+    <mapWidth>100</mapWidth>
+    <mapHeight>100</mapHeight>
+    <iD>0</iD>
+    <tileWidth>16</tileWidth>
+    <tileHeight>16</tileHeight>
+    <tileNumber>0</tileNumber>
+    <tileCounter>0</tileCounter>
+    <IsBuilding>false</IsBuilding>
+    <isBackground>true</isBackground>
+    <IsMidground>false</IsMidground>
+    <IsForeGround>false</IsForeGround>
+    <isPlacement>false</isPlacement>
+    <ReplaceTileGid>0</ReplaceTileGid>
+    <CurrentIndexX>37</CurrentIndexX>
+    <CurrentIndexY>35</CurrentIndexY>
+    <OldIndexX>0</OldIndexX>
+    <OldIndexY>0</OldIndexY>
+    <Depth>0.1</Depth>
+    <TileInteraction>false</TileInteraction>
+  </HomeBackGroundTiles>
   <HomeTilesLoaded>false</HomeTilesLoaded>
   <HomeTilesetNumber>0</HomeTilesetNumber>
 </SaveData>
