@@ -16,10 +16,12 @@ namespace SecretProject.Class.SavingStuff
     {
         public string fileName;
         public SaveData mySave;
+        public string OutputMessage;
 
         public SaveLoadManager()
         {
             //mySave = new SaveData();
+            
         }
 
         public void Save()
@@ -36,7 +38,7 @@ namespace SecretProject.Class.SavingStuff
             FileStream fileStream = File.OpenWrite(@"Content/SaveFiles/BinarySave.txt");
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
-            GameSerializer.SavePlayer(Game1.Player, binaryWriter, 1);
+            GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
 
             binaryWriter.Flush();
             binaryWriter.Close();
@@ -47,7 +49,7 @@ namespace SecretProject.Class.SavingStuff
 
             FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.txt");
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            GameSerializer.LoadPlayer(Game1.Player, binaryReader, 1);
+            GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
 
             binaryReader.Close();
 
