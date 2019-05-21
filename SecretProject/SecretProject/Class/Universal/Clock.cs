@@ -14,7 +14,7 @@ namespace SecretProject.Class.Universal
 {
     public class Clock
     {
-        public int GlobalTime { get; private set; } = 0;
+        public int GlobalTime { get;  set; } = 0;
         public Vector2 ClockPosition;
 
         //public TimeSpan UnpausedTime;

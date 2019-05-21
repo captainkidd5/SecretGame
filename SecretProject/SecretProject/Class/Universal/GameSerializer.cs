@@ -187,6 +187,25 @@ namespace SecretProject.Class.Universal
             home.AllItems = AllItems;
         }
 
+        public static void WriteClock(Clock clock, BinaryWriter writer, float version)
+        {
+            writer.Write(clock.GlobalTime);
+            writer.Write(clock.TotalHours);
+            writer.Write(clock.TotalDays);
+        }
+
+        public static void ReadClock(Clock clock, BinaryReader reader, float version)
+        {
+            int globalTime = reader.ReadInt32();
+            int totalHours = reader.ReadInt32();
+            int totalDays = reader.ReadInt32();
+
+            clock.GlobalTime = globalTime;
+            clock.TotalHours = totalHours;
+            clock.TotalDays = totalDays;
+
+        }
+
 
 
 

@@ -40,6 +40,7 @@ namespace SecretProject.Class.SavingStuff
 
             GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
             GameSerializer.WriteStage(Game1.Iliad, binaryWriter, 1);
+            GameSerializer.WriteClock(Game1.GlobalClock, binaryWriter, 1);
 
             binaryWriter.Flush();
             binaryWriter.Close();
@@ -52,6 +53,7 @@ namespace SecretProject.Class.SavingStuff
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
             GameSerializer.ReadStage(Game1.Iliad, binaryReader, 1);
+            GameSerializer.ReadClock(Game1.GlobalClock, binaryReader, 1);
 
             binaryReader.Close();
 
