@@ -94,6 +94,7 @@ namespace SecretProject.Class.MenuStuff
             if(ReturnButton.isClicked)
             {
                 UserInterface.IsEscMenu = false;
+                isTextChanged = false;
             }
 
             if(SettingsButton.isClicked)

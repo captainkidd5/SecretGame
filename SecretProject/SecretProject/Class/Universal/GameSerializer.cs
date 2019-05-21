@@ -30,10 +30,6 @@ namespace SecretProject.Class.Universal
 
             WriteInventory(Game1.Player.Inventory, writer, OutputMessage, version);
 
-            
-            
-
-            
         }
 
         public static void ReadPlayer(Player player, BinaryReader reader, float version)
@@ -115,7 +111,8 @@ namespace SecretProject.Class.Universal
             item.TextureString = reader.ReadString();
             item.Price = reader.ReadInt32();
 
-            return item;
+            
+            return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
         }
 
 

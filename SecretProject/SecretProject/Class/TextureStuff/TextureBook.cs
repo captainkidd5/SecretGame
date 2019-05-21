@@ -69,6 +69,8 @@ namespace SecretProject.Class.TextureStuff
 
         public TmxMap LodgeInterior;
 
+        public TmxMap Sea;
+
         //TileSets
         public Texture2D MasterTileSet;
         public Texture2D LodgeInteriorTileSet;
@@ -122,6 +124,8 @@ namespace SecretProject.Class.TextureStuff
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
             LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
+
+           // Sea = new TmxMap("Content/Map/sea.tmx");
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");

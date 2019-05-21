@@ -60,6 +60,7 @@ namespace SecretProject
         LodgeInteior = 1,
         Iliad = 2,
         Exit = 3,
+        Sea = 4
     }
 
 
@@ -71,6 +72,7 @@ namespace SecretProject
         public static MainMenu mainMenu;
         public static Home Iliad;
         public static Home LodgeInterior;
+        public static Sea Sea;
         public static List<Home> AllStages;
         public static int CurrentStage;
         public static bool freeze = false;
@@ -175,6 +177,8 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     return Iliad;
+                case Stages.Sea:
+                    return Sea;
 
                 default:
                     return null;
@@ -194,6 +198,9 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     return 2;
+
+                case Stages.Sea:
+                    return 4;
 
                 default:
                     return 0;
@@ -248,6 +255,8 @@ namespace SecretProject
 
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
+            //Sea = new Sea(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
+
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
             Iliad = new Home(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
@@ -257,6 +266,8 @@ namespace SecretProject
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
+
+            
 
             AllStages = new List<Home>() { Iliad, LodgeInterior };
 
@@ -314,6 +325,11 @@ namespace SecretProject
                     GraphicsDevice.Clear(Color.Black);
                     Iliad.Update(gameTime, myMouseManager, this);
                     break;
+
+                case Stages.Sea:
+                    GraphicsDevice.Clear(Color.Black);
+                    Sea.Update(gameTime, myMouseManager, this);
+                    break;
             }
 
             base.Update(gameTime);
@@ -344,6 +360,13 @@ namespace SecretProject
                     Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     
                     
+                    break;
+
+
+                case Stages.Sea:
+                    Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+
+
                     break;
             }
 
