@@ -13,8 +13,6 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.SavingStuff
 {
-    [Serializable]
-    [XmlRoot("SaveModule")]
     public static class SaveModule
     {
         #region player

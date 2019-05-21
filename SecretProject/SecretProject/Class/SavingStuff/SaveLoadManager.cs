@@ -39,6 +39,7 @@ namespace SecretProject.Class.SavingStuff
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
             GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
+            GameSerializer.WriteStage(Game1.Iliad, binaryWriter, 1);
 
             binaryWriter.Flush();
             binaryWriter.Close();
@@ -50,6 +51,7 @@ namespace SecretProject.Class.SavingStuff
             FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.txt");
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
+            GameSerializer.ReadStage(Game1.Iliad, binaryReader, 1);
 
             binaryReader.Close();
 
