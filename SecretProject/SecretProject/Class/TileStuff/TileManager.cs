@@ -103,7 +103,6 @@ namespace SecretProject.Class.TileStuff
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
-            this.layerName = layerName;
 
             tileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
             tileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
@@ -142,23 +141,15 @@ namespace SecretProject.Class.TileStuff
                     
                 }
             } 
-                for (int g = 0; g < 500; g++)
-                {
-                int[] acceptableGenerationTiles = new int[16]
-                {
-                    6065,6066, 6067, 6068,
-                    6165,6166, 6167, 6168,
-                    6265,6266, 6267, 6268,
-                    6265,6266, 6267, 6268,
-                };
-                    //stone
-                    GenerateRandomTiles(1, 6675, acceptableGenerationTiles, 0);
-                    //grass
-                    GenerateRandomTiles(1, 6475, acceptableGenerationTiles, 0);
 
-                    //redrunestone
-                    GenerateRandomTiles(1, 5681, acceptableGenerationTiles, 0);
-                }
+            
+            //stone
+            GenerateTiles(1, 6675, "dirt", 500, 0);
+            //grass
+            GenerateTiles(1, 6475, "dirt", 1000, 0);
+            //redrunestone
+            GenerateTiles(1, 5681, "dirt", 50, 0);
+
             for (int z = 0; z < AllTiles.Count; z++)
             {
                 for (int i = 0; i < tilesetTilesWide; i++)
@@ -168,6 +159,7 @@ namespace SecretProject.Class.TileStuff
                         //if foreground
                         if (z == 3)
                         {
+                            //tile is red runestop bottom
                             if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
                             {
                                 AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
@@ -257,6 +249,38 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
         public bool TileInteraction { get; set; } = false;
+
+        public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty)
+        {
+            int[] acceptableGenerationTiles;
+            switch (placementKey)
+            {
+                case "dirt":
+                    acceptableGenerationTiles = new int[16]
+                {
+                    6065,6066, 6067, 6068,
+                    6165,6166, 6167, 6168,
+                    6265,6266, 6267, 6268,
+                    6265,6266, 6267, 6268,
+                };
+                    break;
+
+                default:
+                    acceptableGenerationTiles = new int[16]
+                {
+                    6065,6066, 6067, 6068,
+                    6165,6166, 6167, 6168,
+                    6265,6266, 6267, 6268,
+                    6265,6266, 6267, 6268,
+                };
+                    break;
+            }
+
+            for (int g = 0; g < frequency; g++)
+            {
+                GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, layerToCheckIfEmpty);
+            }
+        }
 
         #region LOADTILESOBJECTS
         public void LoadInitialTileObjects()
@@ -359,7 +383,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             return false;
-
         }
 
         #region UPDATE

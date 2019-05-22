@@ -327,7 +327,8 @@ namespace SecretProject.Class.UI
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
                     {
-                        for(int j =0; i < AllSlots[i].ItemCounter + 1; j +=0)
+                        int currentItemCount = AllSlots[i].ItemCounter;
+                        for(int j =0; j < currentItemCount; j ++)
                         {
                             inventory.currentInventory[i].RemoveItemFromSlot();
                             AllSlots[i].ItemCounter--;
