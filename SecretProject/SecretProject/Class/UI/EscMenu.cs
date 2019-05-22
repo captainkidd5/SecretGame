@@ -51,12 +51,12 @@ namespace SecretProject.Class.MenuStuff
 
             Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-            ReturnButton = new Button(ReturnButtonTexture, graphicsDevice, new Vector2(Utility.centerScreen.X, Utility.centerScreenY - 100));
+            ReturnButton = new Button(ReturnButtonTexture, graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.centerScreenY - 100));
             
-            SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, Utility.centerScreen);
+            SettingsButton = new Button(SettingsButtonTexture, graphicsDevice, Game1.Utility.centerScreen);
 
-            MenuButton = new Button(MenuButtonTexture, graphicsDevice, new Vector2(Utility.centerScreen.X, Utility.centerScreenY + 100));
-            ToggleFullScreenButton = new Button(ToggleFullScreenButtonTexture, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY + 200));
+            MenuButton = new Button(MenuButtonTexture, graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.centerScreenY + 100));
+            ToggleFullScreenButton = new Button(ToggleFullScreenButtonTexture, graphicsDevice, new Vector2(Game1.Utility.centerScreenX, Game1.Utility.centerScreenY + 200));
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";

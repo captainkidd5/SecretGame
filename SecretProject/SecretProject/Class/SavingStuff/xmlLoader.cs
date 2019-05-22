@@ -13,7 +13,7 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.SavingStuff
 {
-    public static class SaveModule
+    public static class xmlLoader
     {
         #region player
 

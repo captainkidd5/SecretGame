@@ -118,6 +118,7 @@ namespace SecretProject
 
         //TOOLS
         public static Random RGenerator = new Random();
+        public static Utility Utility;
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
 
@@ -154,6 +155,8 @@ namespace SecretProject
             //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
             myMouseManager = new MouseManager(cam, graphics.GraphicsDevice);
+
+            Utility = new Utility();
 
             //SCREEN
             ScreenHeight = graphics.PreferredBackBufferHeight;

@@ -7,23 +7,31 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.Universal
 {
-    public static class Utility
+    public class Utility
     {
-        public static int centerScreenX = 500;
-        public static int centerScreenY = 300;
+        public int centerScreenX = 500;
+        public int centerScreenY = 300;
+        public Vector2 centerScreen;
+        public Random RGenerator;
 
        // public static Color = new Color(100, 100, 100, 100);
 
-        public static Vector2 centerScreen = new Vector2(centerScreenX, centerScreenY);
+        public Utility()
+        {
+            RGenerator = new Random();
+            centerScreen = new Vector2(centerScreenX, centerScreenY);
+        }
 
-        public static bool HasProperty(object obj, string propertyName)
+         
+
+        public bool HasProperty(object obj, string propertyName)
         {
             return obj.GetType().GetProperty(propertyName) != null;
         }
 
-        public static Random RGenerator;
+        
 
-        public static int RNumber(int min, int max)
+        public int RNumber(int min, int max)
         {
             return RGenerator.Next(min, max - 1);
         }

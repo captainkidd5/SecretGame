@@ -15,7 +15,7 @@ using SecretProject.Class.Controls;
 
 
 using Microsoft.Xna.Framework.Content;
-
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -130,12 +130,25 @@ namespace SecretProject.Class.TileStuff
 
             }
 
+            if(this.IsBuilding)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    //stone
+                    GenerateRandomTiles(6675);
+                    GenerateRandomTiles(6475);
+                }
+            }
+            
+
             for (var i = 0; i < tilesetTilesWide; i++)
             {
                 for (var j = 0; j < tilesetTilesHigh; j++)
                 {
                     if (Tiles[i, j].GID != 0)
                     {
+                        
+
                         if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(Tiles[i, j].GID))
                         {
                             if (mapName.Tilesets[tileSetNumber].Tiles[Tiles[i, j].GID].Properties.ContainsKey("portal"))
@@ -283,10 +296,34 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
+        
 
-        public void GenerateRandomTiles(int tileX, int tileY)
+        public void GenerateRandomTiles(int id)
         {
+            int newTileX = Game1.Utility.RNumber(1, 100);
+            int newTileY = Game1.Utility.RNumber(1, 100);
 
+
+            if(CheckIfTileAlreadyExists(newTileX, newTileY))
+            {
+                //Tiles[newTileX, newTileY].GID = 6675;
+                Tiles[newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100, 0);
+
+            }
+            
+
+        }
+
+        public bool CheckIfTileAlreadyExists(int tileX, int tileY)
+        {
+            if (Tiles[tileX, tileY].GID != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
