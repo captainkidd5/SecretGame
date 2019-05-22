@@ -405,7 +405,7 @@ namespace SecretProject.Class.TileStuff
                                 CurrentIndexY = j;
 
                                 //IE layer is building.
-                                if (z == 1)
+                                if (z == 0)
                                 {
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
@@ -413,6 +413,8 @@ namespace SecretProject.Class.TileStuff
                                         Game1.userInterface.DrawTileSelector = true;
                                         Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                         Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+
+                                        Game1.myMouseManager.ToggleGeneralInteraction = true;
 
                                         //if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable")) //this whole thing is devastated, come back TODO
                                         //{
@@ -443,7 +445,9 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         Game1.isMyMouseVisible = false;
                                         //doesn't work because dirt isn't in building layer!
-
+                                        Game1.userInterface.DrawTileSelector = true;
+                                        Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                        Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
 
 
@@ -557,9 +561,9 @@ namespace SecretProject.Class.TileStuff
         {
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 6)
             {     
-                if (Tiles[oldX, oldY].TileProperties.Contains("diggable"))
+                if (AllTiles[layer][oldX, oldY].TileProperties.Contains("diggable"))
                 {
-                  if (Tiles[oldX, oldY].TileProperties.Contains("dirt"))
+                  if (AllTiles[layer][oldX, oldY].TileProperties.Contains("dirt"))
                   {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(layer, oldX, oldY, 6074);
