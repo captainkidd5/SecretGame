@@ -99,11 +99,7 @@ namespace SecretProject.Class.SavingStuff
             HomeTilesetTilesWide = Game1.Iliad.TilesetTilesWide;
             HomeTilesetTilesHigh = Game1.Iliad.TilesetTilesHigh;
 
-            HomeBackGroundTiles = Game1.Iliad.BackGroundTiles;
-            HomeBuildingsTiles = Game1.Iliad.BuildingsTiles;
-            HomeMidGroundTiles = Game1.Iliad.MidGroundTiles;
-            HomeForeGroundTiles = Game1.Iliad.ForeGroundTiles;
-            HomePlaceMentTiles = Game1.Iliad.PlacementTiles;
+
 
             HomeTilesetNumber = Game1.Iliad.TileSetNumber;
 

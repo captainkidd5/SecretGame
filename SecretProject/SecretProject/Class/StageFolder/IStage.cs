@@ -30,13 +30,7 @@ namespace SecretProject.Class.StageFolder
         int TilesetTilesHigh { get; set; }
 
         Texture2D TileSet { get; set; }
-        TileManager BackGroundTiles { get; set; }
-        TileManager BuildingsTiles { get; set; }
-        TileManager MidGroundTiles { get; set; }
-        TileManager ForeGroundTiles { get; set; }
-        TileManager PlacementTiles { get; set; }
 
-        List<TileManager> AllStageTiles { get; set; }
 
         TmxLayer Buildings { get; set; }
 
@@ -67,6 +61,10 @@ namespace SecretProject.Class.StageFolder
         Camera2D Cam { get; set; }
 
         int TileSetNumber { get; set; }
+
+        List<TmxLayer> AllLayers { get; set; }
+
+        TileManager AllTiles { get; set; }
 
 
 
