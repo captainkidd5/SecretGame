@@ -124,6 +124,7 @@ namespace SecretProject.Class.TileStuff
 
             foreach (TmxLayerTile layerNameTile in layerName.Tiles)
             {
+
                 Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
 
                 Tiles[layerNameTile.X, layerNameTile.Y] = tempTile;
@@ -136,6 +137,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     //stone
                     GenerateRandomTiles(6675);
+                    //grass
                     GenerateRandomTiles(6475);
                 }
             }
@@ -304,7 +306,7 @@ namespace SecretProject.Class.TileStuff
             int newTileY = Game1.Utility.RNumber(1, 100);
 
 
-            if(CheckIfTileAlreadyExists(newTileX, newTileY))
+            if(!CheckIfTileAlreadyExists(newTileX, newTileY))
             {
                 //Tiles[newTileX, newTileY].GID = 6675;
                 Tiles[newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100, 0);
@@ -316,7 +318,7 @@ namespace SecretProject.Class.TileStuff
 
         public bool CheckIfTileAlreadyExists(int tileX, int tileY)
         {
-            if (Tiles[tileX, tileY].GID != 0)
+            if (Tiles[tileX, tileY].GID != -1)
             {
                 return true;
             }
