@@ -13,7 +13,6 @@ using System.Xml.Serialization;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.Controls;
 
-
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Universal;
 
@@ -117,7 +116,6 @@ namespace SecretProject.Class.TileStuff
 
             this.tileCounter = 0;
 
-            
             this.graphicsDevice = graphicsDevice;
             this.content = content;
 
@@ -132,10 +130,7 @@ namespace SecretProject.Class.TileStuff
                 new Tile[100,100]
             };
 
-
             Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
-
-
 
             for(int i =0; i < AllTiles.Count; i++)
             {
@@ -146,33 +141,26 @@ namespace SecretProject.Class.TileStuff
 
                     
                 }
-            }
-
-            //foreach (TmxLayerTile layerNameTile in layerName.Tiles)
-            //{
-
-            //    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
-
-            //    Tiles[layerNameTile.X, layerNameTile.Y] = tempTile;
-
-            //}
-            //if (AllLayers[z] == AllLayers[1])
-            //{
+            } 
                 for (int g = 0; g < 500; g++)
                 {
+                int[] acceptableGenerationTiles = new int[16]
+                {
+                    6065,6066, 6067, 6068,
+                    6165,6166, 6167, 6168,
+                    6265,6266, 6267, 6268,
+                    6265,6266, 6267, 6268,
+                };
                     //stone
-                    GenerateRandomTiles(1, 6675);
+                    GenerateRandomTiles(1, 6675, acceptableGenerationTiles, 0);
                     //grass
-                    GenerateRandomTiles(1, 6475);
+                    GenerateRandomTiles(1, 6475, acceptableGenerationTiles, 0);
 
                     //redrunestone
-                    GenerateRandomTiles(1, 5681);
+                    GenerateRandomTiles(1, 5681, acceptableGenerationTiles, 0);
                 }
-            //}
-
             for (int z = 0; z < AllTiles.Count; z++)
             {
-
                 for (int i = 0; i < tilesetTilesWide; i++)
                 {
                     for (int j = 0; j < tilesetTilesHigh; j++)
@@ -187,15 +175,12 @@ namespace SecretProject.Class.TileStuff
                         }
                         if (AllTiles[z][i, j].GID != 0)
                         {
-
-
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("portal"))
                                 {
                                     AllTiles[z][i, j].IsPortal = true;
                                     AllTiles[z][i, j].portalDestination = mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["portal"];
-
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
                                 {///////////
@@ -225,7 +210,6 @@ namespace SecretProject.Class.TileStuff
 
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("start"))
                                     {
-
                                         AllTiles[z][i, j].IsAnimating = true;
 
                                     }
@@ -247,7 +231,6 @@ namespace SecretProject.Class.TileStuff
                                         AllTiles[z][i, j].TileProperties.Add("redRuneStone");
                                         AllTiles[z][i, j].AssociatedItem = 7;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-
                                     }
 
                                     else
@@ -269,9 +252,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-            }
-
-            
+            }      
             this.JaggedTiles = GetJaggedTiles();
         }
         #endregion
@@ -284,8 +265,6 @@ namespace SecretProject.Class.TileStuff
             {
                 if (z == 1)
                 {
-
-
                     for (var i = 0; i < tilesetTilesWide; i++)
                     {
                         for (var j = 0; j < tilesetTilesHigh; j++)
@@ -329,8 +308,6 @@ namespace SecretProject.Class.TileStuff
             {
                 if (mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][indexX, indexY].GID))
                 {
-
-
                     for (int k = 0; k < mapName.Tilesets[0].Tiles[AllTiles[z][indexX, indexY].GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = mapName.Tilesets[0].Tiles[AllTiles[z][indexX, indexY].GID].ObjectGroups[0].Objects[k];
@@ -347,22 +324,15 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
-        
-
-        public void GenerateRandomTiles(int layer, int id)
+        public void GenerateRandomTiles(int layer,  int id, int[] acceptableTiles, int comparisonLayer = 0)
         {
             int newTileX = Game1.Utility.RNumber(1, 100);
             int newTileY = Game1.Utility.RNumber(1, 100);
-
-
-            if(!CheckIfTileAlreadyExists(newTileX, newTileY, layer))
+            if(!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
                 //Tiles[newTileX, newTileY].GID = 6675;
                 AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100, 0);
-
             }
-            
-
         }
 
         //if the GID is anything other than -1 it means there's something there.
@@ -378,6 +348,19 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        //by default we're seeing if the background layer has an acceptable tile to overwrite
+        public bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, int[] gidArray, int comparisonLayer = 0)
+        {
+            for(int i=0; i<gidArray.Length; i++)
+            {
+                if(AllTiles[comparisonLayer][tileX, tileY].GID == gidArray[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
 
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -400,7 +383,6 @@ namespace SecretProject.Class.TileStuff
 
                             if (mouse.IsHoveringTile(AllTiles[z][i, j].DestinationRectangle))
                             {
-
                                 CurrentIndexX = i;
                                 CurrentIndexY = j;
 
@@ -437,7 +419,6 @@ namespace SecretProject.Class.TileStuff
                                         Game1.myMouseManager.TogglePlantInteraction = false;
                                     }
                                 }
-
                                 if (z == 1)
                                 {
 
@@ -486,7 +467,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-
         #endregion
 
         #region DRAW
@@ -510,7 +490,6 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            
         }
         #endregion
 
@@ -590,8 +569,6 @@ namespace SecretProject.Class.TileStuff
         //must be a building tile
         public void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY)
         {
-          //  if(mapName.Tilesets[0].Tiles.ContainsKey(tiles[oldX, oldY].GID)
-               // {
 
             
             if(AllTiles[layer][oldX, oldY].IsPortal)
@@ -624,7 +601,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
             {
 
@@ -652,17 +628,9 @@ namespace SecretProject.Class.TileStuff
 
         //specify which animations you want to use depending on where the player is in relation to the object
 
-
-
         public void SpecificInteraction(int layer, GameTime gameTime, int oldX, int oldY, string down, string right, string left, string up, float delayTimer  = 0f)
         {
-            //if(tiles[oldX,oldY].AssociatedTiles.Count > 0)
-            //{
-            //    for(int i = 0; i <= tiles[oldX, oldY].AssociatedTiles.Count; i++)
-            //    {
 
-            //    }
-            //}
             if (delayTimer != 0f)
             {
                 AllTiles[layer][oldX, oldY].DelayTimer = delayTimer;
@@ -689,9 +657,6 @@ namespace SecretProject.Class.TileStuff
                 Game1.Player.controls.Direction = Dir.Left;
             }
 
-
-
-
             //Game1.Player.IsMoving = false;
             if (Game1.Player.controls.Direction == Dir.Down)
             {
@@ -714,8 +679,6 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
         #region DESTROYTILES
-
-
 
         public void Destroy(int layer, int oldX, int oldY)
         {
@@ -758,10 +721,6 @@ namespace SecretProject.Class.TileStuff
             return dimensionalTiles;
         }
 
-                        
-   
     }
-        #endregion
-
-    
+        #endregion 
 }

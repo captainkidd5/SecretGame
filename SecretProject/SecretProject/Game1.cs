@@ -175,7 +175,7 @@ namespace SecretProject
         {
             Home newHome = new Home(graphics, content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
             Iliad = newHome;
-            //Iliad.BuildingsTiles.LoadInitialTileObjects(Iliad);
+            Iliad.AllTiles.LoadInitialTileObjects();
         }
 
         public static IStage GetCurrentStage()
