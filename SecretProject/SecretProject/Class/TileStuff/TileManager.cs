@@ -316,6 +316,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        //if the GID is anything other than -1 it means there's something there.
         public bool CheckIfTileAlreadyExists(int tileX, int tileY)
         {
             if (Tiles[tileX, tileY].GID != -1)

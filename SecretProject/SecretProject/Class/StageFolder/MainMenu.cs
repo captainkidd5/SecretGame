@@ -15,6 +15,7 @@ namespace SecretProject.Class.StageFolder
 
         //--------------------------------------
         //buttons
+        Button newGame;
         Button Join;
         Button Load;
         Button Exit;
@@ -28,11 +29,11 @@ namespace SecretProject.Class.StageFolder
 
         //--------------------------------------
         //button textures
-        Texture2D join;
-        Texture2D save;
-        Texture2D exit;
 
         SaveLoadManager mySave;
+
+        GraphicsDevice graphics;
+        ContentManager content;
         
 
 
@@ -41,17 +42,17 @@ namespace SecretProject.Class.StageFolder
         {
             //--------------------------------------
             //Load button textures
-            join = content.Load<Texture2D>("Button/basicButton");
-            save = content.Load<Texture2D>("Button/basicButton");
-            exit = content.Load<Texture2D>("Button/basicButton");
+            this.graphics = graphicsDevice;
+            this.content = content;
 
             //--------------------------------------
             //Initialize Buttons
-            Join = new Button(join, graphicsDevice, new Vector2(500, 100));
-            Load = new Button(save, graphicsDevice, new Vector2(500, 200));
-            Exit = new Button(exit, graphicsDevice, new Vector2(500, 300));
+            newGame = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 100));
+            Join = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 200));
+            Load = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 300));
+            Exit = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 400));
 
-            allButtons = new List<Button>() { Join, Load, Exit };
+            allButtons = new List<Button>() { Join, Load, Exit, newGame };
 
             //--------------------------------------
             //Load spritefonts
@@ -78,17 +79,24 @@ namespace SecretProject.Class.StageFolder
             if (Join.isClicked)
             {
                 Game1.gameStages = Stages.Iliad;
-                UserInterface.IsEscMenu = false;
+                Game1.userInterface.IsEscMenu = false;
             }
             if(Load.isClicked)
             {
                 mySave.Load();
                 Game1.gameStages = Stages.Iliad;
-                UserInterface.IsEscMenu = false;
+                Game1.userInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)
             {
                 game.Exit();
+            }
+
+            if(newGame.isClicked)
+            {
+                Game1.ReloadHome(graphics, content);
+                Game1.userInterface.IsEscMenu = false;
+                Game1.gameStages = Stages.Iliad;
             }
         }
 
@@ -100,10 +108,11 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Draw Buttons
-            
-            Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 322), Color.CornflowerBlue);
-            Join.Draw(spriteBatch, font, "New Game", new Vector2(525, 122), Color.CornflowerBlue);
-            Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 222), Color.CornflowerBlue);
+
+            newGame.Draw(spriteBatch, font, "New Game", new Vector2(545, 122), Color.CornflowerBlue);
+            Join.Draw(spriteBatch, font, "Resume Game", new Vector2(525, 222), Color.CornflowerBlue);
+            Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
+            Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 
 
             spriteBatch.End();

@@ -124,7 +124,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public Home(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
+        public Home(GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
         {
             //ORDER MATTERS!
             //Lists

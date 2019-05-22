@@ -48,6 +48,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D ShopMenuItemButton;
         public Texture2D RedEsc;
 
+        public Texture2D BasicButton;
+
         //Fonts
         public SpriteFont MenuText;
 
@@ -108,6 +110,8 @@ namespace SecretProject.Class.TextureStuff
             ShopMenu = content.Load<Texture2D>("Button/shopMenu");
             ShopMenuItemButton = content.Load<Texture2D>("Button/shopMenuItemButton");
             RedEsc = content.Load<Texture2D>("Button/redEsc");
+
+            BasicButton = content.Load<Texture2D>("Button/basicButton");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 

@@ -93,7 +93,7 @@ namespace SecretProject.Class.MenuStuff
 
             if(ReturnButton.isClicked)
             {
-                UserInterface.IsEscMenu = false;
+                Game1.userInterface.IsEscMenu = false;
                 isTextChanged = false;
             }
 

@@ -20,8 +20,8 @@ namespace SecretProject.Class.UI
 
         static bool isEscMenu;
 
-        public static bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
-        public static bool IsShopMenu { get; set; }
+        public bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
+        public bool IsShopMenu { get; set; }
 
         public bool DrawTileSelector { get; set; } = true;
 

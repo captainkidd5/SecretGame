@@ -21,6 +21,7 @@ using SecretProject.Class.SoundStuff;
 using SecretProject.Class.TextureStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SavingStuff;
+using Microsoft.Xna.Framework.Content;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -167,6 +168,15 @@ namespace SecretProject
             base.Initialize();
         }
         #endregion
+        
+
+        //use this sparingly for now. Seems to cause a buildup of memory.
+        public static void ReloadHome(GraphicsDevice graphics, ContentManager content)
+        {
+            Home newHome = new Home(graphics, content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
+            Iliad = newHome;
+            Iliad.BuildingsTiles.LoadInitialTileObjects(Iliad);
+        }
 
         public static IStage GetCurrentStage()
         {
@@ -262,9 +272,9 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Home(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
+            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
             Iliad.BuildingsTiles.LoadInitialTileObjects(Iliad);
-            LodgeInterior = new Home(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
+            LodgeInterior = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
             LodgeInterior.BuildingsTiles.LoadInitialTileObjects(LodgeInterior);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
