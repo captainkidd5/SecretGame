@@ -182,7 +182,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0);
+                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
                             }
                         }
                         if (AllTiles[z][i, j].GID != 0)
@@ -614,8 +614,8 @@ namespace SecretProject.Class.TileStuff
                 if(AllTiles[layer][oldX, oldY].TileProperties.Contains("redRuneStone") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
                 {
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
-                    //GeneralInteraction(3, gameTime, oldX, oldY - 1);
-                    ReplaceTilePermanent(3, oldX, oldY - 1, 0);
+                    GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+                    //ReplaceTilePermanent(3, oldX, oldY - 1, 0);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
                 }
             }
@@ -635,8 +635,12 @@ namespace SecretProject.Class.TileStuff
         }
 
         //interact without any player animations
-        public void GeneralInteraction(int layer, GameTime gameTime, int oldX, int oldY)
+        public void GeneralInteraction(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)
         {
+            if (delayTimer != 0f)
+            {
+                AllTiles[layer][oldX, oldY].DelayTimer = delayTimer;
+            }
             AllTiles[layer][oldX, oldY].IsAnimating = true;
             AllTiles[layer][oldX, oldY].KillAnimation = true;
 

@@ -35,7 +35,7 @@ namespace SecretProject.Class.SavingStuff
             //}
             
             //ORDER REALLY MATTERS
-            FileStream fileStream = File.OpenWrite(@"Content/SaveFiles/BinarySave.txt");
+            FileStream fileStream = File.OpenWrite(@"Content/SaveFiles/BinarySave.dat");
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
             GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
@@ -49,7 +49,7 @@ namespace SecretProject.Class.SavingStuff
         public void Load()
         {
 
-            FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.txt");
+            FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.dat");
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
             GameSerializer.ReadStage(Game1.Iliad, binaryReader, 1);
