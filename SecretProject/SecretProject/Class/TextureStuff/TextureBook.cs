@@ -63,6 +63,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D puzzleFish;
         public Texture2D grass;
         public Texture2D barrel;
+        public Texture2D redOrb;
 
         
 
@@ -124,6 +125,7 @@ namespace SecretProject.Class.TextureStuff
             puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
             grass = content.Load<Texture2D>("Item/grass");
             barrel = content.Load<Texture2D>("Item/Barrel");
+            redOrb = content.Load<Texture2D>("Item/Barrel");
 
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 

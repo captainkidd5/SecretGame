@@ -139,5 +139,19 @@
       <id>9</id>
       <TextureString>Item/BloomBerrySeedBag</TextureString>
     </Value>
+    </EntryOfStringItem>
+    <EntryOfStringItem Key="10">
+    <Value>
+      <Name>redOrb</Name>
+      <ID>10</ID>
+      <InvMaximum>15</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>10</id>
+      <TextureString>Item/RedOrb</TextureString>
+    </Value>
   </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

@@ -229,7 +229,7 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         //tiles[i, j].Properties.Add("redRuneStone", true);
                                         AllTiles[z][i, j].TileProperties.Add("redRuneStone");
-                                        AllTiles[z][i, j].AssociatedItem = 7;
+                                        AllTiles[z][i, j].AssociatedItem = 10;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                                     }
 
