@@ -513,9 +513,9 @@ namespace SecretProject.Class.TileStuff
         #region REPLACETILES
 
         
-        public void ReplaceTilePermanent(int layer, int oldX, int oldY)
+        public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
         }
 
@@ -604,10 +604,18 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 8)
             {
-                if ((AllTiles[layer][oldX, oldY].TileProperties.Contains("stone") || AllTiles[layer][oldX, oldY].TileProperties.Contains("redRuneStone")) && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if ((AllTiles[layer][oldX, oldY].TileProperties.Contains("stone") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating))
                 {
                     //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
+                }
+
+                if(AllTiles[layer][oldX, oldY].TileProperties.Contains("redRuneStone") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                {
+                    SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
+                    //GeneralInteraction(3, gameTime, oldX, oldY - 1);
+                    ReplaceTilePermanent(3, oldX, oldY - 1, 0);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
                 }
             }
@@ -709,7 +717,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                     Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true));
-                    ReplaceTilePermanent(layer, oldX, oldY);
+                    ReplaceTilePermanent(layer, oldX, oldY, 0);
                 }
             }
 
