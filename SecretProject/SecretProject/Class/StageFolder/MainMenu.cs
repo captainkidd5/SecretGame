@@ -109,8 +109,8 @@ namespace SecretProject.Class.StageFolder
             //--------------------------------------
             //Draw Buttons
 
-            newGame.Draw(spriteBatch, font, "New Game", new Vector2(545, 122), Color.CornflowerBlue);
-            Join.Draw(spriteBatch, font, "Resume Game", new Vector2(525, 222), Color.CornflowerBlue);
+            newGame.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
+            Join.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
             Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 
