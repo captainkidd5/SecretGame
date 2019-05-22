@@ -156,7 +156,19 @@ namespace SecretProject.Class.TileStuff
             //    Tiles[layerNameTile.X, layerNameTile.Y] = tempTile;
 
             //}
+            //if (AllLayers[z] == AllLayers[1])
+            //{
+                for (int g = 0; g < 500; g++)
+                {
+                    //stone
+                    GenerateRandomTiles(1, 6675);
+                    //grass
+                    GenerateRandomTiles(1, 6475);
 
+                    //redrunestone
+                    GenerateRandomTiles(1, 5681);
+                }
+            //}
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -165,19 +177,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < tilesetTilesHigh; j++)
                     {
-                        if (AllLayers[z] == AllLayers[1])
-                        {
-                            for (int g = 0; g < 5; g++)
-                            {
-                                //stone
-                                GenerateRandomTiles(1, 6675);
-                                //grass
-                                GenerateRandomTiles(1, 6475);
-
-                                //redrunestone
-                                GenerateRandomTiles(1, 5681);
-                            }
-                        }
+                        
 
                         //if(this.LayerIdentifier == 3)
                         //{
