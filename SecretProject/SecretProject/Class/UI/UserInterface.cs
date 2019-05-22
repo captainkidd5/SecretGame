@@ -72,7 +72,7 @@ namespace SecretProject.Class.UI
         {
             BottomBar.Update(gameTime, inventory, mouse);
 
-            if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
+            if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)) && !IsShopMenu)
             {
                 isEscMenu = !isEscMenu;
 
@@ -85,24 +85,32 @@ namespace SecretProject.Class.UI
             }
 
 
-            if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)))
+            if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
                 IsShopMenu = !IsShopMenu;
+            }
+
+            if((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
+            {
+                IsShopMenu = false;
+               
+                //isEscMenu = false;
             }
 
             if(IsShopMenu)
             {
                 ShopMenu.Update(gameTime,mouse);
-                Game1.freeze = !Game1.freeze;
+                Game1.isMyMouseVisible = true;
+                Game1.freeze = true;
             }
 
 
-                if (isEscMenu)
+            if (isEscMenu)
             {
                 Esc.Update(gameTime, mouse, game );
                 Game1.freeze = true;
             }
-            if(!isEscMenu)
+            if(!isEscMenu && !IsShopMenu)
             {
                 Game1.freeze = false;
 

@@ -133,7 +133,7 @@ namespace SecretProject.Class.TileStuff
 
             if(this.IsBuilding)
             {
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 1000; i++)
                 {
                     //stone
                     GenerateRandomTiles(6675);

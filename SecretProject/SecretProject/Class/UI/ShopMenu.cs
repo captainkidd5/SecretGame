@@ -29,7 +29,7 @@ namespace SecretProject.Class.UI
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.centerScreenX, Game1.Utility.centerScreenY));
+            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.centerScreenX + 550, Game1.Utility.centerScreenY - 280));
             this.mainFont = Game1.AllTextures.MenuText;
             ShopMenuPosition = new Vector2(Game1.Utility.centerScreenX - 432, Game1.Utility.centerScreenY - 270);
 
@@ -92,6 +92,13 @@ namespace SecretProject.Class.UI
                     //ShopInventory.currentInventory
                 }
             }
+
+            redEsc.Update(mouse);
+
+            if(redEsc.isClicked)
+            {
+                Game1.userInterface.IsShopMenu = false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -110,6 +117,8 @@ namespace SecretProject.Class.UI
                 }
                 
             }
+
+            redEsc.Draw(spriteBatch);
         }
 
         public void TryAddStock(int id, int amountToAdd)
