@@ -177,18 +177,14 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < tilesetTilesHigh; j++)
                     {
-                        
-
-                        //if(this.LayerIdentifier == 3)
-                        //{
-                        //    if (i + 10 < Game1.Iliad.BuildingsTiles.LayerIdentifier == 1)
-                        //    {
-                        //        if (Game1.Iliad.BuildingsTiles.Tiles[i, j + 10].GID == 5681)
-                        //        {
-                        //            Tiles[i, j].GID = 5581;
-                        //        }
-                        //    }
-                        //}
+                        //if foreground
+                        if (z == 3)
+                        {
+                            if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
+                            {
+                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0);
+                            }
+                        }
                         if (AllTiles[z][i, j].GID != 0)
                         {
 
@@ -286,35 +282,40 @@ namespace SecretProject.Class.TileStuff
         {
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (var i = 0; i < tilesetTilesWide; i++)
+                if (z == 1)
                 {
-                    for (var j = 0; j < tilesetTilesHigh; j++)
+
+
+                    for (var i = 0; i < tilesetTilesWide; i++)
                     {
-                        if (AllTiles[z][i, j].GID != 0)
+                        for (var j = 0; j < tilesetTilesHigh; j++)
                         {
-                            if (mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                            if (AllTiles[z][i, j].GID != 0)
                             {
-                                if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
+                                if (mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
-
-
-                                    for (int k = 0; k < mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                    if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
                                     {
-                                        TmxObject tempObj = mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
 
-                                        AllTiles[z][i, j].TileObject = new ObjectBody(graphicsDevice,
-                                            new Rectangle(AllTiles[z][i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                                            AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                            (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
 
-                                        Game1.Iliad.AllObjects.Add(AllTiles[z][i, j].TileObject);
+                                        for (int k = 0; k < mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                        {
+                                            TmxObject tempObj = mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
 
+                                            AllTiles[z][i, j].TileObject = new ObjectBody(graphicsDevice,
+                                                new Rectangle(AllTiles[z][i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                                                AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                                                (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
+
+                                            Game1.Iliad.AllObjects.Add(AllTiles[z][i, j].TileObject);
+
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
+                    }
                 }
             }
         }
