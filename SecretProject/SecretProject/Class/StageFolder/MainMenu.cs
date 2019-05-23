@@ -15,8 +15,8 @@ namespace SecretProject.Class.StageFolder
 
         //--------------------------------------
         //buttons
-        Button newGame;
-        Button Join;
+        Button reloadMap;
+        Button resumeGame;
         Button Load;
         Button Exit;
         
@@ -47,12 +47,12 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Initialize Buttons
-            newGame = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 100));
-            Join = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 200));
+            reloadMap = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 100));
+            resumeGame = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 200));
             Load = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 300));
             Exit = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 400));
 
-            allButtons = new List<Button>() { Join, Load, Exit, newGame };
+            allButtons = new List<Button>() { resumeGame, Load, Exit, reloadMap };
 
             //--------------------------------------
             //Load spritefonts
@@ -76,7 +76,7 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Check Conditions
-            if (Join.isClicked)
+            if (resumeGame.isClicked)
             {
                 Game1.gameStages = Stages.Iliad;
                 Game1.userInterface.IsEscMenu = false;
@@ -92,7 +92,7 @@ namespace SecretProject.Class.StageFolder
                 game.Exit();
             }
 
-            if(newGame.isClicked)
+            if(reloadMap.isClicked)
             {
                 Game1.ReloadHome(graphics, content);
                 Game1.userInterface.IsEscMenu = false;
@@ -109,8 +109,8 @@ namespace SecretProject.Class.StageFolder
             //--------------------------------------
             //Draw Buttons
 
-            newGame.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
-            Join.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
+            reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
+            resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
             Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
             Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 
