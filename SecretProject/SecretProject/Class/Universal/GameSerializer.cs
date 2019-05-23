@@ -176,7 +176,7 @@ namespace SecretProject.Class.Universal
         public static void WriteStage(Home home, BinaryWriter writer, float version)
         {
             writer.Write(home.AllItems.Count);
-            for(int i=0; i< home.AllItems.Count; i++)
+            for (int i = 0; i < home.AllItems.Count; i++)
             {
                 WriteWorldItem(home.AllItems[i], writer, version);
                 //writer.Write(home.AllItems[i].WorldPosition.X);
@@ -185,11 +185,54 @@ namespace SecretProject.Class.Universal
             }
             ///works up until here for sure
             ///
+            //writer.Write(home.allti)
+            writer.Write(home.AllTiles.AllTiles.Count);
+            writer.Write(home.AllTiles.tilesetTilesWide);
+            writer.Write(home.AllTiles.tilesetTilesHigh);
 
+            for (int z = 0; z < home.AllTiles.AllTiles.Count; z++)
+            {
+                for (int i = 0; i < home.AllTiles.tilesetTilesWide; i++)
+                {
+                    for (int j = 0; j < home.AllTiles.tilesetTilesHigh; j++)
+                    {
+                        WriteTile(home.AllTiles.AllTiles[z][i, j], writer, version);
 
-
+                    }
+                }
+            }
         }
 
+        public static void ReadStage(Home home, GraphicsDevice graphics, BinaryReader reader, float version)
+        {
+            List<Item> AllItems = new List<Item>();
+            int allItemsCount = reader.ReadInt32();
+            for (int i = 0; i < allItemsCount; i++)
+            {
+                AllItems.Add(ReadWorldItem(reader, version));
+            }
+
+            home.AllItems = AllItems;
+
+            int allTilesCount = reader.ReadInt32();
+            int tileSetTilesWide = reader.ReadInt32();
+            int tileSetTilesHigh = reader.ReadInt32();
+            
+
+            for (int z = 0; z < home.AllTiles.AllTiles.Count; z++)
+            {
+                for (int i = 0; i < home.AllTiles.tilesetTilesWide; i++)
+                {
+                    for (int j = 0; j < home.AllTiles.tilesetTilesHigh; j++)
+                    {
+                        home.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version);
+                    }
+                }
+            }
+                        
+
+            ///works up until here for sure
+        }
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)
         {
             writer.Write(tile.X);
@@ -233,10 +276,6 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Stone);
             writer.Write(tile.Diggable);
             writer.Write(tile.RedRuneStone);
-
-            
-
-            //objectbody read this by creating object the same object was created in tilemanager
 
             if(tile.HasObject)
             {
@@ -312,29 +351,41 @@ namespace SecretProject.Class.Universal
                 ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
             }
 
+            newTile.IsSelected = isSelected;
+            newTile.TileFrame = tileFrame;
+            newTile.TileHeight = tileHeight;
+            newTile.TileWidth = tileWidth;
+            newTile.TileNumber = tileNumber;
+            newTile.IsAnimated = isAnimated;
+            newTile.IsAnimating = isAnimating;
+            newTile.IsFinishedAnimating = isFinishedAnimating;
+            newTile.KillAnimation = killAnimation;
+            newTile.DelayTimer = delayTimer;
+            newTile.Plantable = plantable;
+            newTile.AssociatedItem = associatedItem;
+            newTile.Timer = timer;
+            newTile.CurrentFrame = currentFrame;
+            newTile.TotalFrames = totalFrames;
+            newTile.AddAmount = addAmount;
+            newTile.Speed = speed;
+            newTile.Probability = probability;
+            newTile.HasSound = hasSound;
+            newTile.ColorMultiplier = colorMultiplier;
+            newTile.IsTemporary = isTemporary;
+            newTile.IsPortal = isPortal;
+            newTile.portalDestination = portalDestination;
+            newTile.Dirt = dirt;
+            newTile.Grass = grass;
+            newTile.Stone = stone;
+            newTile.Diggable = diggable;
+            newTile.RedRuneStone = redRuneStone;
 
-
-
-
+            return newTile;
+            
         }
 
 
-
-
-
-        public static void ReadStage(Home home, GraphicsDevice graphics, BinaryReader reader, float version)
-        {
-            List<Item> AllItems = new List<Item>();
-            int allItemsCount = reader.ReadInt32();
-            for(int i=0; i < allItemsCount; i++)
-            {
-                AllItems.Add(ReadWorldItem(reader, version));
-            }
-
-            home.AllItems = AllItems;
-
-            ///works up until here for sure
-        }
+        
 
 
 

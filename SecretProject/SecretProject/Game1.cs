@@ -379,7 +379,7 @@ namespace SecretProject
                 //    Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
 
 
-                    break;
+                  //break;
             }
 
             Game1.DebugWindow.Draw(spriteBatch);

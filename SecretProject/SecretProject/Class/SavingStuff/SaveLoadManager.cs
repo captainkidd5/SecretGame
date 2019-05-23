@@ -9,6 +9,7 @@ using SecretProject.Class.Playable;
 using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -46,13 +47,13 @@ namespace SecretProject.Class.SavingStuff
             binaryWriter.Close();
         }
 
-        public void Load()
+        public void Load(GraphicsDevice graphics)
         {
 
             FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.dat");
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
-            GameSerializer.ReadStage(Game1.Iliad, binaryReader, 1);
+            GameSerializer.ReadStage(Game1.Iliad, graphics, binaryReader, 1);
             GameSerializer.ReadClock(Game1.GlobalClock, binaryReader, 1);
 
             binaryReader.Close();

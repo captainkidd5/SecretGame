@@ -83,7 +83,7 @@ namespace SecretProject.Class.StageFolder
             }
             if(Load.isClicked)
             {
-                mySave.Load();
+                mySave.Load(graphics);
                 Game1.gameStages = Stages.Iliad;
                 Game1.userInterface.IsEscMenu = false;
             }

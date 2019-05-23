@@ -75,8 +75,7 @@ namespace SecretProject.Class.TileStuff
 
         //[XmlIgnore]
         //public Dictionary<string, bool> Properties;
-        [XmlArray("TileProperties")]
-        public List<string> TileProperties;
+
 
        // public List<Tile> AssociatedTiles;
 
@@ -123,9 +122,6 @@ namespace SecretProject.Class.TileStuff
 
             TileColor = Color.White * ColorMultiplier;
 
-            //Properties = new Dictionary<string, bool>();
-            TileProperties = new List<string>();
-            //AssociatedTiles = new List<Tile>();
 
         }
 
