@@ -14,7 +14,7 @@ namespace SecretProject.Class.UI
 {
     public class ShopMenu
     {
-        private List<Button> allShopMenuItemButtons;
+        public List<Button> allShopMenuItemButtons;
         //private Button shopMenuItemButton;
         private Button redEsc;
         private SpriteFont mainFont;
@@ -31,7 +31,7 @@ namespace SecretProject.Class.UI
             this.Name = name;
             this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.centerScreenX + 550, Game1.Utility.centerScreenY - 280));
             this.mainFont = Game1.AllTextures.MenuText;
-            ShopMenuPosition = new Vector2(Game1.Utility.centerScreenX - 432, Game1.Utility.centerScreenY - 270);
+            ShopMenuPosition = new Vector2(Game1.Utility.centerScreenX - 432, Game1.Utility.centerScreenY - 300);
 
             Font = Game1.AllTextures.MenuText;
 
@@ -108,8 +108,8 @@ namespace SecretProject.Class.UI
             {
                 if(allShopMenuItemButtons[i].ItemCounter != 0)
                 {
-                   allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
-                    new Vector2(allShopMenuItemButtons[i].Position.X +45, allShopMenuItemButtons[i].Position.Y + 80), ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price);
+                   allShopMenuItemButtons[i].Draw(spriteBatch, Font, "\n \n Stock: " + allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
+                    new Vector2(allShopMenuItemButtons[i].Position.X +45, allShopMenuItemButtons[i].Position.Y + 80), "Price: " + ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price.ToString());
                 }
                 else
                 {
@@ -126,8 +126,15 @@ namespace SecretProject.Class.UI
             for(int i = 0; i < amountToAdd; i++)
             {
                 this.ShopInventory.TryAddItem(Game1.ItemVault.GenerateNewItem(id, null, false));
+
             }
             
+        }
+
+        public int TrySellToShop(int id, int amountToSell)
+        {
+            TryAddStock(id, amountToSell);
+            return (Game1.ItemVault.GenerateNewItem(id, null, false).Price);
         }
 
 

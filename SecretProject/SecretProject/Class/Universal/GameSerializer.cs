@@ -409,19 +409,6 @@ namespace SecretProject.Class.Universal
             
         }
 
-
-        
-
-
-
-
-
-
-
-
-
-
-
         public static void WriteClock(Clock clock, BinaryWriter writer, float version)
         {
             writer.Write(clock.GlobalTime);
@@ -440,10 +427,6 @@ namespace SecretProject.Class.Universal
             clock.TotalDays = totalDays;
 
         }
-
-
-
-
 
 
     }

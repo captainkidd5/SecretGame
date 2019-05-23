@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff
             //grass
             GenerateTiles(1, 6475, "dirt", 1000, 0);
             //redrunestone
-            GenerateTiles(1, 5681, "dirt", 10000, 0);
+            GenerateTiles(1, 5681, "dirt", 200, 0);
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -527,7 +527,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            Tile ReplaceMenttile = new Tile(Tiles[oldX, oldY].OldX, Tiles[oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier};
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier};
 
             TempTile = AllTiles[layer][oldX, oldY];
 

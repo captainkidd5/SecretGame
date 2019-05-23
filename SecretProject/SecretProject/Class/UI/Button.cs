@@ -69,11 +69,8 @@ namespace SecretProject.Class.MenuStuff
             else if (mouse.IsHovering(Rectangle) && isClicked == false)
             {
                 Color = Color.White * .5f;
-                
-            }
-            else if(mouse.IsHovering(Rectangle))
-            {
                 IsHovered = true;
+
             }
             else
             {
@@ -112,12 +109,12 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.DrawString(font, text, fontLocation, tint);
         }
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, int price)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, string price)
         {
 
             spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
             spriteBatch.DrawString(font, text, fontLocation, tint);
-            spriteBatch.DrawString(font, price.ToString(), priceLocation, Color.OrangeRed);
+            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed);
         }
 
     }

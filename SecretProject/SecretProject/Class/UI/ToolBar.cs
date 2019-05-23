@@ -322,10 +322,10 @@ namespace SecretProject.Class.UI
             for (int i = 0; i < 7; i++)
             {
 
-                if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
+                if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0 )
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
-                    if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
+                    if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && !Game1.userInterface.IsShopMenu)
                     {
                         int currentItemCount = AllSlots[i].ItemCounter;
                         for(int j =0; j < currentItemCount; j ++)
@@ -338,6 +338,22 @@ namespace SecretProject.Class.UI
                             }
                         }
                     }
+                    //doesnt work yet
+                    if (Game1.userInterface.IsShopMenu)
+                    {
+                        for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
+                        {
+                            if(Game1.userInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
+                            {
+                                Game1.Player.Inventory.Money += Game1.userInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
+                                inventory.currentInventory[i].RemoveItemFromSlot();
+                                AllSlots[i].ItemCounter--;
+                                break;
+                            }
+                        }
+                    }
+                        
+
                     else
                     {
                         inventory.currentInventory[i].RemoveItemFromSlot();
@@ -370,16 +386,16 @@ namespace SecretProject.Class.UI
                         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         // tempItem.ItemSprite.Color = Color.White * .5f;
                         //Draw building tiles of placeable object
-                      //  int j = 0;
-                       // int k = 0;
+                        int j = 0;
+                        int k = 0;
 
-                       // for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
-                       // {
-                        //    for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
-                         //   {
-                         //       Iliad.PlacementTiles.ReplaceTileTemporary(Iliad.PlacementTiles.CurrentIndexX + k, Iliad.PlacementTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
-                           // }
-                      //  }
+                        for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
+                        {
+                            for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
+                            {
+                                Game1.GetCurrentStage().AllTiles.ReplaceTileTemporary(4, Game1.GetCurrentStage().AllTiles.CurrentIndexX + k,Game1.GetCurrentStage().AllTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
+                            }
+                        }
 
                     }
 
