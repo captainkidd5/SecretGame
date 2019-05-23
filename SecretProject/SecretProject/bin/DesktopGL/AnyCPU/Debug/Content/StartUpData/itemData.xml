@@ -138,7 +138,7 @@
       <Price>10</Price>
       <id>9</id>
       <TextureString>Item/BloomBerrySeedBag</TextureString>
-    </Value>
+    </Value>/.//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////,
     </EntryOfStringItem>
     <EntryOfStringItem Key="10">
     <Value>
@@ -152,6 +152,20 @@
       <Price>2</Price>
       <id>10</id>
       <TextureString>Item/RedOrb</TextureString>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="11">
+    <Value>
+      <Name>blueOrb</Name>
+      <ID>11</ID>
+      <InvMaximum>15</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>11</id>
+      <TextureString>Item/BlueOrb</TextureString>
     </Value>
   </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

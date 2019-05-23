@@ -300,8 +300,9 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Stone);
             writer.Write(tile.Diggable);
             writer.Write(tile.RedRuneStone);
+            writer.Write(tile.BlueRuneStone);
 
-            if(tile.HasObject)
+            if (tile.HasObject)
             {
                 writer.Write(tile.HasObject);
 
@@ -361,6 +362,7 @@ namespace SecretProject.Class.Universal
             bool stone = reader.ReadBoolean();
             bool diggable = reader.ReadBoolean();
             bool redRuneStone = reader.ReadBoolean();
+            bool blueRuneStone = reader.ReadBoolean();
             bool hasObject = reader.ReadBoolean();
 
             newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, mapWidth, mapHeight, tileNumber);

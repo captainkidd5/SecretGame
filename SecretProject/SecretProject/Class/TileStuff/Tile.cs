@@ -71,13 +71,14 @@ namespace SecretProject.Class.TileStuff
         public bool Stone { get; set; } = false;
         public bool Diggable { get; set; } = false;
         public bool RedRuneStone { get; set; } = false;
+        public bool BlueRuneStone { get; set; } = false;
 
 
         //[XmlIgnore]
         //public Dictionary<string, bool> Properties;
 
 
-       // public List<Tile> AssociatedTiles;
+        // public List<Tile> AssociatedTiles;
 
         //  public bool WasJustReplaced { get; set; } = false;
 

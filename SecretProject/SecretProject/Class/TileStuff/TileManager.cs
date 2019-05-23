@@ -149,6 +149,7 @@ namespace SecretProject.Class.TileStuff
             GenerateTiles(1, 6475, "dirt", 1000, 0);
             //redrunestone
             GenerateTiles(1, 5681, "dirt", 200, 0);
+            GenerateTiles(1, 5881, "dirt", 1000, 0);
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -163,6 +164,10 @@ namespace SecretProject.Class.TileStuff
                             if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
                             {
                                 AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
+                            }
+                            if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
+                            {
+                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
                             }
                         }
                         if (AllTiles[z][i, j].GID != 0)
@@ -223,6 +228,14 @@ namespace SecretProject.Class.TileStuff
                                         AllTiles[z][i, j].AssociatedItem = 10;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                                     }
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("blueRuneStone"))
+                                    {
+                                        //tiles[i, j].Properties.Add("redRuneStone", true);
+                                        AllTiles[z][i, j].BlueRuneStone = true;
+                                        AllTiles[z][i, j].AssociatedItem = 11;
+                                        // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
+                                    }
+
 
                                     //TODO: Make sounds when the player walks
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
@@ -608,6 +621,14 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 if(AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                {
+                    SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
+                    GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+                    //ReplaceTilePermanent(3, oldX, oldY - 1, 0);
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
+                }
+
+                if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
                 {
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
                     GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);

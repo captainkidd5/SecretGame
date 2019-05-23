@@ -338,8 +338,28 @@ namespace SecretProject.Class.UI
                             }
                         }
                     }
-                    //doesnt work yet
-                    else if (Game1.userInterface.IsShopMenu)
+                    //work on shift click selling to shop
+                    else if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.userInterface.IsShopMenu)
+                    {
+                        for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
+                        {
+                            if (Game1.userInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
+                            {
+                                int currentItemCount = AllSlots[i].ItemCounter;
+
+                                for(int d = 0; d < currentItemCount; d++)
+                                {
+                                    Game1.Player.Inventory.Money += Game1.userInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
+                                    inventory.currentInventory[i].RemoveItemFromSlot();
+                                    AllSlots[i].ItemCounter--;
+                                }
+                                
+                                break;
+                            }
+                        }
+                    }
+
+                    else if (!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.userInterface.IsShopMenu)
                     {
                         for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
                         {

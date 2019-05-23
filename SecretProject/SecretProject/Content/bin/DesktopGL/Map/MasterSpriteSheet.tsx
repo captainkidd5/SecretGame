@@ -12,6 +12,17 @@
    <object id="1" x="1" y="0" width="14" height="12"/>
   </objectgroup>
  </tile>
+ <tile id="5880">
+  <properties>
+   <property name="Animated" value="7"/>
+   <property name="AssociatedTiles" value="5780"/>
+   <property name="Speed" value=".15"/>
+   <property name="blueRuneStone" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1" y="0" width="14" height="9"/>
+  </objectgroup>
+ </tile>
  <tile id="6065">
   <properties>
    <property name="diggable" value="dirt"/>
