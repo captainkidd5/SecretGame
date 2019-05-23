@@ -177,15 +177,14 @@ namespace SecretProject.Class.TileStuff
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
                                 {///////////
                                     AllTiles[z][i, j].Plantable = true;
-                                    AllTiles[z][i, j].TileProperties.Add("plantable");
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable"))
                                 {
-                                    AllTiles[z][i, j].TileProperties.Add("diggable");
+                                    AllTiles[z][i, j].Diggable = true;
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsValue("dirt"))
                                 {
-                                    AllTiles[z][i, j].TileProperties.Add("dirt");
+                                    AllTiles[z][i, j].Dirt = true;
                                 }
 
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Probability"))
@@ -208,26 +207,21 @@ namespace SecretProject.Class.TileStuff
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("grass"))
                                     {
                                         //tiles[i, j].Properties.Add("grass", true);
-                                        AllTiles[z][i, j].TileProperties.Add("grass");
+                                        AllTiles[z][i, j].Grass = true;
                                         AllTiles[z][i, j].AssociatedItem = 2;
                                     }
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("stone"))
                                     {
                                         //tiles[i, j].Properties.Add("stone", true);
-                                        AllTiles[z][i, j].TileProperties.Add("stone");
+                                        AllTiles[z][i, j].Stone = true;
                                         AllTiles[z][i, j].AssociatedItem = 7;
                                     }
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("redRuneStone"))
                                     {
                                         //tiles[i, j].Properties.Add("redRuneStone", true);
-                                        AllTiles[z][i, j].TileProperties.Add("redRuneStone");
+                                        AllTiles[z][i, j].RedRuneStone = true;
                                         AllTiles[z][i, j].AssociatedItem = 10;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-                                    }
-
-                                    else
-                                    {
-                                        AllTiles[z][i, j].IsAnimating = false;
                                     }
 
                                     //TODO: Make sounds when the player walks
@@ -235,10 +229,7 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         AllTiles[z][i, j].HasSound = true;
                                     }
-                                    else
-                                    {
-                                        AllTiles[z][i, j].HasSound = false;
-                                    }
+
                                 }
                             }
                         }
@@ -310,6 +301,7 @@ namespace SecretProject.Class.TileStuff
                                                 AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                                                 (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
 
+                                            AllTiles[z][i, j].HasObject = true;
                                             Game1.Iliad.AllObjects.Add(AllTiles[z][i, j].TileObject);
 
                                         }
@@ -340,7 +332,7 @@ namespace SecretProject.Class.TileStuff
                             new Rectangle(AllTiles[z][indexX, indexY].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                             AllTiles[z][indexX, indexY].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height)), AllTiles[z][indexX, indexY].DestinationRectangle.X);
-
+                        AllTiles[z][indexX, indexY].HasObject = true;
                         Game1.Iliad.AllObjects.Add(AllTiles[z][indexX, indexY].TileObject);
                     }
                 }
@@ -563,13 +555,13 @@ namespace SecretProject.Class.TileStuff
         {
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 6)
             {     
-                if (AllTiles[layer][oldX, oldY].TileProperties.Contains("diggable"))
+                if (AllTiles[layer][oldX, oldY].Diggable)
                 {
-                  if (AllTiles[layer][oldX, oldY].TileProperties.Contains("dirt"))
+                  if (AllTiles[layer][oldX, oldY].Dirt)
                   {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(layer, oldX, oldY, 6074);
-                        AllTiles[layer][oldX, oldY].TileProperties.Add("plantable");
+                        AllTiles[layer][oldX, oldY].Plantable = true;
                   }
 
                 }
@@ -577,7 +569,7 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 9)
             {
-                if (AllTiles[layer][oldX, oldY].TileProperties.Contains("plantable"))
+                if (AllTiles[layer][oldX, oldY].Plantable)
                 {
 
                         //Game1.myMouseManager.TogglePlantInteraction = true;
@@ -608,14 +600,14 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 8)
             {
-                if ((AllTiles[layer][oldX, oldY].TileProperties.Contains("stone") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating))
+                if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating))
                 {
                     //SpecificInteraction(gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp");
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
                 }
 
-                if(AllTiles[layer][oldX, oldY].TileProperties.Contains("redRuneStone") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if(AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
                 {
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
                     GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
@@ -627,7 +619,7 @@ namespace SecretProject.Class.TileStuff
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
             {
 
-                if (AllTiles[layer][oldX,oldY].TileProperties.Contains("grass") && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if (AllTiles[layer][oldX,oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
                 {
                     SpecificInteraction(layer, gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp", .25f);
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassBreakInstance, false, 1);
@@ -707,12 +699,12 @@ namespace SecretProject.Class.TileStuff
         {
             if (AllTiles[layer][oldX, oldY].IsFinishedAnimating)
             {
-                if(AllTiles[layer][oldX, oldY].TileProperties.Count > 0)
-                {
+
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
+                AllTiles[layer][oldX, oldY].HasObject = false;
                     Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true));
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
-                }
+                
             }
 
         }

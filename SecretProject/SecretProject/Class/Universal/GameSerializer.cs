@@ -8,6 +8,7 @@ using SecretProject.Class.Playable;
 using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.Universal
 {
@@ -162,6 +163,13 @@ namespace SecretProject.Class.Universal
             return Game1.ItemVault.GenerateNewItem(item.ID, item.WorldPosition, true);
         }
 
+
+
+
+
+
+
+
         //just do items for now
         public static void WriteStage(Home home, BinaryWriter writer, float version)
         {
@@ -173,7 +181,64 @@ namespace SecretProject.Class.Universal
                 //writer.Write(home.AllItems[i].WorldPosition.Y);
 
             }
+            ///works up until here for sure
+            ///
+
+
+
         }
+
+        public static void WriteTile(Tile tile, BinaryWriter writer, float version)
+        {
+            writer.Write(tile.X);
+            writer.Write(tile.Y);
+            writer.Write(tile.GID);
+            writer.Write(tile.IsSelected);
+            writer.Write(tile.TilesetTilesWide);
+            writer.Write(tile.TilesetTilesHigh);
+            writer.Write(tile.MapWidth);
+            writer.Write(tile.MapHeight);
+            writer.Write(tile.TileFrame);
+            writer.Write(tile.TileHeight);
+            writer.Write(tile.TileWidth);
+            writer.Write(tile.Column);
+            writer.Write(tile.Row);
+            writer.Write(tile.TileNumber);
+            writer.Write(tile.OldY);
+            writer.Write(tile.OldY1);
+            writer.Write(tile.OldX);
+            writer.Write(tile.IsAnimated);
+            writer.Write(tile.IsAnimating);
+            writer.Write(tile.IsFinishedAnimating);
+            writer.Write(tile.KillAnimation);
+            writer.Write(tile.DelayTimer);
+            writer.Write(tile.Plantable);
+            writer.Write(tile.AssociatedItem);
+            writer.Write(tile.Timer);
+            writer.Write(tile.CurrentFrame);
+            writer.Write(tile.TotalFrames);
+            writer.Write(tile.AddAmount);
+            writer.Write(tile.Speed);
+            writer.Write(tile.Probability);
+            writer.Write(tile.HasSound);
+            //skipping color 
+            writer.Write(tile.IsTemporary);
+            writer.Write(tile.IsPortal);
+            writer.Write(tile.portalDestination);
+            writer.Write(tile.Dirt);
+            writer.Write(tile.Grass);
+            writer.Write(tile.Stone);
+            writer.Write(tile.Diggable);
+            writer.Write(tile.RedRuneStone);
+
+            //objectbody - we can do this later?
+
+           // writer.Write()
+        }
+
+
+
+
 
         public static void ReadStage(Home home, BinaryReader reader, float version)
         {
@@ -185,7 +250,19 @@ namespace SecretProject.Class.Universal
             }
 
             home.AllItems = AllItems;
+
+            ///works up until here for sure
         }
+
+
+
+
+
+
+
+
+
+
 
         public static void WriteClock(Clock clock, BinaryWriter writer, float version)
         {
