@@ -237,7 +237,7 @@ namespace SecretProject.Class.Universal
         {
             writer.Write(tile.X);
             writer.Write(tile.Y);
-            writer.Write(tile.GID);
+            writer.Write(tile.GID + 1);
             writer.Write(tile.IsSelected);
             writer.Write(tile.TilesetTilesWide);
             writer.Write(tile.TilesetTilesHigh);
@@ -349,8 +349,9 @@ namespace SecretProject.Class.Universal
                 int rectangleHeight = reader.ReadInt32();
                 Rectangle tileRectangle = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
                 ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
+                newTile.TileObject = body;
             }
-
+            
             newTile.IsSelected = isSelected;
             newTile.TileFrame = tileFrame;
             newTile.TileHeight = tileHeight;

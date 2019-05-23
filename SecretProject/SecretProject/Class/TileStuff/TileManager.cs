@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff
             //grass
             GenerateTiles(1, 6475, "dirt", 1000, 0);
             //redrunestone
-            GenerateTiles(1, 5681, "dirt", 50, 0);
+            GenerateTiles(1, 5681, "dirt", 10000, 0);
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
