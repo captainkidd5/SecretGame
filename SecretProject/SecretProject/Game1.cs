@@ -272,7 +272,7 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
+            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.RoyalDocks, AllTextures.MasterTileSet, 0);
             Iliad.AllTiles.LoadInitialTileObjects();
             LodgeInterior = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);

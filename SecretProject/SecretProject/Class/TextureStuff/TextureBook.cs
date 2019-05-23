@@ -70,6 +70,7 @@ namespace SecretProject.Class.TextureStuff
 
         //Maps
         public TmxMap Iliad;
+        public TmxMap RoyalDocks;
 
         public TmxMap LodgeInterior;
 
@@ -131,8 +132,10 @@ namespace SecretProject.Class.TextureStuff
             Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
             LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
+            RoyalDocks = new TmxMap("Content/Map/royalDocks.tmx");
 
            // Sea = new TmxMap("Content/Map/sea.tmx");
+
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
