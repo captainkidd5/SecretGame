@@ -165,7 +165,22 @@ namespace SecretProject.Class.Universal
             return Game1.ItemVault.GenerateNewItem(item.ID, item.WorldPosition, true);
         }
 
+        public static void WriteObjectBody(ObjectBody obj, BinaryWriter writer, float version)
+        {
+            writer.Write(obj.ShowRectangle);
+            writer.Write(obj.Rectangle.X);
+            writer.Write(obj.Rectangle.Y);
+            writer.Write(obj.Rectangle.Width);
+            writer.Write(obj.Rectangle.Height);
+            writer.Write(obj.Speed);
+            writer.Write(obj.Identifier);
+        }
 
+        public static ObjectBody ReadObjectBody(BinaryReader reader, float version)
+        {
+            ObjectBody newObjectBody = new ObjectBody();
+            return newObjectBody;
+        }
 
 
 
@@ -217,7 +232,8 @@ namespace SecretProject.Class.Universal
             int allTilesCount = reader.ReadInt32();
             int tileSetTilesWide = reader.ReadInt32();
             int tileSetTilesHigh = reader.ReadInt32();
-            
+
+            List<ObjectBody> newObjects = new List<ObjectBody>();
 
             for (int z = 0; z < home.AllTiles.AllTiles.Count; z++)
             {
@@ -226,10 +242,18 @@ namespace SecretProject.Class.Universal
                     for (int j = 0; j < home.AllTiles.tilesetTilesHigh; j++)
                     {
                         home.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version);
+                        //if(home.AllTiles.AllTiles[z][i, j].HasObject)
+                        //{
+                        //    newObjects.Add(home.AllTiles.AllTiles[z][i, j].TileObject);
+                        //}
                     }
                 }
             }
-                        
+
+            home.AllObjects = newObjects;
+            home.AllTiles.LoadInitialTileObjects();
+
+
 
             ///works up until here for sure
         }

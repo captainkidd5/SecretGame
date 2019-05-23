@@ -25,9 +25,8 @@ namespace SecretProject.Class.ObjectFolder
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Color = Color.White;
-        public float Speed;
+        public float Speed { get; set; } = 0;
 
-        public string Name;
 
         public int Rows { get; set; }
 
@@ -40,9 +39,9 @@ namespace SecretProject.Class.ObjectFolder
 
         public Rectangle Rectangle { get; set; }
 
-        float layerDepth;
+        float layerDepth { get; set; } = 1;
 
-        public float Identifier { get; set; }
+        public float Identifier { get; set; } = 1;
 
 
 
