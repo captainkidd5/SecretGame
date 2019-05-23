@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.ObjectFolder;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.Universal
 {
@@ -222,6 +224,7 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Probability);
             writer.Write(tile.HasSound);
             //skipping color 
+            writer.Write(tile.ColorMultiplier);
             writer.Write(tile.IsTemporary);
             writer.Write(tile.IsPortal);
             writer.Write(tile.portalDestination);
@@ -231,16 +234,95 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Diggable);
             writer.Write(tile.RedRuneStone);
 
-            //objectbody - we can do this later?
+            
 
-           // writer.Write()
+            //objectbody read this by creating object the same object was created in tilemanager
+
+            if(tile.HasObject)
+            {
+                writer.Write(tile.HasObject);
+
+                writer.Write(tile.TileObject.Rectangle.X);
+                writer.Write(tile.TileObject.Rectangle.Y);
+                writer.Write(tile.TileObject.Rectangle.Width);
+                writer.Write(tile.TileObject.Rectangle.Height);
+
+            }
+            else
+            {
+                writer.Write(false);
+            }
+        }
+
+        public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version)
+        {
+            Tile newTile;
+
+            float X = reader.ReadSingle();
+            float Y = reader.ReadSingle();
+            int gid = reader.ReadInt32();
+            bool isSelected = reader.ReadBoolean();
+            int tileSetTilesWide = reader.ReadInt32();
+            int tileSetTilesHigh = reader.ReadInt32();
+            int mapWidth = reader.ReadInt32();
+            int mapHeight = reader.ReadInt32();
+            int tileFrame = reader.ReadInt32();
+            int tileHeight = reader.ReadInt32();
+            int tileWidth = reader.ReadInt32();
+            int column = reader.ReadInt32();
+            int row = reader.ReadInt32();
+            int tileNumber = reader.ReadInt32();
+            float oldY = reader.ReadSingle();
+            float oldY1 = reader.ReadSingle();
+            float oldX = reader.ReadSingle();
+            bool isAnimated = reader.ReadBoolean();
+            bool isAnimating = reader.ReadBoolean();
+            bool isFinishedAnimating = reader.ReadBoolean();
+            bool killAnimation = reader.ReadBoolean();
+            float delayTimer = reader.ReadSingle();
+            bool plantable = reader.ReadBoolean();
+            int associatedItem = reader.ReadInt32();
+            double timer = reader.ReadDouble();
+            int currentFrame = reader.ReadInt32();
+            int totalFrames = reader.ReadInt32();
+            int addAmount = reader.ReadInt32();
+            double speed = reader.ReadDouble();
+            int probability = reader.ReadInt32();
+            bool hasSound = reader.ReadBoolean();
+            float colorMultiplier = reader.ReadSingle();
+            bool isTemporary = reader.ReadBoolean();
+            bool isPortal = reader.ReadBoolean();
+            string portalDestination = reader.ReadString();
+            bool dirt = reader.ReadBoolean();
+            bool grass = reader.ReadBoolean();
+            bool stone = reader.ReadBoolean();
+            bool diggable = reader.ReadBoolean();
+            bool redRuneStone = reader.ReadBoolean();
+            bool hasObject = reader.ReadBoolean();
+
+            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, mapWidth, mapHeight, tileNumber);
+
+            if(hasObject)
+            {
+                int rectangleX = reader.ReadInt32();
+                int rectangleY = reader.ReadInt32();
+                int rectangleWidth = reader.ReadInt32();
+                int rectangleHeight = reader.ReadInt32();
+                Rectangle tileRectangle = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
+                ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
+            }
+
+
+
+
+
         }
 
 
 
 
 
-        public static void ReadStage(Home home, BinaryReader reader, float version)
+        public static void ReadStage(Home home, GraphicsDevice graphics, BinaryReader reader, float version)
         {
             List<Item> AllItems = new List<Item>();
             int allItemsCount = reader.ReadInt32();
