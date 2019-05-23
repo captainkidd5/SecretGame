@@ -339,7 +339,7 @@ namespace SecretProject.Class.UI
                         }
                     }
                     //doesnt work yet
-                    if (Game1.userInterface.IsShopMenu)
+                    else if (Game1.userInterface.IsShopMenu)
                     {
                         for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
                         {
@@ -352,8 +352,6 @@ namespace SecretProject.Class.UI
                             }
                         }
                     }
-                        
-
                     else
                     {
                         inventory.currentInventory[i].RemoveItemFromSlot();
@@ -439,7 +437,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Background
-            spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .4f);
+            spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .67f);
 
             for(int i = 0; i < 7; i++)
             {
@@ -447,7 +445,7 @@ namespace SecretProject.Class.UI
                 {
                     if(DragSprite != null)
                     {
-                        DragSprite.Draw(spriteBatch, .5f);
+                        DragSprite.Draw(spriteBatch, .72f);
                     }
                     
                 }
@@ -457,51 +455,51 @@ namespace SecretProject.Class.UI
             {
                 if(DragSprite != null)
                 {
-                    DragSprite.Draw(spriteBatch, .5f);
+                    DragSprite.Draw(spriteBatch, .72f);
                 }
                 
             }
 
             //--------------------------------------
             //Draw Buttons
-            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue);
-            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue);
-            InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);
-            InvSlot2.Draw(spriteBatch, Font, InvSlot2.ItemCounter.ToString(), new Vector2(600, 670), Color.DarkRed);
-            InvSlot3.Draw(spriteBatch, Font, InvSlot3.ItemCounter.ToString(), new Vector2(670, 670), Color.DarkRed);
-            InvSlot4.Draw(spriteBatch, Font, InvSlot4.ItemCounter.ToString(), new Vector2(730, 670), Color.DarkRed);
-            InvSlot5.Draw(spriteBatch, Font, InvSlot5.ItemCounter.ToString(), new Vector2(810, 670), Color.DarkRed);
-            InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
-            InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed);
+            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .7f);
+            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .7f);
+            InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed, .73f);
+            InvSlot2.Draw(spriteBatch, Font, InvSlot2.ItemCounter.ToString(), new Vector2(600, 670), Color.DarkRed, .73f);
+            InvSlot3.Draw(spriteBatch, Font, InvSlot3.ItemCounter.ToString(), new Vector2(670, 670), Color.DarkRed, .73f);
+            InvSlot4.Draw(spriteBatch, Font, InvSlot4.ItemCounter.ToString(), new Vector2(730, 670), Color.DarkRed, .73f);
+            InvSlot5.Draw(spriteBatch, Font, InvSlot5.ItemCounter.ToString(), new Vector2(810, 670), Color.DarkRed, .73f);
+            InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed, .73f);
+            InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed, .73f);
 
             switch(currentSliderPosition)
-            {
+            {//spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
                 case 1:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot1.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot1.Position, color:  Color.White, layerDepth: .71f);
                     break;
 
                 case 2:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, color: Color.White, layerDepth: .71f);
                     break;
 
                 case 3:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot3.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot3.Position, color: Color.White, layerDepth: .71f);
                     break;
 
                 case 4:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot4.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot4.Position, color: Color.White, layerDepth: .71f);
                     break;
 
                 case 5:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot5.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot5.Position, color: Color.White, layerDepth: .71f);
                     break;
 
                 case 6:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot6.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot6.Position, color: Color.White, layerDepth: .71f);
                     break;
 
                 case 7:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot7.Position, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot7.Position, color: Color.White, layerDepth: .71f);
                     break;
             }
             

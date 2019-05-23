@@ -103,7 +103,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.ShopMenu,ShopMenuPosition , Color.White);
+            spriteBatch.Draw(Game1.AllTextures.ShopMenu,ShopMenuPosition, null,null,null, 0f, null, Color.White, layerDepth: .45f);
             for (int i = 0; i < allShopMenuItemButtons.Count; i++)
             {
                 if(allShopMenuItemButtons[i].ItemCounter != 0)

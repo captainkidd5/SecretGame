@@ -13,8 +13,9 @@ namespace SecretProject.Class.Universal
         public int centerScreenY = 300;
         public Vector2 centerScreen;
         public Random RGenerator;
+        public Vector2 Origin { get; set; } = new Vector2(0, 0);
 
-       // public static Color = new Color(100, 100, 100, 100);
+        // public static Color = new Color(100, 100, 100, 100);
 
         public Utility()
         {

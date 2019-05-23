@@ -102,19 +102,19 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(Texture, Rectangle, Color);
         }
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
         {
             
-            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
-            spriteBatch.DrawString(font, text, fontLocation, tint);
+            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: layerDepthCustom);
         }
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, string price)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, string price, float layerDepthCustom = .69f)
         {
 
-            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .5f);
-            spriteBatch.DrawString(font, text, fontLocation, tint);
-            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed);
+            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: .68f);
+            spriteBatch.DrawString(font, text, fontLocation, tint,0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
+            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
         }
 
     }
