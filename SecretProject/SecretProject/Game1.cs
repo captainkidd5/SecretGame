@@ -22,6 +22,7 @@ using SecretProject.Class.TextureStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SavingStuff;
 using Microsoft.Xna.Framework.Content;
+using SecretProject.Class.ObjectFolder;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -61,7 +62,8 @@ namespace SecretProject
         LodgeInteior = 1,
         Iliad = 2,
         Exit = 3,
-        Sea = 4
+        Sea = 4,
+        RoyalDock = 5
     }
 
 
@@ -73,9 +75,11 @@ namespace SecretProject
         public static MainMenu mainMenu;
         public static Home Iliad;
         public static Home LodgeInterior;
+        public static RoyalDock RoyalDock;
        // public static Sea Sea;
         public static List<Home> AllStages;
         public static int CurrentStage;
+        public static int PreviousStage = 0;
         public static bool freeze = false;
 
         //SOUND
@@ -193,10 +197,29 @@ namespace SecretProject
                 //case Stages.Sea:
                 //    return Sea;
 
+                case Stages.RoyalDock:
+                    return RoyalDock;
+
                 default:
                     return null;
                    
             }
+        }
+
+        public static IStage GetPreviousStage(int stageNumber)
+        {
+            switch (stageNumber)
+            {
+                case 1:
+                    return LodgeInterior;
+                case 2:
+                    return Iliad;
+                case 5:
+                    return RoyalDock;
+                default:
+                    return Iliad;
+            }
+
         }
 
         public static int GetCurrentStageInt()
@@ -214,6 +237,8 @@ namespace SecretProject
 
                 case Stages.Sea:
                     return 4;
+                case Stages.RoyalDock:
+                    return 5;
 
                 default:
                     return 0;
@@ -272,8 +297,9 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.RoyalDocks, AllTextures.MasterTileSet, 0);
-            Iliad.AllTiles.LoadInitialTileObjects();
+            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
+            RoyalDock = new RoyalDock(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.RoyalDocks, AllTextures.MasterTileSet, 0);
+            
             LodgeInterior = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
@@ -294,6 +320,12 @@ namespace SecretProject
 
         }
         #endregion
+
+        protected void UnloadStageObects(IStage stage)
+        {
+            List<ObjectBody> newEmptyObjectList = new List<ObjectBody>();
+            stage.AllObjects = newEmptyObjectList;
+        }
 
         public void FullScreenToggle()
         {
@@ -335,13 +367,37 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
+                    if(!Iliad.TilesLoaded)
+                    {
+                        Iliad.AllTiles.LoadInitialTileObjects();
+                    }
+                    Iliad.TilesLoaded = true;
+                    if (PreviousStage != 0)
+                    {
+                        UnloadStageObects(GetPreviousStage(PreviousStage));
+                    }
                     Iliad.Update(gameTime, myMouseManager, this);
                     break;
 
-                //case Stages.Sea:
-                //    GraphicsDevice.Clear(Color.Black);
-                //    Sea.Update(gameTime, myMouseManager, this);
-                //    break;
+                case Stages.RoyalDock:
+                    GraphicsDevice.Clear(Color.Black);
+                    if(!RoyalDock.TilesLoaded)
+                    {
+                        RoyalDock.AllTiles.LoadInitialTileObjects();
+                    }
+                    RoyalDock.TilesLoaded = true;
+                    
+                    if (PreviousStage != 0)
+                    {
+                        UnloadStageObects(GetPreviousStage(PreviousStage));
+                    }
+                    RoyalDock.Update(gameTime, myMouseManager, this);
+                    break;
+
+                    //case Stages.Sea:
+                    //    GraphicsDevice.Clear(Color.Black);
+                    //    Sea.Update(gameTime, myMouseManager, this);
+                    //    break;
             }
 
             base.Update(gameTime);
@@ -370,16 +426,19 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
-                    
-                    
+                    break;
+
+                case Stages.RoyalDock:
+                    RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
 
-                //case Stages.Sea:
-                //    Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+
+                    //case Stages.Sea:
+                    //    Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
 
 
-                  //break;
+                    //break;
             }
 
             Game1.DebugWindow.Draw(spriteBatch);

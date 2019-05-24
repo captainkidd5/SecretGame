@@ -274,6 +274,15 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
+
+                if (Player.position.Y > 1550)
+                {
+                    Player.Position = new Vector2(767, 25);
+                    Game1.PreviousStage = 2;
+                    this.TilesLoaded = false;
+                    Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
+                    Game1.gameStages = Stages.RoyalDock;
+                }
             }
         }
         #endregion
@@ -298,6 +307,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 }
+
+                
 
 
                 ElixerNPC.Draw(spriteBatch);

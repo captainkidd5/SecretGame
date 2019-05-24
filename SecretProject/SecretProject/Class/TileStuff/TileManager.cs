@@ -144,12 +144,12 @@ namespace SecretProject.Class.TileStuff
 
             
             //stone
-            GenerateTiles(1, 6675, "dirt", 500, 0);
+            GenerateTiles(1, 6675, "dirt", 100, 0);
             //grass
-            GenerateTiles(1, 6475, "dirt", 1000, 0);
+            GenerateTiles(1, 6475, "dirt", 100, 0);
             //redrunestone
-            GenerateTiles(1, 5681, "dirt", 200, 0);
-            GenerateTiles(1, 5881, "dirt", 1000, 0);
+            GenerateTiles(1, 5681, "dirt", 100, 0);
+            GenerateTiles(1, 5881, "dirt", 100, 0);
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -315,7 +315,7 @@ namespace SecretProject.Class.TileStuff
                                                 (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
 
                                             AllTiles[z][i, j].HasObject = true;
-                                            Game1.Iliad.AllObjects.Add(AllTiles[z][i, j].TileObject);
+                                            Game1.GetCurrentStage().AllObjects.Add(AllTiles[z][i, j].TileObject); // not gonna work for saving, gotta figure out.
 
                                         }
                                     }
