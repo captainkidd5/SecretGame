@@ -15,11 +15,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:..\..\XMLDataLib\bin\Release\netstandard2.0\Item.xml
-
 #begin Button/basicButton.png
 /importer:TextureImporter
 /processor:TextureProcessor

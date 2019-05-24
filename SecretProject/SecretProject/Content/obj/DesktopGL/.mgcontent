@@ -4,7 +4,6 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/../../XMLDataLib/bin/Release/netstandard2.0/Item.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/basicButton.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ButtonInventory1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/clockBackground.png</File>
