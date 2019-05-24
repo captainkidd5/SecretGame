@@ -38,8 +38,8 @@ namespace SecretProject.Class.CollisionDetection
             
             foreach (var body in objectBody)
             {
-                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2)
-                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2))
+                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
+                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
                 {
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
                     {
@@ -81,19 +81,21 @@ namespace SecretProject.Class.CollisionDetection
 
             foreach (var spr in sprite)
             {
+                if (spr.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && spr.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
+                             && spr.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && spr.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
+                {
 
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
+                        velocity.X -= velocity.X; //+ (float).25;
 
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
-                    velocity.X -= velocity.X; //+ (float).25;
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
+                        velocity.X -= velocity.X; //- (float).25;
 
-                if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
-                    velocity.X -= velocity.X; //- (float).25;
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
-                    velocity.Y -= velocity.Y; //+ (float).25;
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
-                    velocity.Y -= velocity.Y;// - (float).25;
-
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
+                        velocity.Y -= velocity.Y; //+ (float).25;
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
+                        velocity.Y -= velocity.Y;// - (float).25;
+                }
             }
 
         }

@@ -309,6 +309,7 @@ namespace SecretProject.Class.TileStuff
                                         {
                                             TmxObject tempObj = mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
 
+
                                             AllTiles[z][i, j].TileObject = new ObjectBody(graphicsDevice,
                                                 new Rectangle(AllTiles[z][i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                                                 AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
@@ -508,8 +509,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2)
-                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2))
+                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) -400 && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) + 400
+                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) - 200 && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 200)
                             {
                                 spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle, AllTiles[z][i, j].TileColor * AllTiles[z][i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z]);
 
@@ -720,8 +721,9 @@ namespace SecretProject.Class.TileStuff
         {
             if (AllTiles[layer][oldX, oldY].IsFinishedAnimating)
             {
-
+                //ObjectBody newObject = new ObjectBody();
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
+                AllTiles[layer][oldX, oldY].TileObject = null;
                 AllTiles[layer][oldX, oldY].HasObject = false;
                     Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true));
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
