@@ -59,7 +59,7 @@ namespace SecretProject.Class.SoundStuff
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)
         {
-
+            
             if(isLooping == true)
             {
                 for(int i = 0; i < numberOfLoops; i++)

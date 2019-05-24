@@ -115,7 +115,7 @@ namespace SecretProject.Class.StageFolder
         public List<float> AllDepths;
 
         [XmlIgnore]
-        Character ElixerNPC;
+        Elixir ElixerNPC;
 
         #endregion
 
@@ -222,7 +222,7 @@ namespace SecretProject.Class.StageFolder
             //UserInterface
             //allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
 
-            ElixerNPC = new Character("Elixer", new Vector2(800, 600), graphicsDevice);
+            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), graphicsDevice);
 
             AllActions = new List<ActionTimer>();
         }
