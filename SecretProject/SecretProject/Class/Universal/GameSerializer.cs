@@ -285,8 +285,8 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.AssociatedItem);
             writer.Write(tile.Timer);
             writer.Write(tile.CurrentFrame);
-            writer.Write(tile.TotalFrames);
-            writer.Write(tile.AddAmount);
+            writer.Write(tile.TotalFramesX);
+            writer.Write(tile.AddAmountX);
             writer.Write(tile.Speed);
             writer.Write(tile.Probability);
             writer.Write(tile.HasSound);
@@ -392,8 +392,8 @@ namespace SecretProject.Class.Universal
             newTile.AssociatedItem = associatedItem;
             newTile.Timer = timer;
             newTile.CurrentFrame = currentFrame;
-            newTile.TotalFrames = totalFrames;
-            newTile.AddAmount = addAmount;
+            newTile.TotalFramesX = totalFrames;
+            newTile.AddAmountX = addAmount;
             newTile.Speed = speed;
             newTile.Probability = probability;
             newTile.HasSound = hasSound;

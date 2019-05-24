@@ -165,7 +165,7 @@
  </tile>
  <tile id="5680">
   <properties>
-   <property name="Animated" value="7"/>
+   <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5580"/>
    <property name="Speed" value=".15"/>
    <property name="redRuneStone" value=""/>
@@ -176,7 +176,7 @@
  </tile>
  <tile id="5880">
   <properties>
-   <property name="Animated" value="7"/>
+   <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5780"/>
    <property name="Speed" value=".15"/>
    <property name="blueRuneStone" value=""/>
@@ -272,7 +272,7 @@
  </tile>
  <tile id="6474">
   <properties>
-   <property name="Animated" value="6"/>
+   <property name="AnimatedX" value="6"/>
    <property name="Speed" value=".15"/>
    <property name="grass" value="true"/>
   </properties>
@@ -282,12 +282,40 @@
  </tile>
  <tile id="6674">
   <properties>
-   <property name="Animated" value="5"/>
+   <property name="AnimatedX" value="5"/>
    <property name="Speed" value=".15"/>
    <property name="stone" value=""/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="2" width="13" height="12"/>
   </objectgroup>
+ </tile>
+ <tile id="9702">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".25"/>
+   <property name="start" value=""/>
+  </properties>
+ </tile>
+ <tile id="9703">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".25"/>
+   <property name="start" value=""/>
+  </properties>
+ </tile>
+ <tile id="9704">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".25"/>
+   <property name="start" value=""/>
+  </properties>
+ </tile>
+ <tile id="9705">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".25"/>
+   <property name="start" value=""/>
+  </properties>
  </tile>
 </tileset>

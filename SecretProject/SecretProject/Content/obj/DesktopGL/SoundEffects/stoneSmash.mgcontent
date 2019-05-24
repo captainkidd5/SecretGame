@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/stoneSmash.wav</SourceFile>
   <SourceTime>2019-05-22T09:24:25.4347672-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/stoneSmash.xnb</DestFile>
-  <DestTime>2019-05-22T09:24:47.5668572-07:00</DestTime>
+  <DestTime>2019-05-24T10:52:41.2138979-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
