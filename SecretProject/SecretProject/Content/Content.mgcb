@@ -705,3 +705,9 @@
 /processorParam:TextureFormat=Color
 /build:Item/BlueOrb.png
 
+#begin SoundEffects/walkGrass.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/walkGrass.wav
+

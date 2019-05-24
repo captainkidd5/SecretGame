@@ -322,6 +322,7 @@ namespace SecretProject.Class.Playable
 
                 if (controls.IsMoving)
                 {
+                    IsMoving = true;
                     switch (controls.Direction)
                     {
                         case Dir.Right:

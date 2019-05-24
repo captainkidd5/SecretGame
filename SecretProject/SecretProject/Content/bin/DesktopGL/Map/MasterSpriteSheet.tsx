@@ -163,6 +163,96 @@
    <object id="1" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
+ <tile id="5443">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5444">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5445">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5446">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5447">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5448">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5543">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5544">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5545">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5546">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5547">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5548">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5643">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5644">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5645">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5646">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5647">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5648">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
  <tile id="5680">
   <properties>
    <property name="AnimatedX" value="7"/>
@@ -174,6 +264,66 @@
    <object id="1" x="1" y="0" width="14" height="12"/>
   </objectgroup>
  </tile>
+ <tile id="5743">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5744">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5745">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5746">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5747">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5748">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5843">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5844">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5845">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5846">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5847">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5848">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
  <tile id="5880">
   <properties>
    <property name="AnimatedX" value="7"/>
@@ -184,6 +334,36 @@
   <objectgroup draworder="index">
    <object id="1" x="1" y="0" width="14" height="9"/>
   </objectgroup>
+ </tile>
+ <tile id="5943">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5944">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5945">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5946">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5947">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
+ </tile>
+ <tile id="5948">
+  <properties>
+   <property name="step" value=""/>
+  </properties>
  </tile>
  <tile id="6065">
   <properties>

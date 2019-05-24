@@ -248,12 +248,13 @@ namespace SecretProject.Class.TileStuff
 
 
                                     //TODO: Make sounds when the player walks
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
+                                    
+                                }
+                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
                                     {
                                         AllTiles[z][i, j].HasSound = true;
                                     }
 
-                                }
                             }
                         }
                     }
@@ -420,14 +421,23 @@ namespace SecretProject.Class.TileStuff
                                 AllTiles[z][i, j].IsFinishedAnimating = false;
                             }
 
+                            if (z == 0)
+                            {
+                                if (AllTiles[z][i, j].HasSound && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][i, j].DestinationRectangle))
+                                {
+                                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.WalkGrassInstance, false, 1);
+                                }
+                            }
+
                             if (mouse.IsHoveringTile(AllTiles[z][i, j].DestinationRectangle))
                             {
                                 CurrentIndexX = i;
                                 CurrentIndexY = j;
 
-                                //IE layer is building.
+                                //IE layer is background.
                                 if (z == 0)
                                 {
+                                    
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
 
@@ -464,7 +474,6 @@ namespace SecretProject.Class.TileStuff
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                     {
                                         Game1.isMyMouseVisible = false;
-                                        //doesn't work because dirt isn't in building layer!
                                         Game1.userInterface.DrawTileSelector = true;
                                         Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                         Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;

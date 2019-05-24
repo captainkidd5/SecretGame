@@ -28,7 +28,7 @@ namespace SecretProject.Class.NPCStuff
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            NPCAnimatedSprite.Draw(spriteBatch, Position, .4f);
+           // NPCAnimatedSprite.Draw(spriteBatch, Position, .4f);
         }
     }
 }
