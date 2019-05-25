@@ -21,6 +21,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D MainCharacterSpriteStrip;
 
         public Texture2D Elixer;
+        public Texture2D ElixirSpriteSheet;
 
 
 
@@ -90,6 +91,7 @@ namespace SecretProject.Class.TextureStuff
             joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
+            ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
 
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 

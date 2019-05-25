@@ -10,28 +10,78 @@ using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.NPCStuff
 {
-    public class Elixir : Character
+    public class Elixir : INPC
     {
-        public Elixir(string name, Vector2 position, GraphicsDevice graphics) : base(name, position, graphics)
+        public string Name { get; set; }
+        public Vector2 Position { get; set; }
+        public AnimatedSprite[] NPCAnimatedSprite { get; set; }
+        public Texture2D Texture { get; set; } = Game1.AllTextures.ElixirSpriteSheet;
+
+        public Rectangle NPCRectangle { get {return new Rectangle((int) Position.X + 2, (int) Position.Y + 20, ((int) Texture.Width / FrameNumber) -2, (int) Texture.Height - 25);}}
+
+
+    //0 = down, 1 = left, 2 =  right, 3 = up
+    public int CurrentDirection { get; set; } = 0;
+
+        
+
+        public int FrameNumber { get; set; } = 25;
+
+        public Elixir(string name, Vector2 position, GraphicsDevice graphics)
         {
-            NPCAnimatedSprite = new AnimatedSprite(graphics, Game1.AllTextures.Elixer, 1, 1, 1);
+            NPCAnimatedSprite = new AnimatedSprite[26];
+
+            NPCAnimatedSprite[0] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25,0,1,6);
+            NPCAnimatedSprite[1] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 7,1, 12);
+            NPCAnimatedSprite[2] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 13, 1, 19);
+            NPCAnimatedSprite[3] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 19, 1, 25);
+
             this.Name = "Elixir";
             this.Position = position;
 
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse)
+        public void Update(GameTime gameTime, MouseManager mouse)
         {
-            NPCAnimatedSprite.Update(gameTime);
-            if(mouse.IsHovering(this.NPCRectangle) && mouse.IsClicked)
+
+            switch (CurrentDirection)
             {
-                Game1.userInterface.IsShopMenu = true;
+                case 0:
+                    NPCAnimatedSprite[0].Update(gameTime);
+                    break;
+                case 1:
+                    NPCAnimatedSprite[1].Update(gameTime);
+                    break;
+                case 2:
+                    NPCAnimatedSprite[2].Update(gameTime);
+                    break;
+                case 3:
+                    NPCAnimatedSprite[3].Update(gameTime);
+                    break;
             }
+            if(mouse.IsHovering(this.NPCRectangle) && mouse.IsClicked)
+             {
+                  Game1.userInterface.IsShopMenu = true;
+              }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            NPCAnimatedSprite.Draw(spriteBatch, Position, .4f);
+            switch (CurrentDirection)
+            {
+                case 0:
+                    NPCAnimatedSprite[0].Draw(spriteBatch, Position, .4f);
+                    break;
+                case 1:
+                    NPCAnimatedSprite[1].Draw(spriteBatch, Position, .4f);
+                    break;
+                case 2:
+                    NPCAnimatedSprite[2].Draw(spriteBatch, Position, .4f);
+                    break;
+                case 3:
+                    NPCAnimatedSprite[3].Draw(spriteBatch, Position, .4f);
+                    break;
+            }
         }
     }
 }

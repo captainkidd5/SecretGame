@@ -271,7 +271,7 @@ namespace SecretProject
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
 
             //PLAYERS
-            Player = new Player("joe", new Vector2(400, 1000), MainCharacterTexture, 28, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(400, 1000), MainCharacterTexture, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             Player.PlayerMovementAnimations = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
             Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement

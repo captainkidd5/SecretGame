@@ -272,6 +272,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
+                ElixerNPC.Update(gameTime, mouse);
 
                 if (Player.position.Y < 20 && Player.position.X < 810 && Player.position.X > 730)
                 {
@@ -345,6 +346,8 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
+
+                ElixerNPC.Draw(spriteBatch);
 
                 Game1.userInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();
