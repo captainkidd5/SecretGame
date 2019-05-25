@@ -163,11 +163,11 @@ namespace SecretProject.Class.TileStuff
                             //tile is red runestop bottom
                             if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
+                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                             }
                             if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f };
+                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                             }
                         }
                         if (AllTiles[z][i, j].GID != 0)
@@ -501,7 +501,7 @@ namespace SecretProject.Class.TileStuff
                                 if (AllTiles[z][i, j].IsAnimating == true && AllTiles[z][i, j].IsFinishedAnimating == false)
                                 {
 
-                                   // AllTiles[z][i, j].AnimateOnlyX(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].Speed);
+                                    //AllTiles[z][i, j].AnimateOnlyX(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].Speed);
                                     AllTiles[z][i, j].AnimateDynamic(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].TotalFramesY, 16, 16, AllTiles[z][i, j].Speed, AllTiles[z][i, j].Kill);
                                 }
                             }
@@ -746,7 +746,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Destroy(int layer, int oldX, int oldY)
         {
-            if (AllTiles[layer][oldX, oldY].IsFinishedAnimating)
+            if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && AllTiles[layer][oldX, oldY].HasObject)
             {
                 //ObjectBody newObject = new ObjectBody();
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
