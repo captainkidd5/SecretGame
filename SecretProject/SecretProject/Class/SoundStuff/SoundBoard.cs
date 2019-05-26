@@ -37,14 +37,17 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect WalkSand;
         public SoundEffectInstance WalkSandInstance;
 
+        public SoundEffect WalkWood;
+        public SoundEffectInstance WalkWoodInstance;
+
+        public SoundEffect WalkStone;
+        public SoundEffectInstance WalkStoneInstance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
             PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
             PickUpItemInstance = PickUpItem.CreateInstance();
-
-            StoneStep = content.Load<SoundEffect>("SoundEffects/bubble");
-            StoneStepInstance = StoneStep.CreateInstance();
 
             GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
             GrassBreakInstance = GrassBreak.CreateInstance();
@@ -63,9 +66,19 @@ namespace SecretProject.Class.SoundStuff
 
             WalkGrass = content.Load<SoundEffect>("SoundEffects/walkGrass");
             WalkGrassInstance = WalkGrass.CreateInstance();
+            WalkGrassInstance.Volume = .75f;
 
             WalkSand = content.Load<SoundEffect>("SoundEffects/sandStep");
             WalkSandInstance = WalkSand.CreateInstance();
+            WalkSandInstance.Volume = .75f;
+
+            WalkWood = content.Load<SoundEffect>("SoundEffects/woodStep");
+            WalkWoodInstance = WalkWood.CreateInstance();
+
+            WalkStone = content.Load<SoundEffect>("SoundEffects/stoneStep");
+            WalkStoneInstance = WalkStone.CreateInstance();
+            WalkStoneInstance.Volume = .75f;
+            
 
         }
 
@@ -88,6 +101,53 @@ namespace SecretProject.Class.SoundStuff
             
           //  instance.Play();
 
+        }
+
+        public void PlaySoundEffectFromInt(bool isLooping, int numberOfLoops, int soundKey)
+        {
+            
+
+            if (isLooping == true)
+            {
+                for (int i = 0; i < numberOfLoops; i++)
+                {
+                    switch (soundKey)
+                    {
+                        case 1:
+                            WalkGrassInstance.Play();
+                            break;
+                        case 2:
+                            WalkStoneInstance.Play();
+                            break;
+                        case 3:
+                            WalkWoodInstance.Play();
+                            break;
+                        case 4:
+                            WalkSandInstance.Play();
+                            break;
+
+                    }
+                }
+            }
+            else
+            {
+                switch (soundKey)
+                {
+                    case 1:
+                        WalkGrassInstance.Play();
+                        break;
+                    case 2:
+                        WalkStoneInstance.Play();
+                        break;
+                    case 3:
+                        WalkWoodInstance.Play();
+                        break;
+                    case 4:
+                        WalkSandInstance.Play();
+                        break;
+
+                }
+            }
         }
     }
 }

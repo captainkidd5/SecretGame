@@ -253,6 +253,8 @@ namespace SecretProject.Class.TileStuff
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
                                     {
                                         AllTiles[z][i, j].HasSound = true;
+                                    AllTiles[z][i, j].SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]);
+                                    //grass = 1, stone = 2, wood = 3, sand = 4
                                     }
 
                             }
@@ -425,7 +427,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (AllTiles[z][i, j].HasSound && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][i, j].DestinationRectangle))
                                 {
-                                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.WalkGrassInstance, false, 1);
+                                    Game1.SoundManager.PlaySoundEffectFromInt(false, 1, AllTiles[z][i, j].SoundValue);
                                 }
                             }
 

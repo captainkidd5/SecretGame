@@ -724,3 +724,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/sandStep.wav
 
+#begin SoundEffects/stoneStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stoneStep.wav
+
+#begin SoundEffects/woodStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/woodStep.wav
+

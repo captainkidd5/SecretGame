@@ -60,6 +60,7 @@ namespace SecretProject.Class.TileStuff
         public int Probability { get; set; } = 1;
 
         public bool HasSound { get; set; } = false;
+        public int SoundValue { get; set; } = 0;
 
         [XmlIgnore]
         public Color TileColor { get; set; } = Color.White;
