@@ -718,3 +718,9 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Elixir/ElixirSpriteSheet.png
 
+#begin SoundEffects/sandStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sandStep.wav
+

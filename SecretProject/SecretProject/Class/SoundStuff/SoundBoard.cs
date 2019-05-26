@@ -34,6 +34,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect WalkGrass;
         public SoundEffectInstance WalkGrassInstance;
 
+        public SoundEffect WalkSand;
+        public SoundEffectInstance WalkSandInstance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -60,6 +63,9 @@ namespace SecretProject.Class.SoundStuff
 
             WalkGrass = content.Load<SoundEffect>("SoundEffects/walkGrass");
             WalkGrassInstance = WalkGrass.CreateInstance();
+
+            WalkSand = content.Load<SoundEffect>("SoundEffects/sandStep");
+            WalkSandInstance = WalkSand.CreateInstance();
 
         }
 
