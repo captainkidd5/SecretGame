@@ -75,8 +75,6 @@ namespace SecretProject.Class.StageFolder
         public Texture2D HouseKey { get; set; }
         [XmlIgnore]
         public Song MainTheme { get; set; }
-        [XmlIgnore]
-        public KeyboardState KState { get; set; }
 
         [XmlIgnore]
         public Player Mastodon { get; set; }
@@ -224,7 +222,7 @@ namespace SecretProject.Class.StageFolder
             //UserInterface
             //allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
 
-           // ElixerNPC = new Character("Elixer", new Vector2(800, 600), graphicsDevice);
+            //ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), graphicsDevice);
 
             AllActions = new List<ActionTimer>();
         }
@@ -235,13 +233,12 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
             //keyboard
-            KeyboardState oldKeyboardState = KState;
-            KState = Keyboard.GetState();
+
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
-            Game1.userInterface.Update(gameTime, KState, oldKeyboardState, Player.Inventory, mouse, game);
+            Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, Player.Inventory, mouse, game);
 
-            if ((oldKeyboardState.IsKeyDown(Keys.F1)) && (KState.IsKeyUp(Keys.F1)))
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
                 ShowBorders = !ShowBorders;
             }

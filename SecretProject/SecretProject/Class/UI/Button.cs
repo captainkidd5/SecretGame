@@ -103,6 +103,11 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(Texture, Rectangle, Color);
         }
 
+        public void Draw(SpriteBatch spriteBatch, float layerDepthCustom)
+        {
+            spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
+        }
+
         public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
         {
             

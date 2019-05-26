@@ -54,7 +54,6 @@ namespace SecretProject.Class.StageFolder
 
         Song MainTheme { get; set; }
 
-        KeyboardState KState { get; set; }
 
         Player Mastodon { get; set; }
 

@@ -66,7 +66,7 @@ namespace SecretProject.Class.NPCStuff
             }
             if(mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
              {
-                if(mouse.IsClicked)
+                if(mouse.IsRightClicked)
                 {
                     Game1.userInterface.IsShopMenu = true;
                 }

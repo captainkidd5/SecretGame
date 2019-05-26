@@ -30,10 +30,11 @@ namespace SecretProject.Class.UI
         public ShopMenu(string name, GraphicsDevice graphicsDevice)
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
+            ShopMenuPosition = new Vector2(150, 10);
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.CenterScreenX + 550, Game1.Utility.CenterScreenY - 280));
+            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(ShopMenuPosition.X + Game1.AllTextures.ShopMenu.Width - Game1.AllTextures.RedEsc.Width, ShopMenuPosition.Y));
             this.mainFont = Game1.AllTextures.MenuText;
-            ShopMenuPosition = new Vector2(Game1.Utility.CenterScreenX, Game1.Utility.CenterScreenY);
+            
 
             Font = Game1.AllTextures.MenuText;
 
@@ -119,10 +120,9 @@ namespace SecretProject.Class.UI
                 {
                     allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
                 }
-                
             }
 
-            redEsc.Draw(spriteBatch);
+            redEsc.Draw(spriteBatch, .73f);
         }
 
         public void TryAddStock(int id, int amountToAdd)

@@ -90,6 +90,9 @@ namespace SecretProject
         public static MouseManager myMouseManager;
         public static bool isMyMouseVisible = true;
 
+        public static KeyboardState OldKeyBoardState;
+        public static KeyboardState NewKeyBoardState;
+
         //Camera
         public static Camera2D cam;
         public static bool ToggleFullScreen = false;
@@ -341,6 +344,8 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
+            OldKeyBoardState = NewKeyBoardState;
+            NewKeyBoardState = Keyboard.GetState();
             FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
             //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
