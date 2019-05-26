@@ -25,15 +25,19 @@ namespace SecretProject.Class.UI
 
         public Inventory ShopInventory;
 
+        public TextBox ShopTextBox { get; set; }
+
         public ShopMenu(string name, GraphicsDevice graphicsDevice)
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.centerScreenX + 550, Game1.Utility.centerScreenY - 280));
+            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(Game1.Utility.CenterScreenX + 550, Game1.Utility.CenterScreenY - 280));
             this.mainFont = Game1.AllTextures.MenuText;
-            ShopMenuPosition = new Vector2(Game1.Utility.centerScreenX - 432, Game1.Utility.centerScreenY - 300);
+            ShopMenuPosition = new Vector2(Game1.Utility.CenterScreenX, Game1.Utility.CenterScreenY);
 
             Font = Game1.AllTextures.MenuText;
+
+            //ShopTextBox = new TextBox(Game1.AllTextures.MenuText, )
 
             allShopMenuItemButtons = new List<Button>();
 

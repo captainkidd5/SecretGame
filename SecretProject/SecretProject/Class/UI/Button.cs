@@ -45,6 +45,7 @@ namespace SecretProject.Class.MenuStuff
         public int ItemCounter { get; set; }
         public int Price { get; set; }
 
+
         public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
         {
             Texture = newtexture;

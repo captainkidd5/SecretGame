@@ -30,9 +30,9 @@ namespace SecretProject.Class.UI
             if (IsActivated)
             {
                 spriteBatch.Draw(backDrop, textBoxLocation, Color.White);
-                spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + " \n Items in allItems: " + Game1.GetCurrentStage().AllItems.Count + " \n \n PlayerLocationX: " + Game1.Player.Position.X  +
+                spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + " \n ElixirRectangle: " + Game1.RoyalDock.ElixerNPC.NPCRectangle + " \n \n PlayerLocationX: " + Game1.Player.Position.X  +
                     " \n \n PlayerWorldPositionY: " + Game1.Player.Position.Y + "\n \n Iliad Objects: " + Game1.Iliad.AllObjects.Count + " \n \n RoyalDockObjects: " +
-                    Game1.RoyalDock.AllObjects.Count + " \n \n MouseWorldPositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MouseWorldPositionY: "
+                    Game1.RoyalDock.AllObjects.Count + " \n \n MousePositionX " + Game1.myMouseManager.Position.X + " \n \n MouseWorldPositionY: "
                     + Game1.myMouseManager.WorldMousePosition.Y + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n MouseSquarePositionY: " +
                     Game1.myMouseManager.MouseSquareCoordinateY, textBoxLocation, Color.Red);
             }

@@ -98,8 +98,10 @@ namespace SecretProject
         public static Stages gameStages = Stages.RoyalDock;
 
         //screen stuff
-        public static int ScreenHeight;
-        public static int ScreenWidth;
+        public static Rectangle ScreenRectangle = new Rectangle(0, 0, 0, 0);
+        public static int ScreenHeight { get { return ScreenRectangle.Height; } }
+        public static int ScreenWidth { get { return ScreenRectangle.Width; } }
+        
 
         //UI
         public static UserInterface userInterface;
@@ -161,11 +163,14 @@ namespace SecretProject
             this.IsMouseVisible = isMyMouseVisible;
             myMouseManager = new MouseManager(cam, graphics.GraphicsDevice);
 
+            ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
+            ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
+
             Utility = new Utility();
 
             //SCREEN
-            ScreenHeight = graphics.PreferredBackBufferHeight;
-            ScreenWidth = graphics.PreferredBackBufferWidth;
+
+            
 
             AllActions = new List<ActionTimer>();
 
@@ -271,7 +276,7 @@ namespace SecretProject
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
 
             //PLAYERS
-            Player = new Player("joe", new Vector2(400, 1000), MainCharacterTexture, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(400, 700), MainCharacterTexture, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             Player.PlayerMovementAnimations = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
             Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement

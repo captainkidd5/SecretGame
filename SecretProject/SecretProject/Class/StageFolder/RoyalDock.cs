@@ -115,7 +115,7 @@ namespace SecretProject.Class.StageFolder
         public List<float> AllDepths;
 
         [XmlIgnore]
-        Elixir ElixerNPC;
+        public Elixir ElixerNPC;
 
         #endregion
 
@@ -243,10 +243,14 @@ namespace SecretProject.Class.StageFolder
             {
                 ShowBorders = !ShowBorders;
             }
+            if ((oldKeyboardState.IsKeyDown(Keys.Y)) && (KState.IsKeyUp(Keys.Y)))
+            {
+                ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+            }
 
             if (!Game1.freeze)
             {
-                Game1.GlobalClock.Update(gameTime);
+               // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
@@ -272,7 +276,12 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
-                ElixerNPC.Update(gameTime, mouse);
+                if(ElixerNPC.IsUpdating)
+                {
+                    ElixerNPC.Update(gameTime, mouse);
+                   ElixerNPC.MoveTowardsPosition(Player.Position);
+                 }
+                ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
                 if (Player.position.Y < 20 && Player.position.X < 810 && Player.position.X > 730)
                 {
@@ -353,7 +362,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
             }
             Game1.userInterface.Draw(spriteBatch);
-            Game1.GlobalClock.Draw(spriteBatch);
+            //Game1.GlobalClock.Draw(spriteBatch);
         }
         public Camera2D GetCamera()
         {

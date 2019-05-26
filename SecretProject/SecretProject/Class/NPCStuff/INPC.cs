@@ -16,6 +16,7 @@ namespace SecretProject.Class.NPCStuff
         AnimatedSprite[] NPCAnimatedSprite { get; set; }
         Rectangle NPCRectangle { get; }
         Texture2D Texture { get; set; }
+        float Speed { get; set; }
 
     }
 }

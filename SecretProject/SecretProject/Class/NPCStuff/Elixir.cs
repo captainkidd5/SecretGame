@@ -17,13 +17,18 @@ namespace SecretProject.Class.NPCStuff
         public AnimatedSprite[] NPCAnimatedSprite { get; set; }
         public Texture2D Texture { get; set; } = Game1.AllTextures.ElixirSpriteSheet;
 
-        public Rectangle NPCRectangle { get {return new Rectangle((int) Position.X + 2, (int) Position.Y + 20, ((int) Texture.Width / FrameNumber) -2, (int) Texture.Height - 25);}}
+        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, ((int)Texture.Width / FrameNumber), (int)Texture.Height); } }
+
+        public float Speed { get; set; } = 1f;
+        public Vector2 DirectionVector { get; set; }
 
 
-    //0 = down, 1 = left, 2 =  right, 3 = up
-    public int CurrentDirection { get; set; } = 0;
+        //0 = down, 1 = left, 2 =  right, 3 = up
+        public int CurrentDirection { get; set; } = 3;
 
-        
+        public bool IsUpdating { get; set; } = false;
+
+
 
         public int FrameNumber { get; set; } = 25;
 
@@ -59,10 +64,42 @@ namespace SecretProject.Class.NPCStuff
                     NPCAnimatedSprite[3].Update(gameTime);
                     break;
             }
-            if(mouse.IsHovering(this.NPCRectangle) && mouse.IsClicked)
+            if(mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
              {
-                  Game1.userInterface.IsShopMenu = true;
+                if(mouse.IsClicked)
+                {
+                    Game1.userInterface.IsShopMenu = true;
+                }
+                  
               }
+
+            if(DirectionVector.X > .5f)
+            {
+                CurrentDirection = 2; //right
+            }
+            else if (DirectionVector.X < -.5f)
+            {
+                CurrentDirection = 1; //left
+            }
+            else if (DirectionVector.Y <.5f) // up
+            {
+                CurrentDirection = 3;
+            }
+            
+            else if (DirectionVector.Y > .5f)
+            {
+                CurrentDirection = 0;
+            }
+
+        }
+
+        public void MoveTowardsPosition(Vector2 positionToMoveTowards)
+        {
+            Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
+            this.DirectionVector = direction;
+
+            Position += direction * Speed;
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

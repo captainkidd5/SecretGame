@@ -9,8 +9,8 @@ namespace SecretProject.Class.Universal
 {
     public class Utility
     {
-        public int centerScreenX = 500;
-        public int centerScreenY = 300;
+        public int CenterScreenX { get { return Game1.ScreenWidth / 2; } }
+        public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
         public Vector2 centerScreen;
         public Random RGenerator;
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
@@ -20,7 +20,7 @@ namespace SecretProject.Class.Universal
         public Utility()
         {
             RGenerator = new Random();
-            centerScreen = new Vector2(centerScreenX, centerScreenY);
+            centerScreen = new Vector2(CenterScreenX, CenterScreenY);
         }
 
          

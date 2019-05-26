@@ -59,6 +59,8 @@ namespace SecretProject.Class.Controls
 
         Vector2 worldPosition;
 
+        public Rectangle WorldMouseRectangle { get; set; }
+
         GraphicsDevice graphicsDevice;
 
         private MouseManager()
@@ -117,6 +119,8 @@ namespace SecretProject.Class.Controls
 
             MouseSquareCoordinateX = (int)(WorldMousePosition.X / 16);
             MouseSquareCoordinateY = (int)(WorldMousePosition.Y / 16);
+
+            WorldMouseRectangle = new Rectangle((int)WorldMousePosition.X, (int)WorldMousePosition.Y, 1, 1);
 
             if (MyMouse.LeftButton == ButtonState.Pressed)
             {
