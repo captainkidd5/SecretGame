@@ -44,18 +44,9 @@ namespace SecretProject.Class.StageFolder
 
         TmxLayer Placement { get; set; }
 
-        Texture2D JoeSprite { get; set; }
-
-        Texture2D RaftDown { get; set; }
-
-        Texture2D PuzzleFish { get; set; }
-
-        Texture2D HouseKey { get; set; }
 
         Song MainTheme { get; set; }
 
-
-        Player Mastodon { get; set; }
 
         Camera2D Cam { get; set; }
 
@@ -90,6 +81,8 @@ List<ActionTimer> AllActions { get; set; }
         bool TilesLoaded { get; set; }
 
         void Update(GameTime gameTime, MouseManager mouse, Game1 game);
+        void LoadContent(ContentManager content, GraphicsDevice graphics, Camera2D camera, int tileSetNumber);
+        void UnloadContent(ContentManager content);
         void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse);
 
     }

@@ -26,7 +26,7 @@ using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.StageFolder
 {
-    [XmlRoot("SaveData")]
+
     public class Home : IStage
     {
 
@@ -50,34 +50,24 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public Texture2D TileSet { get; set; }
 
-
-        [XmlArray("AllStageTiles")]
         public List<TileManager> AllStageTiles { get; set; }
-        [XmlIgnore]
+
         public TmxLayer Buildings { get; set; }
-        [XmlIgnore]
+
         public TmxLayer Background { get; set; }
-        [XmlIgnore]
+
         public TmxLayer Background1 { get; set; }
-        [XmlIgnore]
+
         public TmxLayer MidGround { get; set; }
-        [XmlIgnore]
+
         public TmxLayer foreGround { get; set; }
-        [XmlIgnore]
+
         public TmxLayer Placement { get; set; }
-        [XmlIgnore]
-        public Texture2D JoeSprite { get; set; }
-        [XmlIgnore]
-        public Texture2D RaftDown { get; set; }
-        [XmlIgnore]
-        public Texture2D PuzzleFish { get; set; }
-        [XmlIgnore]
-        public Texture2D HouseKey { get; set; }
+
+
         [XmlIgnore]
         public Song MainTheme { get; set; }
 
-        [XmlIgnore]
-        public Player Mastodon { get; set; }
         [XmlIgnore]
         public Camera2D Cam { get; set; }
 
@@ -88,10 +78,8 @@ namespace SecretProject.Class.StageFolder
         [XmlArray("AllObjects")]
         public List<ObjectBody> AllObjects { get; set; }
 
-        [XmlArray("AllSprites")]
         public List<Sprite> AllSprites { get; set; }
 
-        [XmlArray("AllItems")]
         public List<Item> AllItems { get; set; }
 
         [XmlArray("AllActions")]
@@ -113,22 +101,24 @@ namespace SecretProject.Class.StageFolder
         public List<float> AllDepths;
 
         [XmlIgnore]
-        Character ElixerNPC;
+        public Elixir ElixerNPC;
 
         #endregion
 
         #region CONSTRUCTOR
 
+
+
         public Home()
         {
 
+
+
         }
 
-        public Home(GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, Camera2D camera, UserInterface userInterface, Player player, TmxMap map, Texture2D TileSet, int TileSetNumber)
+        public void LoadContent(ContentManager content, GraphicsDevice graphics, Camera2D camera, int tileSetNumber)
         {
-            //ORDER MATTERS!
-            //Lists
-            //--------------------------------------
+
             AllSprites = new List<Sprite>()
             {
 
@@ -143,41 +133,14 @@ namespace SecretProject.Class.StageFolder
             {
 
             };
-            this.TileSetNumber = TileSetNumber;
+            this.TileSetNumber = tileSetNumber;
 
-            //--------------------------------------
-            //Tile/map
 
-            this.Map = map;
-            // map = new TmxMap("Content/Map/worldMap.tmx");
+            this.TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
 
-            //tileset
-            this.TileSet = TileSet;
-           // TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
-
-            //layers
-            Background = map.Layers["background"];
-            Buildings = map.Layers["buildings"];
-            MidGround = map.Layers["midGround"];
-            foreGround = map.Layers["foreGround"];
-            Placement = map.Layers["placement"];
-
-            AllLayers = new List<TmxLayer>()
-            {
-                Background,
-                Buildings,
-                MidGround,
-                foreGround,
-                Placement
-            };
 
 
             //map specifications
-            TileWidth = map.Tilesets[0].TileWidth;
-            TileHeight = map.Tilesets[0].TileHeight;
-
-            TilesetTilesWide = TileSet.Width / TileWidth;
-            TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
             AllDepths = new List<float>()
@@ -190,41 +153,41 @@ namespace SecretProject.Class.StageFolder
             };
 
 
-            AllTiles = new TileManager(TileSet, map, AllLayers, graphicsDevice, content, TileSetNumber, AllDepths);
+
+            this.Map = new TmxMap("Content/Map/worldMap.tmx");
+            Background = Map.Layers["background"];
+            Buildings = Map.Layers["buildings"];
+            MidGround = Map.Layers["midGround"];
+            foreGround = Map.Layers["foreGround"];
+            Placement = Map.Layers["placement"];
+            AllLayers = new List<TmxLayer>()
+            {
+                Background,
+                Buildings,
+                MidGround,
+                foreGround,
+                Placement
+            };
+            AllTiles = new TileManager(TileSet, Map, AllLayers, graphics, content, TileSetNumber, AllDepths);
+            TileWidth = Map.Tilesets[0].TileWidth;
+            TileHeight = Map.Tilesets[0].TileHeight;
+
+            TilesetTilesWide = TileSet.Width / TileWidth;
+            TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            //--------------------------------------
-            //Player Stuff
-
-            this.Player = player;
-            var mIdle = content.Load<Texture2D>("NPC/Mastodon/MastodonIdle");
-
-            //load players
-
-            //sprite textures
-            PuzzleFish = content.Load<Texture2D>("Item/puzzleFish");
-            HouseKey = content.Load<Texture2D>("Item/houseKey");
-
-            //--------------------------------------
-            //camera
-            this.Cam = camera;
-            Game1.cam.Zoom = 3f;
-            Cam.Move(new Vector2(player.Position.X, player.Position.Y));
-
-            //--------------------------------------
-            //Songs
-            MainTheme = content.Load<Song>("Music/IntheForest");
-            //MediaPlayer.Play(MainTheme);
-
-            // midGroundTiles.isActive = true;
-            //BuildingsTiles.IsBuilding = true;
-
-            //UserInterface
-            //allItems.Add(Game1.ItemVault.GenerateNewItem(0, new Vector2(Game1.Player.position.X + 100, Game1.Player.position.Y + 50), true));
-
-            //ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), graphicsDevice);
+            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), graphics);
 
             AllActions = new List<ActionTimer>();
+
+            this.Cam = camera;
+            Game1.cam.Zoom = 3f;
+            Cam.Move(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
+        }
+
+        public void UnloadContent(ContentManager content)
+        {
+
         }
 
         #endregion
@@ -233,7 +196,6 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
             //keyboard
-
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
             Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, Player.Inventory, mouse, game);
@@ -242,10 +204,14 @@ namespace SecretProject.Class.StageFolder
             {
                 ShowBorders = !ShowBorders;
             }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
+            {
+                ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+            }
 
             if (!Game1.freeze)
             {
-                Game1.GlobalClock.Update(gameTime);
+                // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update Players
                 Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
@@ -267,18 +233,24 @@ namespace SecretProject.Class.StageFolder
                 //    AllActions[i].Update(gameTime, AllActions);
                 //}
 
-                for(int i = 0; i < AllItems.Count; i++)
+                for (int i = 0; i < AllItems.Count; i++)
                 {
                     AllItems[i].Update(gameTime);
                 }
-
-                if (Player.position.Y > 1550)
+                if (ElixerNPC.IsUpdating)
                 {
-                    Player.Position = new Vector2(767, 25);
-                    Game1.PreviousStage = 2;
+                    ElixerNPC.Update(gameTime, mouse);
+                    ElixerNPC.MoveTowardsPosition(Player.Position);
+                }
+                ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
+
+                if (Player.position.Y < 20 && Player.position.X < 810 && Player.position.X > 730)
+                {
+                    Player.Position = new Vector2(Player.position.X, 1540);
+                    Game1.PreviousStage = 5;
                     this.TilesLoaded = false;
                     Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
-                    Game1.gameStages = Stages.RoyalDock;
+                    Game1.gameStages = Stages.Iliad;
                 }
             }
         }
@@ -298,33 +270,31 @@ namespace SecretProject.Class.StageFolder
                 {
                     Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
                 }
-                
+
                 //????
-                if(Player.CurrentAction.IsAnimating == true)
+                if (Player.CurrentAction.IsAnimating == true)
                 {
                     Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
                 }
 
-                
 
+                ElixerNPC.Draw(spriteBatch);
 
-               // ElixerNPC.Draw(spriteBatch);
-
-                if(ShowBorders)
+                if (ShowBorders)
                 {
-                //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
+                    //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                
+
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
-                if(Game1.userInterface.DrawTileSelector)
+                if (Game1.userInterface.DrawTileSelector)
                 {
                     spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
                 }
-                
+
                 //--------------------------------------
                 //Draw sprite list
 
@@ -347,11 +317,13 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
+                ElixerNPC.Draw(spriteBatch);
+
                 Game1.userInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();
             }
             Game1.userInterface.Draw(spriteBatch);
-            Game1.GlobalClock.Draw(spriteBatch);
+            //Game1.GlobalClock.Draw(spriteBatch);
         }
         public Camera2D GetCamera()
         {

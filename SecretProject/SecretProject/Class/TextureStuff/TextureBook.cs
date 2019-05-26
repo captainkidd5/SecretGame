@@ -131,10 +131,10 @@ namespace SecretProject.Class.TextureStuff
             barrel = content.Load<Texture2D>("Item/Barrel");
             redOrb = content.Load<Texture2D>("Item/redOrb");
             blueOrb = content.Load<Texture2D>("Item/blueOrb");
-            Iliad = new TmxMap("Content/Map/worldMap.tmx");
+           // Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
-            LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
-            RoyalDocks = new TmxMap("Content/Map/royalDocks.tmx");
+           // LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
+           // RoyalDocks = new TmxMap("Content/Map/royalDocks.tmx");
 
            // Sea = new TmxMap("Content/Map/sea.tmx");
 

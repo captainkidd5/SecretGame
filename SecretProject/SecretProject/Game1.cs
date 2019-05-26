@@ -71,12 +71,16 @@ namespace SecretProject
     {
         #region FIELDS
 
+        //ContentManagers
+        public ContentManager HomeContentManager;
+        public ContentManager SeaContentManager;
+
         //STAGES
         public static MainMenu mainMenu;
         public static Home Iliad;
         public static Home LodgeInterior;
         public static RoyalDock RoyalDock;
-       // public static Sea Sea;
+        public static Sea Sea;
         public static List<Home> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -172,8 +176,8 @@ namespace SecretProject
             Utility = new Utility();
 
             //SCREEN
-
-            
+            HomeContentManager = new ContentManager(Content.ServiceProvider);
+            SeaContentManager = new ContentManager(Content.ServiceProvider);
 
             AllActions = new List<ActionTimer>();
 
@@ -202,8 +206,8 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     return Iliad;
-                //case Stages.Sea:
-                //    return Sea;
+                case Stages.Sea:
+                    return Sea;
 
                 case Stages.RoyalDock:
                     return RoyalDock;
@@ -301,14 +305,19 @@ namespace SecretProject
 
             userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
-            //Sea = new Sea(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
+            //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
+            Sea = new Sea();
+            Sea.LoadContent(SeaContentManager, graphics.GraphicsDevice, cam, 0);
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
-            RoyalDock = new RoyalDock(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.RoyalDocks, AllTextures.MasterTileSet, 0);
+            Iliad = new Home();
             
-            LodgeInterior = new Home(graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player, AllTextures.LodgeInterior, AllTextures.LodgeInteriorTileSet, 0);
+            RoyalDock = new RoyalDock();
+            RoyalDock.LoadContent(HomeContentManager, graphics.GraphicsDevice, cam, 0);
+
+            
+            LodgeInterior = new Home();
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
