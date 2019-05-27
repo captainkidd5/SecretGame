@@ -32,17 +32,17 @@ namespace SecretProject.Class.StageFolder
         Texture2D TileSet { get; set; }
 
 
-        TmxLayer Buildings { get; set; }
+        //TmxLayer Buildings { get; set; }
 
-        TmxLayer Background { get; set; }
+        //TmxLayer Background { get; set; }
 
-        TmxLayer Background1 { get; set; }
+        //TmxLayer Background1 { get; set; }
 
-        TmxLayer MidGround { get; set; }
+        //TmxLayer MidGround { get; set; }
 
-        TmxLayer foreGround { get; set; }
+        //TmxLayer foreGround { get; set; }
 
-        TmxLayer Placement { get; set; }
+        //TmxLayer Placement { get; set; }
 
 
         Song MainTheme { get; set; }

@@ -34,35 +34,32 @@ namespace SecretProject.Class.StageFolder
 
         public bool ShowBorders { get; set; }
 
-        [XmlIgnore]
         public Vector2 TileSize = new Vector2(16, 16); // what?
-        [XmlIgnore]
+
 
         public TmxMap Map { get; set; }
 
-        [XmlIgnore]
+
         public Player player { get; set; }
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
         public int TilesetTilesWide { get; set; }
         public int TilesetTilesHigh { get; set; }
-        [XmlIgnore]
+
         public Texture2D TileSet { get; set; }
 
         public List<TileManager> AllStageTiles { get; set; }
 
+        public TmxLayer underWater { get; set; }
         public TmxLayer Buildings { get; set; }
 
         public TmxLayer Background { get; set; }
 
-        public TmxLayer Background1 { get; set; }
-
-        public TmxLayer MidGround { get; set; }
+        
 
         public TmxLayer foreGround { get; set; }
 
-        public TmxLayer Placement { get; set; }
 
 
         [XmlIgnore]
@@ -145,7 +142,6 @@ namespace SecretProject.Class.StageFolder
             {
                 .1f,
                 .2f,
-                .3f,
                 .5f,
                 .6f
             };
@@ -153,16 +149,15 @@ namespace SecretProject.Class.StageFolder
             this.Map = new TmxMap("Content/Map/sea.tmx");
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
-            MidGround = Map.Layers["midGround"];
             foreGround = Map.Layers["foreGround"];
-            Placement = Map.Layers["placement"];
+            underWater = Map.Layers["underWater"];
             AllLayers = new List<TmxLayer>()
             {
                 Background,
                 Buildings,
-                MidGround,
+
                 foreGround,
-                Placement
+                underWater
             };
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             TileWidth = Map.Tilesets[0].TileWidth;
@@ -192,9 +187,10 @@ namespace SecretProject.Class.StageFolder
             AllDepths = null;
             AllItems = null;
             Background = null;
-            MidGround = null;
             foreGround = null;
-            Placement = null;
+            underWater = null;
+            this.Cam = null;
+            ElixerNPC = null;
         }
 
         #endregion

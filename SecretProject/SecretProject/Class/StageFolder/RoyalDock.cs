@@ -204,6 +204,9 @@ namespace SecretProject.Class.StageFolder
             MidGround = null;
             foreGround = null;
             Placement = null;
+
+            this.Cam = null;
+
         }
 
         #endregion
@@ -214,7 +217,7 @@ namespace SecretProject.Class.StageFolder
             //keyboard
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
             {
-                Game1.SwitchStage(5, 2);
+                Game1.SwitchStage(5, 4);
                 return;
             }
             Game1.myMouseManager.ToggleGeneralInteraction = false;

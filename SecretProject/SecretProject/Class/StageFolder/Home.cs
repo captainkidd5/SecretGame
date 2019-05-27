@@ -204,6 +204,8 @@ namespace SecretProject.Class.StageFolder
             MidGround = null;
             foreGround = null;
             Placement = null;
+            this.Cam = null;
+
         }
 
         #endregion

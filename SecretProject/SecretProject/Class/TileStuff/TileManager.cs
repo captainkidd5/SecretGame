@@ -122,11 +122,11 @@ namespace SecretProject.Class.TileStuff
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>()
             {
-                new Tile[100,100],
-                new Tile[100,100],
-                new Tile[100,100],
-                new Tile[100,100],
-                new Tile[100,100]
+                new Tile[mapName.Width,mapName.Height],
+                new Tile[mapName.Width,mapName.Height],
+                new Tile[mapName.Width,mapName.Height],
+                new Tile[mapName.Width,mapName.Height],
+                new Tile[mapName.Width,mapName.Height]
             };
 
             Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];

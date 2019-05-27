@@ -190,14 +190,6 @@ namespace SecretProject
         #endregion
         
 
-        //use this sparingly for now. Seems to cause a buildup of memory.
-        public static void ReloadHome(GraphicsDevice graphics, ContentManager content)
-        {
-            //Home newHome = new Home();
-            //Iliad = newHome;
-            //Iliad.AllTiles.LoadInitialTileObjects();
-        }
-
         public static IStage GetCurrentStage()
         {
             switch(gameStages)
@@ -228,6 +220,8 @@ namespace SecretProject
                     return LodgeInterior;
                 case 2:
                     return Iliad;
+                case 4:
+                    return Sea;
                 case 5:
                     return RoyalDock;
                 default:
@@ -348,11 +342,6 @@ namespace SecretProject
             
         }
 
-        protected void UnloadStageObects(IStage stage)
-        {
-            List<ObjectBody> newEmptyObjectList = new List<ObjectBody>();
-            stage.AllObjects = newEmptyObjectList;
-        }
 
         public static void FullScreenToggle()
         {
@@ -406,10 +395,10 @@ namespace SecretProject
                     RoyalDock.Update(gameTime, myMouseManager, Player);
                     break;
 
-                    //case Stages.Sea:
-                    //    GraphicsDevice.Clear(Color.Black);
-                    //    Sea.Update(gameTime, myMouseManager, this);
-                    //    break;
+                    case Stages.Sea:
+                        GraphicsDevice.Clear(Color.Black);
+                       Sea.Update(gameTime, myMouseManager, Player);
+                       break;
             }
 
             base.Update(gameTime);
@@ -446,8 +435,9 @@ namespace SecretProject
 
 
 
-                    //case Stages.Sea:
-                    //    Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    case Stages.Sea:
+                        Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
 
 
                     //break;

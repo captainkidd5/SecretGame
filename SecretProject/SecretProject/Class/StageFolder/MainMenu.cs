@@ -98,7 +98,6 @@ namespace SecretProject.Class.StageFolder
 
             if(reloadMap.isClicked)
             {
-                Game1.ReloadHome(graphics, content);
                 Game1.userInterface.IsEscMenu = false;
                 Game1.gameStages = Stages.Iliad;
             }
