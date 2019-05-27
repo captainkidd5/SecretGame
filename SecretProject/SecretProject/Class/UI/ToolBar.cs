@@ -86,13 +86,11 @@ namespace SecretProject.Class.UI
 
         public List<ActionTimer> AllActions;
 
-        public ToolBar(Game1 game, GraphicsDevice graphicsDevice, ContentManager content )
+        public ToolBar( GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);
 
 
-
-            this.game = game;
             this.graphicsDevice = graphicsDevice;
             this.content = content;
             //--------------------------------------

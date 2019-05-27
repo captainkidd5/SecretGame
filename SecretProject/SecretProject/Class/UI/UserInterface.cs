@@ -47,14 +47,13 @@ namespace SecretProject.Class.UI
         {
 
         }
-        public UserInterface(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
+        public UserInterface(GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
         {
-            this.Game = game;
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
             isEscMenu = false;
             
-            BottomBar = new ToolBar(game, graphicsDevice, content);
+            BottomBar = new ToolBar( graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
             ShopMenu.TryAddStock(5, 1);
@@ -70,7 +69,7 @@ namespace SecretProject.Class.UI
         }
 
 
-        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory, MouseManager mouse, Game1 game)
+        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory, MouseManager mouse)
         {
             BottomBar.Update(gameTime, inventory, mouse);
 
@@ -109,7 +108,7 @@ namespace SecretProject.Class.UI
 
             if (isEscMenu)
             {
-                Esc.Update(gameTime, mouse, game );
+                Esc.Update(gameTime, mouse);
                 Game1.freeze = true;
             }
             if(!isEscMenu && !IsShopMenu)

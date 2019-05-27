@@ -74,16 +74,19 @@ List<ActionTimer> AllActions { get; set; }
 
         UserInterface MainUserInterface { get; set; }
 
+        ContentManager Content { get; set; }
+        GraphicsDevice Graphics { get; set; }
+
 
 
         //SAVE STUFF
 
         bool TilesLoaded { get; set; }
 
-        void Update(GameTime gameTime, MouseManager mouse, Game1 game);
-        void LoadContent(ContentManager content, GraphicsDevice graphics, Camera2D camera, int tileSetNumber);
-        void UnloadContent(ContentManager content);
-        void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse);
+        void Update(GameTime gameTime, MouseManager mouse, Player player);
+        void LoadContent( Camera2D camera);
+        void UnloadContent();
+        void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
 
     }
 }

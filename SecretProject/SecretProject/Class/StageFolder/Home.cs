@@ -41,7 +41,7 @@ namespace SecretProject.Class.StageFolder
         public TmxMap Map { get; set; }
 
         [XmlIgnore]
-        public Player Player { get; set; }
+        public Player player { get; set; }
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
@@ -103,20 +103,24 @@ namespace SecretProject.Class.StageFolder
         [XmlIgnore]
         public Elixir ElixerNPC;
 
+        public ContentManager Content { get; set; }
+        public GraphicsDevice Graphics { get; set; }
+
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public Home()
+        public Home(GraphicsDevice graphics, ContentManager content, int tileSetNumber)
         {
-
-
+            this.Graphics = graphics;
+            this.Content = content;
+            this.TileSetNumber = tileSetNumber;
 
         }
 
-        public void LoadContent(ContentManager content, GraphicsDevice graphics, Camera2D camera, int tileSetNumber)
+        public void LoadContent( Camera2D camera)
         {
 
             AllSprites = new List<Sprite>()
@@ -133,10 +137,9 @@ namespace SecretProject.Class.StageFolder
             {
 
             };
-            this.TileSetNumber = tileSetNumber;
 
 
-            this.TileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
 
 
@@ -168,7 +171,8 @@ namespace SecretProject.Class.StageFolder
                 foreGround,
                 Placement
             };
-            AllTiles = new TileManager(TileSet, Map, AllLayers, graphics, content, TileSetNumber, AllDepths);
+            AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
+            AllTiles.LoadInitialTileObjects();
             TileWidth = Map.Tilesets[0].TileWidth;
             TileHeight = Map.Tilesets[0].TileHeight;
 
@@ -176,29 +180,33 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), graphics);
+            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics);
 
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Game1.cam.Zoom = 3f;
-            Cam.Move(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
+            Cam.Zoom = 3f;
+           
+
+            this.Map = null;
         }
 
-        public void UnloadContent(ContentManager content)
+        public void UnloadContent()
         {
-
+            Content.Unload();
         }
 
         #endregion
 
         #region UPDATE
-        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
+        public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             //keyboard
+
+
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
-            Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, Player.Inventory, mouse, game);
+            Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
@@ -213,9 +221,9 @@ namespace SecretProject.Class.StageFolder
             {
                 // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
-                //Update Players
-                Game1.cam.Follow(new Vector2(Player.Position.X, Player.Position.Y));
-                Player.Update(gameTime, AllItems, AllObjects);
+                //Update players
+                Cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+                player.Update(gameTime, AllItems, AllObjects);
 
                 //--------------------------------------
                 //Update sprites
@@ -240,13 +248,13 @@ namespace SecretProject.Class.StageFolder
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime, mouse);
-                    ElixerNPC.MoveTowardsPosition(Player.Position);
+                    ElixerNPC.MoveTowardsPosition(player.Position);
                 }
                 ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                if (Player.position.Y < 20 && Player.position.X < 810 && Player.position.X > 730)
+                if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
                 {
-                    Player.Position = new Vector2(Player.position.X, 1540);
+                    player.Position = new Vector2(player.position.X, 1540);
                     Game1.PreviousStage = 5;
                     this.TilesLoaded = false;
                     Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
@@ -257,24 +265,24 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
+        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             graphics.Clear(Color.Black);
-            if (Player.Health > 0)
+            if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
-                Player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
+                player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
-                if (Player.CurrentAction.IsAnimating == false)
+                if (player.CurrentAction.IsAnimating == false)
                 {
-                    Player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y - 3), (float).4);
+                    player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y - 3), (float).4);
                 }
 
                 //????
-                if (Player.CurrentAction.IsAnimating == true)
+                if (player.CurrentAction.IsAnimating == true)
                 {
-                    Player.CurrentAction.Draw(spriteBatch, new Vector2(Player.Position.X, Player.Position.Y), (float).4);
+                    player.CurrentAction.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).4);
                 }
 
 
@@ -282,7 +290,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-                    //    spriteBatch.Draw(Game1.Player.BigHitBoxRectangleTexture, Game1.Player.ClickRangeRectangle, Color.White);
+                    //    spriteBatch.Draw(Game1.player.BigHitBoxRectangleTexture, Game1.player.ClickRangeRectangle, Color.White);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);

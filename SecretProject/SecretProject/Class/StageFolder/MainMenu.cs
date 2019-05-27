@@ -61,6 +61,10 @@ namespace SecretProject.Class.StageFolder
             mySave = new SaveLoadManager();
 
         }
+        public void UnloadContent()
+        {
+
+        }
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
@@ -78,7 +82,7 @@ namespace SecretProject.Class.StageFolder
             //Check Conditions
             if (resumeGame.isClicked)
             {
-                Game1.gameStages = Stages.Iliad;
+                Game1.SwitchStage(0, 2);
                 Game1.userInterface.IsEscMenu = false;
             }
             if(Load.isClicked)

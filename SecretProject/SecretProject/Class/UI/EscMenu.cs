@@ -69,7 +69,7 @@ namespace SecretProject.Class.MenuStuff
 
         }
 
-        public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
+        public void Update(GameTime gameTime, MouseManager mouse)
         {
             Game1.isMyMouseVisible = true;
             if (isTextChanged == true)
@@ -105,7 +105,7 @@ namespace SecretProject.Class.MenuStuff
 
             if(ToggleFullScreenButton.isClicked)
             {
-                game.FullScreenToggle();
+                Game1.FullScreenToggle();
             }
         }
 

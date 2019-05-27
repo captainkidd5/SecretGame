@@ -102,7 +102,7 @@ namespace SecretProject
         public static bool ToggleFullScreen = false;
 
         //Initialize Starting Stage
-        public static Stages gameStages = Stages.RoyalDock;
+        public static Stages gameStages = Stages.MainMenu;
 
         //screen stuff
         public static Rectangle ScreenRectangle = new Rectangle(0, 0, 0, 0);
@@ -150,7 +150,12 @@ namespace SecretProject
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            HomeContentManager = new ContentManager(Content.ServiceProvider);
+            SeaContentManager = new ContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
+            SeaContentManager.RootDirectory = "Content";
+            HomeContentManager.RootDirectory = "Content";
 
             //set window dimensions
             graphics.PreferredBackBufferWidth = 1280;
@@ -176,8 +181,7 @@ namespace SecretProject
             Utility = new Utility();
 
             //SCREEN
-            HomeContentManager = new ContentManager(Content.ServiceProvider);
-            SeaContentManager = new ContentManager(Content.ServiceProvider);
+            
 
             AllActions = new List<ActionTimer>();
 
@@ -189,17 +193,15 @@ namespace SecretProject
         //use this sparingly for now. Seems to cause a buildup of memory.
         public static void ReloadHome(GraphicsDevice graphics, ContentManager content)
         {
-            Home newHome = new Home(graphics, content, myMouseManager, cam, userInterface, Player, AllTextures.Iliad, AllTextures.MasterTileSet, 0);
-            Iliad = newHome;
-            Iliad.AllTiles.LoadInitialTileObjects();
+            //Home newHome = new Home();
+            //Iliad = newHome;
+            //Iliad.AllTiles.LoadInitialTileObjects();
         }
 
         public static IStage GetCurrentStage()
         {
             switch(gameStages)
             {
-
-
 
                 case Stages.LodgeInteior:
                     return LodgeInterior;
@@ -218,7 +220,7 @@ namespace SecretProject
             }
         }
 
-        public static IStage GetPreviousStage(int stageNumber)
+        public static IStage GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
             {
@@ -238,8 +240,6 @@ namespace SecretProject
         {
             switch (gameStages)
             {
-
-
 
                 case Stages.LodgeInteior:
                     return 1;
@@ -303,21 +303,21 @@ namespace SecretProject
             ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
             ItemVault.LoadItems(GraphicsDevice, Content);
 
-            userInterface = new UserInterface(this, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            userInterface = new UserInterface(graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
-            Sea = new Sea();
-            Sea.LoadContent(SeaContentManager, graphics.GraphicsDevice, cam, 0);
+            Sea = new Sea(graphics.GraphicsDevice,SeaContentManager, 0);
+            
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
-            Iliad = new Home();
+            Iliad = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             
-            RoyalDock = new RoyalDock();
-            RoyalDock.LoadContent(HomeContentManager, graphics.GraphicsDevice, cam, 0);
+            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);
+            
 
             
-            LodgeInterior = new Home();
+            LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
@@ -338,15 +338,26 @@ namespace SecretProject
         }
         #endregion
 
+        public static void SwitchStage(int currentStage, int stageToSwitchTo)
+        {
+
+            GetStageFromInt(currentStage).UnloadContent();
+            gameStages = (Stages)stageToSwitchTo;
+            GetStageFromInt(stageToSwitchTo).LoadContent( cam);
+            
+            
+        }
+
         protected void UnloadStageObects(IStage stage)
         {
             List<ObjectBody> newEmptyObjectList = new List<ObjectBody>();
             stage.AllObjects = newEmptyObjectList;
         }
 
-        public void FullScreenToggle()
+        public static void FullScreenToggle()
         {
-            graphics.ToggleFullScreen();
+            //TODO FIX THIS
+            //ToggleFullScreen();
         }
         //public 
 
@@ -381,7 +392,7 @@ namespace SecretProject
 
                 case Stages.LodgeInteior:
                     GraphicsDevice.Clear(Color.Black);
-                    LodgeInterior.Update(gameTime, myMouseManager, this);
+                    LodgeInterior.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.Iliad:
@@ -393,9 +404,9 @@ namespace SecretProject
                     Iliad.TilesLoaded = true;
                     if (PreviousStage != 0)
                     {
-                        UnloadStageObects(GetPreviousStage(PreviousStage));
+                        UnloadStageObects(GetStageFromInt(PreviousStage));
                     }
-                    Iliad.Update(gameTime, myMouseManager, this);
+                    Iliad.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
@@ -408,9 +419,9 @@ namespace SecretProject
                     
                     if (PreviousStage != 0)
                     {
-                        UnloadStageObects(GetPreviousStage(PreviousStage));
+                        UnloadStageObects(GetStageFromInt(PreviousStage));
                     }
-                    RoyalDock.Update(gameTime, myMouseManager, this);
+                    RoyalDock.Update(gameTime, myMouseManager, Player);
                     break;
 
                     //case Stages.Sea:
@@ -437,18 +448,18 @@ namespace SecretProject
                     break;
 
                 case Stages.LodgeInteior:
-                    LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                    // spriteBatch.Begin();
                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
                    // spriteBatch.End();
                     break;
 
                 case Stages.Iliad:
-                    Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
-                    RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
+                    RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 
