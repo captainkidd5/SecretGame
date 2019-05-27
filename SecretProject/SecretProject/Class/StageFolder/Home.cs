@@ -268,13 +268,11 @@ namespace SecretProject.Class.StageFolder
                 }
                 ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
+                if (player.position.Y > 980 && player.position.X < 810 && player.position.X > 730)
                 {
-                    player.Position = new Vector2(player.position.X, 1540);
-                    Game1.PreviousStage = 5;
-                    this.TilesLoaded = false;
-                    Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
-                    Game1.gameStages = Stages.Iliad;
+                    player.Position = new Vector2(player.position.X, 60);
+                    Game1.SwitchStage(2, 5);
+                    return;
                 }
             }
         }

@@ -120,16 +120,16 @@ namespace SecretProject.Class.TileStuff
 
             this.AllDepths = allDepths;
             this.AllLayers = allLayers;
-            AllTiles = new List<Tile[,]>()
-            {
-                new Tile[mapName.Width,mapName.Height],
-                new Tile[mapName.Width,mapName.Height],
-                new Tile[mapName.Width,mapName.Height],
-                new Tile[mapName.Width,mapName.Height],
-                new Tile[mapName.Width,mapName.Height]
-            };
+            AllTiles = new List<Tile[,]>();
 
-            Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
+
+            for (int i = 0; i < allLayers.Count; i++)
+            {
+                AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
+
+            }
+
+            //Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
             for(int i =0; i < AllTiles.Count; i++)
             {
@@ -262,7 +262,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }      
-            this.JaggedTiles = GetJaggedTiles();
+            //this.JaggedTiles = GetJaggedTiles();
         }
         #endregion
         public bool TileInteraction { get; set; } = false;
@@ -763,32 +763,32 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public Tile[][] GetJaggedTiles()
-        {
-            Tile[][] jaggedArray = new Tile[100][];
-            for(int i =0; i < Tiles.GetLength(0); i++)
-            {
-                jaggedArray[i] = new Tile[Tiles.GetLength(1)];
-                for(int j=0; j< Tiles.GetLength(1); j++)
-                {
-                    jaggedArray[i][j] = Tiles[i, j];
-                }
-            }
-            return jaggedArray;
-        }
+        //public Tile[][] GetJaggedTiles()
+        //{
+        //    Tile[][] jaggedArray = new Tile[100][];
+        //    for(int i =0; i < Tiles.GetLength(0); i++)
+        //    {
+        //        jaggedArray[i] = new Tile[Tiles.GetLength(1)];
+        //        for(int j=0; j< Tiles.GetLength(1); j++)
+        //        {
+        //            jaggedArray[i][j] = Tiles[i, j];
+        //        }
+        //    }
+        //    return jaggedArray;
+        //}
 
-        public Tile[,] GetDimensionalTiles(Tile[][] jaggedTiles)
-        {
-            Tile[,] dimensionalTiles = new Tile[100, 100];
-            for(int i=0; i<jaggedTiles.Length; i++)
-            {
-                for(int j=0; j<jaggedTiles[0].Length; j++)
-                {
-                    dimensionalTiles[i, j] = jaggedTiles[i][j];
-                }
-            }
-            return dimensionalTiles;
-        }
+        //public Tile[,] GetDimensionalTiles(Tile[][] jaggedTiles)
+        //{
+        //    Tile[,] dimensionalTiles = new Tile[100, 100];
+        //    for(int i=0; i<jaggedTiles.Length; i++)
+        //    {
+        //        for(int j=0; j<jaggedTiles[0].Length; j++)
+        //        {
+        //            dimensionalTiles[i, j] = jaggedTiles[i][j];
+        //        }
+        //    }
+        //    return dimensionalTiles;
+        //}
 
     }
         #endregion 

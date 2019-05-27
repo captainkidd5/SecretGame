@@ -273,10 +273,8 @@ namespace SecretProject.Class.StageFolder
                 if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
                 {
                     player.Position = new Vector2(player.position.X, 1540);
-                    Game1.PreviousStage = 5;
-                    this.TilesLoaded = false;
-                    Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
-                    Game1.gameStages = Stages.Iliad;
+                    Game1.SwitchStage(5, 2);
+                    return;
                 }
             }
         }
@@ -285,7 +283,7 @@ namespace SecretProject.Class.StageFolder
         #region DRAW
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
-            graphics.Clear(Color.Black);
+           // graphics.Clear(Color.Black);
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
