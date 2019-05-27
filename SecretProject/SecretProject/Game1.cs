@@ -397,30 +397,12 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    if(!Iliad.TilesLoaded)
-                    {
-                        Iliad.AllTiles.LoadInitialTileObjects();
-                    }
-                    Iliad.TilesLoaded = true;
-                    if (PreviousStage != 0)
-                    {
-                        UnloadStageObects(GetStageFromInt(PreviousStage));
-                    }
+
                     Iliad.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
-                    GraphicsDevice.Clear(Color.Black);
-                    if(!RoyalDock.TilesLoaded)
-                    {
-                        RoyalDock.AllTiles.LoadInitialTileObjects();
-                    }
-                    RoyalDock.TilesLoaded = true;
-                    
-                    if (PreviousStage != 0)
-                    {
-                        UnloadStageObects(GetStageFromInt(PreviousStage));
-                    }
+                    GraphicsDevice.Clear(Color.Black); 
                     RoyalDock.Update(gameTime, myMouseManager, Player);
                     break;
 

@@ -188,13 +188,17 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = 3f;
-            Cam.Move(new Vector2(player.Position.X, player.Position.Y));
             Map = null;
         }
 
         public void UnloadContent()
         {
             Content.Unload();
+            AllObjects = new List<ObjectBody>();
+            AllLayers = null;
+            AllTiles = null;
+            AllSprites = new List<Sprite>();
+            AllActions = null;
         }
 
         #endregion
@@ -203,6 +207,11 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             //keyboard
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
+            {
+                Game1.SwitchStage(5, 4);
+                return;
+            }
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
             Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
@@ -215,6 +224,8 @@ namespace SecretProject.Class.StageFolder
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
             }
+
+            
 
             if (!Game1.freeze)
             {

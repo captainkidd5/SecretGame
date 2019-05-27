@@ -186,6 +186,10 @@ namespace SecretProject.Class.StageFolder
         public void UnloadContent()
         {
             Content.Unload();
+            AllObjects = null; 
+            AllLayers = null;
+            AllTiles = null;
+            AllSprites = null;
         }
 
         #endregion

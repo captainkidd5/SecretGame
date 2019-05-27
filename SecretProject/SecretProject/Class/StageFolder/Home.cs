@@ -194,6 +194,10 @@ namespace SecretProject.Class.StageFolder
         public void UnloadContent()
         {
             Content.Unload();
+            AllObjects = null;
+            AllLayers = null;
+            AllTiles = null;
+            AllSprites = null;
         }
 
         #endregion
@@ -202,7 +206,11 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             //keyboard
-
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
+            {
+                Game1.SwitchStage(2, 5);
+                return;
+            }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 

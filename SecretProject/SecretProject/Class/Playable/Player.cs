@@ -253,7 +253,7 @@ namespace SecretProject.Class.Playable
         }
 
 
-        public void Update(GameTime gameTime, List<Item> items, List<ObjectFolder.ObjectBody> objects)
+        public void Update(GameTime gameTime, List<Item> items, List<ObjectBody> objects)
         {
             if (Activate)
             {
