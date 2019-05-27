@@ -198,6 +198,12 @@ namespace SecretProject.Class.StageFolder
             AllLayers = null;
             AllTiles = null;
             AllSprites = null;
+            AllDepths = null;
+            AllItems = null;
+            Background = null;
+            MidGround = null;
+            foreGround = null;
+            Placement = null;
         }
 
         #endregion

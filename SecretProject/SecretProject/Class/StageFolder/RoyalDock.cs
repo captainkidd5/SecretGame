@@ -194,11 +194,16 @@ namespace SecretProject.Class.StageFolder
         public void UnloadContent()
         {
             Content.Unload();
-            AllObjects = new List<ObjectBody>();
+            AllObjects = null;
             AllLayers = null;
             AllTiles = null;
-            AllSprites = new List<Sprite>();
-            AllActions = null;
+            AllSprites = null;
+            AllDepths = null;
+            AllItems = null;
+            Background = null;
+            MidGround = null;
+            foreGround = null;
+            Placement = null;
         }
 
         #endregion
@@ -209,7 +214,7 @@ namespace SecretProject.Class.StageFolder
             //keyboard
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
             {
-                Game1.SwitchStage(5, 4);
+                Game1.SwitchStage(5, 2);
                 return;
             }
             Game1.myMouseManager.ToggleGeneralInteraction = false;
