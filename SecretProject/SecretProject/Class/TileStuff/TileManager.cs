@@ -91,6 +91,8 @@ namespace SecretProject.Class.TileStuff
 
         public List<float> AllDepths;
 
+        public bool TileInteraction { get; set; } = false;
+
 
         #region CONSTRUCTOR
 
@@ -117,10 +119,11 @@ namespace SecretProject.Class.TileStuff
 
             this.graphicsDevice = graphicsDevice;
             this.content = content;
-
+            
             this.AllDepths = allDepths;
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>();
+            
 
 
             for (int i = 0; i < allLayers.Count; i++)
@@ -135,13 +138,13 @@ namespace SecretProject.Class.TileStuff
             {
                 foreach(TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
-                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
                     
                 }
-            } 
-
+            }
+            
             
             //stone
             GenerateTiles(1, 6675, "dirt", 100, 0);
@@ -163,17 +166,18 @@ namespace SecretProject.Class.TileStuff
                             //tile is red runestop bottom
                             if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
+                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                             }
                             if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100, 0) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
+                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                             }
                         }
                         if (AllTiles[z][i, j].GID != 0)
                         {
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
+                                AllTiles[z][i, j].LayerToDrawAt = AllDepths[z];
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("portal"))
                                 {
                                     AllTiles[z][i, j].IsPortal = true;
@@ -245,27 +249,22 @@ namespace SecretProject.Class.TileStuff
                                         AllTiles[z][i, j].AssociatedItem = 11;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                                     }
-
-
-                                    //TODO: Make sounds when the player walks
-                                    
                                 }
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
-                                    {
+                                {
                                         AllTiles[z][i, j].HasSound = true;
                                     AllTiles[z][i, j].SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]);
                                     //grass = 1, stone = 2, wood = 3, sand = 4
-                                    }
+                                }
 
                             }
                         }
                     }
                 }
-            }      
+            }
             //this.JaggedTiles = GetJaggedTiles();
         }
         #endregion
-        public bool TileInteraction { get; set; } = false;
 
         public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty)
         {
@@ -376,7 +375,7 @@ namespace SecretProject.Class.TileStuff
             if(!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
                 //Tiles[newTileX, newTileY].GID = 6675;
-                AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100, 0);
+                AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
             }
         }
 
@@ -533,8 +532,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) -400 && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) + 400
-                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) - 200 && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 200)
+                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + 240 && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X -240
+                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + 240 && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -240)
                             {
                                 spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle, AllTiles[z][i, j].TileColor * AllTiles[z][i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z]);
 
@@ -551,7 +550,7 @@ namespace SecretProject.Class.TileStuff
         
         public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
         }
 
@@ -565,7 +564,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber) { ColorMultiplier = colorMultiplier};
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { ColorMultiplier = colorMultiplier};
 
             TempTile = AllTiles[layer][oldX, oldY];
 
@@ -581,7 +580,7 @@ namespace SecretProject.Class.TileStuff
         //Basic Replacement.
         public void ReplaceTileWithNewTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].OldX, AllTiles[layer][tileToReplaceX, tileToReplaceY].OldY, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight, tileNumber);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].OldX, AllTiles[layer][tileToReplaceX, tileToReplaceY].OldY, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
         #endregion

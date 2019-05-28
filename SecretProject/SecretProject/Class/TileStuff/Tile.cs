@@ -78,6 +78,8 @@ namespace SecretProject.Class.TileStuff
         public bool RedRuneStone { get; set; } = false;
         public bool BlueRuneStone { get; set; } = false;
 
+        public float LayerToDrawAt { get; set; } = 0;
+
 
         //[XmlIgnore]
         //public Dictionary<string, bool> Properties;
@@ -102,9 +104,8 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight, int tileNumber)
+        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
         {
-            this.TileNumber = tileNumber;
 
             this.OldX = x;
             this.OldY = y;

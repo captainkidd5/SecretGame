@@ -365,7 +365,7 @@ namespace SecretProject.Class.Universal
             bool blueRuneStone = reader.ReadBoolean();
             bool hasObject = reader.ReadBoolean();
 
-            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, mapWidth, mapHeight, tileNumber);
+            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, mapWidth, mapHeight);
 
             if(hasObject)
             {
