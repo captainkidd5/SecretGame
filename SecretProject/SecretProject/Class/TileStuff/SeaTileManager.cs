@@ -112,17 +112,20 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
-                
 
-                
+
+                AllChunks[c].LoadRectangle();
             }
 
         }
         //have to make alltiles first and then load from there
         public void LoadContent(ContentManager content, Texture2D tileSet)
         {
-            
 
+            for (int c = 0; c < AllChunks.Length; c++)
+            {
+                AllChunks[c].LoadRectangle();
+            }
 
         }
 
@@ -131,18 +134,22 @@ namespace SecretProject.Class.TileStuff
 
         public void DrawTiles(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < AllChunks.Length; i++)
             {
-                for (int l = 0; l < 4; l++)
+                if(Game1.Player.Rectangle.Intersects(AllChunks[i].Rectangle))
                 {
-                    for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
+                    for (int l = 0; l < 4; l++)
                     {
-                        for (int y = 0; y < AllChunks[i].AllChunkTiles[l].GetLength(1); y++)
+                        for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
                         {
-                            spriteBatch.Draw(TileSet, AllChunks[i].AllChunkTiles[l][x, y].DestinationRectangle, AllChunks[i].AllChunkTiles[l][x, y].TileColor);
+                            for (int y = 0; y < AllChunks[i].AllChunkTiles[l].GetLength(1); y++)
+                            {
+                                spriteBatch.Draw(TileSet, AllChunks[i].AllChunkTiles[l][x, y].DestinationRectangle, AllChunks[i].AllChunkTiles[l][x, y].SourceRectangle, AllChunks[i].AllChunkTiles[l][x, y].TileColor);
+                            }
                         }
                     }
                 }
+                
             }
         }
     }

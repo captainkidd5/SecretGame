@@ -173,7 +173,7 @@ namespace SecretProject.Class.StageFolder
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = .5f;
 
             this.Map = null;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace SecretProject.Class.TileStuff
     public class Chunk
     {
         public List<Tile[,]> AllChunkTiles { get; set; }
-
+        public Rectangle Rectangle { get; set; }
 
         public Chunk(int numberOfLayers)
         {
@@ -18,11 +19,13 @@ namespace SecretProject.Class.TileStuff
             {
                 AllChunkTiles.Add(new Tile[64, 64]);
             }
+            
         }
 
-        public void LoadTile()
+        public void LoadRectangle()
         {
-            
+            this.Rectangle = new Rectangle((int)AllChunkTiles[1][0, 0].X, (int)AllChunkTiles[1][0, 0].Y, 1024,
+                1024);
         }
     }
 }
