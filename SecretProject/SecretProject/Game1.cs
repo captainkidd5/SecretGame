@@ -345,8 +345,8 @@ namespace SecretProject
 
         public static void FullScreenToggle()
         {
-            //TODO FIX THIS
-            //ToggleFullScreen();
+
+            ToggleFullScreen = true;
         }
         //public 
 

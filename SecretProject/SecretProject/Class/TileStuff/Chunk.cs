@@ -11,9 +11,13 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllChunkTiles { get; set; }
 
 
-        public Chunk()
+        public Chunk(int numberOfLayers)
         {
-            
+            AllChunkTiles = new List<Tile[,]>();
+            for(int i = 0; i< numberOfLayers; i++)
+            {
+                AllChunkTiles.Add(new Tile[64, 64]);
+            }
         }
 
         public void LoadTile()

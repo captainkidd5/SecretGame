@@ -33,11 +33,13 @@ namespace SecretProject.Class.TileStuff
 
         public int NumberOfLayers { get; set; } = 4;
 
-        public TmxLayer[] AllLayers { get; set; }
+        public List<TmxLayer> AllLayers { get; set; }
         public Chunk[] AllChunks { get; set; }
 
         public List<Tile[,]> AllTiles;
         GraphicsDevice graphics;
+
+        public Texture2D TileSet { get; set; }
 
 
 
@@ -46,12 +48,12 @@ namespace SecretProject.Class.TileStuff
         #region CONSTRUCTOR
 
         //TODO LayerDepth List
-        public SeaTileManager(TmxMap map, TmxLayer[] allLayers, GraphicsDevice graphics)
+        public SeaTileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
-            this.SeaMap = map;
+            this.SeaMap = mapName;
             this.AllLayers = allLayers;
-           
-            for (int i = 0; i < AllLayers.Length; i++)
+            AllTiles = new List<Tile[,]>();
+            for (int i = 0; i < AllLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[1024, 1024]);
 
@@ -69,49 +71,79 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            //this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
+            this.TileSet = tileSet;
+
+            //AllLayers.
+
+            AllChunks = new Chunk[256];
+
+            int currentTileIndexX = 0;
+            int currentTileIndexY = 0;
+
+            int anchorIndexX = 0;
+            int anchorIndexY = 0;
+
+            for (int c = 0; c < AllChunks.Length; c++)
+            {
+                AllChunks[c] = new Chunk(AllLayers.Count);
+
+                anchorIndexX = currentTileIndexX;
+                anchorIndexY = currentTileIndexY;
+                
+                for (int l = 0; l < AllLayers.Count; l++)
+                {
+                    currentTileIndexX = anchorIndexX;
+                    currentTileIndexY = anchorIndexY;
+
+                    for (int x = 0; x < 64; x++)// 8 * 8 = 64
+                    {
+
+                        for (int y = 0; y < 64; y++)//
+                        {
+                            AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
+                            currentTileIndexY++;
+                        }
+                        if (currentTileIndexY == 1024)
+                        {
+                            currentTileIndexX++;
+                            currentTileIndexY = 0;
+                        }
+
+                    }
+                }
+                
+
+                
+            }
 
         }
         //have to make alltiles first and then load from there
         public void LoadContent(ContentManager content, Texture2D tileSet)
         {
-            this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
-
-
-            //AllLayers.
-
-            //AllChunks = new Chunk[256];
-
-            //int currentLayer = 0;
-
-            //for(int c=0; c< AllChunks.Length; c++ )
-            //{
-            //    AllChunks[c] = new Chunk();
-            //    for (int l=0; l<AllLayers.Length; l++)
-            //    {
-            //        for(int x=0; x<64;x++)
-            //        {
-            //            for(int y=0; y< 64; y++)
-            //            {
-            //                AllChunks[c].AllChunkTiles[l][x,y] = new Tile(AllLayers[l].Tiles[64 * c + x, 64*c + y, ])
-            //            }
-            //        }
-            //    }
-            //}
-
-
-            ////AllChunks = new List<Chunk>(256);
-            ////for (int z = 0; z < AllChunks.Count; z++)
-            ////    for (int z = 0; z < 4; z++)
-            ////    {
-
-            ////    }
-
-
-
-            //   }
+            
 
 
         }
+
+
         #endregion
+
+        public void DrawTiles(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int l = 0; l < 4; l++)
+                {
+                    for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
+                    {
+                        for (int y = 0; y < AllChunks[i].AllChunkTiles[l].GetLength(1); y++)
+                        {
+                            spriteBatch.Draw(TileSet, AllChunks[i].AllChunkTiles[l][x, y].DestinationRectangle, AllChunks[i].AllChunkTiles[l][x, y].TileColor);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

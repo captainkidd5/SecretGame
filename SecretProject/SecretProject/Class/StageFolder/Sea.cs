@@ -89,7 +89,7 @@ namespace SecretProject.Class.StageFolder
 
         public List<TmxLayer> AllLayers { get; set; }
 
-        public TileManager AllTiles { get; set; }
+        public SeaTileManager AllTiles { get; set; }
 
         //SAVE STUFF
 
@@ -99,6 +99,7 @@ namespace SecretProject.Class.StageFolder
 
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
+        TileManager IStage.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Elixir ElixerNPC;
 
@@ -159,13 +160,13 @@ namespace SecretProject.Class.StageFolder
                 foreGround,
                 underWater
             };
-            AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
+            AllTiles = new SeaTileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             TileWidth = Map.Tilesets[0].TileWidth;
             TileHeight = Map.Tilesets[0].TileHeight;
 
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
-            AllTiles.LoadInitialTileObjects();
+           // AllTiles.LoadInitialTileObjects();
 
             ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics);
 
@@ -230,7 +231,7 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                AllTiles.Update(gameTime, mouse);
+                //AllTiles.Update(gameTime, mouse);
                 //for(int i = 0; i < this.AllActions.Count; i++)
                 //{
                 //    AllActions[i].Update(gameTime, AllActions);
