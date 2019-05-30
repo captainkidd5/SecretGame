@@ -45,6 +45,7 @@ namespace SecretProject.Class.CameraStuff
         }
 
 
+
         public void Move(Vector2 amount)
         {
             pos += amount;
@@ -52,12 +53,16 @@ namespace SecretProject.Class.CameraStuff
 
         public void Follow(Vector2 amount, Rectangle rectangle)
         {
+            Vector2 worldRectangleOrigin = Vector2.Transform(new Vector2(rectangle.X, rectangle.Y), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
+            Vector2 worldRectangleWidth = Vector2.Transform(new Vector2(rectangle.Width, 0), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
+            Vector2 worldRectangleHeight = Vector2.Transform(new Vector2(0, rectangle.Height), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
+            Rectangle worldRectangle = new Rectangle((int)worldRectangleOrigin.X, (int)worldRectangleOrigin.Y, (int)worldRectangleWidth.X, (int)worldRectangleHeight.Y);
             pos.X = (int)amount.X;
             pos.Y = (int)amount.Y;
 
-            if (pos.X < 256)
+            if (pos.X < 0)
             {
-               pos.X = 256;
+               pos.X = 0;
             }
             if(pos.X > 1340)
            {

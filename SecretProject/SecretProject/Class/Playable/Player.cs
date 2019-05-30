@@ -390,18 +390,18 @@ namespace SecretProject.Class.Playable
                 //{
                 //    position.X = 0;
                 //}
-                if(position.X > Game1.GetCurrentStage().MapRectangle.Right)
-                {
-                    position.X = Game1.GetCurrentStage().MapRectangle.Right;
-                }
-                if(position.Y < Game1.GetCurrentStage().MapRectangle.Top)
-                {
-                    position.Y = Game1.GetCurrentStage().MapRectangle.Top;
-                }
-                if(position.Y > Game1.GetCurrentStage().MapRectangle.Left)
-                {
-                    position.Y = Game1.GetCurrentStage().MapRectangle.Left;
-                }
+                //if(position.X > Game1.GetCurrentStage().MapRectangle.Right)
+                //{
+                //    position.X = Game1.GetCurrentStage().MapRectangle.Right;
+                //}
+                //if(position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+                //{
+                //    position.Y = Game1.GetCurrentStage().MapRectangle.Top;
+                //}
+                //if(position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
+                //{
+                //    position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
+                //}
             }
         }
 

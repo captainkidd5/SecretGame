@@ -532,8 +532,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + 240 && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X -240
-                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + 240 && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -240)
+                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16)
+                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16))
                             {
                                 spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle, AllTiles[z][i, j].TileColor * AllTiles[z][i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z]);
 
