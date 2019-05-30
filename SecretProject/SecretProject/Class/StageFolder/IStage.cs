@@ -76,6 +76,7 @@ List<ActionTimer> AllActions { get; set; }
 
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
+        Rectangle MapRectangle { get; set; }
 
 
 

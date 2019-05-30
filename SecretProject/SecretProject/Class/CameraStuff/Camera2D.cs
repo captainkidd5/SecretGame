@@ -50,7 +50,7 @@ namespace SecretProject.Class.CameraStuff
             pos += amount;
         }
 
-        public void Follow(Vector2 amount)
+        public void Follow(Vector2 amount, Rectangle rectangle)
         {
             pos.X = (int)amount.X;
             pos.Y = (int)amount.Y;
@@ -72,8 +72,7 @@ namespace SecretProject.Class.CameraStuff
                 pos.Y = 1455;
             }
 
-            
-            
+           
             
         }
 
@@ -88,7 +87,6 @@ namespace SecretProject.Class.CameraStuff
         {
             // To add parallax, simply multiply it by the position
             return Matrix.CreateTranslation(new Vector3(-Pos * parallax, 0.0f)) *
-                // The next line has a catch. See note below.
                 Matrix.CreateTranslation(new Vector3(-Origin, 0.0f)) *
                 Matrix.CreateRotationZ(Rotation) *
                 Matrix.CreateScale(Zoom, Zoom, 1) *

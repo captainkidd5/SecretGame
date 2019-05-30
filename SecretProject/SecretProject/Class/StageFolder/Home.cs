@@ -105,6 +105,7 @@ namespace SecretProject.Class.StageFolder
 
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
+        public Rectangle MapRectangle { get; set; }
 
         #endregion
 
@@ -186,8 +187,8 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = 3f;
-           
 
+            MapRectangle = new Rectangle(0, 0, Map.Width, Map.Height);
             this.Map = null;
         }
 
@@ -238,7 +239,7 @@ namespace SecretProject.Class.StageFolder
                 // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                Cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+                Cam.Follow(new Vector2(player.Position.X, player.Position.Y), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects);
 
                 //--------------------------------------

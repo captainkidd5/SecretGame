@@ -59,8 +59,6 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            //Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
-
             for (int i = 0; i < AllTiles.Count; i++)
             {
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
@@ -74,8 +72,6 @@ namespace SecretProject.Class.TileStuff
             //this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
             this.TileSet = tileSet;
 
-            //AllLayers.
-
             AllChunks = new Chunk[256];
 
             int currentTileIndexX = 0;
@@ -84,37 +80,25 @@ namespace SecretProject.Class.TileStuff
             int anchorIndexX = 0;
             int anchorIndexY = 0;
 
-
-
             for (int c = 0; c < AllChunks.Length; c++)
             {
                 AllChunks[c] = new Chunk(AllLayers.Count);
-
-
-                
                 for (int l = 0; l < AllLayers.Count; l++)
                 {
                     currentTileIndexX = anchorIndexX;
                     currentTileIndexY = anchorIndexY;
 
-                    for (int x = 0; x < 64; x++)// 8 * 8 = 64
+                    for (int x = 0; x < 64; x++)
                     {
 
-                        for (int y = 0; y < 64; y++)//
+                        for (int y = 0; y < 64; y++)
                         {
                             AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
                             currentTileIndexY++;
                         }
                         currentTileIndexX++;
                         currentTileIndexY = anchorIndexY;
-
-                        //if (currentTileIndexY == 1024)
-                        //{
-                        //    currentTileIndexY = 0;
-                        //}
-
-                    }
-                    
+                    }                 
                 }
                 if (currentTileIndexX != 0 && currentTileIndexX % 1024 == 0)
                 {
@@ -130,6 +114,7 @@ namespace SecretProject.Class.TileStuff
                 AllChunks[c].LoadRectangle();
             }
 
+            AllTiles = null;
         }
         //have to make alltiles first and then load from there
         public void LoadContent(ContentManager content, Texture2D tileSet)
@@ -165,5 +150,10 @@ namespace SecretProject.Class.TileStuff
                 
             }
         }
+
+        //public bool IsChunkInRange(Rectangle playerRectangle, Rectangle chunkRectangle)
+        //{
+
+        //}
     }
 }

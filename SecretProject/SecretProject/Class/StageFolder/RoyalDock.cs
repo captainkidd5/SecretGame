@@ -100,6 +100,8 @@ namespace SecretProject.Class.StageFolder
 
         public List<float> AllDepths;
 
+        public Rectangle MapRectangle { get; set; }
+
         [XmlIgnore]
         public Elixir ElixerNPC;
         public ContentManager Content { get; set; }
@@ -188,6 +190,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = 3f;
+            MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
             Map = null;
         }
 
@@ -240,7 +243,7 @@ namespace SecretProject.Class.StageFolder
                 // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                Cam.Follow(new Vector2(player.Position.X, player.Position.Y));
+                Cam.Follow(new Vector2(player.Position.X, player.Position.Y), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects);
 
                 //--------------------------------------
