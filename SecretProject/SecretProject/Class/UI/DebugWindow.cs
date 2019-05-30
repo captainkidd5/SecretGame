@@ -31,7 +31,7 @@ namespace SecretProject.Class.UI
             {
                 spriteBatch.Draw(backDrop, textBoxLocation, Color.White);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate  + " \n \n PlayerLocationX: " + Game1.Player.Position.X  +
-                    " \n \n PlayerWorldPositionY: " + Game1.Player.Position.Y + "\n \n Cam PositionX " + Game1.cam.Pos.X  + " \n \n ScreenWidth/2 " + Game1.ScreenWidth + " \n \n MouseWorldPositionY: "
+                    " \n \n map width: " + Game1.GetCurrentStage().MapRectangle.Width + "\n \n Cam PositionX " + Game1.cam.Pos.X  + " \n \n ScreenWidth/2 " + Game1.ScreenWidth + " \n \n MouseWorldPositionY: "
                     + Game1.myMouseManager.WorldMousePosition.Y + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n MouseSquarePositionY: " +
                     Game1.myMouseManager.MouseSquareCoordinateY, textBoxLocation, Color.Red);
             }

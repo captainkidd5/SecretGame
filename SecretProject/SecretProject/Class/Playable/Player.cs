@@ -98,6 +98,12 @@ namespace SecretProject.Class.Playable
         [XmlIgnore]
         public Texture2D BigHitBoxRectangleTexture;
 
+        public Rectangle ChunkDetector {
+            get
+            {
+                return new Rectangle((int)position.X -300, (int)position.Y - 300, (int)position.X - 200, (int)position.Y - 200);
+            }
+        }
 
         public Rectangle Rectangle
         {
@@ -386,22 +392,19 @@ namespace SecretProject.Class.Playable
                     position.X = Game1.GetCurrentStage().MapRectangle.Left;
                 }
 
-                //if(position.X < 0)
-                //{
-                //    position.X = 0;
-                //}
-                //if(position.X > Game1.GetCurrentStage().MapRectangle.Right)
-                //{
-                //    position.X = Game1.GetCurrentStage().MapRectangle.Right;
-                //}
-                //if(position.Y < Game1.GetCurrentStage().MapRectangle.Top)
-                //{
-                //    position.Y = Game1.GetCurrentStage().MapRectangle.Top;
-                //}
-                //if(position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
-                //{
-                //    position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
-                //}
+
+                if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
+                {
+                    position.X = Game1.GetCurrentStage().MapRectangle.Right;
+                }
+                if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+                {
+                    position.Y = Game1.GetCurrentStage().MapRectangle.Top;
+                }
+                if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
+                {
+                    position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
+                }
             }
         }
 

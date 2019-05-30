@@ -11,6 +11,7 @@ namespace SecretProject.Class.TileStuff
     {
         public List<Tile[,]> AllChunkTiles { get; set; }
         public Rectangle Rectangle { get; set; }
+        public bool IsActive { get; set; } = false;
 
         public Chunk(int numberOfLayers)
         {

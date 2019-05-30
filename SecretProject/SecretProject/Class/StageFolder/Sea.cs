@@ -175,7 +175,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = .5f;
-            MapRectangle = new Rectangle(0, 0, Map.Width, Map.Height);
+            MapRectangle = new Rectangle(0, 0, TileWidth * 1024, TileHeight * 1024);
             this.Map = null;
         }
 

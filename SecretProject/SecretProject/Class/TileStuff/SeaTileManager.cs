@@ -36,6 +36,8 @@ namespace SecretProject.Class.TileStuff
         public List<TmxLayer> AllLayers { get; set; }
         public Chunk[] AllChunks { get; set; }
 
+        public int ChunkCount = 0;
+
         public List<Tile[,]> AllTiles;
         GraphicsDevice graphics;
 
@@ -50,6 +52,7 @@ namespace SecretProject.Class.TileStuff
         //TODO LayerDepth List
         public SeaTileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
+            
             this.SeaMap = mapName;
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>();
@@ -134,8 +137,9 @@ namespace SecretProject.Class.TileStuff
         {
             for (int i = 0; i < AllChunks.Length; i++)
             {
-                if(Game1.Player.Rectangle.Intersects(AllChunks[i].Rectangle))
+                if(Game1.Player.ChunkDetector.Intersects(AllChunks[i].Rectangle))
                 {
+                    AllChunks[i].IsActive = true;
                     for (int l = 0; l < 4; l++)
                     {
                         for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
@@ -146,6 +150,10 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
+                }
+                else
+                {
+                    AllChunks[i].IsActive = false;
                 }
                 
             }

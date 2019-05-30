@@ -26,6 +26,8 @@ namespace SecretProject.Class.CameraStuff
 
         public Viewport MyViewPort { get; set; }
 
+        public Rectangle ViewPortRectangle { get; set; }
+
         private Camera2D()
         {
 
@@ -53,28 +55,29 @@ namespace SecretProject.Class.CameraStuff
 
         public void Follow(Vector2 amount, Rectangle rectangle)
         {
-            Vector2 worldRectangleOrigin = Vector2.Transform(new Vector2(rectangle.X, rectangle.Y), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
-            Vector2 worldRectangleWidth = Vector2.Transform(new Vector2(rectangle.Width, 0), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
-            Vector2 worldRectangleHeight = Vector2.Transform(new Vector2(0, rectangle.Height), Matrix.Invert(this.GetViewMatrix(Vector2.One)));
-            Rectangle worldRectangle = new Rectangle((int)worldRectangleOrigin.X, (int)worldRectangleOrigin.Y, (int)worldRectangleWidth.X, (int)worldRectangleHeight.Y);
+
             pos.X = (int)amount.X;
             pos.Y = (int)amount.Y;
+            ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
+              (int)(Game1.GetCurrentStage().MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
+                (int)(Game1.GetCurrentStage().MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),
+                (int)(Game1.GetCurrentStage().MapRectangle.Height - Game1.ScreenHeight / 2 / zoom));
 
-            if (pos.X < 0)
+            if (pos.X < ViewPortRectangle.X)
             {
-               pos.X = 0;
+                pos.X = ViewPortRectangle.X;
             }
-            if(pos.X > 1340)
-           {
-                pos.X = 1340;
-            }
-            if(pos.Y < 145)
+            if (pos.X > ViewPortRectangle.Width)
             {
-                pos.Y = 145;
+                pos.X = ViewPortRectangle.Width;
             }
-            if(pos.Y > 1455)
+            if (pos.Y < ViewPortRectangle.Y)
             {
-                pos.Y = 1455;
+                pos.Y = ViewPortRectangle.Y;
+            }
+            if(pos.Y >  ViewPortRectangle.Height)
+            {
+                pos.Y = ViewPortRectangle.Height;
             }
 
            
