@@ -84,12 +84,13 @@ namespace SecretProject.Class.TileStuff
             int anchorIndexX = 0;
             int anchorIndexY = 0;
 
+
+
             for (int c = 0; c < AllChunks.Length; c++)
             {
                 AllChunks[c] = new Chunk(AllLayers.Count);
 
-                anchorIndexX = currentTileIndexX;
-                anchorIndexY = currentTileIndexY;
+
                 
                 for (int l = 0; l < AllLayers.Count; l++)
                 {
@@ -104,13 +105,25 @@ namespace SecretProject.Class.TileStuff
                             AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
                             currentTileIndexY++;
                         }
-                        if (currentTileIndexY == 1024)
-                        {
-                            currentTileIndexX++;
-                            currentTileIndexY = 0;
-                        }
+                        currentTileIndexX++;
+                        currentTileIndexY = anchorIndexY;
+
+                        //if (currentTileIndexY == 1024)
+                        //{
+                        //    currentTileIndexY = 0;
+                        //}
 
                     }
+                    
+                }
+                if (currentTileIndexX != 0 && currentTileIndexX % 1024 == 0)
+                {
+                    anchorIndexY += 64;
+                    anchorIndexX = 0;
+                }
+                else
+                {
+                    anchorIndexX += 64;
                 }
 
 
