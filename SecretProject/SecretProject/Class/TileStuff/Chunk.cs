@@ -18,7 +18,7 @@ namespace SecretProject.Class.TileStuff
             AllChunkTiles = new List<Tile[,]>();
             for(int i = 0; i< numberOfLayers; i++)
             {
-                AllChunkTiles.Add(new Tile[64, 64]);
+                AllChunkTiles.Add(new Tile[32, 32]);
             }
             
         }

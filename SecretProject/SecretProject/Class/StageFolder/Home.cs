@@ -188,7 +188,7 @@ namespace SecretProject.Class.StageFolder
             this.Cam = camera;
             Cam.Zoom = 3f;
 
-            MapRectangle = new Rectangle(0, 0, Map.Width, Map.Height);
+            MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
             this.Map = null;
         }
 
@@ -269,7 +269,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                if (player.position.Y > 980 && player.position.X < 810 && player.position.X > 730)
+                if (player.position.Y > 1550 && player.position.X < 810 && player.position.X > 730)
                 {
                     player.Position = new Vector2(player.position.X, 60);
                     Game1.SwitchStage(2, 5);

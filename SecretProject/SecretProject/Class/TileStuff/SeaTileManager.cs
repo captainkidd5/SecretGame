@@ -75,7 +75,7 @@ namespace SecretProject.Class.TileStuff
             //this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
             this.TileSet = tileSet;
 
-            AllChunks = new Chunk[256];
+            AllChunks = new Chunk[512];
 
             int currentTileIndexX = 0;
             int currentTileIndexY = 0;
@@ -91,10 +91,10 @@ namespace SecretProject.Class.TileStuff
                     currentTileIndexX = anchorIndexX;
                     currentTileIndexY = anchorIndexY;
 
-                    for (int x = 0; x < 64; x++)
+                    for (int x = 0; x < 32; x++)
                     {
 
-                        for (int y = 0; y < 64; y++)
+                        for (int y = 0; y < 32; y++)
                         {
                             AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
                             currentTileIndexY++;
@@ -105,12 +105,12 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (currentTileIndexX != 0 && currentTileIndexX % 1024 == 0)
                 {
-                    anchorIndexY += 64;
+                    anchorIndexY += 32;
                     anchorIndexX = 0;
                 }
                 else
                 {
-                    anchorIndexX += 64;
+                    anchorIndexX += 32;
                 }
 
 
@@ -137,7 +137,7 @@ namespace SecretProject.Class.TileStuff
         {
             for (int i = 0; i < AllChunks.Length; i++)
             {
-                if(Game1.Player.ChunkDetector.Intersects(AllChunks[i].Rectangle))
+                if(Game1.cam.CameraScreenRectangle.Intersects(AllChunks[i].Rectangle))
                 {
                     AllChunks[i].IsActive = true;
                     for (int l = 0; l < 4; l++)

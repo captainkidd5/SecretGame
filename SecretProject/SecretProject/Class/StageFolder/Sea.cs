@@ -174,7 +174,7 @@ namespace SecretProject.Class.StageFolder
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Cam.Zoom = .5f;
+            Cam.Zoom = 1f;
             MapRectangle = new Rectangle(0, 0, TileWidth * 1024, TileHeight * 1024);
             this.Map = null;
         }

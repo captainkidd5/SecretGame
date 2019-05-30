@@ -64,6 +64,7 @@ namespace SecretProject.Class.UI
             ShopMenu.TryAddStock(2, 1);
             ShopMenu.TryAddStock(9, 5);
             ShopMenu.TryAddStock(6, 1);
+            ShopMenu.TryAddStock(12, 1);
             this.cam = cam;
             
         }

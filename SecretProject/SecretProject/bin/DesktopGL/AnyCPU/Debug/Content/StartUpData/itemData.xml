@@ -168,4 +168,18 @@
       <TextureString>Item/BlueOrb</TextureString>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="12">
+    <Value>
+      <Name>axe</Name>
+      <ID>12</ID>
+      <InvMaximum>15</InvMaximum>
+      <WorldMaximum>5</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
+      <id>12</id>
+      <TextureString>Item/Axe</TextureString>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

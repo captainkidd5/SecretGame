@@ -303,6 +303,11 @@
    <object id="2" x="15" y="1" width="1" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="4744">
+  <properties>
+   <property name="Tree" value="ThunderBirch"/>
+  </properties>
+ </tile>
  <tile id="4753">
   <objectgroup draworder="index">
    <object id="1" x="9" y="0" width="4" height="15"/>
@@ -334,8 +339,11 @@
   </objectgroup>
  </tile>
  <tile id="4844">
+  <properties>
+   <property name="Tree" value="ThunderBirch"/>
+  </properties>
   <objectgroup draworder="index">
-   <object id="1" x="6" y="0" width="5" height="2"/>
+   <object id="2" x="6" y="0" width="5" height="3"/>
   </objectgroup>
  </tile>
  <tile id="4853">

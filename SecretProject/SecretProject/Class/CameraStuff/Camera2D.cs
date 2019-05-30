@@ -27,7 +27,13 @@ namespace SecretProject.Class.CameraStuff
         public Viewport MyViewPort { get; set; }
 
         public Rectangle ViewPortRectangle { get; set; }
-
+        public Rectangle CameraScreenRectangle
+        {
+            get
+            {
+                return new Rectangle((int)(pos.X - Game1.ScreenWidth / 2), (int)(pos.Y - Game1.ScreenHeight / 2), Game1.ScreenWidth, Game1.ScreenHeight);
+            }
+        }
         private Camera2D()
         {
 

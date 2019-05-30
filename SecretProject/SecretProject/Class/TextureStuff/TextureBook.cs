@@ -36,6 +36,10 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D MiningLeft;
         public Texture2D MiningUp;
 
+        public Texture2D ChoppingDown;
+        public Texture2D ChoppingRight;
+        public Texture2D ChoppingLeft;
+        public Texture2D ChoppingUp;
 
         //UiStuff
         public Texture2D ToolBarButtonSelector;
@@ -66,6 +70,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D barrel;
         public Texture2D redOrb;
         public Texture2D blueOrb;
+
+        public Texture2D Axe;
 
         
 
@@ -105,6 +111,11 @@ namespace SecretProject.Class.TextureStuff
             MiningLeft = content.Load<Texture2D>("Player/MainPlayer/MiningLeft");
             MiningUp = content.Load<Texture2D>("Player/MainPlayer/MiningUp");
 
+            ChoppingDown = content.Load<Texture2D>("Player/MainPlayer/ChoppingDown");
+            ChoppingRight = content.Load<Texture2D>("Player/MainPlayer/ChoppingRight");
+            ChoppingLeft = content.Load<Texture2D>("Player/MainPlayer/ChoppingLeft");
+            ChoppingUp = content.Load<Texture2D>("Player/MainPlayer/ChoppingUp");
+
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
@@ -131,6 +142,7 @@ namespace SecretProject.Class.TextureStuff
             barrel = content.Load<Texture2D>("Item/Barrel");
             redOrb = content.Load<Texture2D>("Item/redOrb");
             blueOrb = content.Load<Texture2D>("Item/blueOrb");
+            Axe = content.Load<Texture2D>("Item/axe");
            // Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
            // LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");

@@ -77,6 +77,7 @@ namespace SecretProject.Class.TileStuff
         public bool Diggable { get; set; } = false;
         public bool RedRuneStone { get; set; } = false;
         public bool BlueRuneStone { get; set; } = false;
+        public bool Tree { get; set; } = false;
 
         public float LayerToDrawAt { get; set; } = 0;
 

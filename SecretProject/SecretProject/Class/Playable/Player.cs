@@ -77,23 +77,32 @@ namespace SecretProject.Class.Playable
         public bool IsPerformingAction = false;
 
         public AnimatedSprite CurrentAction;
-        [XmlIgnore]
+
         public AnimatedSprite CutGrassDown { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite CutGrassRight { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite CutGrassLeft { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite CutGrassUp { get; set; }
 
-        [XmlIgnore]
+
         public AnimatedSprite MiningDown { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite MiningRight { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite MiningLeft { get; set; }
-        [XmlIgnore]
+
         public AnimatedSprite MiningUp { get; set; }
+
+        public AnimatedSprite ChoppingDown { get; set; }
+
+        public AnimatedSprite ChoppingRight { get; set; }
+
+        public AnimatedSprite ChoppingLeft { get; set; }
+
+        public AnimatedSprite ChoppingUp { get; set; }
+
 
         [XmlIgnore]
         public Texture2D BigHitBoxRectangleTexture;
@@ -101,7 +110,7 @@ namespace SecretProject.Class.Playable
         public Rectangle ChunkDetector {
             get
             {
-                return new Rectangle((int)position.X -300, (int)position.Y - 300, (int)position.X - 200, (int)position.Y - 200);
+                return new Rectangle((int)position.X, (int)position.Y , (int)position.X + 200, (int)position.Y + 200);
             }
         }
 
@@ -154,6 +163,11 @@ namespace SecretProject.Class.Playable
             MiningRight = new AnimatedSprite(graphics, Game1.AllTextures.MiningRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
             MiningLeft = new AnimatedSprite(graphics, Game1.AllTextures.MiningLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
             MiningUp = new AnimatedSprite(graphics, Game1.AllTextures.MiningUp, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -10, speed = .08d };
+
+            ChoppingDown = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
+            ChoppingRight = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
+            ChoppingLeft = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
+            ChoppingUp = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingUp, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -10, speed = .08d };
 
             CurrentAction = CutGrassDown;
 
@@ -225,6 +239,34 @@ namespace SecretProject.Class.Playable
                     break;
 
 
+                case "ChoppingRight":
+                    IsPerformingAction = true;
+                    ChoppingRight.PlayOnce(gameTime);
+                    CurrentAction = ChoppingRight;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "ChoppingLeft":
+                    IsPerformingAction = true;
+                    ChoppingLeft.PlayOnce(gameTime);
+                    CurrentAction = ChoppingLeft;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+                case "ChoppingUp":
+                    IsPerformingAction = true;
+                    ChoppingUp.PlayOnce(gameTime);
+                    CurrentAction = ChoppingUp;
+                    CurrentAction.IsAnimating = true;
+                    break;
+                case "ChoppingDown":
+                    IsPerformingAction = true;
+                    ChoppingDown.PlayOnce(gameTime);
+                    CurrentAction = ChoppingDown;
+                    CurrentAction.IsAnimating = true;
+                    break;
+
+
 
 
             }
@@ -290,7 +332,7 @@ namespace SecretProject.Class.Playable
 
                 if (controls.IsSprinting)
                 {
-                    TotalVelocity = TotalVelocity * 2f;
+                    TotalVelocity = TotalVelocity * 5f;
                 }
                 else
                 {

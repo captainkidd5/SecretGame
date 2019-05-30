@@ -200,6 +200,12 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     AllTiles[z][i, j].Probability = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Probability"]);
                                 }
+                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Tree"))
+                                {
+                                    AllTiles[z][i, j].Tree = true;
+                                    AllTiles[z][i, j].AssociatedItem = 12;
+
+                                }
 
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedY"))
                                 {
@@ -677,9 +683,19 @@ namespace SecretProject.Class.TileStuff
                    // Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
 
                 }
+            }//axe
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 12)
+            {
+                if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                {
+                    Game1.SoundManager.WalkWoodInstance.Play();
+                    SpecificInteraction(layer, gameTime, oldX, oldY, "ChoppingDown", "ChoppingRight", "ChoppingLeft", "ChoppingUp", .25f);
+                }
+
             }
-             
-        }
+
+
+            }
 
         //interact without any player animations
         public void GeneralInteraction(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)

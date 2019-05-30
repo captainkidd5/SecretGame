@@ -275,7 +275,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
                 {
-                    player.Position = new Vector2(player.position.X, 1540);
+                    player.Position = new Vector2(player.position.X, 1550);
                     Game1.SwitchStage(5, 2);
                     return;
                 }
