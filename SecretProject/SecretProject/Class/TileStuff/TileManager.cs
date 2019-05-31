@@ -690,12 +690,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     Game1.SoundManager.WalkWoodInstance.Play();
                     SpecificInteraction(layer, gameTime, oldX, oldY, "ChoppingDown", "ChoppingRight", "ChoppingLeft", "ChoppingUp", .25f);
+                    AllTiles[layer][oldX, oldY].IsFinishedAnimating = true;
                 }
 
             }
-
-
-            }
+        }
 
         //interact without any player animations
         public void GeneralInteraction(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)
@@ -718,8 +717,12 @@ namespace SecretProject.Class.TileStuff
             {
                 AllTiles[layer][oldX, oldY].DelayTimer = delayTimer;
             }
-            AllTiles[layer][oldX, oldY].IsAnimating = true;
-            AllTiles[layer][oldX, oldY].KillAnimation = true;
+            if(AllTiles[layer][oldX, oldY].IsAnimated)
+            {
+                AllTiles[layer][oldX, oldY].IsAnimating = true;
+                AllTiles[layer][oldX, oldY].KillAnimation = true;
+            }
+            
 
             if (Game1.Player.Position.Y < AllTiles[layer][oldX, oldY].Y - 30)
             {
@@ -765,45 +768,30 @@ namespace SecretProject.Class.TileStuff
 
         public void Destroy(int layer, int oldX, int oldY)
         {
-            if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && AllTiles[layer][oldX, oldY].HasObject)
+            if(AllTiles[layer][oldX, oldY].IsAnimated)
             {
-                //ObjectBody newObject = new ObjectBody();
+                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && AllTiles[layer][oldX, oldY].HasObject)
+                {
+                    //ObjectBody newObject = new ObjectBody();
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
-                AllTiles[layer][oldX, oldY].TileObject = null;
-                AllTiles[layer][oldX, oldY].HasObject = false;
+                    AllTiles[layer][oldX, oldY].TileObject = null;
+                    AllTiles[layer][oldX, oldY].HasObject = false;
                     Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true));
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
-                
+
+                }
             }
+            else
+            {
+                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
+                AllTiles[layer][oldX, oldY].TileObject = null;
+                AllTiles[layer][oldX, oldY].HasObject = false;
+                Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true));
+                ReplaceTilePermanent(layer, oldX, oldY, 0);
+            }
+            
 
         }
-
-        //public Tile[][] GetJaggedTiles()
-        //{
-        //    Tile[][] jaggedArray = new Tile[100][];
-        //    for(int i =0; i < Tiles.GetLength(0); i++)
-        //    {
-        //        jaggedArray[i] = new Tile[Tiles.GetLength(1)];
-        //        for(int j=0; j< Tiles.GetLength(1); j++)
-        //        {
-        //            jaggedArray[i][j] = Tiles[i, j];
-        //        }
-        //    }
-        //    return jaggedArray;
-        //}
-
-        //public Tile[,] GetDimensionalTiles(Tile[][] jaggedTiles)
-        //{
-        //    Tile[,] dimensionalTiles = new Tile[100, 100];
-        //    for(int i=0; i<jaggedTiles.Length; i++)
-        //    {
-        //        for(int j=0; j<jaggedTiles[0].Length; j++)
-        //        {
-        //            dimensionalTiles[i, j] = jaggedTiles[i][j];
-        //        }
-        //    }
-        //    return dimensionalTiles;
-        //}
 
     }
         #endregion 

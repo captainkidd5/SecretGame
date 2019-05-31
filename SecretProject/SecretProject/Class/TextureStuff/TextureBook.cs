@@ -87,6 +87,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D MasterTileSet;
         public Texture2D LodgeInteriorTileSet;
 
+        public Texture2D ItemSpriteSheet;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             JoeSprite = content.Load<Texture2D>("Player/Joe/joe");
@@ -153,6 +155,8 @@ namespace SecretProject.Class.TextureStuff
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
+
+            ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");
            
 
         }

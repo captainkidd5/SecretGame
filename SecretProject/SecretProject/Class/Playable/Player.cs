@@ -167,7 +167,7 @@ namespace SecretProject.Class.Playable
             ChoppingDown = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
             ChoppingRight = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
             ChoppingLeft = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
-            ChoppingUp = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingUp, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -10, speed = .08d };
+            ChoppingUp = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingUp, 1, 5, 5) { AdjustedLocationX = 0, AdjustedLocationY = -12, speed = .08d };
 
             CurrentAction = CutGrassDown;
 
