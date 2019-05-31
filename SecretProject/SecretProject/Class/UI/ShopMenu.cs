@@ -75,7 +75,7 @@ namespace SecretProject.Class.UI
 
                 if (allShopMenuItemButtons[i].ItemCounter != 0)
                 {
-                    allShopMenuItemButtons[i].Texture = ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Texture;
+                    allShopMenuItemButtons[i].Texture = Game1.AllTextures.ItemSpriteSheet;
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace SecretProject.Class.UI
             {
                 if(allShopMenuItemButtons[i].ItemCounter != 0)
                 {
-                   allShopMenuItemButtons[i].Draw(spriteBatch, Font, "\n \n Stock: " + allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
+                   allShopMenuItemButtons[i].Draw(spriteBatch, ShopInventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle, Font, "\n \n Stock: " + allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
                     new Vector2(allShopMenuItemButtons[i].Position.X +45, allShopMenuItemButtons[i].Position.Y + 80), "Price: " + ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price.ToString());
                 }
                 else

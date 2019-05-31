@@ -30,8 +30,10 @@ namespace SecretProject.Class.ItemStuff
 
         public void LoadItems(GraphicsDevice graphics, ContentManager content)
         {
-            for (int i = 0; i < RawItems.Count; i++)
+            for (int i = 0; i < 1000; i++)
             {
+
+
                 if (RawItems.ContainsKey(i.ToString()))
                 {
                     Items.Add(i, new Item(i, graphics, content));

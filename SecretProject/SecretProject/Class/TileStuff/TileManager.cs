@@ -203,7 +203,7 @@ namespace SecretProject.Class.TileStuff
                                 if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Tree"))
                                 {
                                     AllTiles[z][i, j].Tree = true;
-                                    AllTiles[z][i, j].AssociatedItem = 12;
+                                    AllTiles[z][i, j].AssociatedItem = 123;
 
                                 }
 
@@ -233,26 +233,26 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         //tiles[i, j].Properties.Add("grass", true);
                                         AllTiles[z][i, j].Grass = true;
-                                        AllTiles[z][i, j].AssociatedItem = 2;
+                                        AllTiles[z][i, j].AssociatedItem = 129;
                                     }
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("stone"))
                                     {
                                         //tiles[i, j].Properties.Add("stone", true);
                                         AllTiles[z][i, j].Stone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 7;
+                                        AllTiles[z][i, j].AssociatedItem = 130;
                                     }
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("redRuneStone"))
                                     {
                                         //tiles[i, j].Properties.Add("redRuneStone", true);
                                         AllTiles[z][i, j].RedRuneStone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 10;
+                                        AllTiles[z][i, j].AssociatedItem = 169;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                                     }
                                     if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("blueRuneStone"))
                                     {
                                         //tiles[i, j].Properties.Add("redRuneStone", true);
                                         AllTiles[z][i, j].BlueRuneStone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 11;
+                                        AllTiles[z][i, j].AssociatedItem = 149;
                                         // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                                     }
                                 }
@@ -596,7 +596,7 @@ namespace SecretProject.Class.TileStuff
         //Used for interactions with background tiles only
         public void InteractWithBackground(int layer, GameTime gameTime, int oldX, int oldY)
         {
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 6)
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 3)
             {     
                 if (AllTiles[layer][oldX, oldY].Diggable)
                 {
@@ -610,7 +610,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 9)
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 128)
             {
                 if (AllTiles[layer][oldX, oldY].Plantable)
                 {
@@ -641,7 +641,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 8)
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 1)
             {
                 if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating))
                 {
@@ -672,7 +672,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 4)
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 2)
             {
 
                 if (AllTiles[layer][oldX,oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
@@ -684,7 +684,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }//axe
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 12)
+            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 0)
             {
                 if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
                 {

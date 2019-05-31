@@ -41,6 +41,9 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
+        public Rectangle TextureSourceRectangle { get; set; }
+        public Rectangle TextureDestinationRectangle { get; set; }
+
         public float ScaleX { get; set; }
         public float ScaleY { get; set; }
         public bool IsDrawn { get; set; } = true;
@@ -104,7 +107,36 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
-      
+        //for rectangles
+        public Sprite(GraphicsDevice graphicsDevice, ContentManager content, Rectangle textureSourceRectangle, Texture2D texture, Vector2 position, bool bob, float layerDepth)
+        {
+
+            this.texture = texture;
+            this.rectangleTexture = texture;
+            this.Position = position;
+            this.IsBobbing = bob;
+            this.TextureSourceRectangle = textureSourceRectangle;
+            this.TextureDestinationRectangle = new Rectangle((int)position.X, (int)position.Y, 16, 16);
+
+            SetRectangleTexture(graphicsDevice, texture);
+
+            BobberTimer = 0d;
+            TossTimer = 0d;
+            ScaleX = 1f;
+            ScaleY = 1f;
+
+
+            this.LayerDepth = layerDepth;
+            this.content = content;
+
+            if (IsAnimated)
+            {
+                Anim = new AnimatedSprite(graphicsDevice, Game1.ItemAtlas, Rows, Columns, Rows * Columns);
+            }
+
+        }
+
+
 
         public virtual void Update(GameTime gameTime, Vector2 position)
         {
@@ -130,19 +162,23 @@ namespace SecretProject.Class.SpriteFolder
                 {
                     Anim.Draw(spriteBatch, Position, layerDepth);
                 }
+                else if(!IsAnimating && this.TextureSourceRectangle != null)
+                {
+                    spriteBatch.Draw(texture,null,sourceRectangle: TextureSourceRectangle, destinationRectangle: TextureDestinationRectangle, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
+                }
                 else
                 {
                     spriteBatch.Draw(texture, Position, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
                 }
 
                 
-            }
-
-            
+            }  
         }
 
+        
+
         //stage uses this one mostly
-         public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (IsDrawn)
             {

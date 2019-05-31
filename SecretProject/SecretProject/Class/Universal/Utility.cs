@@ -14,6 +14,8 @@ namespace SecretProject.Class.Universal
         public Vector2 centerScreen;
         public Random RGenerator;
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
+        public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
+
 
         // public static Color = new Color(100, 100, 100, 100);
 

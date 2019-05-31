@@ -53,7 +53,10 @@ namespace SecretProject.Class.ItemStuff
 
         public string id { get; set; }
 
-        public string TextureString { get; set; }
+        public int TextureColumn { get; set; }
+        public int TextureRow { get; set; }
+        public Rectangle SourceTextureRectangle { get; set; }
+        public Rectangle DestinationTextureRectangle { get; set; }
 
         public int Price { get; set; }
 
@@ -77,12 +80,13 @@ namespace SecretProject.Class.ItemStuff
             //string ID = item.id.ToString();
             this.Name = item.Name;
             this.InvMaximum = item.InvMaximum;
-            this.TextureString = item.TextureString;
             this.Texture = item.Texture;
             this.IsPlaceable = item.IsPlaceable;
             this.ID = item.ID;
             this.Price = item.Price;
-
+            this.TextureColumn = item.TextureColumn;
+            this.TextureRow = item.TextureRow;
+            this.SourceTextureRectangle = item.SourceTextureRectangle;
             this.Graphics = item.Graphics;
             this.Content = item.Content;
 
@@ -101,10 +105,12 @@ namespace SecretProject.Class.ItemStuff
             string ID = id.ToString();
             this.Name = Game1.ItemVault.RawItems[ID].Name;
             this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
-            this.TextureString = Game1.ItemVault.RawItems[ID].TextureString;
-            this.Texture = content.Load<Texture2D>(TextureString);
+            this.Texture = Game1.AllTextures.ItemSpriteSheet;
             this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
             this.Price = Game1.ItemVault.RawItems[ID].Price;
+            this.TextureColumn = Game1.ItemVault.RawItems[ID].TextureColumn;
+            this.TextureRow = Game1.ItemVault.RawItems[ID].TextureRow;
+            this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
             this.ID = id;
 
             this.Graphics = graphics;
@@ -116,11 +122,11 @@ namespace SecretProject.Class.ItemStuff
         {
             if (IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, this.WorldPosition, false, .4f) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f };
+                this.ItemSprite = new Sprite(Graphics, Content,SourceTextureRectangle, this.Texture, this.WorldPosition, false, .7f) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f };
             }
             if (!IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content, this.Texture, new Vector2(500, 635), false, .4f);
+                this.ItemSprite = new Sprite(Graphics, Content, SourceTextureRectangle, this.Texture, new Vector2(500, 635), false, .4f);
             }
         }
 

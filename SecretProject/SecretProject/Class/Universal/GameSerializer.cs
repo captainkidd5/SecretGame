@@ -107,7 +107,6 @@ namespace SecretProject.Class.Universal
             writer.Write(item.IsDropped);
             writer.Write(item.IsPlaceable);
             //writer.Write(item.id);
-            writer.Write(item.TextureString);
             writer.Write(item.Price);
         }
 
@@ -122,7 +121,6 @@ namespace SecretProject.Class.Universal
             item.Ignored = reader.ReadBoolean();
             item.IsDropped = reader.ReadBoolean();
             item.IsPlaceable = reader.ReadBoolean();
-            item.TextureString = reader.ReadString();
             item.Price = reader.ReadInt32();
 
             return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
@@ -139,7 +137,6 @@ namespace SecretProject.Class.Universal
             writer.Write(item.IsDropped);
             writer.Write(item.IsPlaceable);
             //writer.Write(item.id);
-            writer.Write(item.TextureString);
             writer.Write(item.Price);
             writer.Write(item.WorldPosition.X);
             writer.Write(item.WorldPosition.Y);
@@ -156,7 +153,6 @@ namespace SecretProject.Class.Universal
             item.Ignored = reader.ReadBoolean();
             item.IsDropped = reader.ReadBoolean();
             item.IsPlaceable = reader.ReadBoolean();
-            item.TextureString = reader.ReadString();
             item.Price = reader.ReadInt32();
             float itemPositionX = reader.ReadSingle();
             float itemPositionY = reader.ReadSingle();
