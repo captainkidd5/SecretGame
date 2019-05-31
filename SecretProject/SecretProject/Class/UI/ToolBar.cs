@@ -56,6 +56,8 @@ namespace SecretProject.Class.UI
         public Texture2D InvSlot6Texture { get; set; }
         public Texture2D InvSlot7Texture { get; set; }
 
+        public Rectangle ItemSwitchSourceRectangle { get; set; }
+
         public Texture2D ItemSwitchTexture;
 
         public Item TempItem { get; set; }
@@ -149,7 +151,8 @@ namespace SecretProject.Class.UI
 
             if(WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
-                ItemSwitchTexture = GetCurrentItemTexture();
+                
+                ItemSwitchSourceRectangle = GetCurrentItemTexture();
             }
 
             this.inventory = inventory;
@@ -284,9 +287,9 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public Texture2D GetCurrentItemTexture()
+        public Rectangle GetCurrentItemTexture()
         {
-                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().Texture;
+                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
         }
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
@@ -487,11 +490,11 @@ namespace SecretProject.Class.UI
             {
                 if(AllSlots[i].Texture != ToolBarButton)
                 {
-                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, InvSlot1.ItemCounter.ToString(), new Vector2((i+2) *10 + 500, 670), Color.DarkRed);
+                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, InvSlot1.ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
                 else
                 {
-                    AllSlots[i].Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);
+                    AllSlots[i].Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
             }
             //InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);
@@ -549,8 +552,8 @@ namespace SecretProject.Class.UI
             //if action still exists and isn't complete we'll still draw it. 
             if (AllActions.Count > 0 && !AllActions[AllActions.Count - 1].ActionComplete)
             {
-                spriteBatch.Draw(ItemSwitchTexture, new Vector2(Game1.Player.position.X + 3,
-                    Game1.Player.position.Y - 15), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
+                spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet,sourceRectangle: this.ItemSwitchSourceRectangle, destinationRectangle: new Rectangle((int)Game1.Player.position.X + 3,
+                    (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
             }
 
         }

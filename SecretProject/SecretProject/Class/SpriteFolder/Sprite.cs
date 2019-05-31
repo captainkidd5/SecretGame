@@ -122,8 +122,8 @@ namespace SecretProject.Class.SpriteFolder
 
             BobberTimer = 0d;
             TossTimer = 0d;
-            ScaleX = 1f;
-            ScaleY = 1f;
+            ScaleX = .5f;
+            ScaleY = .5f;
 
 
             this.LayerDepth = layerDepth;
@@ -149,7 +149,8 @@ namespace SecretProject.Class.SpriteFolder
             {
                 Anim.Update(gameTime);
             }
- 
+            this.TextureDestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, 16, 16);
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
