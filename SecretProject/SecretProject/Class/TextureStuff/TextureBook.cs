@@ -13,12 +13,6 @@ namespace SecretProject.Class.TextureStuff
 {
    public class TextureBook
     {
-        public Texture2D JoeSprite;
-        public Texture2D joeDown;
-        public Texture2D joeUp;
-        public Texture2D joeRight;
-        public Texture2D joeLeft;
-
         public Texture2D MainCharacterSpriteStrip;
 
         public Texture2D Elixer;
@@ -79,12 +73,7 @@ namespace SecretProject.Class.TextureStuff
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
-            JoeSprite = content.Load<Texture2D>("Player/Joe/joe");
 
-            joeDown = content.Load<Texture2D>("Player/Joe/JoeWalkForwardNew");
-            joeUp = content.Load<Texture2D>("Player/Joe/JoeWalkBackNew");
-            joeRight = content.Load<Texture2D>("Player/Joe/JoeWalkRightNew");
-            joeLeft = content.Load<Texture2D>("Player/Joe/JoeWalkLefttNew");
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");

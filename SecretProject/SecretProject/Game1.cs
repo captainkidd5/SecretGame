@@ -118,11 +118,6 @@ namespace SecretProject
         //TEXTURES
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Texture2D JoeSprite { get; set; }
-        private Texture2D joeDown;
-        private Texture2D joeUp;
-        private Texture2D joeRight;
-        private Texture2D joeLeft;
         public static Player Player { get; set; }
         public Texture2D MainCharacterTexture { get; set; }
         public static Texture2D ItemAtlas;
@@ -262,11 +257,7 @@ namespace SecretProject
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllTextures = new TextureBook(Content, spriteBatch);
             MainCharacterTexture = AllTextures.MainCharacterSpriteStrip;
-            JoeSprite = AllTextures.JoeSprite;
-            joeDown = AllTextures.joeDown;
-            joeUp = AllTextures.joeUp;
-            joeRight = AllTextures.joeRight;
-            joeLeft = AllTextures.joeLeft;
+
 
           //  testItem = Content.Load&lt;XMLDataLib.Item&gt;("Level1");
 

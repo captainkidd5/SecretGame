@@ -22,8 +22,8 @@ using SecretProject.Class.Controls;
 
 namespace SecretProject.Class.Playable
 {
-    [Serializable()]
-    public class Player : ISerializable
+
+    public class Player
     {
 
         //TODO: Work on gametime

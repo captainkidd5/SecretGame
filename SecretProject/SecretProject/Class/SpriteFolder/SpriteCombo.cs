@@ -48,12 +48,37 @@ namespace SecretProject.Class.SpriteFolder
         public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, int totalRows, int totalColumns, int columnStart, int columnFinish,
             int rowStart, int rowFinish)
         {
-
+            this.Graphics = graphics;
+            this.AtlasTexture = atlasTexture;
+            this.TotalRows = totalRows;
+            this.TotalColumns = totalColumns;
+            this.ColumnStart = columnStart;
+            this.ColumnFinish = columnFinish;
+            this.RowStart = rowStart;
+            this.RowFinish = rowFinish;
         }
 
         public void Update(GameTime gameTime)
         {
+            if(IsAnimated)
+            {
+                UpdateAnimations(gameTime);
+            }
+        }
 
+        public void UpdateAnimations(GameTime gameTime)
+        {
+            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(AnimationTimer <= 0)
+            {
+                CurrentFrame++;
+                AnimationTimer = AnimationSpeed;
+            }
+            if(CurrentFrame == TotalFrames)
+            {
+                CurrentFrame = 0;
+                
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
@@ -68,6 +93,17 @@ namespace SecretProject.Class.SpriteFolder
                 scale: new Vector2(TextureScaleX, TextureScaleY));
             }
             
+        }
+
+        public void DrawAnimations(SpriteBatch spriteBatch, float layerDepth)
+        {
+            int width = SourceRectangle.Width;
+            int height = SourceRectangle.Height;
+            int row = (int)((float)CurrentFrame / (float)TotalColumns);
+            int column = (CurrentFrame % TotalColumns) + ColumnStart;
+
+            SourceRectangle = new Rectangle(width * column, height * row, width, height);
+
         }
 
         
