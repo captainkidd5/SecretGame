@@ -60,19 +60,6 @@ namespace SecretProject.Class.TextureStuff
         public SpriteFont MenuText;
 
         //Items
-        public Texture2D Secateurs;
-        public Texture2D lodgeKey;
-        public Texture2D shovel;
-        public Texture2D stone;
-
-        public Texture2D pie;
-        public Texture2D puzzleFish;
-        public Texture2D grass;
-        public Texture2D barrel;
-        public Texture2D redOrb;
-        public Texture2D blueOrb;
-
-        public Texture2D Axe;
 
         
 
