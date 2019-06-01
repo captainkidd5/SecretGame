@@ -41,7 +41,7 @@ namespace SecretProject.Class.ItemStuff
         public Texture2D Texture { get; set; }
         public bool IsDropped { get; set; }
         [XmlIgnore]
-        public Sprite ItemSprite { get; set; }
+        public SpriteCombo ItemSprite { get; set; }
         [XmlIgnore]
         public GraphicsDevice Graphics { get; set; }
         [XmlIgnore]
@@ -122,11 +122,11 @@ namespace SecretProject.Class.ItemStuff
         {
             if (IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content,SourceTextureRectangle, this.Texture, this.WorldPosition, false, .7f) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f };
+                this.ItemSprite = new SpriteCombo(Graphics, this.Texture, SourceTextureRectangle, this.WorldPosition, 16, 16) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f, IsWorldItem = true, LayerDepth = .7f };
             }
             if (!IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Content, SourceTextureRectangle, this.Texture, new Vector2(500, 635), false, .4f);
+                this.ItemSprite = new SpriteCombo(Graphics,this.Texture, SourceTextureRectangle, new Vector2(500, 635),16, 16) { LayerDepth = .4f };
             }
         }
 

@@ -61,8 +61,6 @@ namespace SecretProject.Class.TileStuff
         public bool isInClickingRangeOfPlayer = false;
 
         [XmlIgnore]
-        MouseManager myMouse;
-        [XmlIgnore]
         ContentManager content;
         [XmlIgnore]
         GraphicsDevice graphicsDevice;

@@ -39,7 +39,6 @@ namespace SecretProject.Class.TileStuff
         public int ChunkCount = 0;
 
         public List<Tile[,]> AllTiles;
-        GraphicsDevice graphics;
 
         public Texture2D TileSet { get; set; }
 

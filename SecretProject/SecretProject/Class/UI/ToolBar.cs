@@ -67,7 +67,6 @@ namespace SecretProject.Class.UI
         public bool MouseOverToolBar { get; set; }
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
-        Game1 game;
         GraphicsDevice graphicsDevice;
         ContentManager content;
 

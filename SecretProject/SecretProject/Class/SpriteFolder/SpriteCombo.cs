@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    class SpriteCombo
+    public class SpriteCombo
     {
         public GraphicsDevice Graphics { get; set; }
         public Texture2D AtlasTexture { get; set; }
@@ -17,14 +17,20 @@ namespace SecretProject.Class.SpriteFolder
 
         public float TextureScaleX { get; set; }
         public float TextureScaleY { get; set; }
+        public float LayerDepth { get; set; } = 1f;
 
         public float ColorMultiplier { get; set; } = 1f;
 
         public bool IsAnimated { get; set; } = false;
 
-        public Vector2 Position { get; set; }
+        //keep as field
+        public Vector2 Position;
         public float ScaleX { get; set; } = 1f;
         public float ScaleY { get; set; } = 1f;
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public bool IsWorldItem { get; set; } = false;
+        public bool PickedUp { get; set; } = false;
 
         public bool IsBobbing { get; set; } = false;
         public bool IsTossed { get; set; } = false;
@@ -46,12 +52,15 @@ namespace SecretProject.Class.SpriteFolder
 
 
         //for non animated sprites
-        public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, Rectangle sourceRectangle, Rectangle destinationRectangle)
+        public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, Rectangle sourceRectangle, Vector2 position, int width, int height)
         {
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
             this.SourceRectangle = sourceRectangle;
-            this.DestinationRectangle = destinationRectangle;
+            this.Position = position;
+            this.Width = width;
+            this.Height = height;
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
         }
 
         //for animated sprites
@@ -76,7 +85,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             else
             {
-                this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRectangle.Width * ScaleX), (int)(SourceRectangle.Height * ScaleY));
+                this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(DestinationRectangle.Width * ScaleX), (int)(DestinationRectangle.Height * ScaleY));
             }
         }
 
@@ -98,11 +107,9 @@ namespace SecretProject.Class.SpriteFolder
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
 
-            else
-            {
                 spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle, color: Color.White * ColorMultiplier,
                 scale: new Vector2(TextureScaleX, TextureScaleY));
-            }
+
             
         }
 
@@ -152,6 +159,24 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
+        public void PlayOnce(GameTime gameTime)
+        {
+
+
+            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (AnimationTimer <= 0)
+            {
+                CurrentFrame++;
+                AnimationTimer = AnimationSpeed;
+            }
+            if (AnimationTimer == TotalFrames)
+            {
+                CurrentFrame = 0;
+                IsAnimated = false;
+            }
+
+        }
 
 
     }
