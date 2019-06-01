@@ -122,8 +122,8 @@ namespace SecretProject.Class.SpriteFolder
 
             BobberTimer = 0d;
             TossTimer = 0d;
-            ScaleX = .5f;
-            ScaleY = .5f;
+            //ScaleX = .5f;
+            //ScaleY = .5f;
 
 
             this.LayerDepth = layerDepth;
@@ -149,7 +149,7 @@ namespace SecretProject.Class.SpriteFolder
             {
                 Anim.Update(gameTime);
             }
-            this.TextureDestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, 16, 16);
+            
 
         }
 
@@ -158,13 +158,14 @@ namespace SecretProject.Class.SpriteFolder
             if (IsDrawn)
             {
                 LayerDepth = layerDepth;
-
+                this.TextureDestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(16 * ScaleX), (int)(16 * ScaleY));
                 if (IsAnimating)
                 {
                     Anim.Draw(spriteBatch, Position, layerDepth);
                 }
                 else if(!IsAnimating && this.TextureSourceRectangle != null)
                 {
+                    //TextureDestinationRectangle.Y = 
                     spriteBatch.Draw(texture,null,sourceRectangle: TextureSourceRectangle, destinationRectangle: TextureDestinationRectangle, color: Color.White, layerDepth: layerDepth, scale: new Vector2(ScaleX, ScaleY));
                 }
                 else

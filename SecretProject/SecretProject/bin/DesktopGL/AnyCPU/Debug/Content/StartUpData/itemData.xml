@@ -71,8 +71,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>5</Price>
       <id>123</id>
-      <TextureColumn>6</TextureColumn>
-      <TextureRow>3</TextureRow>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>2</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="124">
@@ -86,8 +86,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>50</Price>
       <id>5</id>
-      <TextureColumn>6</TextureColumn>
-      <TextureRow>4</TextureRow>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>3</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="125">
@@ -101,8 +101,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>100</Price>
       <id>125</id>
-      <TextureColumn>6</TextureColumn>
-      <TextureRow>7</TextureRow>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>4</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="126">
@@ -117,7 +117,7 @@
       <Price>8</Price>
       <id>126</id>
       <TextureColumn>6</TextureColumn>
-      <TextureRow>8</TextureRow>
+      <TextureRow>5</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="127">
@@ -131,8 +131,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>12</Price>
       <id>127</id>
-      <TextureColumn>6</TextureColumn>
-      <TextureRow>9</TextureRow>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>6</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="128">
@@ -146,8 +146,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>10</Price>
       <id>128</id>
-      <TextureColumn>6</TextureColumn>
-      <TextureRow>10</TextureRow>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>7</TextureRow>
     </Value>
     </EntryOfStringItem>
     <EntryOfStringItem Key="129">
@@ -206,8 +206,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>60</Price>
       <id>149</id>
-      <TextureColumn>7</TextureColumn>
-      <TextureRow>12</TextureRow>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>9</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="169">
@@ -221,8 +221,8 @@
       <IsPlaceable>false</IsPlaceable>
       <Price>60</Price>
       <id>169</id>
-      <TextureColumn>8</TextureColumn>
-      <TextureRow>12</TextureRow>
+      <TextureColumn>7</TextureColumn>
+      <TextureRow>9</TextureRow>
     </Value>
   </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>

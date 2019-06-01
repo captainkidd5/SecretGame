@@ -490,11 +490,11 @@ namespace SecretProject.Class.UI
             {
                 if(AllSlots[i].Texture != ToolBarButton)
                 {
-                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, InvSlot1.ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
+                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
                 else
                 {
-                    AllSlots[i].Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
+                    AllSlots[i].Draw(spriteBatch, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
             }
             //InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);

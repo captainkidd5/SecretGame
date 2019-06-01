@@ -60,6 +60,10 @@ namespace SecretProject.Class.UI
             ShopMenu.TryAddStock(0, 1);
             ShopMenu.TryAddStock(1, 1);
             ShopMenu.TryAddStock(147, 1);
+            ShopMenu.TryAddStock(2, 1);
+            ShopMenu.TryAddStock(124, 1);
+            ShopMenu.TryAddStock(125, 1);
+            ShopMenu.TryAddStock(127, 1);
             //ShopMenu.TryAddStock(3, 1);
             //ShopMenu.TryAddStock(2, 1);
             //ShopMenu.TryAddStock(9, 5);
