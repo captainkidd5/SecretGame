@@ -81,8 +81,8 @@ namespace SecretProject.Class.CollisionDetection
 
             foreach (var spr in sprite)
             {
-                if (spr.TextureDestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && spr.TextureDestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
-                             && spr.TextureDestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && spr.TextureDestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
+                if (spr.DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && spr.DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
+                             && spr.DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && spr.DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
                 {
 
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
@@ -182,31 +182,31 @@ namespace SecretProject.Class.CollisionDetection
 
         public bool IsTouchingLeft(Rectangle rectangle, Sprite sprite, Vector2 velocity)
         {
-            return rectangle.Right + velocity.X > sprite.TextureDestinationRectangle.Left &&
-                rectangle.Left < sprite.TextureDestinationRectangle.Left &&
-                rectangle.Bottom > sprite.TextureDestinationRectangle.Top &&
-                rectangle.Top < sprite.TextureDestinationRectangle.Bottom;
+            return rectangle.Right + velocity.X > sprite.DestinationRectangle.Left &&
+                rectangle.Left < sprite.DestinationRectangle.Left &&
+                rectangle.Bottom > sprite.DestinationRectangle.Top &&
+                rectangle.Top < sprite.DestinationRectangle.Bottom;
         }
         public bool IsTouchingRight(Rectangle rectangle, Sprite sprite, Vector2 velocity)
         {
-            return rectangle.Left + velocity.X < sprite.TextureDestinationRectangle.Right &&
-                rectangle.Right > sprite.TextureDestinationRectangle.Right &&
-                rectangle.Bottom > sprite.TextureDestinationRectangle.Top &&
-                rectangle.Top < sprite.TextureDestinationRectangle.Bottom;
+            return rectangle.Left + velocity.X < sprite.DestinationRectangle.Right &&
+                rectangle.Right > sprite.DestinationRectangle.Right &&
+                rectangle.Bottom > sprite.DestinationRectangle.Top &&
+                rectangle.Top < sprite.DestinationRectangle.Bottom;
         }
         public bool IsTouchingTop(Rectangle rectangle, Sprite sprite, Vector2 velocity)
         {
-            return rectangle.Bottom + velocity.Y > sprite.Rectangle.Top &&
-                rectangle.Top < sprite.TextureDestinationRectangle.Top &&
-                rectangle.Right > sprite.TextureDestinationRectangle.Left &&
-                rectangle.Left < sprite.TextureDestinationRectangle.Right;
+            return rectangle.Bottom + velocity.Y > sprite.DestinationRectangle.Top &&
+                rectangle.Top < sprite.DestinationRectangle.Top &&
+                rectangle.Right > sprite.DestinationRectangle.Left &&
+                rectangle.Left < sprite.DestinationRectangle.Right;
         }
         public bool IsTouchingBottom(Rectangle rectangle, Sprite sprite, Vector2 velocity)
         {
-            return rectangle.Top + velocity.Y < sprite.TextureDestinationRectangle.Bottom &&
-                rectangle.Bottom > sprite.TextureDestinationRectangle.Bottom &&
-                rectangle.Right > sprite.TextureDestinationRectangle.Left &&
-                rectangle.Left < sprite.TextureDestinationRectangle.Right;
+            return rectangle.Top + velocity.Y < sprite.DestinationRectangle.Bottom &&
+                rectangle.Bottom > sprite.DestinationRectangle.Bottom &&
+                rectangle.Right > sprite.DestinationRectangle.Left &&
+                rectangle.Left < sprite.DestinationRectangle.Right;
         }
 
        

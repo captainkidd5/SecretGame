@@ -420,7 +420,7 @@ namespace SecretProject.Class.UI
 
                     else
                     {
-                        Sprite tempSprite = new Sprite(graphicsDevice, content, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle, Game1.AllTextures.ItemSpriteSheet, mouse.WorldMousePosition, false, .5f) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                        Sprite tempSprite = new Sprite(graphicsDevice, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,  mouse.WorldMousePosition, 16,16) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
                         DragSprite = tempSprite;
 
                     }

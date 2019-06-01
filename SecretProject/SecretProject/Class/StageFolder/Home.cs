@@ -323,8 +323,8 @@ namespace SecretProject.Class.StageFolder
 
                 foreach (var sprite in AllSprites)
                 {
-                    sprite.ShowRectangle = ShowBorders;
-                    sprite.Draw(spriteBatch);
+                    //sprite.ShowRectangle = ShowBorders;
+                    sprite.Draw(spriteBatch, .7f);
                 }
 
                 for (int i = 0; i < AllItems.Count; i++)
