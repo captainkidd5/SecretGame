@@ -22,18 +22,28 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool IsAnimated { get; set; } = false;
 
+        public Vector2 Position { get; set; }
+        public float ScaleX { get; set; } = 1f;
+        public float ScaleY { get; set; } = 1f;
+
+        public bool IsBobbing { get; set; } = false;
+        public bool IsTossed { get; set; } = false;
+        public float BobberTimer { get; set; }
+        public float TossTimer { get; set; }
 
         //For Animation use only
         public int CurrentFrame { get; set; }
+        public int FirstFrameX { get; set; }
+        public int FirstFrameY { get; set; }
+        public int FrameWidth { get; set; }
+        public int FrameHeight { get; set; }
         public int TotalFrames { get; set; }
-        public int TotalRows { get; set; }
-        public int TotalColumns { get; set; }
-        public int ColumnStart { get; set; }
-        public int ColumnFinish { get; set; }
-        public int RowStart { get; set; }
-        public int RowFinish { get; set; }
+
         public float AnimationSpeed { get; set; }
         public float AnimationTimer { get; set; }
+
+
+
 
         //for non animated sprites
         public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, Rectangle sourceRectangle, Rectangle destinationRectangle)
@@ -45,17 +55,17 @@ namespace SecretProject.Class.SpriteFolder
         }
 
         //for animated sprites
-        public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, int totalRows, int totalColumns, int columnStart, int columnFinish,
-            int rowStart, int rowFinish)
+        public SpriteCombo(GraphicsDevice graphics, Texture2D atlasTexture, int firstFrameX, int firstFrameY, int frameWidth, int frameHeight, int totalFrames,
+            float animationSpeed)
         {
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
-            this.TotalRows = totalRows;
-            this.TotalColumns = totalColumns;
-            this.ColumnStart = columnStart;
-            this.ColumnFinish = columnFinish;
-            this.RowStart = rowStart;
-            this.RowFinish = rowFinish;
+            this.FirstFrameX = firstFrameX;
+            this.FirstFrameY = firstFrameY;
+            this.FrameWidth = frameWidth;
+            this.FrameHeight = frameHeight;
+            this.TotalFrames = totalFrames;
+            this.AnimationSpeed = animationSpeed;
         }
 
         public void Update(GameTime gameTime)
@@ -63,6 +73,10 @@ namespace SecretProject.Class.SpriteFolder
             if(IsAnimated)
             {
                 UpdateAnimations(gameTime);
+            }
+            else
+            {
+                this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRectangle.Width * ScaleX), (int)(SourceRectangle.Height * ScaleY));
             }
         }
 
@@ -77,16 +91,13 @@ namespace SecretProject.Class.SpriteFolder
             if(CurrentFrame == TotalFrames)
             {
                 CurrentFrame = 0;
-                
             }
+            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            if(IsAnimated)
-            {
 
-            }
             else
             {
                 spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle, color: Color.White * ColorMultiplier,
@@ -95,19 +106,53 @@ namespace SecretProject.Class.SpriteFolder
             
         }
 
-        public void DrawAnimations(SpriteBatch spriteBatch, float layerDepth)
+        public void Bobber(GameTime gameTime)
         {
-            int width = SourceRectangle.Width;
-            int height = SourceRectangle.Height;
-            int row = (int)((float)CurrentFrame / (float)TotalColumns);
-            int column = (CurrentFrame % TotalColumns) + ColumnStart;
 
-            SourceRectangle = new Rectangle(width * column, height * row, width, height);
 
+            if (IsBobbing)
+            {
+                BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (BobberTimer > 2f)
+                {
+                    BobberTimer = 0f;
+                }
+                if (BobberTimer < 1f)
+                {
+                    this.Position.Y += (.03f);
+                }
+
+                if (BobberTimer >= 1d && BobberTimer < 2d)
+                {
+                    this.Position.Y -= (.03f);
+                }
+
+            }
         }
 
-        
+        public void Toss(GameTime gameTime, float x, float y)
+        {
+            if (IsTossed == false)
+            {
 
-        
+
+
+                TossTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (TossTimer < .5)
+                {
+                    this.Position.X += x * .1f;
+                    this.Position.Y += y * .1f;
+
+                }
+                if (TossTimer >= .5)
+                {
+                    IsTossed = true;
+                }
+            }
+        }
+
+
+
     }
 }

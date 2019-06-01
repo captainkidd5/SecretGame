@@ -18,8 +18,6 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
 
-
-
         //playeractions
         public Texture2D CutGrassDown;
         public Texture2D CutGrassRight;
@@ -52,10 +50,6 @@ namespace SecretProject.Class.TextureStuff
 
         //Fonts
         public SpriteFont MenuText;
-
-        //Items
-
-        
 
         //Maps
         public TmxMap Iliad;
@@ -110,18 +104,6 @@ namespace SecretProject.Class.TextureStuff
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-
-            //Secateurs = content.Load<Texture2D>("Item/secateurs");
-            //lodgeKey = content.Load<Texture2D>("Item/HouseKey");
-            //shovel = content.Load<Texture2D>("Item/Shovel");
-            //stone = content.Load<Texture2D>("Item/stone");
-            //pie = content.Load<Texture2D>("Item/pie");
-            //puzzleFish = content.Load<Texture2D>("Item/puzzleFish");
-            //grass = content.Load<Texture2D>("Item/grass");
-            //barrel = content.Load<Texture2D>("Item/Barrel");
-            //redOrb = content.Load<Texture2D>("Item/redOrb");
-            //blueOrb = content.Load<Texture2D>("Item/blueOrb");
-            //Axe = content.Load<Texture2D>("Item/axe");
            // Iliad = new TmxMap("Content/Map/worldMap.tmx");
 
            // LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
