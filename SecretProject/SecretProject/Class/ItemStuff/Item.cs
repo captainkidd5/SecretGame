@@ -122,7 +122,8 @@ namespace SecretProject.Class.ItemStuff
         {
             if (IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, this.Texture, SourceTextureRectangle, this.WorldPosition, 16, 16) { IsBobbing = true, ScaleX = .75f, ScaleY = .75f, IsWorldItem = true, LayerDepth = .7f };
+                this.ItemSprite = new Sprite(Graphics, this.Texture, SourceTextureRectangle,
+                    this.WorldPosition, 16, 16) { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f };
             }
             if (!IsWorldItem)
             {
@@ -139,7 +140,7 @@ namespace SecretProject.Class.ItemStuff
                 {
                     this.ItemSprite.Bobber(gameTime);
                 }
-
+                //ItemSprite.UpdateDestinationRectangle();
                     if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                     {
                         IsMagnetized = true;
@@ -173,7 +174,7 @@ namespace SecretProject.Class.ItemStuff
             {
 
 
-                if (ItemSprite.ScaleX <= 0f || ItemSprite.ScaleY <= 0f)
+                if (ItemSprite.TextureScaleX <= 0f || ItemSprite.TextureScaleY <= 0f)
                 {
                     if (!ItemSprite.PickedUp)
                     {
@@ -188,8 +189,8 @@ namespace SecretProject.Class.ItemStuff
                 }
                 ItemSprite.Position.X -= playerpos.X;
                 ItemSprite.Position.Y -= playerpos.Y;
-                ItemSprite.ScaleX -= .1f;
-                ItemSprite.ScaleY -= .1f;
+                ItemSprite.TextureScaleX -= .1f;
+                ItemSprite.TextureScaleY -= .1f;
             }
         }
     }

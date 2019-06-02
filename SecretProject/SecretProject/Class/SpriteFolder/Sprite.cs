@@ -15,8 +15,8 @@ namespace SecretProject.Class.SpriteFolder
         public Rectangle SourceRectangle { get; set; }
         public Rectangle DestinationRectangle { get; set; }
 
-        public float TextureScaleX { get; set; }
-        public float TextureScaleY { get; set; }
+        public float TextureScaleX { get; set; } = 1f;
+        public float TextureScaleY { get; set; } = 1f;
         public float LayerDepth { get; set; } = 1f;
 
         public float ColorMultiplier { get; set; } = 1f;
@@ -25,8 +25,6 @@ namespace SecretProject.Class.SpriteFolder
 
         //keep as field
         public Vector2 Position;
-        public float ScaleX { get; set; } = 1f;
-        public float ScaleY { get; set; } = 1f;
         public int Width { get; set; }
         public int Height { get; set; }
         public bool IsWorldItem { get; set; } = false;
@@ -84,21 +82,28 @@ namespace SecretProject.Class.SpriteFolder
             {
                 UpdateAnimations(gameTime);
             }
-            else
-            {
-                this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(DestinationRectangle.Width * ScaleX), (int)(DestinationRectangle.Height * ScaleY));
-            }
+
         }
+
+        //public void UpdateDestinationRectangle()
+        //{
+        //    this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(DestinationRectangle.Width * TextureScaleX), (int)(DestinationRectangle.Height * TextureScaleY));
+        //}
 
         public void Update(GameTime gameTime, Vector2 position)
         {
+
+            if(IsBeingDragged)
+            {
+                this.Position = position;
+            }
             if (IsAnimated)
             {
                 UpdateAnimations(gameTime);
             }
             else
             {
-                this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(DestinationRectangle.Width * ScaleX), (int)(DestinationRectangle.Height * ScaleY));
+                this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
             }
         }
 
@@ -119,9 +124,10 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
+            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
 
-                spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle, color: Color.White * ColorMultiplier,
-                scale: new Vector2(TextureScaleX, TextureScaleY), layerDepth: this.LayerDepth);
+            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
+                    color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
 
             
         }
@@ -139,12 +145,12 @@ namespace SecretProject.Class.SpriteFolder
                 }
                 if (BobberTimer < 1f)
                 {
-                    this.Position.Y += (.03f);
+                    this.Position.Y += .03f;
                 }
 
                 if (BobberTimer >= 1d && BobberTimer < 2d)
                 {
-                    this.Position.Y -= (.03f);
+                    this.Position.Y -= .03f;
                 }
 
             }
@@ -183,7 +189,7 @@ namespace SecretProject.Class.SpriteFolder
                 CurrentFrame++;
                 AnimationTimer = AnimationSpeed;
             }
-            if (AnimationTimer == TotalFrames)
+            if (CurrentFrame == TotalFrames)
             {
                 CurrentFrame = 0;
                 IsAnimated = false;

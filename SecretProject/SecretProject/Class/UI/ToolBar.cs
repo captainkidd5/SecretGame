@@ -420,7 +420,8 @@ namespace SecretProject.Class.UI
 
                     else
                     {
-                        Sprite tempSprite = new Sprite(graphicsDevice, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,  mouse.WorldMousePosition, 16,16) { IsBeingDragged = true, ScaleX = 3f, ScaleY = 3f };
+                        Sprite tempSprite = new Sprite(graphicsDevice, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,
+                            mouse.WorldMousePosition, 16,16) { IsBeingDragged = true, TextureScaleX = 2f, TextureScaleY = 2f };
                         DragSprite = tempSprite;
 
                     }
@@ -472,14 +473,6 @@ namespace SecretProject.Class.UI
                 }
             }
 
-            if(InvSlot1.isClickedAndHeld && InvSlot1.ItemCounter != 0)
-            {
-                if(DragSprite != null)
-                {
-                    DragSprite.Draw(spriteBatch, .72f);
-                }
-                
-            }
 
             //--------------------------------------
             //Draw Buttons
@@ -552,7 +545,7 @@ namespace SecretProject.Class.UI
             if (AllActions.Count > 0 && !AllActions[AllActions.Count - 1].ActionComplete)
             {
                 spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet,sourceRectangle: this.ItemSwitchSourceRectangle, destinationRectangle: new Rectangle((int)Game1.Player.position.X + 3,
-                    (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(.5f, .5f));
+                    (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(1f, 1f));
             }
 
         }

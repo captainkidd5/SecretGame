@@ -295,16 +295,7 @@ namespace SecretProject.Class.StageFolder
                 player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
-                if (player.CurrentAction.IsAnimating == false)
-                {
-                    player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y - 3), (float).4);
-                }
-
-                //????
-                if (player.CurrentAction.IsAnimating == true)
-                {
-                    player.CurrentAction.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).4);
-                }
+                player.Draw(spriteBatch);
 
 
                 ElixerNPC.Draw(spriteBatch);

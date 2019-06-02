@@ -271,15 +271,15 @@ namespace SecretProject.Class.StageFolder
                 player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
-                if (player.CurrentAction.IsAnimating == false)
+                if (player.CurrentAction.IsAnimated == false)
                 {
                     player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y - 3), (float).4);
                 }
 
                 //????
-                if (player.CurrentAction.IsAnimating == true)
+                if (player.CurrentAction.IsAnimated == true)
                 {
-                    player.CurrentAction.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y), (float).4);
+                    player.CurrentAction.Draw(spriteBatch, (float).4);
                 }
 
 

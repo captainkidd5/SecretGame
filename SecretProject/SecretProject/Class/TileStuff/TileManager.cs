@@ -641,7 +641,7 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 1)
             {
-                if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating))
+                if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated))
                 {
                     Game1.SoundManager.StoneSmash.Play();
                     //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
@@ -650,7 +650,7 @@ namespace SecretProject.Class.TileStuff
                     
                 }
 
-                if(AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if(AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
                 {
                     Game1.SoundManager.StoneSmash.Play();
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
@@ -660,7 +660,7 @@ namespace SecretProject.Class.TileStuff
                     //Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.StoneSmashInstance, false, 1);
                 }
 
-                if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
                 {
                     Game1.SoundManager.StoneSmash.Play();
                     SpecificInteraction(layer, gameTime, oldX, oldY, "MiningDown", "MiningRight", "MiningLeft", "MiningUp", .25f);
@@ -673,7 +673,7 @@ namespace SecretProject.Class.TileStuff
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 2)
             {
 
-                if (AllTiles[layer][oldX,oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if (AllTiles[layer][oldX,oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
                 {
                     Game1.SoundManager.GrassBreak.Play();
                     SpecificInteraction(layer, gameTime, oldX, oldY, "CutGrassDown", "CutGrassRight", "CutGrassLeft", "CutGrassUp", .25f);
@@ -684,7 +684,7 @@ namespace SecretProject.Class.TileStuff
             }//axe
             if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 0)
             {
-                if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimating)
+                if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
                 {
                     Game1.SoundManager.WalkWoodInstance.Play();
                     SpecificInteraction(layer, gameTime, oldX, oldY, "ChoppingDown", "ChoppingRight", "ChoppingLeft", "ChoppingUp", .25f);
