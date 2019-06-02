@@ -36,6 +36,7 @@ namespace SecretProject.Class.SpriteFolder
         public float BobberTimer { get; set; }
         public float TossTimer { get; set; }
 
+
         //For Animation use only
         public int CurrentFrame { get; set; }
         public int FirstFrameX { get; set; }
@@ -46,6 +47,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public float AnimationSpeed { get; set; }
         public float AnimationTimer { get; set; }
+
 
 
 

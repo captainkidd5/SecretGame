@@ -161,7 +161,11 @@ namespace SecretProject.Class.Playable
 
 
 
-            CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position );
+            CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position);
+            //order of animation frames needs to be flipped
+            CutGrassRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position);
+            CutGrassLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position);
+
 
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
             CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
@@ -198,19 +202,19 @@ namespace SecretProject.Class.Playable
                     CurrentAction.IsAnimated = true;
                     break;
 
-                //case "CutGrassRight":
-                //    IsPerformingAction = true;
-                //    CutGrassRight.PlayOnce(gameTime);
-                //    CurrentAction = CutGrassRight;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "CutGrassRight":
+                   IsPerformingAction = true;
+                    CutGrassRightTest.PlayOnce(gameTime,Position);
+                    CurrentAction = CutGrassRightTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                //case "CutGrassLeft":
-                //    IsPerformingAction = true;
-                //    CutGrassLeft.PlayOnce(gameTime);
-                //    CurrentAction = CutGrassLeft;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "CutGrassLeft":
+                    IsPerformingAction = true;
+                    CutGrassLeft.PlayOnce(gameTime);
+                    CurrentAction = CutGrassLeftTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
                 //case "CutGrassUp":
                 //    IsPerformingAction = true;
