@@ -137,7 +137,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void DrawAnimation(SpriteBatch spriteBatch, float layerDepth)
         {
-            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, 64, 64);
+            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, FrameWidth, FrameHeight);
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
                     color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
