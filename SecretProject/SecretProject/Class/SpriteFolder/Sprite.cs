@@ -59,12 +59,12 @@ namespace SecretProject.Class.SpriteFolder
             this.Position = position;
             this.Width = width;
             this.Height = height;
-            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
+            
         }
 
         //for animated sprites
         public Sprite(GraphicsDevice graphics, Texture2D atlasTexture, int firstFrameX, int firstFrameY, int frameWidth, int frameHeight, int totalFrames,
-            float animationSpeed)
+            float animationSpeed, Vector2 positionToDrawTo)
         {
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
@@ -74,13 +74,15 @@ namespace SecretProject.Class.SpriteFolder
             this.FrameHeight = frameHeight;
             this.TotalFrames = totalFrames;
             this.AnimationSpeed = animationSpeed;
+            this.Position = positionToDrawTo;
+
         }
 
         public void Update(GameTime gameTime)
         {
             if(IsAnimated)
             {
-                UpdateAnimations(gameTime);
+                UpdateAnimations(gameTime,Position);
             }
 
         }
@@ -99,7 +101,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             if (IsAnimated)
             {
-                UpdateAnimations(gameTime);
+                UpdateAnimations(gameTime, position);
             }
             else
             {
@@ -107,8 +109,9 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
-        public void UpdateAnimations(GameTime gameTime)
+        public void UpdateAnimations(GameTime gameTime, Vector2 position)
         {
+            this.Position = position;
             AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(AnimationTimer <= 0)
             {
@@ -130,6 +133,13 @@ namespace SecretProject.Class.SpriteFolder
                     color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
 
             
+        }
+
+        public void DrawAnimation(SpriteBatch spriteBatch, float layerDepth)
+        {
+            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, 64, 64);
+            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
+                    color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
         public void Bobber(GameTime gameTime)
@@ -178,9 +188,9 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
-        public void PlayOnce(GameTime gameTime)
+        public void PlayOnce(GameTime gameTime, Vector2 position)
         {
-
+            this.Position = position;
 
             AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -194,6 +204,7 @@ namespace SecretProject.Class.SpriteFolder
                 CurrentFrame = 0;
                 IsAnimated = false;
             }
+            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
 
         }
 

@@ -161,7 +161,7 @@ namespace SecretProject.Class.Playable
 
 
 
-            CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f );
+            CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position );
 
             CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
             CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
@@ -193,7 +193,7 @@ namespace SecretProject.Class.Playable
             {
                 case "CutGrassDown":
                     IsPerformingAction = true;
-                    CutGrassDownTest.PlayOnce(gameTime);
+                    CutGrassDownTest.PlayOnce(gameTime,Position);
                     CurrentAction = CutGrassDownTest;
                     CurrentAction.IsAnimated = true;
                     break;
@@ -360,7 +360,7 @@ namespace SecretProject.Class.Playable
                 }
                 else if (CurrentAction.IsAnimated == true)
                 {
-                    CurrentAction.PlayOnce(gameTime);
+                    CurrentAction.PlayOnce(gameTime,Position);
 
                 }
                 else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
@@ -459,6 +459,7 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        //drawing relative to wrong camera it seems.
         public void Draw(SpriteBatch spriteBatch)
         {
             if (CurrentAction.IsAnimated == false)
@@ -469,7 +470,7 @@ namespace SecretProject.Class.Playable
             //????
             if (CurrentAction.IsAnimated == true)
             {
-                CurrentAction.Draw(spriteBatch, (float).4);
+                CurrentAction.DrawAnimation(spriteBatch, (float).4);
             }
         }
 
