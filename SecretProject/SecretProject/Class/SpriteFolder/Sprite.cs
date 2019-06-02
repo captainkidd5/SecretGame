@@ -48,6 +48,9 @@ namespace SecretProject.Class.SpriteFolder
         public float AnimationSpeed { get; set; }
         public float AnimationTimer { get; set; }
 
+        public int OffSetX { get; set; }
+        public int OffSetY { get; set; }
+
 
 
 
@@ -66,7 +69,7 @@ namespace SecretProject.Class.SpriteFolder
 
         //for animated sprites
         public Sprite(GraphicsDevice graphics, Texture2D atlasTexture, int firstFrameX, int firstFrameY, int frameWidth, int frameHeight, int totalFrames,
-            float animationSpeed, Vector2 positionToDrawTo)
+            float animationSpeed, Vector2 positionToDrawTo, int offSetX = 0, int offSetY = 0)
         {
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
@@ -77,7 +80,8 @@ namespace SecretProject.Class.SpriteFolder
             this.TotalFrames = totalFrames;
             this.AnimationSpeed = animationSpeed;
             this.Position = positionToDrawTo;
-
+            this.OffSetX = offSetX;
+            this.OffSetY = offSetY;
         }
 
         public void Update(GameTime gameTime)
@@ -139,7 +143,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void DrawAnimation(SpriteBatch spriteBatch, float layerDepth)
         {
-            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, FrameWidth, FrameHeight);
+            DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
                     color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }

@@ -92,6 +92,13 @@ namespace SecretProject.Class.Playable
         public Sprite CutGrassLeftTest { get; set; }
         public Sprite CutGrassUpTest { get; set; }
 
+        public Sprite MiningDownTest { get; set;}
+        public Sprite MiningRightTest { get; set; }
+        public Sprite MiningLeftTest { get; set; }
+        public Sprite MiningUpTest { get; set; }
+
+
+
 
 
         public AnimatedSprite MiningDown { get; set; }
@@ -163,14 +170,20 @@ namespace SecretProject.Class.Playable
 
             CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position);
             //order of animation frames needs to be flipped
-            CutGrassRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position);
-            CutGrassLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position);
+            CutGrassRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position, offSetX: -1);
+            CutGrassLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position, -33);
+            CutGrassUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 304, 128, 32, 48, 3, .15f, this.Position, -1, -12);
 
 
-            CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
-            CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
-            CutGrassLeft = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassLeft, 1, 3, 3) { AdjustedLocationX = -18 };
-            CutGrassUp = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassUp, 1, 3, 3) { AdjustedLocationX = -1, AdjustedLocationY = -7 };
+            //CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
+            //CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
+            //CutGrassLeft = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassLeft, 1, 3, 3) { AdjustedLocationX = -18 };
+            //CutGrassUp = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassUp, 1, 3, 3) { AdjustedLocationX = -1, AdjustedLocationY = -7 };
+
+            MiningDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,0,128,16,64,5,.1f, this.Position,0,-28);
+            MiningRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 144, 416, 64, 64,5, .15f, this.Position, -15, -28);
+            MiningLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 336, 64,64,5,.15f,this.Position, -31, -28);
+            MiningUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 96, 144, 16,48,5,.15f,this.Position, 0, -12);
 
             MiningDown = new AnimatedSprite(graphics, Game1.AllTextures.MiningDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
             MiningRight = new AnimatedSprite(graphics, Game1.AllTextures.MiningRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
@@ -211,73 +224,73 @@ namespace SecretProject.Class.Playable
 
                 case "CutGrassLeft":
                     IsPerformingAction = true;
-                    CutGrassLeft.PlayOnce(gameTime);
+                    CutGrassLeftTest.PlayOnce(gameTime, Position);
                     CurrentAction = CutGrassLeftTest;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                //case "CutGrassUp":
-                //    IsPerformingAction = true;
-                //    CutGrassUp.PlayOnce(gameTime);
-                //    CurrentAction = CutGrassUp;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "CutGrassUp":
+                    IsPerformingAction = true;
+                    CutGrassUpTest.PlayOnce(gameTime, Position);
+                    CurrentAction = CutGrassUpTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                //case "MiningDown":
-                //    IsPerformingAction = true;
-                //    MiningDown.PlayOnce(gameTime);
-                //    CurrentAction = MiningDown;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "MiningDown":
+                    IsPerformingAction = true;
+                    MiningDownTest.PlayOnce(gameTime, Position);
+                    CurrentAction = MiningDownTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                //case "MiningRight":
-                //    IsPerformingAction = true;
-                //    MiningRight.PlayOnce(gameTime);
-                //    CurrentAction = MiningRight;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "MiningRight":
+                    IsPerformingAction = true;
+                    MiningRightTest.PlayOnce(gameTime, Position);
+                    CurrentAction = MiningRightTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                //case "MiningLeft":
-                //    IsPerformingAction = true;
-                //    MiningLeft.PlayOnce(gameTime);
-                //    CurrentAction = MiningLeft;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "MiningLeft":
+                    IsPerformingAction = true;
+                    MiningLeftTest.PlayOnce(gameTime,Position);
+                    CurrentAction = MiningLeftTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                //case "MiningUp":
-                //    IsPerformingAction = true;
-                //    MiningUp.PlayOnce(gameTime);
-                //    CurrentAction = MiningUp;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                case "MiningUp":
+                    IsPerformingAction = true;
+                    MiningUpTest.PlayOnce(gameTime,Position);
+                    CurrentAction = MiningUpTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
 
-                //case "ChoppingRight":
-                //    IsPerformingAction = true;
-                //    ChoppingRight.PlayOnce(gameTime);
-                //    CurrentAction = ChoppingRight;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                    //case "ChoppingRight":
+                    //    IsPerformingAction = true;
+                    //    ChoppingRight.PlayOnce(gameTime);
+                    //    CurrentAction = ChoppingRight;
+                    //    CurrentAction.IsAnimating = true;
+                    //    break;
 
-                //case "ChoppingLeft":
-                //    IsPerformingAction = true;
-                //    ChoppingLeft.PlayOnce(gameTime);
-                //    CurrentAction = ChoppingLeft;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                    //case "ChoppingLeft":
+                    //    IsPerformingAction = true;
+                    //    ChoppingLeft.PlayOnce(gameTime);
+                    //    CurrentAction = ChoppingLeft;
+                    //    CurrentAction.IsAnimating = true;
+                    //    break;
 
-                //case "ChoppingUp":
-                //    IsPerformingAction = true;
-                //    ChoppingUp.PlayOnce(gameTime);
-                //    CurrentAction = ChoppingUp;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
-                //case "ChoppingDown":
-                //    IsPerformingAction = true;
-                //    ChoppingDown.PlayOnce(gameTime);
-                //    CurrentAction = ChoppingDown;
-                //    CurrentAction.IsAnimating = true;
-                //    break;
+                    //case "ChoppingUp":
+                    //    IsPerformingAction = true;
+                    //    ChoppingUp.PlayOnce(gameTime);
+                    //    CurrentAction = ChoppingUp;
+                    //    CurrentAction.IsAnimating = true;
+                    //    break;
+                    //case "ChoppingDown":
+                    //    IsPerformingAction = true;
+                    //    ChoppingDown.PlayOnce(gameTime);
+                    //    CurrentAction = ChoppingDown;
+                    //    CurrentAction.IsAnimating = true;
+                    //    break;
 
 
 
