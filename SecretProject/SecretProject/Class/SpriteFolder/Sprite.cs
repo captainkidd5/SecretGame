@@ -141,9 +141,10 @@ namespace SecretProject.Class.SpriteFolder
             
         }
 
-        public void DrawAnimation(SpriteBatch spriteBatch, float layerDepth)
+        public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
         {
-            DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
+            //something wrong with destination rectangle after animation
+            DestinationRectangle = new Rectangle((int)currentPosition.X + OffSetX, (int)currentPosition.Y + OffSetY, FrameWidth, FrameHeight);
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
                     color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
@@ -217,6 +218,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             CurrentFrame = newFrame;
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            //DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
     }

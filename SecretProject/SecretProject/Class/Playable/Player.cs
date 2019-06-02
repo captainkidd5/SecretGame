@@ -115,7 +115,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X + 2, (int)position.Y + 20, ((int)Texture.Width / FrameNumber) -2, (int)Texture.Height - 25);
+                return new Rectangle((int)position.X, (int)position.Y + 16, 16, 32);
             }
 
         }
@@ -124,7 +124,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X - 15, (int)position.Y - 15, ((int)Texture.Width / FrameNumber) + 30, (int)Texture.Height + 30);
+                return new Rectangle((int)position.X - 16, (int)position.Y,  48,  64);
             }
         }
 
@@ -134,14 +134,14 @@ namespace SecretProject.Class.Playable
         }
 
 
-        public Player(string name, Vector2 position, Texture2D texture, int frameNumber, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
+        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;
             Name = name;
             Position = position;
             this.Texture = texture;
-            this.FrameNumber = frameNumber;
-            animations = new Sprite[frameNumber];
+            this.FrameNumber = numberOfFrames;
+            animations = new Sprite[numberOfFrames];
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
@@ -151,26 +151,26 @@ namespace SecretProject.Class.Playable
 
 
 
-            CutGrassDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position);
+            CutGrassDown = new Sprite(graphics, this.Texture, 80,80,16,48,3,.15f,this.Position,0, 12);
             //order of animation frames needs to be flipped
-            CutGrassRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position, offSetX: -1);
-            CutGrassLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position, -33);
-            CutGrassUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 304, 128, 32, 48, 3, .15f, this.Position, -1, -12);
+            CutGrassRight = new Sprite(graphics, this.Texture, 176, 64, 48, 48, 3, .15f, this.Position, -1, 12);
+            CutGrassLeft = new Sprite(graphics, this.Texture, 320, 64, 48, 48, 3, .15f, this.Position, -33, 12);
+            CutGrassUp = new Sprite(graphics, this.Texture, 304, 128, 32, 48, 3, .15f, this.Position, -1, 0);
 
 
 
 
-            MiningDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,0,128,16,64,5,.1f, this.Position,0,-28);
-            MiningRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 144, 416, 64, 64,5, .15f, this.Position, -15, -28);
-            MiningLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 336, 64,64,5,.15f,this.Position, -31, -28);
-            MiningUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 96, 144, 16,48,5,.15f,this.Position, 0, -12);
+            MiningDown = new Sprite(graphics, this.Texture, 0,128,16,64,5,.1f, this.Position,0,-16);
+            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64,5, .15f, this.Position, -15, -16);
+            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64,64,5,.15f,this.Position, -31, -16);
+            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16,48,5,.15f,this.Position, 0, 0);
 
 
 
-            ChoppingDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 240, 16, 64, 5, .1f, this.Position, 0, -28);
-            ChoppingRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 192, 64, 64, 5, .15f, this.Position, -15, -28);
-            ChoppingLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 256, 64, 64, 5, .15f, this.Position, -33, -28);
-            ChoppingUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 80, 256, 16, 48, 5, .1f, this.Position, 0, -12);
+            ChoppingDown = new Sprite(graphics, this.Texture, 0, 240, 16, 64, 5, .1f, this.Position, 0, -16);
+            ChoppingRight = new Sprite(graphics, this.Texture, 160, 192, 64, 64, 5, .15f, this.Position, -15, -16);
+            ChoppingLeft = new Sprite(graphics, this.Texture, 160, 256, 64, 64, 5, .15f, this.Position, -33, -16);
+            ChoppingUp = new Sprite(graphics, this.Texture, 80, 256, 16, 48, 5, .1f, this.Position, 0, -0);
 
 
 
@@ -460,13 +460,13 @@ namespace SecretProject.Class.Playable
         {
             if (CurrentAction.IsAnimated == false)
             {
-               PlayerMovementAnimations.DrawAnimation(spriteBatch, (float).4);
+               PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position,(float).4);
             }
 
             //????
             if (CurrentAction.IsAnimated == true)
             {
-                CurrentAction.DrawAnimation(spriteBatch, (float).4);
+                CurrentAction.DrawAnimation(spriteBatch,this.Position, (float).4);
             }
         }
 
