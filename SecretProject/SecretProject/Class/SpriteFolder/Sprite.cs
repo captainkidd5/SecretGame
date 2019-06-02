@@ -213,7 +213,11 @@ namespace SecretProject.Class.SpriteFolder
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
 
         }
-
+        public void SetFrame(int newFrame)
+        {
+            CurrentFrame = newFrame;
+            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+        }
 
     }
 }

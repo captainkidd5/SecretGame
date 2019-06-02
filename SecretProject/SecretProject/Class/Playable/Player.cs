@@ -33,7 +33,7 @@ namespace SecretProject.Class.Playable
         public Vector2 TotalVelocity;
         public bool Activate { get; set; }
 
-        public AnimatedSprite[] animations;
+        public Sprite[] animations;
 
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
@@ -67,7 +67,7 @@ namespace SecretProject.Class.Playable
         public bool IsMoving { get; set; } = false;
         public float Speed1 { get; set; } = 2f;
         public float SecondarySpeed { get; set; } = 1f;
-        public AnimatedSprite PlayerMovementAnimations { get; set; }
+        public Sprite PlayerMovementAnimations { get; set; }
         [XmlIgnore]
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -78,49 +78,27 @@ namespace SecretProject.Class.Playable
 
         public Sprite CurrentAction;
 
-        public AnimatedSprite CutGrassDown { get; set; }
-
-        public AnimatedSprite CutGrassRight { get; set; }
-
-        public AnimatedSprite CutGrassLeft { get; set; }
-
-        public AnimatedSprite CutGrassUp { get; set; }
 
 
-        public Sprite CutGrassDownTest { get; set; }
-        public Sprite CutGrassRightTest { get; set; }
-        public Sprite CutGrassLeftTest { get; set; }
-        public Sprite CutGrassUpTest { get; set; }
+        public Sprite CutGrassDown { get; set; }
+        public Sprite CutGrassRight { get; set; }
+        public Sprite CutGrassLeft { get; set; }
+        public Sprite CutGrassUp { get; set; }
 
-        public Sprite MiningDownTest { get; set;}
-        public Sprite MiningRightTest { get; set; }
-        public Sprite MiningLeftTest { get; set; }
-        public Sprite MiningUpTest { get; set; }
+        public Sprite MiningDown { get; set;}
+        public Sprite MiningRight { get; set; }
+        public Sprite MiningLeft { get; set; }
+        public Sprite MiningUp { get; set; }
 
-        public Sprite ChoppingDownTest { get; set; }
-        public Sprite ChoppingRightTest { get; set; }
-        public Sprite ChoppingLeftTest { get; set; }
-        public Sprite ChoppingUpTest { get; set; }
+        public Sprite ChoppingDown { get; set; }
+        public Sprite ChoppingRight { get; set; }
+        public Sprite ChoppingLeft { get; set; }
+        public Sprite ChoppingUp { get; set; }
 
 
 
 
 
-        public AnimatedSprite MiningDown { get; set; }
-
-        public AnimatedSprite MiningRight { get; set; }
-
-        public AnimatedSprite MiningLeft { get; set; }
-
-        public AnimatedSprite MiningUp { get; set; }
-
-        public AnimatedSprite ChoppingDown { get; set; }
-
-        public AnimatedSprite ChoppingRight { get; set; }
-
-        public AnimatedSprite ChoppingLeft { get; set; }
-
-        public AnimatedSprite ChoppingUp { get; set; }
 
 
         [XmlIgnore]
@@ -163,7 +141,7 @@ namespace SecretProject.Class.Playable
             Position = position;
             this.Texture = texture;
             this.FrameNumber = frameNumber;
-            animations = new AnimatedSprite[frameNumber];
+            animations = new Sprite[frameNumber];
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
@@ -173,39 +151,30 @@ namespace SecretProject.Class.Playable
 
 
 
-            CutGrassDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position);
+            CutGrassDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,80,80,16,48,3,.15f,this.Position);
             //order of animation frames needs to be flipped
-            CutGrassRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position, offSetX: -1);
-            CutGrassLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position, -33);
-            CutGrassUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 304, 128, 32, 48, 3, .15f, this.Position, -1, -12);
+            CutGrassRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 176, 64, 48, 48, 3, .15f, this.Position, offSetX: -1);
+            CutGrassLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 320, 64, 48, 48, 3, .15f, this.Position, -33);
+            CutGrassUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 304, 128, 32, 48, 3, .15f, this.Position, -1, -12);
 
 
-            //CutGrassDown = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassDown, 1, 3, 3);
-            //CutGrassRight = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassRight, 1, 3, 3) { AdjustedLocationX = 1 };
-            //CutGrassLeft = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassLeft, 1, 3, 3) { AdjustedLocationX = -18 };
-            //CutGrassUp = new AnimatedSprite(graphics, Game1.AllTextures.CutGrassUp, 1, 3, 3) { AdjustedLocationX = -1, AdjustedLocationY = -7 };
 
-            MiningDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,0,128,16,64,5,.1f, this.Position,0,-28);
-            MiningRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 144, 416, 64, 64,5, .15f, this.Position, -15, -28);
-            MiningLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 336, 64,64,5,.15f,this.Position, -31, -28);
-            MiningUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 96, 144, 16,48,5,.15f,this.Position, 0, -12);
 
-            MiningDown = new AnimatedSprite(graphics, Game1.AllTextures.MiningDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
-            MiningRight = new AnimatedSprite(graphics, Game1.AllTextures.MiningRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
-            MiningLeft = new AnimatedSprite(graphics, Game1.AllTextures.MiningLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
-            MiningUp = new AnimatedSprite(graphics, Game1.AllTextures.MiningUp, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -10, speed = .08d };
+            MiningDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet,0,128,16,64,5,.1f, this.Position,0,-28);
+            MiningRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 144, 416, 64, 64,5, .15f, this.Position, -15, -28);
+            MiningLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 336, 64,64,5,.15f,this.Position, -31, -28);
+            MiningUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 96, 144, 16,48,5,.15f,this.Position, 0, -12);
 
-            ChoppingDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 240, 16, 64, 5, .1f, this.Position, 0, -28);
-            ChoppingRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 192, 64, 64, 5, .15f, this.Position, -15, -28);
-            ChoppingLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 256, 64, 64, 5, .15f, this.Position, -33, -28);
-            ChoppingUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 80, 256, 16, 48, 5, .1f, this.Position, 0, -12);
 
-            ChoppingDown = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
-            ChoppingRight = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
-            ChoppingLeft = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
-            ChoppingUp = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingUp, 1, 5, 5) { AdjustedLocationX = 0, AdjustedLocationY = -12, speed = .08d };
 
-            CurrentAction = CutGrassDownTest;
+            ChoppingDown = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 240, 16, 64, 5, .1f, this.Position, 0, -28);
+            ChoppingRight = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 192, 64, 64, 5, .15f, this.Position, -15, -28);
+            ChoppingLeft = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 256, 64, 64, 5, .15f, this.Position, -33, -28);
+            ChoppingUp = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 80, 256, 16, 48, 5, .1f, this.Position, 0, -12);
+
+
+
+            CurrentAction = CutGrassDown;
 
             SetRectangleTexture(graphics, ClickRangeRectangle);
 
@@ -220,84 +189,84 @@ namespace SecretProject.Class.Playable
             {
                 case "CutGrassDown":
                     IsPerformingAction = true;
-                    CutGrassDownTest.PlayOnce(gameTime,Position);
-                    CurrentAction = CutGrassDownTest;
+                    CutGrassDown.PlayOnce(gameTime,Position);
+                    CurrentAction = CutGrassDown;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "CutGrassRight":
                    IsPerformingAction = true;
-                    CutGrassRightTest.PlayOnce(gameTime,Position);
-                    CurrentAction = CutGrassRightTest;
+                    CutGrassRight.PlayOnce(gameTime,Position);
+                    CurrentAction = CutGrassRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "CutGrassLeft":
                     IsPerformingAction = true;
-                    CutGrassLeftTest.PlayOnce(gameTime, Position);
-                    CurrentAction = CutGrassLeftTest;
+                    CutGrassLeft.PlayOnce(gameTime, Position);
+                    CurrentAction = CutGrassLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "CutGrassUp":
                     IsPerformingAction = true;
-                    CutGrassUpTest.PlayOnce(gameTime, Position);
-                    CurrentAction = CutGrassUpTest;
+                    CutGrassUp.PlayOnce(gameTime, Position);
+                    CurrentAction = CutGrassUp;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "MiningDown":
                     IsPerformingAction = true;
-                    MiningDownTest.PlayOnce(gameTime, Position);
-                    CurrentAction = MiningDownTest;
+                    MiningDown.PlayOnce(gameTime, Position);
+                    CurrentAction = MiningDown;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "MiningRight":
                     IsPerformingAction = true;
-                    MiningRightTest.PlayOnce(gameTime, Position);
-                    CurrentAction = MiningRightTest;
+                    MiningRight.PlayOnce(gameTime, Position);
+                    CurrentAction = MiningRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "MiningLeft":
                     IsPerformingAction = true;
-                    MiningLeftTest.PlayOnce(gameTime,Position);
-                    CurrentAction = MiningLeftTest;
+                    MiningLeft.PlayOnce(gameTime,Position);
+                    CurrentAction = MiningLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "MiningUp":
                     IsPerformingAction = true;
-                    MiningUpTest.PlayOnce(gameTime,Position);
-                    CurrentAction = MiningUpTest;
+                    MiningUp.PlayOnce(gameTime,Position);
+                    CurrentAction = MiningUp;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "ChoppingDown":
                     IsPerformingAction = true;
-                    ChoppingDownTest.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingDownTest;
+                    ChoppingDown.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingDown;
                     CurrentAction.IsAnimated = true;
                     break;
                 case "ChoppingRight":
                     IsPerformingAction = true;
-                    ChoppingRightTest.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingRightTest;
+                    ChoppingRight.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "ChoppingLeft":
                     IsPerformingAction = true;
-                    ChoppingLeftTest.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingLeftTest;
+                    ChoppingLeft.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
                 case "ChoppingUp":
                     IsPerformingAction = true;
-                    ChoppingUpTest.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingUpTest;
+                    ChoppingUp.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingUp;
                     CurrentAction.IsAnimated = true;
                     break;
 
@@ -383,7 +352,7 @@ namespace SecretProject.Class.Playable
                 
                 if (controls.IsMoving && CurrentAction.IsAnimated == false)
                 {
-                    PlayerMovementAnimations.Update(gameTime);
+                    PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
                 }
                 else if (CurrentAction.IsAnimated == true)
                 {
@@ -392,7 +361,7 @@ namespace SecretProject.Class.Playable
                 }
                 else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
                 {
-                    PlayerMovementAnimations.setFrame(0);
+                    PlayerMovementAnimations.SetFrame(0);
                 } 
 
 
@@ -436,12 +405,12 @@ namespace SecretProject.Class.Playable
                         case SecondaryDir.Right:
                             SecondaryVelocity.X = SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Right];
-                            PlayerMovementAnimations.Update(gameTime);
+                            PlayerMovementAnimations.UpdateAnimations(gameTime,this.Position);
                             break;
                         case SecondaryDir.Left:
                             SecondaryVelocity.X = -SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Left];
-                            PlayerMovementAnimations.Update(gameTime);
+                            PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
                             break;
                         case SecondaryDir.Down:
                             SecondaryVelocity.Y = SecondarySpeed;
@@ -491,7 +460,7 @@ namespace SecretProject.Class.Playable
         {
             if (CurrentAction.IsAnimated == false)
             {
-               PlayerMovementAnimations.Draw(spriteBatch, new Vector2(Position.X, Position.Y - 3), (float).4);
+               PlayerMovementAnimations.DrawAnimation(spriteBatch, (float).4);
             }
 
             //????

@@ -20,20 +20,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D ElixirSpriteSheet;
 
         //playeractions
-        public Texture2D CutGrassDown;
-        public Texture2D CutGrassRight;
-        public Texture2D CutGrassLeft;
-        public Texture2D CutGrassUp;
 
-        public Texture2D MiningDown;
-        public Texture2D MiningRight;
-        public Texture2D MiningLeft;
-        public Texture2D MiningUp;
-
-        public Texture2D ChoppingDown;
-        public Texture2D ChoppingRight;
-        public Texture2D ChoppingLeft;
-        public Texture2D ChoppingUp;
 
         //UiStuff
         public Texture2D ToolBarButtonSelector;
@@ -75,20 +62,6 @@ namespace SecretProject.Class.TextureStuff
 
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
-            CutGrassDown = content.Load<Texture2D>("Player/MainPlayer/ClippingForward");
-            CutGrassRight = content.Load<Texture2D>("Player/MainPlayer/ClippingRight");
-            CutGrassLeft = content.Load<Texture2D>("Player/MainPlayer/ClippingLeft");
-            CutGrassUp = content.Load<Texture2D>("Player/MainPlayer/ClippingUp");
-
-            MiningDown = content.Load<Texture2D>("Player/MainPlayer/MiningDown");
-            MiningRight = content.Load<Texture2D>("Player/MainPlayer/MiningRight");
-            MiningLeft = content.Load<Texture2D>("Player/MainPlayer/MiningLeft");
-            MiningUp = content.Load<Texture2D>("Player/MainPlayer/MiningUp");
-
-            ChoppingDown = content.Load<Texture2D>("Player/MainPlayer/ChoppingDown");
-            ChoppingRight = content.Load<Texture2D>("Player/MainPlayer/ChoppingRight");
-            ChoppingLeft = content.Load<Texture2D>("Player/MainPlayer/ChoppingLeft");
-            ChoppingUp = content.Load<Texture2D>("Player/MainPlayer/ChoppingUp");
 
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");

@@ -266,18 +266,18 @@ namespace SecretProject
             
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
-
             //PLAYERS
             Player = new Player("joe", new Vector2(250, 250), MainCharacterTexture, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
-            Player.PlayerMovementAnimations = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
-            Player.animations[0] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 0, 1, 6);
+            // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
+            Player.animations[0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 64, 0, 16, 48, 6, .15f, Game1.Player.position);
+            Player.PlayerMovementAnimations = Player.animations[0];
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
-            Player.animations[1] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 18, 1, 25);
-            Player.animations[2] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 6, 1, 12);
-            Player.animations[3] = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 25, 25, 12, 1, 18);
+            Player.animations[2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 160, 0, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 256, 0, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 352, 0, 16, 48, 6, .15f, Game1.Player.position);
 
             //UI
-            
+
             DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox) ;
 
             //ITEMS

@@ -268,12 +268,12 @@ namespace SecretProject.Class.StageFolder
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
-                player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
+                //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
                 if (player.CurrentAction.IsAnimated == false)
                 {
-                    player.PlayerMovementAnimations.Draw(spriteBatch, new Vector2(player.Position.X, player.Position.Y - 3), (float).4);
+                    player.PlayerMovementAnimations.DrawAnimation(spriteBatch, (float).4);
                 }
 
                 //????
