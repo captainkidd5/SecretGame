@@ -97,6 +97,11 @@ namespace SecretProject.Class.Playable
         public Sprite MiningLeftTest { get; set; }
         public Sprite MiningUpTest { get; set; }
 
+        public Sprite ChoppingDownTest { get; set; }
+        public Sprite ChoppingRightTest { get; set; }
+        public Sprite ChoppingLeftTest { get; set; }
+        public Sprite ChoppingUpTest { get; set; }
+
 
 
 
@@ -190,6 +195,11 @@ namespace SecretProject.Class.Playable
             MiningLeft = new AnimatedSprite(graphics, Game1.AllTextures.MiningLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
             MiningUp = new AnimatedSprite(graphics, Game1.AllTextures.MiningUp, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -10, speed = .08d };
 
+            ChoppingDownTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 0, 240, 16, 64, 5, .1f, this.Position, 0, -28);
+            ChoppingRightTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 192, 64, 64, 5, .15f, this.Position, -15, -28);
+            ChoppingLeftTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 160, 256, 64, 64, 5, .15f, this.Position, -33, -28);
+            ChoppingUpTest = new Sprite(graphics, Game1.AllTextures.PlayerSpriteSheet, 80, 256, 16, 48, 5, .1f, this.Position, 0, -12);
+
             ChoppingDown = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingDown, 1, 5, 5) { AdjustedLocationX = 1, AdjustedLocationY = -16, speed = .08d };
             ChoppingRight = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingRight, 1, 5, 5) { AdjustedLocationX = -6, AdjustedLocationY = -16, speed = .08d };
             ChoppingLeft = new AnimatedSprite(graphics, Game1.AllTextures.ChoppingLeft, 1, 5, 5) { AdjustedLocationX = -20, AdjustedLocationY = -16, speed = .08d };
@@ -264,33 +274,33 @@ namespace SecretProject.Class.Playable
                     CurrentAction.IsAnimated = true;
                     break;
 
+                case "ChoppingDown":
+                    IsPerformingAction = true;
+                    ChoppingDownTest.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingDownTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
+                case "ChoppingRight":
+                    IsPerformingAction = true;
+                    ChoppingRightTest.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingRightTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                    //case "ChoppingRight":
-                    //    IsPerformingAction = true;
-                    //    ChoppingRight.PlayOnce(gameTime);
-                    //    CurrentAction = ChoppingRight;
-                    //    CurrentAction.IsAnimating = true;
-                    //    break;
+                case "ChoppingLeft":
+                    IsPerformingAction = true;
+                    ChoppingLeftTest.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingLeftTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                    //case "ChoppingLeft":
-                    //    IsPerformingAction = true;
-                    //    ChoppingLeft.PlayOnce(gameTime);
-                    //    CurrentAction = ChoppingLeft;
-                    //    CurrentAction.IsAnimating = true;
-                    //    break;
+                case "ChoppingUp":
+                    IsPerformingAction = true;
+                    ChoppingUpTest.PlayOnce(gameTime,Position);
+                    CurrentAction = ChoppingUpTest;
+                    CurrentAction.IsAnimated = true;
+                    break;
 
-                    //case "ChoppingUp":
-                    //    IsPerformingAction = true;
-                    //    ChoppingUp.PlayOnce(gameTime);
-                    //    CurrentAction = ChoppingUp;
-                    //    CurrentAction.IsAnimating = true;
-                    //    break;
-                    //case "ChoppingDown":
-                    //    IsPerformingAction = true;
-                    //    ChoppingDown.PlayOnce(gameTime);
-                    //    CurrentAction = ChoppingDown;
-                    //    CurrentAction.IsAnimating = true;
-                    //    break;
 
 
 
