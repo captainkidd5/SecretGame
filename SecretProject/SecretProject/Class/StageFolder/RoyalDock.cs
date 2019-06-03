@@ -23,6 +23,7 @@ using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
+using SecretProject.Class.ParticileStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -107,6 +108,8 @@ namespace SecretProject.Class.StageFolder
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
 
+        ParticleEngine ParticleEngine { get; set; }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -124,7 +127,9 @@ namespace SecretProject.Class.StageFolder
 
         public void LoadContent( Camera2D camera )
         {
-
+            List<Texture2D> particleTextures = new List<Texture2D>();
+            particleTextures.Add(Game1.AllTextures.CursorWhiteHand);
+            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
             AllSprites = new List<Sprite>()
             {
@@ -238,7 +243,8 @@ namespace SecretProject.Class.StageFolder
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
             }
 
-            
+            ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
+            ParticleEngine.Update();
 
             if (!Game1.freeze)
             {
@@ -293,7 +299,7 @@ namespace SecretProject.Class.StageFolder
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
-
+                ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch);
 

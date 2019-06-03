@@ -39,13 +39,13 @@ namespace SecretProject.Class.ParticileStuff
             Angle += AngularVelocity;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, this.ParticleTexture.Width, this.ParticleTexture.Height);
             Vector2 origin = new Vector2(this.ParticleTexture.Width / 2, this.ParticleTexture.Height / 2);
 
             spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color,
-                Angle, origin, Size, SpriteEffects.None, 0f);
+                Angle, origin, Size, SpriteEffects.None, layerDepth);
         }
     }
 }
