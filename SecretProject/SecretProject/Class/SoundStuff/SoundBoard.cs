@@ -103,7 +103,7 @@ namespace SecretProject.Class.SoundStuff
 
         }
 
-        public void PlaySoundEffectFromInt(bool isLooping, int numberOfLoops, int soundKey)
+        public void PlaySoundEffectFromInt(bool isLooping, int numberOfLoops, int soundKey, float volume)
         {
             
 
@@ -134,17 +134,38 @@ namespace SecretProject.Class.SoundStuff
                 switch (soundKey)
                 {
                     case 1:
+                        WalkGrassInstance.Volume = volume;
                         WalkGrassInstance.Play();
                         break;
                     case 2:
+                        WalkStoneInstance.Volume = volume;
                         WalkStoneInstance.Play();
                         break;
                     case 3:
+                        WalkWoodInstance.Volume = volume;
                         WalkWoodInstance.Play();
                         break;
                     case 4:
+                        WalkSandInstance.Volume = volume;
                         WalkSandInstance.Play();
                         break;
+                    case 5:
+                        PickUpItemInstance.Volume = volume;
+                        PickUpItemInstance.Play();
+                        break;
+                    case 6:
+                        GrassBreakInstance.Volume = volume;
+                        GrassBreakInstance.Play();
+                        break;
+                    case 7:
+                        DigDirtInstance.Volume = volume;
+                        DigDirtInstance.Play();
+                        break;
+                    case 8:
+                        StoneSmashInstance.Volume = volume;
+                        StoneSmashInstance.Play();
+                        break;
+                    
 
                 }
             }

@@ -245,7 +245,7 @@ namespace SecretProject.Class.StageFolder
                 // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                Cam.Follow(new Vector2(player.Position.X, player.Position.Y), MapRectangle);
+                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects);
 
                 //--------------------------------------
@@ -270,7 +270,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 if (ElixerNPC.IsUpdating)
                 {
-                    ElixerNPC.Update(gameTime, mouse);
+                    ElixerNPC.Update(gameTime,AllObjects, mouse);
                     ElixerNPC.MoveTowardsPosition(player.Position);
                 }
                 //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;

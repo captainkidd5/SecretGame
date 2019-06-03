@@ -61,10 +61,12 @@ namespace SecretProject.Class.UI
             ShopMenu.TryAddStock(1, 1);
             ShopMenu.TryAddStock(147, 1);
             ShopMenu.TryAddStock(2, 1);
+            ShopMenu.TryAddStock(122, 1);
             ShopMenu.TryAddStock(124, 1);
             ShopMenu.TryAddStock(125, 1);
             ShopMenu.TryAddStock(127, 1);
-            //ShopMenu.TryAddStock(3, 1);
+            ShopMenu.TryAddStock(128, 10);
+            ShopMenu.TryAddStock(141, 1);
             //ShopMenu.TryAddStock(2, 1);
             //ShopMenu.TryAddStock(9, 5);
             //ShopMenu.TryAddStock(6, 1);
@@ -127,7 +129,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
 
 
             

@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.NPCStuff
@@ -20,6 +22,9 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y + 16, 16, 32); } }
 
         public float Speed { get; set; } = 1f;
+        public Vector2 PrimaryVelocity { get; set; }
+        public Vector2 TotalVelocity { get; set; }
+
         public Vector2 DirectionVector { get; set; }
 
 
@@ -27,6 +32,9 @@ namespace SecretProject.Class.NPCStuff
         public int CurrentDirection { get; set; } = 3;
 
         public bool IsUpdating { get; set; } = false;
+
+        public Collider Collider { get; set; }
+        public bool CollideOccured { get; set; } = false;
 
 
 
@@ -43,12 +51,16 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[2] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 240, 0, 16, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 336, 0, 16, 48, 6, .15f, this.Position);
 
-            
+            Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
 
         }
 
-        public void Update(GameTime gameTime, MouseManager mouse)
+        public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
+            this.PrimaryVelocity = new Vector2(1, 1);
+            Collider.Rectangle = this.NPCRectangle;
+            Collider.Velocity = this.PrimaryVelocity;
+            this.CollideOccured = Collider.DidCollide(objects);
 
             switch (CurrentDirection)
             {
@@ -91,7 +103,8 @@ namespace SecretProject.Class.NPCStuff
             {
                 CurrentDirection = 0;
             }
-
+            this.PrimaryVelocity = Collider.Velocity;
+            //this.Speed = PrimaryVelocity
         }
 
         public void MoveTowardsPosition(Vector2 positionToMoveTowards)
@@ -99,7 +112,7 @@ namespace SecretProject.Class.NPCStuff
             Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
             this.DirectionVector = direction;
 
-            Position += direction * Speed;
+            Position += (direction * Speed) * PrimaryVelocity;
             
         }
 

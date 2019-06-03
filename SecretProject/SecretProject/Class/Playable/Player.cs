@@ -180,88 +180,88 @@ namespace SecretProject.Class.Playable
 
         
 
-        public void PlayAnimation(GameTime gameTime, string action)
+        public void PlayAnimation(GameTime gameTime, int action)
         {
             
             switch (action)
             {
-                case "CutGrassDown":
+                case 1:
                     IsPerformingAction = true;
                     CutGrassDown.PlayOnce(gameTime,Position);
                     CurrentAction = CutGrassDown;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "CutGrassRight":
+                case 2:
                    IsPerformingAction = true;
                     CutGrassRight.PlayOnce(gameTime,Position);
                     CurrentAction = CutGrassRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "CutGrassLeft":
+                case 3:
                     IsPerformingAction = true;
                     CutGrassLeft.PlayOnce(gameTime, Position);
                     CurrentAction = CutGrassLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "CutGrassUp":
+                case 4:
                     IsPerformingAction = true;
                     CutGrassUp.PlayOnce(gameTime, Position);
                     CurrentAction = CutGrassUp;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "MiningDown":
+                case 5:
                     IsPerformingAction = true;
                     MiningDown.PlayOnce(gameTime, Position);
                     CurrentAction = MiningDown;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "MiningRight":
+                case 6:
                     IsPerformingAction = true;
                     MiningRight.PlayOnce(gameTime, Position);
                     CurrentAction = MiningRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "MiningLeft":
+                case 7:
                     IsPerformingAction = true;
                     MiningLeft.PlayOnce(gameTime,Position);
                     CurrentAction = MiningLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "MiningUp":
+                case 8:
                     IsPerformingAction = true;
                     MiningUp.PlayOnce(gameTime,Position);
                     CurrentAction = MiningUp;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "ChoppingDown":
+                case 9:
                     IsPerformingAction = true;
                     ChoppingDown.PlayOnce(gameTime,Position);
                     CurrentAction = ChoppingDown;
                     CurrentAction.IsAnimated = true;
                     break;
-                case "ChoppingRight":
+                case 10:
                     IsPerformingAction = true;
                     ChoppingRight.PlayOnce(gameTime,Position);
                     CurrentAction = ChoppingRight;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "ChoppingLeft":
+                case 11:
                     IsPerformingAction = true;
                     ChoppingLeft.PlayOnce(gameTime,Position);
                     CurrentAction = ChoppingLeft;
                     CurrentAction.IsAnimated = true;
                     break;
 
-                case "ChoppingUp":
+                case 12:
                     IsPerformingAction = true;
                     ChoppingUp.PlayOnce(gameTime,Position);
                     CurrentAction = ChoppingUp;

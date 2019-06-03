@@ -60,6 +60,21 @@
       <TextureRow>3</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="122">
+    <Value>
+      <Name>BirdsNest</Name>
+      <ID>122</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>1</Price>
+      <id>122</id>
+      <TextureColumn>5</TextureColumn>
+      <TextureRow>1</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="123">
     <Value>
       <Name>ThunderWood</Name>
@@ -178,6 +193,21 @@
       <id>130</id>
       <TextureColumn>5</TextureColumn>
       <TextureRow>9</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="141">
+    <Value>
+      <Name>BirdsNestEgg</Name>
+      <ID>141</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>1</Price>
+      <id>141</id>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>1</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="147">
