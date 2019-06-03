@@ -210,6 +210,36 @@
       <TextureRow>1</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="143">
+    <Value>
+      <Name>GoldNugget</Name>
+      <ID>143</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>20</Price>
+      <id>143</id>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>3</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="145">
+    <Value>
+      <Name>SwordFishPie</Name>
+      <ID>145</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
+      <id>145</id>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>5</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="147">
     <Value>
       <Name>BloomBerryFruit</Name>
@@ -238,6 +268,66 @@
       <id>149</id>
       <TextureColumn>6</TextureColumn>
       <TextureRow>9</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="161">
+    <Value>
+      <Name>Egg</Name>
+      <ID>161</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>161</id>
+      <TextureColumn>7</TextureColumn>
+      <TextureRow>1</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="163">
+    <Value>
+      <Name>FishBones</Name>
+      <ID>161</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>0</Price>
+      <id>161</id>
+      <TextureColumn>7</TextureColumn>
+      <TextureRow>3</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="165">
+    <Value>
+      <Name>DarkBerryPie</Name>
+      <ID>165</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>165</id>
+      <TextureColumn>7</TextureColumn>
+      <TextureRow>5</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="167">
+    <Value>
+      <Name>BloodCornSeeds</Name>
+      <ID>167</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>167</id>
+      <TextureColumn>7</TextureColumn>
+      <TextureRow>7</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="169">

@@ -67,10 +67,13 @@ namespace SecretProject.Class.UI
             ShopMenu.TryAddStock(127, 1);
             ShopMenu.TryAddStock(128, 10);
             ShopMenu.TryAddStock(141, 1);
-            //ShopMenu.TryAddStock(2, 1);
-            //ShopMenu.TryAddStock(9, 5);
-            //ShopMenu.TryAddStock(6, 1);
-            //ShopMenu.TryAddStock(12, 1);
+            ShopMenu.TryAddStock(143, 3);
+            ShopMenu.TryAddStock(161, 5);
+            ShopMenu.TryAddStock(145, 1);
+            ShopMenu.TryAddStock(165, 1);
+            ShopMenu.TryAddStock(167, 1);
+           // ShopMenu.TryAddStock(165, 1);
+           // ShopMenu.TryAddStock(165, 1);
             this.cam = cam;
             
         }
