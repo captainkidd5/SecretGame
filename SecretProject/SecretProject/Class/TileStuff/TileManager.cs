@@ -301,6 +301,42 @@ namespace SecretProject.Class.TileStuff
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, layerToCheckIfEmpty);
             }
         }
+        public void GenerateRandomTiles(int layer, int id, int[] acceptableTiles, int comparisonLayer = 0)
+        {
+            int newTileX = Game1.Utility.RNumber(1, 100);
+            int newTileY = Game1.Utility.RNumber(1, 100);
+            if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
+            {
+                //Tiles[newTileX, newTileY].GID = 6675;
+                AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
+            }
+        }
+
+        //if the GID is anything other than -1 it means there's something there.
+        public bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer)
+        {
+            if (AllTiles[layer][tileX, tileY].GID != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //by default we're seeing if the background layer has an acceptable tile to overwrite
+        public bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, int[] gidArray, int comparisonLayer = 0)
+        {
+            for (int i = 0; i < gidArray.Length; i++)
+            {
+                if (AllTiles[comparisonLayer][tileX, tileY].GID == gidArray[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         #region LOADTILESOBJECTS
         public void LoadInitialTileObjects()
@@ -372,42 +408,7 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
-        public void GenerateRandomTiles(int layer,  int id, int[] acceptableTiles, int comparisonLayer = 0)
-        {
-            int newTileX = Game1.Utility.RNumber(1, 100);
-            int newTileY = Game1.Utility.RNumber(1, 100);
-            if(!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
-            {
-                //Tiles[newTileX, newTileY].GID = 6675;
-                AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
-            }
-        }
-
-        //if the GID is anything other than -1 it means there's something there.
-        public bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer)
-        {
-            if (AllTiles[layer][tileX, tileY].GID != -1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //by default we're seeing if the background layer has an acceptable tile to overwrite
-        public bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, int[] gidArray, int comparisonLayer = 0)
-        {
-            for(int i=0; i<gidArray.Length; i++)
-            {
-                if(AllTiles[comparisonLayer][tileX, tileY].GID == gidArray[i])
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)

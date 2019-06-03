@@ -14,10 +14,10 @@ namespace SecretProject.Class.NPCStuff
     {
         public string Name { get; set; }
         public Vector2 Position { get; set; }
-        public AnimatedSprite[] NPCAnimatedSprite { get; set; }
+        public Sprite[] NPCAnimatedSprite { get; set; }
         public Texture2D Texture { get; set; } = Game1.AllTextures.ElixirSpriteSheet;
 
-        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, ((int)Texture.Width / FrameNumber), (int)Texture.Height); } }
+        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y + 16, 16, 32); } }
 
         public float Speed { get; set; } = 1f;
         public Vector2 DirectionVector { get; set; }
@@ -34,15 +34,16 @@ namespace SecretProject.Class.NPCStuff
 
         public Elixir(string name, Vector2 position, GraphicsDevice graphics)
         {
-            NPCAnimatedSprite = new AnimatedSprite[26];
-
-            NPCAnimatedSprite[0] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25,0,1,6);
-            NPCAnimatedSprite[1] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 7,1, 12);
-            NPCAnimatedSprite[2] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 13, 1, 19);
-            NPCAnimatedSprite[3] = new AnimatedSprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 1, 25, 25, 19, 1, 25);
-
             this.Name = "Elixir";
             this.Position = position;
+            NPCAnimatedSprite = new Sprite[4];
+
+            NPCAnimatedSprite[0] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 48, 0, 16,48,6, .15f, this.Position);
+            NPCAnimatedSprite[1] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 144, 0, 16, 48, 6, .15f, this.Position);
+            NPCAnimatedSprite[2] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 240, 0, 16, 48, 6, .15f, this.Position);
+            NPCAnimatedSprite[3] = new Sprite(graphics, Game1.AllTextures.ElixirSpriteSheet, 336, 0, 16, 48, 6, .15f, this.Position);
+
+            
 
         }
 
@@ -52,16 +53,16 @@ namespace SecretProject.Class.NPCStuff
             switch (CurrentDirection)
             {
                 case 0:
-                    NPCAnimatedSprite[0].Update(gameTime);
+                    NPCAnimatedSprite[0].UpdateAnimations(gameTime,Position);
                     break;
                 case 1:
-                    NPCAnimatedSprite[1].Update(gameTime);
+                    NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
                     break;
                 case 2:
-                    NPCAnimatedSprite[2].Update(gameTime);
+                    NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
                     break;
                 case 3:
-                    NPCAnimatedSprite[3].Update(gameTime);
+                    NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
                     break;
             }
             if(mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
@@ -107,16 +108,16 @@ namespace SecretProject.Class.NPCStuff
             switch (CurrentDirection)
             {
                 case 0:
-                    NPCAnimatedSprite[0].Draw(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f);
                     break;
                 case 1:
-                    NPCAnimatedSprite[1].Draw(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f);
                     break;
                 case 2:
-                    NPCAnimatedSprite[2].Draw(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f);
                     break;
                 case 3:
-                    NPCAnimatedSprite[3].Draw(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f);
                     break;
             }
         }

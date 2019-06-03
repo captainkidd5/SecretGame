@@ -273,7 +273,7 @@ namespace SecretProject.Class.StageFolder
                     ElixerNPC.Update(gameTime, mouse);
                     ElixerNPC.MoveTowardsPosition(player.Position);
                 }
-                ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
+                //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
                 if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
                 {

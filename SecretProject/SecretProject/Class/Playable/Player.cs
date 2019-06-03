@@ -68,17 +68,15 @@ namespace SecretProject.Class.Playable
         public float Speed1 { get; set; } = 2f;
         public float SecondarySpeed { get; set; } = 1f;
         public Sprite PlayerMovementAnimations { get; set; }
-        [XmlIgnore]
+
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
-        [XmlIgnore]
+
         public Collider MyCollider { get; set; }
 
         public bool IsPerformingAction = false;
 
         public Sprite CurrentAction;
-
-
 
         public Sprite CutGrassDown { get; set; }
         public Sprite CutGrassRight { get; set; }
@@ -161,15 +159,15 @@ namespace SecretProject.Class.Playable
 
 
             MiningDown = new Sprite(graphics, this.Texture, 0,128,16,64,5,.1f, this.Position,0,-16);
-            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64,5, .15f, this.Position, -15, -16);
-            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64,64,5,.15f,this.Position, -31, -16);
-            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16,48,5,.15f,this.Position, 0, 0);
+            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64,5, .1f, this.Position, -15, -16);
+            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64,64,5,.1f,this.Position, -31, -16);
+            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16,48,5,.1f,this.Position, 0, 0);
 
 
 
             ChoppingDown = new Sprite(graphics, this.Texture, 0, 240, 16, 64, 5, .1f, this.Position, 0, -16);
-            ChoppingRight = new Sprite(graphics, this.Texture, 160, 192, 64, 64, 5, .15f, this.Position, -15, -16);
-            ChoppingLeft = new Sprite(graphics, this.Texture, 160, 256, 64, 64, 5, .15f, this.Position, -33, -16);
+            ChoppingRight = new Sprite(graphics, this.Texture, 160, 192, 64, 64, 5, .1f, this.Position, -15, -16);
+            ChoppingLeft = new Sprite(graphics, this.Texture, 160, 256, 64, 64, 5, .1f, this.Position, -33, -16);
             ChoppingUp = new Sprite(graphics, this.Texture, 80, 256, 16, 48, 5, .1f, this.Position, 0, -0);
 
 
@@ -470,16 +468,6 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("Position", Position);
-            info.AddValue("Health", Health);
-        }
 
-        public Player(SerializationInfo info, StreamingContext context)
-        {
-            Position = (Vector2)info.GetValue("Position", typeof(Vector2));
-            Health = (int)info.GetValue("Health", typeof(int));
-        }
     }
 }

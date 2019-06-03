@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff
     {
         string Name { get; set; }
         Vector2 Position { get; set; }
-        AnimatedSprite[] NPCAnimatedSprite { get; set; }
+        Sprite[] NPCAnimatedSprite { get; set; }
         Rectangle NPCRectangle { get; }
         Texture2D Texture { get; set; }
         float Speed { get; set; }
