@@ -22,7 +22,7 @@ namespace SecretProject.Class.Universal
         {
 
         }
-
+        //signature should be all actions count - 1
         public ActionTimer(float timeUntilAction, int signature)
         {
             this.TimeUntilAction = timeUntilAction;

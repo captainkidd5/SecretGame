@@ -647,6 +647,8 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 3, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
                         AllTiles[layer][oldX, oldY].IsFinishedAnimating = true;
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
                     }
                     break;
                 case 1:
@@ -654,6 +656,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 8, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
 
                     }
 
@@ -678,6 +682,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 6, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
 
 
                     }

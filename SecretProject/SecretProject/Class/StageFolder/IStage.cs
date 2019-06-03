@@ -16,6 +16,7 @@ using SecretProject.Class.Controls;
 using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
+using SecretProject.Class.ParticileStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -79,7 +80,7 @@ List<ActionTimer> AllActions { get; set; }
         Rectangle MapRectangle { get; set; }
 
 
-
+        ParticleEngine ParticleEngine { get; set; }
         //SAVE STUFF
 
         bool TilesLoaded { get; set; }

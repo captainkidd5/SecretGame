@@ -36,6 +36,7 @@ namespace SecretProject.Class.ParticileStuff
         {
             TTL--;
             Position += Velocity;
+            //Position = new Vector2(Position.X, Position.Y )
             Angle += AngularVelocity;
         }
 

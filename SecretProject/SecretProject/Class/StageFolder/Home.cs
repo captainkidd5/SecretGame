@@ -23,6 +23,7 @@ using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
+using SecretProject.Class.ParticileStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -106,6 +107,7 @@ namespace SecretProject.Class.StageFolder
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
         public Rectangle MapRectangle { get; set; }
+        public ParticleEngine ParticleEngine { get; set; }
 
         #endregion
 

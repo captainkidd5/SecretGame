@@ -14,6 +14,7 @@ namespace SecretProject.Class.ParticileStuff
         public Vector2 EmitterLocation { get; set; }
         private List<Particle> particles;
         private List<Texture2D> textures;
+        public float ActivationTime { get; set; } = 0f;
 
         public ParticleEngine(List<Texture2D> textures, Vector2 location)
         {
@@ -42,32 +43,60 @@ namespace SecretProject.Class.ParticileStuff
         }
 
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            int total = 2;
-
-            for(int i = 0; i< total; i++)
+            if (ActivationTime > 0)
             {
-                particles.Add(GenerateNewParticle());
-            }
 
-            for(int particle = 0; particle < particles.Count; particle++)
-            {
-                particles[particle].Update();
-                if(particles[particle].TTL <= 0)
+                int total = 2;
+
+                for (int i = 0; i < total; i++)
                 {
-                    particles.RemoveAt(particle);
-                    particle--;
+                    particles.Add(GenerateNewParticle());
                 }
+
+                for (int particle = 0; particle < particles.Count; particle++)
+                {
+                    particles[particle].Update();
+                    if (particles[particle].TTL <= 0)
+                    {
+                        particles.RemoveAt(particle);
+                        particle--;
+                    }
+                }
+                ActivationTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            else
+            {
+                particles.Clear();
             }
         }
 
+        //public void InvokeParticleEngine(GameTime gameTime, float timeToInvoke, Vector2 positionToInvoke)
+        //{
+        //    EmitterLocation = positionToInvoke;
+        //    if(timeToInvoke > 0)
+        //    {
+        //        timeToInvoke -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        //        Update();
+        //    }
+        //    else
+        //    {
+        //        particles.Clear();
+        //    }
+        //}
+
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            for(int index = 0; index<particles.Count; index++)
+            if(ActivationTime > 0)
             {
-                particles[index].Draw(spriteBatch, layerDepth);
+                for (int index = 0; index < particles.Count; index++)
+                {
+                    particles[index].Draw(spriteBatch, layerDepth);
+                }
+
             }
+            
         }
     }
 }

@@ -108,7 +108,7 @@ namespace SecretProject.Class.StageFolder
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
 
-        ParticleEngine ParticleEngine { get; set; }
+        public ParticleEngine ParticleEngine { get; set; }
 
         #endregion
 
@@ -241,10 +241,12 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+                ParticleEngine.ActivationTime = 5f;
+                //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
 
-            ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
-            ParticleEngine.Update();
+            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
+            ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
             {
