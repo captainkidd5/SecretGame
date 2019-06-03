@@ -49,6 +49,7 @@ namespace SecretProject.Class.Playable
             set { position = value; }
         }
 
+
         public void SetX(float newX)
         {
             position.X = newX;

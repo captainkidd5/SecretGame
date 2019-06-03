@@ -36,7 +36,7 @@ namespace SecretProject.Class.ParticileStuff
             Color color = new Color(255,
                 Game1.Utility.RGenerator.Next(220,250),
                 Game1.Utility.RGenerator.Next(120,220));
-            float size = .5f;
+            float size = 1f;
             int ttl = 20 + Game1.Utility.RGenerator.Next(40);
 
             return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);

@@ -184,8 +184,27 @@ namespace SecretProject.Class.SpriteFolder
 
                 if (TossTimer < .5)
                 {
-                    this.Position.X += x * .1f;
-                    this.Position.Y += y * .1f;
+                    switch (Game1.Player.controls.Direction)
+                    {
+                        case Dir.Right:
+                            this.Position.X += x * .5f;
+                            this.Position.Y += y * .1f;
+                            break;
+                        case Dir.Left:
+                            this.Position.X -= x * .5f;
+                            this.Position.Y += y * .1f;
+                            break;
+                        case Dir.Up:
+                            this.Position.X += x * .1f;
+                            this.Position.Y -= y * .5f;
+                            break;
+                        case Dir.Down:
+                            this.Position.X += x * .1f;
+                            this.Position.Y += y * .5f;
+                            break;
+                    }
+
+                    
 
                 }
                 if (TossTimer >= .5)

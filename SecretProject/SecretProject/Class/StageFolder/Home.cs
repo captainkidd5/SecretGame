@@ -125,7 +125,9 @@ namespace SecretProject.Class.StageFolder
 
         public void LoadContent( Camera2D camera)
         {
-
+            List<Texture2D> particleTextures = new List<Texture2D>();
+            particleTextures.Add(Game1.AllTextures.RockParticle);
+            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
             AllSprites = new List<Sprite>()
             {
 
@@ -235,6 +237,7 @@ namespace SecretProject.Class.StageFolder
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
             }
+            ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
             {
@@ -290,6 +293,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
+                ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch);
 

@@ -53,6 +53,8 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D ItemSpriteSheet;
 
+        public Texture2D RockParticle;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
@@ -90,6 +92,8 @@ namespace SecretProject.Class.TextureStuff
             LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
 
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");
+
+            RockParticle = content.Load<Texture2D>("Particles/rockparticle");
            
 
         }

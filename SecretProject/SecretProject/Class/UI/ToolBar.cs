@@ -335,7 +335,10 @@ namespace SecretProject.Class.UI
                             AllSlots[i].ItemCounter--;
                             if (tempItem.IsPlaceable == false)
                             {
-                                Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+                                newWorldItem.IsTossable = true;
+                                Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+                                //Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
                             }
                         }
                     }
@@ -379,7 +382,9 @@ namespace SecretProject.Class.UI
                         AllSlots[i].ItemCounter--;
                         if (tempItem.IsPlaceable == false)
                         {
-                            Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(tempItem.ID, mouse.WorldMousePosition, true));
+                            Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+                            newWorldItem.IsTossable = true;
+                            Game1.GetCurrentStage().AllItems.Add(newWorldItem);
                         }
 
                         if (tempItem.IsPlaceable == true)

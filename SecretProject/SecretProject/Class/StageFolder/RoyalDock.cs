@@ -128,7 +128,7 @@ namespace SecretProject.Class.StageFolder
         public void LoadContent( Camera2D camera )
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
-            particleTextures.Add(Game1.AllTextures.CursorWhiteHand);
+            particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
             AllSprites = new List<Sprite>()

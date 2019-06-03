@@ -153,7 +153,7 @@ namespace SecretProject.Class.ItemStuff
                 
                 if (IsTossable == true)
                 {
-                    ItemSprite.Toss(gameTime, directionX, directionY);
+                    ItemSprite.Toss(gameTime, 1f, 1f);
                     //IsTossable = false;
                 }
             }
