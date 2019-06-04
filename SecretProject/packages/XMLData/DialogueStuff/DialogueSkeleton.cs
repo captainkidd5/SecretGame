@@ -9,8 +9,7 @@ namespace XMLData.DialogueStuff
     public class DialogueSkeleton
     {
         //who will be speaking?
-        public string Publisher { get; set; }
-
+        public int SpeechID { get; set; }
         public bool ConditionMet { get; set; }
         public string TextToWrite { get; set; }
     }
