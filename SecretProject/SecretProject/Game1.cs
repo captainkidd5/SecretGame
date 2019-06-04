@@ -140,6 +140,7 @@ namespace SecretProject
 
         //XMLDATA
         public DialogueSkeleton ElixirDialogue;
+        public DialogueHolder AllDialogue;
 
 
         #endregion
@@ -304,6 +305,7 @@ namespace SecretProject
             RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);
             
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
+            AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
             
             LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);

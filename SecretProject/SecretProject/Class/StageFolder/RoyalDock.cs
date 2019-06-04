@@ -24,6 +24,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
+using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -109,6 +110,8 @@ namespace SecretProject.Class.StageFolder
         public GraphicsDevice Graphics { get; set; }
 
         public ParticleEngine ParticleEngine { get; set; }
+
+        public DialogueHolder AllDockDialogue { get; set; }
 
         #endregion
 
@@ -199,6 +202,8 @@ namespace SecretProject.Class.StageFolder
             Map = null;
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
+            AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
+            Game1.userInterface.TextBuilder.StringToWrite = AllDockDialogue.AllDialogue[0].TextToWrite;
         }
 
         public void UnloadContent()
@@ -218,6 +223,7 @@ namespace SecretProject.Class.StageFolder
             this.Cam = null;
 
         }
+
 
         #endregion
 

@@ -698,3 +698,8 @@
 /processor:PassThroughProcessor
 /build:Dialogue/ElixirDialogue.xml
 
+#begin Dialogue/AllDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/AllDialogue.xml
+

@@ -20,10 +20,10 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public string RetrieveDialogue(INPC characterToSpeak, int textID)
-        {
+        //public string RetrieveDialogue(INPC characterToSpeak, int textID)
+        //{
             
-        }
+        //}
 
         public void LoadContent(ContentManager content)
         {

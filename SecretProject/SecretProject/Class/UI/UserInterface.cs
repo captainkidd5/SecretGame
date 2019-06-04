@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Controls;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 
@@ -38,6 +39,9 @@ namespace SecretProject.Class.UI
         public int TileSelectorY { get; set; } = 0;
 
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
+
+        public TextBuilder TextBuilder { get; set; }
+        public bool IsTextBuilderActive { get; set; } = false;
 
         //keyboard
 
@@ -75,7 +79,7 @@ namespace SecretProject.Class.UI
            // ShopMenu.TryAddStock(165, 1);
            // ShopMenu.TryAddStock(165, 1);
             this.cam = cam;
-            
+            TextBuilder = new TextBuilder("", .1f);
         }
 
 
@@ -101,7 +105,17 @@ namespace SecretProject.Class.UI
                 IsShopMenu = !IsShopMenu;
             }
 
-            if((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
+            if ((oldKeyState.IsKeyDown(Keys.T)) && (kState.IsKeyUp(Keys.T)) && !isEscMenu)
+            {
+                TextBuilder.IsActive = !TextBuilder.IsActive;
+            }
+
+            if(TextBuilder.IsActive)
+            {
+                TextBuilder.Update(gameTime);
+            }
+
+            if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
             {
                 IsShopMenu = false;
                
@@ -147,6 +161,10 @@ namespace SecretProject.Class.UI
             if(IsShopMenu)
             {
                 ShopMenu.Draw(spriteBatch);
+            }
+            if(TextBuilder.IsActive)
+            {
+                TextBuilder.Draw(spriteBatch);
             }
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 

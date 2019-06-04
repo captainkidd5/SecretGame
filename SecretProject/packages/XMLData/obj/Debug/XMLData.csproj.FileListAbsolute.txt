@@ -3,3 +3,4 @@ C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\bin\Debug\XMLDa
 C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.csproj.CoreCompileInputs.cache
 C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.dll
 C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.pdb
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Debug\XMLData.csprojAssemblyReference.cache

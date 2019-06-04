@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace SecretProject.Class.DialogueStuff
     public class TextBuilder
     {
         public string StringToWrite { get; set; }
+        public bool IsActive { get; set; } = false;
         public float WriteSpeed { get; set; }
         private string outputString = "";
         int currentTextIndex = 0;
@@ -28,7 +30,18 @@ namespace SecretProject.Class.DialogueStuff
             {
                 outputString += StringToWrite[currentTextIndex];
                 currentTextIndex++;
+                if(currentTextIndex == StringToWrite.Length)
+                {
+                    this.IsActive = false;
+                    currentTextIndex = 0;
+                    outputString = "";
+                }
             }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, Game1.Utility.centerScreen, Color.White);
         }
     }
 }
