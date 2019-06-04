@@ -187,20 +187,21 @@ namespace SecretProject.Class.SpriteFolder
                     switch (Game1.Player.controls.Direction)
                     {
                         case Dir.Right:
-                            this.Position.X += x * .5f;
+                            this.Position.X += x * 1f;
                             this.Position.Y += y * .1f;
                             break;
                         case Dir.Left:
-                            this.Position.X -= x * .5f;
+                            this.Position.X -= x * 1f;
                             this.Position.Y += y * .1f;
                             break;
                         case Dir.Up:
                             this.Position.X += x * .1f;
-                            this.Position.Y -= y * .5f;
+                            this.Position.Y -= y * 1f;
                             break;
                         case Dir.Down:
                             this.Position.X += x * .1f;
-                            this.Position.Y += y * .5f;
+                            this.Position.Y += y * 1.25f;
+                            this.LayerDepth = 1f;
                             break;
                     }
 
