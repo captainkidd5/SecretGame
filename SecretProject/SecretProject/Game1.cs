@@ -23,6 +23,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SavingStuff;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.ObjectFolder;
+using XMLData.DialogueStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -136,7 +137,9 @@ namespace SecretProject
 
         //ITEMS
         public static ItemBank ItemVault;
-        
+
+        //XMLDATA
+        public DialogueSkeleton ElixirDialogue;
 
 
         #endregion
@@ -300,7 +303,7 @@ namespace SecretProject
             
             RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);
             
-
+            ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
             
             LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
@@ -312,6 +315,8 @@ namespace SecretProject
             AllStages = new List<Home>() { Iliad, LodgeInterior };
 
             
+
+
 
         }
         #endregion

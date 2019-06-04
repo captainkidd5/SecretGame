@@ -187,8 +187,8 @@ namespace SecretProject.Class.ItemStuff
 
                     //ItemSprite.IsDrawn = false;
                 }
-                ItemSprite.Position.X -= playerpos.X;
-                ItemSprite.Position.Y -= playerpos.Y;
+                ItemSprite.Position.X -= playerpos.X - 2;
+                ItemSprite.Position.Y -= playerpos.Y ;
                 ItemSprite.TextureScaleX -= .1f;
                 ItemSprite.TextureScaleY -= .1f;
             }

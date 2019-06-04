@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/doorOpen.wav</SourceFile>
   <SourceTime>2019-06-02T11:52:02.5126976-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Music/doorOpen.xnb</DestFile>
-  <DestTime>2019-06-02T11:52:46.8896813-07:00</DestTime>
+  <DestTime>2019-06-04T09:32:36.3459684-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

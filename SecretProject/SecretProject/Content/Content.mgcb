@@ -11,7 +11,7 @@
 #-------------------------------- References --------------------------------#
 
 /reference:..\..\packages\MonoGame.Extended.Content.Pipeline.1.1.0\tools\MonoGame.Extended.Content.Pipeline.dll
-/reference:..\..\XMLDataLib\bin\Release\netstandard2.0\XMLDataLib.dll
+/reference:..\..\packages\XMLData\bin\Debug\XMLData.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -687,4 +687,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Particles/rockparticle.png
+
+#begin Dialogue/CharacterDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/CharacterDialogue.xml
 
