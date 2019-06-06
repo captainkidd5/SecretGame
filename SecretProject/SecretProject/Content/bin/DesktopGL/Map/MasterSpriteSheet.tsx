@@ -243,35 +243,35 @@
  </tile>
  <tile id="4442">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value=""/>
    <property name="relationY" value=""/>
   </properties>
  </tile>
  <tile id="4443">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="-1"/>
    <property name="relationY" value="-4"/>
   </properties>
  </tile>
  <tile id="4444">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-4"/>
   </properties>
  </tile>
  <tile id="4445">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="1"/>
    <property name="relationY" value="-4"/>
   </properties>
  </tile>
  <tile id="4446">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="2"/>
    <property name="relationY" value="-4"/>
   </properties>
@@ -288,35 +288,35 @@
  </tile>
  <tile id="4542">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="-2"/>
    <property name="relationY" value="-3"/>
   </properties>
  </tile>
  <tile id="4543">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="-1"/>
    <property name="relationY" value="-3"/>
   </properties>
  </tile>
  <tile id="4544">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-3"/>
   </properties>
  </tile>
  <tile id="4545">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="1"/>
    <property name="relationY" value="-3"/>
   </properties>
  </tile>
  <tile id="4546">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="2"/>
    <property name="relationY" value="-3"/>
   </properties>
@@ -333,35 +333,35 @@
  </tile>
  <tile id="4642">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value=""/>
    <property name="relationY" value=""/>
   </properties>
  </tile>
  <tile id="4643">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="-1"/>
    <property name="relationY" value="-2"/>
   </properties>
  </tile>
  <tile id="4644">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-2"/>
   </properties>
  </tile>
  <tile id="4645">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="1"/>
    <property name="relationY" value="-2"/>
   </properties>
  </tile>
  <tile id="4646">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value=""/>
    <property name="relationY" value=""/>
   </properties>
@@ -410,29 +410,29 @@
  </tile>
  <tile id="4742">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
   </properties>
  </tile>
  <tile id="4743">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
   </properties>
  </tile>
  <tile id="4744">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="4745">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
   </properties>
  </tile>
  <tile id="4746">
   <properties>
-   <property name="layer" value="4"/>
+   <property name="layer" value="3"/>
   </properties>
  </tile>
  <tile id="4753">
@@ -765,6 +765,57 @@
    <property name="step" value="1"/>
   </properties>
  </tile>
+ <tile id="5580">
+  <properties>
+   <property name="AnimatedX" value="7"/>
+   <property name="Speed" value=".15"/>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5581">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5582">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5583">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5584">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5585">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5586">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="5603">
   <properties>
    <property name="step" value="3"/>
@@ -821,6 +872,7 @@
    <property name="AssociatedTiles" value="5580"/>
    <property name="Speed" value=".15"/>
    <property name="redRuneStone" value=""/>
+   <property name="spawnWith" value="5580"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="0" width="14" height="12"/>
@@ -874,6 +926,57 @@
  <tile id="5748">
   <properties>
    <property name="step" value="1"/>
+  </properties>
+ </tile>
+ <tile id="5780">
+  <properties>
+   <property name="AnimatedX" value="7"/>
+   <property name="Speed" value=".15"/>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5781">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5782">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5783">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5784">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5785">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="5786">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="5803">
@@ -932,6 +1035,7 @@
    <property name="AssociatedTiles" value="5780"/>
    <property name="Speed" value=".15"/>
    <property name="blueRuneStone" value=""/>
+   <property name="spawnWith" value="5780"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="0" width="14" height="9"/>
