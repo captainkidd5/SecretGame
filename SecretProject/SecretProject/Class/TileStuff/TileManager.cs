@@ -91,6 +91,8 @@ namespace SecretProject.Class.TileStuff
 
         public bool TileInteraction { get; set; } = false;
 
+        public Tile DebugTile { get; set; } = new Tile(40, 40, 4714, 100, 100, 100, 100);
+
 
         #region CONSTRUCTOR
 
@@ -177,7 +179,7 @@ namespace SecretProject.Class.TileStuff
                 GenerateTiles(1, 5681, "dirt", 100, 0);
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-                GenerateTiles(1, 4845, "dirt", 100, 0);
+                GenerateTiles(1, 4845, "dirt", 300, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)
@@ -344,9 +346,14 @@ namespace SecretProject.Class.TileStuff
 
                 //Tiles[newTileX, newTileY].GID = 6675;
                 //if (AllTiles[layer][newTileX, newTileY].)
-
-                AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
                 Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
+                if(!mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                {
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
+                    return;
+                }
+                
+                
                 if (mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
                     string value = "";
@@ -384,9 +391,11 @@ namespace SecretProject.Class.TileStuff
 
                     for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                     {
-                        AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
+                        //intermediateNewTiles[tileSwapCounter] = DebugTile;
+                        AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY] = intermediateNewTiles[tileSwapCounter];
                         //AllTiles[intermediateNewTiles[tileSwapCounter]]
                     }
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
                 }
             }
         }
@@ -553,6 +562,7 @@ namespace SecretProject.Class.TileStuff
                                     {
 
                                         Game1.userInterface.DrawTileSelector = true;
+                                        this.DebugTile = AllTiles[z][i, j];
                                         Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                         Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
@@ -756,7 +766,8 @@ namespace SecretProject.Class.TileStuff
                         {
                             
                             Tile newTile = new Tile(GetSpawnWithTiles(AllTiles[layer][oldX, oldY],
-                                oldX, oldY)[b].X, GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY)[b].Y, 5606, 100, 100, 100, 100);
+                                oldX, oldY)[b].X, GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY)[b].Y, 5607, 100, 100, 100, 100);
+                            //AllTiles()
                             GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY)[b] = newTile;
                         }
 
