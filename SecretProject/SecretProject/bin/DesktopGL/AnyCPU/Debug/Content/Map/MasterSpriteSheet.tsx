@@ -241,6 +241,41 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="4442">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value=""/>
+   <property name="relationY" value=""/>
+  </properties>
+ </tile>
+ <tile id="4443">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="-1"/>
+   <property name="relationY" value="-4"/>
+  </properties>
+ </tile>
+ <tile id="4444">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-4"/>
+  </properties>
+ </tile>
+ <tile id="4445">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="-4"/>
+  </properties>
+ </tile>
+ <tile id="4446">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="2"/>
+   <property name="relationY" value="-4"/>
+  </properties>
+ </tile>
  <tile id="4453">
   <objectgroup draworder="index">
    <object id="1" x="10" y="0" width="4" height="16"/>
@@ -251,6 +286,41 @@
    <object id="1" x="5" y="0" width="5" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="4542">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="-2"/>
+   <property name="relationY" value="-3"/>
+  </properties>
+ </tile>
+ <tile id="4543">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="-1"/>
+   <property name="relationY" value="-3"/>
+  </properties>
+ </tile>
+ <tile id="4544">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-3"/>
+  </properties>
+ </tile>
+ <tile id="4545">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="-3"/>
+  </properties>
+ </tile>
+ <tile id="4546">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="2"/>
+   <property name="relationY" value="-3"/>
+  </properties>
+ </tile>
  <tile id="4553">
   <objectgroup draworder="index">
    <object id="1" x="10" y="0" width="3" height="16"/>
@@ -260,6 +330,41 @@
   <objectgroup draworder="index">
    <object id="1" x="7" y="0" width="3" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="4642">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value=""/>
+   <property name="relationY" value=""/>
+  </properties>
+ </tile>
+ <tile id="4643">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="-1"/>
+   <property name="relationY" value="-2"/>
+  </properties>
+ </tile>
+ <tile id="4644">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-2"/>
+  </properties>
+ </tile>
+ <tile id="4645">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="-2"/>
+  </properties>
+ </tile>
+ <tile id="4646">
+  <properties>
+   <property name="layer" value="4"/>
+   <property name="relationX" value=""/>
+   <property name="relationY" value=""/>
+  </properties>
  </tile>
  <tile id="4653">
   <objectgroup draworder="index">
@@ -303,9 +408,31 @@
    <object id="2" x="15" y="1" width="1" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="4742">
+  <properties>
+   <property name="layer" value="4"/>
+  </properties>
+ </tile>
+ <tile id="4743">
+  <properties>
+   <property name="layer" value="4"/>
+  </properties>
+ </tile>
  <tile id="4744">
   <properties>
-   <property name="Tree" value="ThunderBirch"/>
+   <property name="layer" value="4"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="4745">
+  <properties>
+   <property name="layer" value="4"/>
+  </properties>
+ </tile>
+ <tile id="4746">
+  <properties>
+   <property name="layer" value="4"/>
   </properties>
  </tile>
  <tile id="4753">
@@ -338,13 +465,35 @@
    <object id="1" x="15" y="0" width="2" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="4843">
+  <properties>
+   <property name="layer" value="2"/>
+   <property name="relationX" value="-1"/>
+   <property name="relationY" value="0"/>
+  </properties>
+ </tile>
  <tile id="4844">
   <properties>
    <property name="Tree" value="ThunderBirch"/>
+   <property name="spawnWith" value="4843,4645,4845,4846,4744,4644,4544,4444,4545,4445,4546,4446,4643,4543,4443,4542,4744"/>
   </properties>
   <objectgroup draworder="index">
    <object id="2" x="6" y="0" width="5" height="3"/>
   </objectgroup>
+ </tile>
+ <tile id="4845">
+  <properties>
+   <property name="layer" value="2"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="0"/>
+  </properties>
+ </tile>
+ <tile id="4846">
+  <properties>
+   <property name="layer" value="2"/>
+   <property name="relationX" value="2"/>
+   <property name="relationY" value="0"/>
+  </properties>
  </tile>
  <tile id="4853">
   <objectgroup draworder="index">
@@ -926,29 +1075,69 @@
  <tile id="9702">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".25"/>
+   <property name="Speed" value=".5"/>
    <property name="start" value=""/>
   </properties>
  </tile>
  <tile id="9703">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".25"/>
+   <property name="Speed" value=".5"/>
    <property name="start" value=""/>
   </properties>
  </tile>
  <tile id="9704">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".25"/>
+   <property name="Speed" value=".5"/>
    <property name="start" value=""/>
   </properties>
  </tile>
  <tile id="9705">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".25"/>
+   <property name="Speed" value=".5"/>
    <property name="start" value=""/>
   </properties>
+ </tile>
+ <tile id="9707">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".5"/>
+   <property name="start" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="17" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9708">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".5"/>
+   <property name="start" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9709">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".5"/>
+   <property name="start" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1" y="0" width="14" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="9710">
+  <properties>
+   <property name="AnimatedY" value="17"/>
+   <property name="Speed" value=".5"/>
+   <property name="start" value=""/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1" y="0" width="15" height="2"/>
+  </objectgroup>
  </tile>
 </tileset>

@@ -20,8 +20,11 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 0;
+        public int TotalHours { get; set; } = 9;
         public int TotalDays { get; set; } = 0;
+        public float ColorMultiplier { get; set; } = 9f;
+
+        public Color TimeOfDayColor { get; set; } = Color.White;
 
         TextBox ClockDisplay;
 
@@ -43,16 +46,31 @@ namespace SecretProject.Class.Universal
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
+                if(TotalHours > 18)
+                {
+                    ColorMultiplier--;
+                }
+                if(TotalHours < 6)
+                {
+                    ColorMultiplier++;
+                }
             }
-            if(TotalHours > 10)
+            if(TotalHours > 23)
             {
                 TotalDays++;
                 TotalHours = 0;
+  
             }
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
             ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Total Days: " + TotalDays.ToString();
             ClockDisplay.Update(gameTime, true);
+
+                
+                this.TimeOfDayColor = Color.DarkGray * (float)(1+ColorMultiplier * .1);
+            
+
+            
 
         }
 

@@ -203,7 +203,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
             AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            Game1.userInterface.TextBuilder.StringToWrite = AllDockDialogue.AllDialogue[0].TextToWrite;
+            Game1.userInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1);
         }
 
         public void UnloadContent()
@@ -230,6 +230,7 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            Game1.userInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
             {
@@ -247,7 +248,7 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
-                ParticleEngine.ActivationTime = 5f;
+                //ParticleEngine.ActivationTime = 5f;
                 //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
 
@@ -256,7 +257,7 @@ namespace SecretProject.Class.StageFolder
 
             if (!Game1.freeze)
             {
-                // Game1.GlobalClock.Update(gameTime);
+                 Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
@@ -309,7 +310,7 @@ namespace SecretProject.Class.StageFolder
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch);
+                player.Draw(spriteBatch, .4f);
 
 
                 ElixerNPC.Draw(spriteBatch);
@@ -357,7 +358,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
             }
             Game1.userInterface.Draw(spriteBatch);
-            //Game1.GlobalClock.Draw(spriteBatch);
+            Game1.GlobalClock.Draw(spriteBatch);
         }
         public Camera2D GetCamera()
         {

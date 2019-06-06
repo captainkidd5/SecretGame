@@ -136,7 +136,7 @@ namespace SecretProject.Class.SpriteFolder
             DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
 
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
+                    color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
 
             
         }
@@ -146,7 +146,7 @@ namespace SecretProject.Class.SpriteFolder
             //something wrong with destination rectangle after animation
             DestinationRectangle = new Rectangle((int)currentPosition.X + OffSetX, (int)currentPosition.Y + OffSetY, FrameWidth, FrameHeight);
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier, layerDepth: this.LayerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+                    color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
         public void Bobber(GameTime gameTime)

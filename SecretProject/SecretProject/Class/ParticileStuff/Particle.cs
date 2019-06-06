@@ -18,6 +18,7 @@ namespace SecretProject.Class.ParticileStuff
         public Color Color { get; set; }
         public float Size { get; set; }
         public int TTL { get; set; }
+        public float VelocityReductionTimer { get; set; }
 
 
         public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl)
@@ -30,10 +31,16 @@ namespace SecretProject.Class.ParticileStuff
             this.Color = color;
             this.Size = size;
             this.TTL = ttl;
+            this.VelocityReductionTimer = .01f;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+            VelocityReductionTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(VelocityReductionTimer < 0)
+            {
+                Position = new Vector2(Position.X, Position.Y + .05f);
+            }
             TTL--;
             Position += Velocity;
             //Position = new Vector2(Position.X, Position.Y )

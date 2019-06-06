@@ -24,6 +24,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
+using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -101,13 +102,16 @@ namespace SecretProject.Class.StageFolder
 
         public List<float> AllDepths;
 
+        public Rectangle MapRectangle { get; set; }
+
         [XmlIgnore]
         public Elixir ElixerNPC;
-
         public ContentManager Content { get; set; }
         public GraphicsDevice Graphics { get; set; }
-        public Rectangle MapRectangle { get; set; }
+
         public ParticleEngine ParticleEngine { get; set; }
+
+        public DialogueHolder AllDockDialogue { get; set; }
 
         #endregion
 
@@ -121,13 +125,15 @@ namespace SecretProject.Class.StageFolder
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
 
+
         }
 
-        public void LoadContent( Camera2D camera)
+        public void LoadContent(Camera2D camera)
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+
             AllSprites = new List<Sprite>()
             {
 
@@ -143,6 +149,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
+            AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
             this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
@@ -191,9 +198,12 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = 3f;
-
             MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
-            this.Map = null;
+            Map = null;
+
+            AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
+            AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
+            Game1.userInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1);
         }
 
         public void UnloadContent()
@@ -209,22 +219,24 @@ namespace SecretProject.Class.StageFolder
             MidGround = null;
             foreGround = null;
             Placement = null;
+
             this.Cam = null;
 
         }
+
 
         #endregion
 
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            Game1.userInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
             {
-                Game1.SwitchStage(2, 5);
+                Game1.SwitchStage(5, 4);
                 return;
             }
-
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
             Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
@@ -236,7 +248,11 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+                //ParticleEngine.ActivationTime = 5f;
+                //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
+
+            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
@@ -244,7 +260,7 @@ namespace SecretProject.Class.StageFolder
                 // Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                Cam.Follow(new Vector2(player.Position.X, player.Position.Y), MapRectangle);
+                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects);
 
                 //--------------------------------------
@@ -269,7 +285,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 if (ElixerNPC.IsUpdating)
                 {
-                    ElixerNPC.Update(gameTime,AllObjects, mouse);
+                    ElixerNPC.Update(gameTime, AllObjects, mouse);
                     ElixerNPC.MoveTowardsPosition(player.Position);
                 }
                 //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
@@ -287,15 +303,15 @@ namespace SecretProject.Class.StageFolder
         #region DRAW
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
-            graphics.Clear(Color.Black);
+            // graphics.Clear(Color.Black);
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
-
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch);
+                player.Draw(spriteBatch, .4f);
+
 
                 ElixerNPC.Draw(spriteBatch);
 

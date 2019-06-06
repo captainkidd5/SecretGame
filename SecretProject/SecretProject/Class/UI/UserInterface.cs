@@ -79,7 +79,7 @@ namespace SecretProject.Class.UI
            // ShopMenu.TryAddStock(165, 1);
            // ShopMenu.TryAddStock(165, 1);
             this.cam = cam;
-            TextBuilder = new TextBuilder("", .1f);
+            TextBuilder = new TextBuilder("", .1f, 5f);
         }
 
 

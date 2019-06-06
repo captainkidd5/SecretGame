@@ -64,9 +64,9 @@ namespace SecretProject.Class.ItemStuff
         public bool IsWorldItem { get; set; }
 
         [XmlIgnore]
-        int directionX = Game1.RGenerator.Next(-2, 2);
+        int directionX = Game1.Utility.RGenerator.Next(-2, 2);
         [XmlIgnore]
-        int directionY = Game1.RGenerator.Next(-2, 2);
+        int directionY = Game1.Utility.RGenerator.Next(-2, 2);
 
         //Need empty constructor for serialization!
         public Item()

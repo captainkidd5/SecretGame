@@ -24,6 +24,7 @@ using SecretProject.Class.SavingStuff;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.ObjectFolder;
 using XMLData.DialogueStuff;
+using SecretProject.Class.DialogueStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -127,7 +128,7 @@ namespace SecretProject
         
 
         //TOOLS
-        public static Random RGenerator = new Random();
+        
         public static Utility Utility;
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
@@ -142,6 +143,8 @@ namespace SecretProject
         public DialogueSkeleton ElixirDialogue;
         public DialogueHolder AllDialogue;
 
+        //DIALOGUE
+        public static DialogueLibrary DialogueLibrary;
 
         #endregion
 
@@ -256,7 +259,8 @@ namespace SecretProject
         protected override void LoadContent()
         {
             //ORDER MATTERS!!!
-
+            AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
+            DialogueLibrary = new DialogueLibrary(AllDialogue);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllTextures = new TextureBook(Content, spriteBatch);
@@ -305,7 +309,8 @@ namespace SecretProject
             RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);
             
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
+            
+            
             
             LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);

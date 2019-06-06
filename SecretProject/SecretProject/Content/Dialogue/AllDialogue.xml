@@ -5,7 +5,7 @@
       <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
       <SpeechID>1</SpeechID>
       <ConditionMet>true</ConditionMet>
-      <TextToWrite>this is a simple test</TextToWrite>
+      <TextToWrite>Can I help you?</TextToWrite>
       </Item>
   </AllDialogue>
   </Asset>

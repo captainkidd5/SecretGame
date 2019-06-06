@@ -455,20 +455,29 @@ namespace SecretProject.Class.Playable
         }
 
         //drawing relative to wrong camera it seems.
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (CurrentAction.IsAnimated == false)
             {
-               PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position,(float).4);
+                PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position, layerDepth);
             }
 
             //????
             if (CurrentAction.IsAnimated == true)
             {
-                CurrentAction.DrawAnimation(spriteBatch,this.Position, (float).4);
+                CurrentAction.DrawAnimation(spriteBatch,this.Position, layerDepth);
             }
         }
 
-
+        /*
+         * if (player.position.Y > 1550 && player.position.X < 810 && player.position.X > 730)
+                {
+                    player.Position = new Vector2(player.position.X, 60);
+                    Game1.SwitchStage(2, 5);
+                    return;
+                }
+         * 
+         * 
+         */
     }
 }

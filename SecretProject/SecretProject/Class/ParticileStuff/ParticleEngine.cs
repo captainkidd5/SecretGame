@@ -15,6 +15,7 @@ namespace SecretProject.Class.ParticileStuff
         private List<Particle> particles;
         private List<Texture2D> textures;
         public float ActivationTime { get; set; } = 0f;
+        public Color Color { get; set; } = Color.White;
 
         public ParticleEngine(List<Texture2D> textures, Vector2 location)
         {
@@ -33,9 +34,7 @@ namespace SecretProject.Class.ParticileStuff
                 .5f * (float)(Game1.Utility.RGenerator.NextDouble() * 2 - 1));
             float angle = 0;
             float angularVelocity = 0.1f * (float)(Game1.Utility.RGenerator.NextDouble() * 2 - 1);
-            Color color = new Color(255,
-                Game1.Utility.RGenerator.Next(220,250),
-                Game1.Utility.RGenerator.Next(120,220));
+            Color color = Color;
             float size = 1f;
             int ttl = 20 + Game1.Utility.RGenerator.Next(40);
 
@@ -57,7 +56,7 @@ namespace SecretProject.Class.ParticileStuff
 
                 for (int particle = 0; particle < particles.Count; particle++)
                 {
-                    particles[particle].Update();
+                    particles[particle].Update(gameTime);
                     if (particles[particle].TTL <= 0)
                     {
                         particles.RemoveAt(particle);

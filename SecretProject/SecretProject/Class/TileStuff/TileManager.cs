@@ -99,7 +99,7 @@ namespace SecretProject.Class.TileStuff
 
         }
         //TODO LayerDepth List
-        public TileManager( Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
+        public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -117,11 +117,11 @@ namespace SecretProject.Class.TileStuff
 
             this.graphicsDevice = graphicsDevice;
             this.content = content;
-            
+
             this.AllDepths = allDepths;
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>();
-            
+
 
 
             for (int i = 0; i < allLayers.Count; i++)
@@ -132,143 +132,175 @@ namespace SecretProject.Class.TileStuff
 
             //Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
-            for(int i =0; i < AllTiles.Count; i++)
+            for (int i = 0; i < AllTiles.Count; i++)
             {
-                foreach(TmxLayerTile layerNameTile in AllLayers[i].Tiles)
+                foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
                     Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
-                    
+
                 }
             }
-            
-            
-            //stone
-            GenerateTiles(1, 6675, "dirt", 100, 0);
-            //grass
-            GenerateTiles(1, 6475, "dirt", 100, 0);
-            //redrunestone
-            GenerateTiles(1, 5681, "dirt", 100, 0);
-            GenerateTiles(1, 5881, "dirt", 100, 0);
 
-            for (int z = 0; z < AllTiles.Count; z++)
+            for (int prelimZ = 0; prelimZ < AllTiles.Count; prelimZ++)
             {
-                for (int i = 0; i < tilesetTilesWide; i++)
+                for (int prelimI = 0; prelimI < tilesetTilesWide; prelimI++)
                 {
-                    for (int j = 0; j < tilesetTilesHigh; j++)
+                    for (int prelimJ = 0; prelimJ < tilesetTilesHigh; prelimJ++)
                     {
-                        //if foreground
-                        if (z == 3)
+                        if (AllTiles[prelimZ][prelimI, prelimJ].GID != 0)
                         {
-                            //tile is red runestop bottom
-                            if (j < 99  && AllTiles[1][i, j + 1].GID == 5680)
+                            if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[prelimZ][prelimI, prelimJ].GID))
                             {
-                                AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
-                            }
-                            if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
-                            {
-                                AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
+                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[prelimZ][prelimI, prelimJ].GID].Properties.ContainsKey("spawnWith"))
+                                {
+                                    string value = "";
+                                    mapName.Tilesets[tileSetNumber].Tiles[AllTiles[prelimZ][prelimI, prelimJ].GID].Properties.TryGetValue("spawnWith", out value);
+
+
+                                    AllTiles[prelimZ][prelimI, prelimJ].SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
+                                }
                             }
                         }
-                        if (AllTiles[z][i, j].GID != 0)
+
+                    }
+                }
+            }
+
+
+                //stone
+                GenerateTiles(1, 6675, "dirt", 100, 0);
+                //grass
+                GenerateTiles(1, 6475, "dirt", 100, 0);
+                //redrunestone
+                GenerateTiles(1, 5681, "dirt", 100, 0);
+                GenerateTiles(1, 5881, "dirt", 100, 0);
+            //thunderbirch
+                GenerateTiles(1, 4845, "dirt", 100, 0);
+
+
+                for (int z = 0; z < AllTiles.Count; z++)
+                {
+                    for (int i = 0; i < tilesetTilesWide; i++)
+                    {
+                        for (int j = 0; j < tilesetTilesHigh; j++)
                         {
-                            if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                            //if foreground
+                            if (z == 3)
                             {
-                                AllTiles[z][i, j].LayerToDrawAt = AllDepths[z];
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("portal"))
+                                //tile is red runestop bottom
+                                if (j < 99 && AllTiles[1][i, j + 1].GID == 5680)
                                 {
-                                    AllTiles[z][i, j].IsPortal = true;
-                                    AllTiles[z][i, j].portalDestination = mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["portal"];
+                                    AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                                 }
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
-                                {///////////
-                                    AllTiles[z][i, j].Plantable = true;
-                                }
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable"))
+                                if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
                                 {
-                                    AllTiles[z][i, j].Diggable = true;
+                                    AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
                                 }
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsValue("dirt"))
+                            }
+                            if (AllTiles[z][i, j].GID != 0)
+                            {
+                                if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
-                                    AllTiles[z][i, j].Dirt = true;
-                                }
 
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Probability"))
-                                {
-                                    AllTiles[z][i, j].Probability = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Probability"]);
-                                }
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Tree"))
-                                {
-                                    AllTiles[z][i, j].Tree = true;
-                                    AllTiles[z][i, j].AssociatedItem = 123;
-
-                                }
-
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedY"))
-                                {
-                                    AllTiles[z][i, j].IsAnimated = true;
-                                    if(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedX"))
+                                    AllTiles[z][i, j].LayerToDrawAt = AllDepths[z];
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("portal"))
                                     {
-                                        AllTiles[z][i, j].TotalFramesX = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["AnimatedX"]);
-                                        AllTiles[z][i, j].Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]);
+                                        AllTiles[z][i, j].IsPortal = true;
+                                        AllTiles[z][i, j].portalDestination = mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["portal"];
                                     }
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedY"))
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
+                                    {///////////
+                                        AllTiles[z][i, j].Plantable = true;
+                                    }
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable"))
                                     {
-                                        AllTiles[z][i, j].TotalFramesY = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["AnimatedY"]);
-                                        AllTiles[z][i, j].Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]);
+                                        AllTiles[z][i, j].Diggable = true;
+                                    }
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsValue("dirt"))
+                                    {
+                                        AllTiles[z][i, j].Dirt = true;
                                     }
 
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Probability"))
+                                    {
+                                        AllTiles[z][i, j].Probability = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Probability"]);
+                                    }
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("Tree"))
+                                    {
+                                        AllTiles[z][i, j].Tree = true;
+                                        AllTiles[z][i, j].AssociatedItem = 123;
+
+                                    }
+
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedY"))
+                                    {
+                                        AllTiles[z][i, j].IsAnimated = true;
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedX"))
+                                        {
+                                            AllTiles[z][i, j].TotalFramesX = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["AnimatedX"]);
+                                            AllTiles[z][i, j].Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]);
+                                        }
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("AnimatedY"))
+                                        {
+                                            AllTiles[z][i, j].TotalFramesY = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["AnimatedY"]);
+                                            AllTiles[z][i, j].Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]);
+                                        }
 
 
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("start"))
-                                    {
-                                        AllTiles[z][i, j].IsAnimating = true;
-                                        AllTiles[z][i, j].Kill = false;
 
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("start"))
+                                        {
+                                            AllTiles[z][i, j].IsAnimating = true;
+                                            AllTiles[z][i, j].Kill = false;
+
+                                        }
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("grass"))
+                                        {
+                                            //tiles[i, j].Properties.Add("grass", true);
+                                            AllTiles[z][i, j].Grass = true;
+                                            AllTiles[z][i, j].AssociatedItem = 129;
+                                        }
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("stone"))
+                                        {
+                                            //tiles[i, j].Properties.Add("stone", true);
+                                            AllTiles[z][i, j].Stone = true;
+                                            AllTiles[z][i, j].AssociatedItem = 130;
+                                        }
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("redRuneStone"))
+                                        {
+                                            //tiles[i, j].Properties.Add("redRuneStone", true);
+                                            AllTiles[z][i, j].RedRuneStone = true;
+                                            AllTiles[z][i, j].AssociatedItem = 169;
+                                            // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
+                                        }
+                                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("blueRuneStone"))
+                                        {
+                                            //tiles[i, j].Properties.Add("redRuneStone", true);
+                                            AllTiles[z][i, j].BlueRuneStone = true;
+                                            AllTiles[z][i, j].AssociatedItem = 149;
+                                            // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
+                                        }
                                     }
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("grass"))
+                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
                                     {
-                                        //tiles[i, j].Properties.Add("grass", true);
-                                        AllTiles[z][i, j].Grass = true;
-                                        AllTiles[z][i, j].AssociatedItem = 129;
-                                    }
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("stone"))
-                                    {
-                                        //tiles[i, j].Properties.Add("stone", true);
-                                        AllTiles[z][i, j].Stone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 130;
-                                    }
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("redRuneStone"))
-                                    {
-                                        //tiles[i, j].Properties.Add("redRuneStone", true);
-                                        AllTiles[z][i, j].RedRuneStone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 169;
-                                        // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-                                    }
-                                    if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("blueRuneStone"))
-                                    {
-                                        //tiles[i, j].Properties.Add("redRuneStone", true);
-                                        AllTiles[z][i, j].BlueRuneStone = true;
-                                        AllTiles[z][i, j].AssociatedItem = 149;
-                                        // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-                                    }
-                                }
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step"))
-                                {
                                         AllTiles[z][i, j].HasSound = true;
-                                    AllTiles[z][i, j].SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]);
-                                    //grass = 1, stone = 2, wood = 3, sand = 4
-                                }
+                                        AllTiles[z][i, j].SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]);
+                                        //grass = 1, stone = 2, wood = 3, sand = 4
+                                    }
 
+                                }
                             }
                         }
                     }
                 }
-            }
-            //this.JaggedTiles = GetJaggedTiles();
+                //this.JaggedTiles = GetJaggedTiles();
+            
         }
         #endregion
+
+        
 
         public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty)
         {
@@ -303,13 +335,84 @@ namespace SecretProject.Class.TileStuff
         }
         public void GenerateRandomTiles(int layer, int id, int[] acceptableTiles, int comparisonLayer = 0)
         {
-            int newTileX = Game1.Utility.RNumber(1, 100);
-            int newTileY = Game1.Utility.RNumber(1, 100);
+            int newTileX = Game1.Utility.RNumber(10, 90);
+            int newTileY = Game1.Utility.RNumber(10, 90);
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
+
+                //if(AllTiles[layer][prelimI, prelimJ].SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
+
                 //Tiles[newTileX, newTileY].GID = 6675;
+                //if (AllTiles[layer][newTileX, newTileY].)
+
                 AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
+                Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
+                if (mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                {
+                    string value = "";
+                    mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
+
+                    List<Tile> intermediateAllTiles = new List<Tile>();
+                    List<Tile> intermediateNewTiles = new List<Tile>();
+                    sampleTile.SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
+                    for (int index = 0; index < sampleTile.SpawnsWith.Length; index++)
+                    {
+                        string gidX = "";
+                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
+                        string gidY = "";
+                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
+                        string tilePropertyLayer = "";
+                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                        int intGidX = int.Parse(gidX);
+                        int intGidY = int.Parse(gidY);
+                        int intTilePropertyLayer = int.Parse(tilePropertyLayer);
+
+                        int totalGID = mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Id;
+
+                        if (!CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer))
+                        {
+                            //intermediateAllTiles.Add(AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY]);
+                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, 100, 100) { LayerToDrawAt = intTilePropertyLayer });
+                            //AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY] = new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, 100, 100);
+                        }
+                        else
+                        {
+                            return;
+                        }
+                        //AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY] = new Tile(newTileX + intGidX, newTileY + intGidY, totalGID +1, 100, 100, 100, 100);
+                    }
+
+                    for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
+                    {
+                        AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
+                        //AllTiles[intermediateNewTiles[tileSwapCounter]]
+                    }
+                }
             }
+        }
+        //not working
+        public List<Tile> GetSpawnWithTiles(Tile baseTile, int xCoord, int yCoord)
+        {
+            List<Tile> tilesToReturn = new List<Tile>();
+            if(baseTile.SpawnsWith != null)
+            {
+                for(int i=0; i< baseTile.SpawnsWith.Length;i++)
+                {
+                    string gidX = "";
+                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationX", out gidX);
+                    string gidY = "";
+                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationY", out gidY);
+                    string tilePropertyLayer = "";
+                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                    int intGidX = int.Parse(gidX);
+                    int intGidY = int.Parse(gidY);
+                    int intTilePropertyLayer = int.Parse(tilePropertyLayer);
+
+                    int totalGID = mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Id;
+                    tilesToReturn.Add(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY]);
+                }
+            }
+            return tilesToReturn;
         }
 
         //if the GID is anything other than -1 it means there's something there.
@@ -540,7 +643,7 @@ namespace SecretProject.Class.TileStuff
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16)
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16))
                             {
-                                spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle, AllTiles[z][i, j].TileColor * AllTiles[z][i, j].ColorMultiplier, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z]);
+                                spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle,Game1.GlobalClock.TimeOfDayColor, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z]);
 
                             }
                         }
@@ -647,6 +750,18 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 3, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
                         AllTiles[layer][oldX, oldY].IsFinishedAnimating = true;
+
+                        //Needs work
+                        for(int b=0; b< GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY).Count; b++)
+                        {
+                            
+                            Tile newTile = new Tile(GetSpawnWithTiles(AllTiles[layer][oldX, oldY],
+                                oldX, oldY)[b].X, GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY)[b].Y, 5606, 100, 100, 100, 100);
+                            GetSpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY)[b] = newTile;
+                        }
+
+                        
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.WhiteSmoke;
                         Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
                         Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
                     }
@@ -657,6 +772,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 8, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
                         Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.White;
                         Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
 
                     }
@@ -666,6 +782,9 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.StoneSmash.Play();
                         SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
                         GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Red;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
                     }
 
                     if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
@@ -673,6 +792,9 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.StoneSmash.Play();
                         SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
                         GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Blue;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
 
                     }
                     break;
@@ -683,6 +805,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 6, 1f);
                         SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
                         Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
                         Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
 
 

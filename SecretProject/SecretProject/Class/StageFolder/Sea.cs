@@ -273,7 +273,7 @@ namespace SecretProject.Class.StageFolder
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
-                player.Draw(spriteBatch);
+                player.Draw(spriteBatch, .4f);
 
 
                 ElixerNPC.Draw(spriteBatch);

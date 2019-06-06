@@ -81,6 +81,8 @@ namespace SecretProject.Class.TileStuff
 
         public float LayerToDrawAt { get; set; } = 0;
 
+        public int[] SpawnsWith { get; set; }
+
 
         //[XmlIgnore]
         //public Dictionary<string, bool> Properties;
@@ -128,7 +130,8 @@ namespace SecretProject.Class.TileStuff
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
 
-            TileColor = Color.White * ColorMultiplier;
+            TileColor = this.TileColor * this.ColorMultiplier;
+            //TileColor = Color.DimGray * 1.5f;
 
 
         }

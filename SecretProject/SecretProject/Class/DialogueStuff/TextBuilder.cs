@@ -15,33 +15,49 @@ namespace SecretProject.Class.DialogueStuff
         public float WriteSpeed { get; set; }
         private string outputString = "";
         int currentTextIndex = 0;
+        public float StringDisplayTimer { get; set; }
+        public float SpeedAnchor { get; set; }
+        public Vector2 PositionToWriteTo { get; set; }
 
-        public TextBuilder(string stringToWrite, float writeSpeed)
+        public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
+            this.StringDisplayTimer = stringDisplayTimer;
+            this.SpeedAnchor = WriteSpeed;
+            PositionToWriteTo = Game1.Utility.centerScreen;
         }
 
         public void Update(GameTime gameTime)
         {
             WriteSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
+            if (currentTextIndex == StringToWrite.Length)
+            {
+                this.StringDisplayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (StringDisplayTimer < 0)
+            {
+                outputString = "";
+                this.IsActive = false;
+                currentTextIndex = 0;
+            }
 
-            if(WriteSpeed < 0)
+            if (WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
             {
                 outputString += StringToWrite[currentTextIndex];
                 currentTextIndex++;
-                if(currentTextIndex == StringToWrite.Length)
-                {
-                    this.IsActive = false;
-                    currentTextIndex = 0;
-                    outputString = "";
-                }
+                WriteSpeed = SpeedAnchor; ///////////////
+
             }
+
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, Game1.Utility.centerScreen, Color.White);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.White);
         }
     }
 }

@@ -81,7 +81,8 @@ namespace SecretProject.Class.NPCStuff
              {
                 if(mouse.IsRightClicked)
                 {
-                    Game1.userInterface.IsShopMenu = true;
+                    //Game1.userInterface.IsShopMenu = true;
+
                 }
                   
               }
