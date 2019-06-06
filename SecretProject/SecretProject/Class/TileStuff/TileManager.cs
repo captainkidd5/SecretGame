@@ -132,7 +132,6 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            //Tiles = new Tile[tilesetTilesWide, tilesetTilesHigh];
 
             for (int i = 0; i < AllTiles.Count; i++)
             {
@@ -145,44 +144,17 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            for (int prelimZ = 0; prelimZ < AllTiles.Count; prelimZ++)
-            {
-                for (int prelimI = 0; prelimI < tilesetTilesWide; prelimI++)
-                {
-                    for (int prelimJ = 0; prelimJ < tilesetTilesHigh; prelimJ++)
-                    {
-                        if (AllTiles[prelimZ][prelimI, prelimJ].GID != 0)
-                        {
-                            if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[prelimZ][prelimI, prelimJ].GID))
-                            {
-                                if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[prelimZ][prelimI, prelimJ].GID].Properties.ContainsKey("spawnWith"))
-                                {
-                                    string value = "";
-                                    mapName.Tilesets[tileSetNumber].Tiles[AllTiles[prelimZ][prelimI, prelimJ].GID].Properties.TryGetValue("spawnWith", out value);
-
-
-                                    AllTiles[prelimZ][prelimI, prelimJ].SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
-
-
+           
                 //stone
-               // GenerateTiles(1, 6675, "dirt", 100, 0);
+                GenerateTiles(1, 6675, "dirt", 100, 0);
                 //grass
-                //GenerateTiles(1, 6475, "dirt", 100, 0);
+                GenerateTiles(1, 6475, "dirt", 100, 0);
                 //redrunestone
                 GenerateTiles(1, 5681, "dirt", 100, 0);
             //bluerunestone
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-              //  GenerateTiles(1, 4845, "dirt", 800, 0);
-
-            
+               GenerateTiles(1, 4845, "dirt", 3000, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)
@@ -191,19 +163,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (int j = 0; j < tilesetTilesHigh; j++)
                         {
-                            ////if foreground
-                            //if (z == 3)
-                            //{
-                            //    //tile is red runestop bottom
-                            //    //if (j < 99 && AllTiles[1][i, j + 1].GID == 5680)
-                            //    //{
-                            //    //    AllTiles[3][i, j] = new Tile(i, j, 5581, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
-                            //    //}
-                            //    //if (j < 99 && AllTiles[1][i, j + 1].GID == 5880)
-                            //    //{
-                            //    //    AllTiles[3][i, j] = new Tile(i, j, 5781, 100, 100, 100, 100) { IsAnimated = true, Speed = .15f, TotalFramesX = 7 };
-                            //    //}
-                            //}
+
                             if (AllTiles[z][i, j].GID != 0)
                             {
                                 if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
@@ -215,9 +175,7 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
-                }
-                //this.JaggedTiles = GetJaggedTiles();
-            
+                }           
         }
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
@@ -364,7 +322,6 @@ namespace SecretProject.Class.TileStuff
                     string value = "";
                     mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
 
-                    List<Tile> intermediateAllTiles = new List<Tile>();
                     List<Tile> intermediateNewTiles = new List<Tile>();
                     sampleTile.SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
                     for (int index = 0; index < sampleTile.SpawnsWith.Length; index++)
