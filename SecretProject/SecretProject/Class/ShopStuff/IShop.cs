@@ -1,4 +1,8 @@
-﻿using SecretProject.Class.ItemStuff;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +15,12 @@ namespace SecretProject.Class.ShopStuff
     {
         int ID { get; set; }
         string Name { get; set; }
-        Inventory ShopInventory { get; set; }
+        ShopMenu ShopMenu { get; set; }
+        bool IsActive { get; set; }
+
+        void Update(GameTime gameTime, MouseManager mouse);
+
+        void Draw(SpriteBatch spriteBatch);
+
     }
 }

@@ -102,6 +102,7 @@ namespace SecretProject.Class.UI
 
             if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
+                Game1.AllShops.Find(x => x.ID == 0).IsActive = !Game1.AllShops.Find(x => x.ID == 0).IsActive;
                 IsShopMenu = !IsShopMenu;
             }
 
@@ -121,13 +122,22 @@ namespace SecretProject.Class.UI
                 //isEscMenu = false;
             }
 
-            if(IsShopMenu)
-            {
-                ShopMenu.Update(gameTime,mouse);
-                Game1.isMyMouseVisible = true;
-                Game1.freeze = true;
-            }
+            //if(IsShopMenu)
+            //{
+            //    ShopMenu.Update(gameTime,mouse);
+            //    Game1.isMyMouseVisible = true;
+            //    Game1.freeze = true;
+            //}
 
+            for (int i = 0; i < Game1.AllShops.Count; i++)
+            {
+                if (Game1.AllShops[i].IsActive)
+                {
+                    Game1.isMyMouseVisible = true;
+                    Game1.freeze = true;
+                    Game1.AllShops[i].Update(gameTime, mouse);
+                }
+            }
 
             if (isEscMenu)
             {
@@ -157,9 +167,12 @@ namespace SecretProject.Class.UI
                 Esc.Draw(spriteBatch);
             }
 
-            if(IsShopMenu)
+            for(int i =0; i< Game1.AllShops.Count; i++)
             {
-                ShopMenu.Draw(spriteBatch);
+                if(Game1.AllShops[i].IsActive)
+                {
+                    Game1.AllShops[i].Draw(spriteBatch);
+                }
             }
 
 

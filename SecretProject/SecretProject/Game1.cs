@@ -25,6 +25,7 @@ using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.ObjectFolder;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.ShopStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -145,6 +146,8 @@ namespace SecretProject
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
+
+        public static List<IShop> AllShops { get; set; }
 
         #endregion
 
@@ -324,7 +327,32 @@ namespace SecretProject
 
             AllStages = new List<Home>() { Iliad, LodgeInterior };
 
-            
+            AllShops = new List<IShop>()
+            {
+                
+            };
+
+            Shop ToolShop = new Shop(graphics.GraphicsDevice, 0, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice));
+            ToolShop.ShopMenu.TryAddStock(3, 1);
+            ToolShop.ShopMenu.TryAddStock(0, 1);
+            ToolShop.ShopMenu.TryAddStock(1, 1);
+            ToolShop.ShopMenu.TryAddStock(147, 1);
+            ToolShop.ShopMenu.TryAddStock(2, 1);
+            ToolShop.ShopMenu.TryAddStock(122, 1);
+            ToolShop.ShopMenu.TryAddStock(124, 1);
+            ToolShop.ShopMenu.TryAddStock(125, 1);
+            ToolShop.ShopMenu.TryAddStock(127, 1);
+            ToolShop.ShopMenu.TryAddStock(128, 10);
+            ToolShop.ShopMenu.TryAddStock(141, 1);
+            ToolShop.ShopMenu.TryAddStock(143, 3);
+            ToolShop.ShopMenu.TryAddStock(161, 5);
+            ToolShop.ShopMenu.TryAddStock(145, 1);
+            ToolShop.ShopMenu.TryAddStock(165, 1);
+            ToolShop.ShopMenu.TryAddStock(167, 1);
+
+
+
+
 
 
 
