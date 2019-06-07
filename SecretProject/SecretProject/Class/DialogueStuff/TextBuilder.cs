@@ -30,34 +30,43 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Update(GameTime gameTime)
         {
-            WriteSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            if (currentTextIndex == StringToWrite.Length)
+            if (IsActive)
             {
-                this.StringDisplayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+                WriteSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (currentTextIndex == StringToWrite.Length)
+                {
+                    this.StringDisplayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                if (StringDisplayTimer < 0)
+                {
+                    outputString = "";
+                    this.IsActive = false;
+                    currentTextIndex = 0;
+                }
+
+                if (WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
+                {
+                    outputString += StringToWrite[currentTextIndex];
+                    currentTextIndex++;
+                    WriteSpeed = SpeedAnchor; ///////////////
+
+                }
+
+
             }
-            if (StringDisplayTimer < 0)
-            {
-                outputString = "";
-                this.IsActive = false;
-                currentTextIndex = 0;
-            }
-
-            if (WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
-            {
-                outputString += StringToWrite[currentTextIndex];
-                currentTextIndex++;
-                WriteSpeed = SpeedAnchor; ///////////////
-
-            }
-
-
-
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.White);
+            if (IsActive)
+            {
+
+
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, layerDepth);
+            }
         }
     }
 }

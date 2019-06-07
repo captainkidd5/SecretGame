@@ -41,7 +41,7 @@ namespace SecretProject.Class.UI
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
 
         public TextBuilder TextBuilder { get; set; }
-        public bool IsTextBuilderActive { get; set; } = false;
+        
 
         //keyboard
 
@@ -110,10 +110,9 @@ namespace SecretProject.Class.UI
                 TextBuilder.IsActive = !TextBuilder.IsActive;
             }
 
-            if(TextBuilder.IsActive)
-            {
+
                 TextBuilder.Update(gameTime);
-            }
+
 
             if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
             {
@@ -162,10 +161,10 @@ namespace SecretProject.Class.UI
             {
                 ShopMenu.Draw(spriteBatch);
             }
-            if(TextBuilder.IsActive)
-            {
-                TextBuilder.Draw(spriteBatch);
-            }
+
+
+                TextBuilder.Draw(spriteBatch, .71f);
+
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
             spriteBatch.End();

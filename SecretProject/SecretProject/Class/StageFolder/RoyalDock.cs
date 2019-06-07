@@ -25,6 +25,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using XMLData.DialogueStuff;
+using SecretProject.Class.DialogueStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -112,6 +113,8 @@ namespace SecretProject.Class.StageFolder
         public ParticleEngine ParticleEngine { get; set; }
 
         public DialogueHolder AllDockDialogue { get; set; }
+
+        public TextBuilder TextBuilder { get; set; }
 
         #endregion
 
@@ -202,8 +205,10 @@ namespace SecretProject.Class.StageFolder
             Map = null;
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
-            AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            Game1.userInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1);
+            //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
+            Game1.userInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(2);
+
+            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(2), .25f, 5f);
         }
 
         public void UnloadContent()
@@ -248,9 +253,13 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+                TextBuilder.IsActive = !TextBuilder.IsActive;
                 //ParticleEngine.ActivationTime = 5f;
                 //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
+
+            TextBuilder.PositionToWriteTo = ElixerNPC.Position;
+            TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             ParticleEngine.Update(gameTime);
@@ -314,6 +323,7 @@ namespace SecretProject.Class.StageFolder
 
 
                 ElixerNPC.Draw(spriteBatch);
+                TextBuilder.Draw(spriteBatch, .71f);
 
                 if (ShowBorders)
                 {

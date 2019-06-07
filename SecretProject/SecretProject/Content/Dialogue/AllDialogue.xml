@@ -7,6 +7,11 @@
       <ConditionMet>true</ConditionMet>
       <TextToWrite>Can I help you?</TextToWrite>
       </Item>
+      <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+      <SpeechID>2</SpeechID>
+      <ConditionMet>true</ConditionMet>
+      <TextToWrite>You sure can</TextToWrite>
+      </Item>
   </AllDialogue>
   </Asset>
 </XnaContent>

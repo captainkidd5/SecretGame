@@ -156,18 +156,18 @@ namespace SecretProject.Class.SpriteFolder
             if (IsBobbing)
             {
                 BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (BobberTimer > 2f)
+                if (BobberTimer > 3)
                 {
                     BobberTimer = 0f;
                 }
-                if (BobberTimer < 1f)
+                if (BobberTimer < 1.5f)
                 {
-                    this.Position.Y += .03f;
+                    this.Position.Y += .05f;
                 }
 
-                if (BobberTimer >= 1d && BobberTimer < 2d)
+                if (BobberTimer >= 1.5f && BobberTimer < 3f)
                 {
-                    this.Position.Y -= .03f;
+                    this.Position.Y -= .05f;
                 }
 
             }
@@ -187,20 +187,20 @@ namespace SecretProject.Class.SpriteFolder
                     switch (Game1.Player.controls.Direction)
                     {
                         case Dir.Right:
-                            this.Position.X += x * 1f;
+                            this.Position.X += x * 1f * Game1.Utility.RGenerator.Next(1,2);
                             this.Position.Y += y * .1f;
                             break;
                         case Dir.Left:
-                            this.Position.X -= x * 1f;
+                            this.Position.X -= x * 1f * Game1.Utility.RGenerator.Next(1, 2);
                             this.Position.Y += y * .1f;
                             break;
                         case Dir.Up:
                             this.Position.X += x * .1f;
-                            this.Position.Y -= y * 1f;
+                            this.Position.Y -= y * 1f * Game1.Utility.RGenerator.Next(1, 2);
                             break;
                         case Dir.Down:
                             this.Position.X += x * .1f;
-                            this.Position.Y += y * 1.25f;
+                            this.Position.Y += y * 1.25f * Game1.Utility.RGenerator.Next(1, 2);
                             this.LayerDepth = 1f;
                             break;
                     }

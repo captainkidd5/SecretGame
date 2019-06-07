@@ -79,9 +79,13 @@ namespace SecretProject.Class.TileStuff
         public bool BlueRuneStone { get; set; } = false;
         public bool Tree { get; set; } = false;
 
-        public float LayerToDrawAt { get; set; } = 0;
+        public float LayerToDrawAt { get; set; } = 0f;
+        public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
         public int[] SpawnsWith { get; set; }
+
+        public int NumberOfItemsToSpawn { get; set; } = 1;
+        public int HitPoints { get; set; } = 1;
 
 
         //[XmlIgnore]

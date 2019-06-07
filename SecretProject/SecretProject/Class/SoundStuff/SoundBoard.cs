@@ -74,6 +74,7 @@ namespace SecretProject.Class.SoundStuff
 
             WalkWood = content.Load<SoundEffect>("SoundEffects/woodStep");
             WalkWoodInstance = WalkWood.CreateInstance();
+            WalkSandInstance.Volume = 1f;
 
             WalkStone = content.Load<SoundEffect>("SoundEffects/stoneStep");
             WalkStoneInstance = WalkStone.CreateInstance();
