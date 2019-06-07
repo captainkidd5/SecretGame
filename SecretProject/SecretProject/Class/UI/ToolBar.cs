@@ -264,7 +264,7 @@ namespace SecretProject.Class.UI
             if (InGameMenu.isClicked)
             {
 
-                Game1.userInterface.IsEscMenu = !Game1.userInterface.IsEscMenu;
+                Game1.Player.UserInterface.IsEscMenu = !Game1.Player.UserInterface.IsEscMenu;
             }
             else if (OpenInventory.isClicked)
             {
@@ -326,7 +326,7 @@ namespace SecretProject.Class.UI
                 if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0 )
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
-                    if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && !Game1.userInterface.IsShopMenu)
+                    if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && !Game1.Player.UserInterface.IsShopMenu)
                     {
                         int currentItemCount = AllSlots[i].ItemCounter;
                         for(int j =0; j < currentItemCount; j ++)
@@ -343,17 +343,17 @@ namespace SecretProject.Class.UI
                         }
                     }
                     //work on shift click selling to shop
-                    else if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.userInterface.IsShopMenu)
+                    else if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.IsShopMenu)
                     {
-                        for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
+                        for (int s = 0; s < Game1.Player.UserInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
                         {
-                            if (Game1.userInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
+                            if (Game1.Player.UserInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
                             {
                                 int currentItemCount = AllSlots[i].ItemCounter;
 
                                 for(int d = 0; d < currentItemCount; d++)
                                 {
-                                    Game1.Player.Inventory.Money += Game1.userInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
+                                    Game1.Player.Inventory.Money += Game1.Player.UserInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
                                     inventory.currentInventory[i].RemoveItemFromSlot();
                                     AllSlots[i].ItemCounter--;
                                 }
@@ -363,13 +363,13 @@ namespace SecretProject.Class.UI
                         }
                     }
 
-                    else if (!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.userInterface.IsShopMenu)
+                    else if (!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.IsShopMenu)
                     {
-                        for (int s = 0; s < Game1.userInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
+                        for (int s = 0; s < Game1.Player.UserInterface.ShopMenu.allShopMenuItemButtons.Count; s++)
                         {
-                            if(Game1.userInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
+                            if(Game1.Player.UserInterface.ShopMenu.allShopMenuItemButtons[s].IsHovered)
                             {
-                                Game1.Player.Inventory.Money += Game1.userInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
+                                Game1.Player.Inventory.Money += Game1.Player.UserInterface.ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
                                 inventory.currentInventory[i].RemoveItemFromSlot();
                                 AllSlots[i].ItemCounter--;
                                 break;

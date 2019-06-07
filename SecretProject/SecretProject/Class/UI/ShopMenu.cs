@@ -102,7 +102,7 @@ namespace SecretProject.Class.UI
 
             if(redEsc.isClicked)
             {
-                Game1.userInterface.IsShopMenu = false;
+                Game1.Player.UserInterface.IsShopMenu = false;
             }
         }
 

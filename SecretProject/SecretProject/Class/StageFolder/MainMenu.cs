@@ -83,13 +83,13 @@ namespace SecretProject.Class.StageFolder
             if (resumeGame.isClicked)
             {
                 Game1.SwitchStage(0, 5);
-                Game1.userInterface.IsEscMenu = false;
+                Game1.Player.UserInterface.IsEscMenu = false;
             }
             if(Load.isClicked)
             {
                 mySave.Load(graphics);
                 Game1.gameStages = Stages.Iliad;
-                Game1.userInterface.IsEscMenu = false;
+                Game1.Player.UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)
             {
@@ -98,7 +98,7 @@ namespace SecretProject.Class.StageFolder
 
             if(reloadMap.isClicked)
             {
-                Game1.userInterface.IsEscMenu = false;
+                Game1.Player.UserInterface.IsEscMenu = false;
                 Game1.gameStages = Stages.Iliad;
             }
         }

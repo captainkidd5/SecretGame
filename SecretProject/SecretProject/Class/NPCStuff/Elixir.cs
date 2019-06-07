@@ -114,10 +114,15 @@ namespace SecretProject.Class.NPCStuff
         {
             Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
             this.DirectionVector = direction;
+            
 
             if(!this.NPCRectangle.Intersects(rectangle))
             {
                 Position += (direction * Speed) * PrimaryVelocity;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
             
             

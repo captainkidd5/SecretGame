@@ -19,6 +19,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Controls;
+using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Playable
 {
@@ -94,7 +95,7 @@ namespace SecretProject.Class.Playable
         public Sprite ChoppingLeft { get; set; }
         public Sprite ChoppingUp { get; set; }
 
-
+        public UserInterface UserInterface { get; set; }
 
 
 
@@ -404,20 +405,24 @@ namespace SecretProject.Class.Playable
                         case SecondaryDir.Right:
                             SecondaryVelocity.X = SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Right];
+                            //PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
                             PlayerMovementAnimations.UpdateAnimations(gameTime,this.Position);
                             break;
                         case SecondaryDir.Left:
                             SecondaryVelocity.X = -SecondarySpeed;
                             PlayerMovementAnimations = animations[(int)Dir.Left];
+                           // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
                             PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
                             break;
                         case SecondaryDir.Down:
                             SecondaryVelocity.Y = SecondarySpeed;
+                           // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
                             //PlayerMovementAnimations = animations[(int)Dir.Down];
                             //PlayerMovementAnimations.Update(gameTime);
                             break;
                         case SecondaryDir.Up:
                             SecondaryVelocity.Y = -SecondarySpeed;
+
                             //PlayerMovementAnimations = animations[(int)Dir.Up];
                             //PlayerMovementAnimations.Update(gameTime);
                             break;

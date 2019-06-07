@@ -113,7 +113,7 @@ namespace SecretProject
         
 
         //UI
-        public static UserInterface userInterface;
+        public UserInterface userInterface;
 
         public static DebugWindow DebugWindow;
 
@@ -296,14 +296,17 @@ namespace SecretProject
             ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
             ItemVault.LoadItems(GraphicsDevice, Content);
 
+            
+
             userInterface = new UserInterface(graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            Player.UserInterface = userInterface;
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
             Sea = new Sea(graphics.GraphicsDevice,SeaContentManager, 0);
             
 
             //STAGES
-            mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, userInterface);
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
             Iliad = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
             
             RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);

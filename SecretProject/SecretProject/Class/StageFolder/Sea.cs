@@ -207,7 +207,7 @@ namespace SecretProject.Class.StageFolder
             //keyboard
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
-            Game1.userInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
@@ -290,9 +290,9 @@ namespace SecretProject.Class.StageFolder
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
-                if (Game1.userInterface.DrawTileSelector)
+                if (Game1.Player.UserInterface.DrawTileSelector)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
+                    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
                 }
 
                 //--------------------------------------
@@ -319,10 +319,10 @@ namespace SecretProject.Class.StageFolder
 
                 ElixerNPC.Draw(spriteBatch);
 
-                Game1.userInterface.BottomBar.DrawToStageMatrix(spriteBatch);
+                Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();
             }
-            Game1.userInterface.Draw(spriteBatch);
+            Game1.Player.UserInterface.Draw(spriteBatch);
             //Game1.GlobalClock.Draw(spriteBatch);
         }
         public Camera2D GetCamera()

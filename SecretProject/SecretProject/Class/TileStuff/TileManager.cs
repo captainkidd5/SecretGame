@@ -550,10 +550,10 @@ namespace SecretProject.Class.TileStuff
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
 
-                                        Game1.userInterface.DrawTileSelector = true;
+                                        Game1.Player.UserInterface.DrawTileSelector = true;
                                         this.DebugTile = AllTiles[z][i, j];
-                                        Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
-                                        Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+                                        Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                        Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
                                         Game1.myMouseManager.ToggleGeneralInteraction = true;
 
@@ -573,7 +573,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                     else
                                     {
-                                        Game1.userInterface.DrawTileSelector = false;
+                                        Game1.Player.UserInterface.DrawTileSelector = false;
                                         Game1.isMyMouseVisible = true;
                                         Game1.myMouseManager.TogglePlantInteraction = false;
                                     }
@@ -584,9 +584,9 @@ namespace SecretProject.Class.TileStuff
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                     {
                                         Game1.isMyMouseVisible = false;
-                                        Game1.userInterface.DrawTileSelector = true;
-                                        Game1.userInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
-                                        Game1.userInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+                                        Game1.Player.UserInterface.DrawTileSelector = true;
+                                        Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                        Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
 
 
@@ -697,7 +697,7 @@ namespace SecretProject.Class.TileStuff
         //Used for interactions with background tiles only
         public void InteractWithBackground(int layer, GameTime gameTime, int oldX, int oldY)
         {
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 3)
+            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
             {     
                 if (AllTiles[layer][oldX, oldY].Diggable)
                 {
@@ -711,7 +711,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 128)
+            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 128)
             {
                 if (AllTiles[layer][oldX, oldY].Plantable)
                 {
@@ -732,7 +732,7 @@ namespace SecretProject.Class.TileStuff
             
             if(AllTiles[layer][oldX, oldY].IsPortal)
             {
-                if(AllTiles[layer][oldX,oldY].portalDestination == "lodgeInterior" && Game1.userInterface.BottomBar.GetCurrentEquippedTool() == 5)
+                if(AllTiles[layer][oldX,oldY].portalDestination == "lodgeInterior" && Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
                 {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
                     Game1.Player.controls.Direction = Dir.Up;
@@ -741,7 +741,7 @@ namespace SecretProject.Class.TileStuff
                     Game1.Player.position.Y = 809;
                 }
             }
-            switch (Game1.userInterface.BottomBar.GetCurrentEquippedTool())
+            switch (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool())
             {
                 case 0:
                     if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
