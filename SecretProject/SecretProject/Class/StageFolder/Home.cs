@@ -153,7 +153,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
+            this.TileSet = Content.Load<Texture2D>("Map/InteriorSpriteSheet1");
 
 
 
@@ -171,7 +171,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.Map = new TmxMap("Content/Map/worldMap.tmx");
+            this.Map = new TmxMap("Content/Map/lodgeInterior.tmx");
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
