@@ -16,6 +16,7 @@ namespace SecretProject.Class.DialogueStuff
         private string outputString = "";
         int currentTextIndex = 0;
         public float StringDisplayTimer { get; set; }
+        public float StringDisplayAnchor { get; set; }
         public float SpeedAnchor { get; set; }
         public Vector2 PositionToWriteTo { get; set; }
 
@@ -24,6 +25,7 @@ namespace SecretProject.Class.DialogueStuff
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
             this.StringDisplayTimer = stringDisplayTimer;
+            this.StringDisplayAnchor = this.StringDisplayTimer;
             this.SpeedAnchor = WriteSpeed;
             PositionToWriteTo = Game1.Utility.centerScreen;
         }
@@ -45,6 +47,7 @@ namespace SecretProject.Class.DialogueStuff
                     outputString = "";
                     this.IsActive = false;
                     currentTextIndex = 0;
+                    this.StringDisplayTimer = this.StringDisplayAnchor;
                 }
 
                 if (WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)

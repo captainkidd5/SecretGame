@@ -24,6 +24,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.DialogueStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -105,6 +106,7 @@ namespace SecretProject.Class.StageFolder
         public Elixir ElixerNPC;
         public Rectangle MapRectangle { get; set; }
         public ParticleEngine ParticleEngine { get; set; }
+        public TextBuilder TextBuilder { get; set; }
 
         #endregion
 
@@ -247,7 +249,7 @@ namespace SecretProject.Class.StageFolder
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime, AllObjects,mouse);
-                    ElixerNPC.MoveTowardsPosition(player.Position);
+                    ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
                 }
                // ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 

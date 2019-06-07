@@ -17,6 +17,7 @@ using System.Runtime.Serialization;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.DialogueStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -85,6 +86,7 @@ List<ActionTimer> AllActions { get; set; }
 
         bool TilesLoaded { get; set; }
 
+        TextBuilder TextBuilder { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadContent( Camera2D camera);
         void UnloadContent();

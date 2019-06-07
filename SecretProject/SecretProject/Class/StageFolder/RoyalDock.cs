@@ -253,7 +253,7 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
                 ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
-                TextBuilder.IsActive = !TextBuilder.IsActive;
+                //TextBuilder.IsActive = !TextBuilder.IsActive;
                 //ParticleEngine.ActivationTime = 5f;
                 //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
@@ -295,7 +295,7 @@ namespace SecretProject.Class.StageFolder
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime,AllObjects, mouse);
-                    ElixerNPC.MoveTowardsPosition(player.Position);
+                    ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
                 }
                 //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 

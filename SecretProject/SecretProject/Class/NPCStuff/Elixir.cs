@@ -81,7 +81,9 @@ namespace SecretProject.Class.NPCStuff
              {
                 if(mouse.IsRightClicked)
                 {
-                    //Game1.userInterface.IsShopMenu = true;
+                    Game1.GetCurrentStage().TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1);
+                    Game1.GetCurrentStage().TextBuilder.IsActive = true;
+
 
                 }
                   
@@ -108,12 +110,16 @@ namespace SecretProject.Class.NPCStuff
             //this.Speed = PrimaryVelocity
         }
 
-        public void MoveTowardsPosition(Vector2 positionToMoveTowards)
+        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {
             Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
             this.DirectionVector = direction;
 
-            Position += (direction * Speed) * PrimaryVelocity;
+            if(!this.NPCRectangle.Intersects(rectangle))
+            {
+                Position += (direction * Speed) * PrimaryVelocity;
+            }
+            
             
         }
 
