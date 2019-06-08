@@ -30,6 +30,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D TileSelector;
         public Texture2D ClockBackground;
 
+        public Texture2D UserInterfaceTileSet;
+
         public Texture2D ShopMenu;
         public Texture2D ShopMenuItemButton;
         public Texture2D RedEsc;
@@ -94,6 +96,8 @@ namespace SecretProject.Class.TextureStuff
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");
 
             RockParticle = content.Load<Texture2D>("Particles/rockparticle");
+
+            UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
            
 
         }

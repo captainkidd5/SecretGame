@@ -495,13 +495,6 @@ namespace SecretProject.Class.UI
                     AllSlots[i].Draw(spriteBatch, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
             }
-            //InvSlot1.Draw(spriteBatch, Font, InvSlot1.ItemCounter.ToString(), new Vector2(543, 670), Color.DarkRed);
-            //InvSlot2.Draw(spriteBatch, Font, InvSlot2.ItemCounter.ToString(), new Vector2(600, 670), Color.DarkRed);
-            //InvSlot3.Draw(spriteBatch, Font, InvSlot3.ItemCounter.ToString(), new Vector2(670, 670), Color.DarkRed);
-            //InvSlot4.Draw(spriteBatch, Font, InvSlot4.ItemCounter.ToString(), new Vector2(730, 670), Color.DarkRed);
-            //InvSlot5.Draw(spriteBatch, Font, InvSlot5.ItemCounter.ToString(), new Vector2(810, 670), Color.DarkRed);
-            //InvSlot6.Draw(spriteBatch, Font, InvSlot6.ItemCounter.ToString(), new Vector2(870, 670), Color.DarkRed);
-            //InvSlot7.Draw(spriteBatch, Font, InvSlot7.ItemCounter.ToString(), new Vector2(940, 670), Color.DarkRed, .73f);
 
             switch(currentSliderPosition)
             {//spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);

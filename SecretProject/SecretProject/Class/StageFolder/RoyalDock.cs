@@ -200,7 +200,7 @@ namespace SecretProject.Class.StageFolder
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 2f;
             MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
             Map = null;
 

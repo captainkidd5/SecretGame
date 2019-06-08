@@ -149,21 +149,6 @@ namespace SecretProject.Class.UI
                 TextBuilder.Update(gameTime);
 
 
-            //if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
-            //{
-            //    IsShopMenu = false;
-               
-            //    //isEscMenu = false;
-            //}
-            
-
-            //if(IsShopMenu)
-            //{
-            //    ShopMenu.Update(gameTime,mouse);
-            //    Game1.isMyMouseVisible = true;
-            //    Game1.freeze = true;
-            //}
-
             if(IsShopMenu)
             {
                 for (int i = 0; i < Game1.AllShops.Count; i++)
