@@ -130,10 +130,10 @@ namespace SecretProject.Class.UI
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
                 IsShopMenu = !IsShopMenu;
-               Game1.AllShops.Find(x => x.ID == 0).IsActive = IsShopMenu;
+               Game1.AllShops.Find(x => x.ID == 1).IsActive = IsShopMenu;
                 if(!IsShopMenu)
                 {
-                    Player.UserInterface.CurrentOpenShop = OpenShop.None;
+                    Player.UserInterface.CurrentOpenShop = 0;
                 }
                 //Player.UserInterface.CurrentOpenShop = OpenShop.ToolShop;
 

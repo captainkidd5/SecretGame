@@ -310,7 +310,7 @@ namespace SecretProject.Class.Playable
 
         public void Update(GameTime gameTime, List<Item> items, List<ObjectBody> objects, MouseManager mouse)
         {
-            this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
+            //this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
             if (Activate)
             {
                 KeyboardState kState = Keyboard.GetState();

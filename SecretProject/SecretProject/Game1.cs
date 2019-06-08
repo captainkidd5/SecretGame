@@ -301,8 +301,8 @@ namespace SecretProject
 
             
 
-            userInterface = new UserInterface(Player,graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
-            Player.UserInterface = userInterface;
+           
+            Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
             Sea = new Sea(graphics.GraphicsDevice,SeaContentManager, 0);
@@ -329,7 +329,7 @@ namespace SecretProject
 
             
 
-            Shop ToolShop = new Shop(graphics.GraphicsDevice, 0, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice));
+            Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice));
             ToolShop.ShopMenu.TryAddStock(3, 1);
             ToolShop.ShopMenu.TryAddStock(0, 1);
             ToolShop.ShopMenu.TryAddStock(1, 1);
