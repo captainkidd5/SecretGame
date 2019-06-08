@@ -270,7 +270,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects);
+                player.Update(gameTime, AllItems, AllObjects, mouse);
 
                 //--------------------------------------
                 //Update sprites
@@ -367,7 +367,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();
             }
-            Game1.Player.UserInterface.Draw(spriteBatch);
+            Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
         }
         public Camera2D GetCamera()

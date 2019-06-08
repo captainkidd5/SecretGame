@@ -23,6 +23,8 @@ using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Playable
 {
+    
+
 
     public class Player
     {
@@ -98,7 +100,7 @@ namespace SecretProject.Class.Playable
         public UserInterface UserInterface { get; set; }
 
 
-
+        
 
 
         [XmlIgnore]
@@ -306,8 +308,9 @@ namespace SecretProject.Class.Playable
         }
 
 
-        public void Update(GameTime gameTime, List<Item> items, List<ObjectBody> objects)
+        public void Update(GameTime gameTime, List<Item> items, List<ObjectBody> objects, MouseManager mouse)
         {
+            this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
             if (Activate)
             {
                 KeyboardState kState = Keyboard.GetState();
@@ -472,6 +475,11 @@ namespace SecretProject.Class.Playable
             {
                 CurrentAction.DrawAnimation(spriteBatch,this.Position, layerDepth);
             }
+        }
+
+        public void DrawUserInterface(SpriteBatch spriteBatch)
+        {
+            this.UserInterface.Draw(spriteBatch);
         }
 
         /*

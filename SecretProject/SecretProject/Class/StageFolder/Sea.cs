@@ -224,7 +224,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X, player.Position.Y), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects);
+                player.Update(gameTime, AllItems, AllObjects, mouse);
 
                 //--------------------------------------
                 //Update sprites

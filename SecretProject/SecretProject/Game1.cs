@@ -301,7 +301,7 @@ namespace SecretProject
 
             
 
-            userInterface = new UserInterface(graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            userInterface = new UserInterface(Player,graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
             Player.UserInterface = userInterface;
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
@@ -327,10 +327,7 @@ namespace SecretProject
 
             AllStages = new List<Home>() { Iliad, LodgeInterior };
 
-            AllShops = new List<IShop>()
-            {
-                
-            };
+            
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 0, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice));
             ToolShop.ShopMenu.TryAddStock(3, 1);
@@ -350,7 +347,10 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(165, 1);
             ToolShop.ShopMenu.TryAddStock(167, 1);
 
-
+            AllShops = new List<IShop>()
+            {
+                ToolShop
+            };
 
 
 

@@ -47,7 +47,7 @@ namespace SecretProject.Class.UI
 
             ShopInventory = new Inventory(25);
 
-            for (int i = 1; i <= 25; i++)
+            for (int i = 1; i <= ShopInventory.currentInventory.Count; i++)
             {                
                 allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194,
                     ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
@@ -103,6 +103,7 @@ namespace SecretProject.Class.UI
             if(redEsc.isClicked)
             {
                 Game1.Player.UserInterface.IsShopMenu = false;
+                Game1.Player.UserInterface.CurrentOpenShop = 0;
             }
         }
 

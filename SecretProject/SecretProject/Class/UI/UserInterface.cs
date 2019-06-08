@@ -12,9 +12,20 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.UI
 {
+    public enum OpenShop
+    {
+        None = 0,
+        ToolShop = 1
+        //LodgeInteior = 1,
+        //Iliad = 2,
+        //Exit = 3,
+        //Sea = 4,
+        //RoyalDock = 5
+    }
     public class UserInterface
     {
         ContentManager content;
@@ -29,7 +40,7 @@ namespace SecretProject.Class.UI
         public GraphicsDevice GraphicsDevice { get; set; }
         public Game1 Game { get; set; }
         public EscMenu Esc { get; set; }
-        public ShopMenu ShopMenu { get; set; }
+        //public ShopMenu ShopMenu { get; set; }
         internal ToolBar BottomBar { get; set; }
 
         public Camera2D cam;
@@ -41,7 +52,11 @@ namespace SecretProject.Class.UI
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
 
         public TextBuilder TextBuilder { get; set; }
-        
+
+
+        public Player Player { get; set; }
+
+        public OpenShop CurrentOpenShop { get; set; } = OpenShop.None;
 
         //keyboard
 
@@ -51,7 +66,7 @@ namespace SecretProject.Class.UI
         {
 
         }
-        public UserInterface(GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
+        public UserInterface(Player player, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
@@ -59,35 +74,47 @@ namespace SecretProject.Class.UI
             
             BottomBar = new ToolBar( graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
-            this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
-            ShopMenu.TryAddStock(3, 1);
-            ShopMenu.TryAddStock(0, 1);
-            ShopMenu.TryAddStock(1, 1);
-            ShopMenu.TryAddStock(147, 1);
-            ShopMenu.TryAddStock(2, 1);
-            ShopMenu.TryAddStock(122, 1);
-            ShopMenu.TryAddStock(124, 1);
-            ShopMenu.TryAddStock(125, 1);
-            ShopMenu.TryAddStock(127, 1);
-            ShopMenu.TryAddStock(128, 10);
-            ShopMenu.TryAddStock(141, 1);
-            ShopMenu.TryAddStock(143, 3);
-            ShopMenu.TryAddStock(161, 5);
-            ShopMenu.TryAddStock(145, 1);
-            ShopMenu.TryAddStock(165, 1);
-            ShopMenu.TryAddStock(167, 1);
+            //this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
+            //ShopMenu.TryAddStock(3, 1);
+            //ShopMenu.TryAddStock(0, 1);
+            //ShopMenu.TryAddStock(1, 1);
+            //ShopMenu.TryAddStock(147, 1);
+            //ShopMenu.TryAddStock(2, 1);
+            //ShopMenu.TryAddStock(122, 1);
+            //ShopMenu.TryAddStock(124, 1);
+            //ShopMenu.TryAddStock(125, 1);
+            //ShopMenu.TryAddStock(127, 1);
+            //ShopMenu.TryAddStock(128, 10);
+            //ShopMenu.TryAddStock(141, 1);
+            //ShopMenu.TryAddStock(143, 3);
+            //ShopMenu.TryAddStock(161, 5);
+            //ShopMenu.TryAddStock(145, 1);
+            //ShopMenu.TryAddStock(165, 1);
+            //ShopMenu.TryAddStock(167, 1);
            // ShopMenu.TryAddStock(165, 1);
            // ShopMenu.TryAddStock(165, 1);
             this.cam = cam;
             TextBuilder = new TextBuilder("", .1f, 5f);
+            this.Player = player;
         }
 
+        //public void CloseOtherMenus(bool exemption)
+        //{
+        //    IsShopMenu = false;
+        //    IsEscMenu = false;
 
-        public void Update(GameTime gameTime, KeyboardState kState, KeyboardState oldKeyState, Inventory inventory, MouseManager mouse)
+        //    exemption = true;
+        //}
+
+        public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             BottomBar.Update(gameTime, inventory, mouse);
+            //if (!IsShopMenu)
+            //{
+                
+            //}
 
-            if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)) && !IsShopMenu)
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)) && !IsShopMenu)
             {
                 isEscMenu = !isEscMenu;
 
@@ -100,13 +127,20 @@ namespace SecretProject.Class.UI
             }
 
 
-            if ((oldKeyState.IsKeyDown(Keys.P)) && (kState.IsKeyUp(Keys.P)) && !isEscMenu)
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
-                Game1.AllShops.Find(x => x.ID == 0).IsActive = !Game1.AllShops.Find(x => x.ID == 0).IsActive;
                 IsShopMenu = !IsShopMenu;
+               Game1.AllShops.Find(x => x.ID == 0).IsActive = IsShopMenu;
+                if(!IsShopMenu)
+                {
+                    Player.UserInterface.CurrentOpenShop = OpenShop.None;
+                }
+                //Player.UserInterface.CurrentOpenShop = OpenShop.ToolShop;
+
+                
             }
 
-            if ((oldKeyState.IsKeyDown(Keys.T)) && (kState.IsKeyUp(Keys.T)) && !isEscMenu)
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)) && !isEscMenu)
             {
                 TextBuilder.IsActive = !TextBuilder.IsActive;
             }
@@ -115,12 +149,13 @@ namespace SecretProject.Class.UI
                 TextBuilder.Update(gameTime);
 
 
-            if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
-            {
-                IsShopMenu = false;
+            //if ((oldKeyState.IsKeyDown(Keys.Escape)) && (kState.IsKeyUp(Keys.Escape)))
+            //{
+            //    IsShopMenu = false;
                
-                //isEscMenu = false;
-            }
+            //    //isEscMenu = false;
+            //}
+            
 
             //if(IsShopMenu)
             //{
@@ -129,15 +164,19 @@ namespace SecretProject.Class.UI
             //    Game1.freeze = true;
             //}
 
-            for (int i = 0; i < Game1.AllShops.Count; i++)
+            if(IsShopMenu)
             {
-                if (Game1.AllShops[i].IsActive)
+                for (int i = 0; i < Game1.AllShops.Count; i++)
                 {
-                    Game1.isMyMouseVisible = true;
-                    Game1.freeze = true;
-                    Game1.AllShops[i].Update(gameTime, mouse);
+                    if (Game1.AllShops[i].IsActive)
+                    {
+                        Game1.isMyMouseVisible = true;
+                        Game1.freeze = true;
+                        Game1.AllShops[i].Update(gameTime, mouse);
+                    }
                 }
             }
+            
 
             if (isEscMenu)
             {
@@ -167,13 +206,17 @@ namespace SecretProject.Class.UI
                 Esc.Draw(spriteBatch);
             }
 
-            for(int i =0; i< Game1.AllShops.Count; i++)
+            if(IsShopMenu)
             {
-                if(Game1.AllShops[i].IsActive)
+                for (int i = 0; i < Game1.AllShops.Count; i++)
                 {
-                    Game1.AllShops[i].Draw(spriteBatch);
+                    if (Game1.AllShops[i].IsActive)
+                    {
+                        Game1.AllShops[i].Draw(spriteBatch);
+                    }
                 }
             }
+            
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
