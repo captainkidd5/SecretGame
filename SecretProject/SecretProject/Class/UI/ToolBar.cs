@@ -110,15 +110,15 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Initialize Buttons
-            InGameMenu = new Button(ToolBarButton, graphicsDevice, new Vector2(367, 635));
-            OpenInventory = new Button(ToolBarButton, graphicsDevice, new Vector2(433, 635));
-            InvSlot1 = new Button(ToolBarButton, graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1 };
-            InvSlot2 = new Button(ToolBarButton, graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2 };
-            InvSlot3 = new Button(ToolBarButton, graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3 };
-            InvSlot4 = new Button(ToolBarButton, graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
-            InvSlot5 = new Button(ToolBarButton, graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
-            InvSlot6 = new Button(ToolBarButton, graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6 };
-            InvSlot7 = new Button(ToolBarButton, graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7 };
+            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
+            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64),graphicsDevice, new Vector2(433, 635));
+            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80,80,64,64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1 };
+            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2 };
+            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3 };
+            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
+            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
+            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6 };
+            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7 };
 
             //--------------------------------------
             //Button List Stuff
@@ -482,12 +482,13 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Buttons
-            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .7f);
-            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .7f);
+            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .69f, .7f);
+            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
             for(int i = 0; i < AllSlots.Count; i++)
             {
                 if(AllSlots[i].Texture != ToolBarButton)
                 {
+
                     AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
                 }
                 else
@@ -499,27 +500,33 @@ namespace SecretProject.Class.UI
             switch(currentSliderPosition)
             {//spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.userInterface.TileSelectorX, Game1.userInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
                 case 1:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot1.Position, color:  Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot1.Position.X, (int)InvSlot1.Position.Y, 68, 67),
+                        new Rectangle( 80,0, 68,67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 2:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot2.Position, color: Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot2.Position.X, (int)InvSlot2.Position.Y, 68, 67),
+                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 3:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot3.Position, color: Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot3.Position.X, (int)InvSlot3.Position.Y, 68, 67),
+                         new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 4:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot4.Position, color: Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot4.Position.X, (int)InvSlot4.Position.Y, 68, 67),
+                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 5:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot5.Position, color: Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot5.Position.X, (int)InvSlot5.Position.Y, 68, 67),
+                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 6:
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot6.Position, color: Color.White, layerDepth: .71f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot6.Position.X, (int)InvSlot6.Position.Y, 68, 67),
+                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
 
                 case 7:

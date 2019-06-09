@@ -17,7 +17,10 @@ namespace SecretProject.Class.Universal
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
 
-        
+        public float StandardButtonDepth { get; set; } = .7f;
+        public float StandardTextDepth { get; set; } = .72f;
+
+
 
 
         // public static Color = new Color(100, 100, 100, 100);

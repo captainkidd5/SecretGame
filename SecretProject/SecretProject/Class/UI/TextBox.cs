@@ -15,18 +15,18 @@ namespace SecretProject.Class.UI
     {
        public bool IsActivated { get; set; } = false;
         protected SpriteFont textFont;
-        protected Vector2 textBoxLocation;
+        protected Vector2 position;
         public string TextToWrite { get; set; }
-        protected Texture2D backDrop;
+        protected Texture2D Texture;
 
         public KeyboardState oldKeys = Keyboard.GetState();
 
-        public TextBox(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop)
+        public TextBox(SpriteFont textFont, Vector2 position, string textToWrite, Texture2D texture)
         {
             this.textFont = textFont;
-            this.textBoxLocation = textBoxLocation;
+            this.position = position;
             this.TextToWrite = textToWrite;
-            this.backDrop = backDrop;
+            this.Texture = texture;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -53,8 +53,10 @@ namespace SecretProject.Class.UI
 
             if(IsActivated)
             {
-                spriteBatch.Draw(backDrop, textBoxLocation, Color.White);
-                spriteBatch.DrawString(textFont, TextToWrite, textBoxLocation, Color.Red);
+               // spriteBatch.Draw(Texture, position, Color.White);
+                spriteBatch.Draw(this.Texture, new Rectangle((int)this.position.X, (int)this.position.Y, 128, 64), new Rectangle(48, 176, 128, 64), Color.White, 0f,
+                    Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.DrawString(textFont, TextToWrite, position, Color.Red, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             }
             spriteBatch.End();
 

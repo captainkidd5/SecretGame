@@ -4,12 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/basicButton.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ButtonInventory1.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/clockBackground.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/Cursor1.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/escBackDrop.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/Inventory1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/tileSelector.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBar.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBarButton.png</File>
@@ -50,9 +45,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/MiningLeft.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/MiningRight.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/MiningUp.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/redEsc.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/shopMenu.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/shopMenuItemButton.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/PlantCursor.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/ElixerTest.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/walkGrass.wav</File>

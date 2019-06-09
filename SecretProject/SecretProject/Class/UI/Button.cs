@@ -38,7 +38,7 @@ namespace SecretProject.Class.MenuStuff
 
         SpriteFont font;
 
-        public Vector2 FontLocation { get { return new Vector2(Position.X -35  + (Texture.Width / 2), Position.Y + (Texture.Height / 2)); } }
+        
 
         public int Index { get; set; }
 
@@ -47,15 +47,21 @@ namespace SecretProject.Class.MenuStuff
 
         public Rectangle ItemSourceRectangleToDraw { get; set; }
 
+        public Rectangle SourceRectangle { get; set; }
 
-        public Button(Texture2D newtexture, GraphicsDevice graphicsDevice, Vector2 position)
+        public Rectangle DestinationRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, SourceRectangle.Width, SourceRectangle.Height); } set { } }
+        public Vector2 FontLocation { get { return new Vector2(DestinationRectangle.X + SourceRectangle.Width / 2, DestinationRectangle.Y + SourceRectangle.Height / 2); } set { } }
+
+
+        public Button(Texture2D newtexture, Rectangle sourceRectangle,GraphicsDevice graphicsDevice, Vector2 position)
         {
             Texture = newtexture;
             Position = position;
             //128x64
             size = new Vector2((graphicsDevice.Viewport.Width / 10), (graphicsDevice.Viewport.Height / 11));
 
-            Rectangle = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+            Rectangle = new Rectangle((int)Position.X, (int)Position.Y, sourceRectangle.Width, sourceRectangle.Height);
+            this.SourceRectangle = sourceRectangle;
 
         }
         public void Update(MouseManager mouse)
@@ -63,13 +69,13 @@ namespace SecretProject.Class.MenuStuff
             isClicked = false;
             wasJustReleased = false;
 
-            if (mouse.IsHovering(Rectangle) && mouse.IsClicked)
+            if (mouse.IsHovering(DestinationRectangle) && mouse.IsClicked)
             {
                 Color = Color.White * .5f;
                 isClicked = true;
 
             }
-            else if (mouse.IsHovering(Rectangle) && isClicked == false)
+            else if (mouse.IsHovering(DestinationRectangle) && isClicked == false)
             {
                 Color = Color.White * .5f;
                 IsHovered = true;
@@ -109,13 +115,21 @@ namespace SecretProject.Class.MenuStuff
         {
             spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
         }
+        public void Draw(SpriteBatch spriteBatch, Color tint, float layerDepthCustom)
+        {
+            spriteBatch.Draw(this.Texture, this.DestinationRectangle, this.SourceRectangle, tint, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
+        }
 
+        //for toolbar
         public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle,SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
         {
-            
-            spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
+
+            spriteBatch.Draw(this.Texture, DestinationRectangle, sourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
+            //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
         }
+
+        //for esc menu
         public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
         {
 
@@ -123,12 +137,23 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
         }
 
+        //for shopMenu
         public void Draw(SpriteBatch spriteBatch,Rectangle sourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, string price, float layerDepthCustom = .69f)
         {
 
-            spriteBatch.Draw(Texture,sourceRectangle: sourceRectangle, destinationRectangle: Rectangle, color: Color, layerDepth: .68f);
+           // spriteBatch.Draw(Texture,sourceRectangle: sourceRectangle, destinationRectangle: Rectangle, color: Color, layerDepth: .68f);
+
+            spriteBatch.Draw(Texture, DestinationRectangle, sourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
+
             spriteBatch.DrawString(font, text, fontLocation, tint,0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
             spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
+        }
+
+        //rework
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation,Color textTint, float textureDepth, float textDepth)
+        {
+            spriteBatch.Draw(this.Texture, DestinationRectangle , this.SourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, textDepth);
+            spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, textDepth);
         }
 
     }

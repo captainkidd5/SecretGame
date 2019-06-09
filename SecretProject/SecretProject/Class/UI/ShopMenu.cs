@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             ShopMenuPosition = new Vector2(150, 10);
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.RedEsc, graphicsDevice, new Vector2(ShopMenuPosition.X + Game1.AllTextures.ShopMenu.Width - Game1.AllTextures.RedEsc.Width, ShopMenuPosition.Y));
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0,0,32,32),graphicsDevice, new Vector2(200, 200));
             this.mainFont = Game1.AllTextures.MenuText;
             
 
@@ -49,7 +49,7 @@ namespace SecretProject.Class.UI
 
             for (int i = 1; i <= ShopInventory.currentInventory.Count; i++)
             {                
-                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194,
+                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet,new Rectangle(352, 15, 128, 112), graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194,
                     ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
                 if(i%5 == 0)
                 {
@@ -109,7 +109,8 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.ShopMenu,ShopMenuPosition, null,null,null, 0f, null, Color.White, layerDepth: .45f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y, 1024, 672), new Rectangle(80, 400, 1024, 672),
+                Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .45f);
             for (int i = 0; i < allShopMenuItemButtons.Count; i++)
             {
                 if(allShopMenuItemButtons[i].ItemCounter != 0)
@@ -119,11 +120,13 @@ namespace SecretProject.Class.UI
                 }
                 else
                 {
-                    allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
+                    //allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
+                    allShopMenuItemButtons[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
+                    allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White, .69f, .7f);
                 }
             }
 
-            redEsc.Draw(spriteBatch, .73f);
+            redEsc.Draw(spriteBatch,Color.White,  .73f);
         }
 
         public void TryAddStock(int id, int amountToAdd)

@@ -337,7 +337,8 @@ namespace SecretProject.Class.StageFolder
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY,16,16),
+                        new Rectangle(48,0, 16,16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
                 }
 
                 //--------------------------------------

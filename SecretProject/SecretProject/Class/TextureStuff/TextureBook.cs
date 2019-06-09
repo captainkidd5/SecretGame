@@ -70,15 +70,15 @@ namespace SecretProject.Class.TextureStuff
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
-            TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
-            TileSelector = content.Load<Texture2D>("Button/tileSelector");
-            ClockBackground = content.Load<Texture2D>("Button/clockBackground");
+            //TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
+            //TileSelector = content.Load<Texture2D>("Button/tileSelector");
+            //ClockBackground = content.Load<Texture2D>("Button/clockBackground");
 
-            ShopMenu = content.Load<Texture2D>("Button/shopMenu");
-            ShopMenuItemButton = content.Load<Texture2D>("Button/shopMenuItemButton");
-            RedEsc = content.Load<Texture2D>("Button/redEsc");
+            //ShopMenu = content.Load<Texture2D>("Button/shopMenu");
+            //ShopMenuItemButton = content.Load<Texture2D>("Button/shopMenuItemButton");
+            //RedEsc = content.Load<Texture2D>("Button/redEsc");
 
-            BasicButton = content.Load<Texture2D>("Button/basicButton");
+           // BasicButton = content.Load<Texture2D>("Button/basicButton");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 

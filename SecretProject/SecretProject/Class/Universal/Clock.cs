@@ -33,7 +33,7 @@ namespace SecretProject.Class.Universal
             ClockPosition = new Vector2(1100, 25);
            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
-            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.ClockBackground);
+            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
         }
 

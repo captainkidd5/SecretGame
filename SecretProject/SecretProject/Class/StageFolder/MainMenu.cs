@@ -47,10 +47,10 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Initialize Buttons
-            reloadMap = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 100));
-            resumeGame = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 200));
-            Load = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 300));
-            Exit = new Button(Game1.AllTextures.BasicButton, graphicsDevice, new Vector2(500, 400));
+            reloadMap = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48,176,128, 64),  graphicsDevice, new Vector2(500, 100));
+            resumeGame = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 200));
+            Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 300));
+            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 400));
 
             allButtons = new List<Button>() { resumeGame, Load, Exit, reloadMap };
 
@@ -111,11 +111,14 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Draw Buttons
-
-            reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
-            resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
-            Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
-            Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
+            reloadMap.Draw(spriteBatch, font, "Reload Map", reloadMap.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            //reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
+            resumeGame.Draw(spriteBatch,  font, "Resume Game", resumeGame.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            //resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
+            Load.Draw(spriteBatch, font, "Load Game", Load.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            //Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
+            //Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 
 
             spriteBatch.End();
