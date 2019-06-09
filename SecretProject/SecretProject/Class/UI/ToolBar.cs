@@ -48,13 +48,6 @@ namespace SecretProject.Class.UI
         public List<Button> AllNonInventoryButtons { get; set; }
         public List<Button> AllSlots { get; set; }
 
-        public Texture2D InvSlot1Texture { get; set; }
-        public Texture2D InvSlot2Texture { get; set; }
-        public Texture2D InvSlot3Texture { get; set; }
-        public Texture2D InvSlot4Texture { get; set; }
-        public Texture2D InvSlot5Texture { get; set; }
-        public Texture2D InvSlot6Texture { get; set; }
-        public Texture2D InvSlot7Texture { get; set; }
 
         public Rectangle ItemSwitchSourceRectangle { get; set; }
 
@@ -111,7 +104,7 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Initialize Buttons
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
-            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64),graphicsDevice, new Vector2(433, 635));
+            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32),graphicsDevice, new Vector2(459, 645));
             InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80,80,64,64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1 };
             InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2 };
             InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3 };

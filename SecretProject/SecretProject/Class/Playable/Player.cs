@@ -451,10 +451,10 @@ namespace SecretProject.Class.Playable
                 {
                     position.X = Game1.GetCurrentStage().MapRectangle.Right;
                 }
-                if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
-                {
-                    position.Y = Game1.GetCurrentStage().MapRectangle.Top;
-                }
+               // if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+               // {
+               //     position.Y = Game1.GetCurrentStage().MapRectangle.Top;
+              //  }
                 if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
                 {
                     position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;

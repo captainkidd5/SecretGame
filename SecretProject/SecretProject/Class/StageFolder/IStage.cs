@@ -56,6 +56,8 @@ namespace SecretProject.Class.StageFolder
 
 List<ActionTimer> AllActions { get; set; }
 
+        List<Portal> AllPortals { get; set; }
+
 
 
 

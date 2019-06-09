@@ -143,10 +143,10 @@ namespace SecretProject.Class.MenuStuff
 
            // spriteBatch.Draw(Texture,sourceRectangle: sourceRectangle, destinationRectangle: Rectangle, color: Color, layerDepth: .68f);
 
-            spriteBatch.Draw(Texture, DestinationRectangle, sourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(Texture, DestinationRectangle, sourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
-            spriteBatch.DrawString(font, text, fontLocation, tint,0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: layerDepthCustom);
+            spriteBatch.DrawString(font, text, fontLocation, tint,0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(font, price, priceLocation, Color.OrangeRed, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
         }
 
         //rework

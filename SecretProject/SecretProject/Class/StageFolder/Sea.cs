@@ -107,6 +107,7 @@ namespace SecretProject.Class.StageFolder
         public Rectangle MapRectangle { get; set; }
         public ParticleEngine ParticleEngine { get; set; }
         public TextBuilder TextBuilder { get; set; }
+        public List<Portal> AllPortals { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #endregion
 

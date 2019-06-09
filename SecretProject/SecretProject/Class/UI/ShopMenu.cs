@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             ShopMenuPosition = new Vector2(150, 10);
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0,0,32,32),graphicsDevice, new Vector2(200, 200));
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0,0,32,32),graphicsDevice, new Vector2(700, 200));
             this.mainFont = Game1.AllTextures.MenuText;
             
 

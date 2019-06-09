@@ -144,6 +144,25 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            for(int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
+            {
+                string keyFrom;
+                string keyTo;
+     
+                mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);
+                mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardTo", out keyTo);
+                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo));
+                
+                
+                int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
+                int portalY = (int)mapName.ObjectGroups["Portal"].Objects[i].Y;
+                int portalWidth = (int)mapName.ObjectGroups["Portal"].Objects[i].Width;
+                int portalHeight = (int)mapName.ObjectGroups["Portal"].Objects[i].Height;
+
+                portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
+
+                Game1.GetCurrentStage().AllPortals.Add(portal);
+            }
 
            
                 //stone
@@ -155,7 +174,7 @@ namespace SecretProject.Class.TileStuff
             //bluerunestone
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-               GenerateTiles(1, 4845, "dirt", 50000, 0);
+               GenerateTiles(1, 4845, "dirt", 100, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)

@@ -114,6 +114,7 @@ namespace SecretProject.Class.StageFolder
 
         public DialogueHolder AllDockDialogue { get; set; }
         public TextBuilder TextBuilder { get; set; }
+        public List<Portal> AllPortals { get; set; }
 
         #endregion
 
@@ -153,7 +154,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>("Map/InteriorSpriteSheet1");
+            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
 
 
@@ -171,7 +172,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.Map = new TmxMap("Content/Map/lodgeInterior.tmx");
+            this.Map = new TmxMap("Content/Map/worldMap.tmx");
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
@@ -185,6 +186,7 @@ namespace SecretProject.Class.StageFolder
                 foreGround,
                 Placement
             };
+            AllPortals = new List<Portal>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadInitialTileObjects();
             TileWidth = Map.Tilesets[0].TileWidth;
@@ -199,7 +201,7 @@ namespace SecretProject.Class.StageFolder
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 2f;
             MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
             Map = null;
 
@@ -234,10 +236,13 @@ namespace SecretProject.Class.StageFolder
         {
             Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.O)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.O)))
+            for (int p = 0; p < AllPortals.Count; p++)
             {
-                Game1.SwitchStage(5, 4);
-                return;
+                if (player.Rectangle.Intersects(AllPortals[p].PortalStart))
+                {
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To);
+                    return;
+                }
             }
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
@@ -292,12 +297,12 @@ namespace SecretProject.Class.StageFolder
                 }
                 //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                if (player.position.Y > 1550 && player.position.X < 810 && player.position.X > 730)
-                {
-                    player.Position = new Vector2(player.position.X, 60);
-                    Game1.SwitchStage(2, 5);
-                    return;
-                }
+                //if (player.position.Y > 1550 && player.position.X < 810 && player.position.X > 730)
+                //{
+                //    player.Position = new Vector2(player.position.X, 60);
+                //    Game1.SwitchStage(2, 5);
+                //    return;
+                //}
             }
         }
         #endregion
@@ -351,7 +356,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     if (ShowBorders)
                     {
-                        obj.Draw(spriteBatch, .4f);
+                        //obj.Draw(spriteBatch, .4f);
                     }
                 }
 
