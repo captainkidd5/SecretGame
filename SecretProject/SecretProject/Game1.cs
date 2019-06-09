@@ -366,6 +366,7 @@ namespace SecretProject
         }
         #endregion
 
+        //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
         public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
         {
 
@@ -376,12 +377,13 @@ namespace SecretProject
             
             if (portal != null)
             {
-               
-                float x = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).PortalStart.X;
-                float y = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).PortalStart.Y;
-                float safteyX = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).SafteyOffSetX;
-                float safteyY = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).SafteyOffSetY;
-                Player.position = new Vector2(x + safteyX, y + safteyY);
+                Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To);
+                float x = tempPortal.PortalStart.X;
+                float width = tempPortal.PortalStart.Width / 2;
+                float y = tempPortal.PortalStart.Y;
+                float safteyX = tempPortal.SafteyOffSetX;
+                float safteyY = tempPortal.SafteyOffSetY;
+                Player.position = new Vector2(x + width + safteyX, y + safteyY);
             }
 
 
@@ -421,27 +423,27 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
+
                     mainMenu.Update(gameTime, myMouseManager, this);
                     break;
 
                 case Stages.LodgeInteior:
-                    GraphicsDevice.Clear(Color.Black);
+
                     LodgeInterior.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.Iliad:
-                    GraphicsDevice.Clear(Color.Black);
+
 
                     Iliad.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
-                    GraphicsDevice.Clear(Color.Black); 
+
                     RoyalDock.Update(gameTime, myMouseManager, Player);
                     break;
 
                     case Stages.Sea:
-                        GraphicsDevice.Clear(Color.Black);
                        Sea.Update(gameTime, myMouseManager, Player);
                        break;
             }
@@ -459,11 +461,13 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.MainMenu:
+                    //GraphicsDevice.Clear(Color.Black);
                     GraphicsDevice.Clear(Color.Black);
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
                 case Stages.LodgeInteior:
+                    GraphicsDevice.Clear(Color.Black);
                     LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                    // spriteBatch.Begin();
                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
@@ -471,10 +475,12 @@ namespace SecretProject
                     break;
 
                 case Stages.Iliad:
+                    GraphicsDevice.Clear(Color.Black);
                     Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
+                    GraphicsDevice.Clear(Color.Black);
                     RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
