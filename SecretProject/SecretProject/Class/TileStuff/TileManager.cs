@@ -94,6 +94,8 @@ namespace SecretProject.Class.TileStuff
 
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714, 100, 100, 100, 100);
 
+        public int TileSetNumber { get; set; }
+
 
         #region CONSTRUCTOR
 
@@ -124,6 +126,7 @@ namespace SecretProject.Class.TileStuff
             this.AllDepths = allDepths;
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>();
+            this.TileSetNumber = tileSetNumber;
 
 
 
@@ -347,34 +350,34 @@ namespace SecretProject.Class.TileStuff
 
                 //Tiles[newTileX, newTileY].GID = 6675;
                 //if (AllTiles[layer][newTileX, newTileY].)
-                Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
-                if(!mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, mapWidth, mapHeight);
+                if(!mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
                     AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, 100, 100);
                     return;
                 }
                 
                 
-                if (mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                if (mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
                     string value = "";
-                    mapName.Tilesets[0].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
+                    mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
 
                     List<Tile> intermediateNewTiles = new List<Tile>();
                     sampleTile.SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
                     for (int index = 0; index < sampleTile.SpawnsWith.Length; index++)
                     {
                         string gidX = "";
-                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
+                        mapName.Tilesets[TileSetNumber].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
                         string gidY = "";
-                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
+                        mapName.Tilesets[TileSetNumber].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
                         string tilePropertyLayer = "";
-                        mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                        mapName.Tilesets[TileSetNumber].Tiles[sampleTile.SpawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
                         int intGidX = int.Parse(gidX);
                         int intGidY = int.Parse(gidY);
                         int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
-                        int totalGID = mapName.Tilesets[0].Tiles[sampleTile.SpawnsWith[index]].Id;
+                        int totalGID = mapName.Tilesets[TileSetNumber].Tiles[sampleTile.SpawnsWith[index]].Id;
 
                         //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
                         if (!CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer))
@@ -408,23 +411,23 @@ namespace SecretProject.Class.TileStuff
         {
             List<Tile> tilesToReturn = new List<Tile>();
             string value = "";
-            mapName.Tilesets[0].Tiles[baseTile.GID].Properties.TryGetValue("spawnWith", out value);
+            mapName.Tilesets[TileSetNumber].Tiles[baseTile.GID].Properties.TryGetValue("spawnWith", out value);
             baseTile.SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
             if (baseTile.SpawnsWith != null)
             {
                 for(int i=0; i< baseTile.SpawnsWith.Length;i++)
                 {
                     string gidX = "";
-                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationX", out gidX);
+                    mapName.Tilesets[TileSetNumber].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationX", out gidX);
                     string gidY = "";
-                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationY", out gidY);
+                    mapName.Tilesets[TileSetNumber].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("relationY", out gidY);
                     string tilePropertyLayer = "";
-                    mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                    mapName.Tilesets[TileSetNumber].Tiles[baseTile.SpawnsWith[i]].Properties.TryGetValue("layer", out tilePropertyLayer);
                     int intGidX = int.Parse(gidX);
                     int intGidY = int.Parse(gidY);
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
-                    int totalGID = mapName.Tilesets[0].Tiles[baseTile.SpawnsWith[i]].Id;
+                    int totalGID = mapName.Tilesets[TileSetNumber].Tiles[baseTile.SpawnsWith[i]].Id;
                     //tilesToReturn.Add(AllTiles[intTilePropertyLayer][xCoord, yCoord]);
                     AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, 100, 100, 100, 100);
                 }
@@ -470,15 +473,15 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (AllTiles[z][i, j].GID != 0)
                             {
-                                if (mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
-                                    if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
+                                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
                                     {
 
 
-                                        for (int k = 0; k < mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
+                                        for (int k = 0; k < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
                                         {
-                                            TmxObject tempObj = mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
+                                            TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
 
 
                                             AllTiles[z][i, j].TileObject = new ObjectBody(graphicsDevice,
@@ -516,11 +519,11 @@ namespace SecretProject.Class.TileStuff
 
         public void AddObject(Tile tile)
         {
-            if (mapName.Tilesets[0].Tiles.ContainsKey(tile.GID))
+            if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(tile.GID))
             {
-                for (int k = 0; k < mapName.Tilesets[0].Tiles[tile.GID].ObjectGroups[0].Objects.Count; k++)
+                for (int k = 0; k < mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects.Count; k++)
                 {
-                    TmxObject tempObj = mapName.Tilesets[0].Tiles[tile.GID].ObjectGroups[0].Objects[k];
+                    TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects[k];
 
                     tile.TileObject = new ObjectBody(graphicsDevice,
                         new Rectangle(tile.DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
@@ -571,7 +574,7 @@ namespace SecretProject.Class.TileStuff
                                 if (z == 0)
                                 {
                                     
-                                    if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[0].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                    if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
 
                                         Game1.Player.UserInterface.DrawTileSelector = true;
