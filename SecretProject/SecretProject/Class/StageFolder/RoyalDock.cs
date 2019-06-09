@@ -245,7 +245,7 @@ namespace SecretProject.Class.StageFolder
             {
                 if(player.Rectangle.Intersects(AllPortals[p].PortalStart))
                 {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
                     return;
                 }
             }

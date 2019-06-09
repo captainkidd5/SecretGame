@@ -366,14 +366,25 @@ namespace SecretProject
         }
         #endregion
 
-        public static void SwitchStage(int currentStage, int stageToSwitchTo)
+        public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
         {
 
+            
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
             GetStageFromInt(stageToSwitchTo).LoadContent( cam);
             
-            
+            if (portal != null)
+            {
+               
+                float x = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).PortalStart.X;
+                float y = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).PortalStart.Y;
+                float safteyX = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).SafteyOffSetX;
+                float safteyY = GetCurrentStage().AllPortals.Find(z => z.From == portal.To).SafteyOffSetY;
+                Player.position = new Vector2(x + safteyX, y + safteyY);
+            }
+
+
         }
 
 

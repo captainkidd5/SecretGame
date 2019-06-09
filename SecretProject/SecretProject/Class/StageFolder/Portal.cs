@@ -12,12 +12,16 @@ namespace SecretProject.Class.StageFolder
         public int From { get; set; }
         public int To { get; set; }
         public Rectangle PortalStart { get; set; }
+        public int SafteyOffSetX { get; set; }
+        public int SafteyOffSetY { get; set; }
         //public Rectangle PortalEnd { get; set; }
 
-        public Portal(int from, int to)
+        public Portal(int from, int to,int safteyX, int safteyY)
         {
             this.From = from;
             this.To = to;
+            this.SafteyOffSetX = safteyX;
+            this.SafteyOffSetY = safteyY;
         }
     }
 }

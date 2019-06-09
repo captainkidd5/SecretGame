@@ -148,10 +148,15 @@ namespace SecretProject.Class.TileStuff
             {
                 string keyFrom;
                 string keyTo;
+                string safteyX;
+                string safteyY;
+
      
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardTo", out keyTo);
-                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo));
+                mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
+                mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
+                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY));
                 
                 
                 int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
