@@ -57,6 +57,8 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D RockParticle;
 
+        public Texture2D ShipSpriteShet;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
@@ -70,24 +72,9 @@ namespace SecretProject.Class.TextureStuff
             ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
-            //TransparentTextBox = content.Load<Texture2D>("Button/transparentTextBox");
-            //TileSelector = content.Load<Texture2D>("Button/tileSelector");
-            //ClockBackground = content.Load<Texture2D>("Button/clockBackground");
 
-            //ShopMenu = content.Load<Texture2D>("Button/shopMenu");
-            //ShopMenuItemButton = content.Load<Texture2D>("Button/shopMenuItemButton");
-            //RedEsc = content.Load<Texture2D>("Button/redEsc");
-
-           // BasicButton = content.Load<Texture2D>("Button/basicButton");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
-
-           // Iliad = new TmxMap("Content/Map/worldMap.tmx");
-
-           // LodgeInterior = new TmxMap("Content/Map/lodgeInterior.tmx");
-           // RoyalDocks = new TmxMap("Content/Map/royalDocks.tmx");
-
-           // Sea = new TmxMap("Content/Map/sea.tmx");
 
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
@@ -98,7 +85,7 @@ namespace SecretProject.Class.TextureStuff
             RockParticle = content.Load<Texture2D>("Particles/rockparticle");
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
-           
+            ShipSpriteShet = content.Load<Texture2D>("Player/Ship/ShipSpriteSheet");
 
         }
 

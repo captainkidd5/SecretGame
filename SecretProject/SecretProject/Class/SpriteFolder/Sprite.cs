@@ -149,6 +149,11 @@ namespace SecretProject.Class.SpriteFolder
                     color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
+        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float origin, float layerDepth)
+        {
+            spriteBatch.Draw
+        }
+
         public void Bobber(GameTime gameTime)
         {
 
