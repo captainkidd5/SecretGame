@@ -180,6 +180,7 @@ namespace SecretProject.Class.StageFolder
             Cam.Zoom = 2f;
             MapRectangle = new Rectangle(0, 0, TileWidth * 1024, TileHeight * 1024);
             this.Map = null;
+            Game1.Player.GameMode = 2;
         }
 
         public void UnloadContent()
@@ -195,7 +196,7 @@ namespace SecretProject.Class.StageFolder
             foreGround = null;
             underWater = null;
             this.Cam = null;
-
+            Game1.Player.GameMode = 1;
         }
 
         #endregion

@@ -16,8 +16,9 @@ namespace SecretProject.Class.Playable
         public ParticleEngine ParticleEngine { get; set; }
         public Rectangle SourceRectangle { get; set; }
         public Rectangle DestinationRectangle { get; set; }
-        public Texture2D SpriteSheet { get; set; }
+        public Texture2D Texture { get; set; }
         public Sprite ShipSprite { get; set; }
+        public ShipModel Model { get; set; }
 
         public Vector2 Position { get; set; }
         public Vector2 Origin { get; set; }
@@ -25,9 +26,14 @@ namespace SecretProject.Class.Playable
         public float RotationVelocity { get; set; } = 3f;
         public float LinearVelocity { get; set; } = 4f;
 
-        public PlayerShip()
+        public PlayerShip(GraphicsDevice graphics, Texture2D texture)
         {
             this.Origin = new Vector2( SourceRectangle.Width / 2, SourceRectangle.Height / 2);
+            Model = new ShipModel();
+            Model.AssignModel(1);
+            this.Texture = texture;
+            this.ShipSprite = new Sprite(graphics, this.Texture, Model.SourceRectangle, this.Position, Model.SourceRectangle.Width, Model.SourceRectangle.Height);
+            
         }
 
         public void Update(GameTime gameTime)
@@ -49,9 +55,14 @@ namespace SecretProject.Class.Playable
             }
 
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            
+            ShipSprite.DrawRotationalSprite(spriteBatch, Position, this.Rotation, Origin, layerDepth);
+        }
+
+        public void SwapModel(int id)
+        {
+            Model.AssignModel(id);
         }
     }
 }

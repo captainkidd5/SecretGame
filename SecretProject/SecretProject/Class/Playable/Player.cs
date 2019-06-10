@@ -99,8 +99,8 @@ namespace SecretProject.Class.Playable
 
         public UserInterface UserInterface { get; set; }
 
-
-        
+        //1 for normal, 2 for ship
+        public int GameMode { get; set; } = 1;
 
 
         [XmlIgnore]
@@ -129,6 +129,8 @@ namespace SecretProject.Class.Playable
                 return new Rectangle((int)position.X - 16, (int)position.Y,  48,  64);
             }
         }
+
+        public PlayerShip PlayerShip { get; set; }
 
         private Player()
         {
@@ -179,6 +181,10 @@ namespace SecretProject.Class.Playable
             CurrentAction = CutGrassDown;
 
             SetRectangleTexture(graphics, ClickRangeRectangle);
+
+            PlayerShip = new PlayerShip(graphics, Game1.AllTextures.ShipSpriteSheet);
+            //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
+            
 
         }
 
@@ -313,151 +319,160 @@ namespace SecretProject.Class.Playable
             //this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
             if (Activate)
             {
-                KeyboardState kState = Keyboard.GetState();
-                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-                //animation set changes depending on which key is pressed, as shown in playercontrols
-                PlayerMovementAnimations = animations[(int)controls.Direction];
-
-                MyCollider.Rectangle = this.Rectangle;
-                MyCollider.Velocity = this.PrimaryVelocity;
-                MyCollider.DidCollideMagnet(items);
-
-                
-
-                bool collideOccurred = MyCollider.DidCollide(objects); //did a collision with an object happen this loop?
-                this.PrimaryVelocity = MyCollider.Velocity;
-
-                if(collideOccurred) //if collision occurred we don't want to take diagonal movement into account
-                {
-                    TotalVelocity = PrimaryVelocity;
-                }
-                else
-                {
-                    TotalVelocity = PrimaryVelocity + SecondaryVelocity;
-                }
-                
-
-                if (controls.IsSprinting)
-                {
-                    TotalVelocity = TotalVelocity * 5f;
-                }
-                else
+                if (GameMode == 1)
                 {
 
-                }
 
-                Position += TotalVelocity;
-                PrimaryVelocity = Vector2.Zero;
-                SecondaryVelocity = Vector2.Zero;
-                TotalVelocity = Vector2.Zero;
+                    KeyboardState kState = Keyboard.GetState();
+                    float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                
-                if (controls.IsMoving && CurrentAction.IsAnimated == false)
-                {
-                    PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
-                }
-                else if (CurrentAction.IsAnimated == true)
-                {
-                    CurrentAction.PlayOnce(gameTime,Position);
+                    //animation set changes depending on which key is pressed, as shown in playercontrols
+                    PlayerMovementAnimations = animations[(int)controls.Direction];
 
-                }
-                else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
-                {
-                    PlayerMovementAnimations.SetFrame(0);
-                } 
+                    MyCollider.Rectangle = this.Rectangle;
+                    MyCollider.Velocity = this.PrimaryVelocity;
+                    MyCollider.DidCollideMagnet(items);
 
 
-                IsMoving = false;
 
-                if(!CurrentAction.IsAnimated)
-                {
-                    controls.Update();
-                }
-                
+                    bool collideOccurred = MyCollider.DidCollide(objects); //did a collision with an object happen this loop?
+                    this.PrimaryVelocity = MyCollider.Velocity;
 
-                if (controls.IsMoving)
-                {
-                    IsMoving = true;
-                    switch (controls.Direction)
+                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
                     {
-                        case Dir.Right:
-                            PrimaryVelocity.X = Speed1 ;
-                            break;
-
-                        case Dir.Left:
-                            PrimaryVelocity.X = -Speed1;
-                            break;
-
-                        case Dir.Down:
-                            PrimaryVelocity.Y = Speed1;
-                            break;
-
-                        case Dir.Up:
-                            PrimaryVelocity.Y = -Speed1;
-                            break;
-
-                        default:
-                            break;
-
+                        TotalVelocity = PrimaryVelocity;
+                    }
+                    else
+                    {
+                        TotalVelocity = PrimaryVelocity + SecondaryVelocity;
                     }
 
 
-                    switch(controls.SecondaryDirection)
+                    if (controls.IsSprinting)
                     {
-                        case SecondaryDir.Right:
-                            SecondaryVelocity.X = SecondarySpeed;
-                            PlayerMovementAnimations = animations[(int)Dir.Right];
-                            //PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                            PlayerMovementAnimations.UpdateAnimations(gameTime,this.Position);
-                            break;
-                        case SecondaryDir.Left:
-                            SecondaryVelocity.X = -SecondarySpeed;
-                            PlayerMovementAnimations = animations[(int)Dir.Left];
-                           // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                            PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
-                            break;
-                        case SecondaryDir.Down:
-                            SecondaryVelocity.Y = SecondarySpeed;
-                           // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                            //PlayerMovementAnimations = animations[(int)Dir.Down];
-                            //PlayerMovementAnimations.Update(gameTime);
-                            break;
-                        case SecondaryDir.Up:
-                            SecondaryVelocity.Y = -SecondarySpeed;
+                        TotalVelocity = TotalVelocity * 5f;
+                    }
+                    else
+                    {
 
-                            //PlayerMovementAnimations = animations[(int)Dir.Up];
-                            //PlayerMovementAnimations.Update(gameTime);
-                            break;
-                       // case SecondaryDir.None:
+                    }
 
-                        
+                    Position += TotalVelocity;
+                    PrimaryVelocity = Vector2.Zero;
+                    SecondaryVelocity = Vector2.Zero;
+                    TotalVelocity = Vector2.Zero;
 
-                        default:
-                            break;
-                        
+
+                    if (controls.IsMoving && CurrentAction.IsAnimated == false)
+                    {
+                        PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+                    }
+                    else if (CurrentAction.IsAnimated == true)
+                    {
+                        CurrentAction.PlayOnce(gameTime, Position);
+
+                    }
+                    else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
+                    {
+                        PlayerMovementAnimations.SetFrame(0);
                     }
 
 
-                }
+                    IsMoving = false;
 
-                if(position.X < Game1.GetCurrentStage().MapRectangle.Left)
-                {
-                    position.X = Game1.GetCurrentStage().MapRectangle.Left;
-                }
+                    if (!CurrentAction.IsAnimated)
+                    {
+                        controls.Update();
+                    }
 
 
-                if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
-                {
-                    position.X = Game1.GetCurrentStage().MapRectangle.Right;
+                    if (controls.IsMoving)
+                    {
+                        IsMoving = true;
+                        switch (controls.Direction)
+                        {
+                            case Dir.Right:
+                                PrimaryVelocity.X = Speed1;
+                                break;
+
+                            case Dir.Left:
+                                PrimaryVelocity.X = -Speed1;
+                                break;
+
+                            case Dir.Down:
+                                PrimaryVelocity.Y = Speed1;
+                                break;
+
+                            case Dir.Up:
+                                PrimaryVelocity.Y = -Speed1;
+                                break;
+
+                            default:
+                                break;
+
+                        }
+
+
+                        switch (controls.SecondaryDirection)
+                        {
+                            case SecondaryDir.Right:
+                                SecondaryVelocity.X = SecondarySpeed;
+                                PlayerMovementAnimations = animations[(int)Dir.Right];
+                                //PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
+                                PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+                                break;
+                            case SecondaryDir.Left:
+                                SecondaryVelocity.X = -SecondarySpeed;
+                                PlayerMovementAnimations = animations[(int)Dir.Left];
+                                // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
+                                PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+                                break;
+                            case SecondaryDir.Down:
+                                SecondaryVelocity.Y = SecondarySpeed;
+                                // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
+                                //PlayerMovementAnimations = animations[(int)Dir.Down];
+                                //PlayerMovementAnimations.Update(gameTime);
+                                break;
+                            case SecondaryDir.Up:
+                                SecondaryVelocity.Y = -SecondarySpeed;
+
+                                //PlayerMovementAnimations = animations[(int)Dir.Up];
+                                //PlayerMovementAnimations.Update(gameTime);
+                                break;
+                            // case SecondaryDir.None:
+
+
+
+                            default:
+                                break;
+
+                        }
+
+
+                    }
+
+                    if (position.X < Game1.GetCurrentStage().MapRectangle.Left)
+                    {
+                        position.X = Game1.GetCurrentStage().MapRectangle.Left;
+                    }
+
+
+                    if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
+                    {
+                        position.X = Game1.GetCurrentStage().MapRectangle.Right;
+                    }
+                    // if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+                    // {
+                    //     position.Y = Game1.GetCurrentStage().MapRectangle.Top;
+                    //  }
+                    if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
+                    {
+                        position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
+                    }
                 }
-               // if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
-               // {
-               //     position.Y = Game1.GetCurrentStage().MapRectangle.Top;
-              //  }
-                if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
+                if(GameMode == 2)
                 {
-                    position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
+                    PlayerShip.Update(gameTime);
                 }
             }
         }
@@ -465,15 +480,24 @@ namespace SecretProject.Class.Playable
         //drawing relative to wrong camera it seems.
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            if (CurrentAction.IsAnimated == false)
+            if (GameMode == 1)
             {
-                PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position, layerDepth);
-            }
 
-            //????
-            if (CurrentAction.IsAnimated == true)
+
+                if (CurrentAction.IsAnimated == false)
+                {
+                    PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position, layerDepth);
+                }
+
+                //????
+                if (CurrentAction.IsAnimated == true)
+                {
+                    CurrentAction.DrawAnimation(spriteBatch, this.Position, layerDepth);
+                }
+            }
+            if(GameMode == 2)
             {
-                CurrentAction.DrawAnimation(spriteBatch,this.Position, layerDepth);
+                PlayerShip.Draw(spriteBatch, layerDepth);
             }
         }
 

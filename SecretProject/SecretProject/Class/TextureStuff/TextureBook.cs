@@ -57,7 +57,7 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D RockParticle;
 
-        public Texture2D ShipSpriteShet;
+        public Texture2D ShipSpriteSheet;
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -85,7 +85,7 @@ namespace SecretProject.Class.TextureStuff
             RockParticle = content.Load<Texture2D>("Particles/rockparticle");
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
-            ShipSpriteShet = content.Load<Texture2D>("Player/Ship/ShipSpriteSheet");
+            ShipSpriteSheet = content.Load<Texture2D>("Player/Ship/ShipSpriteSheet");
 
         }
 

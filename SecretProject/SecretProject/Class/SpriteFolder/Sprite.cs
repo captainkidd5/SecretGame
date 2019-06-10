@@ -84,6 +84,8 @@ namespace SecretProject.Class.SpriteFolder
             this.OffSetY = offSetY;
         }
 
+
+
         public void Update(GameTime gameTime)
         {
             if(IsAnimated)
@@ -149,9 +151,10 @@ namespace SecretProject.Class.SpriteFolder
                     color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
-        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float origin, float layerDepth)
+        //for ship sprites
+        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position,float rotation, Vector2 origin, float layerDepth)
         {
-            spriteBatch.Draw
+            spriteBatch.Draw(this.AtlasTexture, this.DestinationRectangle, this.SourceRectangle, Color.White, rotation, origin, SpriteEffects.None, layerDepth );
         }
 
         public void Bobber(GameTime gameTime)
