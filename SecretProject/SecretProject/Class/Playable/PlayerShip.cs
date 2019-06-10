@@ -35,6 +35,7 @@ namespace SecretProject.Class.Playable
             this.ShipSprite = new Sprite(graphics, this.Texture, Model.SourceRectangle, this.Position, Model.SourceRectangle.Width, Model.SourceRectangle.Height);
             ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.RockParticle }, ShipSprite.Position);
             ParticleEngine.Color = Color.AliceBlue;
+            Position = new Vector2(400, 400);
             
         }
 
@@ -53,28 +54,28 @@ namespace SecretProject.Class.Playable
             Vector2 direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - Rotation), -(float)Math.Sin(MathHelper.ToRadians(90)- Rotation));
             if(Game1.NewKeyBoardState.IsKeyDown(Keys.W))
             {
-                Position += direction * LinearVelocity;
-                ParticleEngine.EmitterLocation = new Vector2(Position.X, Position.Y - 10);
+                Position += direction * LinearVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                ParticleEngine.EmitterLocation = new Vector2(Position.X, Position.Y);
                 ParticleEngine.ActivationTime = .5f;
                 
             }
 
             if (Game1.NewKeyBoardState.IsKeyDown(Keys.S))
             {
-                Position -= direction * LinearVelocity;
+                Position -= direction * LinearVelocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             if(Game1.NewKeyBoardState.IsKeyDown(Keys.LeftShift))
             {
-                this.LinearVelocity = 10f;
+                this.LinearVelocity = 200f;
             }
             else
             {
-                this.LinearVelocity = 1f;
+                this.LinearVelocity = 100f;
             }
-            //Position.Normalize();
+            Position.Normalize();
 
-            ShipSprite.UpdateShip(gameTime, Position);
+           // ShipSprite.UpdateShip(gameTime, Position);
             
             ParticleEngine.Update(gameTime);
 

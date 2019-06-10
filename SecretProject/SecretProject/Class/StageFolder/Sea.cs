@@ -251,14 +251,14 @@ namespace SecretProject.Class.StageFolder
 
                // ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
-                {
-                    player.Position = new Vector2(player.position.X, 1540);
-                    Game1.PreviousStage = 5;
-                    this.TilesLoaded = false;
-                    Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
-                    Game1.gameStages = Stages.Iliad;
-                }
+                //if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
+                //{
+                //    player.Position = new Vector2(player.position.X, 1540);
+                //    Game1.PreviousStage = 5;
+                //    this.TilesLoaded = false;
+                //    Game1.RoyalDock.AllTiles.LoadInitialTileObjects();
+                //    Game1.gameStages = Stages.Iliad;
+                //}
             }
         }
         #endregion
@@ -314,13 +314,13 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-
+                player.DrawShipMode(spriteBatch, .8f);
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();
 
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, null, transformMatrix: Cam.getTransformation(graphics));
-                player.DrawShipMode(spriteBatch, .8f);
-                spriteBatch.End();
+                //spriteBatch.Begin(SpriteSortMode.FrontToBack, null, transformMatrix: Cam.getTransformation(graphics));
+                
+                //spriteBatch.End();
             }
             Game1.Player.UserInterface.Draw(spriteBatch);
             //Game1.GlobalClock.Draw(spriteBatch);

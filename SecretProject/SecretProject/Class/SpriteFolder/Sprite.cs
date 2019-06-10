@@ -119,7 +119,6 @@ namespace SecretProject.Class.SpriteFolder
 
         public void UpdateShip(GameTime gameTime, Vector2 position)
         {
-            this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
         }
 
         public void UpdateAnimations(GameTime gameTime, Vector2 position)
@@ -159,7 +158,10 @@ namespace SecretProject.Class.SpriteFolder
         //for ship sprites
         public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position,float rotation, Vector2 origin, float layerDepth)
         {
-            spriteBatch.Draw(this.AtlasTexture, this.DestinationRectangle, this.SourceRectangle, Color.White, rotation, origin, SpriteEffects.None, layerDepth );
+            //public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
+
+            spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f,SpriteEffects.None, layerDepth );
+           // spriteBatch.Draw(this.AtlasTexture, this.DestinationRectangle, this.SourceRectangle, Color.White, rotation, origin, SpriteEffects.None, layerDepth);
         }
 
         public void Bobber(GameTime gameTime)
