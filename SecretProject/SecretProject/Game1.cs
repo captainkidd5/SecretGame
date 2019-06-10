@@ -310,15 +310,15 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
-            Iliad = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
+            Iliad = new Home(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 2);
             
-            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0);
+            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 2);
             
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
             
             
             
-            LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0);
+            LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",2);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();

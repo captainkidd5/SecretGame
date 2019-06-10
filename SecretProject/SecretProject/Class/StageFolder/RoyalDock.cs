@@ -30,92 +30,12 @@ using SecretProject.Class.DialogueStuff;
 namespace SecretProject.Class.StageFolder
 {
 
-    public class RoyalDock : IStage
+    public class RoyalDock : StageBase
     {
 
         #region FIELDS
 
-        public bool ShowBorders { get; set; }
-
-        [XmlIgnore]
-        public Vector2 TileSize = new Vector2(16, 16); // what?
-        [XmlIgnore]
-
-        public TmxMap Map { get; set; }
-
-        [XmlIgnore]
-        public Player player { get; set; }
-
-        public int TileWidth { get; set; }
-        public int TileHeight { get; set; }
-        public int TilesetTilesWide { get; set; }
-        public int TilesetTilesHigh { get; set; }
-        [XmlIgnore]
-        public Texture2D TileSet { get; set; }
-
-        public List<TileManager> AllStageTiles { get; set; }
-
-        public TmxLayer Buildings { get; set; }
-
-        public TmxLayer Background { get; set; }
-
-        public TmxLayer Background1 { get; set; }
-
-        public TmxLayer MidGround { get; set; }
-
-        public TmxLayer foreGround { get; set; }
-
-        public TmxLayer Placement { get; set; }
-
-
-        [XmlIgnore]
-        public Song MainTheme { get; set; }
-
-        [XmlIgnore]
-        public Camera2D Cam { get; set; }
-
-        public int TileSetNumber { get; set; }
-
-        //--------------------------------------
-        //Declare Lists
-        [XmlArray("AllObjects")]
-        public List<ObjectBody> AllObjects { get; set; }
-
-        public List<Sprite> AllSprites { get; set; }
-
-        public List<Item> AllItems { get; set; }
-
-        [XmlArray("AllActions")]
-        public List<ActionTimer> AllActions { get; set; }
-
-        //public List<object> ThingsToDraw;
-
-        [XmlIgnore]
-        public UserInterface MainUserInterface { get; set; }
-
-        public List<TmxLayer> AllLayers { get; set; }
-
-        public TileManager AllTiles { get; set; }
-
-        //SAVE STUFF
-
-        public bool TilesLoaded { get; set; } = false;
-
-        public List<float> AllDepths;
-
-        public Rectangle MapRectangle { get; set; }
-
-        [XmlIgnore]
         public Elixir ElixerNPC;
-        public ContentManager Content { get; set; }
-        public GraphicsDevice Graphics { get; set; }
-
-        public ParticleEngine ParticleEngine { get; set; }
-
-        public DialogueHolder AllDockDialogue { get; set; }
-
-        public TextBuilder TextBuilder { get; set; }
-        public List<Portal> AllPortals { get; set; }
 
         #endregion
 
@@ -123,7 +43,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public RoyalDock(GraphicsDevice graphics,ContentManager content, int tileSetNumber)
+        public RoyalDock(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.Graphics = graphics;
             this.Content = content;
@@ -132,7 +52,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void LoadContent( Camera2D camera )
+        public override void LoadContent( Camera2D camera )
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
@@ -215,7 +135,7 @@ namespace SecretProject.Class.StageFolder
             
         }
 
-        public void UnloadContent()
+        public virtual void UnloadContent()
         {
             Content.Unload();
             AllObjects = null;
@@ -237,7 +157,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region UPDATE
-        public void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
@@ -318,7 +238,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public override void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
            // graphics.Clear(Color.Black);
             if (player.Health > 0)
@@ -378,10 +298,6 @@ namespace SecretProject.Class.StageFolder
             }
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
-        }
-        public Camera2D GetCamera()
-        {
-            return this.Cam;
         }
         #endregion
     }

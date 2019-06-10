@@ -18,7 +18,27 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
+/*
+this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
+
+
+            //map specifications
+
+
+            AllDepths = new List<float>()
+            {
+                .1f,
+                .2f,
+                .3f,
+                .5f,
+                .6f
+            };
+
+
+
+            this.Map = new TmxMap("Content/Map/worldMap.tmx");
+            */
 namespace SecretProject.Class.StageFolder
 {
     public interface IStage
@@ -33,7 +53,6 @@ namespace SecretProject.Class.StageFolder
 
         Texture2D TileSet { get; set; }
 
-        Song MainTheme { get; set; }
 
 
         Camera2D Cam { get; set; }
@@ -76,7 +95,7 @@ List<ActionTimer> AllActions { get; set; }
 
         TextBuilder TextBuilder { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
-        void LoadContent( Camera2D camera);
+        void LoadContent( Camera2D camera );
         void UnloadContent();
         void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
 

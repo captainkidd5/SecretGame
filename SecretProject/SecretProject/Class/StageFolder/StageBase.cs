@@ -100,22 +100,29 @@ namespace SecretProject.Class.StageFolder
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get; set; }
 
+        public string MapTexturePath { get; set; }
+        public string TmxMapPath { get; set; }
+        public int DialogueToRetrieve { get; set; }
+
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public StageBase(GraphicsDevice graphics, ContentManager content, int tileSetNumber)
+        public StageBase(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve)
         {
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
+            this.MapTexturePath = mapTexturePath;
+            this.TmxMapPath = tmxMapPath;
+            this.DialogueToRetrieve = dialogueToRetrieve;
 
 
         }
 
-        public void LoadContent(Camera2D camera, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve)
+        public virtual void LoadContent(Camera2D camera)
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
@@ -138,7 +145,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>(mapTexturePath);
+            this.TileSet = Content.Load<Texture2D>(this.MapTexturePath);
 
 
             AllDepths = new List<float>()
@@ -150,7 +157,7 @@ namespace SecretProject.Class.StageFolder
                 .6f
             };
 
-            this.Map = new TmxMap(tmxMapPath);
+            this.Map = new TmxMap(this.TmxMapPath);
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
@@ -181,14 +188,14 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
 
-            Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(dialogueToRetrieve);
+            Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve);
 
-            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(dialogueToRetrieve), .1f, 5f);
+            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve), .1f, 5f);
 
 
         }
 
-        public void UnloadContent()
+        public virtual void UnloadContent()
         {
             Content.Unload();
             AllObjects = null;
@@ -210,7 +217,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region UPDATE
-        public void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             for (int p = 0; p < AllPortals.Count; p++)
             {
@@ -266,7 +273,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public virtual void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             // graphics.Clear(Color.Black);
             if (player.Health > 0)
