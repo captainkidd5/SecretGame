@@ -377,7 +377,7 @@ namespace SecretProject
             
             if (portal != null)
             {
-                Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To);
+                Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 float x = tempPortal.PortalStart.X;
                 float width = tempPortal.PortalStart.Width / 2;
                 float y = tempPortal.PortalStart.Y;

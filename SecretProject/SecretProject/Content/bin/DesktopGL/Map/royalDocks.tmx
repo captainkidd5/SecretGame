@@ -114,10 +114,10 @@
     <property name="standardTo" value="2"/>
    </properties>
   </object>
-  <object id="30" x="113" y="215" width="10" height="16">
+  <object id="30" x="109" y="217" width="19" height="16">
    <properties>
     <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="50"/>
+    <property name="SafteyOffSetY" value="25"/>
     <property name="standardFrom" value="5"/>
     <property name="standardTo" value="1"/>
    </properties>
