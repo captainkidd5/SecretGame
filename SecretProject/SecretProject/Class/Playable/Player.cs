@@ -451,29 +451,36 @@ namespace SecretProject.Class.Playable
 
                     }
 
-                    if (position.X < Game1.GetCurrentStage().MapRectangle.Left)
-                    {
-                        position.X = Game1.GetCurrentStage().MapRectangle.Left;
-                    }
-
-
-                    if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
-                    {
-                        position.X = Game1.GetCurrentStage().MapRectangle.Right;
-                    }
-                    // if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
-                    // {
-                    //     position.Y = Game1.GetCurrentStage().MapRectangle.Top;
-                    //  }
-                    if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
-                    {
-                        position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
-                    }
+                    CheckOutOfBounds(this.Position);
                 }
-                if(GameMode == 2)
+                if (GameMode == 2)
                 {
                     PlayerShip.Update(gameTime);
+                    this.Position = PlayerShip.Position;
+                    CheckOutOfBounds(this.Position);
                 }
+            }
+        }
+
+        private void CheckOutOfBounds(Vector2 position)
+        {
+            if (position.X < Game1.GetCurrentStage().MapRectangle.Left)
+            {
+                position.X = Game1.GetCurrentStage().MapRectangle.Left;
+            }
+
+
+            if (position.X > Game1.GetCurrentStage().MapRectangle.Right)
+            {
+                position.X = Game1.GetCurrentStage().MapRectangle.Right;
+            }
+            // if (position.Y < Game1.GetCurrentStage().MapRectangle.Top)
+            // {
+            //     position.Y = Game1.GetCurrentStage().MapRectangle.Top;
+            //  }
+            if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom)
+            {
+                position.Y = Game1.GetCurrentStage().MapRectangle.Bottom;
             }
         }
 

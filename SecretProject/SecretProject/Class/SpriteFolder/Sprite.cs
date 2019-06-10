@@ -117,6 +117,11 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
+        public void UpdateShip(GameTime gameTime, Vector2 position)
+        {
+            this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+        }
+
         public void UpdateAnimations(GameTime gameTime, Vector2 position)
         {
             this.Position = position;

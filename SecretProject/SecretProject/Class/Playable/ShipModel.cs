@@ -12,6 +12,8 @@ namespace SecretProject.Class.Playable
         public int ID { get; set; }
         public string Name { get; set; }
         public Rectangle SourceRectangle { get; set; }
+        public Vector2 ShipAft { get; set; }
+        public Vector2 ShipForward { get; set; }
 
         public ShipModel()
         {
@@ -25,6 +27,7 @@ namespace SecretProject.Class.Playable
                 case 1:
                     this.Name = "Basic Ship";
                     this.SourceRectangle = new Rectangle(48, 16, 16, 32);
+                    this.ShipAft = new Vector2(8, 16);
                     break;
             }
             

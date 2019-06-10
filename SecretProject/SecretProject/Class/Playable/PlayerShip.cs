@@ -33,6 +33,8 @@ namespace SecretProject.Class.Playable
             Model.AssignModel(1);
             this.Texture = texture;
             this.ShipSprite = new Sprite(graphics, this.Texture, Model.SourceRectangle, this.Position, Model.SourceRectangle.Width, Model.SourceRectangle.Height);
+            ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.RockParticle }, ShipSprite.Position);
+            ParticleEngine.Color = Color.AliceBlue;
             
         }
 
@@ -50,14 +52,37 @@ namespace SecretProject.Class.Playable
 
             Vector2 direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - Rotation), -(float)Math.Sin(MathHelper.ToRadians(90)- Rotation));
             if(Game1.NewKeyBoardState.IsKeyDown(Keys.W))
-                {
+            {
                 Position += direction * LinearVelocity;
+                ParticleEngine.EmitterLocation = Position + Model.ShipAft;
+                ParticleEngine.ActivationTime = .5f;
+                
             }
+
+            if (Game1.NewKeyBoardState.IsKeyDown(Keys.S))
+            {
+                Position -= direction * LinearVelocity;
+            }
+
+            if(Game1.NewKeyBoardState.IsKeyDown(Keys.LeftShift))
+            {
+                this.LinearVelocity = 10f;
+            }
+            else
+            {
+                this.LinearVelocity = 4f;
+            }
+            //Position.Normalize();
+
+            ShipSprite.UpdateShip(gameTime, Position);
+            
+            ParticleEngine.Update(gameTime);
 
         }
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             ShipSprite.DrawRotationalSprite(spriteBatch, Position, this.Rotation, Origin, layerDepth);
+            ParticleEngine.Draw(spriteBatch, layerDepth);
         }
 
         public void SwapModel(int id)
