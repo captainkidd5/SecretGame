@@ -38,7 +38,7 @@ namespace SecretProject.Class.TileStuff
 
         public int ChunkCount = 0;
 
-        public List<Tile[,]> AllTiles;
+        public List<SeaTile[,]> AllTiles;
 
         public Texture2D TileSet { get; set; }
 
@@ -54,10 +54,10 @@ namespace SecretProject.Class.TileStuff
             
             this.SeaMap = mapName;
             this.AllLayers = allLayers;
-            AllTiles = new List<Tile[,]>();
+            AllTiles = new List<SeaTile[,]>();
             for (int i = 0; i < AllLayers.Count; i++)
             {
-                AllTiles.Add(new Tile[1024, 1024]);
+                AllTiles.Add(new SeaTile[1024, 1024]);
 
             }
 
@@ -65,7 +65,7 @@ namespace SecretProject.Class.TileStuff
             {
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
-                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, 100, 100, 1024, 1024);
+                    SeaTile tempTile = new SeaTile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, 100, 100, 1024, 1024);
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
 
@@ -139,7 +139,7 @@ namespace SecretProject.Class.TileStuff
                 if(Game1.cam.CameraScreenRectangle.Intersects(AllChunks[i].Rectangle))
                 {
                     AllChunks[i].IsActive = true;
-                    for (int l = 0; l < 4; l++)
+                    for (int l = 0; l < AllLayers.Count; l++)
                     {
                         for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
                         {

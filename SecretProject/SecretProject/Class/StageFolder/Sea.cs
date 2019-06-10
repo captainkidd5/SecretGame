@@ -103,7 +103,6 @@ namespace SecretProject.Class.StageFolder
         public GraphicsDevice Graphics { get; set; }
         TileManager IStage.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public Elixir ElixerNPC;
         public Rectangle MapRectangle { get; set; }
         public ParticleEngine ParticleEngine { get; set; }
         public TextBuilder TextBuilder { get; set; }
@@ -163,8 +162,8 @@ namespace SecretProject.Class.StageFolder
                 Background,
                 Buildings,
 
-                foreGround,
-                underWater
+               // foreGround,
+               // underWater
             };
             AllTiles = new SeaTileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             TileWidth = Map.Tilesets[0].TileWidth;
@@ -174,12 +173,11 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
            // AllTiles.LoadInitialTileObjects();
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics);
 
             AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
-            Cam.Zoom = 1f;
+            Cam.Zoom = 2f;
             MapRectangle = new Rectangle(0, 0, TileWidth * 1024, TileHeight * 1024);
             this.Map = null;
         }
@@ -197,7 +195,7 @@ namespace SecretProject.Class.StageFolder
             foreGround = null;
             underWater = null;
             this.Cam = null;
-            ElixerNPC = null;
+
         }
 
         #endregion
@@ -214,9 +212,11 @@ namespace SecretProject.Class.StageFolder
             {
                 ShowBorders = !ShowBorders;
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
+
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
             {
-                ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+                Game1.SwitchStage(4, 5);
+                return;
             }
 
             if (!Game1.freeze)
@@ -247,11 +247,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
-                if (ElixerNPC.IsUpdating)
-                {
-                    ElixerNPC.Update(gameTime, AllObjects,mouse);
-                    ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
-                }
+
                // ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
                 if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
@@ -279,7 +275,6 @@ namespace SecretProject.Class.StageFolder
                 player.Draw(spriteBatch, .4f);
 
 
-                ElixerNPC.Draw(spriteBatch);
 
                 if (ShowBorders)
                 {
@@ -318,7 +313,6 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                ElixerNPC.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
                 spriteBatch.End();

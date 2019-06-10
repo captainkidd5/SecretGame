@@ -185,6 +185,11 @@ namespace SecretProject.Class.StageFolder
                 //ParticleEngine.ActivationTime = 5f;
                 //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
+            {
+                Game1.SwitchStage(5, 4);
+                return;
+            }
 
             TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             TextBuilder.Update(gameTime);
