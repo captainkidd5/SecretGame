@@ -58,44 +58,17 @@ namespace SecretProject.Class.ItemStuff
 
         public bool TryAddItem(Item item)
         {
-            bool itemFilled = false;
-            bool slotsAvailable = false;
-            foreach(InventorySlot s in currentInventory)
-            {
-                if(s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum)
+            
+                foreach (InventorySlot s in currentInventory)
                 {
-                    s.AddItemToSlot(item);
-                    itemFilled = true;
-                    break;
-                }  
-                if(s.SlotItems.Count == 0)
+                    if (s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum || s.SlotItems.Count == 0)
                 {
-                    slotsAvailable = true;
-                }
-            }
-            if(itemFilled == false && slotsAvailable == true)
-            {
-                foreach(InventorySlot s in currentInventory)
-                {
-                    if(itemFilled == true)
-                    {
-                        break;
-                    }
-                    if(s.SlotItems.Count == 0)
-                    {
                         s.AddItemToSlot(item);
-                        itemFilled = true;
+                        return true;
                     }
                 }
-            }
-            if(itemFilled)
-            {
-                return true;
-            }
-            else
-            {
                 return false;
-            }
+            
         }
 
         public void RemoveItem(Item item)

@@ -23,12 +23,12 @@ namespace SecretProject.Class.Playable
         public Vector2 Position { get; set; }
         public Vector2 Origin { get; set; }
         public float Rotation { get; set; }
-        public float RotationVelocity { get; set; } = 3f;
-        public float LinearVelocity { get; set; } = 4f;
+        public float RotationVelocity { get; set; } = 1f;
+        public float LinearVelocity { get; set; } = 2f;
 
         public PlayerShip(GraphicsDevice graphics, Texture2D texture)
         {
-            this.Origin = new Vector2( SourceRectangle.Width / 2, SourceRectangle.Height / 2);
+            this.Origin = new Vector2( SourceRectangle.Width / 2, SourceRectangle.Height);
             Model = new ShipModel();
             Model.AssignModel(1);
             this.Texture = texture;
@@ -54,7 +54,7 @@ namespace SecretProject.Class.Playable
             if(Game1.NewKeyBoardState.IsKeyDown(Keys.W))
             {
                 Position += direction * LinearVelocity;
-                ParticleEngine.EmitterLocation = Position + Model.ShipAft;
+                ParticleEngine.EmitterLocation = new Vector2(Position.X, Position.Y - 10);
                 ParticleEngine.ActivationTime = .5f;
                 
             }
@@ -70,7 +70,7 @@ namespace SecretProject.Class.Playable
             }
             else
             {
-                this.LinearVelocity = 4f;
+                this.LinearVelocity = 1f;
             }
             //Position.Normalize();
 

@@ -502,10 +502,12 @@ namespace SecretProject.Class.Playable
                     CurrentAction.DrawAnimation(spriteBatch, this.Position, layerDepth);
                 }
             }
-            if(GameMode == 2)
-            {
-                PlayerShip.Draw(spriteBatch, layerDepth);
-            }
+        }
+
+        public void DrawShipMode(SpriteBatch spriteBatch, float layerDepth)
+        {
+
+            PlayerShip.Draw(spriteBatch, layerDepth);
         }
 
         public void DrawUserInterface(SpriteBatch spriteBatch)

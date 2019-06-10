@@ -273,7 +273,7 @@ namespace SecretProject.Class.StageFolder
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
 
 
-                player.Draw(spriteBatch, .4f);
+               // player.Draw(spriteBatch, .4f);
 
 
 
@@ -316,6 +316,10 @@ namespace SecretProject.Class.StageFolder
 
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, null, transformMatrix: Cam.getTransformation(graphics));
+                player.DrawShipMode(spriteBatch, .8f);
                 spriteBatch.End();
             }
             Game1.Player.UserInterface.Draw(spriteBatch);
