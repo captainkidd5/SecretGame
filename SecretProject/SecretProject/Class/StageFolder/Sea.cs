@@ -287,10 +287,10 @@ namespace SecretProject.Class.StageFolder
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
-                if (Game1.Player.UserInterface.DrawTileSelector)
-                {
-                    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
-                }
+                //if (Game1.Player.UserInterface.DrawTileSelector)
+                //{
+                //    spriteBatch.Draw(Game1.AllTextures.TileSelector, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), color: Color.White, layerDepth: .15f);
+                //}
 
                 //--------------------------------------
                 //Draw sprite list

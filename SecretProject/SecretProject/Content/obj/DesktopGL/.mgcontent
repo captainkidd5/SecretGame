@@ -64,5 +64,8 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/AllDialogue.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/userinterfaceTileSet.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/Ship/ShipSpriteSheet.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightSpriteEffect1.fx</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/practiceLighting1.fx</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightmask.png</File>
   </SourceFiles>
 </SourceFileCollection>

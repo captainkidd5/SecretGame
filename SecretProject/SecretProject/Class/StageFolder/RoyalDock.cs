@@ -248,9 +248,10 @@ namespace SecretProject.Class.StageFolder
            // graphics.Clear(Color.Black);
             if (player.Health > 0)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
                 ParticleEngine.Draw(spriteBatch, 1f);
+                Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
 
                 player.Draw(spriteBatch, .4f);
 

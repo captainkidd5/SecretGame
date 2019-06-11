@@ -59,6 +59,11 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D ShipSpriteSheet;
 
+
+
+        //Effects
+        public Effect testEffect;
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
@@ -86,6 +91,8 @@ namespace SecretProject.Class.TextureStuff
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
             ShipSpriteSheet = content.Load<Texture2D>("Player/Ship/ShipSpriteSheet");
+
+            testEffect = content.Load<Effect>("Effects/lightSpriteEffect1");
 
         }
 
