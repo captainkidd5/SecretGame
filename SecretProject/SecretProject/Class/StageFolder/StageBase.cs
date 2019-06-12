@@ -236,7 +236,11 @@ namespace SecretProject.Class.StageFolder
             {
                 ShowBorders = !ShowBorders;
             }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            {
 
+                player.Position = new Vector2(400, 400);
+            }
 
             TextBuilder.Update(gameTime);
 

@@ -149,6 +149,12 @@ namespace SecretProject
 
         public static List<IShop> AllShops { get; set; }
 
+        //RENDERTARGETS
+        
+
+        public static PresentationParameters PresentationParameters;
+        
+
         #endregion
 
         #region CONSTRUCTOR
@@ -166,6 +172,7 @@ namespace SecretProject
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
+            
             IsFixedTimeStep = false;
 
         }
@@ -262,6 +269,7 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
+            PresentationParameters = GraphicsDevice.PresentationParameters;
             //ORDER MATTERS!!!
             AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
             DialogueLibrary = new DialogueLibrary(AllDialogue);

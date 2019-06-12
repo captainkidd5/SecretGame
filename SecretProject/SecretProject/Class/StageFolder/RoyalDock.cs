@@ -40,7 +40,8 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region CONSTRUCTOR
-
+        RenderTarget2D lightsTarget;
+        RenderTarget2D mainTarget;
 
 
         public RoyalDock(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
@@ -48,12 +49,14 @@ namespace SecretProject.Class.StageFolder
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
-
+            lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
+            mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
 
         }
 
         public override void LoadContent( Camera2D camera )
         {
+
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
@@ -177,6 +180,12 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
                 ShowBorders = !ShowBorders;
+                
+            }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            {
+                
+                player.Position = new Vector2(400, 400);
             }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
@@ -245,15 +254,20 @@ namespace SecretProject.Class.StageFolder
         #region DRAW
         public override void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
-           // graphics.Clear(Color.Black);
+            // graphics.Clear(Color.Black);
+            
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+                //Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
+                //Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[1].Apply();
+                spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
                 ParticleEngine.Draw(spriteBatch, 1f);
                 Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
 
                 player.Draw(spriteBatch, .4f);
+                Console.WriteLine("Player Position" + player.position);
 
 
                 ElixerNPC.Draw(spriteBatch);

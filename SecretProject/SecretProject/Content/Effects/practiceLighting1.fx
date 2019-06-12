@@ -9,8 +9,8 @@
 
 sampler2D TextureSampler : register(s0);
 
-Texture2D LightMask;
-sampler2D LightMaskSampler = sampler_state { Texture = <LightMask>; };
+Texture2D lightMask;
+sampler2D LightMaskSampler = sampler_state { Texture = <lightMask>; };
 
 float4 MainPS(float4 position : SV_POSITION, float4 color : COLOR0, float2 texCoord : TEXCOORD0) : COLOR0
 {

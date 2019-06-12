@@ -38,8 +38,8 @@ namespace SecretProject.Class.CollisionDetection
             
             foreach (var body in objectBody)
             {
-                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
-                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
+                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
+                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
                 {
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
                     {
