@@ -66,7 +66,8 @@ namespace SecretProject
         Iliad = 2,
         Exit = 3,
         Sea = 4,
-        RoyalDock = 5
+        RoyalDock = 5,
+        GreatLibrary = 6
     }
 
 
@@ -84,6 +85,7 @@ namespace SecretProject
         public static Home LodgeInterior;
         public static RoyalDock RoyalDock;
         public static Sea Sea;
+        public static Home GreatLibrary;
         public static List<Home> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -455,6 +457,8 @@ namespace SecretProject
                     case Stages.Sea:
                        Sea.Update(gameTime, myMouseManager, Player);
                        break;
+                //case Stages.GreatLibrary:
+
             }
 
             base.Update(gameTime);

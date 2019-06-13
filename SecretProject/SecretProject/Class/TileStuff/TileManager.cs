@@ -182,7 +182,7 @@ namespace SecretProject.Class.TileStuff
             //bluerunestone
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-               GenerateTiles(1, 4845, "dirt", 100, 0);
+               GenerateTiles(1, 4845, "dirt", 500, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)
@@ -208,6 +208,10 @@ namespace SecretProject.Class.TileStuff
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
+            {
+                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 32, tileToAssign.SourceRectangle.Y - 48, 80, 64);
+            }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("portal"))
             {
                 tileToAssign.IsPortal = true;
@@ -300,7 +304,12 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["step"]);
                 //grass = 1, stone = 2, wood = 3, sand = 4
             }
-            //if(tileToAssign.LayerToDrawAt == 3)
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
+            {
+                tileToAssign.LayerToDrawAt = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
+                //grass = 1, stone = 2, wood = 3, sand = 4
+            }
+            //if (tileToAssign.LayerToDrawAt == 3)
             //{
             //    tileToAssign.LayerToDrawAtZOffSet = tileToAssign.Y * .0001f;
             //}
@@ -376,7 +385,7 @@ namespace SecretProject.Class.TileStuff
                         int intGidX = int.Parse(gidX);
                         int intGidY = int.Parse(gidY);
                         int intTilePropertyLayer = int.Parse(tilePropertyLayer);
-
+                        //4843,4645,4845,4846,4744,4644,4544,4444,4545,4445,4546,4446,4643,4543,4443,4542,4744
                         int totalGID = mapName.Tilesets[TileSetNumber].Tiles[sampleTile.SpawnsWith[index]].Id;
 
                         //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
@@ -669,8 +678,14 @@ namespace SecretProject.Class.TileStuff
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16)
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16))
                             {
-                                spriteBatch.Draw(tileSet, AllTiles[z][i, j].DestinationRectangle, AllTiles[z][i, j].SourceRectangle,Game1.GlobalClock.TimeOfDayColor, (float)0, new Vector2(0, 0), SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                
 
+
+                                    spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                    // spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle,
+                                    // Game1.GlobalClock.TimeOfDayColor, 1f, Game1.Utility.Origin, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet)' Game1.GlobalClock.TimeOfDayColor, 0f, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                
                             }
                         }
                     }
