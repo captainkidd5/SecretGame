@@ -43,6 +43,13 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect WalkStone;
         public SoundEffectInstance WalkStoneInstance;
 
+        public SoundEffect Chirp1;
+        public SoundEffectInstance Chirp1Instance;
+        public SoundEffect Chirp2;
+        public SoundEffectInstance Chirp2Instance;
+        public SoundEffect Chirp3;
+        public SoundEffectInstance Chirp3Instance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -79,7 +86,16 @@ namespace SecretProject.Class.SoundStuff
             WalkStone = content.Load<SoundEffect>("SoundEffects/stoneStep");
             WalkStoneInstance = WalkStone.CreateInstance();
             WalkStoneInstance.Volume = .75f;
-            
+
+            Chirp1 = content.Load<SoundEffect>("SoundEffects/chirp1");
+            Chirp1Instance = Chirp1.CreateInstance();
+
+            Chirp2 = content.Load<SoundEffect>("SoundEffects/chirp2");
+            Chirp1Instance = Chirp2.CreateInstance();
+
+            Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
+            Chirp1Instance = Chirp3.CreateInstance();
+
 
         }
 

@@ -655,3 +655,21 @@
 /processorParam:TextureFormat=Color
 /build:Effects/lightmask.png
 
+#begin SoundEffects/chirp1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/chirp1.wav
+
+#begin SoundEffects/chirp2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/chirp2.wav
+
+#begin SoundEffects/chirp3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/chirp3.wav
+

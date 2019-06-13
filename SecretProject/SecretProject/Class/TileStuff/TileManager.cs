@@ -174,15 +174,15 @@ namespace SecretProject.Class.TileStuff
 
            
                 //stone
-              //  GenerateTiles(1, 6675, "dirt", 100, 0);
+               GenerateTiles(1, 6675, "dirt", 100, 0);
                 //grass
-                //GenerateTiles(1, 6475, "dirt", 100, 0);
+                GenerateTiles(1, 6475, "dirt", 100, 0);
                 //redrunestone
-              //  GenerateTiles(1, 5681, "dirt", 100, 0);
+                GenerateTiles(1, 5681, "dirt", 100, 0);
             //bluerunestone
-             //   GenerateTiles(1, 5881, "dirt", 100, 0);
+                GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-               GenerateTiles(1, 4845, "dirt", 2000, 0);
+               GenerateTiles(1, 4845, "dirt", 150, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)

@@ -42,17 +42,17 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 10)
+            if(LocalTime.TotalSeconds > 1)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
                 if(TotalHours > 18)
                 {
-                    ColorMultiplier--;
+                    ColorMultiplier-=3;
                 }
-                if(TotalHours < 6)
+                if(TotalHours < 7)
                 {
-                    ColorMultiplier++;
+                    ColorMultiplier+=3;
                 }
             }
             if(TotalHours > 23)
@@ -63,11 +63,12 @@ namespace SecretProject.Class.Universal
             }
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
-            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Total Days: " + TotalDays.ToString();
+            float testColor = (float)(1 + ColorMultiplier * .1);
+            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Test: " + testColor.ToString();
             ClockDisplay.Update(gameTime, true);
+            
 
-                
-                this.TimeOfDayColor = Color.DarkGray * (float)(1+ColorMultiplier * .1);
+            this.TimeOfDayColor = Color.DarkGray * (float)(1+ColorMultiplier * .1);
             
 
             
