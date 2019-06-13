@@ -673,3 +673,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/chirp3.wav
 
+#begin SoundEffects/crickets1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/crickets1.wav
+
+#begin SoundEffects/owlHoot1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/owlHoot1.wav
+

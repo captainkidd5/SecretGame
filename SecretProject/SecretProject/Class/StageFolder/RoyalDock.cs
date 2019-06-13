@@ -261,10 +261,10 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
                 //Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
                 //Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[1].Apply();
-                spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
+                //spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
                 ParticleEngine.Draw(spriteBatch, 1f);
-                Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
+                //Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
 
                 player.Draw(spriteBatch, .4f);
                 Console.WriteLine("Player Position" + player.position);

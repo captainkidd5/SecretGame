@@ -50,6 +50,12 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Chirp3;
         public SoundEffectInstance Chirp3Instance;
 
+        public SoundEffect Crickets1;
+        public SoundEffectInstance Crickets1Instance;
+
+        public SoundEffect OwlHoot1;
+        public SoundEffectInstance OwlHoot1Instance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -91,11 +97,16 @@ namespace SecretProject.Class.SoundStuff
             Chirp1Instance = Chirp1.CreateInstance();
 
             Chirp2 = content.Load<SoundEffect>("SoundEffects/chirp2");
-            Chirp1Instance = Chirp2.CreateInstance();
+            Chirp2Instance = Chirp2.CreateInstance();
 
             Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
-            Chirp1Instance = Chirp3.CreateInstance();
+            Chirp3Instance = Chirp3.CreateInstance();
 
+            Crickets1 = content.Load<SoundEffect>("SoundEffects/crickets1");
+            Crickets1Instance = Crickets1.CreateInstance();
+
+            OwlHoot1 = content.Load<SoundEffect>("SoundEffects/owlHoot1");
+            OwlHoot1Instance = OwlHoot1.CreateInstance();
 
         }
 
@@ -182,7 +193,25 @@ namespace SecretProject.Class.SoundStuff
                         StoneSmashInstance.Volume = volume;
                         StoneSmashInstance.Play();
                         break;
-                    
+                        //day time sound effects
+                    case 9:
+                        Chirp1Instance.Play();
+                        break;
+                            case 10:
+                        Chirp2Instance.Play();
+                        break;
+                            case 11:
+                        Chirp3Instance.Play();
+                        break;
+                    case 12:
+                        Crickets1Instance.Play();
+                        break;
+                    case 13:
+                        OwlHoot1Instance.Play();
+                        break;
+
+
+
 
                 }
             }
