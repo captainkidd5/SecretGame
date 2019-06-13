@@ -761,7 +761,7 @@
    <property name="Hitpoints" value="4"/>
    <property name="NumberOfItems" value="4"/>
    <property name="Tree" value="ThunderBirch"/>
-   <property name="spawnWith" value="4744"/>
+   <property name="spawnWith" value="4744,4843,4845,4846"/>
   </properties>
   <objectgroup draworder="index">
    <object id="2" x="6" y="0" width="5" height="3"/>

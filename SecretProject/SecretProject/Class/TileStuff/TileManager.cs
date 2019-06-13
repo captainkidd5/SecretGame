@@ -174,15 +174,15 @@ namespace SecretProject.Class.TileStuff
 
            
                 //stone
-                GenerateTiles(1, 6675, "dirt", 100, 0);
+              //  GenerateTiles(1, 6675, "dirt", 100, 0);
                 //grass
-                GenerateTiles(1, 6475, "dirt", 100, 0);
+                //GenerateTiles(1, 6475, "dirt", 100, 0);
                 //redrunestone
-                GenerateTiles(1, 5681, "dirt", 100, 0);
+              //  GenerateTiles(1, 5681, "dirt", 100, 0);
             //bluerunestone
-                GenerateTiles(1, 5881, "dirt", 100, 0);
+             //   GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
-               GenerateTiles(1, 4845, "dirt", 500, 0);
+               GenerateTiles(1, 4845, "dirt", 2000, 0);
 
 
                 for (int z = 0; z < AllTiles.Count; z++)
@@ -210,7 +210,10 @@ namespace SecretProject.Class.TileStuff
         {
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
             {
-                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 32, tileToAssign.SourceRectangle.Y - 48, 80, 64);
+            tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X -16, tileToAssign.SourceRectangle.Y -32, 72,80);
+                tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X -16;
+                tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
+                //tileToAssign.X = tileToAssign.X - 32;
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("portal"))
             {
@@ -309,10 +312,14 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.LayerToDrawAt = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
                 //grass = 1, stone = 2, wood = 3, sand = 4
             }
-            //if (tileToAssign.LayerToDrawAt == 3)
-            //{
-            //    tileToAssign.LayerToDrawAtZOffSet = tileToAssign.Y * .0001f;
-            //}
+            if (tileToAssign.LayerToDrawAt == 3)
+            {
+                //use random in order to deal with tiles which spawn at the exact same y layer.
+
+                int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
+                float randomFloat = (float)(randomInt * .000001);
+                tileToAssign.LayerToDrawAtZOffSet = (tileToAssign.DestinationRectangle.Y + tileToAssign.DestinationRectangle.Height) * .0001f + randomFloat;
+            }
             
         }
 
@@ -675,8 +682,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16)
-                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16))
+                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16) -200
+                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) -200)
                             {
                                 
 
