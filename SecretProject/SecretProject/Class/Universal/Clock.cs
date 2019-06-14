@@ -82,6 +82,7 @@ namespace SecretProject.Class.Universal
                 if(TotalHours < 2 || TotalHours > 20)
                 {
                     PlayRandomInstance(2);
+                    Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 12, 1f);
                 }
                 if(TotalHours < 7)
                 {

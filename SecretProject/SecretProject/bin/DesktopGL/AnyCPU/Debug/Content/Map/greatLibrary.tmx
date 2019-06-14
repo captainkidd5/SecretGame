@@ -107,10 +107,12 @@
 </data>
  </layer>
  <objectgroup name="Portal">
-  <object id="29" x="790" y="1112" width="31" height="8">
+  <object id="29" x="789.5" y="1106.5" width="31" height="8">
    <properties>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-50"/>
+    <property name="standardFrom" value="6"/>
+    <property name="standardTo" value="5"/>
    </properties>
   </object>
  </objectgroup>

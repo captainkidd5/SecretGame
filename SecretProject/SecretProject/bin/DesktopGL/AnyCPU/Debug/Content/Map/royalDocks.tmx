@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="31">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="32">
  <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
  <tileset firstgid="10001" source="trees.tsx"/>
  <layer name="background" width="100" height="100">
@@ -121,6 +121,14 @@
     <property name="SafteyOffSetY" value="25"/>
     <property name="standardFrom" value="5"/>
     <property name="standardTo" value="1"/>
+   </properties>
+  </object>
+  <object id="31" x="1223" y="108" width="32.6364" height="16">
+   <properties>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="15"/>
+    <property name="standardFrom" value="5"/>
+    <property name="standardTo" value="6"/>
    </properties>
   </object>
  </objectgroup>
