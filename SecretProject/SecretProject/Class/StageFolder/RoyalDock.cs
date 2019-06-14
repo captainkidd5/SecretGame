@@ -258,29 +258,25 @@ namespace SecretProject.Class.StageFolder
         #region DRAW
         public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
-            //  graphics.Clear(Color.Black);
-            //  Graphics.SetRenderTarget(lightsTarget);
-            // spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-            //  spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, color: Color.White, layerDepth: 1f);
-            // spriteBatch.End();
-            //Graphics.Clear(Color.Black);
-            // graphics.SetRenderTarget(mainTarget);
-            // Graphics.Clear(Color.Transparent);
-            
-
-            //graphics.Clear(Color.Black);
 
             if (player.Health > 0)
             {
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
-                //Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
-                //Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[1].Apply();
-                //spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
-                //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
+                graphics.SetRenderTarget(lightsTarget);
+                graphics.Clear(Color.Black);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(500, 500), Color.White);
+                spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(300, 500), Color.White);
+                spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
+                spriteBatch.End();
+
+
                 graphics.SetRenderTarget(mainTarget);
+                graphics.Clear(Color.Transparent);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
-                //Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
 
                 player.Draw(spriteBatch, .4f);
                 Console.WriteLine("Player Position" + player.position);
@@ -291,7 +287,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-                    //    spriteBatch.Draw(Game1.player.BigHitBoxRectangleTexture, Game1.player.ClickRangeRectangle, Color.White);
+
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
@@ -330,17 +326,18 @@ namespace SecretProject.Class.StageFolder
                 ElixerNPC.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
-                //  spriteBatch.Draw(lightsTarget, new Rectangle(0,0,1000,1000), Color.White);
-                // spriteBatch.Draw(mainTarget, new Rectangle(0, 0, 1000, 1000), Color.White);
-                
-                //spriteBatch.Draw(mainTarget, new Rectangle(0, 0, 400, 240), Color.Red);
-                spriteBatch.End();
-                //graphics.Clear(Color.Black);
-                graphics.SetRenderTarget(null);
 
-                spriteBatch.Begin();
+                spriteBatch.End();
+
                 graphics.SetRenderTarget(null);
+               // graphics.Clear(Color.Black);
+
+
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
+                Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
                 spriteBatch.Draw(mainTarget,Game1.ScreenRectangle, Color.White);
+                //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);
                 
                 spriteBatch.End();
             }
