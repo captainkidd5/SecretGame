@@ -81,12 +81,12 @@ namespace SecretProject
 
         //STAGES
         public static MainMenu mainMenu;
-        public static Home Iliad;
-        public static Home LodgeInterior;
+        public static NormalStage Iliad;
+        public static NormalStage LodgeInterior;
         public static RoyalDock RoyalDock;
         public static Sea Sea;
-        public static Home GreatLibrary;
-        public static List<Home> AllStages;
+        public static NormalStage GreatLibrary;
+        public static List<NormalStage> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
@@ -221,6 +221,9 @@ namespace SecretProject
                 case Stages.RoyalDock:
                     return RoyalDock;
 
+                case Stages.GreatLibrary:
+                    return GreatLibrary;
+
                 default:
                     return null;
                    
@@ -239,6 +242,8 @@ namespace SecretProject
                     return Sea;
                 case 5:
                     return RoyalDock;
+                case 6:
+                    return GreatLibrary;
                 default:
                     return Iliad;
             }
@@ -260,6 +265,9 @@ namespace SecretProject
                     return 4;
                 case Stages.RoyalDock:
                     return 5;
+
+                case Stages.GreatLibrary:
+                    return 6;
 
                 default:
                     return 0;
@@ -321,22 +329,24 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
-            Iliad = new Home(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 2);
+            Iliad = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 2);
             
             RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 2);
-            
+
+            GreatLibrary = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 2);
+
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
             
             
             
-            LodgeInterior = new Home(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",2);
+            LodgeInterior = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",2);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
 
             
 
-            AllStages = new List<Home>() { Iliad, LodgeInterior };
+            AllStages = new List<NormalStage>() { Iliad, LodgeInterior };
 
             
 
@@ -454,6 +464,10 @@ namespace SecretProject
                     RoyalDock.Update(gameTime, myMouseManager, Player);
                     break;
 
+                case Stages.GreatLibrary:
+                    GreatLibrary.Update(gameTime, myMouseManager, Player);
+                    break;
+
                     case Stages.Sea:
                        Sea.Update(gameTime, myMouseManager, Player);
                        break;
@@ -495,6 +509,11 @@ namespace SecretProject
                 case Stages.RoyalDock:
                     GraphicsDevice.Clear(Color.Black);
                     RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+
+                case Stages.GreatLibrary:
+                    GraphicsDevice.Clear(Color.Black);
+                    GreatLibrary.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 

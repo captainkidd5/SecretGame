@@ -29,17 +29,13 @@ namespace SecretProject.Class.UI
             this.Texture = texture;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, Keys activationKey)
         {
-            KeyboardState currentKeys = Keyboard.GetState();
 
-            if(oldKeys.IsKeyDown(Keys.F1) && !currentKeys.IsKeyDown(Keys.F1))
+            if(Game1.OldKeyBoardState.IsKeyDown(activationKey) && !Game1.NewKeyBoardState.IsKeyDown(activationKey))
             {
                 IsActivated = !IsActivated;
             }
-
-
-            oldKeys = currentKeys;
         }
 
         public virtual void Update(GameTime gameTime, bool stayActivated)

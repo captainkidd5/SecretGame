@@ -124,8 +124,6 @@ namespace SecretProject.Class.NPCStuff
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -145,6 +143,11 @@ namespace SecretProject.Class.NPCStuff
                     NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f);
                     break;
             }
+        }
+
+        public void TextBoxResponse()
+        {
+
         }
     }
 }

@@ -74,37 +74,11 @@ namespace SecretProject.Class.UI
             
             BottomBar = new ToolBar( graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
-            //this.ShopMenu = new ShopMenu("ToolShop", graphicsDevice);
-            //ShopMenu.TryAddStock(3, 1);
-            //ShopMenu.TryAddStock(0, 1);
-            //ShopMenu.TryAddStock(1, 1);
-            //ShopMenu.TryAddStock(147, 1);
-            //ShopMenu.TryAddStock(2, 1);
-            //ShopMenu.TryAddStock(122, 1);
-            //ShopMenu.TryAddStock(124, 1);
-            //ShopMenu.TryAddStock(125, 1);
-            //ShopMenu.TryAddStock(127, 1);
-            //ShopMenu.TryAddStock(128, 10);
-            //ShopMenu.TryAddStock(141, 1);
-            //ShopMenu.TryAddStock(143, 3);
-            //ShopMenu.TryAddStock(161, 5);
-            //ShopMenu.TryAddStock(145, 1);
-            //ShopMenu.TryAddStock(165, 1);
-            //ShopMenu.TryAddStock(167, 1);
-           // ShopMenu.TryAddStock(165, 1);
-           // ShopMenu.TryAddStock(165, 1);
             this.cam = cam;
             TextBuilder = new TextBuilder("", .1f, 5f);
             this.Player = player;
         }
 
-        //public void CloseOtherMenus(bool exemption)
-        //{
-        //    IsShopMenu = false;
-        //    IsEscMenu = false;
-
-        //    exemption = true;
-        //}
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {

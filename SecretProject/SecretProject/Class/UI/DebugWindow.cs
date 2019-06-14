@@ -18,9 +18,9 @@ namespace SecretProject.Class.UI
 
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.Update(gameTime, Keys.F1);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

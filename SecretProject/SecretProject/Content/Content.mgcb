@@ -27,6 +27,18 @@
 /processorParam:TextureFormat=Color
 /build:Button/Cursor1.png
 
+#begin Button/PlantCursor.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/PlantCursor.png
+
 #begin Button/tileSelector.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -87,6 +99,57 @@
 /processorParam:TextureFormat=Color
 /build:Button/transparentTextBox.png
 
+#begin Button/userinterfaceTileSet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Button/userinterfaceTileSet.png
+
+#begin Dialogue/AllDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/AllDialogue.xml
+
+#begin Dialogue/CharacterDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/CharacterDialogue.xml
+
+#begin Dialogue/ElixirDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/ElixirDialogue.xml
+
+#begin Effects/lightmask.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Effects/lightmask.png
+
+#begin Effects/lightSpriteEffect1.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/lightSpriteEffect1.fx
+
+#begin Effects/practiceLighting1.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/practiceLighting1.fx
+
 #begin Enemy/enemyship1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -122,6 +185,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Item/ItemAnimationsSheet.png
+
+#begin Item/ItemSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/ItemSpriteSheet.png
 
 #begin Map/InteriorSpriteSheet1.png
 /importer:TextureImporter
@@ -182,6 +257,30 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/walkGrass1.mp3
+
+#begin NPC/ElixerTest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/ElixerTest.png
+
+#begin NPC/Elixir/ElixirSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Elixir/ElixirSpriteSheet.png
 
 #begin NPC/Mastodon/MastodonBack.png
 /importer:TextureImporter
@@ -255,6 +354,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Mastodon/MastodonRightSide.png
 
+#begin Particles/rockparticle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Particles/rockparticle.png
+
 #begin Player/Joe/joe.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -315,6 +426,54 @@
 /processorParam:TextureFormat=Color
 /build:Player/Joe/JoeWalkRightNew.png
 
+#begin Player/MainPlayer/ChoppingDown.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/MainPlayer/ChoppingDown.png
+
+#begin Player/MainPlayer/ChoppingLeft.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/MainPlayer/ChoppingLeft.png
+
+#begin Player/MainPlayer/ChoppingRight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/MainPlayer/ChoppingRight.png
+
+#begin Player/MainPlayer/ChoppingUp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/MainPlayer/ChoppingUp.png
+
 #begin Player/MainPlayer/ClippingForward.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -362,43 +521,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/ClippingUp.png
-
-#begin Player/MainPlayer/newPlayer.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/newPlayer.png
-
-#begin SoundEffects/bubble.WAV
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/bubble.WAV
-
-#begin SoundEffects/diggingDirt.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/diggingDirt.wav
-
-#begin SoundEffects/stoneSmash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/stoneSmash.wav
-
-#begin SpriteFont/MenuText.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:SpriteFont/MenuText.spritefont
 
 #begin Player/MainPlayer/MiningDown.png
 /importer:TextureImporter
@@ -448,7 +570,7 @@
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/MiningUp.png
 
-#begin Button/PlantCursor.png
+#begin Player/MainPlayer/newPlayer.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -458,115 +580,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Button/PlantCursor.png
-
-#begin NPC/ElixerTest.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/ElixerTest.png
-
-#begin SoundEffects/walkGrass.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/walkGrass.wav
-
-#begin NPC/Elixir/ElixirSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Elixir/ElixirSpriteSheet.png
-
-#begin SoundEffects/sandStep.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/sandStep.wav
-
-#begin SoundEffects/stoneStep.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/stoneStep.wav
-
-#begin SoundEffects/woodStep.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/woodStep.wav
-
-#begin Player/MainPlayer/ChoppingDown.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/ChoppingDown.png
-
-#begin Player/MainPlayer/ChoppingLeft.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/ChoppingLeft.png
-
-#begin Player/MainPlayer/ChoppingRight.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/ChoppingRight.png
-
-#begin Player/MainPlayer/ChoppingUp.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/MainPlayer/ChoppingUp.png
-
-#begin Item/ItemSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/ItemSpriteSheet.png
+/build:Player/MainPlayer/newPlayer.png
 
 #begin Player/MainPlayer/PlayerSpriteSheet.png
 /importer:TextureImporter
@@ -580,45 +594,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/PlayerSpriteSheet.png
 
-#begin Particles/rockparticle.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Particles/rockparticle.png
-
-#begin Dialogue/CharacterDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/CharacterDialogue.xml
-
-#begin Dialogue/ElixirDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/ElixirDialogue.xml
-
-#begin Dialogue/AllDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/AllDialogue.xml
-
-#begin Button/userinterfaceTileSet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Button/userinterfaceTileSet.png
-
 #begin Player/Ship/ShipSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -631,29 +606,11 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
-#begin Effects/lightSpriteEffect1.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/lightSpriteEffect1.fx
-
-#begin Effects/practiceLighting1.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/practiceLighting1.fx
-
-#begin Effects/lightmask.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Effects/lightmask.png
+#begin SoundEffects/bubble.WAV
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bubble.WAV
 
 #begin SoundEffects/chirp1.wav
 /importer:WavImporter
@@ -679,9 +636,52 @@
 /processorParam:Quality=Best
 /build:SoundEffects/crickets1.wav
 
+#begin SoundEffects/diggingDirt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/diggingDirt.wav
+
 #begin SoundEffects/owlHoot1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/owlHoot1.wav
+
+#begin SoundEffects/sandStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sandStep.wav
+
+#begin SoundEffects/stoneSmash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stoneSmash.wav
+
+#begin SoundEffects/stoneStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stoneStep.wav
+
+#begin SoundEffects/walkGrass.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/walkGrass.wav
+
+#begin SoundEffects/woodStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/woodStep.wav
+
+#begin SpriteFont/MenuText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:SpriteFont/MenuText.spritefont
 

@@ -184,7 +184,7 @@ namespace SecretProject.Class.Universal
 
 
         //just do items for now
-        public static void WriteStage(Home home, BinaryWriter writer, float version)
+        public static void WriteStage(NormalStage home, BinaryWriter writer, float version)
         {
             writer.Write(home.AllItems.Count);
             for (int i = 0; i < home.AllItems.Count; i++)
@@ -214,7 +214,7 @@ namespace SecretProject.Class.Universal
             }
         }
 
-        public static void ReadStage(Home home, GraphicsDevice graphics, BinaryReader reader, float version)
+        public static void ReadStage(NormalStage home, GraphicsDevice graphics, BinaryReader reader, float version)
         {
             List<Item> AllItems = new List<Item>();
             int allItemsCount = reader.ReadInt32();
