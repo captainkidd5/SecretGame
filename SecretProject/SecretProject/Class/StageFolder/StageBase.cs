@@ -277,12 +277,14 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public virtual void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public virtual void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             // graphics.Clear(Color.Black);
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+                graphics.SetRenderTarget(mainTarget);
+                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
                 ParticleEngine.Draw(spriteBatch, 1f);
 
@@ -329,6 +331,14 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
+                spriteBatch.End();
+
+                graphics.SetRenderTarget(null);
+
+                spriteBatch.Begin();
+                graphics.SetRenderTarget(null);
+                spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
+
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);

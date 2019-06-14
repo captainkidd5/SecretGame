@@ -56,7 +56,11 @@ namespace SecretProject.Class.StageFolder
 
         public override void LoadContent( Camera2D camera )
         {
-
+            RenderTarget2D lightsTarget;
+            RenderTarget2D mainTarget;
+            var pp = Graphics.PresentationParameters;
+            lightsTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+            mainTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
@@ -252,10 +256,20 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public override void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
-            // graphics.Clear(Color.Black);
+            //  graphics.Clear(Color.Black);
+            //  Graphics.SetRenderTarget(lightsTarget);
+            // spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+            //  spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, color: Color.White, layerDepth: 1f);
+            // spriteBatch.End();
+            //Graphics.Clear(Color.Black);
+            // graphics.SetRenderTarget(mainTarget);
+            // Graphics.Clear(Color.Transparent);
             
+
+            //graphics.Clear(Color.Black);
+
             if (player.Health > 0)
             {
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
@@ -263,6 +277,8 @@ namespace SecretProject.Class.StageFolder
                 //Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[1].Apply();
                 //spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
                 //player.PlayerMovementAnimations.ShowRectangle = ShowBorders;
+                graphics.SetRenderTarget(mainTarget);
+                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
                 //Game1.AllTextures.testEffect.CurrentTechnique.Passes[0].Apply();
 
@@ -310,14 +326,27 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
-
+               
                 ElixerNPC.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
+                //  spriteBatch.Draw(lightsTarget, new Rectangle(0,0,1000,1000), Color.White);
+                // spriteBatch.Draw(mainTarget, new Rectangle(0, 0, 1000, 1000), Color.White);
+                
+                //spriteBatch.Draw(mainTarget, new Rectangle(0, 0, 400, 240), Color.Red);
+                spriteBatch.End();
+                //graphics.Clear(Color.Black);
+                graphics.SetRenderTarget(null);
+
+                spriteBatch.Begin();
+                graphics.SetRenderTarget(null);
+                spriteBatch.Draw(mainTarget,Game1.ScreenRectangle, Color.White);
+                
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
+          //  Graphics.SetRenderTarget(null);
         }
         #endregion
     }

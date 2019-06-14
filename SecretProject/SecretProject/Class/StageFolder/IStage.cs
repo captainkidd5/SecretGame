@@ -97,7 +97,7 @@ List<ActionTimer> AllActions { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadContent( Camera2D camera );
         void UnloadContent();
-        void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
+        void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
 
     }
 }

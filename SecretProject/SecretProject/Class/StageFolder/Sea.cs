@@ -264,7 +264,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             graphics.Clear(Color.Black);
             if (player.Health > 0)

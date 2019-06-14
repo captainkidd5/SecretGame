@@ -152,6 +152,8 @@ namespace SecretProject
         public static List<IShop> AllShops { get; set; }
 
         //RENDERTARGETS
+        public RenderTarget2D MainTarget;
+        public RenderTarget2D LightsTarget;
         
 
         public static PresentationParameters PresentationParameters;
@@ -194,6 +196,7 @@ namespace SecretProject
             ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
 
             Utility = new Utility();
+            
 
             //SCREEN
             
@@ -280,6 +283,7 @@ namespace SecretProject
         protected override void LoadContent()
         {
             PresentationParameters = GraphicsDevice.PresentationParameters;
+            MainTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             //ORDER MATTERS!!!
             AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
             DialogueLibrary = new DialogueLibrary(AllDialogue);
@@ -495,7 +499,7 @@ namespace SecretProject
 
                 case Stages.LodgeInteior:
                     GraphicsDevice.Clear(Color.Black);
-                    LodgeInterior.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    LodgeInterior.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                    // spriteBatch.Begin();
                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
                    // spriteBatch.End();
@@ -503,23 +507,23 @@ namespace SecretProject
 
                 case Stages.Iliad:
                     GraphicsDevice.Clear(Color.Black);
-                    Iliad.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    Iliad.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:
                     GraphicsDevice.Clear(Color.Black);
-                    RoyalDock.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    RoyalDock.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.GreatLibrary:
                     GraphicsDevice.Clear(Color.Black);
-                    GreatLibrary.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                    GreatLibrary.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 
 
                     case Stages.Sea:
-                        Sea.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager, Player);
+                        Sea.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 
