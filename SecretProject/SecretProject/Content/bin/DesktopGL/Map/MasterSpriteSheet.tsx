@@ -1575,8 +1575,11 @@
  </tile>
  <tile id="6387">
   <properties>
-   <property name="spawnsWith" value="6389,6387,6288,6388"/>
+   <property name="spawnWith" value="6287,6288,6388"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4" y="0" width="12" height="12"/>
+  </objectgroup>
  </tile>
  <tile id="6388">
   <properties>
@@ -1584,6 +1587,9 @@
    <property name="relationX" value="1"/>
    <property name="relationY" value="0"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="11" height="11"/>
+  </objectgroup>
  </tile>
  <tile id="6474">
   <properties>
@@ -1595,12 +1601,27 @@
    <object id="1" x="1" y="1" width="13" height="13"/>
   </objectgroup>
  </tile>
+ <tile id="6488">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="6586">
   <properties>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+ </tile>
+ <tile id="6588">
+  <properties>
+   <property name="spawnWith" value="6488"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4" y="1" width="6" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="6674">
   <properties>
@@ -1614,8 +1635,11 @@
  </tile>
  <tile id="6686">
   <properties>
-   <property name="spawnsWith" value="6586"/>
+   <property name="spawnWith" value="6586"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="9" y="0" width="2" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="9702">
   <properties>

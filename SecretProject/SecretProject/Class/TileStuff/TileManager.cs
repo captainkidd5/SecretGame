@@ -173,21 +173,22 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllPortals.Add(portal);
             }
 
-           
-                //stone
+           //specify GID which is 1 larger than one on tileset, idk why
+            //    //stone
                GenerateTiles(1, 6675, "dirt", 100, 0);
-                //grass
+            //    //grass
                 GenerateTiles(1, 6475, "dirt", 100, 0);
-                //redrunestone
+            //    //redrunestone
                 GenerateTiles(1, 5681, "dirt", 100, 0);
-            //bluerunestone
+            ////bluerunestone
                 GenerateTiles(1, 5881, "dirt", 100, 0);
-            //thunderbirch
+            ////thunderbirch
                GenerateTiles(1, 4845, "dirt", 150, 0);
-            //crown of swords
+            ////crown of swords
             GenerateTiles(1, 6388, "sand", 150, 0);
-            //dandelion
+            ////dandelion
             GenerateTiles(1, 6687, "sand", 150, 0);
+            GenerateTiles(1, 6589, "dirt", 150, 0);
 
 
             for (int z = 0; z < AllTiles.Count; z++)
