@@ -53,11 +53,26 @@
       <WorldMaximum>50</WorldMaximum>
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
-      <IsPlaceable>true</IsPlaceable>
+      <IsPlaceable>false</IsPlaceable>
       <Price>25</Price>
       <id>3</id>
       <TextureColumn>0</TextureColumn>
       <TextureRow>3</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="4">
+    <Value>
+      <Name>BasicFlashlight</Name>
+      <ID>4</ID>
+      <InvMaximum>2</InvMaximum>
+      <WorldMaximum>10</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>50</Price>
+      <id>4</id>
+      <TextureColumn>0</TextureColumn>
+      <TextureRow>4</TextureRow>
     </Value>
   </EntryOfStringItem>
   <EntryOfStringItem Key="122">

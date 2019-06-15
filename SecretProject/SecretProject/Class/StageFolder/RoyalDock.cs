@@ -236,10 +236,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.Update(gameTime, mouse);
-                //for(int i = 0; i < this.AllActions.Count; i++)
-                //{
-                //    AllActions[i].Update(gameTime, AllActions);
-                //}
+
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -250,14 +247,7 @@ namespace SecretProject.Class.StageFolder
                     ElixerNPC.Update(gameTime,AllObjects, mouse);
                     ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
                 }
-                //ElixerNPC.NPCAnimatedSprite[3].ShowRectangle = ShowBorders;
 
-                //if (player.position.Y < 20 && player.position.X < 810 && player.position.X > 730)
-                //{
-                //    player.Position = new Vector2(player.position.X, 1550);
-                //    Game1.SwitchStage(5, 2);
-                //    return;
-                //}
             }
         }
         #endregion
@@ -280,9 +270,10 @@ namespace SecretProject.Class.StageFolder
                     {
                         spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
                     }
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(player.Position.X - Game1.AllTextures.lightMask.Width/2, player.Position.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(300, 500), Color.White);
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                   if(Game1.Player.UserInterface.DrawTileSelector && Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
+                    {
+                        spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width/2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                    }
                     spriteBatch.End();
                 }
 
