@@ -184,9 +184,13 @@ namespace SecretProject.Class.TileStuff
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             //thunderbirch
                GenerateTiles(1, 4845, "dirt", 150, 0);
+            //crown of swords
+            GenerateTiles(1, 6388, "sand", 150, 0);
+            //dandelion
+            GenerateTiles(1, 6687, "sand", 150, 0);
 
 
-                for (int z = 0; z < AllTiles.Count; z++)
+            for (int z = 0; z < AllTiles.Count; z++)
                 {
                     for (int i = 0; i < tilesetTilesWide; i++)
                     {
@@ -354,7 +358,13 @@ namespace SecretProject.Class.TileStuff
                     6265,6266, 6267, 6268,
                 };
                     break;
-
+                case "sand":
+                    acceptableGenerationTiles = new int[4]
+                {
+                    4402, 4403,
+                    4502, 4503
+                };
+                    break;
                 default:
                     acceptableGenerationTiles = new int[16]
                 {

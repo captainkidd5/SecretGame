@@ -1535,6 +1535,20 @@
    <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
+ <tile id="6287">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="6288">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="6365">
   <properties>
    <property name="diggable" value="dirt"/>
@@ -1559,6 +1573,18 @@
    <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
+ <tile id="6387">
+  <properties>
+   <property name="spawnsWith" value="6389,6387,6288,6388"/>
+  </properties>
+ </tile>
+ <tile id="6388">
+  <properties>
+   <property name="layer" value="1"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="0"/>
+  </properties>
+ </tile>
  <tile id="6474">
   <properties>
    <property name="AnimatedX" value="6"/>
@@ -1569,6 +1595,13 @@
    <object id="1" x="1" y="1" width="13" height="13"/>
   </objectgroup>
  </tile>
+ <tile id="6586">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="6674">
   <properties>
    <property name="AnimatedX" value="5"/>
@@ -1578,6 +1611,11 @@
   <objectgroup draworder="index">
    <object id="1" x="1" y="2" width="13" height="12"/>
   </objectgroup>
+ </tile>
+ <tile id="6686">
+  <properties>
+   <property name="spawnsWith" value="6586"/>
+  </properties>
  </tile>
  <tile id="9702">
   <properties>

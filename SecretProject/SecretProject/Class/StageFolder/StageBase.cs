@@ -249,6 +249,8 @@ namespace SecretProject.Class.StageFolder
             {
 
                 player.Position = new Vector2(400, 400);
+                Game1.GlobalClock.TotalHours = 22;
+                
             }
 
             TextBuilder.Update(gameTime);
@@ -295,7 +297,8 @@ namespace SecretProject.Class.StageFolder
 
 
                     graphics.SetRenderTarget(lightsTarget);
-                    graphics.Clear(Color.Black);
+                    //graphics.Clear(Color.White);
+                    graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllLights.Count; l++)
@@ -306,9 +309,6 @@ namespace SecretProject.Class.StageFolder
                     {
                         spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
                     }
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(player.Position.X - Game1.AllTextures.lightMask.Width/2, player.Position.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(300, 500), Color.White);
-                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
                     spriteBatch.End();
                 }
 
@@ -322,7 +322,6 @@ namespace SecretProject.Class.StageFolder
 
                 player.Draw(spriteBatch, .4f);
                 Console.WriteLine("Player Position" + player.position);
-
 
                 TextBuilder.Draw(spriteBatch, .71f);
 
@@ -364,7 +363,6 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
@@ -387,6 +385,7 @@ namespace SecretProject.Class.StageFolder
             }
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
+            //  Graphics.SetRenderTarget(null);
         }
         public Camera2D GetCamera()
         {
