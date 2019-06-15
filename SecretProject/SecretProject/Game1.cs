@@ -67,7 +67,8 @@ namespace SecretProject
         Exit = 3,
         Sea = 4,
         RoyalDock = 5,
-        GreatLibrary = 6
+        GreatLibrary = 6,
+        WestBeach = 7
     }
 
 
@@ -86,6 +87,7 @@ namespace SecretProject
         public static RoyalDock RoyalDock;
         public static Sea Sea;
         public static NormalStage GreatLibrary;
+        public static NormalStage WestBeach;
         public static List<NormalStage> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -226,6 +228,8 @@ namespace SecretProject
 
                 case Stages.GreatLibrary:
                     return GreatLibrary;
+                case Stages.WestBeach:
+                    return WestBeach;
 
                 default:
                     return null;
@@ -247,6 +251,8 @@ namespace SecretProject
                     return RoyalDock;
                 case 6:
                     return GreatLibrary;
+                case 7:
+                    return WestBeach;
                 default:
                     return Iliad;
             }
@@ -271,6 +277,8 @@ namespace SecretProject
 
                 case Stages.GreatLibrary:
                     return 6;
+                case Stages.WestBeach:
+                    return 7;
 
                 default:
                     return 0;
@@ -287,8 +295,9 @@ namespace SecretProject
             LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             
             //ORDER MATTERS!!!
-            AllDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            DialogueLibrary = new DialogueLibrary(AllDialogue);
+            AllDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllDialogue };
+            DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllTextures = new TextureBook(Content, spriteBatch);
@@ -335,17 +344,19 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
-            Iliad = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 2);
+            WestBeach = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
+            Iliad = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
-            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 2);
+            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 
-            GreatLibrary = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 2);
+            GreatLibrary = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
+
 
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
             
             
             
-            LodgeInterior = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",2);
+            LodgeInterior = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
@@ -401,7 +412,7 @@ namespace SecretProject
             
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            GetStageFromInt(stageToSwitchTo).LoadContent( cam);
+            GetStageFromInt(stageToSwitchTo).LoadContent(cam);
             
             if (portal != null)
             {
@@ -474,8 +485,11 @@ namespace SecretProject
                 case Stages.GreatLibrary:
                     GreatLibrary.Update(gameTime, myMouseManager, Player);
                     break;
+                case Stages.WestBeach:
+                    WestBeach.Update(gameTime, myMouseManager, Player);
+                    break;
 
-                    case Stages.Sea:
+                case Stages.Sea:
                        Sea.Update(gameTime, myMouseManager, Player);
                        break;
                 //case Stages.GreatLibrary:
@@ -523,9 +537,14 @@ namespace SecretProject
                     GreatLibrary.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
+                case Stages.WestBeach:
+                    GraphicsDevice.Clear(Color.Black);
+                    WestBeach.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
 
 
-                    case Stages.Sea:
+
+                case Stages.Sea:
                         Sea.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 

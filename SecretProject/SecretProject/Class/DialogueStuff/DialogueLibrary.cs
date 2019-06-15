@@ -11,16 +11,17 @@ namespace SecretProject.Class.DialogueStuff
 {
     public class DialogueLibrary
     {
-        public DialogueHolder Dialogue { get; set; }
+        public List<DialogueHolder> Dialogue { get; set; }
 
-        public DialogueLibrary(DialogueHolder dialogue)
+        public DialogueLibrary(List<DialogueHolder> dialogue)
         {
             this.Dialogue = dialogue;
         }
 
-        public string RetrieveDialogue(int speechID)
+        public string RetrieveDialogue(int speaker, int speechID)
         {
-            DialogueSkeleton skeleton = Dialogue.AllDialogue.Find(x => x.SpeechID == speechID);
+            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
+            DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
             return skeleton.TextToWrite;
         }
 

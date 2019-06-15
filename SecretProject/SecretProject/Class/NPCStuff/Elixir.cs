@@ -35,6 +35,7 @@ namespace SecretProject.Class.NPCStuff
 
         public Collider Collider { get; set; }
         public bool CollideOccured { get; set; } = false;
+        public int SpeakerID { get; set; } = 1;
 
 
 
@@ -81,8 +82,10 @@ namespace SecretProject.Class.NPCStuff
              {
                 if(mouse.IsRightClicked)
                 {
-                    Game1.GetCurrentStage().TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1);
+                    Game1.GetCurrentStage().TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
                     Game1.GetCurrentStage().TextBuilder.IsActive = true;
+
+                    Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
 
                 }

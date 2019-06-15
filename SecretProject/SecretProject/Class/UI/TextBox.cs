@@ -49,9 +49,9 @@ namespace SecretProject.Class.UI
 
             if(IsActivated)
             {
-               // spriteBatch.Draw(Texture, position, Color.White);
-                spriteBatch.Draw(this.Texture, new Rectangle((int)this.position.X, (int)this.position.Y, 128, 64), new Rectangle(48, 176, 128, 64), Color.White, 0f,
-                    Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                
+                spriteBatch.Draw(this.Texture, new Vector2(this.position.X,this.position.Y), new Rectangle(48, 176, 128, 64), Color.White, 0f,
+                    Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, TextToWrite, position, Color.Red, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             }
             spriteBatch.End();

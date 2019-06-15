@@ -82,7 +82,7 @@ namespace SecretProject.Class.StageFolder
             //Check Conditions
             if (resumeGame.isClicked)
             {
-                Game1.SwitchStage(0, 5);
+                Game1.SwitchStage(0, 7);
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if(Load.isClicked)

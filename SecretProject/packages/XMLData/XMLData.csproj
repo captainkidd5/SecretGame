@@ -36,7 +36,6 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DialogueStuff\DialogueHolder.cs" />
     <Compile Include="DialogueStuff\DialogueSkeleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

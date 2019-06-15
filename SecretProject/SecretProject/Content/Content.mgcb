@@ -111,16 +111,6 @@
 /processorParam:TextureFormat=Color
 /build:Button/userinterfaceTileSet.png
 
-#begin Dialogue/AllDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/AllDialogue.xml
-
-#begin Dialogue/CharacterDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/CharacterDialogue.xml
-
 #begin Dialogue/ElixirDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

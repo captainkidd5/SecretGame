@@ -141,9 +141,9 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
             //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(2);
+            Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
-            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(2), .1f, 5f);
+            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
 
             
         }
