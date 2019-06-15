@@ -117,6 +117,7 @@ namespace SecretProject.Class.UI
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)) && !isEscMenu)
             {
                 TextBuilder.IsActive = !TextBuilder.IsActive;
+                TextBuilder.UseTextBox = true;
             }
 
 

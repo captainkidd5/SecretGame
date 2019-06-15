@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace SecretProject.Class.DialogueStuff
         public float StringDisplayAnchor { get; set; }
         public float SpeedAnchor { get; set; }
         public Vector2 PositionToWriteTo { get; set; }
+        public bool UseTextBox { get; set; } = false;
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -46,6 +48,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     outputString = "";
                     this.IsActive = false;
+                    this.UseTextBox = false;
                     currentTextIndex = 0;
                     this.StringDisplayTimer = this.StringDisplayAnchor;
                 }
@@ -69,6 +72,13 @@ namespace SecretProject.Class.DialogueStuff
 
 
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, layerDepth);
+                if(UseTextBox)
+                {
+                    TextBox speechBox = new TextBox(PositionToWriteTo, 1);
+                    speechBox.position = new Vector2(PositionToWriteTo.X - speechBox.SourceRectangle.Width / 2, PositionToWriteTo.Y - speechBox.SourceRectangle.Width / 2);
+                    speechBox.DrawWithoutString(spriteBatch);
+                }
+                
             }
         }
     }

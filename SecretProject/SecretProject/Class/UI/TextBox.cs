@@ -15,9 +15,10 @@ namespace SecretProject.Class.UI
     {
        public bool IsActivated { get; set; } = false;
         protected SpriteFont textFont;
-        protected Vector2 position;
+        public Vector2 position;
         public string TextToWrite { get; set; }
         protected Texture2D Texture;
+        public Rectangle SourceRectangle { get; set; }
 
         public KeyboardState oldKeys = Keyboard.GetState();
 
@@ -29,6 +30,24 @@ namespace SecretProject.Class.UI
             this.Texture = texture;
         }
 
+        public TextBox(Vector2 position, int size)
+        {
+            this.position = position;
+
+            switch (size)
+            {
+                case 1:
+                    this.SourceRectangle = new Rectangle(80, 400, 1000, 600);
+                    break;
+            }
+        }
+
+        public virtual void DrawWithoutString(SpriteBatch spriteBatch)
+        {
+            
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+
+        }
         public virtual void Update(GameTime gameTime, Keys activationKey)
         {
 

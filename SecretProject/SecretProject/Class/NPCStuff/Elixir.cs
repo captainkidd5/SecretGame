@@ -85,6 +85,7 @@ namespace SecretProject.Class.NPCStuff
                     Game1.GetCurrentStage().TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
                     Game1.GetCurrentStage().TextBuilder.IsActive = true;
 
+                    Game1.Player.UserInterface.TextBuilder.IsActive = true;
                     Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
 
