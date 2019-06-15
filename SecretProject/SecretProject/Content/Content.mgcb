@@ -138,12 +138,6 @@
 /processorParam:TextureFormat=Color
 /build:Effects/lightmask.png
 
-#begin Effects/lightSpriteEffect1.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/lightSpriteEffect1.fx
-
 #begin Effects/practiceLighting1.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -684,4 +678,10 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
+
+#begin Effects/nightTint.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/nightTint.fx
 

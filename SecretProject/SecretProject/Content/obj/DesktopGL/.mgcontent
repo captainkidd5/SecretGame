@@ -16,7 +16,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/CharacterDialogue.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/ElixirDialogue.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightmask.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightSpriteEffect1.fx</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/practiceLighting1.fx</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Enemy/enemyship1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Barrel.png</File>
@@ -72,5 +71,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/walkGrass.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/woodStep.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/nightTint.fx</File>
   </SourceFiles>
 </SourceFileCollection>

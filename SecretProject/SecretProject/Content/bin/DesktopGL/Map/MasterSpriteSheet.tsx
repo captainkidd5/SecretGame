@@ -612,7 +612,20 @@
  </tile>
  <tile id="4553">
   <objectgroup draworder="index">
-   <object id="1" x="10" y="0" width="3" height="16"/>
+   <object id="2" x="4" y="7" width="12" height="9">
+    <properties>
+     <property name="action" value="smelt"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="4554">
+  <objectgroup draworder="index">
+   <object id="3" x="0" y="7" width="11" height="9">
+    <properties>
+     <property name="action" value="smelt"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="4560">
@@ -657,7 +670,20 @@
  </tile>
  <tile id="4653">
   <objectgroup draworder="index">
-   <object id="1" x="10" y="0" width="4" height="16"/>
+   <object id="4" x="6" y="0" width="10" height="10">
+    <properties>
+     <property name="action" value="smelt"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="4654">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="10" height="10">
+    <properties>
+     <property name="action" value="smelt"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="4660">
@@ -1435,21 +1461,25 @@
  <tile id="6065">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6066">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6067">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6068">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6073">
@@ -1460,61 +1490,73 @@
  <tile id="6165">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6166">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6167">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6168">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6265">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6266">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6267">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6268">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6365">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6366">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6367">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6368">
   <properties>
    <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="true"/>
   </properties>
  </tile>
  <tile id="6474">

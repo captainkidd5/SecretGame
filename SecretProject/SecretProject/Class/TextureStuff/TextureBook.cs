@@ -62,8 +62,9 @@ namespace SecretProject.Class.TextureStuff
 
 
         //Effects
-        public Effect testEffect;
+
         public Effect practiceLightMaskEffect;
+        public Effect nightTint;
         public Texture2D lightMask;
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
@@ -94,9 +95,9 @@ namespace SecretProject.Class.TextureStuff
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
             ShipSpriteSheet = content.Load<Texture2D>("Player/Ship/ShipSpriteSheet");
 
-            testEffect = content.Load<Effect>("Effects/lightSpriteEffect1");
             lightMask = content.Load<Texture2D>("Effects/lightmask");
             practiceLightMaskEffect = content.Load<Effect>("Effects/practiceLighting1");
+            nightTint = content.Load<Effect>("Effects/nightTint");
 
         }
 

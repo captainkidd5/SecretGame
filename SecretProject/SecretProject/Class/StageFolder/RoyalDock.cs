@@ -197,6 +197,7 @@ namespace SecretProject.Class.StageFolder
             {
                 
                 player.Position = new Vector2(400, 400);
+                Game1.GlobalClock.TotalHours = 22;
             }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
             {
@@ -263,7 +264,8 @@ namespace SecretProject.Class.StageFolder
 
 
                     graphics.SetRenderTarget(lightsTarget);
-                    graphics.Clear(Color.Black);
+                    //graphics.Clear(Color.White);
+                    graphics.Clear(new Color(50,50,50,220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllLights.Count; l++)

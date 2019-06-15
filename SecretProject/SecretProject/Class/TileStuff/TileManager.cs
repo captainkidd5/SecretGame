@@ -273,6 +273,10 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.Speed = double.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["Speed"]);
                 }
 
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
+                {
+                    tileToAssign.HasAction = true;
+                }
 
 
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("start"))
@@ -313,6 +317,11 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.HasSound = true;
                 tileToAssign.SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["step"]);
                 //grass = 1, stone = 2, wood = 3, sand = 4
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("tileSelectorAllowed"))
+            {
+                tileToAssign.TileSelectorAllowed = true;
+               
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
             {
@@ -596,29 +605,33 @@ namespace SecretProject.Class.TileStuff
                                 //IE layer is background.
                                 if (z == 0)
                                 {
-                                    
-                                    if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                    if (AllTiles[z][i, j].TileSelectorAllowed)
                                     {
 
-                                        Game1.Player.UserInterface.DrawTileSelector = true;
-                                        this.DebugTile = AllTiles[z][i, j];
-                                        Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
-                                        Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
-
-                                        Game1.myMouseManager.ToggleGeneralInteraction = true;
-
-                                        //if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable")) //this whole thing is devastated, come back TODO
-                                        //{
-                                        //    Game1.isMyMouseVisible = false;
-                                        //    Game1.userInterface.DrawTileSelector = false;
-                                        //    Game1.myMouseManager.TogglePlantInteraction = true;
-
-                                        //}
-
-                                        if (mouse.IsRightClicked)
+                                        
+                                        if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                         {
-                                            InteractWithBackground(z, gameTime, i, j);
 
+                                            Game1.Player.UserInterface.DrawTileSelector = true;
+                                            this.DebugTile = AllTiles[z][i, j];
+                                            Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                            Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+
+                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+
+                                            //if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable")) //this whole thing is devastated, come back TODO
+                                            //{
+                                            //    Game1.isMyMouseVisible = false;
+                                            //    Game1.userInterface.DrawTileSelector = false;
+                                            //    Game1.myMouseManager.TogglePlantInteraction = true;
+
+                                            //}
+
+                                            if (mouse.IsRightClicked)
+                                            {
+                                                InteractWithBackground(z, gameTime, i, j);
+
+                                            }
                                         }
                                     }
                                     else
@@ -630,6 +643,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 if (z == 1)
                                 {
+
 
                                     if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                     {

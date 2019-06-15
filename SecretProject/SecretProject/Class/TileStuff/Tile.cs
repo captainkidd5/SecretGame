@@ -88,6 +88,8 @@ namespace SecretProject.Class.TileStuff
         public int HitPoints { get; set; } = 1;
         public bool IsLightSource { get; set; } = false;
         public int LightType { get; set; } = 0;
+        public bool HasAction { get; set; } = false;
+        public bool TileSelectorAllowed { get; set; } = false;
 
 
         //[XmlIgnore]
