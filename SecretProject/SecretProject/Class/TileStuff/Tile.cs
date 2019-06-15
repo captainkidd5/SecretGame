@@ -86,6 +86,8 @@ namespace SecretProject.Class.TileStuff
 
         public int NumberOfItemsToSpawn { get; set; } = 1;
         public int HitPoints { get; set; } = 1;
+        public bool IsLightSource { get; set; } = false;
+        public int LightType { get; set; } = 0;
 
 
         //[XmlIgnore]

@@ -16,6 +16,7 @@ using SecretProject.Class.Controls;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -250,6 +251,12 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.Tree = true;
                 tileToAssign.AssociatedItem = 123;
 
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
+            {
+                tileToAssign.IsLightSource = true;
+                tileToAssign.LightType = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
+                Game1.GetCurrentStage().AllLights.Add(new LightSource(tileToAssign.LightType, new Vector2(tileToAssign.X, tileToAssign.Y)));
             }
 
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedY"))
@@ -685,9 +692,15 @@ namespace SecretProject.Class.TileStuff
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16) -200
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) -200)
                             {
-                                
+                                //if(Game1.GetCurrentStage().IsDark)
+                                //{
+                                //    if (AllTiles[z][i, j].IsLightSource)
+                                //    {
+                                //        Game1.GetCurrentStage
+                                //    }
+                                //}
 
-
+                               
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                     // spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle,

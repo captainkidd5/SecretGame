@@ -25,6 +25,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.LightStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -107,6 +108,8 @@ namespace SecretProject.Class.StageFolder
         public ParticleEngine ParticleEngine { get; set; }
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsDark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<LightSource> AllLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #endregion
 

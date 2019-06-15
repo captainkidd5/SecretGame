@@ -32,6 +32,7 @@ namespace SecretProject.Class.Universal
 
         public int NightTimeSoundEffectStart { get; set; } = 12;
         public int NightTimeSoundEffectEnd { get; set; } = 14;
+        public bool IsNight { get; set; }
 
         TextBox ClockDisplay;
 
@@ -67,24 +68,26 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 8)
+            if(LocalTime.TotalSeconds > 2)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
-                if(TotalHours > 18)
+                if(TotalHours > 18 && TotalHours < 23)
                 {
                     ColorMultiplier-=3;
                 }
-                if(TotalHours > 5 && TotalHours < 18)
+                if(TotalHours > 2 && TotalHours < 18)
                 {
                     PlayRandomInstance(1);
+                    IsNight = false;
                 }
-                if(TotalHours < 2 || TotalHours > 20)
+                if(TotalHours < 2 || TotalHours > 21)
                 {
                     PlayRandomInstance(2);
                     Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 12, 1f);
+                    IsNight = true;
                 }
-                if(TotalHours < 7)
+                if(TotalHours < 7 && TotalHours > 2)
                 {
                     
                     ColorMultiplier+=3;

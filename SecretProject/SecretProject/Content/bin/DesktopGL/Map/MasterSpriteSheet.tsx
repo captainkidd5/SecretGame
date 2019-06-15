@@ -485,6 +485,11 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="4192">
+  <properties>
+   <property name="lightSource" value="1"/>
+  </properties>
+ </tile>
  <tile id="4211">
   <properties>
    <property name="step" value="2"/>

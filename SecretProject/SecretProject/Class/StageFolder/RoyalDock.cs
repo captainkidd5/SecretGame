@@ -26,6 +26,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.LightStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -64,6 +65,11 @@ namespace SecretProject.Class.StageFolder
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+
+            AllLights = new List<LightSource>()
+            {
+
+            };
 
             AllSprites = new List<Sprite>()
             {
@@ -166,6 +172,7 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            this.IsDark = Game1.GlobalClock.IsNight;
             Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
             for(int p = 0; p< AllPortals.Count; p++)
@@ -261,14 +268,23 @@ namespace SecretProject.Class.StageFolder
 
             if (player.Health > 0)
             {
-                graphics.SetRenderTarget(lightsTarget);
-                graphics.Clear(Color.Black);
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(500, 500), Color.White);
-                spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(300, 500), Color.White);
-                spriteBatch.Draw(Game1.AllTextures.lightMask, mouse.WorldMousePosition, Color.White);
-                spriteBatch.End();
+                if (this.IsDark)
+                {
+
+
+                    graphics.SetRenderTarget(lightsTarget);
+                    graphics.Clear(Color.Black);
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
+                    graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                    for (int l = 0; l < this.AllLights.Count; l++)
+                    {
+                        spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
+                    }
+                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(player.Position.X - Game1.AllTextures.lightMask.Width/2, player.Position.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(300, 500), Color.White);
+                    //spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                    spriteBatch.End();
+                }
 
 
                 graphics.SetRenderTarget(mainTarget);
@@ -334,8 +350,12 @@ namespace SecretProject.Class.StageFolder
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
-                Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
+                if(IsDark)
+                {
+                    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
+                    Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
+                }
+
                 spriteBatch.Draw(mainTarget,Game1.ScreenRectangle, Color.White);
                 //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);
                 

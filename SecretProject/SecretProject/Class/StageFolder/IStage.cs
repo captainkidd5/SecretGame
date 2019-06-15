@@ -18,27 +18,28 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.LightStuff;
 /*
 this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
 
 
-            //map specifications
+//map specifications
 
 
-            AllDepths = new List<float>()
-            {
-                .1f,
-                .2f,
-                .3f,
-                .5f,
-                .6f
-            };
+AllDepths = new List<float>()
+{
+.1f,
+.2f,
+.3f,
+.5f,
+.6f
+};
 
 
 
-            this.Map = new TmxMap("Content/Map/worldMap.tmx");
-            */
+this.Map = new TmxMap("Content/Map/worldMap.tmx");
+*/
 namespace SecretProject.Class.StageFolder
 {
     public interface IStage
@@ -77,6 +78,8 @@ List<ActionTimer> AllActions { get; set; }
 
         List<Portal> AllPortals { get; set; }
 
+        List<LightSource> AllLights { get; set; }
+
 
 
 
@@ -86,6 +89,8 @@ List<ActionTimer> AllActions { get; set; }
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
+
+        bool IsDark { get; set; }
 
 
         ParticleEngine ParticleEngine { get; set; }

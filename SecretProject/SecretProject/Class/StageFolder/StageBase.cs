@@ -26,6 +26,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.LightStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -103,6 +104,8 @@ namespace SecretProject.Class.StageFolder
         public string MapTexturePath { get; set; }
         public string TmxMapPath { get; set; }
         public int DialogueToRetrieve { get; set; }
+        public bool IsDark { get; set; }
+        public List<LightSource> AllLights { get; set; }
 
         #endregion
 
