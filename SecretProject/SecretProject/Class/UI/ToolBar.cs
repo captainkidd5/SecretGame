@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
@@ -79,6 +80,7 @@ namespace SecretProject.Class.UI
         public bool WasSliderUpdated = false;
 
         public List<ActionTimer> AllActions;
+        TextBuilder TextBuilder;
 
         public ToolBar( GraphicsDevice graphicsDevice, ContentManager content )
         {
@@ -135,11 +137,14 @@ namespace SecretProject.Class.UI
             //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
 
             AllActions = new List<ActionTimer>();
+            TextBuilder = new TextBuilder("", .01f, 5);
+            
         }
 
         public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
         {
             UpdateScrollWheel(mouse);
+            TextBuilder.Update(gameTime);
 
             if(WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
@@ -315,7 +320,20 @@ namespace SecretProject.Class.UI
 
             for (int i = 0; i < 7; i++)
             {
-
+                if(AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
+                {
+                    TextBuilder.StringToWrite = inventory.currentInventory[i].GetItem().Name;
+                    TextBuilder.PositionToWriteTo = AllSlots[i].Position;
+                    TextBuilder.StringDisplayTimer = 1f;
+                    TextBuilder.StringDisplayAnchor = 1f;
+                    TextBuilder.IsActive = true;
+                    
+                }
+                //else
+                //{
+                //    TextBuilder.StringToWrite = "";
+                //    TextBuilder.IsActive = false;
+                //}
                 if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0 )
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
@@ -342,6 +360,8 @@ namespace SecretProject.Class.UI
                         {
                             if (Game1.AllShops[(int)Game1.Player.UserInterface.CurrentOpenShop].ShopMenu.allShopMenuItemButtons[s].IsHovered)
                             {
+                               // TextBuilder.IsActive = true;
+                                //TextBuilder.StringToWrite = Game1.AllShops[(int)Game1.Player.UserInterface.CurrentOpenShop].ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().Name;
                                 int currentItemCount = AllSlots[i].ItemCounter;
 
                                 for(int d = 0; d < currentItemCount; d++)
@@ -458,6 +478,7 @@ namespace SecretProject.Class.UI
 
             //--------------------------------------
             //Draw Background
+            TextBuilder.Draw(spriteBatch, .75f);
             spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .67f);
 
             for(int i = 0; i < 7; i++)
