@@ -68,7 +68,8 @@ namespace SecretProject
         Sea = 4,
         RoyalDock = 5,
         GreatLibrary = 6,
-        WestBeach = 7
+        WestBeach = 7,
+        DobbinsOrchard = 8
     }
 
 
@@ -88,6 +89,7 @@ namespace SecretProject
         public static Sea Sea;
         public static NormalStage GreatLibrary;
         public static NormalStage WestBeach;
+        public static NormalStage DobbinsOrchard;
         public static List<NormalStage> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -230,6 +232,8 @@ namespace SecretProject
                     return GreatLibrary;
                 case Stages.WestBeach:
                     return WestBeach;
+                case Stages.DobbinsOrchard:
+                    return DobbinsOrchard;
 
                 default:
                     return null;
@@ -253,6 +257,8 @@ namespace SecretProject
                     return GreatLibrary;
                 case 7:
                     return WestBeach;
+                case 8:
+                    return DobbinsOrchard;
                 default:
                     return Iliad;
             }
@@ -279,6 +285,8 @@ namespace SecretProject
                     return 6;
                 case Stages.WestBeach:
                     return 7;
+                case Stages.DobbinsOrchard:
+                    return 8;
 
                 default:
                     return 0;
@@ -353,9 +361,9 @@ namespace SecretProject
 
 
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            
-            
-            
+            DobbinsOrchard = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
+
+
             LodgeInterior = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
@@ -493,8 +501,11 @@ namespace SecretProject
                     case Stages.WestBeach:
                         WestBeach.Update(gameTime, myMouseManager, Player);
                         break;
+                case Stages.DobbinsOrchard:
+                    DobbinsOrchard.Update(gameTime, myMouseManager, Player);
+                    break;
 
-                    case Stages.Sea:
+                case Stages.Sea:
                         Sea.Update(gameTime, myMouseManager, Player);
                         break;
                         //case Stages.GreatLibrary:
@@ -545,6 +556,11 @@ namespace SecretProject
                 case Stages.WestBeach:
                     GraphicsDevice.Clear(Color.Black);
                     WestBeach.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+
+                case Stages.DobbinsOrchard:
+                    GraphicsDevice.Clear(Color.Black);
+                    DobbinsOrchard.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 
