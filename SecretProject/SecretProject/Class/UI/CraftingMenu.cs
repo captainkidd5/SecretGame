@@ -17,13 +17,17 @@ namespace SecretProject.Class.UI
         private Rectangle Layer1SourceRectangle;
         private Vector2 layer1DrawPosition;
         public Rectangle Layer1TriggerBox { get { return new Rectangle((int)layer1DrawPosition.X, (int)layer1DrawPosition.Y, Layer1SourceRectangle.Width, Layer1SourceRectangle.Height); } }
-        public Rectangle Layer2TriggerBox { get { return new Rectangle((int)layer2DrawPosition.X, (int)layer2DrawPosition.Y, Layer2SourceRectangle.Width, Layer2SourceRectangle.Height); } }
+        public Rectangle Layer2TriggerBox { get { return new Rectangle((int)layer2DrawPosition.X, (int)layer2DrawPosition.Y, layer2SourceRectangle.Width, layer2SourceRectangle.Height); } }
         private List<Button> layer1Buttons;
 
         public bool Layer2ExpandedOld { get; set; }
         public bool Layer2ExpandedNew { get; set; }
-        private Rectangle Layer2SourceRectangle;
+        private Rectangle layer2SourceRectangle;
         private Vector2 layer2DrawPosition;
+
+        public bool Layer3Expanded { get; set; }
+        private Rectangle layer3SourceRectangle;
+        private Vector2 layer3DrawPosition;
 
         GraphicsDevice graphics;
         public CraftingMenu(GraphicsDevice graphics)
@@ -32,7 +36,7 @@ namespace SecretProject.Class.UI
             Layer1SourceRectangle = new Rectangle(1168, 240, 64, 576);
             layer1DrawPosition = new Vector2(25, 25);
 
-            Layer2SourceRectangle = new Rectangle(1264, 240, 240, 162);
+            layer2SourceRectangle = new Rectangle(1264, 240, 240, 162);
 
             layer1Buttons = new List<Button>()
             {
@@ -46,6 +50,8 @@ namespace SecretProject.Class.UI
                 //new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1104, 240, 64, 64), graphics, new Vector2(layer1DrawPosition.X, layer1DrawPosition.Y + 192))
 
             };
+
+            layer3SourceRectangle = new Rectangle(1152, 112, 164, 100);
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -79,13 +85,20 @@ namespace SecretProject.Class.UI
                 Console.WriteLine(Layer2ExpandedNew);
             }
             Layer2ExpandedOld = Layer2ExpandedNew;
+
+            if(Layer2ExpandedNew)
+            {
+                //length from top of texture to top of yellow arrow for y
+                layer3DrawPosition = new Vector2(layer2DrawPosition.X + layer2SourceRectangle.Width, layer2DrawPosition.Y + 44);
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (Layer2ExpandedNew)
             {
                 Layer1Expanded = true;
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer2DrawPosition, Layer2SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer2DrawPosition, layer2SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer3DrawPosition, layer3SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
             if (Layer1Expanded)
             {
