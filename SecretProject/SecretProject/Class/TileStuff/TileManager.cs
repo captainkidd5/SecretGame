@@ -296,6 +296,7 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.Grass = true;
                     tileToAssign.AssociatedItem = 129;
                 }
+                
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("stone"))
                 {
                     //tiles[i, j].Properties.Add("stone", true);
@@ -316,6 +317,13 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.AssociatedItem = 149;
                     // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
                 }
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
+            {
+                //tiles[i, j].Properties.Add("grass", true);
+                tileToAssign.Destructable = true;
+                tileToAssign.HitPoints = Game1.Utility.GetTileHitpoints(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                tileToAssign.RequiredTool = Game1.Utility.GetRequiredTileTool(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("step"))
             {
@@ -835,71 +843,100 @@ namespace SecretProject.Class.TileStuff
                     Game1.Player.position.Y = 809;
                 }
             }
-            switch (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool())
+            if(AllTiles[layer][oldX, oldY].Destructable)
             {
-                case 0:
-                    if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+                if(!AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+                {
+                    if(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == AllTiles[layer][oldX, oldY].RequiredTool)
                     {
+                        switch (AllTiles[layer][oldX, oldY].RequiredTool)
+                        {
+                            case 0:
+                                SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
 
-                        
-                        SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 3, Color.WhiteSmoke, true);
+                                AllTiles[layer][oldX, oldY].HitPoints--;
+                                break;
 
-                        ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 3, Color.WhiteSmoke, true);
-                        AllTiles[layer][oldX, oldY].HitPoints--;
+                            case 1:
+                                SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
+                                AllTiles[layer][oldX, oldY].HitPoints--;
+                                break;
+                            case 2:
+                                SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
+                                break;
+                        }
 
                     }
-
-                    break;
-                case 1:
-                    if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated))
-                    {
-                        
-                        SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                        ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
-                        AllTiles[layer][oldX, oldY].HitPoints--;
-
-                    }
-
-                    if (AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-                    {
-                        Game1.SoundManager.StoneSmash.Play();
-                        SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                        GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
-                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Red;
-                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-                    }
-
-                    if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-                    {
-                        Game1.SoundManager.StoneSmash.Play();
-                        SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                        GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
-                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Blue;
-                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-
-                    }
-                    break;
-
-                case 2:
-                    if (AllTiles[layer][oldX, oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-                    {
-                        Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 6, 1f);
-                        SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
-                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                        Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
-                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-
-
-                    }
-                    break;
-
-
-               // default:
-                   // throw new Exception("Item with id " + Game1.userInterface.BottomBar.GetCurrentEquippedTool() + " has not been assigned an action");
-
+                }
             }
+            //switch (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool())
+            //{
+            //    case 0:
+            //        if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+            //        {
+
+                        
+            //            SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
+
+            //            ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 3, Color.WhiteSmoke, true);
+            //            AllTiles[layer][oldX, oldY].HitPoints--;
+
+            //        }
+
+            //        break;
+            //    case 1:
+            //        if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated))
+            //        {
+                        
+            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+            //            ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
+            //            AllTiles[layer][oldX, oldY].HitPoints--;
+
+            //        }
+
+            //        if (AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+            //        {
+            //            Game1.SoundManager.StoneSmash.Play();
+            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+            //            GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Red;
+            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
+            //        }
+
+            //        if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+            //        {
+            //            Game1.SoundManager.StoneSmash.Play();
+            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+            //            GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
+            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Blue;
+            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
+
+            //        }
+            //        break;
+
+            //    case 2:
+            //        if (AllTiles[layer][oldX, oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+            //        {
+            //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 6, 1f);
+            //            SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
+            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
+            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
+
+
+            //        }
+            //        break;
+
+
+            //   // default:
+            //       // throw new Exception("Item with id " + Game1.userInterface.BottomBar.GetCurrentEquippedTool() + " has not been assigned an action");
+
+            //}
 
         }
 

@@ -390,6 +390,21 @@
       <TextureRow>1</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="183">
+    <Value>
+      <Name>Clay</Name>
+      <ID>183</ID>
+      <InvMaximum>50</InvMaximum>
+      <WorldMaximum>500</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>15</Price>
+      <id>183</id>
+      <TextureColumn>9</TextureColumn>
+      <TextureRow>3</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="191">
     <Value>
       <Name>Dandelion</Name>

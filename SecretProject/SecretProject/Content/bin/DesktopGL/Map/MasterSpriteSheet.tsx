@@ -575,6 +575,16 @@
    <object id="1" x="5" y="0" width="5" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="4492">
+  <objectgroup draworder="index">
+   <object id="1" x="13" y="0" width="3" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="4493">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="3" height="2"/>
+  </objectgroup>
+ </tile>
  <tile id="4542">
   <properties>
    <property name="layer" value="3"/>
@@ -792,6 +802,7 @@
    <property name="Hitpoints" value="4"/>
    <property name="NumberOfItems" value="4"/>
    <property name="Tree" value="ThunderBirch"/>
+   <property name="destructable" value="0,4,0"/>
    <property name="loot" value="123:100,122:50"/>
    <property name="spawnWith" value="4744,4843,4845,4846"/>
   </properties>
@@ -1576,6 +1587,7 @@
  </tile>
  <tile id="6387">
   <properties>
+   <property name="loot" value="181:25"/>
    <property name="spawnWith" value="6287,6288,6388"/>
   </properties>
   <objectgroup draworder="index">
@@ -1596,6 +1608,7 @@
   <properties>
    <property name="AnimatedX" value="6"/>
    <property name="Speed" value=".15"/>
+   <property name="destructable" value="2,1,0"/>
    <property name="grass" value="true"/>
   </properties>
   <objectgroup draworder="index">
@@ -1628,6 +1641,7 @@
   <properties>
    <property name="AnimatedX" value="5"/>
    <property name="Speed" value=".15"/>
+   <property name="loot" value="130:100,183:15"/>
    <property name="stone" value=""/>
   </properties>
   <objectgroup draworder="index">
@@ -1636,6 +1650,7 @@
  </tile>
  <tile id="6686">
   <properties>
+   <property name="loot" value="191:100"/>
    <property name="spawnWith" value="6586"/>
   </properties>
   <objectgroup draworder="index">

@@ -90,5 +90,21 @@ namespace SecretProject.Class.Universal
             return amountToReturn;
         }
 
+        public int GetRequiredTileTool(string info)
+        {
+            int toolToReturn = int.Parse(info.Split(',')[0]);
+            return toolToReturn;
+        }
+        public int GetTileHitpoints(string info)
+        {
+            int pointsToReturn = int.Parse(info.Split(',')[1]);
+            return pointsToReturn;
+        }
+        public int GetTileDestructionEffect(string info)
+        {
+            int effectToReturn = int.Parse(info.Split(',')[2]);
+            return effectToReturn;
+        }
+
     }
 }
