@@ -27,7 +27,11 @@ namespace SecretProject.Class.UI
 
             layer1Buttons = new List<Button>()
             {
-                new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1168, 240, 64, 64), graphics, new Vector2(64, 64))
+                new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1104, 240, 64, 64), graphics, new Vector2(layer1DrawPosition.X, layer1DrawPosition.Y)),
+                new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1104, 304, 64, 64), graphics, new Vector2(layer1DrawPosition.X, layer1DrawPosition.Y + 64)),
+                new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1104, 368, 64, 64), graphics, new Vector2(layer1DrawPosition.X, layer1DrawPosition.Y + 128)),
+                new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1104, 240, 64, 64), graphics, new Vector2(layer1DrawPosition.X, layer1DrawPosition.Y + 192))
+
             };
         }
 

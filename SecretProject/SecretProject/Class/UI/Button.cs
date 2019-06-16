@@ -108,7 +108,8 @@ namespace SecretProject.Class.MenuStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Rectangle, Color);
+            spriteBatch.Draw(Texture, Position,SourceRectangle,  Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,  layer1DrawPosition, Layer1SourceRectangle, Color.White, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth)
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepthCustom)
