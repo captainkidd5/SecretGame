@@ -385,6 +385,9 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(145, 1);
             ToolShop.ShopMenu.TryAddStock(165, 1);
             ToolShop.ShopMenu.TryAddStock(167, 1);
+            ToolShop.ShopMenu.TryAddStock(171, 1);
+            ToolShop.ShopMenu.TryAddStock(181, 1);
+            ToolShop.ShopMenu.TryAddStock(191, 1);
 
             AllShops = new List<IShop>()
             {

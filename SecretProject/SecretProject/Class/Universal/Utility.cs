@@ -60,5 +60,15 @@ namespace SecretProject.Class.Universal
             return arrayToReturn;
         }
 
+        //TODO: mix this in so lotting works. Check out thunderbirch in tmx map sheet.
+        //public Dictionary<int, int> ParseLootKey(string lootString)
+        //{
+        //    string[] pairs = lootString.Split(',');
+        //    for(int i=0; i< pairs.Length; i++)
+        //    {
+        //        pairs[i].Split(':');
+        //    }
+        //}
+
     }
 }

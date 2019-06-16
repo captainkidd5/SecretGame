@@ -52,6 +52,11 @@ namespace SecretProject.Class.UI
             };
 
             layer3SourceRectangle = new Rectangle(1152, 112, 164, 100);
+
+            foreach(Button button in layer1Buttons)
+            {
+                
+            }
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)

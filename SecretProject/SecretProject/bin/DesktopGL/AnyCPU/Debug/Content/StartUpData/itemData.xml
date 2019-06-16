@@ -360,4 +360,49 @@
       <TextureRow>9</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="171">
+    <Value>
+      <Name>JuicyFruit</Name>
+      <ID>171</ID>
+      <InvMaximum>50</InvMaximum>
+      <WorldMaximum>500</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>171</id>
+      <TextureColumn>8</TextureColumn>
+      <TextureRow>1</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="181">
+    <Value>
+      <Name>Thorn</Name>
+      <ID>181</ID>
+      <InvMaximum>50</InvMaximum>
+      <WorldMaximum>500</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>181</id>
+      <TextureColumn>9</TextureColumn>
+      <TextureRow>1</TextureRow>
+    </Value>
+  </EntryOfStringItem>
+  <EntryOfStringItem Key="191">
+    <Value>
+      <Name>Dandelion</Name>
+      <ID>191</ID>
+      <InvMaximum>50</InvMaximum>
+      <WorldMaximum>500</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <Price>2</Price>
+      <id>191</id>
+      <TextureColumn>10</TextureColumn>
+      <TextureRow>1</TextureRow>
+    </Value>
+  </EntryOfStringItem>
 </ArrayOfEntryOfStringItem>
