@@ -58,6 +58,8 @@ namespace SecretProject.Class.UI
 
         public OpenShop CurrentOpenShop { get; set; } = OpenShop.None;
 
+        public CraftingMenu CraftingMenu { get; set; }
+
         //keyboard
 
 
@@ -77,6 +79,7 @@ namespace SecretProject.Class.UI
             this.cam = cam;
             TextBuilder = new TextBuilder("", .1f, 5f);
             this.Player = player;
+            CraftingMenu = new CraftingMenu(GraphicsDevice);
         }
 
 
@@ -85,9 +88,9 @@ namespace SecretProject.Class.UI
             BottomBar.Update(gameTime, inventory, mouse);
             //if (!IsShopMenu)
             //{
-                
-            //}
 
+            //}
+            CraftingMenu.Update(gameTime, mouse);
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)) && !IsShopMenu)
             {
                 isEscMenu = !isEscMenu;
@@ -182,6 +185,8 @@ namespace SecretProject.Class.UI
                 TextBuilder.Draw(spriteBatch, .71f);
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
+
+            CraftingMenu.Draw(spriteBatch);
 
             spriteBatch.End();
 

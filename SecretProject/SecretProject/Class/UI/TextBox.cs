@@ -37,7 +37,7 @@ namespace SecretProject.Class.UI
             switch (size)
             {
                 case 1:
-                    this.SourceRectangle = new Rectangle(80, 400, 1000, 600);
+                    this.SourceRectangle = new Rectangle(96, 416, 640, 90);
                     break;
             }
         }

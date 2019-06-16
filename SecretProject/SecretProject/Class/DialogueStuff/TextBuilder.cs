@@ -21,6 +21,7 @@ namespace SecretProject.Class.DialogueStuff
         public float SpeedAnchor { get; set; }
         public Vector2 PositionToWriteTo { get; set; }
         public bool UseTextBox { get; set; } = false;
+        public bool FreezeStage { get; set; } = false;
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -29,14 +30,17 @@ namespace SecretProject.Class.DialogueStuff
             this.StringDisplayTimer = stringDisplayTimer;
             this.StringDisplayAnchor = this.StringDisplayTimer;
             this.SpeedAnchor = WriteSpeed;
-            PositionToWriteTo = Game1.Utility.centerScreen;
+            PositionToWriteTo = Game1.Utility.TextBottomThird;
         }
 
         public void Update(GameTime gameTime)
         {
             if (IsActive)
             {
-
+                if(FreezeStage)
+                {
+                    Game1.freeze = true;
+                }
 
                 WriteSpeed -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -50,6 +54,7 @@ namespace SecretProject.Class.DialogueStuff
                     this.IsActive = false;
                     this.UseTextBox = false;
                     currentTextIndex = 0;
+                    Game1.freeze = false;
                     this.StringDisplayTimer = this.StringDisplayAnchor;
                 }
 
@@ -71,11 +76,11 @@ namespace SecretProject.Class.DialogueStuff
             {
 
 
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, layerDepth);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth);
                 if(UseTextBox)
                 {
                     TextBox speechBox = new TextBox(PositionToWriteTo, 1);
-                    speechBox.position = new Vector2(PositionToWriteTo.X - speechBox.SourceRectangle.Width / 2, PositionToWriteTo.Y - speechBox.SourceRectangle.Width / 2);
+                    speechBox.position = new Vector2(PositionToWriteTo.X , PositionToWriteTo.Y);
                     speechBox.DrawWithoutString(spriteBatch);
                 }
                 

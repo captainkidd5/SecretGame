@@ -458,43 +458,45 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            //switch between stages for updating
-            switch (gameStages)
-            {
-                case Stages.MainMenu:
-
-                    mainMenu.Update(gameTime, myMouseManager, this);
-                    break;
-
-                case Stages.LodgeInteior:
-
-                    LodgeInterior.Update(gameTime, myMouseManager, Player);
-                    break;
-
-                case Stages.Iliad:
 
 
-                    Iliad.Update(gameTime, myMouseManager, Player);
-                    break;
+                //switch between stages for updating
+                switch (gameStages)
+                {
+                    case Stages.MainMenu:
 
-                case Stages.RoyalDock:
+                        mainMenu.Update(gameTime, myMouseManager, this);
+                        break;
 
-                    RoyalDock.Update(gameTime, myMouseManager, Player);
-                    break;
+                    case Stages.LodgeInteior:
 
-                case Stages.GreatLibrary:
-                    GreatLibrary.Update(gameTime, myMouseManager, Player);
-                    break;
-                case Stages.WestBeach:
-                    WestBeach.Update(gameTime, myMouseManager, Player);
-                    break;
+                        LodgeInterior.Update(gameTime, myMouseManager, Player);
+                        break;
 
-                case Stages.Sea:
-                       Sea.Update(gameTime, myMouseManager, Player);
-                       break;
-                //case Stages.GreatLibrary:
+                    case Stages.Iliad:
 
-            }
+
+                        Iliad.Update(gameTime, myMouseManager, Player);
+                        break;
+
+                    case Stages.RoyalDock:
+
+                        RoyalDock.Update(gameTime, myMouseManager, Player);
+                        break;
+
+                    case Stages.GreatLibrary:
+                        GreatLibrary.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.WestBeach:
+                        WestBeach.Update(gameTime, myMouseManager, Player);
+                        break;
+
+                    case Stages.Sea:
+                        Sea.Update(gameTime, myMouseManager, Player);
+                        break;
+                        //case Stages.GreatLibrary:
+
+                }
 
             base.Update(gameTime);
         }

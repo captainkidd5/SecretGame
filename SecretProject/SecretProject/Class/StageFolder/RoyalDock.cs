@@ -141,7 +141,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
             //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
+            //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
 
@@ -172,8 +172,9 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+
             this.IsDark = Game1.GlobalClock.IsNight;
-            Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
+            //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
             for(int p = 0; p< AllPortals.Count; p++)
             {
