@@ -333,6 +333,13 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.LayerToDrawAt = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
                 //grass = 1, stone = 2, wood = 3, sand = 4
             }
+
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("loot"))
+            {
+                tileToAssign.Loot = Game1.Utility.Parselootkey(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["loot"]);
+                
+
+            }
             if (tileToAssign.LayerToDrawAt == 3)
             {
                 //use random in order to deal with tiles which spawn at the exact same y layer.
@@ -989,12 +996,8 @@ namespace SecretProject.Class.TileStuff
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                     AllTiles[layer][oldX, oldY].TileObject = null;
                     AllTiles[layer][oldX, oldY].HasObject = false;
-                    for(int i =0; i< AllTiles[layer][oldX, oldY].NumberOfItemsToSpawn; i++)
-                    {
-                        Item item = Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true);
-                        //item.IsTossable = true;
-                    Game1.GetCurrentStage().AllItems.Add(item);
-                    }
+                    GetDrop(AllTiles[layer][oldX, oldY]);
+                    
                     
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
 
@@ -1005,16 +1008,35 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                 AllTiles[layer][oldX, oldY].TileObject = null;
                 AllTiles[layer][oldX, oldY].HasObject = false;
-                for (int i = 0; i < AllTiles[layer][oldX, oldY].NumberOfItemsToSpawn; i++)
+                GetDrop(AllTiles[layer][oldX, oldY]);
+                
+                ReplaceTilePermanent(layer, oldX, oldY, 0);
+            }
+        }
+
+        public void GetDrop(Tile tile)
+        {
+            if (tile.Loot != null)
+            {
+                for (int l = 0; l < tile.Loot.Count; l++)
                 {
-                    Item item = Game1.ItemVault.GenerateNewItem(AllTiles[layer][oldX, oldY].AssociatedItem, new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y), true);
+                    int lootCount = Game1.Utility.DetermineLootDrop(tile.Loot[l]);
+                    for (int d = 0; d < lootCount; d++)
+                    {
+                        Item item = Game1.ItemVault.GenerateNewItem(tile.Loot[l].ID, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), true);
+                        Game1.GetCurrentStage().AllItems.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < tile.NumberOfItemsToSpawn; i++)
+                {
+                    Item item = Game1.ItemVault.GenerateNewItem(tile.AssociatedItem, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y), true);
                     //item.IsTossable = true;
                     Game1.GetCurrentStage().AllItems.Add(item);
                 }
-                ReplaceTilePermanent(layer, oldX, oldY, 0);
             }
-            
-
         }
 
     }

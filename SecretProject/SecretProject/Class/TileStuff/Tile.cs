@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.ObjectFolder;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,8 @@ namespace SecretProject.Class.TileStuff
         //objectgroup stuff
         public bool HasObject { get; set; } = false;
         public ObjectBody TileObject { get; set; }
+
+        public List<Loot> Loot;
 
 
         private Tile()
