@@ -468,6 +468,11 @@ namespace SecretProject.Class.TileStuff
 
                     int totalGID = mapName.Tilesets[TileSetNumber].Tiles[baseTile.SpawnsWith[i]].Id;
                     //tilesToReturn.Add(AllTiles[intTilePropertyLayer][xCoord, yCoord]);
+                    if(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].HasObject)
+                    {
+                        Game1.GetCurrentStage().AllObjects.Remove(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].TileObject);
+                    }
+                    
                     AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, 100, 100, mapWidth, mapHeight);
                 }
             }
@@ -847,6 +852,7 @@ namespace SecretProject.Class.TileStuff
                             case 2:
                                 SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
+                                AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                         }
 
