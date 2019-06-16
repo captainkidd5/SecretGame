@@ -238,25 +238,12 @@ namespace SecretProject.Class.TileStuff
             {
                 tileToAssign.Dirt = true;
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("Hitpoints"))
-            {
-                tileToAssign.HitPoints = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["Hitpoints"]);
-            }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("NumberOfItems"))
-            {
-                tileToAssign.NumberOfItemsToSpawn = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["NumberOfItems"]);
-            }
 
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("Probability"))
             {
                 tileToAssign.Probability = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["Probability"]);
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("Tree"))
-            {
-                tileToAssign.Tree = true;
-                tileToAssign.AssociatedItem = 123;
 
-            }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
             {
                 tileToAssign.IsLightSource = true;
@@ -290,19 +277,7 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.Kill = false;
 
                 }
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("grass"))
-                {
-                    //tiles[i, j].Properties.Add("grass", true);
-                    tileToAssign.Grass = true;
-                    tileToAssign.AssociatedItem = 129;
-                }
                 
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("stone"))
-                {
-                    //tiles[i, j].Properties.Add("stone", true);
-                    tileToAssign.Stone = true;
-                    tileToAssign.AssociatedItem = 130;
-                }
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("redRuneStone"))
                 {
                     //tiles[i, j].Properties.Add("redRuneStone", true);
@@ -324,6 +299,12 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.Destructable = true;
                 tileToAssign.HitPoints = Game1.Utility.GetTileHitpoints(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
                 tileToAssign.RequiredTool = Game1.Utility.GetRequiredTileTool(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                tileToAssign.TileDestructionColor = Game1.Utility.GetTileEffectColor(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                tileToAssign.SoundValue = Game1.Utility.GetTileDestructionSound(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("spawnWith"))
+            {
+                tileToAssign.HasAdditionalTiles = true;
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("step"))
             {
@@ -854,18 +835,18 @@ namespace SecretProject.Class.TileStuff
                             case 0:
                                 SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
 
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 3, Color.WhiteSmoke, true);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
 
                             case 1:
                                 SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                             case 2:
                                 SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 break;
                         }
 

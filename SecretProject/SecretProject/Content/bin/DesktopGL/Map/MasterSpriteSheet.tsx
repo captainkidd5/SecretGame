@@ -799,10 +799,9 @@
  </tile>
  <tile id="4844">
   <properties>
-   <property name="Hitpoints" value="4"/>
    <property name="NumberOfItems" value="4"/>
    <property name="Tree" value="ThunderBirch"/>
-   <property name="destructable" value="0,4,0"/>
+   <property name="destructable" value="0,4,1,3"/>
    <property name="loot" value="123:100,122:50"/>
    <property name="spawnWith" value="4744,4843,4845,4846"/>
   </properties>
@@ -1230,7 +1229,8 @@
    <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5580"/>
    <property name="Speed" value=".15"/>
-   <property name="redRuneStone" value=""/>
+   <property name="destructable" value="1,0,0,2"/>
+   <property name="loot" value="169:100"/>
    <property name="spawnWith" value="5580"/>
   </properties>
   <objectgroup draworder="index">
@@ -1413,7 +1413,8 @@
    <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5780"/>
    <property name="Speed" value=".15"/>
-   <property name="blueRuneStone" value=""/>
+   <property name="destructable" value="1,0,0,8"/>
+   <property name="loot" value="149:100"/>
    <property name="spawnWith" value="5780"/>
   </properties>
   <objectgroup draworder="index">
@@ -1587,6 +1588,7 @@
  </tile>
  <tile id="6387">
   <properties>
+   <property name="destructable" value="2,0,3,6"/>
    <property name="loot" value="181:25"/>
    <property name="spawnWith" value="6287,6288,6388"/>
   </properties>
@@ -1608,8 +1610,9 @@
   <properties>
    <property name="AnimatedX" value="6"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="2,1,0"/>
+   <property name="destructable" value="2,1,3,6"/>
    <property name="grass" value="true"/>
+   <property name="loot" value="129:100"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="1" width="13" height="13"/>
@@ -1641,6 +1644,7 @@
   <properties>
    <property name="AnimatedX" value="5"/>
    <property name="Speed" value=".15"/>
+   <property name="destructable" value="1,0,0,8"/>
    <property name="loot" value="130:100,183:15"/>
    <property name="stone" value=""/>
   </properties>
@@ -1650,6 +1654,7 @@
  </tile>
  <tile id="6686">
   <properties>
+   <property name="destructable" value="2,0,0,6"/>
    <property name="loot" value="191:100"/>
    <property name="spawnWith" value="6586"/>
   </properties>

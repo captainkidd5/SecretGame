@@ -105,6 +105,30 @@ namespace SecretProject.Class.Universal
             int effectToReturn = int.Parse(info.Split(',')[2]);
             return effectToReturn;
         }
+        public Color GetTileEffectColor(string info)
+        {
+            switch (int.Parse(info.Split(',')[2]))
+            {
+                case 0:
+                    return Color.White;
+                case 1:
+                    return Color.WhiteSmoke;
+                case 2:
+                    return Color.Red;
+                case 3:
+                    return Color.Green;
+                case 4:
+                    return Color.Blue;
+                default:
+                    return Color.White;
+            }
+
+        }
+        public int GetTileDestructionSound(string info)
+        {
+            int soundToReturn = int.Parse(info.Split(',')[3]);
+            return soundToReturn;
+        }
 
     }
 }

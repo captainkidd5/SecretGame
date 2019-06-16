@@ -65,6 +65,7 @@ namespace SecretProject.Class.TileStuff
 
         [XmlIgnore]
         public Color TileColor { get; set; } = Color.White;
+        public Color TileDestructionColor { get; set; }
         public float ColorMultiplier { get; set; } = 1;
 
         public bool IsTemporary { get; set; } = false;
@@ -81,6 +82,7 @@ namespace SecretProject.Class.TileStuff
         public bool Tree { get; set; } = false;
         public bool Destructable { get; set; }
         public int RequiredTool { get; set; }
+        public bool HasAdditionalTiles { get; set; }
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
