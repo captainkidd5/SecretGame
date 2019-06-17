@@ -173,9 +173,13 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllPortals.Add(portal);
             }
 
-           //specify GID which is 1 larger than one on tileset, idk why
+            //specify GID which is 1 larger than one on tileset, idk why
+            //brown tall grass
+            //GenerateTiles(1, 6394, "dirt", 50000, 0);
+            //green tall grass
+            //GenerateTiles(1, 6393, "dirt", 50000, 0);
             //    //stone
-               GenerateTiles(1, 6675, "dirt", 100, 0);
+            GenerateTiles(1, 6675, "dirt", 100, 0);
             //    //grass
                 GenerateTiles(1, 6475, "dirt", 100, 0);
             //    //redrunestone
@@ -183,14 +187,14 @@ namespace SecretProject.Class.TileStuff
             ////bluerunestone
                 GenerateTiles(1, 5881, "dirt", 100, 0);
             ////thunderbirch
-               GenerateTiles(1, 4845, "dirt", 150, 0);
+               GenerateTiles(1, 4845, "dirt", 800, 0);
             ////crown of swords
             GenerateTiles(1, 6388, "sand", 150, 0);
             ////dandelion
             GenerateTiles(1, 6687, "sand", 150, 0);
             GenerateTiles(1, 6589, "dirt", 150, 0);
             //orchardTree
-            GenerateTiles(1, 4245, "dirt", 150, 0);
+            GenerateTiles(1, 4245, "dirt", 1200, 0);
 
 
             for (int z = 0; z < AllTiles.Count; z++)
@@ -217,20 +221,28 @@ namespace SecretProject.Class.TileStuff
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
             //hardcoding some of these trees for now..
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
+            if(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
             {
-            tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X -16, tileToAssign.SourceRectangle.Y -32, 72,80);
-                tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X -16;
-                tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
-                //tileToAssign.X = tileToAssign.X - 32;
+                int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
+                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
+                tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
+                    tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+                tileToAssign.X = tileToAssign.X - 32;
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4144)
-            {
-                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 32, 72, 80);
-                tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X - 16;
-                tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
-                //tileToAssign.X = tileToAssign.X - 32;
-            }
+            //if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
+            //{
+            //tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X -16, tileToAssign.SourceRectangle.Y -32, 72,80);
+            //    tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X -16;
+            //    tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
+            //    //tileToAssign.X = tileToAssign.X - 32;
+            //}
+            //if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4144)
+            //{
+            //    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 32, 72, 80);
+            //    tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X - 16;
+            //    tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
+            //    //tileToAssign.X = tileToAssign.X - 32;
+            //}
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("portal"))
             {
                 tileToAssign.IsPortal = true;
