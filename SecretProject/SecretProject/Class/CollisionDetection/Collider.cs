@@ -33,7 +33,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(List<ObjectBody> objectBody)
+        public bool DidCollide(List<ObjectBody> objectBody, Vector2 position)
         {
             
             foreach (var body in objectBody)
@@ -41,9 +41,11 @@ namespace SecretProject.Class.CollisionDetection
                 if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
                              && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
                 {
+                    
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
                     {
                         velocity.X -= velocity.X; //+ (float).25;
+                        position.X = body.Rectangle.Left - rectangle.Right;
                         return true;
                     }
                         
@@ -52,6 +54,7 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
                     {
                         velocity.X -= velocity.X; //- (float).25;
+                        position.X = body.Rectangle.Right - rectangle.Left;
                         return true;
                     }
                         
@@ -59,12 +62,14 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
                     {
                         velocity.Y -= velocity.Y; //+ (float).25;
+                        position.Y = body.Rectangle.Top - Rectangle.Top;
                         return true;
                     }
                         
                     if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
                     {
                         velocity.Y -= velocity.Y;// - (float).25;
+                        position.Y = body.Rectangle.Bottom - Rectangle.Bottom;
                         return true;
                     }
 

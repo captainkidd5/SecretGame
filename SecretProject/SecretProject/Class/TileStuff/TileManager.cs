@@ -175,17 +175,17 @@ namespace SecretProject.Class.TileStuff
 
             //specify GID which is 1 larger than one on tileset, idk why
             //brown tall grass
-            //GenerateTiles(1, 6394, "dirt", 50000, 0);
+            //GenerateTiles(3, 6394, "dirt", 2000, 0);
             //green tall grass
-            //GenerateTiles(1, 6393, "dirt", 50000, 0);
+            //GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
             GenerateTiles(1, 6675, "dirt", 100, 0);
             //    //grass
                 GenerateTiles(1, 6475, "dirt", 100, 0);
             //    //redrunestone
-                GenerateTiles(1, 5681, "dirt", 100, 0);
+                GenerateTiles(1, 5681, "dirt", 300, 0);
             ////bluerunestone
-                GenerateTiles(1, 5881, "dirt", 100, 0);
+                GenerateTiles(1, 5881, "dirt", 300, 0);
             ////thunderbirch
                GenerateTiles(1, 4845, "dirt", 800, 0);
             ////crown of swords
@@ -227,21 +227,9 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
                 tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
                     tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
-                tileToAssign.X = tileToAssign.X - 32;
+                //tileToAssign.X = tileToAssign.X - 32;
             }
-            //if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
-            //{
-            //tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X -16, tileToAssign.SourceRectangle.Y -32, 72,80);
-            //    tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X -16;
-            //    tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
-            //    //tileToAssign.X = tileToAssign.X - 32;
-            //}
-            //if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4144)
-            //{
-            //    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 32, 72, 80);
-            //    tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X - 16;
-            //    tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
-            //    //tileToAssign.X = tileToAssign.X - 32;
+
             //}
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("portal"))
             {
@@ -300,20 +288,6 @@ namespace SecretProject.Class.TileStuff
 
                 }
                 
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("redRuneStone"))
-                {
-                    //tiles[i, j].Properties.Add("redRuneStone", true);
-                    tileToAssign.RedRuneStone = true;
-                    tileToAssign.AssociatedItem = 169;
-                    // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-                }
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("blueRuneStone"))
-                {
-                    //tiles[i, j].Properties.Add("redRuneStone", true);
-                    tileToAssign.BlueRuneStone = true;
-                    tileToAssign.AssociatedItem = 149;
-                    // Game1.GetCurrentStage().ForeGroundTiles.Tiles[i, j].GID = 5580;
-                }
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
             {
@@ -348,8 +322,6 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("loot"))
             {
                 tileToAssign.Loot = Game1.Utility.Parselootkey(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["loot"]);
-                
-
             }
             if (tileToAssign.LayerToDrawAt == 3)
             {
@@ -661,7 +633,7 @@ namespace SecretProject.Class.TileStuff
 
                                             //}
 
-                                            if (mouse.IsRightClicked)
+                                            if (mouse.IsClicked)
                                             {
                                                 InteractWithBackground(z, gameTime, i, j);
 
@@ -691,7 +663,7 @@ namespace SecretProject.Class.TileStuff
                                         Game1.myMouseManager.ToggleGeneralInteraction = true;
 
 
-                                        if (mouse.IsRightClicked)
+                                        if (mouse.IsClicked)
                                         {
                                             InteractWithBuilding(z, gameTime, i, j);
 
@@ -855,97 +827,45 @@ namespace SecretProject.Class.TileStuff
             {
                 if(!AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
                 {
-                    if(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == AllTiles[layer][oldX, oldY].RequiredTool)
+                    if(AllTiles[layer][oldX, oldY].RequiredTool == -50)
+                    {
+                        InteractWithoutPlayerAnimation(layer, gameTime, oldX, oldY, .25f);
+                        AllTiles[layer][oldX, oldY].HitPoints--;
+                    }
+                    else if(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == AllTiles[layer][oldX, oldY].RequiredTool)
                     {
                         switch (AllTiles[layer][oldX, oldY].RequiredTool)
                         {
-                            case 0:
-                                SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
+                            //bare hands
 
+                            case 0:
+                                //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
+                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
 
                             case 1:
-                                SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
+                                //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
+                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                             case 2:
-                                SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
+                                //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
+                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                         }
 
                     }
+                    else
+                    {
+
+                    }
                 }
             }
-            //switch (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool())
-            //{
-            //    case 0:
-            //        if (AllTiles[layer][oldX, oldY].Tree && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-            //        {
-
-                        
-            //            SpecificInteraction(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
-
-            //            ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 3, Color.WhiteSmoke, true);
-            //            AllTiles[layer][oldX, oldY].HitPoints--;
-
-            //        }
-
-            //        break;
-            //    case 1:
-            //        if ((AllTiles[layer][oldX, oldY].Stone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated))
-            //        {
-                        
-            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-            //            ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, 8, Color.White, false);
-            //            AllTiles[layer][oldX, oldY].HitPoints--;
-
-            //        }
-
-            //        if (AllTiles[layer][oldX, oldY].RedRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-            //        {
-            //            Game1.SoundManager.StoneSmash.Play();
-            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-            //            GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
-            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Red;
-            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-            //        }
-
-            //        if (AllTiles[layer][oldX, oldY].BlueRuneStone && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-            //        {
-            //            Game1.SoundManager.StoneSmash.Play();
-            //            SpecificInteraction(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-            //            GeneralInteraction(3, gameTime, oldX, oldY - 1, .25f);
-            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Blue;
-            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-
-            //        }
-            //        break;
-
-            //    case 2:
-            //        if (AllTiles[layer][oldX, oldY].Grass && !AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
-            //        {
-            //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, 6, 1f);
-            //            SpecificInteraction(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
-            //            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-            //            Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
-            //            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(AllTiles[layer][oldX, oldY].DestinationRectangle.X, AllTiles[layer][oldX, oldY].DestinationRectangle.Y);
-
-
-            //        }
-            //        break;
-
-
-            //   // default:
-            //       // throw new Exception("Item with id " + Game1.userInterface.BottomBar.GetCurrentEquippedTool() + " has not been assigned an action");
-
-            //}
 
         }
 
@@ -976,7 +896,7 @@ namespace SecretProject.Class.TileStuff
         
 
         //interact without any player animations
-        public void GeneralInteraction(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)
+        public void InteractWithoutPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)
         {
             if (delayTimer != 0f)
             {
@@ -985,11 +905,31 @@ namespace SecretProject.Class.TileStuff
             AllTiles[layer][oldX, oldY].IsAnimating = true;
             AllTiles[layer][oldX, oldY].KillAnimation = true;
 
+            if(AllTiles[layer][oldX, oldY].HasObject)
+            {
+                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
+                AllTiles[layer][oldX, oldY].TileObject = null;
+                AllTiles[layer][oldX, oldY].HasObject = false;
+                if (AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                {
+
+                    DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
+                }
+                GetDrop(AllTiles[layer][oldX, oldY]);
+
+                    Game1.SoundManager.PlaySoundEffectFromInt(false, 1, AllTiles[layer][oldX, oldY].SoundValue, 1f);
+
+                ReplaceTilePermanent(layer, oldX, oldY, 0);
+            }
+            
+            
+            
+
         }
 
         //specify which animations you want to use depending on where the player is in relation to the object
         
-        public void SpecificInteraction(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, float delayTimer  = 0f)
+        public void InteractWithPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, float delayTimer  = 0f)
         {
 
             if (delayTimer != 0f)
@@ -1043,6 +983,10 @@ namespace SecretProject.Class.TileStuff
                     AllTiles[layer][oldX, oldY].TileObject = null;
                     AllTiles[layer][oldX, oldY].HasObject = false;
                     GetDrop(AllTiles[layer][oldX, oldY]);
+                    if(AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                    {
+                        DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
+                    }
                     
                     
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
@@ -1055,7 +999,10 @@ namespace SecretProject.Class.TileStuff
                 AllTiles[layer][oldX, oldY].TileObject = null;
                 AllTiles[layer][oldX, oldY].HasObject = false;
                 GetDrop(AllTiles[layer][oldX, oldY]);
-                
+                if (AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                {
+                    DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
+                }
                 ReplaceTilePermanent(layer, oldX, oldY, 0);
             }
         }

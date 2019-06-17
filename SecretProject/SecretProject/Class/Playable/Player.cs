@@ -335,7 +335,8 @@ namespace SecretProject.Class.Playable
 
 
 
-                    bool collideOccurred = MyCollider.DidCollide(objects); //did a collision with an object happen this loop?
+                    bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
+                    
                     this.PrimaryVelocity = MyCollider.Velocity;
 
                     if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account

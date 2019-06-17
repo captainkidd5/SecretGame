@@ -29,3 +29,12 @@
 2 = Loppers
 
 0 = Axe
+
+## Destructable Key Code
+
+W,X,Y,Z
+
+W = Tool Required
+X = Hitpoints
+Y = Color
+Z = Sound

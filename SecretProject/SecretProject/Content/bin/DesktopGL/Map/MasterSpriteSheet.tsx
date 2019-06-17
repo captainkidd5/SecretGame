@@ -1248,7 +1248,7 @@
    <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5580"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="1,0,0,2"/>
+   <property name="destructable" value="1,1,0,2"/>
    <property name="loot" value="169:100"/>
    <property name="spawnWith" value="5580"/>
   </properties>
@@ -1432,7 +1432,7 @@
    <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5780"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="1,0,0,8"/>
+   <property name="destructable" value="1,1,0,8"/>
    <property name="loot" value="149:100"/>
    <property name="spawnWith" value="5780"/>
   </properties>
@@ -1584,6 +1584,7 @@
  <tile id="6292">
   <properties>
    <property name="layer" value="3"/>
+   <property name="newSource" value="0,0,16,16"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -1591,6 +1592,7 @@
  <tile id="6293">
   <properties>
    <property name="layer" value="3"/>
+   <property name="newSource" value="0,0,16,16"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -1654,7 +1656,6 @@
    <property name="AnimatedX" value="6"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="2,1,3,6"/>
-   <property name="grass" value="true"/>
    <property name="loot" value="129:100"/>
   </properties>
   <objectgroup draworder="index">
@@ -1677,6 +1678,8 @@
  </tile>
  <tile id="6588">
   <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100"/>
    <property name="spawnWith" value="6488"/>
   </properties>
   <objectgroup draworder="index">
@@ -1687,9 +1690,8 @@
   <properties>
    <property name="AnimatedX" value="5"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="1,0,0,8"/>
+   <property name="destructable" value="1,1,0,8"/>
    <property name="loot" value="130:100,183:15"/>
-   <property name="stone" value=""/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="2" width="13" height="12"/>

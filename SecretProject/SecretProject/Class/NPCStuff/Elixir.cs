@@ -61,7 +61,7 @@ namespace SecretProject.Class.NPCStuff
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(objects);
+            this.CollideOccured = Collider.DidCollide(objects, Position);
 
             switch (CurrentDirection)
             {
