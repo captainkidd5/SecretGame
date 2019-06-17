@@ -485,6 +485,13 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="4144">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="4192">
   <properties>
    <property name="lightSource" value="1"/>
@@ -508,6 +515,13 @@
  <tile id="4214">
   <properties>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="4244">
+  <properties>
+   <property name="destructable" value="0,4,1,3"/>
+   <property name="loot" value="123:100,122:50"/>
+   <property name="spawnWith" value="4144"/>
   </properties>
  </tile>
  <tile id="4311">

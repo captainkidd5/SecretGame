@@ -189,6 +189,8 @@ namespace SecretProject.Class.TileStuff
             ////dandelion
             GenerateTiles(1, 6687, "sand", 150, 0);
             GenerateTiles(1, 6589, "dirt", 150, 0);
+            //orchardTree
+            GenerateTiles(1, 4245, "dirt", 150, 0);
 
 
             for (int z = 0; z < AllTiles.Count; z++)
@@ -214,10 +216,18 @@ namespace SecretProject.Class.TileStuff
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
+            //hardcoding some of these trees for now..
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4744)
             {
             tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X -16, tileToAssign.SourceRectangle.Y -32, 72,80);
                 tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X -16;
+                tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
+                //tileToAssign.X = tileToAssign.X - 32;
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Id == 4144)
+            {
+                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 32, 72, 80);
+                tileToAssign.DestinationRectangle.X = tileToAssign.DestinationRectangle.X - 16;
                 tileToAssign.DestinationRectangle.Y = tileToAssign.DestinationRectangle.Y - 32;
                 //tileToAssign.X = tileToAssign.X - 32;
             }

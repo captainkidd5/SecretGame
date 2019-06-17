@@ -322,10 +322,11 @@ namespace SecretProject.Class.UI
             {
                 if(AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
+                    TextBuilder.StringToWrite = "";
                     TextBuilder.StringToWrite = inventory.currentInventory[i].GetItem().Name;
-                    TextBuilder.PositionToWriteTo = AllSlots[i].Position;
-                    TextBuilder.StringDisplayTimer = 1f;
-                    TextBuilder.StringDisplayAnchor = 1f;
+                    TextBuilder.PositionToWriteTo = new Vector2(AllSlots[i].Position.X, AllSlots[i].Position.Y - 32);
+                    TextBuilder.StringDisplayTimer = .1f;
+                    TextBuilder.StringDisplayAnchor = .1f;
                     TextBuilder.IsActive = true;
                     
                 }
