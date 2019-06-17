@@ -22,6 +22,8 @@ namespace SecretProject.Class.DialogueStuff
         public Vector2 PositionToWriteTo { get; set; }
         public bool UseTextBox { get; set; } = false;
         public bool FreezeStage { get; set; } = false;
+        public float Scale { get; set; }
+        public Color Color { get; set; }
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -31,6 +33,8 @@ namespace SecretProject.Class.DialogueStuff
             this.StringDisplayAnchor = this.StringDisplayTimer;
             this.SpeedAnchor = WriteSpeed;
             PositionToWriteTo = Game1.Utility.TextBottomThird;
+            this.Scale = 1f;
+            this.Color = Color.Black;
         }
 
         public void Update(GameTime gameTime)
@@ -58,7 +62,7 @@ namespace SecretProject.Class.DialogueStuff
                     this.StringDisplayTimer = this.StringDisplayAnchor;
                 }
 
-                if (WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
+                if (this.IsActive && WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
                 {
                     outputString += StringToWrite[currentTextIndex];
                     currentTextIndex++;
@@ -70,13 +74,18 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
+        public void ClearString()
+        {
+            this.outputString = "";
+        }
+
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (IsActive)
             {
 
 
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
                 if(UseTextBox)
                 {
                     TextBox speechBox = new TextBox(PositionToWriteTo, 1);

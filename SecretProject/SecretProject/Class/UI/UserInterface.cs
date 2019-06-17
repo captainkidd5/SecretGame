@@ -191,5 +191,17 @@ namespace SecretProject.Class.UI
             spriteBatch.End();
 
         }
+
+        public void HandleSceneChanged(object sender, EventArgs eventArgs)
+        {
+            this.TextBuilder.ClearString();
+            this.TextBuilder.StringToWrite = Game1.GetCurrentStage().StageName;
+            this.TextBuilder.Scale = 4f;
+            this.TextBuilder.Color = Color.White;
+            this.TextBuilder.IsActive = true;
+            
+        }
     }
+
+    
 }

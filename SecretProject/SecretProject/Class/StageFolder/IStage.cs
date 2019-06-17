@@ -46,6 +46,7 @@ namespace SecretProject.Class.StageFolder
     {
         bool ShowBorders { get; set; }
         TmxMap Map { get; set; }
+        string StageName { get; set; }
 
         int TileWidth { get; set; }
         int TileHeight { get; set; }

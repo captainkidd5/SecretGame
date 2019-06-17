@@ -161,6 +161,9 @@ namespace SecretProject
         
 
         public static PresentationParameters PresentationParameters;
+
+        //event handlers
+        
         
 
         #endregion
@@ -352,19 +355,19 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
-            WestBeach = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
-            Iliad = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
+            WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
+            Iliad = new NormalStage("Iliad",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
-            RoyalDock = new RoyalDock(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
+            RoyalDock = new RoyalDock("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 
-            GreatLibrary = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
+            GreatLibrary = new NormalStage("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
 
             ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            DobbinsOrchard = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
+            DobbinsOrchard = new NormalStage("Dobbin's Orchard",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
 
 
-            LodgeInterior = new NormalStage(graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
+            LodgeInterior = new NormalStage("Lodge",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
@@ -417,6 +420,9 @@ namespace SecretProject
         #endregion
 
         //check portal from previous and current stage and set the player to the new position specified. Must be called after loading content.
+
+
+
         public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
         {
 
@@ -439,7 +445,7 @@ namespace SecretProject
 
         }
 
-
+        
         public static void FullScreenToggle()
         {
 

@@ -106,6 +106,8 @@ namespace SecretProject.Class.StageFolder
         public int DialogueToRetrieve { get; set; }
         public bool IsDark { get; set; }
         public List<LightSource> AllLights { get; set; }
+        public string StageName { get; set; }
+        public event EventHandler SceneChanged;
 
         #endregion
 
@@ -113,8 +115,9 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public StageBase(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve)
+        public StageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve)
         {
+            this.StageName = name;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
@@ -199,8 +202,16 @@ namespace SecretProject.Class.StageFolder
             Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, 1);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, 1), .1f, 5f);
+            this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
 
+        }
+        public void OnSceneChanged()
+        {
+            if (SceneChanged != null)
+            {
+                SceneChanged(this, EventArgs.Empty);
+            }
         }
 
         public virtual void UnloadContent()
@@ -218,6 +229,7 @@ namespace SecretProject.Class.StageFolder
             Placement = null;
 
             this.Cam = null;
+           // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
         }
 
@@ -233,6 +245,8 @@ namespace SecretProject.Class.StageFolder
                 if (player.Rectangle.Intersects(AllPortals[p].PortalStart))
                 {
                     Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                    OnSceneChanged();
+                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
             }

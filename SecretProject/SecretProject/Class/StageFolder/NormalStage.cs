@@ -43,7 +43,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public NormalStage(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) :base(graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
+        public NormalStage(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) :base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.Graphics = graphics;
             this.Content = content;

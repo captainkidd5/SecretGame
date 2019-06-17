@@ -44,8 +44,10 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
+       
 
-        public RoyalDock(GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
+
+        public RoyalDock(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.Graphics = graphics;
             this.Content = content;
@@ -144,11 +146,12 @@ namespace SecretProject.Class.StageFolder
             //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
+            this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            
+
         }
 
-        public virtual void UnloadContent()
+        public override void UnloadContent()
         {
             Content.Unload();
             AllObjects = null;
@@ -163,10 +166,10 @@ namespace SecretProject.Class.StageFolder
             Placement = null;
 
             this.Cam = null;
-
+            //this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
         }
 
-
+        
         #endregion
 
         #region UPDATE
@@ -181,6 +184,8 @@ namespace SecretProject.Class.StageFolder
                 if(player.Rectangle.Intersects(AllPortals[p].PortalStart))
                 {
                     Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                    OnSceneChanged();
+                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
             }
