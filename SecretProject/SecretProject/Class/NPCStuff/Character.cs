@@ -20,7 +20,7 @@ namespace SecretProject.Class.NPCStuff
         public string Name { get; set; }
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
-        public Texture2D Texture { get; set; } = Game1.AllTextures.ElixirSpriteSheet;
+        public Texture2D Texture { get; set; }
 
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y + 16, 16, 32); } }
 

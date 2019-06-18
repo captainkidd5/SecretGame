@@ -252,10 +252,12 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
+                Dobbin.Update(gameTime, AllObjects, mouse);
+                Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime,AllObjects, mouse);
-                    ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
+                   // ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
                 }
 
             }
@@ -301,6 +303,7 @@ namespace SecretProject.Class.StageFolder
 
 
                 ElixerNPC.Draw(spriteBatch);
+                Dobbin.Draw(spriteBatch);
                 TextBuilder.Draw(spriteBatch, .71f);
 
                 if (ShowBorders)
