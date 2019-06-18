@@ -37,6 +37,7 @@ namespace SecretProject.Class.StageFolder
         #region FIELDS
 
         public Elixir ElixerNPC;
+        public Dobbin Dobbin;
 
         #endregion
 
@@ -132,7 +133,8 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics);
+            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics, Game1.AllTextures.ElixirSpriteSheet);
+            Dobbin = new Dobbin("Dobbin", new Vector2(600, 600), Graphics, Game1.AllTextures.DobbinSpriteSheet);
 
             AllActions = new List<ActionTimer>();
 
@@ -205,13 +207,14 @@ namespace SecretProject.Class.StageFolder
                 player.Position = new Vector2(400, 400);
                 Game1.GlobalClock.TotalHours = 22;
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
-            {
-                ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
-                //TextBuilder.IsActive = !TextBuilder.IsActive;
-                //ParticleEngine.ActivationTime = 5f;
-                //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
-            }
+            //if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
+            //{
+            //    ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
+            //    //TextBuilder.IsActive = !TextBuilder.IsActive;
+            //    //ParticleEngine.ActivationTime = 5f;
+            //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
+            //}
+            ElixerNPC.IsUpdating = true;
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);
