@@ -134,7 +134,7 @@ namespace SecretProject.Class.StageFolder
 
 
             ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics, Game1.AllTextures.ElixirSpriteSheet);
-            Dobbin = new Dobbin("Dobbin", new Vector2(600, 600), Graphics, Game1.AllTextures.DobbinSpriteSheet);
+            Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet);
 
             AllActions = new List<ActionTimer>();
 
@@ -253,7 +253,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
                 Dobbin.Update(gameTime, AllObjects, mouse);
-                Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
+              //  Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime,AllObjects, mouse);

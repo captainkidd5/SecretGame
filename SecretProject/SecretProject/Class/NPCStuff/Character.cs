@@ -32,13 +32,14 @@ namespace SecretProject.Class.NPCStuff
 
 
         //0 = down, 1 = left, 2 =  right, 3 = up
-        public int CurrentDirection { get; set; } = 3;
+        public int CurrentDirection { get; set; }
 
         public bool IsUpdating { get; set; } = false;
 
         public Collider Collider { get; set; }
         public bool CollideOccured { get; set; } = false;
         public int SpeakerID { get; set; } = 1;
+        public bool IsMoving { get; set; }
 
 
 
@@ -57,6 +58,7 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 336, 0, 16, 48, 6, .15f, this.Position);
 
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
+            this.CurrentDirection = 0;
 
         }
 
@@ -86,19 +88,60 @@ namespace SecretProject.Class.NPCStuff
             {
                 if (mouse.IsRightClicked)
                 {
-                    //  Game1.GetCurrentStage().TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
-                    //  Game1.GetCurrentStage().TextBuilder.IsActive = true;
+
 
                     Game1.Player.UserInterface.TextBuilder.IsActive = true;
                     Game1.Player.UserInterface.TextBuilder.UseTextBox = true;
                     Game1.Player.UserInterface.TextBuilder.FreezeStage = true;
                     Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
+                    UpdateDirectionVector(Game1.Player.position);
 
 
                 }
 
             }
+            if (IsMoving)
+            {
 
+
+                UpdateDirection();
+                this.PrimaryVelocity = Collider.Velocity;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+            }
+            //this.Speed = PrimaryVelocity
+        }
+
+        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
+        {
+            Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
+            this.DirectionVector = direction;
+
+
+            if (!this.NPCRectangle.Intersects(rectangle))
+            {
+                Position += (direction * Speed) * PrimaryVelocity;
+                IsMoving = true;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                IsMoving = false;
+            }
+        }
+
+        public void UpdateDirectionVector(Vector2 positionToFace)
+        {
+            Vector2 direction = Vector2.Normalize(positionToFace - Position);
+            this.DirectionVector = direction;
+
+            UpdateDirection();
+        }
+
+        public void UpdateDirection()
+        {
             if (DirectionVector.X > .5f)
             {
                 CurrentDirection = 2; //right
@@ -115,24 +158,6 @@ namespace SecretProject.Class.NPCStuff
             else if (DirectionVector.Y > .5f)
             {
                 CurrentDirection = 0;
-            }
-            this.PrimaryVelocity = Collider.Velocity;
-            //this.Speed = PrimaryVelocity
-        }
-
-        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
-        {
-            Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
-            this.DirectionVector = direction;
-
-
-            if (!this.NPCRectangle.Intersects(rectangle))
-            {
-                Position += (direction * Speed) * PrimaryVelocity;
-            }
-            else
-            {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
         }
 
