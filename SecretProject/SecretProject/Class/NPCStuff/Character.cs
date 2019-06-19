@@ -86,6 +86,9 @@ namespace SecretProject.Class.NPCStuff
             }
             if (mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
             {
+                mouse.ChangeMouseTexture(200);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
                 if (mouse.IsRightClicked)
                 {
 

@@ -524,8 +524,12 @@ namespace SecretProject
                         //case Stages.GreatLibrary:
 
                 }
+            if (!myMouseManager.ToggleGeneralInteraction)
+            {
+                this.IsMouseVisible = true;
+            }
 
-            base.Update(gameTime);
+                base.Update(gameTime);
         }
         #endregion
 

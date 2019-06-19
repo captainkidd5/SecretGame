@@ -55,13 +55,20 @@ namespace SecretProject.Class.Controls
         public bool HasScrollWheelValueDecreased = false;
 
         public bool ToggleGeneralInteraction { get; set; } = false;
-        public bool TogglePlantInteraction { get; set; } = false;
 
         Vector2 worldPosition;
 
         public Rectangle WorldMouseRectangle { get; set; }
 
         public Texture2D MouseTypeTexture { get; set; }
+        public Rectangle CursorSourceRectangle { get; set; }
+
+        public Rectangle NormalInteractionSourceRectangle { get; set; }
+        public Rectangle PlantInteractionSourceRectangle { get; set; }
+        public Rectangle MiningInteractionSourceRectangle { get; set; }
+        public Rectangle ChoppingInteractionSourceRectangle { get; set; }
+        public Rectangle DiggingInteractionSourceRectangle { get; set; }
+        public Rectangle ChatInteractionSourceRectangle { get; set; }
 
         GraphicsDevice graphicsDevice;
 
@@ -75,6 +82,12 @@ namespace SecretProject.Class.Controls
             IsClicked = false;
             this.Camera1 = camera;
             this.graphicsDevice = graphicsDevice;
+            this.NormalInteractionSourceRectangle = new Rectangle(48, 256, 32, 32);
+            this.PlantInteractionSourceRectangle = new Rectangle(16, 256, 32, 32);
+            this.MiningInteractionSourceRectangle = new Rectangle(112, 256, 32, 32);
+            this.ChoppingInteractionSourceRectangle = new Rectangle(144, 256, 32, 32);
+            this.DiggingInteractionSourceRectangle = new Rectangle(80, 256, 32, 32);
+            this.ChatInteractionSourceRectangle = new Rectangle(176, 256, 32, 32);
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
 
         }
@@ -160,7 +173,7 @@ namespace SecretProject.Class.Controls
         {      
             if(ToggleGeneralInteraction)
             {
-                spriteBatch.Draw(this.MouseTypeTexture, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
             }
             
 
@@ -170,13 +183,27 @@ namespace SecretProject.Class.Controls
         {
             switch (type)
             {
+                case -50:
+                    this.CursorSourceRectangle = NormalInteractionSourceRectangle;
+                    break;
+                case 0:
+                    this.CursorSourceRectangle = ChoppingInteractionSourceRectangle;
+                    break;
                 case 1:
-                    this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
+                    this.CursorSourceRectangle = MiningInteractionSourceRectangle;
                     break;
-                case 2: this.MouseTypeTexture = Game1.AllTextures.CursorPlant;
+                case 2:
+                    this.CursorSourceRectangle = PlantInteractionSourceRectangle;
                     break;
+                case 3:
+                    this.CursorSourceRectangle = DiggingInteractionSourceRectangle;
+                    break;
+                case 200:
+                    this.CursorSourceRectangle = ChatInteractionSourceRectangle;
+                    break;
+
                 default:
-                    this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
+                    this.CursorSourceRectangle = NormalInteractionSourceRectangle;
                     break;
 
 

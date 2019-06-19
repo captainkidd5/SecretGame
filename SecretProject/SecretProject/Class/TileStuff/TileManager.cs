@@ -238,6 +238,7 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("diggable"))
             {
                 tileToAssign.Diggable = true;
+                tileToAssign.RequiredTool = 3;
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsValue("dirt"))
             {
@@ -572,7 +573,7 @@ namespace SecretProject.Class.TileStuff
         #region UPDATE
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            Game1.myMouseManager.TogglePlantInteraction = false;
+            //Game1.myMouseManager.TogglePlantInteraction = false;
             for (int z = 0; z < AllTiles.Count; z++)
             {
                 for (var i = 0; i < tilesetTilesWide; i++)
@@ -604,28 +605,19 @@ namespace SecretProject.Class.TileStuff
                                 //IE layer is background.
                                 if (z == 0)
                                 {
-                                    if (AllTiles[z][i, j].TileSelectorAllowed)
+                                    if (AllTiles[z][i, j].Diggable)
                                     {
 
                                         
                                         if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                         {
-
+                                            Game1.isMyMouseVisible = false;
                                             Game1.Player.UserInterface.DrawTileSelector = true;
                                             this.DebugTile = AllTiles[z][i, j];
                                             Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                             Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
-
-                                            //Game1.myMouseManager.ToggleGeneralInteraction = true;
-
-                                            //if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable")) //this whole thing is devastated, come back TODO
-                                            //{
-                                            //    Game1.isMyMouseVisible = false;
-                                            //    Game1.userInterface.DrawTileSelector = false;
-                                            //    Game1.myMouseManager.TogglePlantInteraction = true;
-
-                                            //}
-
+                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                            mouse.ChangeMouseTexture(AllTiles[z][i, j].RequiredTool);
                                             if (mouse.IsClicked)
                                             {
                                                 InteractWithBackground(z, gameTime, i, j);
@@ -635,9 +627,9 @@ namespace SecretProject.Class.TileStuff
                                     }
                                     else
                                     {
-                                        //Game1.Player.UserInterface.DrawTileSelector = false;
+                                        Game1.Player.UserInterface.DrawTileSelector = false;
                                         Game1.isMyMouseVisible = true;
-                                        Game1.myMouseManager.TogglePlantInteraction = false;
+                                        
                                     }
                                 }
                                 if (z == 1)
@@ -664,8 +656,8 @@ namespace SecretProject.Class.TileStuff
                                     }
                                     else
                                     {
-                                        Game1.isMyMouseVisible = true;
-                                        Game1.Player.UserInterface.DrawTileSelector = false;
+                                        //Game1.isMyMouseVisible = true;
+                                        //Game1.Player.UserInterface.DrawTileSelector = false;
                                     }
                                 }
                             }
@@ -684,6 +676,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 AllTiles[z][i, j].GID = 1;
                             }
+                            
                         }
 
                     }
@@ -705,20 +698,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth/2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth/2 / Game1.cam.Zoom +16) -200
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y -( Game1.ScreenHeight /2 / Game1.cam.Zoom + 16) -200)
-                            {
-                                //if(Game1.GetCurrentStage().IsDark)
-                                //{
-                                //    if (AllTiles[z][i, j].IsLightSource)
-                                //    {
-                                //        Game1.GetCurrentStage
-                                //    }
-                                //}
-
-                               
+                            {      
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
-                                    // spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle,
-                                    // Game1.GlobalClock.TimeOfDayColor, 1f, Game1.Utility.Origin, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet)' Game1.GlobalClock.TimeOfDayColor, 0f, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+
                                 
                             }
                         }
