@@ -253,7 +253,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
                 Dobbin.Update(gameTime, AllObjects, mouse);
-              //  Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
+                Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime,AllObjects, mouse);

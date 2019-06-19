@@ -687,3 +687,8 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Dobbin/DobbinSpriteSheet.png
 
+#begin Dialogue/DobbinDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/DobbinDialogue.xml
+

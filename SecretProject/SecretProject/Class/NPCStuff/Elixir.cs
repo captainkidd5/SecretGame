@@ -18,7 +18,7 @@ namespace SecretProject.Class.NPCStuff
 
         public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet):base(name, position, graphics, spriteSheet)
         {
-
+            this.SpeakerID = 1;
 
         }
 

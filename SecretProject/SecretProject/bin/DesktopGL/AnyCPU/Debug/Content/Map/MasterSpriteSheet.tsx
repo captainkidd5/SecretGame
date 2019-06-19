@@ -548,6 +548,11 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="4389">
+  <properties>
+   <property name="lightSource" value="1"/>
+  </properties>
+ </tile>
  <tile id="4442">
   <properties>
    <property name="layer" value="3"/>
@@ -1706,6 +1711,11 @@
   <objectgroup draworder="index">
    <object id="1" x="9" y="0" width="2" height="8"/>
   </objectgroup>
+ </tile>
+ <tile id="7722">
+  <properties>
+   <property name="lightSource" value="1"/>
+  </properties>
  </tile>
  <tile id="9702">
   <properties>

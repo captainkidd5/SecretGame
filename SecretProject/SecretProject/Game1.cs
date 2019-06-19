@@ -80,6 +80,7 @@ namespace SecretProject
         //ContentManagers
         public ContentManager HomeContentManager;
         public ContentManager SeaContentManager;
+        public ContentManager OrchardContentManager;
 
         //STAGES
         public static MainMenu mainMenu;
@@ -148,7 +149,9 @@ namespace SecretProject
 
         //XMLDATA
         public DialogueSkeleton ElixirDialogue;
-        public DialogueHolder AllDialogue;
+        public DialogueSkeleton DobbinDialogue;
+        public DialogueHolder AllElixirDialogue;
+        public DialogueHolder AllDobbinDialogue;
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
@@ -175,9 +178,11 @@ namespace SecretProject
 
             HomeContentManager = new ContentManager(Content.ServiceProvider);
             SeaContentManager = new ContentManager(Content.ServiceProvider);
+            OrchardContentManager = new ContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
             SeaContentManager.RootDirectory = "Content";
             HomeContentManager.RootDirectory = "Content";
+            OrchardContentManager.RootDirectory = "Content";
 
             //set window dimensions
             graphics.PreferredBackBufferWidth = 1280;
@@ -306,8 +311,10 @@ namespace SecretProject
             LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             
             //ORDER MATTERS!!!
-            AllDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllDialogue };
+            AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
+            AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -334,7 +341,7 @@ namespace SecretProject
 
             //UI
 
-            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.TransparentTextBox) ;
+            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet) ;
 
             //ITEMS
             ItemVault = new ItemBank();
@@ -356,7 +363,7 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
             WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
-            Iliad = new NormalStage("Iliad",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
+            Iliad = new NormalStage("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
             RoyalDock = new RoyalDock("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 

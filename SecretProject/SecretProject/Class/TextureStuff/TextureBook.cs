@@ -24,12 +24,10 @@ namespace SecretProject.Class.TextureStuff
 
 
         //UiStuff
-        public Texture2D ToolBarButtonSelector;
+
         public Texture2D CursorWhiteHand;
         public Texture2D CursorPlant;
-        public Texture2D TransparentTextBox;
-        public Texture2D TileSelector;
-        public Texture2D ClockBackground;
+
 
         public Texture2D UserInterfaceTileSet;
 
@@ -53,6 +51,7 @@ namespace SecretProject.Class.TextureStuff
         //TileSets
         public Texture2D MasterTileSet;
         public Texture2D LodgeInteriorTileSet;
+        public Texture2D OrchardTileSet;
 
         public Texture2D ItemSpriteSheet;
 
@@ -80,7 +79,6 @@ namespace SecretProject.Class.TextureStuff
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
 
-            ToolBarButtonSelector = content.Load<Texture2D>("Button/ToolBarButtonSelector");
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
 
@@ -90,6 +88,7 @@ namespace SecretProject.Class.TextureStuff
 
             MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
+            //OrchardTileSet = content.Load<Texture2D>("Map/orchard");
 
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");
 

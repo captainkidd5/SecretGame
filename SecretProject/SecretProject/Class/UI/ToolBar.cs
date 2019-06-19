@@ -545,9 +545,8 @@ namespace SecretProject.Class.UI
                     break;
 
                 case 7:
-#pragma warning disable CS0618 // Type or member is obsolete
-                    spriteBatch.Draw(Game1.AllTextures.ToolBarButtonSelector, InvSlot7.Position, color: Color.White, layerDepth: .71f);
-#pragma warning restore CS0618 // Type or member is obsolete
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot7.Position.X, (int)InvSlot7.Position.Y, 68, 67),
+                                            new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
                     break;
             }
             

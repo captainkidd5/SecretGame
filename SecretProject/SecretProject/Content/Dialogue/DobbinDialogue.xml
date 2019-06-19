@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
 <Asset Type ="XMLData.DialogueStuff.DialogueHolder">
-  <SpeakerID>1</SpeakerID>
+  <SpeakerID>2</SpeakerID>
   <AllDialogue>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <ConditionMet>true</ConditionMet>
-   <TextToWrite>How do you like your eggs?</TextToWrite>
+   <TextToWrite>Head over to my orchard if you'd like to buy some new farming equipment</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <ConditionMet>true</ConditionMet>
-   <TextToWrite>Potion or poison?</TextToWrite>
+   <TextToWrite>Elixir creeps me out</TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>3</SpeechID>
+    <ConditionMet>true</ConditionMet>
+   <TextToWrite>Been a while since I've had a good shave</TextToWrite>
     </Item>
   </AllDialogue>
   </Asset>

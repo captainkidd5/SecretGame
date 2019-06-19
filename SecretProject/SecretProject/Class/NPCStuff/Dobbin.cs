@@ -16,11 +16,11 @@ namespace SecretProject.Class.NPCStuff
         {
             NPCAnimatedSprite = new Sprite[4];
 
-            NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 28, 48, 5, .15f, this.Position);
-            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 140, 0, 28, 48, 6, .15f, this.Position);
-            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 308, 0, 28, 48, 6, .15f, this.Position);
-            NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 476, 0, 28, 48, 6, .15f, this.Position);
-
+            NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 28, 48, 6, .15f, this.Position);
+            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 167, 0, 28, 48, 6, .15f, this.Position);
+            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 335, 0, 28, 48, 6, .15f, this.Position);
+            NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 503, 0, 28, 48, 6, .15f, this.Position);
+            this.SpeakerID = 2;
         }
     }
 }
