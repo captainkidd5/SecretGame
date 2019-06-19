@@ -24,6 +24,7 @@ namespace SecretProject.Class.DialogueStuff
         public bool FreezeStage { get; set; } = false;
         public float Scale { get; set; }
         public Color Color { get; set; }
+        public int NumberOfClicks { get; set; }
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -35,12 +36,29 @@ namespace SecretProject.Class.DialogueStuff
             PositionToWriteTo = Game1.Utility.TextBottomThird;
             this.Scale = 1f;
             this.Color = Color.Black;
+            this.NumberOfClicks = 0;
         }
 
         public void Update(GameTime gameTime)
         {
             if (IsActive)
             {
+                if(NumberOfClicks == 1)
+                {
+                    this.outputString = StringToWrite;
+                    StringDisplayTimer = 10f;
+                    currentTextIndex = StringToWrite.Length;
+                    
+                }
+                if(NumberOfClicks == 2)
+                {
+                    StringDisplayTimer = 0;
+                    NumberOfClicks = 0;
+                }
+                if (Game1.myMouseManager.IsClicked)
+                {
+                    NumberOfClicks++;
+                }
                 if(FreezeStage)
                 {
                     Game1.freeze = true;

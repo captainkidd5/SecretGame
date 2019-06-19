@@ -125,6 +125,10 @@ namespace SecretProject.Class.UI
 
 
                 TextBuilder.Update(gameTime);
+            // if(TextBuilder.FreezeStage)
+            //{
+            //    Game1.freeze = true;
+            //}
 
 
             if(IsShopMenu)
@@ -146,7 +150,7 @@ namespace SecretProject.Class.UI
                 Esc.Update(gameTime, mouse);
                 Game1.freeze = true;
             }
-            if(!isEscMenu && !IsShopMenu)
+            if(!isEscMenu && !IsShopMenu && !TextBuilder.FreezeStage)
             {
                 Game1.freeze = false;
 
