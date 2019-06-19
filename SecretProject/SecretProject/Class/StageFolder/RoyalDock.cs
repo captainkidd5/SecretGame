@@ -45,8 +45,8 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
-       
 
+        public List<Point> TestPath { get; set; }
 
         public RoyalDock(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
@@ -150,6 +150,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
+            TestPath = AllTiles.PathGrid.Pathfind(new Point(27, 68), new Point(58, 39));
 
         }
 
@@ -215,6 +216,7 @@ namespace SecretProject.Class.StageFolder
             //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             //}
             ElixerNPC.IsUpdating = true;
+            ElixerNPC.MoveToTile(gameTime, TestPath);
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);

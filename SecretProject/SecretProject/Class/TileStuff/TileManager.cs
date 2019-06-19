@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Universal;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.PathFinding;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -94,6 +95,7 @@ namespace SecretProject.Class.TileStuff
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714, 100, 100, 100, 100);
 
         public int TileSetNumber { get; set; }
+        public AStarPathFinder PathGrid { get; set; }
 
 
         #region CONSTRUCTOR
@@ -522,6 +524,7 @@ namespace SecretProject.Class.TileStuff
                                                 (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
 
                                             AllTiles[z][i, j].HasObject = true;
+                                            AllTiles[z][i, j].AStarTileValue = 0;
                                             Game1.GetCurrentStage().AllObjects.Add(AllTiles[z][i, j].TileObject); // not gonna work for saving, gotta figure out.
 
                                         }
@@ -533,7 +536,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
+            PathGrid = new AStarPathFinder(100,100, AllTiles[1]);
 
         }
         #endregion

@@ -163,6 +163,27 @@ namespace SecretProject.Class.NPCStuff
                 CurrentDirection = 0;
             }
         }
+        float timeBetweenJumps = 1f;
+        int counter = 0;
+        public void MoveToTile(GameTime gameTime, List<Point> path)
+        {
+            
+            timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(timeBetweenJumps <= 0)
+            {
+                counter++;
+                timeBetweenJumps = 1f;
+            }
+            if(counter < path.Count)
+            {
+                this.Position = new Vector2(path[counter].X * 16, path[counter].Y * 16);
+            }
+            
+            //for (int i =0; i<path.Count; i = (int)timeBetweenJumps)
+            //{
+            //    this.Position = new Vector2(path[i].X * 16, path[i].Y * 16);
+            //}
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -95,6 +95,7 @@ namespace SecretProject.Class.TileStuff
         public int LightType { get; set; } = 0;
         public bool HasAction { get; set; } = false;
         public bool TileSelectorAllowed { get; set; } = false;
+        public int AStarTileValue { get; set; }
 
 
         //[XmlIgnore]
@@ -147,7 +148,7 @@ namespace SecretProject.Class.TileStuff
 
             TileColor = this.TileColor * this.ColorMultiplier;
             //TileColor = Color.DimGray * 1.5f;
-
+            AStarTileValue = 1;
 
         }
 
