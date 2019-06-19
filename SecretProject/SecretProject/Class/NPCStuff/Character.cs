@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff
 
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y + 16, 16, 32); } }
 
-        public float Speed { get; set; } = 1f;
+        public float Speed { get; set; } = .29f;
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 
@@ -165,24 +165,34 @@ namespace SecretProject.Class.NPCStuff
         }
         float timeBetweenJumps = 1f;
         int counter = 0;
+        bool pathFound = false;
+        List<Point> currentPath;
         public void MoveToTile(GameTime gameTime, List<Point> path)
         {
             
+            if(pathFound == false)
+            {
+                currentPath = path;
+                pathFound = true;
+            }
             timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(timeBetweenJumps <= 0)
             {
                 counter++;
                 timeBetweenJumps = 1f;
             }
-            if(counter < path.Count)
+            if(counter < currentPath.Count)
             {
-                this.Position = new Vector2(path[counter].X * 16, path[counter].Y * 16);
+                //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
+                MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
+            }
+            else
+            {
+                CurrentDirection = (int)Dir.Down;
+                IsMoving = false;
+                
             }
             
-            //for (int i =0; i<path.Count; i = (int)timeBetweenJumps)
-            //{
-            //    this.Position = new Vector2(path[i].X * 16, path[i].Y * 16);
-            //}
         }
 
         public void Draw(SpriteBatch spriteBatch)

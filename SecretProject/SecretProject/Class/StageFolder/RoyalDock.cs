@@ -46,7 +46,8 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D mainTarget;
 
 
-        public List<Point> TestPath { get; set; }
+        public List<Point> TestPath1 { get; set; }
+        public List<Point> TestPath2 { get; set; }
 
         public RoyalDock(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
@@ -150,7 +151,8 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            TestPath = AllTiles.PathGrid.Pathfind(new Point(27, 68), new Point(58, 39));
+            TestPath1 = AllTiles.PathGrid.Pathfind(new Point(40, 30), new Point(10, 10));
+            TestPath2 = AllTiles.PathGrid.Pathfind(new Point(30, 30), new Point(30, 40));
 
         }
 
@@ -216,7 +218,8 @@ namespace SecretProject.Class.StageFolder
             //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             //}
             ElixerNPC.IsUpdating = true;
-            ElixerNPC.MoveToTile(gameTime, TestPath);
+            ElixerNPC.MoveToTile(gameTime, TestPath1);
+            Dobbin.MoveToTile(gameTime, TestPath1);
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);
@@ -255,7 +258,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
                 Dobbin.Update(gameTime, AllObjects, mouse);
-                Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
+                //Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
                 if (ElixerNPC.IsUpdating)
                 {
                     ElixerNPC.Update(gameTime,AllObjects, mouse);
