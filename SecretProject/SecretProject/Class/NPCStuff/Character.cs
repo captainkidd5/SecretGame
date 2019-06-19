@@ -168,12 +168,13 @@ namespace SecretProject.Class.NPCStuff
         int counter = 0;
         bool pathFound = false;
         List<Point> currentPath;
-        public void MoveToTile(GameTime gameTime, List<Point> path)
+        public void MoveToTile(GameTime gameTime, Point tile)
         {
             
             if(pathFound == false)
             {
-                currentPath = path;
+
+                currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16, (int)this.Position.Y / 16), tile);
                 
                 pathFound = true;
             }

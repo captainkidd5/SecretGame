@@ -45,10 +45,6 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
-
-        public List<Point> TestPath1 { get; set; }
-        public List<Point> TestPath2 { get; set; }
-
         public RoyalDock(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.Graphics = graphics;
@@ -134,7 +130,7 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(800, 300), Graphics, Game1.AllTextures.ElixirSpriteSheet);
+            ElixerNPC = new Elixir("Elixer", new Vector2(900, 85), Graphics, Game1.AllTextures.ElixirSpriteSheet);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet);
 
             AllActions = new List<ActionTimer>();
@@ -151,8 +147,6 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            TestPath1 = AllTiles.PathGrid.Pathfind(new Point((int)ElixerNPC.Position.X/16, (int)ElixerNPC.Position.Y/16), new Point(15, 20));
-            TestPath2 = AllTiles.PathGrid.Pathfind(new Point((int)Dobbin.Position.X/16, (int)Dobbin.Position.Y/16), new Point(44, 44));
 
         }
 
@@ -218,8 +212,7 @@ namespace SecretProject.Class.StageFolder
             //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             //}
 
-            ElixerNPC.MoveToTile(gameTime, TestPath1);
-            Dobbin.MoveToTile(gameTime, TestPath2);
+            
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);
@@ -258,9 +251,11 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
                 Dobbin.Update(gameTime, AllObjects, mouse);
-                ElixerNPC.Update(gameTime,AllObjects, mouse);
-
-
+                
+                
+                ElixerNPC.Update(gameTime, AllObjects, mouse);
+                ElixerNPC.MoveToTile(gameTime, new Point(10, 30));
+                Dobbin.MoveToTile(gameTime, new Point(10, 10));
             }
         }
         #endregion
