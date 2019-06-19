@@ -1498,25 +1498,25 @@
  <tile id="6065">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6066">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6067">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6068">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6073">
@@ -1527,49 +1527,49 @@
  <tile id="6165">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6166">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6167">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6168">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6265">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6266">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6267">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6268">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6287">
@@ -1605,25 +1605,25 @@
  <tile id="6365">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6366">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6367">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6368">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="true"/>
+   <property name="tileSelectorAllowed" value="1"/>
   </properties>
  </tile>
  <tile id="6387">
@@ -1662,6 +1662,7 @@
    <property name="Speed" value=".15"/>
    <property name="destructable" value="2,1,3,6"/>
    <property name="loot" value="129:100"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="1" width="13" height="13"/>
@@ -1697,6 +1698,7 @@
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,1,0,8"/>
    <property name="loot" value="130:100,183:15"/>
+   <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="2" width="13" height="12"/>

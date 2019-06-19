@@ -54,8 +54,6 @@ namespace SecretProject.Class.TileStuff
         [XmlIgnore]
         public Tile[,] Tiles { get; set; }
 
-        [XmlArray("JaggedTiles")]
-        public Tile[][] JaggedTiles { get; set; }  
 
         public bool isActive = false;
         public bool isPlacement { get; set; } = false;
@@ -220,24 +218,21 @@ namespace SecretProject.Class.TileStuff
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
-            //hardcoding some of these trees for now..
             if(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
             {
                 int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
                 tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
                 tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
                     tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
-                //tileToAssign.X = tileToAssign.X - 32;
             }
 
-            //}
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("portal"))
             {
                 tileToAssign.IsPortal = true;
                 tileToAssign.portalDestination = mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["portal"];
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("plantable"))
-            {///////////
+            {
                 tileToAssign.Plantable = true;
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("diggable"))
@@ -297,6 +292,8 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.RequiredTool = Game1.Utility.GetRequiredTileTool(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
                 tileToAssign.TileDestructionColor = Game1.Utility.GetTileEffectColor(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
                 tileToAssign.SoundValue = Game1.Utility.GetTileDestructionSound(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+
+                
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("spawnWith"))
             {
@@ -379,10 +376,6 @@ namespace SecretProject.Class.TileStuff
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
 
-                //if(AllTiles[layer][prelimI, prelimJ].SpawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
-
-                //Tiles[newTileX, newTileY].GID = 6675;
-                //if (AllTiles[layer][newTileX, newTileY].)
                 Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, mapWidth, mapHeight);
                 if(!mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
@@ -439,7 +432,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        //not working
+
         public void DestroySpawnWithTiles(Tile baseTile, int xCoord, int yCoord)
         {
             List<Tile> tilesToReturn = new List<Tile>();
@@ -615,7 +608,7 @@ namespace SecretProject.Class.TileStuff
                                     {
 
                                         
-                                        if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle) && mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                        if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                         {
 
                                             Game1.Player.UserInterface.DrawTileSelector = true;
@@ -623,7 +616,7 @@ namespace SecretProject.Class.TileStuff
                                             Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                             Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
-                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                            //Game1.myMouseManager.ToggleGeneralInteraction = true;
 
                                             //if (mapName.Tilesets[0].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable")) //this whole thing is devastated, come back TODO
                                             //{
@@ -642,7 +635,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                     else
                                     {
-                                        Game1.Player.UserInterface.DrawTileSelector = false;
+                                        //Game1.Player.UserInterface.DrawTileSelector = false;
                                         Game1.isMyMouseVisible = true;
                                         Game1.myMouseManager.TogglePlantInteraction = false;
                                     }
@@ -651,14 +644,14 @@ namespace SecretProject.Class.TileStuff
                                 {
 
 
-                                    if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                    if (AllTiles[z][i, j].Destructable && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                     {
                                         Game1.isMyMouseVisible = false;
                                         Game1.Player.UserInterface.DrawTileSelector = true;
                                         Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                         Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
 
-
+                                        mouse.ChangeMouseTexture(AllTiles[z][i, j].RequiredTool);
 
                                         Game1.myMouseManager.ToggleGeneralInteraction = true;
 
@@ -672,6 +665,7 @@ namespace SecretProject.Class.TileStuff
                                     else
                                     {
                                         Game1.isMyMouseVisible = true;
+                                        Game1.Player.UserInterface.DrawTileSelector = false;
                                     }
                                 }
                             }

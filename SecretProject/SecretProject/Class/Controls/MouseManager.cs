@@ -61,6 +61,8 @@ namespace SecretProject.Class.Controls
 
         public Rectangle WorldMouseRectangle { get; set; }
 
+        public Texture2D MouseTypeTexture { get; set; }
+
         GraphicsDevice graphicsDevice;
 
         private MouseManager()
@@ -73,6 +75,7 @@ namespace SecretProject.Class.Controls
             IsClicked = false;
             this.Camera1 = camera;
             this.graphicsDevice = graphicsDevice;
+            //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
 
         }
 
@@ -157,15 +160,27 @@ namespace SecretProject.Class.Controls
         {      
             if(ToggleGeneralInteraction)
             {
-                spriteBatch.Draw(Game1.AllTextures.CursorWhiteHand, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(this.MouseTypeTexture, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
             }
-            if (TogglePlantInteraction)
-            {
-                spriteBatch.Draw(Game1.AllTextures.CursorPlant, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
-            }
-
-
             
+
+        }
+
+        public void ChangeMouseTexture(int type)
+        {
+            switch (type)
+            {
+                case 1:
+                    this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
+                    break;
+                case 2: this.MouseTypeTexture = Game1.AllTextures.CursorPlant;
+                    break;
+                default:
+                    this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
+                    break;
+
+
+            }
 
         }
 
