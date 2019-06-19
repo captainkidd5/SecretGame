@@ -134,7 +134,7 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(800, 600), Graphics, Game1.AllTextures.ElixirSpriteSheet);
+            ElixerNPC = new Elixir("Elixer", new Vector2(800, 300), Graphics, Game1.AllTextures.ElixirSpriteSheet);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet);
 
             AllActions = new List<ActionTimer>();
@@ -151,8 +151,8 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            TestPath1 = AllTiles.PathGrid.Pathfind(new Point(40, 30), new Point(10, 10));
-            TestPath2 = AllTiles.PathGrid.Pathfind(new Point(30, 30), new Point(30, 40));
+            TestPath1 = AllTiles.PathGrid.Pathfind(new Point((int)ElixerNPC.Position.X/16, (int)ElixerNPC.Position.Y/16), new Point(15, 20));
+            TestPath2 = AllTiles.PathGrid.Pathfind(new Point((int)Dobbin.Position.X/16, (int)Dobbin.Position.Y/16), new Point(44, 44));
 
         }
 
@@ -217,9 +217,9 @@ namespace SecretProject.Class.StageFolder
             //    //ParticleEngine.ActivationTime = 5f;
             //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
             //}
-            ElixerNPC.IsUpdating = true;
+
             ElixerNPC.MoveToTile(gameTime, TestPath1);
-            Dobbin.MoveToTile(gameTime, TestPath1);
+            Dobbin.MoveToTile(gameTime, TestPath2);
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);
@@ -258,12 +258,8 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
                 Dobbin.Update(gameTime, AllObjects, mouse);
-                //Dobbin.MoveTowardsPosition(player.Position, player.Rectangle);
-                if (ElixerNPC.IsUpdating)
-                {
-                    ElixerNPC.Update(gameTime,AllObjects, mouse);
-                   // ElixerNPC.MoveTowardsPosition(player.Position, player.Rectangle);
-                }
+                ElixerNPC.Update(gameTime,AllObjects, mouse);
+
 
             }
         }

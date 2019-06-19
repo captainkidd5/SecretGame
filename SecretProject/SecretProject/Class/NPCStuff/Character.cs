@@ -22,9 +22,13 @@ namespace SecretProject.Class.NPCStuff
         public Sprite[] NPCAnimatedSprite { get; set; }
         public Texture2D Texture { get; set; }
 
-        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y + 16, 16, 32); } }
+        public int NPCRectangleXOffSet { get; set; }
+        public int NPCRectangleYOffSet { get; set; }
+        public int NPCRectangleWidthOffSet { get; set; }
+        public int NPCRectangleHeightOffSet { get; set; }
+        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
-        public float Speed { get; set; } = .29f;
+        public float Speed { get; set; } = .25f;
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 
@@ -52,10 +56,7 @@ namespace SecretProject.Class.NPCStuff
             this.Texture = spriteSheet;
             NPCAnimatedSprite = new Sprite[4];
 
-            NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 48, 0, 16, 48, 6, .15f, this.Position);
-            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 144, 0, 16, 48, 6, .15f, this.Position);
-            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 240, 0, 16, 48, 6, .15f, this.Position);
-            NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 336, 0, 16, 48, 6, .15f, this.Position);
+            
 
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
             this.CurrentDirection = 0;
@@ -173,6 +174,7 @@ namespace SecretProject.Class.NPCStuff
             if(pathFound == false)
             {
                 currentPath = path;
+                
                 pathFound = true;
             }
             timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
