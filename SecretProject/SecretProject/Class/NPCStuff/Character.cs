@@ -174,7 +174,7 @@ namespace SecretProject.Class.NPCStuff
             if(pathFound == false)
             {
 
-                currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16, (int)this.Position.Y / 16), tile);
+                currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X/16, (int)this.Position.Y/16), tile);
                 
                 pathFound = true;
             }
@@ -186,8 +186,8 @@ namespace SecretProject.Class.NPCStuff
             }
             if(counter < currentPath.Count)
             {
-                //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
+                this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
+                //MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
             }
             else
             {
