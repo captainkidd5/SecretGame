@@ -136,28 +136,44 @@ namespace SecretProject.Class.PathFinding
                 var nodes = new List<Point>();
 
                 // up
+                if(node.Y > 0 && node.Y < 99)
+            {
                 if (Weight[node.X, node.Y - 1] > 0)
                 {
                     nodes.Add(new Point(node.X, node.Y - 1));
                 }
+            }
 
-                // right
+
+            // right
+            if (node.X > 0 && node.X < 99)
+            {
+
+
                 if (Weight[node.X + 1, node.Y] > 0)
                 {
                     nodes.Add(new Point(node.X + 1, node.Y));
                 }
+            }
 
-                // down
+            // down
+            if (node.Y > 0 && node.Y < 99)
+            {
                 if (Weight[node.X, node.Y + 1] > 0)
                 {
                     nodes.Add(new Point(node.X, node.Y + 1));
                 }
+            }
 
-                // left
+
+            // left
+            if (node.X > 0 && node.X < 99)
+            {
                 if (Weight[node.X - 1, node.Y] > 0)
                 {
                     nodes.Add(new Point(node.X - 1, node.Y));
                 }
+            }
 
                 return nodes;
             }

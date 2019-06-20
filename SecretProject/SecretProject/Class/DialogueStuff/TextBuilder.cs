@@ -54,6 +54,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     StringDisplayTimer = 0;
                     NumberOfClicks = 0;
+                    Game1.freeze = false;
                 }
                 if (Game1.myMouseManager.IsClicked)
                 {

@@ -186,8 +186,8 @@ namespace SecretProject.Class.NPCStuff
             }
             if(counter < currentPath.Count)
             {
-                this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                //MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
+                //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
+                MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
             }
             else
             {

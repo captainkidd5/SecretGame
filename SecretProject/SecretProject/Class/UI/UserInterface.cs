@@ -138,7 +138,7 @@ namespace SecretProject.Class.UI
                     if (Game1.AllShops[i].IsActive)
                     {
                         Game1.isMyMouseVisible = true;
-                        Game1.freeze = true;
+                        //Game1.freeze = true;
                         Game1.AllShops[i].Update(gameTime, mouse);
                     }
                 }

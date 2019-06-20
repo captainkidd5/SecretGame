@@ -130,7 +130,7 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(700, 85), Graphics, Game1.AllTextures.ElixirSpriteSheet);
+            ElixerNPC = new Elixir("Elixer", new Vector2(859, 500), Graphics, Game1.AllTextures.ElixirSpriteSheet);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet);
 
             AllActions = new List<ActionTimer>();
@@ -168,9 +168,9 @@ namespace SecretProject.Class.StageFolder
             //this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
         }
 
-        
-        #endregion
 
+        #endregion
+        bool movedCommanded = false;
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
@@ -254,8 +254,10 @@ namespace SecretProject.Class.StageFolder
                 
                 
                 ElixerNPC.Update(gameTime, AllObjects, mouse);
-                ElixerNPC.MoveToTile(gameTime, new Point(30, 30));
-                Dobbin.MoveToTile(gameTime, new Point(80, 40));
+                ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
+                   Dobbin.MoveToTile(gameTime, new Point(23, 55));
+                    movedCommanded = true;
+                
             }
         }
         #endregion
