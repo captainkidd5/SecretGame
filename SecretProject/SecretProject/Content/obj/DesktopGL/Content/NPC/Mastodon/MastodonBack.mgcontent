@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Mastodon/MastodonBack.png</SourceFile>
-  <SourceTime>2019-06-13T16:07:22.7396324-07:00</SourceTime>
+  <SourceTime>2019-06-20T11:22:39.080189-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Mastodon/MastodonBack.xnb</DestFile>
-  <DestTime>2019-06-13T16:10:44.6494692-07:00</DestTime>
+  <DestTime>2019-06-20T11:26:15.3231014-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

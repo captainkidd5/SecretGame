@@ -26,6 +26,7 @@ using SecretProject.Class.ObjectFolder;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ShopStuff;
+using XMLData.RouteStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -152,6 +153,8 @@ namespace SecretProject
         public DialogueSkeleton DobbinDialogue;
         public DialogueHolder AllElixirDialogue;
         public DialogueHolder AllDobbinDialogue;
+
+        public RouteSchedule DobbinRouteSchedule;
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
@@ -313,6 +316,7 @@ namespace SecretProject
             //ORDER MATTERS!!!
             AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+            DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
@@ -370,7 +374,7 @@ namespace SecretProject
             GreatLibrary = new NormalStage("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
 
-            ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
+            //ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
             DobbinsOrchard = new NormalStage("Dobbin's Orchard",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
 
 

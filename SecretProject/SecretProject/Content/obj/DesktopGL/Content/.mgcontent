@@ -12,11 +12,10 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBarButtonSelector.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/transparentTextBox.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/userinterfaceTileSet.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/AllDialogue.xml</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/CharacterDialogue.xml</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/DobbinDialogue.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/ElixirDialogue.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightmask.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/lightSpriteEffect1.fx</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/nightTint.fx</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/practiceLighting1.fx</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Enemy/enemyship1.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Barrel.png</File>
@@ -30,6 +29,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/IntheForest.mp3</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/placeBarrel.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/walkGrass1.mp3</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Dobbin/DobbinSpriteSheet.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/ElixerTest.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Elixir/ElixirSpriteSheet.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Mastodon/MastodonBack.png</File>
@@ -59,6 +59,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/newPlayer.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/PlayerSpriteSheet.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/Ship/ShipSpriteSheet.png</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/DobbinRouteSchedule.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/bubble.WAV</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/chirp1.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/chirp2.wav</File>
@@ -74,6 +75,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
