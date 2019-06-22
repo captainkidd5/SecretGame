@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
     public class Dobbin  : Character
     {
 
-        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet) : base(name, position, graphics, spriteSheet)
+        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule)
         {
             NPCAnimatedSprite = new Sprite[4];
 

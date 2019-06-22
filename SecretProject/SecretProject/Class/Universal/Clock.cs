@@ -21,7 +21,7 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 19;
+        public int TotalHours { get; set; } = 9;
         public int TotalDays { get; set; } = 0;
         public float ColorMultiplier { get; set; } = 9f;
 
@@ -68,7 +68,7 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 10)
+            if(LocalTime.TotalSeconds > 5)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;

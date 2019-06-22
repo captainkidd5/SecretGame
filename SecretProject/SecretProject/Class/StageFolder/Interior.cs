@@ -20,6 +20,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using TiledSharp;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -59,6 +60,11 @@ namespace SecretProject.Class.StageFolder
         }
 
         public void LoadContent(Camera2D camera)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             throw new NotImplementedException();
         }

@@ -19,6 +19,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
+using XMLData.RouteStuff;
 /*
 this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
@@ -101,7 +102,7 @@ List<ActionTimer> AllActions { get; set; }
 
         TextBuilder TextBuilder { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
-        void LoadContent( Camera2D camera );
+        void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules);
         void UnloadContent();
         void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
 

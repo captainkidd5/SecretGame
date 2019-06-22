@@ -10,6 +10,8 @@ namespace XMLData.RouteStuff
     public class Route
     {
         public int ID { get; set; }
+        public int TimeToStart { get; set; }
+        public int TimeToFinish { get; set; }
         public int StartX { get; set; }
         public int StartY { get; set; }
         public int EndX { get; set; }

@@ -155,6 +155,7 @@ namespace SecretProject
         public DialogueHolder AllDobbinDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
+        public static List<RouteSchedule> AllSchedules;
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
@@ -317,6 +318,7 @@ namespace SecretProject
             AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule };
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
@@ -440,7 +442,7 @@ namespace SecretProject
             
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            GetStageFromInt(stageToSwitchTo).LoadContent(cam);
+            GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             
             if (portal != null)
             {

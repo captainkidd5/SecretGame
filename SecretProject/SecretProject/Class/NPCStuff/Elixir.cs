@@ -9,6 +9,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
@@ -16,7 +17,7 @@ namespace SecretProject.Class.NPCStuff
     {
 
 
-        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet):base(name, position, graphics, spriteSheet)
+        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet,RouteSchedule routeSchedule):base(name, position, graphics, spriteSheet, routeSchedule)
         {
             this.SpeakerID = 1;
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 48, 0, 16, 48, 6, .15f, this.Position);

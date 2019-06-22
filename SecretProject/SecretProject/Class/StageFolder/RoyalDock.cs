@@ -27,6 +27,7 @@ using SecretProject.Class.ParticileStuff;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -55,7 +56,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public override void LoadContent( Camera2D camera )
+        public override void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules )
         {
             RenderTarget2D lightsTarget;
             RenderTarget2D mainTarget;
@@ -130,8 +131,8 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(859, 500), Graphics, Game1.AllTextures.ElixirSpriteSheet);
-            Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet);
+            ElixerNPC = new Elixir("Elixer", new Vector2(859, 500), Graphics, Game1.AllTextures.ElixirSpriteSheet, routeSchedules[0]);
+            Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet, routeSchedules[0]);
 
             AllActions = new List<ActionTimer>();
 
@@ -170,7 +171,6 @@ namespace SecretProject.Class.StageFolder
 
 
         #endregion
-        bool movedCommanded = false;
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
@@ -254,9 +254,9 @@ namespace SecretProject.Class.StageFolder
                 
                 
                 ElixerNPC.Update(gameTime, AllObjects, mouse);
-                ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
-                   Dobbin.MoveToTile(gameTime, new Point(23, 55));
-                    movedCommanded = true;
+               // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
+                  // Dobbin.MoveToTile(gameTime, new Point(23, 55));
+
                 
             }
         }

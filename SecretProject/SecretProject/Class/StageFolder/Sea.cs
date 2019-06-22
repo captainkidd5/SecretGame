@@ -26,6 +26,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -125,7 +126,7 @@ namespace SecretProject.Class.StageFolder
             this.TileSetNumber = tileSetNumber;
         }
 
-        public void LoadContent(Camera2D camera)
+        public void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
 
 

@@ -1,20 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
   <Asset Type="XMLData.RouteStuff.RouteSchedule">
     <Test>1</Test>
     <Routes>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
+      <TimeToStart>10</TimeToStart>
+      <TimeToFinish>12</TimeToFinish>
       <StartX>20</StartX>
       <StartY>20</StartY>
-      <EndX>34</EndX>
-      <EndY>36</EndY>
+      <EndX>35</EndX>
+      <EndY>35</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
-        <StartX>34</StartX>
-        <StartY>36</StartY>
+        <TimeToStart>13</TimeToStart>
+        <TimeToFinish>16</TimeToFinish>
+        <StartX>35</StartX>
+        <StartY>35</StartY>
         <EndX>20</EndX>
+        <EndY>20</EndY>
+      </Item>
+      <Item Type="XMLData.RouteStuff.Route">
+        <ID>3</ID>
+        <TimeToStart>17</TimeToStart>
+        <TimeToFinish>21</TimeToFinish>
+        <StartX>20</StartX>
+        <StartY>20</StartY>
+        <EndX>10</EndX>
+        <EndY>15</EndY>
+      </Item>
+      <Item Type="XMLData.RouteStuff.Route">
+        <ID>4</ID>
+        <TimeToStart>22</TimeToStart>
+        <TimeToFinish>3</TimeToFinish>
+        <StartX>10</StartX>
+        <StartY>15</StartY>
+        <EndX>35</EndX>
         <EndY>20</EndY>
       </Item>
     </Routes>

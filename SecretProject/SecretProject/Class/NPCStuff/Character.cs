@@ -12,6 +12,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
 {
@@ -28,7 +29,7 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleHeightOffSet { get; set; }
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
-        public float Speed { get; set; } = .25f;
+        public float Speed { get; set; } = 1f;
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 
@@ -49,7 +50,9 @@ namespace SecretProject.Class.NPCStuff
 
         public int FrameNumber { get; set; } = 25;
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
+        public RouteSchedule RouteSchedule { get; set; }
+
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule)
         {
             this.Name = name;
             this.Position = position;
@@ -61,6 +64,7 @@ namespace SecretProject.Class.NPCStuff
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
             this.CurrentDirection = 0;
 
+            this.RouteSchedule = routeSchedule;
         }
 
         public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
@@ -116,6 +120,9 @@ namespace SecretProject.Class.NPCStuff
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
             //this.Speed = PrimaryVelocity
+            FollowSchedule(gameTime, this.RouteSchedule);
+
+
         }
 
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
@@ -163,37 +170,57 @@ namespace SecretProject.Class.NPCStuff
             {
                 CurrentDirection = 0;
             }
-        }
-        float timeBetweenJumps = 1f;
-        int counter = 0;
-        bool pathFound = false;
-        List<Point> currentPath;
-        public void MoveToTile(GameTime gameTime, Point tile)
-        {
-            
-            if(pathFound == false)
-            {
-
-                currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X/16, (int)this.Position.Y/16), tile);
-                
-                pathFound = true;
-            }
-            timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(timeBetweenJumps <= 0)
-            {
-                counter++;
-                timeBetweenJumps = 1f;
-            }
-            if(counter < currentPath.Count)
-            {
-                //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                MoveTowardsPosition(new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16), new Rectangle(0, 0, 0, 0));
-            }
             else
             {
-                CurrentDirection = (int)Dir.Down;
-                IsMoving = false;
-                
+                CurrentDirection = 0;
+            }
+        }
+        float timeBetweenJumps = .4f;
+        int pointCounter = 0;
+        bool pathFound = false;
+
+        List<Point> currentPath = new List<Point>()
+        {
+            new Point(1,1)
+        };
+
+        public void MoveToTile(GameTime gameTime, Route route)
+        {
+            if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish)
+            {
+                if ((!(this.Position.X == currentPath[currentPath.Count - 1].X * 16) && !(this.Position.Y == currentPath[currentPath.Count - 1].Y * 16)) ||
+                    pointCounter < currentPath.Count)
+                {
+
+
+                    if (pathFound == false)
+                    {
+                        this.IsMoving = true;
+
+                        currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16,
+                            (int)this.Position.Y / 16), new Point(route.EndX, route.EndY));
+
+                        pathFound = true;
+                    }
+                    timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (timeBetweenJumps <= 0)
+                    {
+                        pointCounter++;
+                        timeBetweenJumps = .4f;
+                    }
+                    if (pointCounter < currentPath.Count)
+                    {
+                        //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
+                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(0, 0, 0, 0));
+                    }
+                    else
+                    {
+                        pathFound = false;
+                        pointCounter = 0;
+                        this.IsMoving = false;
+                        this.CurrentDirection = 0;
+                    }
+                }
             }
             
         }
@@ -217,9 +244,16 @@ namespace SecretProject.Class.NPCStuff
             }
         }
 
-        public void TextBoxResponse()
+        public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
         {
+            for(int i =0; i<routeSchedule.Routes.Count; i++)
+            {
+                
+                    MoveToTile(gameTime,this.RouteSchedule.Routes[i]);
 
+            }
+            
         }
+
     }
 }

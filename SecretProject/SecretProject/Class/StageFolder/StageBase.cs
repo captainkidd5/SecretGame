@@ -27,6 +27,7 @@ using SecretProject.Class.ParticileStuff;
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -128,7 +129,7 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public virtual void LoadContent(Camera2D camera)
+        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
