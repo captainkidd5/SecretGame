@@ -48,6 +48,7 @@ namespace SecretProject.Class.ItemStuff
         public ContentManager Content { get; set; }
 
         public bool IsPlaceable { get; set; } = false;
+        public bool IsPlantable { get; set; }
         [XmlIgnore]
         public PlaceableBuilding Building { get; set; }
 
@@ -82,6 +83,7 @@ namespace SecretProject.Class.ItemStuff
             this.InvMaximum = item.InvMaximum;
             this.Texture = item.Texture;
             this.IsPlaceable = item.IsPlaceable;
+            this.IsPlantable = item.IsPlantable;
             this.ID = item.ID;
             this.Price = item.Price;
             this.TextureColumn = item.TextureColumn;
@@ -107,6 +109,7 @@ namespace SecretProject.Class.ItemStuff
             this.InvMaximum = Game1.ItemVault.RawItems[ID].InvMaximum;
             this.Texture = Game1.AllTextures.ItemSpriteSheet;
             this.IsPlaceable = Game1.ItemVault.RawItems[ID].IsPlaceable;
+            this.IsPlantable = Game1.ItemVault.RawItems[ID].IsPlantable;
             this.Price = Game1.ItemVault.RawItems[ID].Price;
             this.TextureColumn = Game1.ItemVault.RawItems[ID].TextureColumn;
             this.TextureRow = Game1.ItemVault.RawItems[ID].TextureRow;

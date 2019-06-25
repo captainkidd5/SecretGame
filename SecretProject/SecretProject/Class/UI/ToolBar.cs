@@ -288,6 +288,18 @@ namespace SecretProject.Class.UI
             }
         }
 
+        public Item GetCurrentEquippedToolAsItem()
+        {
+            if (inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            {
+                return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
+            }
+            else
+            {
+                return null; //Placeholder, kinda funny I guess
+            }
+        }
+
         public Rectangle GetCurrentItemTexture()
         {
                 return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;

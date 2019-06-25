@@ -236,6 +236,7 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("plantable"))
             {
                 tileToAssign.Plantable = true;
+                tileToAssign.RequiredTool = 167;
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("diggable"))
             {
@@ -608,7 +609,7 @@ namespace SecretProject.Class.TileStuff
                                 //IE layer is background.
                                 if (z == 0)
                                 {
-                                    if (AllTiles[z][i, j].Diggable)
+                                    if (AllTiles[z][i, j].Diggable || AllTiles[z][i, j].Plantable)
                                     {
 
                                         
@@ -773,7 +774,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 128)
+            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
             {
                 if (AllTiles[layer][oldX, oldY].Plantable)
                 {

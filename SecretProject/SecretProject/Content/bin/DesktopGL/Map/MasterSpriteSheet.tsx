@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="431">
   <objectgroup draworder="index">
@@ -1522,6 +1522,7 @@
  <tile id="6073">
   <properties>
    <property name="plantable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6165">

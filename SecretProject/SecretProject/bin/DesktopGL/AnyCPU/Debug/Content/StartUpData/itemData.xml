@@ -9,6 +9,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <id>0</id>
       <Price>25</Price>
       <TextureColumn>0</TextureColumn>
@@ -24,6 +25,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>25</Price>
       <id>1</id>
       <TextureColumn>0</TextureColumn>
@@ -39,6 +41,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>25</Price>
       <id>2</id>
       <TextureColumn>0</TextureColumn>
@@ -54,6 +57,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>25</Price>
       <id>3</id>
       <TextureColumn>0</TextureColumn>
@@ -69,6 +73,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>50</Price>
       <id>4</id>
       <TextureColumn>0</TextureColumn>
@@ -84,6 +89,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>1</Price>
       <id>122</id>
       <TextureColumn>5</TextureColumn>
@@ -99,6 +105,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>5</Price>
       <id>123</id>
       <TextureColumn>5</TextureColumn>
@@ -114,6 +121,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>50</Price>
       <id>5</id>
       <TextureColumn>5</TextureColumn>
@@ -129,6 +137,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>100</Price>
       <id>125</id>
       <TextureColumn>5</TextureColumn>
@@ -144,6 +153,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>8</Price>
       <id>126</id>
       <TextureColumn>6</TextureColumn>
@@ -159,6 +169,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>12</Price>
       <id>127</id>
       <TextureColumn>5</TextureColumn>
@@ -174,6 +185,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>true</IsPlantable>
       <Price>10</Price>
       <id>128</id>
       <TextureColumn>5</TextureColumn>
@@ -189,6 +201,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>129</id>
       <TextureColumn>5</TextureColumn>
@@ -204,6 +217,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>130</id>
       <TextureColumn>5</TextureColumn>
@@ -219,6 +233,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>1</Price>
       <id>141</id>
       <TextureColumn>6</TextureColumn>
@@ -234,6 +249,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>20</Price>
       <id>143</id>
       <TextureColumn>6</TextureColumn>
@@ -249,6 +265,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>15</Price>
       <id>145</id>
       <TextureColumn>6</TextureColumn>
@@ -264,6 +281,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>7</Price>
       <id>147</id>
       <TextureColumn>6</TextureColumn>
@@ -279,6 +297,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>60</Price>
       <id>149</id>
       <TextureColumn>6</TextureColumn>
@@ -294,6 +313,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>161</id>
       <TextureColumn>7</TextureColumn>
@@ -309,6 +329,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>0</Price>
       <id>161</id>
       <TextureColumn>7</TextureColumn>
@@ -324,6 +345,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>165</id>
       <TextureColumn>7</TextureColumn>
@@ -339,6 +361,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>true</IsPlantable>
       <Price>2</Price>
       <id>167</id>
       <TextureColumn>7</TextureColumn>
@@ -354,6 +377,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>60</Price>
       <id>169</id>
       <TextureColumn>7</TextureColumn>
@@ -369,6 +393,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>171</id>
       <TextureColumn>8</TextureColumn>
@@ -384,6 +409,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>181</id>
       <TextureColumn>9</TextureColumn>
@@ -399,6 +425,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>15</Price>
       <id>183</id>
       <TextureColumn>9</TextureColumn>
@@ -414,6 +441,7 @@
       <Ignored>false</Ignored>
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
       <Price>2</Price>
       <id>191</id>
       <TextureColumn>10</TextureColumn>
