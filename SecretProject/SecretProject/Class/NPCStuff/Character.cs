@@ -127,25 +127,35 @@ namespace SecretProject.Class.NPCStuff
 
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {
-            Vector2 direction = Vector2.Normalize(positionToMoveTowards - Position);
-            this.DirectionVector = direction;
+
+            Vector2 direction = Vector2.Normalize((positionToMoveTowards - Position) + new Vector2((float).0000000001, (float).0000000001));
+            //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
+            //{
+                this.DirectionVector = direction;
+                if (!this.NPCRectangle.Intersects(rectangle))
+                {
+                    Position += (direction * Speed) * PrimaryVelocity;
+                    IsMoving = true;
+                }
+                else
+                {
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                    IsMoving = false;
+                }
+           // }
+            
 
 
-            if (!this.NPCRectangle.Intersects(rectangle))
-            {
-                Position += (direction * Speed) * PrimaryVelocity;
-                IsMoving = true;
-            }
-            else
-            {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-                IsMoving = false;
-            }
+            
         }
 
         public void UpdateDirectionVector(Vector2 positionToFace)
         {
             Vector2 direction = Vector2.Normalize(positionToFace - Position);
+            if(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y))
+            {
+                throw new Exception("Not a number " + direction.X.ToString() + " or not a number " + direction.Y.ToString());
+            }
             this.DirectionVector = direction;
 
             UpdateDirection();
