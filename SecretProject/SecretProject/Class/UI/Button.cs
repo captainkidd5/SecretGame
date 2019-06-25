@@ -46,6 +46,7 @@ namespace SecretProject.Class.MenuStuff
         public int Price { get; set; }
 
         public Rectangle ItemSourceRectangleToDraw { get; set; }
+        public Rectangle BackGroundSourceRectangle { get; set; }
 
         public Rectangle SourceRectangle { get; set; }
 
@@ -122,10 +123,12 @@ namespace SecretProject.Class.MenuStuff
         }
 
         //for toolbar
-        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle,SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
+        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle,SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
         {
 
-            spriteBatch.Draw(this.Texture, DestinationRectangle, sourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), backgroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, scale,SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(this.Texture, new Vector2(DestinationRectangle.X + backgroundSourceRectangle.Width/2, DestinationRectangle.Y + backgroundSourceRectangle.Height/2), sourceRectangle, this.Color, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
+
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
         }

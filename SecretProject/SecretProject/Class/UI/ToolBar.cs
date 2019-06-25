@@ -107,13 +107,13 @@ namespace SecretProject.Class.UI
             //Initialize Buttons
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32),graphicsDevice, new Vector2(459, 645));
-            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80,80,64,64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1 };
-            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2 };
-            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3 };
-            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
-            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
-            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6 };
-            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7 };
+            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208,80,32,32), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
 
             //--------------------------------------
             //Button List Stuff
@@ -150,6 +150,10 @@ namespace SecretProject.Class.UI
             {
                 
                 ItemSwitchSourceRectangle = GetCurrentItemTexture();
+            }
+            else if(WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count <= 0)
+            {
+                ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
             }
 
             this.inventory = inventory;
@@ -299,6 +303,7 @@ namespace SecretProject.Class.UI
                 if (inventory.currentInventory.ElementAt(i) == null)
                 {
                     AllSlots[i].ItemCounter = 0;
+                    
                 }
                 else
                 {
@@ -312,7 +317,8 @@ namespace SecretProject.Class.UI
                 }
                 else
                 {
-                    AllSlots[i].Texture = ToolBarButton;
+                    AllSlots[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
+                    AllSlots[i].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
                 }
 
                 AllSlots[i].Update(mouse);
@@ -480,7 +486,7 @@ namespace SecretProject.Class.UI
             //--------------------------------------
             //Draw Background
             TextBuilder.Draw(spriteBatch, .75f);
-            spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .67f);
+            //spriteBatch.Draw(Background, BackGroundTexturePosition, layerDepth: .67f);
 
             for(int i = 0; i < 7; i++)
             {
@@ -501,15 +507,15 @@ namespace SecretProject.Class.UI
             InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
             for(int i = 0; i < AllSlots.Count; i++)
             {
-                if(AllSlots[i].Texture != ToolBarButton)
-                {
+                //if(AllSlots[i].Texture != ToolBarButton)
+                //{
 
-                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
-                }
-                else
-                {
-                    AllSlots[i].Draw(spriteBatch, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
-                }
+                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Font, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.DarkRed,2f);
+              //  }
+               // else
+               // {
+                  //  AllSlots[i].Draw(spriteBatch, Font, AllSlots[i].ItemCounter.ToString(), AllSlots[i].Position, Color.DarkRed);
+              //  }
             }
 
             switch(currentSliderPosition)
