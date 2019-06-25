@@ -35,6 +35,8 @@
   <ItemGroup>
     <Compile Include="DialogueStuff\DialogueHolder.cs" />
     <Compile Include="DialogueStuff\DialogueSkeleton.cs" />
+    <Compile Include="ItemStuff\Crop.cs" />
+    <Compile Include="ItemStuff\CropHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteStuff\Route.cs" />
     <Compile Include="RouteStuff\RouteSchedule.cs" />

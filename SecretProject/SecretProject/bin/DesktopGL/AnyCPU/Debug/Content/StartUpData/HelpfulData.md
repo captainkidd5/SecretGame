@@ -38,3 +38,6 @@ W = Tool Required
 X = Hitpoints
 Y = Color
 Z = Sound
+
+## To Fix XML Content Load not found thing:
+Simply run the project in Debug mode first, then load content

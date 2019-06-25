@@ -46,6 +46,7 @@ namespace SecretProject.Class.TileStuff
         /// ////////////////
         /// </summary>
         public bool Plantable { get; set; } = false;
+        public Crop Crop { get; set; }
         public int AssociatedItem { get; set; } = 0;
 
 

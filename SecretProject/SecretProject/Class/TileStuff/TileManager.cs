@@ -783,7 +783,8 @@ namespace SecretProject.Class.TileStuff
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                     ReplaceTileWithNewTile(layer, oldX, oldY, 6076);
-                    Game1.Player.Inventory.RemoveItem(128);
+                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                    AllTiles[layer][oldX, oldY].Crop = new Crop(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                 }
             }
         }

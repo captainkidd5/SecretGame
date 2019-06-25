@@ -27,6 +27,7 @@ using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ShopStuff;
 using XMLData.RouteStuff;
+using XMLData.ItemStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -156,6 +157,8 @@ namespace SecretProject
 
         public RouteSchedule DobbinRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
+
+        public CropHolder AllCrops;
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
@@ -319,6 +322,7 @@ namespace SecretProject
             AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule };
+            AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
@@ -356,6 +360,8 @@ namespace SecretProject
             //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
             ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
             ItemVault.LoadItems(GraphicsDevice, Content);
+
+
 
             
 
