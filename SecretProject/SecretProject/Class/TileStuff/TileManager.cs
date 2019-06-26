@@ -782,9 +782,11 @@ namespace SecretProject.Class.TileStuff
                         //Game1.myMouseManager.TogglePlantInteraction = true;
 
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                    ReplaceTileWithNewTile(layer, oldX, oldY, 6076);
+                    
+                    AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                    AllTiles[layer][oldX, oldY].Crop = new Crop(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                    ReplaceTileWithNewTile(layer, oldX, oldY, AllTiles[layer][oldX, oldY].Crop.GID + 5);
+
                 }
             }
         }

@@ -9,5 +9,10 @@ namespace XMLData.ItemStuff
     public class CropHolder
     {
         public List<Crop> AllCrops { get; set; }
+
+        public Crop GetCropFromID(int ID)
+        {
+            return AllCrops.Find(x => x.ItemID == ID);
+        }
     }
 }

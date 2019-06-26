@@ -8,6 +8,12 @@
             <GID>6073</GID>
             <DaysToGrow>2</DaysToGrow>
             </Item>
+            <Item Type="XMLData.ItemStuff.Crop">
+                <ItemID>167</ItemID>
+                  <Name>BloodCorn</Name>
+                  <GID>5388</GID>
+                  <DaysToGrow>7</DaysToGrow>
+                  </Item>
     </AllCrops>
   </Asset>
 </XnaContent>

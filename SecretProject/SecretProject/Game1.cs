@@ -158,7 +158,7 @@ namespace SecretProject
         public RouteSchedule DobbinRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
 
-        public CropHolder AllCrops;
+        public static CropHolder AllCrops;
 
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
