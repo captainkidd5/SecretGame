@@ -29,7 +29,7 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleHeightOffSet { get; set; }
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
-        public float Speed { get; set; } = 1f;
+        public float Speed { get; set; } = .65f;
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 

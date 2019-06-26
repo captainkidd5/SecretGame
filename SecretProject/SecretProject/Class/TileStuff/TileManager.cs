@@ -380,10 +380,10 @@ namespace SecretProject.Class.TileStuff
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
 
-                Tile sampleTile = new Tile(newTileX, newTileY, id, 100, 100, mapWidth, mapHeight);
+                Tile sampleTile = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
                 if(!mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
-                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100,mapWidth, mapHeight);
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh,mapWidth, mapHeight);
                     return;
                 }
                 
@@ -413,7 +413,7 @@ namespace SecretProject.Class.TileStuff
                         if (!CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer))
                         {
                             //intermediateAllTiles.Add(AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY]);
-                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, mapWidth, mapHeight) { LayerToDrawAt = intTilePropertyLayer });
+                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { LayerToDrawAt = intTilePropertyLayer });
                             //AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY] = new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, 100, 100);
                         }
                         else
@@ -432,7 +432,7 @@ namespace SecretProject.Class.TileStuff
                         AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY] = intermediateNewTiles[tileSwapCounter];
                         //AllTiles[intermediateNewTiles[tileSwapCounter]]
                     }
-                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, 100, 100, mapWidth, mapHeight) { SpawnsWith = sampleTile.SpawnsWith };
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { SpawnsWith = sampleTile.SpawnsWith };
                 }
             }
         }
@@ -464,7 +464,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.GetCurrentStage().AllObjects.Remove(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].TileObject);
                     }
                     
-                    AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, 100, 100, mapWidth, mapHeight);
+                    AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
                 }
             }
         }
@@ -537,7 +537,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            PathGrid = new AStarPathFinder(100,100, AllTiles[1]);
+            PathGrid = new AStarPathFinder(tilesetTilesWide,tilesetTilesHigh, AllTiles[1]);
 
         }
         #endregion
