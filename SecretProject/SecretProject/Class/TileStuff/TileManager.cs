@@ -773,22 +773,25 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-
-            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
+            if(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
             {
-                if (AllTiles[layer][oldX, oldY].Plantable)
+                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                 {
+                    if (AllTiles[layer][oldX, oldY].Plantable)
+                    {
 
                         //Game1.myMouseManager.TogglePlantInteraction = true;
 
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                    
-                    AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                    ReplaceTileWithNewTile(layer, oldX, oldY, AllTiles[layer][oldX, oldY].Crop.GID + 5);
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
 
+                        AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                        ReplaceTileWithNewTile(layer, oldX, oldY, AllTiles[layer][oldX, oldY].Crop.GID + 5);
+
+                    }
                 }
             }
+            
         }
 
         //must be a building tile
