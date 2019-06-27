@@ -580,9 +580,9 @@ namespace SecretProject.Class.TileStuff
             //Game1.myMouseManager.TogglePlantInteraction = false;
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (var i = 0; i < tilesetTilesWide; i++)
+                for (var i = 0; i < mapWidth; i++)
                 {
-                    for (var j = 0; j < tilesetTilesHigh; j++)
+                    for (var j = 0; j < mapHeight; j++)
                     {
 
                         if (AllTiles[z][i, j].GID != 0)
@@ -694,9 +694,9 @@ namespace SecretProject.Class.TileStuff
         {
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (var i = 0; i < tilesetTilesWide; i++)
+                for (var i = 0; i < mapWidth; i++)
                 {
-                    for (var j = 0; j < tilesetTilesHigh; j++)
+                    for (var j = 0; j < mapHeight; j++)
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {

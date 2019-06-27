@@ -521,7 +521,7 @@
  <tile id="4244">
   <properties>
    <property name="destructable" value="0,4,1,3"/>
-   <property name="loot" value="123:100,122:50"/>
+   <property name="loot" value="123:100,122:10"/>
    <property name="spawnWith" value="4144"/>
   </properties>
   <objectgroup draworder="index">

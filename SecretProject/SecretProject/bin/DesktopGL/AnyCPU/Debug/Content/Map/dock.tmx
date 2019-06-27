@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="120" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="32">
- <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
- <tileset firstgid="10001" source="trees.tsx"/>
+ <tileset firstgid="1" source="../../../../../../Content/bin/DesktopGL/Map/MasterSpriteSheet.tsx"/>
+ <tileset firstgid="10001" source="../../../../../../Content/bin/DesktopGL/Map/trees.tsx"/>
  <layer id="7" name="background" width="120" height="100">
   <data encoding="csv">
 1270,572,573,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3357,6366,6366,6367,6368,6369,6366,6366,3357,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4559,4560,4555,4556,4557,4558,4559,4560,4555,4556,4557,4558,4559,4560,5111,5112,5113,5114,5115,5116,5117,5118,5111,5112,5113,5114,5115,5116,5117,5118,5111,5112,5113,5114,5115,5116,5117,5118,5111,5112,5113,5114,5115,5116,5117,5118,5111,5112,5113,5114,5115,5116,

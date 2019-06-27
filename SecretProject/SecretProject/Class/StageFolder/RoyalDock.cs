@@ -107,7 +107,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.Map = new TmxMap("Content/Map/royalDocks.tmx");
+            this.Map = new TmxMap("Content/Map/dock.tmx");
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
