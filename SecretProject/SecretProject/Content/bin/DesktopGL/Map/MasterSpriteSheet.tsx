@@ -285,6 +285,33 @@
    <object id="2" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
+ <tile id="3243">
+  <objectgroup draworder="index">
+   <object id="1" x="8.75" y="-0.25" width="7" height="16.25"/>
+   <object id="2" x="0" y="-0.125" width="8.875" height="1.75"/>
+  </objectgroup>
+ </tile>
+ <tile id="3246">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="-0.25" width="7.875" height="16"/>
+   <object id="2" x="8.125" y="0.125" width="7.875" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="3343">
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="-0.25" width="8" height="16.375"/>
+  </objectgroup>
+ </tile>
+ <tile id="3346">
+  <objectgroup draworder="index">
+   <object id="1" x="-0.125" y="-0.125" width="8" height="16.125"/>
+  </objectgroup>
+ </tile>
+ <tile id="3443">
+  <objectgroup draworder="index">
+   <object id="1" x="8.375" y="0" width="7.625" height="15.875"/>
+  </objectgroup>
+ </tile>
  <tile id="3511">
   <properties>
    <property name="step" value="2"/>
@@ -304,6 +331,26 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+ </tile>
+ <tile id="3543">
+  <objectgroup draworder="index">
+   <object id="1" x="8.25" y="0.375" width="7.625" height="1.5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3544">
+  <objectgroup draworder="index">
+   <object id="1" x="0.25" y="0.125" width="15.75" height="1.5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3545">
+  <objectgroup draworder="index">
+   <object id="1" x="0.125" y="0.25" width="16.125" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="3546">
+  <objectgroup draworder="index">
+   <object id="1" x="0.125" y="0.125" width="7.875" height="1.75"/>
+  </objectgroup>
  </tile>
  <tile id="3611">
   <properties>
