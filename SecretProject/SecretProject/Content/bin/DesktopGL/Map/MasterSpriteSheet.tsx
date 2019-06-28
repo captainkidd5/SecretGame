@@ -1572,6 +1572,13 @@
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
+ <tile id="6090">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="6165">
   <properties>
    <property name="diggable" value="dirt"/>
@@ -1595,6 +1602,16 @@
    <property name="diggable" value="dirt"/>
    <property name="tileSelectorAllowed" value="1"/>
   </properties>
+ </tile>
+ <tile id="6190">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100"/>
+   <property name="spawnWith" value="6090"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4.125" y="0.375" width="7.875" height="0.75"/>
+  </objectgroup>
  </tile>
  <tile id="6265">
   <properties>
