@@ -569,7 +569,7 @@ namespace SecretProject.Class.TileStuff
                         tile.DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                         (int)Math.Ceiling(tempObj.Height)), tile.DestinationRectangle.X);
                     tile.HasObject = true;
-                    Game1.Iliad.AllObjects.Add(tile.TileObject);
+                    Game1.GetCurrentStage().AllObjects.Add(tile.TileObject);
                 }
             }
         }

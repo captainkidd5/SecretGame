@@ -94,21 +94,21 @@ namespace SecretProject.Class.SavingStuff
         public void SaveHome()
         {
 
-            HomeTileWidth = Game1.Iliad.TileWidth;
-            HomeTileHeight = Game1.Iliad.TileHeight;
-            HomeTilesetTilesWide = Game1.Iliad.TilesetTilesWide;
-            HomeTilesetTilesHigh = Game1.Iliad.TilesetTilesHigh;
+            HomeTileWidth = Game1.Wilderness.TileWidth;
+            HomeTileHeight = Game1.Wilderness.TileHeight;
+            HomeTilesetTilesWide = Game1.Wilderness.TilesetTilesWide;
+            HomeTilesetTilesHigh = Game1.Wilderness.TilesetTilesHigh;
 
 
 
-            HomeTilesetNumber = Game1.Iliad.TileSetNumber;
+            HomeTilesetNumber = Game1.Wilderness.TileSetNumber;
 
-            HomeAllObjects = Game1.Iliad.AllObjects;
-            HomeAllSprites = Game1.Iliad.AllSprites;
-            HomeAllItems = Game1.Iliad.AllItems;
-            HomeAllActions= Game1.Iliad.AllActions;
+            HomeAllObjects = Game1.Wilderness.AllObjects;
+            HomeAllSprites = Game1.Wilderness.AllSprites;
+            HomeAllItems = Game1.Wilderness.AllItems;
+            HomeAllActions= Game1.Wilderness.AllActions;
 
-            HomeTilesLoaded = Game1.Iliad.TilesLoaded;
+            HomeTilesLoaded = Game1.Wilderness.TilesLoaded;
 
 
         }

@@ -65,7 +65,7 @@ namespace SecretProject
     {
         MainMenu = 0,
         LodgeInteior = 1,
-        Iliad = 2,
+        Wilderness = 2,
         Exit = 3,
         Sea = 4,
         RoyalDock = 5,
@@ -86,14 +86,15 @@ namespace SecretProject
 
         //STAGES
         public static MainMenu mainMenu;
-        public static NormalStage Iliad;
+        //public static NormalStage Iliad;
         public static NormalStage LodgeInterior;
         public static RoyalDock RoyalDock;
         public static Sea Sea;
         public static NormalStage GreatLibrary;
         public static NormalStage WestBeach;
         public static NormalStage DobbinsOrchard;
-        public static List<NormalStage> AllStages;
+        public static Wilderness Wilderness;
+        public static List<IStage> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
@@ -235,8 +236,8 @@ namespace SecretProject
                 case Stages.LodgeInteior:
                     return LodgeInterior;
 
-                case Stages.Iliad:
-                    return Iliad;
+                case Stages.Wilderness:
+                    return Wilderness;
                 case Stages.Sea:
                     return Sea;
 
@@ -263,7 +264,7 @@ namespace SecretProject
                 case 1:
                     return LodgeInterior;
                 case 2:
-                    return Iliad;
+                    return Wilderness;
                 case 4:
                     return Sea;
                 case 5:
@@ -275,7 +276,7 @@ namespace SecretProject
                 case 8:
                     return DobbinsOrchard;
                 default:
-                    return Iliad;
+                    return RoyalDock;
             }
 
         }
@@ -288,7 +289,7 @@ namespace SecretProject
                 case Stages.LodgeInteior:
                     return 1;
 
-                case Stages.Iliad:
+                case Stages.Wilderness:
                     return 2;
 
                 case Stages.Sea:
@@ -375,7 +376,7 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
             WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
-            Iliad = new NormalStage("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
+            Wilderness = new Wilderness("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
             RoyalDock = new RoyalDock("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 
@@ -393,7 +394,7 @@ namespace SecretProject
 
             
 
-            AllStages = new List<NormalStage>() { Iliad, LodgeInterior };
+            AllStages = new List<IStage>() { Wilderness, LodgeInterior };
 
             
 
@@ -509,10 +510,10 @@ namespace SecretProject
                         LodgeInterior.Update(gameTime, myMouseManager, Player);
                         break;
 
-                    case Stages.Iliad:
+                    case Stages.Wilderness:
 
 
-                        Iliad.Update(gameTime, myMouseManager, Player);
+                        Wilderness.Update(gameTime, myMouseManager, Player);
                         break;
 
                     case Stages.RoyalDock:
@@ -567,9 +568,9 @@ namespace SecretProject
                    // spriteBatch.End();
                     break;
 
-                case Stages.Iliad:
+                case Stages.Wilderness:
                     GraphicsDevice.Clear(Color.Black);
-                    Iliad.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    Wilderness.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.RoyalDock:

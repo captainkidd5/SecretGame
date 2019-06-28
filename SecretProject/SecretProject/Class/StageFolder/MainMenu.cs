@@ -88,7 +88,7 @@ namespace SecretProject.Class.StageFolder
             if(Load.isClicked)
             {
                 mySave.Load(graphics);
-                Game1.gameStages = Stages.Iliad;
+                Game1.gameStages = Stages.Wilderness;
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)
@@ -99,7 +99,7 @@ namespace SecretProject.Class.StageFolder
             if(reloadMap.isClicked)
             {
                 Game1.Player.UserInterface.IsEscMenu = false;
-                Game1.gameStages = Stages.Iliad;
+                Game1.gameStages = Stages.Wilderness;
             }
         }
 

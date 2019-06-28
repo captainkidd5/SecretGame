@@ -40,8 +40,7 @@ namespace SecretProject.Class.StageFolder
 
         public Elixir ElixerNPC;
         public Dobbin Dobbin;
-        public List<Boar> Boars;
-        public Boar Boar;
+
 
         #endregion
 
@@ -136,12 +135,7 @@ namespace SecretProject.Class.StageFolder
             
             ElixerNPC = new Elixir("Elixer", new Vector2(859, 500), Graphics, Game1.AllTextures.ElixirSpriteSheet, routeSchedules[0]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet, routeSchedules[0]);
-            Boar = new Boar("Boar", new Vector2(900, 200), Graphics, Game1.AllTextures.EnemySpriteSheet);
-            Boars = new List<Boar>() { };
-            for(int i = 0; i < 10; i++)
-            {
-                Boars.Add(new Boar("Boar", new Vector2(100 * i, 200), Graphics, Game1.AllTextures.EnemySpriteSheet));
-            }
+
 
             AllActions = new List<ActionTimer>();
 
@@ -264,12 +258,7 @@ namespace SecretProject.Class.StageFolder
                 
                 
                 ElixerNPC.Update(gameTime, AllObjects, mouse);
-                for(int e = 0; e < Boars.Count; e++)
-                {
-                    Boars[e].Update(gameTime, AllObjects, mouse);
-                    //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
-                }
-                Boar.Update(gameTime, AllObjects, mouse);
+
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
                   // Dobbin.MoveToTile(gameTime, new Point(23, 55));
@@ -319,12 +308,7 @@ namespace SecretProject.Class.StageFolder
 
                 ElixerNPC.Draw(spriteBatch);
                 Dobbin.Draw(spriteBatch);
-                Boar.Draw(spriteBatch);
-                for (int e = 0; e < Boars.Count; e++)
-                {
-                    Boars[e].Draw(spriteBatch);
 
-                }
 
                 TextBuilder.Draw(spriteBatch, .71f);
 
