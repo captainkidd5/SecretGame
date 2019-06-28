@@ -19,6 +19,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
         public Texture2D DobbinSpriteSheet;
+        public Texture2D EnemySpriteSheet;
 
         //playeractions
 
@@ -77,6 +78,8 @@ namespace SecretProject.Class.TextureStuff
             DobbinSpriteSheet = content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet");
 
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
+
+            EnemySpriteSheet = content.Load<Texture2D>("NPC/Enemy/EnemySpriteSheet");
 
 
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
