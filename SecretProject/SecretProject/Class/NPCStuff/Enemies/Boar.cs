@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,52 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleHeightOffSet = 20;
             this.NPCRectangleWidthOffSet = 20;
             this.Speed = 1f;
+        }
+
+        public override void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
+        {
+            this.PrimaryVelocity = new Vector2(1, 1);
+            Collider.Rectangle = this.NPCRectangle;
+            Collider.Velocity = this.PrimaryVelocity;
+            this.CollideOccured = Collider.DidCollide(objects, Position);
+
+            switch (CurrentDirection)
+            {
+                case 0:
+                    NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
+                    break;
+                case 1:
+                    NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
+                    break;
+                case 2:
+                    NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
+                    break;
+                case 3:
+                    NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
+                    break;
+            }
+            if (mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
+            {
+                mouse.ChangeMouseTexture(200);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+
+            }
+            if (IsMoving)
+            {
+
+
+                UpdateDirection();
+                this.PrimaryVelocity = Collider.Velocity;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+            }
+
+            //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
+            Wander(gameTime);
+
         }
     }
 }

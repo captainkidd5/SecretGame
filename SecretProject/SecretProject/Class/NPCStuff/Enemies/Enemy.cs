@@ -46,7 +46,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
         }
 
-        public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCRectangle;
@@ -108,6 +108,22 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
                 IsMoving = false;
+            }
+        }
+
+        private float WanderTimer = 2f;
+        private Vector2 wanderPosition = new Vector2(0, 0);
+        public void Wander(GameTime gameTime)
+        {
+            //temporary
+            MoveTowardsPosition(wanderPosition, new Rectangle(0, 0, 1, 1));
+            WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(WanderTimer<=0)
+            {
+                int newX = Game1.Utility.RGenerator.Next(-200, 200);
+                int newY = Game1.Utility.RGenerator.Next(-200, 200);
+                wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
+                WanderTimer = Game1.Utility.RGenerator.Next(0, 5);
             }
         }
         public void UpdateDirection()
