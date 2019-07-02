@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/doorOpen.wav</SourceFile>
-  <SourceTime>2019-06-20T11:22:39.0687748-07:00</SourceTime>
+  <SourceTime>2019-07-02T12:51:01.4887644-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Music/doorOpen.xnb</DestFile>
-  <DestTime>2019-06-20T11:26:12.8719913-07:00</DestTime>
+  <DestTime>2019-07-02T12:51:55.9784655-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

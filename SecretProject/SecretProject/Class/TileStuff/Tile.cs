@@ -19,7 +19,7 @@ namespace SecretProject.Class.TileStuff
         public float Y { get; set; } = 0;
 
         private int gid;
-        public int GID { get { return gid; } set { gid = value; } }
+        public int GID { get { return gid - 1; } set { gid = value; } }
         public bool IsSelected { get; set; } = false;
 
         public int TilesetTilesWide { get; set; } = 0;
@@ -138,7 +138,7 @@ namespace SecretProject.Class.TileStuff
             this.MapWidth = mapWidth;
             this.MapHeight = mapHeight;
 
-            TileFrame = GID - 1;
+            TileFrame = GID;
 
             Column = TileFrame % tilesetTilesWide;
             Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
