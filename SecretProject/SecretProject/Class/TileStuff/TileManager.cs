@@ -173,29 +173,28 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllPortals.Add(portal);
             }
 
-            //specify GID which is 1 larger than one on tileset, idk why
             //brown tall grass
-            //GenerateTiles(3, 6394, "dirt", 2000, 0);
+            GenerateTiles(3, 6393, "dirt", 2000, 0);
             //green tall grass
-            //GenerateTiles(3, 6393, "dirt", 2000, 0);
+            GenerateTiles(3, 6392, "dirt", 2000, 0);
             //    //stone
-            GenerateTiles(1, 6675, "dirt", 50, 0);
+            GenerateTiles(1, 6674, "dirt", 50, 0);
             //    //grass
-                GenerateTiles(1, 6475, "dirt", 50, 0);
+                GenerateTiles(1, 6474, "dirt", 50, 0);
             //    //redrunestone
-                GenerateTiles(1, 5681, "dirt", 100, 0);
+                GenerateTiles(1, 5680, "dirt", 100, 0);
             ////bluerunestone
-                GenerateTiles(1, 5881, "dirt", 100, 0);
+                GenerateTiles(1, 5880, "dirt", 100, 0);
             ////thunderbirch
-               GenerateTiles(1, 4845, "dirt", 200, 0);
+               GenerateTiles(1, 4844, "dirt", 200, 0);
             ////crown of swords
-            GenerateTiles(1, 6388, "sand", 50, 0);
+            GenerateTiles(1, 6387, "sand", 50, 0);
             ////dandelion
-            GenerateTiles(1, 6687, "sand", 100, 0);
+            GenerateTiles(1, 6686, "sand", 100, 0);
             //juicyfruit
-            GenerateTiles(1, 6589, "dirt", 50, 0);
+            GenerateTiles(1, 6588, "dirt", 50, 0);
             //orchardTree
-            GenerateTiles(1, 4245, "dirt", 200, 0);
+            GenerateTiles(1, 4244, "dirt", 200, 0);
             //bubblegum
            // GenerateTiles(1, 6191, "dirt", 200, 0);
 
@@ -240,6 +239,11 @@ namespace SecretProject.Class.TileStuff
             {
                 tileToAssign.Plantable = true;
                 tileToAssign.RequiredTool = 167;
+            }
+            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
+            {
+                tileToAssign.actionKey = (int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"]));
+
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("diggable"))
             {
@@ -386,7 +390,7 @@ namespace SecretProject.Class.TileStuff
                 Tile sampleTile = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
                 if(!mapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
-                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh,mapWidth, mapHeight);
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id + 1, tilesetTilesWide, tilesetTilesHigh,mapWidth, mapHeight);
                     return;
                 }
                 
@@ -416,7 +420,7 @@ namespace SecretProject.Class.TileStuff
                         if (!CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer))
                         {
                             //intermediateAllTiles.Add(AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY]);
-                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { LayerToDrawAt = intTilePropertyLayer });
+                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID , tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { LayerToDrawAt = intTilePropertyLayer });
                             //AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY] = new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, 100, 100);
                         }
                         else
@@ -475,7 +479,7 @@ namespace SecretProject.Class.TileStuff
         //if the GID is anything other than -1 it means there's something there.
         public bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer)
         {
-            if (AllTiles[layer][tileX, tileY].GID != -1)
+            if (AllTiles[layer][tileX, tileY].GID != 0)
             {
                 return true;
             }
@@ -666,6 +670,15 @@ namespace SecretProject.Class.TileStuff
                                         //Game1.isMyMouseVisible = true;
                                         //Game1.Player.UserInterface.DrawTileSelector = false;
                                     }
+
+                                    if (AllTiles[z][i, j].actionKey >= 0 && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                                    {
+                                        if (mouse.IsRightClicked)
+                                        {
+                                            ActionHelper(z, i, j, AllTiles[z][i, j].actionKey);
+                                        }
+                                            
+                                    }
                                 }
                             }
 
@@ -691,6 +704,35 @@ namespace SecretProject.Class.TileStuff
             }
         }
         #endregion
+
+        public void ActionHelper(int z,int i, int j, int action)
+        {
+            switch (action)
+            {
+                //furnace
+                case 1:
+                    if(AllTiles[z][i, j].GID == 4654)
+                    {
+                        AllTiles[z][i, j] = new Tile(i, j, 4254, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                        AssignProperties(AllTiles[z][i, j], TileSetNumber);
+
+                        AllTiles[z][i - 1, j] = new Tile(i -1, j, 4253, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                        AssignProperties(AllTiles[z][i -1, j], TileSetNumber);
+                    }
+                    if (AllTiles[z][i, j].GID == 4653)
+                    {
+                        AllTiles[z][i , j] = new Tile(i, j, 4253, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                        AssignProperties(AllTiles[z][i, j], TileSetNumber);
+
+                        AllTiles[z][i + 1, j] = new Tile(i + 1, j, 4254, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                        AssignProperties(AllTiles[z][i + 1, j], TileSetNumber);
+                    }
+                    
+                    break;
+                    
+            }
+
+        }
 
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch)

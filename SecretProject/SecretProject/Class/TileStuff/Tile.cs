@@ -19,7 +19,7 @@ namespace SecretProject.Class.TileStuff
         public float Y { get; set; } = 0;
 
         private int gid;
-        public int GID { get { return gid -1; } set { gid = value; } }
+        public int GID { get { return gid; } set { gid = value; } }
         public bool IsSelected { get; set; } = false;
 
         public int TilesetTilesWide { get; set; } = 0;
@@ -84,6 +84,7 @@ namespace SecretProject.Class.TileStuff
         public bool Tree { get; set; } = false;
         public bool Destructable { get; set; }
         public int RequiredTool { get; set; }
+        public int actionKey { get; set; }
         public bool HasAdditionalTiles { get; set; }
 
         public float LayerToDrawAt { get; set; } = 0f;
@@ -137,7 +138,7 @@ namespace SecretProject.Class.TileStuff
             this.MapWidth = mapWidth;
             this.MapHeight = mapHeight;
 
-            TileFrame = GID;
+            TileFrame = GID - 1;
 
             Column = TileFrame % tilesetTilesWide;
             Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);

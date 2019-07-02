@@ -575,6 +575,16 @@
    <object id="1" x="7" y="0" width="7" height="1"/>
   </objectgroup>
  </tile>
+ <tile id="4253">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
+ </tile>
+ <tile id="4254">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
+ </tile>
  <tile id="4311">
   <properties>
    <property name="step" value="2"/>
@@ -749,6 +759,9 @@
   </properties>
  </tile>
  <tile id="4653">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="4" x="6" y="0" width="10" height="10">
     <properties>
@@ -758,6 +771,9 @@
   </objectgroup>
  </tile>
  <tile id="4654">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="10" height="10">
     <properties>
@@ -816,7 +832,7 @@
  <tile id="4744">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-32,72,80"/>
+   <property name="newSource" value="-16,-32,88,80"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -1793,6 +1809,9 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
+  <animation>
+   <frame tileid="9701" duration="100"/>
+  </animation>
  </tile>
  <tile id="9703">
   <properties>
