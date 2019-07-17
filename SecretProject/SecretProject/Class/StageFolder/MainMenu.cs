@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
 
 namespace SecretProject.Class.StageFolder
@@ -16,12 +17,13 @@ namespace SecretProject.Class.StageFolder
         //--------------------------------------
         //buttons
         Button reloadMap;
-        Button resumeGame;
+        Button newGame;
         Button Load;
         Button Exit;
         Button FullScreen;
 
         Texture2D BackDrop;
+        Texture2D cloud1;
         
 
         List<Button> allButtons;
@@ -37,8 +39,8 @@ namespace SecretProject.Class.StageFolder
 
         GraphicsDevice graphics;
         ContentManager content;
-        
 
+        List<Sprite> clouds;
 
 
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
@@ -50,12 +52,12 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Initialize Buttons
-            reloadMap = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48,176,128, 64),  graphicsDevice, new Vector2(500, 100));
-            resumeGame = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 200));
-            Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 300));
-            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 400));
-            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 500));
-            allButtons = new List<Button>() { resumeGame, Load, Exit, reloadMap, FullScreen };
+            reloadMap = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48,176,128, 64),  graphicsDevice, new Vector2(1100, 100));
+            newGame = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200));
+            Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 300));
+            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400));
+            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 500));
+            allButtons = new List<Button>() { newGame, Load, Exit, reloadMap, FullScreen };
 
             //--------------------------------------
             //Load spritefonts
@@ -64,6 +66,13 @@ namespace SecretProject.Class.StageFolder
             mySave = new SaveLoadManager();
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
+            cloud1 = content.Load<Texture2D>("MainMenu/cloud1");
+            clouds = new List<Sprite>();
+            for(int i = 0; i < 5; i++)
+            {
+                clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
+                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 500)), cloud1.Width, cloud1.Height));
+            }
         }
         public void UnloadContent()
         {
@@ -84,7 +93,7 @@ namespace SecretProject.Class.StageFolder
 
             //--------------------------------------
             //Check Conditions
-            if (resumeGame.isClicked)
+            if (newGame.isClicked)
             {
                 Game1.SwitchStage(0, 5);
                 Game1.Player.UserInterface.IsEscMenu = false;
@@ -118,12 +127,16 @@ namespace SecretProject.Class.StageFolder
             spriteBatch.Begin();
 
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), Color.White);
+            for (int i = 0; i < clouds.Count; i++)
+            {
+                clouds[i].Draw(spriteBatch, .7f);
+            }
             //--------------------------------------
             //Draw Buttons
 
             reloadMap.Draw(spriteBatch, font, "Reload Map", reloadMap.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             //reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
-            resumeGame.Draw(spriteBatch,  font, "Resume Game", resumeGame.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            newGame.Draw(spriteBatch,  font, "New Game", newGame.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             //resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
             Load.Draw(spriteBatch, font, "Load Game", Load.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
@@ -132,7 +145,7 @@ namespace SecretProject.Class.StageFolder
             //Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
             //Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 
-
+            
             spriteBatch.End();
         }
 

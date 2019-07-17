@@ -22,6 +22,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Barrel.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemAnimationsSheet.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemSpriteSheet.png</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/MainMenu/cloud1.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/MainMenu/MainMenuBackDrop.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Map/InteriorSpriteSheet1.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Map/MasterSpriteSheet.png</File>
@@ -78,6 +79,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -51,7 +51,7 @@ namespace SecretProject.Class.MenuStuff
         public Rectangle SourceRectangle { get; set; }
 
         public Rectangle DestinationRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, SourceRectangle.Width, SourceRectangle.Height); } set { } }
-        public Vector2 FontLocation { get { return new Vector2(DestinationRectangle.X + SourceRectangle.Width / 2, DestinationRectangle.Y + SourceRectangle.Height / 2); } set { } }
+        public Vector2 FontLocation { get { return new Vector2(DestinationRectangle.X + 5, DestinationRectangle.Y + SourceRectangle.Height / 2); } set { } }
 
 
         public Button(Texture2D newtexture, Rectangle sourceRectangle,GraphicsDevice graphicsDevice, Vector2 position)
