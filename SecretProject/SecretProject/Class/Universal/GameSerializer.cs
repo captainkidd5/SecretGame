@@ -291,12 +291,7 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.IsTemporary);
             writer.Write(tile.IsPortal);
             writer.Write(tile.portalDestination);
-            writer.Write(tile.Dirt);
-            writer.Write(tile.Grass);
-            writer.Write(tile.Stone);
             writer.Write(tile.Diggable);
-            writer.Write(tile.RedRuneStone);
-            writer.Write(tile.BlueRuneStone);
 
             if (tile.HasObject)
             {
@@ -397,11 +392,7 @@ namespace SecretProject.Class.Universal
             newTile.IsTemporary = isTemporary;
             newTile.IsPortal = isPortal;
             newTile.portalDestination = portalDestination;
-            newTile.Dirt = dirt;
-            newTile.Grass = grass;
-            newTile.Stone = stone;
             newTile.Diggable = diggable;
-            newTile.RedRuneStone = redRuneStone;
 
             return newTile;
             

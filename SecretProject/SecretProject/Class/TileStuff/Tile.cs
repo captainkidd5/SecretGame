@@ -75,17 +75,11 @@ namespace SecretProject.Class.TileStuff
         public bool IsPortal { get; set; } = false;
         public string portalDestination { get; set; } = "none";
 
-        public bool Dirt { get; set; } = false;
-        public bool Grass { get; set; } = false;
-        public bool Stone { get; set; } = false;
         public bool Diggable { get; set; } = false;
-        public bool RedRuneStone { get; set; } = false;
-        public bool BlueRuneStone { get; set; } = false;
         public bool Tree { get; set; } = false;
         public bool Destructable { get; set; }
         public int RequiredTool { get; set; }
         public int actionKey { get; set; }
-        public bool HasAdditionalTiles { get; set; }
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
@@ -97,7 +91,6 @@ namespace SecretProject.Class.TileStuff
         public bool IsLightSource { get; set; } = false;
         public int LightType { get; set; } = 0;
         public bool HasAction { get; set; } = false;
-        public bool TileSelectorAllowed { get; set; } = false;
         public int AStarTileValue { get; set; }
 
 

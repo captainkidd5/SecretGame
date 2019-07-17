@@ -19,6 +19,9 @@ namespace SecretProject.Class.StageFolder
         Button resumeGame;
         Button Load;
         Button Exit;
+        Button FullScreen;
+
+        Texture2D BackDrop;
         
 
         List<Button> allButtons;
@@ -51,14 +54,15 @@ namespace SecretProject.Class.StageFolder
             resumeGame = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 200));
             Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 300));
             Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 400));
-
-            allButtons = new List<Button>() { resumeGame, Load, Exit, reloadMap };
+            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(500, 500));
+            allButtons = new List<Button>() { resumeGame, Load, Exit, reloadMap, FullScreen };
 
             //--------------------------------------
             //Load spritefonts
             font = Game1.AllTextures.MenuText;
 
             mySave = new SaveLoadManager();
+            BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
         }
         public void UnloadContent()
@@ -101,6 +105,10 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.IsEscMenu = false;
                 Game1.gameStages = Stages.Wilderness;
             }
+            if(FullScreen.isClicked)
+            {
+                Game1.FullScreenToggle();
+            }
         }
 
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
@@ -109,14 +117,18 @@ namespace SecretProject.Class.StageFolder
             //GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
 
+            spriteBatch.Draw(BackDrop, new Vector2(0, 0), Color.White);
             //--------------------------------------
             //Draw Buttons
+
             reloadMap.Draw(spriteBatch, font, "Reload Map", reloadMap.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             //reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
             resumeGame.Draw(spriteBatch,  font, "Resume Game", resumeGame.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             //resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
             Load.Draw(spriteBatch, font, "Load Game", Load.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
             Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+            FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+
             //Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
             //Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
 

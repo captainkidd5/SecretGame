@@ -246,10 +246,6 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.Diggable = true;
                 tileToAssign.RequiredTool = 3;
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsValue("dirt"))
-            {
-                tileToAssign.Dirt = true;
-            }
 
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("Probability"))
             {
@@ -302,10 +298,6 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("spawnWith"))
-            {
-                tileToAssign.HasAdditionalTiles = true;
-            }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
             {
                 tileToAssign.actionKey = (int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"]));
@@ -316,11 +308,6 @@ namespace SecretProject.Class.TileStuff
                 tileToAssign.HasSound = true;
                 tileToAssign.SoundValue = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["step"]);
                 //grass = 1, stone = 2, wood = 3, sand = 4
-            }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("tileSelectorAllowed"))
-            {
-                tileToAssign.TileSelectorAllowed = true;
-
             }
             if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
             {
@@ -703,6 +690,14 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        //TODO: Fix animation frames
+        public void AnimationFrameAnimate(Tile tile)
+        {
+            if(mapName.Tilesets[tile.GID].Tiles[tile.GID].AnimationFrames.Count > 0)
+            {
+               // tile = new Tile()
+            }
+        }
         public void ActionHelper(int z, int i, int j, int action)
         {
             //new Gid should be one larger, per usual
@@ -808,12 +803,9 @@ namespace SecretProject.Class.TileStuff
             {
                 if (AllTiles[layer][oldX, oldY].Diggable)
                 {
-                    if (AllTiles[layer][oldX, oldY].Dirt)
-                    {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                         ReplaceTileWithNewTile(layer, oldX, oldY, 6074);
                         AllTiles[layer][oldX, oldY].Plantable = true;
-                    }
 
                 }
             }
@@ -872,20 +864,20 @@ namespace SecretProject.Class.TileStuff
                             case 0:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
 
                             case 1:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                             case 2:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, AllTiles[layer][oldX, oldY].HasAdditionalTiles);
+                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, AllTiles[layer][oldX, oldY].SoundValue, AllTiles[layer][oldX, oldY].TileDestructionColor, mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                         }
@@ -941,7 +933,7 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                 AllTiles[layer][oldX, oldY].TileObject = null;
                 AllTiles[layer][oldX, oldY].HasObject = false;
-                if (AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                 {
 
                     DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
@@ -1014,7 +1006,7 @@ namespace SecretProject.Class.TileStuff
                     AllTiles[layer][oldX, oldY].TileObject = null;
                     AllTiles[layer][oldX, oldY].HasObject = false;
                     GetDrop(AllTiles[layer][oldX, oldY]);
-                    if (AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                     {
                         DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
                     }
@@ -1030,7 +1022,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles[layer][oldX, oldY].TileObject = null;
                 AllTiles[layer][oldX, oldY].HasObject = false;
                 GetDrop(AllTiles[layer][oldX, oldY]);
-                if (AllTiles[layer][oldX, oldY].HasAdditionalTiles)
+                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                 {
                     DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
                 }

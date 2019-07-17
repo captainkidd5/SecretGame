@@ -650,6 +650,14 @@
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="4454">
+  <animation>
+   <frame tileid="4454" duration="100"/>
+   <frame tileid="4054" duration="100"/>
+   <frame tileid="4055" duration="100"/>
+   <frame tileid="4056" duration="100"/>
+  </animation>
+ </tile>
  <tile id="4460">
   <objectgroup draworder="index">
    <object id="1" x="5" y="0" width="5" height="15"/>
