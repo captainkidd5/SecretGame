@@ -51,6 +51,9 @@ namespace SecretProject.Class.SpriteFolder
         public int OffSetX { get; set; }
         public int OffSetY { get; set; }
 
+        //for clouds
+        public float Speed { get; set; }
+
 
 
 

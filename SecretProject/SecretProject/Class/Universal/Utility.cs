@@ -48,6 +48,12 @@ namespace SecretProject.Class.Universal
             return RGenerator.Next(min, max - 1);
         }
 
+        public float RFloat(float min, float max)
+        {
+            return (float)RGenerator.NextDouble() * (max - min) + min;
+            
+        }
+
         #region TileUtility
         public int[] ParseSpawnsWithKey(string gidString)
         {

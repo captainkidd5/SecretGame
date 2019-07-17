@@ -556,7 +556,7 @@ namespace SecretProject
             {
                 case Stages.MainMenu:
                     //GraphicsDevice.Clear(Color.Black);
-                    GraphicsDevice.Clear(Color.Black);
+                    GraphicsDevice.Clear(Color.DeepSkyBlue);
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 

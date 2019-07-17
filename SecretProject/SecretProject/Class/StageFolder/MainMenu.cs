@@ -71,7 +71,8 @@ namespace SecretProject.Class.StageFolder
             for(int i = 0; i < 5; i++)
             {
                 clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
-                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 500)), cloud1.Width, cloud1.Height));
+                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
+                { Speed = (float)Game1.Utility.RFloat(5f, 50f) });
             }
         }
         public void UnloadContent()
@@ -85,8 +86,17 @@ namespace SecretProject.Class.StageFolder
             //--------------------------------------
             //Update Buttons
             Game1.isMyMouseVisible = true;
+            for (int i = 0; i < clouds.Count; i++)
+            {
+               if(clouds[i].Position.X > Game1.ScreenWidth)
+                {
+                    clouds[i].Position.X = -300;
+                    clouds[i].Position.Y = Game1.Utility.RGenerator.Next(0, 300);
+                }
+                clouds[i].Position.X+= (float)(clouds[i].Speed * gameTime.ElapsedGameTime.TotalSeconds);
 
-            foreach(Button button in allButtons)
+        }
+            foreach (Button button in allButtons)
             {
                 button.Update(mouse);
             }
