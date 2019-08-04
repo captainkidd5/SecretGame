@@ -285,13 +285,11 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.AddAmountX);
             writer.Write(tile.Speed);
             writer.Write(tile.Probability);
-            writer.Write(tile.HasSound);
             //skipping color 
             writer.Write(tile.ColorMultiplier);
             writer.Write(tile.IsTemporary);
             writer.Write(tile.IsPortal);
             writer.Write(tile.portalDestination);
-            writer.Write(tile.Diggable);
 
             if (tile.HasObject)
             {
@@ -387,12 +385,11 @@ namespace SecretProject.Class.Universal
             newTile.AddAmountX = addAmount;
             newTile.Speed = speed;
             newTile.Probability = probability;
-            newTile.HasSound = hasSound;
             newTile.ColorMultiplier = colorMultiplier;
             newTile.IsTemporary = isTemporary;
             newTile.IsPortal = isPortal;
             newTile.portalDestination = portalDestination;
-            newTile.Diggable = diggable;
+
 
             return newTile;
             

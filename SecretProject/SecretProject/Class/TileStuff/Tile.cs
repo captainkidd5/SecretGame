@@ -43,9 +43,7 @@ namespace SecretProject.Class.TileStuff
         public float DelayTimer { get; set; } = 0;
         public bool Kill { get; set; } = true;
 
-        /// <summary>
-        /// ////////////////
-        /// </summary>
+
         public bool Plantable { get; set; } = false;
         public Crop Crop { get; set; }
         public int AssociatedItem { get; set; } = 0;
@@ -62,12 +60,9 @@ namespace SecretProject.Class.TileStuff
 
         public int Probability { get; set; } = 1;
 
-        public bool HasSound { get; set; } = false;
-        public int SoundValue { get; set; } = 0;
 
-        [XmlIgnore]
         public Color TileColor { get; set; } = Color.White;
-        public Color TileDestructionColor { get; set; }
+
         public float ColorMultiplier { get; set; } = 1;
 
         public bool IsTemporary { get; set; } = false;
@@ -75,11 +70,8 @@ namespace SecretProject.Class.TileStuff
         public bool IsPortal { get; set; } = false;
         public string portalDestination { get; set; } = "none";
 
-        public bool Diggable { get; set; } = false;
         public bool Tree { get; set; } = false;
         public bool Destructable { get; set; }
-        public int RequiredTool { get; set; }
-        public int actionKey { get; set; }
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
@@ -111,7 +103,6 @@ namespace SecretProject.Class.TileStuff
         public bool HasObject { get; set; } = false;
         public ObjectBody TileObject { get; set; }
 
-        public List<Loot> Loot;
 
 
         private Tile()
