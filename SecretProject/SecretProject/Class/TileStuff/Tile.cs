@@ -29,8 +29,8 @@ namespace SecretProject.Class.TileStuff
         public int TileWidth { get; set; } = 16;
         public int Column { get; set; } = 0;
         public int Row { get; set; } = 0;
-        public float OldY { get => OldY1; set => OldY1 = value; }
-        public float OldY1 { get; set; } = 0;
+        public float OldY { get; set; }
+        //public float OldY1 { get; set; } = 0;
         public float OldX { get; set; } = 0;
 
         public bool IsAnimated { get; set; } = false;
@@ -48,13 +48,8 @@ namespace SecretProject.Class.TileStuff
         //AddAmount used for animation frames
         public int AddAmountX { get; set; } = 0;
         public int AddAmountY { get; set; } = 0;
-        public double Speed { get; set; } = 0;
 
-
-
-        public Color TileColor { get; set; } = Color.White;
-
-        public bool IsTemporary { get; set; } = false;
+        //public bool IsTemporary { get; set; } = false;
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
@@ -64,21 +59,12 @@ namespace SecretProject.Class.TileStuff
         public int AStarTileValue { get; set; }
 
 
-        //[XmlIgnore]
-        //public Dictionary<string, bool> Properties;
-
-
-        // public List<Tile> AssociatedTiles;
-
-        //  public bool WasJustReplaced { get; set; } = false;
-
         //--------------------------------------
         //Rectangles
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
         //objectgroup stuff
-        public bool HasObject { get; set; } = false;
         public ObjectBody TileObject { get; set; }
 
 

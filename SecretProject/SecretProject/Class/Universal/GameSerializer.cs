@@ -267,7 +267,6 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Column);
             writer.Write(tile.Row);
             writer.Write(tile.OldY);
-            writer.Write(tile.OldY1);
             writer.Write(tile.OldX);
             writer.Write(tile.IsAnimated);
             writer.Write(tile.IsAnimating);
@@ -278,13 +277,12 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.CurrentFrame);
             writer.Write(tile.TotalFramesX);
             writer.Write(tile.AddAmountX);
-            writer.Write(tile.Speed);
             //skipping color 
-            writer.Write(tile.IsTemporary);
 
-            if (tile.HasObject)
+
+            if (tile.TileObject != null)
             {
-                writer.Write(tile.HasObject);
+
 
                 writer.Write(tile.TileObject.Rectangle.X);
                 writer.Write(tile.TileObject.Rectangle.Y);
@@ -315,7 +313,6 @@ namespace SecretProject.Class.Universal
             int row = reader.ReadInt32();
             int tileNumber = reader.ReadInt32();
             float oldY = reader.ReadSingle();
-            float oldY1 = reader.ReadSingle();
             float oldX = reader.ReadSingle();
             bool isAnimated = reader.ReadBoolean();
             bool isAnimating = reader.ReadBoolean();
@@ -341,21 +338,21 @@ namespace SecretProject.Class.Universal
             bool diggable = reader.ReadBoolean();
             bool redRuneStone = reader.ReadBoolean();
             bool blueRuneStone = reader.ReadBoolean();
-            bool hasObject = reader.ReadBoolean();
+
 
             //this should probably not be static
             newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100);
 
-            if(hasObject)
-            {
-                int rectangleX = reader.ReadInt32();
-                int rectangleY = reader.ReadInt32();
-                int rectangleWidth = reader.ReadInt32();
-                int rectangleHeight = reader.ReadInt32();
-                Rectangle tileRectangle = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
-                ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
-                newTile.TileObject = body;
-            }
+            //if(hasObject)
+            //{
+            //    int rectangleX = reader.ReadInt32();
+            //    int rectangleY = reader.ReadInt32();
+            //    int rectangleWidth = reader.ReadInt32();
+            //    int rectangleHeight = reader.ReadInt32();
+            //    Rectangle tileRectangle = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
+            //    ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
+            //    newTile.TileObject = body;
+            //}
             
             newTile.IsSelected = isSelected;
             newTile.TileFrame = tileFrame;
@@ -370,10 +367,6 @@ namespace SecretProject.Class.Universal
             newTile.CurrentFrame = currentFrame;
             newTile.TotalFramesX = totalFrames;
             newTile.AddAmountX = addAmount;
-            newTile.Speed = speed;
-            newTile.IsTemporary = isTemporary;
-
-
 
             return newTile;
             
