@@ -83,6 +83,7 @@ namespace SecretProject
         public ContentManager HomeContentManager;
         public ContentManager SeaContentManager;
         public ContentManager OrchardContentManager;
+        public ContentManager MainMenuContentManager;
 
         //STAGES
         public static MainMenu mainMenu;
@@ -187,10 +188,12 @@ namespace SecretProject
             HomeContentManager = new ContentManager(Content.ServiceProvider);
             SeaContentManager = new ContentManager(Content.ServiceProvider);
             OrchardContentManager = new ContentManager(Content.ServiceProvider);
+            MainMenuContentManager = new ContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
             SeaContentManager.RootDirectory = "Content";
             HomeContentManager.RootDirectory = "Content";
             OrchardContentManager.RootDirectory = "Content";
+            MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
             graphics.PreferredBackBufferWidth = 1280;
@@ -374,7 +377,7 @@ namespace SecretProject
             
 
             //STAGES
-            mainMenu = new MainMenu(this, graphics.GraphicsDevice, Content, myMouseManager, Player.UserInterface);
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
             WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
             Wilderness = new Wilderness("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             

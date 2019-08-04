@@ -69,6 +69,20 @@ namespace SecretProject.Class.StageFolder
             cloud1 = content.Load<Texture2D>("MainMenu/cloud1");
             clouds = new List<Sprite>();
             for(int i = 0; i < 5; i++)
+            { 
+                clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
+                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
+                { Speed = (float)Game1.Utility.RFloat(5f, 50f) });
+            }
+        }
+
+        public void LoadContent()
+        {
+            BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
+
+            cloud1 = content.Load<Texture2D>("MainMenu/cloud1");
+            clouds = new List<Sprite>();
+            for (int i = 0; i < 5; i++)
             {
                 clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
                     new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
@@ -77,7 +91,8 @@ namespace SecretProject.Class.StageFolder
         }
         public void UnloadContent()
         {
-
+            content.Unload();
+            clouds = null;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
@@ -105,6 +120,7 @@ namespace SecretProject.Class.StageFolder
             //Check Conditions
             if (newGame.isClicked)
             {
+                UnloadContent();
                 Game1.SwitchStage(0, 5);
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
