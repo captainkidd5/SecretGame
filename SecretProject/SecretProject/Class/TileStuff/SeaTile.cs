@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.ObjectFolder;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using TiledSharp;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -22,14 +24,11 @@ namespace SecretProject.Class.TileStuff
 
         public int TilesetTilesWide { get; set; } = 0;
         public int TilesetTilesHigh { get; set; } = 0;
-        public int MapWidth { get; set; } = 0;
-        public int MapHeight { get; set; } = 0;
         public int TileFrame { get; set; } = 0;
         public int TileHeight { get; set; } = 16;
         public int TileWidth { get; set; } = 16;
         public int Column { get; set; } = 0;
         public int Row { get; set; } = 0;
-        public int TileNumber { get; set; } = 0;
         public float OldY { get => OldY1; set => OldY1 = value; }
         public float OldY1 { get; set; } = 0;
         public float OldX { get; set; } = 0;
@@ -41,12 +40,6 @@ namespace SecretProject.Class.TileStuff
         public float DelayTimer { get; set; } = 0;
         public bool Kill { get; set; } = true;
 
-        /// <summary>
-        /// ////////////////
-        /// </summary>
-        public bool Plantable { get; set; } = false;
-        public int AssociatedItem { get; set; } = 0;
-
 
         public double Timer { get; set; } = 0;
         public int CurrentFrame { get; set; } = 0;
@@ -57,38 +50,37 @@ namespace SecretProject.Class.TileStuff
         public int AddAmountY { get; set; } = 0;
         public double Speed { get; set; } = 0;
 
-        public int Probability { get; set; } = 1;
 
-        public bool HasSound { get; set; } = false;
-        public int SoundValue { get; set; } = 0;
 
-        [XmlIgnore]
         public Color TileColor { get; set; } = Color.White;
-        public float ColorMultiplier { get; set; } = 1;
 
         public bool IsTemporary { get; set; } = false;
-
-        public bool IsPortal { get; set; } = false;
-        public string portalDestination { get; set; } = "none";
-
-      
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
-        public int[] SpawnsWith { get; set; }
 
-        public int NumberOfItemsToSpawn { get; set; } = 1;
         public int HitPoints { get; set; } = 1;
+        public int AStarTileValue { get; set; }
 
 
+        //[XmlIgnore]
+        //public Dictionary<string, bool> Properties;
 
+
+        // public List<Tile> AssociatedTiles;
+
+        //  public bool WasJustReplaced { get; set; } = false;
+
+        //--------------------------------------
+        //Rectangles
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
         //objectgroup stuff
         public bool HasObject { get; set; } = false;
         public ObjectBody TileObject { get; set; }
+
 
 
         private SeaTile()
@@ -105,8 +97,7 @@ namespace SecretProject.Class.TileStuff
             this.GID = gID;
             this.TilesetTilesWide = tilesetTilesWide;
             this.TilesetTilesHigh = tilesetTilesHigh;
-            this.MapWidth = mapWidth;
-            this.MapHeight = mapHeight;
+
 
             TileFrame = GID;
 
@@ -119,9 +110,8 @@ namespace SecretProject.Class.TileStuff
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
 
-            TileColor = this.TileColor * this.ColorMultiplier;
             //TileColor = Color.DimGray * 1.5f;
-
+            AStarTileValue = 1;
 
         }
 

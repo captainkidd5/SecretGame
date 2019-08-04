@@ -24,14 +24,11 @@ namespace SecretProject.Class.TileStuff
 
         public int TilesetTilesWide { get; set; } = 0;
         public int TilesetTilesHigh { get; set; } = 0;
-        public int MapWidth { get; set; } = 0;
-        public int MapHeight { get; set; } = 0;
         public int TileFrame { get; set; } = 0;
         public int TileHeight { get; set; } = 16;
         public int TileWidth { get; set; } = 16;
         public int Column { get; set; } = 0;
         public int Row { get; set; } = 0;
-        public int TileNumber { get; set; } = 0;
         public float OldY { get => OldY1; set => OldY1 = value; }
         public float OldY1 { get; set; } = 0;
         public float OldX { get; set; } = 0;
@@ -44,11 +41,6 @@ namespace SecretProject.Class.TileStuff
         public bool Kill { get; set; } = true;
 
 
-        public bool Plantable { get; set; } = false;
-        public Crop Crop { get; set; }
-        public int AssociatedItem { get; set; } = 0;
-
-
         public double Timer { get; set; } = 0;
         public int CurrentFrame { get; set; } = 0;
         public int TotalFramesX { get; set; } = 0;
@@ -58,31 +50,17 @@ namespace SecretProject.Class.TileStuff
         public int AddAmountY { get; set; } = 0;
         public double Speed { get; set; } = 0;
 
-        public int Probability { get; set; } = 1;
 
 
         public Color TileColor { get; set; } = Color.White;
 
-        public float ColorMultiplier { get; set; } = 1;
-
         public bool IsTemporary { get; set; } = false;
-
-        public bool IsPortal { get; set; } = false;
-        public string portalDestination { get; set; } = "none";
-
-        public bool Tree { get; set; } = false;
-        public bool Destructable { get; set; }
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
-        public int[] SpawnsWith { get; set; }
 
-        public int NumberOfItemsToSpawn { get; set; } = 1;
         public int HitPoints { get; set; } = 1;
-        public bool IsLightSource { get; set; } = false;
-        public int LightType { get; set; } = 0;
-        public bool HasAction { get; set; } = false;
         public int AStarTileValue { get; set; }
 
 
@@ -119,8 +97,7 @@ namespace SecretProject.Class.TileStuff
             this.GID = gID;
             this.TilesetTilesWide = tilesetTilesWide;
             this.TilesetTilesHigh = tilesetTilesHigh;
-            this.MapWidth = mapWidth;
-            this.MapHeight = mapHeight;
+
 
             TileFrame = GID;
 
@@ -133,7 +110,6 @@ namespace SecretProject.Class.TileStuff
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
             DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
 
-            TileColor = this.TileColor * this.ColorMultiplier;
             //TileColor = Color.DimGray * 1.5f;
             AStarTileValue = 1;
 

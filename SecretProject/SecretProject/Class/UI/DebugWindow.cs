@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(272, 128, 256, 224),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate  + " \n \n MouseOverTile: "  +
-                    " \n \n PlayerPositionX: " + Game1.Player.position.X + "\n \n Elixir Position Y " + Game1.RoyalDock.ElixerNPC.Position.Y / 16 + " \n \n Dobbin Position " + Game1.RoyalDock.Dobbin.Position + " \n \n MouseWorldPositionY: "
+                    " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n MouseWorldPositionY: "
                     + Game1.myMouseManager.WorldMousePosition.Y + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n MouseSquarePositionY: " +
                     Game1.myMouseManager.MouseSquareCoordinateY, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             }

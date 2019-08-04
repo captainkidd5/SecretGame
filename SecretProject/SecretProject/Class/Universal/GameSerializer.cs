@@ -261,14 +261,11 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.IsSelected);
             writer.Write(tile.TilesetTilesWide);
             writer.Write(tile.TilesetTilesHigh);
-            writer.Write(tile.MapWidth);
-            writer.Write(tile.MapHeight);
             writer.Write(tile.TileFrame);
             writer.Write(tile.TileHeight);
             writer.Write(tile.TileWidth);
             writer.Write(tile.Column);
             writer.Write(tile.Row);
-            writer.Write(tile.TileNumber);
             writer.Write(tile.OldY);
             writer.Write(tile.OldY1);
             writer.Write(tile.OldX);
@@ -277,19 +274,13 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.IsFinishedAnimating);
             writer.Write(tile.KillAnimation);
             writer.Write(tile.DelayTimer);
-            writer.Write(tile.Plantable);
-            writer.Write(tile.AssociatedItem);
             writer.Write(tile.Timer);
             writer.Write(tile.CurrentFrame);
             writer.Write(tile.TotalFramesX);
             writer.Write(tile.AddAmountX);
             writer.Write(tile.Speed);
-            writer.Write(tile.Probability);
             //skipping color 
-            writer.Write(tile.ColorMultiplier);
             writer.Write(tile.IsTemporary);
-            writer.Write(tile.IsPortal);
-            writer.Write(tile.portalDestination);
 
             if (tile.HasObject)
             {
@@ -317,8 +308,6 @@ namespace SecretProject.Class.Universal
             bool isSelected = reader.ReadBoolean();
             int tileSetTilesWide = reader.ReadInt32();
             int tileSetTilesHigh = reader.ReadInt32();
-            int mapWidth = reader.ReadInt32();
-            int mapHeight = reader.ReadInt32();
             int tileFrame = reader.ReadInt32();
             int tileHeight = reader.ReadInt32();
             int tileWidth = reader.ReadInt32();
@@ -354,7 +343,8 @@ namespace SecretProject.Class.Universal
             bool blueRuneStone = reader.ReadBoolean();
             bool hasObject = reader.ReadBoolean();
 
-            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, mapWidth, mapHeight);
+            //this should probably not be static
+            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100);
 
             if(hasObject)
             {
@@ -371,24 +361,18 @@ namespace SecretProject.Class.Universal
             newTile.TileFrame = tileFrame;
             newTile.TileHeight = tileHeight;
             newTile.TileWidth = tileWidth;
-            newTile.TileNumber = tileNumber;
             newTile.IsAnimated = isAnimated;
             newTile.IsAnimating = isAnimating;
             newTile.IsFinishedAnimating = isFinishedAnimating;
             newTile.KillAnimation = killAnimation;
             newTile.DelayTimer = delayTimer;
-            newTile.Plantable = plantable;
-            newTile.AssociatedItem = associatedItem;
             newTile.Timer = timer;
             newTile.CurrentFrame = currentFrame;
             newTile.TotalFramesX = totalFrames;
             newTile.AddAmountX = addAmount;
             newTile.Speed = speed;
-            newTile.Probability = probability;
-            newTile.ColorMultiplier = colorMultiplier;
             newTile.IsTemporary = isTemporary;
-            newTile.IsPortal = isPortal;
-            newTile.portalDestination = portalDestination;
+
 
 
             return newTile;
