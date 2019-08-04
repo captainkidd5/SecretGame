@@ -105,6 +105,7 @@ namespace SecretProject.Class.Playable
 
         [XmlIgnore]
         public Texture2D BigHitBoxRectangleTexture;
+        public Texture2D LittleHitBoxRectangleTexture;
 
         public Rectangle ChunkDetector {
             get
@@ -180,7 +181,8 @@ namespace SecretProject.Class.Playable
 
             CurrentAction = CutGrassDown;
 
-            SetRectangleTexture(graphics, ClickRangeRectangle);
+            BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
+            LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, Rectangle);
 
             PlayerShip = new PlayerShip(graphics, Game1.AllTextures.ShipSpriteSheet);
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
@@ -287,31 +289,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        private void SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
-        {
-            var Colors = new List<Color>();
-            for (int y = 0; y < rectangleToDraw.Height; y++)
-            {
-                for (int x = 0; x < rectangleToDraw.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == rectangleToDraw.Width - 1 || //right side
-                        y == rectangleToDraw.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
-
-                    }
-
-                }
-            }
-            BigHitBoxRectangleTexture = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
-            BigHitBoxRectangleTexture.SetData<Color>(Colors.ToArray());
-        }
+        
 
 
         public void Update(GameTime gameTime, List<Item> items, List<ObjectBody> objects, MouseManager mouse)
@@ -503,6 +481,39 @@ namespace SecretProject.Class.Playable
                     CurrentAction.DrawAnimation(spriteBatch, this.Position, layerDepth);
                 }
             }
+        }
+
+        private Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < rectangleToDraw.Height; y++)
+            {
+                for (int x = 0; x < rectangleToDraw.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == rectangleToDraw.Width - 1 || //right side
+                        y == rectangleToDraw.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            Texture2D textureToReturn;
+            textureToReturn = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
+            textureToReturn.SetData<Color>(Colors.ToArray());
+            return textureToReturn;
+        }
+        public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
+        {
+            spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(ClickRangeRectangle.X, ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
         public void DrawShipMode(SpriteBatch spriteBatch, float layerDepth)

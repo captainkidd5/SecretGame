@@ -314,7 +314,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-
+                    player.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
@@ -349,6 +349,7 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
+
                
                 ElixerNPC.Draw(spriteBatch);
 

@@ -303,7 +303,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-
+                    player.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
