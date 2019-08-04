@@ -315,7 +315,7 @@ namespace SecretProject.Class.StageFolder
                 if (ShowBorders)
                 {
                     player.DrawDebug(spriteBatch, .4f);
-                    ElixerNPC.DrawDebug(spriteBatch, .4f);
+                    //ElixerNPC.DrawDebug(spriteBatch, .4f);
                     Dobbin.DrawDebug(spriteBatch, .4f);
                 }
 

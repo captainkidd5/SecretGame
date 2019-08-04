@@ -303,7 +303,11 @@ namespace SecretProject.Class.NPCStuff
         {
             spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), color: Color.White, layerDepth: layerDepth);
 
-            Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), DebugNextPoint);
+            for(int i=0; i < currentPath.Count - 1; i++)
+            {
+                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16));
+            }
+            
             //spriteBatch.Draw(NextPointTexture, DebugNextPoint, color: Color.Blue, layerDepth: layerDepth);
         }
 
