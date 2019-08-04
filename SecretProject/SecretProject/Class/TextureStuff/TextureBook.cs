@@ -68,6 +68,7 @@ namespace SecretProject.Class.TextureStuff
         public Effect nightTint;
         public Texture2D lightMask;
 
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
@@ -103,6 +104,7 @@ namespace SecretProject.Class.TextureStuff
             lightMask = content.Load<Texture2D>("Effects/lightmask");
             practiceLightMaskEffect = content.Load<Effect>("Effects/practiceLighting1");
             nightTint = content.Load<Effect>("Effects/nightTint");
+
 
         }
 

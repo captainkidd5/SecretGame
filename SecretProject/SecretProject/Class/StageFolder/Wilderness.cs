@@ -304,6 +304,10 @@ namespace SecretProject.Class.StageFolder
                 if (ShowBorders)
                 {
                     player.DrawDebug(spriteBatch, .4f);
+                    for(int i =0; i < this.Boars.Count; i++)
+                    {
+                        Boars[i].DrawDebug(spriteBatch, .4f);
+                    }
                 }
 
                 AllTiles.DrawTiles(spriteBatch);

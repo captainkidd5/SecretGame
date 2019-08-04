@@ -275,7 +275,7 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.DelayTimer);
             writer.Write(tile.Timer);
             writer.Write(tile.CurrentFrame);
-            writer.Write(tile.TotalFramesX);
+
             writer.Write(tile.AddAmountX);
             //skipping color 
 
@@ -365,7 +365,6 @@ namespace SecretProject.Class.Universal
             newTile.DelayTimer = delayTimer;
             newTile.Timer = timer;
             newTile.CurrentFrame = currentFrame;
-            newTile.TotalFramesX = totalFrames;
             newTile.AddAmountX = addAmount;
 
             return newTile;

@@ -20,11 +20,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public int NPCRectangleXOffSet { get; set; }
         public int NPCRectangleYOffSet { get; set; }
-        public int NPCRectangleWidthOffSet { get; set; }
-        public int NPCRectangleHeightOffSet { get; set; }
+        public int NPCRectangleWidthOffSet { get; set; } = 1;
+        public int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
         public Texture2D Texture { get; set; }
+        public Texture2D DebugTexture { get; set; }
+
         public float Speed { get; set; }
         //0 = down, 1 = left, 2 =  right, 3 = up
         public int CurrentDirection { get; set; }
@@ -44,6 +46,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.Position = position;
             this.Texture = spriteSheet;
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
+
+            this.DebugTexture = SetRectangleTexture(graphics, this.NPCRectangle);
         }
 
         public virtual void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
@@ -116,7 +120,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public void Wander(GameTime gameTime)
         {
             //temporary
-            MoveTowardsPosition(wanderPosition, new Rectangle(0, 0, 1, 1));
+            MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(WanderTimer<=0)
             {
@@ -168,6 +172,38 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f);
                     break;
             }
+        }
+        public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < rectangleToDraw.Height; y++)
+            {
+                for (int x = 0; x < rectangleToDraw.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == rectangleToDraw.Width - 1 || //right side
+                        y == rectangleToDraw.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 0, 0, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            Texture2D textureToReturn;
+            textureToReturn = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
+            textureToReturn.SetData<Color>(Colors.ToArray());
+            return textureToReturn;
+        }
+        public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
+        {
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2((int)wanderPosition.X, (int)wanderPosition.Y), color: Color.Blue, layerDepth: layerDepth);
         }
 
     }

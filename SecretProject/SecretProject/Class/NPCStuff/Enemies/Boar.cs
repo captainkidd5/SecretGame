@@ -22,11 +22,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 432, 0, 48, 32, 3, .15f, this.Position);
 
-            this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = 0;
+            this.NPCRectangleXOffSet = 15;
+            this.NPCRectangleYOffSet = 10;
             this.NPCRectangleHeightOffSet = 20;
             this.NPCRectangleWidthOffSet = 20;
             this.Speed = 1f;
+            this.DebugTexture = SetRectangleTexture(graphics, this.NPCRectangle);
         }
 
         public override void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)

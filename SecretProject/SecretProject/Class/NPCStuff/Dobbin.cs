@@ -26,6 +26,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleHeightOffSet = 20;
             this.NPCRectangleWidthOffSet = 20;
             this.SpeakerID = 2;
+            DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
         }
     }
 }

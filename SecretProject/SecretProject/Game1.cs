@@ -136,6 +136,8 @@ namespace SecretProject
         public Texture2D MainCharacterTexture { get; set; }
         public static Texture2D ItemAtlas;
         public static TextureBook AllTextures;
+
+        public static Texture2D LineTexture;
         
         
 
@@ -431,7 +433,8 @@ namespace SecretProject
 
 
 
-
+            LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            LineTexture.SetData<Color>(new Color[] { Color.White });
         }
         #endregion
 

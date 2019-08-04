@@ -28,6 +28,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleYOffSet = 20;
             this.NPCRectangleHeightOffSet = 20;
             this.NPCRectangleWidthOffSet = 10;
+            DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
         }
 
         

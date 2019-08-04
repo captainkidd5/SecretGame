@@ -22,11 +22,11 @@ namespace SecretProject.Class.NPCStuff
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
         public Texture2D Texture { get; set; }
-
+        public Texture2D DebugTexture { get; set; }
         public int NPCRectangleXOffSet { get; set; }
         public int NPCRectangleYOffSet { get; set; }
-        public int NPCRectangleWidthOffSet { get; set; }
-        public int NPCRectangleHeightOffSet { get; set; }
+        public int NPCRectangleWidthOffSet { get; set; } = 1;
+        public int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
         public float Speed { get; set; } = .65f;
@@ -52,6 +52,10 @@ namespace SecretProject.Class.NPCStuff
 
         public RouteSchedule RouteSchedule { get; set; }
 
+        public Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
+        public Texture2D NextPointTexture { get; set; }
+
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule)
         {
             this.Name = name;
@@ -65,6 +69,9 @@ namespace SecretProject.Class.NPCStuff
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
+            DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
+
+            //DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
         }
 
         public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
@@ -222,6 +229,7 @@ namespace SecretProject.Class.NPCStuff
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
                         MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(0, 0, 0, 0));
+                        DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
                     {
@@ -263,6 +271,40 @@ namespace SecretProject.Class.NPCStuff
 
             }
             
+        }
+        public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < rectangleToDraw.Height; y++)
+            {
+                for (int x = 0; x < rectangleToDraw.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == rectangleToDraw.Width - 1 || //right side
+                        y == rectangleToDraw.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 0, 0, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            Texture2D textureToReturn;
+            textureToReturn = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
+            textureToReturn.SetData<Color>(Colors.ToArray());
+            return textureToReturn;
+        }
+        public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
+        {
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), color: Color.White, layerDepth: layerDepth);
+
+            Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), DebugNextPoint);
+            //spriteBatch.Draw(NextPointTexture, DebugNextPoint, color: Color.Blue, layerDepth: layerDepth);
         }
 
     }

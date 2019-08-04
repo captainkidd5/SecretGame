@@ -21,6 +21,7 @@ namespace SecretProject.Class.NPCStuff
          int NPCRectangleHeightOffSet { get; set; }
         Rectangle NPCRectangle { get; }
         Texture2D Texture { get; set; }
+        Texture2D DebugTexture { get; set; }
         float Speed { get; set; }
          bool IsMoving { get; set; }
          Vector2 PrimaryVelocity { get; set; }

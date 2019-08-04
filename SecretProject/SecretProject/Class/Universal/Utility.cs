@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using System;
 using System.Collections.Generic;
@@ -146,6 +147,30 @@ namespace SecretProject.Class.Universal
             numsToReturn[3] = int.Parse(info.Split(',')[3]);
 
             return numsToReturn;
+        }
+        #endregion
+
+        #region LINEUTILITY
+        public void DrawLine(Texture2D texture, SpriteBatch spriteBatch, Vector2 start, Vector2 end)
+        {
+            Vector2 edge = end - start;
+            // calculate angle to rotate line
+            float angle =
+                (float)Math.Atan2(edge.Y, edge.X);
+
+
+            spriteBatch.Draw(texture,
+                new Rectangle(// rectangle defines shape of line and position of start of line
+                    (int)start.X,
+                    (int)start.Y,
+                    (int)edge.Length(), //sb will strech the texture to fill this rectangle
+                    1), //width of line, change this to make thicker line
+                null,
+                Color.Red, //colour of line
+                angle,     //angle of line (calulated above)
+                new Vector2(0, 0), // point in line about which to rotate
+                SpriteEffects.None, 1f);
+
         }
         #endregion
     }

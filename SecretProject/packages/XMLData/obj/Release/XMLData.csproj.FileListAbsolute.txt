@@ -7,3 +7,12 @@ C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Relea
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csproj.CopyComplete
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.dll
 C:\Users\SecretDingo\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.pdb
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\bin\Release\XMLData.dll
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\bin\Release\XMLData.pdb
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\bin\Release\MonoGame.Framework.dll
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\bin\Release\MonoGame.Framework.dll.config
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csprojAssemblyReference.cache
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csproj.CoreCompileInputs.cache
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.csproj.CopyComplete
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.dll
+C:\Users\armad\Desktop\SecretGame\SecretProject\packages\XMLData\obj\Release\XMLData.pdb

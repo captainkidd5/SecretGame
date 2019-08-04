@@ -121,7 +121,7 @@ namespace SecretProject.Class.StageFolder
             if (newGame.isClicked)
             {
                 UnloadContent();
-                Game1.SwitchStage(0, 2);
+                Game1.SwitchStage(0, 5);
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if(Load.isClicked)
