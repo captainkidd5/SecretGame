@@ -39,6 +39,15 @@
         <EndX>35</EndX>
         <EndY>15</EndY>
       </Item>
+      <Item Type="XMLData.RouteStuff.Route">
+        <ID>5</ID>
+        <TimeToStart>4</TimeToStart>
+        <TimeToFinish>9</TimeToFinish>
+        <StartX>34</StartX>
+        <StartY>15</StartY>
+        <EndX>50</EndX>
+        <EndY>50</EndY>
+      </Item>
     </Routes>
   </Asset>
 </XnaContent>

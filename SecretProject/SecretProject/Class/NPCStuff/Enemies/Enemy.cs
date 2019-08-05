@@ -9,9 +9,11 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
+    //TODO: Write method which allows pathfinding with wandering.
     public class Enemy : INPC
     {
         public string Name { get; set; }
@@ -38,7 +40,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public int FrameNumber { get; set; }
         public Collider Collider { get; set; }
         public bool CollideOccured { get; set; }
-        
+
+        public Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
 
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
         {
@@ -92,6 +95,57 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
             
 
+
+        }
+        float timeBetweenJumps = .4f;
+        int pointCounter = 0;
+        bool pathFound = false;
+
+        List<Point> currentPath = new List<Point>()
+        {
+            new Point(1,1)
+        };
+
+        public void MoveToTile(GameTime gameTime, Route route)
+        {
+            if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
+                Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
+            {
+                if ((!(this.Position.X == currentPath[currentPath.Count - 1].X * 16) && !(this.Position.Y == currentPath[currentPath.Count - 1].Y * 16)) ||
+                    pointCounter < currentPath.Count)
+                {
+
+
+                    if (pathFound == false)
+                    {
+                        this.IsMoving = true;
+
+                        currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16,
+                            (int)this.Position.Y / 16), new Point(route.EndX, route.EndY));
+
+                        pathFound = true;
+                    }
+                    timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (timeBetweenJumps <= 0)
+                    {
+                        pointCounter++;
+                        timeBetweenJumps = .4f;
+                    }
+                    if (pointCounter < currentPath.Count)
+                    {
+                        //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
+                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
+                        DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
+                    }
+                    else
+                    {
+                        pathFound = false;
+                        pointCounter = 0;
+                        this.IsMoving = false;
+                        this.CurrentDirection = 0;
+                    }
+                }
+            }
 
         }
 

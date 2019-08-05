@@ -203,7 +203,8 @@ namespace SecretProject.Class.NPCStuff
 
         public void MoveToTile(GameTime gameTime, Route route)
         {
-            if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish)
+            if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish || 
+                Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             {
                 if ((!(this.Position.X == currentPath[currentPath.Count - 1].X * 16) && !(this.Position.Y == currentPath[currentPath.Count - 1].Y * 16)) ||
                     pointCounter < currentPath.Count)
@@ -228,7 +229,7 @@ namespace SecretProject.Class.NPCStuff
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(0, 0, 0, 0));
+                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
