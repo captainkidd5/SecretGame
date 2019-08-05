@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleWidthOffSet = 20;
             this.SpeakerID = 2;
             DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
+            Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
         }
     }
 }

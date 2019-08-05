@@ -220,8 +220,9 @@ namespace SecretProject.Class.NPCStuff
 
                         pathFound = true;
                     }
+                    //not relevant atm. 
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (timeBetweenJumps <= 0)
+                    if (this.NPCRectangle.Intersects(new Rectangle(currentPath[pointCounter].X * 16 -16, currentPath[pointCounter].Y * 16 -16, 32, 32)))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;

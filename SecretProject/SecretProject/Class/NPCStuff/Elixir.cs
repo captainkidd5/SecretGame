@@ -29,6 +29,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleHeightOffSet = 20;
             this.NPCRectangleWidthOffSet = 10;
             DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
+            Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
         }
 
         
