@@ -263,6 +263,7 @@ namespace SecretProject.Class.NPCStuff
         {
             switch (CurrentDirection)
             {
+                //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case 0:
                     NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f);
                     break;

@@ -33,13 +33,11 @@ using SecretProject.Class.NPCStuff.Enemies;
 namespace SecretProject.Class.StageFolder
 {
 
-    public class RoyalDock : StageBase
+    public class Town : StageBase
     {
 
         #region FIELDS
 
-        public Elixir ElixerNPC;
-        public Dobbin Dobbin;
 
 
         #endregion
@@ -48,7 +46,7 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
-        public RoyalDock(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
+        public Town(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.Graphics = graphics;
             this.Content = content;
@@ -133,8 +131,7 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
             
-            ElixerNPC = new Elixir("Elixer", new Vector2(840, 450), Graphics, Game1.AllTextures.ElixirSpriteSheet, routeSchedules[0]);
-            Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet, routeSchedules[0]);
+            
 
 
             AllActions = new List<ActionTimer>();
@@ -222,7 +219,7 @@ namespace SecretProject.Class.StageFolder
                 return;
             }
 
-            TextBuilder.PositionToWriteTo = ElixerNPC.Position;
+            TextBuilder.PositionToWriteTo = Game1.ElixerNPC.Position;
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
@@ -253,11 +250,11 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
-                Dobbin.Update(gameTime, AllObjects, mouse);
+                Game1.Dobbin.Update(gameTime, AllObjects, mouse);
                 
                 
                 
-               // ElixerNPC.Update(gameTime, AllObjects, mouse);
+                Game1.ElixerNPC.Update(gameTime, AllObjects, mouse);
 
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
@@ -306,8 +303,8 @@ namespace SecretProject.Class.StageFolder
                 //Console.WriteLine("Player Position" + player.position);
 
 
-                ElixerNPC.Draw(spriteBatch);
-                Dobbin.Draw(spriteBatch);
+                Game1.ElixerNPC.Draw(spriteBatch);
+                Game1.Dobbin.Draw(spriteBatch);
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
@@ -316,8 +313,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
-                    Dobbin.DrawDebug(spriteBatch, .4f);
-                    ElixerNPC.DrawDebug(spriteBatch, .4f);
+                    Game1.Dobbin.DrawDebug(spriteBatch, .4f);
+                    Game1.ElixerNPC.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
@@ -354,7 +351,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                
-                ElixerNPC.Draw(spriteBatch);
+                Game1.ElixerNPC.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 

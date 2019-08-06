@@ -162,7 +162,7 @@ namespace SecretProject.Class.StageFolder
 
             AllDepths = new List<float>()
             {
-                .1f,
+                0f,
                 .2f,
                 .3f,
                 .5f,

@@ -28,6 +28,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ShopStuff;
 using XMLData.RouteStuff;
 using XMLData.ItemStuff;
+using SecretProject.Class.NPCStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -89,7 +90,7 @@ namespace SecretProject
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
         public static NormalStage LodgeInterior;
-        public static RoyalDock RoyalDock;
+        public static Town RoyalDock;
         public static Sea Sea;
         public static NormalStage GreatLibrary;
         public static NormalStage WestBeach;
@@ -177,8 +178,11 @@ namespace SecretProject
         public static PresentationParameters PresentationParameters;
 
         //event handlers
-        
-        
+
+        //NPCS
+        public static Elixir ElixerNPC;
+        public static Dobbin Dobbin;
+
 
         #endregion
 
@@ -383,7 +387,7 @@ namespace SecretProject
             WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
             Wilderness = new Wilderness("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
-            RoyalDock = new RoyalDock("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
+            RoyalDock = new Town("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 
             GreatLibrary = new NormalStage("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
@@ -435,6 +439,9 @@ namespace SecretProject
 
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
+
+            ElixerNPC = new Elixir("Elixer", new Vector2(840, 450), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[0]);
+            Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
         }
         #endregion
 

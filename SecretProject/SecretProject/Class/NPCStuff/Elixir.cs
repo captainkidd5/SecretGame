@@ -25,9 +25,9 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 240, 0, 16, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 336, 0, 16, 48, 6, .15f, this.Position);
             this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = 20;
-            this.NPCRectangleHeightOffSet = 20;
-            this.NPCRectangleWidthOffSet = 10;
+            this.NPCRectangleYOffSet = 10;
+            this.NPCRectangleHeightOffSet = 2;
+            this.NPCRectangleWidthOffSet = 2;
             DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
         }
