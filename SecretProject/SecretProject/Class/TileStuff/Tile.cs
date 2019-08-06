@@ -67,6 +67,10 @@ namespace SecretProject.Class.TileStuff
         //objectgroup stuff
         public ObjectBody TileObject { get; set; }
 
+        public bool HorizontalFlip { get; set; }
+        public bool VeritcalFlip { get; set; }
+        public bool DiagonalFlip { get; set; }
+
 
 
         private Tile()
@@ -94,7 +98,10 @@ namespace SecretProject.Class.TileStuff
             this.Y = (y % mapHeight) * TileHeight;
 
             SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
-            DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
+
+                DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
+
+            
 
             //TileColor = Color.DimGray * 1.5f;
             AStarTileValue = 1;
