@@ -265,16 +265,17 @@ namespace SecretProject.Class.NPCStuff
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case 0:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f);
+                    float num = .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                     break;
                 case 1:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                     break;
                 case 2:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                     break;
                 case 3:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                     break;
             }
         }

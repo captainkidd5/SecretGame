@@ -180,7 +180,7 @@ namespace SecretProject
         //event handlers
 
         //NPCS
-        public static Elixir ElixerNPC;
+        public static Elixir Elixer;
         public static Dobbin Dobbin;
 
 
@@ -440,7 +440,7 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            ElixerNPC = new Elixir("Elixer", new Vector2(840, 450), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[0]);
+            Elixer = new Elixir("Elixer", new Vector2(840, 450), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[0]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
         }
         #endregion

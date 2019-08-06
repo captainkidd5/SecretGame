@@ -219,7 +219,7 @@ namespace SecretProject.Class.StageFolder
                 return;
             }
 
-            TextBuilder.PositionToWriteTo = Game1.ElixerNPC.Position;
+            TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
@@ -254,7 +254,7 @@ namespace SecretProject.Class.StageFolder
                 
                 
                 
-                Game1.ElixerNPC.Update(gameTime, AllObjects, mouse);
+                Game1.Elixer.Update(gameTime, AllObjects, mouse);
 
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
@@ -299,11 +299,11 @@ namespace SecretProject.Class.StageFolder
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch, .4f);
+                player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height)));
                 //Console.WriteLine("Player Position" + player.position);
 
 
-                Game1.ElixerNPC.Draw(spriteBatch);
+                Game1.Elixer.Draw(spriteBatch);
                 Game1.Dobbin.Draw(spriteBatch);
 
 
@@ -314,7 +314,7 @@ namespace SecretProject.Class.StageFolder
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
                     Game1.Dobbin.DrawDebug(spriteBatch, .4f);
-                    Game1.ElixerNPC.DrawDebug(spriteBatch, .4f);
+                    Game1.Elixer.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
@@ -351,7 +351,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                
-                Game1.ElixerNPC.Draw(spriteBatch);
+                Game1.Elixer.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 

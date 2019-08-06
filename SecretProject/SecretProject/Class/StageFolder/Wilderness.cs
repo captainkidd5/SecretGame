@@ -288,8 +288,8 @@ namespace SecretProject.Class.StageFolder
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch, .4f);
-               // Console.WriteLine("Player Position" + player.position);
+                player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height)));
+                // Console.WriteLine("Player Position" + player.position);
 
 
                 Boar.Draw(spriteBatch);
