@@ -22,10 +22,10 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 167, 0, 28, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 335, 0, 28, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 503, 0, 28, 48, 6, .15f, this.Position);
-            this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = 0;
-            this.NPCRectangleHeightOffSet = 20;
-            this.NPCRectangleWidthOffSet = 20;
+            this.NPCRectangleXOffSet = 3;
+            this.NPCRectangleYOffSet = 20;
+            this.NPCRectangleHeightOffSet = 5;
+            this.NPCRectangleWidthOffSet = 5;
             this.SpeakerID = 2;
             DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
             Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);

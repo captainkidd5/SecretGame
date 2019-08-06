@@ -87,7 +87,7 @@ namespace SecretProject.Class.UI
             if(Layer2ExpandedOld && mouse.MouseRectangle.Intersects(Layer2TriggerBox))
             {
                 Layer2ExpandedNew = true;
-                Console.WriteLine(Layer2ExpandedNew);
+              //  Console.WriteLine(Layer2ExpandedNew);
             }
             Layer2ExpandedOld = Layer2ExpandedNew;
 

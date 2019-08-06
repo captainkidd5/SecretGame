@@ -133,7 +133,7 @@ namespace SecretProject.Class.StageFolder
             TilesetTilesHigh = TileSet.Height / TileHeight;
 
             
-            ElixerNPC = new Elixir("Elixer", new Vector2(859, 500), Graphics, Game1.AllTextures.ElixirSpriteSheet, routeSchedules[0]);
+            ElixerNPC = new Elixir("Elixer", new Vector2(840, 450), Graphics, Game1.AllTextures.ElixirSpriteSheet, routeSchedules[0]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), Graphics, Game1.AllTextures.DobbinSpriteSheet, routeSchedules[0]);
 
 
@@ -257,7 +257,7 @@ namespace SecretProject.Class.StageFolder
                 
                 
                 
-                ElixerNPC.Update(gameTime, AllObjects, mouse);
+               // ElixerNPC.Update(gameTime, AllObjects, mouse);
 
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
@@ -303,7 +303,7 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .4f);
-                Console.WriteLine("Player Position" + player.position);
+                //Console.WriteLine("Player Position" + player.position);
 
 
                 ElixerNPC.Draw(spriteBatch);

@@ -336,7 +336,7 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .4f + (.001f * player.Rectangle.Height));
-                Console.WriteLine("Player Position" + player.position);
+               // Console.WriteLine("Player Position" + player.position);
 
                 TextBuilder.Draw(spriteBatch, .71f);
 

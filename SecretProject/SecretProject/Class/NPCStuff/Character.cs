@@ -54,6 +54,8 @@ namespace SecretProject.Class.NPCStuff
 
         public Vector2 DebugNextPoint { get; set; } = new Vector2(1, 1);
         public Texture2D NextPointTexture { get; set; }
+        public Rectangle NextPointRectangle { get; set; }
+        public Texture2D NextPointRectangleTexture { get; set; }
 
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule)
@@ -70,8 +72,8 @@ namespace SecretProject.Class.NPCStuff
 
             this.RouteSchedule = routeSchedule;
             DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
-
-            //DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
+            NextPointRectangle = new Rectangle(0, 0, 16, 16);
+            NextPointRectangleTexture = SetRectangleTexture(graphics, NextPointRectangle);
         }
 
         public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
@@ -220,17 +222,29 @@ namespace SecretProject.Class.NPCStuff
 
                         pathFound = true;
                     }
-                    //not relevant atm. 
+                    //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (this.NPCRectangle.Intersects(new Rectangle(currentPath[pointCounter].X * 16 -16, currentPath[pointCounter].Y * 16 -16, 32, 32)))
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 , currentPath[pointCounter].Y * 16 , 16, 16);
+                    if (this.NPCRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;
                     }
+
+                    //DEBUG////////
+                    if(Game1.myMouseManager.WorldMouseRectangle.Intersects(this.NextPointRectangle))
+                    {
+                        Console.WriteLine("Hovering");
+                    }
+                    else
+                    {
+                        Console.WriteLine("NOT");
+                    }
+                    ///////////////
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16  , currentPath[pointCounter].Y * 16, 16, 16));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -303,9 +317,10 @@ namespace SecretProject.Class.NPCStuff
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X + 8, this.NPCRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
-            for(int i=0; i < currentPath.Count - 1; i++)
+            for (int i=0; i < currentPath.Count - 1; i++)
             {
                 Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16));
             }

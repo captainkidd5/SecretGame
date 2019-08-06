@@ -289,7 +289,7 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .4f);
-                Console.WriteLine("Player Position" + player.position);
+               // Console.WriteLine("Player Position" + player.position);
 
 
                 Boar.Draw(spriteBatch);
