@@ -161,6 +161,7 @@ namespace SecretProject
         public DialogueHolder AllDobbinDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
+        public RouteSchedule ElixirRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
 
         public static CropHolder AllCrops;
@@ -331,7 +332,8 @@ namespace SecretProject
             AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule };
+            ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
@@ -440,7 +442,7 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixer = new Elixir("Elixer", new Vector2(840, 450), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[0]);
+            Elixer = new Elixir("Elixer", new Vector2(840, 450), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 220), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
         }
         #endregion

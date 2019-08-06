@@ -68,7 +68,7 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 5)
+            if(LocalTime.TotalSeconds > 15)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;

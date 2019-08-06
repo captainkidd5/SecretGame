@@ -63,7 +63,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/newPlayer.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/PlayerSpriteSheet.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/Ship/ShipSpriteSheet.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/DobbinRouteSchedule.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/bubble.WAV</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/chirp1.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/chirp2.wav</File>
@@ -77,5 +76,7 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/walkGrass.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/woodStep.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/DobbinRouteSchedule.xml</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/ElixerRouteSchedule.xml</File>
   </SourceFiles>
 </SourceFileCollection>

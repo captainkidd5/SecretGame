@@ -653,11 +653,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
-#begin Route/DobbinRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/DobbinRouteSchedule.xml
-
 #begin SoundEffects/bubble.WAV
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -736,4 +731,14 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
+
+#begin Route/DobbinRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/DobbinRouteSchedule.xml
+
+#begin Route/ElixerRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/ElixerRouteSchedule.xml
 
