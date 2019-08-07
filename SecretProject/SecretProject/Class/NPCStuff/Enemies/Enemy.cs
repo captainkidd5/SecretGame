@@ -157,7 +157,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
         }
-
+        //For use without route schedule
         public void MoveToTile(GameTime gameTime, Point point)
         {
 
@@ -181,12 +181,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                     }
                     pathFound = true;
+                   // this.Position = new Vector2(currentPath[0].X, currentPath[0].Y);
                 }
                 if (!currentPath.Contains(new Point(-1, -1)))
                 {
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16);
-                    if (timeBetweenJumps <= 0)
+                    if (this.NPCRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;
@@ -194,7 +195,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16));
                         //DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -202,7 +203,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
                         pathFound = false;
                         pointCounter = 0;
                         this.IsMoving = false;
-                        this.CurrentDirection = 0;
+                        //this.CurrentDirection = 0;
+                        WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
                     }
                 }
             }
@@ -237,8 +239,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             //temporary
             //MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //if (WanderTimer <= 0)
-          //  {
+            if (WanderTimer <= 0)
+            {
 
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
@@ -249,14 +251,14 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     {
                         MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY));
                         //wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
-                       WanderTimer = Game1.Utility.RGenerator.Next(5, 10);
+                       
                     }
 
                 }
 
 
 
-           // }
+            }
         }
         public void UpdateDirection()
         {
@@ -287,17 +289,19 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             switch (CurrentDirection)
             {
+                //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case 0:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f);
+                    float num = .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                     break;
                 case 1:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                     break;
                 case 2:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                     break;
                 case 3:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f);
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                     break;
             }
         }
