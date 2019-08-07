@@ -578,7 +578,7 @@ namespace SecretProject.Class.TileStuff
 
                             if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
-                                Game1.Player.UserInterface.DrawTileSelector = true;
+                                //Game1.Player.UserInterface.DrawTileSelector = true;
                                 if (mouse.IsHoveringTile(AllTiles[z][i, j].DestinationRectangle))
                                 {
                                     CurrentIndexX = i;
@@ -596,15 +596,16 @@ namespace SecretProject.Class.TileStuff
                                             {
 
                                                 Game1.isMyMouseVisible = false;
-
+                                                Game1.Player.UserInterface.DrawTileSelector = true;
                                                 this.DebugTile = AllTiles[z][i, j];
                                                 Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                                 Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
                                                 Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable"))
-                                                {
-                                                    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
-                                                }
+                                                mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["tileSelectorAllowed"]));
+                                                //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable"))
+                                                //{
+                                                //    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["tileSelectorAllowed"]));
+                                                //}
 
                                                 if (mouse.IsClicked)
                                                 {
@@ -626,6 +627,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable") && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                             {
+                                                Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
                                                 Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
                                                 Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
