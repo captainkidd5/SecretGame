@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public int NPCRectangleYOffSet { get; set; }
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
-        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
+        public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
 
         public Texture2D Texture { get; set; }
         public Texture2D DebugTexture { get; set; }
@@ -58,9 +58,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.Name = name;
             this.Position = position;
             this.Texture = spriteSheet;
-            Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
+            Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
 
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCRectangle);
+            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NextPointRectangle);
@@ -69,7 +69,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public virtual void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
-            Collider.Rectangle = this.NPCRectangle;
+            Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(objects, Position);
 
@@ -88,7 +88,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
                     break;
             }
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
+            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
                 mouse.ChangeMouseTexture(200);
                 mouse.ToggleGeneralInteraction = true;
@@ -197,7 +197,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 {
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16);
-                    if (this.NPCRectangle.Intersects(NextPointRectangle))
+                    if (this.NPCHitBoxRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;
@@ -230,7 +230,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
             //{
             this.DirectionVector = direction;
-            if (!this.NPCRectangle.Intersects(rectangle))
+            if (!this.NPCHitBoxRectangle.Intersects(rectangle))
             {
                 Position += (direction * Speed) * PrimaryVelocity;
                 IsMoving = true;
@@ -344,7 +344,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X, this.NPCRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.White, layerDepth: layerDepth);
             spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
             for (int i = 0; i < currentPath.Count - 1; i++)

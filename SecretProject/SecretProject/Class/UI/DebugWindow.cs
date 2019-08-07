@@ -32,8 +32,8 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(272, 128, 256, 224),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate  + " \n \n MouseOverTile: "  +
-                    " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n MouseWorldPositionY: "
-                    + Game1.myMouseManager.WorldMousePosition.Y + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n MouseSquarePositionY: " +
+                    " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n MouseWorldRectangle: "
+                    + Game1.myMouseManager.WorldMouseRectangle + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n mouseworldrectangle: " +
                     Game1.myMouseManager.MouseSquareCoordinateY, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             }
             spriteBatch.End();

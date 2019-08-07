@@ -27,7 +27,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleHeightOffSet = 10;
             this.NPCRectangleWidthOffSet = 10;
             this.Speed = 1f;
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCRectangle);
+            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundID = 14;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
         }
@@ -35,7 +35,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public override void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
-            Collider.Rectangle = this.NPCRectangle;
+            Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(objects, Position);
 
@@ -54,7 +54,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
                     break;
             }
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
+            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
                 mouse.ChangeMouseTexture(200);
                 mouse.ToggleGeneralInteraction = true;

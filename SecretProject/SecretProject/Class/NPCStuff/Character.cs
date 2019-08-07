@@ -27,7 +27,8 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleYOffSet { get; set; }
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
-        public Rectangle NPCRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
+        public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
+        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X , (int)Position.Y, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Height); } }
 
         public float Speed { get; set; } = .65f;
         public Vector2 PrimaryVelocity { get; set; }
@@ -67,11 +68,11 @@ namespace SecretProject.Class.NPCStuff
 
             
 
-            Collider = new Collider(this.PrimaryVelocity, this.NPCRectangle);
+            Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
-            DebugTexture = SetRectangleTexture(graphics, NPCRectangle);
+            DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NextPointRectangle);
         }
@@ -79,7 +80,7 @@ namespace SecretProject.Class.NPCStuff
         public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
-            Collider.Rectangle = this.NPCRectangle;
+            Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(objects, Position);
 
@@ -98,25 +99,6 @@ namespace SecretProject.Class.NPCStuff
                     NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
                     break;
             }
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCRectangle))
-            {
-                mouse.ChangeMouseTexture(200);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
-                if (mouse.IsRightClicked)
-                {
-
-
-                    Game1.Player.UserInterface.TextBuilder.IsActive = true;
-                    Game1.Player.UserInterface.TextBuilder.UseTextBox = true;
-                    Game1.Player.UserInterface.TextBuilder.FreezeStage = true;
-                    Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1);
-                    UpdateDirectionVector(Game1.Player.position);
-
-
-                }
-
-            }
             if (IsMoving)
             {
 
@@ -128,9 +110,35 @@ namespace SecretProject.Class.NPCStuff
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
+            if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
+            {
+                mouse.ChangeMouseTexture(200);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+                if (mouse.IsRightClicked)
+                {
+                    
+
+                    Game1.Player.UserInterface.TextBuilder.IsActive = true;
+                    Game1.Player.UserInterface.TextBuilder.UseTextBox = true;
+                    Game1.Player.UserInterface.TextBuilder.FreezeStage = true;
+                    Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1);
+                    UpdateDirectionVector(Game1.Player.position);
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+
+
+                }
+
+            }
+            
             //this.Speed = PrimaryVelocity
             FollowSchedule(gameTime, this.RouteSchedule);
+            if(mouse.IsRightClicked)
+            {
+                Console.WriteLine(this.NPCHitBoxRectangle);
 
+            }
+            
 
         }
 
@@ -141,7 +149,7 @@ namespace SecretProject.Class.NPCStuff
             //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
             //{
                 this.DirectionVector = direction;
-                if (!this.NPCRectangle.Intersects(rectangle))
+                if (!this.NPCHitBoxRectangle.Intersects(rectangle))
                 {
                     Position += (direction * Speed) * PrimaryVelocity;
                     IsMoving = true;
@@ -225,21 +233,21 @@ namespace SecretProject.Class.NPCStuff
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 , currentPath[pointCounter].Y * 16 , 16, 16);
-                    if (this.NPCRectangle.Intersects(NextPointRectangle))
+                    if (this.NPCHitBoxRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;
                     }
 
                     //DEBUG////////
-                    if(Game1.myMouseManager.WorldMouseRectangle.Intersects(this.NextPointRectangle))
-                    {
-                        Console.WriteLine("Hovering");
-                    }
-                    else
-                    {
-                        Console.WriteLine("NOT");
-                    }
+                    //if(Game1.myMouseManager.WorldMouseRectangle.Intersects(this.NextPointRectangle))
+                    //{
+                    //    Console.WriteLine("Hovering");
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("NOT");
+                    //}
                     ///////////////
                     if (pointCounter < currentPath.Count)
                     {
@@ -319,7 +327,7 @@ namespace SecretProject.Class.NPCStuff
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCRectangle.X + 8, this.NPCRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X + 8, this.NPCHitBoxRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
             spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
             for (int i=0; i < currentPath.Count - 1; i++)
