@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace SecretProject.Class.UI
         public Rectangle Layer1TriggerBox { get { return new Rectangle((int)layer1DrawPosition.X, (int)layer1DrawPosition.Y, Layer1SourceRectangle.Width, Layer1SourceRectangle.Height); } }
         public Rectangle Layer2TriggerBox { get { return new Rectangle((int)layer2DrawPosition.X, (int)layer2DrawPosition.Y, layer2SourceRectangle.Width, layer2SourceRectangle.Height); } }
         private List<Button> layer1Buttons;
+        public List<CraftingSlot> CraftingSlots { get; set; }
 
         public bool Layer2ExpandedOld { get; set; }
         public bool Layer2ExpandedNew { get; set; }
@@ -57,6 +59,12 @@ namespace SecretProject.Class.UI
 
             };
 
+            CraftingSlots = new List<CraftingSlot>()
+            {
+                new CraftingSlot(143, layer2DrawPosition, graphics)
+            };
+
+
             layer3SourceRectangle = new Rectangle(1152, 112, 164, 100);
 
             foreach(Button button in layer1Buttons)
@@ -90,6 +98,10 @@ namespace SecretProject.Class.UI
                     {
                         layer2DrawPosition = new Vector2(layer1Buttons[i].Position.X + 64, layer1Buttons[i].Position.Y);
                         Layer2ExpandedNew = true;
+                        foreach(CraftingSlot slot in CraftingSlots)
+                        {
+                            slot.Button.Update(mouse);
+                        }
                     }
                 }
 
@@ -114,7 +126,11 @@ namespace SecretProject.Class.UI
             {
                 Layer1Expanded = true;
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer2DrawPosition, layer2SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer3DrawPosition, layer3SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                foreach (CraftingSlot slot in CraftingSlots)
+                {
+                    slot.Button.Draw(spriteBatch);
+                }
+                //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, layer3DrawPosition, layer3SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
             if (Layer1Expanded)
             {
@@ -129,4 +145,16 @@ namespace SecretProject.Class.UI
             
         }
     }
+
+    public class CraftingSlot
+    {
+        public int ItemID { get; set; }
+        public Button Button { get; set; }
+        public CraftingSlot(int itemID, Vector2 drawPosition, GraphicsDevice graphics)
+        {
+            Item item = Game1.ItemVault.GenerateNewItem(itemID, drawPosition);
+            Button = new Button(item.Texture, item.SourceTextureRectangle, graphics, drawPosition);
+        }
+    }
+
 }
