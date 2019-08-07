@@ -20,6 +20,7 @@ using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
+using XMLData.ItemStuff;
 /*
 this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
 
@@ -91,6 +92,7 @@ List<ActionTimer> AllActions { get; set; }
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
+        List<Crop> AllCrops { get; set; }
 
         bool IsDark { get; set; }
 

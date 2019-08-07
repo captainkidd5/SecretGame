@@ -18,6 +18,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -854,10 +855,12 @@ namespace SecretProject.Class.TileStuff
                         //Game1.myMouseManager.TogglePlantInteraction = true;
 
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-
+                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                            
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                        ReplaceTileWithNewTile(layer, oldX, oldY, Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID).GID + 5);
+                        ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 1);
                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                        Game1.GetCurrentStage().AllCrops.Add(tempCrop);
 
 
                     }

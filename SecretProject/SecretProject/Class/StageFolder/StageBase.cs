@@ -28,6 +28,7 @@ using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -110,6 +111,8 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
+        public List<Crop> AllCrops { get; set; }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -125,6 +128,7 @@ namespace SecretProject.Class.StageFolder
             this.MapTexturePath = mapTexturePath;
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
+            
 
 
         }
@@ -205,7 +209,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-
+            AllCrops = new List<Crop>();
         }
         public void OnSceneChanged()
         {

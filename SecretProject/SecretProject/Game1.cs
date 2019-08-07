@@ -89,12 +89,12 @@ namespace SecretProject
         //STAGES
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
-        public static NormalStage LodgeInterior;
+        public static StageBase LodgeInterior;
         public static Town RoyalDock;
         public static Sea Sea;
-        public static NormalStage GreatLibrary;
-        public static NormalStage WestBeach;
-        public static NormalStage DobbinsOrchard;
+        public static StageBase GreatLibrary;
+        public static StageBase WestBeach;
+        public static StageBase DobbinsOrchard;
         public static Wilderness Wilderness;
         public static List<IStage> AllStages;
         public static int CurrentStage;
@@ -386,19 +386,19 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            WestBeach = new NormalStage("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
+            WestBeach = new StageBase("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
             Wilderness = new Wilderness("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
             
             RoyalDock = new Town("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
 
-            GreatLibrary = new NormalStage("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
+            GreatLibrary = new StageBase("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
 
             //ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            DobbinsOrchard = new NormalStage("Dobbin's Orchard",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
+            DobbinsOrchard = new StageBase("Dobbin's Orchard",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
 
 
-            LodgeInterior = new NormalStage("Lodge",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
+            LodgeInterior = new StageBase("Lodge",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
