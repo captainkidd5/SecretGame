@@ -28,6 +28,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 10;
             this.Speed = 1f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCRectangle);
+            this.SoundID = 14;
+            this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
         }
 
         public override void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
@@ -73,6 +75,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
             Wander(gameTime);
+            SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (SoundTimer <= 0)
+            {
+                PlaySound(SoundID);
+                SoundTimer = Game1.Utility.RFloat(5f, 50f);
+            }
 
         }
     }

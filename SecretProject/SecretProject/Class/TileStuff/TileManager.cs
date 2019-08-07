@@ -143,21 +143,16 @@ namespace SecretProject.Class.TileStuff
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
                     Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
-                    if(layerNameTile.HorizontalFlip)
+                    if (layerNameTile.HorizontalFlip)
                     {
                         tempTile.HorizontalFlip = true;
                     }
-                    if(layerNameTile.VerticalFlip)
+                    if (layerNameTile.VerticalFlip)
                     {
                         tempTile.VeritcalFlip = true;
                     }
                     if (layerNameTile.DiagonalFlip)
                     {
-                        if(tempTile.VeritcalFlip || tempTile.HorizontalFlip)
-                        {
-                            tempTile.VeritcalFlip = false;
-                            tempTile.HorizontalFlip = false;
-                        }
                         tempTile.DiagonalFlip = true;
                     }
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
@@ -748,28 +743,42 @@ namespace SecretProject.Class.TileStuff
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16) - 200
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) - 200)
                             {
-                                AllDepths[3] = .4f + (float)(AllTiles[z][i, j].DestinationRectangle.Bottom + AllTiles[z][i, j].DestinationRectangle.Height / mapHeight * AllTiles[z][i, j].TileHeight) /(float)10000;
-                                if(AllTiles[z][i, j].HorizontalFlip)
+
+
+                                AllDepths[3] = .4f + (float)(AllTiles[z][i, j].DestinationRectangle.Bottom + AllTiles[z][i, j].DestinationRectangle.Height / mapHeight * AllTiles[z][i, j].TileHeight) / (float)10000;
+
+                                if (AllTiles[z][i, j].DiagonalFlip)
                                 {
+                                    if (AllTiles[z][i, j].HorizontalFlip)
+                                    {
+                                        spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X + AllTiles[z][i, j].TileWidth, AllTiles[z][i, j].DestinationRectangle.Y ), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                    (float)Math.PI / 2f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                    }
+                                    if (AllTiles[z][i, j].VeritcalFlip)
+                                    {
+                                        spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y + AllTiles[z][i, j].TileHeight), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                    (float)(3*Math.PI / 2f), Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                    }
+
+                                }
+                                else if (AllTiles[z][i, j].HorizontalFlip && !AllTiles[z][i, j].DiagonalFlip)
+                                {
+
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.FlipHorizontally, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                 }
-                                else if(AllTiles[z][i, j].VeritcalFlip)
+                                else if (AllTiles[z][i, j].VeritcalFlip && !AllTiles[z][i, j].DiagonalFlip)
                                 {
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.FlipVertically, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                 }
-                                else if (AllTiles[z][i, j].DiagonalFlip)
-                                {
-                                    spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                    (float)Math.PI / 2f, Game1.Utility.Origin, 1f, SpriteEffects.FlipVertically, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
-                                }
+
                                 else
                                 {
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                 }
-                                
+
 
 
                             }

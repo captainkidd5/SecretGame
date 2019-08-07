@@ -78,5 +78,7 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/DobbinRouteSchedule.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/ElixerRouteSchedule.xml</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/pigGrunt.wav</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/PigGrunt2.wav</File>
   </SourceFiles>
 </SourceFileCollection>

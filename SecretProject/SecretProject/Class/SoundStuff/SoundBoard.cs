@@ -56,6 +56,12 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect OwlHoot1;
         public SoundEffectInstance OwlHoot1Instance;
 
+        public SoundEffect PigGrunt;
+        public SoundEffectInstance PigGruntInstance;
+
+        public SoundEffect PigGrunt2;
+        public SoundEffectInstance PigGrunt2Instance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -107,6 +113,12 @@ namespace SecretProject.Class.SoundStuff
 
             OwlHoot1 = content.Load<SoundEffect>("SoundEffects/owlHoot1");
             OwlHoot1Instance = OwlHoot1.CreateInstance();
+
+            PigGrunt = content.Load<SoundEffect>("SoundEffects/pigGrunt");
+            PigGruntInstance =PigGrunt.CreateInstance();
+
+            PigGrunt2 = content.Load<SoundEffect>("SoundEffects/PigGrunt2");
+            PigGrunt2Instance = PigGrunt2.CreateInstance();
 
         }
 
@@ -208,6 +220,13 @@ namespace SecretProject.Class.SoundStuff
                         break;
                     case 13:
                         OwlHoot1Instance.Play();
+                        break;
+
+                    case 14:
+                        PigGruntInstance.Play();
+                        break;
+                    case 15:
+                        PigGrunt2Instance.Play();
                         break;
 
 

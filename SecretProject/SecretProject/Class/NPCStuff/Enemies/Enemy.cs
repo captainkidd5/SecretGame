@@ -48,6 +48,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Texture2D NextPointRectangleTexture { get; set; }
         public int CurrentTileX { get { return (int)(this.Position.X / 16); } }
         public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
+        public float SoundTimer { get; set; }
+        public float SoundMin { get; set; }
+        public float SoundMax { get; set; }
+        public int SoundID { get; set; }
 
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
         {
@@ -103,6 +107,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
 
+            SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(SoundTimer <= 0)
+            {
+                PlaySound(SoundID);
+                SoundTimer = Game1.Utility.RFloat(5f, 50f);
+            }
 
 
         }
@@ -341,6 +351,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16));
             }
+        }
+
+
+         
+        public void PlaySound(int soundID)
+        {
+            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, soundID, 1f);
         }
 
     }

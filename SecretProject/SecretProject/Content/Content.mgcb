@@ -742,3 +742,15 @@
 /processor:PassThroughProcessor
 /build:Route/ElixerRouteSchedule.xml
 
+#begin SoundEffects/pigGrunt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pigGrunt.wav
+
+#begin SoundEffects/PigGrunt2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PigGrunt2.wav
+
