@@ -23,7 +23,7 @@ namespace SecretProject.Class.UI
             base.Update(gameTime, Keys.F1);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 

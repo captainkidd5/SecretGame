@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.ItemStuff.CraftingGuide">
+  <CraftingRecipes>
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>124</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>143</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+  </CraftingRecipes>
+  </Asset>
+</XnaContent>

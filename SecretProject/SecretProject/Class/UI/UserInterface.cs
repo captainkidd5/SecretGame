@@ -80,12 +80,17 @@ namespace SecretProject.Class.UI
             TextBuilder = new TextBuilder("", .1f, 5f);
             this.Player = player;
             CraftingMenu = new CraftingMenu(GraphicsDevice);
+            CraftingMenu.LoadContent(content);
         }
 
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
-            BottomBar.Update(gameTime, inventory, mouse);
+            if(BottomBar.IsActive)
+            {
+                BottomBar.Update(gameTime, inventory, mouse);
+            }
+            
             //if (!IsShopMenu)
             //{
 
@@ -106,12 +111,7 @@ namespace SecretProject.Class.UI
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
-                IsShopMenu = !IsShopMenu;
-               Game1.AllShops.Find(x => x.ID == 1).IsActive = IsShopMenu;
-                if(!IsShopMenu)
-                {
-                    Player.UserInterface.CurrentOpenShop = 0;
-                }
+                ActivateShop(1);
                 //Player.UserInterface.CurrentOpenShop = OpenShop.ToolShop;
 
                 
@@ -138,7 +138,7 @@ namespace SecretProject.Class.UI
                     if (Game1.AllShops[i].IsActive)
                     {
                         Game1.isMyMouseVisible = true;
-                        //Game1.freeze = true;
+                        Game1.freeze = true;
                         Game1.AllShops[i].Update(gameTime, mouse);
                     }
                 }
@@ -158,6 +158,16 @@ namespace SecretProject.Class.UI
                 
         }
 
+        public void ActivateShop(int shopID)
+        {
+            IsShopMenu = !IsShopMenu;
+            Game1.AllShops.Find(x => x.ID == shopID).IsActive = IsShopMenu;
+            if (!IsShopMenu)
+            {
+                Player.UserInterface.CurrentOpenShop = 0;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             
@@ -166,8 +176,11 @@ namespace SecretProject.Class.UI
 
             
             
-
-            BottomBar.Draw(spriteBatch);
+            if(BottomBar.IsActive)
+            {
+                BottomBar.Draw(spriteBatch);
+            }
+            
             if(isEscMenu)
             {
                 Esc.Draw(spriteBatch);

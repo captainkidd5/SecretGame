@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -30,9 +32,13 @@ namespace SecretProject.Class.UI
         private Vector2 layer3DrawPosition;
 
         GraphicsDevice graphics;
+
+        public CraftingGuide CraftingGuide { get; set; }
+
         public CraftingMenu(GraphicsDevice graphics)
         {
             this.graphics = graphics;
+
             Layer1SourceRectangle = new Rectangle(1168, 240, 64, 576);
             layer1DrawPosition = new Vector2(25, 25);
 
@@ -57,6 +63,11 @@ namespace SecretProject.Class.UI
             {
                 
             }
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)

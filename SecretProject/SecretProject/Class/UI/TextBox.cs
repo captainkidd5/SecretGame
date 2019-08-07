@@ -21,6 +21,7 @@ namespace SecretProject.Class.UI
         public Rectangle SourceRectangle { get; set; }
 
         public KeyboardState oldKeys = Keyboard.GetState();
+        public bool RemovesToolBar { get; set; }
 
         public TextBox(SpriteFont textFont, Vector2 position, string textToWrite, Texture2D texture)
         {
@@ -36,8 +37,12 @@ namespace SecretProject.Class.UI
 
             switch (size)
             {
+                case 0:
+                    this.SourceRectangle = new Rectangle(64, 1088, 800, 288);
+                    break;
                 case 1:
-                    this.SourceRectangle = new Rectangle(96, 416, 640, 90);
+                    this.SourceRectangle = new Rectangle(64, 1088, 800, 288);
+                    this.RemovesToolBar = true;
                     break;
             }
         }
@@ -62,16 +67,30 @@ namespace SecretProject.Class.UI
             IsActivated = stayActivated;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation)
         {
             spriteBatch.Begin();
 
             if(IsActivated)
             {
+                if(RemovesToolBar)
+                {
+                    Game1.Player.UserInterface.BottomBar.IsActive = false;
+                }
                 
-                spriteBatch.Draw(this.Texture, new Vector2(this.position.X,this.position.Y), new Rectangle(48, 176, 128, 64), Color.White, 0f,
+                spriteBatch.Draw(this.Texture, textBoxLocation, new Rectangle(48, 176, 128, 64), Color.White, 0f,
                     Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.DrawString(textFont, TextToWrite, position, Color.Red, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                spriteBatch.DrawString(textFont, TextToWrite, textStartLocation, Color.Red, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+               // Game1.Player.UserInterface.BottomBar.
+            }
+            else
+            {
+                //Game1.Player.UserInterface.BottomBar.IsActive = true;
+                //if(RemovesToolBar)
+                //{
+                //    Game1.Player.UserInterface.BottomBar.IsActive = true;
+                //    this.RemovesToolBar = false;
+                //}
             }
             spriteBatch.End();
 

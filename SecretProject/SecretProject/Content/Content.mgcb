@@ -754,3 +754,8 @@
 /processorParam:Quality=Best
 /build:SoundEffects/PigGrunt2.wav
 
+#begin Item/Crafting/CraftingGuide.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/Crafting/CraftingGuide.xml
+

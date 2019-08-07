@@ -82,6 +82,8 @@ namespace SecretProject.Class.UI
         public List<ActionTimer> AllActions;
         TextBuilder TextBuilder;
 
+        public bool IsActive { get; set; } = true;
+
         public ToolBar( GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);

@@ -27,7 +27,7 @@ namespace SecretProject.Class.UI
 
         public TextBox ShopTextBox { get; set; }
 
-        public ShopMenu(string name, GraphicsDevice graphicsDevice)
+        public ShopMenu(string name, GraphicsDevice graphicsDevice, int inventorySlotCount)
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             ShopMenuPosition = new Vector2(150, 10);
@@ -45,7 +45,7 @@ namespace SecretProject.Class.UI
             int menuItemOffsetX = 0;
             int menuItemOffsetY = 0;
 
-            ShopInventory = new Inventory(25);
+            ShopInventory = new Inventory(inventorySlotCount);
 
             for (int i = 1; i <= ShopInventory.currentInventory.Count; i++)
             {                

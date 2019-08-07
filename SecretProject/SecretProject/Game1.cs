@@ -409,7 +409,7 @@ namespace SecretProject
 
             
 
-            Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice));
+            Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
             ToolShop.ShopMenu.TryAddStock(3, 1);
             ToolShop.ShopMenu.TryAddStock(0, 1);
             ToolShop.ShopMenu.TryAddStock(1, 1);
@@ -431,9 +431,14 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(181, 1);
             ToolShop.ShopMenu.TryAddStock(191, 1);
 
+            Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
+            DobbinShop.ShopMenu.TryAddStock(128, 10);
+            DobbinShop.ShopMenu.TryAddStock(167, 10);
+
             AllShops = new List<IShop>()
             {
-                ToolShop
+                ToolShop,
+                DobbinShop
             };
 
 
