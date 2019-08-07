@@ -860,7 +860,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                 {
-                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("plantable"))
+                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("plantable") && !AllTiles[layer][oldX, oldY].ContainsCrop)
                     {
 
                         //Game1.myMouseManager.TogglePlantInteraction = true;
@@ -878,7 +878,6 @@ namespace SecretProject.Class.TileStuff
                             oldYString.Insert(0, "0");
                         }
                         tempCrop.TileID = layer.ToString() + oldXString + oldYString;
-                        tempCrop.GID = AllTiles[layer][oldX, oldY].GID;
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 2);
                         AllTiles[layer][oldX, oldY].ContainsCrop = true;
