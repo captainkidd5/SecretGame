@@ -760,7 +760,7 @@ namespace SecretProject.Class.TileStuff
                                 else if (AllTiles[z][i, j].DiagonalFlip)
                                 {
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                    90, new Vector2(8, 8), 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                    (float)Math.PI / 2f, Game1.Utility.Origin, 1f, SpriteEffects.FlipVertically, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                 }
                                 else
                                 {
