@@ -242,8 +242,10 @@ namespace SecretProject.Class.StageFolder
                 for (int e = 0; e < Boars.Count; e++)
                 {
                     Boars[e].Update(gameTime, AllObjects, mouse);
+                    //Console.WriteLine(Boars[1].cu);
                     //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
                 }
+                //Boars[3].Update(gameTime, AllObjects, mouse);
                 Boar.Update(gameTime, AllObjects, mouse);
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                 // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));

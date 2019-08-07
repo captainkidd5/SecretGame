@@ -117,7 +117,7 @@ namespace SecretProject.Class.PathFinding
                 }
 
             // unable to figure out a path, abort.
-            return new List<Point>() { new Point(999, 999) };
+            return new List<Point>() { new Point(-1, -1) };
             //throw new Exception(
             //    string.Format(
             //        "unable to find a path between {0},{1} and {2},{3}",
