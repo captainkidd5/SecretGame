@@ -69,15 +69,15 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 15)
+            if(LocalTime.TotalSeconds > 3)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
-                foreach(Crop crop in Game1.GetCurrentStage().AllCrops)
+                for(int i =0; i< Game1.GetCurrentStage().AllCrops.Count; i++)
                 {
-                    if(crop.UpdateGrowthCycle())
+                    if(Game1.GetCurrentStage().AllCrops[i].UpdateGrowthCycle())
                     {
-                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop.TileID);
+                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(Game1.GetCurrentStage().AllCrops[i]);
                     }
                 }
                 if(TotalHours > 18 && TotalHours < 23)

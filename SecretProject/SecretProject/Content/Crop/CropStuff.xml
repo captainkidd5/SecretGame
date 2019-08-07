@@ -7,7 +7,7 @@
             <Name>BloomBerry</Name>
             <GID>6073</GID>
             <TileID>0</TileID>          
-            <DaysToGrow>2</DaysToGrow>
+            <DaysToGrow>15</DaysToGrow>
             <CurrentGrowth>0</CurrentGrowth>
             <Harvestable>false</Harvestable>
             </Item>

@@ -13,9 +13,9 @@ namespace XMLData.ItemStuff
         public int ItemID { get; set; }
         public string Name { get; set; }
         public int GID { get; set; }
-        public int TileID { get; set; } = 0;
+        public string TileID { get; set; }
         public int DaysToGrow { get; set; }
-        public int CurrentGrowth { get; set; } = 0;
+        public int CurrentGrowth { get; set; } 
         public bool Harvestable { get; set; } = false;
 
         public bool UpdateGrowthCycle()

@@ -12,7 +12,17 @@ namespace XMLData.ItemStuff
 
         public Crop GetCropFromID(int ID)
         {
-            return AllCrops.Find(x => x.ItemID == ID);
+            Crop newCrop = new Crop();
+            Crop oldCrop = AllCrops.Find(x => x.ItemID == ID);
+            newCrop.ItemID = oldCrop.ItemID;
+            newCrop.Name = oldCrop.Name;
+            newCrop.GID = oldCrop.GID;
+            newCrop.TileID = oldCrop.TileID;
+            newCrop.DaysToGrow = oldCrop.DaysToGrow;
+            newCrop.CurrentGrowth = oldCrop.CurrentGrowth;
+            newCrop.Harvestable = oldCrop.Harvestable;
+
+            return newCrop; 
         }
     }
 }

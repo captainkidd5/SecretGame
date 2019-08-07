@@ -730,15 +730,7 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
 
-        public void UpdateCropTile(int id)
-        {
-            string tileID = id.ToString();
-            int layer = int.Parse(tileID[0].ToString());
-            int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
-            int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
-            AllTiles[layer][x, y] = new Tile(x, y, AllTiles[layer][x, y].GID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
-        }
-
+        
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch)
         {
@@ -807,6 +799,16 @@ namespace SecretProject.Class.TileStuff
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
         }
+        public void UpdateCropTile(Crop crop)
+        {
+            string tileID = crop.TileID;
+            int layer = int.Parse(tileID[0].ToString());
+            int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
+            int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
+            ReplaceTilePermanent(layer, x, y, crop.GID);
+            //AllTiles[layer][x, y] = new Tile(x, y, AllTiles[layer][x, y].GID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+        }
+
 
         public void ReplaceTileTemporary(int layer, int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
         {
@@ -875,9 +877,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             oldYString.Insert(0, "0");
                         }
-                        tempCrop.TileID = int.Parse(layer.ToString() + oldXString + oldYString);
+                        tempCrop.TileID = layer.ToString() + oldXString + oldYString;
+                        tempCrop.GID = AllTiles[layer][oldX, oldY].GID;
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                        ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 1);
+                        ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 2);
                         AllTiles[layer][oldX, oldY].ContainsCrop = true;
                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         Game1.GetCurrentStage().AllCrops.Add(tempCrop);
