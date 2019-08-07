@@ -20,6 +20,7 @@ using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using TiledSharp;
+using XMLData.ItemStuff;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
@@ -53,6 +54,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsDark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<LightSource> AllLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Crop> AllCrops { get; set; }
 
         public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget,GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {

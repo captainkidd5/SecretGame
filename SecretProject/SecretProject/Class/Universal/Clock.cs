@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.UI;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.Universal
 {
@@ -72,6 +73,13 @@ namespace SecretProject.Class.Universal
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
+                foreach(Crop crop in Game1.GetCurrentStage().AllCrops)
+                {
+                    if(crop.UpdateGrowthCycle())
+                    {
+                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop.TileID);
+                    }
+                }
                 if(TotalHours > 18 && TotalHours < 23)
                 {
                     ColorMultiplier-=3;

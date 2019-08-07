@@ -71,6 +71,8 @@ namespace SecretProject.Class.TileStuff
         public bool VeritcalFlip { get; set; }
         public bool DiagonalFlip { get; set; }
 
+        public bool ContainsCrop { get; set; }
+
 
 
         private Tile()

@@ -29,6 +29,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -147,7 +148,7 @@ namespace SecretProject.Class.StageFolder
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, 1), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
-
+            AllCrops = new List<Crop>();
 
         }
 

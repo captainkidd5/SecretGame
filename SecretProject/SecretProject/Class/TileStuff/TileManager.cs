@@ -587,7 +587,6 @@ namespace SecretProject.Class.TileStuff
                                         {
 
 
-
                                             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable") || mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
                                             {
 
@@ -730,6 +729,16 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
+
+        public void UpdateCropTile(int id)
+        {
+            string tileID = id.ToString();
+            int layer = int.Parse(tileID[0].ToString());
+            int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
+            int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
+            AllTiles[layer][x, y] = new Tile(x, y, AllTiles[layer][x, y].GID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+        }
+
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch)
         {
@@ -856,9 +865,20 @@ namespace SecretProject.Class.TileStuff
 
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                            
+                        string oldXString = oldX.ToString();
+                        if(oldXString.Length < 2)
+                        {
+                            oldXString.Insert(0, "0");
+                        }
+                        string oldYString = oldY.ToString();
+                        if (oldYString.Length < 2)
+                        {
+                            oldYString.Insert(0, "0");
+                        }
+                        tempCrop.TileID = int.Parse(layer.ToString() + oldXString + oldYString);
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 1);
+                        AllTiles[layer][oldX, oldY].ContainsCrop = true;
                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         Game1.GetCurrentStage().AllCrops.Add(tempCrop);
 
