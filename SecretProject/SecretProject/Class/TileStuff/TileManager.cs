@@ -887,7 +887,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         tempCrop.TileID = layer.ToString() + oldXString + oldYString;
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                        ReplaceTileWithNewTile(layer, oldX, oldY, tempCrop.GID + 2);
+                        ReplaceTileWithNewTile(1, oldX, oldY, tempCrop.GID + 2);
                         AllTiles[layer][oldX, oldY].ContainsCrop = true;
                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         Game1.GetCurrentStage().AllCrops.Add(tempCrop);
