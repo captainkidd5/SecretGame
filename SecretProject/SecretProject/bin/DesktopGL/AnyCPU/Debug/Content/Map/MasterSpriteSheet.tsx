@@ -1181,6 +1181,8 @@
  <tile id="5396">
   <properties>
    <property name="AssociatedTiles" value="5296"/>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="177:100"/>
   </properties>
  </tile>
  <tile id="5397">
@@ -1694,6 +1696,12 @@
   <properties>
    <property name="plantable" value="dirt"/>
    <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6083">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="147:100"/>
   </properties>
  </tile>
  <tile id="6090">

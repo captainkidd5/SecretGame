@@ -805,7 +805,7 @@ namespace SecretProject.Class.TileStuff
             int layer = int.Parse(tileID[0].ToString());
             int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
             int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
-            ReplaceTilePermanent(layer, x, y, crop.GID);
+            ReplaceTilePermanent(1, x, y, crop.GID);
             if(mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID))
             {
                 if (mapName.Tilesets[TileSetNumber].Tiles[crop.GID].Properties.ContainsKey("AssociatedTiles"))
@@ -1001,18 +1001,24 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                 AllTiles[layer][oldX, oldY].TileObject = null;
+            }
                 //AllTiles[layer][oldX, oldY].HasObject = false;
                 if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                 {
 
                     DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
                 }
-                GetDrop(layer, oldX, oldY);
+            //mostly for crops
+            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
+            {
+                ReplaceTilePermanent(2, oldX, oldY - 1, 0);
+            }
+            GetDrop(layer, oldX, oldY);
 
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
 
                 ReplaceTilePermanent(layer, oldX, oldY, 0);
-            }
+            
 
 
 
@@ -1060,6 +1066,8 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+
+
         #endregion
 
         #region DESTROYTILES
@@ -1078,6 +1086,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
                     }
+                    
 
 
                     ReplaceTilePermanent(layer, oldX, oldY, 0);

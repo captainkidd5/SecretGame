@@ -400,6 +400,22 @@
       <TextureRow>1</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="177">
+    <Value>
+      <Name>BloodCorn</Name>
+      <ID>177</ID>
+      <InvMaximum>50</InvMaximum>
+      <WorldMaximum>500</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
+      <Price>2</Price>
+      <id>177</id>
+      <TextureColumn>8</TextureColumn>
+      <TextureRow>7</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="181">
     <Value>
       <Name>Thorn</Name>
