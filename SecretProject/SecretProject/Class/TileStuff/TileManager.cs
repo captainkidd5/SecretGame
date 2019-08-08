@@ -805,7 +805,15 @@ namespace SecretProject.Class.TileStuff
             int layer = int.Parse(tileID[0].ToString());
             int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
             int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
-            ReplaceTilePermanent(layer, x, y, crop.GID);
+            ReplaceTilePermanent(layer, x, y - 1, crop.GID);
+            if(mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID))
+            {
+                if (mapName.Tilesets[TileSetNumber].Tiles[crop.GID].Properties.ContainsKey("AssociatedTiles"))
+                {
+                    ReplaceTilePermanent(2, x, y, int.Parse(mapName.Tilesets[TileSetNumber].Properties["AssociatedTiles"]));
+                }
+            }
+            
             //AllTiles[layer][x, y] = new Tile(x, y, AllTiles[layer][x, y].GID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
         }
 

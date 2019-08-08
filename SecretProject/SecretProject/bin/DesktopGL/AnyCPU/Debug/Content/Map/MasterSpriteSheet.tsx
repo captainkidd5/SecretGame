@@ -1168,6 +1168,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="5394">
+  <properties>
+   <property name="AssociatedTiles" value="5294"/>
+  </properties>
+ </tile>
+ <tile id="5395">
+  <properties>
+   <property name="AssociatedTiles" value="5295"/>
+  </properties>
+ </tile>
+ <tile id="5396">
+  <properties>
+   <property name="AssociatedTiles" value="5296"/>
+  </properties>
+ </tile>
+ <tile id="5397">
+  <properties>
+   <property name="AssociatedTiles" value="5297"/>
+  </properties>
+ </tile>
  <tile id="5402">
   <objectgroup draworder="index">
    <object id="1" x="11" y="0" width="3" height="16"/>
