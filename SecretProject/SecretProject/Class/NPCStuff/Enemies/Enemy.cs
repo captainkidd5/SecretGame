@@ -257,6 +257,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                 if (this.CurrentTileX + newX < 99 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < 99 && this.CurrentTileY + newY > 0)
                 {
+                    int testAStar = Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue;
                     if (Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue == 1)
                     {
                         MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY));

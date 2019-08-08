@@ -122,7 +122,7 @@ namespace SecretProject.Class.StageFolder
 
             Boar = new Boar("Boar", new Vector2(900, 200), Graphics, Game1.AllTextures.EnemySpriteSheet);
             Boars = new List<Boar>() { };
-            for (int i = 0; i < 10; i++)
+            for (int i = 5; i < 10; i++)
             {
                 Boars.Add(new Boar("Boar", new Vector2(100 * i, 500), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }

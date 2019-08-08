@@ -471,10 +471,13 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (var j = 0; j < tilesetTilesHigh; j++)
                         {
-                            if (AllTiles[z][i, j].GID != 0)
+                            int testGID = AllTiles[z][i, j].GID;
+                            if (AllTiles[z][i, j].GID != -1)
                             {
+                                AllTiles[1][i, j].AStarTileValue = 0;
                                 if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
+                                    
                                     if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
                                     {
 
@@ -489,11 +492,12 @@ namespace SecretProject.Class.TileStuff
                                                 AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                                                 (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
 
+                                            
 
-                                            AllTiles[z][i, j].AStarTileValue = 0;
                                             Game1.GetCurrentStage().AllObjects.Add(AllTiles[z][i, j].TileObject); // not gonna work for saving, gotta figure out.
 
                                         }
+                                        AllTiles[z][i, j].AStarTileValue = 0;
                                     }
                                 }
                             }
@@ -552,7 +556,7 @@ namespace SecretProject.Class.TileStuff
                     for (var j = 0; j < mapHeight; j++)
                     {
 
-                        if (AllTiles[z][i, j].GID != 0)
+                        if (AllTiles[z][i, j].GID != -1)
                         {
                             if (AllTiles[z][i, j].IsFinishedAnimating)
                             {
@@ -740,7 +744,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (var j = 0; j < mapHeight; j++)
                     {
-                        if (AllTiles[z][i, j].GID != 0)
+                        if (AllTiles[z][i, j].GID != -1)
                         {
                             if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16) - 200
                                  && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) - 200)

@@ -35,6 +35,16 @@ namespace SecretProject.Class.UI
                     " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n MouseWorldRectangle: "
                     + Game1.myMouseManager.WorldMouseRectangle + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n mouseworldrectangle: " +
                     Game1.myMouseManager.MouseSquareCoordinateY, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+
+                //for(int i =0; i< 100; i++)
+                //{
+                //    for(int j =0; j < 100; j++)
+                //    {
+                //        //spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() + "  ", new Vector2(position.X + (i * 5), position.Y + (j* 5)), Color.White);
+                //        spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() +"  ", new Vector2(position.X + (i * 20), position.Y - 500 + (j * 20)), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,1f);
+                //    }
+                //}
+                
             }
             spriteBatch.End();
         }
