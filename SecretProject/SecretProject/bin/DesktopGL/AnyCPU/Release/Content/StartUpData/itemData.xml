@@ -240,6 +240,22 @@
       <TextureRow>1</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="142">
+    <Value>
+      <Name>ElmWood</Name>
+      <ID>142</ID>
+      <InvMaximum>120</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
+      <Price>20</Price>
+      <id>142</id>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>2</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="143">
     <Value>
       <Name>GoldNugget</Name>

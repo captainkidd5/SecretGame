@@ -528,12 +528,44 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int k = 0; k < mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects.Count; k++)
                 {
-                    TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects[k];
 
+                    TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects[k];
                     tile.TileObject = new ObjectBody(graphicsDevice,
-                        new Rectangle(tile.DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                        tile.DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                        (int)Math.Ceiling(tempObj.Height)), tile.DestinationRectangle.X);
+                       new Rectangle(tile.DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
+                       tile.DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
+                       (int)Math.Ceiling(tempObj.Height)), tile.DestinationRectangle.X);
+                    if (tile.DiagonalFlip)
+                    {
+                        if (tile.HorizontalFlip)
+                        {
+                            tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
+                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                        }
+                        if (tile.VeritcalFlip)
+                        {
+                            //tile.TileObject.Rectangle.Y = tile.TileObject.Rectangle.Y - tile.TileObject.Rectangle.Height;
+                            tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.X, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
+                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                        }
+
+                    }
+                    else if (tile.HorizontalFlip && !tile.DiagonalFlip)
+                    {
+
+                        tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
+                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                    }
+                    else if (tile.VeritcalFlip && !tile.DiagonalFlip)
+                    {
+                        tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.X, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
+                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                    }
+
+                    else
+                    {
+                        
+                    }
+                   
                     // tile.HasObject = true;
                     Game1.GetCurrentStage().AllObjects.Add(tile.TileObject);
                 }
