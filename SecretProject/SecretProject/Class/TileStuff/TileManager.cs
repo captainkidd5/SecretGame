@@ -842,11 +842,11 @@ namespace SecretProject.Class.TileStuff
             int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
             int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
             ReplaceTilePermanent(1, x, y, crop.GID);
-            if(mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID))
+            if(mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID -1))
             {
-                if (mapName.Tilesets[TileSetNumber].Tiles[crop.GID].Properties.ContainsKey("AssociatedTiles"))
+                if (mapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    ReplaceTilePermanent(2, x, y - 1, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[crop.GID].Properties["AssociatedTiles"]));
+                    ReplaceTilePermanent(2, x, y - 1, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]));
                 }
             }
             
@@ -922,8 +922,9 @@ namespace SecretProject.Class.TileStuff
                             oldYString.Insert(0, "0");
                         }
                         tempCrop.TileID = layer.ToString() + oldXString + oldYString;
+                        tempCrop.GID++;
                         //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                        ReplaceTileWithNewTile(1, oldX, oldY, tempCrop.GID + 2);
+                        ReplaceTileWithNewTile(1, oldX, oldY, tempCrop.GID );
                         AllTiles[layer][oldX, oldY].ContainsCrop = true;
                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                         Game1.GetCurrentStage().AllCrops.Add(tempCrop);
