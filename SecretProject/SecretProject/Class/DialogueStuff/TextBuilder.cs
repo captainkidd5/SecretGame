@@ -26,16 +26,24 @@ namespace SecretProject.Class.DialogueStuff
         public float StringDisplayAnchor { get; set; }
         public float SpeedAnchor { get; set; }
         public Vector2 PositionToWriteTo { get; set; }
+        public Vector2 TextBoxLocation { get; set; }
         public bool UseTextBox { get; set; } = false;
         public bool FreezeStage { get; set; } = false;
         public float Scale { get; set; }
         public Color Color { get; set; }
         public int NumberOfClicks { get; set; }
         public TextBoxType TextBoxType { get; set; }
+        public int WrapIndex { get; set; }
+
+        public string[] Words { get; set; }
+        public int CurrentWordIndex { get; set; } = 0;
+
+        public float LineWidth { get; set; } = 0;
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
+            this.Words = stringToWrite.Split(' ');
             this.WriteSpeed = writeSpeed;
             this.StringDisplayTimer = stringDisplayTimer;
             this.StringDisplayAnchor = this.StringDisplayTimer;
@@ -44,13 +52,15 @@ namespace SecretProject.Class.DialogueStuff
             this.Scale = 1f;
             this.Color = Color.Black;
             this.NumberOfClicks = 0;
+            this.WrapIndex = 0;
         }
 
         public void Update(GameTime gameTime)
         {
             if (IsActive)
             {
-                if(NumberOfClicks == 1)
+                this.Words = StringToWrite.Split(' ');
+                if (NumberOfClicks == 1)
                 {
                     this.outputString = StringToWrite;
                     StringDisplayTimer = 10f;
@@ -88,31 +98,54 @@ namespace SecretProject.Class.DialogueStuff
                     this.StringDisplayTimer = this.StringDisplayAnchor;
                 }
 
-                if (this.IsActive && WriteSpeed < 0 && currentTextIndex < StringToWrite.Length)
+                if (WriteSpeed < 0 && currentTextIndex < Words[CurrentWordIndex].Length && CurrentWordIndex < Words.Length - 1)
                 {
-                    outputString += StringToWrite[currentTextIndex];
+                    outputString += Words[CurrentWordIndex][currentTextIndex];
+                    float spaceWidth = Game1.AllTextures.MenuText.MeasureString(Words[CurrentWordIndex][currentTextIndex].ToString()).X;
                     currentTextIndex++;
+                    WrapIndex++;
                     WriteSpeed = SpeedAnchor; ///////////////
 
+                }
+                if(WriteSpeed < 0 && currentTextIndex >= Words[CurrentWordIndex].Length)
+                {
+                    outputString  += " ";
+                    currentTextIndex = 0;
+                    CurrentWordIndex++;
+                    WrapIndex++;
+                    WriteSpeed = SpeedAnchor;
                 }
 
 
             }
         }
 
-        public void ApplyWrap(Vector2 wrapEdge, float yWrapTo)
+        private String ParseText()
         {
-            if(this.PositionToWriteTo.X + currentTextIndex >= wrapEdge.X)
+            String line = String.Empty;
+            String returnString = String.Empty;
+            foreach(String word in Words)
             {
-                this.PositionToWriteTo = new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y + yWrapTo);
+                if(Game1.AllTextures.MenuText.MeasureString(line + word).Length() > 500)
+                {
+                    returnString = returnString + line + '\n';
+                    line = String.Empty;
+                    
+                }
+                line = line + word + ' ';
             }
+            return returnString + line;
         }
+
 
         public void Reset()
         {
             this.outputString = "";
             this.StringToWrite = "";
             this.currentTextIndex = 0;
+            this.CurrentWordIndex = 0;
+            this.IsActive = false;
+            WrapIndex = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
@@ -120,25 +153,25 @@ namespace SecretProject.Class.DialogueStuff
             if (IsActive)
             {
 
-                
+
+                    //spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
+
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
                 if(UseTextBox)
                 {
                     TextBox speechBox;
+                    this.TextBoxLocation = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
                     switch (TextBoxType)
                     {
                         
                         case TextBoxType.normal:
-                            //ApplyWrap(PositionToWriteTo, 200);
-                            ApplyWrap(new Vector2(PositionToWriteTo.X + 100, PositionToWriteTo.Y), 0);
-                            speechBox = new TextBox(PositionToWriteTo, 0);
+                            speechBox = new TextBox(TextBoxLocation, 0);
                             speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
                             speechBox.DrawWithoutString(spriteBatch);
                             break;
                         case TextBoxType.dialogue:
-                            ApplyWrap(new Vector2(PositionToWriteTo.X + 100, PositionToWriteTo.Y), 0);
-                            speechBox = new TextBox(PositionToWriteTo, 1);
-                            speechBox.position = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
+                            speechBox = new TextBox(TextBoxLocation, 1);
+                            speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
                             speechBox.DrawWithoutString(spriteBatch);
                             break;
 
