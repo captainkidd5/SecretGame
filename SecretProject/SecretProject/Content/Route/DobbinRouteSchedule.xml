@@ -21,7 +21,7 @@
         <ID>3</ID>
         <TimeToStart>17</TimeToStart>
         <TimeToFinish>21</TimeToFinish>
-        <EndX>10</EndX>
+        <EndX>30</EndX>
         <EndY>15</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
@@ -29,7 +29,7 @@
         <TimeToStart>22</TimeToStart>
         <TimeToFinish>3</TimeToFinish>
         <EndX>35</EndX>
-        <EndY>15</EndY>
+        <EndY>40</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>5</ID>

@@ -285,6 +285,16 @@
    <object id="2" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
+ <tile id="2952">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="2953">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
  <tile id="3148">
   <objectgroup draworder="index">
    <object id="1" x="0" y="11" width="7" height="5"/>

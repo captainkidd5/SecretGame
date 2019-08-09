@@ -8,7 +8,7 @@
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>11</TimeToFinish>
       <EndX>15</EndX>
-      <EndY>15</EndY>
+      <EndY>20</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
@@ -21,14 +21,14 @@
         <ID>3</ID>
         <TimeToStart>18</TimeToStart>
         <TimeToFinish>21</TimeToFinish>
-        <EndX>10</EndX>
+        <EndX>20</EndX>
         <EndY>40</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>4</ID>
         <TimeToStart>22</TimeToStart>
         <TimeToFinish>2</TimeToFinish>
-        <EndX>35</EndX>
+        <EndX>30</EndX>
         <EndY>15</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
