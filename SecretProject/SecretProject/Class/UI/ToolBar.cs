@@ -84,6 +84,8 @@ namespace SecretProject.Class.UI
 
         public bool IsActive { get; set; } = true;
 
+        public bool IsAnySlotHovered { get; set; } = false;
+
         public ToolBar( GraphicsDevice graphicsDevice, ContentManager content )
         {
             BackGroundTexturePosition = new Vector2(320, 635);
@@ -147,6 +149,7 @@ namespace SecretProject.Class.UI
         {
             UpdateScrollWheel(mouse);
             TextBuilder.Update(gameTime);
+            IsAnySlotHovered = false;
 
             if(WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
@@ -337,19 +340,18 @@ namespace SecretProject.Class.UI
 
                 AllSlots[i].Update(mouse);
             }
-
+            int buttonIndex = 0;
             for (int i = 0; i < 7; i++)
             {
+                
                 if(AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
-                    TextBuilder.StringToWrite = "";
-                    TextBuilder.StringToWrite = inventory.currentInventory[i].GetItem().Name;
-                    TextBuilder.PositionToWriteTo = new Vector2(AllSlots[i].Position.X, AllSlots[i].Position.Y - 32);
-                    TextBuilder.StringDisplayTimer = .1f;
-                    TextBuilder.StringDisplayAnchor = .1f;
-                    TextBuilder.IsActive = true;
+                    IsAnySlotHovered = true;
+                    buttonIndex = i;
+                    
                     
                 }
+                
                 //else
                 //{
                 //    TextBuilder.StringToWrite = "";
@@ -478,6 +480,23 @@ namespace SecretProject.Class.UI
                 }
 
             }
+            if (IsAnySlotHovered)
+            {
+                //TextBuilder.StringToWrite = "";
+                TextBuilder.StringToWrite = inventory.currentInventory[buttonIndex].GetItem().Name;
+                TextBuilder.PositionToWriteTo = new Vector2(AllSlots[buttonIndex].Position.X, AllSlots[buttonIndex].Position.Y - 32);
+                TextBuilder.StringDisplayTimer = .1f;
+                TextBuilder.StringDisplayAnchor = .1f;
+                TextBuilder.IsActive = true;
+            }
+            else
+            {
+                //TextBuilder.IsActive = false;
+                TextBuilder.StringToWrite = "";
+                TextBuilder.ClearString();
+                
+            }
+            
         }
         
         public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch, MouseManager mouse)

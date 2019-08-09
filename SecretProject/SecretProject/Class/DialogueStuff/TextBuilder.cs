@@ -80,7 +80,7 @@ namespace SecretProject.Class.DialogueStuff
                 }
                 if (StringDisplayTimer < 0)
                 {
-                    outputString = "";
+                    ClearString();
                     this.IsActive = false;
                     this.UseTextBox = false;
                     currentTextIndex = 0;
@@ -103,6 +103,7 @@ namespace SecretProject.Class.DialogueStuff
         public void ClearString()
         {
             this.outputString = "";
+            this.currentTextIndex = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
