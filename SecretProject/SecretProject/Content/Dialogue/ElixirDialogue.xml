@@ -6,7 +6,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <ConditionMet>true</ConditionMet>
-   <TextToWrite>How do you like your eggs?</TextToWrite>
+   <TextToWrite>This is an extremely long string designed to test how well text will wrap, my dude.</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

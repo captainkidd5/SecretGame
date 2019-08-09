@@ -491,10 +491,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                //TextBuilder.IsActive = false;
-                TextBuilder.StringToWrite = "";
-                TextBuilder.ClearString();
-                
+                TextBuilder.Reset();              
             }
             
         }

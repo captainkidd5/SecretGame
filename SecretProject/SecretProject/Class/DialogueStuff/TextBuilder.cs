@@ -80,7 +80,7 @@ namespace SecretProject.Class.DialogueStuff
                 }
                 if (StringDisplayTimer < 0)
                 {
-                    ClearString();
+                    Reset();
                     this.IsActive = false;
                     this.UseTextBox = false;
                     currentTextIndex = 0;
@@ -100,9 +100,18 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
-        public void ClearString()
+        public void ApplyWrap(Vector2 wrapEdge, float yWrapTo)
+        {
+            if(this.PositionToWriteTo.X + currentTextIndex >= wrapEdge.X)
+            {
+                this.PositionToWriteTo = new Vector2(this.PositionToWriteTo.X, this.PositionToWriteTo.Y + yWrapTo);
+            }
+        }
+
+        public void Reset()
         {
             this.outputString = "";
+            this.StringToWrite = "";
             this.currentTextIndex = 0;
         }
 
@@ -111,7 +120,7 @@ namespace SecretProject.Class.DialogueStuff
             if (IsActive)
             {
 
-
+                
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
                 if(UseTextBox)
                 {
@@ -120,13 +129,16 @@ namespace SecretProject.Class.DialogueStuff
                     {
                         
                         case TextBoxType.normal:
+                            //ApplyWrap(PositionToWriteTo, 200);
+                            ApplyWrap(new Vector2(PositionToWriteTo.X + 100, PositionToWriteTo.Y), 0);
                             speechBox = new TextBox(PositionToWriteTo, 0);
                             speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
                             speechBox.DrawWithoutString(spriteBatch);
                             break;
                         case TextBoxType.dialogue:
+                            ApplyWrap(new Vector2(PositionToWriteTo.X + 100, PositionToWriteTo.Y), 0);
                             speechBox = new TextBox(PositionToWriteTo, 1);
-                            speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
+                            speechBox.position = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
                             speechBox.DrawWithoutString(spriteBatch);
                             break;
 

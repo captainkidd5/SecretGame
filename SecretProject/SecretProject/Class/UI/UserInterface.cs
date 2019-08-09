@@ -211,7 +211,7 @@ namespace SecretProject.Class.UI
 
         public void HandleSceneChanged(object sender, EventArgs eventArgs)
         {
-            this.TextBuilder.ClearString();
+            this.TextBuilder.Reset();
             this.TextBuilder.StringToWrite = Game1.GetCurrentStage().StageName;
             this.TextBuilder.Scale = 4f;
             this.TextBuilder.Color = Color.White;
