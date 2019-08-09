@@ -1049,6 +1049,7 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
             {
                 ReplaceTilePermanent(2, oldX, oldY - 1, 0);
+                AllTiles[0][oldX, oldY].ContainsCrop = false;
             }
             GetDrop(layer, oldX, oldY);
 
@@ -1134,7 +1135,9 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
                 AllTiles[layer][oldX, oldY].TileObject = null;
+                
                 GetDrop(layer, oldX, oldY);
+                //AllTiles[layer][oldX, oldY].ContainsCrop = false;
                 if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                 {
                     DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
