@@ -62,6 +62,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect PigGrunt2;
         public SoundEffectInstance PigGrunt2Instance;
 
+        public SoundEffect CropPluck;
+        public SoundEffectInstance CropPluckInstance;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -120,6 +123,8 @@ namespace SecretProject.Class.SoundStuff
             PigGrunt2 = content.Load<SoundEffect>("SoundEffects/PigGrunt2");
             PigGrunt2Instance = PigGrunt2.CreateInstance();
 
+            CropPluck = content.Load<SoundEffect>("SoundEffects/ropePop");
+            CropPluckInstance = CropPluck.CreateInstance();
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)
@@ -227,6 +232,9 @@ namespace SecretProject.Class.SoundStuff
                         break;
                     case 15:
                         PigGrunt2Instance.Play();
+                        break;
+                    case 16:
+                        CropPluckInstance.Play();
                         break;
 
 

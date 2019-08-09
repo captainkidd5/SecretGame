@@ -1191,7 +1191,7 @@
  <tile id="5396">
   <properties>
    <property name="AssociatedTiles" value="5296"/>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="177:100"/>
   </properties>
  </tile>
@@ -1710,7 +1710,7 @@
  </tile>
  <tile id="6083">
   <properties>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="147:100"/>
   </properties>
  </tile>

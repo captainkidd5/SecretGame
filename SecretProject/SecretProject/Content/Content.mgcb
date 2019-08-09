@@ -759,3 +759,9 @@
 /processor:PassThroughProcessor
 /build:Item/Crafting/CraftingGuide.xml
 
+#begin SoundEffects/ropePop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/ropePop.wav
+
