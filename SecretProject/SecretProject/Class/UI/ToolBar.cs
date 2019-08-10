@@ -482,12 +482,11 @@ namespace SecretProject.Class.UI
             }
             if (IsAnySlotHovered)
             {
-                //TextBuilder.StringToWrite = "";
-                TextBuilder.StringToWrite = inventory.currentInventory[buttonIndex].GetItem().Name;
-                TextBuilder.PositionToWriteTo = new Vector2(AllSlots[buttonIndex].Position.X, AllSlots[buttonIndex].Position.Y - 32);
+                TextBuilder.Activate(false, TextBoxType.normal, false, inventory.currentInventory[buttonIndex].GetItem().Name,1f,
+                    new Vector2(AllSlots[buttonIndex].Position.X, AllSlots[buttonIndex].Position.Y - 32), 200f);
+
                 TextBuilder.StringDisplayTimer = .1f;
                 TextBuilder.StringDisplayAnchor = .1f;
-                TextBuilder.IsActive = true;
             }
             else
             {

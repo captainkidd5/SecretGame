@@ -90,9 +90,6 @@ namespace SecretProject.Class.UI
             {
                 BottomBar.Update(gameTime, inventory, mouse);
             }
-            
-            //if (!IsShopMenu)
-            //{
 
             //}
             CraftingMenu.Update(gameTime, mouse);
@@ -161,6 +158,10 @@ namespace SecretProject.Class.UI
         public void ActivateShop(int shopID)
         {
             IsShopMenu = !IsShopMenu;
+            for(int i = 0; i < Game1.AllShops.Count; i++)
+            {
+                Game1.AllShops[i].IsActive = false;
+            }
             Game1.AllShops.Find(x => x.ID == shopID).IsActive = IsShopMenu;
             if (!IsShopMenu)
             {

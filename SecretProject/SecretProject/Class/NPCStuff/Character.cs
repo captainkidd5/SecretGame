@@ -120,7 +120,7 @@ namespace SecretProject.Class.NPCStuff
                 {
 
 
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1));
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1),2f, null, null);
 
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);

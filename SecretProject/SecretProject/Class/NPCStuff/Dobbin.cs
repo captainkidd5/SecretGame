@@ -76,13 +76,6 @@ namespace SecretProject.Class.NPCStuff
                 {
 
 
-                    //Game1.Player.UserInterface.TextBuilder.IsActive = true;
-                    //Game1.Player.UserInterface.TextBuilder.TextBoxType = TextBoxType.dialogue;
-
-                    //Game1.Player.UserInterface.TextBuilder.UseTextBox = true;
-                    //Game1.Player.UserInterface.TextBuilder.FreezeStage = true;
-                    //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1);
-                    //Game1.AllShop
                     Game1.Player.UserInterface.ActivateShop(2);
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
