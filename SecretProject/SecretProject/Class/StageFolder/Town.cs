@@ -192,7 +192,7 @@ namespace SecretProject.Class.StageFolder
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
 
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
@@ -263,6 +263,8 @@ namespace SecretProject.Class.StageFolder
 
                 
             }
+            Game1.Player.controls.UpdateKeys();
+            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
         }
         #endregion
 

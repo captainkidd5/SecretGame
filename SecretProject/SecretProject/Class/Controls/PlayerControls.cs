@@ -59,7 +59,16 @@ namespace SecretProject.Class.Controls
         }
 
 
-
+        public void UpdateKeys()
+        {
+            switch (controls)
+            {
+                case ControlType.Keyboard:
+                    KeyboardState currentKeys = Keyboard.GetState();
+                    pressedKeys = currentKeys.GetPressedKeys();
+                    break;
+            }
+        }
         public void Update()
         {
             switch (controls)
