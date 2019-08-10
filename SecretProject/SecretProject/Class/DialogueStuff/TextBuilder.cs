@@ -107,7 +107,7 @@ namespace SecretProject.Class.DialogueStuff
                     WriteSpeed = SpeedAnchor; ///////////////
 
                 }
-                if(WriteSpeed < 0 && currentTextIndex >= Words[CurrentWordIndex].Length)
+                if(WriteSpeed < 0 && currentTextIndex >= Words[CurrentWordIndex].Length - 1)
                 {
                     outputString  += " ";
                     currentTextIndex = 0;
