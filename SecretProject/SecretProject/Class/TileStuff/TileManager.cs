@@ -1049,8 +1049,9 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
             {
                 ReplaceTilePermanent(2, oldX, oldY - 1, 0);
-                AllTiles[0][oldX, oldY].ContainsCrop = false;
+                //AllTiles[0][oldX, oldY].ContainsCrop = false;
             }
+            AllTiles[0][oldX, oldY].ContainsCrop = false;
             GetDrop(layer, oldX, oldY);
 
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);

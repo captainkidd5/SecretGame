@@ -19,6 +19,7 @@ namespace SecretProject.Class.UI
         public string TextToWrite { get; set; }
         protected Texture2D Texture;
         public Rectangle SourceRectangle { get; set; }
+        public Rectangle DestinationRectangle { get; set; }
 
         public KeyboardState oldKeys = Keyboard.GetState();
         public bool RemovesToolBar { get; set; }
@@ -39,9 +40,11 @@ namespace SecretProject.Class.UI
             {
                 case 0:
                     this.SourceRectangle = new Rectangle(64, 1088, 800, 288);
+                    this.DestinationRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, this.SourceRectangle.Width, this.SourceRectangle.Height);
                     break;
                 case 1:
                     this.SourceRectangle = new Rectangle(64, 1088, 800, 288);
+                    this.DestinationRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, this.SourceRectangle.Width, this.SourceRectangle.Height);
                     this.RemovesToolBar = true;
                     break;
             }

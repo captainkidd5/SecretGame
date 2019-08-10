@@ -33,12 +33,19 @@ namespace SecretProject.Class.DialogueStuff
         public Color Color { get; set; }
         public int NumberOfClicks { get; set; }
         public TextBoxType TextBoxType { get; set; }
-        public int WrapIndex { get; set; }
 
         public string[] Words { get; set; }
         public int CurrentWordIndex { get; set; } = 0;
 
         public float LineWidth { get; set; } = 0;
+
+        String parsedText;
+        String typedText;
+        double typedTextLength;
+        int delayInMilliseconds;
+        bool isDoneDrawing;
+
+        
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -52,14 +59,47 @@ namespace SecretProject.Class.DialogueStuff
             this.Scale = 1f;
             this.Color = Color.Black;
             this.NumberOfClicks = 0;
-            this.WrapIndex = 0;
+
+
+            this.TextBoxLocation = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
+            SpeechBox = new TextBox(TextBoxLocation, 1);
+            SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
+            typedText = "";
+            parsedText = parseText(stringToWrite);
+            delayInMilliseconds = 50;
+            isDoneDrawing = false;
+        }
+
+        public void ChangedParsedText()
+        {
+            this.parsedText = parseText(this.StringToWrite);
         }
 
         public void Update(GameTime gameTime)
         {
             if (IsActive)
             {
-                this.Words = StringToWrite.Split(' ');
+
+                if(!isDoneDrawing)
+                {
+                    if(delayInMilliseconds == 0)
+                    {
+                        typedText = parsedText;
+                        isDoneDrawing = true;
+                    }
+                    else if(typedTextLength < parsedText.Length)
+                    {
+                        typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / delayInMilliseconds;
+                        if(typedTextLength >= parsedText.Length)
+                        {
+                            typedTextLength = parsedText.Length;
+                            isDoneDrawing = true;
+                        }
+
+                        typedText = parsedText.Substring(0, (int)typedTextLength);
+                    }
+                }
+               /* this.Words = StringToWrite.Split(' ');
                 if (NumberOfClicks == 1)
                 {
                     this.outputString = StringToWrite;
@@ -103,7 +143,6 @@ namespace SecretProject.Class.DialogueStuff
                     outputString += Words[CurrentWordIndex][currentTextIndex];
                     float spaceWidth = Game1.AllTextures.MenuText.MeasureString(Words[CurrentWordIndex][currentTextIndex].ToString()).X;
                     currentTextIndex++;
-                    WrapIndex++;
                     WriteSpeed = SpeedAnchor; ///////////////
 
                 }
@@ -112,28 +151,31 @@ namespace SecretProject.Class.DialogueStuff
                     outputString  += " ";
                     currentTextIndex = 0;
                     CurrentWordIndex++;
-                    WrapIndex++;
                     WriteSpeed = SpeedAnchor;
                 }
+                */
 
 
             }
         }
 
-        private String ParseText()
+        private String parseText(String text)
         {
             String line = String.Empty;
             String returnString = String.Empty;
-            foreach(String word in Words)
+            String[] wordArray = text.Split(' ');
+
+            foreach (String word in wordArray)
             {
-                if(Game1.AllTextures.MenuText.MeasureString(line + word).Length() > 500)
+                if (Game1.AllTextures.MenuText.MeasureString(line + word).Length() > SpeechBox.DestinationRectangle.Width)
                 {
                     returnString = returnString + line + '\n';
                     line = String.Empty;
-                    
                 }
+
                 line = line + word + ' ';
             }
+
             return returnString + line;
         }
 
@@ -145,39 +187,41 @@ namespace SecretProject.Class.DialogueStuff
             this.currentTextIndex = 0;
             this.CurrentWordIndex = 0;
             this.IsActive = false;
-            WrapIndex = 0;
         }
-
+        public TextBox SpeechBox { get; set; }
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (IsActive)
             {
 
 
-                    //spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
-
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
+                //spriteBatch.DrawString(Game1.AllTextures.MenuText, outputString, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, layerDepth);
+                //spriteBatch.Draw(Game1.AllTextures.redPixel, SpeechBox.DestinationRectangle, Color.White);
+                
                 if(UseTextBox)
                 {
-                    TextBox speechBox;
-                    this.TextBoxLocation = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
+                    
+                    
                     switch (TextBoxType)
                     {
                         
                         case TextBoxType.normal:
-                            speechBox = new TextBox(TextBoxLocation, 0);
-                            speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
-                            speechBox.DrawWithoutString(spriteBatch);
+                            SpeechBox = new TextBox(TextBoxLocation, 0);
+                            SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
+                           // SpeechBox.DrawWithoutString(spriteBatch);
                             break;
                         case TextBoxType.dialogue:
-                            speechBox = new TextBox(TextBoxLocation, 1);
-                            speechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
-                            speechBox.DrawWithoutString(spriteBatch);
+                            SpeechBox = new TextBox(TextBoxLocation, 1);
+                            SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
+                           // SpeechBox.DrawWithoutString(spriteBatch);
                             break;
 
                     }
 
-                    
+                    spriteBatch.Draw(Game1.AllTextures.redPixel, SpeechBox.DestinationRectangle, Color.White);
+
+                    spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y), this.Color);
+
                 }
                 
             }

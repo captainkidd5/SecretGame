@@ -68,6 +68,9 @@ namespace SecretProject.Class.TextureStuff
         public Effect nightTint;
         public Texture2D lightMask;
 
+        //Debug
+        public Texture2D redPixel;
+
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -105,7 +108,7 @@ namespace SecretProject.Class.TextureStuff
             practiceLightMaskEffect = content.Load<Effect>("Effects/practiceLighting1");
             nightTint = content.Load<Effect>("Effects/nightTint");
 
-
+            redPixel = content.Load<Texture2D>("Debug/solidRed");
         }
 
         public Rectangle GetItemTextureFromAtlas(int row, int column)
