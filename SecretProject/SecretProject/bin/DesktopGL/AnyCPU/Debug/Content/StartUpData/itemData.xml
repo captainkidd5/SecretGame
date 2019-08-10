@@ -304,6 +304,22 @@
       <TextureRow>7</TextureRow>
     </Value>
   </EntryOfStringItem>
+  <EntryOfStringItem Key="148">
+    <Value>
+      <Name>BoarDroppings</Name>
+      <ID>148</ID>
+      <InvMaximum>30</InvMaximum>
+      <WorldMaximum>300</WorldMaximum>
+      <Ignored>false</Ignored>
+      <IsDropped>false</IsDropped>
+      <IsPlaceable>false</IsPlaceable>
+      <IsPlantable>false</IsPlantable>
+      <Price>1</Price>
+      <id>148</id>
+      <TextureColumn>6</TextureColumn>
+      <TextureRow>8</TextureRow>
+    </Value>
+  </EntryOfStringItem>
   <EntryOfStringItem Key="149">
     <Value>
       <Name>ThunderOrb</Name>

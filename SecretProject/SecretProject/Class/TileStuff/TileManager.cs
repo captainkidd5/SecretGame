@@ -846,7 +846,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (mapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    ReplaceTilePermanent(2, x, y - 1, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]));
+                    ReplaceTilePermanent(3, x, y - 1, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]));
                 }
             }
             
@@ -1048,7 +1048,7 @@ namespace SecretProject.Class.TileStuff
             //mostly for crops
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
             {
-                ReplaceTilePermanent(2, oldX, oldY - 1, 0);
+                ReplaceTilePermanent(3, oldX, oldY - 1, 0);
                 //AllTiles[0][oldX, oldY].ContainsCrop = false;
             }
             AllTiles[0][oldX, oldY].ContainsCrop = false;

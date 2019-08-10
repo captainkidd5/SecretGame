@@ -116,6 +116,15 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
         }
+
+        public void RollDrop(GameTime gameTime,int iD, Vector2 positionToDrop, int upperChance)
+        {
+            int success = Game1.Utility.RNumber(1, upperChance);
+            if(success == 1)
+            {
+                Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(iD, positionToDrop, true));
+            }
+        }
         float timeBetweenJumps = .4f;
         int pointCounter = 0;
         bool pathFound = false;

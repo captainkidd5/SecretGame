@@ -1178,6 +1178,11 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="5390">
+  <properties>
+   <property name="AssociatedTiles" value="5291"/>
+  </properties>
+ </tile>
  <tile id="5391">
   <properties>
    <property name="AssociatedTiles" value="5292"/>
@@ -1709,8 +1714,19 @@
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
+ <tile id="6081">
+  <properties>
+   <property name="AssociatedTiles" value="5982"/>
+  </properties>
+ </tile>
+ <tile id="6082">
+  <properties>
+   <property name="AssociatedTiles" value="5983"/>
+  </properties>
+ </tile>
  <tile id="6083">
   <properties>
+   <property name="AssociatedTiles" value="5984"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="147:100"/>
   </properties>

@@ -71,6 +71,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             else
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                
             }
 
             //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
@@ -80,6 +81,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 PlaySound(SoundID);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
+                RollDrop(gameTime, 148, this.Position, 10);
             }
 
         }
