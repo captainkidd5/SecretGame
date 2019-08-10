@@ -76,7 +76,7 @@ namespace SecretProject.Class.NPCStuff
                 {
 
 
-                    Game1.Player.UserInterface.ActivateShop(2);
+                    Game1.Player.UserInterface.ActivateShop(UI.OpenShop.DobbinShop);
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
 

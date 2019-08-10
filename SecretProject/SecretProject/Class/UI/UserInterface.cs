@@ -19,7 +19,8 @@ namespace SecretProject.Class.UI
     public enum OpenShop
     {
         None = 0,
-        ToolShop = 1
+        ToolShop = 1,
+        DobbinShop = 2
         //LodgeInteior = 1,
         //Iliad = 2,
         //Exit = 3,
@@ -108,7 +109,7 @@ namespace SecretProject.Class.UI
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
-                ActivateShop(1);
+                ActivateShop(OpenShop.ToolShop);
                 //Player.UserInterface.CurrentOpenShop = OpenShop.ToolShop;
 
                 
@@ -155,14 +156,15 @@ namespace SecretProject.Class.UI
                 
         }
 
-        public void ActivateShop(int shopID)
+        public void ActivateShop(OpenShop shopID)
         {
             IsShopMenu = !IsShopMenu;
             for(int i = 0; i < Game1.AllShops.Count; i++)
             {
                 Game1.AllShops[i].IsActive = false;
             }
-            Game1.AllShops.Find(x => x.ID == shopID).IsActive = IsShopMenu;
+            Game1.AllShops.Find(x => x.ID == (int)shopID).IsActive = IsShopMenu;
+            Player.UserInterface.CurrentOpenShop = shopID;
             if (!IsShopMenu)
             {
                 Player.UserInterface.CurrentOpenShop = 0;
