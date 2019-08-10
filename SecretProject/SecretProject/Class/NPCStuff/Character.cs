@@ -116,11 +116,11 @@ namespace SecretProject.Class.NPCStuff
                 mouse.ChangeMouseTexture(200);
                 mouse.ToggleGeneralInteraction = true;
                 Game1.isMyMouseVisible = false;
-                if (mouse.IsRightClicked)
+                if (mouse.IsClicked)
                 {
 
 
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1),2f, null, null);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1),2f, null, null);
 
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);

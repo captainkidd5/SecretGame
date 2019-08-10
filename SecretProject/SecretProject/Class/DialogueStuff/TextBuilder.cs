@@ -38,7 +38,8 @@ namespace SecretProject.Class.DialogueStuff
 
         public float LineLimit { get; set; }
 
-
+        public TextBox SpeechBox { get; set; }
+        public float startDisplay { get; set; }
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
@@ -56,10 +57,11 @@ namespace SecretProject.Class.DialogueStuff
             this.TextBoxLocation = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
             SpeechBox = new TextBox(TextBoxLocation, 1);
             SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
-            this.LineLimit = SpeechBox.DestinationRectangle.Width - 50;
+            this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
             typedText = "";
             parsedText = parseText(stringToWrite);
             isDoneDrawing = false;
+            
         }
 
         public void ChangedParsedText()
@@ -82,7 +84,7 @@ namespace SecretProject.Class.DialogueStuff
             if(this.UseTextBox)
             {
                 this.PositionToWriteTo = new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y);
-                this.LineLimit = SpeechBox.DestinationRectangle.Width - 200;
+                this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
             }
             else
             {
@@ -106,7 +108,7 @@ namespace SecretProject.Class.DialogueStuff
                 
                 if (NumberOfClicks == 1)
                 {
-                    StringDisplayTimer = 10f;
+                    //StringDisplayTimer = 10f;
                     this.WriteSpeed = .1f;
 
                 }
@@ -114,7 +116,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     Reset();
                 }
-                if (Game1.myMouseManager.IsClicked)
+                if (Game1.myMouseManager.IsClicked && StringDisplayTimer != StringDisplayAnchor && !Game1.myMouseManager.MouseRectangle.Intersects(this.SpeechBox.DestinationRectangle))
                 {
                     NumberOfClicks++;
                 }
@@ -176,7 +178,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Reset()
         {
-            this.StringDisplayTimer = 10f;
+            this.StringDisplayTimer = StringDisplayAnchor;
             this.StringToWrite = "";
             this.IsActive = false;
             this.UseTextBox = false;
@@ -190,7 +192,7 @@ namespace SecretProject.Class.DialogueStuff
             Game1.Player.UserInterface.BottomBar.IsActive = true;
             this.typedTextLength = 0;
         }
-        public TextBox SpeechBox { get; set; }
+        
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (IsActive)
