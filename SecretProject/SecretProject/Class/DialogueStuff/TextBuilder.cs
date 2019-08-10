@@ -31,25 +31,22 @@ namespace SecretProject.Class.DialogueStuff
         public Color Color { get; set; }
         public int NumberOfClicks { get; set; }
         public TextBoxType TextBoxType { get; set; }
-
-        public string[] Words { get; set; }
-
-
         String parsedText;
         String typedText;
         double typedTextLength;
         bool isDoneDrawing;
 
-        
+
 
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
+            this.SpeedAnchor = writeSpeed;
             this.StringDisplayTimer = stringDisplayTimer;
             this.StringDisplayAnchor = this.StringDisplayTimer;
             PositionToWriteTo = Game1.Utility.DialogueTextLocation;
-            this.Scale = 1f;
+            this.Scale = 2f;
             this.Color = Color.Black;
             this.NumberOfClicks = 0;
 
@@ -67,10 +64,25 @@ namespace SecretProject.Class.DialogueStuff
             this.parsedText = parseText(this.StringToWrite);
         }
 
+        public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite)
+        {
+            this.IsActive = true;
+            this.UseTextBox = useTextBox;
+            this.TextBoxType = textBoxType;
+            this.FreezeStage = freezeStage;
+            this.StringToWrite = stringToWrite;
+            ChangedParsedText();
+        }
+
         public void Update(GameTime gameTime)
         {
             if (IsActive)
             {
+                if(UseTextBox)
+                {
+                    Game1.Player.UserInterface.BottomBar.IsActive = false;
+                }
+                
                 if (NumberOfClicks == 1)
                 {
                     StringDisplayTimer = 10f;
@@ -94,19 +106,19 @@ namespace SecretProject.Class.DialogueStuff
                 if (StringDisplayTimer <= 0)
                 {
                     Reset();
-           
+
                 }
                 if (!isDoneDrawing)
                 {
-                    if(WriteSpeed == 0)
+                    if (WriteSpeed == 0)
                     {
                         typedText = parsedText;
                         isDoneDrawing = true;
                     }
-                    else if(typedTextLength < parsedText.Length)
+                    else if (typedTextLength < parsedText.Length)
                     {
                         typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
-                        if(typedTextLength >= parsedText.Length)
+                        if (typedTextLength >= parsedText.Length)
                         {
                             typedTextLength = parsedText.Length;
                             isDoneDrawing = true;
@@ -116,10 +128,7 @@ namespace SecretProject.Class.DialogueStuff
                     }
                 }
 
-
-
                 StringDisplayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
 
             }
         }
@@ -132,7 +141,7 @@ namespace SecretProject.Class.DialogueStuff
 
             foreach (String word in wordArray)
             {
-                if (Game1.AllTextures.MenuText.MeasureString(line + word).Length() > SpeechBox.DestinationRectangle.Width - 50)
+                if (Game1.AllTextures.MenuText.MeasureString(line + word).Length() * Scale > SpeechBox.DestinationRectangle.Width - 50)
                 {
                     returnString = returnString + line + '\n';
                     line = String.Empty;
@@ -144,7 +153,6 @@ namespace SecretProject.Class.DialogueStuff
             return returnString + line;
         }
 
-
         public void Reset()
         {
             this.StringDisplayTimer = 10f;
@@ -155,24 +163,22 @@ namespace SecretProject.Class.DialogueStuff
             Game1.freeze = false;
             this.StringDisplayTimer = this.StringDisplayAnchor;
             this.NumberOfClicks = 0;
-            this.WriteSpeed = 50f;
+            this.WriteSpeed = SpeedAnchor;
             this.isDoneDrawing = false;
             this.parsedText = "";
+            Game1.Player.UserInterface.BottomBar.IsActive = true;
+            this.typedTextLength = 0;
         }
         public TextBox SpeechBox { get; set; }
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (IsActive)
             {
-
-                
-                if(UseTextBox)
+                if (UseTextBox)
                 {
-                    
-                    
                     switch (TextBoxType)
                     {
-                        
+
                         case TextBoxType.normal:
                             SpeechBox = new TextBox(TextBoxLocation, 0);
                             SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
@@ -186,11 +192,11 @@ namespace SecretProject.Class.DialogueStuff
 
                     }
 
-
-                    spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, new Vector2(SpeechBox.DestinationRectangle.X + 50, SpeechBox.DestinationRectangle.Y + 50), this.Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+                    
 
                 }
-                
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, new Vector2(SpeechBox.DestinationRectangle.X + 50, SpeechBox.DestinationRectangle.Y + 50), this.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, 1f);
+
             }
         }
     }

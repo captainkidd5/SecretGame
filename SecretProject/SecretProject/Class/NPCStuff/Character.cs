@@ -118,15 +118,10 @@ namespace SecretProject.Class.NPCStuff
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsRightClicked)
                 {
-                    
 
-                    Game1.Player.UserInterface.TextBuilder.IsActive = true;
-                    Game1.Player.UserInterface.TextBuilder.TextBoxType = TextBoxType.dialogue;
 
-                    Game1.Player.UserInterface.TextBuilder.UseTextBox = true;
-                    Game1.Player.UserInterface.TextBuilder.FreezeStage = true;
-                    Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1);
-                    Game1.Player.UserInterface.TextBuilder.ChangedParsedText();
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1));
+
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
 
