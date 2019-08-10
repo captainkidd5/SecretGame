@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
@@ -85,18 +86,21 @@ namespace SecretProject.Class.UI
                 allShopMenuItemButtons[i].Update(mouse);
 
                 //Make a transaction
-                if(allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
+                if(!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
                 {
-                    if(Game1.Player.Inventory.Money >= ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price)
-                    {
-                        Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(i).SlotItems[0]);
-                        Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price; //reduce players money if transaction goes through!
-                        ShopInventory.currentInventory.ElementAt(i).RemoveItemFromSlot();
-                        allShopMenuItemButtons[i].ItemCounter--;
-                    }
+                    TryBuyFromShopSlot(i);
                     //ShopInventory.currentInventory
                 }
+                else if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
+                {
+                    for(int z =0; z < ShopInventory.currentInventory.ElementAt(i).SlotItems.Count; z++)
+                    {
+                        TryBuyFromShopSlot(i);
+                    }
+                }
             }
+
+            
 
             redEsc.Update(mouse);
 
@@ -104,6 +108,17 @@ namespace SecretProject.Class.UI
             {
                 Game1.Player.UserInterface.IsShopMenu = false;
                 Game1.Player.UserInterface.CurrentOpenShop = 0;
+            }
+        }
+
+        public void TryBuyFromShopSlot(int slotIndex)
+        {
+            if (Game1.Player.Inventory.Money >= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price)
+            {
+                Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0]);
+                Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price; //reduce players money if transaction goes through!
+                ShopInventory.currentInventory.ElementAt(slotIndex).RemoveItemFromSlot();
+                allShopMenuItemButtons[slotIndex].ItemCounter--;
             }
         }
 
