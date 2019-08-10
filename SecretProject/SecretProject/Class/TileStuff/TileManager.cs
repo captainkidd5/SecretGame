@@ -623,7 +623,7 @@ namespace SecretProject.Class.TileStuff
                                         {
 
 
-                                            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable") || mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
+                                            if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable") || mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
                                             {
 
                                                 Game1.isMyMouseVisible = false;
@@ -904,7 +904,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                 {
-                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("plantable") && !AllTiles[layer][oldX, oldY].ContainsCrop)
+                    if (AllTiles[1][oldX, oldY].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("plantable") && !AllTiles[layer][oldX, oldY].ContainsCrop)
                     {
 
                         //Game1.myMouseManager.TogglePlantInteraction = true;

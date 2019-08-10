@@ -186,7 +186,7 @@
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
       <IsPlantable>true</IsPlantable>
-      <Price>10</Price>
+      <Price>2</Price>
       <id>128</id>
       <TextureColumn>5</TextureColumn>
       <TextureRow>7</TextureRow>
@@ -378,7 +378,7 @@
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
       <IsPlantable>true</IsPlantable>
-      <Price>2</Price>
+      <Price>5</Price>
       <id>167</id>
       <TextureColumn>7</TextureColumn>
       <TextureRow>7</TextureRow>
@@ -426,7 +426,7 @@
       <IsDropped>false</IsDropped>
       <IsPlaceable>false</IsPlaceable>
       <IsPlantable>false</IsPlantable>
-      <Price>2</Price>
+      <Price>15</Price>
       <id>177</id>
       <TextureColumn>8</TextureColumn>
       <TextureRow>7</TextureRow>

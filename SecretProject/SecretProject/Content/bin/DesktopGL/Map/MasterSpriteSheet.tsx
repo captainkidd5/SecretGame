@@ -1697,6 +1697,12 @@
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
+ <tile id="6070">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
  <tile id="6073">
   <properties>
    <property name="plantable" value="dirt"/>
@@ -1740,6 +1746,12 @@
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
+ <tile id="6171">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
  <tile id="6190">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
@@ -1769,6 +1781,12 @@
   </properties>
  </tile>
  <tile id="6268">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6270">
   <properties>
    <property name="diggable" value="dirt"/>
    <property name="tileSelectorAllowed" value="3"/>
