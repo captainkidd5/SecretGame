@@ -111,13 +111,13 @@ namespace SecretProject.Class.UI
             //Initialize Buttons
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(459, 645));
-            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
-            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7, BackGroundSourceRectangle = new Rectangle(208, 80, 32, 32) };
+            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1};
+            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2};
+            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3};
+            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
+            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
+            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6};
+            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7};
 
             //--------------------------------------
             //Button List Stuff
@@ -289,7 +289,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                return -50; //Placeholder, kinda funny I guess
+                return -50; //Placeholder
             }
         }
 
@@ -301,7 +301,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                return null; //Placeholder, kinda funny I guess
+                return null; 
             }
         }
 

@@ -11,25 +11,18 @@ using Microsoft.Xna.Framework;
 
 namespace SecretProject.Class.ItemStuff
 {
-    //xml bin data is saved to bin as xnb!
-
     public class ItemBank
     {
         
-
         public ItemBank()
         {
             
 
         }
 
-        
-
-        //creates copy of item in dictionary.
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false)
         {
             Item newItem = new Item(Game1.AllItems.GetItemFromID(id));
-            //if(newItem.ispl)
 
             if (!(location == null))
             {
@@ -40,8 +33,6 @@ namespace SecretProject.Class.ItemStuff
             {
                 newItem.IsWorldItem = true;
                 newItem.IsDropped = true;
-
-                //newItem.IsMagnetizable = true;
             }
             else
             {

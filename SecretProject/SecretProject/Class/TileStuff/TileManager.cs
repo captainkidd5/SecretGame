@@ -846,7 +846,7 @@ namespace SecretProject.Class.TileStuff
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
-            AssignProperties(AllTiles[layer][oldX, oldY], 1);
+            AssignProperties(AllTiles[layer][oldX, oldY], 0);
         }
         public void UpdateCropTile(Crop crop)
         {
