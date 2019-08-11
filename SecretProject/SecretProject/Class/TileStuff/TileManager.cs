@@ -748,18 +748,28 @@ namespace SecretProject.Class.TileStuff
                 case 1:
                     if (AllTiles[z][i, j].GID == 4654)
                     {
-                        ReplaceTilePermanent(1,i,j, 4655);
+                        ReplaceTilePermanent(1,i,j, 4657);
 
-                        ReplaceTilePermanent(1, i -1, j, 4654);
+                        ReplaceTilePermanent(1, i -1, j, 4658);
+                        AllTiles[z][i, j - 2].IsAnimating = true;
+                        AllTiles[z][i, j - 2].Kill = false;
+                        AllTiles[z][i, j - 2].IsFinishedAnimating = false;
+                        AllTiles[z][i, j - 2].IsAnimated = true;
 
                     }
-                    if (AllTiles[z][i, j].GID == 4653)
+                    else if (AllTiles[z][i, j].GID == 4653)
                     {
-                        ReplaceTilePermanent(1, i, j, 4654);
+                        ReplaceTilePermanent(1, i, j, 4656);
 
-                        ReplaceTilePermanent(1, i + 1, j, 4255);
-                        
+                        ReplaceTilePermanent(1, i + 1, j, 4657);
+                        AllTiles[z][i + 1, j - 2].IsAnimating = true;
+                        AllTiles[z][i + 1, j - 2].Kill = false;
+                        AllTiles[z][i+1, j - 2].IsFinishedAnimating = false;
+                        AllTiles[z][i+1, j - 2].IsAnimated = true;
+
                     }
+
+
 
                     break;
 
@@ -1169,15 +1179,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //else
-            //{
-            //    for (int i = 0; i < AllTiles[layer][x, y].NumberOfItemsToSpawn; i++)
-            //    {
-            //        Item item = Game1.ItemVault.GenerateNewItem(0, new Vector2(AllTiles[layer][x, y].DestinationRectangle.X, AllTiles[layer][x, y].DestinationRectangle.Y), true);
-            //        //item.IsTossable = true;
-            //        Game1.GetCurrentStage().AllItems.Add(item);
-            //    }
-            //}
         }
 
     }

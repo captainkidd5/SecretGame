@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace SecretProject.Class.ItemStuff
 {
-    [Serializable, XmlRoot("Item")]
+
     public class Item
     {
         public string Name { get; set; }
@@ -42,15 +42,14 @@ namespace SecretProject.Class.ItemStuff
         public bool IsDropped { get; set; }
         [XmlIgnore]
         public Sprite ItemSprite { get; set; }
-        [XmlIgnore]
+
         public GraphicsDevice Graphics { get; set; }
         [XmlIgnore]
         public ContentManager Content { get; set; }
 
         public bool IsPlaceable { get; set; } = false;
         public bool IsPlantable { get; set; }
-        [XmlIgnore]
-        public PlaceableBuilding Building { get; set; }
+
 
         public string id { get; set; }
 
@@ -92,12 +91,12 @@ namespace SecretProject.Class.ItemStuff
             this.Graphics = item.Graphics;
             this.Content = item.Content;
 
-            if(this.IsPlaceable)
-            {
+            //if(this.IsPlaceable)
+            //{
 
-             this.Building = new PlaceableBuilding(this.ID);
+            // this.Building = new PlaceableBuilding(this.ID);
 
-            }
+            //}
 
          }
         

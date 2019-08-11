@@ -438,18 +438,18 @@ namespace SecretProject.Class.UI
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     if (tempItem.IsPlaceable == true)
                     {
-                        DragToggleBuilding = true;
-                        this.TempItem = tempItem;
-                        int j = 0;
-                        int k = 0;
+                        //DragToggleBuilding = true;
+                        //this.TempItem = tempItem;
+                        //int j = 0;
+                        //int k = 0;
 
-                        for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
-                        {
-                            for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
-                            {
-                                Game1.GetCurrentStage().AllTiles.ReplaceTileTemporary(4, Game1.GetCurrentStage().AllTiles.CurrentIndexX + k, Game1.GetCurrentStage().AllTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
-                            }
-                        }
+                        //for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
+                        //{
+                        //    for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
+                        //    {
+                        //        Game1.GetCurrentStage().AllTiles.ReplaceTileTemporary(4, Game1.GetCurrentStage().AllTiles.CurrentIndexX + k, Game1.GetCurrentStage().AllTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
+                        //    }
+                        //}
 
                     }
 
@@ -588,30 +588,30 @@ namespace SecretProject.Class.UI
         public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles, MouseManager mouse)
         {
 
-            if (DragToggleBuilding)
-            {
-                MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch, mouse);
+            //if (DragToggleBuilding)
+            //{
+            //    MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch, mouse);
 
-            }
-            if (DragoToggleBuildingDropped == true)
-            {
-                for (int i = 0; i < TempItem.Building.BuildingID.Length; i++)
-                {
+            //}
+            //if (DragoToggleBuildingDropped == true)
+            //{
+            //    for (int i = 0; i < TempItem.Building.BuildingID.Length; i++)
+            //    {
 
-                    Tile TempTile;
-                    TempTile = new Tile(mouse.MouseSquareCoordinateX + i, mouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100);
-                    buildingsTiles.Tiles[mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY] = TempTile;
-                    buildingsTiles.AddObjectToBuildingTile(TempTile, mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY);
+            //        Tile TempTile;
+            //        TempTile = new Tile(mouse.MouseSquareCoordinateX + i, mouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100);
+            //        buildingsTiles.Tiles[mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY] = TempTile;
+            //        buildingsTiles.AddObjectToBuildingTile(TempTile, mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY);
 
 
-                }
-                for (int j = 0; j < TempItem.Building.ForeGroundID.Length; j++)
-                {
-                    Tile TempTile;
-                    TempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100);
-                    foreGroundTiles.Tiles[mouse.MouseSquareCoordinateX + j + 1, mouse.MouseSquareCoordinateY] = TempTile;
-                }
-            }
+            //    }
+            //    for (int j = 0; j < TempItem.Building.ForeGroundID.Length; j++)
+            //    {
+            //        Tile TempTile;
+            //        TempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100);
+            //        foreGroundTiles.Tiles[mouse.MouseSquareCoordinateX + j + 1, mouse.MouseSquareCoordinateY] = TempTile;
+            //    }
+            //}
 
         }
     }

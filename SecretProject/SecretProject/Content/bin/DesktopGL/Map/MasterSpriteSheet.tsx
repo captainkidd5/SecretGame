@@ -743,6 +743,7 @@
  <tile id="4454">
   <properties>
    <property name="AnimatedX" value="5"/>
+   <property name="Speed" value=".2"/>
   </properties>
  </tile>
  <tile id="4460">
