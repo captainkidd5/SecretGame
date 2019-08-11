@@ -162,7 +162,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
+                        MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16  , currentPath[pointCounter].Y * 16 ), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -214,7 +214,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X - 16, NextPointRectangle.Y- 16), new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16));
                         //DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
