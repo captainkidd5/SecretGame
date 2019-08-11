@@ -29,7 +29,7 @@ namespace SecretProject.Class.ItemStuff
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false)
         {
             Item newItem = new Item(Game1.AllItems.GetItemFromID(id));
-            
+            //if(newItem.ispl)
 
             if (!(location == null))
             {

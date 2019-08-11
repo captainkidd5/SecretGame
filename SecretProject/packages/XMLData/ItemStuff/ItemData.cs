@@ -14,5 +14,7 @@ namespace XMLData.ItemStuff
         public int TextureColumn { get; set; }
         public int TextureRow { get; set; }
         public int Price { get; set; }
+
+        public bool Plantable { get; set; }
     }
 }

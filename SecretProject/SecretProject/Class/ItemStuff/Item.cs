@@ -86,14 +86,13 @@ namespace SecretProject.Class.ItemStuff
             this.TextureRow = itemData.TextureRow;
             this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
 
+            if(itemData.Plantable)
+            {
+                this.IsPlantable = itemData.Plantable;
+            }
+
 
         }
-
-        //only used on startup for raw items
-     
-
-
-        //Load to add proper texture to the itemsprite.
         public void Load()
         {
             if (IsWorldItem)
@@ -150,7 +149,6 @@ namespace SecretProject.Class.ItemStuff
             if (IsWorldItem)
             {
 
-
                 if (ItemSprite.TextureScaleX <= 0f || ItemSprite.TextureScaleY <= 0f)
                 {
                     if (!ItemSprite.PickedUp)
@@ -162,7 +160,6 @@ namespace SecretProject.Class.ItemStuff
                         Game1.GetCurrentStage().AllItems.Remove(this);
                     }
 
-                    //ItemSprite.IsDrawn = false;
                 }
                 ItemSprite.Position.X -= playerpos.X - 2;
                 ItemSprite.Position.Y -= playerpos.Y;
