@@ -329,7 +329,7 @@ namespace SecretProject.Class.UI
 
                 if (AllSlots[i].ItemCounter != 0)
                 {
-                    AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].Texture;
+                    AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].ItemSprite.AtlasTexture;
                     AllSlots[i].ItemSourceRectangleToDraw = inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle;
                 }
                 else

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.ItemStuff.ItemHolder">
+<AllItems>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Axe</Name>
+<ID>0</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>25</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Hammer</Name>
+<ID>1</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>25</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Loppers</Name>
+<ID>2</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>25</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Shovel</Name>
+<ID>3</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>25</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BasicFlashlight</Name>
+<ID>4</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BirdsNest</Name>
+<ID>122</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ThunderWood</Name>
+<ID>123</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ProspectorDish</Name>
+<ID>124</ID>
+<InvMaximum>5</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>100</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>HouseKey</Name>
+<ID>125</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>100</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>PumpkinPie</Name>
+<ID>126</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>8</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>SwordFish</Name>
+<ID>127</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>6</TextureRow>
+<Price>20</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BloomBerrySeedBag</Name>
+<ID>128</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>2</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>GreenGrass1</Name>
+<ID>129</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>8</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BasicStone1</Name>
+<ID>130</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>9</TextureRow>
+<Price>2</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BirdsNestEgg</Name>
+<ID>141</ID>
+<InvMaximum>120</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ElmWood</Name>
+<ID>142</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>2</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>GoldNugget</Name>
+<ID>143</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>45</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>SwordFishPie</Name>
+<ID>145</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>15</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BloomBerryFruit</Name>
+<ID>147</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>8</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BoarDroppings</Name>
+<ID>148</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>8</TextureRow>
+<Price>3</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ThunderOrb</Name>
+<ID>149</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>9</TextureRow>
+<Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Egg</Name>
+<ID>161</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>FishBones</Name>
+<ID>163</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>3</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>DarkBerryPie</Name>
+<ID>165</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>12</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BloodCornSeedBag</Name>
+<ID>167</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>MagmaOrb</Name>
+<ID>169</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>9</TextureRow>
+<Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ClueFruit</Name>
+<ID>171</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>2</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BloodCorn</Name>
+<ID>177</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>12</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>TumbleBushThorn</Name>
+<ID>181</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>4</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Clay</Name>
+<ID>183</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>3</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Dandelion</Name>
+<ID>191</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>10</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>1</Price>
+</Item>
+</AllItems>
+</Asset>
+</XnaContent>

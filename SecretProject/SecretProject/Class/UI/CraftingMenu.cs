@@ -153,7 +153,7 @@ namespace SecretProject.Class.UI
         public CraftingSlot(int itemID, Vector2 drawPosition, GraphicsDevice graphics)
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, drawPosition);
-            Button = new Button(item.Texture, item.SourceTextureRectangle, graphics, drawPosition);
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
         }
     }
 

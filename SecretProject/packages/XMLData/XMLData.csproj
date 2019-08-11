@@ -38,6 +38,8 @@
     <Compile Include="ItemStuff\CraftingGuide.cs" />
     <Compile Include="ItemStuff\Crop.cs" />
     <Compile Include="ItemStuff\CropHolder.cs" />
+    <Compile Include="ItemStuff\ItemData.cs" />
+    <Compile Include="ItemStuff\ItemHolder.cs" />
     <Compile Include="ItemStuff\ItemRecipe.cs" />
     <Compile Include="ItemStuff\ItemsRequired.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

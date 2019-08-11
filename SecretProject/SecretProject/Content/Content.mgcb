@@ -777,3 +777,8 @@
 /processorParam:TextureFormat=Color
 /build:Debug/solidred.png
 
+#begin Item/ItemHolder.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/ItemHolder.xml
+

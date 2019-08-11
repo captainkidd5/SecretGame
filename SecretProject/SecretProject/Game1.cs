@@ -163,6 +163,7 @@ namespace SecretProject
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
+        public static ItemHolder AllItems;
 
         public static CropHolder AllCrops;
 
@@ -370,8 +371,10 @@ namespace SecretProject
             //Item item = new Item { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
             //ItemVault.Items.Add(item.id, item);
             //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
-            ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
-            ItemVault.LoadItems(GraphicsDevice, Content);
+           // ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
+           // ItemVault.LoadItems(GraphicsDevice, Content);
+
+            AllItems = Content.Load<ItemHolder>("Item/ItemHolder");
 
 
 
