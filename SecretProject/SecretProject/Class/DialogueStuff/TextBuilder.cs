@@ -116,7 +116,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     Reset();
                 }
-                if (Game1.myMouseManager.IsClicked && StringDisplayTimer != StringDisplayAnchor && !Game1.myMouseManager.MouseRectangle.Intersects(this.SpeechBox.DestinationRectangle))
+                if (Game1.myMouseManager.IsClicked && StringDisplayTimer <= StringDisplayAnchor -1 && !Game1.myMouseManager.MouseRectangle.Intersects(this.SpeechBox.DestinationRectangle))
                 {
                     NumberOfClicks++;
                 }

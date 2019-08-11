@@ -236,66 +236,70 @@ namespace SecretProject.Class.TileStuff
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
+            if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
-                int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
-                tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
-                tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
-                    tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
-            }
 
 
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
-            {
-                int lightType = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
-                Game1.GetCurrentStage().AllLights.Add(new LightSource(lightType, new Vector2(tileToAssign.X, tileToAssign.Y)));
-            }
-
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedY"))
-            {
-                tileToAssign.IsAnimated = true;
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedX"))
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
-                    tileToAssign.TotalFramesX = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["AnimatedX"]);
-
-                }
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedY"))
-                {
-                    tileToAssign.TotalFramesY = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["AnimatedY"]);
-
+                    int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
+                    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
+                    tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
+                        tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
 
 
-
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("start"))
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
-                    tileToAssign.IsAnimating = true;
-                    tileToAssign.Kill = false;
+                    int lightType = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
+                    Game1.GetCurrentStage().AllLights.Add(new LightSource(lightType, new Vector2(tileToAssign.X, tileToAssign.Y)));
+                }
+
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedX") || mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedY"))
+                {
+                    tileToAssign.IsAnimated = true;
+                    if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedX"))
+                    {
+                        tileToAssign.TotalFramesX = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["AnimatedX"]);
+
+                    }
+                    if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("AnimatedY"))
+                    {
+                        tileToAssign.TotalFramesY = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["AnimatedY"]);
+
+                    }
+
+
+
+                    if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("start"))
+                    {
+                        tileToAssign.IsAnimating = true;
+                        tileToAssign.Kill = false;
+
+                    }
+
+                }
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
+                {
+                    tileToAssign.HitPoints = Game1.Utility.GetTileHitpoints(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
 
                 }
 
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
+                {
+                    tileToAssign.LayerToDrawAt = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
+                    //grass = 1, stone = 2, wood = 3, sand = 4
+                }
+
+                if (tileToAssign.LayerToDrawAt == 3)
+                {
+                    //use random in order to deal with tiles which spawn at the exact same y layer.
+
+                    int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
+                    float randomFloat = (float)(randomInt * .000001);
+                    tileToAssign.LayerToDrawAtZOffSet = (tileToAssign.DestinationRectangle.Y + tileToAssign.DestinationRectangle.Height) * .0001f + randomFloat;
+                }
             }
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
-            {
-                tileToAssign.HitPoints = Game1.Utility.GetTileHitpoints(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
-
-            }
-
-            if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
-            {
-                tileToAssign.LayerToDrawAt = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
-                //grass = 1, stone = 2, wood = 3, sand = 4
-            }
-
-            if (tileToAssign.LayerToDrawAt == 3)
-            {
-                //use random in order to deal with tiles which spawn at the exact same y layer.
-
-                int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
-                float randomFloat = (float)(randomInt * .000001);
-                tileToAssign.LayerToDrawAtZOffSet = (tileToAssign.DestinationRectangle.Y + tileToAssign.DestinationRectangle.Height) * .0001f + randomFloat;
-            }
-
         }
 
 
@@ -744,19 +748,17 @@ namespace SecretProject.Class.TileStuff
                 case 1:
                     if (AllTiles[z][i, j].GID == 4654)
                     {
-                        AllTiles[z][i, j] = new Tile(i, j, 4255, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
-                        AssignProperties(AllTiles[z][i, j], TileSetNumber);
+                        ReplaceTilePermanent(1,i,j, 4655);
 
-                        AllTiles[z][i - 1, j] = new Tile(i - 1, j, 4254, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
-                        AssignProperties(AllTiles[z][i - 1, j], TileSetNumber);
+                        ReplaceTilePermanent(1, i -1, j, 4654);
+
                     }
                     if (AllTiles[z][i, j].GID == 4653)
                     {
-                        AllTiles[z][i, j] = new Tile(i, j, 4254, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
-                        AssignProperties(AllTiles[z][i, j], TileSetNumber);
+                        ReplaceTilePermanent(1, i, j, 4654);
 
-                        AllTiles[z][i + 1, j] = new Tile(i + 1, j, 4255, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
-                        AssignProperties(AllTiles[z][i + 1, j], TileSetNumber);
+                        ReplaceTilePermanent(1, i + 1, j, 4255);
+                        
                     }
 
                     break;
@@ -834,6 +836,7 @@ namespace SecretProject.Class.TileStuff
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
+            AssignProperties(AllTiles[layer][oldX, oldY], 1);
         }
         public void UpdateCropTile(Crop crop)
         {

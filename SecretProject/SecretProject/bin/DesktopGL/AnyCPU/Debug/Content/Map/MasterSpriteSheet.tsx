@@ -741,12 +741,9 @@
   </objectgroup>
  </tile>
  <tile id="4454">
-  <animation>
-   <frame tileid="4454" duration="100"/>
-   <frame tileid="4054" duration="100"/>
-   <frame tileid="4055" duration="100"/>
-   <frame tileid="4056" duration="100"/>
-  </animation>
+  <properties>
+   <property name="AnimatedX" value="5"/>
+  </properties>
  </tile>
  <tile id="4460">
   <objectgroup draworder="index">
