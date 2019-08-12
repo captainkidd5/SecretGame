@@ -59,12 +59,13 @@ namespace SecretProject.Class.NPCStuff
         public Texture2D NextPointTexture { get; set; }
         public Rectangle NextPointRectangle { get; set; }
         public Texture2D NextPointRectangleTexture { get; set; }
+        public Texture2D HitBoxRectangleTexture { get; set; }
         public Rectangle NPCPathFindRectangle
         {
             get
             {
-                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X,
-NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, 16, 16);
+                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X + 8,
+NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 8, 8);
             }
             set { }
         }
@@ -84,6 +85,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, 16, 16);
             this.RouteSchedule = routeSchedule;
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
+            
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
         }
@@ -154,7 +156,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, 16, 16);
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {
 
-            Vector2 direction = Vector2.Normalize((positionToMoveTowards - Position) + new Vector2((float).0000000001, (float).0000000001));
+            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X, NPCPathFindRectangle.Y) + new Vector2((float).0000000001, (float).0000000001)));
             //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
             //{
             this.DirectionVector = direction;
@@ -233,8 +235,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, 16, 16);
                     {
                         this.IsMoving = true;
 
-                        currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16,
-                            (int)this.Position.Y / 16), new Point(route.EndX, route.EndY));
+                        currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                            (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
 
                         pathFound = true;
                     }
@@ -336,7 +338,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, 16, 16);
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
-            spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X, this.NextPointRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.White, layerDepth: layerDepth);
 
             for (int i = 0; i < currentPath.Count - 1; i++)
             {

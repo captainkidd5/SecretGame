@@ -26,12 +26,13 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 335, 0, 28, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 503, 0, 28, 48, 6, .15f, this.Position);
             this.NPCRectangleXOffSet = 0;
-            this.NPCRectangleYOffSet = 0;
+            this.NPCRectangleYOffSet = 10;
             this.NPCRectangleHeightOffSet = 2;
             this.NPCRectangleWidthOffSet = 2;
             this.SpeakerID = 2;
            // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
+            DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
         }
