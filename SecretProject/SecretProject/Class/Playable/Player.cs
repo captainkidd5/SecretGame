@@ -118,7 +118,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y + 16, 16, 32);
+                return new Rectangle((int)position.X, (int)position.Y + 42, 16, 8);
             }
 
         }

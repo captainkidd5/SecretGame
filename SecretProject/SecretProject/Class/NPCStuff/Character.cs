@@ -32,7 +32,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Height); } }
 
 
-        public float Speed { get; set; } = 2f; //.65
+        public float Speed { get; set; } = .65f; //.65
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 

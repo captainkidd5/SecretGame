@@ -24,8 +24,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.NPCRectangleXOffSet = 15;
             this.NPCRectangleYOffSet = 15;
-            this.NPCRectangleHeightOffSet = 10;
-            this.NPCRectangleWidthOffSet = 10;
+            this.NPCRectangleHeightOffSet = 4;
+            this.NPCRectangleWidthOffSet = 4;
             this.Speed = 1f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundID = 14;

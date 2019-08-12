@@ -662,7 +662,7 @@
    <property name="spawnWith" value="4144"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="7" y="0" width="7" height="1"/>
+   <object id="1" x="6" y="3" width="7" height="3"/>
   </objectgroup>
  </tile>
  <tile id="4253">
@@ -989,7 +989,7 @@
    <property name="spawnWith" value="4744,4843,4845,4846"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="2" x="6" y="0" width="5" height="3"/>
+   <object id="2" x="6" y="7" width="5" height="3"/>
   </objectgroup>
  </tile>
  <tile id="4845">
