@@ -32,7 +32,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Height); } }
 
 
-        public float Speed { get; set; } = 1f; //.65
+        public float Speed { get; set; } = 2f; //.65
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 
@@ -65,7 +65,7 @@ namespace SecretProject.Class.NPCStuff
             get
             {
                 return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X + 8,
-NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 8, 8);
+NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             }
             set { }
         }
@@ -242,7 +242,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 8, 8);
                     }
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16);
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 6, 6);
                     if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
@@ -253,7 +253,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 8, 8);
                     if (pointCounter < currentPath.Count)
                     {
 
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X + 8, NextPointRectangle.Y + 8), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 8, 8));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y ), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else

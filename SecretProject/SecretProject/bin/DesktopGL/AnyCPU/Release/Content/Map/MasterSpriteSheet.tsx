@@ -285,6 +285,78 @@
    <object id="2" x="0" y="0" width="16" height="2"/>
   </objectgroup>
  </tile>
+ <tile id="2952">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="2953">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="3148">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="11" width="7" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3243">
+  <objectgroup draworder="index">
+   <object id="1" x="8.75" y="-0.25" width="7" height="16.25"/>
+   <object id="2" x="0" y="-0.125" width="8.875" height="1.75"/>
+  </objectgroup>
+ </tile>
+ <tile id="3246">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="-0.25" width="7.875" height="16"/>
+   <object id="2" x="8.125" y="0.125" width="7.875" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="3248">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3253">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3343">
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="-0.25" width="8" height="16.375"/>
+  </objectgroup>
+ </tile>
+ <tile id="3346">
+  <objectgroup draworder="index">
+   <object id="1" x="-0.125" y="-0.125" width="8" height="16.125"/>
+  </objectgroup>
+ </tile>
+ <tile id="3348">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3353">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3443">
+  <objectgroup draworder="index">
+   <object id="1" x="8.375" y="0" width="7.625" height="15.875"/>
+  </objectgroup>
+ </tile>
+ <tile id="3448">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3453">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3511">
   <properties>
    <property name="step" value="2"/>
@@ -304,6 +376,36 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+ </tile>
+ <tile id="3543">
+  <objectgroup draworder="index">
+   <object id="1" x="8.25" y="0.375" width="7.625" height="1.5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3544">
+  <objectgroup draworder="index">
+   <object id="1" x="0.25" y="0.125" width="15.75" height="1.5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3545">
+  <objectgroup draworder="index">
+   <object id="1" x="0.125" y="0.25" width="16.125" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="3546">
+  <objectgroup draworder="index">
+   <object id="1" x="0.125" y="0.125" width="7.875" height="1.75"/>
+  </objectgroup>
+ </tile>
+ <tile id="3548">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3553">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3611">
   <properties>
@@ -325,6 +427,11 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="3653">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3711">
   <properties>
    <property name="step" value="2"/>
@@ -344,6 +451,36 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+ </tile>
+ <tile id="3748">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3749">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3750">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3751">
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3752">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="3753">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="7" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="3803">
   <properties>
@@ -521,12 +658,22 @@
  <tile id="4244">
   <properties>
    <property name="destructable" value="0,4,1,3"/>
-   <property name="loot" value="123:100,122:50"/>
+   <property name="loot" value="142:100,122:10"/>
    <property name="spawnWith" value="4144"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="7" y="0" width="7" height="1"/>
   </objectgroup>
+ </tile>
+ <tile id="4253">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
+ </tile>
+ <tile id="4254">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
  </tile>
  <tile id="4311">
   <properties>
@@ -592,6 +739,12 @@
   <objectgroup draworder="index">
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="4454">
+  <properties>
+   <property name="AnimatedX" value="5"/>
+   <property name="Speed" value=".2"/>
+  </properties>
  </tile>
  <tile id="4460">
   <objectgroup draworder="index">
@@ -702,6 +855,9 @@
   </properties>
  </tile>
  <tile id="4653">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="4" x="6" y="0" width="10" height="10">
     <properties>
@@ -711,6 +867,9 @@
   </objectgroup>
  </tile>
  <tile id="4654">
+  <properties>
+   <property name="action" value="1"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="10" height="10">
     <properties>
@@ -769,7 +928,7 @@
  <tile id="4744">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-32,72,80"/>
+   <property name="newSource" value="-16,-32,80,80"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -826,7 +985,7 @@
    <property name="NumberOfItems" value="4"/>
    <property name="Tree" value="ThunderBirch"/>
    <property name="destructable" value="0,4,1,3"/>
-   <property name="loot" value="123:100,122:50"/>
+   <property name="loot" value="123:100,122:5"/>
    <property name="spawnWith" value="4744,4843,4845,4846"/>
   </properties>
   <objectgroup draworder="index">
@@ -1015,6 +1174,28 @@
  <tile id="5225">
   <properties>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="5390">
+  <properties>
+   <property name="AssociatedTiles" value="5291"/>
+  </properties>
+ </tile>
+ <tile id="5391">
+  <properties>
+   <property name="AssociatedTiles" value="5292"/>
+  </properties>
+ </tile>
+ <tile id="5392">
+  <properties>
+   <property name="AssociatedTiles" value="5293"/>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="177:100"/>
+  </properties>
+ </tile>
+ <tile id="5397">
+  <properties>
+   <property name="AssociatedTiles" value="5297"/>
   </properties>
  </tile>
  <tile id="5402">
@@ -1498,78 +1679,131 @@
  <tile id="6065">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6066">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6067">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6068">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6070">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6073">
   <properties>
    <property name="plantable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6081">
+  <properties>
+   <property name="AssociatedTiles" value="5982"/>
+  </properties>
+ </tile>
+ <tile id="6082">
+  <properties>
+   <property name="AssociatedTiles" value="5983"/>
+  </properties>
+ </tile>
+ <tile id="6083">
+  <properties>
+   <property name="AssociatedTiles" value="5984"/>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="147:100"/>
+  </properties>
+ </tile>
+ <tile id="6090">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="6165">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6166">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6167">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6168">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
+ </tile>
+ <tile id="6171">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6190">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100"/>
+   <property name="spawnWith" value="6090"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4.125" y="0.375" width="7.875" height="0.75"/>
+  </objectgroup>
  </tile>
  <tile id="6265">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6266">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6267">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6268">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="6270">
+  <properties>
+   <property name="diggable" value="dirt"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6287">
@@ -1605,25 +1839,25 @@
  <tile id="6365">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6366">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6367">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6368">
   <properties>
    <property name="diggable" value="dirt"/>
-   <property name="tileSelectorAllowed" value="1"/>
+   <property name="tileSelectorAllowed" value="3"/>
   </properties>
  </tile>
  <tile id="6387">
@@ -1719,6 +1953,61 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="8034">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8035">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8036">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8037">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8038">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8039">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8040">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8041">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="1" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8042">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="1" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8043">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="8044">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="1" width="10" height="7"/>
+  </objectgroup>
+ </tile>
  <tile id="9702">
   <properties>
    <property name="AnimatedY" value="17"/>
@@ -1728,6 +2017,26 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
+  <animation>
+   <frame tileid="9702" duration="100"/>
+   <frame tileid="9602" duration="100"/>
+   <frame tileid="9502" duration="100"/>
+   <frame tileid="9402" duration="100"/>
+   <frame tileid="9302" duration="100"/>
+   <frame tileid="9202" duration="100"/>
+   <frame tileid="9102" duration="100"/>
+   <frame tileid="9002" duration="100"/>
+   <frame tileid="8902" duration="100"/>
+   <frame tileid="8802" duration="100"/>
+   <frame tileid="8702" duration="100"/>
+   <frame tileid="8602" duration="100"/>
+   <frame tileid="8502" duration="100"/>
+   <frame tileid="8402" duration="100"/>
+   <frame tileid="8302" duration="100"/>
+   <frame tileid="8202" duration="100"/>
+   <frame tileid="8102" duration="100"/>
+   <frame tileid="8002" duration="100"/>
+  </animation>
  </tile>
  <tile id="9703">
   <properties>
@@ -1738,6 +2047,26 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
+  <animation>
+   <frame tileid="9703" duration="100"/>
+   <frame tileid="9603" duration="100"/>
+   <frame tileid="9503" duration="100"/>
+   <frame tileid="9403" duration="100"/>
+   <frame tileid="9303" duration="100"/>
+   <frame tileid="9203" duration="100"/>
+   <frame tileid="9103" duration="100"/>
+   <frame tileid="9003" duration="100"/>
+   <frame tileid="8903" duration="100"/>
+   <frame tileid="8803" duration="100"/>
+   <frame tileid="8703" duration="100"/>
+   <frame tileid="8603" duration="100"/>
+   <frame tileid="8503" duration="100"/>
+   <frame tileid="8403" duration="100"/>
+   <frame tileid="8303" duration="100"/>
+   <frame tileid="8203" duration="100"/>
+   <frame tileid="8103" duration="100"/>
+   <frame tileid="8003" duration="100"/>
+  </animation>
  </tile>
  <tile id="9704">
   <properties>
@@ -1748,6 +2077,26 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="14" width="16" height="2"/>
   </objectgroup>
+  <animation>
+   <frame tileid="9704" duration="100"/>
+   <frame tileid="9604" duration="100"/>
+   <frame tileid="9504" duration="100"/>
+   <frame tileid="9404" duration="100"/>
+   <frame tileid="9304" duration="100"/>
+   <frame tileid="9204" duration="100"/>
+   <frame tileid="9104" duration="100"/>
+   <frame tileid="9004" duration="100"/>
+   <frame tileid="8904" duration="100"/>
+   <frame tileid="8804" duration="100"/>
+   <frame tileid="8704" duration="100"/>
+   <frame tileid="8604" duration="100"/>
+   <frame tileid="8504" duration="100"/>
+   <frame tileid="8404" duration="100"/>
+   <frame tileid="8304" duration="100"/>
+   <frame tileid="8204" duration="100"/>
+   <frame tileid="8104" duration="100"/>
+   <frame tileid="8004" duration="100"/>
+  </animation>
  </tile>
  <tile id="9705">
   <properties>
@@ -1758,6 +2107,26 @@
   <objectgroup draworder="index">
    <object id="2" x="0" y="14" width="16" height="2"/>
   </objectgroup>
+  <animation>
+   <frame tileid="9705" duration="100"/>
+   <frame tileid="9605" duration="100"/>
+   <frame tileid="9505" duration="100"/>
+   <frame tileid="9405" duration="100"/>
+   <frame tileid="9305" duration="100"/>
+   <frame tileid="9205" duration="100"/>
+   <frame tileid="9105" duration="100"/>
+   <frame tileid="9005" duration="100"/>
+   <frame tileid="8905" duration="100"/>
+   <frame tileid="8805" duration="100"/>
+   <frame tileid="8705" duration="100"/>
+   <frame tileid="8605" duration="100"/>
+   <frame tileid="8505" duration="100"/>
+   <frame tileid="8405" duration="100"/>
+   <frame tileid="8305" duration="100"/>
+   <frame tileid="8205" duration="100"/>
+   <frame tileid="8105" duration="100"/>
+   <frame tileid="8005" duration="100"/>
+  </animation>
  </tile>
  <tile id="9707">
   <properties>
