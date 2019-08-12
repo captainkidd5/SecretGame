@@ -30,7 +30,9 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleHeightOffSet = 2;
             this.NPCRectangleWidthOffSet = 2;
             this.SpeakerID = 2;
-            DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
+           // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
+            NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
+            //DebugTexture = SetRectangleTexture(graphics, )
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
         }
 

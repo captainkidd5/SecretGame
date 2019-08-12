@@ -19,7 +19,7 @@
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>3</ID>
-        <TimeToStart>18</TimeToStart>
+        <TimeToStart>19</TimeToStart>
         <TimeToFinish>21</TimeToFinish>
         <EndX>20</EndX>
         <EndY>40</EndY>
