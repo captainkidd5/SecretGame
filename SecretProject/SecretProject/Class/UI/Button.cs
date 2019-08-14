@@ -163,6 +163,18 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, textDepth);
         }
 
+
+        //for scrolltree
+        public void Draw(SpriteBatch spriteBatch,Vector2 locationToDrawBackGround, Vector2 locationToDrawButtonImage, Rectangle buttonImageSourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
+        {
+
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, locationToDrawBackGround, backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(this.Texture, locationToDrawButtonImage, buttonImageSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
+
+            //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
+        }
+
     }
 
 }

@@ -42,7 +42,6 @@ namespace SecretProject.Class.NPCStuff
         //0 = down, 1 = left, 2 =  right, 3 = up
         public int CurrentDirection { get; set; }
 
-        public bool IsUpdating { get; set; } = false;
 
         public Collider Collider { get; set; }
         public bool CollideOccured { get; set; } = false;
@@ -90,6 +89,21 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
         }
 
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
+        {
+            this.Name = name;
+            this.Position = position;
+            this.Texture = spriteSheet;
+            NPCAnimatedSprite = new Sprite[animationFrames];
+
+
+
+            Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            this.CurrentDirection = 0;
+
+        }
+
+        //for normal, moving NPCS
         public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
@@ -123,6 +137,28 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
+            CheckSpeechInteraction(mouse);
+
+            //this.Speed = PrimaryVelocity
+            FollowSchedule(gameTime, this.RouteSchedule);
+            if (mouse.IsRightClicked)
+            {
+                Console.WriteLine(this.NPCHitBoxRectangle);
+
+            }
+
+
+        }
+
+        //meant for non-moving, non-Primary NPCS
+        public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
+        {
+            NPCAnimatedSprite[0].Update(gameTime);
+            CheckSpeechInteraction(mouse);
+        }
+
+        public void CheckSpeechInteraction(MouseManager mouse)
+        {
             if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
             {
                 mouse.ChangeMouseTexture(200);
@@ -141,16 +177,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 }
 
             }
-
-            //this.Speed = PrimaryVelocity
-            FollowSchedule(gameTime, this.RouteSchedule);
-            if (mouse.IsRightClicked)
-            {
-                Console.WriteLine(this.NPCHitBoxRectangle);
-
-            }
-
-
         }
 
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
@@ -275,6 +301,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 }
             }
 
+        }
+
+        public void DrawBasicNPC(SpriteBatch spriteBatch)
+        {
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(1200,600), 1f);
         }
 
         public void Draw(SpriteBatch spriteBatch)

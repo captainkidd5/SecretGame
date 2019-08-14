@@ -35,7 +35,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(400, 400), new Rectangle(1104, 1120, 288, 366), Color.Wheat, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(400, 400), new Rectangle(1104, 1120, 288, 366), Color.Wheat, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             foreach (ScrollSlot scrollSlot in ScrollSlots)
             {
                 scrollSlot.Draw(spriteBatch);
@@ -56,6 +56,7 @@ namespace SecretProject.Class.UI
             this.Icon = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(itemID, position).SourceTextureRectangle, graphics, position);
             this.isLocked = true;
 
+
         }
 
         public void Update(GameTime gameTime, int wisdom)
@@ -73,7 +74,7 @@ namespace SecretProject.Class.UI
         {
             if(this.isLocked)
             {
-                this.Icon.Draw(spriteBatch, new Rectangle(1328, 1472, 32, 32), new Rectangle(1280, 1472, 32, 32), Game1.AllTextures.MenuText,"Locked", this.Icon.Position, Color.Black); 
+                this.Icon.Draw(spriteBatch, Icon.Position, Icon.Position, new Rectangle(1328, 1472, 32, 32), new Rectangle(1280, 1472, 32, 32), Game1.AllTextures.MenuText,"Locked", this.Icon.Position, Color.White, scale: 2f); 
             }
             
         }

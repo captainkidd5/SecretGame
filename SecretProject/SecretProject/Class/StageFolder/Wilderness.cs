@@ -248,10 +248,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 //Boars[3].Update(gameTime, AllObjects, mouse);
                 Boar.Update(gameTime, AllObjects, mouse);
-                //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
-                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
-                // Dobbin.MoveToTile(gameTime, new Point(23, 55));
-
+                Game1.Snaw.UpdateBasicNPC(gameTime, mouse);
 
             }
             Game1.Player.controls.UpdateKeys();
@@ -296,7 +293,7 @@ namespace SecretProject.Class.StageFolder
                 player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height)));
                 // Console.WriteLine("Player Position" + player.position);
 
-
+                Game1.Snaw.DrawBasicNPC(spriteBatch);
                 Boar.Draw(spriteBatch);
                 for (int e = 0; e < Boars.Count; e++)
                 {

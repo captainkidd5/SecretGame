@@ -185,6 +185,8 @@ namespace SecretProject
         public static Elixir Elixer;
         public static Dobbin Dobbin;
 
+        public static Character Snaw;
+
 
         #endregion
 
@@ -328,7 +330,7 @@ namespace SecretProject
             PresentationParameters = GraphicsDevice.PresentationParameters;
             MainTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            
+
             //ORDER MATTERS!!!
             AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
@@ -345,15 +347,15 @@ namespace SecretProject
             MainCharacterTexture = AllTextures.MainCharacterSpriteStrip;
 
 
-          //  testItem = Content.Load&lt;XMLDataLib.Item&gt;("Level1");
+            //  testItem = Content.Load&lt;XMLDataLib.Item&gt;("Level1");
 
             //SOUND
             SoundManager = new SoundBoard(this, Content);
-            
+
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(1000, 500), AllTextures.PlayerSpriteSheet, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerSpriteSheet, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
             Player.animations[0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 64, 0, 16, 48, 6, .15f, Game1.Player.position);
             Player.PlayerMovementAnimations = Player.animations[0];
@@ -364,53 +366,53 @@ namespace SecretProject
 
             //UI
 
-            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet) ;
+            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet);
 
             //ITEMS
             ItemVault = new ItemBank();
             //Item item = new Item { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
             //ItemVault.Items.Add(item.id, item);
             //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
-           // ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
-           // ItemVault.LoadItems(GraphicsDevice, Content);
+            // ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
+            // ItemVault.LoadItems(GraphicsDevice, Content);
 
             AllItems = Content.Load<ItemHolder>("Item/ItemHolder");
 
 
 
-            
 
-           
+
+
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
-            Sea = new Sea(graphics.GraphicsDevice,SeaContentManager, 0);
-            
+            Sea = new Sea(graphics.GraphicsDevice, SeaContentManager, 0);
+
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            WestBeach = new StageBase("WestBeach",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
-            Wilderness = new Wilderness("Wilderness",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
-            
-            RoyalDock = new Town("Dock",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
+            WestBeach = new StageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
+            Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
 
-            GreatLibrary = new StageBase("Library",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
+            RoyalDock = new Town("Dock", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
+
+            GreatLibrary = new StageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
 
             //ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            DobbinsOrchard = new StageBase("Dobbin's Orchard",graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
+            DobbinsOrchard = new StageBase("Dobbin's Orchard", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/dobbinsOrchard.tmx", 1);
 
 
-            LodgeInterior = new StageBase("Lodge",graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx",1);
+            LodgeInterior = new StageBase("Lodge", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx", 1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
 
             GlobalClock = new Clock();
 
-            
+
 
             AllStages = new List<IStage>() { Wilderness, LodgeInterior };
 
-            
+
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
             ToolShop.ShopMenu.TryAddStock(3, 1);
@@ -452,6 +454,8 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
+            Snaw = new Character("Snaw", new Vector2(1200, 600), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 64,64, 3, .15f, new Vector2(1200, 600)) }, CurrentDirection = 0 };
         }
         #endregion
 

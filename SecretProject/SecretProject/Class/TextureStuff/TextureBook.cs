@@ -21,6 +21,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D DobbinSpriteSheet;
         public Texture2D EnemySpriteSheet;
 
+        public Texture2D SnawSpriteSheet;
+
         //playeractions
 
 
@@ -78,8 +80,11 @@ namespace SecretProject.Class.TextureStuff
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
+        
 
             DobbinSpriteSheet = content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet");
+
+            SnawSpriteSheet = content.Load<Texture2D>("NPC/Snaw/Snaw");
 
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
