@@ -305,7 +305,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
         public void DrawBasicNPC(SpriteBatch spriteBatch)
         {
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(1200,600), 1f);
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, 1f);
+            //this.NPCAnimatedSprite[0].Draw(spriteBatch, 1f);
         }
 
         public void Draw(SpriteBatch spriteBatch)

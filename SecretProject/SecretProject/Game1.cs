@@ -454,8 +454,8 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]);
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
-            Snaw = new Character("Snaw", new Vector2(1200, 600), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 64,64, 3, .15f, new Vector2(1200, 600)) }, CurrentDirection = 0 };
+            Snaw = new Character("Snaw", new Vector2(1300, 600), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true } }, CurrentDirection = 0 };
         }
         #endregion
 
