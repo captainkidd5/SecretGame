@@ -61,6 +61,8 @@ namespace SecretProject.Class.UI
 
         public CraftingMenu CraftingMenu { get; set; }
 
+        public ScrollTree ScrollTree { get; set; }
+
         //keyboard
 
 
@@ -82,6 +84,7 @@ namespace SecretProject.Class.UI
             this.Player = player;
             CraftingMenu = new CraftingMenu(GraphicsDevice);
             CraftingMenu.LoadContent(content);
+            ScrollTree = new ScrollTree(graphicsDevice);
         }
 
 
@@ -140,6 +143,11 @@ namespace SecretProject.Class.UI
                         Game1.AllShops[i].Update(gameTime, mouse);
                     }
                 }
+            }
+
+            if(this.ScrollTree.IsActive)
+            {
+                ScrollTree.Update(gameTime, Game1.Player.Wisdom);
             }
             
 
@@ -200,7 +208,10 @@ namespace SecretProject.Class.UI
                 }
             }
             
-
+            if(ScrollTree.IsActive)
+            {
+                ScrollTree.Draw(spriteBatch);
+            }
 
                 TextBuilder.Draw(spriteBatch, .71f);
 

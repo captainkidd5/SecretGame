@@ -2011,7 +2011,7 @@
  <tile id="9702">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".5"/>
+   <property name="Speed" value=".6"/>
    <property name="start" value=""/>
   </properties>
   <objectgroup draworder="index">
@@ -2041,7 +2041,7 @@
  <tile id="9703">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".5"/>
+   <property name="Speed" value=".6"/>
    <property name="start" value=""/>
   </properties>
   <objectgroup draworder="index">
@@ -2071,7 +2071,7 @@
  <tile id="9704">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".5"/>
+   <property name="Speed" value=".6"/>
    <property name="start" value=""/>
   </properties>
   <objectgroup draworder="index">
@@ -2101,7 +2101,7 @@
  <tile id="9705">
   <properties>
    <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".5"/>
+   <property name="Speed" value=".6"/>
    <property name="start" value=""/>
   </properties>
   <objectgroup draworder="index">

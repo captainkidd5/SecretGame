@@ -133,6 +133,8 @@ namespace SecretProject.Class.Playable
 
         public PlayerShip PlayerShip { get; set; }
 
+        public int Wisdom { get; set; }
+
         private Player()
         {
 

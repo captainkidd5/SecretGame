@@ -26,6 +26,7 @@ namespace SecretProject.Class.UI
         none = 0,
         menu = 1,
         inv = 2,
+        scrollTree = 3,
     }
 
     public class ToolBar
@@ -35,6 +36,7 @@ namespace SecretProject.Class.UI
         public Texture2D Background { get; set; }
         public Button InGameMenu { get; set; }
         public Button OpenInventory { get; set; }
+        public Button ScrollTree { get; set; }
         public Button InvSlot1 { get; set; }
         public Button InvSlot2 { get; set; }
         public Button InvSlot3 { get; set; }
@@ -111,6 +113,7 @@ namespace SecretProject.Class.UI
             //Initialize Buttons
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(459, 645));
+            ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645));
             InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1};
             InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2};
             InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3};
@@ -124,7 +127,9 @@ namespace SecretProject.Class.UI
             AllNonInventoryButtons = new List<Button>()
             {
                 OpenInventory,
-                InGameMenu
+                InGameMenu,
+                ScrollTree,
+                
             };
             AllSlots = new List<Button>()
             {
@@ -263,6 +268,7 @@ namespace SecretProject.Class.UI
 
         public void UpdateNonInventoryButtons(MouseManager mouse)
         {
+            OpenInventory.isClicked = false;
             for (int i = 0; i < AllNonInventoryButtons.Count; i++)
             {
                 AllNonInventoryButtons[i].Update(mouse);
@@ -275,9 +281,13 @@ namespace SecretProject.Class.UI
             }
             else if (OpenInventory.isClicked)
             {
+                Game1.Player.UserInterface.ScrollTree.IsActive = !Game1.Player.UserInterface.ScrollTree.IsActive;
+            }
+            else if(ScrollTree.isClicked)
+            {
 
             }
-            OpenInventory.isClicked = false;
+            
         }
         #endregion
 
