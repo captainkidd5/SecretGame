@@ -794,3 +794,8 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Snaw/Snaw.png
 
+#begin Dialogue/SnawDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/SnawDialogue.xml
+

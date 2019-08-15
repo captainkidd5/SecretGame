@@ -6,7 +6,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <ConditionMet>true</ConditionMet>
-   <TextToWrite>Head over to my orchard if you'd like to buy some new farming equipment</TextToWrite>
+   <TextToWrite>Hi</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

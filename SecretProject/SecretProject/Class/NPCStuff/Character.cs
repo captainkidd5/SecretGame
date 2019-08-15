@@ -59,6 +59,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NextPointRectangle { get; set; }
         public Texture2D NextPointRectangleTexture { get; set; }
         public Texture2D HitBoxRectangleTexture { get; set; }
+        public int FrameToSet { get; set; }
         public Rectangle NPCPathFindRectangle
         {
             get
@@ -137,7 +138,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            CheckSpeechInteraction(mouse);
+            CheckSpeechInteraction(mouse, FrameToSet);
 
             //this.Speed = PrimaryVelocity
             FollowSchedule(gameTime, this.RouteSchedule);
@@ -154,10 +155,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
-            CheckSpeechInteraction(mouse);
+            CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
         }
 
-        public void CheckSpeechInteraction(MouseManager mouse)
+        public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
             if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
             {
@@ -171,7 +172,27 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1), 2f, null, null);
 
                     UpdateDirectionVector(Game1.Player.position);
-                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
+
+
+                }
+
+            }
+        }
+
+        public void CheckBasicNPCSpeechInteraction(MouseManager mouse, int frameToSet)
+        {
+            if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
+            {
+                mouse.ChangeMouseTexture(200);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+                if (mouse.IsClicked)
+                {
+
+
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1), 2f, null, null);
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
 
 
                 }

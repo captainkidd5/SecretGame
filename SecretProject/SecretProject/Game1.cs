@@ -155,10 +155,10 @@ namespace SecretProject
         public static ItemBank ItemVault;
 
         //XMLDATA
-        public DialogueSkeleton ElixirDialogue;
-        public DialogueSkeleton DobbinDialogue;
-        public DialogueHolder AllElixirDialogue;
-        public DialogueHolder AllDobbinDialogue;
+
+        public DialogueHolder ElixirDialogue;
+        public DialogueHolder DobbinDialogue;
+        public DialogueHolder SnawDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
@@ -332,14 +332,16 @@ namespace SecretProject
             LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
             //ORDER MATTERS!!!
-            AllElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
-            AllDobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+            ElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
+            DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+            SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
+            
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
             AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { AllElixirDialogue, AllDobbinDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -452,10 +454,10 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]);
-            Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]);
+            Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 } ;
             Snaw = new Character("Snaw", new Vector2(1300, 600), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true } }, CurrentDirection = 0 };
+                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3};
         }
         #endregion
 
