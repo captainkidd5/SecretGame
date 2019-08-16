@@ -366,7 +366,7 @@ namespace SecretProject.Class.Playable
                     {
                         for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                         {
-                            PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                            PlayerMovementAnimations[i].SetFrame(0);
                         }
                     }
 
