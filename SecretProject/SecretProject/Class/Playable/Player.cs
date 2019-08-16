@@ -36,7 +36,7 @@ namespace SecretProject.Class.Playable
         public Vector2 TotalVelocity;
         public bool Activate { get; set; }
 
-        public Sprite[] animations;
+        public Sprite[,] animations;
 
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
@@ -71,7 +71,7 @@ namespace SecretProject.Class.Playable
         public bool IsMoving { get; set; } = false;
         public float Speed1 { get; set; } = 2f;
         public float SecondarySpeed { get; set; } = 1f;
-        public Sprite PlayerMovementAnimations { get; set; }
+        public Sprite[] PlayerMovementAnimations { get; set; }
 
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -141,14 +141,14 @@ namespace SecretProject.Class.Playable
         }
 
 
-        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
+        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;
             Name = name;
             Position = position;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
-            animations = new Sprite[numberOfFrames];
+            animations = new Sprite[numberOfFrames, numberOfBodyParts];
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
@@ -307,7 +307,12 @@ namespace SecretProject.Class.Playable
                     float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                     //animation set changes depending on which key is pressed, as shown in playercontrols
-                    PlayerMovementAnimations = animations[(int)controls.Direction];
+                    //PlayerMovementAnimations = animations[(int)controls.Direction];
+
+                    for (int i = 0; i < animations.GetLength(1); i++)
+                    {
+                        PlayerMovementAnimations[i] = animations[(int)controls.Direction,i];
+                    }
 
                     MyCollider.Rectangle = this.Rectangle;
                     MyCollider.Velocity = this.PrimaryVelocity;
@@ -346,7 +351,11 @@ namespace SecretProject.Class.Playable
 
                     if (controls.IsMoving && CurrentAction.IsAnimated == false)
                     {
-                        PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+                        for(int i =0; i < PlayerMovementAnimations.GetLength(0); i++)
+                        {
+                            PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                        }
+                        
                     }
                     else if (CurrentAction.IsAnimated == true)
                     {
@@ -355,7 +364,10 @@ namespace SecretProject.Class.Playable
                     }
                     else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
                     {
-                        PlayerMovementAnimations.SetFrame(0);
+                        for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                        {
+                            PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                        }
                     }
 
 
@@ -398,27 +410,57 @@ namespace SecretProject.Class.Playable
                         {
                             case SecondaryDir.Right:
                                 SecondaryVelocity.X = SecondarySpeed;
-                                PlayerMovementAnimations = animations[(int)Dir.Right];
-                                //PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                                PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+                                for (int i = 0; i < animations.GetLength(1); i++)
+                                {
+                                    PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
+                                }
+
+                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                                {
+                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                                }
                                 break;
                             case SecondaryDir.Left:
                                 SecondaryVelocity.X = -SecondarySpeed;
-                                PlayerMovementAnimations = animations[(int)Dir.Left];
+                                for (int i = 0; i < animations.GetLength(1); i++)
+                                {
+                                    PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
+                                }
+                                //PlayerMovementAnimations = animations[(int)Dir.Left];
                                 // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                                PlayerMovementAnimations.UpdateAnimations(gameTime, this.Position);
+
+                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                                {
+                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                                }
                                 break;
                             case SecondaryDir.Down:
                                 SecondaryVelocity.Y = SecondarySpeed;
+                                for (int i = 0; i < animations.GetLength(1); i++)
+                                {
+                                    PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
+                                }
                                 // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
                                 //PlayerMovementAnimations = animations[(int)Dir.Down];
-                                //PlayerMovementAnimations.Update(gameTime);
+
+                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                                {
+                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                                }
                                 break;
                             case SecondaryDir.Up:
                                 SecondaryVelocity.Y = -SecondarySpeed;
+                                for (int i = 0; i < animations.GetLength(1); i++)
+                                {
+                                    PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
+                                }
 
                                 //PlayerMovementAnimations = animations[(int)Dir.Up];
-                                //PlayerMovementAnimations.Update(gameTime);
+
+                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                                {
+                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                                }
                                 break;
                             // case SecondaryDir.None:
 
@@ -474,7 +516,12 @@ namespace SecretProject.Class.Playable
 
                 if (CurrentAction.IsAnimated == false)
                 {
-                    PlayerMovementAnimations.DrawAnimation(spriteBatch, this.Position, layerDepth);
+
+                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                    {
+                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth);
+                    }
+                    
                 }
 
                 //????

@@ -366,14 +366,50 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerSpriteSheet, 26, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerParts, 24,6, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
-            Player.animations[0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 64, 0, 16, 48, 6, .15f, Game1.Player.position);
-            Player.PlayerMovementAnimations = Player.animations[0];
+
+            //meaning hair of direction forward:
+            Player.animations[0,0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 16, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 64, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 112, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 160, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 208, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 256, 16, 48, 6, .15f, Game1.Player.position);
+
+            //Left
+            Player.animations[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 16, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 64, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 112, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 160, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 208, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 256, 16, 48, 6, .15f, Game1.Player.position);
+
+            //Right
+            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 16, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 64, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 112, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 160, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 208, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 256, 16, 48, 6, .15f, Game1.Player.position);
+
+            //up
+            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 16, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 64, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 112, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 160, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 208, 16, 48, 6, .15f, Game1.Player.position);
+            Player.animations[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 256, 16, 48, 6, .15f, Game1.Player.position);
+            //Player.PlayerMovementAnimations = Player.animations[0];
+            Player.PlayerMovementAnimations = new Sprite[6];
+            for (int i = 0; i < Player.animations.GetLength(1); i++)
+            {
+                Player.PlayerMovementAnimations[i] = Player.animations[0, i];
+            }
             //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
-            Player.animations[2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 160, 0, 16, 48, 6, .15f, Game1.Player.position);
-            Player.animations[3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 256, 0, 16, 48, 6, .15f, Game1.Player.position);
-            Player.animations[1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerSpriteSheet, 352, 0, 16, 48, 6, .15f, Game1.Player.position);
+            // Player.animations[2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 160, 0, 16, 48, 6, .15f, Game1.Player.position);
+            //Player.animations[3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 0, 16, 48, 6, .15f, Game1.Player.position);
+            //Player.animations[1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 352, 0, 16, 48, 6, .15f, Game1.Player.position);
 
             //UI
 

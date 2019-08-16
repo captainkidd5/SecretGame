@@ -51,6 +51,8 @@ namespace SecretProject.Class.SpriteFolder
         public int OffSetX { get; set; }
         public int OffSetY { get; set; }
 
+        public Rectangle[] PlayerPartSourceRectangles { get; set; }
+
         //for clouds
         public float Speed { get; set; }
 
@@ -130,6 +132,22 @@ namespace SecretProject.Class.SpriteFolder
                 AnimationTimer = AnimationSpeed;
             }
             if(CurrentFrame == TotalFrames)
+            {
+                CurrentFrame = 0;
+            }
+            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+        }
+
+        public void UpdatePlayerPartAnimations(GameTime gameTime, Vector2 position)
+        {
+            this.Position = position;
+            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (AnimationTimer <= 0)
+            {
+                CurrentFrame++;
+                AnimationTimer = AnimationSpeed;
+            }
+            if (CurrentFrame == TotalFrames)
             {
                 CurrentFrame = 0;
             }
