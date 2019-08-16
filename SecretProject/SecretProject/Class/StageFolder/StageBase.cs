@@ -247,13 +247,23 @@ namespace SecretProject.Class.StageFolder
             this.IsDark = Game1.GlobalClock.IsNight;
             for (int p = 0; p < AllPortals.Count; p++)
             {
-                if (player.Rectangle.Intersects(AllPortals[p].PortalStart))
+                if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
+                {
+                    if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                    OnSceneChanged();
+                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                    return;
+                }
+                else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
                     Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
                     OnSceneChanged();
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
+                
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;

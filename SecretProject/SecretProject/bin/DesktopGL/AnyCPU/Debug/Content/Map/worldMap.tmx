@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="32">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextobjectid="34">
  <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
  <layer name="background" width="100" height="100">
   <data encoding="csv">
@@ -108,6 +108,7 @@
  <objectgroup name="Portal">
   <object id="29" x="762" y="1582" width="132" height="16">
    <properties>
+    <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-50"/>
     <property name="standardFrom" value="2"/>
@@ -116,14 +117,16 @@
   </object>
   <object id="30" x="-1" y="757" width="41" height="60">
    <properties>
+    <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="50"/>
     <property name="SafteyOffSetY" value="0"/>
     <property name="standardFrom" value="2"/>
     <property name="standardTo" value="7"/>
    </properties>
   </object>
-  <object id="31" x="1583" y="1363" width="15" height="76">
+  <object id="31" x="1255" y="1230" width="15" height="76">
    <properties>
+    <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="-50"/>
     <property name="SafteyOffSetY" value="0"/>
     <property name="standardFrom" value="2"/>

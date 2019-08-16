@@ -72,7 +72,9 @@ namespace SecretProject
         RoyalDock = 5,
         GreatLibrary = 6,
         WestBeach = 7,
-        DobbinsOrchard = 8
+        DobbinsOrchard = 8,
+        ElixirShop = 9
+            
     }
 
 
@@ -95,6 +97,7 @@ namespace SecretProject
         public static StageBase GreatLibrary;
         public static StageBase WestBeach;
         public static StageBase DobbinsOrchard;
+        public static StageBase ElixirShop;
         public static Wilderness Wilderness;
         public static List<IStage> AllStages;
         public static int CurrentStage;
@@ -263,6 +266,8 @@ namespace SecretProject
                     return WestBeach;
                 case Stages.DobbinsOrchard:
                     return DobbinsOrchard;
+                case Stages.ElixirShop:
+                    return ElixirShop;
 
                 default:
                     return null;
@@ -288,6 +293,8 @@ namespace SecretProject
                     return WestBeach;
                 case 8:
                     return DobbinsOrchard;
+                case 9:
+                    return ElixirShop;
                 default:
                     return RoyalDock;
             }
@@ -316,6 +323,8 @@ namespace SecretProject
                     return 7;
                 case Stages.DobbinsOrchard:
                     return 8;
+                case Stages.ElixirShop:
+                    return 9;
 
                 default:
                     return 0;
@@ -407,6 +416,7 @@ namespace SecretProject
 
             LodgeInterior = new StageBase("Lodge", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/lodgeInterior.tmx", 1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
+            ElixirShop = new StageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
             GlobalClock = new Clock();
 
@@ -456,7 +466,7 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 } ;
-            Snaw = new Character("Snaw", new Vector2(1300, 600), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+            Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3};
         }
         #endregion
@@ -559,6 +569,9 @@ namespace SecretProject
                 case Stages.DobbinsOrchard:
                     DobbinsOrchard.Update(gameTime, myMouseManager, Player);
                     break;
+                case Stages.ElixirShop:
+                    ElixirShop.Update(gameTime, myMouseManager, Player);
+                    break;
 
                 case Stages.Sea:
                         Sea.Update(gameTime, myMouseManager, Player);
@@ -620,6 +633,10 @@ namespace SecretProject
                 case Stages.DobbinsOrchard:
                     GraphicsDevice.Clear(Color.Black);
                     DobbinsOrchard.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.ElixirShop:
+                    GraphicsDevice.Clear(Color.Black);
+                    ElixirShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
 

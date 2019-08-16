@@ -96,13 +96,13 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
                     break;
             }
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-            {
-                mouse.ChangeMouseTexture(200);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
+            //if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
+            //{
+            //    mouse.ChangeMouseTexture(200);
+            //    mouse.ToggleGeneralInteraction = true;
+            //    Game1.isMyMouseVisible = false;
 
-            }
+            //}
             if (IsMoving)
             {
 

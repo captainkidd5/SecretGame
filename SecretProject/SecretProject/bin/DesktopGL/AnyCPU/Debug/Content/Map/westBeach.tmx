@@ -110,6 +110,7 @@
    <properties>
     <property name="SafteyOffSetX" value="-50"/>
     <property name="SafteyOffSetY" value="0"/>
+    <property name="click" value="false"/>
     <property name="standardFrom" value="7"/>
     <property name="standardTo" value="2"/>
    </properties>

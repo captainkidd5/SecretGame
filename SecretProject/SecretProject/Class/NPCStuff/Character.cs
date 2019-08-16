@@ -140,7 +140,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             }
             CheckSpeechInteraction(mouse, FrameToSet);
 
-            //this.Speed = PrimaryVelocity
             FollowSchedule(gameTime, this.RouteSchedule);
             if (mouse.IsRightClicked)
             {
@@ -179,6 +178,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
             }
         }
+
 
         public void CheckBasicNPCSpeechInteraction(MouseManager mouse, int frameToSet)
         {

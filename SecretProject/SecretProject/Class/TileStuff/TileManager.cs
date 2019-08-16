@@ -167,13 +167,15 @@ namespace SecretProject.Class.TileStuff
                 string keyTo;
                 string safteyX;
                 string safteyY;
+                string click;
 
 
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardTo", out keyTo);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
-                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY));
+                mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
+                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
 
 
                 int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
@@ -672,16 +674,12 @@ namespace SecretProject.Class.TileStuff
                                                 Game1.myMouseManager.ToggleGeneralInteraction = true;
 
 
-                                                if (mouse.IsClicked)
-                                                {
-                                                    InteractWithBuilding(z, gameTime, i, j);
-
-                                                }
+                                                
                                             }
-                                            else
+                                            if (mouse.IsClicked)
                                             {
-                                                //Game1.isMyMouseVisible = true;
-                                                //Game1.Player.UserInterface.DrawTileSelector = false;
+                                                InteractWithBuilding(z, gameTime, i, j);
+
                                             }
 
 
@@ -956,6 +954,28 @@ namespace SecretProject.Class.TileStuff
 
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("portal"))
             {
+                switch (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["portal"])
+                {
+                    case ("lodgeInterior"):
+                        {
+                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                            Game1.Player.controls.Direction = Dir.Up;
+                            Game1.gameStages = Stages.LodgeInteior;
+                            Game1.Player.position.X = 878;
+                            Game1.Player.position.Y = 809;
+                            break;
+                        }
+                    case ("elixirShop"):
+                        {
+                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                            Game1.Player.controls.Direction = Dir.Up;
+                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 9);
+                            Game1.Player.position.X = 878;
+                            Game1.Player.position.Y = 809;
+                            break;
+                        }
+                }
+
                 if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["portal"] == "lodgeInterior" && Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
                 {
                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
