@@ -15,6 +15,7 @@ namespace SecretProject.Class.TextureStuff
     {
         public Texture2D MainCharacterSpriteStrip;
         public Texture2D PlayerSpriteSheet;
+        public Texture2D PlayerParts;
 
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -77,6 +78,7 @@ namespace SecretProject.Class.TextureStuff
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
+            PlayerParts = content.Load<Texture2D>("Player/MainPlayer/playerParts");
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");

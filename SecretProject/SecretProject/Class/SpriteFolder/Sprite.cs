@@ -98,10 +98,6 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
-        //public void UpdateDestinationRectangle()
-        //{
-        //    this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(DestinationRectangle.Width * TextureScaleX), (int)(DestinationRectangle.Height * TextureScaleY));
-        //}
 
         public void Update(GameTime gameTime, Vector2 position)
         {
