@@ -225,6 +225,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
+                //mCam.Pos = new Vector2(800, 800);
                 player.Update(gameTime, AllItems, AllObjects, mouse);
 
                 //--------------------------------------

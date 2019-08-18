@@ -366,42 +366,70 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerParts, 24,6, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerParts, 24,10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
             Player.animations[0,0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 16, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 64, 16, 48, 6, .1f, Game1.Player.position);
+            //head
+            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 64, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            //right arm
             Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 112, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 160, 16, 48, 6, .1f, Game1.Player.position);
+//right hand
+            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 160, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            //left arm
             Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 208, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 256, 16, 48, 6, .1f, Game1.Player.position);
-
-            //Left
-            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 16, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 64, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 112, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 160, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 208, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 256, 16, 48, 6, .1f, Game1.Player.position);
-
-            //Right
-            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 16, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 64, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 112, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 160, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 208, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 256, 16, 48, 6, .1f, Game1.Player.position);
+            //left hand
+            Player.animations[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 256, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[0, 6] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 304, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[0, 7] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 352, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[0, 8] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 400, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[0, 9] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 448, 16, 48, 6, .1f, Game1.Player.position);
+            //left shoe
+            //right shoe
+            //legs
 
             //up
             Player.animations[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 16, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 64, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 64, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Gray };
             Player.animations[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 112, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 160, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 160, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Gray };
             Player.animations[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 208, 16, 48, 6, .1f, Game1.Player.position);
-            Player.animations[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 256, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 256, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Gray };
+            Player.animations[1, 6] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 304, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 7] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 352, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 8] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 400, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[1, 9] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 336, 448, 16, 48, 6, .1f, Game1.Player.position);
+
+            //Left
+            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 16, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 64, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 112, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 160, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 208, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 256, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[2, 6] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 304, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 7] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 352, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 8] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 400, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[2, 9] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 240, 448, 16, 48, 6, .1f, Game1.Player.position);
+
+            //Right
+            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 16, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 64, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 112, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 160, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 208, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 256, 16, 48, 6, .1f, Game1.Player.position) { Color = Color.Black };
+            Player.animations[3, 6] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 304, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 7] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 352, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 8] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 400, 16, 48, 6, .1f, Game1.Player.position);
+            Player.animations[3, 9] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 144, 448, 16, 48, 6, .1f, Game1.Player.position);
+
+
+
+
             //Player.PlayerMovementAnimations = Player.animations[0];
-            Player.PlayerMovementAnimations = new Sprite[6];
+            Player.PlayerMovementAnimations = new Sprite[10];
             for (int i = 0; i < Player.animations.GetLength(1); i++)
             {
                 Player.PlayerMovementAnimations[i] = Player.animations[0, i];

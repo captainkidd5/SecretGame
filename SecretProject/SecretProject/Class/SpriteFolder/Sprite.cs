@@ -56,6 +56,8 @@ namespace SecretProject.Class.SpriteFolder
         //for clouds
         public float Speed { get; set; }
 
+        public Color Color { get; set; }
+
 
 
 
@@ -87,6 +89,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Position = positionToDrawTo;
             this.OffSetX = offSetX;
             this.OffSetY = offSetY;
+            this.Color = Color.White;
         }
 
 
@@ -168,8 +171,8 @@ namespace SecretProject.Class.SpriteFolder
         {
             //something wrong with destination rectangle after animation
             DestinationRectangle = new Rectangle((int)currentPosition.X + OffSetX, (int)currentPosition.Y + OffSetY, FrameWidth, FrameHeight);
-            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+            spriteBatch.Draw(AtlasTexture,  new Vector2(DestinationRectangle.X, DestinationRectangle.Y),sourceRectangle: SourceRectangle,
+                    color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
         //for ship sprites

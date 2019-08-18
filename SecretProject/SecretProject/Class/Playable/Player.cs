@@ -118,7 +118,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y + 42, 16, 8);
+                return new Rectangle((int)position.X, (int)position.Y + 24, 16, 8);
             }
 
         }
@@ -338,11 +338,6 @@ namespace SecretProject.Class.Playable
                     {
                         TotalVelocity = TotalVelocity * 5f;
                     }
-                    else
-                    {
-
-                    }
-
                     Position += TotalVelocity;
                     PrimaryVelocity = Vector2.Zero;
                     SecondaryVelocity = Vector2.Zero;
