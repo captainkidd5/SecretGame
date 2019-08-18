@@ -5,7 +5,9 @@
   <AllDialogue>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>0</TimeStart>
+    <TimeEnd>24</TimeEnd>
    <TextToWrite>*SNORT* ....hmmmm?...zzzZZZZZ</TextToWrite>
     </Item>
   </AllDialogue>

@@ -5,12 +5,16 @@
   <AllDialogue>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>9</TimeStart>
+    <TimeEnd>6</TimeEnd>
    <TextToWrite>...........Stop by my shop later if you want to purchase.... some potions.......</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>21</TimeStart>
+    <TimeEnd>2</TimeEnd>
    <TextToWrite>Potion or poison?</TextToWrite>
     </Item>
   </AllDialogue>

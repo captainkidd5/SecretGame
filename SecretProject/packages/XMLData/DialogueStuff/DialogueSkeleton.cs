@@ -10,7 +10,9 @@ namespace XMLData.DialogueStuff
     {
         //who will be speaking?
         public int SpeechID { get; set; }
-        public bool ConditionMet { get; set; }
+        public int Day { get; set; }
+        public int TimeStart { get; set; }
+        public int TimeEnd { get; set; }
         public string TextToWrite { get; set; }
     }
 }

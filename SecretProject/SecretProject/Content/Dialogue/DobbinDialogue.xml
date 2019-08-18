@@ -5,17 +5,23 @@
   <AllDialogue>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>0</TimeStart>
+    <TimeEnd>10</TimeEnd>
    <TextToWrite>Hi</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>11</TimeStart>
+    <TimeEnd>20</TimeEnd>
    <TextToWrite>Elixir creeps me out</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
-    <ConditionMet>true</ConditionMet>
+    <Day>0</Day>
+    <TimeStart>21</TimeStart>
+    <TimeEnd>24</TimeEnd>
    <TextToWrite>Been a while since I've had a good shave</TextToWrite>
     </Item>
   </AllDialogue>

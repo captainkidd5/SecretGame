@@ -18,10 +18,23 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public string RetrieveDialogue(int speaker, int speechID)
+        public string RetrieveDialogue(int speaker, int time)
         {
             DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
-            DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
+            // DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
+            //Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
+            //     Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
+            
+
+            DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time);
+            if(skeleton == null)
+            {
+                skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd <= x.TimeStart);
+            }
+            if(skeleton == null)
+            {
+                return "my speech doesn't exist at this time!";
+            }
             return skeleton.TextToWrite;
         }
 
