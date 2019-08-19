@@ -43,7 +43,7 @@ namespace SecretProject.Class.UI
             this.BackDropPosition = new Vector2(500, 100);
             CraftingRecipeBars = new List<CraftableRecipeBar>()
             {
-                new CraftableRecipeBar(CraftingGuide,4,new Vector2(BackDropPosition.X + BackDropTexture.Width / 5, BackDropPosition.Y + BackDropTexture.Height/5), graphics)
+                new CraftableRecipeBar(CraftingGuide,124,new Vector2(BackDropPosition.X + BackDropTexture.Width / 5, BackDropPosition.Y + BackDropTexture.Height/5), graphics)
             };
         }
 
@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI
             {
                 foreach(CraftableRecipeBar bar in CraftingRecipeBars)
                 {
-                    
+                    bar.Update(gameTime, mouse);
                 }
             }
         }
@@ -62,6 +62,10 @@ namespace SecretProject.Class.UI
            if(this.IsActive)
             {
                 spriteBatch.Draw(this.BackDropTexture, BackDropPosition, new Rectangle(1104, 1120, 288, 336), Color.White);
+                foreach (CraftableRecipeBar bar in CraftingRecipeBars)
+                {
+                    bar.Draw(spriteBatch);
+                }
             }
             
         }
@@ -71,12 +75,13 @@ namespace SecretProject.Class.UI
     {
         public int ItemID { get; set; }
         public Button Button { get; set; }
-        CraftingGuide guide;
-        public CraftingSlot(CraftingGuide guide, int itemID, Vector2 drawPosition, GraphicsDevice graphics)
+        Vector2 drawPosition;
+        int countOfItemsRequired;
+        public CraftingSlot(GraphicsDevice graphics,int countOfItemsRequired, int itemID, Vector2 drawPosition)
         {
-            Item item = Game1.ItemVault.GenerateNewItem(itemID, drawPosition);
+            Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
-            this.guide = guide;
+            this.countOfItemsRequired = countOfItemsRequired;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -86,7 +91,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-           // Button.Draw(spriteBatch, Button.ItemSourceRectangleToDraw, new Rectangle(1167, 752, 64,64 ), Game1.AllTextures.MenuText, guide.CraftingRecipes.Find(x => x.)
+            Button.Draw(spriteBatch, Button.ItemSourceRectangleToDraw, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText, countOfItemsRequired.ToString(), drawPosition, Color.White *.5f);
         }
     }
 
@@ -97,9 +102,27 @@ namespace SecretProject.Class.UI
         public CraftableRecipeBar(CraftingGuide guide, int itemID, Vector2 drawPosition, GraphicsDevice graphics)
         {
             this.guide = guide;
+            CraftingSlots = new List<CraftingSlot>();
             for(int i = 0; i < guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired.Count; i++)
             {
-                CraftingSlots.Add(new CraftingSlot(guide, itemID, ))
+                CraftingSlots.Add(new CraftingSlot(graphics,guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].Count,
+                    guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].ItemID, drawPosition));
+            }
+        }
+
+        public void Update(GameTime gameTime, MouseManager mouse)
+        {
+            foreach(CraftingSlot slot in CraftingSlots)
+            {
+                slot.Update(gameTime, mouse);
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (CraftingSlot slot in CraftingSlots)
+            {
+                slot.Draw(spriteBatch);
             }
         }
     }
