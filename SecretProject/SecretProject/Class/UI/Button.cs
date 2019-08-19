@@ -121,6 +121,7 @@ namespace SecretProject.Class.MenuStuff
         {
             spriteBatch.Draw(Texture, destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
         }
+
         public void Draw(SpriteBatch spriteBatch, Color tint, float layerDepthCustom)
         {
             spriteBatch.Draw(this.Texture, this.Rectangle, this.BackGroundSourceRectangle, tint, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
@@ -135,6 +136,27 @@ namespace SecretProject.Class.MenuStuff
 
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
+        }
+
+        //for crafting menu
+        public void DrawCraftingSlot(SpriteBatch spriteBatch, Rectangle itemSourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float foreGroundScale = 1f, float layerDepthCustom = .69f)
+        {
+
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Rectangle.X, Rectangle.Y), backgroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(this.Texture, new Vector2(Rectangle.X + Rectangle.Width / 4, Rectangle.Y + Rectangle.Height / 4), itemSourceRectangle, tint, 0f, Game1.Utility.Origin, foreGroundScale, SpriteEffects.None, layerDepthCustom + .01f);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
+
+            //this.Rectangle = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width * foreGroundScale, Rectangle.Height * foreGroundScale)
+        }
+
+        public void DrawCraftingSlotRetrievable(SpriteBatch spriteBatch, Rectangle itemSourceRectangle, Rectangle backgroundSourceRectangle, Color tint, float backGroundScale = 1f, float foreGroundScale = 1f, float layerDepthCustom = .69f)
+        {
+
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Rectangle.X, Rectangle.Y), backgroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, layerDepthCustom);
+            spriteBatch.Draw(this.Texture, new Vector2(Rectangle.X + Rectangle.Width / 4, Rectangle.Y + Rectangle.Height / 4), itemSourceRectangle, tint, 0f, Game1.Utility.Origin, foreGroundScale, SpriteEffects.None, layerDepthCustom + .01f);
+           
+
+            //this.Rectangle = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width * foreGroundScale, Rectangle.Height * foreGroundScale)
         }
 
         //for esc menu
