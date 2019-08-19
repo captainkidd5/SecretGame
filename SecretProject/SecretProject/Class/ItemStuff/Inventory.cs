@@ -16,18 +16,16 @@ using System.Xml.Serialization;
 namespace SecretProject.Class.ItemStuff
 {
     [Serializable,]
-    public class Inventory : ISerializable
+    public class Inventory
 
     {
 
-        [XmlArray("currentInventory")]
         public List<InventorySlot> currentInventory;
 
 
         public int ID { get; set; }
         public string Name { get; set; }
         public int ItemCount { get; set; }
-        [XmlIgnore]
         public Sprite ItemSprite { get; set; }
         public int Capacity { get; set; }
 
@@ -136,15 +134,6 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("currentInventory", typeof(List<InventorySlot>));
-        }
-
-        public Inventory(SerializationInfo info, StreamingContext context)
-        {
-            currentInventory = (List<InventorySlot>)info.GetValue("currentInventory", typeof(List<InventorySlot>));
-        }
 
     }
 

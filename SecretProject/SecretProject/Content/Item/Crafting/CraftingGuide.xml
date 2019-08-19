@@ -6,8 +6,12 @@
     <ItemToCraftID>124</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>143</ItemID>
+    <ItemID>145</ItemID>
     <Count>3</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>143</ItemID>
+    <Count>1</Count>
     </Item>
     </AllItemsRequired>
     </Item>

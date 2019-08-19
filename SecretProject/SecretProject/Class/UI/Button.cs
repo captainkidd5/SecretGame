@@ -66,6 +66,7 @@ namespace SecretProject.Class.MenuStuff
             Rectangle = new Rectangle((int)Position.X, (int)Position.Y, sourceRectangle.Width, sourceRectangle.Height);
 
             this.BackGroundSourceRectangle = sourceRectangle;
+            //this.ItemSourceRectangleToDraw = sou
 
 
         }

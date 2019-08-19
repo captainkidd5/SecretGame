@@ -15,7 +15,6 @@ namespace SecretProject.Class.UI
 {
     public class CraftingMenu
     {
-        //LAYER1
        
         public List<CraftableRecipeBar> CraftingRecipeBars { get; set; }
         public bool IsActive { get; set; }
@@ -30,9 +29,7 @@ namespace SecretProject.Class.UI
         {
             
             this.IsActive = false;
-           
-
-           
+              
         }
 
         public void LoadContent(ContentManager content, GraphicsDevice graphics)
@@ -82,6 +79,7 @@ namespace SecretProject.Class.UI
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
             this.countOfItemsRequired = countOfItemsRequired;
+            this.drawPosition = drawPosition;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -91,7 +89,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Button.Draw(spriteBatch, Button.ItemSourceRectangleToDraw, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText, countOfItemsRequired.ToString(), drawPosition, Color.White *.5f);
+            Button.Draw(spriteBatch, Button.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText, countOfItemsRequired.ToString(), drawPosition, Color.White *.5f, 5f);
         }
     }
 
@@ -106,7 +104,7 @@ namespace SecretProject.Class.UI
             for(int i = 0; i < guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired.Count; i++)
             {
                 CraftingSlots.Add(new CraftingSlot(graphics,guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].Count,
-                    guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].ItemID, drawPosition));
+                    guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].ItemID, new Vector2(drawPosition.X + (i * 100), drawPosition.Y)));
             }
         }
 
