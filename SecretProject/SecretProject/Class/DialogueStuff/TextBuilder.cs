@@ -141,6 +141,17 @@ namespace SecretProject.Class.DialogueStuff
                     else if (typedTextLength < parsedText.Length)
                     {
                         typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
+                        int noiseRand = Game1.Utility.RGenerator.Next(1, 3);
+                        if(noiseRand == 1)
+                        {
+                            
+                            Game1.SoundManager.TextNoise.Play(.1f, 0f, 0f);
+                        }
+                        else
+                        {
+                            Game1.SoundManager.TextNoise2.Play(.1f, 0f, 0f);
+                        }
+                        
                         if (typedTextLength >= parsedText.Length)
                         {
                             typedTextLength = parsedText.Length;

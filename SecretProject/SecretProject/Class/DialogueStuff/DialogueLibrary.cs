@@ -18,7 +18,7 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public string RetrieveDialogue(int speaker, int time)
+        public string RetrieveDialogue(int speaker,int day, int time)
         {
             DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
             // DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
@@ -26,10 +26,10 @@ namespace SecretProject.Class.DialogueStuff
             //     Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             
 
-            DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time);
+            DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time && x.Day == day);
             if(skeleton == null)
             {
-                skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd <= x.TimeStart);
+                skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd <= x.TimeStart && x.Day == day);
             }
             if(skeleton == null)
             {

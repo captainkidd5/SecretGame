@@ -168,7 +168,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 {
 
 
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalHours), 2f, null, null);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID,Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
 
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
@@ -191,7 +191,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 {
 
 
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, 1), 2f, null, null);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
 
 

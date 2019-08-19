@@ -811,3 +811,15 @@
 /processorParam:TextureFormat=Color
 /build:Player/MainPlayer/playerParts.png
 
+#begin SoundEffects/textNoise.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/textNoise.wav
+
+#begin SoundEffects/textNoise2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/textNoise2.wav
+

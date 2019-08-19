@@ -65,6 +65,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect CropPluck;
         public SoundEffectInstance CropPluckInstance;
 
+        public SoundEffect TextNoise;
+        public SoundEffect TextNoise2;
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -125,6 +128,9 @@ namespace SecretProject.Class.SoundStuff
 
             CropPluck = content.Load<SoundEffect>("SoundEffects/ropePop");
             CropPluckInstance = CropPluck.CreateInstance();
+
+            TextNoise = content.Load<SoundEffect>("SoundEffects/textNoise");
+            TextNoise2 = content.Load<SoundEffect>("SoundEffects/textNoise2");
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)
