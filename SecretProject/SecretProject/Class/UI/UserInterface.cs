@@ -82,8 +82,8 @@ namespace SecretProject.Class.UI
             this.cam = cam;
             TextBuilder = new TextBuilder("", 50f, 10f);
             this.Player = player;
-            CraftingMenu = new CraftingMenu(GraphicsDevice);
-            CraftingMenu.LoadContent(content);
+            CraftingMenu = new CraftingMenu();
+            CraftingMenu.LoadContent(content, GraphicsDevice);
             ScrollTree = new ScrollTree(graphicsDevice);
         }
 
@@ -124,12 +124,14 @@ namespace SecretProject.Class.UI
                 TextBuilder.UseTextBox = true;
             }
 
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)) && !isEscMenu)
+            {
+                CraftingMenu.IsActive = !CraftingMenu.IsActive;
+            }
 
-                TextBuilder.Update(gameTime);
-            // if(TextBuilder.FreezeStage)
-            //{
-            //    Game1.freeze = true;
-            //}
+
+            TextBuilder.Update(gameTime);
+
 
 
             if(IsShopMenu)
