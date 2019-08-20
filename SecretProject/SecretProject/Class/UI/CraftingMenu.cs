@@ -75,6 +75,7 @@ namespace SecretProject.Class.UI
         public Vector2 drawPosition;
         public int countOfItemsRequired;
         public bool satisfied = false;
+        public float colorMultiplier;
         public CraftingSlot(GraphicsDevice graphics, int countOfItemsRequired, int itemID, Vector2 drawPosition)
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
@@ -82,6 +83,7 @@ namespace SecretProject.Class.UI
             Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
             this.countOfItemsRequired = countOfItemsRequired;
             this.drawPosition = drawPosition;
+            this.colorMultiplier = .25f;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -92,16 +94,22 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText, countOfItemsRequired.ToString(), drawPosition, Color.White * .5f, 1f, 5f);
+            Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText,
+                Game1.Player.Inventory.FindNumberOfItemInInventory(ItemID).ToString() + "/" + countOfItemsRequired.ToString(), drawPosition, Color.White * colorMultiplier, 1f, 5f);
         }
 
         public bool CheckIfPlayerHasRequiredItems()
         {
             if (Game1.Player.Inventory.FindNumberOfItemInInventory(ItemID) >= countOfItemsRequired)
             {
+                this.colorMultiplier = 1f;
                 return true;
             }
-            else return false;
+            else
+            {
+                this.colorMultiplier = .5f;
+                return false;
+            }
         }
     }
 
