@@ -15,6 +15,19 @@
     </Item>
     </AllItemsRequired>
     </Item>
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>3</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>123</ItemID>
+    <Count>3</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>130</ItemID>
+    <Count>1</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
   </CraftingRecipes>
   </Asset>
 </XnaContent>

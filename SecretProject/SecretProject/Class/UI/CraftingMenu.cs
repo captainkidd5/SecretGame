@@ -40,7 +40,8 @@ namespace SecretProject.Class.UI
             this.BackDropPosition = new Vector2(500, 100);
             CraftingRecipeBars = new List<CraftableRecipeBar>()
             {
-                new CraftableRecipeBar(CraftingGuide,124,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 64), graphics)
+                new CraftableRecipeBar(CraftingGuide,124,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 64), graphics),
+                new CraftableRecipeBar(CraftingGuide,3,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 128), graphics)
             };
         }
 
@@ -95,7 +96,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText,
-                Game1.Player.Inventory.FindNumberOfItemInInventory(ItemID).ToString() + "/" + countOfItemsRequired.ToString(), drawPosition, Color.White * colorMultiplier, 1f, 5f);
+                Game1.Player.Inventory.FindNumberOfItemInInventory(ItemID).ToString() + "/" + countOfItemsRequired.ToString(), drawPosition, Color.White * colorMultiplier, 1f, 4f);
         }
 
         public bool CheckIfPlayerHasRequiredItems()
@@ -135,7 +136,7 @@ namespace SecretProject.Class.UI
             }
 
             retrievableButton = new Button(Game1.ItemVault.GenerateNewItem(itemID, null).ItemSprite.AtlasTexture,
-                Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 264, CraftingSlots[tier - 1].drawPosition.Y));
+                Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 128, CraftingSlots[tier - 1].drawPosition.Y));
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -191,7 +192,17 @@ namespace SecretProject.Class.UI
                 
             }
             //retrievableButton.Draw(spriteBatch);
-            retrievableButton.DrawCraftingSlotRetrievable(spriteBatch, retrievableButton.ItemSourceRectangleToDraw, retrievableButton.BackGroundSourceRectangle, Color.White, 1f, 5f, Game1.Utility.StandardButtonDepth);
+            if(this.canCraft)
+            {
+                retrievableButton.DrawCraftingSlot(spriteBatch, retrievableButton.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64),
+                Game1.AllTextures.MenuText, "", new Vector2(CraftingSlots[tier - 1].drawPosition.X + 64, CraftingSlots[tier - 1].drawPosition.Y), Color.White, 1f, 4f);
+            }
+            else
+            {
+                retrievableButton.DrawCraftingSlot(spriteBatch, retrievableButton.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64),
+                Game1.AllTextures.MenuText, "", new Vector2(CraftingSlots[tier - 1].drawPosition.X + 64, CraftingSlots[tier - 1].drawPosition.Y), Color.White  *.25f, 1f, 4f);
+            }
+            
             //spriteBatch.Draw(Game1.ItemVault.GenerateNewItem(itemID, null).ItemSprite.AtlasTexture, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 264, CraftingSlots[tier - 1].drawPosition.Y), Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, Color.White);
 
 
