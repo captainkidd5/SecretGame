@@ -362,12 +362,8 @@ namespace SecretProject.Class.UI
 
                 }
 
-                //else
-                //{
-                //    TextBuilder.StringToWrite = "";
-                //    TextBuilder.IsActive = false;
-                //}
-                if (AllSlots[i].wasJustReleased == true && AllSlots[i].ItemCounter > 0)
+                //INTERACTIONS WITH RELEASE ITEM 
+                if (AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     //FOR WHEN DROPPING STACK OF ITEMS
@@ -378,7 +374,7 @@ namespace SecretProject.Class.UI
                         {
                             inventory.currentInventory[i].RemoveItemFromSlot();
                             AllSlots[i].ItemCounter--;
-                            if (tempItem.IsPlaceable == false)
+                            if (!tempItem.IsPlaceable)
                             {
                                 Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
                                 newWorldItem.IsTossable = true;
@@ -448,18 +444,6 @@ namespace SecretProject.Class.UI
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     if (tempItem.IsPlaceable == true)
                     {
-                        //DragToggleBuilding = true;
-                        //this.TempItem = tempItem;
-                        //int j = 0;
-                        //int k = 0;
-
-                        //for (j = 0; j < tempItem.Building.TotalTiles.GetLength(0); j++)
-                        //{
-                        //    for (k = 0; k < tempItem.Building.TotalTiles.GetLength(1); k++)
-                        //    {
-                        //        Game1.GetCurrentStage().AllTiles.ReplaceTileTemporary(4, Game1.GetCurrentStage().AllTiles.CurrentIndexX + k, Game1.GetCurrentStage().AllTiles.CurrentIndexY + j, tempItem.Building.TotalTiles[j, k], .5f, j, k);
-                        //    }
-                        //}
 
                     }
 

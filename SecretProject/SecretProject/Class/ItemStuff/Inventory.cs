@@ -128,6 +128,18 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
+        public int FindNumberOfItemInInventory(int id)
+        {
+            int newID = id;
+            int counter = 0;
+            foreach (InventorySlot s in currentInventory)
+            {
+               counter+=s.SlotItems.Count(x => x.ID == id);
+                       
+            }
+            return counter;
+        }
+
 
         public void GetNextAvailableSlot()
         {

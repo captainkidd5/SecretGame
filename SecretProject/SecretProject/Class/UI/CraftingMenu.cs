@@ -73,10 +73,12 @@ namespace SecretProject.Class.UI
         public int ItemID { get; set; }
         public Button Button { get; set; }
         public Vector2 drawPosition;
-        int countOfItemsRequired;
+        public int countOfItemsRequired;
+        public bool satisfied = false;
         public CraftingSlot(GraphicsDevice graphics, int countOfItemsRequired, int itemID, Vector2 drawPosition)
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
+            this.ItemID = itemID;
             Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
             this.countOfItemsRequired = countOfItemsRequired;
             this.drawPosition = drawPosition;
@@ -85,11 +87,21 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             Button.Update(mouse);
+            this.satisfied = CheckIfPlayerHasRequiredItems();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, new Rectangle(1167, 752, 64, 64), Game1.AllTextures.MenuText, countOfItemsRequired.ToString(), drawPosition, Color.White * .5f, 1f, 5f);
+        }
+
+        public bool CheckIfPlayerHasRequiredItems()
+        {
+            if (Game1.Player.Inventory.FindNumberOfItemInInventory(ItemID) >= countOfItemsRequired)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 
@@ -100,6 +112,7 @@ namespace SecretProject.Class.UI
         Button retrievableButton;
         int tier;
         int itemID;
+        bool canCraft = false;
         public CraftableRecipeBar(CraftingGuide guide, int itemID, Vector2 drawPosition, GraphicsDevice graphics)
         {
             this.guide = guide;
@@ -119,12 +132,35 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+            canCraft = true;
             foreach (CraftingSlot slot in CraftingSlots)
             {
                 slot.Update(gameTime, mouse);
+                if(!slot.satisfied)
+                {
+                    canCraft = false;
+                }
             }
 
             retrievableButton.Update(mouse);
+
+
+            if(retrievableButton.isClicked && canCraft)
+            {
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(itemID, null));
+
+                foreach (CraftingSlot slot in CraftingSlots)
+                {
+                    for(int i =0; i < slot.countOfItemsRequired; i++)
+                    {
+                        Game1.Player.Inventory.RemoveItem(slot.ItemID);
+                    }
+                }
+                
+
+            }
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
