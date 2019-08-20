@@ -399,6 +399,7 @@ namespace SecretProject.Class.UI
                                     inventory.currentInventory[i].RemoveItemFromSlot();
                                     AllSlots[i].ItemCounter--;
                                 }
+                                Game1.SoundManager.Sell1.Play();
 
                                 break;
                             }
@@ -414,6 +415,7 @@ namespace SecretProject.Class.UI
                                 Game1.Player.Inventory.Money += Game1.AllShops.Find(x => x.ID == (int)Game1.Player.UserInterface.CurrentOpenShop).ShopMenu.TrySellToShop(inventory.currentInventory[i].GetItem().ID, 1);
                                 inventory.currentInventory[i].RemoveItemFromSlot();
                                 AllSlots[i].ItemCounter--;
+                                Game1.SoundManager.Sell1.Play();
                                 break;
                             }
                         }

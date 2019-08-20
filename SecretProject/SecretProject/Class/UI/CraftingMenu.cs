@@ -25,6 +25,7 @@ namespace SecretProject.Class.UI
 
         public CraftingGuide CraftingGuide { get; set; }
         public List<Tab> Tabs { get; set; }
+        public Button RedEsc { get; set; }
 
         int currentPage;
 
@@ -51,9 +52,13 @@ namespace SecretProject.Class.UI
             Tabs = new List<Tab>()
             {
                 new Tab(0, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 64)),
-                new Tab(1, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 96))
-            };
+                new Tab(1, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 96)),
+                new Tab(2, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 128)),
+                new Tab(3, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 160)),
+                new Tab(4, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1424, 160, 32,32),new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 192))
 
+            };
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(BackDropPosition.X + 300, BackDropPosition.Y));
             currentPage = 0;
         }
 
@@ -61,6 +66,11 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
+                RedEsc.Update(mouse);
+                if(RedEsc.isClicked)
+                {
+                    this.IsActive = false;
+                }
                 foreach(Tab tab in Tabs)
                 {
                    
@@ -81,10 +91,11 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
+                RedEsc.Draw(spriteBatch);
                 spriteBatch.Draw(this.BackDropTexture, BackDropPosition, new Rectangle(1104, 1120, 288, 336), Color.White);
                 foreach(Tab tab in Tabs)
                 {
-                    tab.Draw(spriteBatch);
+                    tab.Draw(spriteBatch, this.currentPage);
                 }
                 foreach (CraftableRecipeBar bar in CraftingRecipeBars)
                 {
@@ -121,9 +132,17 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int currentTab)
         {
-            button.DrawCraftingSlot(spriteBatch, this.foreGroundSourceRectangle, this.backGroundSourceRectangle, Game1.AllTextures.MenuText, "", button.Position, Color.White);
+            if(pageToOpen == currentTab)
+            {
+                button.DrawCraftingSlot(spriteBatch, this.foreGroundSourceRectangle, this.backGroundSourceRectangle, Game1.AllTextures.MenuText, "", button.Position, Color.White);
+            }
+            else
+            {
+                button.DrawCraftingSlot(spriteBatch, this.foreGroundSourceRectangle, this.backGroundSourceRectangle, Game1.AllTextures.MenuText, "", button.Position, Color.White * .25f);
+            }
+            
         }
     }
 
@@ -222,6 +241,17 @@ namespace SecretProject.Class.UI
             }
             if (retrievableButton.isClicked && canCraft)
             {
+                switch (page)
+                {
+                    case (0):
+                        Game1.SoundManager.CraftMetal.Play();
+                        break;
+                    default:
+                        Game1.SoundManager.CraftMetal.Play();
+                        break;
+
+                }
+
                 Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(itemID, null));
 
                 foreach (CraftingSlot slot in CraftingSlots)

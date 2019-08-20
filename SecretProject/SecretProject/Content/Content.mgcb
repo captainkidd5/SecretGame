@@ -823,3 +823,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/textNoise2.wav
 
+#begin SoundEffects/metalCraft.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/metalCraft.wav
+
+#begin SoundEffects/sell1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sell1.wav
+

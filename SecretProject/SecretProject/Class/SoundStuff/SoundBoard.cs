@@ -68,6 +68,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect TextNoise;
         public SoundEffect TextNoise2;
 
+        public SoundEffect CraftMetal;
+
+        public SoundEffect Sell1;
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -131,6 +134,10 @@ namespace SecretProject.Class.SoundStuff
 
             TextNoise = content.Load<SoundEffect>("SoundEffects/textNoise");
             TextNoise2 = content.Load<SoundEffect>("SoundEffects/textNoise2");
+
+            CraftMetal = content.Load<SoundEffect>("SoundEffects/metalCraft");
+
+            Sell1 = content.Load<SoundEffect>("SoundEffects/sell1");
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)
