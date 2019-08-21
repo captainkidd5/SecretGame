@@ -115,10 +115,13 @@ namespace SecretProject.Class.UI
         {
             if (Game1.Player.Inventory.Money >= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price)
             {
-                Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0]);
-                Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price; //reduce players money if transaction goes through!
-                ShopInventory.currentInventory.ElementAt(slotIndex).RemoveItemFromSlot();
-                allShopMenuItemButtons[slotIndex].ItemCounter--;
+                if(Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0]))
+                {
+                    Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price; //reduce players money if transaction goes through!
+                    ShopInventory.currentInventory.ElementAt(slotIndex).RemoveItemFromSlot();
+                    allShopMenuItemButtons[slotIndex].ItemCounter--;
+                }
+                
             }
         }
 
