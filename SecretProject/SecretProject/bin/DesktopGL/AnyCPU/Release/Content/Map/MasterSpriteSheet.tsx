@@ -163,6 +163,42 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="7914">
+  <animation>
+   <frame tileid="7614" duration="100"/>
+   <frame tileid="7314" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="7915">
+  <animation>
+   <frame tileid="7615" duration="100"/>
+   <frame tileid="7315" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8014">
+  <animation>
+   <frame tileid="7714" duration="100"/>
+   <frame tileid="7414" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8015">
+  <animation>
+   <frame tileid="7715" duration="100"/>
+   <frame tileid="7415" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8114">
+  <animation>
+   <frame tileid="7814" duration="100"/>
+   <frame tileid="7514" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8115">
+  <animation>
+   <frame tileid="7815" duration="100"/>
+   <frame tileid="7515" duration="100"/>
+  </animation>
+ </tile>
  <tile id="9702">
   <properties>
    <property name="AnimatedY" value="17"/>

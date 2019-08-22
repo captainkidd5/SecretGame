@@ -131,7 +131,7 @@ namespace SecretProject.Class.StageFolder
 
             this.Cam = camera;
             Cam.Zoom = 3f;
-            MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
+            MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));

@@ -217,9 +217,9 @@ namespace SecretProject.Class.TileStuff
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (int i = 0; i < tilesetTilesWide; i++)
+                for (int i = 0; i < this.mapWidth; i++)
                 {
-                    for (int j = 0; j < tilesetTilesHigh; j++)
+                    for (int j = 0; j < this.mapHeight; j++)
                     {
 
                         if (AllTiles[z][i, j].GID != 0)
@@ -473,9 +473,9 @@ namespace SecretProject.Class.TileStuff
             {
                 if (z == 1)
                 {
-                    for (var i = 0; i < tilesetTilesWide; i++)
+                    for (var i = 0; i < mapWidth; i++)
                     {
-                        for (var j = 0; j < tilesetTilesHigh; j++)
+                        for (var j = 0; j < mapHeight; j++)
                         {
                             int testGID = AllTiles[z][i, j].GID;
                             if (AllTiles[z][i, j].GID != -1)
@@ -512,7 +512,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            PathGrid = new AStarPathFinder(tilesetTilesWide, tilesetTilesHigh, AllTiles[1]);
+            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles[1]);
 
         }
         #endregion
