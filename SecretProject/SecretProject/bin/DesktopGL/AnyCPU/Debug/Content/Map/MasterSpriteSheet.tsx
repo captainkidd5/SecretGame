@@ -94,6 +94,9 @@
    <property name="loot" value="130:100,183:15"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1" y="1" width="13" height="13"/>
+  </objectgroup>
  </tile>
  <tile id="1004">
   <properties>

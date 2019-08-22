@@ -432,9 +432,9 @@ namespace SecretProject.Class.TileStuff
                     //tilesToReturn.Add(AllTiles[intTilePropertyLayer][xCoord, yCoord]);
 
 
-                    if (Game1.GetCurrentStage().AllObjects[AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey()] != null)
+                    if (Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey()))
                     {
-                        Game1.GetCurrentStage().AllObjects[AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey()] = null;
+                        Game1.GetCurrentStage().AllObjects.Remove(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey());
                     }
 
                     AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
@@ -645,7 +645,7 @@ namespace SecretProject.Class.TileStuff
                                         {
 
 
-                                            if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                            if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
@@ -666,23 +666,19 @@ namespace SecretProject.Class.TileStuff
                                             }
 
 
-                                            if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                                            {
-
-                                                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
-                                                {
+                                                //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
+                                                //{
 
 
-                                                    if (int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]) >= 0 && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
-                                                    {
-                                                        if (mouse.IsRightClicked)
-                                                        {
-                                                            ActionHelper(z, i, j, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]));
-                                                        }
+                                                //    if (int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]) >= 0 && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                                                //    {
+                                                //        if (mouse.IsRightClicked)
+                                                //        {
+                                                //            ActionHelper(z, i, j, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]));
+                                                //        }
 
-                                                    }
-                                                }
-                                            }
+                                                //    }
+                                                //}
 
                                         }
                                     }
@@ -1085,9 +1081,9 @@ namespace SecretProject.Class.TileStuff
             AllTiles[layer][oldX, oldY].IsAnimating = true;
             AllTiles[layer][oldX, oldY].KillAnimation = true;
 
-            if (Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] != null)
+            if (Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
             {
-                Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
+                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
             }
             //AllTiles[layer][oldX, oldY].HasObject = false;
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
@@ -1164,10 +1160,10 @@ namespace SecretProject.Class.TileStuff
         {
             if (AllTiles[layer][oldX, oldY].IsAnimated)
             {
-                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] != null)
+                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
                 {
                     //ObjectBody newObject = new ObjectBody();
-                    Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
+                    Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
                     GetDrop(layer, oldX, oldY);
                     if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                     {
@@ -1182,7 +1178,7 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
+                Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey());
 
                 GetDrop(layer, oldX, oldY);
                 //AllTiles[layer][oldX, oldY].ContainsCrop = false;
