@@ -79,7 +79,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
+            this.TileSet = Content.Load<Texture2D>(MapTexturePath);
 
 
 
