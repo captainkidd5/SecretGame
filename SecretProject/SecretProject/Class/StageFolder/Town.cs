@@ -203,7 +203,7 @@ namespace SecretProject.Class.StageFolder
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
-
+            Game1.isMyMouseVisible = true;
             
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))

@@ -94,6 +94,7 @@ namespace SecretProject.Class.Controls
 
         public void Update()
         {
+            //ChangeMouseTexture(-50);
             IsClicked = false;
             IsRightClicked = false;
             WasJustPressed = false;

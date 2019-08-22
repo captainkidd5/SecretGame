@@ -73,6 +73,7 @@ namespace SecretProject.Class.TileStuff
 
         public bool ContainsCrop { get; set; }
 
+        public bool HasProperties { get; set; }
 
 
         private Tile()
@@ -82,7 +83,7 @@ namespace SecretProject.Class.TileStuff
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
         {
-
+            HasProperties = false;
             this.OldX = x;
             this.OldY = y;
             
