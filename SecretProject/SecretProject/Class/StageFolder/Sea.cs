@@ -78,7 +78,7 @@ namespace SecretProject.Class.StageFolder
         //--------------------------------------
         //Declare Lists
         [XmlArray("AllObjects")]
-        public List<ObjectBody> AllObjects { get; set; }
+        public Dictionary<int,ObjectBody> AllObjects { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
 
@@ -136,7 +136,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new List<ObjectBody>()
+            AllObjects = new Dictionary<int, ObjectBody>
             {
 
             };
@@ -312,7 +312,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllObjects)
+                foreach (var obj in AllObjects.Values)
                 {
                     if (ShowBorders)
                     {

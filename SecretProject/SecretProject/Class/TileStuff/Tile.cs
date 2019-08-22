@@ -65,7 +65,6 @@ namespace SecretProject.Class.TileStuff
         public Rectangle DestinationRectangle;
 
         //objectgroup stuff
-        public ObjectBody TileObject { get; set; }
 
         public bool HorizontalFlip { get; set; }
         public bool VeritcalFlip { get; set; }
@@ -109,6 +108,12 @@ namespace SecretProject.Class.TileStuff
             //TileColor = Color.DimGray * 1.5f;
             AStarTileValue = 1;
 
+        }
+
+        public int GetTileObjectKey()
+        {
+            string keyString = this.GID.ToString() + (this.X/16).ToString() + (this.Y/16).ToString();
+            return int.Parse(keyString);
         }
 
         public void AnimateOnlyX(GameTime gameTime, int totalFramesX, double speed)

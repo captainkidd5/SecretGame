@@ -37,7 +37,7 @@ namespace SecretProject.Class.NPCStuff
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
         }
 
-        public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;

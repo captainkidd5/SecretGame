@@ -246,7 +246,7 @@ namespace SecretProject.Class.Universal
                 }
             }
 
-            home.AllObjects = newObjects;
+            //home.AllObjects = newObjects;
             home.AllTiles.LoadInitialTileObjects();
 
 
@@ -280,20 +280,20 @@ namespace SecretProject.Class.Universal
             //skipping color 
 
 
-            if (tile.TileObject != null)
-            {
+            //if (tile.TileObject != null)
+            //{
 
 
-                writer.Write(tile.TileObject.Rectangle.X);
-                writer.Write(tile.TileObject.Rectangle.Y);
-                writer.Write(tile.TileObject.Rectangle.Width);
-                writer.Write(tile.TileObject.Rectangle.Height);
+            //    writer.Write(tile.TileObject.Rectangle.X);
+            //    writer.Write(tile.TileObject.Rectangle.Y);
+            //    writer.Write(tile.TileObject.Rectangle.Width);
+            //    writer.Write(tile.TileObject.Rectangle.Height);
 
-            }
-            else
-            {
-                writer.Write(false);
-            }
+            //}
+            //else
+            //{
+            //    writer.Write(false);
+            //}
         }
 
         public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version)

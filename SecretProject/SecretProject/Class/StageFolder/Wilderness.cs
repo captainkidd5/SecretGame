@@ -67,7 +67,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new List<ObjectBody>()
+            AllObjects = new Dictionary<int, ObjectBody>()
             {
 
             };
@@ -347,7 +347,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllObjects)
+                foreach (var obj in AllObjects.Values)
                 {
                     if (ShowBorders)
                     {

@@ -69,7 +69,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        List<ObjectBody> AllObjects { get; set; }
+        Dictionary<int, ObjectBody> AllObjects { get; set; }
 
 
         List<Sprite> AllSprites { get; set; }

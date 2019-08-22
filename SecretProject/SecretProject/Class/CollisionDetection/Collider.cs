@@ -33,10 +33,10 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(List<ObjectBody> objectBody, Vector2 position)
+        public bool DidCollide(Dictionary<int,ObjectBody> objectBody, Vector2 position)
         {
             
-            foreach (var body in objectBody)
+            foreach (var body in objectBody.Values)
             {
                 if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
                              && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))

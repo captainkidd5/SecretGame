@@ -105,7 +105,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         }
 
         //for normal, moving NPCS
-        public void Update(GameTime gameTime, List<ObjectBody> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;

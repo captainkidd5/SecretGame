@@ -61,6 +61,26 @@
    <property name="spawnWith" value="678"/>
   </properties>
  </tile>
+ <tile id="904">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="905">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="906">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="907">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
  <tile id="978">
   <properties>
    <property name="AnimatedX" value="5"/>
@@ -70,6 +90,26 @@
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
  </tile>
+ <tile id="1004">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1005">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1006">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1007">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
  <tile id="1078">
   <properties>
    <property name="AnimatedX" value="6"/>
@@ -77,6 +117,26 @@
    <property name="destructable" value="2,1,3,6"/>
    <property name="loot" value="129:100"/>
    <property name="tileSelectorAllowed" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1104">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1105">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1106">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1107">
+  <properties>
+   <property name="action" value="diggable"/>
   </properties>
  </tile>
  <tile id="1185">
@@ -91,6 +151,26 @@
    <property name="layer" value="3"/>
    <property name="relationX" value="1"/>
    <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="1204">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1205">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1206">
+  <properties>
+   <property name="action" value="diggable"/>
+  </properties>
+ </tile>
+ <tile id="1207">
+  <properties>
+   <property name="action" value="diggable"/>
   </properties>
  </tile>
  <tile id="1285">
@@ -157,6 +237,9 @@
    <property name="loot" value="123:100,122:5"/>
    <property name="spawnWith" value="2163,2262,2264,2265"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="6" y="8" width="6" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="4205">
   <properties>

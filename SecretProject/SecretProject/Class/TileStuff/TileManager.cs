@@ -430,9 +430,11 @@ namespace SecretProject.Class.TileStuff
 
                     int totalGID = mapName.Tilesets[TileSetNumber].Tiles[spawnsWith[i]].Id;
                     //tilesToReturn.Add(AllTiles[intTilePropertyLayer][xCoord, yCoord]);
-                    if (AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].TileObject != null)
+
+
+                    if (Game1.GetCurrentStage().AllObjects[AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey()] != null)
                     {
-                        Game1.GetCurrentStage().AllObjects.Remove(AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].TileObject);
+                        Game1.GetCurrentStage().AllObjects[AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileObjectKey()] = null;
                     }
 
                     AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
@@ -493,14 +495,14 @@ namespace SecretProject.Class.TileStuff
                                             TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
 
 
-                                            AllTiles[z][i, j].TileObject = new ObjectBody(graphicsDevice,
+                                            ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
                                                 new Rectangle(AllTiles[z][i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                                                 AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                                (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].DestinationRectangle.X);
+                                                (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].GID);
 
 
 
-                                            Game1.GetCurrentStage().AllObjects.Add(AllTiles[z][i, j].TileObject); // not gonna work for saving, gotta figure out.
+                                            Game1.GetCurrentStage().AllObjects[AllTiles[z][i, j].GetTileObjectKey()] = tempObjectBody; // not gonna work for saving, gotta figure out.
 
                                         }
                                         AllTiles[z][i, j].AStarTileValue = 0;
@@ -536,35 +538,35 @@ namespace SecretProject.Class.TileStuff
                 {
 
                     TmxObject tempObj = mapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects[k];
-                    tile.TileObject = new ObjectBody(graphicsDevice,
+                    ObjectBody transformedObject = new ObjectBody(graphicsDevice,
                        new Rectangle(tile.DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                        tile.DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                       (int)Math.Ceiling(tempObj.Height)), tile.DestinationRectangle.X);
+                       (int)Math.Ceiling(tempObj.Height)), tile.GID);
                     if (tile.DiagonalFlip)
                     {
                         if (tile.HorizontalFlip)
                         {
-                            tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
-                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                            transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.Width, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
+                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
                         }
                         if (tile.VeritcalFlip)
                         {
                             //tile.TileObject.Rectangle.Y = tile.TileObject.Rectangle.Y - tile.TileObject.Rectangle.Height;
-                            tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.X, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
-                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                            transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.X, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
+                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
                         }
 
                     }
                     else if (tile.HorizontalFlip && !tile.DiagonalFlip)
                     {
 
-                        tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
-                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                        transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.Width, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
+                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
                     }
                     else if (tile.VeritcalFlip && !tile.DiagonalFlip)
                     {
-                        tile.TileObject.Rectangle = new Rectangle(tile.TileObject.Rectangle.X, tile.TileObject.Rectangle.Y - -tile.TileObject.Rectangle.Height,
-                                tile.TileObject.Rectangle.Width, tile.TileObject.Rectangle.Height);
+                        transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.X, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
+                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
                     }
 
                     else
@@ -573,7 +575,7 @@ namespace SecretProject.Class.TileStuff
                     }
 
                     // tile.HasObject = true;
-                    Game1.GetCurrentStage().AllObjects.Add(tile.TileObject);
+                    Game1.GetCurrentStage().AllObjects[tile.GetTileObjectKey()] = transformedObject;
                 }
             }
         }
@@ -593,8 +595,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (var j = 0; j < mapHeight; j++)
                     {
-                        if (AllTiles[z][i, j].HasProperties)
-                        {
+                        
 
 
                             if (AllTiles[z][i, j].GID != -1)
@@ -631,34 +632,43 @@ namespace SecretProject.Class.TileStuff
                                             //IE layer is background.
                                             if (z == 0)
                                             {
-
-
-                                                if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("diggable") || mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("plantable"))
+                                                if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
                                                 {
-
-                                                    Game1.isMyMouseVisible = false;
-                                                    Game1.Player.UserInterface.DrawTileSelector = true;
-                                                    this.DebugTile = AllTiles[z][i, j];
-                                                    Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
-                                                    Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
-                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                                    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["tileSelectorAllowed"]));
-                                                    //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable"))
-                                                    //{
-                                                    //    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["tileSelectorAllowed"]));
-                                                    //}
-
-                                                    if (mouse.IsClicked)
+                                                    switch (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"])
                                                     {
-                                                        InteractWithBackground(z, gameTime, i, j);
+                                                        case "diggable":
+                                                            Game1.isMyMouseVisible = false;
+                                                            Game1.Player.UserInterface.DrawTileSelector = true;
+                                                            this.DebugTile = AllTiles[z][i, j];
+                                                            Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                                            Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+                                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                                            mouse.ChangeMouseTexture(3);
+
+                                                            if (mouse.IsClicked)
+                                                            {
+                                                                InteractWithBackground(z, gameTime, i, j);
+
+                                                            }
+                                                            break;
+
+                                                        case "plantable":
+                                                            Game1.isMyMouseVisible = false;
+                                                            Game1.Player.UserInterface.DrawTileSelector = true;
+                                                            this.DebugTile = AllTiles[z][i, j];
+                                                            Game1.Player.UserInterface.TileSelectorX = AllTiles[z][i, j].DestinationRectangle.X;
+                                                            Game1.Player.UserInterface.TileSelectorY = AllTiles[z][i, j].DestinationRectangle.Y;
+                                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                                            mouse.ChangeMouseTexture(2);
+
+                                                            if (mouse.IsClicked)
+                                                            {
+                                                                InteractWithBackground(z, gameTime, i, j);
+
+                                                            }
+                                                            break;
 
                                                     }
-
-                                                }
-                                                else
-                                                {
-                                                    Game1.isMyMouseVisible = true;
-
                                                 }
 
                                             }
@@ -728,7 +738,7 @@ namespace SecretProject.Class.TileStuff
                                 //}
 
                             }
-                        }
+                        
                     }
                 }
             }
@@ -1071,10 +1081,9 @@ namespace SecretProject.Class.TileStuff
             AllTiles[layer][oldX, oldY].IsAnimating = true;
             AllTiles[layer][oldX, oldY].KillAnimation = true;
 
-            if (AllTiles[layer][oldX, oldY].TileObject != null)
+            if (Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] != null)
             {
-                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
-                AllTiles[layer][oldX, oldY].TileObject = null;
+                Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
             }
             //AllTiles[layer][oldX, oldY].HasObject = false;
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
@@ -1152,11 +1161,10 @@ namespace SecretProject.Class.TileStuff
         {
             if (AllTiles[layer][oldX, oldY].IsAnimated)
             {
-                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && AllTiles[layer][oldX, oldY].TileObject != null)
+                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] != null)
                 {
                     //ObjectBody newObject = new ObjectBody();
-                    Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
-                    AllTiles[layer][oldX, oldY].TileObject = null;
+                    Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
                     GetDrop(layer, oldX, oldY);
                     if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                     {
@@ -1171,8 +1179,7 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].TileObject);
-                AllTiles[layer][oldX, oldY].TileObject = null;
+                Game1.GetCurrentStage().AllObjects[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = null;
 
                 GetDrop(layer, oldX, oldY);
                 //AllTiles[layer][oldX, oldY].ContainsCrop = false;

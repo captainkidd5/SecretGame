@@ -103,7 +103,7 @@ namespace SecretProject.Class.SavingStuff
 
             HomeTilesetNumber = Game1.Wilderness.TileSetNumber;
 
-            HomeAllObjects = Game1.Wilderness.AllObjects;
+            //HomeAllObjects = Game1.Wilderness.AllObjects;
             HomeAllSprites = Game1.Wilderness.AllSprites;
             HomeAllItems = Game1.Wilderness.AllItems;
             HomeAllActions= Game1.Wilderness.AllActions;
