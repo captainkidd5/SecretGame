@@ -69,7 +69,7 @@ namespace SecretProject
         Wilderness = 2,
         Exit = 3,
         Sea = 4,
-        RoyalDock = 5,
+        Town = 5,
         GreatLibrary = 6,
         WestBeach = 7,
         DobbinsOrchard = 8,
@@ -92,7 +92,7 @@ namespace SecretProject
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
         public static StageBase LodgeInterior;
-        public static Town RoyalDock;
+        public static Town Town;
         public static Sea Sea;
         public static StageBase GreatLibrary;
         public static StageBase WestBeach;
@@ -257,8 +257,8 @@ namespace SecretProject
                 case Stages.Sea:
                     return Sea;
 
-                case Stages.RoyalDock:
-                    return RoyalDock;
+                case Stages.Town:
+                    return Town;
 
                 case Stages.GreatLibrary:
                     return GreatLibrary;
@@ -286,7 +286,7 @@ namespace SecretProject
                 case 4:
                     return Sea;
                 case 5:
-                    return RoyalDock;
+                    return Town;
                 case 6:
                     return GreatLibrary;
                 case 7:
@@ -296,7 +296,7 @@ namespace SecretProject
                 case 9:
                     return ElixirShop;
                 default:
-                    return RoyalDock;
+                    return Town;
             }
 
         }
@@ -314,7 +314,7 @@ namespace SecretProject
 
                 case Stages.Sea:
                     return 4;
-                case Stages.RoyalDock:
+                case Stages.Town:
                     return 5;
 
                 case Stages.GreatLibrary:
@@ -469,7 +469,7 @@ namespace SecretProject
             WestBeach = new StageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/westBeach.tmx", 1);
             Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/worldMap.tmx", 1);
 
-            RoyalDock = new Town("Dock", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/royalDocks.tmx", 1);
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheetBackup2", "Content/Map/dock.tmx", 1);
 
             GreatLibrary = new StageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/greatLibrary.tmx", 1);
 
@@ -619,9 +619,9 @@ namespace SecretProject
                         Wilderness.Update(gameTime, myMouseManager, Player);
                         break;
 
-                    case Stages.RoyalDock:
+                    case Stages.Town:
 
-                        RoyalDock.Update(gameTime, myMouseManager, Player);
+                        Town.Update(gameTime, myMouseManager, Player);
                         break;
 
                     case Stages.GreatLibrary:
@@ -679,9 +679,9 @@ namespace SecretProject
                     Wilderness.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
-                case Stages.RoyalDock:
+                case Stages.Town:
                     GraphicsDevice.Clear(Color.Black);
-                    RoyalDock.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    Town.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.GreatLibrary:

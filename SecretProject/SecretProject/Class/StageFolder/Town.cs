@@ -90,7 +90,7 @@ namespace SecretProject.Class.StageFolder
 
             AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
+            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheetBackup2");
 
 
 
@@ -108,7 +108,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.Map = new TmxMap("Content/Map/dock.tmx");
+            this.Map = new TmxMap(this.TmxMapPath);
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
@@ -125,7 +125,7 @@ namespace SecretProject.Class.StageFolder
             AllPortals = new List<Portal>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadInitialTileObjects();
-            TileWidth = Map.Tilesets[0].TileWidth;
+            TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
             TileHeight = Map.Tilesets[0].TileHeight;
 
             TilesetTilesWide = TileSet.Width / TileWidth;

@@ -97,7 +97,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            this.Map = new TmxMap("Content/Map/worldMap.tmx");
+            this.Map = new TmxMap(this.TmxMapPath);
             Background = Map.Layers["background"];
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
@@ -114,8 +114,8 @@ namespace SecretProject.Class.StageFolder
             AllPortals = new List<Portal>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadInitialTileObjects();
-            TileWidth = Map.Tilesets[0].TileWidth;
-            TileHeight = Map.Tilesets[0].TileHeight;
+            TileWidth = Map.Tilesets[this.TileSetNumber].TileWidth;
+            TileHeight = Map.Tilesets[this.TileSetNumber].TileHeight;
 
             TilesetTilesWide = TileSet.Width / TileWidth;
             TilesetTilesHigh = TileSet.Height / TileHeight;
