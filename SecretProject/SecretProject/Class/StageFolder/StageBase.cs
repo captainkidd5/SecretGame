@@ -73,6 +73,7 @@ namespace SecretProject.Class.StageFolder
         public int TileSetNumber { get; set; }
 
         public Dictionary<int, ObjectBody> AllObjects { get; set; }
+        public Dictionary<int, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
 
@@ -111,7 +112,6 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
-        public List<Crop> AllCrops { get; set; }
 
         #endregion
 
@@ -209,7 +209,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            AllCrops = new List<Crop>();
+            AllCrops = new Dictionary<int, Crop>();
         }
         public void OnSceneChanged()
         {

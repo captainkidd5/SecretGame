@@ -113,7 +113,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsDark { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<LightSource> AllLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Crop> AllCrops { get; set; }
+        public Dictionary<int,Crop> AllCrops { get; set; }
         #endregion
 
         #region CONSTRUCTOR

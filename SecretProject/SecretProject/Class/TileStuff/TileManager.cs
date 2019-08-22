@@ -645,7 +645,7 @@ namespace SecretProject.Class.TileStuff
                                         {
 
 
-                                            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable") && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle)) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                            if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
@@ -923,7 +923,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
-                                if (!AllTiles[layer][oldX, oldY].ContainsCrop)
+                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
                                 {
 
                                     //Game1.myMouseManager.TogglePlantInteraction = true;
@@ -952,9 +952,8 @@ namespace SecretProject.Class.TileStuff
                                     tempCrop.GID++;
                                     //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                                     ReplaceTileWithNewTile(1, oldX, oldY, tempCrop.GID);
-                                    AllTiles[layer][oldX, oldY].ContainsCrop = true;
+                                    Game1.GetCurrentStage().AllCrops[AllTiles[layer][oldX, oldY].GetTileObjectKey()] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    Game1.GetCurrentStage().AllCrops.Add(tempCrop);
 
 
                                 }
@@ -1044,10 +1043,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                    else
-                    {
 
-                    }
                 }
             }
 
@@ -1105,7 +1101,6 @@ namespace SecretProject.Class.TileStuff
                 ReplaceTilePermanent(3, oldX, oldY - 1, 0);
                 //AllTiles[0][oldX, oldY].ContainsCrop = false;
             }
-            AllTiles[0][oldX, oldY].ContainsCrop = false;
             GetDrop(layer, oldX, oldY);
 
             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);

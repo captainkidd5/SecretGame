@@ -92,7 +92,7 @@ List<ActionTimer> AllActions { get; set; }
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
-        List<Crop> AllCrops { get; set; }
+        Dictionary<int,Crop> AllCrops { get; set; }
 
         bool IsDark { get; set; }
 

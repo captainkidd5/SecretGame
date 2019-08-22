@@ -5,7 +5,7 @@
         <Item Type="XMLData.ItemStuff.Crop">
           <ItemID>128</ItemID>
             <Name>BloomBerry</Name>
-            <GID>6079</GID>
+            <GID>486</GID>
             <TileID>0</TileID>          
             <DaysToGrow>4</DaysToGrow>
             <CurrentGrowth>0</CurrentGrowth>
@@ -14,7 +14,7 @@
             <Item Type="XMLData.ItemStuff.Crop">
                 <ItemID>167</ItemID>
                   <Name>BloodCorn</Name>
-                  <GID>5388</GID>
+                  <GID>286</GID>
                   <TileID>0</TileID>
                   <DaysToGrow>4</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
