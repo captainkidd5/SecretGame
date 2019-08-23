@@ -232,6 +232,14 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1563">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="-8,-24,16,24"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1583">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
@@ -259,6 +267,9 @@
    <property name="loot" value="142:100,122:10"/>
    <property name="spawnWith" value="1563"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="2" x="3" y="4" width="10" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="2163">
   <properties>
@@ -270,8 +281,6 @@
  </tile>
  <tile id="2263">
   <properties>
-   <property name="NumberOfItems" value="4"/>
-   <property name="Tree" value="ThunderBirch"/>
    <property name="destructable" value="0,4,1,3"/>
    <property name="loot" value="123:100,122:5"/>
    <property name="spawnWith" value="2163"/>

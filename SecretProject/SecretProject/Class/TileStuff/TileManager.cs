@@ -102,6 +102,8 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
+        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+
 
         #region CONSTRUCTOR
 
@@ -136,7 +138,7 @@ namespace SecretProject.Class.TileStuff
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-
+            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
 
             for (int i = 0; i < allLayers.Count; i++)
             {
@@ -241,7 +243,7 @@ namespace SecretProject.Class.TileStuff
             //////bluerunestone
             //GenerateTiles(1, 5881, "dirt", 100, 0);
             //////thunderbirch
-            GenerateTiles(1, 2264, "dirt", 200, 0);
+            //GenerateTiles(1, 2264, "dirt", 200, 0);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -249,7 +251,7 @@ namespace SecretProject.Class.TileStuff
             ////juicyfruit
             //GenerateTiles(1, 1586, "dirt", 500, 0);
             ////orchardTree
-            //GenerateTiles(1, 4245, "dirt", 200, 0);
+            GenerateTiles(1, 1664, "dirt", 200, 0);
             //bubblegum
             // GenerateTiles(1, 6191, "dirt", 200, 0);
 
@@ -306,7 +308,16 @@ namespace SecretProject.Class.TileStuff
                      //   tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
 
-
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0)
+                {
+                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                    for(int i =0; i < mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
+                    {
+                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i], tileToAssign.GID));
+                    }
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames);
+                    this.AnimationFrames.Add(tileToAssign.GetTileObjectKey(), frameHolder);
+                }
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
                     int lightType = int.Parse(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
@@ -627,10 +638,30 @@ namespace SecretProject.Class.TileStuff
 
 
         #region UPDATE
+        float frameTimer = 2f;
+        int frameCounter = 0;
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
+            frameTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            int newFrameCounter = frameCounter;
+            if(frameTimer <= 0)
+            {
+                frameCounter++;
+                frameTimer = 2f;
+                
+            }
+            if(newFrameCounter != frameCounter)
+            {
+                foreach (List<EditableAnimationFrameHolder> frameList in AnimationFrames.Values)
+                {
+                    for ()
+                        frame.Duration -= gameTime.ElapsedGameTime.TotalSeconds;
+                }
+            }
+            
+
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -1253,6 +1284,35 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+
+        public class EditableAnimationFrame
+        {
+            public float CurrentDuration { get; set; }
+            public float AnchorDuration { get; set; }
+            public int ID { get; set; }
+            public int OriginalTileID { get; set; }
+            public EditableAnimationFrame(TiledSharp.AnimationFrameHolder frame, int originalTileID)
+            {
+                this.CurrentDuration = frame.Duration;
+                this.AnchorDuration = frame.Duration;
+                this.ID = frame.Id;
+                this.OriginalTileID = originalTileID;
+            }
+        }
+
+        public class EditableAnimationFrameHolder
+        {
+            public List<EditableAnimationFrameHolder>Frames{ get; set; }
+            public float Timer { get; set; }
+
+            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames)
+            {
+                this.Frames = frames;
+                this.Timer = frames[0].AnchorDuration;
+            }
+        }
+
+
 
     }
     #endregion

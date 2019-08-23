@@ -139,7 +139,7 @@ namespace TiledSharp
         public PropertyDict Properties {get; private set;}
         public TmxImage Image {get; private set;}
         public TmxList<TmxObjectGroup> ObjectGroups {get; private set;}
-        public Collection<TmxAnimationFrame> AnimationFrames {get; private set;}
+        public Collection<AnimationFrameHolder> AnimationFrames {get; private set;}
 
         // Human-readable aliases to the Terrain markers
         public TmxTerrain TopLeft {
@@ -187,22 +187,22 @@ namespace TiledSharp
             foreach (var e in xTile.Elements("objectgroup"))
                 ObjectGroups.Add(new TmxObjectGroup(e));
 
-            AnimationFrames = new Collection<TmxAnimationFrame>();
+            AnimationFrames = new Collection<AnimationFrameHolder>();
             if (xTile.Element("animation") != null) {
                 foreach (var e in xTile.Element("animation").Elements("frame"))
-                    AnimationFrames.Add(new TmxAnimationFrame(e));
+                    AnimationFrames.Add(new AnimationFrameHolder(e));
             }
 
             Properties = new PropertyDict(xTile.Element("properties"));
         }
     }
 
-    public class TmxAnimationFrame
+    public class AnimationFrameHolder
     {
         public int Id {get; private set;}
         public int Duration {get; private set;}
 
-        public TmxAnimationFrame(XElement xFrame)
+        public AnimationFrameHolder(XElement xFrame)
         {
             Id = (int)xFrame.Attribute("tileid");
             Duration = (int)xFrame.Attribute("duration");
