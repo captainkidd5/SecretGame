@@ -284,7 +284,8 @@ namespace SecretProject.Class.TileStuff
             {
 
                 
-
+                //Note: For some fuckin reason everything here is doubled. So if you want to spawn more trees etc make sure you specify HALF of what rectangle offsets should be. 
+                //come kiss me when you figure it out in a few months ;O
                 
 
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
@@ -687,7 +688,7 @@ namespace SecretProject.Class.TileStuff
                                         {
 
 
-                                            if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                            if (AllTiles[1][i, j].GID != -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
@@ -1221,7 +1222,7 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-
+                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
                 GetDrop(layer, oldX, oldY);
                 //AllTiles[layer][oldX, oldY].ContainsCrop = false;
                 if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
