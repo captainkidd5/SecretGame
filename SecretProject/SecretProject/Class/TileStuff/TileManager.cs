@@ -98,6 +98,10 @@ namespace SecretProject.Class.TileStuff
         public int TileSetNumber { get; set; }
         public AStarPathFinder PathGrid { get; set; }
 
+        public List<int> DirtGeneratableTiles;
+        public List<int> SandGeneratableTiles;
+        public List<int> GrassGeneratableTiles;
+
 
         #region CONSTRUCTOR
 
@@ -129,7 +133,9 @@ namespace SecretProject.Class.TileStuff
             this.AllLayers = allLayers;
             AllTiles = new List<Tile[,]>();
             this.TileSetNumber = tileSetNumber;
-
+            DirtGeneratableTiles = new List<int>();
+            SandGeneratableTiles = new List<int>();
+            GrassGeneratableTiles = new List<int>();
 
 
             for (int i = 0; i < allLayers.Count; i++)
@@ -158,8 +164,41 @@ namespace SecretProject.Class.TileStuff
                     }
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
+                    if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                    {
 
-                }
+                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[i][layerNameTile.X, layerNameTile.Y].GID].Properties.ContainsKey("generate"))
+                        {
+                            switch (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[i][layerNameTile.X, layerNameTile.Y].GID].Properties["generate"])
+                            {
+
+
+                                case "dirt":
+                                    if (!DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    {
+                                        DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                    }
+                                    break;
+                                case "sand":
+                                    if (!SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    {
+                                        SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                    }
+                                    break;
+                                case "grass":
+                                    if (!GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    {
+                                        GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                    }
+                                    break;
+                            }
+
+
+                        }
+                    }
+
+
+                    }
             }
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
             {
@@ -190,25 +229,25 @@ namespace SecretProject.Class.TileStuff
 
             //specify GID which is 1 larger than one on tileset, idk why
             //brown tall grass
-            //GenerateTiles(3, 6394, "dirt", 2000, 0);
+           // GenerateTiles(3, 6394, "dirt", 2000, 0);
             //green tall grass
-            //GenerateTiles(3, 6393, "dirt", 2000, 0);
+           // GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
-            //GenerateTiles(1, 6675, "dirt", 50, 0);
+           // GenerateTiles(1, 979, "dirt", 1000, 0);
             ////    //grass
-            //GenerateTiles(1, 6475, "dirt", 50, 0);
+            //GenerateTiles(1, 1079, "dirt", 1000, 0);
             ////    //redrunestone
             //GenerateTiles(1, 5681, "dirt", 100, 0);
             //////bluerunestone
             //GenerateTiles(1, 5881, "dirt", 100, 0);
             //////thunderbirch
-            //GenerateTiles(1, 4845, "dirt", 200, 0);
+            GenerateTiles(1, 2264, "dirt", 200, 0);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
             //GenerateTiles(1, 6687, "sand", 100, 0);
             ////juicyfruit
-            //GenerateTiles(1, 6589, "dirt", 50, 0);
+            //GenerateTiles(1, 1586, "dirt", 500, 0);
             ////orchardTree
             //GenerateTiles(1, 4245, "dirt", 200, 0);
             //bubblegum
@@ -234,20 +273,26 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            
         }
+
+
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber)
         {
             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
 
+                
+
+                
 
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
                     int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
                     tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
                     tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
-                        tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+                        rectangleCoords[2], rectangleCoords[3]);
                 }
 
 
@@ -307,33 +352,20 @@ namespace SecretProject.Class.TileStuff
 
         public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty)
         {
-            int[] acceptableGenerationTiles;
+            List<int> acceptableGenerationTiles;
             switch (placementKey)
             {
                 case "dirt":
-                    acceptableGenerationTiles = new int[16]
-                {
-                    6065,6066, 6067, 6068,
-                    6165,6166, 6167, 6168,
-                    6265,6266, 6267, 6268,
-                    6265,6266, 6267, 6268,
-                };
+                    acceptableGenerationTiles = DirtGeneratableTiles;
+               
                     break;
                 case "sand":
-                    acceptableGenerationTiles = new int[4]
-                {
-                    4402, 4403,
-                    4502, 4503
-                };
+                    acceptableGenerationTiles = SandGeneratableTiles;
+
                     break;
                 default:
-                    acceptableGenerationTiles = new int[16]
-                {
-                    6065,6066, 6067, 6068,
-                    6165,6166, 6167, 6168,
-                    6265,6266, 6267, 6268,
-                    6265,6266, 6267, 6268,
-                };
+                    acceptableGenerationTiles = DirtGeneratableTiles;
+
                     break;
             }
 
@@ -342,7 +374,7 @@ namespace SecretProject.Class.TileStuff
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, layerToCheckIfEmpty);
             }
         }
-        public void GenerateRandomTiles(int layer, int id, int[] acceptableTiles, int comparisonLayer = 0)
+        public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, int comparisonLayer = 0)
         {
             int newTileX = Game1.Utility.RNumber(10, 90);
             int newTileY = Game1.Utility.RNumber(10, 90);
@@ -456,11 +488,11 @@ namespace SecretProject.Class.TileStuff
         }
 
         //by default we're seeing if the background layer has an acceptable tile to overwrite
-        public bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, int[] gidArray, int comparisonLayer = 0)
+        public bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles, int comparisonLayer = 0)
         {
-            for (int i = 0; i < gidArray.Length; i++)
+            for (int i = 0; i < acceptablTiles.Count; i++)
             {
-                if (AllTiles[comparisonLayer][tileX, tileY].GID == gidArray[i])
+                if (AllTiles[comparisonLayer][tileX, tileY].GID == acceptablTiles[i])
                 {
                     return true;
                 }

@@ -19,6 +19,8 @@
  <tile id="290">
   <properties>
    <property name="AssociatedTiles" value="191"/>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100"/>
   </properties>
  </tile>
  <tile id="361">
@@ -44,6 +46,8 @@
  <tile id="490">
   <properties>
    <property name="AssociatedTiles" value="391"/>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100"/>
   </properties>
  </tile>
  <tile id="578">
@@ -69,21 +73,25 @@
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="905">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="906">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="907">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="978">
@@ -101,21 +109,25 @@
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1005">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1006">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1007">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1078">
@@ -126,25 +138,32 @@
    <property name="loot" value="129:100"/>
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="2" y="2" width="12" height="11"/>
+  </objectgroup>
  </tile>
  <tile id="1104">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1105">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1106">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1107">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1185">
@@ -164,21 +183,25 @@
  <tile id="1204">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1205">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1206">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1207">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1285">
@@ -237,13 +260,21 @@
    <property name="spawnWith" value="1563"/>
   </properties>
  </tile>
+ <tile id="2163">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="-32,-48,90,90"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="2263">
   <properties>
    <property name="NumberOfItems" value="4"/>
    <property name="Tree" value="ThunderBirch"/>
    <property name="destructable" value="0,4,1,3"/>
    <property name="loot" value="123:100,122:5"/>
-   <property name="spawnWith" value="2163,2262,2264,2265"/>
+   <property name="spawnWith" value="2163"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="6" y="8" width="6" height="3"/>
