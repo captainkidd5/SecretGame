@@ -657,7 +657,7 @@ namespace SecretProject.Class.TileStuff
                 if(frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    AllTiles[frameholder.Layer][frameholder.OldX,frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID,  this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                    AllTiles[frameholder.Layer][frameholder.OldX,frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1,  this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                     if(frameholder.Counter == frameholder.Frames.Count -1)
                     {
                         frameholder.Counter = 0;
