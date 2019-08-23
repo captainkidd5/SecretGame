@@ -268,7 +268,7 @@ namespace SecretProject.Class.TileStuff
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                AssignProperties(AllTiles[z][i, j], 0, z);
+                                AssignProperties(AllTiles[z][i, j], 0, z,i,j);
 
                             }
                         }
@@ -280,7 +280,7 @@ namespace SecretProject.Class.TileStuff
 
 
         #endregion
-        public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer)
+        public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer, int oldX, int oldY)
         {
             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
@@ -313,9 +313,9 @@ namespace SecretProject.Class.TileStuff
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
                     for(int i =0; i < mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                     {
-                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i], tileToAssign.GID, layer));
+                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i], tileToAssign.GID));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, ref tileToAssign);
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX,oldY,layer);
                     this.AnimationFrames.Add(tileToAssign.GetTileObjectKey(), frameHolder);
                 }
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
@@ -450,7 +450,7 @@ namespace SecretProject.Class.TileStuff
                     for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                     {
                         //intermediateNewTiles[tileSwapCounter] = DebugTile;
-                        AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer);
+                        AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer, (int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY);
                         //AddObject(intermediateNewTiles[tileSwapCounter]);
 
                         AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY] = intermediateNewTiles[tileSwapCounter];
@@ -639,7 +639,7 @@ namespace SecretProject.Class.TileStuff
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
-            AssignProperties(AllTiles[layer][oldX, oldY], 0, layer);
+            AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY);
         }
 
         #region UPDATE
@@ -657,7 +657,7 @@ namespace SecretProject.Class.TileStuff
                 if(frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    frameholder.Tile = new Tile(frameholder.Tile.X, frameholder.Tile.Y, frameholder.Frames[frameholder.Counter].ID, frameholder.Tile.TilesetTilesWide, frameholder.Tile.TilesetTilesHigh, this.mapWidth, this.mapHeight);
+                    AllTiles[frameholder.Layer][frameholder.OldX,frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID,  this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                     if(frameholder.Counter == frameholder.Frames.Count -1)
                     {
                         frameholder.Counter = 0;
@@ -1297,14 +1297,12 @@ namespace SecretProject.Class.TileStuff
             public float AnchorDuration { get; set; }
             public int ID { get; set; }
             public int OriginalTileID { get; set; }
-            public int Layer { get; set; }
-            public EditableAnimationFrame(AnimationFrameHolder frame, int originalTileID, int layer)
+            public EditableAnimationFrame(AnimationFrameHolder frame, int originalTileID)
             {
                 this.CurrentDuration = frame.Duration;
                 this.AnchorDuration = frame.Duration;
                 this.ID = frame.Id;
                 this.OriginalTileID = originalTileID;
-                this.Layer = layer;
             }
         }
 
@@ -1313,14 +1311,18 @@ namespace SecretProject.Class.TileStuff
             public List<EditableAnimationFrame>Frames{ get; set; }
             public float Timer { get; set; }
             public int Counter { get; set; }
-            public Tile Tile { get; set; }
+            public int OldX { get; set; }
+            public int OldY { get; set; }
+            public int Layer { get; set; }
 
-            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, ref Tile tile)
+            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer)
             {
                 this.Frames = frames;
                 this.Counter = 0;
                 this.Timer = frames[Counter].AnchorDuration;
-                this.Tile = tile;
+                this.OldX = oldX;
+                this.OldY = oldY;
+                this.Layer = layer;
             }
         }
 
