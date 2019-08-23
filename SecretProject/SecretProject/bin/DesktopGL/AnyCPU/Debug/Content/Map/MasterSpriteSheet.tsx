@@ -263,7 +263,7 @@
  <tile id="2163">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-32,-48,90,90"/>
+   <property name="newSource" value="-16,-24,32,24"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>

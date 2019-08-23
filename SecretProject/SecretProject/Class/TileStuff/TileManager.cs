@@ -290,9 +290,19 @@ namespace SecretProject.Class.TileStuff
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
                     int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
-                    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1], rectangleCoords[2], rectangleCoords[3]);
+
+
+                    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1],
+                        tileToAssign.SourceRectangle.Width + rectangleCoords[2], tileToAssign.SourceRectangle.Height + rectangleCoords[3]);
+
+
                     tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
-                        rectangleCoords[2], rectangleCoords[3]);
+                        tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+
+
+                   // tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 24, tileToAssign.SourceRectangle.Width + 32, tileToAssign.SourceRectangle.Height + 24);
+                   // tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X - 16, tileToAssign.DestinationRectangle.Y - 24,
+                     //   tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
 
 
