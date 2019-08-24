@@ -208,20 +208,16 @@ namespace SecretProject.Class.SoundStuff
                         WalkSandInstance.Play();
                         break;
                     case 5:
-                        PickUpItemInstance.Volume = volume;
-                        PickUpItemInstance.Play();
+                        PickUpItem.Play();
                         break;
                     case 6:
-                        GrassBreakInstance.Volume = volume;
-                        GrassBreakInstance.Play();
+                        GrassBreak.Play();
                         break;
                     case 7:
-                        DigDirtInstance.Volume = volume;
-                        DigDirtInstance.Play();
+                        DigDirt.Play();
                         break;
                     case 8:
-                        StoneSmashInstance.Volume = volume;
-                        StoneSmashInstance.Play();
+                        StoneSmash.Play();
                         break;
                         //day time sound effects
                     case 9:
@@ -247,7 +243,7 @@ namespace SecretProject.Class.SoundStuff
                         PigGrunt2Instance.Play();
                         break;
                     case 16:
-                        CropPluckInstance.Play();
+                        CropPluck.Play();
                         break;
 
 

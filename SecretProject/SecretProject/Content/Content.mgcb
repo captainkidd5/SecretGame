@@ -823,7 +823,7 @@
 /processorParam:Quality=Best
 /build:SoundEffects/sell1.wav
 
-#begin Map/MasterSpriteSheetBackup2.png
+#begin Map/MasterSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -833,5 +833,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Map/MasterSpriteSheetBackup2.png
+/build:Map/MasterSpriteSheet.png
 

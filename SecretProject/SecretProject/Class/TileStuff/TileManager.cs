@@ -235,15 +235,15 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
            // GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
-           // GenerateTiles(1, 979, "dirt", 1000, 0);
+            GenerateTiles(1, 979, "dirt", 1000, 0);
             ////    //grass
-            //GenerateTiles(1, 1079, "dirt", 1000, 0);
+            GenerateTiles(1, 1079, "dirt", 1000, 0);
             ////    //redrunestone
-            //GenerateTiles(1, 5681, "dirt", 100, 0);
+            GenerateTiles(1, 579, "dirt", 100, 0);
             //////bluerunestone
-            //GenerateTiles(1, 5881, "dirt", 100, 0);
+            GenerateTiles(1, 779, "dirt", 100, 0);
             //////thunderbirch
-            //GenerateTiles(1, 2264, "dirt", 200, 0);
+            GenerateTiles(1, 2264, "dirt", 200, 0);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -301,11 +301,6 @@ namespace SecretProject.Class.TileStuff
 
                     tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
                         tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
-
-
-                   // tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X - 16, tileToAssign.SourceRectangle.Y - 24, tileToAssign.SourceRectangle.Width + 32, tileToAssign.SourceRectangle.Height + 24);
-                   // tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X - 16, tileToAssign.DestinationRectangle.Y - 24,
-                     //   tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
 
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0)
@@ -706,7 +701,6 @@ namespace SecretProject.Class.TileStuff
 
                             if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
-                                //Game1.Player.UserInterface.DrawTileSelector = true;
                                 if (mouse.IsHoveringTile(AllTiles[z][i, j].DestinationRectangle))
                                 {
                                     CurrentIndexX = i;
@@ -714,7 +708,6 @@ namespace SecretProject.Class.TileStuff
 
                                     if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
-                                        //IE layer is background.
                                         if (z == 0)
                                         {
                                             if (AllTiles[1][i, j].GID == -1 && mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
@@ -776,16 +769,12 @@ namespace SecretProject.Class.TileStuff
                                 if (AllTiles[z][i, j].IsAnimating == true && AllTiles[z][i, j].IsFinishedAnimating == false)
                                 {
 
-                                    //AllTiles[z][i, j].AnimateOnlyX(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].Speed);
+
 
                                     AllTiles[z][i, j].AnimateDynamic(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].TotalFramesY, 16, 16, float.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]), AllTiles[z][i, j].Kill);
                                 }
                             }
 
-                            //if (AllTiles[z][i, j].IsTemporary)
-                            //{
-                            //    AllTiles[z][i, j].GID = 1;
-                            //}
 
                         }
 

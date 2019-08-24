@@ -19,7 +19,7 @@
  <tile id="290">
   <properties>
    <property name="AssociatedTiles" value="191"/>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="171:100"/>
   </properties>
  </tile>
@@ -31,6 +31,55 @@
  <tile id="362">
   <properties>
    <property name="action" value="1"/>
+  </properties>
+ </tile>
+ <tile id="478">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="479">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="480">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="481">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="482">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="483">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="484">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="488">
@@ -46,7 +95,7 @@
  <tile id="490">
   <properties>
    <property name="AssociatedTiles" value="391"/>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="171:100"/>
   </properties>
  </tile>
@@ -58,6 +107,55 @@
    <property name="destructable" value="1,1,0,2"/>
    <property name="loot" value="169:100"/>
    <property name="spawnWith" value="478"/>
+  </properties>
+ </tile>
+ <tile id="678">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="679">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="680">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="681">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="682">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="683">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="684">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="778">
@@ -331,31 +429,87 @@
   </animation>
  </tile>
  <tile id="9702">
-  <properties>
-   <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".6"/>
-   <property name="start" value=""/>
-  </properties>
+  <animation>
+   <frame tileid="9602" duration="100"/>
+   <frame tileid="9502" duration="100"/>
+   <frame tileid="9402" duration="100"/>
+   <frame tileid="9302" duration="100"/>
+   <frame tileid="9202" duration="100"/>
+   <frame tileid="9102" duration="100"/>
+   <frame tileid="9002" duration="100"/>
+   <frame tileid="8902" duration="100"/>
+   <frame tileid="8802" duration="100"/>
+   <frame tileid="8702" duration="100"/>
+   <frame tileid="8602" duration="100"/>
+   <frame tileid="8502" duration="100"/>
+   <frame tileid="8402" duration="100"/>
+   <frame tileid="8302" duration="100"/>
+   <frame tileid="8202" duration="100"/>
+   <frame tileid="8102" duration="100"/>
+   <frame tileid="8002" duration="100"/>
+  </animation>
  </tile>
  <tile id="9703">
-  <properties>
-   <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".6"/>
-   <property name="start" value=""/>
-  </properties>
+  <animation>
+   <frame tileid="9603" duration="100"/>
+   <frame tileid="9503" duration="100"/>
+   <frame tileid="9403" duration="100"/>
+   <frame tileid="9303" duration="100"/>
+   <frame tileid="9203" duration="100"/>
+   <frame tileid="9103" duration="100"/>
+   <frame tileid="9003" duration="100"/>
+   <frame tileid="8903" duration="100"/>
+   <frame tileid="8803" duration="100"/>
+   <frame tileid="8703" duration="100"/>
+   <frame tileid="8603" duration="100"/>
+   <frame tileid="8503" duration="100"/>
+   <frame tileid="8403" duration="100"/>
+   <frame tileid="8303" duration="100"/>
+   <frame tileid="8203" duration="100"/>
+   <frame tileid="8103" duration="100"/>
+   <frame tileid="8003" duration="100"/>
+  </animation>
  </tile>
  <tile id="9704">
-  <properties>
-   <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".6"/>
-   <property name="start" value=""/>
-  </properties>
+  <animation>
+   <frame tileid="9604" duration="100"/>
+   <frame tileid="9504" duration="100"/>
+   <frame tileid="9404" duration="100"/>
+   <frame tileid="9304" duration="100"/>
+   <frame tileid="9204" duration="100"/>
+   <frame tileid="9104" duration="100"/>
+   <frame tileid="9004" duration="100"/>
+   <frame tileid="8904" duration="100"/>
+   <frame tileid="8804" duration="100"/>
+   <frame tileid="8704" duration="100"/>
+   <frame tileid="8604" duration="100"/>
+   <frame tileid="8504" duration="100"/>
+   <frame tileid="8404" duration="100"/>
+   <frame tileid="8304" duration="100"/>
+   <frame tileid="8204" duration="100"/>
+   <frame tileid="8104" duration="100"/>
+   <frame tileid="8004" duration="100"/>
+  </animation>
  </tile>
  <tile id="9705">
-  <properties>
-   <property name="AnimatedY" value="17"/>
-   <property name="Speed" value=".6"/>
-   <property name="start" value=""/>
-  </properties>
+  <animation>
+   <frame tileid="9605" duration="100"/>
+   <frame tileid="9505" duration="100"/>
+   <frame tileid="9405" duration="100"/>
+   <frame tileid="9305" duration="100"/>
+   <frame tileid="9205" duration="100"/>
+   <frame tileid="9105" duration="100"/>
+   <frame tileid="9005" duration="100"/>
+   <frame tileid="8905" duration="100"/>
+   <frame tileid="8805" duration="100"/>
+   <frame tileid="8705" duration="100"/>
+   <frame tileid="8605" duration="100"/>
+   <frame tileid="8505" duration="100"/>
+   <frame tileid="8405" duration="100"/>
+   <frame tileid="8305" duration="100"/>
+   <frame tileid="8205" duration="100"/>
+   <frame tileid="8105" duration="100"/>
+   <frame tileid="8005" duration="100"/>
+  </animation>
  </tile>
 </tileset>
