@@ -215,7 +215,7 @@
     <property name="standardTo" value="2"/>
    </properties>
   </object>
-  <object id="30" x="518" y="775" width="19" height="16">
+  <object id="30" x="866" y="488" width="19" height="16">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
@@ -224,7 +224,7 @@
     <property name="standardTo" value="9"/>
    </properties>
   </object>
-  <object id="31" x="1044" y="756" width="19" height="16">
+  <object id="31" x="752" y="462" width="19" height="16">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
