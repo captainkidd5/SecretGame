@@ -18,8 +18,7 @@ namespace SecretProject.Class.TileStuff
         public float X { get; set; }
         public float Y { get; set; }
 
-        private int gid;
-        public int GID { get { return gid - 1; } set { gid = value; } }
+        public int GID { get; set; }
         public bool IsSelected { get; set; }
 
         public float OldY { get; set; }
@@ -34,9 +33,6 @@ namespace SecretProject.Class.TileStuff
         public int HitPoints { get; set; } = 1;
         public int AStarTileValue { get; set; }
 
-
-        //--------------------------------------
-        //Rectangles
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
@@ -61,8 +57,8 @@ namespace SecretProject.Class.TileStuff
             this.GID = gID;
 
 
-            int Column = GID % tilesetTilesWide;
-            int Row = (int)Math.Floor((double)GID / (double)tilesetTilesWide);
+            int Column = (GID-1) % tilesetTilesWide;
+            int Row = (int)Math.Floor((double)(GID-1) / (double)tilesetTilesWide);
 
             this.X = (x % mapWidth) * 16;
             this.Y = (y % mapHeight) * 16;
@@ -71,14 +67,11 @@ namespace SecretProject.Class.TileStuff
 
                 DestinationRectangle = new Rectangle((int)X, (int)Y, 16, 16);
 
-            
-
-            //TileColor = Color.DimGray * 1.5f;
             AStarTileValue = 1;
 
         }
 
-        public int GetTileObjectKey()
+        public int GetTileKey()
         {
             string keyString = this.GID.ToString() + (this.X/16).ToString() + (this.Y/16).ToString();
             return int.Parse(keyString);
