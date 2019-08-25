@@ -618,6 +618,18 @@ namespace SecretProject.Class.TileStuff
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
             List<int> AnimationFrameKeysToRemove = new List<int>();
+            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
+            if (starti < 0)
+            {
+                starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) ;
+            }
+            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) - 1;
+            if (startj < 0)
+            {
+                startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16);
+            }
+            int endi = (int)((Game1.cam.Pos.X + Game1.ScreenWidth) / 16);
+            int endj = (int)((Game1.cam.Pos.Y + Game1.ScreenHeight) / 16);
 
             foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
             {
@@ -668,9 +680,9 @@ namespace SecretProject.Class.TileStuff
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (var i = 0; i < mapWidth; i++)
+                for (var i = starti; i < endi; i++)
                 {
-                    for (var j = 0; j < mapHeight; j++)
+                    for (var j = startj; j < endj; j++)
                     {
 
 
@@ -826,11 +838,24 @@ namespace SecretProject.Class.TileStuff
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch)
         {
+            
+            int starti = (int)(Game1.cam.Pos.X / 16)- (int)(Game1.ScreenWidth/ Game1.cam.Zoom/2 / 16) - 1;
+            if(starti < 0)
+            {
+                starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16);
+            }
+            int startj = (int)(Game1.cam.Pos.Y / 16)- (int)(Game1.ScreenHeight / Game1.cam.Zoom/ 2 / 16) - 1;
+            if(startj < 0)
+            {
+                startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16);
+            }
+            int endi = (int)((Game1.cam.Pos.X + Game1.ScreenWidth) / 16);
+            int endj = (int)((Game1.cam.Pos.Y + Game1.ScreenHeight) / 16);
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (var i = 0; i < mapWidth; i++)
+                for (var i = starti; i < endi; i++)
                 {
-                    for (var j = 0; j < mapHeight; j++)
+                    for (var j = startj; j < endj; j++)
                     {
                         if (AllTiles[z][i, j].GID != -1)
                         {
