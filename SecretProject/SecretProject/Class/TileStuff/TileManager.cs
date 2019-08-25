@@ -638,16 +638,18 @@ namespace SecretProject.Class.TileStuff
 
                             if (mapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                             {
-                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileObjectKey());
+                                
                                 //needs to refer to first tile ?
                                 int frameolDX = frameholder.OldX;
-                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID);
+                                AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,frameholder.OriginalTileID + 1,
+                                    this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileObjectKey());
+                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY);
                             }
                         }
-                        else
-                        {
+
                             frameholder.Counter = 0;
-                        }
+                        
 
                     }
                     else
@@ -1084,20 +1086,20 @@ namespace SecretProject.Class.TileStuff
                             case 0:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
+                                ToolInteraction(AllTiles[layer][oldX, oldY],layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
 
                             case 1:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
+                                ToolInteraction(AllTiles[layer][oldX, oldY],layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                             case 2:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, .25f);
-                                ToolInteraction(AllTiles[layer][oldX, oldY], oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
+                                ToolInteraction(AllTiles[layer][oldX, oldY],layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.Utility.GetTileEffectColor(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
                                 break;
                         }
@@ -1109,7 +1111,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void ToolInteraction(Tile tile, int x, int y, int setSoundInt, Color particleColor, bool hasSpawnTiles = false)
+        public void ToolInteraction(Tile tile, int layer,int x, int y, int setSoundInt, Color particleColor, bool hasSpawnTiles = false)
         {
             if (tile.HitPoints >= 1)
             {
@@ -1126,6 +1128,20 @@ namespace SecretProject.Class.TileStuff
                 if (hasSpawnTiles)
                 {
                     DestroySpawnWithTiles(tile, x, y);
+                }
+                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].AnimationFrames.Count > 0)
+                {
+                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                    for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].AnimationFrames.Count; i++)
+                    {
+                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].AnimationFrames[i]));
+                    }
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, AllTiles[layer][x, y].GID);
+                    this.AnimationFrames.Add(AllTiles[layer][x, y].GetTileObjectKey(), frameHolder);
+                }
+                else
+                {
+                    Destroy(layer, x, y);
                 }
 
                 Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
@@ -1183,16 +1199,16 @@ namespace SecretProject.Class.TileStuff
         {
 
 
-            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
-            {
-                List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
-                {
-                    frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
-                }
-                EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, AllTiles[layer][oldX, oldY].GID);
-                this.AnimationFrames.Add(AllTiles[layer][oldX, oldY].GetTileObjectKey(), frameHolder);
-            }
+            //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
+            //{
+            //    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+            //    for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
+            //    {
+            //        frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
+            //    }
+            //    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, AllTiles[layer][oldX, oldY].GID);
+            //    this.AnimationFrames.Add(AllTiles[layer][oldX, oldY].GetTileObjectKey(), frameHolder);
+            //}
 
 
             if (Game1.Player.Position.Y < AllTiles[layer][oldX, oldY].Y - 30)
@@ -1226,7 +1242,7 @@ namespace SecretProject.Class.TileStuff
 
         #region DESTROYTILES
 
-        public void Destroy(int layer, int oldX, int oldY, int gid)
+        public void Destroy(int layer, int oldX, int oldY)
         {
             if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[layer][oldX, oldY].GID))
             {
@@ -1234,7 +1250,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     //ObjectBody newObject = new ObjectBody();
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-                    GetDrop(layer, oldX, oldY, gid);
+                    GetDrop(layer, oldX, oldY);
                     if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                     {
                         DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
@@ -1245,33 +1261,26 @@ namespace SecretProject.Class.TileStuff
                     ReplaceTilePermanent(layer, oldX, oldY, 0);
 
                 }
-            }
-            else
-            {
-                Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-                Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-                GetDrop(layer, oldX, oldY, gid);
-                //AllTiles[layer][oldX, oldY].ContainsCrop = false;
-                if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
+                else
                 {
-                    DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
+                    Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey());
+                    Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
+                    GetDrop(layer, oldX, oldY);
+                    //AllTiles[layer][oldX, oldY].ContainsCrop = false;
+                    if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
+                    {
+                        DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
+                    }
+                    ReplaceTilePermanent(layer, oldX, oldY, 0);
                 }
-                ReplaceTilePermanent(layer, oldX, oldY, 0);
-            }
-        }
-
-        public void GetDrop(int layer, int x, int y, int gid = 0)
-        {
-            List<Loot> tempLoot;
-            if (gid != 0)
-            {
-                tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[gid].Properties["loot"]);
-            }
-            else
-            {
-                tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["loot"]);
             }
             
+        }
+
+        public void GetDrop(int layer, int x, int y)
+        {
+            int gid = AllTiles[layer][x, y].GID;
+            List<Loot> tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["loot"]);
 
             if (tempLoot != null)
             {
