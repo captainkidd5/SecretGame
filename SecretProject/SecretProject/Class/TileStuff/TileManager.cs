@@ -31,27 +31,23 @@ namespace SecretProject.Class.TileStuff
         protected TmxLayer layerName;
 
 
-        //--------------------------------------
-        //Map Specifications
         public int tilesetTilesWide { get; set; }
         public int tilesetTilesHigh { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
-        //--------------------------------------
-        //Tile Specificications
+
+
         public int iD { get; set; }
         public int tileWidth { get; set; }
         public int tileHeight { get; set; }
         public int tileNumber { get; set; }
 
 
-        //--------------------------------------
-        //Counting
+
         public int tileCounter { get; set; }
 
 
-        //--------------------------------------
-        //2D Array of All Tiles
+
 
         [XmlIgnore]
         public Tile[,] Tiles { get; set; }
@@ -103,7 +99,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> GrassGeneratableTiles;
 
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        //public List< MyProperty { get; set; }
+
 
 
         #region CONSTRUCTOR
@@ -112,7 +108,7 @@ namespace SecretProject.Class.TileStuff
         {
 
         }
-        //TODO LayerDepth List
+
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.tileSet = tileSet;

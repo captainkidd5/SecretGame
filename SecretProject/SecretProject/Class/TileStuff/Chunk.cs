@@ -11,21 +11,19 @@ namespace SecretProject.Class.TileStuff
     {
         public List<Tile[,]> AllChunkTiles { get; set; }
         public Rectangle Rectangle { get; set; }
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; }
 
-        public Chunk(int numberOfLayers)
+        public Chunk(int numberOfLayers, List<Tile[,]> tilesToLoad, int size)
         {
-            AllChunkTiles = new List<Tile[,]>();
-            for(int i = 0; i< numberOfLayers; i++)
-            {
-                AllChunkTiles.Add(new Tile[32, 32]);
-            }
+            AllChunkTiles = tilesToLoad;
+           
+            IsActive = false;
             
         }
 
         public void LoadRectangle()
         {
-            this.Rectangle = new Rectangle((int)AllChunkTiles[1][0, 0].X, (int)AllChunkTiles[1][0, 0].Y, 1024,
+            this.Rectangle = new Rectangle((int)AllChunkTiles[0][0, 0].X, (int)AllChunkTiles[0][0, 0].Y, 1024,
                 1024);
         }
     }
