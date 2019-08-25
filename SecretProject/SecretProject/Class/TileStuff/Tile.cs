@@ -18,12 +18,13 @@ namespace SecretProject.Class.TileStuff
         public float X { get; set; }
         public float Y { get; set; }
 
-        public int GID { get; set; }
+        private int gid;
+        public int GID { get { return gid - 1; } set { gid = value; } }
         public bool IsSelected { get; set; }
 
         public float OldY { get; set; }
 
-        public float OldX { get; set; } = 0;
+        public float OldX { get; set; }
 
 
         public float LayerToDrawAt { get; set; } = 0f;
@@ -33,6 +34,9 @@ namespace SecretProject.Class.TileStuff
         public int HitPoints { get; set; } = 1;
         public int AStarTileValue { get; set; }
 
+
+        //--------------------------------------
+        //Rectangles
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
@@ -53,31 +57,34 @@ namespace SecretProject.Class.TileStuff
             this.IsSelected = false;
             this.OldX = x;
             this.OldY = y;
-            
+
             this.GID = gID;
 
 
-            int Column = (GID-1) % tilesetTilesWide;
-            int Row = (int)Math.Floor((double)(GID-1) / (double)tilesetTilesWide);
+            int Column = GID % tilesetTilesWide;
+            int Row = (int)Math.Floor((double)GID / (double)tilesetTilesWide);
 
             this.X = (x % mapWidth) * 16;
             this.Y = (y % mapHeight) * 16;
 
             SourceRectangle = new Rectangle(16 * Column, 16 * Row, 16, 16);
 
-                DestinationRectangle = new Rectangle((int)X, (int)Y, 16, 16);
+            DestinationRectangle = new Rectangle((int)X, (int)Y, 16, 16);
 
+
+
+            //TileColor = Color.DimGray * 1.5f;
             AStarTileValue = 1;
 
         }
 
         public int GetTileKey()
         {
-            string keyString = this.GID.ToString() + (this.X/16).ToString() + (this.Y/16).ToString();
+            string keyString = this.GID.ToString() + (this.X / 16).ToString() + (this.Y / 16).ToString();
             return int.Parse(keyString);
         }
 
-       
+
     }
-    
+
 }

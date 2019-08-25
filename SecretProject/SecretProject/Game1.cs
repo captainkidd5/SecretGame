@@ -68,7 +68,6 @@ namespace SecretProject
         LodgeInteior = 1,
         Wilderness = 2,
         Exit = 3,
-        Sea = 4,
         Town = 5,
         GreatLibrary = 6,
         WestBeach = 7,
@@ -93,7 +92,6 @@ namespace SecretProject
         //public static NormalStage Iliad;
         public static StageBase LodgeInterior;
         public static Town Town;
-        public static Sea Sea;
         public static StageBase GreatLibrary;
         public static StageBase WestBeach;
         public static StageBase DobbinsOrchard;
@@ -254,8 +252,6 @@ namespace SecretProject
 
                 case Stages.Wilderness:
                     return Wilderness;
-                case Stages.Sea:
-                    return Sea;
 
                 case Stages.Town:
                     return Town;
@@ -283,8 +279,6 @@ namespace SecretProject
                     return LodgeInterior;
                 case 2:
                     return Wilderness;
-                case 4:
-                    return Sea;
                 case 5:
                     return Town;
                 case 6:
@@ -311,9 +305,6 @@ namespace SecretProject
 
                 case Stages.Wilderness:
                     return 2;
-
-                case Stages.Sea:
-                    return 4;
                 case Stages.Town:
                     return 5;
 
@@ -461,7 +452,7 @@ namespace SecretProject
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
-            Sea = new Sea(graphics.GraphicsDevice, SeaContentManager, 0);
+
 
 
             //STAGES
@@ -637,9 +628,6 @@ namespace SecretProject
                     ElixirShop.Update(gameTime, myMouseManager, Player);
                     break;
 
-                case Stages.Sea:
-                        Sea.Update(gameTime, myMouseManager, Player);
-                        break;
                         //case Stages.GreatLibrary:
 
                 }
@@ -702,13 +690,6 @@ namespace SecretProject
                     GraphicsDevice.Clear(Color.Black);
                     ElixirShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
-
-
-
-                case Stages.Sea:
-                        Sea.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-
 
                     //break;
             }

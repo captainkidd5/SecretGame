@@ -21,146 +21,146 @@ namespace SecretProject.Class.TileStuff
     public class SeaTileManager
     {
 
-        public TmxMap SeaMap { get; set; }
-        public int MapWidth { get; set; } = 1024;
-        public int MapHeight { get; set; } = 1024;
+        //public TmxMap SeaMap { get; set; }
+        //public int MapWidth { get; set; } = 1024;
+        //public int MapHeight { get; set; } = 1024;
 
-        public int TileWidth { get; set; } = 16;
-        public int TileHeight { get; set; } = 16;
+        //public int TileWidth { get; set; } = 16;
+        //public int TileHeight { get; set; } = 16;
 
-        public int ChunkTileWidth { get; set; } = 64;
-        public int ChunkTileHeight { get; set; } = 64;
+        //public int ChunkTileWidth { get; set; } = 64;
+        //public int ChunkTileHeight { get; set; } = 64;
 
-        public int NumberOfLayers { get; set; } = 4;
+        //public int NumberOfLayers { get; set; } = 4;
 
-        public List<TmxLayer> AllLayers { get; set; }
-        public Chunk[] AllChunks { get; set; }
+        //public List<TmxLayer> AllLayers { get; set; }
+        //public Chunk[] AllChunks { get; set; }
 
-        public int ChunkCount = 0;
+        //public int ChunkCount = 0;
 
-        public List<SeaTile[,]> AllTiles;
+        //public List<SeaTile[,]> AllTiles;
 
-        public Texture2D TileSet { get; set; }
+        //public Texture2D TileSet { get; set; }
 
 
 
-        //public int ChunkPixelWidth { get; set; } = 
+        ////public int ChunkPixelWidth { get; set; } = 
 
-        #region CONSTRUCTOR
+        //#region CONSTRUCTOR
 
-        //TODO LayerDepth List
-        public SeaTileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
-        {
+        ////TODO LayerDepth List
+        //public SeaTileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
+        //{
             
-            this.SeaMap = mapName;
-            this.AllLayers = allLayers;
-            AllTiles = new List<SeaTile[,]>();
-            for (int i = 0; i < AllLayers.Count; i++)
-            {
-                AllTiles.Add(new SeaTile[1024, 1024]);
+        //    this.SeaMap = mapName;
+        //    this.AllLayers = allLayers;
+        //    AllTiles = new List<SeaTile[,]>();
+        //    for (int i = 0; i < AllLayers.Count; i++)
+        //    {
+        //        AllTiles.Add(new SeaTile[1024, 1024]);
 
-            }
+        //    }
 
-            for (int i = 0; i < AllTiles.Count; i++)
-            {
-                foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
-                {
-                    SeaTile tempTile = new SeaTile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, 100, 100, 1024, 1024);
-                    AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
-
-
-                }
-            }
-            //this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
-            this.TileSet = tileSet;
-
-            AllChunks = new Chunk[512];
-
-            int currentTileIndexX = 0;
-            int currentTileIndexY = 0;
-
-            int anchorIndexX = 0;
-            int anchorIndexY = 0;
-
-            for (int c = 0; c < AllChunks.Length; c++)
-            {
-                AllChunks[c] = new Chunk(AllLayers.Count);
-                for (int l = 0; l < AllLayers.Count; l++)
-                {
-                    currentTileIndexX = anchorIndexX;
-                    currentTileIndexY = anchorIndexY;
-
-                    for (int x = 0; x < 32; x++)
-                    {
-
-                        for (int y = 0; y < 32; y++)
-                        {
-                            AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
-                            currentTileIndexY++;
-                        }
-                        currentTileIndexX++;
-                        currentTileIndexY = anchorIndexY;
-                    }                 
-                }
-                if (currentTileIndexX != 0 && currentTileIndexX % 1024 == 0)
-                {
-                    anchorIndexY += 32;
-                    anchorIndexX = 0;
-                }
-                else
-                {
-                    anchorIndexX += 32;
-                }
+        //    for (int i = 0; i < AllTiles.Count; i++)
+        //    {
+        //        foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
+        //        {
+        //            SeaTile tempTile = new SeaTile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, 100, 100, 1024, 1024);
+        //            AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
 
-                AllChunks[c].LoadRectangle();
-            }
+        //        }
+        //    }
+        //    //this.SeaMap = content.Load<TmxMap>("Content/Map/sea");
+        //    this.TileSet = tileSet;
 
-            AllTiles = null;
-        }
-        //have to make alltiles first and then load from there
-        public void LoadContent(ContentManager content, Texture2D tileSet)
-        {
+        //    AllChunks = new Chunk[512];
 
-            for (int c = 0; c < AllChunks.Length; c++)
-            {
-                AllChunks[c].LoadRectangle();
-            }
+        //    int currentTileIndexX = 0;
+        //    int currentTileIndexY = 0;
 
-        }
+        //    int anchorIndexX = 0;
+        //    int anchorIndexY = 0;
+
+        //    for (int c = 0; c < AllChunks.Length; c++)
+        //    {
+        //        AllChunks[c] = new Chunk(AllLayers.Count);
+        //        for (int l = 0; l < AllLayers.Count; l++)
+        //        {
+        //            currentTileIndexX = anchorIndexX;
+        //            currentTileIndexY = anchorIndexY;
+
+        //            for (int x = 0; x < 32; x++)
+        //            {
+
+        //                for (int y = 0; y < 32; y++)
+        //                {
+        //                    AllChunks[c].AllChunkTiles[l][x, y] = AllTiles[l][currentTileIndexX, currentTileIndexY];
+        //                    currentTileIndexY++;
+        //                }
+        //                currentTileIndexX++;
+        //                currentTileIndexY = anchorIndexY;
+        //            }                 
+        //        }
+        //        if (currentTileIndexX != 0 && currentTileIndexX % 1024 == 0)
+        //        {
+        //            anchorIndexY += 32;
+        //            anchorIndexX = 0;
+        //        }
+        //        else
+        //        {
+        //            anchorIndexX += 32;
+        //        }
 
 
-        #endregion
+        //        AllChunks[c].LoadRectangle();
+        //    }
 
-        public void DrawTiles(SpriteBatch spriteBatch)
-        {
-            for (int i = 0; i < AllChunks.Length; i++)
-            {
-                if(Game1.cam.CameraScreenRectangle.Intersects(AllChunks[i].Rectangle))
-                {
-                    AllChunks[i].IsActive = true;
-                    for (int l = 0; l < AllLayers.Count; l++)
-                    {
-                        for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
-                        {
-                            for (int y = 0; y < AllChunks[i].AllChunkTiles[l].GetLength(1); y++)
-                            {
-                                spriteBatch.Draw(TileSet, AllChunks[i].AllChunkTiles[l][x, y].DestinationRectangle, AllChunks[i].AllChunkTiles[l][x, y].SourceRectangle, AllChunks[i].AllChunkTiles[l][x, y].TileColor);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    AllChunks[i].IsActive = false;
-                }
-                
-            }
-        }
-
-        //public bool IsChunkInRange(Rectangle playerRectangle, Rectangle chunkRectangle)
+        //    AllTiles = null;
+        //}
+        ////have to make alltiles first and then load from there
+        //public void LoadContent(ContentManager content, Texture2D tileSet)
         //{
 
+        //    for (int c = 0; c < AllChunks.Length; c++)
+        //    {
+        //        AllChunks[c].LoadRectangle();
+        //    }
+
         //}
+
+
+        //#endregion
+
+        //public void DrawTiles(SpriteBatch spriteBatch)
+        //{
+        //    for (int i = 0; i < AllChunks.Length; i++)
+        //    {
+        //        if(Game1.cam.CameraScreenRectangle.Intersects(AllChunks[i].Rectangle))
+        //        {
+        //            AllChunks[i].IsActive = true;
+        //            for (int l = 0; l < AllLayers.Count; l++)
+        //            {
+        //                for (int x = 0; x < AllChunks[i].AllChunkTiles[l].GetLength(0); x++)
+        //                {
+        //                    for (int y = 0; y < AllChunks[i].AllChunkTiles[l].GetLength(1); y++)
+        //                    {
+        //                        spriteBatch.Draw(TileSet, AllChunks[i].AllChunkTiles[l][x, y].DestinationRectangle, AllChunks[i].AllChunkTiles[l][x, y].SourceRectangle, AllChunks[i].AllChunkTiles[l][x, y].TileColor);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            AllChunks[i].IsActive = false;
+        //        }
+                
+        //    }
+        //}
+
+        ////public bool IsChunkInRange(Rectangle playerRectangle, Rectangle chunkRectangle)
+        ////{
+
+        ////}
     }
 }

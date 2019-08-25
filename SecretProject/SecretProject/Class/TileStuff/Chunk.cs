@@ -9,16 +9,16 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk
     {
-        public List<SeaTile[,]> AllChunkTiles { get; set; }
+        public List<Tile[,]> AllChunkTiles { get; set; }
         public Rectangle Rectangle { get; set; }
         public bool IsActive { get; set; } = false;
 
         public Chunk(int numberOfLayers)
         {
-            AllChunkTiles = new List<SeaTile[,]>();
+            AllChunkTiles = new List<Tile[,]>();
             for(int i = 0; i< numberOfLayers; i++)
             {
-                AllChunkTiles.Add(new SeaTile[32, 32]);
+                AllChunkTiles.Add(new Tile[32, 32]);
             }
             
         }
