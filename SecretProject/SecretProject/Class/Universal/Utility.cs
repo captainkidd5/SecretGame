@@ -113,6 +113,7 @@ namespace SecretProject.Class.Universal
             int effectToReturn = int.Parse(info.Split(',')[2]);
             return effectToReturn;
         }
+
         public Color GetTileEffectColor(string info)
         {
             switch (int.Parse(info.Split(',')[2]))

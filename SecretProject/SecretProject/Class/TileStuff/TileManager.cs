@@ -103,6 +103,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> GrassGeneratableTiles;
 
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        //public List< MyProperty { get; set; }
 
 
         #region CONSTRUCTOR
@@ -303,14 +304,14 @@ namespace SecretProject.Class.TileStuff
                         tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
 
-                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0)
+                if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
                     for (int i = 0; i < mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                     {
-                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i], tileToAssign.GID));
+                        frames.Add(new EditableAnimationFrame(mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer);
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, tileToAssign.GID);
                     this.AnimationFrames.Add(tileToAssign.GetTileObjectKey(), frameHolder);
                 }
                 if (mapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
@@ -628,12 +629,20 @@ namespace SecretProject.Class.TileStuff
                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                    AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
+                        frameholder.Frames[frameholder.Counter].ID + 1, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                     {
-                        if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GID].Properties.ContainsKey("destructable"))
+                        if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                         {
-                            AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileObjectKey());
+
+                            if (mapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                            {
+                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileObjectKey());
+                                //needs to refer to first tile ?
+                                int frameolDX = frameholder.OldX;
+                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID);
+                            }
                         }
                         else
                         {
@@ -644,14 +653,14 @@ namespace SecretProject.Class.TileStuff
                     else
                     {
 
-                            frameholder.Counter++;
+                        frameholder.Counter++;
 
                     }
 
                 }
             }
 
-            foreach(int key in AnimationFrameKeysToRemove)
+            foreach (int key in AnimationFrameKeysToRemove)
             {
                 AnimationFrames.Remove(key);
             }
@@ -671,11 +680,7 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (AllTiles[z][i, j].IsFinishedAnimating)
-                            {
-                                Destroy(z, i, j);
-                                AllTiles[z][i, j].IsFinishedAnimating = false;
-                            }
+
 
                             if (z == 0)
                             {
@@ -754,16 +759,16 @@ namespace SecretProject.Class.TileStuff
                             }
 
 
-                            if (AllTiles[z][i, j].IsAnimated)
-                            {
-                                if (AllTiles[z][i, j].IsAnimating == true && AllTiles[z][i, j].IsFinishedAnimating == false)
-                                {
+                            //if (AllTiles[z][i, j].IsAnimated)
+                            //{
+                            //    if (AllTiles[z][i, j].IsAnimating == true && AllTiles[z][i, j].IsFinishedAnimating == false)
+                            //    {
 
 
 
-                                    AllTiles[z][i, j].AnimateDynamic(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].TotalFramesY, 16, 16, float.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]), AllTiles[z][i, j].Kill);
-                                }
-                            }
+                            //        AllTiles[z][i, j].AnimateDynamic(gameTime, AllTiles[z][i, j].TotalFramesX, AllTiles[z][i, j].TotalFramesY, 16, 16, float.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["Speed"]), AllTiles[z][i, j].Kill);
+                            //    }
+                            //}
 
 
                         }
@@ -787,28 +792,28 @@ namespace SecretProject.Class.TileStuff
             {
                 //furnace
                 case 1:
-                    if (AllTiles[z][i, j].GID == 4654)
-                    {
-                        ReplaceTilePermanent(1, i, j, 4657);
+                    //if (AllTiles[z][i, j].GID == 4654)
+                    //{
+                    //    ReplaceTilePermanent(1, i, j, 4657);
 
-                        ReplaceTilePermanent(1, i - 1, j, 4658);
-                        AllTiles[z][i, j - 2].IsAnimating = true;
-                        AllTiles[z][i, j - 2].Kill = false;
-                        AllTiles[z][i, j - 2].IsFinishedAnimating = false;
-                        AllTiles[z][i, j - 2].IsAnimated = true;
+                    //    ReplaceTilePermanent(1, i - 1, j, 4658);
+                    //    AllTiles[z][i, j - 2].IsAnimating = true;
+                    //    AllTiles[z][i, j - 2].Kill = false;
+                    //    AllTiles[z][i, j - 2].IsFinishedAnimating = false;
+                    //    AllTiles[z][i, j - 2].IsAnimated = true;
 
-                    }
-                    else if (AllTiles[z][i, j].GID == 4653)
-                    {
-                        ReplaceTilePermanent(1, i, j, 4656);
+                    //}
+                    //else if (AllTiles[z][i, j].GID == 4653)
+                    //{
+                    //    ReplaceTilePermanent(1, i, j, 4656);
 
-                        ReplaceTilePermanent(1, i + 1, j, 4657);
-                        AllTiles[z][i + 1, j - 2].IsAnimating = true;
-                        AllTiles[z][i + 1, j - 2].Kill = false;
-                        AllTiles[z][i + 1, j - 2].IsFinishedAnimating = false;
-                        AllTiles[z][i + 1, j - 2].IsAnimated = true;
+                    //    ReplaceTilePermanent(1, i + 1, j, 4657);
+                    //    AllTiles[z][i + 1, j - 2].IsAnimating = true;
+                    //    AllTiles[z][i + 1, j - 2].Kill = false;
+                    //    AllTiles[z][i + 1, j - 2].IsFinishedAnimating = false;
+                    //    AllTiles[z][i + 1, j - 2].IsAnimated = true;
 
-                    }
+                    //}
 
 
 
@@ -1063,7 +1068,7 @@ namespace SecretProject.Class.TileStuff
             }
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("destructable"))
             {
-                if (!AllTiles[layer][oldX, oldY].IsAnimating && !Game1.Player.CurrentAction.IsAnimated)
+                if (!AnimationFrames.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()) && !Game1.Player.CurrentAction.IsAnimated)
                 {
                     if (Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]) == -50)
                     {
@@ -1117,7 +1122,7 @@ namespace SecretProject.Class.TileStuff
             if (tile.HitPoints < 1)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, setSoundInt, 1f);
-                tile.IsFinishedAnimating = true;
+                //tile.IsFinishedAnimating = true;
                 if (hasSpawnTiles)
                 {
                     DestroySpawnWithTiles(tile, x, y);
@@ -1133,12 +1138,16 @@ namespace SecretProject.Class.TileStuff
         //interact without any player animations
         public void InteractWithoutPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, float delayTimer = 0f)
         {
-            if (delayTimer != 0f)
+            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
             {
-                AllTiles[layer][oldX, oldY].DelayTimer = delayTimer;
+                List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
+                {
+                    frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
+                }
+                EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, AllTiles[layer][oldX, oldY].GID);
+                this.AnimationFrames.Add(AllTiles[layer][oldX, oldY].GetTileObjectKey(), frameHolder);
             }
-            AllTiles[layer][oldX, oldY].IsAnimating = true;
-            AllTiles[layer][oldX, oldY].KillAnimation = true;
 
             if (Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
             {
@@ -1173,14 +1182,16 @@ namespace SecretProject.Class.TileStuff
         public void InteractWithPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, float delayTimer = 0f)
         {
 
-            if (delayTimer != 0f)
+
+            if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
             {
-                AllTiles[layer][oldX, oldY].DelayTimer = delayTimer;
-            }
-            if (AllTiles[layer][oldX, oldY].IsAnimated)
-            {
-                AllTiles[layer][oldX, oldY].IsAnimating = true;
-                AllTiles[layer][oldX, oldY].KillAnimation = true;
+                List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
+                {
+                    frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
+                }
+                EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, AllTiles[layer][oldX, oldY].GID);
+                this.AnimationFrames.Add(AllTiles[layer][oldX, oldY].GetTileObjectKey(), frameHolder);
             }
 
 
@@ -1215,15 +1226,15 @@ namespace SecretProject.Class.TileStuff
 
         #region DESTROYTILES
 
-        public void Destroy(int layer, int oldX, int oldY)
+        public void Destroy(int layer, int oldX, int oldY, int gid)
         {
-            if (AllTiles[layer][oldX, oldY].IsAnimated)
+            if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[layer][oldX, oldY].GID))
             {
-                if (AllTiles[layer][oldX, oldY].IsFinishedAnimating && Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
+                if (!AnimationFrames.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()) && Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey()))
                 {
                     //ObjectBody newObject = new ObjectBody();
                     Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-                    GetDrop(layer, oldX, oldY);
+                    GetDrop(layer, oldX, oldY, gid);
                     if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                     {
                         DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY);
@@ -1239,7 +1250,7 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllObjects.ContainsKey(AllTiles[layer][oldX, oldY].GetTileObjectKey());
                 Game1.GetCurrentStage().AllObjects.Remove(AllTiles[layer][oldX, oldY].GetTileObjectKey());
-                GetDrop(layer, oldX, oldY);
+                GetDrop(layer, oldX, oldY, gid);
                 //AllTiles[layer][oldX, oldY].ContainsCrop = false;
                 if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
                 {
@@ -1249,9 +1260,18 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void GetDrop(int layer, int x, int y)
+        public void GetDrop(int layer, int x, int y, int gid = 0)
         {
-            List<Loot> tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["loot"]);
+            List<Loot> tempLoot;
+            if (gid != 0)
+            {
+                tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[gid].Properties["loot"]);
+            }
+            else
+            {
+                tempLoot = Game1.Utility.Parselootkey(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["loot"]);
+            }
+            
 
             if (tempLoot != null)
             {
@@ -1275,13 +1295,13 @@ namespace SecretProject.Class.TileStuff
             public float CurrentDuration { get; set; }
             public float AnchorDuration { get; set; }
             public int ID { get; set; }
-            public int OriginalTileID { get; set; }
-            public EditableAnimationFrame(AnimationFrameHolder frame, int originalTileID)
+            
+            public EditableAnimationFrame(AnimationFrameHolder frame)
             {
                 this.CurrentDuration = frame.Duration;
                 this.AnchorDuration = frame.Duration;
                 this.ID = frame.Id;
-                this.OriginalTileID = originalTileID;
+                
             }
         }
 
@@ -1290,13 +1310,13 @@ namespace SecretProject.Class.TileStuff
             public List<EditableAnimationFrame> Frames { get; set; }
             public float Timer { get; set; }
             public int Counter { get; set; }
-            public int OldX { get; set; }
-            public int OldY { get; set; }
+            public int OldX { get; }
+            public int OldY { get; }
             public int Layer { get; set; }
-
+            public int OriginalTileID { get; set; }
             public bool Repeats { get; set; }
 
-            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer)
+            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID)
             {
                 this.Frames = frames;
                 this.Counter = 0;
@@ -1304,6 +1324,7 @@ namespace SecretProject.Class.TileStuff
                 this.OldX = oldX;
                 this.OldY = oldY;
                 this.Layer = layer;
+                this.OriginalTileID = originalTileID;
             }
         }
 

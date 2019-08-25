@@ -197,12 +197,20 @@
    <property name="AnimatedX" value="5"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,1,0,8"/>
+   <property name="idleStart" value=""/>
    <property name="loot" value="130:100,183:15"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="1" width="13" height="13"/>
   </objectgroup>
+  <animation>
+   <frame tileid="979" duration="100"/>
+   <frame tileid="980" duration="100"/>
+   <frame tileid="981" duration="100"/>
+   <frame tileid="982" duration="100"/>
+   <frame tileid="983" duration="100"/>
+  </animation>
  </tile>
  <tile id="1004">
   <properties>

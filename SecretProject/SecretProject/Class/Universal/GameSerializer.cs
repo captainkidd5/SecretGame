@@ -261,22 +261,10 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.IsSelected);
             writer.Write(tile.TilesetTilesWide);
             writer.Write(tile.TilesetTilesHigh);
-            writer.Write(tile.TileFrame);
-            writer.Write(tile.TileHeight);
-            writer.Write(tile.TileWidth);
-            writer.Write(tile.Column);
-            writer.Write(tile.Row);
+           
             writer.Write(tile.OldY);
             writer.Write(tile.OldX);
-            writer.Write(tile.IsAnimated);
-            writer.Write(tile.IsAnimating);
-            writer.Write(tile.IsFinishedAnimating);
-            writer.Write(tile.KillAnimation);
-            writer.Write(tile.DelayTimer);
-            writer.Write(tile.Timer);
-            writer.Write(tile.CurrentFrame);
 
-            writer.Write(tile.AddAmountX);
             //skipping color 
 
 
@@ -355,17 +343,7 @@ namespace SecretProject.Class.Universal
             //}
             
             newTile.IsSelected = isSelected;
-            newTile.TileFrame = tileFrame;
-            newTile.TileHeight = tileHeight;
-            newTile.TileWidth = tileWidth;
-            newTile.IsAnimated = isAnimated;
-            newTile.IsAnimating = isAnimating;
-            newTile.IsFinishedAnimating = isFinishedAnimating;
-            newTile.KillAnimation = killAnimation;
-            newTile.DelayTimer = delayTimer;
-            newTile.Timer = timer;
-            newTile.CurrentFrame = currentFrame;
-            newTile.AddAmountX = addAmount;
+
 
             return newTile;
             
