@@ -259,8 +259,6 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Y);
             writer.Write(tile.GID + 1);
             writer.Write(tile.IsSelected);
-            writer.Write(tile.TilesetTilesWide);
-            writer.Write(tile.TilesetTilesHigh);
            
             writer.Write(tile.OldY);
             writer.Write(tile.OldX);

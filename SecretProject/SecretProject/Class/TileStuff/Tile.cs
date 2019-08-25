@@ -15,21 +15,17 @@ namespace SecretProject.Class.TileStuff
 {
     public class Tile
     {
-        public float X { get; set; } = 0;
-        public float Y { get; set; } = 0;
+        public float X { get; set; }
+        public float Y { get; set; }
 
         private int gid;
         public int GID { get { return gid - 1; } set { gid = value; } }
-        public bool IsSelected { get; set; } = false;
+        public bool IsSelected { get; set; }
 
-        public int TilesetTilesWide { get; set; } = 0;
-        public int TilesetTilesHigh { get; set; } = 0;
         public float OldY { get; set; }
-        //public float OldY1 { get; set; } = 0;
+
         public float OldX { get; set; } = 0;
 
-
-        //public bool IsTemporary { get; set; } = false;
 
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
@@ -44,13 +40,11 @@ namespace SecretProject.Class.TileStuff
         public Rectangle SourceRectangle;
         public Rectangle DestinationRectangle;
 
-        //objectgroup stuff
 
         public bool HorizontalFlip { get; set; }
         public bool VeritcalFlip { get; set; }
         public bool DiagonalFlip { get; set; }
 
-        public bool HasProperties { get; set; }
 
 
         private Tile()
@@ -60,13 +54,11 @@ namespace SecretProject.Class.TileStuff
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
         {
-            HasProperties = false;
+            this.IsSelected = false;
             this.OldX = x;
             this.OldY = y;
             
             this.GID = gID;
-            this.TilesetTilesWide = tilesetTilesWide;
-            this.TilesetTilesHigh = tilesetTilesHigh;
 
 
             int Column = GID % tilesetTilesWide;
