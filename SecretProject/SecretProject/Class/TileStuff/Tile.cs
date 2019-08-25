@@ -24,30 +24,10 @@ namespace SecretProject.Class.TileStuff
 
         public int TilesetTilesWide { get; set; } = 0;
         public int TilesetTilesHigh { get; set; } = 0;
-        public int TileFrame { get; set; } = 0;
-        public int TileHeight { get; set; } = 16;
-        public int TileWidth { get; set; } = 16;
-        public int Column { get; set; } = 0;
-        public int Row { get; set; } = 0;
         public float OldY { get; set; }
         //public float OldY1 { get; set; } = 0;
         public float OldX { get; set; } = 0;
 
-        public bool IsAnimated { get; set; } = false;
-        public bool IsAnimating { get; set; } = false;
-        public bool IsFinishedAnimating { get; set; } = false;
-        public bool KillAnimation { get; set; } = false;
-        public float DelayTimer { get; set; } = 0;
-        public bool Kill { get; set; } = true;
-
-
-        public double Timer { get; set; } = 0;
-        public int CurrentFrame { get; set; } = 0;
-        public int TotalFramesX { get; set; } = 0;
-        public int TotalFramesY { get; set; } = 0;
-        //AddAmount used for animation frames
-        public int AddAmountX { get; set; } = 0;
-        public int AddAmountY { get; set; } = 0;
 
         //public bool IsTemporary { get; set; } = false;
 
@@ -89,17 +69,15 @@ namespace SecretProject.Class.TileStuff
             this.TilesetTilesHigh = tilesetTilesHigh;
 
 
-            TileFrame = GID;
+            int Column = GID % tilesetTilesWide;
+            int Row = (int)Math.Floor((double)GID / (double)tilesetTilesWide);
 
-            Column = TileFrame % tilesetTilesWide;
-            Row = (int)Math.Floor((double)TileFrame / (double)tilesetTilesWide);
+            this.X = (x % mapWidth) * 16;
+            this.Y = (y % mapHeight) * 16;
 
-            this.X = (x % mapWidth) * TileWidth;
-            this.Y = (y % mapHeight) * TileHeight;
+            SourceRectangle = new Rectangle(16 * Column, 16 * Row, 16, 16);
 
-            SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row, TileWidth, TileHeight);
-
-                DestinationRectangle = new Rectangle((int)X, (int)Y, TileWidth, TileHeight);
+                DestinationRectangle = new Rectangle((int)X, (int)Y, 16, 16);
 
             
 
@@ -114,134 +92,7 @@ namespace SecretProject.Class.TileStuff
             return int.Parse(keyString);
         }
 
-        public void AnimateOnlyX(GameTime gameTime, int totalFramesX, double speed)
-        {
-
-            if (DelayTimer <= 0)
-            {
-
-                Timer -= gameTime.ElapsedGameTime.TotalSeconds;
-
-                if (Timer <= 0)
-                {
-                    Timer = speed;
-                    CurrentFrame++;
-                    AddAmountX += 16;
-                }
-
-                if (CurrentFrame == totalFramesX)
-                {
-                    CurrentFrame = 0;
-                    if (KillAnimation == true)
-                    {
-                        IsFinishedAnimating = true;
-                    }
-                    else
-                    {
-                        AddAmountX = 0;
-
-                    }
-                }
-                SourceRectangle = new Rectangle(TileWidth * Column + AddAmountX, TileHeight * Row, TileWidth, TileHeight);
-            }
-            else
-            {
-                DelayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-        }
-
-        public void AnimateDynamic(GameTime gameTime, int totalFramesX, int totalFramesY, int addAmountX, int addAmountY, double speed, bool kill = true)
-        {
-            if (DelayTimer <= 0)
-            {
-
-                Timer -= gameTime.ElapsedGameTime.TotalSeconds;
-
-                if (Timer <= 0)
-                {
-                    Timer = speed;
-                    CurrentFrame++;
-                    if(TotalFramesX > 0)
-                    {
-                        AddAmountX += addAmountX;
-                    }
-                    if(totalFramesY > 0)
-                    {
-                        AddAmountY += addAmountY;
-                    }
-                    
-                }
-
-                if(totalFramesX > 0 && totalFramesY == 0)
-                {
-                    if (CurrentFrame == totalFramesX)
-                    {
-                        CurrentFrame = 0;
-                        if (KillAnimation == true && kill == true)
-                        {
-                            IsFinishedAnimating = true;
-                        }
-                        else
-                        {
-                            AddAmountX = 0;
-
-                        }
-                    }
-                }
-
-                else if (totalFramesX == 0 && totalFramesY > 0)
-                {
-                    if (CurrentFrame == totalFramesY)
-                    {
-                        CurrentFrame = 0;
-                        if (KillAnimation == true && kill == true)
-                        {
-                            IsFinishedAnimating = true;
-                        }
-                        else
-                        {
-                            AddAmountY = 0;
-
-                        }
-                    }
-                }
-
-                else if (CurrentFrame == totalFramesX && CurrentFrame == totalFramesY)
-                {
-                    CurrentFrame = 0;
-                    //set kill to false if we don't want the animation to ever end
-                    if (KillAnimation == true && kill == true)
-                    {
-                        IsFinishedAnimating = true;
-                    }
-                    else
-                    {
-                        AddAmountX = 0;
-                        AddAmountY = 0; 
-
-                    }
-                }
-
-                if(totalFramesX > 0)
-                {
-                    SourceRectangle = new Rectangle(TileWidth * Column + AddAmountX, TileHeight * Row, TileWidth, TileHeight);
-                }
-                else if(totalFramesY > 0)
-                {
-                    SourceRectangle = new Rectangle(TileWidth * Column, TileHeight * Row - AddAmountY, TileWidth, TileHeight);
-                }
-                else if(totalFramesY> 0 && totalFramesX >0)
-                {
-                    SourceRectangle = new Rectangle(TileWidth * Column + AddAmountX, TileHeight * Row + AddAmountY, TileWidth, TileHeight);
-                }
-                
-                
-            }
-            else
-            {
-                DelayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-        }
+       
     }
     
 }
