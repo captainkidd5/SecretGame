@@ -281,11 +281,24 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                     if (pathFound == false)
                     {
                         this.IsMoving = true;
-
-                        currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                        if(route.StageToEndAt == Game1.GetCurrentStageInt())
+                        {
+                            currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
 
-                        pathFound = true;
+                            pathFound = true;
+                        }
+                        else
+                        {
+                            currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                            (int)this.NPCPathFindRectangle.Y / 16),
+                            new Point(Game1.GetCurrentStage().AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X/16,
+                            Game1.GetCurrentStage().AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
+
+                            pathFound = true;
+                        }
+
+                        
                     }
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -312,6 +325,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         //currentPath = null;
 
                     }
+                }
+                else if(this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)) && route.StageToEndAt != Game1.GetCurrentStageInt())
+                {
+                    //here we will switch the NPC to the new stage and have him follow the path from the door to the desired location.
                 }
                 else
                 {

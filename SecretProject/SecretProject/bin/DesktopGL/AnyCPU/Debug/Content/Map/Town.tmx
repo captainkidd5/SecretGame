@@ -205,35 +205,6 @@
 1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222,1223,1221,1222
 </data>
  </layer>
- <objectgroup name="Portal">
-  <object id="28" x="1008" y="1584" width="89" height="16">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="50"/>
-    <property name="standardFrom" value="5"/>
-    <property name="standardTo" value="2"/>
-   </properties>
-  </object>
-  <object id="30" x="866" y="488" width="19" height="16">
-   <properties>
-    <property name="Click" value="true"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="25"/>
-    <property name="standardFrom" value="5"/>
-    <property name="standardTo" value="9"/>
-   </properties>
-  </object>
-  <object id="31" x="752" y="462" width="19" height="16">
-   <properties>
-    <property name="Click" value="true"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="15"/>
-    <property name="standardFrom" value="5"/>
-    <property name="standardTo" value="6"/>
-   </properties>
-  </object>
- </objectgroup>
  <layer name="buildings" width="200" height="200">
   <data encoding="csv">
 362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,362,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,657,
@@ -1050,4 +1021,33 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="Portal">
+  <object id="28" x="1008" y="1584" width="89" height="16">
+   <properties>
+    <property name="Click" value="false"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="50"/>
+    <property name="standardFrom" value="5"/>
+    <property name="standardTo" value="2"/>
+   </properties>
+  </object>
+  <object id="30" x="870" y="519" width="19" height="16">
+   <properties>
+    <property name="Click" value="true"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="25"/>
+    <property name="standardFrom" value="5"/>
+    <property name="standardTo" value="9"/>
+   </properties>
+  </object>
+  <object id="31" x="752" y="462" width="19" height="16">
+   <properties>
+    <property name="Click" value="true"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="15"/>
+    <property name="standardFrom" value="5"/>
+    <property name="standardTo" value="6"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
