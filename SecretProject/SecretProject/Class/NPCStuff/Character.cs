@@ -70,7 +70,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             set { }
         }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule)
+        public int CurrentStageLocation { get; set; }
+        //ghost refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
+        public bool Ghost { get; set; }
+        public bool IsBasicNPC { get; set; }
+
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC)
         {
             this.Name = name;
             this.Position = position;
@@ -85,6 +90,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             this.RouteSchedule = routeSchedule;
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
+            this.CurrentStageLocation = currentStageLocation;
+            this.IsBasicNPC = isBasicNPC;
             
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
@@ -105,8 +112,21 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         }
 
         //for normal, moving NPCS
-        public void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
         {
+            if(this.IsBasicNPC)
+            {
+                UpdateBasicNPC(gameTime, mouse);
+                return;
+            }
+            if(Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            {
+                this.Ghost = false;
+            }
+            else
+            {
+                this.Ghost = true;
+            }
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
@@ -138,15 +158,19 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            CheckSpeechInteraction(mouse, FrameToSet);
+            
 
             FollowSchedule(gameTime, this.RouteSchedule);
-            if (mouse.IsRightClicked)
+            if(!Ghost)
             {
-                Console.WriteLine(this.NPCHitBoxRectangle);
+                if (mouse.IsRightClicked)
+                {
+                    Console.WriteLine(this.NPCHitBoxRectangle);
 
+                }
+                CheckSpeechInteraction(mouse, FrameToSet);
             }
-
+            
 
         }
 
@@ -154,7 +178,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
-            CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
+            if(!Ghost)
+            {
+                CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
+            }
+            
         }
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
@@ -343,29 +371,42 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
         public void DrawBasicNPC(SpriteBatch spriteBatch)
         {
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, 1f);
+            if(!Ghost)
+            {
+                this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, 1f);
+            }
+            
             //this.NPCAnimatedSprite[0].Draw(spriteBatch, 1f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            switch (CurrentDirection)
+            if(!Ghost)
             {
+                if(this.IsBasicNPC)
+                {
+                    DrawBasicNPC(spriteBatch);
+                    return;
+                }
+                switch (CurrentDirection)
+                {
 
-                case 0:
-                    float num = .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
-                    break;
-                case 1:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
-                    break;
-                case 2:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
-                    break;
-                case 3:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
-                    break;
+                    case 0:
+                        float num = .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
+                        NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
+                        break;
+                    case 1:
+                        NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
+                        break;
+                    case 2:
+                        NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
+                        break;
+                    case 3:
+                        NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
+                        break;
+                }
             }
+            
         }
 
         public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)

@@ -112,6 +112,7 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
+       
 
         #endregion
 
@@ -212,6 +213,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             AllCrops = new Dictionary<int, Crop>();
+            
         }
         public void OnSceneChanged()
         {

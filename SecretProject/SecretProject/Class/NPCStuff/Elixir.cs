@@ -17,7 +17,7 @@ namespace SecretProject.Class.NPCStuff
     {
 
 
-        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet,RouteSchedule routeSchedule):base(name, position, graphics, spriteSheet, routeSchedule)
+        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet,RouteSchedule routeSchedule):base(name, position, graphics, spriteSheet, routeSchedule, 5, false)
         {
             this.SpeakerID = 1;
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 48, 0, 16, 48, 6, .15f, this.Position);

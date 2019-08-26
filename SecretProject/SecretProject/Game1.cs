@@ -187,6 +187,7 @@ namespace SecretProject
         public static Dobbin Dobbin;
 
         public static Character Snaw;
+        public static List<Character> AllCharacters;
 
 
         #endregion
@@ -522,7 +523,14 @@ namespace SecretProject
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 } ;
             Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet, 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3};
+                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+                0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3, IsBasicNPC = true};
+            AllCharacters = new List<Character>()
+            {
+                Elixer,
+                Dobbin,
+                Snaw
+            };
         }
         #endregion
 

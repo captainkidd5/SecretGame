@@ -17,7 +17,7 @@ namespace SecretProject.Class.NPCStuff
     public class Dobbin  : Character
     {
 
-        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule)
+        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule, 5, false)
         {
             NPCAnimatedSprite = new Sprite[4];
 
@@ -37,8 +37,16 @@ namespace SecretProject.Class.NPCStuff
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
         }
 
-        public void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
+        public override void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
         {
+            if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            {
+                this.Ghost = false;
+            }
+            else
+            {
+                this.Ghost = true;
+            }
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
@@ -70,31 +78,37 @@ namespace SecretProject.Class.NPCStuff
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
+            if (!Ghost)
             {
-                mouse.ChangeMouseTexture(200);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
-                if (mouse.IsRightClicked)
+
+
+                if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
                 {
+                    mouse.ChangeMouseTexture(200);
+                    mouse.ToggleGeneralInteraction = true;
+                    Game1.isMyMouseVisible = false;
+                    if (mouse.IsRightClicked)
+                    {
 
 
-                    Game1.Player.UserInterface.ActivateShop(UI.OpenShop.DobbinShop);
-                    UpdateDirectionVector(Game1.Player.position);
-                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                        Game1.Player.UserInterface.ActivateShop(UI.OpenShop.DobbinShop);
+                        UpdateDirectionVector(Game1.Player.position);
+                        this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
 
+
+                    }
 
                 }
+                if (mouse.IsRightClicked)
+                {
+                    Console.WriteLine(this.NPCHitBoxRectangle);
 
+                }
             }
 
             //this.Speed = PrimaryVelocity
             FollowSchedule(gameTime, this.RouteSchedule);
-            if (mouse.IsRightClicked)
-            {
-                Console.WriteLine(this.NPCHitBoxRectangle);
-
-            }
+            
 
 
         }

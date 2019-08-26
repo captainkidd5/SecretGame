@@ -16,6 +16,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D MainCharacterSpriteStrip;
         public Texture2D PlayerSpriteSheet;
         public Texture2D PlayerParts;
+        public Texture2D PlayerPartsMining;
 
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -79,6 +80,7 @@ namespace SecretProject.Class.TextureStuff
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
             PlayerParts = content.Load<Texture2D>("Player/MainPlayer/playerParts");
+            PlayerPartsMining = content.Load<Texture2D>("Player/MainPlayer/playerPartsMining");
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
@@ -116,6 +118,7 @@ namespace SecretProject.Class.TextureStuff
             nightTint = content.Load<Effect>("Effects/nightTint");
 
             redPixel = content.Load<Texture2D>("Debug/solidRed");
+        
         }
 
         public Rectangle GetItemTextureFromAtlas(int row, int column)

@@ -265,11 +265,11 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
-                Game1.Dobbin.Update(gameTime, AllObjects, mouse);
-                
-                
-                
-                Game1.Elixer.Update(gameTime, AllObjects, mouse);
+
+                foreach(Character character in Game1.AllCharacters)
+                {
+                    character.Update(gameTime, AllObjects, mouse);
+                }
 
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
