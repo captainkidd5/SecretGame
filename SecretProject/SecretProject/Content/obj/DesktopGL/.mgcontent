@@ -92,5 +92,12 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/sell1.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Map/MasterSpriteSheet.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/playerPartsMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/ArmsMining/rightArmMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/HandsMining/handsMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/HeadMining/HeadMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/LegsMining/basicLegsMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/ShoesMining/ShoesMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/ToolMining/basicHammerMining.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/TorsoMining/torsoBlueMining.png</File>
   </SourceFiles>
 </SourceFileCollection>

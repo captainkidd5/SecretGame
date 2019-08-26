@@ -11,12 +11,34 @@ using TiledSharp;
 
 namespace SecretProject.Class.TextureStuff
 {
-   public class TextureBook
+    public class TextureBook
     {
         public Texture2D MainCharacterSpriteStrip;
         public Texture2D PlayerSpriteSheet;
         public Texture2D PlayerParts;
         public Texture2D PlayerPartsMining;
+
+        //MINING FOLDER
+        //ARMS MINING
+        public Texture2D RightArmMining;
+
+        //HANDS MINING
+        public Texture2D HandsMining;
+
+        //HEAD MINING
+        public Texture2D HeadMining;
+
+        //LEGS MINING
+        public Texture2D BasicLegsMining;
+
+        //SHOES MINING
+        public Texture2D ShoesMining;
+
+        //TOOL MINING
+        public Texture2D BasicHammerMining;
+
+        //TORSO MINING
+        public Texture2D TorsoBlueMining;
 
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -76,6 +98,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D redPixel;
 
 
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
@@ -84,7 +107,7 @@ namespace SecretProject.Class.TextureStuff
 
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
-        
+
 
             DobbinSpriteSheet = content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet");
 
@@ -118,8 +141,29 @@ namespace SecretProject.Class.TextureStuff
             nightTint = content.Load<Effect>("Effects/nightTint");
 
             redPixel = content.Load<Texture2D>("Debug/solidRed");
-        
+
+            //MINING FOLDER
+
+            RightArmMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ArmsMining/rightArmMining");
+
+            HandsMining = content.Load<Texture2D>("Player/MainPlayer/Mining/HandsMining/handsMining");
+
+            //HEAD MINING
+            HeadMining = content.Load<Texture2D>("Player/MainPlayer/Mining/HeadMining/HeadMining");
+
+            //LEGS MINING
+            BasicLegsMining = content.Load<Texture2D>("Player/MainPlayer/Mining/LegsMining/basicLegsMining");
+
+            //SHOES MINING
+            ShoesMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ShoesMining/ShoesMining");
+
+            //TOOL MINING
+            BasicHammerMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ToolMining/basicHammerMining");
+
+            //TORSO MINING
+            TorsoBlueMining = content.Load<Texture2D>("Player/MainPlayer/Mining/TorsoMining/torsoBlueMining");
         }
+
 
         public Rectangle GetItemTextureFromAtlas(int row, int column)
         {
