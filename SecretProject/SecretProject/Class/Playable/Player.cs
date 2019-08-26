@@ -561,7 +561,7 @@ namespace SecretProject.Class.Playable
 
                     for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth);
+                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth + PlayerMovementAnimations[i].LayerDepth);
                     }
                     
                 }
