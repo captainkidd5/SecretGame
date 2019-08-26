@@ -1213,6 +1213,7 @@ namespace SecretProject.Class.TileStuff
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
             {
                 ReplaceTilePermanent(3, oldX, oldY - 1, 0);
+                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[0][oldX, oldY].GetTileKey());
                 //AllTiles[0][oldX, oldY].ContainsCrop = false;
             }
             GetDrop(layer, oldX, oldY);
