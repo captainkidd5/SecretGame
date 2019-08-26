@@ -175,6 +175,8 @@ namespace SecretProject.Class.SpriteFolder
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
+
+
         //for ship sprites
         public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position,float rotation, Vector2 origin, float layerDepth)
         {

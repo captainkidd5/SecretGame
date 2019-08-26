@@ -1104,7 +1104,7 @@ namespace SecretProject.Class.TileStuff
             }
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("destructable"))
             {
-                if (!AnimationFrames.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey()) && !Game1.Player.CurrentAction.IsAnimated)
+                if (!AnimationFrames.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey()) && !Game1.Player.CurrentAction[0,0].IsAnimated)
                 {
                     if (Game1.Utility.GetRequiredTileTool(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]) == -50)
                     {

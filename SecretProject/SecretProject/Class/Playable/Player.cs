@@ -80,14 +80,15 @@ namespace SecretProject.Class.Playable
 
         public bool IsPerformingAction = false;
 
-        public Sprite CurrentAction;
+        public Sprite[,] CurrentAction;
 
+        //these all need to be put into an array!
         public Sprite CutGrassDown { get; set; }
         public Sprite CutGrassRight { get; set; }
         public Sprite CutGrassLeft { get; set; }
         public Sprite CutGrassUp { get; set; }
 
-        public Sprite MiningDown { get; set;}
+        public Sprite[,] MiningDown { get; set;}
         public Sprite MiningRight { get; set; }
         public Sprite MiningLeft { get; set; }
         public Sprite MiningUp { get; set; }
@@ -149,6 +150,7 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
+            MiningDown = new Sprite[1, 11];
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
@@ -167,10 +169,10 @@ namespace SecretProject.Class.Playable
 
 
 
-            MiningDown = new Sprite(graphics, this.Texture, 0,128,16,64,5,.1f, this.Position,0,-16);
-            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64,5, .1f, this.Position, -15, -16);
-            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64,64,5,.1f,this.Position, -31, -16);
-            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16,48,5,.1f,this.Position, 0, 0);
+            //MiningDown = new Sprite(graphics, this.Texture, 0,128,16,64,5,.1f, this.Position,0,-16);
+            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64, 5, .1f, this.Position, -15, -16);
+            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64, 64, 5, .1f, this.Position, -31, -16);
+            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16, 48, 5, .1f, this.Position, 0, 0);
 
 
 
@@ -181,12 +183,26 @@ namespace SecretProject.Class.Playable
 
 
 
-            CurrentAction = CutGrassDown;
+            CurrentAction = MiningDown;
 
             BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, Rectangle);
 
             PlayerShip = new PlayerShip(graphics, Game1.AllTextures.ShipSpriteSheet);
+
+            MiningDown[0, 0] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 0, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000011f };
+            MiningDown[0, 1] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 48, 16, 48, 5, .1f, this.Position) { LayerDepth = .000001f };
+            MiningDown[0, 2] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 96, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000009f };
+            MiningDown[0, 3] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 144, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000008f };
+            MiningDown[0, 4] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 192, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000007f };
+            MiningDown[0, 5] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 240, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000006f };
+            MiningDown[0, 6] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 288, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000005f };
+            MiningDown[0, 7] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 336, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000004f };
+            MiningDown[0, 8] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 384, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000003f };
+            MiningDown[0, 9] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 432, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000002f };
+            MiningDown[0, 10] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 480, 16, 48, 5, .1f, this.Position) { LayerDepth = .0000001f };
+
+            
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
             
 
@@ -202,84 +218,95 @@ namespace SecretProject.Class.Playable
                 case 1:
                     IsPerformingAction = true;
                     CutGrassDown.PlayOnce(gameTime,Position);
-                    CurrentAction = CutGrassDown;
-                    CurrentAction.IsAnimated = true;
+                   // CurrentAction = CutGrassDown;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 2:
                    IsPerformingAction = true;
                     CutGrassRight.PlayOnce(gameTime,Position);
-                    CurrentAction = CutGrassRight;
-                    CurrentAction.IsAnimated = true;
+                   // CurrentAction = CutGrassRight;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 3:
                     IsPerformingAction = true;
                     CutGrassLeft.PlayOnce(gameTime, Position);
-                    CurrentAction = CutGrassLeft;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = CutGrassLeft;
+                    //CurrentAction.IsAnimated = true;
                     break;
 
                 case 4:
                     IsPerformingAction = true;
                     CutGrassUp.PlayOnce(gameTime, Position);
-                    CurrentAction = CutGrassUp;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = CutGrassUp;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 5:
                     IsPerformingAction = true;
-                    MiningDown.PlayOnce(gameTime, Position);
                     CurrentAction = MiningDown;
-                    CurrentAction.IsAnimated = true;
+                    CurrentAction[0, 0].IsAnimated = true;
+                    PlayCollectiveActions(gameTime);
+                    //for (int i=0; i < MiningDown.GetLength(0);i++)
+                    //{
+                    //    for(int j =0; j<MiningDown.GetLength(1);j++)
+                    //    {
+                    //        MiningDown[i, j].PlayOnce(gameTime, Position);
+                    //        CurrentAction[i,j].IsAnimated = true;
+                    //    }
+                    //}
+                    //MiningDown.PlayOnce(gameTime, Position);
+                    
+                    
                     break;
 
                 case 6:
                     IsPerformingAction = true;
                     MiningRight.PlayOnce(gameTime, Position);
-                    CurrentAction = MiningRight;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = MiningRight;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 7:
                     IsPerformingAction = true;
                     MiningLeft.PlayOnce(gameTime,Position);
-                    CurrentAction = MiningLeft;
-                    CurrentAction.IsAnimated = true;
+                   // CurrentAction = MiningLeft;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 8:
                     IsPerformingAction = true;
                     MiningUp.PlayOnce(gameTime,Position);
-                    CurrentAction = MiningUp;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = MiningUp;
+                    //CurrentAction.IsAnimated = true;
                     break;
 
                 case 9:
                     IsPerformingAction = true;
                     ChoppingDown.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingDown;
-                    CurrentAction.IsAnimated = true;
+                  //  CurrentAction = ChoppingDown;
+                   // CurrentAction.IsAnimated = true;
                     break;
                 case 10:
                     IsPerformingAction = true;
                     ChoppingRight.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingRight;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = ChoppingRight;
+                    //CurrentAction.IsAnimated = true;
                     break;
 
                 case 11:
                     IsPerformingAction = true;
                     ChoppingLeft.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingLeft;
-                    CurrentAction.IsAnimated = true;
+                    //CurrentAction = ChoppingLeft;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
                 case 12:
                     IsPerformingAction = true;
                     ChoppingUp.PlayOnce(gameTime,Position);
-                    CurrentAction = ChoppingUp;
-                    CurrentAction.IsAnimated = true;
+                   // CurrentAction = ChoppingUp;
+                   // CurrentAction.IsAnimated = true;
                     break;
 
 
@@ -289,10 +316,29 @@ namespace SecretProject.Class.Playable
             }
         }
 
-
-
-        
-
+        public void PlayCollectiveActions(GameTime gameTime)
+        {
+            CurrentAction[0, 0].IsAnimated = true;
+            for (int i = 0; i < CurrentAction.GetLength(0); i++)
+            {
+                for (int j = 0; j < CurrentAction.GetLength(1); j++)
+                {
+                    CurrentAction[i, j].PlayOnce(gameTime, Position);
+                    
+                }
+            }
+        }
+        public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
+        {
+            for (int i = 0; i < CurrentAction.GetLength(0); i++)
+            {
+                for (int j = 0; j < CurrentAction.GetLength(1); j++)
+                {
+                    CurrentAction[i, j].DrawAnimation(spriteBatch, Position, layerDepth + CurrentAction[i, j].LayerDepth);
+                    
+                }
+            }
+        }
 
         public void Update(GameTime gameTime, List<Item> items, Dictionary<int, ObjectBody> objects, MouseManager mouse)
         {
@@ -344,7 +390,7 @@ namespace SecretProject.Class.Playable
                     TotalVelocity = Vector2.Zero;
 
 
-                    if (controls.IsMoving && CurrentAction.IsAnimated == false)
+                    if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
                     {
                         for(int i =0; i < PlayerMovementAnimations.GetLength(0); i++)
                         {
@@ -352,12 +398,13 @@ namespace SecretProject.Class.Playable
                         }
                         
                     }
-                    else if (CurrentAction.IsAnimated == true)
+                    else if (CurrentAction[0,0].IsAnimated == true)
                     {
-                        CurrentAction.PlayOnce(gameTime, Position);
+                        PlayCollectiveActions(gameTime);
+                        //CurrentAction.PlayOnce(gameTime, Position);
 
                     }
-                    else if (CurrentAction.IsAnimated == false && controls.IsMoving == false)
+                    else if (CurrentAction[0, 0].IsAnimated == false && controls.IsMoving == false)
                     {
                         for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                         {
@@ -368,7 +415,7 @@ namespace SecretProject.Class.Playable
 
                     IsMoving = false;
 
-                    if (!CurrentAction.IsAnimated)
+                    if (!CurrentAction[0,0].IsAnimated)
                     {
                         controls.Update();
                     }
@@ -509,7 +556,7 @@ namespace SecretProject.Class.Playable
             {
 
 
-                if (CurrentAction.IsAnimated == false)
+                if (CurrentAction[0,0].IsAnimated == false)
                 {
 
                     for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
@@ -520,9 +567,9 @@ namespace SecretProject.Class.Playable
                 }
 
                 //????
-                if (CurrentAction.IsAnimated == true)
+                if (CurrentAction[0, 0].IsAnimated == true)
                 {
-                    CurrentAction.DrawAnimation(spriteBatch, this.Position, layerDepth);
+                    DrawCollectiveActions(spriteBatch, layerDepth);
                 }
             }
         }
@@ -571,15 +618,5 @@ namespace SecretProject.Class.Playable
             this.UserInterface.Draw(spriteBatch);
         }
 
-        /*
-         * if (player.position.Y > 1550 && player.position.X < 810 && player.position.X > 730)
-                {
-                    player.Position = new Vector2(player.position.X, 60);
-                    Game1.SwitchStage(2, 5);
-                    return;
-                }
-         * 
-         * 
-         */
     }
 }
