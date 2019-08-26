@@ -621,15 +621,23 @@ namespace SecretProject.Class.TileStuff
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
             if (starti < 0)
             {
-                starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) ;
+                starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16);
             }
             int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) - 1;
             if (startj < 0)
             {
                 startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16);
             }
-            int endi = (int)((Game1.cam.Pos.X + Game1.ScreenWidth) / 16);
-            int endj = (int)((Game1.cam.Pos.Y + Game1.ScreenHeight) / 16);
+            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 2;
+            if (endi > this.mapWidth)
+            {
+                endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 1;
+            }
+            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 2;
+            if (endj > this.mapWidth)
+            {
+                endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 1;
+            }
 
             foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
             {
@@ -838,19 +846,27 @@ namespace SecretProject.Class.TileStuff
         #region DRAW
         public void DrawTiles(SpriteBatch spriteBatch)
         {
-            
-            int starti = (int)(Game1.cam.Pos.X / 16)- (int)(Game1.ScreenWidth/ Game1.cam.Zoom/2 / 16) - 1;
-            if(starti < 0)
+
+            int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
+            if (starti < 0)
             {
                 starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16);
             }
-            int startj = (int)(Game1.cam.Pos.Y / 16)- (int)(Game1.ScreenHeight / Game1.cam.Zoom/ 2 / 16) - 1;
-            if(startj < 0)
+            int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) - 1;
+            if (startj < 0)
             {
                 startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16);
             }
-            int endi = (int)((Game1.cam.Pos.X + Game1.ScreenWidth) / 16);
-            int endj = (int)((Game1.cam.Pos.Y + Game1.ScreenHeight) / 16);
+            int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 2;
+            if (endi  > this.mapWidth)
+            {
+                endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 1;
+            }
+            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 2;
+            if (endj > this.mapWidth)
+            {
+                endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 1;
+            }
             for (int z = 0; z < AllTiles.Count; z++)
             {
                 for (var i = starti; i < endi; i++)
@@ -859,10 +875,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != -1)
                         {
-                            if (AllTiles[z][i, j].DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && AllTiles[z][i, j].DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16) - 200
-                                 && AllTiles[z][i, j].DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && AllTiles[z][i, j].DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) - 200)
-                            {
-
+                           
 
                                 AllDepths[3] = .4f + (float)(AllTiles[z][i, j].DestinationRectangle.Bottom + AllTiles[z][i, j].DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)10000;
 
@@ -900,7 +913,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                            }
+                            
                         }
                     }
                 }

@@ -127,7 +127,7 @@ namespace SecretProject.Class.StageFolder
             if(Load.isClicked)
             {
                 mySave.Load(graphics);
-                Game1.gameStages = Stages.Wilderness;
+                Game1.gameStages = Stages.LodgeInteior;
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)
