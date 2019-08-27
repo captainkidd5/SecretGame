@@ -33,7 +33,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class Wilderness : StageBase
+    public class Wilderness : TmxStageBase, ILocation
     {
         public List<Boar> Boars;
         public Boar Boar;

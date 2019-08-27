@@ -90,14 +90,14 @@ namespace SecretProject
         //STAGES
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
-        public static StageBase LodgeInterior;
+        public static TmxStageBase LodgeInterior;
         public static Town Town;
-        public static StageBase GreatLibrary;
-        public static StageBase WestBeach;
-        public static StageBase DobbinsOrchard;
-        public static StageBase ElixirShop;
+        public static TmxStageBase GreatLibrary;
+        public static TmxStageBase WestBeach;
+        public static TmxStageBase DobbinsOrchard;
+        public static TmxStageBase ElixirShop;
         public static Wilderness Wilderness;
-        public static List<IStage> AllStages;
+        public static List<IProceduralWorld> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
@@ -243,7 +243,7 @@ namespace SecretProject
         #endregion
         
 
-        public static IStage GetCurrentStage()
+        public static IProceduralWorld GetCurrentStage()
         {
             switch(gameStages)
             {
@@ -272,7 +272,7 @@ namespace SecretProject
             }
         }
 
-        public static IStage GetStageFromInt(int stageNumber)
+        public static IProceduralWorld GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
             {
@@ -458,27 +458,27 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            WestBeach = new StageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
+            WestBeach = new TmxStageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
             Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Wilderness.tmx", 1);
 
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
 
-            GreatLibrary = new StageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
+            GreatLibrary = new TmxStageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
 
             //ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            DobbinsOrchard = new StageBase("Dobbin's Orchard", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
+            DobbinsOrchard = new TmxStageBase("Dobbin's Orchard", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
 
 
-            LodgeInterior = new StageBase("Lodge", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
+            LodgeInterior = new TmxStageBase("Lodge", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            ElixirShop = new StageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
+            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<IStage>() { Wilderness, Town, ElixirShop };
+            AllStages = new List<IProceduralWorld>() { Wilderness, Town, ElixirShop };
 
 
 

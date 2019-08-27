@@ -34,7 +34,7 @@ using XMLData.ItemStuff;
 namespace SecretProject.Class.StageFolder
 {
 
-    public class Town : StageBase
+    public class Town : TmxStageBase, ILocation
     {
 
         #region FIELDS
