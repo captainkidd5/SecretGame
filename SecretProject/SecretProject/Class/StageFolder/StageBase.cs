@@ -112,7 +112,9 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
-       
+        public bool IsLoaded { get; set; }
+
+
 
         #endregion
 
@@ -129,6 +131,7 @@ namespace SecretProject.Class.StageFolder
             this.MapTexturePath = mapTexturePath;
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
+            this.IsLoaded = false;
             
 
 
@@ -213,6 +216,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             AllCrops = new Dictionary<int, Crop>();
+            this.IsLoaded = true;
             
         }
         public void OnSceneChanged()
@@ -225,19 +229,19 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void UnloadContent()
         {
-            Content.Unload();
-            AllObjects = null;
-            AllLayers = null;
-            AllTiles = null;
-            AllSprites = null;
-            AllDepths = null;
-            AllItems = null;
-            Background = null;
-            MidGround = null;
-            foreGround = null;
-            Placement = null;
+            //Content.Unload();
+            //AllObjects = null;
+            //AllLayers = null;
+            //AllTiles = null;
+            //AllSprites = null;
+            //AllDepths = null;
+            //AllItems = null;
+            //Background = null;
+            //MidGround = null;
+            //foreGround = null;
+            //Placement = null;
 
-            this.Cam = null;
+            //this.Cam = null;
            // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
         }

@@ -551,8 +551,12 @@ namespace SecretProject
             
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
-            
+            if (!GetStageFromInt(stageToSwitchTo).IsLoaded)
+            {
+                GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
+            }
+
+
             if (portal != null)
             {
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);

@@ -101,6 +101,7 @@ List<ActionTimer> AllActions { get; set; }
         //SAVE STUFF
 
         bool TilesLoaded { get; set; }
+        bool IsLoaded { get; set; }
 
         TextBuilder TextBuilder { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);

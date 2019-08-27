@@ -55,6 +55,7 @@ namespace SecretProject.Class.StageFolder
         public List<LightSource> AllLights { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Crop> AllCrops { get; set; }
+        public bool IsLoaded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         Dictionary<int, ObjectBody> IStage.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         Dictionary<int, Crop> IStage.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 

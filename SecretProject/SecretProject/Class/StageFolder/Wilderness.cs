@@ -143,24 +143,24 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             AllCrops = new Dictionary<int, Crop>();
-
+            this.IsLoaded = true;
         }
 
         public override void UnloadContent()
         {
-            Content.Unload();
-            AllObjects = null;
-            AllLayers = null;
-            AllTiles = null;
-            AllSprites = null;
-            AllDepths = null;
-            AllItems = null;
-            Background = null;
-            MidGround = null;
-            foreGround = null;
-            Placement = null;
+            //Content.Unload();
+            //AllObjects = null;
+            //AllLayers = null;
+            //AllTiles = null;
+            //AllSprites = null;
+            //AllDepths = null;
+            //AllItems = null;
+            //Background = null;
+            //MidGround = null;
+            //foreGround = null;
+            //Placement = null;
 
-            this.Cam = null;
+            //this.Cam = null;
             //this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
         }
 

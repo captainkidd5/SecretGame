@@ -190,13 +190,8 @@ namespace SecretProject.Class.Universal
             for (int i = 0; i < home.AllItems.Count; i++)
             {
                 WriteWorldItem(home.AllItems[i], writer, version);
-                //writer.Write(home.AllItems[i].WorldPosition.X);
-                //writer.Write(home.AllItems[i].WorldPosition.Y);
 
             }
-            ///works up until here for sure
-            ///
-            //writer.Write(home.allti)
             writer.Write(home.AllTiles.AllTiles.Count);
             writer.Write(home.AllTiles.tilesetTilesWide);
             writer.Write(home.AllTiles.tilesetTilesHigh);
@@ -237,110 +232,44 @@ namespace SecretProject.Class.Universal
                 {
                     for (int j = 0; j < home.AllTiles.tilesetTilesHigh; j++)
                     {
-                        home.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version);
-                        //if(home.AllTiles.AllTiles[z][i, j].HasObject)
-                        //{
-                        //    newObjects.Add(home.AllTiles.AllTiles[z][i, j].TileObject);
-                        //}
+                        home.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,home.AllTiles.tilesetTilesWide, home.AllTiles.tilesetTilesHigh);
                     }
                 }
             }
 
-            //home.AllObjects = newObjects;
             home.AllTiles.LoadInitialTileObjects();
 
-
-
-            ///works up until here for sure
         }
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)
         {
             writer.Write(tile.X);
             writer.Write(tile.Y);
             writer.Write(tile.GID + 1);
-            writer.Write(tile.IsSelected);
            
             writer.Write(tile.OldY);
             writer.Write(tile.OldX);
 
+            writer.Write(tile.HitPoints);
+
             //skipping color 
 
 
-            //if (tile.TileObject != null)
-            //{
-
-
-            //    writer.Write(tile.TileObject.Rectangle.X);
-            //    writer.Write(tile.TileObject.Rectangle.Y);
-            //    writer.Write(tile.TileObject.Rectangle.Width);
-            //    writer.Write(tile.TileObject.Rectangle.Height);
-
-            //}
-            //else
-            //{
-            //    writer.Write(false);
-            //}
         }
 
-        public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version)
+        public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version, int tileSetTilesWide, int tileSetTilesHigh)
         {
             Tile newTile;
 
             float X = reader.ReadSingle();
             float Y = reader.ReadSingle();
             int gid = reader.ReadInt32();
-            bool isSelected = reader.ReadBoolean();
-            int tileSetTilesWide = reader.ReadInt32();
-            int tileSetTilesHigh = reader.ReadInt32();
-            int tileFrame = reader.ReadInt32();
-            int tileHeight = reader.ReadInt32();
-            int tileWidth = reader.ReadInt32();
-            int column = reader.ReadInt32();
-            int row = reader.ReadInt32();
-            int tileNumber = reader.ReadInt32();
+            
+           
             float oldY = reader.ReadSingle();
             float oldX = reader.ReadSingle();
-            bool isAnimated = reader.ReadBoolean();
-            bool isAnimating = reader.ReadBoolean();
-            bool isFinishedAnimating = reader.ReadBoolean();
-            bool killAnimation = reader.ReadBoolean();
-            float delayTimer = reader.ReadSingle();
-            bool plantable = reader.ReadBoolean();
-            int associatedItem = reader.ReadInt32();
-            double timer = reader.ReadDouble();
-            int currentFrame = reader.ReadInt32();
-            int totalFrames = reader.ReadInt32();
-            int addAmount = reader.ReadInt32();
-            double speed = reader.ReadDouble();
-            int probability = reader.ReadInt32();
-            bool hasSound = reader.ReadBoolean();
-            float colorMultiplier = reader.ReadSingle();
-            bool isTemporary = reader.ReadBoolean();
-            bool isPortal = reader.ReadBoolean();
-            string portalDestination = reader.ReadString();
-            bool dirt = reader.ReadBoolean();
-            bool grass = reader.ReadBoolean();
-            bool stone = reader.ReadBoolean();
-            bool diggable = reader.ReadBoolean();
-            bool redRuneStone = reader.ReadBoolean();
-            bool blueRuneStone = reader.ReadBoolean();
-
-
-            //this should probably not be static
-            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100);
-
-            //if(hasObject)
-            //{
-            //    int rectangleX = reader.ReadInt32();
-            //    int rectangleY = reader.ReadInt32();
-            //    int rectangleWidth = reader.ReadInt32();
-            //    int rectangleHeight = reader.ReadInt32();
-            //    Rectangle tileRectangle = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
-            //    ObjectBody body = new ObjectBody(graphics, tileRectangle, rectangleX);
-            //    newTile.TileObject = body;
-            //}
-            
-            newTile.IsSelected = isSelected;
+            int hitPoints = reader.ReadInt32();
+           
+            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100) { HitPoints = hitPoints };
 
 
             return newTile;
