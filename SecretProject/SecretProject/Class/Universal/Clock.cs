@@ -78,7 +78,7 @@ namespace SecretProject.Class.Universal
                 { 
                     if(crop.UpdateGrowthCycle())
                     {
-                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop);
+                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop,Game1.GetCurrentStage());
                     }
                         
                     

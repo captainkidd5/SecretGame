@@ -105,9 +105,11 @@ List<ActionTimer> AllActions { get; set; }
 
         TextBuilder TextBuilder { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
+        void LoadPreliminaryContent();
         void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules);
         void UnloadContent();
         void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
+
 
     }
 }

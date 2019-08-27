@@ -74,6 +74,11 @@ namespace SecretProject.Class.StageFolder
             throw new NotImplementedException();
         }
 
+        public void LoadPreliminaryContent()
+        {
+            throw new NotImplementedException();
+        }
+
         public void UnloadContent()
         {
             throw new NotImplementedException();

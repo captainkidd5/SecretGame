@@ -137,12 +137,8 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        public virtual void LoadPreliminaryContent()
         {
-            List<Texture2D> particleTextures = new List<Texture2D>();
-            particleTextures.Add(Game1.AllTextures.RockParticle);
-            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
-
             AllLights = new List<LightSource>()
             {
 
@@ -192,8 +188,8 @@ namespace SecretProject.Class.StageFolder
                 Placement
             };
             AllPortals = new List<Portal>();
-            AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
-            AllTiles.LoadInitialTileObjects();
+            AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths, this);
+            AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
             TileHeight = Map.Tilesets[TileSetNumber].TileHeight;
 
@@ -203,19 +199,31 @@ namespace SecretProject.Class.StageFolder
 
             AllActions = new List<ActionTimer>();
 
+            MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
+            Map = null;
+            AllCrops = new Dictionary<int, Crop>();
+        }
+
+        public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        {
+            List<Texture2D> particleTextures = new List<Texture2D>();
+            particleTextures.Add(Game1.AllTextures.RockParticle);
+            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+
+           
+
             this.Cam = camera;
             Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
-            MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
-            Map = null;
+            
 
             Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-            AllCrops = new Dictionary<int, Crop>();
+            
             this.IsLoaded = true;
             
         }

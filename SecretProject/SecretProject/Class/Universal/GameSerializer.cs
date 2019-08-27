@@ -237,7 +237,7 @@ namespace SecretProject.Class.Universal
                 }
             }
 
-            home.AllTiles.LoadInitialTileObjects();
+            home.AllTiles.LoadInitialTileObjects(home);
 
         }
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)

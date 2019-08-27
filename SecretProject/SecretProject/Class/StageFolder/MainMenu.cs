@@ -121,6 +121,10 @@ namespace SecretProject.Class.StageFolder
             if (newGame.isClicked)
             {
                 UnloadContent();
+                foreach (IStage stage in Game1.AllStages)
+                {
+                    stage.LoadPreliminaryContent();
+                }
                 Game1.SwitchStage(0, (int)Stages.Town);
                 Game1.Player.UserInterface.IsEscMenu = false;
             }

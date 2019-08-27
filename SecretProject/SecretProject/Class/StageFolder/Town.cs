@@ -68,89 +68,22 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-            AllLights = new List<LightSource>()
-            {
-
-            };
-
-            AllSprites = new List<Sprite>()
-            {
-
-            };
-
-            AllObjects = new Dictionary<int, ObjectBody>
-            {
-
-            };
-
-            AllItems = new List<Item>()
-            {
-
-            };
-
-            AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
-
-            this.TileSet = Content.Load<Texture2D>("Map/MasterSpriteSheet");
-
-
-
-            //map specifications
-
-
-            AllDepths = new List<float>()
-            {
-                .1f,
-                .2f,
-                .3f,
-                .5f,
-                .6f
-            };
-
-
-
-            this.Map = new TmxMap(this.TmxMapPath);
-            Background = Map.Layers["background"];
-            Buildings = Map.Layers["buildings"];
-            MidGround = Map.Layers["midGround"];
-            foreGround = Map.Layers["foreGround"];
-            Placement = Map.Layers["placement"];
-            AllLayers = new List<TmxLayer>()
-            {
-                Background,
-                Buildings,
-                MidGround,
-                foreGround,
-                Placement
-            };
-            AllPortals = new List<Portal>();
-            AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths);
-            AllTiles.LoadInitialTileObjects();
-            TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
-            TileHeight = Map.Tilesets[0].TileHeight;
-
-            TilesetTilesWide = TileSet.Width / TileWidth;
-            TilesetTilesHigh = TileSet.Height / TileHeight;
-
-            
+        
             
 
-
-            AllActions = new List<ActionTimer>();
 
             this.Cam = camera;
             Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
-            MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
-            Map = null;
 
-            AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
+
+            //AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
             //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
             //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
-            AllCrops = new Dictionary<int, Crop>();
             this.IsLoaded = true;
         }
 
