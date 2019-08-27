@@ -44,7 +44,7 @@ this.Map = new TmxMap("Content/Map/worldMap.tmx");
 */
 namespace SecretProject.Class.StageFolder
 {
-    public interface IProceduralWorld
+    public interface ITmxStage
     {
         bool ShowBorders { get; set; }
         TmxMap Map { get; set; }

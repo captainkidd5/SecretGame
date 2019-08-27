@@ -109,7 +109,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, IProceduralWorld currentStage)
+        public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ITmxStage currentStage)
         {
             this.tileSet = tileSet;
             this.mapName = mapName;
@@ -277,7 +277,7 @@ namespace SecretProject.Class.TileStuff
 
 
         #endregion
-        public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer, int oldX, int oldY, IProceduralWorld stage)
+        public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer, int oldX, int oldY, ITmxStage stage)
         {
             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
@@ -341,7 +341,7 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty, IProceduralWorld stage)
+        public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty, ITmxStage stage)
         {
             List<int> acceptableGenerationTiles;
             switch (placementKey)
@@ -365,7 +365,7 @@ namespace SecretProject.Class.TileStuff
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, stage, layerToCheckIfEmpty);
             }
         }
-        public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, IProceduralWorld stage, int comparisonLayer = 0)
+        public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ITmxStage stage, int comparisonLayer = 0)
         {
             int newTileX = Game1.Utility.RNumber(10, 90);
             int newTileY = Game1.Utility.RNumber(10, 90);
@@ -492,7 +492,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region LOADTILESOBJECTS
-        public void LoadInitialTileObjects(IProceduralWorld stage)
+        public void LoadInitialTileObjects(ITmxStage stage)
         {
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -544,7 +544,7 @@ namespace SecretProject.Class.TileStuff
 
         #region ADDOBJECTSTOBUILDINGS
 
-        public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY, IProceduralWorld stage)
+        public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY, ITmxStage stage)
         {
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -553,7 +553,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void AddObject(Tile tile, IProceduralWorld stage)
+        public void AddObject(Tile tile, ITmxStage stage)
         {
             if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(tile.GID))
             {
@@ -604,7 +604,7 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
-        public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, IProceduralWorld stage)
+        public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ITmxStage stage)
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
@@ -925,7 +925,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void UpdateCropTile(Crop crop, IProceduralWorld stage)
+        public void UpdateCropTile(Crop crop, ITmxStage stage)
         {
             string tileID = crop.TileID;
             int layer = int.Parse(tileID[0].ToString());
@@ -1186,7 +1186,7 @@ namespace SecretProject.Class.TileStuff
 
 
         //interact without any player animations
-        public void InteractWithoutPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, IProceduralWorld stage,float delayTimer = 0f)
+        public void InteractWithoutPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, ITmxStage stage,float delayTimer = 0f)
         {
             if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
             {
@@ -1277,7 +1277,7 @@ namespace SecretProject.Class.TileStuff
 
         #region DESTROYTILES
 
-        public void Destroy(int layer, int oldX, int oldY, IProceduralWorld stage)
+        public void Destroy(int layer, int oldX, int oldY, ITmxStage stage)
         {
             if (mapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[layer][oldX, oldY].GID))
             {

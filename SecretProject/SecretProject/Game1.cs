@@ -97,7 +97,7 @@ namespace SecretProject
         public static TmxStageBase DobbinsOrchard;
         public static TmxStageBase ElixirShop;
         public static Wilderness Wilderness;
-        public static List<IProceduralWorld> AllStages;
+        public static List<ITmxStage> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
@@ -243,7 +243,7 @@ namespace SecretProject
         #endregion
         
 
-        public static IProceduralWorld GetCurrentStage()
+        public static ITmxStage GetCurrentStage()
         {
             switch(gameStages)
             {
@@ -272,7 +272,7 @@ namespace SecretProject
             }
         }
 
-        public static IProceduralWorld GetStageFromInt(int stageNumber)
+        public static ITmxStage GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
             {
@@ -478,7 +478,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<IProceduralWorld>() { Wilderness, Town, ElixirShop };
+            AllStages = new List<ITmxStage>() { Wilderness, Town, ElixirShop };
 
 
 

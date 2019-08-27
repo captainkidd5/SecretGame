@@ -33,7 +33,7 @@ using XMLData.ItemStuff;
 namespace SecretProject.Class.StageFolder
 {
 
-    public class TmxStageBase : IProceduralWorld, ILocation
+    public class TmxStageBase : ITmxStage, ILocation
     {
 
         #region FIELDS

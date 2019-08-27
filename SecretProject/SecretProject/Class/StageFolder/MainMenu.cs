@@ -121,7 +121,7 @@ namespace SecretProject.Class.StageFolder
             if (newGame.isClicked)
             {
                 UnloadContent();
-                foreach (IProceduralWorld stage in Game1.AllStages)
+                foreach (ITmxStage stage in Game1.AllStages)
                 {
                     stage.LoadPreliminaryContent();
                 }

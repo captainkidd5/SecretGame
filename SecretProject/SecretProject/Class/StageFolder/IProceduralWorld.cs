@@ -22,6 +22,7 @@ namespace SecretProject.Class.StageFolder
 {
     public interface IProceduralWorld
     {
+        string StageName { get; set; }
         int TileWidth { get; set; }
         int TileHeight { get; set; }
         int TilesetTilesWide { get; set; }
@@ -64,5 +65,8 @@ namespace SecretProject.Class.StageFolder
         bool IsLoaded { get; set; }
 
         TextBuilder TextBuilder { get; set; }
+
+
+        
     }
 }
