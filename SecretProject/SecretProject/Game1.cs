@@ -97,6 +97,7 @@ namespace SecretProject
         public static TmxStageBase DobbinsOrchard;
         public static TmxStageBase ElixirShop;
         public static Wilderness Wilderness;
+        public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -249,7 +250,7 @@ namespace SecretProject
             {
 
                 case Stages.World:
-                    return LodgeInterior;
+                    return World;
 
                 case Stages.Wilderness:
                     return Wilderness;
@@ -277,7 +278,7 @@ namespace SecretProject
             switch (stageNumber)
             {
                 case 1:
-                    return LodgeInterior;
+                    return World;
                 case 2:
                     return Wilderness;
                 case 5:
@@ -460,7 +461,7 @@ namespace SecretProject
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
             WestBeach = new TmxStageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
             Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Wilderness.tmx", 1);
-
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
 
             GreatLibrary = new TmxStageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
@@ -478,7 +479,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop };
+            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop, World };
 
 
 
@@ -553,6 +554,7 @@ namespace SecretProject
             gameStages = (Stages)stageToSwitchTo;
             if (!GetStageFromInt(stageToSwitchTo).IsLoaded)
             {
+               
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
@@ -613,7 +615,7 @@ namespace SecretProject
 
                     case Stages.World:
 
-                        LodgeInterior.Update(gameTime, myMouseManager, Player);
+                        World.Update(gameTime, myMouseManager, Player);
                         break;
 
                     case Stages.Wilderness:
@@ -668,7 +670,7 @@ namespace SecretProject
 
                 case Stages.World:
                     GraphicsDevice.Clear(Color.Black);
-                    LodgeInterior.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    World.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                    // spriteBatch.Begin();
                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
                    // spriteBatch.End();

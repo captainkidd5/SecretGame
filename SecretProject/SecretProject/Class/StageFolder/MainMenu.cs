@@ -123,9 +123,17 @@ namespace SecretProject.Class.StageFolder
                 UnloadContent();
                 foreach (ILocation stage in Game1.AllStages)
                 {
-                    stage.LoadPreliminaryContent();
+                    if(stage == Game1.World)
+                    {
+                        Game1.World.LoadPreliminaryContent(1);
+                    }
+                    else
+                    {
+                        stage.LoadPreliminaryContent();
+                    }
+                    
                 }
-                Game1.SwitchStage(0, (int)Stages.Town);
+                Game1.SwitchStage(0, (int)Stages.World);
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if(Load.isClicked)
