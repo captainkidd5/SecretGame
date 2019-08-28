@@ -44,97 +44,7 @@ namespace SecretProject.Class.StageFolder
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
         }
 
-        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
-        {
-            this.IsDark = Game1.GlobalClock.IsNight;
-            for (int p = 0; p < AllPortals.Count; p++)
-            {
-                if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
-                {
-                    if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
-                    {
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
-                        OnSceneChanged();
-                        this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                        return;
-                    }
-
-                }
-                else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
-                {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
-                    OnSceneChanged();
-                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                    return;
-                }
-            }
-
-            Game1.myMouseManager.ToggleGeneralInteraction = false;
-            Game1.isMyMouseVisible = true;
-
-
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
-            {
-                ShowBorders = !ShowBorders;
-
-            }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
-            {
-
-                player.Position = new Vector2(400, 400);
-                Game1.GlobalClock.TotalHours = 22;
-            }
-
-
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
-            {
-                Game1.SwitchStage(5, 4);
-                return;
-            }
-
-            TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
-            TextBuilder.Update(gameTime);
-
-            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
-            ParticleEngine.Update(gameTime);
-
-            if (!Game1.freeze)
-            {
-                Game1.GlobalClock.Update(gameTime);
-                //--------------------------------------
-                //Update players
-                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects, mouse);
-
-                //--------------------------------------
-                //Update sprites
-                foreach (Sprite spr in AllSprites)
-                {
-                    if (spr.IsBeingDragged == true)
-                    {
-                        spr.Update(gameTime, mouse.WorldMousePosition);
-                    }
-                }
-
-                AllTiles.Update(gameTime, mouse);
-
-
-                for (int i = 0; i < AllItems.Count; i++)
-                {
-                    AllItems[i].Update(gameTime);
-                }
-
-               // foreach (Character character in Game1.AllCharacters)
-               // {
-               //     character.Update(gameTime, AllObjects, mouse);
-               // }
-
-            }
-            Game1.Player.controls.UpdateKeys();
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
-
-        }
+        
 
         public void LoadPreliminaryContent(int worldSize)
         {
@@ -218,6 +128,97 @@ namespace SecretProject.Class.StageFolder
             throw new NotImplementedException();
         }
 
+        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
+        {
+            this.IsDark = Game1.GlobalClock.IsNight;
+            for (int p = 0; p < AllPortals.Count; p++)
+            {
+                if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
+                {
+                    if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                        OnSceneChanged();
+                        this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                        return;
+                    }
+
+                }
+                else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
+                {
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                    OnSceneChanged();
+                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                    return;
+                }
+            }
+
+            Game1.myMouseManager.ToggleGeneralInteraction = false;
+            Game1.isMyMouseVisible = true;
+
+
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
+            {
+                ShowBorders = !ShowBorders;
+
+            }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
+            {
+
+                player.Position = new Vector2(400, 400);
+                Game1.GlobalClock.TotalHours = 22;
+            }
+
+
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
+            {
+                Game1.SwitchStage(5, 4);
+                return;
+            }
+
+            TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
+            TextBuilder.Update(gameTime);
+
+            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
+            ParticleEngine.Update(gameTime);
+
+            if (!Game1.freeze)
+            {
+                Game1.GlobalClock.Update(gameTime);
+                //--------------------------------------
+                //Update players
+                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
+                player.Update(gameTime, AllItems, AllObjects, mouse);
+
+                //--------------------------------------
+                //Update sprites
+                foreach (Sprite spr in AllSprites)
+                {
+                    if (spr.IsBeingDragged == true)
+                    {
+                        spr.Update(gameTime, mouse.WorldMousePosition);
+                    }
+                }
+
+                AllTiles.Update(gameTime, mouse);
+
+
+                for (int i = 0; i < AllItems.Count; i++)
+                {
+                    AllItems[i].Update(gameTime);
+                }
+
+                // foreach (Character character in Game1.AllCharacters)
+                // {
+                //     character.Update(gameTime, AllObjects, mouse);
+                // }
+
+            }
+            Game1.Player.controls.UpdateKeys();
+            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+
+        }
         public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             if (player.Health > 0)

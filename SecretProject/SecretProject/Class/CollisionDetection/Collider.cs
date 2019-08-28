@@ -11,6 +11,46 @@ using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.CollisionDetection
 {
+    public struct RectangleCollider
+    {
+        private Vector2 topLeft;
+        private Vector2 bottomRight;
+        public Vector2 TopLeft { get { return topLeft; } set { topLeft = value; } }
+        public Vector2 BottomRight { get { return bottomRight; } set { bottomRight = value; } }
+
+        public Vector2 TopRight { get { return new Vector2(bottomRight.X, topLeft.Y); } }
+        public Vector2 BottomLeft { get { return new Vector2(topLeft.X, bottomRight.Y); } }
+
+        public float Top { get { return topLeft.Y; } }
+        public float Right { get { return bottomRight.X; } }
+        public float Left { get { return topLeft.X; } }
+        public float Bottom { get { return bottomRight.Y; } }
+
+        public RectangleCollider(Vector2 topLeft, Vector2 bottomRight)
+        {
+            this.topLeft = topLeft;
+            this.bottomRight = bottomRight;
+
+       
+        }
+
+        public bool Contains(Vector2 Point)
+        {
+            return (topLeft.X <= Point.X && bottomRight.X >= Point.X &&
+                    topLeft.Y <= Point.Y && bottomRight.Y >= Point.Y);
+        }
+
+        public bool Intersects(RectangleCollider Rect)
+        {
+            return (!(Bottom < Rect.Top ||
+                       Top > Rect.Bottom ||
+                       Right < Rect.Left ||
+                       Left > Rect.Right));
+        }
+
+
+    }
+
     public class Collider
     {
         private Vector2 velocity;

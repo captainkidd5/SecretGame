@@ -239,15 +239,15 @@ namespace SecretProject.Class.TileStuff
                 //green tall grass
                 // GenerateTiles(3, 6393, "dirt", 2000, 0);
                 //    //stone
-                GenerateTiles(1, 979, "dirt", 1000, 0, world);
+               // GenerateTiles(1, 979, "dirt", 1000, 0, world);
                 ////    //grass
-                GenerateTiles(1, 1079, "dirt", 1000, 0, world);
+              //  GenerateTiles(1, 1079, "dirt", 1000, 0, world);
                 ////    //redrunestone
-                GenerateTiles(1, 579, "dirt", 100, 0, world);
+               // GenerateTiles(1, 579, "dirt", 100, 0, world);
                 //////bluerunestone
-                GenerateTiles(1, 779, "dirt", 100, 0, world);
+               // GenerateTiles(1, 779, "dirt", 100, 0, world);
                 //////thunderbirch
-                GenerateTiles(1, 2264, "dirt", 200, 0, world);
+                //GenerateTiles(1, 2264, "dirt", 200, 0, world);
                 //////crown of swords
                 //GenerateTiles(1, 6388, "sand", 50, 0);
                 //////dandelion
@@ -255,7 +255,7 @@ namespace SecretProject.Class.TileStuff
                 ////juicyfruit
                 //GenerateTiles(1, 1586, "dirt", 500, 0);
                 ////orchardTree
-                GenerateTiles(1, 1664, "dirt", 200, 0, world);
+               // GenerateTiles(1, 1664, "dirt", 200, 0, world);
                 //bubblegum
                 // GenerateTiles(1, 6191, "dirt", 200, 0);
 
@@ -646,6 +646,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 1;
                 }
+
+                 
 
                 foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
                 {
