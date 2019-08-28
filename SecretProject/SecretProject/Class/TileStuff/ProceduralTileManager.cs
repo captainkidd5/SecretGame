@@ -110,7 +110,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public ProceduralTileManager(World world, Texture2D tileSet, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
+        public ProceduralTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
         {
             this.MapName = mapName;
             this.tileSet = tileSet;
@@ -146,6 +146,43 @@ namespace SecretProject.Class.TileStuff
                 AllTiles.Add(new Tile[worldWidth, worldHeight]);
 
             }
+            for (int i = 0; i < 10000; i++)
+            {
+                if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(i))
+                {
+                    if (mapName.Tilesets[tileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
+                    {
+                        switch (mapName.Tilesets[tileSetNumber].Tiles[i].Properties["generate"])
+                        {
+
+
+                            case "dirt":
+                                if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "sand":
+                                if (!Game1.Utility.SandGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.SandGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "grass":
+                                if (!Game1.Utility.GrassGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.GrassGeneratableTiles.Add(i);
+                                }
+                                break;
+                        }
+
+
+                    }
+                }
+            }
+        
+            
+            
 
             for (int z = 0; z < NumberOfLayers; z++)
             {
@@ -153,15 +190,17 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < worldHeight; j++)
                     {
-                        if(z > 2)
+                        if(z >= 1)
                         {
-                            AllTiles[z][i, j] = new Tile(j, i, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            AllTiles[z][i, j] = new Tile(i, j, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                         }
                         else
                         {
-                            AllTiles[z][i, j] = new Tile(j, i, 915, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            AllTiles[z][i, j] = new Tile(i, j, 1005, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                         }
+
                         
+
                     }
                 }
 
@@ -315,15 +354,15 @@ namespace SecretProject.Class.TileStuff
                 switch (placementKey)
                 {
                     case "dirt":
-                        acceptableGenerationTiles = DirtGeneratableTiles;
+                        acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
                         break;
                     case "sand":
-                        acceptableGenerationTiles = SandGeneratableTiles;
+                        acceptableGenerationTiles = Game1.Utility.SandGeneratableTiles;
 
                         break;
                     default:
-                        acceptableGenerationTiles = DirtGeneratableTiles;
+                        acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
                         break;
                 }
@@ -436,6 +475,7 @@ namespace SecretProject.Class.TileStuff
             //if the GID is anything other than -1 it means there's something there.
             public bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer)
             {
+            int debuggid = AllTiles[layer][tileX, tileY].GID;
                 if (AllTiles[layer][tileX, tileY].GID != -1)
                 {
                     return true;
@@ -852,10 +892,6 @@ namespace SecretProject.Class.TileStuff
                                     spriteBatch.Draw(tileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
                                 }
-
-
-
-
                             }
                         }
                     }

@@ -543,7 +543,7 @@ namespace SecretProject.Class.Playable
             {
                 this.Position = new Vector2(this.position.X, Game1.GetCurrentStage().MapRectangle.Top);
             }
-            if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom -16)
+            if (position.Y > Game1.GetCurrentStage().MapRectangle.Bottom - 16)
             {
                 this.Position = new Vector2(this.position.X, Game1.GetCurrentStage().MapRectangle.Bottom - 16);
             }

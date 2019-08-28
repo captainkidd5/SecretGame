@@ -17,12 +17,17 @@ namespace SecretProject.Class.Universal
         public Vector2 centerScreen;
         public Random RGenerator;
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
-        public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5 , (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
+        public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
 
 
         public float StandardButtonDepth { get; set; } = .7f;
         public float StandardTextDepth { get; set; } = .72f;
+
+        //random tile information
+        public List<int> DirtGeneratableTiles;
+        public List<int> SandGeneratableTiles;
+        public List<int> GrassGeneratableTiles;
 
 
 
@@ -33,16 +38,19 @@ namespace SecretProject.Class.Universal
         {
             RGenerator = new Random();
             centerScreen = new Vector2(CenterScreenX, CenterScreenY);
+            DirtGeneratableTiles = new List<int>();
+            SandGeneratableTiles = new List<int>();
+            GrassGeneratableTiles = new List<int>();
         }
 
-         
+
 
         public bool HasProperty(object obj, string propertyName)
         {
             return obj.GetType().GetProperty(propertyName) != null;
         }
 
-        
+
 
         public int RNumber(int min, int max)
         {
@@ -52,7 +60,7 @@ namespace SecretProject.Class.Universal
         public float RFloat(float min, float max)
         {
             return (float)RGenerator.NextDouble() * (max - min) + min;
-            
+
         }
 
         #region TileUtility
@@ -61,7 +69,7 @@ namespace SecretProject.Class.Universal
             //Regex keyParser = new Regex(@"d{4}\,");
             string[] gids = gidString.Split(',');
             int[] arrayToReturn = new int[gids.Length];
-            for(int i=0; i<gids.Length; i++)
+            for (int i = 0; i < gids.Length; i++)
             {
                 arrayToReturn[i] = int.Parse(gids[i]);
             }
@@ -78,11 +86,11 @@ namespace SecretProject.Class.Universal
             List<Loot> lootToReturn = new List<Loot>();
             for (int i = 0; i < commaPairs.Length; i++)
             {
-                
-                
+
+
                 Ids[i] = int.Parse(commaPairs[i].Split(':')[0]);
                 probabilitys[i] = int.Parse(commaPairs[i].Split(':')[1]);
-                lootToReturn.Add( new Loot() { ID = Ids[i], Probability = probabilitys[i] });
+                lootToReturn.Add(new Loot() { ID = Ids[i], Probability = probabilitys[i] });
             }
             return lootToReturn;
         }
@@ -91,7 +99,7 @@ namespace SecretProject.Class.Universal
         {
             int amountToReturn = 0;
             int chance = RGenerator.Next(0, 100);
-            if(chance <= loot.Probability)
+            if (chance <= loot.Probability)
             {
                 amountToReturn++;
             }

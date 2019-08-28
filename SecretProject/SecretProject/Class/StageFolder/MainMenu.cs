@@ -139,7 +139,7 @@ namespace SecretProject.Class.StageFolder
             if(Load.isClicked)
             {
                 mySave.Load(graphics);
-                Game1.gameStages = Stages.World;
+                Game1.gameStages = Stages.Town;
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)

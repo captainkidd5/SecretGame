@@ -173,21 +173,21 @@ namespace SecretProject.Class.TileStuff
 
 
                                 case "dirt":
-                                    if (!DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    if (!Game1.Utility.DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
                                     {
-                                        DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                        Game1.Utility.DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
                                     }
                                     break;
                                 case "sand":
-                                    if (!SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    if (!Game1.Utility.SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
                                     {
-                                        SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                        Game1.Utility.SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
                                     }
                                     break;
                                 case "grass":
-                                    if (!GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                    if (!Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
                                     {
-                                        GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                        Game1.Utility.GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
                                     }
                                     break;
                             }
@@ -347,15 +347,15 @@ namespace SecretProject.Class.TileStuff
             switch (placementKey)
             {
                 case "dirt":
-                    acceptableGenerationTiles = DirtGeneratableTiles;
+                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
                     break;
                 case "sand":
-                    acceptableGenerationTiles = SandGeneratableTiles;
+                    acceptableGenerationTiles = Game1.Utility.SandGeneratableTiles;
 
                     break;
                 default:
-                    acceptableGenerationTiles = DirtGeneratableTiles;
+                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
                     break;
             }

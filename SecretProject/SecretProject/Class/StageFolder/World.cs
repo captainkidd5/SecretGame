@@ -31,7 +31,11 @@ namespace SecretProject.Class.StageFolder
 
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
-        public int WorldSize { get; set; }
+        public int WorldWidth { get; set; }
+        public int WorldHeight { get; set; }
+
+        
+
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
             this.TileWidth = 16;
@@ -169,11 +173,27 @@ namespace SecretProject.Class.StageFolder
             };
 
             this.Map = new TmxMap(this.TmxMapPath);
+
+            Background = Map.Layers["background"];
+            Buildings = Map.Layers["buildings"];
+            MidGround = Map.Layers["midGround"];
+            foreGround = Map.Layers["foreGround"];
+            Placement = Map.Layers["placement"];
+            AllLayers = new List<TmxLayer>()
+            {
+                Background,
+                Buildings,
+                MidGround,
+                foreGround,
+                Placement
+            };
             AllPortals = new List<Portal>();
             switch (worldSize)
             {
                 case 1:
-                    AllTiles = new ProceduralTileManager(this, TileSet, Map, 5,1000,1000, Graphics, Content, TileSetNumber, AllDepths, this);
+                    this.WorldWidth = 1000;
+                    this.WorldHeight = 1000;
+                    AllTiles = new ProceduralTileManager(this, TileSet,AllLayers, Map, 5,WorldWidth,WorldHeight, Graphics, Content, TileSetNumber, AllDepths, this);
                     break;
 
             }
@@ -188,7 +208,7 @@ namespace SecretProject.Class.StageFolder
 
             AllActions = new List<ActionTimer>();
 
-            MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
+            MapRectangle = new Rectangle(0, 0, TileWidth * WorldWidth, TileHeight * WorldHeight);
             Map = null;
             AllCrops = new Dictionary<int, Crop>();
         }
