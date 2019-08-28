@@ -22,7 +22,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-    public class ProceduralTileManager
+    public class ProceduralTileManager : ITileManager
     {
         protected Game1 game;
 
@@ -98,6 +98,9 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
 
         public int NumberOfLayers { get; set; }
+        List<Tile[,]> ITileManager.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int mapWidth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int mapHeight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         TmxMap Map;
         #region CONSTRUCTOR
@@ -1032,7 +1035,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
                                 Game1.Player.controls.Direction = Dir.Up;
-                                Game1.gameStages = Stages.LodgeInteior;
+                                Game1.gameStages = Stages.World;
                                 Game1.Player.position.X = 878;
                                 Game1.Player.position.Y = 809;
                                 break;
@@ -1052,7 +1055,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
                         Game1.Player.controls.Direction = Dir.Up;
-                        Game1.gameStages = Stages.LodgeInteior;
+                        Game1.gameStages = Stages.World;
                         Game1.Player.position.X = 878;
                         Game1.Player.position.Y = 809;
                     }
@@ -1288,6 +1291,21 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
+
+        public void UpdateCropTile(Crop crop, ILocation stage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadInitialTileObjects(ILocation location)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(GameTime gameTime, MouseManager mouse)
+        {
+            throw new NotImplementedException();
+        }
 
         public class EditableAnimationFrame
         {

@@ -25,7 +25,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class Interior : ITmxStage
+    public class Interior : ILocation
     {
         public bool ShowBorders { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public TmxMap Map { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -56,8 +56,10 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Crop> AllCrops { get; set; }
         public bool IsLoaded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        Dictionary<int, ObjectBody> ITmxStage.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        Dictionary<int, Crop> ITmxStage.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        Dictionary<int, ObjectBody> ILocation.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        Dictionary<int, Crop> ILocation.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        ITileManager ILocation.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget,GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {

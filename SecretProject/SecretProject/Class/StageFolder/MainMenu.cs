@@ -121,7 +121,7 @@ namespace SecretProject.Class.StageFolder
             if (newGame.isClicked)
             {
                 UnloadContent();
-                foreach (ITmxStage stage in Game1.AllStages)
+                foreach (ILocation stage in Game1.AllStages)
                 {
                     stage.LoadPreliminaryContent();
                 }
@@ -131,7 +131,7 @@ namespace SecretProject.Class.StageFolder
             if(Load.isClicked)
             {
                 mySave.Load(graphics);
-                Game1.gameStages = Stages.LodgeInteior;
+                Game1.gameStages = Stages.World;
                 Game1.Player.UserInterface.IsEscMenu = false;
             }
             if (Exit.isClicked)

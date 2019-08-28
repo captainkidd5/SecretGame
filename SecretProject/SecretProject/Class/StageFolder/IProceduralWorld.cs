@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XMLData.ItemStuff;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -65,8 +66,9 @@ namespace SecretProject.Class.StageFolder
         bool IsLoaded { get; set; }
 
         TextBuilder TextBuilder { get; set; }
+        void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
 
 
-        
+
     }
 }

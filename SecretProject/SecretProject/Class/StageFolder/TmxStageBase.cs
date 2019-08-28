@@ -33,7 +33,7 @@ using XMLData.ItemStuff;
 namespace SecretProject.Class.StageFolder
 {
 
-    public class TmxStageBase : ITmxStage, ILocation
+    public class TmxStageBase : ILocation
     {
 
         #region FIELDS
@@ -85,7 +85,7 @@ namespace SecretProject.Class.StageFolder
 
         public List<TmxLayer> AllLayers { get; set; }
 
-        public TileManager AllTiles { get; set; }
+
 
 
         public bool TilesLoaded { get; set; } = false;
@@ -113,6 +113,8 @@ namespace SecretProject.Class.StageFolder
         public event EventHandler SceneChanged;
 
         public bool IsLoaded { get; set; }
+        public ITileManager AllTiles { get; set; }
+       
 
 
 

@@ -65,7 +65,7 @@ namespace SecretProject
     public enum Stages
     {
         MainMenu = 0,
-        LodgeInteior = 1,
+        World = 1,
         Wilderness = 2,
         Exit = 3,
         Town = 5,
@@ -97,7 +97,7 @@ namespace SecretProject
         public static TmxStageBase DobbinsOrchard;
         public static TmxStageBase ElixirShop;
         public static Wilderness Wilderness;
-        public static List<ITmxStage> AllStages;
+        public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
         public static bool freeze = false;
@@ -243,12 +243,12 @@ namespace SecretProject
         #endregion
         
 
-        public static ITmxStage GetCurrentStage()
+        public static ILocation GetCurrentStage()
         {
             switch(gameStages)
             {
 
-                case Stages.LodgeInteior:
+                case Stages.World:
                     return LodgeInterior;
 
                 case Stages.Wilderness:
@@ -272,7 +272,7 @@ namespace SecretProject
             }
         }
 
-        public static ITmxStage GetStageFromInt(int stageNumber)
+        public static ILocation GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
             {
@@ -301,7 +301,7 @@ namespace SecretProject
             switch (gameStages)
             {
 
-                case Stages.LodgeInteior:
+                case Stages.World:
                     return 1;
 
                 case Stages.Wilderness:
@@ -478,7 +478,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ITmxStage>() { Wilderness, Town, ElixirShop };
+            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop };
 
 
 
@@ -611,7 +611,7 @@ namespace SecretProject
                         mainMenu.Update(gameTime, myMouseManager, this);
                         break;
 
-                    case Stages.LodgeInteior:
+                    case Stages.World:
 
                         LodgeInterior.Update(gameTime, myMouseManager, Player);
                         break;
@@ -666,7 +666,7 @@ namespace SecretProject
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
-                case Stages.LodgeInteior:
+                case Stages.World:
                     GraphicsDevice.Clear(Color.Black);
                     LodgeInterior.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                    // spriteBatch.Begin();
