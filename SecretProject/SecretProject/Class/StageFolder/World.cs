@@ -103,12 +103,20 @@ namespace SecretProject.Class.StageFolder
             switch (worldSize)
             {
                 case 1:
+                    this.WorldWidth = 400;
+                    this.WorldHeight = 400;
+                    break;
+                case 2:
+                    this.WorldWidth = 700;
+                    this.WorldHeight = 700;
+                    break;
+                case 3:
                     this.WorldWidth = 1000;
                     this.WorldHeight = 1000;
-                    AllTiles = new ProceduralTileManager(this, TileSet,AllLayers, Map, 5,WorldWidth,WorldHeight, Graphics, Content, TileSetNumber, AllDepths, this);
                     break;
 
             }
+            AllTiles = new ProceduralTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths, this);
 
             AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;

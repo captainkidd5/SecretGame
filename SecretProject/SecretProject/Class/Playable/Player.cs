@@ -69,7 +69,7 @@ namespace SecretProject.Class.Playable
         public Dir Direction { get; set; } = Dir.Down;
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public bool IsMoving { get; set; } = false;
-        public float Speed1 { get; set; } = 2f;
+        public float Speed1 { get; set; } = 1f;
         public float SecondarySpeed { get; set; } = 1f;
         public Sprite[] PlayerMovementAnimations { get; set; }
 
