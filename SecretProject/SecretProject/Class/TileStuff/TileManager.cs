@@ -149,18 +149,6 @@ namespace SecretProject.Class.TileStuff
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
                     Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
-                    if (layerNameTile.HorizontalFlip)
-                    {
-                        tempTile.HorizontalFlip = true;
-                    }
-                    if (layerNameTile.VerticalFlip)
-                    {
-                        tempTile.VeritcalFlip = true;
-                    }
-                    if (layerNameTile.DiagonalFlip)
-                    {
-                        tempTile.DiagonalFlip = true;
-                    }
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
                     if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
@@ -232,15 +220,15 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
-            GenerateTiles(1, 979, "dirt", 1000, 0,currentStage);
+            GenerateTiles(1, 979, "dirt", 1000, 0, currentStage);
             ////    //grass
-            GenerateTiles(1, 1079, "dirt", 1000, 0,currentStage);
+            GenerateTiles(1, 1079, "dirt", 1000, 0, currentStage);
             ////    //redrunestone
-            GenerateTiles(1, 579, "dirt", 100, 0,currentStage);
+            GenerateTiles(1, 579, "dirt", 100, 0, currentStage);
             //////bluerunestone
-            GenerateTiles(1, 779, "dirt", 100, 0,currentStage);
+            GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
-            GenerateTiles(1, 2264, "dirt", 200, 0,currentStage);
+            GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -248,7 +236,7 @@ namespace SecretProject.Class.TileStuff
             ////juicyfruit
             //GenerateTiles(1, 1586, "dirt", 500, 0);
             ////orchardTree
-            GenerateTiles(1, 1664, "dirt", 200, 0,currentStage);
+            GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
             //bubblegum
             // GenerateTiles(1, 6191, "dirt", 200, 0);
 
@@ -265,7 +253,7 @@ namespace SecretProject.Class.TileStuff
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                AssignProperties(AllTiles[z][i, j], 0, z, i, j,currentStage);
+                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
 
                             }
                         }
@@ -325,8 +313,8 @@ namespace SecretProject.Class.TileStuff
             int Column = tile.GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
 
-            float X = (tile.OldX % mapWidth) * 16;
-            float Y = (tile.OldY % mapHeight) * 16;
+            float X = (tile.X % mapWidth) * 16;
+            float Y = (tile.Y % mapHeight) * 16;
 
 
 
@@ -338,8 +326,8 @@ namespace SecretProject.Class.TileStuff
             int Column = tile.GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
 
-            float X = (tile.OldX % mapWidth) * 16;
-            float Y = (tile.OldY % mapHeight) * 16;
+            float X = (tile.X % mapWidth) * 16;
+            float Y = (tile.Y % mapHeight) * 16;
 
             return new Rectangle(16 * Column, 16 * Row, 16, 16);
 
@@ -425,10 +413,10 @@ namespace SecretProject.Class.TileStuff
                     for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                     {
                         //intermediateNewTiles[tileSwapCounter] = DebugTile;
-                        AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer, (int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY,stage);
+                        AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
                         //AddObject(intermediateNewTiles[tileSwapCounter]);
 
-                        AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].OldX, (int)intermediateNewTiles[tileSwapCounter].OldY] = intermediateNewTiles[tileSwapCounter];
+                        AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
                         //AllTiles[intermediateNewTiles[tileSwapCounter]]
                     }
                     AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
@@ -554,7 +542,7 @@ namespace SecretProject.Class.TileStuff
         {
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                AddObject(AllTiles[z][indexX, indexY],stage, destinationRectangle);
+                AddObject(AllTiles[z][indexX, indexY], stage, destinationRectangle);
 
             }
         }
@@ -571,37 +559,7 @@ namespace SecretProject.Class.TileStuff
                        new Rectangle(destinationRectangle.X + (int)Math.Ceiling(tempObj.X),
                       destinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
                        (int)Math.Ceiling(tempObj.Height)), tile.GID);
-                    if (tile.DiagonalFlip)
-                    {
-                        if (tile.HorizontalFlip)
-                        {
-                            transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.Width, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
-                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
-                        }
-                        if (tile.VeritcalFlip)
-                        {
-                            //tile.TileObject.Rectangle.Y = tile.TileObject.Rectangle.Y - tile.TileObject.Rectangle.Height;
-                            transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.X, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
-                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
-                        }
 
-                    }
-                    else if (tile.HorizontalFlip && !tile.DiagonalFlip)
-                    {
-
-                        transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.Width, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
-                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
-                    }
-                    else if (tile.VeritcalFlip && !tile.DiagonalFlip)
-                    {
-                        transformedObject.Rectangle = new Rectangle(transformedObject.Rectangle.X, transformedObject.Rectangle.Y - -transformedObject.Rectangle.Height,
-                                transformedObject.Rectangle.Width, transformedObject.Rectangle.Height);
-                    }
-
-                    else
-                    {
-
-                    }
 
                     // tile.HasObject = true;
                     stage.AllObjects[tile.GetTileKey(this.mapWidth, this.mapHeight)] = transformedObject;
@@ -612,7 +570,7 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
             AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
         }
@@ -666,7 +624,7 @@ namespace SecretProject.Class.TileStuff
                                 AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1,
                                     this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(this.mapWidth, this.mapHeight));
-                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]),Game1.GetCurrentStage());
+                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage());
                             }
                         }
 
@@ -906,37 +864,11 @@ namespace SecretProject.Class.TileStuff
 
                             AllDepths[3] = .4f + (float)(DestinationRectangle.Bottom + DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)10000;
 
-                            if (AllTiles[z][i, j].DiagonalFlip)
-                            {
-                                if (AllTiles[z][i, j].HorizontalFlip)
-                                {
-                                    spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X + this.tileWidth, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                (float)Math.PI / 2f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
-                                }
-                                if (AllTiles[z][i, j].VeritcalFlip)
-                                {
-                                    spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y + this.tileHeight), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                (float)(3 * Math.PI / 2f), Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
-                                }
 
-                            }
-                            else if (AllTiles[z][i, j].HorizontalFlip && !AllTiles[z][i, j].DiagonalFlip)
-                            {
 
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.FlipHorizontally, AllDepths[z] + layerToDrawAtZOffSet);
-                            }
-                            else if (AllTiles[z][i, j].VeritcalFlip && !AllTiles[z][i, j].DiagonalFlip)
-                            {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.FlipVertically, AllDepths[z] + layerToDrawAtZOffSet);
-                            }
+                            spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
 
-                            else
-                            {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
-                            }
                         }
                     }
                 }
@@ -954,12 +886,12 @@ namespace SecretProject.Class.TileStuff
             int layer = int.Parse(tileID[0].ToString());
             int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
             int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
-            ReplaceTilePermanent(1, x, y, crop.GID,stage);
+            ReplaceTilePermanent(1, x, y, crop.GID, stage);
             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {
                 if (MapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    ReplaceTilePermanent(3, x, y - 1, int.Parse(MapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]),stage);
+                    ReplaceTilePermanent(3, x, y - 1, int.Parse(MapName.Tilesets[TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage);
                 }
             }
 
@@ -977,7 +909,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].OldX, AllTiles[layer][oldX, oldY].OldY, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
 
             TempTile = AllTiles[layer][oldX, oldY];
 
@@ -993,7 +925,7 @@ namespace SecretProject.Class.TileStuff
         //Basic Replacement.
         public void ReplaceTileWithNewTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].OldX, AllTiles[layer][tileToReplaceX, tileToReplaceY].OldY, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].X, AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
         #endregion
@@ -1142,7 +1074,7 @@ namespace SecretProject.Class.TileStuff
 
                             case 0:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
-                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12,destinationRectangle, .25f);
+                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, destinationRectangle, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                                     Game1.Utility.GetTileEffectColor(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
@@ -1150,7 +1082,7 @@ namespace SecretProject.Class.TileStuff
 
                             case 1:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
-                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, destinationRectangle,.25f);
+                                InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, destinationRectangle, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                                     Game1.Utility.GetTileEffectColor(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                                 AllTiles[layer][oldX, oldY].HitPoints--;
@@ -1256,7 +1188,7 @@ namespace SecretProject.Class.TileStuff
 
         //specify which animations you want to use depending on where the player is in relation to the object
 
-        public void InteractWithPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up,Rectangle destinationRectangle, float delayTimer = 0f)
+        public void InteractWithPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, Rectangle destinationRectangle, float delayTimer = 0f)
         {
 
 

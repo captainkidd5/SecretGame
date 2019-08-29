@@ -244,8 +244,8 @@ namespace SecretProject.Class.Universal
         {
             writer.Write(tile.GID + 1);
            
-            writer.Write(tile.OldY);
-            writer.Write(tile.OldX);
+            writer.Write(tile.Y);
+            writer.Write(tile.X);
 
             writer.Write(tile.HitPoints);
 
