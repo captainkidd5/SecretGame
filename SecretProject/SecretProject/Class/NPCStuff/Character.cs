@@ -112,7 +112,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         }
 
         //for normal, moving NPCS
-        public virtual void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
         {
             if(this.IsBasicNPC)
             {

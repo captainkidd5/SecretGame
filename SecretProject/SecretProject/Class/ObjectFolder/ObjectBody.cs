@@ -32,8 +32,6 @@ namespace SecretProject.Class.ObjectFolder
 
         public int Columns { get; set; }
 
-        AnimatedSprite anim;
-
         int Width;
         int Height;
 

@@ -72,8 +72,8 @@ namespace SecretProject.Class.StageFolder
 
         public int TileSetNumber { get; set; }
 
-        public Dictionary<int, ObjectBody> AllObjects { get; set; }
-        public Dictionary<int, Crop> AllCrops { get; set; }
+        public Dictionary<float, ObjectBody> AllObjects { get; set; }
+        public Dictionary<float, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
 
@@ -151,7 +151,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<int, ObjectBody>()
+            AllObjects = new Dictionary<float, ObjectBody>()
             {
 
             };
@@ -203,7 +203,7 @@ namespace SecretProject.Class.StageFolder
 
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
-            AllCrops = new Dictionary<int, Crop>();
+            AllCrops = new Dictionary<float, Crop>();
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)

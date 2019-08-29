@@ -80,7 +80,7 @@ namespace SecretProject.Class.TileStuff
         /// </summary>
         public int LayerIdentifier { get; set; }
 
-        public List<Tile[,]> AllTiles;
+        public List<Tile[,]> AllTiles { get; set; }
 
         public List<float> AllDepths;
 
@@ -95,10 +95,9 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<float, EditableAnimationFrameHolder> AnimationFrames { get; set; }
 
         public int NumberOfLayers { get; set; }
-        List<Tile[,]> ITileManager.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
 
@@ -139,7 +138,7 @@ namespace SecretProject.Class.TileStuff
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
+            AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
 
             for (int i = 0; i < NumberOfLayers; i++)
             {
@@ -233,34 +232,34 @@ namespace SecretProject.Class.TileStuff
             //        currentStage.AllPortals.Add(portal);
             //    }
 
-                //specify GID which is 1 larger than one on tileset, idk why
-                //brown tall grass
-                // GenerateTiles(3, 6394, "dirt", 2000, 0);
-                //green tall grass
-                // GenerateTiles(3, 6393, "dirt", 2000, 0);
-                //    //stone
-               // GenerateTiles(1, 979, "dirt", 1000, 0, world);
-                ////    //grass
-              //  GenerateTiles(1, 1079, "dirt", 1000, 0, world);
-                ////    //redrunestone
-               // GenerateTiles(1, 579, "dirt", 100, 0, world);
-                //////bluerunestone
-               // GenerateTiles(1, 779, "dirt", 100, 0, world);
-                //////thunderbirch
-                //GenerateTiles(1, 2264, "dirt", 200, 0, world);
-                //////crown of swords
-                //GenerateTiles(1, 6388, "sand", 50, 0);
-                //////dandelion
-                //GenerateTiles(1, 6687, "sand", 100, 0);
-                ////juicyfruit
-                //GenerateTiles(1, 1586, "dirt", 500, 0);
-                ////orchardTree
-               // GenerateTiles(1, 1664, "dirt", 200, 0, world);
-                //bubblegum
-                // GenerateTiles(1, 6191, "dirt", 200, 0);
+            //specify GID which is 1 larger than one on tileset, idk why
+            //brown tall grass
+            // GenerateTiles(3, 6394, "dirt", 2000, 0);
+            //green tall grass
+            // GenerateTiles(3, 6393, "dirt", 2000, 0,world);
+            //stone
+            GenerateTiles(1, 979, "dirt", 100, 0, world);
+            //    //grass
+            GenerateTiles(1, 1079, "dirt", 100, 0, world);
+            //    //redrunestone
+            GenerateTiles(1, 579, "dirt", 100, 0, world);
+            ////bluerunestone
+            GenerateTiles(1, 779, "dirt", 100, 0, world);
+            ////thunderbirch
+            GenerateTiles(1, 2264, "dirt", 200, 0, world);
+            //////crown of swords
+            //GenerateTiles(1, 6388, "sand", 50, 0);
+            //////dandelion
+            //GenerateTiles(1, 6687, "sand", 100, 0);
+            ////juicyfruit
+            GenerateTiles(1, 1586, "dirt", 500, 0, world);
+            ////orchardTree
+            GenerateTiles(1, 1664, "dirt", 200, 0, world);
+            //bubblegum
+                 //GenerateTiles(1, 6191, "dirt", 200, 0, world);
 
 
-                for (int z = 0; z < AllTiles.Count; z++)
+            for (int z = 0; z < AllTiles.Count; z++)
                 {
                     for (int i = 0; i < this.WorldWidth; i++)
                     {
@@ -348,7 +347,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty, World world)
+            public void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty, ILocation world)
             {
                 List<int> acceptableGenerationTiles;
                 switch (placementKey)
@@ -372,10 +371,10 @@ namespace SecretProject.Class.TileStuff
                     GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, world, layerToCheckIfEmpty);
                 }
             }
-            public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, World stage, int comparisonLayer = 0)
+            public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage, int comparisonLayer = 0)
             {
-                int newTileX = Game1.Utility.RNumber(10, 90);
-                int newTileY = Game1.Utility.RNumber(10, 90);
+                int newTileX = Game1.Utility.RNumber(10, 500);
+                int newTileY = Game1.Utility.RNumber(10, 500);
                 if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
                 {
 
@@ -499,56 +498,11 @@ namespace SecretProject.Class.TileStuff
                 return false;
             }
 
-            #region LOADTILESOBJECTS
-            public void LoadInitialTileObjects(World stage)
-            {
-                for (int z = 0; z < AllTiles.Count; z++)
-                {
-                    if (z == 1)
-                    {
-                        for (var i = 0; i < WorldWidth; i++)
-                        {
-                            for (var j = 0; j < WorldHeight; j++)
-                            {
-                                int testGID = AllTiles[z][i, j].GID;
-                                if (AllTiles[z][i, j].GID != -1)
-                                {
-                                    AllTiles[1][i, j].AStarTileValue = 0;
-                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                                    {
-
-                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
-                                        {
+ 
+           
+                
 
 
-                                            for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
-                                            {
-                                                TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
-
-
-                                                ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
-                                                    new Rectangle(AllTiles[z][i, j].DestinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                                                    AllTiles[z][i, j].DestinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                                    (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].GID);
-
-
-
-                                                stage.AllObjects[AllTiles[z][i, j].GetTileKey()] = tempObjectBody; // not gonna work for saving, gotta figure out.
-
-                                            }
-                                            AllTiles[z][i, j].AStarTileValue = 0;
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-                PathGrid = new AStarPathFinder(WorldWidth, WorldHeight, AllTiles[1]);
-
-            }
-            #endregion
 
             #region ADDOBJECTSTOBUILDINGS
 
@@ -625,7 +579,7 @@ namespace SecretProject.Class.TileStuff
             {
                 //Game1.myMouseManager.TogglePlantInteraction = false;
                 Game1.Player.UserInterface.DrawTileSelector = false;
-                List<int> AnimationFrameKeysToRemove = new List<int>();
+                List<float> AnimationFrameKeysToRemove = new List<float>();
                 int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
                 if (starti < 0)
                 {
@@ -1375,12 +1329,13 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            PathGrid = new AStarPathFinder(WorldWidth, WorldHeight, AllTiles[1]);
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, ILocation location)
         {
             Game1.Player.UserInterface.DrawTileSelector = false;
-            List<int> AnimationFrameKeysToRemove = new List<int>();
+            List<float> AnimationFrameKeysToRemove = new List<float>();
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
             if (starti < 0)
             {

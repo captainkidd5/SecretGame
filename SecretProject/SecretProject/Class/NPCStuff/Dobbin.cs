@@ -37,7 +37,7 @@ namespace SecretProject.Class.NPCStuff
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
         }
 
-        public override void Update(GameTime gameTime, Dictionary<int,ObjectBody> objects, MouseManager mouse)
+        public override void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
         {
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {

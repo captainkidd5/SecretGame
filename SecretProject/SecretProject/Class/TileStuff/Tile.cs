@@ -78,10 +78,10 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public int GetTileKey()
+        public float GetTileKey()
         {
-            string keyString = this.GID.ToString() + (this.X / 16).ToString() + (this.Y / 16).ToString();
-            return int.Parse(keyString);
+            string keyString = this.GID.ToString() + (Math.Floor(this.X / 16)).ToString() + ((Math.Floor(this.Y / 16).ToString()));
+            return float.Parse(keyString);
         }
 
 

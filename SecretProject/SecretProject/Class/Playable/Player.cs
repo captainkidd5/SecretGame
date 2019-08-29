@@ -340,7 +340,7 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public void Update(GameTime gameTime, List<Item> items, Dictionary<int, ObjectBody> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, List<Item> items, Dictionary<float, ObjectBody> objects, MouseManager mouse)
         {
             //this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
             if (Activate)

@@ -13,6 +13,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
@@ -33,8 +34,9 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D mainTarget;
         public int WorldWidth { get; set; }
         public int WorldHeight { get; set; }
+        public List<Boar> Boars;
 
-        
+
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
         {
@@ -58,7 +60,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<int, ObjectBody>()
+            AllObjects = new Dictionary<float, ObjectBody>()
             {
 
             };
@@ -120,7 +122,12 @@ namespace SecretProject.Class.StageFolder
 
             MapRectangle = new Rectangle(0, 0, TileWidth * WorldWidth, TileHeight * WorldHeight);
             Map = null;
-            AllCrops = new Dictionary<int, Crop>();
+            AllCrops = new Dictionary<float, Crop>();
+            Boars = new List<Boar>() { };
+            for (int i = 1; i < 15; i++)
+            {
+                Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
+            }
         }
 
         public override void UnloadContent()
@@ -209,6 +216,12 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
 
+                for (int e = 0; e < Boars.Count; e++)
+                {
+                    Boars[e].Update(gameTime, AllObjects, mouse);
+                    //Console.WriteLine(Boars[1].cu);
+                    //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
+                }
                 // foreach (Character character in Game1.AllCharacters)
                 // {
                 //     character.Update(gameTime, AllObjects, mouse);
@@ -287,6 +300,11 @@ namespace SecretProject.Class.StageFolder
                 {
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
+                }
+                for (int e = 0; e < Boars.Count; e++)
+                {
+                    Boars[e].Draw(spriteBatch);
+
                 }
 
                 for (int i = 0; i < AllItems.Count; i++)

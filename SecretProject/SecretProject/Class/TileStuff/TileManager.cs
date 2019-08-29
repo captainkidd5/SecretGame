@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<float, EditableAnimationFrameHolder> AnimationFrames { get; set; }
 
 
 
@@ -135,7 +135,7 @@ namespace SecretProject.Class.TileStuff
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
+            AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
 
             for (int i = 0; i < allLayers.Count; i++)
             {
@@ -617,7 +617,7 @@ namespace SecretProject.Class.TileStuff
         {
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
-            List<int> AnimationFrameKeysToRemove = new List<int>();
+            List<float> AnimationFrameKeysToRemove = new List<float>();
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) - 1;
             if (starti < 0)
             {
