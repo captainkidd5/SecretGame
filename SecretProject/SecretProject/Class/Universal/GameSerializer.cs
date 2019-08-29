@@ -242,8 +242,6 @@ namespace SecretProject.Class.Universal
         }
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)
         {
-            writer.Write(tile.X);
-            writer.Write(tile.Y);
             writer.Write(tile.GID + 1);
            
             writer.Write(tile.OldY);

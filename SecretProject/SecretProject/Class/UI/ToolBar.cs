@@ -482,14 +482,15 @@ namespace SecretProject.Class.UI
 
         }
 
+
         public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch, MouseManager mouse)
         {
             for (int i = 0; i < GIDArray.GetLength(0); i++)
             {
                 for (int j = 0; j < GIDArray.GetLength(1); j++)
                 {
-                    Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY + i, GIDArray[i, j], 100, 100, 100, 100);
-                    spriteBatch.Draw(Game1.GetCurrentStage().TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
+                    //Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY + i, GIDArray[i, j], 100, 100, 100, 100);
+                    //spriteBatch.Draw(Game1.GetCurrentStage().TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
                 }
 
             }

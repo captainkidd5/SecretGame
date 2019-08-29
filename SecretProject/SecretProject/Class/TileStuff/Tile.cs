@@ -15,8 +15,6 @@ namespace SecretProject.Class.TileStuff
 {
     public class Tile
     {
-        public float X { get; set; }
-        public float Y { get; set; }
 
         private int gid;
         public int GID { get { return gid - 1; } set { gid = value; } }
@@ -37,8 +35,7 @@ namespace SecretProject.Class.TileStuff
 
         //--------------------------------------
         //Rectangles
-        public Rectangle SourceRectangle;
-        public Rectangle DestinationRectangle;
+
 
 
         public bool HorizontalFlip { get; set; }
@@ -64,12 +61,9 @@ namespace SecretProject.Class.TileStuff
             int Column = GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)GID / (double)tilesetTilesWide);
 
-            this.X = (x % mapWidth) * 16;
-            this.Y = (y % mapHeight) * 16;
+            
 
-            SourceRectangle = new Rectangle(16 * Column, 16 * Row, 16, 16);
 
-            DestinationRectangle = new Rectangle((int)X, (int)Y, 16, 16);
 
 
 
@@ -78,9 +72,11 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public float GetTileKey()
+        public float GetTileKey(int mapWidth, int mapHeight)
         {
-            string keyString = this.GID.ToString() + (Math.Floor(this.X / 16)).ToString() + ((Math.Floor(this.Y / 16).ToString()));
+            float X = (OldX % mapWidth) * 16;
+            float Y = (OldY % mapHeight) * 16;
+            string keyString = this.GID.ToString() + (Math.Floor(X / 16)).ToString() + ((Math.Floor(Y / 16).ToString()));
             return float.Parse(keyString);
         }
 
