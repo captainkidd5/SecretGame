@@ -286,7 +286,7 @@ namespace SecretProject
                     return World;
                 case 2:
                     return Wilderness;
-                case 3:
+                case 4:
                     return Pass;
                 case 5:
                     return Town;
@@ -315,7 +315,7 @@ namespace SecretProject
                 case Stages.Wilderness:
                     return 2;
                 case Stages.Pass:
-                    return 3;
+                    return 4;
                 case Stages.Town:
                     return 5;
 
