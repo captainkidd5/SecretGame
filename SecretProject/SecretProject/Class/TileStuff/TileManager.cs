@@ -262,6 +262,178 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+        public int NumberOfLayers { get; set; }
+        public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
+        {
+            this.MapName = mapName;
+            this.tileSet = tileSet;
+
+            tileWidth = 16;
+            tileHeight = 16;
+
+            tilesetTilesWide = tileSet.Width / tileWidth;
+            tilesetTilesHigh = tileSet.Height / tileHeight;
+
+            mapWidth = worldWidth;
+            mapHeight = worldHeight;
+            this.mapWidth = worldWidth;
+            this.mapHeight = worldHeight;
+
+            this.NumberOfLayers = numberOfLayers;
+
+            this.tileCounter = 0;
+
+            this.graphicsDevice = graphicsDevice;
+            this.content = content;
+
+            this.AllDepths = allDepths;
+            AllTiles = new List<Tile[,]>();
+            this.TileSetNumber = tileSetNumber;
+            DirtGeneratableTiles = new List<int>();
+            SandGeneratableTiles = new List<int>();
+            GrassGeneratableTiles = new List<int>();
+            AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
+
+            for (int i = 0; i < NumberOfLayers; i++)
+            {
+                AllTiles.Add(new Tile[worldWidth, worldHeight]);
+
+            }
+            for (int i = 0; i < 10000; i++)
+            {
+                if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(i))
+                {
+                    if (mapName.Tilesets[tileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
+                    {
+                        switch (mapName.Tilesets[tileSetNumber].Tiles[i].Properties["generate"])
+                        {
+
+
+                            case "dirt":
+                                if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "sand":
+                                if (!Game1.Utility.SandGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.SandGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "grass":
+                                if (!Game1.Utility.GrassGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.GrassGeneratableTiles.Add(i);
+                                }
+                                break;
+                        }
+
+
+                    }
+                }
+            }
+
+
+
+
+            for (int z = 0; z < NumberOfLayers; z++)
+            {
+                for (int i = 0; i < worldWidth; i++)
+                {
+                    for (int j = 0; j < worldHeight; j++)
+                    {
+                        if (z >= 1)
+                        {
+                            AllTiles[z][i, j] = new Tile(i, j, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                        }
+                        else
+                        {
+                            AllTiles[z][i, j] = new Tile(i, j, 1005, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                        }
+
+
+
+                    }
+                }
+
+            }
+
+            //for (int i = 0; i < Map.ObjectGroups["Portal"].Objects.Count; i++)
+            //    {
+            //        string keyFrom;
+            //        string keyTo;
+            //        string safteyX;
+            //        string safteyY;
+            //        string click;
+
+
+            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);
+            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardTo", out keyTo);
+            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
+            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
+            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
+            //        Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
+
+
+            //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;
+            //        int portalY = (int)Map.ObjectGroups["Portal"].Objects[i].Y;
+            //        int portalWidth = (int)Map.ObjectGroups["Portal"].Objects[i].Width;
+            //        int portalHeight = (int)Map.ObjectGroups["Portal"].Objects[i].Height;
+
+            //        portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
+
+            //        currentStage.AllPortals.Add(portal);
+            //    }
+
+            //specify GID which is 1 larger than one on tileset, idk why
+            //brown tall grass
+            // GenerateTiles(3, 6394, "dirt", 2000, 0);
+            //green tall grass
+            // GenerateTiles(3, 6393, "dirt", 2000, 0,world);
+            //stone
+            GenerateTiles(1, 979, "dirt", 1000, 0, world);
+            //    //grass
+            GenerateTiles(1, 1079, "dirt", 1000, 0, world);
+            //    //redrunestone
+            GenerateTiles(1, 579, "dirt", 500, 0, world);
+            ////bluerunestone
+            GenerateTiles(1, 779, "dirt", 1000, 0, world);
+            ////thunderbirch
+            GenerateTiles(1, 2264, "dirt", 1000, 0, world);
+            //////crown of swords
+            //GenerateTiles(1, 6388, "sand", 50, 0);
+            //////dandelion
+            //GenerateTiles(1, 6687, "sand", 100, 0);
+            ////juicyfruit
+            GenerateTiles(1, 1586, "dirt", 500, 0, world);
+            ////orchardTree
+            GenerateTiles(1, 1664, "dirt", 800, 0, world);
+            //bubblegum
+            //GenerateTiles(1, 6191, "dirt", 200, 0, world);
+
+
+            for (int z = 0; z < AllTiles.Count; z++)
+            {
+                for (int i = 0; i < this.mapWidth; i++)
+                {
+                    for (int j = 0; j < this.mapHeight; j++)
+                    {
+
+                        if (AllTiles[z][i, j].GID != 0)
+                        {
+                            if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                            {
+
+                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
 
 
         #endregion
@@ -361,8 +533,8 @@ namespace SecretProject.Class.TileStuff
         }
         public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage, int comparisonLayer = 0)
         {
-            int newTileX = Game1.Utility.RNumber(10, 90);
-            int newTileY = Game1.Utility.RNumber(10, 90);
+            int newTileX = Game1.Utility.RNumber(10, this.mapWidth - 50);
+            int newTileY = Game1.Utility.RNumber(10, this.mapHeight - 50);
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
 
@@ -845,18 +1017,20 @@ namespace SecretProject.Class.TileStuff
                             Rectangle SourceRectangle = GetSourceRectangle(AllTiles[z][i, j]);
                             Rectangle DestinationRectangle = GetDestinationRectangle(AllTiles[z][i, j]);
 
-
-                            if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
+                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
-                                int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["newSource"]);
+                                if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
+                                {
+                                    int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["newSource"]);
 
 
-                                SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
-                                    SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
+                                    SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
+                                        SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
 
 
-                                DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
-                                    DestinationRectangle.Width, DestinationRectangle.Height);
+                                    DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
+                                        DestinationRectangle.Width, DestinationRectangle.Height);
+                                }
                             }
                             int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
                             float randomFloat = (float)(randomInt * .000001);
