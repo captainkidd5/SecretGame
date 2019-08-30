@@ -35,10 +35,19 @@
  </tile>
  <tile id="478">
   <properties>
+   <property name="idleStart" value=""/>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+  <animation>
+   <frame tileid="479" duration="100"/>
+   <frame tileid="480" duration="100"/>
+   <frame tileid="481" duration="100"/>
+   <frame tileid="482" duration="100"/>
+   <frame tileid="483" duration="100"/>
+   <frame tileid="484" duration="100"/>
+  </animation>
  </tile>
  <tile id="479">
   <properties>
@@ -101,7 +110,7 @@
  </tile>
  <tile id="578">
   <properties>
-   <property name="AssociatedTiles" value="5580"/>
+   <property name="AssociatedTiles" value="478"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,0,0,2"/>
    <property name="idleStart" value=""/>
@@ -122,10 +131,19 @@
  </tile>
  <tile id="678">
   <properties>
+   <property name="idleStart" value=""/>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+  <animation>
+   <frame tileid="679" duration="100"/>
+   <frame tileid="680" duration="100"/>
+   <frame tileid="681" duration="100"/>
+   <frame tileid="682" duration="100"/>
+   <frame tileid="683" duration="100"/>
+   <frame tileid="684" duration="100"/>
+  </animation>
  </tile>
  <tile id="679">
   <properties>
@@ -171,7 +189,7 @@
  </tile>
  <tile id="778">
   <properties>
-   <property name="AssociatedTiles" value="5780"/>
+   <property name="AssociatedTiles" value="678"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,0,0,8"/>
    <property name="idleStart" value=""/>

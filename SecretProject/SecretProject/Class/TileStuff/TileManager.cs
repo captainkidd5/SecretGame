@@ -789,7 +789,7 @@ namespace SecretProject.Class.TileStuff
                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                         {
 
-                            if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                            if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
                             {
 
                                 //needs to refer to first tile ?
@@ -797,7 +797,11 @@ namespace SecretProject.Class.TileStuff
                                 AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1,
                                     this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(this.mapWidth, this.mapHeight));
-                                Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage());
+                                if(MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                {
+                                    Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage());
+                                }
+                                
                             }
                         }
 
@@ -1299,6 +1303,29 @@ namespace SecretProject.Class.TileStuff
                 if (hasSpawnTiles)
                 {
                     DestroySpawnWithTiles(tile, x, y, world);
+                }
+                if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties.ContainsKey("AssociatedTiles"))
+                {
+                    int[] associatedTiles = Game1.Utility.ParseSpawnsWithKey(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["AssociatedTiles"]);
+
+                    for (int i = 0; i < associatedTiles.Length; i++)
+                    {
+                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(associatedTiles[i]))
+                        {
+                            if (MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count > 0)
+                            {
+
+
+                                List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                                for (int j = 0; j < MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count; j++)
+                                {
+                                    frames.Add(new EditableAnimationFrame(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames[j]));
+                                }
+                                EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, associatedTiles[i]);
+                                this.AnimationFrames.Add(AllTiles[layer][x, y - 1].GetTileKey(this.mapWidth, this.mapHeight), frameHolder);
+                            }
+                        }
+                    }
                 }
                 if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].AnimationFrames.Count > 0)
                 {

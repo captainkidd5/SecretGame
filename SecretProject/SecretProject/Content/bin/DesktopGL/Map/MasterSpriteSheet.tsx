@@ -35,6 +35,7 @@
  </tile>
  <tile id="478">
   <properties>
+   <property name="idleStart" value=""/>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
@@ -109,7 +110,7 @@
  </tile>
  <tile id="578">
   <properties>
-   <property name="AssociatedTiles" value="5580"/>
+   <property name="AssociatedTiles" value="478"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,0,0,2"/>
    <property name="idleStart" value=""/>
@@ -130,6 +131,7 @@
  </tile>
  <tile id="678">
   <properties>
+   <property name="idleStart" value=""/>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
@@ -187,7 +189,7 @@
  </tile>
  <tile id="778">
   <properties>
-   <property name="AssociatedTiles" value="5780"/>
+   <property name="AssociatedTiles" value="678"/>
    <property name="Speed" value=".15"/>
    <property name="destructable" value="1,0,0,8"/>
    <property name="idleStart" value=""/>
