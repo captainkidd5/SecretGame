@@ -845,17 +845,21 @@ namespace SecretProject.Class.TileStuff
                             Rectangle DestinationRectangle = GetDestinationRectangle(AllTiles[z][i, j]);
 
 
-                            if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
+                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
-                                int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["newSource"]);
+
+                                if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
+                                {
+                                    int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["newSource"]);
 
 
-                                SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
-                                    SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
+                                    SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
+                                        SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
 
 
-                                DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
-                                    DestinationRectangle.Width, DestinationRectangle.Height);
+                                    DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
+                                        DestinationRectangle.Width, DestinationRectangle.Height);
+                                }
                             }
                             int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
                             float randomFloat = (float)(randomInt * .000001);
