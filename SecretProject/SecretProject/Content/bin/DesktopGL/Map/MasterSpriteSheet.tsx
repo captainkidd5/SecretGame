@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="85">
   <properties>
@@ -39,6 +39,14 @@
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+  <animation>
+   <frame tileid="479" duration="100"/>
+   <frame tileid="480" duration="100"/>
+   <frame tileid="481" duration="100"/>
+   <frame tileid="482" duration="100"/>
+   <frame tileid="483" duration="100"/>
+   <frame tileid="484" duration="100"/>
+  </animation>
  </tile>
  <tile id="479">
   <properties>
@@ -101,13 +109,24 @@
  </tile>
  <tile id="578">
   <properties>
-   <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5580"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="1,1,0,2"/>
+   <property name="destructable" value="1,0,0,2"/>
+   <property name="idleStart" value=""/>
    <property name="loot" value="169:100"/>
    <property name="spawnWith" value="478"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1.63636" y="0.727273" width="12.9091" height="11.6364"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="579" duration="100"/>
+   <frame tileid="580" duration="100"/>
+   <frame tileid="581" duration="100"/>
+   <frame tileid="582" duration="100"/>
+   <frame tileid="583" duration="100"/>
+   <frame tileid="584" duration="100"/>
+  </animation>
  </tile>
  <tile id="678">
   <properties>
@@ -115,6 +134,14 @@
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+  <animation>
+   <frame tileid="679" duration="100"/>
+   <frame tileid="680" duration="100"/>
+   <frame tileid="681" duration="100"/>
+   <frame tileid="682" duration="100"/>
+   <frame tileid="683" duration="100"/>
+   <frame tileid="684" duration="100"/>
+  </animation>
  </tile>
  <tile id="679">
   <properties>
@@ -160,13 +187,24 @@
  </tile>
  <tile id="778">
   <properties>
-   <property name="AnimatedX" value="7"/>
    <property name="AssociatedTiles" value="5780"/>
    <property name="Speed" value=".15"/>
-   <property name="destructable" value="1,1,0,8"/>
+   <property name="destructable" value="1,0,0,8"/>
+   <property name="idleStart" value=""/>
    <property name="loot" value="149:100"/>
    <property name="spawnWith" value="678"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.545455" y="0" width="14.3636" height="10.9091"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="779" duration="100"/>
+   <frame tileid="780" duration="100"/>
+   <frame tileid="781" duration="100"/>
+   <frame tileid="782" duration="100"/>
+   <frame tileid="783" duration="100"/>
+   <frame tileid="784" duration="100"/>
+  </animation>
  </tile>
  <tile id="904">
   <properties>
