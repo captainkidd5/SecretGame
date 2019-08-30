@@ -71,8 +71,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         }
 
         public int CurrentStageLocation { get; set; }
-        //ghost refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
-        public bool Ghost { get; set; }
+        // refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
+        public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC)
@@ -121,11 +121,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             }
             if(Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
-                this.Ghost = false;
+                this.DisableInteractions = false;
             }
             else
             {
-                this.Ghost = true;
+                this.DisableInteractions = true;
             }
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -161,7 +161,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             
 
             FollowSchedule(gameTime, this.RouteSchedule);
-            if(!Ghost)
+            if(!DisableInteractions)
             {
                 if (mouse.IsRightClicked)
                 {
@@ -178,7 +178,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
-            if(!Ghost)
+            if(!DisableInteractions)
             {
                 CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
             }
@@ -311,17 +311,17 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         this.IsMoving = true;
                         if(route.StageToEndAt == Game1.GetCurrentStageInt())
                         {
-                            currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
 
                             pathFound = true;
                         }
                         else
                         {
-                            currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16),
-                            new Point(Game1.GetCurrentStage().AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X/16,
-                            Game1.GetCurrentStage().AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
+                            new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X/16,
+                            Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
 
                             pathFound = true;
                         }
@@ -354,9 +354,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
                     }
                 }
-                else if(this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)) && route.StageToEndAt != Game1.GetCurrentStageInt())
+                else if(this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)) && route.StageToEndAt != CurrentStageLocation)
                 {
                     //here we will switch the NPC to the new stage and have him follow the path from the door to the desired location.
+                    CurrentStageLocation = route.StageToEndAt;
+                    //this.Position = new Vector2()
+
                 }
                 else
                 {
@@ -371,7 +374,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
         public void DrawBasicNPC(SpriteBatch spriteBatch)
         {
-            if(!Ghost)
+            if(!DisableInteractions)
             {
                 this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, 1f);
             }
@@ -381,7 +384,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(!Ghost)
+            if(!DisableInteractions)
             {
                 if(this.IsBasicNPC)
                 {

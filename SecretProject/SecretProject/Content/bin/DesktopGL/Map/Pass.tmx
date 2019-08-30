@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="2">
  <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
  <layer id="2" name="background" width="50" height="50">
   <data encoding="csv">
@@ -271,5 +271,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="Portal"/>
+ <objectgroup id="9" name="Portal">
+  <object id="1" x="389.5" y="784" width="89" height="16">
+   <properties>
+    <property name="Click" value="false"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="-50"/>
+    <property name="standardFrom" value="4"/>
+    <property name="standardTo" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

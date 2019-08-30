@@ -329,6 +329,10 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Update(gameTime);
                 }
+                foreach (Character character in Game1.AllCharacters)
+                {
+                    character.Update(gameTime, AllObjects, mouse);
+                }
 
             }
         }
@@ -378,7 +382,8 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-
+                Game1.Elixer.Draw(spriteBatch);
+                Game1.Dobbin.Draw(spriteBatch);
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 

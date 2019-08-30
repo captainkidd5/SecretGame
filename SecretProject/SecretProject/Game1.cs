@@ -66,13 +66,9 @@ namespace SecretProject
     {
         MainMenu = 0,
         World = 1,
-        Wilderness = 2,
         Exit = 3,
         Pass = 4,
         Town = 5,
-        GreatLibrary = 6,
-        WestBeach = 7,
-        DobbinsOrchard = 8,
         ElixirShop = 9
             
     }
@@ -91,14 +87,9 @@ namespace SecretProject
         //STAGES
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
-        public static TmxStageBase LodgeInterior;
         public static Town Town;
-        public static TmxStageBase GreatLibrary;
-        public static TmxStageBase WestBeach;
-        public static TmxStageBase DobbinsOrchard;
         public static TmxStageBase ElixirShop;
         public static TmxStageBase Pass;
-        public static Wilderness Wilderness;
         public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -254,21 +245,12 @@ namespace SecretProject
                 case Stages.World:
                     return World;
 
-                case Stages.Wilderness:
-                    return Wilderness;
 
                 case Stages.Town:
                     return Town;
                 case Stages.Pass:
                     return Pass;
 
-
-                case Stages.GreatLibrary:
-                    return GreatLibrary;
-                case Stages.WestBeach:
-                    return WestBeach;
-                case Stages.DobbinsOrchard:
-                    return DobbinsOrchard;
                 case Stages.ElixirShop:
                     return ElixirShop;
 
@@ -284,18 +266,11 @@ namespace SecretProject
             {
                 case 1:
                     return World;
-                case 2:
-                    return Wilderness;
+
                 case 4:
                     return Pass;
                 case 5:
                     return Town;
-                case 6:
-                    return GreatLibrary;
-                case 7:
-                    return WestBeach;
-                case 8:
-                    return DobbinsOrchard;
                 case 9:
                     return ElixirShop;
                 default:
@@ -312,19 +287,12 @@ namespace SecretProject
                 case Stages.World:
                     return 1;
 
-                case Stages.Wilderness:
-                    return 2;
+
                 case Stages.Pass:
                     return 4;
                 case Stages.Town:
                     return 5;
 
-                case Stages.GreatLibrary:
-                    return 6;
-                case Stages.WestBeach:
-                    return 7;
-                case Stages.DobbinsOrchard:
-                    return 8;
                 case Stages.ElixirShop:
                     return 9;
 
@@ -368,7 +336,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(1200, 600), AllTextures.PlayerParts, 24,10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 24,10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
@@ -468,20 +436,10 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            WestBeach = new TmxStageBase("WestBeach", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
-            Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Wilderness.tmx", 1);
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1);
 
-            GreatLibrary = new TmxStageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
-
-
-            //ElixirDialogue = Content.Load<DialogueSkeleton>("Dialogue/CharacterDialogue");
-            DobbinsOrchard = new TmxStageBase("Dobbin's Orchard", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/elixirShop.tmx", 1);
-
-
-            LodgeInterior = new TmxStageBase("Lodge", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
@@ -489,7 +447,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop, Pass, World };
+            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World };
 
 
 
@@ -632,26 +590,13 @@ namespace SecretProject
                     Pass.Update(gameTime, myMouseManager, Player);
                     break;
 
-                    case Stages.Wilderness:
-
-
-                        Wilderness.Update(gameTime, myMouseManager, Player);
-                        break;
 
                     case Stages.Town:
 
                         Town.Update(gameTime, myMouseManager, Player);
                         break;
 
-                    case Stages.GreatLibrary:
-                        GreatLibrary.Update(gameTime, myMouseManager, Player);
-                        break;
-                    case Stages.WestBeach:
-                        WestBeach.Update(gameTime, myMouseManager, Player);
-                        break;
-                case Stages.DobbinsOrchard:
-                    DobbinsOrchard.Update(gameTime, myMouseManager, Player);
-                    break;
+
                 case Stages.ElixirShop:
                     ElixirShop.Update(gameTime, myMouseManager, Player);
                     break;
@@ -696,30 +641,13 @@ namespace SecretProject
                     break;
 
 
-                case Stages.Wilderness:
-                    GraphicsDevice.Clear(Color.Black);
-                    Wilderness.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
+
 
                 case Stages.Town:
                     GraphicsDevice.Clear(Color.Black);
                     Town.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
-                case Stages.GreatLibrary:
-                    GraphicsDevice.Clear(Color.Black);
-                    GreatLibrary.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-
-                case Stages.WestBeach:
-                    GraphicsDevice.Clear(Color.Black);
-                    WestBeach.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-
-                case Stages.DobbinsOrchard:
-                    GraphicsDevice.Clear(Color.Black);
-                    DobbinsOrchard.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
                 case Stages.ElixirShop:
                     GraphicsDevice.Clear(Color.Black);
                     ElixirShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);

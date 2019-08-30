@@ -220,15 +220,15 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
-            GenerateTiles(1, 979, "dirt", 1000, 0, currentStage);
+        //    GenerateTiles(1, 979, "dirt", 50, 0, currentStage);
             ////    //grass
-            GenerateTiles(1, 1079, "dirt", 1000, 0, currentStage);
+          //  GenerateTiles(1, 1079, "dirt", 50, 0, currentStage);
             ////    //redrunestone
-            GenerateTiles(1, 579, "dirt", 100, 0, currentStage);
+           // GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
             //////bluerunestone
-            GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
+          //  GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
-            GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
+        //    GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -236,7 +236,7 @@ namespace SecretProject.Class.TileStuff
             ////juicyfruit
             //GenerateTiles(1, 1586, "dirt", 500, 0);
             ////orchardTree
-            GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
+         //   GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
             //bubblegum
             // GenerateTiles(1, 6191, "dirt", 200, 0);
 
@@ -263,6 +263,7 @@ namespace SecretProject.Class.TileStuff
 
         }
         public int NumberOfLayers { get; set; }
+        //FOR PROCEDURAL
         public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
         {
             this.MapName = mapName;
@@ -533,8 +534,8 @@ namespace SecretProject.Class.TileStuff
         }
         public void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage, int comparisonLayer = 0)
         {
-            int newTileX = Game1.Utility.RNumber(10, this.mapWidth - 50);
-            int newTileY = Game1.Utility.RNumber(10, this.mapHeight - 50);
+            int newTileX = Game1.Utility.RNumber(10, this.mapWidth - 10);
+            int newTileY = Game1.Utility.RNumber(10, this.mapHeight - 10);
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
 
@@ -1002,6 +1003,10 @@ namespace SecretProject.Class.TileStuff
             if (endj > this.mapHeight)
             {
                 endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 1;
+            }
+            if(startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > mapWidth || endj > mapHeight)
+            {
+                return;
             }
             for (int z = 0; z < AllTiles.Count; z++)
             {

@@ -159,7 +159,7 @@ namespace SecretProject.Class.StageFolder
                     if (reloadMap.isClicked)
                     {
                         Game1.Player.UserInterface.IsEscMenu = false;
-                        Game1.gameStages = Stages.Wilderness;
+                        Game1.gameStages = Stages.Town;
                     }
                     if (FullScreen.isClicked)
                     {

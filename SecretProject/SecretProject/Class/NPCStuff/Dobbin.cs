@@ -41,11 +41,11 @@ namespace SecretProject.Class.NPCStuff
         {
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
-                this.Ghost = false;
+                this.DisableInteractions = false;
             }
             else
             {
-                this.Ghost = true;
+                this.DisableInteractions = true;
             }
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -78,7 +78,7 @@ namespace SecretProject.Class.NPCStuff
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            if (!Ghost)
+            if (!DisableInteractions)
             {
 
 
