@@ -77,7 +77,7 @@ namespace SecretProject.Class.TextureStuff
 
         //TileSets
         public Texture2D MasterTileSet;
-        public Texture2D LodgeInteriorTileSet;
+        public Texture2D InteriorTileSet1;
         public Texture2D OrchardTileSet;
 
         public Texture2D ItemSpriteSheet;
@@ -126,7 +126,7 @@ namespace SecretProject.Class.TextureStuff
 
 
             //MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
-            LodgeInteriorTileSet = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
+            InteriorTileSet1 = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
             //OrchardTileSet = content.Load<Texture2D>("Map/orchard");
 
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");

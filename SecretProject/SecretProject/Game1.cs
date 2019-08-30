@@ -68,6 +68,7 @@ namespace SecretProject
         World = 1,
         Wilderness = 2,
         Exit = 3,
+        Pass = 4,
         Town = 5,
         GreatLibrary = 6,
         WestBeach = 7,
@@ -96,6 +97,7 @@ namespace SecretProject
         public static TmxStageBase WestBeach;
         public static TmxStageBase DobbinsOrchard;
         public static TmxStageBase ElixirShop;
+        public static TmxStageBase Pass;
         public static Wilderness Wilderness;
         public static World World;
         public static List<ILocation> AllStages;
@@ -257,6 +259,9 @@ namespace SecretProject
 
                 case Stages.Town:
                     return Town;
+                case Stages.Pass:
+                    return Pass;
+
 
                 case Stages.GreatLibrary:
                     return GreatLibrary;
@@ -281,6 +286,8 @@ namespace SecretProject
                     return World;
                 case 2:
                     return Wilderness;
+                case 3:
+                    return Pass;
                 case 5:
                     return Town;
                 case 6:
@@ -307,6 +314,8 @@ namespace SecretProject
 
                 case Stages.Wilderness:
                     return 2;
+                case Stages.Pass:
+                    return 3;
                 case Stages.Town:
                     return 5;
 
@@ -463,6 +472,7 @@ namespace SecretProject
             Wilderness = new Wilderness("Wilderness", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Wilderness.tmx", 1);
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1);
 
             GreatLibrary = new TmxStageBase("Library", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
@@ -479,7 +489,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop, World };
+            AllStages = new List<ILocation>() { Wilderness, Town, ElixirShop, Pass, World };
 
 
 
@@ -618,6 +628,10 @@ namespace SecretProject
                         World.Update(gameTime, myMouseManager, Player);
                         break;
 
+                case Stages.Pass:
+                    Pass.Update(gameTime, myMouseManager, Player);
+                    break;
+
                     case Stages.Wilderness:
 
 
@@ -675,6 +689,12 @@ namespace SecretProject
                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
                    // spriteBatch.End();
                     break;
+
+                case Stages.Pass:
+                    GraphicsDevice.Clear(Color.Black);
+                    Pass.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+
 
                 case Stages.Wilderness:
                     GraphicsDevice.Clear(Color.Black);
