@@ -45,6 +45,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D DobbinSpriteSheet;
         public Texture2D EnemySpriteSheet;
 
+        public Texture2D KayaSpriteSheet;
+
         public Texture2D SnawSpriteSheet;
 
         //playeractions
@@ -116,6 +118,8 @@ namespace SecretProject.Class.TextureStuff
             MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
             EnemySpriteSheet = content.Load<Texture2D>("NPC/Enemy/EnemySpriteSheet");
+
+            KayaSpriteSheet = content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet");
 
 
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");

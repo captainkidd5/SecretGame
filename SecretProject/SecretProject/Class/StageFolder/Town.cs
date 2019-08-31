@@ -253,8 +253,10 @@ namespace SecretProject.Class.StageFolder
                 //Console.WriteLine("Player Position" + player.position);
 
 
-                Game1.Elixer.Draw(spriteBatch);
-                Game1.Dobbin.Draw(spriteBatch);
+                foreach (Character character in Game1.AllCharacters)
+                {
+                    character.Draw(spriteBatch);
+                }
 
 
                 TextBuilder.Draw(spriteBatch, .71f);

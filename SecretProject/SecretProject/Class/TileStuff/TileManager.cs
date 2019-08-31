@@ -224,9 +224,9 @@ namespace SecretProject.Class.TileStuff
             ////    //grass
           //  GenerateTiles(1, 1079, "dirt", 50, 0, currentStage);
             ////    //redrunestone
-            GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
+            //GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
             //////bluerunestone
-            GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
+           // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
         //    GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
             //////crown of swords
