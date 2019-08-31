@@ -140,7 +140,7 @@ namespace SecretProject.Class.StageFolder
 
         public override void UnloadContent()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)

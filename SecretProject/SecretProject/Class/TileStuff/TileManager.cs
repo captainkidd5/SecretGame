@@ -374,7 +374,7 @@ namespace SecretProject.Class.TileStuff
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-            //        Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
+                    Portal portal = new Portal(1, 4, 0, -50, false);
 
 
             //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;
@@ -382,9 +382,9 @@ namespace SecretProject.Class.TileStuff
             //        int portalWidth = (int)Map.ObjectGroups["Portal"].Objects[i].Width;
             //        int portalHeight = (int)Map.ObjectGroups["Portal"].Objects[i].Height;
 
-            //        portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
+                    portal.PortalStart = new Rectangle(mapWidth/2, mapHeight - 100, 100, 50);
 
-            //        currentStage.AllPortals.Add(portal);
+                    currentStage.AllPortals.Add(portal);
             //    }
 
             //specify GID which is 1 larger than one on tileset, idk why
