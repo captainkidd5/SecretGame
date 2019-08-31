@@ -94,5 +94,7 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/woodStep.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SpriteFont/MenuText.spritefont</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Kaya/KayaSpriteSheet.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/KayaRouteSchedule.xml</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/KayaDialogue.xml</File>
   </SourceFiles>
 </SourceFileCollection>

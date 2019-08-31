@@ -871,3 +871,13 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Kaya/KayaSpriteSheet.png
 
+#begin Route/KayaRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/KayaRouteSchedule.xml
+
+#begin Dialogue/KayaDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/KayaDialogue.xml
+

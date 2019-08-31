@@ -154,9 +154,11 @@ namespace SecretProject
         public DialogueHolder ElixirDialogue;
         public DialogueHolder DobbinDialogue;
         public DialogueHolder SnawDialogue;
+        public DialogueHolder KayaDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
+        public RouteSchedule KayaRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
 
@@ -315,13 +317,15 @@ namespace SecretProject
             ElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
+            KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
             
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule };
+            KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule,KayaRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -492,7 +496,7 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 } ;
-            Kaya = new Kaya("Kaya", new Vector2(930, 400), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(930, 400), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3, IsBasicNPC = true};
