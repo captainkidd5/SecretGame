@@ -15,6 +15,8 @@ namespace SecretProject.Class.PathFinding
 
             public byte[,] Weight;
 
+
+
             
             public AStarPathFinder(int x, int y, Tile[,] buildingTiles, byte defaultValue = 0)
             {

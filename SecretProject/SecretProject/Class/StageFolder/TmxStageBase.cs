@@ -379,7 +379,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-
+                    Game1.Kaya.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);

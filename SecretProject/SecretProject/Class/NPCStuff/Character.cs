@@ -309,7 +309,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                     if (pathFound == false)
                     {
                         this.IsMoving = true;
-                        if(route.StageToEndAt == Game1.GetCurrentStageInt())
+                        if(route.StageToEndAt == CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
@@ -318,6 +318,9 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         }
                         else
                         {
+                            int debugPortalStartX = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X;
+                            int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
+
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16),
                             new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X/16,
