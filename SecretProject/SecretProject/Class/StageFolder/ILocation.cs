@@ -6,6 +6,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
@@ -25,6 +26,7 @@ namespace SecretProject.Class.StageFolder
 {
     public interface ILocation
     {
+        int StageIdentifier { get; set; }
         string StageName { get; set; }
         int TileWidth { get; set; }
         int TileHeight { get; set; }
@@ -60,6 +62,7 @@ namespace SecretProject.Class.StageFolder
         ParticleEngine ParticleEngine { get; set; }
         TextBuilder TextBuilder { get; set; }
         bool IsLoaded { get; set; }
+        List<Character> CharactersPresent { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);

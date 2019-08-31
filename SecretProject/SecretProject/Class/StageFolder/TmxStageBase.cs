@@ -37,7 +37,7 @@ namespace SecretProject.Class.StageFolder
     {
 
         #region FIELDS
-
+        public int StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
 
@@ -115,6 +115,8 @@ namespace SecretProject.Class.StageFolder
         public bool IsLoaded { get; set; }
         public ITileManager AllTiles { get; set; }
 
+        public List<Character> CharactersPresent { get; set; }
+
 
 
         #endregion
@@ -133,7 +135,7 @@ namespace SecretProject.Class.StageFolder
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
-            
+            CharactersPresent = new List<Character>();
 
 
         }
@@ -203,6 +205,8 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
             AllCrops = new Dictionary<float, Crop>();
+
+            
 
             //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
         }
@@ -379,7 +383,10 @@ namespace SecretProject.Class.StageFolder
 
                 if (ShowBorders)
                 {
-                    Game1.Kaya.DrawDebug(spriteBatch, .4f);
+                    foreach (Character character in CharactersPresent)
+                    {
+                        character.DrawDebug(spriteBatch, .4f);
+                    }
                 }
 
                 AllTiles.DrawTiles(spriteBatch);

@@ -12,6 +12,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
@@ -56,6 +57,8 @@ namespace SecretProject.Class.StageFolder
         public string StageName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Crop> AllCrops { get; set; }
         public bool IsLoaded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Character> CharactersPresent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         Dictionary<float, ObjectBody> ILocation.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Dictionary<float, Crop> ILocation.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

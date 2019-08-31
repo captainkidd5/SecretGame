@@ -266,7 +266,7 @@ namespace SecretProject.Class.StageFolder
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
                     
-                    foreach (Character character in Game1.AllCharacters)
+                    foreach (Character character in CharactersPresent)
                     {
                         character.DrawDebug(spriteBatch, .4f);
                     }

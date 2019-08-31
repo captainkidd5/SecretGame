@@ -44,7 +44,7 @@ using SecretProject.Class.NPCStuff;
 
 namespace SecretProject
 {
-    
+
     public enum Dir
     {
         Down,
@@ -58,7 +58,7 @@ namespace SecretProject
         Down,
         Up,
         Left,
-        Right, 
+        Right,
         None
     }
 
@@ -70,7 +70,7 @@ namespace SecretProject
         Pass = 4,
         Town = 5,
         ElixirShop = 9
-            
+
     }
 
 
@@ -118,7 +118,7 @@ namespace SecretProject
         public static Rectangle ScreenRectangle = new Rectangle(0, 0, 0, 0);
         public static int ScreenHeight { get { return ScreenRectangle.Height; } }
         public static int ScreenWidth { get { return ScreenRectangle.Width; } }
-        
+
 
         //UI
         public UserInterface userInterface;
@@ -134,11 +134,11 @@ namespace SecretProject
         public static TextureBook AllTextures;
 
         public static Texture2D LineTexture;
-        
-        
+
+
 
         //TOOLS
-        
+
         public static Utility Utility;
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
@@ -172,7 +172,7 @@ namespace SecretProject
         //RENDERTARGETS
         public RenderTarget2D MainTarget;
         public RenderTarget2D LightsTarget;
-        
+
 
         public static PresentationParameters PresentationParameters;
 
@@ -208,7 +208,7 @@ namespace SecretProject
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
-            
+
             IsFixedTimeStep = false;
 
         }
@@ -228,21 +228,21 @@ namespace SecretProject
             ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
 
             Utility = new Utility();
-            
+
 
             //SCREEN
-            
+
 
             AllActions = new List<ActionTimer>();
 
             base.Initialize();
         }
         #endregion
-        
+
 
         public static ILocation GetCurrentStage()
         {
-            switch(gameStages)
+            switch (gameStages)
             {
 
                 case Stages.World:
@@ -259,7 +259,7 @@ namespace SecretProject
 
                 default:
                     return null;
-                   
+
             }
         }
 
@@ -318,11 +318,11 @@ namespace SecretProject
             DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
             KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
-            
+
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
             KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule,KayaRouteSchedule };
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue };
@@ -341,17 +341,17 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 24,10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 24, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
-            Player.animations[0,0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 16, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000011f };
+            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 16, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000011f };
             //head
-            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 64, 16, 48, 6, .1f, Game1.Player.position){ LayerDepth = .0000010f };
+            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 64, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000010f };
             //right arm
             Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 112, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000009f };
-//right hand
-            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 160, 16, 48, 6, .1f, Game1.Player.position){ LayerDepth = .0000008f };
+            //right hand
+            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 160, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000008f };
             //left arm
             Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 48, 208, 16, 48, 6, .1f, Game1.Player.position) { LayerDepth = .0000007f };
             //left hand
@@ -409,10 +409,6 @@ namespace SecretProject
             {
                 Player.PlayerMovementAnimations[i] = Player.animations[0, i];
             }
-            //gotta fix up animation to sit properly on correct frame, it currently has one extra for smooth movement
-            // Player.animations[2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 160, 0, 16, 48, 6, .15f, Game1.Player.position);
-            //Player.animations[3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 256, 0, 16, 48, 6, .15f, Game1.Player.position);
-            //Player.animations[1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerParts, 352, 0, 16, 48, 6, .15f, Game1.Player.position);
 
             //UI
 
@@ -420,17 +416,9 @@ namespace SecretProject
 
             //ITEMS
             ItemVault = new ItemBank();
-            //Item item = new Item { Name = "pie", ID = 0, id = "0", InvMaximum = 3, TextureString = Game1.AllTextures.pie.ToString(), IsPlaceable = false };
-            //ItemVault.Items.Add(item.id, item);
-            //ItemVault.Items.Save(@"Content/StartUpData/itemData.xml");
-            // ItemVault.RawItems.Load(@"Content/StartUpData/itemData.xml");
-            // ItemVault.LoadItems(GraphicsDevice, Content);
+
 
             AllItems = Content.Load<ItemHolder>("Item/ItemHolder");
-
-
-
-
 
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
@@ -441,9 +429,9 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1);
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1);
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 1 };
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 5 };
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 4 };
 
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
@@ -495,11 +483,18 @@ namespace SecretProject
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
             Elixer = new Elixir("Elixer", new Vector2(840, 300), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 } ;
+            Dobbin = new Dobbin("Dobbin", new Vector2(930, 300), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(400, 400), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3) { NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } }, CurrentDirection = 0, SpeakerID = 3, FrameToSet = 3, IsBasicNPC = true};
+                3)
+            {
+                NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+                0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } },
+                CurrentDirection = 0,
+                SpeakerID = 3,
+                FrameToSet = 3,
+                IsBasicNPC = true
+            };
             AllCharacters = new List<Character>()
             {
                 Elixer,
@@ -507,6 +502,20 @@ namespace SecretProject
                 Kaya,
                 Snaw
             };
+
+            foreach (ILocation stage in AllStages)
+            {
+                foreach (Character character in AllCharacters)
+                {
+                    if (character.CurrentStageLocation == stage.StageIdentifier)
+                    {
+                        stage.CharactersPresent.Add(character);
+                    }
+                }
+
+
+
+            }
         }
         #endregion
 
@@ -524,12 +533,12 @@ namespace SecretProject
         public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
         {
 
-            
+
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
             if (!GetStageFromInt(stageToSwitchTo).IsLoaded)
             {
-               
+
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
@@ -548,7 +557,7 @@ namespace SecretProject
 
         }
 
-        
+
         public static void FullScreenToggle()
         {
 
@@ -580,43 +589,43 @@ namespace SecretProject
 
 
 
-                //switch between stages for updating
-                switch (gameStages)
-                {
-                    case Stages.MainMenu:
+            //switch between stages for updating
+            switch (gameStages)
+            {
+                case Stages.MainMenu:
 
-                        mainMenu.Update(gameTime, myMouseManager, this);
-                        break;
+                    mainMenu.Update(gameTime, myMouseManager, this);
+                    break;
 
-                    case Stages.World:
+                case Stages.World:
 
-                        World.Update(gameTime, myMouseManager, Player);
-                        break;
+                    World.Update(gameTime, myMouseManager, Player);
+                    break;
 
                 case Stages.Pass:
                     Pass.Update(gameTime, myMouseManager, Player);
                     break;
 
 
-                    case Stages.Town:
+                case Stages.Town:
 
-                        Town.Update(gameTime, myMouseManager, Player);
-                        break;
+                    Town.Update(gameTime, myMouseManager, Player);
+                    break;
 
 
                 case Stages.ElixirShop:
                     ElixirShop.Update(gameTime, myMouseManager, Player);
                     break;
 
-                        //case Stages.GreatLibrary:
+                    //case Stages.GreatLibrary:
 
-                }
+            }
             if (!myMouseManager.ToggleGeneralInteraction)
             {
                 this.IsMouseVisible = true;
             }
 
-                base.Update(gameTime);
+            base.Update(gameTime);
         }
         #endregion
 
@@ -624,7 +633,7 @@ namespace SecretProject
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+
 
             switch (gameStages)
             {
@@ -637,9 +646,9 @@ namespace SecretProject
                 case Stages.World:
                     GraphicsDevice.Clear(Color.Black);
                     World.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                   // spriteBatch.Begin();
-                   // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
-                   // spriteBatch.End();
+                    // spriteBatch.Begin();
+                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
+                    // spriteBatch.End();
                     break;
 
                 case Stages.Pass:
