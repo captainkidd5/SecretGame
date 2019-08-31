@@ -114,9 +114,9 @@ namespace SecretProject.Class.StageFolder
 
         public bool IsLoaded { get; set; }
         public ITileManager AllTiles { get; set; }
-       
 
 
+        public Texture2D Kaya;
 
         #endregion
 
@@ -204,6 +204,8 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
             AllCrops = new Dictionary<float, Crop>();
+            Kaya = Content.Load<Texture2D>("NPC/KayaTest");
+            //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -386,7 +388,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Dobbin.Draw(spriteBatch);
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
-
+                spriteBatch.Draw(Kaya, new Vector2(400, 400), color: Color.White, layerDepth: 1f);
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY, 16, 16),
