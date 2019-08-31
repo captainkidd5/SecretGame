@@ -36,7 +36,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n MouseOverTile: "  +
                     " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n MouseWorldRectangle: "
                     + Game1.myMouseManager.WorldMouseRectangle + " \n \n MouseSquarePositionX: " + Game1.myMouseManager.MouseSquareCoordinateX + " \n \n mouseworldrectangle: " +
-                    Game1.myMouseManager.MouseSquareCoordinateY, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                    Game1.myMouseManager.MouseSquareCoordinateY + "\n\n Kaya position x " + Game1.Kaya.Position.X + "\n\n Kaya position y " + Game1.Kaya.Position.Y, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
                 //for(int i =0; i< 100; i++)
                 //{

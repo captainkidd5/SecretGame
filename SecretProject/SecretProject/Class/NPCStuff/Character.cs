@@ -302,14 +302,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
                 Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             {
-                if (this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)) && route.StageToEndAt != CurrentStageLocation)
-                {
-                    //here we will switch the NPC to the new stage and have him follow the path from the door to the desired location.
-                    CurrentStageLocation = route.StageToEndAt;
-                    //this.Position = new Vector2()
-
-                }
-                if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)))
+               
+                if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16 - 8, route.EndY * 16 - 8, 16, 16)))
                 {
 
 
@@ -360,11 +354,18 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         pointCounter = 0;
                         this.IsMoving = false;
                         this.CurrentDirection = 0;
-                        //currentPath = null;
+                        if(route.StageToEndAt != CurrentStageLocation)
+                        {
+                           
+                            this.Position = new Vector2(Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
+                                Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.Y);
+                            CurrentStageLocation = route.StageToEndAt;
+
+                        }
 
                     }
                 }
-                
+
                 else
                 {
                     pathFound = false;
