@@ -137,6 +137,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/ElixirDialogue.xml
 
+#begin Dialogue/KayaDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/KayaDialogue.xml
+
 #begin Dialogue/SnawDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -355,6 +360,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Enemy/EnemySpriteSheet.png
+
+#begin NPC/Kaya/KayaSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Kaya/KayaSpriteSheet.png
 
 #begin NPC/Snaw/Snaw.png
 /importer:TextureImporter
@@ -738,6 +755,11 @@
 /processor:PassThroughProcessor
 /build:Route/ElixerRouteSchedule.xml
 
+#begin Route/KayaRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/KayaRouteSchedule.xml
+
 #begin SoundEffects/bubble.WAV
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -858,26 +880,4 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
-
-#begin NPC/Kaya/KayaSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Kaya/KayaSpriteSheet.png
-
-#begin Route/KayaRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/KayaRouteSchedule.xml
-
-#begin Dialogue/KayaDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/KayaDialogue.xml
 

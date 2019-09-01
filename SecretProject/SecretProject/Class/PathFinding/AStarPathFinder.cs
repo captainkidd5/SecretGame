@@ -119,7 +119,7 @@ namespace SecretProject.Class.PathFinding
                 }
 
             // unable to figure out a path, abort.
-            return new List<Point>() { new Point(-1, -1) };
+            //return new List<Point>() { new Point(-1, -1) };
 
             throw new Exception(
                 string.Format(

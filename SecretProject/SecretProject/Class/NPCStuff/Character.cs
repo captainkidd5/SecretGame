@@ -92,7 +92,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.CurrentStageLocation = currentStageLocation;
             this.IsBasicNPC = isBasicNPC;
-            
+
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
         }
@@ -112,14 +112,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         }
 
         //for normal, moving NPCS
-        public virtual void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<float, ObjectBody> objects, MouseManager mouse)
         {
-            if(this.IsBasicNPC)
+            if (this.IsBasicNPC)
             {
                 UpdateBasicNPC(gameTime, mouse);
                 return;
             }
-            if(Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
             }
@@ -130,7 +130,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(objects, Position);
+            this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllObjects, Position);
 
             switch (CurrentDirection)
             {
@@ -158,10 +158,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            
+
 
             FollowSchedule(gameTime, this.RouteSchedule);
-            if(!DisableInteractions)
+            if (!DisableInteractions)
             {
                 if (mouse.IsRightClicked)
                 {
@@ -170,7 +170,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 }
                 CheckSpeechInteraction(mouse, FrameToSet);
             }
-            
+
 
         }
 
@@ -178,11 +178,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
-            if(!DisableInteractions)
+            if (!DisableInteractions)
             {
                 CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
             }
-            
+
         }
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
@@ -196,7 +196,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                 {
 
 
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID,Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
 
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
@@ -302,15 +302,15 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
             if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
                 Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             {
-               
-                if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16 - 8, route.EndY * 16 - 8, 16, 16)))
+
+                if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)))
                 {
 
 
                     if (pathFound == false)
                     {
                         this.IsMoving = true;
-                        if(route.StageToEndAt == CurrentStageLocation)
+                        if (route.StageToEndAt == CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
@@ -324,13 +324,13 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
 
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                             (int)this.NPCPathFindRectangle.Y / 16),
-                            new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X/16,
+                            new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X / 16,
                             Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
 
                             pathFound = true;
                         }
 
-                        
+
                     }
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -345,7 +345,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                     if (pointCounter < currentPath.Count)
                     {
 
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y ), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 8, 8));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -354,12 +354,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         pointCounter = 0;
                         this.IsMoving = false;
                         this.CurrentDirection = 0;
-                        if(route.StageToEndAt != CurrentStageLocation)
+                        if (route.StageToEndAt != CurrentStageLocation)
                         {
-                           
+
                             this.Position = new Vector2(Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
                                 Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.Y);
+                            Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
                             CurrentStageLocation = route.StageToEndAt;
+                            Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);
 
                         }
 
@@ -374,24 +376,25 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                     this.CurrentDirection = 0;
                 }
             }
+            
 
         }
 
         public void DrawBasicNPC(SpriteBatch spriteBatch)
         {
-            if(!DisableInteractions)
+            if (!DisableInteractions)
             {
                 this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, 1f);
             }
-            
+
             //this.NPCAnimatedSprite[0].Draw(spriteBatch, 1f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(!DisableInteractions)
+            if (!DisableInteractions)
             {
-                if(this.IsBasicNPC)
+                if (this.IsBasicNPC)
                 {
                     DrawBasicNPC(spriteBatch);
                     return;
@@ -414,7 +417,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 36, 4, 4);
                         break;
                 }
             }
-            
+
         }
 
         public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
