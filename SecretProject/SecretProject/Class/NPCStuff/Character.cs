@@ -64,8 +64,8 @@ namespace SecretProject.Class.NPCStuff
         {
             get
             {
-                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X + 8,
-NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 8, 4, 4);
+                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X,
+NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height, 4, 4);
             }
             set { }
         }
@@ -235,7 +235,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 8, 4, 4);
             //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
             //{
             this.DirectionVector = direction;
-            if (!this.NPCPathFindRectangle.Intersects(rectangle))
+            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(rectangle.X, rectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, rectangle.Width, rectangle.Height)))
             {
                 Position += (direction * Speed) * PrimaryVelocity;
                 IsMoving = true;
@@ -313,7 +313,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 8, 4, 4);
                         if (route.StageToEndAt == CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            (int)this.NPCPathFindRectangle.Y / 16), new Point(route.EndX, route.EndY));
+                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY));
 
                             pathFound = true;
                         }
@@ -323,7 +323,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 8, 4, 4);
                             int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
                             
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            (int)this.NPCPathFindRectangle.Y / 16),
+                             ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
                             new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X / 16,
                             Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
 
