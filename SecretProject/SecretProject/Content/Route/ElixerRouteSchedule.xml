@@ -17,31 +17,31 @@
         <TimeToFinish>18</TimeToFinish>
          <StageToEndAt>4</StageToEndAt>
         <EndX>20</EndX>
-        <EndY>50</EndY>
+        <EndY>25</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>3</ID>
         <TimeToStart>19</TimeToStart>
         <TimeToFinish>21</TimeToFinish>
-         <StageToEndAt>9</StageToEndAt>
+         <StageToEndAt>5</StageToEndAt>
         <EndX>20</EndX>
-        <EndY>40</EndY>
+        <EndY>30</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>4</ID>
         <TimeToStart>22</TimeToStart>
         <TimeToFinish>2</TimeToFinish>
-         <StageToEndAt>9</StageToEndAt>
-        <EndX>30</EndX>
+         <StageToEndAt>5</StageToEndAt>
+        <EndX>25</EndX>
         <EndY>15</EndY>
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>5</ID>
         <TimeToStart>4</TimeToStart>
         <TimeToFinish>6</TimeToFinish>
-         <StageToEndAt>9</StageToEndAt>
-        <EndX>50</EndX>
-        <EndY>50</EndY>
+         <StageToEndAt>5</StageToEndAt>
+        <EndX>30</EndX>
+        <EndY>20</EndY>
       </Item>
     </Routes>
   </Asset>

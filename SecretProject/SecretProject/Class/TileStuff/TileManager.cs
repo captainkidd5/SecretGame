@@ -1051,6 +1051,12 @@ namespace SecretProject.Class.TileStuff
 
                             spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
+                            if (Game1.GetCurrentStage().ShowBorders)
+                            {
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin,.25f, SpriteEffects.None, 1f);
+                                //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
+                            }
+
 
                         }
                     }

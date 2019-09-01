@@ -59,6 +59,7 @@ namespace SecretProject.Class.StageFolder
         Dictionary<float, Crop> AllCrops { get; set; }
 
         bool IsDark { get; set; }
+        bool ShowBorders { get; set; }
         ParticleEngine ParticleEngine { get; set; }
         TextBuilder TextBuilder { get; set; }
         bool IsLoaded { get; set; }
