@@ -104,6 +104,7 @@ namespace SecretProject.Class.NPCStuff
                     Console.WriteLine(this.NPCHitBoxRectangle);
 
                 }
+                CheckSpeechInteraction(mouse, FrameToSet);
             }
 
             //this.Speed = PrimaryVelocity

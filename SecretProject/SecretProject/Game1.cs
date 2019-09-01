@@ -69,6 +69,7 @@ namespace SecretProject
         Exit = 3,
         Pass = 4,
         Town = 5,
+        Sanctuary = 6,
         ElixirShop = 9
 
     }
@@ -90,6 +91,7 @@ namespace SecretProject
         public static Town Town;
         public static TmxStageBase ElixirShop;
         public static TmxStageBase Pass;
+        public static TmxStageBase Sanctuary;
         public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -253,6 +255,8 @@ namespace SecretProject
                     return Town;
                 case Stages.Pass:
                     return Pass;
+                case Stages.Sanctuary:
+                    return Sanctuary;
 
                 case Stages.ElixirShop:
                     return ElixirShop;
@@ -274,6 +278,8 @@ namespace SecretProject
                     return Pass;
                 case 5:
                     return Town;
+                case 6:
+                    return Sanctuary;
                 case 9:
                     return ElixirShop;
                 default:
@@ -295,6 +301,8 @@ namespace SecretProject
                     return 4;
                 case Stages.Town:
                     return 5;
+                case Stages.Sanctuary:
+                    return 6;
 
                 case Stages.ElixirShop:
                     return 9;
@@ -432,7 +440,7 @@ namespace SecretProject
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 1 };
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 5 };
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 4 };
-
+            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 4 };
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
 
@@ -440,7 +448,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World };
+            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World, Sanctuary };
 
 
 
@@ -605,6 +613,9 @@ namespace SecretProject
                 case Stages.Pass:
                     Pass.Update(gameTime, myMouseManager, Player);
                     break;
+                case Stages.Sanctuary:
+                    Sanctuary.Update(gameTime, myMouseManager, Player);
+                    break;
 
 
                 case Stages.Town:
@@ -656,8 +667,10 @@ namespace SecretProject
                     Pass.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
-
-
+                case Stages.Sanctuary:
+                    GraphicsDevice.Clear(Color.Black);
+                    Sanctuary.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
 
                 case Stages.Town:
                     GraphicsDevice.Clear(Color.Black);
