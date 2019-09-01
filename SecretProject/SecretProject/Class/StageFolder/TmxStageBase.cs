@@ -390,7 +390,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                foreach(Character character in Game1.AllCharacters)
+                foreach(Character character in CharactersPresent)
                 {
                     character.Draw(spriteBatch);
                 }

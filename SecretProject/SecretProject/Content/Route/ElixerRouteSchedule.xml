@@ -7,41 +7,17 @@
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>11</TimeToFinish>
-      <StageToEndAt>4</StageToEndAt>
-      <EndX>15</EndX>
-      <EndY>20</EndY>
+      <StageToEndAt>9</StageToEndAt>
+      <EndX>6</EndX>
+      <EndY>9</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
-        <TimeToStart>13</TimeToStart>
-        <TimeToFinish>18</TimeToFinish>
+        <TimeToStart>18</TimeToStart>
+        <TimeToFinish>22</TimeToFinish>
          <StageToEndAt>4</StageToEndAt>
         <EndX>20</EndX>
         <EndY>25</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>3</ID>
-        <TimeToStart>19</TimeToStart>
-        <TimeToFinish>21</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
-        <EndX>20</EndX>
-        <EndY>30</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>4</ID>
-        <TimeToStart>22</TimeToStart>
-        <TimeToFinish>2</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
-        <EndX>25</EndX>
-        <EndY>15</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>5</ID>
-        <TimeToStart>4</TimeToStart>
-        <TimeToFinish>6</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
-        <EndX>30</EndX>
-        <EndY>20</EndY>
       </Item>
     </Routes>
   </Asset>
