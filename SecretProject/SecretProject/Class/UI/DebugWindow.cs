@@ -8,21 +8,40 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using SecretProject.Class.MenuStuff;
 
 namespace SecretProject.Class.UI
 {
     public class DebugWindow : TextBox
     {
         public double ElapsedMS { get; set; }
-        public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop) : base(textFont,textBoxLocation,  textToWrite,  backDrop)
+
+        public Button DebugButton1 { get; set; }
+        public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont,textBoxLocation,  textToWrite,  backDrop)
         {
             ElapsedMS = 0d;
+            DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(this.position.X, this.position.Y - 200));
         }
 
         public void Update(GameTime gameTime)
         {
             base.Update(gameTime, Keys.F1);
             ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
+            DebugButton1.Update(Game1.myMouseManager);
+            if(DebugButton1.isClicked)
+            {
+                for(int i =0; i < Game1.PortalGraph.Size; i++)
+                {
+                    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
+                    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
+                    {
+                        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
+                    }
+                    Console.WriteLine("\n\n");
+                }
+                
+                
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -46,7 +65,7 @@ namespace SecretProject.Class.UI
                 //        spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() +"  ", new Vector2(position.X + (i * 20), position.Y - 500 + (j * 20)), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,1f);
                 //    }
                 //}
-                
+                DebugButton1.Draw(spriteBatch, 1f);
             }
             spriteBatch.End();
         }

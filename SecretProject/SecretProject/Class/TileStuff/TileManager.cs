@@ -212,10 +212,9 @@ namespace SecretProject.Class.TileStuff
                 portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
 
                 currentStage.AllPortals.Add(portal);
-                foreach(Portal p in currentStage.AllPortals)
-                {
-                    Game1.PortalGraph.AddEdge(p.From, p.To);
-                }
+ 
+                    Game1.PortalGraph.AddEdge(portal.From, portal.To);
+                
                 
             }
 

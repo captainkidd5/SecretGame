@@ -91,7 +91,7 @@ namespace SecretProject.Class.NPCStuff
                 }
                 if (mouse.IsRightClicked)
                 {
-                    Console.WriteLine(this.NPCHitBoxRectangle);
+                   // Console.WriteLine(this.NPCHitBoxRectangle);
 
                 }
                 CheckSpeechInteraction(mouse, FrameToSet);
