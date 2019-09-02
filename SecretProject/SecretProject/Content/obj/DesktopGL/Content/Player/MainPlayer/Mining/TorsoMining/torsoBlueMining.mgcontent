@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/Mining/TorsoMining/torsoBlueMining.png</SourceFile>
-  <SourceTime>2019-08-31T15:54:48.365035-07:00</SourceTime>
+  <SourceTime>2019-09-02T10:25:59.2797836-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Player/MainPlayer/Mining/TorsoMining/torsoBlueMining.xnb</DestFile>
-  <DestTime>2019-08-31T15:57:02.0134468-07:00</DestTime>
+  <DestTime>2019-09-02T10:29:26.8563469-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
