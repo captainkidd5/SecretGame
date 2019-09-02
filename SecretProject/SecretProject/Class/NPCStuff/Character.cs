@@ -344,7 +344,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                     if (pointCounter < currentPath.Count)
                     {
-
+                        Rectangle debugREctangle = NPCPathFindRectangle;
                         MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count-1].X * 16 + 8, currentPath[currentPath.Count -1].Y * 16 + 8, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
@@ -356,7 +356,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         this.CurrentDirection = 0;
                         if (route.StageToEndAt != CurrentStageLocation)
                         {
-
+                            
                             this.Position = new Vector2(Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
                                 Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.Y);
                             Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);

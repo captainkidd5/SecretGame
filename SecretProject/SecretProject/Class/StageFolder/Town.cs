@@ -199,16 +199,16 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
 
-                foreach(Character character in Game1.AllCharacters)
+                foreach (Character character in Game1.AllCharacters)
                 {
                     character.Update(gameTime, AllObjects, mouse);
                 }
-
+                //Game1.Kaya.Update(gameTime, AllObjects, mouse);
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
-               // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
-                  // Dobbin.MoveToTile(gameTime, new Point(23, 55));
+                // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
+                // Dobbin.MoveToTile(gameTime, new Point(23, 55));
 
-                
+
             }
             Game1.Player.controls.UpdateKeys();
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);

@@ -139,6 +139,7 @@ namespace SecretProject.Class.SpriteFolder
                 CurrentFrame = 0;
             }
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            DestinationRectangle = new Rectangle((int)position.X + OffSetX, (int)position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
         public void UpdatePlayerPartAnimations(GameTime gameTime, Vector2 position)
@@ -170,7 +171,7 @@ namespace SecretProject.Class.SpriteFolder
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
         {
             //something wrong with destination rectangle after animation
-            DestinationRectangle = new Rectangle((int)currentPosition.X + OffSetX, (int)currentPosition.Y + OffSetY, FrameWidth, FrameHeight);
+           
             spriteBatch.Draw(AtlasTexture,  new Vector2(DestinationRectangle.X, DestinationRectangle.Y),sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
