@@ -374,7 +374,7 @@ namespace SecretProject.Class.TileStuff
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-                    Portal portal = new Portal(1, 4, 0, -50, false);
+                    Portal portal = new Portal(1, 2, 0, -15, false);
 
 
             //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;

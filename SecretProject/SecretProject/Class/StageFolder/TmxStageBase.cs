@@ -273,11 +273,14 @@ namespace SecretProject.Class.StageFolder
                 if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
                 {
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
+                    {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
-                    OnSceneChanged();
-                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                    return;
+                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                        OnSceneChanged();
+                        this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                        return;
+                    }
+
                 }
                 else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
@@ -286,7 +289,6 @@ namespace SecretProject.Class.StageFolder
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
-                
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;

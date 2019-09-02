@@ -66,6 +66,7 @@ namespace SecretProject
     {
         MainMenu = 0,
         World = 1,
+        Center = 2,
         Exit = 3,
         Pass = 4,
         Town = 5,
@@ -92,6 +93,7 @@ namespace SecretProject
         public static TmxStageBase ElixirShop;
         public static TmxStageBase Pass;
         public static TmxStageBase Sanctuary;
+        public static TmxStageBase Center;
         public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -250,7 +252,8 @@ namespace SecretProject
                 case Stages.World:
                     return World;
 
-
+                case Stages.Center:
+                    return Center;
                 case Stages.Town:
                     return Town;
                 case Stages.Pass:
@@ -273,6 +276,8 @@ namespace SecretProject
             {
                 case 1:
                     return World;
+                case 2:
+                    return Center;
 
                 case 4:
                     return Pass;
@@ -296,7 +301,8 @@ namespace SecretProject
                 case Stages.World:
                     return 1;
 
-
+                case Stages.Center:
+                    return 2;
                 case Stages.Pass:
                     return 4;
                 case Stages.Town:
@@ -449,15 +455,16 @@ namespace SecretProject
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 1 };
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 5 };
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 4 };
-            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 4 };
+            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 6 };
+            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1) { StageIdentifier = 2 };
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1);
+            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1) { StageIdentifier = 9 };
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World, Sanctuary };
+            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World, Sanctuary, Center};
 
 
 
@@ -569,7 +576,19 @@ namespace SecretProject
                 float safteyX = tempPortal.SafteyOffSetX;
                 float safteyY = tempPortal.SafteyOffSetY;
                 Player.position = new Vector2(x + width + safteyX, y + safteyY);
+                //for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
+                //{
+                //    Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
+                //        (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
+                //    Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
+                //        (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
+
+                //}
+                //Player.Direction = Dir.Down;
+                //Player.SecondDirection = SecondaryDir.Down;
             }
+
+            
 
 
         }
@@ -617,6 +636,9 @@ namespace SecretProject
                 case Stages.World:
 
                     World.Update(gameTime, myMouseManager, Player);
+                    break;
+                case Stages.Center:
+                    Center.Update(gameTime, myMouseManager, Player);
                     break;
 
                 case Stages.Pass:
@@ -669,6 +691,10 @@ namespace SecretProject
                     // spriteBatch.Begin();
                     // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
                     // spriteBatch.End();
+                    break;
+                case Stages.Center:
+                    GraphicsDevice.Clear(Color.Black);
+                    Center.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.Pass:

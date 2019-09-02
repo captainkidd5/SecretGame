@@ -1031,7 +1031,7 @@
     <property name="standardTo" value="4"/>
    </properties>
   </object>
-  <object id="30" x="1930.33" y="551" width="19" height="16">
+  <object id="30" x="1939" y="530" width="19" height="16">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
