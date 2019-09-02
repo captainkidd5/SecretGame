@@ -7,7 +7,7 @@
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>11</TimeToFinish>
-      <StageToEndAt>9</StageToEndAt>
+      <StageToEndAt>5</StageToEndAt>
       <EndX>6</EndX>
       <EndY>9</EndY>
     </Item>
@@ -15,7 +15,7 @@
         <ID>2</ID>
         <TimeToStart>18</TimeToStart>
         <TimeToFinish>22</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
+         <StageToEndAt>0</StageToEndAt>
         <EndX>20</EndX>
         <EndY>25</EndY>
       </Item>

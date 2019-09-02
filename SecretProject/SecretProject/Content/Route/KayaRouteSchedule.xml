@@ -7,7 +7,7 @@
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>11</TimeToFinish>
-      <StageToEndAt>5</StageToEndAt>
+      <StageToEndAt>0</StageToEndAt>
       <EndX>15</EndX>
       <EndY>20</EndY>
     </Item>
@@ -15,7 +15,7 @@
         <ID>2</ID>
         <TimeToStart>13</TimeToStart>
         <TimeToFinish>18</TimeToFinish>
-         <StageToEndAt>4</StageToEndAt>
+         <StageToEndAt>1</StageToEndAt>
         <EndX>20</EndX>
         <EndY>20</EndY>
       </Item>
@@ -23,7 +23,7 @@
         <ID>3</ID>
         <TimeToStart>19</TimeToStart>
         <TimeToFinish>21</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
+         <StageToEndAt>0</StageToEndAt>
         <EndX>20</EndX>
         <EndY>30</EndY>
       </Item>
@@ -31,7 +31,7 @@
         <ID>4</ID>
         <TimeToStart>22</TimeToStart>
         <TimeToFinish>2</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
+         <StageToEndAt>1</StageToEndAt>
         <EndX>30</EndX>
         <EndY>15</EndY>
       </Item>
@@ -39,7 +39,7 @@
         <ID>5</ID>
         <TimeToStart>4</TimeToStart>
         <TimeToFinish>6</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
+         <StageToEndAt>1</StageToEndAt>
         <EndX>20</EndX>
         <EndY>20</EndY>
       </Item>

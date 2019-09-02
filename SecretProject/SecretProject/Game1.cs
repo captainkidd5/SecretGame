@@ -29,6 +29,7 @@ using SecretProject.Class.ShopStuff;
 using XMLData.RouteStuff;
 using XMLData.ItemStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.PathFinding;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -64,14 +65,14 @@ namespace SecretProject
 
     public enum Stages
     {
-        MainMenu = 0,
-        World = 1,
+        Town = 0,
+        Pass = 1,
         Center = 2,
-        Exit = 3,
-        Pass = 4,
-        Town = 5,
-        Sanctuary = 6,
-        ElixirShop = 9
+        World = 3,
+        Sanctuary = 4,
+        ElixirShop = 5,
+        MainMenu = 50,
+        Exit = 55
 
     }
 
@@ -190,6 +191,9 @@ namespace SecretProject
         public static Character Snaw;
         public static List<Character> AllCharacters;
 
+        //PORTALS
+        public static Graph PortalGraph;
+
 
         #endregion
 
@@ -243,6 +247,7 @@ namespace SecretProject
         }
         #endregion
 
+        
 
         public static ILocation GetCurrentStage()
         {
@@ -270,25 +275,32 @@ namespace SecretProject
             }
         }
 
+        ////Town = 0,
+        //Pass = 1,
+        //Center = 2,
+        //World = 3,
+        //Sanctuary = 4,
+        //ElixirShop = 5,
         public static ILocation GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
             {
+                case 0:
+                    return Town;
                 case 1:
-                    return World;
+                    return Pass;
                 case 2:
                     return Center;
-
+                case 3:
+                    return World;
                 case 4:
-                    return Pass;
-                case 5:
-                    return Town;
-                case 6:
                     return Sanctuary;
-                case 9:
+                case 5:
                     return ElixirShop;
+
                 default:
-                    return Town;
+                    return Sanctuary;
+
             }
 
         }
@@ -297,24 +309,24 @@ namespace SecretProject
         {
             switch (gameStages)
             {
-
-                case Stages.World:
+                case Stages.Town:
+                    return 0;
+                case Stages.Pass:
                     return 1;
-
                 case Stages.Center:
                     return 2;
-                case Stages.Pass:
-                    return 4;
-                case Stages.Town:
-                    return 5;
+
+                case Stages.World:
+                    return 3;              
+                
                 case Stages.Sanctuary:
-                    return 6;
+                    return 4;
 
                 case Stages.ElixirShop:
-                    return 9;
+                    return 5;
 
                 default:
-                    return 0;
+                    return 4;
 
             }
 
@@ -448,23 +460,39 @@ namespace SecretProject
 
             //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
 
+        //    public enum Stages
+        //{
+        //    Town = 0,
+        //    Pass = 1,
+        //    Center = 2,
+        //    World = 3,
+        //    Sanctuary = 4,
+        //    ElixirShop = 5,
+        //    MainMenu = 50,
+        //    Exit = 55
+
+        //}
 
 
-            //STAGES
-            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 1 };
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 5 };
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 4 };
-            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 6 };
+        //STAGES
+        mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 0 };
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 1 };
             Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1) { StageIdentifier = 2 };
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 3 };
+            
+           
+            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 4 };
+            
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1) { StageIdentifier = 9 };
+            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1) { StageIdentifier = 5 };
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Town, ElixirShop, Pass, World, Sanctuary, Center};
+            AllStages = new List<ILocation>() { Town,  Pass, Center, World, Sanctuary, ElixirShop, };
+            PortalGraph = new Graph(AllStages.Count);
 
 
 
