@@ -61,6 +61,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public float SoundMax { get; set; }
         public int SoundID { get; set; }
 
+        public Color DebugColor { get; set; }
+
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
         {
             this.Name = name;
@@ -72,6 +74,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
             NextPointRectangle = new Rectangle(0, 0, 16, 16);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NextPointRectangle);
+            this.DebugColor = Color.Red;
         }
 
         public virtual void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
@@ -366,7 +369,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
             for (int i = 0; i < currentPath.Count - 1; i++)
             {
-                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16));
+                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16),this.DebugColor);
             }
         }
 

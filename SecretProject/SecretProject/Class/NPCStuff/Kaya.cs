@@ -28,6 +28,7 @@ namespace SecretProject.Class.NPCStuff
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            this.DebugColor = Color.LightBlue;
             //this.CurrentStageLocation = (int)Stages.Pass;
         }
     }

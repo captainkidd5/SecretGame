@@ -35,6 +35,7 @@ namespace SecretProject.Class.NPCStuff
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
             Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            this.DebugColor = Color.HotPink;
         }
 
         public override void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
@@ -52,20 +53,9 @@ namespace SecretProject.Class.NPCStuff
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(objects, Position);
 
-            switch (CurrentDirection)
+            for (int i = 0; i < 4; i++)
             {
-                case 0:
-                    NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-                    break;
-                case 1:
-                    NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-                    break;
-                case 2:
-                    NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-                    break;
-                case 3:
-                    NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-                    break;
+                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
             if (IsMoving)
             {

@@ -75,6 +75,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
 
+        public Color DebugColor { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC)
         {
             this.Name = name;
@@ -95,6 +97,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
+            DebugColor = Color.White;
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
@@ -131,22 +134,25 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllObjects, Position);
-
-            switch (CurrentDirection)
+            for(int i = 0; i < 4; i++)
             {
-                case 0:
-                    NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-                    break;
-                case 1:
-                    NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-                    break;
-                case 2:
-                    NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-                    break;
-                case 3:
-                    NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-                    break;
+                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
+            //switch (CurrentDirection)
+            //{
+            //    case 0:
+            //        NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 1:
+            //        NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 2:
+            //        NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 3:
+            //        NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
+            //        break;
+            //}
             if (IsMoving)
             {
 
@@ -297,13 +303,15 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             new Point(1,1)
         };
 
+
+
         public void MoveToTile(GameTime gameTime, Route route)
         {
             if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
                 Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             {
 
-                if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)))
+                if (!this.NPCPathFindRectangle.Intersects(new Rectangle(route.EndX * 16, route.EndY * 16, 16, 16)))
                 {
 
 
@@ -462,11 +470,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             if(NextPointRectangleTexture != null && DebugTexture != null)
             {
                 spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
-            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: DebugColor, layerDepth: layerDepth);
 
             for (int i = 0; i < currentPath.Count - 1; i++)
             {
-                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16));
+                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16),this.DebugColor);
             }
             }
             
