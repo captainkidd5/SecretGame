@@ -140,7 +140,7 @@ namespace SecretProject.Class.PathFinding
                 var nodes = new List<Point>();
 
                 // up
-                if(node.Y > 0 && node.Y < Weight.GetLength(1) - 1)
+                if(node.Y > 0)
             {
                 if (Weight[node.X, node.Y - 1] > 0)
                 {
@@ -150,7 +150,7 @@ namespace SecretProject.Class.PathFinding
 
 
             // right
-            if (node.X > 0 && node.X < Weight.GetLength(1) - 1)
+            if (node.X < Weight.GetLength(0) - 1)
             {
 
 
@@ -161,7 +161,7 @@ namespace SecretProject.Class.PathFinding
             }
 
             // down
-            if (node.Y > 0 && node.Y < Weight.GetLength(1) - 1)
+            if (node.Y < Weight.GetLength(1) - 1)
             {
                 if (Weight[node.X, node.Y + 1] > 0)
                 {
@@ -171,7 +171,7 @@ namespace SecretProject.Class.PathFinding
 
 
             // left
-            if (node.X > 0 && node.X < Weight.GetLength(1) - 1)
+            if (node.X > 0)
             {
                 if (Weight[node.X - 1, node.Y] > 0)
                 {
