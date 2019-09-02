@@ -202,8 +202,10 @@ namespace SecretProject.Class.Playable
             MiningDown[0, 9] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 432, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000002f };
             MiningDown[0, 10] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 480, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000001f };
 
-            
+
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
+
+            //controls.SecondaryDirection = SecondaryDir.Down;
             
 
         }
