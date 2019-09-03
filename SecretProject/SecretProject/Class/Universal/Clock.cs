@@ -34,7 +34,7 @@ namespace SecretProject.Class.Universal
         public int NightTimeSoundEffectStart { get; set; } = 12;
         public int NightTimeSoundEffectEnd { get; set; } = 14;
         public bool IsNight { get; set; }
-
+        public float ClockSpeed { get; set; }
         TextBox ClockDisplay;
 
         public Clock()
@@ -44,6 +44,7 @@ namespace SecretProject.Class.Universal
             LocalTime = TimeSpan.Zero;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
+            ClockSpeed = 10f;
 
 
         }
@@ -69,7 +70,7 @@ namespace SecretProject.Class.Universal
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > 5)
+            if(LocalTime.TotalSeconds > ClockSpeed)
             {
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;

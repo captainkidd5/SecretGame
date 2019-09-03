@@ -32,7 +32,7 @@ namespace SecretProject.Class.PathFinding
                 }
             }
 
-            public List<Point> Pathfind(Point start, Point end)
+            public List<Point> Pathfind(Point start, Point end, string name)
             {
                 // nodes that have already been analyzed and have a path from the start to them
                 var closedSet = new List<Point>();
@@ -122,8 +122,8 @@ namespace SecretProject.Class.PathFinding
             //return new List<Point>() { new Point(-1, -1) };
 
             throw new Exception(
-                string.Format(
-                    "unable to find a path between {0},{1} and {2},{3}",
+                string.Format(name + 
+                    " was unable to find a path between {0},{1} and {2},{3}",
                     start.X, start.Y,
                     end.X, end.Y
                 )

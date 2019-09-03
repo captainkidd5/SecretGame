@@ -34,7 +34,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Height); } }
 
 
-        public float Speed { get; set; } = .65f; //.65
+        public float Speed { get; set; } = 3f;
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
 
@@ -311,17 +311,24 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             new Point(1,1)
         };
 
-        
+
+        int nodeToEndAt;
         public Point FindIntermediateStages(int stageFrom, int stageTo)
         {
+            nodeToEndAt = 100;
             if(PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
             {
+                nodeToEndAt = stageTo;
                 return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.X / 16,
                             Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y / 16);
             }
             else
             {
-                throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
+                int node = PortalTraverser.GetNextNodeInPath(stageFrom, stageTo);
+                nodeToEndAt = node;
+                return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node).PortalStart.X / 16,
+                             Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node).PortalStart.Y / 16);
+                //throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
             }
         }
 
@@ -342,18 +349,18 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         if (route.StageToEndAt == CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY));
+                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY), this.Name);
 
                             pathFound = true;
                         }
                         else
                         {
-                            int debugPortalStartX = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X;
-                            int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
+                            //int debugPortalStartX = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X;
+                            //int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
                             
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                              ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
-                           FindIntermediateStages(CurrentStageLocation, route.StageToEndAt));
+                           FindIntermediateStages(CurrentStageLocation, route.StageToEndAt), this.Name);
 
                             pathFound = true;
                         }
@@ -384,12 +391,23 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         this.CurrentDirection = 0;
                         if (route.StageToEndAt != CurrentStageLocation)
                         {
-                            
-                            this.Position = new Vector2(Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
+                            if(nodeToEndAt!=this.CurrentStageLocation)
+                            {
+                                this.Position = new Vector2(Game1.GetStageFromInt(nodeToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
+                                Game1.GetStageFromInt(nodeToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.Y);
+                                Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
+                                CurrentStageLocation = nodeToEndAt;
+                                Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);
+                            }
+                            else
+                            {
+                                this.Position = new Vector2(Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.X,
                                 Game1.GetStageFromInt(route.StageToEndAt).AllPortals.Find(x => x.To == CurrentStageLocation).PortalStart.Y);
-                            Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
-                            CurrentStageLocation = route.StageToEndAt;
-                            Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);
+                                Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
+                                CurrentStageLocation = route.StageToEndAt;
+                                Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);
+                            }
+
 
                         }
 

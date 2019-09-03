@@ -200,7 +200,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
                     currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                        (int)this.NPCPathFindRectangle.Y / 16), point);
+                        (int)this.NPCPathFindRectangle.Y / 16), point,this.Name);
                     if (currentPath.Contains(new Point(-1, -1)))
                     {
                        

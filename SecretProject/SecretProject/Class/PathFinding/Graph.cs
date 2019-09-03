@@ -8,7 +8,7 @@ namespace SecretProject.Class.PathFinding
 {
     public class Graph
     {
-        private List<int>[] childNodes;
+        public List<int>[] childNodes;
         public int Size { get { return this.childNodes.Length; } }
         public Graph(int size)
         {
@@ -22,7 +22,6 @@ namespace SecretProject.Class.PathFinding
         public Graph(List<int>[] childNodes)
         {
             this.childNodes = childNodes;
-            InitialVisitedArrayCreated = false;
         }
 
         public void AddEdge(int baseNode, int nodeToConnect)
@@ -47,39 +46,6 @@ namespace SecretProject.Class.PathFinding
             return childNodes[v];
         }
 
-        public bool DoesConnect(int baseNode, int nodeToConnect)
-        {
-            //if()
-            return true;
-        }
-        public bool InitialVisitedArrayCreated { get; set; }
-        bool[] visited;
-        public void TraverseGraph(int v)
-        {
-            if(!InitialVisitedArrayCreated)
-            {
-                visited = new bool[this.Size];
-                InitialVisitedArrayCreated = true;
-            }
-            if (!visited[v])
-
-            {
-
-                visited[v] = true;
-
-                foreach (int child in Game1.PortalGraph.GetSuccessors(v))
-
-                {
-
-                    TraverseGraph(child);
-
-                }
-
-            }
-
-        }
-
-        
 
     }
 }
