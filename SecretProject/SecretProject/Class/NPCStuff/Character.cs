@@ -123,6 +123,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         }
 
         //for normal, moving NPCS
+        #region UPDATE METHODS
         public virtual void Update(GameTime gameTime, Dictionary<float, ObjectBody> objects, MouseManager mouse)
         {
             if (this.IsBasicNPC)
@@ -146,21 +147,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
-            //switch (CurrentDirection)
-            //{
-            //    case 0:
-            //        NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 1:
-            //        NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 2:
-            //        NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 3:
-            //        NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-            //        break;
-            //}
+
             if (IsMoving)
             {
 
@@ -198,7 +185,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
 
         }
-
+        #endregion
+        #region SPEECH
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
             if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
@@ -241,31 +229,9 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
             }
         }
-
-        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
-        {
-
-            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X, NPCPathFindRectangle.Y) + new Vector2((float).0000000001, (float).0000000001)));
-            //if (!(System.Single.IsNaN(direction.X) || System.Single.IsNaN(direction.Y)))
-            //{
-            this.DirectionVector = direction;
-            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(rectangle.X, rectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, rectangle.Width, rectangle.Height)))
-            {
-                Position += (direction * Speed) * PrimaryVelocity;
-                IsMoving = true;
-            }
-            else
-            {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-                IsMoving = false;
-            }
-            // }
-
-
-
-
-        }
-
+        #endregion
+        
+        #region PLAYER DIRECTION
         public void UpdateDirectionVector(Vector2 positionToFace)
         {
             Vector2 direction = Vector2.Normalize(positionToFace - Position);
@@ -302,6 +268,20 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 CurrentDirection = 0;
             }
         }
+        #endregion
+
+        #region SCHEDULE AND PATHFINDING
+        public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
+        {
+            for (int i = 0; i < routeSchedule.Routes.Count; i++)
+            {
+
+                MoveToTile(gameTime, this.RouteSchedule.Routes[i]);
+
+            }
+
+        }
+       
         float timeBetweenJumps = .4f;
         int pointCounter = 0;
         bool pathFound = false;
@@ -357,10 +337,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         {
                             //int debugPortalStartX = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X;
                             //int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
-                            
+                            Point testPoint = FindIntermediateStages(CurrentStageLocation, route.StageToEndAt);
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                              ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
-                           FindIntermediateStages(CurrentStageLocation, route.StageToEndAt),this.Name);
+                           testPoint,this.Name);
 
                             pathFound = true;
                         }
@@ -418,7 +398,27 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             
 
         }
+        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
+        {
 
+            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X, NPCPathFindRectangle.Y) + new Vector2((float).0000000001, (float).0000000001)));
+
+            this.DirectionVector = direction;
+            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(rectangle.X, rectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, rectangle.Width, rectangle.Height)))
+            {
+                Position += (direction * Speed) * PrimaryVelocity;
+                IsMoving = true;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                IsMoving = false;
+            }
+
+        }
+        #endregion
+
+        #region DRAW METHODS
         public void DrawBasicNPC(SpriteBatch spriteBatch)
         {
             if (!DisableInteractions)
@@ -458,17 +458,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
 
         }
+        #endregion
+        
 
-        public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
-        {
-            for (int i = 0; i < routeSchedule.Routes.Count; i++)
-            {
-
-                MoveToTile(gameTime, this.RouteSchedule.Routes[i]);
-
-            }
-
-        }
+        #region DEBUG
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {
             var Colors = new List<Color>();
@@ -512,6 +505,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
             //spriteBatch.Draw(NextPointTexture, DebugNextPoint, color: Color.Blue, layerDepth: layerDepth);
         }
+        #endregion
 
     }
 }
