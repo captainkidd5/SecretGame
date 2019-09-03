@@ -213,7 +213,11 @@ namespace SecretProject.Class.TileStuff
 
                 currentStage.AllPortals.Add(portal);
  
+                if(!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+                {
                     Game1.PortalGraph.AddEdge(portal.From, portal.To);
+                }
+                   
                 
                 
             }

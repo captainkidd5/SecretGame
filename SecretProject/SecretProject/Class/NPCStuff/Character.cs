@@ -12,7 +12,9 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ObjectFolder;
+using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
@@ -75,6 +77,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
 
+        public GraphTraverser PortalTraverser { get; set; }
+
+
+
         public Color DebugColor { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC)
@@ -98,6 +104,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             DebugColor = Color.White;
+            this.PortalTraverser = new GraphTraverser(Game1.PortalGraph);
+            
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
@@ -303,6 +311,19 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             new Point(1,1)
         };
 
+        
+        public Point FindIntermediateStages(int stageFrom, int stageTo)
+        {
+            if(PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
+            {
+                return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.X / 16,
+                            Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y / 16);
+            }
+            else
+            {
+                throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
+            }
+        }
 
 
         public void MoveToTile(GameTime gameTime, Route route)
@@ -332,8 +353,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                             
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                              ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
-                            new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X / 16,
-                            Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y / 16));
+                           FindIntermediateStages(CurrentStageLocation, route.StageToEndAt));
 
                             pathFound = true;
                         }
