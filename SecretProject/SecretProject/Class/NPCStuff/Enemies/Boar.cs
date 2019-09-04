@@ -39,21 +39,25 @@ namespace SecretProject.Class.NPCStuff.Enemies
             Collider.Velocity = this.PrimaryVelocity;
             this.CollideOccured = Collider.DidCollide(objects, Position);
 
-            switch (CurrentDirection)
+            for (int i = 0; i < 4; i++)
             {
-                case 0:
-                    NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-                    break;
-                case 1:
-                    NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-                    break;
-                case 2:
-                    NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-                    break;
-                case 3:
-                    NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-                    break;
+                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
+            //switch (CurrentDirection)
+            //{
+            //    case 0:
+            //        NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 1:
+            //        NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 2:
+            //        NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
+            //        break;
+            //    case 3:
+            //        NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
+            //        break;
+            //}
             if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
                 mouse.ChangeMouseTexture(200);

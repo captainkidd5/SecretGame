@@ -591,16 +591,7 @@ namespace SecretProject
                 float safteyY = tempPortal.SafteyOffSetY;
                 Player.position = new Vector2(x + width + safteyX, y + safteyY);
                 Player.UpdateMovementAnimationsOnce(gameTime);
-                //for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
-                //{
-                //    Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
-                //        (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
-                //    Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
-                //        (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
 
-                //}
-                //Player.Direction = Dir.Down;
-                //Player.SecondDirection = SecondaryDir.Down;
             }
 
             
@@ -614,7 +605,6 @@ namespace SecretProject
 
             ToggleFullScreen = true;
         }
-        //public 
 
         #region UPDATE
         protected override void Update(GameTime gameTime)
