@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/stoneStep.wav</SourceFile>
-  <SourceTime>2019-09-02T10:25:59.4215024-07:00</SourceTime>
+  <SourceTime>2019-09-03T13:12:24.5059647-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/SoundEffects/stoneStep.xnb</DestFile>
-  <DestTime>2019-09-02T10:29:32.0643726-07:00</DestTime>
+  <DestTime>2019-09-03T13:26:57.6308648-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -421,6 +421,11 @@
    <object id="2" x="3" y="4" width="10" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="1790">
+  <properties>
+   <property name="action" value="sanctuaryAdd,"/>
+  </properties>
+ </tile>
  <tile id="1848">
   <objectgroup draworder="index">
    <object id="1" x="2" y="4" width="11" height="8"/>

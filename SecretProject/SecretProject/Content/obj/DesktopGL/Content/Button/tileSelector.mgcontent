@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/tileSelector.png</SourceFile>
-  <SourceTime>2019-09-02T10:25:59.1541251-07:00</SourceTime>
+  <SourceTime>2019-09-03T13:12:24.3618437-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Button/tileSelector.xnb</DestFile>
-  <DestTime>2019-09-02T10:29:18.74109-07:00</DestTime>
+  <DestTime>2019-09-03T13:26:44.8991343-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

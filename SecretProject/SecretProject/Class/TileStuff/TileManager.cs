@@ -1411,9 +1411,6 @@ namespace SecretProject.Class.TileStuff
             ReplaceTilePermanent(layer, oldX, oldY, 0, world);
 
 
-
-
-
         }
 
         //specify which animations you want to use depending on where the player is in relation to the object
@@ -1421,17 +1418,6 @@ namespace SecretProject.Class.TileStuff
         public void InteractWithPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, Rectangle destinationRectangle, float delayTimer = 0f)
         {
 
-
-            //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
-            //{
-            //    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-            //    for (int i = 0; i < mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
-            //    {
-            //        frames.Add(new EditableAnimationFrame(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
-            //    }
-            //    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, AllTiles[layer][oldX, oldY].GID);
-            //    this.AnimationFrames.Add(AllTiles[layer][oldX, oldY].GetTileObjectKey(), frameHolder);
-            //}
 
 
             if (Game1.Player.Position.Y < destinationRectangle.Y - 30)
