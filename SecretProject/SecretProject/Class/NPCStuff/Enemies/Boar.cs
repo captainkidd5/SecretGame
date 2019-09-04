@@ -43,21 +43,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
-            //switch (CurrentDirection)
-            //{
-            //    case 0:
-            //        NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 1:
-            //        NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 2:
-            //        NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 3:
-            //        NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-            //        break;
-            //}
+
             if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
                 mouse.ChangeMouseTexture(200);

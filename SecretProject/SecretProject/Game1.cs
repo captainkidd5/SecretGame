@@ -490,17 +490,17 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(2, 1);
             ToolShop.ShopMenu.TryAddStock(122, 1);
             ToolShop.ShopMenu.TryAddStock(124, 1);
-            ToolShop.ShopMenu.TryAddStock(125, 1);
-            ToolShop.ShopMenu.TryAddStock(127, 1);
+            ToolShop.ShopMenu.TryAddStock(172, 5);
+            ToolShop.ShopMenu.TryAddStock(173, 5);
             ToolShop.ShopMenu.TryAddStock(128, 100);
-            ToolShop.ShopMenu.TryAddStock(141, 1);
+            ToolShop.ShopMenu.TryAddStock(220, 5);
             ToolShop.ShopMenu.TryAddStock(143, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
             ToolShop.ShopMenu.TryAddStock(145, 1);
-            ToolShop.ShopMenu.TryAddStock(165, 1);
+            ToolShop.ShopMenu.TryAddStock(165, 1); 
             ToolShop.ShopMenu.TryAddStock(167, 100); //bloodcorn seeds
-            ToolShop.ShopMenu.TryAddStock(171, 1);
-            ToolShop.ShopMenu.TryAddStock(181, 1);
+            ToolShop.ShopMenu.TryAddStock(231, 5);
+            ToolShop.ShopMenu.TryAddStock(221, 5);
             ToolShop.ShopMenu.TryAddStock(191, 1);
             ToolShop.ShopMenu.TryAddStock(123, 10);
 

@@ -48,6 +48,15 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>TurquoiseAxe</Name>
+<ID>20</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>50</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNest</Name>
 <ID>122</ID>
 <InvMaximum>99</InvMaximum>
@@ -201,6 +210,15 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>ThunderBirchSeed</Name>
+<ID>162</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>8</TextureRow>
+<Price>1</Price>
+<Plantable>true</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>FishBones</Name>
 <ID>163</ID>
 <InvMaximum>99</InvMaximum>
@@ -246,6 +264,33 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>ElmWoodSeed</Name>
+<ID>172</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>1</Price>
+<Plantable>true</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Turquoise</Name>
+<ID>173</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>100</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>PieDish</Name>
+<ID>175</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>15</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloodCorn</Name>
 <ID>177</ID>
 <InvMaximum>99</InvMaximum>
@@ -264,21 +309,39 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Clay</Name>
-<ID>183</ID>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>3</Price>
-<Plantable>false</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dandelion</Name>
 <ID>191</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>10</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Clay</Name>
+<ID>220</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>13</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>3</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>SteelSlag</Name>
+<ID>221</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>13</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>70</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>SteelIngot</Name>
+<ID>231</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>14</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>70</Price>
 <Plantable>false</Plantable>
 </Item>
 </AllItems>

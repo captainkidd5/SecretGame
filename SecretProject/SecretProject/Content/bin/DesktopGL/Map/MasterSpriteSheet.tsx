@@ -20,7 +20,7 @@
   <properties>
    <property name="AssociatedTiles" value="191"/>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="171:100:1"/>
+   <property name="loot" value="177:100:1"/>
   </properties>
  </tile>
  <tile id="361">
