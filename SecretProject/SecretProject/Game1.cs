@@ -517,6 +517,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(171, 1);
             ToolShop.ShopMenu.TryAddStock(181, 1);
             ToolShop.ShopMenu.TryAddStock(191, 1);
+            ToolShop.ShopMenu.TryAddStock(123, 10);
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
             DobbinShop.ShopMenu.TryAddStock(128, 10);

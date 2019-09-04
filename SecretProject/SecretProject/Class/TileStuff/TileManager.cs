@@ -941,6 +941,10 @@ namespace SecretProject.Class.TileStuff
                         ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
 
                         Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 10, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10);
+
                         Game1.SoundManager.SanctuaryAdd.Play();
                     }
                     break;

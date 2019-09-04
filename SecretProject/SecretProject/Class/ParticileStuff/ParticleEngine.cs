@@ -71,19 +71,6 @@ namespace SecretProject.Class.ParticileStuff
             }
         }
 
-        //public void InvokeParticleEngine(GameTime gameTime, float timeToInvoke, Vector2 positionToInvoke)
-        //{
-        //    EmitterLocation = positionToInvoke;
-        //    if(timeToInvoke > 0)
-        //    {
-        //        timeToInvoke -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-        //        Update();
-        //    }
-        //    else
-        //    {
-        //        particles.Clear();
-        //    }
-        //}
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
