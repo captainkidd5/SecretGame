@@ -340,7 +340,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-
+            float chanceToBeDirt = .45f;
             for (int z = 0; z < NumberOfLayers; z++)
             {
                 for (int i = 0; i < worldWidth; i++)
@@ -353,7 +353,15 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            AllTiles[z][i, j] = new Tile(i, j, 1005, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            if(Game1.Utility.RFloat(0,1) > chanceToBeDirt)
+                            {
+                                AllTiles[z][i, j] = new Tile(i, j, 1005, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            }
+                            else
+                            {
+                                AllTiles[z][i, j] = new Tile(i, j, 1116, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            }
+                            
                         }
 
 
