@@ -153,7 +153,7 @@ namespace SecretProject.Class.StageFolder
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
                         OnSceneChanged();
                         this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                         return;
@@ -162,7 +162,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
                     OnSceneChanged();
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
@@ -188,7 +188,7 @@ namespace SecretProject.Class.StageFolder
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
-                Game1.SwitchStage(5, 4);
+                Game1.SwitchStage(5, 4, gameTime);
                 return;
             }
 

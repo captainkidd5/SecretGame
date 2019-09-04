@@ -367,7 +367,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 24, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
@@ -457,21 +457,6 @@ namespace SecretProject
 
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
-
-            //Sea = new Sea(graphics.GraphicsDevice, myMouseManager, cam, userInterface, Player, AllTextures.Sea, AllTextures.MasterTileSet, 0);
-
-        //    public enum Stages
-        //{
-        //    Town = 0,
-        //    Pass = 1,
-        //    Center = 2,
-        //    World = 3,
-        //    Sanctuary = 4,
-        //    ElixirShop = 5,
-        //    MainMenu = 50,
-        //    Exit = 55
-
-        //}
 
 
         //STAGES
@@ -583,7 +568,7 @@ namespace SecretProject
 
 
 
-        public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
+        public static void SwitchStage(int currentStage, int stageToSwitchTo, GameTime gameTime,Portal portal = null)
         {
 
 
@@ -605,6 +590,7 @@ namespace SecretProject
                 float safteyX = tempPortal.SafteyOffSetX;
                 float safteyY = tempPortal.SafteyOffSetY;
                 Player.position = new Vector2(x + width + safteyX, y + safteyY);
+                Player.UpdateMovementAnimationsOnce(gameTime);
                 //for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
                 //{
                 //    Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),

@@ -103,8 +103,6 @@ namespace SecretProject.Class.Playable
         //1 for normal, 2 for ship
         public int GameMode { get; set; } = 1;
 
-
-        [XmlIgnore]
         public Texture2D BigHitBoxRectangleTexture;
         public Texture2D LittleHitBoxRectangleTexture;
 
@@ -342,9 +340,20 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        public void UpdateMovementAnimationsOnce(GameTime gameTime)
+        {
+            for (int i = 0; i < animations.GetLength(0); i++)
+            {
+                for (int j = 0; j < animations.GetLength(1); j++)
+                {
+                    animations[i, j].UpdateAnimations(gameTime, this.position);
+                }
+            }
+        }
+
         public void Update(GameTime gameTime, List<Item> items, Dictionary<float, ObjectBody> objects, MouseManager mouse)
         {
-            //this.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, this.Inventory, mouse);
+
             if (Activate)
             {
                 if (GameMode == 1)
@@ -354,8 +363,6 @@ namespace SecretProject.Class.Playable
                     KeyboardState kState = Keyboard.GetState();
                     float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                    //animation set changes depending on which key is pressed, as shown in playercontrols
-                    //PlayerMovementAnimations = animations[(int)controls.Direction];
 
                     for (int i = 0; i < animations.GetLength(1); i++)
                     {
@@ -394,10 +401,17 @@ namespace SecretProject.Class.Playable
 
                     if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
                     {
-                        for(int i =0; i < PlayerMovementAnimations.GetLength(0); i++)
+                        for(int i = 0; i < animations.GetLength(0); i++)
                         {
-                            PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
+                            for(int j = 0; j < animations.GetLength(1); j++)
+                            {
+                                animations[i, j].UpdateAnimations(gameTime, this.position);
+                            }
                         }
+                        //for(int z =0; z < PlayerMovementAnimations.GetLength(0); z++)
+                        //{
+                        //    PlayerMovementAnimations[z].UpdateAnimations(gameTime, this.Position);
+                        //}
                         
                     }
                     else if (CurrentAction[0,0].IsAnimated == true)
@@ -406,12 +420,14 @@ namespace SecretProject.Class.Playable
                         //CurrentAction.PlayOnce(gameTime, Position);
 
                     }
-                    else if (CurrentAction[0, 0].IsAnimated == false && controls.IsMoving == false)
+
+                    else if (!CurrentAction[0, 0].IsAnimated && !controls.IsMoving)
                     {
                         for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                         {
                             PlayerMovementAnimations[i].SetFrame(0);
                         }
+                        
                     }
 
 
@@ -470,8 +486,6 @@ namespace SecretProject.Class.Playable
                                 {
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
                                 }
-                                //PlayerMovementAnimations = animations[(int)Dir.Left];
-                                // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
 
                                 for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                                 {
@@ -484,8 +498,8 @@ namespace SecretProject.Class.Playable
                                 {
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
                                 }
-                                // PlayerMovementAnimations.AnimationSpeed = PlayerMovementAnimations.AnimationSpeed - this.Speed1;
-                                //PlayerMovementAnimations = animations[(int)Dir.Down];
+
+
 
                                 for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                                 {
@@ -499,16 +513,11 @@ namespace SecretProject.Class.Playable
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
                                 }
 
-                                //PlayerMovementAnimations = animations[(int)Dir.Up];
-
                                 for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                                 {
                                     PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
                                 }
                                 break;
-                            // case SecondaryDir.None:
-
-
 
                             default:
                                 break;
