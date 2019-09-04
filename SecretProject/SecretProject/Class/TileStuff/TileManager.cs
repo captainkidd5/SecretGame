@@ -377,7 +377,7 @@ namespace SecretProject.Class.TileStuff
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-            Portal portal = new Portal(3, 2, 0, -15, false);
+            Portal portal = new Portal(3, 2, 0, -50, false);
 
 
             //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;
@@ -901,7 +901,7 @@ namespace SecretProject.Class.TileStuff
                                                 }
 
                                             }
-                                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
+                                            else if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
                                             {
                                                 if (mouse.IsClicked)
                                                 {

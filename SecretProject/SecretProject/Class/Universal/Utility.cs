@@ -83,6 +83,7 @@ namespace SecretProject.Class.Universal
             string[] commaPairs = lootstring.Split(',');
             int[] Ids = new int[commaPairs.Length];
             int[] probabilitys = new int[commaPairs.Length];
+            int[] numberToSpawn = new int[commaPairs.Length];
             List<Loot> lootToReturn = new List<Loot>();
             for (int i = 0; i < commaPairs.Length; i++)
             {
@@ -90,7 +91,11 @@ namespace SecretProject.Class.Universal
 
                 Ids[i] = int.Parse(commaPairs[i].Split(':')[0]);
                 probabilitys[i] = int.Parse(commaPairs[i].Split(':')[1]);
-                lootToReturn.Add(new Loot() { ID = Ids[i], Probability = probabilitys[i] });
+                for(int j = 0; j < int.Parse(commaPairs[i].Split(':')[2]); j++)
+                {
+                    lootToReturn.Add(new Loot() { ID = Ids[i], Probability = probabilitys[i] });
+                }
+                
             }
             return lootToReturn;
         }
