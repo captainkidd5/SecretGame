@@ -8,13 +8,52 @@ namespace SecretProject.Class.TileStuff
 {
     public static class ProceduralUtility
     {
-        public static void DoSimulation(List<Tile[,]> tiles)
+        public static Tile[,] DoSimulation(Tile[,] tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
         {
-            List<Tile[,]> newTiles = new List<Tile[,]>();
+            Tile[,] newTiles = new Tile[worldWidth, worldHeight];
+            for(int i =0; i < newTiles.GetLength(0); i++)
+            {
+                for(int j =0; j < newTiles.GetLength(1); j++)
+                {
+                    newTiles[i, j] = new Tile(i, j, 1106, tileSetWide, tileSetHigh, worldWidth, worldHeight);
+                }
+            }
+
+            for(int i =0; i < newTiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < newTiles.GetLength(1); j++)
+                {
+                    int nbs = CountAliveNeighbors(tiles, 0, i, j);
+                    if(tiles[i,j].GID != 1137)
+                    {
+                        if(nbs < 3)
+                        {
+                            newTiles[i, j].GID = 1106;
+                        }
+                        else
+                        {
+                            newTiles[i, j].GID = 1139;
+                        }
+                    }
+                    else
+                    {
+                        if(nbs > 4)
+                        {
+                            newTiles[i, j].GID = 1139;
+
+                        }
+                        else
+                        {
+                            newTiles[i, j].GID = 1106;
+                        }
+                    }
+                }
+            }
+            return newTiles;
 
         }
 
-        public static void CountAliveNeighbors(List<Tile[,]> tiles,int layer, int x, int y)
+        public static int CountAliveNeighbors(Tile[,] tiles,int layer, int x, int y)
         {
             int count = 0;
             for(int i =-1; i < 2; i++)
@@ -28,14 +67,18 @@ namespace SecretProject.Class.TileStuff
                     {
 
                     }
-                    else if (neighborX < 0 || neighborY < 0 || neighborX >= tiles[layer].GetLength(0) || neighborY >= tiles[layer].GetLength(1))
+                    else if (neighborX < 0 || neighborY < 0 || neighborX >= tiles.GetLength(0) || neighborY >= tiles.GetLength(1))
                     {
                         count++;
 
                     }
-                    else if(tiles[layer][neighborX][neighborY])
+                    else if(tiles[neighborX,neighborY].GID == 1105 )
+                    {
+                        count++;
+                    }
                 }
             }
+            return count;
         }
     }
 }

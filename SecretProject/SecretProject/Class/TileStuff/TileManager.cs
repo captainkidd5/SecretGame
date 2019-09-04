@@ -351,25 +351,30 @@ namespace SecretProject.Class.TileStuff
                         {
                             AllTiles[z][i, j] = new Tile(i, j, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                         }
+ 
                         else
                         {
                             if(Game1.Utility.RFloat(0,1) > chanceToBeDirt)
                             {
-                                AllTiles[z][i, j] = new Tile(i, j, 1005, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                                AllTiles[z][i, j] = new Tile(i, j, 1106, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                             }
                             else
                             {
-                                AllTiles[z][i, j] = new Tile(i, j, 1116, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                                AllTiles[z][i, j] = new Tile(i, j, 1138, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                             }
                             
                         }
-
 
 
                     }
                 }
 
             }
+            for(int i =0; i < 4; i++)
+            {
+                AllTiles[0] = ProceduralUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+            }
+            
 
             //for (int i = 0; i < Map.ObjectGroups["Portal"].Objects.Count; i++)
             //    {
