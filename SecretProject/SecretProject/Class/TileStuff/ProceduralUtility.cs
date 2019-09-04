@@ -24,7 +24,7 @@ namespace SecretProject.Class.TileStuff
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
                     int nbs = CountAliveNeighbors(tiles, 0, i, j);
-                    if(tiles[i,j].GID != 1137)
+                    if(tiles[i,j].GID != 1115)
                     {
                         if(nbs < 3)
                         {
@@ -32,14 +32,14 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            newTiles[i, j].GID = 1139;
+                            newTiles[i, j].GID = 1116;
                         }
                     }
                     else
                     {
                         if(nbs > 4)
                         {
-                            newTiles[i, j].GID = 1139;
+                            newTiles[i, j].GID = 1116;
 
                         }
                         else

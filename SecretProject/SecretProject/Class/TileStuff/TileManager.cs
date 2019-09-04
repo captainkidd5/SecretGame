@@ -360,7 +360,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                AllTiles[z][i, j] = new Tile(i, j, 1138, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                                AllTiles[z][i, j] = new Tile(i, j, 1116, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                             }
                             
                         }
@@ -370,33 +370,17 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-            for(int i =0; i < 4; i++)
+            for(int i =0; i < 5; i++)
             {
                 AllTiles[0] = ProceduralUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
             
 
-            //for (int i = 0; i < Map.ObjectGroups["Portal"].Objects.Count; i++)
-            //    {
-            //        string keyFrom;
-            //        string keyTo;
-            //        string safteyX;
-            //        string safteyY;
-            //        string click;
 
-
-            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardFrom", out keyFrom);
-            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("standardTo", out keyTo);
-            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
-            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
-            //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
             Portal portal = new Portal(3, 2, 0, -50, false);
 
 
-            //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;
-            //        int portalY = (int)Map.ObjectGroups["Portal"].Objects[i].Y;
-            //        int portalWidth = (int)Map.ObjectGroups["Portal"].Objects[i].Width;
-            //        int portalHeight = (int)Map.ObjectGroups["Portal"].Objects[i].Height;
+
 
             portal.PortalStart = new Rectangle(mapWidth / 2, mapHeight - 100, 100, 50);
 
