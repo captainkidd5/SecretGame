@@ -431,7 +431,7 @@
  </tile>
  <tile id="1790">
   <properties>
-   <property name="action" value="sanctuaryAdd,123"/>
+   <property name="action" value="sanctuaryAdd,123,0,0"/>
    <property name="idleStart" value=""/>
    <property name="spawnWith" value="1690"/>
   </properties>

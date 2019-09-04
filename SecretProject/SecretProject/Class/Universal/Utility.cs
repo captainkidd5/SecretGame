@@ -157,6 +157,17 @@ namespace SecretProject.Class.Universal
 
             return numsToReturn;
         }
+
+        public string[] GetActionHelperInfo(string info)
+        {
+            string[] infoToReturn = new string[4];
+            infoToReturn[0] = info.Split(',')[0];
+            infoToReturn[1] = info.Split(',')[0];
+            infoToReturn[2] = info.Split(',')[0];
+            infoToReturn[3] = info.Split(',')[0];
+
+            return infoToReturn;
+        }
         #endregion
 
         #region LINEUTILITY
