@@ -948,32 +948,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.SanctuaryAdd.Play();
                     }
                     break;
-                    //if (AllTiles[z][i, j].GID == 4654)
-                    //{
-                    //    ReplaceTilePermanent(1, i, j, 4657);
 
-                    //    ReplaceTilePermanent(1, i - 1, j, 4658);
-                    //    AllTiles[z][i, j - 2].IsAnimating = true;
-                    //    AllTiles[z][i, j - 2].Kill = false;
-                    //    AllTiles[z][i, j - 2].IsFinishedAnimating = false;
-                    //    AllTiles[z][i, j - 2].IsAnimated = true;
-
-                    //}
-                    //else if (AllTiles[z][i, j].GID == 4653)
-                    //{
-                    //    ReplaceTilePermanent(1, i, j, 4656);
-
-                    //    ReplaceTilePermanent(1, i + 1, j, 4657);
-                    //    AllTiles[z][i + 1, j - 2].IsAnimating = true;
-                    //    AllTiles[z][i + 1, j - 2].Kill = false;
-                    //    AllTiles[z][i + 1, j - 2].IsFinishedAnimating = false;
-                    //    AllTiles[z][i + 1, j - 2].IsAnimated = true;
-
-                    //}
-
-
-
-                    break;
 
             }
         }
