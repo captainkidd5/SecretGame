@@ -22,6 +22,9 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
+    /// <summary>
+    /// background = 0, buildings = 1, midground =2, foreground =3, placement =4
+    /// </summary>
     public class TileManager : ITileManager
     {
         protected Game1 game;
@@ -47,9 +50,6 @@ namespace SecretProject.Class.TileStuff
         public int tileCounter { get; set; }
 
 
-
-
-        [XmlIgnore]
         public Tile[,] Tiles { get; set; }
 
 
@@ -57,15 +57,11 @@ namespace SecretProject.Class.TileStuff
         public bool isPlacement { get; set; } = false;
 
         public bool isInClickingRangeOfPlayer = false;
-
-        [XmlIgnore]
         ContentManager content;
-        [XmlIgnore]
+
         GraphicsDevice graphicsDevice;
 
         public int ReplaceTileGid { get; set; }
-
-        // List<TmxObject> tileObjects;
 
         public int CurrentIndexX { get; set; }
         public int CurrentIndexY { get; set; }
@@ -77,9 +73,6 @@ namespace SecretProject.Class.TileStuff
 
         public float Depth { get; set; }
 
-        /// <summary>
-        /// background = 0, buildings = 1, midground =2, foreground =3, placement =4
-        /// </summary>
         public int LayerIdentifier { get; set; }
 
         public List<TmxLayer> AllLayers;
@@ -102,7 +95,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        #region CONSTRUCTOR
+        #region CONSTRUCTORS
 
         private TileManager()
         {
@@ -187,6 +180,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            #region PORTALS
             for (int i = 0; i < mapName.ObjectGroups["Portal"].Objects.Count; i++)
             {
                 string keyFrom;
@@ -212,31 +206,31 @@ namespace SecretProject.Class.TileStuff
                 portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
 
                 currentStage.AllPortals.Add(portal);
- 
-                if(!Game1.PortalGraph.HasEdge(portal.From, portal.To))
+
+                if (!Game1.PortalGraph.HasEdge(portal.From, portal.To))
                 {
                     Game1.PortalGraph.AddEdge(portal.From, portal.To);
                 }
-                   
-                
-                
-            }
 
+            }
+            #endregion
+
+            #region RANDOMGENERATETILES
             //specify GID which is 1 larger than one on tileset, idk why
             //brown tall grass
             // GenerateTiles(3, 6394, "dirt", 2000, 0);
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0);
             //    //stone
-        //    GenerateTiles(1, 979, "dirt", 50, 0, currentStage);
+            //    GenerateTiles(1, 979, "dirt", 50, 0, currentStage);
             ////    //grass
-          //  GenerateTiles(1, 1079, "dirt", 50, 0, currentStage);
+            //  GenerateTiles(1, 1079, "dirt", 50, 0, currentStage);
             ////    //redrunestone
             //GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
             //////bluerunestone
-           // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
+            // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
-        //    GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
+            //    GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -244,10 +238,10 @@ namespace SecretProject.Class.TileStuff
             ////juicyfruit
             //GenerateTiles(1, 1586, "dirt", 500, 0);
             ////orchardTree
-         //   GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
+            //   GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
             //bubblegum
             // GenerateTiles(1, 6191, "dirt", 200, 0);
-
+            #endregion
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -272,6 +266,7 @@ namespace SecretProject.Class.TileStuff
         }
         public int NumberOfLayers { get; set; }
         //FOR PROCEDURAL
+        #region PROCEDURALGENERATION CONSTRUCTOR
         public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
         {
             this.MapName = mapName;
@@ -382,7 +377,7 @@ namespace SecretProject.Class.TileStuff
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
             //        Map.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-                    Portal portal = new Portal(3, 2, 0, -15, false);
+            Portal portal = new Portal(3, 2, 0, -15, false);
 
 
             //        int portalX = (int)Map.ObjectGroups["Portal"].Objects[i].X;
@@ -390,9 +385,9 @@ namespace SecretProject.Class.TileStuff
             //        int portalWidth = (int)Map.ObjectGroups["Portal"].Objects[i].Width;
             //        int portalHeight = (int)Map.ObjectGroups["Portal"].Objects[i].Height;
 
-                    portal.PortalStart = new Rectangle(mapWidth/2, mapHeight - 100, 100, 50);
+            portal.PortalStart = new Rectangle(mapWidth / 2, mapHeight - 100, 100, 50);
 
-                    currentStage.AllPortals.Add(portal);
+            currentStage.AllPortals.Add(portal);
             Game1.PortalGraph.AddEdge(portal.From, portal.To);
             //    }
 
@@ -445,7 +440,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-
+        #endregion
         #endregion
         public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer, int oldX, int oldY, ILocation stage)
         {
@@ -806,11 +801,11 @@ namespace SecretProject.Class.TileStuff
                                 AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1,
                                     this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(this.mapWidth, this.mapHeight));
-                                if(MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
                                     Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage());
                                 }
-                                
+
                             }
                         }
 
@@ -1017,7 +1012,7 @@ namespace SecretProject.Class.TileStuff
             {
                 endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 1;
             }
-            if(startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > mapWidth || endj > mapHeight)
+            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > mapWidth || endj > mapHeight)
             {
                 return;
             }
@@ -1058,9 +1053,9 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                            if(Game1.GetCurrentStage().ShowBorders && z == 1)
+                            if (Game1.GetCurrentStage().ShowBorders && z == 1)
                             {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle,Color.Red,
+                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.Red,
                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
                             }
                             else
@@ -1068,10 +1063,10 @@ namespace SecretProject.Class.TileStuff
                                 spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
                             }
-                            
+
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin,.25f, SpriteEffects.None, 1f);
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
                             }
 
@@ -1105,29 +1100,6 @@ namespace SecretProject.Class.TileStuff
             //AllTiles[layer][x, y] = new Tile(x, y, AllTiles[layer][x, y].GID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
         }
 
-
-        public void ReplaceTileTemporary(int layer, int oldX, int oldY, int GID, float colorMultiplier, int xArrayLength, int yArrayLength)
-        {
-            if (TempTile != null)
-            {
-                if (AllTiles[layer][CurrentIndexX, CurrentIndexY] == AllTiles[layer][OldIndexX, OldIndexY])
-                {
-                    AllTiles[layer][OldIndexX, OldIndexY].GID = 1;
-                }
-            }
-
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, GID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
-
-            TempTile = AllTiles[layer][oldX, oldY];
-
-            AllTiles[layer][oldX, oldY] = ReplaceMenttile;
-            // tiles[oldX, oldY].IsTemporary = true;
-
-            OldIndexX = oldX;
-            OldIndexY = oldY;
-
-            //  AddTemporaryTiles(TempTile);
-        }
 
         //Basic Replacement.
         public void ReplaceTileWithNewTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
@@ -1220,50 +1192,12 @@ namespace SecretProject.Class.TileStuff
 
                     }
                     break;
-
             }
-
-
         }
 
-        //must be a building tile
         public void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world)
         {
 
-
-            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("portal"))
-            {
-                switch (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["portal"])
-                {
-                    case ("lodgeInterior"):
-                        {
-                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                            Game1.Player.controls.Direction = Dir.Up;
-                            Game1.gameStages = Stages.World;
-                            Game1.Player.position.X = 878;
-                            Game1.Player.position.Y = 809;
-                            break;
-                        }
-                    case ("elixirShop"):
-                        {
-                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                            Game1.Player.controls.Direction = Dir.Up;
-                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 9);
-                            Game1.Player.position.X = 878;
-                            Game1.Player.position.Y = 809;
-                            break;
-                        }
-                }
-
-                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["portal"] == "lodgeInterior" && Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
-                {
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                    Game1.Player.controls.Direction = Dir.Up;
-                    Game1.gameStages = Stages.World;
-                    Game1.Player.position.X = 878;
-                    Game1.Player.position.Y = 809;
-                }
-            }
             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("destructable"))
             {
                 if (!AnimationFrames.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(this.mapWidth, this.mapHeight)) && !Game1.Player.CurrentAction[0, 0].IsAnimated)
@@ -1323,12 +1257,11 @@ namespace SecretProject.Class.TileStuff
             if (tile.HitPoints < 1)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, setSoundInt, 1f);
-                //tile.IsFinishedAnimating = true;
                 if (hasSpawnTiles)
                 {
                     DestroySpawnWithTiles(tile, x, y, world);
                 }
-                if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties.ContainsKey("AssociatedTiles"))
+                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties.ContainsKey("AssociatedTiles"))
                 {
                     int[] associatedTiles = Game1.Utility.ParseSpawnsWithKey(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][x, y].GID].Properties["AssociatedTiles"]);
 
@@ -1372,8 +1305,6 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-
-        //interact without any player animations
         public void InteractWithoutPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, float delayTimer = 0f)
         {
             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
@@ -1445,8 +1376,6 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-
-
         #endregion
 
         #region DESTROYTILES
@@ -1508,6 +1437,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        #region ANIMATIONFRAMES
         public class EditableAnimationFrame
         {
             public float CurrentDuration { get; set; }
@@ -1545,9 +1475,7 @@ namespace SecretProject.Class.TileStuff
                 this.OriginalTileID = originalTileID;
             }
         }
-
-
-
     }
+    #endregion
     #endregion
 }

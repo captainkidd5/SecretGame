@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="85">
   <properties>
@@ -420,6 +420,20 @@
   <objectgroup draworder="index">
    <object id="2" x="3" y="4" width="10" height="8"/>
   </objectgroup>
+ </tile>
+ <tile id="1690">
+  <animation>
+   <frame tileid="1490" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="1790">
+  <properties>
+   <property name="action" value="sanctuaryAdd,123"/>
+   <property name="spawnWith" value="1690"/>
+  </properties>
+  <animation>
+   <frame tileid="1590" duration="100"/>
+  </animation>
  </tile>
  <tile id="1848">
   <objectgroup draworder="index">
