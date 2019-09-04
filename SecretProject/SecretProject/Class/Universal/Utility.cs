@@ -162,9 +162,9 @@ namespace SecretProject.Class.Universal
         {
             string[] infoToReturn = new string[4];
             infoToReturn[0] = info.Split(',')[0];
-            infoToReturn[1] = info.Split(',')[0];
-            infoToReturn[2] = info.Split(',')[0];
-            infoToReturn[3] = info.Split(',')[0];
+            infoToReturn[1] = info.Split(',')[1];
+            infoToReturn[2] = info.Split(',')[2];
+            infoToReturn[3] = info.Split(',')[3];
 
             return infoToReturn;
         }

@@ -883,51 +883,31 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("destructable")) //&& mapName.Tilesets[0].Tiles.ContainsKey(tiles[i, j].GID not sure what this was for.
+                                            {
+                                                Game1.Player.UserInterface.DrawTileSelector = true;
+                                                Game1.isMyMouseVisible = false;
+                                                Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
+                                                Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
+
+                                                mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
+
+                                                Game1.myMouseManager.ToggleGeneralInteraction = true;
+
+                                                if (mouse.IsClicked)
                                                 {
-                                                    Game1.Player.UserInterface.DrawTileSelector = true;
-                                                    Game1.isMyMouseVisible = false;
-                                                    Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
-                                                    Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
-
-                                                    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
-
-                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-
-                                                    if (mouse.IsClicked)
-                                                    {
-                                                        InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage());
-
-                                                    }
-
-                                                }
-                                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
-                                                {
-                                                    if(mouse.IsClicked)
-                                                    {
-                                                        ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]);
-                                                    }
-                                                    
-
+                                                    InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage());
 
                                                 }
 
-                                            
-
-                                            //if (mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
-                                            //{
-
-
-                                            //    if (int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]) >= 0 && AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
-                                            //    {
-                                            //        if (mouse.IsRightClicked)
-                                            //        {
-                                            //            ActionHelper(z, i, j, int.Parse(mapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]));
-                                            //        }
-
-                                            //    }
-                                            //}
-
+                                            }
+                                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
+                                            {
+                                                if (mouse.IsClicked)
+                                                {
+                                                    ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]);
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -944,9 +924,22 @@ namespace SecretProject.Class.TileStuff
             string[] information = Game1.Utility.GetActionHelperInfo(action);
             switch (information[0])
             {
-                //furnace
+                //including animation frame id to replace!
                 case "sanctuaryAdd":
-                    Console.WriteLine("AYeeee");
+                    if(Game1.Player.Inventory.FindNumberOfItemInInventory(int.Parse(information[1])) > 0)
+                    {
+                        
+                        if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
+                        {
+                            int newGID = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["spawnWith"]);
+                            int relationX = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationX"]);
+                            int relationY = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationY"]);
+                            int layer = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["layer"]);
+                            int tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
+                            ReplaceTileWithNewTile(layer, i + relationX, j + relationY , tileToReplaceGID);
+                        }
+                        ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
+                    }
                     break;
                     //if (AllTiles[z][i, j].GID == 4654)
                     //{
