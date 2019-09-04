@@ -881,3 +881,9 @@
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
 
+#begin SoundEffects/sanctuaryAddEffect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sanctuaryAddEffect.wav
+

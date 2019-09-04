@@ -939,6 +939,9 @@ namespace SecretProject.Class.TileStuff
                             ReplaceTileWithNewTile(layer, i + relationX, j + relationY , tileToReplaceGID);
                         }
                         ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
+
+                        Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
+                        Game1.SoundManager.SanctuaryAdd.Play();
                     }
                     break;
                     //if (AllTiles[z][i, j].GID == 4654)

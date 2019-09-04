@@ -72,6 +72,8 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect Sell1;
 
+        public SoundEffect SanctuaryAdd;
+
         public SoundBoard(Game1 game, ContentManager content)
         {
             PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -138,6 +140,7 @@ namespace SecretProject.Class.SoundStuff
             CraftMetal = content.Load<SoundEffect>("SoundEffects/metalCraft");
 
             Sell1 = content.Load<SoundEffect>("SoundEffects/sell1");
+            SanctuaryAdd = content.Load<SoundEffect>("SoundEffects/sanctuaryAddEffect");
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)
