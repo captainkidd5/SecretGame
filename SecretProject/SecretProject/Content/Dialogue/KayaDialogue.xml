@@ -7,14 +7,15 @@
     <SpeechID>1</SpeechID>
     <Day>0</Day>
     <TimeStart>9</TimeStart>
-    <TimeEnd>6</TimeEnd>
-   <TextToWrite>Have you been to the wilderness center yet?</TextToWrite>
+    <TimeEnd>20</TimeEnd>
+   <TextToWrite>Have you been to the wilderness center yet? There's definitely more to collect! You can stop by anytime to ask for help on what to do. The sanctuary door is also just to the East of here, through that tunnel yonder.
+   </TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Day>0</Day>
     <TimeStart>21</TimeStart>
-    <TimeEnd>2</TimeEnd>
+    <TimeEnd>8</TimeEnd>
    <TextToWrite>We could always use more help collecting specimens!</TextToWrite>
     </Item>
   </AllDialogue>

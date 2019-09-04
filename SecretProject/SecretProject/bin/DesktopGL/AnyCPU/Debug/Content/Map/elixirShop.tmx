@@ -39,7 +39,7 @@
  <objectgroup name="Portal">
   <object id="31" x="287" y="444" width="19" height="16">
    <properties>
-    <property name="Click" value="true"/>
+    <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-100"/>
     <property name="standardFrom" value="5"/>
