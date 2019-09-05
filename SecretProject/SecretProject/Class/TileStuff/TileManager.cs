@@ -396,7 +396,7 @@ namespace SecretProject.Class.TileStuff
             }
 
                     Portal portal = new Portal(3, 2, 0, -50, false);
-
+            TileUtility.SpawnBaseCamp(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
 
 

@@ -134,7 +134,7 @@ namespace SecretProject.Class.StageFolder
             Boars = new List<Boar>() { };
             for (int i = 1; i < 15; i++)
             {
-                Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
+              //  Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
         }
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -151,7 +151,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 2f;
+            Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -248,12 +248,12 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
 
-                for (int e = 0; e < Boars.Count; e++)
-                {
-                    Boars[e].Update(gameTime, AllObjects, mouse);
-                    //Console.WriteLine(Boars[1].cu);
-                    //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
-                }
+                //for (int e = 0; e < Boars.Count; e++)
+                //{
+                //    Boars[e].Update(gameTime, AllObjects, mouse);
+                //    //Console.WriteLine(Boars[1].cu);
+                //    //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
+                //}
                 // foreach (Character character in Game1.AllCharacters)
                 // {
                 //     character.Update(gameTime, AllObjects, mouse);
@@ -333,11 +333,11 @@ namespace SecretProject.Class.StageFolder
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
-                for (int e = 0; e < Boars.Count; e++)
-                {
-                    Boars[e].Draw(spriteBatch);
+                //for (int e = 0; e < Boars.Count; e++)
+                //{
+                //    Boars[e].Draw(spriteBatch);
 
-                }
+                //}
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {

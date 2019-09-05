@@ -48,12 +48,12 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x - 1, y].GID ))
+                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x - 1, y].GID))
                 {
                     keyToCheck += 2;
                 }
             }
-            if(keyToCheck == 15)
+            if (keyToCheck == 15)
             {
                 tiles[0][x, y].GID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count - 1)] + 1;
             }
@@ -62,7 +62,7 @@ namespace SecretProject.Class.TileStuff
                 tiles[0][x, y].GID = DirtTiling[keyToCheck] + 1;
             }
 
-            
+
         }
         #endregion
         public static Tile[,] DoSimulation(Tile[,] tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
@@ -159,5 +159,35 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+
+        public static void SpawnBaseCamp(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        {
+            //top and bottom fences
+            for (int i = 20; i < 50; i++)
+            {
+                tiles[3][i, 19].GID = 1251;
+                tiles[1][i, 20].GID = 1350;
+                tiles[3][i, 49].GID = 1251;
+                tiles[1][i, 50].GID = 1350;
+            }
+
+            //left and right fences
+            for (int i = 20; i < 50; i++)
+            {
+                tiles[1][20, i].GID = 1055;
+                tiles[1][50, i].GID = 1055;
+                //tiles[1][i, 20].GID = 1350;
+            }
+            //spawn gondola platform
+            for (int i = 25; i < 34; i++)
+            {
+                for (int j = 25; j <30; j++)
+                {
+                    tiles[1][i, j].GID = 3963;
+                }
+            }
+        }
+
+        
     }
 }
