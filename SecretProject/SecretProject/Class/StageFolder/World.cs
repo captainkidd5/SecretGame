@@ -36,6 +36,7 @@ namespace SecretProject.Class.StageFolder
         public int WorldHeight { get; set; }
         public List<Boar> Boars;
 
+        Sprite Gondola;
 
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
@@ -44,6 +45,7 @@ namespace SecretProject.Class.StageFolder
             this.TileHeight = 16;
             lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
+            Gondola = new Sprite(graphics, Game1.AllTextures.Gondola, new Rectangle(0, 0, Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height), new Vector2(Game1.Player.position.X - 300, Game1.Player.position.Y - 300), Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height);
         }
 
         
@@ -136,6 +138,7 @@ namespace SecretProject.Class.StageFolder
             {
               //  Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
+            
         }
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
@@ -151,7 +154,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 1f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -215,6 +218,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.SwitchStage(5, 4, gameTime);
                 return;
             }
+            Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y +1);
 
             TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
             TextBuilder.Update(gameTime);
@@ -327,12 +331,13 @@ namespace SecretProject.Class.StageFolder
 
                 //--------------------------------------
                 //Draw sprite list
-
+                
                 foreach (var sprite in AllSprites)
                 {
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
+                Gondola.Draw(spriteBatch, .8f);
                 //for (int e = 0; e < Boars.Count; e++)
                 //{
                 //    Boars[e].Draw(spriteBatch);

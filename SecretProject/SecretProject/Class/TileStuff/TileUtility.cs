@@ -163,7 +163,7 @@ namespace SecretProject.Class.TileStuff
         public static void SpawnBaseCamp(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
         {
             //top and bottom fences
-            for (int i = 20; i < 50; i++)
+            for (int i = worldWidth /2; i < worldWidth/2 + 50; i++)
             {
                 tiles[3][i, 19].GID = 1251;
                 tiles[1][i, 20].GID = 1350;
@@ -171,21 +171,25 @@ namespace SecretProject.Class.TileStuff
                 tiles[1][i, 50].GID = 1350;
             }
 
-            //left and right fences
-            for (int i = 20; i < 50; i++)
-            {
-                tiles[1][20, i].GID = 1055;
-                tiles[1][50, i].GID = 1055;
-                //tiles[1][i, 20].GID = 1350;
-            }
+            ////left and right fences
+            //for (int i = 20; i < worldWidth / 2 + 50; i++)
+            //{
+            //    tiles[1][worldWidth / 2, i].GID = 1055;
+            //    tiles[1][50, i].GID = 1055;
+            //    //tiles[1][i, 20].GID = 1350;
+            //}
             //spawn gondola platform
-            for (int i = 25; i < 34; i++)
-            {
-                for (int j = 25; j <30; j++)
-                {
-                    tiles[1][i, j].GID = 3963;
-                }
-            }
+            //int iCounter = 0;
+            //int jCounter = 0;
+            //for (int i = 25; i < 34; i++)
+            //{
+            //    for (int j = 25; j <30; j++)
+            //    {
+            //        tiles[1][i, j].GID = 3963 + jCounter + (iCounter*100);
+            //        jCounter++;
+            //    }
+            //    iCounter++;
+            //}
         }
 
         

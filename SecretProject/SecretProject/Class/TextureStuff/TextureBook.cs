@@ -99,6 +99,9 @@ namespace SecretProject.Class.TextureStuff
         //Debug
         public Texture2D redPixel;
 
+        //Props
+        public Texture2D Gondola;
+
 
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
@@ -166,6 +169,9 @@ namespace SecretProject.Class.TextureStuff
 
             //TORSO MINING
             TorsoBlueMining = content.Load<Texture2D>("Player/MainPlayer/Mining/TorsoMining/torsoBlueMining");
+
+            //props
+            Gondola = content.Load<Texture2D>("WorldProps/Gondola");
         }
 
 
