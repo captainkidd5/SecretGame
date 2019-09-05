@@ -28,6 +28,7 @@ namespace SecretProject.Class.Universal
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
+        public List<int> StandardGeneratableDirtTiles;
 
 
 
@@ -41,6 +42,7 @@ namespace SecretProject.Class.Universal
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
+            StandardGeneratableDirtTiles = new List<int>();
         }
 
 

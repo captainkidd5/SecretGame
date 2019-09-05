@@ -246,25 +246,25 @@
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="905">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="906">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="907">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="908">
@@ -348,25 +348,25 @@
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1005">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1006">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1007">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1008">
@@ -430,25 +430,25 @@
  <tile id="1104">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1105">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1106">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1107">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1108">
@@ -508,25 +508,25 @@
  <tile id="1204">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1205">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1206">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1207">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
   </properties>
  </tile>
  <tile id="1208">

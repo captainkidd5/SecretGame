@@ -331,6 +331,16 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Utility.GrassGeneratableTiles.Add(i);
                                 }
                                 break;
+                            case "dirtBasic":
+                                if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtGeneratableTiles.Add(i);
+                                }
+                                if (!Game1.Utility.StandardGeneratableDirtTiles.Contains(i))
+                                {
+                                    Game1.Utility.StandardGeneratableDirtTiles.Add(i);
+                                }
+                                break;
                         }
 
 

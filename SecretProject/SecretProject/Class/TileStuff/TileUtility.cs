@@ -17,14 +17,14 @@ namespace SecretProject.Class.TileStuff
 
         public static void ReassignTileForTiling(List<Tile[,]> tiles, int x, int y, int worldWidth, int worldHeight)
         {
-            if (!Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y].GID + 1))
+            if (!Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y].GID))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y - 1].GID + 1))
+                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y - 1].GID))
                 {
                     keyToCheck += 1;
                 }
@@ -32,7 +32,7 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y + 1].GID + 1))
+                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y + 1].GID))
                 {
                     keyToCheck += 8;
                 }
@@ -40,7 +40,7 @@ namespace SecretProject.Class.TileStuff
 
             if (x < worldWidth - 1)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x + 1, y].GID + 1))
+                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x + 1, y].GID))
                 {
                     keyToCheck += 4;
                 }
@@ -48,13 +48,21 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x - 1, y].GID + 1))
+                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x - 1, y].GID ))
                 {
                     keyToCheck += 2;
                 }
             }
+            if(keyToCheck == 15)
+            {
+                tiles[0][x, y].GID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count - 1)] + 1;
+            }
+            else
+            {
+                tiles[0][x, y].GID = DirtTiling[keyToCheck] + 1;
+            }
 
-            tiles[0][x, y].GID = DirtTiling[keyToCheck] + 1;
+            
         }
         #endregion
         public static Tile[,] DoSimulation(Tile[,] tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
