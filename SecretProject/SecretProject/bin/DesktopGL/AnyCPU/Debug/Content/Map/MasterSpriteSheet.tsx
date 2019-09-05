@@ -187,6 +187,41 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="705">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="706">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="707">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="709">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="710">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="711">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="712">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="778">
   <properties>
    <property name="AssociatedTiles" value="678"/>
@@ -229,6 +264,36 @@
  <tile id="907">
   <properties>
    <property name="action" value="diggable"/>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="908">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="909">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="910">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="911">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="912">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="913">
+  <properties>
    <property name="generate" value="dirt"/>
   </properties>
  </tile>
@@ -304,6 +369,16 @@
    <property name="generate" value="dirt"/>
   </properties>
  </tile>
+ <tile id="1008">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1013">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="1014">
   <properties>
    <property name="generate" value="grass"/>
@@ -376,6 +451,16 @@
    <property name="generate" value="dirt"/>
   </properties>
  </tile>
+ <tile id="1108">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1113">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="1114">
   <properties>
    <property name="generate" value="grass"/>
@@ -444,6 +529,26 @@
    <property name="generate" value="dirt"/>
   </properties>
  </tile>
+ <tile id="1208">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1209">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1210">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1213">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="1214">
   <properties>
    <property name="generate" value="grass"/>
@@ -488,6 +593,26 @@
    <property name="relationY" value="0"/>
   </properties>
  </tile>
+ <tile id="1308">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1309">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1310">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1313">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
  <tile id="1314">
   <properties>
    <property name="generate" value="grass"/>
@@ -516,6 +641,36 @@
  <tile id="1319">
   <properties>
    <property name="generate" value="grass"/>
+  </properties>
+ </tile>
+ <tile id="1408">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1409">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1410">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1411">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1412">
+  <properties>
+   <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1413">
+  <properties>
+   <property name="generate" value="dirt"/>
   </properties>
  </tile>
  <tile id="1414">

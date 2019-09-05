@@ -197,7 +197,7 @@ namespace SecretProject.Class.StageFolder
                             {
                                 if (stage == Game1.World)
                                 {
-                                    Game1.World.LoadPreliminaryContent(2);
+                                    Game1.World.LoadPreliminaryContent(1);
                                 }
                                 else
                                 {

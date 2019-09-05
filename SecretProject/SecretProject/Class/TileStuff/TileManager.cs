@@ -372,14 +372,20 @@ namespace SecretProject.Class.TileStuff
             }
             for(int i =0; i < 5; i++)
             {
-                AllTiles[0] = ProceduralUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
 
-            ProceduralUtility.PlaceChests(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
-            
+            TileUtility.PlaceChests(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
+            for (int i = 0; i < worldWidth; i++)
+            {
+                for (int j = 0; j < worldHeight; j++)
+                {
+                    TileUtility.ReassignTileForTiling(this.AllTiles, i, j, worldWidth, worldHeight);
+                }
+            }
 
-            Portal portal = new Portal(3, 2, 0, -50, false);
+                    Portal portal = new Portal(3, 2, 0, -50, false);
 
 
 
