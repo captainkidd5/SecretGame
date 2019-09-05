@@ -165,10 +165,10 @@ namespace SecretProject.Class.TileStuff
             //top and bottom fences
             for (int i = worldWidth /2; i < worldWidth/2 + 50; i++)
             {
-                tiles[3][i, 19].GID = 1251;
-                tiles[1][i, 20].GID = 1350;
-                tiles[3][i, 49].GID = 1251;
-                tiles[1][i, 50].GID = 1350;
+                tiles[3][i, worldWidth / 2].GID = 1251;
+                tiles[1][i, worldWidth / 2 + 1].GID = 1350;
+                tiles[3][i, worldWidth / 2 + 20].GID = 1251;
+                tiles[1][i, worldWidth / 2 + 21].GID = 1350;
             }
 
             ////left and right fences

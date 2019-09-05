@@ -163,6 +163,9 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.IsLoaded = true;
+
+            Game1.Player.Position = new Vector2(this.WorldWidth * 16 / 2, this.WorldHeight * 16 / 2);
+            this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
         }
 
         public override void UnloadContent()
@@ -218,7 +221,11 @@ namespace SecretProject.Class.StageFolder
                 Game1.SwitchStage(5, 4, gameTime);
                 return;
             }
-            Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y +1);
+            if(Gondola.Position != new Vector2((this.WorldWidth * 16 / 2) + 100 , (this.WorldHeight * 16 / 2) + 100))
+            {
+                Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
+            }
+            
 
             TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
             TextBuilder.Update(gameTime);

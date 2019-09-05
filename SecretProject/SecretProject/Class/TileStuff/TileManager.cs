@@ -1027,7 +1027,7 @@ namespace SecretProject.Class.TileStuff
                             float randomFloat = (float)(randomInt * .000001);
                             float layerToDrawAtZOffSet = (DestinationRectangle.Y + DestinationRectangle.Height) * .0001f + randomFloat;
 
-                            AllDepths[3] = .4f + (float)(DestinationRectangle.Bottom + DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)10000;
+                            AllDepths[3] = .4f + (float)(DestinationRectangle.Bottom + DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)100000;
 
 
 
