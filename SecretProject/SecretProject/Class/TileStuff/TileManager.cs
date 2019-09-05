@@ -374,6 +374,8 @@ namespace SecretProject.Class.TileStuff
             {
                 AllTiles[0] = ProceduralUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
+
+            ProceduralUtility.PlaceChests(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             
 
 

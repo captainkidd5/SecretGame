@@ -28,23 +28,26 @@ namespace SecretProject.Class.TileStuff
                     {
                         if(nbs < 3)
                         {
-                            newTiles[i, j].GID = 1106;
+                            newTiles[i, j].GID = newTiles[i, j].GID = Game1.Utility.DirtGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.DirtGeneratableTiles.Count - 1)] + 1;
+                            
                         }
                         else
                         {
-                            newTiles[i, j].GID = 1116;
+                            newTiles[i, j].GID = Game1.Utility.GrassGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count - 1)] + 1;
+
+
                         }
                     }
                     else
                     {
                         if(nbs > 4)
                         {
-                            newTiles[i, j].GID = 1116;
+                            newTiles[i, j].GID = Game1.Utility.GrassGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count - 1)] + 1;
 
                         }
                         else
                         {
-                            newTiles[i, j].GID = 1106;
+                            newTiles[i, j].GID = newTiles[i, j].GID = Game1.Utility.DirtGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.DirtGeneratableTiles.Count - 1)] + 1;
                         }
                     }
                 }
@@ -72,13 +75,32 @@ namespace SecretProject.Class.TileStuff
                         count++;
 
                     }
-                    else if(tiles[neighborX,neighborY].GID == 1105 )
+                    else if((Game1.Utility.DirtGeneratableTiles.Contains(tiles[neighborX, neighborY].GID)))
                     {
                         count++;
                     }
                 }
             }
             return count;
+        }
+
+        public static void PlaceChests(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        {
+            int hiddenTreasureLimit = 5;
+            for (int i = 0; i < tiles[0].GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles[0].GetLength(1); j++)
+                {
+                    if (tiles[0][i, j].GID == 1115)
+                    {
+                        int nbs = CountAliveNeighbors(tiles[0], 1, i, j);
+                        if (nbs >= hiddenTreasureLimit)
+                        {
+                            tiles[1][i, j].GID = 1852;
+                        }
+                    }
+                }
+            }
         }
     }
 }

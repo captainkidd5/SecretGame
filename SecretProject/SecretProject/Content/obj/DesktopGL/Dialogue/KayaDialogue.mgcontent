@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/KayaDialogue.xml</SourceFile>
-  <SourceTime>2019-09-03T21:34:34.8366839-07:00</SourceTime>
+  <SourceTime>2019-09-04T16:29:25.7981599-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Dialogue/KayaDialogue.xnb</DestFile>
-  <DestTime>2019-09-03T21:34:36.8565755-07:00</DestTime>
+  <DestTime>2019-09-04T16:30:36.459975-07:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

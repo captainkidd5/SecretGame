@@ -137,6 +137,30 @@ namespace SecretProject.Class.StageFolder
                 Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
         }
+        public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        {
+            RenderTarget2D lightsTarget;
+            RenderTarget2D mainTarget;
+            var pp = Graphics.PresentationParameters;
+            lightsTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+            mainTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+            List<Texture2D> particleTextures = new List<Texture2D>();
+            particleTextures.Add(Game1.AllTextures.RockParticle);
+            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+
+
+
+            this.Cam = camera;
+            Cam.Zoom = 1f;
+            Cam.pos.X = Game1.Player.position.X;
+            Cam.pos.Y = Game1.Player.position.Y;
+
+
+
+            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
+            this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
+            this.IsLoaded = true;
+        }
 
         public override void UnloadContent()
         {
@@ -357,34 +381,6 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
-        {
-            RenderTarget2D lightsTarget;
-            RenderTarget2D mainTarget;
-            var pp = Graphics.PresentationParameters;
-            lightsTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
-            mainTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
-            List<Texture2D> particleTextures = new List<Texture2D>();
-            particleTextures.Add(Game1.AllTextures.RockParticle);
-            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
-
-
-
-
-
-            this.Cam = camera;
-            Cam.Zoom = 3f;
-            Cam.pos.X = Game1.Player.position.X;
-            Cam.pos.Y = Game1.Player.position.Y;
-
-
-            //AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
-            //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
-
-            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
-            this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
-            this.IsLoaded = true;
-        }
+        
     }
 }

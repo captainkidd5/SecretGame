@@ -474,11 +474,6 @@ namespace SecretProject.Class.Playable
                                 {
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
                                 }
-
-                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                                {
-                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
-                                }
                                 break;
                             case SecondaryDir.Left:
                                 SecondaryVelocity.X = -SecondarySpeed;
@@ -487,10 +482,6 @@ namespace SecretProject.Class.Playable
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
                                 }
 
-                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                                {
-                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
-                                }
                                 break;
                             case SecondaryDir.Down:
                                 SecondaryVelocity.Y = SecondarySpeed;
@@ -500,11 +491,6 @@ namespace SecretProject.Class.Playable
                                 }
 
 
-
-                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                                {
-                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
-                                }
                                 break;
                             case SecondaryDir.Up:
                                 SecondaryVelocity.Y = -SecondarySpeed;
@@ -513,10 +499,7 @@ namespace SecretProject.Class.Playable
                                     PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
                                 }
 
-                                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                                {
-                                    PlayerMovementAnimations[i].UpdateAnimations(gameTime, this.Position);
-                                }
+
                                 break;
 
                             default:
