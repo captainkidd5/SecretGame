@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.StageFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -141,7 +144,7 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        public static void PlaceChests(List<Tile[,]> tiles,ILocation location, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
         {
             int hiddenTreasureLimit = 4;
             for (int i = 10; i < tiles[0].GetLength(0); i++)
@@ -155,6 +158,9 @@ namespace SecretProject.Class.TileStuff
                         {
                             tiles[3][i, j - 1].GID = 1753;
                             tiles[1][i, j].GID = 1853;
+                            location.AllChests.Add(tiles[1][i, j].GetTileKey(worldWidth, worldHeight), new Chest(tiles[1][i, j].GetTileKey(worldWidth, worldHeight), 3,
+                                new Vector2((tiles[1][i, j].X % worldWidth) * 16,
+                            tiles[1][i, j].Y % worldHeight) * 16));
                         }
                     }
                 }

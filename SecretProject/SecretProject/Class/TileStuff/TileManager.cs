@@ -385,7 +385,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
 
-            TileUtility.PlaceChests(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+            TileUtility.PlaceChests(AllTiles,world, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
             for (int i = 0; i < worldWidth; i++)
             {

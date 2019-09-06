@@ -116,7 +116,7 @@ namespace SecretProject.Class.StageFolder
         public ITileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
-        public Dictionary<float, Chest> AllChests { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Dictionary<float, Chest> AllChests { get; set; }
 
 
 
@@ -206,6 +206,7 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
             AllCrops = new Dictionary<float, Crop>();
+            AllChests = new Dictionary<float, Chest>();
 
             
 

@@ -122,6 +122,7 @@ namespace SecretProject.Class.StageFolder
                     break;
 
             }
+            AllChests = new Dictionary<float, Chest>();
             AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths, this);
 
             AllTiles.LoadInitialTileObjects(this);
@@ -137,6 +138,7 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * WorldWidth, TileHeight * WorldHeight);
             Map = null;
             AllCrops = new Dictionary<float, Crop>();
+            
             Boars = new List<Boar>() { };
             for (int i = 1; i < 15; i++)
             {
