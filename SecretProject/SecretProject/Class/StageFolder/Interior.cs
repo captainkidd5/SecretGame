@@ -59,6 +59,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsLoaded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Character> CharactersPresent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Dictionary<float, Chest> AllChests { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         Dictionary<float, ObjectBody> ILocation.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Dictionary<float, Crop> ILocation.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

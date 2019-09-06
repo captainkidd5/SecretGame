@@ -963,6 +963,9 @@ namespace SecretProject.Class.TileStuff
                         Game1.SoundManager.SanctuaryAdd.Play();
                     }
                     break;
+                case "chestLoot":
+
+                    break;
 
 
             }

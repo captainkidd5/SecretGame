@@ -116,6 +116,7 @@ namespace SecretProject.Class.StageFolder
         public ITileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
+        public Dictionary<float, Chest> AllChests { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 

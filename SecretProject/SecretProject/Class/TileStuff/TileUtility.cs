@@ -143,17 +143,18 @@ namespace SecretProject.Class.TileStuff
 
         public static void PlaceChests(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
         {
-            int hiddenTreasureLimit = 5;
-            for (int i = 0; i < tiles[0].GetLength(0); i++)
+            int hiddenTreasureLimit = 4;
+            for (int i = 10; i < tiles[0].GetLength(0); i++)
             {
-                for (int j = 0; j < tiles[0].GetLength(1); j++)
+                for (int j = 10; j < tiles[0].GetLength(1); j++)
                 {
                     if (tiles[0][i, j].GID == 1115)
                     {
                         int nbs = CountAliveNeighbors(tiles[0], 1, i, j);
                         if (nbs >= hiddenTreasureLimit)
                         {
-                            tiles[1][i, j].GID = 1852;
+                            tiles[3][i, j - 1].GID = 1753;
+                            tiles[1][i, j].GID = 1853;
                         }
                     }
                 }
