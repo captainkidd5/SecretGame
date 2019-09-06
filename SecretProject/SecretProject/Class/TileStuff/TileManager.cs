@@ -395,12 +395,12 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-                    Portal portal = new Portal(3, 2, 0, -50, false);
+                    Portal portal = new Portal(3, 2, 0, -50, true);
             TileUtility.SpawnBaseCamp(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
 
 
-            portal.PortalStart = new Rectangle(mapWidth / 2, mapHeight - 100, 100, 50);
+            portal.PortalStart = new Rectangle(worldWidth * 16 / 2 + 100, worldHeight * 16 / 2 + 100, 50, 50);
 
             currentStage.AllPortals.Add(portal);
             Game1.PortalGraph.AddEdge(portal.From, portal.To);

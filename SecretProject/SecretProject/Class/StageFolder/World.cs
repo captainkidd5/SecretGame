@@ -36,7 +36,7 @@ namespace SecretProject.Class.StageFolder
         public int WorldHeight { get; set; }
         public List<Boar> Boars;
 
-        Sprite Gondola;
+        public Sprite Gondola;
 
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)

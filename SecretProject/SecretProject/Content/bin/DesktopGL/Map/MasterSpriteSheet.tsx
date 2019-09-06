@@ -643,6 +643,31 @@
    <property name="generate" value="grass"/>
   </properties>
  </tile>
+ <tile id="1349">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="4" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1350">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="4" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1351">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="4" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1352">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="4" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1353">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="4" width="16" height="5"/>
+  </objectgroup>
+ </tile>
  <tile id="1408">
   <properties>
    <property name="generate" value="dirt"/>

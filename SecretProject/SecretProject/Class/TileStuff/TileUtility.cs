@@ -167,29 +167,34 @@ namespace SecretProject.Class.TileStuff
             {
                 tiles[3][i, worldWidth / 2].GID = 1251;
                 tiles[1][i, worldWidth / 2 + 1].GID = 1350;
-                tiles[3][i, worldWidth / 2 + 20].GID = 1251;
-                tiles[1][i, worldWidth / 2 + 21].GID = 1350;
+                tiles[3][i, worldWidth / 2 + 50].GID = 1251;
+                tiles[1][i, worldWidth / 2 + 51].GID = 1350;
             }
 
-            ////left and right fences
-            //for (int i = 20; i < worldWidth / 2 + 50; i++)
-            //{
-            //    tiles[1][worldWidth / 2, i].GID = 1055;
-            //    tiles[1][50, i].GID = 1055;
-            //    //tiles[1][i, 20].GID = 1350;
-            //}
+            //left and right fences
+            for (int i = worldWidth / 2; i < worldWidth / 2 + 50; i++)
+            {
+                tiles[1][worldWidth / 2, i].GID = 1055;
+                tiles[1][worldWidth / 2 + 50, i].GID = 1055;
+                //tiles[1][i, 20].GID = 1350;
+            }
             //spawn gondola platform
-            //int iCounter = 0;
-            //int jCounter = 0;
-            //for (int i = 25; i < 34; i++)
-            //{
-            //    for (int j = 25; j <30; j++)
-            //    {
-            //        tiles[1][i, j].GID = 3963 + jCounter + (iCounter*100);
-            //        jCounter++;
-            //    }
-            //    iCounter++;
-            //}
+            int iCounter = 0;
+            int jCounter = 0;
+            for (int i = worldWidth / 2 + 5; i < worldWidth / 2 + 14; i++)
+            {
+                for (int j = worldWidth / 2 + 10; j < worldWidth / 2 + 17; j++)
+                {
+                    tiles[1][i, j].GID = 3963 + jCounter + iCounter;
+                    jCounter += 100;
+                }
+                jCounter = 0;
+                if(iCounter < 8)
+                {
+                    iCounter++;
+                }
+                
+            }
         }
 
         
