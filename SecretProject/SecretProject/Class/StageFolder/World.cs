@@ -37,6 +37,10 @@ namespace SecretProject.Class.StageFolder
         public List<Boar> Boars;
 
         public Sprite Gondola;
+        public Vector2 GondolaStartingPosition;
+        public bool IsGondolaAtStartingPosition;
+        public bool IsExitingOnGondola;
+        public bool IsGondolaAtEndingPosition;
 
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
@@ -154,7 +158,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 1f;
+            Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -163,9 +167,12 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.IsLoaded = true;
-
+            GondolaStartingPosition = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
             Game1.Player.Position = new Vector2(this.WorldWidth * 16 / 2, this.WorldHeight * 16 / 2);
-            this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
+            this.Gondola.Position = GondolaStartingPosition;
+            IsGondolaAtStartingPosition = true;
+            IsGondolaAtEndingPosition = false;
+            IsExitingOnGondola = false;
         }
 
         public override void UnloadContent()
@@ -173,6 +180,42 @@ namespace SecretProject.Class.StageFolder
             //throw new NotImplementedException();
         }
 
+        public void MoveGondola()
+        {
+            if(IsExitingOnGondola)
+            {
+                IsGondolaAtEndingPosition = false;
+                if (Gondola.Position != GondolaStartingPosition)
+                {
+                    Gondola.Position = new Vector2(Gondola.Position.X - 1, Gondola.Position.Y - 1);
+                    Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
+                    return;
+                }
+                else
+                {
+                    IsGondolaAtStartingPosition = true;
+                    return;
+                }
+                
+            }
+            if (this.Gondola.Position == new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100))
+            {
+                IsGondolaAtEndingPosition = true;
+            }
+            else
+            {
+                IsGondolaAtEndingPosition = false;
+            }
+            if(!IsExitingOnGondola &&!IsGondolaAtEndingPosition)
+            {
+                Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
+                Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
+                IsGondolaAtStartingPosition = false;
+                return;
+            }
+
+        }
+        public int portalIndex;
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             this.IsDark = Game1.GlobalClock.IsNight;
@@ -182,21 +225,23 @@ namespace SecretProject.Class.StageFolder
                 {
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
                     {
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
-                        OnSceneChanged();
-                        this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                        
+                       // this.Gondola.Position = GondolaStartingPosition;
+                        IsExitingOnGondola = true;
+                        this.portalIndex = p;
                         return;
                     }
 
                 }
-                else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
-                {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
-                    OnSceneChanged();
-                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-                    return;
-                }
+            }
+
+            if(IsExitingOnGondola && this.IsGondolaAtStartingPosition)
+            {
+                IsGondolaAtStartingPosition = true;
+                IsExitingOnGondola = false;
+                Game1.SwitchStage(3, 2, gameTime,AllPortals[portalIndex]);
+                OnSceneChanged();
+                this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
@@ -221,10 +266,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.SwitchStage(5, 4, gameTime);
                 return;
             }
-            if(Gondola.Position != new Vector2((this.WorldWidth * 16 / 2) + 100 , (this.WorldHeight * 16 / 2) + 100))
-            {
-                Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
-            }
+            MoveGondola();
             
 
             TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
@@ -306,8 +348,11 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
-
-                player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height - 10)));
+                if(IsGondolaAtEndingPosition)
+                {
+                    player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height - 10)));
+                }
+                
                 //Console.WriteLine("Player Position" + player.position);
 
 

@@ -400,7 +400,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-            portal.PortalStart = new Rectangle(worldWidth * 16 / 2 + 100, worldHeight * 16 / 2 + 100, 50, 50);
+            portal.PortalStart = new Rectangle(worldWidth * 16 / 2 + 120, worldHeight * 16 / 2 + 120, 50, 50);
 
             currentStage.AllPortals.Add(portal);
             Game1.PortalGraph.AddEdge(portal.From, portal.To);
