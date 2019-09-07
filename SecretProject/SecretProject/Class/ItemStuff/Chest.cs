@@ -43,7 +43,29 @@ namespace SecretProject.Class.ItemStuff
             for(int i =0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].Update(mouse);
-                if(AllButtons[i].isClicked && this.Inventory.currentInventory[i].SlotItems.Count > 0)
+                if (this.Inventory.currentInventory.ElementAt(i) == null)
+                {
+                    AllButtons[i].ItemCounter = 0;
+
+                }
+                else
+                {
+                    AllButtons[i].ItemCounter = this.Inventory.currentInventory.ElementAt(i).SlotItems.Count;
+                }
+
+                if (AllButtons[i].ItemCounter != 0)
+                {
+                    AllButtons[i].Texture = this.Inventory.currentInventory.ElementAt(i).SlotItems[0].ItemSprite.AtlasTexture;
+                    AllButtons[i].ItemSourceRectangleToDraw = this.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle;
+                }
+                else
+                {
+                    AllButtons[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
+                    AllButtons[i].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
+                }
+
+                AllButtons[i].Update(mouse);
+                if (AllButtons[i].isClicked && this.Inventory.currentInventory[i].SlotItems.Count > 0)
                 {
                     Game1.Player.Inventory.TryAddItem(this.Inventory.currentInventory[i].SlotItems[0]);
                     this.Inventory.currentInventory[i].SlotItems.Remove(this.Inventory.currentInventory[i].SlotItems[0]);
@@ -58,17 +80,17 @@ namespace SecretProject.Class.ItemStuff
         {
             for (int i = 0; i < AllButtons.Count; i++)
             {
-                AllButtons[i].Draw(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(), new Vector2(AllButtons[i].Position.X + 5, AllButtons[i].Position.Y + 5), Color.DarkRed, 2f);
+                AllButtons[i].Draw(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(), new Vector2(AllButtons[i].Position.X + 50 * i, AllButtons[i].Position.Y + 5), Color.DarkRed, 1f);
             }
         }
 
         public void FillWithLoot(int size)
         {
-            int slotsToFill = Game1.Utility.RGenerator.Next(0, size);
+            int slotsToFill = Game1.Utility.RGenerator.Next(1, size);
             for(int i =0; i < slotsToFill; i++)
             {
                 int selection = Game1.Utility.RGenerator.Next(0, Game1.AllItems.AllItems.Count);
-                this.Inventory.TryAddItem(new Item(Game1.AllItems.AllItems[selection]));
+                this.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(Game1.AllItems.AllItems[selection].ID, null));
             }
             
         }
