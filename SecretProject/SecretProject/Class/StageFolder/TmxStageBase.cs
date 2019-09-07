@@ -192,6 +192,7 @@ namespace SecretProject.Class.StageFolder
                 Placement
             };
             AllPortals = new List<Portal>();
+            AllChests = new Dictionary<float, Chest>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths, this);
             AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
@@ -206,9 +207,7 @@ namespace SecretProject.Class.StageFolder
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
             AllCrops = new Dictionary<float, Crop>();
-            AllChests = new Dictionary<float, Chest>();
 
-            
 
             //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
         }

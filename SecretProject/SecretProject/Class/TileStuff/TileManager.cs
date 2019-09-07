@@ -496,7 +496,20 @@ namespace SecretProject.Class.TileStuff
                     //grass = 1, stone = 2, wood = 3, sand = 4
                 }
 
-
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
+                {
+                    if(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
+                        {
+                        if (!stage.AllChests.ContainsKey(tileToAssign.GetTileKey(mapWidth, mapHeight)))
+                        {
+                            stage.AllChests.Add(tileToAssign.GetTileKey(mapWidth, mapHeight), new Chest(tileToAssign.GetTileKey(mapWidth, mapHeight), 3,
+                                    new Vector2(tileToAssign.X % mapWidth * 16,
+                               tileToAssign.Y % mapHeight * 16), this.graphicsDevice, true));
+                        }
+                            
+                    }
+                    //grass = 1, stone = 2, wood = 3, sand = 4
+                }
             }
         }
 

@@ -171,8 +171,8 @@ namespace SecretProject.Class.StageFolder
             this.IsLoaded = true;
             GondolaStartingPosition = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
             Game1.Player.Position = new Vector2(this.WorldWidth * 16 / 2, this.WorldHeight * 16 / 2);
-            //this.Gondola.Position = GondolaStartingPosition;
-            this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100);
+            this.Gondola.Position = GondolaStartingPosition;
+           // this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100);
             IsGondolaAtStartingPosition = true;
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
@@ -238,14 +238,7 @@ namespace SecretProject.Class.StageFolder
                 }
             }
 
-            if(IsExitingOnGondola && this.IsGondolaAtStartingPosition)
-            {
-                IsGondolaAtStartingPosition = true;
-                IsExitingOnGondola = false;
-                Game1.SwitchStage(3, 2, gameTime,AllPortals[portalIndex]);
-                OnSceneChanged();
-                this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-            }
+            
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
             Game1.isMyMouseVisible = true;
@@ -327,6 +320,14 @@ namespace SecretProject.Class.StageFolder
             }
             Game1.Player.controls.UpdateKeys();
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            if (IsExitingOnGondola && this.IsGondolaAtStartingPosition)
+            {
+                IsGondolaAtStartingPosition = true;
+                IsExitingOnGondola = false;
+                Game1.SwitchStage(3, 2, gameTime, AllPortals[portalIndex]);
+                OnSceneChanged();
+                this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+            }
 
         }
         public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
