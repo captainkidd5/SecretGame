@@ -5,7 +5,7 @@ namespace SecretProject
     /// <summary>
     /// The main class.
     /// </summary>
-    public static class Program
+    public static class Programau
     {
         /// <summary>
         /// The main entry point for the application.

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.StageFolder;
 using System;
@@ -144,23 +145,30 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(List<Tile[,]> tiles,ILocation location, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        public static void PlaceChests(List<Tile[,]> tiles,ILocation location, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, GraphicsDevice graphics)
         {
             int hiddenTreasureLimit = 4;
-            for (int i = 10; i < tiles[0].GetLength(0); i++)
+            for (int i = 10; i < tiles[0].GetLength(0) - 10; i++)
             {
-                for (int j = 10; j < tiles[0].GetLength(1); j++)
+                for (int j = 10; j < tiles[0].GetLength(1) - 10; j++)
                 {
                     if (tiles[0][i, j].GID == 1115)
                     {
                         int nbs = CountAliveNeighbors(tiles[0], 1, i, j);
                         if (nbs >= hiddenTreasureLimit)
                         {
-                            tiles[3][i, j - 1].GID = 1753;
-                            tiles[1][i, j].GID = 1853;
-                            location.AllChests.Add(tiles[1][i, j].GetTileKey(worldWidth, worldHeight), new Chest(tiles[1][i, j].GetTileKey(worldWidth, worldHeight), 3,
-                                new Vector2((tiles[1][i, j].X % worldWidth) * 16,
-                            tiles[1][i, j].Y % worldHeight) * 16));
+                            
+                                tiles[3][i, j - 1].GID = 1753;
+                                tiles[1][i, j].GID = 1853;
+                            if (!location.AllChests.ContainsKey(tiles[1][i, j].GetTileKey(worldWidth, worldHeight)))
+                            {
+                                location.AllChests.Add(tiles[1][i, j].GetTileKey(worldWidth, worldHeight), new Chest(tiles[1][i, j].GetTileKey(worldWidth, worldHeight, graphics), 3,
+                                    new Vector2((tiles[1][i, j].X % worldWidth) * 16,
+                                tiles[1][i, j].Y % worldHeight) * 16));
+                            }
+                                
+
+
                         }
                     }
                 }
