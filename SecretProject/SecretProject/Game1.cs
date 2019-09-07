@@ -614,7 +614,7 @@ namespace SecretProject
             FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
             //MOUSE
             this.IsMouseVisible = isMyMouseVisible;
-            myMouseManager.Update();
+            myMouseManager.Update(gameTime);
             DebugWindow.Update(gameTime);
 
             //SOUND

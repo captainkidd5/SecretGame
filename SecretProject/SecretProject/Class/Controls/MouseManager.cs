@@ -70,6 +70,9 @@ namespace SecretProject.Class.Controls
         public Rectangle DiggingInteractionSourceRectangle { get; set; }
         public Rectangle ChatInteractionSourceRectangle { get; set; }
 
+        public float HoldTimer { get; set; }
+        public float RequiredHoldTime { get; set; }
+
         GraphicsDevice graphicsDevice;
 
         private MouseManager()
@@ -89,15 +92,16 @@ namespace SecretProject.Class.Controls
             this.DiggingInteractionSourceRectangle = new Rectangle(80, 256, 32, 32);
             this.ChatInteractionSourceRectangle = new Rectangle(176, 256, 32, 32);
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
-
+            this.RequiredHoldTime = .5f;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             //ChangeMouseTexture(-50);
             IsClicked = false;
             IsRightClicked = false;
             WasJustPressed = false;
+            
             HasScrollWheelValueIncreased = false;
             HasScrollWheelValueDecreased = false;
              
@@ -137,37 +141,31 @@ namespace SecretProject.Class.Controls
             MouseSquareCoordinateX = (int)(WorldMousePosition.X / 16);
             MouseSquareCoordinateY = (int)(WorldMousePosition.Y / 16);
 
+            
+
             WorldMouseRectangle = new Rectangle((int)WorldMousePosition.X, (int)WorldMousePosition.Y, 1, 1);
 
             if (MyMouse.LeftButton == ButtonState.Pressed)
             {
-                IsReleased = false;
+                HoldTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-
-            if(MyMouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Released)
+            if (HoldTimer > RequiredHoldTime)
             {
-                WasJustPressed = true;
+                this.IsClickedAndHeld = true;
             }
-
-            if ((MyMouse.LeftButton == ButtonState.Released) && (oldMouse.LeftButton == ButtonState.Pressed))
+            if(MyMouse.LeftButton == ButtonState.Released)
             {
-                IsClicked = true;
-                IsReleased = true;
+                if(IsClickedAndHeld)
+                {
+                    HoldTimer = 0f;
+                    IsClickedAndHeld = false;
+                }
+                else if(oldMouse.LeftButton == ButtonState.Pressed)
+                {
+                    IsClicked = true;
+                }
             }
-
-            if ((MyMouse.RightButton == ButtonState.Released) && (oldMouse.RightButton == ButtonState.Pressed))
-            {
-                IsRightClicked = true;
-            }
-
-            if(!IsReleased)
-            {
-                IsClickedAndHeld = true;
-            }
-            else
-            {
-                IsClickedAndHeld = false;
-            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, float depth)

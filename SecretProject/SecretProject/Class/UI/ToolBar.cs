@@ -460,6 +460,12 @@ namespace SecretProject.Class.UI
 
                 }
 
+                if(AllSlots[i].isClicked)
+                {
+                    currentSliderPosition = i + 1;
+                }
+                
+
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
                     if (DragSprite != null)

@@ -100,7 +100,7 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if(mouse.IsHovering(HitBoxRectangle) && mouse.WasJustPressed == true && mouse.IsClickedAndHeld == true)
+            if(mouse.IsHovering(HitBoxRectangle)&& mouse.IsClickedAndHeld == true)
             {
                 this.isClickedAndHeld = true;
             }
