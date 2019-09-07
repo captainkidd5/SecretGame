@@ -46,9 +46,10 @@ namespace SecretProject.Class.ItemStuff
                 {
                     if(this.Inventory.currentInventory.ElementAt(i) != null)
                     {
-                        Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[i].SlotItems[0]);
-                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
-                        
+                        if(Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[i].SlotItems[0]))
+                        {
+                            this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                        }
                     }
                     
                 }

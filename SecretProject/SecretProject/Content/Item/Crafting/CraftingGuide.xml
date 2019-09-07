@@ -16,6 +16,19 @@
     </AllItemsRequired>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>121</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>5</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>231</ItemID>
+    <Count>1</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
     <ItemToCraftID>3</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">

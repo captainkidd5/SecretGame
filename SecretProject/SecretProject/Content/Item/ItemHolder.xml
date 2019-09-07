@@ -57,6 +57,15 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Chest</Name>
+<ID>121</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>5</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>150</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNest</Name>
 <ID>122</ID>
 <InvMaximum>99</InvMaximum>
