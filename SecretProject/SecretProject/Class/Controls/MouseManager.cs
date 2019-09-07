@@ -101,6 +101,7 @@ namespace SecretProject.Class.Controls
             IsClicked = false;
             IsRightClicked = false;
             WasJustPressed = false;
+            this.IsReleased = false;
             
             HasScrollWheelValueIncreased = false;
             HasScrollWheelValueDecreased = false;
@@ -159,6 +160,8 @@ namespace SecretProject.Class.Controls
                 {
                     HoldTimer = 0f;
                     IsClickedAndHeld = false;
+                    this.IsReleased = true;
+
                 }
                 else if(oldMouse.LeftButton == ButtonState.Pressed)
                 {

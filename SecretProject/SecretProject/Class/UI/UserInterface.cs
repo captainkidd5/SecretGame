@@ -109,7 +109,14 @@ namespace SecretProject.Class.UI
 
             }
 
+            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
+            {
+                if (chest.Value.IsUpdating)
+                {
+                    chest.Value.Update(gameTime, mouse);
+                }
 
+            }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
                 ActivateShop(OpenShop.ToolShop);
@@ -129,6 +136,7 @@ namespace SecretProject.Class.UI
                 CraftingMenu.IsActive = !CraftingMenu.IsActive;
             }
 
+            
 
             TextBuilder.Update(gameTime);
 
@@ -218,6 +226,15 @@ namespace SecretProject.Class.UI
                 TextBuilder.Draw(spriteBatch, .71f);
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
+
+            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
+            {
+                if (chest.Value.IsUpdating)
+                {
+                    chest.Value.Draw(spriteBatch);
+                }
+
+            }
 
             CraftingMenu.Draw(spriteBatch);
 

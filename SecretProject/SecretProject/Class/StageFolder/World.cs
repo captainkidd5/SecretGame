@@ -171,7 +171,8 @@ namespace SecretProject.Class.StageFolder
             this.IsLoaded = true;
             GondolaStartingPosition = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
             Game1.Player.Position = new Vector2(this.WorldWidth * 16 / 2, this.WorldHeight * 16 / 2);
-            this.Gondola.Position = GondolaStartingPosition;
+            //this.Gondola.Position = GondolaStartingPosition;
+            this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100);
             IsGondolaAtStartingPosition = true;
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
@@ -268,7 +269,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.SwitchStage(5, 4, gameTime);
                 return;
             }
-            MoveGondola();
+            
             
 
             TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
@@ -284,6 +285,7 @@ namespace SecretProject.Class.StageFolder
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects, mouse);
+                MoveGondola();
 
                 //--------------------------------------
                 //Update sprites
@@ -295,14 +297,14 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                foreach (KeyValuePair<float, Chest> chest in AllChests)
-                {
-                    if(chest.Value.IsUpdating)
-                    {
-                        chest.Value.Update(gameTime, mouse);
-                    }
+                //foreach (KeyValuePair<float, Chest> chest in AllChests)
+                //{
+                //    if(chest.Value.IsUpdating)
+                //    {
+                //        chest.Value.Update(gameTime, mouse);
+                //    }
                     
-                }
+                //}
                 AllTiles.Update(gameTime, mouse);
 
 
@@ -418,14 +420,14 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
-                foreach (KeyValuePair<float, Chest> chest in AllChests)
-                {
-                    if (chest.Value.IsUpdating)
-                    {
-                        chest.Value.Draw(spriteBatch);
-                    }
+                //foreach (KeyValuePair<float, Chest> chest in AllChests)
+                //{
+                //    if (chest.Value.IsUpdating)
+                //    {
+                //        chest.Value.Draw(spriteBatch);
+                //    }
 
-                }
+                //}
 
                 //Game1.Elixer.Draw(spriteBatch);
 

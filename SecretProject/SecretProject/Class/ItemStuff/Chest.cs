@@ -29,7 +29,7 @@ namespace SecretProject.Class.ItemStuff
             AllButtons = new List<Button>();
             for(int i =0; i < size; i++)
             {
-                AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphics, new Vector2(Location.X + i*50, Location.Y)) { ItemCounter = 0, Index = size });
+                AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1168, 752, 32, 32), graphics, new Vector2(Game1.ScreenWidth/2 - 64 + i*70, Game1.ScreenHeight/2 - 128)) { ItemCounter = 0, Index = size });
             }
             this.IsRandomlyGenerated = isRandomlyGenerated;
             if(isRandomlyGenerated)
@@ -42,6 +42,16 @@ namespace SecretProject.Class.ItemStuff
             for(int i =0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].Update(mouse);
+                if (AllButtons[i].isClicked)
+                {
+                    if(this.Inventory.currentInventory.ElementAt(i) != null)
+                    {
+                        Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[i].SlotItems[0]);
+                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                        
+                    }
+                    
+                }
                 if (this.Inventory.currentInventory.ElementAt(i) == null)
                 {
                     AllButtons[i].ItemCounter = 0;
@@ -62,13 +72,8 @@ namespace SecretProject.Class.ItemStuff
                     AllButtons[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
                     AllButtons[i].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
                 }
-
-                AllButtons[i].Update(mouse);
-                if (AllButtons[i].isClicked && this.Inventory.currentInventory[i].SlotItems.Count > 0)
-                {
-                    Game1.Player.Inventory.TryAddItem(this.Inventory.currentInventory[i].SlotItems[0]);
-                    this.Inventory.currentInventory[i].SlotItems.Remove(this.Inventory.currentInventory[i].SlotItems[0]);
-                }
+                
+                
             }
             if(!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y,16,16)))
             {
@@ -79,13 +84,14 @@ namespace SecretProject.Class.ItemStuff
         {
             for (int i = 0; i < AllButtons.Count; i++)
             {
-                AllButtons[i].Draw(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(), new Vector2(AllButtons[i].Position.X, AllButtons[i].Position.Y + 5), Color.DarkRed, .5f);
-            }
+                AllButtons[i].DrawCraftingSlot(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(),
+                    new Vector2(AllButtons[i].Position.X, AllButtons[i].Position.Y), Color.White, 2f, 2f);
+            }       
         }
 
         public void FillWithLoot(int size)
         {
-            int slotsToFill = Game1.Utility.RGenerator.Next(0, size + 1);
+            int slotsToFill = Game1.Utility.RGenerator.Next(1, size + 1);
             for(int i =0; i < slotsToFill; i++)
             {
                 int selection = Game1.Utility.RGenerator.Next(0, Game1.AllItems.AllItems.Count);
