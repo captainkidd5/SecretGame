@@ -62,6 +62,8 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
         public ScrollTree ScrollTree { get; set; }
+        public bool IsAnyChestOpen { get; set; }
+        public float OpenChestKey { get; set; }
 
         //keyboard
 
@@ -90,7 +92,18 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
-            if(BottomBar.IsActive)
+            IsAnyChestOpen = false;
+            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
+            {
+                if (chest.Value.IsUpdating)
+                {
+                    chest.Value.Update(gameTime, mouse);
+                    this.IsAnyChestOpen = true;
+                    this.OpenChestKey = chest.Key;
+                }
+
+            }
+            if (BottomBar.IsActive)
             {
                 BottomBar.Update(gameTime, inventory, mouse);
             }
@@ -109,14 +122,7 @@ namespace SecretProject.Class.UI
 
             }
 
-            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
-            {
-                if (chest.Value.IsUpdating)
-                {
-                    chest.Value.Update(gameTime, mouse);
-                }
-
-            }
+            
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
                 ActivateShop(OpenShop.ToolShop);

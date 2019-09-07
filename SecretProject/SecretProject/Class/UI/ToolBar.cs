@@ -367,7 +367,18 @@ namespace SecretProject.Class.UI
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     //FOR WHEN DROPPING STACK OF ITEMS
-                    if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && !Game1.Player.UserInterface.IsShopMenu)
+                    if(Game1.Player.UserInterface.IsAnyChestOpen)
+                    {
+                        if(Game1.GetCurrentStage().AllChests[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
+                        {
+                            if(Game1.GetCurrentStage().AllChests[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
+                            {
+                                inventory.currentInventory[i].RemoveItemFromSlot();
+                                AllSlots[i].ItemCounter--;
+                            }
+                        }
+                    }
+                    else if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && !Game1.Player.UserInterface.IsShopMenu)
                     {
                         int currentItemCount = AllSlots[i].ItemCounter;
                         for (int j = 0; j < currentItemCount; j++)

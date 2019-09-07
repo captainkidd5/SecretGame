@@ -18,6 +18,7 @@ namespace SecretProject.Class.ItemStuff
         public Inventory Inventory { get; set; }
         public bool IsUpdating { get; set; }
         public bool IsRandomlyGenerated { get; set; }
+        public bool IsInventoryHovered { get; set; }
         List<Button> AllButtons;
         public Chest(float iD,int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
@@ -26,6 +27,7 @@ namespace SecretProject.Class.ItemStuff
             this.Inventory = new Inventory(size);
             this.Location = location;
             this.IsUpdating = false;
+            this.IsInventoryHovered = false;
             AllButtons = new List<Button>();
             for(int i =0; i < size; i++)
             {
@@ -39,10 +41,15 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+            this.IsInventoryHovered = false;
             for(int i =0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].Update(mouse);
-                if (AllButtons[i].isClicked)
+                if (AllButtons[i].IsHovered)
+                {
+                    this.IsInventoryHovered = true;
+                }
+                    if (AllButtons[i].isClicked)
                 {
                     if(this.Inventory.currentInventory.ElementAt(i) != null)
                     {
