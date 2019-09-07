@@ -295,6 +295,14 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
+                foreach (KeyValuePair<float, Chest> chest in AllChests)
+                {
+                    if(chest.Value.IsUpdating)
+                    {
+                        chest.Value.Update(gameTime, mouse);
+                    }
+                    
+                }
                 AllTiles.Update(gameTime, mouse);
 
 
@@ -410,7 +418,14 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
+                foreach (KeyValuePair<float, Chest> chest in AllChests)
+                {
+                    if (chest.Value.IsUpdating)
+                    {
+                        chest.Value.Draw(spriteBatch);
+                    }
 
+                }
 
                 //Game1.Elixer.Draw(spriteBatch);
 

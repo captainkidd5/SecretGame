@@ -964,6 +964,8 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
                 case "chestLoot":
+                    Game1.GetCurrentStage().AllChests[AllTiles[z][i, j].GetTileKey(mapWidth, mapHeight)].IsUpdating = true;
+
 
                     break;
 

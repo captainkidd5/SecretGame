@@ -167,11 +167,12 @@ namespace SecretProject.Class.Universal
 
         public string[] GetActionHelperInfo(string info)
         {
-            string[] infoToReturn = new string[4];
-            infoToReturn[0] = info.Split(',')[0];
-            infoToReturn[1] = info.Split(',')[1];
-            infoToReturn[2] = info.Split(',')[2];
-            infoToReturn[3] = info.Split(',')[3];
+            string[] stringSize = info.Split(',');
+            string[] infoToReturn = new string[stringSize.Length];
+            for(int i =0; i < stringSize.Length;i++)
+            {
+                infoToReturn[i] = info.Split(',')[i];
+            }
 
             return infoToReturn;
         }

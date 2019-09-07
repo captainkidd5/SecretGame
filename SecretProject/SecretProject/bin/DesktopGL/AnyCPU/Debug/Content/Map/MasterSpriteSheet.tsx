@@ -808,6 +808,9 @@
   </objectgroup>
  </tile>
  <tile id="1852">
+  <properties>
+   <property name="action" value="chestLoot"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="1" y="5" width="14" height="8"/>
   </objectgroup>

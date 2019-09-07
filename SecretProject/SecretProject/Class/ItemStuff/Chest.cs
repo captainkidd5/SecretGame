@@ -27,19 +27,38 @@ namespace SecretProject.Class.ItemStuff
             this.Inventory = new Inventory(size);
             this.Location = location;
             this.IsUpdating = false;
-            this.IsDrawn = false;
             AllButtons = new List<Button>();
             for(int i =0; i < size; i++)
             {
                 AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphics, new Vector2(Location.X, Location.Y)) { ItemCounter = 0, Index = size });
             }
             this.IsRandomlyGenerated = isRandomlyGenerated;
+            if(isRandomlyGenerated)
+            {
+                FillWithLoot(size);
+            }
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             for(int i =0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].Update(mouse);
+                if(AllButtons[i].isClicked && this.Inventory.currentInventory[i].SlotItems.Count > 0)
+                {
+                    Game1.Player.Inventory.TryAddItem(this.Inventory.currentInventory[i].SlotItems[0]);
+                    this.Inventory.currentInventory[i].SlotItems.Remove(this.Inventory.currentInventory[i].SlotItems[0]);
+                }
+            }
+            if(!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y,16,16)))
+            {
+                this.IsUpdating = false;
+            }
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < AllButtons.Count; i++)
+            {
+                AllButtons[i].Draw(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(), new Vector2(AllButtons[i].Position.X + 5, AllButtons[i].Position.Y + 5), Color.DarkRed, 2f);
             }
         }
 
