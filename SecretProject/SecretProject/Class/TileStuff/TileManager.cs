@@ -361,10 +361,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             AllTiles[z][i, j] = new Tile(i, j, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                         }
- 
+
                         else
                         {
-                            if(Game1.Utility.RFloat(0,1) > chanceToBeDirt)
+                            if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
                             {
                                 AllTiles[z][i, j] = new Tile(i, j, 1106, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                             }
@@ -372,7 +372,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 AllTiles[z][i, j] = new Tile(i, j, 1116, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
                             }
-                            
+
                         }
 
 
@@ -380,12 +380,12 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-            for(int i =0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
 
-            TileUtility.PlaceChests(AllTiles,world, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight,graphicsDevice);
+            TileUtility.PlaceChests(AllTiles, world, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight, graphicsDevice);
 
             for (int i = 0; i < worldWidth; i++)
             {
@@ -395,7 +395,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-                    Portal portal = new Portal(3, 2, 0, -50, true);
+            Portal portal = new Portal(3, 2, 0, -50, true);
             TileUtility.SpawnBaseCamp(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
 
@@ -498,17 +498,23 @@ namespace SecretProject.Class.TileStuff
 
                 if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
                 {
-                    if(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
-                        {
+                    if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
+                    {
                         if (!stage.AllChests.ContainsKey(tileToAssign.GetTileKey(mapWidth, mapHeight)))
                         {
                             stage.AllChests.Add(tileToAssign.GetTileKey(mapWidth, mapHeight), new Chest(tileToAssign.GetTileKey(mapWidth, mapHeight), 3,
                                     new Vector2(tileToAssign.X % mapWidth * 16,
                                tileToAssign.Y % mapHeight * 16), this.graphicsDevice, true));
                         }
-                            
+
                     }
                     //grass = 1, stone = 2, wood = 3, sand = 4
+                }
+                if (layer == 3)
+                {
+                    int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
+                    float randomFloat = (float)(randomInt * .000001);
+                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * .0001f + randomFloat;
                 }
             }
         }
@@ -954,17 +960,17 @@ namespace SecretProject.Class.TileStuff
             {
                 //including animation frame id to replace!
                 case "sanctuaryAdd":
-                    if(Game1.Player.Inventory.FindNumberOfItemInInventory(int.Parse(information[1])) > 0)
+                    if (Game1.Player.Inventory.FindNumberOfItemInInventory(int.Parse(information[1])) > 0)
                     {
-                        
-                        if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
+
+                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
                         {
                             int newGID = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["spawnWith"]);
                             int relationX = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationX"]);
                             int relationY = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationY"]);
                             int layer = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["layer"]);
                             int tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
-                            ReplaceTileWithNewTile(layer, i + relationX, j + relationY , tileToReplaceGID);
+                            ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                         }
                         ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
 
@@ -1041,23 +1047,22 @@ namespace SecretProject.Class.TileStuff
                                         DestinationRectangle.Width, DestinationRectangle.Height);
                                 }
                             }
-                            int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
-                            float randomFloat = (float)(randomInt * .000001);
-                            float layerToDrawAtZOffSet = (DestinationRectangle.Y + DestinationRectangle.Height) * .0001f + randomFloat;
+
 
                             AllDepths[3] = .4f + (float)(DestinationRectangle.Bottom + DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)100000;
 
 
 
-                            if (Game1.GetCurrentStage().ShowBorders && z == 1)
+                            if (z == 3)
                             {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.Red,
-                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
+                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+
                             }
                             else
                             {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + layerToDrawAtZOffSet);
+                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
                             }
 
                             if (Game1.GetCurrentStage().ShowBorders)
