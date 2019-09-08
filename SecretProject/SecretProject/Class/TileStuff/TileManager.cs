@@ -513,8 +513,8 @@ namespace SecretProject.Class.TileStuff
                 if (layer == 3)
                 {
                     int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
-                    float randomFloat = (float)(randomInt * .000001);
-                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * .0001f + randomFloat;
+                    float randomFloat = (float)(randomInt * .0000001);
+                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .00001f + randomFloat;
                 }
             }
         }
@@ -725,8 +725,8 @@ namespace SecretProject.Class.TileStuff
 
                                             ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
                                                 new Rectangle(GetDestinationRectangle(AllTiles[z][i, j]).X + (int)Math.Ceiling(tempObj.X),
-                                                GetDestinationRectangle(AllTiles[z][i, j]).Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                                                (int)Math.Ceiling(tempObj.Height)), AllTiles[z][i, j].GID);
+                                                GetDestinationRectangle(AllTiles[z][i, j]).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
+                                                (int)Math.Ceiling(tempObj.Height) + 5), AllTiles[z][i, j].GID);
 
 
 
@@ -1047,11 +1047,6 @@ namespace SecretProject.Class.TileStuff
                                         DestinationRectangle.Width, DestinationRectangle.Height);
                                 }
                             }
-
-
-                            AllDepths[3] = .4f + (float)(DestinationRectangle.Bottom + DestinationRectangle.Height / mapHeight * this.tileHeight) / (float)100000;
-
-
 
                             if (z == 3)
                             {

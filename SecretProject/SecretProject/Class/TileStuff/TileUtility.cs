@@ -166,6 +166,11 @@ namespace SecretProject.Class.TileStuff
                                     new Vector2(tiles[1][i, j].X % worldWidth * 16,
                                 tiles[1][i, j].Y % worldHeight * 16), graphics, true));
                             }
+                            else
+                            {
+                                tiles[3][i, j - 1].GID = 0;
+                                tiles[1][i, j].GID = 0;
+                            }
                                 
 
 

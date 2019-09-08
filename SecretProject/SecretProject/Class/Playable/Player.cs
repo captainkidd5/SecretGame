@@ -40,10 +40,10 @@ namespace SecretProject.Class.Playable
 
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
-        [XmlIgnore]
+
         ContentManager content;
 
-        [XmlIgnore]
+
         public PlayerControls controls;
 
         public Vector2 Position
@@ -106,18 +106,11 @@ namespace SecretProject.Class.Playable
         public Texture2D BigHitBoxRectangleTexture;
         public Texture2D LittleHitBoxRectangleTexture;
 
-        public Rectangle ChunkDetector {
-            get
-            {
-                return new Rectangle((int)position.X, (int)position.Y , (int)position.X + 200, (int)position.Y + 200);
-            }
-        }
-
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y + 24, 16, 8);
+                return new Rectangle((int)position.X, (int)position.Y + 26, 16, 6);
             }
 
         }
@@ -130,7 +123,6 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public PlayerShip PlayerShip { get; set; }
 
         public int Wisdom { get; set; }
 
@@ -186,7 +178,6 @@ namespace SecretProject.Class.Playable
             BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, Rectangle);
 
-            PlayerShip = new PlayerShip(graphics, Game1.AllTextures.ShipSpriteSheet);
 
             MiningDown[0, 0] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 0, 16, 48, 5, .1f, this.Position,0, -15) { LayerDepth = .0000011f };
             MiningDown[0, 1] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 48, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .000001f };
@@ -514,9 +505,7 @@ namespace SecretProject.Class.Playable
                 }
                 if (GameMode == 2)
                 {
-                    PlayerShip.Update(gameTime);
-                    this.Position = PlayerShip.Position;
-                    CheckOutOfBounds(this.Position);
+   
                 }
             }
         }
@@ -543,7 +532,7 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        //drawing relative to wrong camera it seems.
+
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (GameMode == 1)
@@ -555,7 +544,7 @@ namespace SecretProject.Class.Playable
 
                     for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth + PlayerMovementAnimations[i].LayerDepth);
+                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth);
                     }
                     
                 }
@@ -601,11 +590,6 @@ namespace SecretProject.Class.Playable
             spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
-        public void DrawShipMode(SpriteBatch spriteBatch, float layerDepth)
-        {
-
-            PlayerShip.Draw(spriteBatch, layerDepth);
-        }
 
         public void DrawUserInterface(SpriteBatch spriteBatch)
         {

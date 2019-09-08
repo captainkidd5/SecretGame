@@ -400,9 +400,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch, .4f + (.001f * player.Rectangle.Height));
-               // Console.WriteLine("Player Position" + player.position);
-
+                player.Draw(spriteBatch, .4f + (player.Rectangle.Top + player.Rectangle.Height)* .00001f);
                 TextBuilder.Draw(spriteBatch, .71f);
 
                 if (ShowBorders)
@@ -418,10 +416,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     character.Draw(spriteBatch);
                 }
-               // Game1.Elixer.Draw(spriteBatch);
-                //Game1.Dobbin.Draw(spriteBatch);
+
                 mouse.Draw(spriteBatch, 1);
-                //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
                 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
@@ -429,12 +425,10 @@ namespace SecretProject.Class.StageFolder
                         new Rectangle(48, 0, 16, 16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
                 }
 
-                //--------------------------------------
-                //Draw sprite list
+
 
                 foreach (var sprite in AllSprites)
                 {
-                    //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
 
@@ -456,7 +450,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
 
                 graphics.SetRenderTarget(null);
-                // graphics.Clear(Color.Black);
+
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -467,13 +461,12 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
-                //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);
 
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
-            //  Graphics.SetRenderTarget(null);
+
         }
         public Camera2D GetCamera()
         {
