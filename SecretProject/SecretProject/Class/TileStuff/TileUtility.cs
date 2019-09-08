@@ -14,6 +14,7 @@ namespace SecretProject.Class.TileStuff
     {
         #region TILING
 
+        public static int GrassSpawnRate = 10;
         static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
         {
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
@@ -178,6 +179,11 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+        }
+
+        public static void SpawnGrassTufts(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        {
+
         }
 
         public static void SpawnBaseCamp(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)

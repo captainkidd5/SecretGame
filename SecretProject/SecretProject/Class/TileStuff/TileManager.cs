@@ -19,6 +19,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using XMLData.ItemStuff;
+using SecretProject.Class.SpriteFolder;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -92,6 +93,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> GrassGeneratableTiles;
 
         public Dictionary<float, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<float, GrassTuft> AllTufts { get; set; }
 
 
 
@@ -129,6 +131,7 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
+            AllTufts = new Dictionary<float, GrassTuft>();
 
             for (int i = 0; i < allLayers.Count; i++)
             {
@@ -297,6 +300,7 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
+            AllTufts = new Dictionary<float, GrassTuft>();
 
             for (int i = 0; i < NumberOfLayers; i++)
             {
@@ -392,6 +396,14 @@ namespace SecretProject.Class.TileStuff
                 for (int j = 0; j < worldHeight; j++)
                 {
                     TileUtility.ReassignTileForTiling(this.AllTiles, i, j, worldWidth, worldHeight);
+                    if(Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
+                    {
+                        if(Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i,j].GID))
+                        {
+                            int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                            this.AllTufts[AllTiles[0][i, j].GetTileKey(mapWidth, mapHeight)] = new GrassTuft(grassType, new Vector2(GetDestinationRectangle(AllTiles[0][i, j]).X, GetDestinationRectangle(AllTiles[0][i, j]).Y));
+                        }
+                    }
                 }
             }
 

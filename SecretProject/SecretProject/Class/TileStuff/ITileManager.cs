@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.PathFinding;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace SecretProject.Class.TileStuff
          int tilesetTilesHigh { get; set; }
          int mapWidth { get; set; }
          int mapHeight { get; set; }
+         Dictionary<float, GrassTuft> AllTufts { get; set; }
 
         void UpdateCropTile(Crop crop, ILocation stage);
         void LoadInitialTileObjects(ILocation location);

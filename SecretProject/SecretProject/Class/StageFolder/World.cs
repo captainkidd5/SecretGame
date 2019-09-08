@@ -299,7 +299,14 @@ namespace SecretProject.Class.StageFolder
                     
                 //}
                 AllTiles.Update(gameTime, mouse);
+                foreach (KeyValuePair<float, GrassTuft> tuft in AllTiles.AllTufts)
+                {
 
+                    tuft.Value.Update(gameTime);
+
+
+
+                }
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -384,6 +391,14 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
+                foreach (KeyValuePair<float, GrassTuft> tuft in AllTiles.AllTufts)
+                {
+
+                        tuft.Value.Draw(spriteBatch);
+
+                    
+
+                }
 
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
