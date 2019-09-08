@@ -142,7 +142,7 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
             if(this.BackDropNumber == 1)
             {
-                this.BackDropPosition = new Vector2(0, -300);
+                this.BackDropPosition = new Vector2(0, -150);
             }
 
 

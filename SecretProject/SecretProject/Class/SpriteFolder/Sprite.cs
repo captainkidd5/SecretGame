@@ -121,10 +121,6 @@ namespace SecretProject.Class.SpriteFolder
             }
         }
 
-        public void UpdateShip(GameTime gameTime, Vector2 position)
-        {
-        }
-
         public void UpdateAnimations(GameTime gameTime, Vector2 position)
         {
             this.Position = position;
@@ -170,21 +166,16 @@ namespace SecretProject.Class.SpriteFolder
 
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
         {
-            //something wrong with destination rectangle after animation
            
             spriteBatch.Draw(AtlasTexture,  new Vector2(DestinationRectangle.X, DestinationRectangle.Y),sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
-
-
         //for ship sprites
         public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position,float rotation, Vector2 origin, float layerDepth)
         {
-            //public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
 
             spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f,SpriteEffects.None, layerDepth );
-           // spriteBatch.Draw(this.AtlasTexture, this.DestinationRectangle, this.SourceRectangle, Color.White, rotation, origin, SpriteEffects.None, layerDepth);
         }
 
         public void Bobber(GameTime gameTime)

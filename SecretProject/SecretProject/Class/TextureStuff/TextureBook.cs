@@ -99,6 +99,7 @@ namespace SecretProject.Class.TextureStuff
 
         //Props
         public Texture2D Gondola;
+        public Texture2D TallGrass;
 
 
         //BackDrops
@@ -173,6 +174,8 @@ namespace SecretProject.Class.TextureStuff
 
             //props
             Gondola = content.Load<Texture2D>("WorldProps/Gondola");
+            TallGrass = content.Load<Texture2D>("WorldProps/tallGrass");
+
 
             //backdrops
             WildernessBackdrop = content.Load<Texture2D>("BackDrops/wilderness");
