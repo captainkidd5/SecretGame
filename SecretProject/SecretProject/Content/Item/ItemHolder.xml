@@ -52,7 +52,7 @@
 <ID>20</ID>
 <InvMaximum>1</InvMaximum>
 <TextureColumn>1</TextureColumn>
-<TextureRow>4</TextureRow>
+<TextureRow>0</TextureRow>
 <Price>50</Price>
 <Plantable>false</Plantable>
 </Item>
@@ -232,7 +232,7 @@
 <ID>163</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>9</TextureRow>
+<TextureRow>3</TextureRow>
 <Price>3</Price>
 <Plantable>false</Plantable>
 </Item>
@@ -241,7 +241,7 @@
 <ID>165</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>11</TextureRow>
+<TextureRow>5</TextureRow>
 <Price>12</Price>
 <Plantable>false</Plantable>
 </Item>

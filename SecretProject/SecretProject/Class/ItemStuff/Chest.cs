@@ -20,6 +20,7 @@ namespace SecretProject.Class.ItemStuff
         public bool IsRandomlyGenerated { get; set; }
         public bool IsInventoryHovered { get; set; }
         List<Button> AllButtons;
+        Button RedEsc;
         public Chest(float iD,int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
             this.ID = ID;
@@ -33,6 +34,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1168, 752, 32, 32), graphics, new Vector2(Game1.ScreenWidth/2 - 64 + i*70, Game1.ScreenHeight/2 - 128)) { ItemCounter = 0, Index = size });
             }
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(AllButtons[AllButtons.Count - 1].Position.X + 50, AllButtons[AllButtons.Count - 1].Position.Y));
             this.IsRandomlyGenerated = isRandomlyGenerated;
             if(isRandomlyGenerated)
             {
@@ -42,6 +44,11 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             this.IsInventoryHovered = false;
+            RedEsc.Update(mouse);
+            if(RedEsc.isClicked)
+            {
+                this.IsUpdating = false;
+            }
             for(int i =0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].Update(mouse);
@@ -90,6 +97,7 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            RedEsc.Draw(spriteBatch);
             for (int i = 0; i < AllButtons.Count; i++)
             {
                 AllButtons[i].DrawCraftingSlot(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(),
