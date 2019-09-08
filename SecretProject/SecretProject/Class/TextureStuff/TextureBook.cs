@@ -103,6 +103,10 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D Gondola;
 
 
+        //BackDrops
+        public Texture2D WildernessBackdrop;
+
+
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
@@ -172,6 +176,9 @@ namespace SecretProject.Class.TextureStuff
 
             //props
             Gondola = content.Load<Texture2D>("WorldProps/Gondola");
+
+            //backdrops
+            WildernessBackdrop = content.Load<Texture2D>("BackDrops/wilderness");
         }
 
 

@@ -117,6 +117,8 @@ namespace SecretProject.Class.StageFolder
 
         public List<Character> CharactersPresent { get; set; }
         public Dictionary<float, Chest> AllChests { get; set; }
+        public int BackDropNumber { get; set; }
+        public Vector2 BackDropPosition;
 
 
 
@@ -126,7 +128,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve)
+        public TmxStageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.Graphics = graphics;
@@ -136,7 +138,12 @@ namespace SecretProject.Class.StageFolder
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
+            this.BackDropNumber = backDropNumber;
             CharactersPresent = new List<Character>();
+            if(this.BackDropNumber == 1)
+            {
+                this.BackDropPosition = new Vector2(0, -300);
+            }
 
 
         }
@@ -231,6 +238,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
+           
             
             this.IsLoaded = true;
             
@@ -269,6 +277,7 @@ namespace SecretProject.Class.StageFolder
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             this.IsDark = Game1.GlobalClock.IsNight;
+            float playerOldYPosition = player.position.Y;
             for (int p = 0; p < AllPortals.Count; p++)
             {
                 if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
@@ -341,6 +350,14 @@ namespace SecretProject.Class.StageFolder
                 {
                     character.Update(gameTime, AllObjects, mouse);
                 }
+                if(this.BackDropNumber == 1)
+                {
+                    if(player.position.Y < 250)
+                    {
+                        this.BackDropPosition.Y += (2*(player.position.Y - playerOldYPosition)/3);
+                    }
+ 
+                }
 
             }
         }
@@ -377,6 +394,10 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                if(this.BackDropNumber == 1)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, Color.White);
+                }
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .4f + (.001f * player.Rectangle.Height));

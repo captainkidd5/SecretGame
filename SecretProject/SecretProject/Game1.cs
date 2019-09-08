@@ -367,7 +367,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(400, 400), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(500, 400), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
@@ -461,16 +461,16 @@ namespace SecretProject
 
         //STAGES
         mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 0 };
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1) { StageIdentifier = 1 };
-            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1) { StageIdentifier = 2 };
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1) { StageIdentifier = 3 };
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1,0) { StageIdentifier = 0 };
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1,1) { StageIdentifier = 1 };
+            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1,0) { StageIdentifier = 3 };
             
            
-            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1) { StageIdentifier = 4 };
+            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1, 0) { StageIdentifier = 4 };
             
             //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
-            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1) { StageIdentifier = 5 };
+            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
 
             GlobalClock = new Clock();
 
@@ -704,6 +704,7 @@ namespace SecretProject
 
                 case Stages.Pass:
                     GraphicsDevice.Clear(Color.Black);
+                    //spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, new Vector2(0, 0), Color.White);
                     Pass.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 

@@ -43,7 +43,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsGondolaAtEndingPosition;
 
 
-        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve)
+        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve,backDropNumber)
         {
             this.TileWidth = 16;
             this.TileHeight = 16;
