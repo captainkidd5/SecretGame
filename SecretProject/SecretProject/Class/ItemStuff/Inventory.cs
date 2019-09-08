@@ -151,10 +151,10 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
-        [XmlArray("SlotItems")]
+
         public List<Item> SlotItems { get; set; }
 
-        [XmlIgnore]
+
         public Item Item { get; set; }
 
         public bool IsCurrentSelection = false;

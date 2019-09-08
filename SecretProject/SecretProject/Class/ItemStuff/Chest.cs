@@ -51,7 +51,7 @@ namespace SecretProject.Class.ItemStuff
                 }
                     if (AllButtons[i].isClicked)
                 {
-                    if(this.Inventory.currentInventory.ElementAt(i) != null)
+                    if(this.Inventory.currentInventory[i].SlotItems.Count > 0 && this.Inventory.currentInventory[i].SlotItems[0]!= null)
                     {
                         if(Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[i].SlotItems[0]))
                         {

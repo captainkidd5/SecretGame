@@ -51,7 +51,7 @@
 <Name>TurquoiseAxe</Name>
 <ID>20</ID>
 <InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
+<TextureColumn>1</TextureColumn>
 <TextureRow>4</TextureRow>
 <Price>50</Price>
 <Plantable>false</Plantable>
@@ -105,7 +105,7 @@
 <Name>PumpkinPie</Name>
 <ID>126</ID>
 <InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
+<TextureColumn>5</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>8</Price>
 <Plantable>false</Plantable>
@@ -232,7 +232,7 @@
 <ID>163</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>7</TextureRow>
+<TextureRow>9</TextureRow>
 <Price>3</Price>
 <Plantable>false</Plantable>
 </Item>
@@ -241,7 +241,7 @@
 <ID>165</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>5</TextureRow>
+<TextureRow>11</TextureRow>
 <Price>12</Price>
 <Plantable>false</Plantable>
 </Item>
