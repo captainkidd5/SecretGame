@@ -994,6 +994,9 @@ namespace SecretProject.Class.TileStuff
 
 
                     break;
+                case "readSanctuary":
+                    Console.WriteLine("reading sanctuary sign now");
+                    break;
 
 
             }

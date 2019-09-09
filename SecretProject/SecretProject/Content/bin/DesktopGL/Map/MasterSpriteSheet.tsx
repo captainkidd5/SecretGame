@@ -838,6 +838,36 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="6067">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
+ <tile id="6068">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
+ <tile id="6069">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
+ <tile id="6167">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
+ <tile id="6168">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
+ <tile id="6169">
+  <properties>
+   <property name="action" value="readSanctuary"/>
+  </properties>
+ </tile>
  <tile id="7914">
   <animation>
    <frame tileid="7614" duration="100"/>
