@@ -142,7 +142,7 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
             if(this.BackDropNumber == 1)
             {
-                this.BackDropPosition = new Vector2(0, -150);
+                this.BackDropPosition = new Vector2(0, 50);
             }
 
 
@@ -177,7 +177,7 @@ namespace SecretProject.Class.StageFolder
 
             AllDepths = new List<float>()
             {
-                0f,
+                .1f,
                 .2f,
                 .3f,
                 .5f,
@@ -354,7 +354,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     if(player.position.Y < 250)
                     {
-                        this.BackDropPosition.Y += (2*(player.position.Y - playerOldYPosition)/3);
+                        this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition)/4);
                     }
  
                 }
@@ -396,7 +396,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if(this.BackDropNumber == 1)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, Color.White);
+                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
                 }
                 ParticleEngine.Draw(spriteBatch, 1f);
 

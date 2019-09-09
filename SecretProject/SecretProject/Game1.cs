@@ -476,7 +476,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Town,  Pass, Center, World, Sanctuary, ElixirShop, };
+            AllStages = new List<ILocation>() {Pass , Town, Center, World, Sanctuary, ElixirShop, };
             PortalGraph = new Graph(AllStages.Count);
 
 

@@ -148,7 +148,7 @@ namespace SecretProject.Class.StageFolder
                     if (Load.isClicked)
                     {
                         mySave.Load(graphics);
-                        Game1.gameStages = Stages.Town;
+                        Game1.gameStages = Stages.Pass;
                         Game1.Player.UserInterface.IsEscMenu = false;
                     }
                     if (Exit.isClicked)
@@ -187,7 +187,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.Town,gameTime);
                             Game1.Player.UserInterface.IsEscMenu = false;
                         }
                         if(worldSizeMedium.isClicked)
@@ -216,7 +216,7 @@ namespace SecretProject.Class.StageFolder
                             {
                                 if (stage == Game1.World)
                                 {
-                                    Game1.World.LoadPreliminaryContent(1);
+                                    Game1.World.LoadPreliminaryContent(3);
                                 }
                                 else
                                 {

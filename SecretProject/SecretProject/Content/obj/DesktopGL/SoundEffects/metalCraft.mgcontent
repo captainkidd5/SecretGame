@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/metalCraft.wav</SourceFile>
-  <SourceTime>2019-09-04T16:29:25.8663425-07:00</SourceTime>
+  <SourceTime>2019-09-08T19:46:31.319345-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/metalCraft.xnb</DestFile>
-  <DestTime>2019-09-04T16:30:41.4334919-07:00</DestTime>
+  <DestTime>2019-09-08T19:47:11.0987278-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
