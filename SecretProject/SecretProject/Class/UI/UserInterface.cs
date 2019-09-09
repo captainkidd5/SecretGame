@@ -13,6 +13,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
+using static SecretProject.Class.UI.CheckList;
 
 namespace SecretProject.Class.UI
 {
@@ -65,6 +66,8 @@ namespace SecretProject.Class.UI
         public bool IsAnyChestOpen { get; set; }
         public float OpenChestKey { get; set; }
 
+        public CheckList SanctuaryCheckList { get; set; }
+
         //keyboard
 
 
@@ -87,6 +90,10 @@ namespace SecretProject.Class.UI
             CraftingMenu = new CraftingMenu();
             CraftingMenu.LoadContent(content, GraphicsDevice);
             ScrollTree = new ScrollTree(graphicsDevice);
+            this.SanctuaryCheckList = new CheckList(graphicsDevice, new Vector2(200, 50),
+                new List<CheckListRequirement>()
+                {new CheckListRequirement(1790, 1, "plant", false)
+                });
         }
 
 
@@ -165,7 +172,8 @@ namespace SecretProject.Class.UI
             {
                 ScrollTree.Update(gameTime, Game1.Player.Wisdom);
             }
-            
+
+            SanctuaryCheckList.Update(gameTime, mouse);
 
             if (isEscMenu)
             {
@@ -223,6 +231,7 @@ namespace SecretProject.Class.UI
                     }
                 }
             }
+            SanctuaryCheckList.Draw(spriteBatch);
             
             if(ScrollTree.IsActive)
             {

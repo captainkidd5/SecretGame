@@ -530,6 +530,7 @@ namespace SecretProject
                 0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 3,
+                CurrentStageLocation = 4,
                 FrameToSet = 3,
                 IsBasicNPC = true
             };

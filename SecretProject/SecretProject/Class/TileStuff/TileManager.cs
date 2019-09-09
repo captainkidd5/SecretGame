@@ -979,6 +979,7 @@ namespace SecretProject.Class.TileStuff
                             int tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
                             ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                         }
+                        Game1.Player.UserInterface.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID);
                         ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
 
                         Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
@@ -995,7 +996,7 @@ namespace SecretProject.Class.TileStuff
 
                     break;
                 case "readSanctuary":
-                    Console.WriteLine("reading sanctuary sign now");
+                    Game1.Player.UserInterface.SanctuaryCheckList.IsActive = true;
                     break;
 
 

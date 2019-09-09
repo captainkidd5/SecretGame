@@ -179,6 +179,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
+            if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
+            {
+                this.DisableInteractions = false;
+            }
+            else
+            {
+                this.DisableInteractions = true;
+            }
             if (!DisableInteractions)
             {
                 CheckBasicNPCSpeechInteraction(mouse, FrameToSet);
