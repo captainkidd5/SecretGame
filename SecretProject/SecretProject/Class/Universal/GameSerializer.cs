@@ -247,7 +247,6 @@ namespace SecretProject.Class.Universal
             writer.Write(tile.Y);
             writer.Write(tile.X);
 
-            writer.Write(tile.HitPoints);
 
             //skipping color 
 
@@ -266,8 +265,8 @@ namespace SecretProject.Class.Universal
             float oldY = reader.ReadSingle();
             float oldX = reader.ReadSingle();
             int hitPoints = reader.ReadInt32();
-           
-            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100) { HitPoints = hitPoints };
+
+            newTile = new Tile(oldX, oldY, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100);
 
 
             return newTile;

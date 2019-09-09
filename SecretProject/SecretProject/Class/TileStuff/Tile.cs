@@ -29,7 +29,6 @@ namespace SecretProject.Class.TileStuff
         public float LayerToDrawAtZOffSet { get; set; }
 
 
-        public int HitPoints { get; set; } = 1;
         public int AStarTileValue { get; set; }
 
 

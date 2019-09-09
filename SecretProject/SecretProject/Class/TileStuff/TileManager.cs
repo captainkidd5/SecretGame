@@ -94,6 +94,7 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<float, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<float, GrassTuft> AllTufts { get; set; }
+        public Dictionary<float, int> TileHitPoints { get; set; }
 
 
 
@@ -132,6 +133,7 @@ namespace SecretProject.Class.TileStuff
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
             AllTufts = new Dictionary<float, GrassTuft>();
+            TileHitPoints = new Dictionary<float, int>();
 
             for (int i = 0; i < allLayers.Count; i++)
             {
@@ -301,6 +303,7 @@ namespace SecretProject.Class.TileStuff
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
             AllTufts = new Dictionary<float, GrassTuft>();
+            TileHitPoints = new Dictionary<float, int>();
 
             for (int i = 0; i < NumberOfLayers; i++)
             {
@@ -498,7 +501,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
                 {
-                    tileToAssign.HitPoints = Game1.Utility.GetTileHitpoints(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                    TileHitPoints[tileToAssign.GetTileKey(mapWidth, mapHeight)] = Game1.Utility.GetTileHitpoints(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
 
                 }
 
@@ -1209,7 +1212,11 @@ namespace SecretProject.Class.TileStuff
                     if (Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]) == -50)
                     {
                         InteractWithoutPlayerAnimation(layer, gameTime, oldX, oldY, destinationRectangle, world, delayTimer: .25f);
-                        AllTiles[layer][oldX, oldY].HitPoints--;
+                        if (TileHitPoints.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)))
+                        {
+                            TileHitPoints[AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)]--;
+                        }
+
                     }
                     else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]))
                     {
@@ -1222,7 +1229,11 @@ namespace SecretProject.Class.TileStuff
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, destinationRectangle, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                                     Game1.Utility.GetTileEffectColor(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                                AllTiles[layer][oldX, oldY].HitPoints--;
+                                if(TileHitPoints.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)))
+                                {
+                                    TileHitPoints[AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)]--;
+                                }
+                                
                                 break;
 
                             case 1:
@@ -1230,14 +1241,20 @@ namespace SecretProject.Class.TileStuff
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, destinationRectangle, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                                     Game1.Utility.GetTileEffectColor(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                                AllTiles[layer][oldX, oldY].HitPoints--;
+                                if (TileHitPoints.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)))
+                                {
+                                    TileHitPoints[AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)]--;
+                                }
                                 break;
                             case 2:
                                 //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                                 InteractWithPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, destinationRectangle, .25f);
                                 ToolInteraction(AllTiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                                     Game1.Utility.GetTileEffectColor(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                                AllTiles[layer][oldX, oldY].HitPoints--;
+                                if (TileHitPoints.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)))
+                                {
+                                    TileHitPoints[AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)]--;
+                                }
                                 break;
                         }
 
@@ -1250,7 +1267,7 @@ namespace SecretProject.Class.TileStuff
 
         public void ToolInteraction(Tile tile, int layer, int x, int y, int setSoundInt, Color particleColor, ILocation world, Rectangle destinationRectangle, bool hasSpawnTiles = false)
         {
-            if (tile.HitPoints >= 1)
+            if (TileHitPoints[tile.GetTileKey(mapWidth, mapHeight)]>= 0)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, setSoundInt, 1f);
                 Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
@@ -1258,9 +1275,10 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
             }
 
-            if (tile.HitPoints < 1)
+            if (TileHitPoints[tile.GetTileKey(mapWidth, mapHeight)] < 1)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, setSoundInt, 1f);
+                TileHitPoints.Remove(tile.GetTileKey(mapWidth, mapHeight));
                 if (hasSpawnTiles)
                 {
                     DestroySpawnWithTiles(tile, x, y, world);

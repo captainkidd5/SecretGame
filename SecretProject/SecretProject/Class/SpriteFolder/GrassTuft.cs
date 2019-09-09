@@ -22,7 +22,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             this.GrassType = grassType;
             this.Position = position;
-            this.DestinationRectangle = new Rectangle((int)Position.X + Game1.Utility.RGenerator.Next(-16, 16), (int)Position.Y + Game1.Utility.RGenerator.Next(-16, 16), 16, 32);
+            this.DestinationRectangle = new Rectangle((int)Position.X + Game1.Utility.RGenerator.Next(-8, 8), (int)Position.Y + Game1.Utility.RGenerator.Next(-8, 8), 16, 32);
             this.Rotation = 0f;
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
