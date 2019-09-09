@@ -18,21 +18,11 @@ namespace SecretProject.Class.TileStuff
 
         private int gid;
         public int GID { get { return gid - 1; } set { gid = value; } }
-        public bool IsSelected { get; set; }
-
         public float Y { get; set; }
-
         public float X { get; set; }
-
-
-        public float LayerToDrawAt { get; set; } = 0f;
+        public float LayerToDrawAt { get; set; }
         public float LayerToDrawAtZOffSet { get; set; }
-
-
         public int AStarTileValue { get; set; }
-
-
-
 
 
         private Tile()
@@ -42,7 +32,7 @@ namespace SecretProject.Class.TileStuff
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
         {
-            this.IsSelected = false;
+
             this.X = x;
             this.Y = y;
 
