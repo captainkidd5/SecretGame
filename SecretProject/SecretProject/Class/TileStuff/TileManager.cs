@@ -717,7 +717,7 @@ namespace SecretProject.Class.TileStuff
                             int testGID = AllTiles[z][i, j].GID;
                             if (AllTiles[z][i, j].GID != -1)
                             {
-                                AllTiles[1][i, j].AStarTileValue = 0;
+                            
                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
 
@@ -740,7 +740,7 @@ namespace SecretProject.Class.TileStuff
                                             stage.AllObjects[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)] = tempObjectBody; // not gonna work for saving, gotta figure out.
 
                                         }
-                                        AllTiles[z][i, j].AStarTileValue = 0;
+
                                     }
                                 }
                             }
@@ -749,7 +749,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles[1]);
+            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, stage.AllObjects);
 
         }
         #endregion

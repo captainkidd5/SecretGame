@@ -280,9 +280,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                 if (this.CurrentTileX + newX < 99 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < 99 && this.CurrentTileY + newY > 0)
                 {
-                    int testAStar = Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue;
-                    if (Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue == 1)
-                    {
+                    //int testAStar = Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue;
+                    //.AllObjects.ContainsKey(Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].GetTileKey(Game1.GetCurrentStage().AllTiles.mapWidth, Game1.GetCurrentStage().AllTiles.mapHeight)))
+                    if (Game1.GetCurrentStage().AllTiles.PathGrid.Weight[this.CurrentTileX + newX, this.CurrentTileY + newY] != 0)
+                        {
                         MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY));
                         //wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
                        

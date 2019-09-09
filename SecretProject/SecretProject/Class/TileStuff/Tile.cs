@@ -22,7 +22,6 @@ namespace SecretProject.Class.TileStuff
         public float X { get; set; }
         public float LayerToDrawAt { get; set; }
         public float LayerToDrawAtZOffSet { get; set; }
-        public int AStarTileValue { get; set; }
 
 
         private Tile()
@@ -37,8 +36,6 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
 
             this.GID = gID;
-
-            AStarTileValue = 1;
 
         }
 
