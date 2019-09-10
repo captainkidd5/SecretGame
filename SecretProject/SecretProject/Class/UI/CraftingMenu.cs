@@ -50,7 +50,9 @@ namespace SecretProject.Class.UI
 
                 new CraftableRecipeBar(0,CraftingGuide,124,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 64), graphics),
                 new CraftableRecipeBar(0,CraftingGuide,3,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 128), graphics),
-                new CraftableRecipeBar(0,CraftingGuide,121,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 192), graphics)
+                new CraftableRecipeBar(0,CraftingGuide,121,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 192), graphics),
+                new CraftableRecipeBar(1,CraftingGuide,211,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 64), graphics),
+                new CraftableRecipeBar(1,CraftingGuide,212,new Vector2(BackDropPosition.X + 32, BackDropPosition.Y + 128), graphics)
             };
 
             Tabs = new List<Tab>()

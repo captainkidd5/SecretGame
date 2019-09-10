@@ -149,7 +149,6 @@ namespace SecretProject.Class.StageFolder
                     {
                         mySave.Load(graphics);
                         Game1.gameStages = Stages.Pass;
-                        Game1.Player.UserInterface.IsEscMenu = false;
                     }
                     if (Exit.isClicked)
                     {
@@ -158,7 +157,6 @@ namespace SecretProject.Class.StageFolder
 
                     if (reloadMap.isClicked)
                     {
-                        Game1.Player.UserInterface.IsEscMenu = false;
                         Game1.gameStages = Stages.Town;
                     }
                     if (FullScreen.isClicked)
@@ -188,7 +186,6 @@ namespace SecretProject.Class.StageFolder
                             }
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
-                            Game1.Player.UserInterface.IsEscMenu = false;
                         }
                         if(worldSizeMedium.isClicked)
                         {
@@ -207,7 +204,6 @@ namespace SecretProject.Class.StageFolder
                             }
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.World,gameTime);
-                            Game1.Player.UserInterface.IsEscMenu = false;
                         }
                         if(worldSizeLarge.isClicked)
                         {
@@ -226,7 +222,6 @@ namespace SecretProject.Class.StageFolder
                             }
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
-                            Game1.Player.UserInterface.IsEscMenu = false;
                         }
                     }
                     break;

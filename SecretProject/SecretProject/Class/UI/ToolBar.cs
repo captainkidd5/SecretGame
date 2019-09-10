@@ -277,7 +277,7 @@ namespace SecretProject.Class.UI
             if (InGameMenu.isClicked)
             {
 
-                Game1.Player.UserInterface.IsEscMenu = !Game1.Player.UserInterface.IsEscMenu;
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
             }
             else if (OpenInventory.isClicked)
             {

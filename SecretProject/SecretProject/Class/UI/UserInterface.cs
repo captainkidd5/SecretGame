@@ -40,10 +40,6 @@ namespace SecretProject.Class.UI
     public class UserInterface
     {
         ContentManager content;
-
-        static bool isEscMenu;
-
-        public bool IsEscMenu { get { return isEscMenu; } set { isEscMenu = value; } }
         public bool IsShopMenu { get; set; }
 
         public bool DrawTileSelector { get; set; } = true;
@@ -88,7 +84,6 @@ namespace SecretProject.Class.UI
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
-            isEscMenu = false;
             
             BottomBar = new ToolBar( graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
@@ -122,7 +117,6 @@ namespace SecretProject.Class.UI
                 BottomBar.Update(gameTime, inventory, mouse);
             }
 
-            //}
             switch(CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
@@ -132,6 +126,24 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
 
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
+                    {
+                        this.IsShopMenu = true;
+                        ActivateShop(OpenShop.ToolShop);
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+
+                    }
+
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)))
+                    {
+                        TextBuilder.IsActive = !TextBuilder.IsActive;
+                        TextBuilder.UseTextBox = true;
+                    }
+
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
@@ -159,6 +171,11 @@ namespace SecretProject.Class.UI
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
+                    {
+                        this.IsShopMenu = false;
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
                     CraftingMenu.Update(gameTime, mouse);
@@ -166,6 +183,10 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
@@ -179,28 +200,7 @@ namespace SecretProject.Class.UI
 
             }
             
-            
-
-            
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
-            {
-                ActivateShop(OpenShop.ToolShop);
-                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
-                
-            }
-
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)) && !isEscMenu)
-            {
-                TextBuilder.IsActive = !TextBuilder.IsActive;
-                TextBuilder.UseTextBox = true;
-            }
-
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)) && !isEscMenu)
-            {
-                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
-            }
-
-            
+           
 
             TextBuilder.Update(gameTime);
 
@@ -218,7 +218,7 @@ namespace SecretProject.Class.UI
 
         public void ActivateShop(OpenShop shopID)
         {
-            IsShopMenu = !IsShopMenu;
+
             for(int i = 0; i < Game1.AllShops.Count; i++)
             {
                 Game1.AllShops[i].IsActive = false;

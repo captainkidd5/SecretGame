@@ -462,7 +462,9 @@ namespace SecretProject
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
             SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
                 new List<CheckListRequirement>()
-                {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
+                {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
+                new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
+                new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
                 });
 
 
