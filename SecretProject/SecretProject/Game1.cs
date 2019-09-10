@@ -527,7 +527,7 @@ namespace SecretProject
                 3)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                0, 0, 72, 96, 3, .3f, new Vector2(1400, 600)) { IsAnimated = true,  } },
+                0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 3,
                 CurrentStageLocation = 4,

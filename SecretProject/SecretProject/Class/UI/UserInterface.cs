@@ -92,7 +92,7 @@ namespace SecretProject.Class.UI
             ScrollTree = new ScrollTree(graphicsDevice);
             this.SanctuaryCheckList = new CheckList(graphicsDevice, new Vector2(200, 50),
                 new List<CheckListRequirement>()
-                {new CheckListRequirement(1790, 1, "plant", false)
+                {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
                 });
         }
 
