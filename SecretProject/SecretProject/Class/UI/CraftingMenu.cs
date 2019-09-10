@@ -68,12 +68,11 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            if (this.IsActive)
-            {
+
                 RedEsc.Update(mouse);
                 if(RedEsc.isClicked)
                 {
-                    this.IsActive = false;
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
                 foreach(Tab tab in Tabs)
                 {
@@ -89,12 +88,11 @@ namespace SecretProject.Class.UI
                     
                 }
 
-            }
+            
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (this.IsActive)
-            {
+
                 RedEsc.Draw(spriteBatch);
                 spriteBatch.Draw(this.BackDropTexture, BackDropPosition, new Rectangle(1104, 1120, 288, 336), Color.White);
                 foreach(Tab tab in Tabs)
@@ -108,7 +106,7 @@ namespace SecretProject.Class.UI
                         bar.Draw(spriteBatch);
                     }
                 }
-            }
+            
 
         }
     }

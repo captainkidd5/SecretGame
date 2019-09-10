@@ -1004,7 +1004,7 @@ namespace SecretProject.Class.TileStuff
 
                     break;
                 case "readSanctuary":
-                    Game1.SanctuaryCheckList.IsActive = true;
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.SanctuaryCheckList;
                     break;
 
 

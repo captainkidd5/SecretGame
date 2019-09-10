@@ -31,10 +31,11 @@ namespace SecretProject.Class.UI
 
     public enum ExclusiveInterfaceItem
     {
-        EscMenu = 0,
-        ShopMenu = 1,
-        CraftingMenu = 2,
-        SanctuaryCheckList = 3
+        None = 0,
+        EscMenu = 1,
+        ShopMenu = 2,
+        CraftingMenu = 3,
+        SanctuaryCheckList = 4
     }
     public class UserInterface
     {
@@ -73,6 +74,7 @@ namespace SecretProject.Class.UI
         public ScrollTree ScrollTree { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public float OpenChestKey { get; set; }
+        public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
 
         //keyboard
 
@@ -97,6 +99,8 @@ namespace SecretProject.Class.UI
             CraftingMenu.LoadContent(content, GraphicsDevice);
             ScrollTree = new ScrollTree(graphicsDevice);
 
+            CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
         }
 
 
@@ -119,25 +123,47 @@ namespace SecretProject.Class.UI
             }
 
             //}
-            CraftingMenu.Update(gameTime, mouse);
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)) && !IsShopMenu)
+            switch(CurrentOpenInterfaceItem)
             {
-                isEscMenu = !isEscMenu;
-
-                if (isEscMenu == false)
-                {
+                case ExclusiveInterfaceItem.None:
+                    Game1.freeze = false;
                     Esc.isTextChanged = false;
-                }
-                    
+                    break;
+                case ExclusiveInterfaceItem.EscMenu:
+                    Esc.Update(gameTime, mouse);
+                    Game1.freeze = true;
+                    break;
+                case ExclusiveInterfaceItem.ShopMenu:
+                    for (int i = 0; i < Game1.AllShops.Count; i++)
+                    {
+                        if (Game1.AllShops[i].IsActive)
+                        {
+                            Game1.isMyMouseVisible = true;
+                            Game1.freeze = true;
+                            Game1.AllShops[i].Update(gameTime, mouse);
+                        }
+                    }
+                    break;
+                case ExclusiveInterfaceItem.CraftingMenu:
+                    CraftingMenu.Update(gameTime, mouse);
+                    break;
+                case ExclusiveInterfaceItem.SanctuaryCheckList:
+                    Game1.SanctuaryCheckList.Update(gameTime, mouse);
+                    break;
 
+            }
+            
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+            {
+                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
+                    
             }
 
             
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)
             {
                 ActivateShop(OpenShop.ToolShop);
-                //Player.UserInterface.CurrentOpenShop = OpenShop.ToolShop;
-
+                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                 
             }
 
@@ -149,7 +175,7 @@ namespace SecretProject.Class.UI
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)) && !isEscMenu)
             {
-                CraftingMenu.IsActive = !CraftingMenu.IsActive;
+                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
             }
 
             
@@ -158,36 +184,13 @@ namespace SecretProject.Class.UI
 
 
 
-            if(IsShopMenu)
-            {
-                for (int i = 0; i < Game1.AllShops.Count; i++)
-                {
-                    if (Game1.AllShops[i].IsActive)
-                    {
-                        Game1.isMyMouseVisible = true;
-                        Game1.freeze = true;
-                        Game1.AllShops[i].Update(gameTime, mouse);
-                    }
-                }
-            }
-
             if(this.ScrollTree.IsActive)
             {
                 ScrollTree.Update(gameTime, Game1.Player.Wisdom);
             }
 
-            Game1.SanctuaryCheckList.Update(gameTime, mouse);
+           
 
-            if (isEscMenu)
-            {
-                Esc.Update(gameTime, mouse);
-                Game1.freeze = true;
-            }
-            if(!isEscMenu && !IsShopMenu && !TextBuilder.FreezeStage)
-            {
-                Game1.freeze = false;
-
-            }
                 
         }
 
@@ -211,37 +214,45 @@ namespace SecretProject.Class.UI
             
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
 
+            switch (CurrentOpenInterfaceItem)
+            {
+                case ExclusiveInterfaceItem.None:
+                    Game1.freeze = false;
+                    Esc.isTextChanged = false;
+                    break;
+                case ExclusiveInterfaceItem.EscMenu:
+                    Esc.Draw(spriteBatch);
+                    break;
+                case ExclusiveInterfaceItem.ShopMenu:
+                    for (int i = 0; i < Game1.AllShops.Count; i++)
+                    {
+                        if (Game1.AllShops[i].IsActive)
+                        {
+                            Game1.AllShops[i].Draw(spriteBatch);
+                        }
+                    }
+                    break;
+                case ExclusiveInterfaceItem.CraftingMenu:
+                    CraftingMenu.Draw(spriteBatch);
+                    break;
+                case ExclusiveInterfaceItem.SanctuaryCheckList:
+                    Game1.SanctuaryCheckList.Draw(spriteBatch);
+                    break;
 
-            
-            
-            if(BottomBar.IsActive)
+            }
+
+
+            if (BottomBar.IsActive)
             {
                 BottomBar.Draw(spriteBatch);
             }
-            
-            if(isEscMenu)
-            {
-                Esc.Draw(spriteBatch);
-            }
-
-            if(IsShopMenu)
-            {
-                for (int i = 0; i < Game1.AllShops.Count; i++)
-                {
-                    if (Game1.AllShops[i].IsActive)
-                    {
-                        Game1.AllShops[i].Draw(spriteBatch);
-                    }
-                }
-            }
-            Game1.SanctuaryCheckList.Draw(spriteBatch);
             
             if(ScrollTree.IsActive)
             {
                 ScrollTree.Draw(spriteBatch);
             }
 
-                TextBuilder.Draw(spriteBatch, .71f);
+            TextBuilder.Draw(spriteBatch, .71f);
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
@@ -254,7 +265,7 @@ namespace SecretProject.Class.UI
 
             }
 
-            CraftingMenu.Draw(spriteBatch);
+            
 
             spriteBatch.End();
 
@@ -265,7 +276,7 @@ namespace SecretProject.Class.UI
             this.TextBuilder.Reset();
             this.TextBuilder.StringToWrite = Game1.GetCurrentStage().StageName;
             this.TextBuilder.Scale = 4f;
-            this.TextBuilder.Color = Color.White;
+            this.TextBuilder.Color = Color.Black;
             this.TextBuilder.IsActive = true;
             
         }

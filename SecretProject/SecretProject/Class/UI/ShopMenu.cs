@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI
 
             if(redEsc.isClicked)
             {
-                Game1.Player.UserInterface.IsShopMenu = false;
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 Game1.Player.UserInterface.CurrentOpenShop = 0;
             }
         }

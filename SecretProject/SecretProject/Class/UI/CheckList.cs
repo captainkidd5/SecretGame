@@ -14,9 +14,9 @@ namespace SecretProject.Class.UI
     {
         public Vector2 Position { get; set; }
         public Button RedEsc { get; set; }
-        public bool IsActive { get; set; }
         public List<CheckListRequirement> AllRequirements { get; set; }
         public bool FreezesGame { get; set; }
+        public bool IsActive { get; set; }
 
         public CheckList(GraphicsDevice graphics, Vector2 position, List<CheckListRequirement> allRequirements)
         {
@@ -38,23 +38,21 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime,MouseManager mouse)
         {
-            if(this.IsActive)
-            {
+
                 Game1.isMyMouseVisible = true;
                 Game1.freeze = true;
                 RedEsc.Update(mouse);
                 if (RedEsc.isClicked)
                 {
-                    this.IsActive = false;
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
-            }
+            
             
 
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(this.IsActive)
-            {
+
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 RedEsc.Draw(spriteBatch);
                 for(int i =0; i < AllRequirements.Count; i++)
@@ -78,7 +76,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, "Reward: ", new Vector2(Position.X + 50, Position.Y + 100 + 100 * AllRequirements.Count), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Position.X + 200, Position.Y + 100 + 100 * AllRequirements.Count),
                 new Rectangle(1328, 1472, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-            }
+            
             
         }
 

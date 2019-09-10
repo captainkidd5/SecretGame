@@ -19,6 +19,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool StartShuff { get; set; }
         public float ShuffSpeed { get; set; }
         public float YOffSet { get; set; }
+        public Dir ShuffDirection { get; set; }
         public GrassTuft(int grassType,Vector2 position)
         {
             this.GrassType = grassType;
@@ -30,6 +31,7 @@ namespace SecretProject.Class.SpriteFolder
             this.IsShuffing = false;
             this.StartShuff = false;
             this.YOffSet = Game1.Utility.RFloat(0, .00001f);
+            this.ShuffDirection = Dir.Left;
         }
         public void Update(GameTime gameTime)
         {
