@@ -30,6 +30,7 @@ using XMLData.RouteStuff;
 using XMLData.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
+using static SecretProject.Class.UI.CheckList;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -129,6 +130,8 @@ namespace SecretProject
         public UserInterface userInterface;
 
         public static DebugWindow DebugWindow;
+
+        public static CheckList SanctuaryCheckList;
 
         //TEXTURES
         GraphicsDeviceManager graphics;
@@ -457,10 +460,14 @@ namespace SecretProject
 
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
+                new List<CheckListRequirement>()
+                {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
+                });
 
 
-        //STAGES
-        mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
+            //STAGES
+            mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1,0) { StageIdentifier = 0 };
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1,1) { StageIdentifier = 1 };
             Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };

@@ -93,7 +93,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> GrassGeneratableTiles;
 
         public Dictionary<float, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<float, GrassTuft> AllTufts { get; set; }
+        public Dictionary<float, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<float, int> TileHitPoints { get; set; }
 
 
@@ -132,7 +132,7 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
-            AllTufts = new Dictionary<float, GrassTuft>();
+            AllTufts = new Dictionary<float, List<GrassTuft>>();
             TileHitPoints = new Dictionary<float, int>();
 
             for (int i = 0; i < allLayers.Count; i++)
@@ -301,7 +301,7 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<float, EditableAnimationFrameHolder>();
-            AllTufts = new Dictionary<float, GrassTuft>();
+            AllTufts = new Dictionary<float, List<GrassTuft>>();
             TileHitPoints = new Dictionary<float, int>();
 
             for (int i = 0; i < NumberOfLayers; i++)
@@ -402,8 +402,16 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                         {
-                            int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                            this.AllTufts[AllTiles[0][i, j].GetTileKey(mapWidth, mapHeight)] = new GrassTuft(grassType, new Vector2(GetDestinationRectangle(AllTiles[0][i, j]).X, GetDestinationRectangle(AllTiles[0][i, j]).Y));
+                            
+                            int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                            List<GrassTuft> tufts = new List<GrassTuft>();
+                            for(int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                            {
+                                int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                                tufts.Add(new GrassTuft(grassType, new Vector2(GetDestinationRectangle(AllTiles[0][i, j]).X, GetDestinationRectangle(AllTiles[0][i, j]).Y)));
+                                
+                            }
+                            this.AllTufts[AllTiles[0][i, j].GetTileKey(mapWidth, mapHeight)] = tufts;
                         }
                     }
                 }
@@ -979,7 +987,7 @@ namespace SecretProject.Class.TileStuff
                             int tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
                             ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                         }
-                        Game1.Player.UserInterface.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID);
+                        Game1.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID);
                         ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
 
                         Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
@@ -996,7 +1004,7 @@ namespace SecretProject.Class.TileStuff
 
                     break;
                 case "readSanctuary":
-                    Game1.Player.UserInterface.SanctuaryCheckList.IsActive = true;
+                    Game1.SanctuaryCheckList.IsActive = true;
                     break;
 
 

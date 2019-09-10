@@ -18,6 +18,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsShuffing { get; set; }
         public bool StartShuff { get; set; }
         public float ShuffSpeed { get; set; }
+        public float YOffSet { get; set; }
         public GrassTuft(int grassType,Vector2 position)
         {
             this.GrassType = grassType;
@@ -28,6 +29,7 @@ namespace SecretProject.Class.SpriteFolder
             this.ShuffSpeed = 2f;
             this.IsShuffing = false;
             this.StartShuff = false;
+            this.YOffSet = Game1.Utility.RFloat(0, .00001f);
         }
         public void Update(GameTime gameTime)
         {
@@ -54,15 +56,15 @@ namespace SecretProject.Class.SpriteFolder
             {
                 case 1:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(0, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8,24), SpriteEffects.None, .5f + (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8,24), SpriteEffects.None, .5f + YOffSet+ (DestinationRectangle.Top) * .00001f);
                     break;
                 case 2:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(16, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + YOffSet + (DestinationRectangle.Top) * .00001f);
                     break;
                 case 3:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(32, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + YOffSet + (DestinationRectangle.Top) * .00001f);
                     break;
             }
         }

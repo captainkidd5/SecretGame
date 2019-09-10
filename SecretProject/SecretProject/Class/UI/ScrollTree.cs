@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
-    public class ScrollTree
+    public class ScrollTree : IExclusiveInterfaceComponent
     {
         public bool IsActive { get; set; }
+        public bool FreezesGame { get; set; }
         public List<ScrollSlot> ScrollSlots { get; set; }
 
         public ScrollTree(GraphicsDevice graphics)
@@ -22,6 +23,7 @@ namespace SecretProject.Class.UI
                 new ScrollSlot(graphics, 1, new Vector2(500,500)),
             };
             this.IsActive = false;
+            this.FreezesGame = true;
 
         }
 

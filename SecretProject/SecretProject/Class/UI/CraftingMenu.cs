@@ -13,7 +13,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
 {
-    public class CraftingMenu
+    public class CraftingMenu : IExclusiveInterfaceComponent
     {
 
         public List<CraftableRecipeBar> CraftingRecipeBars { get; set; }
@@ -26,6 +26,7 @@ namespace SecretProject.Class.UI
         public CraftingGuide CraftingGuide { get; set; }
         public List<Tab> Tabs { get; set; }
         public Button RedEsc { get; set; }
+        public bool FreezesGame { get; set; }
 
         int currentPage;
 
@@ -33,6 +34,7 @@ namespace SecretProject.Class.UI
         {
 
             this.IsActive = false;
+            this.FreezesGame = false;
             
 
         }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
-    public class ShopMenu
+    public class ShopMenu :IExclusiveInterfaceComponent
     {
         public List<Button> allShopMenuItemButtons;
         //private Button shopMenuItemButton;
@@ -27,6 +27,8 @@ namespace SecretProject.Class.UI
         public Inventory ShopInventory;
 
         public TextBox ShopTextBox { get; set; }
+        public bool IsActive { get; set; }
+        public bool FreezesGame { get; set; }
 
         public ShopMenu(string name, GraphicsDevice graphicsDevice, int inventorySlotCount)
         {
@@ -59,6 +61,8 @@ namespace SecretProject.Class.UI
                 }
                     menuItemOffsetX++;             
             }
+            this.FreezesGame = true;
+            this.IsActive = false;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)

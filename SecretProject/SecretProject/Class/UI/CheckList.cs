@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
-    public class CheckList
+    public class CheckList : IExclusiveInterfaceComponent
     {
         public Vector2 Position { get; set; }
         public Button RedEsc { get; set; }
         public bool IsActive { get; set; }
         public List<CheckListRequirement> AllRequirements { get; set; }
+        public bool FreezesGame { get; set; }
+
         public CheckList(GraphicsDevice graphics, Vector2 position, List<CheckListRequirement> allRequirements)
         {
             this.Position = position;
             RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(this.Position.X + 900, this.Position.Y));
             this.IsActive = false;
             this.AllRequirements = allRequirements;
+            this.FreezesGame = true;
 
         }
 

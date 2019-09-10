@@ -49,6 +49,7 @@ namespace SecretProject.Class.NPCStuff
         public bool CollideOccured { get; set; } = false;
         public int SpeakerID { get; set; }
         public bool IsMoving { get; set; }
+        public int CurrentRoutePosition { get; set; }
 
 
 
@@ -377,6 +378,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         pointCounter = 0;
                         this.IsMoving = false;
                         this.CurrentDirection = 0;
+
                         if (route.StageToEndAt != CurrentStageLocation)
                         {
                             if(nodeToEndAt!=this.CurrentStageLocation)

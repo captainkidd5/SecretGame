@@ -21,7 +21,7 @@ namespace SecretProject.Class.TileStuff
          int tilesetTilesHigh { get; set; }
          int mapWidth { get; set; }
          int mapHeight { get; set; }
-         Dictionary<float, GrassTuft> AllTufts { get; set; }
+         Dictionary<float, List<GrassTuft>> AllTufts { get; set; }
 
         void UpdateCropTile(Crop crop, ILocation stage);
         void LoadInitialTileObjects(ILocation location);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace XMLData.DialogueStuff
         public int TimeStart { get; set; }
         public int TimeEnd { get; set; }
         public string TextToWrite { get; set; }
+        
     }
 }

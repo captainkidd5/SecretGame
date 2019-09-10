@@ -6,9 +6,9 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Day>0</Day>
-    <TimeStart>9</TimeStart>
-    <TimeEnd>20</TimeEnd>
-   <TextToWrite>Have you been to the wilderness center yet? There's definitely more to collect! You can stop by anytime to ask for help on what to do. The sanctuary door is also just to the East of here, through that tunnel yonder.
+    <TimeStart>13</TimeStart>
+    <TimeEnd>18</TimeEnd>
+   <TextToWrite>Check out the billboard to see what else the sanctuary needs!
    </TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

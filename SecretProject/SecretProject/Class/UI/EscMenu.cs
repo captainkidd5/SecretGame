@@ -13,7 +13,7 @@ using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.MenuStuff
 {
-    public class EscMenu
+    public class EscMenu : IExclusiveInterfaceComponent
     {
         public bool isTextChanged = false;
         List<Button> allButtons;
@@ -31,6 +31,8 @@ namespace SecretProject.Class.MenuStuff
         private string MenuText { get; set; }
         private string ToggleFullScreenButtonText;
         private SpriteFont Font { get; set; }
+        public bool IsActive { get; set; }
+        public bool FreezesGame { get; set; }
 
         public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -56,6 +58,8 @@ namespace SecretProject.Class.MenuStuff
 
 
             allButtons = new List<Button>() { MenuButton, SettingsButton, ReturnButton, ToggleFullScreenButton };
+            this.IsActive = false;
+            this.FreezesGame = true;
 
         }
 

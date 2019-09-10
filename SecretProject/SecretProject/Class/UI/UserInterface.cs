@@ -28,6 +28,14 @@ namespace SecretProject.Class.UI
         //Sea = 4,
         //RoyalDock = 5
     }
+
+    public enum ExclusiveInterfaceItem
+    {
+        EscMenu = 0,
+        ShopMenu = 1,
+        CraftingMenu = 2,
+        SanctuaryCheckList = 3
+    }
     public class UserInterface
     {
         ContentManager content;
@@ -66,8 +74,6 @@ namespace SecretProject.Class.UI
         public bool IsAnyChestOpen { get; set; }
         public float OpenChestKey { get; set; }
 
-        public CheckList SanctuaryCheckList { get; set; }
-
         //keyboard
 
 
@@ -90,10 +96,7 @@ namespace SecretProject.Class.UI
             CraftingMenu = new CraftingMenu();
             CraftingMenu.LoadContent(content, GraphicsDevice);
             ScrollTree = new ScrollTree(graphicsDevice);
-            this.SanctuaryCheckList = new CheckList(graphicsDevice, new Vector2(200, 50),
-                new List<CheckListRequirement>()
-                {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
-                });
+
         }
 
 
@@ -173,7 +176,7 @@ namespace SecretProject.Class.UI
                 ScrollTree.Update(gameTime, Game1.Player.Wisdom);
             }
 
-            SanctuaryCheckList.Update(gameTime, mouse);
+            Game1.SanctuaryCheckList.Update(gameTime, mouse);
 
             if (isEscMenu)
             {
@@ -231,7 +234,7 @@ namespace SecretProject.Class.UI
                     }
                 }
             }
-            SanctuaryCheckList.Draw(spriteBatch);
+            Game1.SanctuaryCheckList.Draw(spriteBatch);
             
             if(ScrollTree.IsActive)
             {

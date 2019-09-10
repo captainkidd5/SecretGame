@@ -299,13 +299,14 @@ namespace SecretProject.Class.StageFolder
                     
                 //}
                 AllTiles.Update(gameTime, mouse);
-                foreach (KeyValuePair<float, GrassTuft> tuft in AllTiles.AllTufts)
+                foreach (KeyValuePair<float, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 {
 
-                    tuft.Value.Update(gameTime);
-
-
-
+                    for(int i =0; i < tuft.Value.Count; i++)
+                    {
+                        tuft.Value[i].Update(gameTime);
+                    }
+ 
                 }
 
                 for (int i = 0; i < AllItems.Count; i++)
@@ -391,12 +392,13 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                foreach (KeyValuePair<float, GrassTuft> tuft in AllTiles.AllTufts)
+                foreach (KeyValuePair<float, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 {
 
-                        tuft.Value.Draw(spriteBatch);
-
-                    
+                    for (int i = 0; i < tuft.Value.Count; i++)
+                    {
+                        tuft.Value[i].Draw(spriteBatch);
+                    }
 
                 }
 
