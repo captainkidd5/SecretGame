@@ -253,7 +253,7 @@ namespace SecretProject.Class.TileStuff
                 for (int i = 0; i < this.mapWidth; i++)
                 {
                     for (int j = 0; j < this.mapHeight; j++)
-                    {                        
+                    {
                         if (AllTiles[z][i, j].GID != 0)
                         {
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
@@ -402,14 +402,14 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                         {
-                            
+
                             int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
                             List<GrassTuft> tufts = new List<GrassTuft>();
-                            for(int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                            for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
                                 int grassType = Game1.Utility.RGenerator.Next(1, 4);
                                 tufts.Add(new GrassTuft(grassType, new Vector2(GetDestinationRectangle(AllTiles[0][i, j]).X, GetDestinationRectangle(AllTiles[0][i, j]).Y)));
-                                
+
                             }
                             this.AllTufts[AllTiles[0][i, j].GetTileKey(mapWidth, mapHeight)] = tufts;
                         }
@@ -725,7 +725,7 @@ namespace SecretProject.Class.TileStuff
                             int testGID = AllTiles[z][i, j].GID;
                             if (AllTiles[z][i, j].GID != -1)
                             {
-                            
+
                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
 
@@ -977,25 +977,36 @@ namespace SecretProject.Class.TileStuff
                 case "sanctuaryAdd":
                     if (Game1.Player.Inventory.FindNumberOfItemInInventory(int.Parse(information[1])) > 0)
                     {
-
-                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
+                        int newGID;
+                        int relationX;
+                        int relationY;
+                        int layer;
+                        int tileToReplaceGID;
+                        
+                        if (Game1.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID))
                         {
-                            int newGID = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["spawnWith"]);
-                            int relationX = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationX"]);
-                            int relationY = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationY"]);
-                            int layer = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["layer"]);
-                            int tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
-                            ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
+                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
+                            {
+                                newGID = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["spawnWith"]);
+                                relationX = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationX"]);
+                                relationY = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationY"]);
+                                layer = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["layer"]);
+                                tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
+                                ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
+                            }
+                            Game1.Player.UserInterface.TextBuilder.DisplayFloatingText(3f, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
+                                Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name);
+
+
+                            ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
+
+                            Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
+                            Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
+                            Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
+                            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 10, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10);
+                            
+                            Game1.SoundManager.SanctuaryAdd.Play();
                         }
-                        Game1.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID);
-                        ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
-
-                        Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
-                        Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
-                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 10, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10);
-
-                        Game1.SoundManager.SanctuaryAdd.Play();
                     }
                     break;
                 case "chestLoot":

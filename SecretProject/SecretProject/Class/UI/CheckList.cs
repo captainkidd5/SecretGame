@@ -28,11 +28,16 @@ namespace SecretProject.Class.UI
 
         }
 
-        public void TryFillRequirement(int gid)
+        public bool TryFillRequirement(int gid)
         {
             if(AllRequirements.Any(x => x.GID == gid && !x.Completed))
             {
                 AllRequirements.Find(x => x.GID == gid && !x.Completed).Completed = true;
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

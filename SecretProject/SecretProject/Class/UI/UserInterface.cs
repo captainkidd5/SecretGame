@@ -128,10 +128,21 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.None:
                     Game1.freeze = false;
                     Esc.isTextChanged = false;
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
+
+                    }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
                     Esc.Update(gameTime, mouse);
+
                     Game1.freeze = true;
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
                     break;
                 case ExclusiveInterfaceItem.ShopMenu:
                     for (int i = 0; i < Game1.AllShops.Count; i++)
@@ -143,21 +154,32 @@ namespace SecretProject.Class.UI
                             Game1.AllShops[i].Update(gameTime, mouse);
                         }
                     }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
                     CraftingMenu.Update(gameTime, mouse);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Update(gameTime, mouse);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
                     break;
 
             }
             
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-            {
-                this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
-                    
-            }
+            
 
             
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)) && !isEscMenu)

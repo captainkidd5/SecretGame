@@ -13,6 +13,7 @@ namespace SecretProject.Class.DialogueStuff
     {
         normal = 0,
         dialogue = 1,
+        none = 2
     }
 
     public class TextBuilder
@@ -229,6 +230,12 @@ namespace SecretProject.Class.DialogueStuff
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, 1f);
 
             }
+        }
+
+
+        public void DisplayFloatingText(float timeToDisplay, Vector2 position, string stringToWrite)
+        {
+            this.Activate(false, TextBoxType.none, false, stringToWrite, 1f, position, null);
         }
     }
 }
