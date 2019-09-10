@@ -65,10 +65,13 @@ namespace SecretProject.Class.StageFolder
         TextBuilder TextBuilder { get; set; }
         bool IsLoaded { get; set; }
         List<Character> CharactersPresent { get; set; }
+        List<StringWrapper> AllTextToWrite { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
         void UnloadContent();
         void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
+        void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration);
+        
     }
 }

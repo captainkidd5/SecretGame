@@ -233,9 +233,6 @@ namespace SecretProject.Class.DialogueStuff
         }
 
 
-        public void DisplayFloatingText(float timeToDisplay, Vector2 position, string stringToWrite)
-        {
-            this.Activate(false, TextBoxType.none, false, stringToWrite, 1f, position, null);
-        }
+        
     }
 }

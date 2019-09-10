@@ -60,12 +60,28 @@ namespace SecretProject.Class.StageFolder
         public int StageIdentifier { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<Character> CharactersPresent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Dictionary<float, Chest> AllChests { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<StringWrapper> AllTextToWrite { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         Dictionary<float, ObjectBody> ILocation.AllObjects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Dictionary<float, Crop> ILocation.AllCrops { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         ITileManager ILocation.AllTiles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget,GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DrawText(float timeToDisplay, Vector2 position, string stringToWrite)
         {
             throw new NotImplementedException();
         }

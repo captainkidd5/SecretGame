@@ -120,6 +120,9 @@ namespace SecretProject.Class.StageFolder
         public int BackDropNumber { get; set; }
         public Vector2 BackDropPosition;
 
+        public List<StringWrapper> AllTextToWrite { get; set; }
+        
+
 
 
         #endregion
@@ -238,7 +241,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
-           
+            this.AllTextToWrite = new List<StringWrapper>();
             
             this.IsLoaded = true;
             
@@ -341,6 +344,10 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.Update(gameTime, mouse);
+                for(int s = 0; s < AllTextToWrite.Count; s++)
+                {
+                    AllTextToWrite[s].Update(gameTime, AllTextToWrite);
+                }
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -412,7 +419,11 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                foreach(Character character in CharactersPresent)
+                for (int s = 0; s < AllTextToWrite.Count; s++)
+                {
+                    AllTextToWrite[s].Draw(spriteBatch);
+                }
+                foreach (Character character in CharactersPresent)
                 {
                     character.Draw(spriteBatch);
                 }
@@ -467,6 +478,11 @@ namespace SecretProject.Class.StageFolder
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
 
+        }
+
+        public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
+        {
+            this.AllTextToWrite.Add(new StringWrapper(message, position, endAtX, endAtY, rate, duration));
         }
         public Camera2D GetCamera()
         {

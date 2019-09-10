@@ -994,8 +994,10 @@ namespace SecretProject.Class.TileStuff
                                 tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
                                 ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                             }
-                            Game1.Player.UserInterface.TextBuilder.DisplayFloatingText(3f, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
-                                Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name);
+                            //Game1.Player.UserInterface.TextBuilder.DisplayFloatingText(3f, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
+                            //  Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name);
+                            Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
+                                GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 100, 2f,3f);
 
 
                             ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
