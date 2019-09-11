@@ -957,3 +957,9 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/gears.png
 
+#begin SoundEffects/gearspin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/gearspin.wav
+

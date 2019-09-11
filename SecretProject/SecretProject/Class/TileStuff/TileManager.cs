@@ -1021,8 +1021,9 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if(Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
                     {
-                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
+                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true; 
                         Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
+                        Game1.SoundManager.GearSpin.Play();
                     }
                     break;
                 case "replaceLargeCog":
