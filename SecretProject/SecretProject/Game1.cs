@@ -72,6 +72,7 @@ namespace SecretProject
         World = 3,
         Sanctuary = 4,
         ElixirShop = 5,
+        JulianShop = 6,
         MainMenu = 50,
         Exit = 55
 
@@ -96,6 +97,7 @@ namespace SecretProject
         public static TmxStageBase Pass;
         public static TmxStageBase Sanctuary;
         public static TmxStageBase Center;
+        public static TmxStageBase JulianShop;
         public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -274,6 +276,8 @@ namespace SecretProject
 
                 case Stages.ElixirShop:
                     return ElixirShop;
+                case Stages.JulianShop:
+                    return JulianShop;
 
                 default:
                     return null;
@@ -287,6 +291,7 @@ namespace SecretProject
         //World = 3,
         //Sanctuary = 4,
         //ElixirShop = 5,
+        //julianshop = 6
         public static ILocation GetStageFromInt(int stageNumber)
         {
             switch (stageNumber)
@@ -303,6 +308,8 @@ namespace SecretProject
                     return Sanctuary;
                 case 5:
                     return ElixirShop;
+                case 6:
+                    return JulianShop;
 
                 default:
                     return Sanctuary;
@@ -330,6 +337,8 @@ namespace SecretProject
 
                 case Stages.ElixirShop:
                     return 5;
+                case Stages.JulianShop:
+                    return 6;
 
                 default:
                     return 4;
@@ -483,14 +492,14 @@ namespace SecretProject
            
             Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
             
-            //homeStead = new HomeStead(this, graphics.GraphicsDevice, Content, myMouseManager, cam, userInterface, Player);
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
+            JulianShop = new TmxStageBase("JulianShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {Pass , Town, Center, World, Sanctuary, ElixirShop, };
+            AllStages = new List<ILocation>() {Pass , Town, Center, World, Sanctuary, ElixirShop, JulianShop };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -548,7 +557,7 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(400, 500), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(200, 200), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,
@@ -610,10 +619,6 @@ namespace SecretProject
                 Player.UpdateMovementAnimationsOnce(gameTime);
 
             }
-
-            
-
-
         }
 
 
@@ -645,9 +650,6 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-
-
-            //switch between stages for updating
             switch (gameStages)
             {
                 case Stages.MainMenu:
@@ -680,8 +682,10 @@ namespace SecretProject
                 case Stages.ElixirShop:
                     ElixirShop.Update(gameTime, myMouseManager, Player);
                     break;
+                case Stages.JulianShop:
+                    JulianShop.Update(gameTime, myMouseManager, Player);
+                    break;
 
-                    //case Stages.GreatLibrary:
 
             }
             if (!myMouseManager.ToggleGeneralInteraction)
@@ -696,7 +700,7 @@ namespace SecretProject
         #region DRAW
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
+
 
 
             switch (gameStages)
@@ -710,9 +714,6 @@ namespace SecretProject
                 case Stages.World:
                     GraphicsDevice.Clear(Color.Black);
                     World.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    // spriteBatch.Begin();
-                    // spriteBatch.Draw(AllTextures.LodgeInteriorTileSet, new Vector2(0, 0), Color.White);
-                    // spriteBatch.End();
                     break;
                 case Stages.Center:
                     GraphicsDevice.Clear(Color.Black);
@@ -721,7 +722,6 @@ namespace SecretProject
 
                 case Stages.Pass:
                     GraphicsDevice.Clear(Color.Black);
-                    //spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, new Vector2(0, 0), Color.White);
                     Pass.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
@@ -739,8 +739,11 @@ namespace SecretProject
                     GraphicsDevice.Clear(Color.Black);
                     ElixirShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
+                case Stages.JulianShop:
+                    GraphicsDevice.Clear(Color.Black);
+                    JulianShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
 
-                    //break;
             }
 
             Game1.DebugWindow.Draw(spriteBatch);
@@ -749,7 +752,5 @@ namespace SecretProject
         }
         #endregion
     }
-    //IDEAS
-    //Minigame where your characters is running and 'exploding' objects pop up around them and you have to dodge
-    //
+
 }

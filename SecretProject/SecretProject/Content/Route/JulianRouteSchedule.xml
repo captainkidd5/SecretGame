@@ -23,7 +23,7 @@
         <ID>3</ID>
         <TimeToStart>20</TimeToStart>
         <TimeToFinish>22</TimeToFinish>
-         <StageToEndAt>5</StageToEndAt>
+         <StageToEndAt>0</StageToEndAt>
         <EndX>20</EndX>
         <EndY>20</EndY>
       </Item>
