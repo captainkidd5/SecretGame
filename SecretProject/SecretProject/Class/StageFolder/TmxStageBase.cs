@@ -121,7 +121,7 @@ namespace SecretProject.Class.StageFolder
         public Vector2 BackDropPosition;
 
         public List<StringWrapper> AllTextToWrite { get; set; }
-        
+
 
 
 
@@ -143,7 +143,7 @@ namespace SecretProject.Class.StageFolder
             this.IsLoaded = false;
             this.BackDropNumber = backDropNumber;
             CharactersPresent = new List<Character>();
-            if(this.BackDropNumber == 1)
+            if (this.BackDropNumber == 1)
             {
                 this.BackDropPosition = new Vector2(0, 50);
             }
@@ -228,13 +228,13 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-           
+
 
             this.Cam = camera;
             Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
-            
+
 
             Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(this.DialogueToRetrieve, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
 
@@ -242,9 +242,9 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             this.AllTextToWrite = new List<StringWrapper>();
-            
+
             this.IsLoaded = true;
-            
+
         }
         public void OnSceneChanged()
         {
@@ -269,7 +269,7 @@ namespace SecretProject.Class.StageFolder
             //Placement = null;
 
             //this.Cam = null;
-           // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+            // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
 
         }
 
@@ -288,7 +288,7 @@ namespace SecretProject.Class.StageFolder
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
+                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime, AllPortals[p]);
                         OnSceneChanged();
                         this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                         return;
@@ -297,7 +297,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime,AllPortals[p]);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime, AllPortals[p]);
                     OnSceneChanged();
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
@@ -317,7 +317,7 @@ namespace SecretProject.Class.StageFolder
 
                 player.Position = new Vector2(400, 400);
                 Game1.GlobalClock.TotalHours = 22;
-                
+
             }
 
             TextBuilder.Update(gameTime);
@@ -337,14 +337,13 @@ namespace SecretProject.Class.StageFolder
                 //Update sprites
                 foreach (Sprite spr in AllSprites)
                 {
-                    if (spr.IsBeingDragged == true)
-                    {
-                        spr.Update(gameTime, mouse.WorldMousePosition);
-                    }
+
+                    spr.Update(gameTime, mouse.WorldMousePosition);
+
                 }
 
                 AllTiles.Update(gameTime, mouse);
-                for(int s = 0; s < AllTextToWrite.Count; s++)
+                for (int s = 0; s < AllTextToWrite.Count; s++)
                 {
                     AllTextToWrite[s].Update(gameTime, AllTextToWrite);
                 }
@@ -357,13 +356,13 @@ namespace SecretProject.Class.StageFolder
                 {
                     character.Update(gameTime, AllObjects, mouse);
                 }
-                if(this.BackDropNumber == 1)
+                if (this.BackDropNumber == 1)
                 {
-                    if(player.position.Y < 250)
+                    if (player.position.Y < 250)
                     {
-                        this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition)/4);
+                        this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition) / 4);
                     }
- 
+
                 }
 
             }
@@ -401,13 +400,13 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                if(this.BackDropNumber == 1)
+                if (this.BackDropNumber == 1)
                 {
                     spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
                 }
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch, .4f + (player.Rectangle.Top + player.Rectangle.Height)* .00001f);
+                player.Draw(spriteBatch, .4f + (player.Rectangle.Top + player.Rectangle.Height) * .00001f);
                 TextBuilder.Draw(spriteBatch, .71f);
 
                 if (ShowBorders)
@@ -429,7 +428,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 mouse.Draw(spriteBatch, 1);
-                
+
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY, 16, 16),

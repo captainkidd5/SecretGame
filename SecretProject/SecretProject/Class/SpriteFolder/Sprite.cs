@@ -57,7 +57,14 @@ namespace SecretProject.Class.SpriteFolder
         public float Speed { get; set; }
 
         public Color Color { get; set; }
+
+
+        public Vector2 Origin { get; set; }
         public int ID { get; set; }
+        public float Rotation { get; set; }
+        public bool IsSpinning { get; set; }
+        public float SpinAmount { get; set; }
+        public float SpinSpeed { get; set; }
 
 
 
@@ -72,6 +79,8 @@ namespace SecretProject.Class.SpriteFolder
             this.Position = position;
             this.Width = width;
             this.Height = height;
+            this.Rotation = 0f;
+            this.Origin = Game1.Utility.Origin;
             
         }
 
@@ -91,6 +100,7 @@ namespace SecretProject.Class.SpriteFolder
             this.OffSetX = offSetX;
             this.OffSetY = offSetY;
             this.Color = Color.White;
+            this.Rotation = 0f;
         }
 
 
@@ -108,18 +118,13 @@ namespace SecretProject.Class.SpriteFolder
         public void Update(GameTime gameTime, Vector2 position)
         {
 
-            if(IsBeingDragged)
+
+            if(this.IsSpinning)
             {
-                this.Position = position;
+                Spin(gameTime, this.SpinAmount, this.SpinSpeed);
             }
-            if (IsAnimated)
-            {
-                UpdateAnimations(gameTime, position);
-            }
-            else
-            {
                 this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
-            }
+            
         }
 
         public void UpdateAnimations(GameTime gameTime, Vector2 position)
@@ -160,7 +165,7 @@ namespace SecretProject.Class.SpriteFolder
             DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
 
             spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier, layerDepth: layerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
+                    color: Color.White * ColorMultiplier,rotation: this.Rotation,origin: this.Origin, layerDepth: layerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
 
             
         }
@@ -243,6 +248,39 @@ namespace SecretProject.Class.SpriteFolder
                     IsTossed = true;
                 }
             }
+        }
+
+        public void Spin(GameTime gameTime, float amount, float speed)
+        {
+            if(amount >  0)
+            {
+                if (this.Rotation < amount)
+                {
+                    this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                }
+                else
+                {
+
+                    this.IsSpinning = false;
+                    return;
+                }
+
+            }
+            
+
+            if(amount < 0)
+            {
+                if (this.Rotation > amount)
+                {
+                    this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                }
+                else
+                {
+                    this.IsSpinning = false;
+                    return;
+                }
+            }
+            
         }
 
         public void PlayOnce(GameTime gameTime, Vector2 position)

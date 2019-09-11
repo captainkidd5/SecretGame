@@ -843,6 +843,11 @@
    <property name="action" value="replaceLargeCog"/>
   </properties>
  </tile>
+ <tile id="4281">
+  <properties>
+   <property name="action" value="triggerLift"/>
+  </properties>
+ </tile>
  <tile id="4380">
   <properties>
    <property name="action" value="replaceSmallCog"/>
