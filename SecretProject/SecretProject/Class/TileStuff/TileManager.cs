@@ -745,7 +745,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                            stage.AllObjects[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)] = tempObjectBody; // not gonna work for saving, gotta figure out.
+                                            stage.AllObjects.Add(AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight), tempObjectBody); // not gonna work for saving, gotta figure out.
 
                                         }
 
@@ -788,7 +788,8 @@ namespace SecretProject.Class.TileStuff
 
 
                     // tile.HasObject = true;
-                    stage.AllObjects[tile.GetTileKey(this.mapWidth, this.mapHeight)] = transformedObject;
+
+                    stage.AllObjects.Add(tile.GetTileKey(this.mapWidth, this.mapHeight), transformedObject);
                 }
             }
         }
@@ -1213,6 +1214,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                         {
+                            Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
                                 if (!Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(this.mapWidth, this.mapHeight)))
