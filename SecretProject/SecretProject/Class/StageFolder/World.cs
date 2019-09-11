@@ -66,7 +66,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<float, ObjectBody>()
+            AllObjects = new Dictionary<string, ObjectBody>()
             {
 
             };
@@ -122,7 +122,7 @@ namespace SecretProject.Class.StageFolder
                     break;
 
             }
-            AllChests = new Dictionary<float, Chest>();
+            AllChests = new Dictionary<string, Chest>();
             AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths, this);
 
             AllTiles.LoadInitialTileObjects(this);
@@ -137,7 +137,7 @@ namespace SecretProject.Class.StageFolder
 
             MapRectangle = new Rectangle(0, 0, TileWidth * WorldWidth, TileHeight * WorldHeight);
             Map = null;
-            AllCrops = new Dictionary<float, Crop>();
+            AllCrops = new Dictionary<string, Crop>();
             
             Boars = new List<Boar>() { };
             for (int i = 1; i < 15; i++)
@@ -299,7 +299,7 @@ namespace SecretProject.Class.StageFolder
                     
                 //}
                 AllTiles.Update(gameTime, mouse);
-                foreach (KeyValuePair<float, List<GrassTuft>> tuft in AllTiles.AllTufts)
+                foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 {
 
                     for(int i =0; i < tuft.Value.Count; i++)
@@ -392,7 +392,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                foreach (KeyValuePair<float, List<GrassTuft>> tuft in AllTiles.AllTufts)
+                foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 {
 
                     for (int i = 0; i < tuft.Value.Count; i++)

@@ -39,12 +39,22 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public float GetTileKey(int mapWidth, int mapHeight)
+        public string GetTileKey(int mapWidth, int mapHeight)
         {
-            float X = this.X;
-            float Y = this.Y;
-            string keyString = this.GID.ToString() + X.ToString() + Y.ToString();
-            return float.Parse(keyString);
+            float X = (this.X % mapWidth) * 16;
+            string XString = X.ToString();
+            if(XString.Length < 4)
+            {
+               XString = XString.PadLeft(4, '0');
+            }
+            float Y = (this.Y % mapHeight) * 16;
+            string YString = Y.ToString();
+            if (YString.Length < 4)
+            {
+               YString = YString.PadLeft(4, '0');
+            }
+            return XString + YString;
+            
         }
 
 

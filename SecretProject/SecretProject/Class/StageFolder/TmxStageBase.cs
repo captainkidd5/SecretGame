@@ -72,8 +72,8 @@ namespace SecretProject.Class.StageFolder
 
         public int TileSetNumber { get; set; }
 
-        public Dictionary<float, ObjectBody> AllObjects { get; set; }
-        public Dictionary<float, Crop> AllCrops { get; set; }
+        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public Dictionary<string, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
 
@@ -116,7 +116,7 @@ namespace SecretProject.Class.StageFolder
         public ITileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
-        public Dictionary<float, Chest> AllChests { get; set; }
+        public Dictionary<string, Chest> AllChests { get; set; }
         public int BackDropNumber { get; set; }
         public Vector2 BackDropPosition;
 
@@ -163,7 +163,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<float, ObjectBody>()
+            AllObjects = new Dictionary<string, ObjectBody>()
             {
 
             };
@@ -202,7 +202,7 @@ namespace SecretProject.Class.StageFolder
                 Placement
             };
             AllPortals = new List<Portal>();
-            AllChests = new Dictionary<float, Chest>();
+            AllChests = new Dictionary<string, Chest>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths, this);
             AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
@@ -216,7 +216,7 @@ namespace SecretProject.Class.StageFolder
 
             MapRectangle = new Rectangle(0, 0, TileWidth * Map.Width, TileHeight * Map.Height);
             Map = null;
-            AllCrops = new Dictionary<float, Crop>();
+            AllCrops = new Dictionary<string, Crop>();
 
 
             //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);

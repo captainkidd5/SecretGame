@@ -342,7 +342,7 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public void Update(GameTime gameTime, List<Item> items, Dictionary<float, ObjectBody> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, List<Item> items, Dictionary<string, ObjectBody> objects, MouseManager mouse)
         {
 
             if (Activate)

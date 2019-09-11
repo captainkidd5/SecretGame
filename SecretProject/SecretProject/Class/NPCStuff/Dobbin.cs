@@ -38,7 +38,7 @@ namespace SecretProject.Class.NPCStuff
             this.DebugColor = Color.HotPink;
         }
 
-        public override void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
+        public override void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse)
         {
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {

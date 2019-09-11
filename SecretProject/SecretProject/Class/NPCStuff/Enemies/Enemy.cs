@@ -77,7 +77,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.DebugColor = Color.Red;
         }
 
-        public virtual void Update(GameTime gameTime, Dictionary<float,ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;

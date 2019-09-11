@@ -38,7 +38,7 @@ namespace SecretProject.Class.StageFolder
         Camera2D Cam { get; set; }
 
         int TileSetNumber { get; set; }
-        Dictionary<float, ObjectBody> AllObjects { get; set; }
+        Dictionary<string, ObjectBody> AllObjects { get; set; }
 
 
         List<Sprite> AllSprites { get; set; }
@@ -56,8 +56,8 @@ namespace SecretProject.Class.StageFolder
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
-        Dictionary<float, Crop> AllCrops { get; set; }
-        Dictionary<float, Chest> AllChests { get; set; }
+        Dictionary<string, Crop> AllCrops { get; set; }
+        Dictionary<string, Chest> AllChests { get; set; }
 
         bool IsDark { get; set; }
         bool ShowBorders { get; set; }

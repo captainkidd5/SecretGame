@@ -19,7 +19,7 @@ namespace SecretProject.Class.PathFinding
 
 
 
-        public AStarPathFinder(int x, int y, List<Tile[,]> tiles, Dictionary<float, ObjectBody> dictionary, byte defaultValue = 0)
+        public AStarPathFinder(int x, int y, List<Tile[,]> tiles, Dictionary<string, ObjectBody> dictionary, byte defaultValue = 0)
         {
             Size = new Rectangle(0, 0, x, y);
             Weight = new byte[x, y];

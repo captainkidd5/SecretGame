@@ -69,7 +69,7 @@ namespace SecretProject.Class.UI
 
         public ScrollTree ScrollTree { get; set; }
         public bool IsAnyChestOpen { get; set; }
-        public float OpenChestKey { get; set; }
+        public string OpenChestKey { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
 
         //keyboard
@@ -102,7 +102,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             IsAnyChestOpen = false;
-            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
+            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllChests)
             {
                 if (chest.Value.IsUpdating)
                 {
@@ -278,7 +278,7 @@ namespace SecretProject.Class.UI
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
-            foreach (KeyValuePair<float, Chest> chest in Game1.GetCurrentStage().AllChests)
+            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllChests)
             {
                 if (chest.Value.IsUpdating)
                 {

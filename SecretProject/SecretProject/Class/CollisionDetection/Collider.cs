@@ -73,7 +73,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(Dictionary<float,ObjectBody> objectBody, Vector2 position)
+        public bool DidCollide(Dictionary<string,ObjectBody> objectBody, Vector2 position)
         {
             
             foreach (var body in objectBody.Values)
