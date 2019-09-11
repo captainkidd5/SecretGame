@@ -40,6 +40,7 @@ namespace SecretProject.Class.TextureStuff
         //TORSO MINING
         public Texture2D TorsoBlueMining;
 
+        //NPCS
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
         public Texture2D DobbinSpriteSheet;
@@ -48,6 +49,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D KayaSpriteSheet;
 
         public Texture2D SnawSpriteSheet;
+        public Texture2D JulianSpriteSheet;
 
         //playeractions
 
@@ -113,6 +115,7 @@ namespace SecretProject.Class.TextureStuff
             PlayerParts = content.Load<Texture2D>("Player/MainPlayer/playerParts");
             PlayerPartsMining = content.Load<Texture2D>("Player/MainPlayer/playerPartsMining");
 
+            //NPC
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
 
@@ -126,6 +129,7 @@ namespace SecretProject.Class.TextureStuff
             EnemySpriteSheet = content.Load<Texture2D>("NPC/Enemy/EnemySpriteSheet");
 
             KayaSpriteSheet = content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet");
+            JulianSpriteSheet = content.Load<Texture2D>("NPC/Julian/Julian");
 
 
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");

@@ -44,7 +44,7 @@ namespace SecretProject.Class.Universal
             LocalTime = TimeSpan.Zero;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
-            ClockSpeed = 25f;
+            ClockSpeed = 10f;
 
 
         }

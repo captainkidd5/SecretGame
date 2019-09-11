@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.DialogueStuff.DialogueHolder">
+  <SpeakerID>6</SpeakerID>
+  <AllDialogue>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Day>0</Day>
+    <TimeStart>13</TimeStart>
+    <TimeEnd>18</TimeEnd>
+   <TextToWrite>Hey, names Julian. Have you seen a big metal lookin thing by any chance?
+   </TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>2</SpeechID>
+    <Day>0</Day>
+    <TimeStart>21</TimeStart>
+    <TimeEnd>8</TimeEnd>
+   <TextToWrite>carry the two... eighteen? No wait... thirty two? That doesn't seem right either.</TextToWrite>
+    </Item>
+  </AllDialogue>
+  </Asset>
+</XnaContent>

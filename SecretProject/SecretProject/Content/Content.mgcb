@@ -923,3 +923,25 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin NPC/Julian/Julian.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Julian/Julian.png
+
+#begin Route/JulianRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/JulianRouteSchedule.xml
+
+#begin Dialogue/JulianDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/JulianDialogue.xml
+

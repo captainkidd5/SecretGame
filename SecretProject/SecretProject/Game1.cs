@@ -163,10 +163,12 @@ namespace SecretProject
         public DialogueHolder DobbinDialogue;
         public DialogueHolder SnawDialogue;
         public DialogueHolder KayaDialogue;
+        public DialogueHolder JulianDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
         public RouteSchedule KayaRouteSchedule;
+        public RouteSchedule JulianRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
 
@@ -192,6 +194,7 @@ namespace SecretProject
         public static Kaya Kaya;
 
         public static Character Snaw;
+        public static Julian Julian;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -347,14 +350,16 @@ namespace SecretProject
             DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
             SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
             KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
+            JulianDialogue = Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
 
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
             KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule };
+            JulianRouteSchedule = Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,JulianRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,JulianDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -543,12 +548,14 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
+            Julian = new Julian("Julian", new Vector2(400, 500), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,
                 Dobbin,
                 Kaya,
-                Snaw
+                Snaw,
+                Julian
             };
 
             foreach (ILocation stage in AllStages)
