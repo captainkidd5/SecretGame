@@ -59,6 +59,24 @@
     </Item>
     </AllItemsRequired>
     </Item>
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>232</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>231</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>233</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>231</ItemID>
+    <Count>2</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
   </CraftingRecipes>
   </Asset>
 </XnaContent>

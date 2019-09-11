@@ -371,6 +371,24 @@
 <Price>70</Price>
 <Plantable>false</Plantable>
 </Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>LargeCog</Name>
+<ID>232</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>14</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>70</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>SmallCog</Name>
+<ID>233</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>14</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>70</Price>
+<Plantable>false</Plantable>
+</Item>
 </AllItems>
 </Asset>
 </XnaContent>

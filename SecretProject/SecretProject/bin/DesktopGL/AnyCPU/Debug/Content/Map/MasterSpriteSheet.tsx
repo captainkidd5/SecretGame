@@ -838,6 +838,16 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="4280">
+  <properties>
+   <property name="action" value="replaceLargeCog"/>
+  </properties>
+ </tile>
+ <tile id="4380">
+  <properties>
+   <property name="action" value="replaceSmallCog"/>
+  </properties>
+ </tile>
  <tile id="6067">
   <properties>
    <property name="action" value="readSanctuary"/>

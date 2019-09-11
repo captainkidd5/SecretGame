@@ -1019,6 +1019,34 @@ namespace SecretProject.Class.TileStuff
                 case "readSanctuary":
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.SanctuaryCheckList;
                     break;
+                case "replaceLargeCog":
+                    if(!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232))
+                     {
+                        if(Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
+                        {
+                            ReplaceTileWithNewTile(3, i, j, -1);
+                            Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y), 16, 16) { ID = 232 });
+                            Game1.SoundManager.CraftMetal.Play();
+                            Game1.Player.Inventory.RemoveItem(232);
+
+                        }
+                        
+                    }
+                    
+                    break;
+                case "replaceSmallCog":
+                    if (!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                    {
+                        if (Game1.Player.Inventory.FindNumberOfItemInInventory(233) > 0)
+                        {
+                            ReplaceTileWithNewTile(3, i, j, -1);
+                            Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 5), 16, 16) { ID = 233 });
+                            Game1.SoundManager.CraftMetal.Play();
+                            Game1.Player.Inventory.RemoveItem(233);
+
+                        }
+                    }
+                    break;
 
 
             }

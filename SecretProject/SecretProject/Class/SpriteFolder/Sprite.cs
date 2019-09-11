@@ -57,6 +57,7 @@ namespace SecretProject.Class.SpriteFolder
         public float Speed { get; set; }
 
         public Color Color { get; set; }
+        public int ID { get; set; }
 
 
 
