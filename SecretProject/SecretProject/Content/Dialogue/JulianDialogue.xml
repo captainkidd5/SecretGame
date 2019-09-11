@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
 <Asset Type ="XMLData.DialogueStuff.DialogueHolder">
-  <SpeakerID>6</SpeakerID>
+  <SpeakerID>5</SpeakerID>
   <AllDialogue>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
