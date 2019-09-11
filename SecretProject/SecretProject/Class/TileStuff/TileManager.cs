@@ -951,15 +951,20 @@ namespace SecretProject.Class.TileStuff
                                                 }
 
                                             }
-                                           
+                                            //return;
+
                                         }
-                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
+                                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                         {
-                                            if (mouse.IsClicked)
+                                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
                                             {
-                                                ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]);
+                                                if (mouse.IsClicked)
+                                                {
+                                                    ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"]);
+                                                }
                                             }
                                         }
+
                                     }
                                 }
                             }
@@ -984,7 +989,7 @@ namespace SecretProject.Class.TileStuff
                         int relationY;
                         int layer;
                         int tileToReplaceGID;
-                        
+
                         if (Game1.SanctuaryCheckList.TryFillRequirement(AllTiles[z][i, j].GID))
                         {
                             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
@@ -997,7 +1002,7 @@ namespace SecretProject.Class.TileStuff
                                 ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                             }
                             Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
-                                GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 100, 2f,3f);
+                                GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 100, 2f, 3f);
 
 
                             ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
@@ -1006,7 +1011,7 @@ namespace SecretProject.Class.TileStuff
                             Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
                             Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
                             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 10, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10);
-                            
+
                             Game1.SoundManager.SanctuaryAdd.Play();
                         }
                     }
@@ -1020,28 +1025,29 @@ namespace SecretProject.Class.TileStuff
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.SanctuaryCheckList;
                     break;
                 case "triggerLift":
-                    if(Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                    if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
                     {
-                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true; 
+                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
                         Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
                         Game1.SoundManager.GearSpin.Play();
                     }
                     break;
                 case "replaceLargeCog":
-                    if(!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232))
-                     {
-                        if(Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
+                    if (!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232))
+                    {
+                        if (Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
                         {
                             ReplaceTileWithNewTile(3, i, j, -1);
                             Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8,
-                                GetDestinationRectangle(AllTiles[z][i, j]).Y + 8), 16, 16) { ID = 232, SpinAmount = 10f, SpinSpeed = 2f,Origin = new Vector2(8,8) });
+                                GetDestinationRectangle(AllTiles[z][i, j]).Y + 8), 16, 16)
+                            { ID = 232, SpinAmount = 10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                             Game1.SoundManager.CraftMetal.Play();
                             Game1.Player.Inventory.RemoveItem(232);
 
                         }
-                        
+
                     }
-                    
+
                     break;
                 case "replaceSmallCog":
                     if (!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
@@ -1051,7 +1057,8 @@ namespace SecretProject.Class.TileStuff
                             ReplaceTileWithNewTile(3, i, j, -1);
 
                             Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
-                                new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8, GetDestinationRectangle(AllTiles[z][i, j]).Y + 5), 16, 16) { ID = 233,SpinAmount = -10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
+                                new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8, GetDestinationRectangle(AllTiles[z][i, j]).Y + 5), 16, 16)
+                            { ID = 233, SpinAmount = -10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                             Game1.SoundManager.CraftMetal.Play();
                             Game1.Player.Inventory.RemoveItem(233);
 

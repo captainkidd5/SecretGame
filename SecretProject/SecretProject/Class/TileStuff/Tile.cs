@@ -24,10 +24,7 @@ namespace SecretProject.Class.TileStuff
         public float LayerToDrawAtZOffSet { get; set; }
 
 
-        private Tile()
-        {
 
-        }
 
         public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
         {
