@@ -341,7 +341,7 @@
   <properties>
    <property name="destructable" value="1,0,0,8"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="130:100:1,183:15:1"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index">

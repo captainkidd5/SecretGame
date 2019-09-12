@@ -290,25 +290,10 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                //foreach (KeyValuePair<float, Chest> chest in AllChests)
-                //{
-                //    if(chest.Value.IsUpdating)
-                //    {
-                //        chest.Value.Update(gameTime, mouse);
-                //    }
-                    
-                //}
+
                 AllTiles.Update(gameTime, mouse);
                 player.Update(gameTime, AllItems, AllTiles.CurrentObjects, mouse);
-                //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
-                //{
 
-                //    for(int i =0; i < tuft.Value.Count; i++)
-                //    {
-                //        tuft.Value[i].Update(gameTime);
-                //    }
-
-                //}
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
