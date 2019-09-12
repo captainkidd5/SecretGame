@@ -140,7 +140,7 @@ namespace SecretProject.Class.StageFolder
             AllCrops = new Dictionary<string, Crop>();
             
             Boars = new List<Boar>() { };
-            for (int i = 1; i < 50; i++)
+            for (int i = 1; i < 150; i++)
             {
                 Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }

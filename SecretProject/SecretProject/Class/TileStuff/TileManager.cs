@@ -1229,8 +1229,8 @@ namespace SecretProject.Class.TileStuff
         public void UpdateCropTile(Crop crop, ILocation stage)
         {
             string tileID = crop.TileID; ;
-            int x = int.Parse(tileID.Substring(0, 4));
-            int y = int.Parse(tileID.Substring(4, 4));
+            int x = int.Parse(tileID.Substring(1, 4));
+            int y = int.Parse(tileID.Substring(5, 4));
             ReplaceTilePermanent(1, x, y, crop.GID, stage);
             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {
