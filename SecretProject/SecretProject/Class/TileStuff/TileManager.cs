@@ -1156,10 +1156,9 @@ namespace SecretProject.Class.TileStuff
 
         public void UpdateCropTile(Crop crop, ILocation stage)
         {
-            string tileID = crop.TileID;
-            int layer = int.Parse(tileID[0].ToString());
-            int x = int.Parse(tileID[1].ToString() + tileID[2].ToString());
-            int y = int.Parse(tileID[3].ToString() + tileID[4].ToString());
+            string tileID = crop.TileID;;
+           int x = int.Parse(tileID.Substring(0, 4));
+            int y = int.Parse(tileID.Substring(4, 4));
             ReplaceTilePermanent(1, x, y, crop.GID, stage);
             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {
@@ -1231,25 +1230,7 @@ namespace SecretProject.Class.TileStuff
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    string oldXString = oldX.ToString();
-                                    if (oldXString.Length < 2)
-                                    {
-                                        oldXString.Insert(0, "0");
-                                    }
-                                    if (oldXString.Length < 2)
-                                    {
-                                        oldXString.Insert(0, "0");
-                                    }
-                                    string oldYString = oldY.ToString();
-                                    if (oldYString.Length < 2)
-                                    {
-                                        oldYString.Insert(0, "0");
-                                    }
-                                    if (oldYString.Length < 2)
-                                    {
-                                        oldYString.Insert(0, "0");
-                                    }
-                                    tempCrop.TileID = layer.ToString() + oldXString + oldYString;
+                                    tempCrop.TileID = AllTiles[layer][oldX, oldY].GetTileKey(this.mapWidth, this.mapHeight);
                                     tempCrop.GID++;
                                     //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                                     ReplaceTileWithNewTile(1, oldX, oldY, tempCrop.GID);

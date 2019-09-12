@@ -38,13 +38,13 @@ namespace SecretProject.Class.TileStuff
 
         public string GetTileKey(int mapWidth, int mapHeight)
         {
-            float X = (this.X % mapWidth) * 16;
+            float X = this.X;
             string XString = X.ToString();
             if(XString.Length < 4)
             {
                XString = XString.PadLeft(4, '0');
             }
-            float Y = (this.Y % mapHeight) * 16;
+            float Y = this.Y;
             string YString = Y.ToString();
             if (YString.Length < 4)
             {
