@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -22,11 +23,13 @@ namespace SecretProject.Class.TileStuff
          int mapWidth { get; set; }
          int mapHeight { get; set; }
          Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
+         Dictionary<string, ObjectBody> CurrentObjects { get; set; }
 
         void UpdateCropTile(Crop crop, ILocation stage);
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);
+        
 
     }
 }

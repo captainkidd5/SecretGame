@@ -28,7 +28,7 @@ namespace SecretProject.Class.PathFinding
             {
                 for (var j = 0; j < y; j++)
                 {
-                    if (dictionary.ContainsKey(tiles[1][i, j].GetTileKey(x, y)))
+                    if (dictionary.ContainsKey(tiles[1][i, j].GetTileKey(1,x, y)))
                     {
                         Weight[i, j] = 0;
                     }

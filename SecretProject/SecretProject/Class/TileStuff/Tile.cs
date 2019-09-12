@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public string GetTileKey(int mapWidth, int mapHeight)
+        public string GetTileKey(int layer, int mapWidth, int mapHeight)
         {
             float X = this.X;
             string XString = X.ToString();
@@ -50,7 +50,7 @@ namespace SecretProject.Class.TileStuff
             {
                YString = YString.PadLeft(4, '0');
             }
-            return XString + YString;
+            return layer.ToString() + XString + YString;
             
         }
 

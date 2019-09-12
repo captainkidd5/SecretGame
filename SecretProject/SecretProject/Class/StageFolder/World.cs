@@ -277,7 +277,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects, mouse);
+                
                 MoveGondola();
 
                 //--------------------------------------
@@ -299,6 +299,7 @@ namespace SecretProject.Class.StageFolder
                     
                 //}
                 AllTiles.Update(gameTime, mouse);
+                player.Update(gameTime, AllItems, AllTiles.CurrentObjects, mouse);
                 //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 //{
 
@@ -306,7 +307,7 @@ namespace SecretProject.Class.StageFolder
                 //    {
                 //        tuft.Value[i].Update(gameTime);
                 //    }
- 
+
                 //}
 
                 for (int i = 0; i < AllItems.Count; i++)

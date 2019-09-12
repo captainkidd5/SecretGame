@@ -31,7 +31,7 @@ namespace SecretProject.Class.CollisionDetection
             this.topLeft = topLeft;
             this.bottomRight = bottomRight;
 
-
+       
         }
 
         public bool Contains(Vector2 Point)
@@ -73,54 +73,53 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(ObjectBody body, Vector2 position)
+        public bool DidCollide(Dictionary<string,ObjectBody> objectBody, Vector2 position)
         {
-
-
-
-            if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
-                         && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
+            
+            foreach (var body in objectBody.Values)
             {
-
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
+                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
+                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
                 {
-                    velocity.X -= velocity.X; //+ (float).25;
-                    position.X = body.Rectangle.Left - rectangle.Right;
-                    return true;
+                    
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
+                    {
+                        velocity.X -= velocity.X; //+ (float).25;
+                        position.X = body.Rectangle.Left - rectangle.Right;
+                        return true;
+                    }
+                        
+
+
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
+                    {
+                        velocity.X -= velocity.X; //- (float).25;
+                        position.X = body.Rectangle.Right - rectangle.Left;
+                        return true;
+                    }
+                        
+
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
+                    {
+                        velocity.Y -= velocity.Y; //+ (float).25;
+                        position.Y = body.Rectangle.Top - Rectangle.Top;
+                        return true;
+                    }
+                        
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
+                    {
+                        velocity.Y -= velocity.Y;// - (float).25;
+                        position.Y = body.Rectangle.Bottom - Rectangle.Bottom;
+                        return true;
+                    }
+
+                 
+                        
                 }
-
-
-
-                if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
-                {
-                    velocity.X -= velocity.X; //- (float).25;
-                    position.X = body.Rectangle.Right - rectangle.Left;
-                    return true;
-                }
-
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
-                {
-                    velocity.Y -= velocity.Y; //+ (float).25;
-                    position.Y = body.Rectangle.Top - Rectangle.Top;
-                    return true;
-                }
-
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
-                {
-                    velocity.Y -= velocity.Y;// - (float).25;
-                    position.Y = body.Rectangle.Bottom - Rectangle.Bottom;
-                    return true;
-                }
-
-
-
             }
             return false;
-        }
-            
 
-        
+        }
 
         public void DidCollide(List<Sprite> sprite)
         {
@@ -146,11 +145,11 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-
+        
 
         public void DidCollideMagnet(List<Item> item)
         {
-            for (int i = 0; i < item.Count; i++)
+            for(int i = 0; i < item.Count; i ++)
             {
                 if (item[i].Ignored == false)
                 {
@@ -189,10 +188,10 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
 
-
-
-
-
+            
+                
+                
+            
         }
 
         public bool IsTouchingLeft(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
@@ -255,6 +254,6 @@ namespace SecretProject.Class.CollisionDetection
                 rectangle.Left < sprite.DestinationRectangle.Right;
         }
 
-
+       
     }
 }
