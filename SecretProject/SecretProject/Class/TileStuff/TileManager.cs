@@ -955,7 +955,7 @@ namespace SecretProject.Class.TileStuff
                         if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                            ReplaceTileWithNewTile(z, i, j, 86);
+                            ReplaceTile(z, i, j, 86);
 
                         }
                     }
@@ -977,14 +977,11 @@ namespace SecretProject.Class.TileStuff
                                 if (!Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)))
                                 {
 
-                                    //Game1.myMouseManager.TogglePlantInteraction = true;
-
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                                     tempCrop.TileID = AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight);
                                     tempCrop.GID++;
-                                    //AllTiles[layer][oldX, oldY].Crop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    ReplaceTileWithNewTile(1, i, j, tempCrop.GID);
+                                    ReplaceTile(1, i, j, tempCrop.GID);
                                     Game1.GetCurrentStage().AllCrops[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
@@ -1015,13 +1012,13 @@ namespace SecretProject.Class.TileStuff
                                     relationY = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["relationY"]);
                                     layer = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[newGID].Properties["layer"]);
                                     tileToReplaceGID = MapName.Tilesets[TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
-                                    ReplaceTileWithNewTile(layer, i + relationX, j + relationY, tileToReplaceGID);
+                                    ReplaceTile(layer, i + relationX, j + relationY, tileToReplaceGID);
                                 }
                                 Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == AllTiles[z][i, j].GID).Name, new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 10),
                                     GetDestinationRectangle(AllTiles[z][i, j]).X, GetDestinationRectangle(AllTiles[z][i, j]).Y - 100, 2f, 3f);
 
 
-                                ReplaceTileWithNewTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
+                                ReplaceTile(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1);
 
                                 Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
                                 Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
@@ -1043,11 +1040,16 @@ namespace SecretProject.Class.TileStuff
                 case "smelt":
                     if (mouse.IsClicked)
                     {
-
-                        if (Game1.Player.Inventory.FindNumberOfItemInInventory(221) > 0)
+                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
                         {
-                            Game1.Player.Inventory.RemoveItem(221);
-                            Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(231, null));
+
+
+                            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool(), null);
+                            if (tempItem.SmeltedItem != 0)
+                            {
+                                Game1.Player.Inventory.RemoveItem(tempItem.ID);
+                                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(tempItem.SmeltedItem, null));
+                            }
                         }
                     }
 
@@ -1059,11 +1061,14 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
                 case "triggerLift":
-                    if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                    if (mouse.IsClicked)
                     {
-                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
-                        Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
-                        Game1.SoundManager.GearSpin.Play();
+                        if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                        {
+                            Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
+                            Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
+                            Game1.SoundManager.GearSpin.Play();
+                        }
                     }
                     break;
                 case "replaceLargeCog":
@@ -1073,7 +1078,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
                             {
-                                ReplaceTileWithNewTile(3, i, j, -1);
+                                ReplaceTile(3, i, j, -1);
                                 Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8,
                                     GetDestinationRectangle(AllTiles[z][i, j]).Y + 8), 16, 16)
                                 { ID = 232, SpinAmount = 10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
@@ -1093,7 +1098,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (Game1.Player.Inventory.FindNumberOfItemInInventory(233) > 0)
                             {
-                                ReplaceTileWithNewTile(3, i, j, -1);
+                                ReplaceTile(3, i, j, -1);
 
                                 Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
                                     new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8, GetDestinationRectangle(AllTiles[z][i, j]).Y + 5), 16, 16)
@@ -1209,7 +1214,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void ReplaceTileWithNewTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
+        public void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].X, AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
             AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;

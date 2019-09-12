@@ -13,7 +13,6 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
-    [Serializable, XmlRoot("Item")]
     public class Item
     {
         public string Name { get; set; }
@@ -23,32 +22,32 @@ namespace SecretProject.Class.ItemStuff
         public int InvMaximum { get; set; }
         public int WorldMaximum { get; set; }
 
-        [XmlIgnore]
+
         public bool IsFull { get; set; }
         public bool Ignored { get; set; }
 
-        [XmlIgnore]
+
         public bool IsMagnetized { get; set; } = false;
-        [XmlIgnore]
+
         public bool IsMagnetizable { get; set; } = false;
 
-        [XmlIgnore]
+
         public Vector2 WorldPosition;
 
-        [XmlIgnore]
+
         public bool IsTossable { get; set; } = false;
 
         public bool IsDropped { get; set; }
-        [XmlIgnore]
+
         public Sprite ItemSprite { get; set; }
-        [XmlIgnore]
+
         public GraphicsDevice Graphics { get; set; }
-        [XmlIgnore]
+
         public ContentManager Content { get; set; }
 
         public bool IsPlaceable { get; set; } = false;
         public bool IsPlantable { get; set; }
-        [XmlIgnore]
+
         public PlaceableBuilding Building { get; set; }
 
         public string id { get; set; }
@@ -60,19 +59,16 @@ namespace SecretProject.Class.ItemStuff
 
         public int Price { get; set; }
 
-        [XmlIgnore]
+
         public bool IsWorldItem { get; set; }
 
-        [XmlIgnore]
+
         int directionX = Game1.Utility.RGenerator.Next(-2, 2);
-        [XmlIgnore]
+
         int directionY = Game1.Utility.RGenerator.Next(-2, 2);
 
-        //Need empty constructor for serialization!
-        public Item()
-        {
+        public int SmeltedItem { get; set; }
 
-        }
 
 
 
@@ -85,6 +81,7 @@ namespace SecretProject.Class.ItemStuff
             this.TextureColumn = itemData.TextureColumn;
             this.TextureRow = itemData.TextureRow;
             this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
+            this.SmeltedItem = itemData.SmeltedItem;
 
             if(itemData.Plantable)
             {
@@ -116,12 +113,10 @@ namespace SecretProject.Class.ItemStuff
                 {
                     this.ItemSprite.Bobber(gameTime);
                 }
-                //ItemSprite.UpdateDestinationRectangle();
                 if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
                 {
                     IsMagnetized = true;
                     IsDropped = false;
-                    //ItemSprite.PickedUp = true;
 
                     IsMagnetizable = false;
 
@@ -130,7 +125,6 @@ namespace SecretProject.Class.ItemStuff
                 if (IsTossable == true)
                 {
                     ItemSprite.Toss(gameTime, 1f, 1f);
-                    //IsTossable = false;
                 }
             }
         }

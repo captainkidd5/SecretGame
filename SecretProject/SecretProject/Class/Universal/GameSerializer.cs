@@ -88,7 +88,7 @@ namespace SecretProject.Class.Universal
                 slotItemsCounters[i] = slotItemCounter;
                 for(int j=0; j < slotItemsCounters[i]; j++)
                 {
-                    newInventory.currentInventory[i].AddItemToSlot(ReadInventoryItem(reader, version));
+                   // newInventory.currentInventory[i].AddItemToSlot(ReadInventoryItem(reader, version));
                 }     
             }
 
@@ -110,56 +110,56 @@ namespace SecretProject.Class.Universal
             writer.Write(item.Price);
         }
 
-        public static Item ReadInventoryItem( BinaryReader reader, float version)
-        {
-            Item item = new Item();
-            item.Name = reader.ReadString();
-            item.ID = reader.ReadInt32();
-            item.Count = reader.ReadInt32();
-            item.InvMaximum = reader.ReadInt32();
-            item.WorldMaximum = reader.ReadInt32();
-            item.Ignored = reader.ReadBoolean();
-            item.IsDropped = reader.ReadBoolean();
-            item.IsPlaceable = reader.ReadBoolean();
-            item.Price = reader.ReadInt32();
+       // public static Item ReadInventoryItem( BinaryReader reader, float version)
+       // {
+            //Item item = new Item();
+            //item.Name = reader.ReadString();
+            //item.ID = reader.ReadInt32();
+            //item.Count = reader.ReadInt32();
+            //item.InvMaximum = reader.ReadInt32();
+            //item.WorldMaximum = reader.ReadInt32();
+            //item.Ignored = reader.ReadBoolean();
+            //item.IsDropped = reader.ReadBoolean();
+            //item.IsPlaceable = reader.ReadBoolean();
+            //item.Price = reader.ReadInt32();
 
-            return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
-        }
+            //return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
+       // }
 
-        public static void WriteWorldItem(Item item, BinaryWriter writer, float version)
-        {
-            writer.Write(item.Name);
-            writer.Write(item.ID);
-            writer.Write(item.Count);
-            writer.Write(item.InvMaximum);
-            writer.Write(item.WorldMaximum);
-            writer.Write(item.Ignored);
-            writer.Write(item.IsDropped);
-            writer.Write(item.IsPlaceable);
-            //writer.Write(item.id);
-            writer.Write(item.Price);
-            writer.Write(item.WorldPosition.X);
-            writer.Write(item.WorldPosition.Y);
-        }
+       // public static void WriteWorldItem(Item item, BinaryWriter writer, float version)
+       // {
+            //writer.Write(item.Name);
+            //writer.Write(item.ID);
+            //writer.Write(item.Count);
+            //writer.Write(item.InvMaximum);
+            //writer.Write(item.WorldMaximum);
+            //writer.Write(item.Ignored);
+            //writer.Write(item.IsDropped);
+            //writer.Write(item.IsPlaceable);
+            ////writer.Write(item.id);
+            //writer.Write(item.Price);
+            //writer.Write(item.WorldPosition.X);
+            //writer.Write(item.WorldPosition.Y);
+      //  }
 
-        public static Item ReadWorldItem(BinaryReader reader, float version)
-        {
-            Item item = new Item();
-            item.Name = reader.ReadString();
-            item.ID = reader.ReadInt32();
-            item.Count = reader.ReadInt32();
-            item.InvMaximum = reader.ReadInt32();
-            item.WorldMaximum = reader.ReadInt32();
-            item.Ignored = reader.ReadBoolean();
-            item.IsDropped = reader.ReadBoolean();
-            item.IsPlaceable = reader.ReadBoolean();
-            item.Price = reader.ReadInt32();
-            float itemPositionX = reader.ReadSingle();
-            float itemPositionY = reader.ReadSingle();
-            item.WorldPosition = new Vector2(itemPositionX, itemPositionY);
+       // public static Item ReadWorldItem(BinaryReader reader, float version)
+       // {
+            //Item item = new Item();
+            //item.Name = reader.ReadString();
+            //item.ID = reader.ReadInt32();
+            //item.Count = reader.ReadInt32();
+            //item.InvMaximum = reader.ReadInt32();
+            //item.WorldMaximum = reader.ReadInt32();
+            //item.Ignored = reader.ReadBoolean();
+            //item.IsDropped = reader.ReadBoolean();
+            //item.IsPlaceable = reader.ReadBoolean();
+            //item.Price = reader.ReadInt32();
+            //float itemPositionX = reader.ReadSingle();
+            //float itemPositionY = reader.ReadSingle();
+            //item.WorldPosition = new Vector2(itemPositionX, itemPositionY);
 
-            return Game1.ItemVault.GenerateNewItem(item.ID, item.WorldPosition, true);
-        }
+            //return Game1.ItemVault.GenerateNewItem(item.ID, item.WorldPosition, true);
+       // }
 
         public static void WriteObjectBody(ObjectBody obj, BinaryWriter writer, float version)
         {
@@ -189,7 +189,7 @@ namespace SecretProject.Class.Universal
             writer.Write(home.AllItems.Count);
             for (int i = 0; i < home.AllItems.Count; i++)
             {
-                WriteWorldItem(home.AllItems[i], writer, version);
+                //WriteWorldItem(home.AllItems[i], writer, version);
 
             }
             writer.Write(home.AllTiles.AllTiles.Count);
@@ -215,7 +215,7 @@ namespace SecretProject.Class.Universal
             int allItemsCount = reader.ReadInt32();
             for (int i = 0; i < allItemsCount; i++)
             {
-                AllItems.Add(ReadWorldItem(reader, version));
+               // AllItems.Add(ReadWorldItem(reader, version));
             }
 
             home.AllItems = AllItems;

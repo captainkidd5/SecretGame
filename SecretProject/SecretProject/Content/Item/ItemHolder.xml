@@ -342,7 +342,6 @@
 <TextureColumn>12</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>10</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Clay</Name>
@@ -351,7 +350,6 @@
 <TextureColumn>13</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>3</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SteelSlag</Name>
@@ -360,7 +358,7 @@
 <TextureColumn>13</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>70</Price>
-<Plantable>false</Plantable>
+<SmeltedItem>231</SmeltedItem>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SteelIngot</Name>

@@ -22,6 +22,7 @@ namespace XMLData.ItemStuff
             newItem.TextureRow = oldItem.TextureRow;
             newItem.Price = oldItem.Price;
             newItem.Plantable = oldItem.Plantable;
+            newItem.SmeltedItem = oldItem.SmeltedItem;
 
 
 
