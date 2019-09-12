@@ -278,7 +278,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
 
-                if (this.CurrentTileX + newX < 99 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < 99 && this.CurrentTileY + newY > 0)
+                if (this.CurrentTileX + newX < Game1.GetCurrentStage().MapRectangle.Width - 10 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < Game1.GetCurrentStage().MapRectangle.Height - 10 && this.CurrentTileY + newY > 0)
                 {
                     //int testAStar = Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue;
                     //.AllObjects.ContainsKey(Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].GetTileKey(Game1.GetCurrentStage().AllTiles.mapWidth, Game1.GetCurrentStage().AllTiles.mapHeight)))

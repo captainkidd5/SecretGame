@@ -43,6 +43,7 @@ namespace SecretProject.Class.SpriteFolder
                 this.StartShuff = true;
                    
             }
+
             if (!this.StartShuff)
             {
                 RotateBackToOrigin(gameTime);

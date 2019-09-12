@@ -140,9 +140,9 @@ namespace SecretProject.Class.StageFolder
             AllCrops = new Dictionary<string, Crop>();
             
             Boars = new List<Boar>() { };
-            for (int i = 1; i < 15; i++)
+            for (int i = 1; i < 50; i++)
             {
-                Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, 1200), Game1.Utility.RFloat(300, 1200)), Graphics, Game1.AllTextures.EnemySpriteSheet));
+                Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
             
         }
@@ -302,7 +302,11 @@ namespace SecretProject.Class.StageFolder
 
                 for (int e = 0; e < Boars.Count; e++)
                 {
-                    Boars[e].Update(gameTime, AllObjects, mouse);
+                    if(Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
+                    {
+                        Boars[e].Update(gameTime, AllObjects, mouse);
+                    }
+                    
                     //Console.WriteLine(Boars[1].cu);
                     //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
                 }
@@ -408,8 +412,10 @@ namespace SecretProject.Class.StageFolder
                 Gondola.Draw(spriteBatch, .8f);
                 for (int e = 0; e < Boars.Count; e++)
                 {
-                    Boars[e].Draw(spriteBatch);
-
+                    if (Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
+                    {
+                        Boars[e].Draw(spriteBatch);
+                    }
                 }
 
                 for (int i = 0; i < AllItems.Count; i++)
