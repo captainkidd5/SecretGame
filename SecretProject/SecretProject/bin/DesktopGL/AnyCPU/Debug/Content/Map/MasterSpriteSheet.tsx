@@ -6,6 +6,11 @@
    <property name="action" value="plantable"/>
   </properties>
  </tile>
+ <tile id="260">
+  <properties>
+   <property name="action" value="smelt"/>
+  </properties>
+ </tile>
  <tile id="288">
   <properties>
    <property name="AssociatedTiles" value="189"/>
@@ -22,6 +27,11 @@
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="177:100:1,167:20:3"/>
   </properties>
+ </tile>
+ <tile id="360">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="1"/>
+  </objectgroup>
  </tile>
  <tile id="361">
   <properties>

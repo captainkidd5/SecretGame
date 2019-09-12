@@ -989,7 +989,14 @@ namespace SecretProject.Class.TileStuff
                     break;
                 case "chestLoot":
                     Game1.GetCurrentStage().AllChests[AllTiles[z][i, j].GetTileKey(mapWidth, mapHeight)].IsUpdating = true;
+                    break;
 
+                case "smelt":
+                    if(Game1.Player.Inventory.FindNumberOfItemInInventory(221) > 0)
+                    {
+                        Game1.Player.Inventory.RemoveItem(221);
+                        Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(231, null));
+                    }
 
                     break;
                 case "readSanctuary":

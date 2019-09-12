@@ -181,10 +181,6 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void SpawnGrassTufts(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
-        {
-
-        }
 
         public static void SpawnBaseCamp(List<Tile[,]> tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
         {
