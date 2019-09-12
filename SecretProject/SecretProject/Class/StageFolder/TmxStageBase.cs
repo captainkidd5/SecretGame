@@ -198,8 +198,8 @@ namespace SecretProject.Class.StageFolder
                 Background,
                 Buildings,
                 MidGround,
-                foreGround,
-                Placement
+                foreGround
+    
             };
             AllPortals = new List<Portal>();
             AllChests = new Dictionary<string, Chest>();

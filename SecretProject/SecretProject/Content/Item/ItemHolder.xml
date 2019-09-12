@@ -214,7 +214,7 @@
 <ID>161</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>7</TextureRow>
+<TextureRow>1</TextureRow>
 <Price>1</Price>
 <Plantable>false</Plantable>
 </Item>
@@ -223,7 +223,7 @@
 <ID>162</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
-<TextureRow>8</TextureRow>
+<TextureRow>2</TextureRow>
 <Price>1</Price>
 <Plantable>true</Plantable>
 </Item>

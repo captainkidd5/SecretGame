@@ -764,35 +764,6 @@ namespace SecretProject.Class.TileStuff
 
         #region ADDOBJECTSTOBUILDINGS
 
-        public void AddObjectToBuildingTile(Tile tile, int indexX, int indexY, ILocation stage, Rectangle destinationRectangle)
-        {
-            for (int z = 0; z < AllTiles.Count; z++)
-            {
-                AddObject(AllTiles[z][indexX, indexY], stage, destinationRectangle);
-
-            }
-        }
-
-        public void AddObject(Tile tile, ILocation stage, Rectangle destinationRectangle)
-        {
-            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(tile.GID))
-            {
-                for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects.Count; k++)
-                {
-
-                    TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[tile.GID].ObjectGroups[0].Objects[k];
-                    ObjectBody transformedObject = new ObjectBody(graphicsDevice,
-                       new Rectangle(destinationRectangle.X + (int)Math.Ceiling(tempObj.X),
-                      destinationRectangle.Y + (int)Math.Ceiling(tempObj.Y), (int)Math.Ceiling(tempObj.Width),
-                       (int)Math.Ceiling(tempObj.Height)), tile.GID);
-
-
-                    // tile.HasObject = true;
-
-                    stage.AllObjects.Add(tile.GetTileKey(this.mapWidth, this.mapHeight), transformedObject);
-                }
-            }
-        }
         #endregion
 
         public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage)
@@ -1169,8 +1140,6 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-
-        //Basic Replacement.
         public void ReplaceTileWithNewTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].X, AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);

@@ -15,11 +15,11 @@ namespace SecretProject.Class.SpriteFolder
         public Rectangle DestinationRectangle { get; set; }
         public float Rotation { get; set; }
         public float RotationCap { get; set; }
-        public bool IsShuffing { get; set; }
         public bool StartShuff { get; set; }
         public float ShuffSpeed { get; set; }
         public float YOffSet { get; set; }
         public Dir ShuffDirection { get; set; }
+        public bool ShuffDirectionPicked { get; set; }
         public GrassTuft(int grassType,Vector2 position)
         {
             this.GrassType = grassType;
@@ -28,27 +28,30 @@ namespace SecretProject.Class.SpriteFolder
             this.Rotation = 0f;
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
-            this.IsShuffing = false;
             this.StartShuff = false;
             this.YOffSet = Game1.Utility.RFloat(0, .00001f);
             this.ShuffDirection = Dir.Left;
+            this.ShuffDirectionPicked = false;
         }
         public void Update(GameTime gameTime)
         {
-            if(!this.IsShuffing)
-            {
-                RotateBackToOrigin(gameTime);
-            }
+            
             
            
-            if(Game1.Player.Rectangle.Intersects(DestinationRectangle))
+            if(!StartShuff && new Rectangle(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y + 16, Game1.Player.Rectangle.Width, Game1.Player.Rectangle.Height).Intersects(DestinationRectangle))
             {
                 this.StartShuff = true;
                    
             }
-            if(this.StartShuff)
+            if (!this.StartShuff)
+            {
+                RotateBackToOrigin(gameTime);
+                this.ShuffDirectionPicked = false;
+            }
+            if (this.StartShuff)
             {
                 Shuff(gameTime, (int)Game1.Player.controls.Direction);
+                ShuffDirectionPicked = true;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -73,44 +76,58 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Shuff(GameTime gameTime, int direction)
         {
-
-            if(direction == (int)Dir.Right)
+            if(!ShuffDirectionPicked)
             {
-                if (this.Rotation < RotationCap + .5)
+                if (direction == (int)Dir.Up || direction == (int)Dir.Down)
                 {
-                    this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * ShuffSpeed;
-                    this.IsShuffing = true;
+                    this.ShuffDirection = (Dir)Game1.Utility.RGenerator.Next(2, 4);
                 }
-                else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
+                if(direction == (int)Dir.Right)
                 {
+                    this.ShuffDirection = Dir.Right;
+                }
+                if (direction == (int)(Dir.Left))
+                {
+                    this.ShuffDirection = Dir.Left;
+                }
 
-                }
-                else
-                {
-                    this.IsShuffing = false;
-                    this.StartShuff = false;
-                }
-                
             }
-            else if (direction == (int)Dir.Left)
+            else
             {
-                if (this.Rotation > RotationCap - 1)
+                if (ShuffDirection == Dir.Right)
                 {
-                    this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * ShuffSpeed;
-                    this.IsShuffing = true;
-                }
-                else if(Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
-                {
+                    if (this.Rotation < RotationCap + .5)
+                    {
+                        this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * ShuffSpeed;
+                    }
+                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
+                    {
+
+                    }
+                    else
+                    {
+                        this.StartShuff = false;
+                    }
+
 
                 }
-                else
+                else if (ShuffDirection == Dir.Left)
                 {
-                    this.IsShuffing = false;
-                    this.StartShuff = false;
+                    if (this.Rotation > RotationCap - 1)
+                    {
+                        this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * ShuffSpeed;
+                    }
+                    else if (Game1.Player.Rectangle.Intersects(this.DestinationRectangle))
+                    {
+
+                    }
+                    else
+                    {
+                        this.StartShuff = false;
+                    }
                 }
             }
-            
-            
+
         }
 
         public void RotateBackToOrigin(GameTime gameTime)
@@ -125,7 +142,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             else
             {
-                this.IsShuffing = false;
+                this.StartShuff = false;
             }
         }
     }
