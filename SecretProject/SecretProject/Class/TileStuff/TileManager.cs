@@ -850,7 +850,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-
+            Game1.Player.CollideOccured = false;
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -863,13 +863,23 @@ namespace SecretProject.Class.TileStuff
 
                         if (AllTiles[z][i, j].GID != -1)
                         {
-
+                            string TileKey = AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight);
                             Rectangle destinationRectangle = GetDestinationRectangle(AllTiles[z][i, j]);
-                            if(AllTufts.ContainsKey(AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)))
+                            if(AllTufts.ContainsKey(TileKey))
                             {
-                                for(int t = 0; t < AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)].Count; t++)
+                                for(int t = 0; t < AllTufts[TileKey].Count; t++)
                                 {
-                                    AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)][t].Update(gameTime);
+                                    AllTufts[TileKey][t].Update(gameTime);
+                                }
+                            }
+                            if(Game1.GetCurrentStage().AllObjects.ContainsKey(TileKey))
+                            {
+                                bool collideOccured = false;
+                                collideOccured = Game1.Player.MyCollider.DidCollide(Game1.GetCurrentStage().AllObjects[TileKey], Game1.Player.Position);
+                                if(collideOccured)
+                                {
+                                    Game1.Player.CollideOccured = collideOccured;
+                                    Console.WriteLine("Collide Occurred!");
                                 }
                             }
 

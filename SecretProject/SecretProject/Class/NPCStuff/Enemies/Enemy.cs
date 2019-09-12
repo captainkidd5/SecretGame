@@ -82,7 +82,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(objects, Position);
+           // this.CollideOccured = Collider.DidCollide(objects, Position);
 
             for (int i = 0; i < 4; i++)
             {

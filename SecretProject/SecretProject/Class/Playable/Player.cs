@@ -341,10 +341,10 @@ namespace SecretProject.Class.Playable
                 }
             }
         }
-
+        public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, Dictionary<string, ObjectBody> objects, MouseManager mouse)
         {
-
+            //CollideOccured = false;
             if (Activate)
             {
                 if (GameMode == 1)
@@ -366,11 +366,11 @@ namespace SecretProject.Class.Playable
 
 
 
-                    bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
+                   // bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
                     
                     this.PrimaryVelocity = MyCollider.Velocity;
 
-                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
+                    if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
                         TotalVelocity = PrimaryVelocity;
                     }
