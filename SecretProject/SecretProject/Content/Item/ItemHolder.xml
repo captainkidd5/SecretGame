@@ -10,6 +10,7 @@
 <TextureRow>0</TextureRow>
 <Price>25</Price>
 <Plantable>false</Plantable>
+<Durability>5</Durability>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Hammer</Name>
@@ -357,7 +358,7 @@
 <InvMaximum>99</InvMaximum>
 <TextureColumn>13</TextureColumn>
 <TextureRow>1</TextureRow>
-<Price>70</Price>
+<Price>69</Price>
 <SmeltedItem>231</SmeltedItem>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">

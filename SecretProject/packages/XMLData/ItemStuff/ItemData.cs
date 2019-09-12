@@ -21,5 +21,8 @@ namespace XMLData.ItemStuff
 
         [ContentSerializer(Optional = true)]
         public bool Plantable { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public int Durability { get; set; }
     }
 }

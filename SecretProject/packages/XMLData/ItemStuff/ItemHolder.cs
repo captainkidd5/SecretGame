@@ -23,6 +23,7 @@ namespace XMLData.ItemStuff
             newItem.Price = oldItem.Price;
             newItem.Plantable = oldItem.Plantable;
             newItem.SmeltedItem = oldItem.SmeltedItem;
+            newItem.Durability = oldItem.Durability;
 
 
 

@@ -68,6 +68,7 @@ namespace SecretProject.Class.ItemStuff
         int directionY = Game1.Utility.RGenerator.Next(-2, 2);
 
         public int SmeltedItem { get; set; }
+        public int Durability { get; set; }
 
 
 
@@ -82,6 +83,7 @@ namespace SecretProject.Class.ItemStuff
             this.TextureRow = itemData.TextureRow;
             this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
             this.SmeltedItem = itemData.SmeltedItem;
+            this.Durability = itemData.Durability;
 
             if(itemData.Plantable)
             {

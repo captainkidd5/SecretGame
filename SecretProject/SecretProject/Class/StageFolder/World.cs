@@ -299,15 +299,15 @@ namespace SecretProject.Class.StageFolder
                     
                 //}
                 AllTiles.Update(gameTime, mouse);
-                foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
-                {
+                //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
+                //{
 
-                    for(int i =0; i < tuft.Value.Count; i++)
-                    {
-                        tuft.Value[i].Update(gameTime);
-                    }
+                //    for(int i =0; i < tuft.Value.Count; i++)
+                //    {
+                //        tuft.Value[i].Update(gameTime);
+                //    }
  
-                }
+                //}
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -392,15 +392,15 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
-                {
+                //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
+                //{
 
-                    for (int i = 0; i < tuft.Value.Count; i++)
-                    {
-                        tuft.Value[i].Draw(spriteBatch);
-                    }
+                //    for (int i = 0; i < tuft.Value.Count; i++)
+                //    {
+                //        tuft.Value[i].Draw(spriteBatch);
+                //    }
 
-                }
+                //}
 
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);

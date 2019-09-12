@@ -865,6 +865,13 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Rectangle destinationRectangle = GetDestinationRectangle(AllTiles[z][i, j]);
+                            if(AllTufts.ContainsKey(AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)))
+                            {
+                                for(int t = 0; t < AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)].Count; t++)
+                                {
+                                    AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)][t].Update(gameTime);
+                                }
+                            }
 
                             if (z == 0)
                             {
@@ -1154,7 +1161,13 @@ namespace SecretProject.Class.TileStuff
                         {
                             Rectangle SourceRectangle = GetSourceRectangle(AllTiles[z][i, j]);
                             Rectangle DestinationRectangle = GetDestinationRectangle(AllTiles[z][i, j]);
-
+                            if (AllTufts.ContainsKey(AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)))
+                            {
+                                for (int t = 0; t < AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)].Count; t++)
+                                {
+                                    AllTufts[AllTiles[z][i, j].GetTileKey(this.mapWidth, this.mapHeight)][t].Draw(spriteBatch);
+                                }
+                            }
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
                                 if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
@@ -1255,6 +1268,7 @@ namespace SecretProject.Class.TileStuff
                                 if (TileHitPoints.ContainsKey(AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)))
                                 {
                                     TileHitPoints[AllTiles[layer][oldX, oldY].GetTileKey(mapWidth, mapHeight)]--;
+                                    //Game1.Player.Inventory.currentInventory.Find(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool()
                                 }
 
                                 break;
@@ -1299,6 +1313,7 @@ namespace SecretProject.Class.TileStuff
                     Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
                     Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
                     Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
+                    return;
                 }
 
                 if (TileHitPoints[tile.GetTileKey(mapWidth, mapHeight)] < 1)
