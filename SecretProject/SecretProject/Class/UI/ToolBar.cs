@@ -268,7 +268,7 @@ namespace SecretProject.Class.UI
 
         public Item GetCurrentEquippedToolAsItem()
         {
-            if (inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            if (inventory!= null && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
                 return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
             }
@@ -498,7 +498,8 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, sourceRectangle: this.ItemSwitchSourceRectangle, destinationRectangle: new Rectangle((int)Game1.Player.position.X + 3,
                     (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(1f, 1f));
             }
-
+           
+            
         }
 
     }

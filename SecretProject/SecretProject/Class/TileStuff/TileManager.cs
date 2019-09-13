@@ -92,6 +92,8 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
+        public List<int> PlaceableItemIdsToDraw;
+
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
@@ -136,6 +138,7 @@ namespace SecretProject.Class.TileStuff
             AllTufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
+            PlaceableItemIdsToDraw = new List<int>() { 1852 };
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -305,6 +308,7 @@ namespace SecretProject.Class.TileStuff
             AllTufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
+            PlaceableItemIdsToDraw = new List<int>();
 
 
             for (int i = 0; i < NumberOfLayers; i++)
@@ -555,12 +559,16 @@ namespace SecretProject.Class.TileStuff
             int Column = tile.GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
 
-            float X = (tile.X % mapWidth) * 16;
-            float Y = (tile.Y % mapHeight) * 16;
-
             return new Rectangle(16 * Column, 16 * Row, 16, 16);
 
 
+        }
+        public Rectangle GetSourceRectangleWithoutTile(int gid)
+        {
+            int Column = gid% tilesetTilesWide;
+            int Row = (int)Math.Floor((double)gid/ (double)tilesetTilesWide);
+
+            return new Rectangle(16 * Column, 16 * Row, 16, 16);
         }
 
 
@@ -1137,7 +1145,9 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
+        
         #region DRAW
+       
         public void DrawTiles(SpriteBatch spriteBatch)
         {
 
@@ -1221,6 +1231,20 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            DrawGridItem(spriteBatch);
+            
+        }
+        public void DrawGridItem(SpriteBatch spriteBatch)
+        {
+            for (int p = 0; p < PlaceableItemIdsToDraw.Count; p++)
+            {
+                Rectangle sourceRectangle = GetSourceRectangleWithoutTile(PlaceableItemIdsToDraw[p]);
+                spriteBatch.Draw(tileSet, new Vector2(Game1.myMouseManager.WorldMouseRectangle.X, Game1.myMouseManager.WorldMouseRectangle.Y), sourceRectangle, Color.White,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+            }
+
+
+
         }
         #endregion
 

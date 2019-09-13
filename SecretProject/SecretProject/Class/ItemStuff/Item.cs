@@ -90,7 +90,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.IsPlantable = itemData.Plantable;
             }
-
+            this.PlaceID = itemData.PlaceID;
 
         }
         public void Load()

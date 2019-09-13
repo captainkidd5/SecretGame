@@ -25,7 +25,7 @@ namespace XMLData.ItemStuff
         [ContentSerializer(Optional = true)]
         public int Durability { get; set; }
 
-        [ContentSerializer(Optional = true)]<
+        [ContentSerializer(Optional = true)]
         public int PlaceID { get; set; }
     }
 }
