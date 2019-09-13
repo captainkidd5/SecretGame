@@ -789,10 +789,11 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region UPDATE
-
+        public bool AbleToDrawTileSelector { get; set; }
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+            AbleToDrawTileSelector = false;
             CurrentObjects.Clear();
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
@@ -909,8 +910,10 @@ namespace SecretProject.Class.TileStuff
 
                             if (destinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
+                                
                                 if (mouse.IsHoveringTile(destinationRectangle))
                                 {
+                                    this.AbleToDrawTileSelector = true;
                                     CurrentIndexX = i;
                                     CurrentIndexY = j;
 
@@ -974,17 +977,19 @@ namespace SecretProject.Class.TileStuff
                 //including animation frame id to replace!
 
                 case "diggable":
-                    Game1.isMyMouseVisible = false;
-                    Game1.Player.UserInterface.DrawTileSelector = true;
-                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-                    mouse.ChangeMouseTexture(3);
-
-                    if (mouse.IsClicked)
+                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                     {
-                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
+                        Game1.isMyMouseVisible = false;
+                        Game1.Player.UserInterface.DrawTileSelector = true;
+                        Game1.myMouseManager.ToggleGeneralInteraction = true;
+                        mouse.ChangeMouseTexture(3);
+
+                        if (mouse.IsClicked)
                         {
+
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                             ReplaceTile(z, i, j, 86);
+
 
                         }
                     }
@@ -1236,11 +1241,26 @@ namespace SecretProject.Class.TileStuff
         }
         public void DrawGridItem(SpriteBatch spriteBatch)
         {
-            for (int p = 0; p < PlaceableItemIdsToDraw.Count; p++)
+            if (this.AbleToDrawTileSelector)
             {
-                Rectangle sourceRectangle = GetSourceRectangleWithoutTile(PlaceableItemIdsToDraw[p]);
-                spriteBatch.Draw(tileSet, new Vector2(Game1.myMouseManager.WorldMouseRectangle.X, Game1.myMouseManager.WorldMouseRectangle.Y), sourceRectangle, Color.White,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+
+
+                for (int p = 0; p < PlaceableItemIdsToDraw.Count; p++)
+                {
+                    Rectangle sourceRectangle = GetSourceRectangleWithoutTile(PlaceableItemIdsToDraw[p]);
+                    if(AllTiles[1][Game1.Player.UserInterface.TileSelectorX/16, Game1.Player.UserInterface.TileSelectorY/16].GID != -1)
+                    {
+                        
+                        spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
+                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
+                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                    }
+                    
+                }
             }
 
 
