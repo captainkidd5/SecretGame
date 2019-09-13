@@ -1253,11 +1253,23 @@ namespace SecretProject.Class.TileStuff
                         
                         spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                        if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][Game1.Player.UserInterface.TileSelectorX / 16,
+                            Game1.Player.UserInterface.TileSelectorY / 16].GID].Properties.ContainsKey("AssociatedTiles"))
+                        {
+
+                        }
                     }
                     else
                     {
                         spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                        if (Game1.myMouseManager.IsClicked)
+                        {
+
+                            ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, PlaceableItemIdsToDraw[p] + 1,Game1.GetCurrentStage());
+
+                            PlaceableItemIdsToDraw.Remove(p);
+                        }
                     }
                     
                 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <tile id="85">
   <properties>
@@ -825,6 +825,7 @@
  </tile>
  <tile id="1852">
   <properties>
+   <property name="AssociatedTiles" value="1753"/>
    <property name="action" value="chestLoot"/>
   </properties>
   <objectgroup draworder="index">
