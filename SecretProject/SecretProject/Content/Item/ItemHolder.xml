@@ -319,12 +319,30 @@
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>BrineVineSeeds</Name>
+<ID>187</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>4</Price>
+<Plantable>true</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dandelion</Name>
 <ID>191</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>10</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
+<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>BrineBulb</Name>
+<ID>197</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>10</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>12</Price>
 <Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">

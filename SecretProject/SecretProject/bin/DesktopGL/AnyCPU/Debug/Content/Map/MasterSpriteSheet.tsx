@@ -197,6 +197,12 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="690">
+  <properties>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="197:100:2,187:20:2"/>
+  </properties>
+ </tile>
  <tile id="705">
   <properties>
    <property name="generate" value="dirt"/>
