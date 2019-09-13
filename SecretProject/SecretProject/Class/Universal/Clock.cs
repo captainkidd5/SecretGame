@@ -44,7 +44,7 @@ namespace SecretProject.Class.Universal
             LocalTime = TimeSpan.Zero;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
-            ClockSpeed = 3;
+            ClockSpeed = 15;
 
 
         }
@@ -75,15 +75,7 @@ namespace SecretProject.Class.Universal
                 LocalTime = TimeSpan.Zero;
                 TotalHours++;
 
-                foreach(Crop crop in Game1.GetCurrentStage().AllCrops.Values)
-                { 
-                    if(crop.UpdateGrowthCycle())
-                    {
-                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop,Game1.GetCurrentStage());
-                    }
-                        
-                    
-                }
+                
                 if(TotalHours > 18 && TotalHours < 23)
                 {
                     ColorMultiplier-=3;

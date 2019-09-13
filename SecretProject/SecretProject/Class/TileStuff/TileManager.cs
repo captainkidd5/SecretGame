@@ -995,15 +995,15 @@ namespace SecretProject.Class.TileStuff
                             Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
-                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[z][i, j].GetTileKey(z, this.mapWidth, this.mapHeight)))
+                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[1][i, j].GetTileKey(1, this.mapWidth, this.mapHeight)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    tempCrop.TileID = AllTiles[z][i, j].GetTileKey(z, this.mapWidth, this.mapHeight);
+                                    tempCrop.TileID = AllTiles[1][i, j].GetTileKey(1, this.mapWidth, this.mapHeight);
                                     tempCrop.GID++;
                                     ReplaceTile(1, i, j, tempCrop.GID);
-                                    Game1.GetCurrentStage().AllCrops[AllTiles[z][i, j].GetTileKey(z, this.mapWidth, this.mapHeight)] = tempCrop;
+                                    Game1.GetCurrentStage().AllCrops[AllTiles[1][i, j].GetTileKey(1, this.mapWidth, this.mapHeight)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
@@ -1411,16 +1411,15 @@ namespace SecretProject.Class.TileStuff
                 DestroySpawnWithTiles(AllTiles[layer][oldX, oldY], oldX, oldY, world);
             }
             //mostly for crops
-            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
-            {
-                ReplaceTilePermanent(3, oldX, oldY - 1, 0, world);
-                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[0][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight));
-                //AllTiles[0][oldX, oldY].ContainsCrop = false;
-            }
+
             GetDrop(layer, oldX, oldY, destinationRectangle);
-            if(Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[0][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight)))
+            if(Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[1][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight)))
             {
-                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[0][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight));
+                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[1][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight));
+                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
+                {
+                    ReplaceTilePermanent(3, oldX, oldY - 1, 0, world);
+                }
             }
             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
 

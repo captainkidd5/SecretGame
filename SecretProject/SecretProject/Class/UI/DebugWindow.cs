@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.MenuStuff;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -30,15 +31,24 @@ namespace SecretProject.Class.UI
             DebugButton1.Update(Game1.myMouseManager);
             if(DebugButton1.isClicked)
             {
-                for(int i =0; i < Game1.PortalGraph.Size; i++)
+                foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
                 {
-                    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
-                    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
+                    if (crop.UpdateGrowthCycle())
                     {
-                        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
+                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop, Game1.GetCurrentStage());
                     }
-                    Console.WriteLine("\n\n");
+
+
                 }
+                //for (int i =0; i < Game1.PortalGraph.Size; i++)
+                //{
+                //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
+                //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
+                //    {
+                //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
+                //    }
+                //    Console.WriteLine("\n\n");
+                //}
                 
                 
             }
