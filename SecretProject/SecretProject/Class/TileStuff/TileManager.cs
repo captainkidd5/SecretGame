@@ -1420,7 +1420,7 @@ namespace SecretProject.Class.TileStuff
             GetDrop(layer, oldX, oldY, destinationRectangle);
             if(Game1.GetCurrentStage().AllCrops.ContainsKey(AllTiles[0][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight)))
             {
-                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[1][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight));
+                Game1.GetCurrentStage().AllCrops.Remove(AllTiles[0][oldX, oldY].GetTileKey(layer, this.mapWidth, this.mapHeight));
             }
             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
 
