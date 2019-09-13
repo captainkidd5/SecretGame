@@ -33,28 +33,19 @@ namespace SecretProject.Class.UI
     {
         //--------------------------------------
         //Textures
-        public Texture2D Background { get; set; }
         public Button InGameMenu { get; set; }
         public Button OpenInventory { get; set; }
         public Button ScrollTree { get; set; }
-        public Button InvSlot1 { get; set; }
-        public Button InvSlot2 { get; set; }
-        public Button InvSlot3 { get; set; }
-        public Button InvSlot4 { get; set; }
-        public Button InvSlot5 { get; set; }
-        public Button InvSlot6 { get; set; }
-        public Button InvSlot7 { get; set; }
 
 
         public Texture2D ToolBarButton { get; set; }
-        public SpriteFont Font { get; set; }
+
         public List<Button> AllNonInventoryButtons { get; set; }
         public List<Button> AllSlots { get; set; }
 
 
         public Rectangle ItemSwitchSourceRectangle { get; set; }
 
-        public Texture2D ItemSwitchTexture;
 
         public Item TempItem { get; set; }
 
@@ -75,8 +66,7 @@ namespace SecretProject.Class.UI
         public Texture2D DragSpriteTexture { get; set; }
         public bool DragToggle { get; set; }
 
-        public bool DragToggleBuilding { get; set; } = false;
-        public bool DragoToggleBuildingDropped { get; set; } = false;
+
 
         public int currentSliderPosition = 1;
         public bool WasSliderUpdated = false;
@@ -95,35 +85,23 @@ namespace SecretProject.Class.UI
 
             this.graphicsDevice = graphicsDevice;
             this.content = content;
-            //--------------------------------------
-            //initialize SpriteFonts
-            Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
             //--------------------------------------
-            //Initialize Textures
-            this.ToolBarButton = content.Load<Texture2D>("Button/ToolBarButton");
-            this.Background = content.Load<Texture2D>("Button/ToolBar");
-
-            this.BackGroundTextureRectangle = new Rectangle((int)BackGroundTexturePosition.X, (int)BackGroundTexturePosition.Y, Background.Width, Background.Height);
-
-            //
+            //Initialize Textur
 
 
-            //--------------------------------------
-            //Initialize Buttons
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635));
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(459, 645));
             ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645));
-            InvSlot1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500, 635)) { ItemCounter = 0, Index = 1};
-            InvSlot2 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(565, 635)) { ItemCounter = 0, Index = 2};
-            InvSlot3 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(630, 635)) { ItemCounter = 0, Index = 3};
-            InvSlot4 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(695, 635)) { ItemCounter = 0, Index = 4 };
-            InvSlot5 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(765, 635)) { ItemCounter = 0, Index = 5 };
-            InvSlot6 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(830, 635)) { ItemCounter = 0, Index = 6};
-            InvSlot7 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(895, 635)) { ItemCounter = 0, Index = 7};
+            AllSlots = new List<Button>();
+            
+            for (int i = 0; i < 7; i++)
+            {
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500 + i * 65, 635)) { ItemCounter = 0, Index = i + 1 });
+            }
 
-            //--------------------------------------
-            //Button List Stuff
+
+
             AllNonInventoryButtons = new List<Button>()
             {
                 OpenInventory,
@@ -131,17 +109,7 @@ namespace SecretProject.Class.UI
                 ScrollTree,
                 
             };
-            AllSlots = new List<Button>()
-            {
-                InvSlot1,
-                InvSlot2,
-                InvSlot3,
-                InvSlot4,
-                InvSlot5,
-                InvSlot6,
-                InvSlot7
-
-            };
+           
 
             //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
 
@@ -173,16 +141,11 @@ namespace SecretProject.Class.UI
             UpdateInventoryButtons(inventory, gameTime, mouse);
 
 
-            //--------------------------------------
-            //Switch GameStages on click
-
-
-
             if (mouse.IsHovering(BackGroundTextureRectangle))
             {
                 MouseOverToolBar = true;
             }
-            if (!mouse.IsHovering(BackGroundTextureRectangle))
+            else
             {
                 MouseOverToolBar = false;
             }
@@ -323,8 +286,6 @@ namespace SecretProject.Class.UI
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
-            DragToggleBuilding = false;
-            DragoToggleBuildingDropped = false;
             for (int i = 0; i < 7; i++)
             {
                 if (inventory.currentInventory.ElementAt(i) == null)
@@ -337,7 +298,7 @@ namespace SecretProject.Class.UI
                     AllSlots[i].ItemCounter = inventory.currentInventory.ElementAt(i).SlotItems.Count;
                 }
 
-                if (AllSlots[i].ItemCounter != 0)
+                if (AllSlots[i].ItemCounter > 0)
                 {
                     AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].ItemSprite.AtlasTexture;
                     AllSlots[i].ItemSourceRectangleToDraw = inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle;
@@ -442,11 +403,6 @@ namespace SecretProject.Class.UI
                             Game1.GetCurrentStage().AllItems.Add(newWorldItem);
                         }
 
-                        if (tempItem.IsPlaceable == true)
-                        {
-
-                            DragoToggleBuildingDropped = true;
-                        }
                     }
 
                     DragSprite = null;
@@ -500,18 +456,7 @@ namespace SecretProject.Class.UI
         }
 
 
-        public void MiniDrawTiles(int[,] GIDArray, SpriteBatch spriteBatch, MouseManager mouse)
-        {
-            for (int i = 0; i < GIDArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < GIDArray.GetLength(1); j++)
-                {
-                    //Tile tempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY + i, GIDArray[i, j], 100, 100, 100, 100);
-                    //spriteBatch.Draw(Game1.GetCurrentStage().TileSet, tempTile.DestinationRectangle, tempTile.SourceRectangle, Color.White * .5f, (float)0, new Vector2(0, 0), SpriteEffects.None, 1);
-                }
-
-            }
-        }
+       
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -532,62 +477,19 @@ namespace SecretProject.Class.UI
             }
 
 
-            OpenInventory.Draw(spriteBatch, Font, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .69f, .7f);
-            InGameMenu.Draw(spriteBatch, Font, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
+            OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .69f, .7f);
+            InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
             for (int i = 0; i < AllSlots.Count; i++)
             {
-                AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Font, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.DarkRed, 2f);
+                AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.DarkRed, 2f);
             }
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
+                Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
 
-            switch (currentSliderPosition)
-            {
-                case 1:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot1.Position.X, (int)InvSlot1.Position.Y, 68, 67),
-                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 2:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot2.Position.X, (int)InvSlot2.Position.Y, 68, 67),
-                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 3:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot3.Position.X, (int)InvSlot3.Position.Y, 68, 67),
-                         new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 4:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot4.Position.X, (int)InvSlot4.Position.Y, 68, 67),
-                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 5:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot5.Position.X, (int)InvSlot5.Position.Y, 68, 67),
-                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 6:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot6.Position.X, (int)InvSlot6.Position.Y, 68, 67),
-                        new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-
-                case 7:
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)InvSlot7.Position.X, (int)InvSlot7.Position.Y, 68, 67),
-                                            new Rectangle(80, 0, 68, 67), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-                    break;
-            }
-
-
-
-            // if(DragToggleBuilding)
-            // {
-            //    MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch);
-            // }
-
-            // spriteBatch.End();
         }
 
         //use this when we want to draw relative to another camera.
+        //for drawing items above the players head when item is switched
         public void DrawToStageMatrix(SpriteBatch spriteBatch)
         {
             //if action still exists and isn't complete we'll still draw it. 
@@ -599,34 +501,5 @@ namespace SecretProject.Class.UI
 
         }
 
-        public void DrawDraggableItems(SpriteBatch spriteBatch, TileManager buildingsTiles, TileManager foreGroundTiles, MouseManager mouse)
-        {
-
-            //if (DragToggleBuilding)
-            //{
-            //    MiniDrawTiles(TempItem.Building.TotalTiles, spriteBatch, mouse);
-
-            //}
-            //if (DragoToggleBuildingDropped == true)
-            //{
-            //    for (int i = 0; i < TempItem.Building.BuildingID.Length; i++)
-            //    {
-
-            //        Tile TempTile;
-            //        TempTile = new Tile(mouse.MouseSquareCoordinateX + i, mouse.MouseSquareCoordinateY + 1, TempItem.Building.BuildingID[i], 100, 100, 100, 100);
-            //        buildingsTiles.Tiles[mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY] = TempTile;
-            //        buildingsTiles.AddObjectToBuildingTile(TempTile, mouse.MouseSquareCoordinateX + i + 1, mouse.MouseSquareCoordinateY);
-
-
-            //    }
-            //    for (int j = 0; j < TempItem.Building.ForeGroundID.Length; j++)
-            //    {
-            //        Tile TempTile;
-            //        TempTile = new Tile(mouse.MouseSquareCoordinateX + j, mouse.MouseSquareCoordinateY, TempItem.Building.ForeGroundID[j], 100, 100, 100, 100);
-            //        foreGroundTiles.Tiles[mouse.MouseSquareCoordinateX + j + 1, mouse.MouseSquareCoordinateY] = TempTile;
-            //    }
-            //}
-
-        }
     }
 }

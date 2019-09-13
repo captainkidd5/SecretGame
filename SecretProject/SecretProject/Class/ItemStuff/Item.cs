@@ -69,6 +69,7 @@ namespace SecretProject.Class.ItemStuff
 
         public int SmeltedItem { get; set; }
         public int Durability { get; set; }
+        public int PlaceID { get; set; }
 
 
 

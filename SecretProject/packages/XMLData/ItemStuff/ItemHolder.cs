@@ -24,7 +24,7 @@ namespace XMLData.ItemStuff
             newItem.Plantable = oldItem.Plantable;
             newItem.SmeltedItem = oldItem.SmeltedItem;
             newItem.Durability = oldItem.Durability;
-
+            newItem.PlaceID = oldItem.PlaceID;
 
 
             return newItem;

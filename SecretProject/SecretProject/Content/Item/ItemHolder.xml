@@ -28,7 +28,6 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>25</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Shovel</Name>
@@ -64,7 +63,7 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>150</Price>
-<Plantable>false</Plantable>
+<PlaceID>1852</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNest</Name>
@@ -73,7 +72,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ThunderWood</Name>
@@ -82,7 +80,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>5</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ProspectorDish</Name>
@@ -91,7 +88,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>100</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>HouseKey</Name>
@@ -100,7 +96,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>4</TextureRow>
 <Price>100</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>PumpkinPie</Name>
@@ -109,7 +104,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>8</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFish</Name>
@@ -118,7 +112,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>6</TextureRow>
 <Price>20</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloomBerrySeedBag</Name>
@@ -136,7 +129,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>8</TextureRow>
 <Price>1</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BasicStone1</Name>
@@ -145,7 +137,6 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>9</TextureRow>
 <Price>2</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNestEgg</Name>
@@ -154,7 +145,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>5</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ElmWood</Name>
@@ -163,7 +153,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>2</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>GoldNugget</Name>
@@ -172,7 +161,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>45</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFishPie</Name>
@@ -181,7 +169,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>15</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloomBerryFruit</Name>
@@ -190,7 +177,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>8</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BoarDroppings</Name>
@@ -199,7 +185,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>8</TextureRow>
 <Price>3</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ThunderOrb</Name>
@@ -208,7 +193,6 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>9</TextureRow>
 <Price>5</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Egg</Name>
@@ -217,7 +201,6 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ThunderBirchSeed</Name>
@@ -235,7 +218,6 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>3</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>DarkBerryPie</Name>
@@ -244,7 +226,6 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>12</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloodCornSeedBag</Name>
@@ -262,7 +243,6 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>9</TextureRow>
 <Price>5</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ClueFruit</Name>
@@ -271,7 +251,6 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>2</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ElmWoodSeed</Name>
@@ -289,7 +268,6 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>100</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>PieDish</Name>
@@ -298,7 +276,6 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>15</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloodCorn</Name>
@@ -307,7 +284,6 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>12</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>TumbleBushThorn</Name>
@@ -316,10 +292,9 @@
 <TextureColumn>9</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>4</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>BrineVineSeeds</Name>
+<Name>BrineBulbSeeds</Name>
 <ID>187</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>9</TextureColumn>
@@ -334,7 +309,6 @@
 <TextureColumn>10</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BrineBulb</Name>
@@ -343,7 +317,6 @@
 <TextureColumn>10</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>12</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>FlaxCanvas</Name>
@@ -352,7 +325,6 @@
 <TextureColumn>12</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>3</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>FlaxPlantPot</Name>
