@@ -166,9 +166,10 @@ namespace SecretProject.Class.StageFolder
                     break;
 
                 case MenuState.chooseWorldSize:
-                    foreach(Button button in chooseWorldSizeButtons)
+                    foreach (Button button in chooseWorldSizeButtons)
                     {
                         button.Update(mouse);
+                    }
                         if(worldSizeSmall.isClicked)
                         {
                             UnloadContent();
@@ -187,7 +188,7 @@ namespace SecretProject.Class.StageFolder
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
                         }
-                        if(worldSizeMedium.isClicked)
+                        else if(worldSizeMedium.isClicked)
                         {
                             UnloadContent();
                             foreach (ILocation stage in Game1.AllStages)
@@ -205,7 +206,7 @@ namespace SecretProject.Class.StageFolder
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.World,gameTime);
                         }
-                        if(worldSizeLarge.isClicked)
+                        else if(worldSizeLarge.isClicked)
                         {
                             UnloadContent();
                             foreach (ILocation stage in Game1.AllStages)
@@ -223,7 +224,7 @@ namespace SecretProject.Class.StageFolder
                             this.menuState = MenuState.primary;
                             Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
                         }
-                    }
+                    
                     break;
             }
             

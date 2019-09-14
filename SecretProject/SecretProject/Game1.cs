@@ -606,7 +606,7 @@ namespace SecretProject
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
-
+          //  List<Portal> testPortal = GetCurrentStage().AllPortals;
             if (portal != null)
             {
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
