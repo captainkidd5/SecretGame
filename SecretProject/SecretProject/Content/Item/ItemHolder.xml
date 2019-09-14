@@ -148,6 +148,15 @@
 <PlaceID>360</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Fence</Name>
+<ID>140</ID>
+<InvMaximum>120</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>5</Price>
+<PlaceID>1557</PlaceID>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNestEgg</Name>
 <ID>141</ID>
 <InvMaximum>120</InvMaximum>
@@ -202,6 +211,15 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>9</TextureRow>
 <Price>5</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Fence</Name>
+<ID>160</ID>
+<InvMaximum>120</InvMaximum>
+<TextureColumn>7</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>5</Price>
+<PlaceID>1557</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Egg</Name>
@@ -342,6 +360,7 @@
 <TextureColumn>12</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>10</Price>
+<PlaceID>1589</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Clay</Name>

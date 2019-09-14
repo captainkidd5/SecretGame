@@ -757,6 +757,13 @@
    <property name="generate" value="grass"/>
   </properties>
  </tile>
+ <tile id="1457">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1484">
   <properties>
    <property name="layer" value="3"/>
@@ -769,6 +776,11 @@
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="1557">
+  <properties>
+   <property name="AssociatedTiles" value="1457"/>
   </properties>
  </tile>
  <tile id="1563">
