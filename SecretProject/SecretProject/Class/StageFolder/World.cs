@@ -323,7 +323,7 @@ namespace SecretProject.Class.StageFolder
             {
                 IsGondolaAtStartingPosition = true;
                 IsExitingOnGondola = false;
-                Game1.SwitchStage(3, 2, gameTime, AllPortals[portalIndex]);
+                Game1.SwitchStage(3, 0, gameTime, AllPortals[portalIndex]);
                 OnSceneChanged();
                 this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
             }
