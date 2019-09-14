@@ -963,3 +963,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/gearspin.wav
 
+#begin SoundEffects/placeItem1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/placeItem1.wav
+
+#begin SoundEffects/placeItem2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/placeItem2.wav
+

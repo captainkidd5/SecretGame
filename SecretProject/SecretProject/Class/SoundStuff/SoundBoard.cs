@@ -76,6 +76,9 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect GearSpin;
 
+        public SoundEffect PlaceItem1;
+        public SoundEffect PlaceItem2; 
+
         public SoundBoard(Game1 game, ContentManager content)
         {
             PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -145,6 +148,9 @@ namespace SecretProject.Class.SoundStuff
             SanctuaryAdd = content.Load<SoundEffect>("SoundEffects/sanctuaryAddEffect");
 
             GearSpin = content.Load<SoundEffect>("SoundEffects/gearspin");
+
+            PlaceItem1 = content.Load<SoundEffect>("SoundEffects/placeItem1");
+            PlaceItem2 = content.Load<SoundEffect>("SoundEffects/placeItem2");
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)

@@ -1265,7 +1265,16 @@ namespace SecretProject.Class.TileStuff
                                             Game1.Player.UserInterface.TileSelectorY/16 + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]),associatedTiles[a] + 1,  Game1.GetCurrentStage());
                                     }
                                 }
-
+                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+                                switch(soundRandom)
+                                {
+                                    case 0:
+                                        Game1.SoundManager.PlaceItem1.Play();
+                                        break;
+                                    case 1:
+                                        Game1.SoundManager.PlaceItem2.Play();
+                                        break;
+                                }
                                 ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, placeID + 1, Game1.GetCurrentStage());
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
 
