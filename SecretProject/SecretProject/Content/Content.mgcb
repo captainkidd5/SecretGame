@@ -975,3 +975,9 @@
 /processorParam:Quality=Best
 /build:SoundEffects/placeItem2.wav
 
+#begin Songs/DustStorm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/DustStorm.wav
+

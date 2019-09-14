@@ -77,7 +77,10 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect GearSpin;
 
         public SoundEffect PlaceItem1;
-        public SoundEffect PlaceItem2; 
+        public SoundEffect PlaceItem2;
+
+        public SoundEffect DustStorm;
+        public SoundEffectInstance DustStormInstance;
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -151,6 +154,10 @@ namespace SecretProject.Class.SoundStuff
 
             PlaceItem1 = content.Load<SoundEffect>("SoundEffects/placeItem1");
             PlaceItem2 = content.Load<SoundEffect>("SoundEffects/placeItem2");
+
+            //Songs
+            DustStorm = content.Load<SoundEffect>("Songs/DustStorm");
+            DustStormInstance = DustStorm.CreateInstance();
         }
 
         public void PlaySoundEffect(SoundEffectInstance instance, bool isLooping, int numberOfLoops)

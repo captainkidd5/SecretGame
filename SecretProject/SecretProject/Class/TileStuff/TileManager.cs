@@ -420,7 +420,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            Portal portal = new Portal(3, 2, 0, -50, true);
+            Portal portal = new Portal(3, 0, 0, -50, true);
             TileUtility.SpawnBaseCamp(AllTiles, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
 
 
@@ -1272,7 +1272,6 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         for (int a = 0; a < associatedTiles.Length; a++)
                                         {
-                                            //int test = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]);
                                             ReplaceTilePermanent(int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelectorX / 16 + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
                                                 Game1.Player.UserInterface.TileSelectorY / 16 + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage());
                                         }

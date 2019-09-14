@@ -54,7 +54,10 @@ namespace SecretProject.Class.StageFolder
             this.TileSetNumber = tileSetNumber;
             lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
-
+            if (this.BackDropNumber == 1)
+            {
+                this.BackDropPosition = new Vector2(200, 200);
+            }
         }
 
         public override void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules )
@@ -110,7 +113,7 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-
+            float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
             //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
@@ -171,6 +174,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
+
             ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
@@ -207,7 +211,14 @@ namespace SecretProject.Class.StageFolder
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                 // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
                 // Dobbin.MoveToTile(gameTime, new Point(23, 55));
+                if (this.BackDropNumber == 1)
+                {
+                    if (player.position.Y < 250)
+                    {
+                        this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition) / 4);
+                    }
 
+                }
 
             }
             Game1.Player.controls.UpdateKeys();
@@ -247,6 +258,10 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                if (this.BackDropNumber == 1)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .0001f);
+                }
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height -10)));

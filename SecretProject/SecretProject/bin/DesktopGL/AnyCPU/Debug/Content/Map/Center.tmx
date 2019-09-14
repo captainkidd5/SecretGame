@@ -66,7 +66,7 @@
     <property name="standardTo" value="1"/>
    </properties>
   </object>
-  <object id="34" x="615" y="453" width="33" height="16">
+  <object id="34" x="605" y="492" width="33" height="16">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>

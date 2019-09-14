@@ -144,7 +144,8 @@ namespace SecretProject.Class.StageFolder
             {
                 Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
-            
+
+           // Game1.SoundManager.DustStormInstance.Play();
         }
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
