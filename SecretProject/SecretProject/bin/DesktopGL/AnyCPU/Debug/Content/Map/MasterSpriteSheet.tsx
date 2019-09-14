@@ -6,9 +6,19 @@
    <property name="action" value="plantable"/>
   </properties>
  </tile>
+ <tile id="160">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-2"/>
+  </properties>
+ </tile>
  <tile id="260">
   <properties>
    <property name="action" value="smelt"/>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="288">
@@ -29,6 +39,9 @@
   </properties>
  </tile>
  <tile id="360">
+  <properties>
+   <property name="AssociatedTiles" value="260,160"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="1"/>
   </objectgroup>
@@ -808,6 +821,13 @@
    <frame tileid="1490" duration="100"/>
   </animation>
  </tile>
+ <tile id="1752">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1790">
   <properties>
    <property name="action" value="sanctuaryAdd,123,0,0"/>
@@ -825,6 +845,7 @@
  </tile>
  <tile id="1852">
   <properties>
+   <property name="AssociatedTiles" value="1752"/>
    <property name="action" value="chestLoot"/>
   </properties>
   <objectgroup draworder="index">

@@ -63,7 +63,7 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>150</Price>
-<PlaceID>1853</PlaceID>
+<PlaceID>1852</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNest</Name>
@@ -137,6 +137,15 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>9</TextureRow>
 <Price>2</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Furnace</Name>
+<ID>140</ID>
+<InvMaximum>120</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>5</Price>
+<PlaceID>360</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BirdsNestEgg</Name>

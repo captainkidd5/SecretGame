@@ -509,7 +509,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(0, 1);
             ToolShop.ShopMenu.TryAddStock(1, 1);
             ToolShop.ShopMenu.TryAddStock(4, 1);
-            ToolShop.ShopMenu.TryAddStock(147, 1);
+            ToolShop.ShopMenu.TryAddStock(140, 5);
             ToolShop.ShopMenu.TryAddStock(2, 1);
             ToolShop.ShopMenu.TryAddStock(122, 1);
             ToolShop.ShopMenu.TryAddStock(187, 15);

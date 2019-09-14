@@ -92,8 +92,6 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-        public List<int> PlaceableItemIdsToDraw;
-
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
@@ -138,7 +136,6 @@ namespace SecretProject.Class.TileStuff
             AllTufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
-            PlaceableItemIdsToDraw = new List<int>() { 1852 };
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -308,7 +305,6 @@ namespace SecretProject.Class.TileStuff
             AllTufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
-            PlaceableItemIdsToDraw = new List<int>();
 
 
             for (int i = 0; i < NumberOfLayers; i++)
@@ -1243,35 +1239,62 @@ namespace SecretProject.Class.TileStuff
         {
             if (this.AbleToDrawTileSelector)
             {
-
-
-                for (int p = 0; p < PlaceableItemIdsToDraw.Count; p++)
+                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                 {
-                    Rectangle sourceRectangle = GetSourceRectangleWithoutTile(PlaceableItemIdsToDraw[p]);
-                    if(AllTiles[1][Game1.Player.UserInterface.TileSelectorX/16, Game1.Player.UserInterface.TileSelectorY/16].GID != -1)
+
+
+                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID != 0)
                     {
-                        
-                        spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
-                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
-                        if(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][Game1.Player.UserInterface.TileSelectorX / 16,
-                            Game1.Player.UserInterface.TileSelectorY / 16].GID].Properties.ContainsKey("AssociatedTiles"))
+                        int[] associatedTiles = new int[0];
+                        int placeID = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID;
+                        Rectangle sourceRectangle = GetSourceRectangleWithoutTile(placeID);
+                        if (AllTiles[1][Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16].GID != -1)
                         {
 
+                            spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                            if (MapName.Tilesets[TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                            {
+
+                                associatedTiles = Game1.Utility.ParseSpawnsWithKey(MapName.Tilesets[TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                            }
                         }
-                    }
-                    else
-                    {
-                        spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
-                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
-                        if (Game1.myMouseManager.IsClicked)
+
+                        else
                         {
+                            spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                            if (MapName.Tilesets[TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                            {
 
-                            ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, PlaceableItemIdsToDraw[p] + 1,Game1.GetCurrentStage());
+                                associatedTiles = Game1.Utility.ParseSpawnsWithKey(MapName.Tilesets[TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                                for(int a = 0; a < associatedTiles.Length; a++)
+                                {
+                                    spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"])*16,
+                                        Game1.Player.UserInterface.TileSelectorY + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"])*16), GetSourceRectangleWithoutTile(associatedTiles[a]), Color.Green * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"])]);
+                                }
+                            }
+                            if (Game1.myMouseManager.IsClicked)
+                            {
+                                if (associatedTiles.Length > 0)
+                                {
+                                    for (int a = 0; a < associatedTiles.Length; a++)
+                                    {
+                                        //int test = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]);
+                                        ReplaceTilePermanent(int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelectorX/16 + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
+                                            Game1.Player.UserInterface.TileSelectorY/16 + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]),associatedTiles[a] + 1,  Game1.GetCurrentStage());
+                                    }
+                                }
 
-                            PlaceableItemIdsToDraw.Remove(p);
+                                ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, placeID + 1, Game1.GetCurrentStage());
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+
+                            }
                         }
+
                     }
-                    
+
                 }
             }
 
