@@ -144,7 +144,7 @@ namespace SecretProject.Class.Playable
 
             MyCollider = new Collider(PrimaryVelocity, Rectangle);
 
-            Inventory = new Inventory(7) { Money = 500 };
+            Inventory = new Inventory(7) { Money = 10000 };
 
             controls = new PlayerControls(0);
 

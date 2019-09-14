@@ -534,6 +534,27 @@ namespace SecretProject.Class.TileStuff
                     float randomFloat = (float)(randomInt * .0000001);
                     tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .00001f + randomFloat;
                 }
+
+                if (MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
+                {
+
+
+                    for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
+                    {
+                        TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
+
+
+                        ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
+                            new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
+                            (int)Math.Ceiling(tempObj.Height) + 5), tileToAssign.GID);
+
+                        string key = tileToAssign.GetTileKey(layer, this.mapWidth, this.mapHeight);
+
+                        stage.AllObjects.Add(key, tempObjectBody); // not gonna work for saving, gotta figure out.
+
+                    }
+                }
             }
         }
 
@@ -725,49 +746,7 @@ namespace SecretProject.Class.TileStuff
         #region LOADTILESOBJECTS
         public void LoadInitialTileObjects(ILocation stage)
         {
-            for (int z = 0; z < AllTiles.Count; z++)
-            {
-                if (z == 1)
-                {
-                    for (var i = 0; i < mapWidth; i++)
-                    {
-                        for (var j = 0; j < mapHeight; j++)
-                        {
-                            int testGID = AllTiles[z][i, j].GID;
-                            if (AllTiles[z][i, j].GID != -1)
-                            {
-
-                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                                {
-
-                                    if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups.Count > 0)
-                                    {
-
-
-                                        for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects.Count; k++)
-                                        {
-                                            TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].ObjectGroups[0].Objects[k];
-
-
-                                            ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
-                                                new Rectangle(GetDestinationRectangle(AllTiles[z][i, j]).X + (int)Math.Ceiling(tempObj.X),
-                                                GetDestinationRectangle(AllTiles[z][i, j]).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                                                (int)Math.Ceiling(tempObj.Height) + 5), AllTiles[z][i, j].GID);
-
-                                            string key = AllTiles[z][i, j].GetTileKey(z, this.mapWidth, this.mapHeight);
-
-                                            stage.AllObjects.Add(key, tempObjectBody); // not gonna work for saving, gotta figure out.
-
-                                        }
-
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
+            
             PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, stage.AllObjects);
 
         }
