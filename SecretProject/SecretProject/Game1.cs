@@ -31,6 +31,7 @@ using XMLData.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
 using static SecretProject.Class.UI.CheckList;
+using SecretProject.Class.EventStuff;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -189,6 +190,8 @@ namespace SecretProject
         public static PresentationParameters PresentationParameters;
 
         //event handlers
+        //Events
+        public static List<IEvent> AllEvents;
 
         //NPCS
         public static Elixir Elixer;
@@ -579,6 +582,11 @@ namespace SecretProject
 
 
             }
+
+            AllEvents = new List<IEvent>()
+            {
+                new IntroduceSanctuary()
+            };
         }
         #endregion
 

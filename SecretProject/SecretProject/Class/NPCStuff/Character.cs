@@ -344,8 +344,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         }
                         else
                         {
-                            //int debugPortalStartX = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.X;
-                            //int debugPortalStartY = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == route.StageToEndAt).PortalStart.Y;
+                        
                             Point testPoint = FindIntermediateStages(CurrentStageLocation, route.StageToEndAt);
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                              ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
@@ -406,6 +405,63 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 }
             }
             
+
+        }
+
+        public void MoveToTile(GameTime gameTime, Point point)
+        {
+
+
+                if (!this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
+                {
+
+
+                    if (pathFound == false)
+                    {
+                        this.IsMoving = true;
+
+                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point, this.Name);
+
+                            pathFound = true;
+                        
+
+
+                    }
+                    //
+                    timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 6, 6);
+                    if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
+                    {
+                        pointCounter++;
+                        timeBetweenJumps = .4f;
+                    }
+
+
+                    if (pointCounter < currentPath.Count)
+                    {
+                        Rectangle debugREctangle = NPCPathFindRectangle;
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 8, currentPath[currentPath.Count - 1].Y * 16 + 8, 8, 8));
+                    }
+                    else
+                    {
+                        pathFound = false;
+                        pointCounter = 0;
+                        this.IsMoving = false;
+                        this.CurrentDirection = 0;
+
+                    }
+                }
+
+                else
+                {
+                    pathFound = false;
+                    pointCounter = 0;
+                    this.IsMoving = false;
+                    this.CurrentDirection = 0;
+                }
+            
+
 
         }
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
