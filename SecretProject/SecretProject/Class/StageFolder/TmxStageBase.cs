@@ -321,20 +321,16 @@ namespace SecretProject.Class.StageFolder
             }
 
             TextBuilder.Update(gameTime);
-
-            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
             {
                 Game1.GlobalClock.Update(gameTime);
-                //--------------------------------------
-                //Update players
+
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, AllObjects, mouse);
 
-                //--------------------------------------
-                //Update sprites
+ 
                 foreach (Sprite spr in AllSprites)
                 {
 

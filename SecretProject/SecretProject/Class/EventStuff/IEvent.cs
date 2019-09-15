@@ -1,4 +1,5 @@
-﻿using SecretProject.Class.NPCStuff;
+﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,9 @@ namespace SecretProject.Class.EventStuff
          int DayToTrigger { get; set; }
          int StageToTrigger { get; set; }
          bool IsCompleted { get; set; }
+         bool IsActive { get; set; }
+
+        void Start();
+        void Update(GameTime gameTime);
     }
 }

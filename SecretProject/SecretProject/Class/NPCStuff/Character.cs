@@ -77,6 +77,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         // refers to whether or not the npc is on the current stage. If not they still update but the player has no knowledge of it.
         public bool DisableInteractions { get; set; }
         public bool IsBasicNPC { get; set; }
+        public bool IsInEvent { get; set; }
 
         public GraphTraverser PortalTraverser { get; set; }
 
@@ -90,6 +91,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             this.Position = position;
             this.Texture = spriteSheet;
             NPCAnimatedSprite = new Sprite[4];
+            this.IsInEvent = false;
 
 
 
@@ -161,8 +163,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
 
-
-            FollowSchedule(gameTime, this.RouteSchedule);
+            if(!this.IsInEvent)
+            {
+                FollowSchedule(gameTime, this.RouteSchedule);
+            }
+            
             if (!DisableInteractions)
             {
                 if (mouse.IsRightClicked)
@@ -174,6 +179,27 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
 
 
+        }
+
+        public void EventUpdate(GameTime gameTime)
+        {
+            this.PrimaryVelocity = new Vector2(1, 1);
+            for (int i = 0; i < 4; i++)
+            {
+                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+            }
+
+            if (IsMoving)
+            {
+
+
+                UpdateDirection();
+                this.PrimaryVelocity = Collider.Velocity;
+            }
+            else
+            {
+                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+            }
         }
 
         //meant for non-moving, non-Primary NPCS
@@ -292,8 +318,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         }
        
         float timeBetweenJumps = .4f;
-        int pointCounter = 0;
-        bool pathFound = false;
+        public int pointCounter = 0;
+        public bool pathFound = false;
 
         List<Point> currentPath = new List<Point>()
         {
@@ -407,8 +433,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             
 
         }
-
-        public void MoveToTile(GameTime gameTime, Point point)
+        //forEvents
+        public void EventMoveToTile(GameTime gameTime, Point point)
         {
 
 
@@ -463,6 +489,18 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             
 
 
+        }
+
+        public bool IsAtTile(Point point)
+        {
+            if(this.NPCPathFindRectangle.Intersects(new Rectangle(point.X*16, point.Y*16, 16,16)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {

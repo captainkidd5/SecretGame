@@ -205,6 +205,8 @@ namespace SecretProject
         //PORTALS
         public static Graph PortalGraph;
 
+        public static bool IsEventActive;
+
 
         #endregion
 
@@ -258,7 +260,7 @@ namespace SecretProject
         }
         #endregion
 
-        
+
 
         public static ILocation GetCurrentStage()
         {
@@ -315,7 +317,7 @@ namespace SecretProject
                     return JulianShop;
 
                 default:
-                    return Sanctuary;
+                    return null;
 
             }
 
@@ -333,8 +335,8 @@ namespace SecretProject
                     return 2;
 
                 case Stages.World:
-                    return 3;              
-                
+                    return 3;
+
                 case Stages.Sanctuary:
                     return 4;
 
@@ -344,7 +346,7 @@ namespace SecretProject
                     return 6;
 
                 default:
-                    return 4;
+                    return 50;
 
             }
 
@@ -368,10 +370,10 @@ namespace SecretProject
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
             KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
             JulianRouteSchedule = Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule,JulianRouteSchedule };
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule };
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue,JulianDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue };
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -487,14 +489,14 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1,1) { StageIdentifier = 0 };
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1,1) { StageIdentifier = 1 };
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1, 1) { StageIdentifier = 0 };
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
             Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1,0) { StageIdentifier = 3 };
-            
-           
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
+
+
             Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
-            
+
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
             JulianShop = new TmxStageBase("JulianShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
 
@@ -502,7 +504,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() {Pass , Town, Center, World, Sanctuary, ElixirShop, JulianShop };
+            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirShop, JulianShop };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -512,7 +514,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(0, 1);
             ToolShop.ShopMenu.TryAddStock(1, 1);
             ToolShop.ShopMenu.TryAddStock(4, 1);
-            ToolShop.ShopMenu.TryAddStock(140,50);
+            ToolShop.ShopMenu.TryAddStock(140, 50);
             ToolShop.ShopMenu.TryAddStock(2, 1);
             ToolShop.ShopMenu.TryAddStock(160, 50);
             ToolShop.ShopMenu.TryAddStock(187, 15);
@@ -521,7 +523,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(143, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
             ToolShop.ShopMenu.TryAddStock(145, 1);
-            ToolShop.ShopMenu.TryAddStock(165, 1); 
+            ToolShop.ShopMenu.TryAddStock(165, 1);
             ToolShop.ShopMenu.TryAddStock(167, 100); //bloodcorn seeds
             ToolShop.ShopMenu.TryAddStock(231, 5);
             ToolShop.ShopMenu.TryAddStock(221, 5);
@@ -587,6 +589,7 @@ namespace SecretProject
             {
                 new IntroduceSanctuary()
             };
+            IsEventActive = false;
         }
         #endregion
 
@@ -601,7 +604,7 @@ namespace SecretProject
 
 
 
-        public static void SwitchStage(int currentStage, int stageToSwitchTo, GameTime gameTime,Portal portal = null)
+        public static void SwitchStage(int currentStage, int stageToSwitchTo, GameTime gameTime, Portal portal = null)
         {
 
 
@@ -614,7 +617,7 @@ namespace SecretProject
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
-          //  List<Portal> testPortal = GetCurrentStage().AllPortals;
+            //  List<Portal> testPortal = GetCurrentStage().AllPortals;
             if (portal != null)
             {
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
@@ -639,6 +642,7 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
+            IsEventActive = false;
             OldKeyBoardState = NewKeyBoardState;
             NewKeyBoardState = Keyboard.GetState();
             FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -658,44 +662,71 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            switch (gameStages)
+            foreach (IEvent e in AllEvents)
             {
-                case Stages.MainMenu:
+                if ( e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
+                {
+                    int num = GetCurrentStageInt();
+                    if (!e.IsActive)
+                    {
+                        e.Start();
+                    }
+                    else
+                    {
+                        IsEventActive = true;
+                        e.Update(gameTime);
 
-                    mainMenu.Update(gameTime, myMouseManager, this);
-                    break;
+                    }
 
-                case Stages.World:
+                }
+            }
 
-                    World.Update(gameTime, myMouseManager, Player);
-                    break;
-                case Stages.Center:
-                    Center.Update(gameTime, myMouseManager, Player);
-                    break;
+            if (!IsEventActive)
+            {
 
-                case Stages.Pass:
-                    Pass.Update(gameTime, myMouseManager, Player);
-                    break;
-                case Stages.Sanctuary:
-                    Sanctuary.Update(gameTime, myMouseManager, Player);
-                    break;
+                switch (gameStages)
+                {
+                    case Stages.MainMenu:
+
+                        mainMenu.Update(gameTime, myMouseManager, this);
+                        break;
+
+                    case Stages.World:
+
+                        World.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.Center:
+                        Center.Update(gameTime, myMouseManager, Player);
+                        break;
+
+                    case Stages.Pass:
+                        Pass.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.Sanctuary:
+                        Sanctuary.Update(gameTime, myMouseManager, Player);
+                        break;
 
 
-                case Stages.Town:
+                    case Stages.Town:
 
-                    Town.Update(gameTime, myMouseManager, Player);
-                    break;
+                        Town.Update(gameTime, myMouseManager, Player);
+                        break;
 
 
-                case Stages.ElixirShop:
-                    ElixirShop.Update(gameTime, myMouseManager, Player);
-                    break;
-                case Stages.JulianShop:
-                    JulianShop.Update(gameTime, myMouseManager, Player);
-                    break;
+                    case Stages.ElixirShop:
+                        ElixirShop.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.JulianShop:
+                        JulianShop.Update(gameTime, myMouseManager, Player);
+                        break;
+
+                }
 
 
             }
+
+
+
             if (!myMouseManager.ToggleGeneralInteraction)
             {
                 this.IsMouseVisible = true;
