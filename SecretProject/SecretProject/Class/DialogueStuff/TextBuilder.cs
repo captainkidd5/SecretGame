@@ -72,27 +72,32 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale, Vector2? positionToWriteTo, float? lineLimit)
         {
-            this.IsActive = true;
-            this.UseTextBox = useTextBox;
-            this.TextBoxType = textBoxType;
-            this.FreezeStage = freezeStage;
-            this.StringToWrite = stringToWrite;
-            this.Scale = scale;
-            
-            
-            ChangedParsedText();
-           
-            if(this.UseTextBox)
+            if (!this.IsActive)
             {
-                this.PositionToWriteTo = new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y);
-                this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
-            }
-            else
-            {
-                this.PositionToWriteTo = (Vector2)positionToWriteTo;
-                if (lineLimit != null)
+
+
+                this.IsActive = true;
+                this.UseTextBox = useTextBox;
+                this.TextBoxType = textBoxType;
+                this.FreezeStage = freezeStage;
+                this.StringToWrite = stringToWrite;
+                this.Scale = scale;
+
+
+                ChangedParsedText();
+
+                if (this.UseTextBox)
                 {
-                    this.LineLimit = (float)lineLimit;
+                    this.PositionToWriteTo = new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y);
+                    this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
+                }
+                else
+                {
+                    this.PositionToWriteTo = (Vector2)positionToWriteTo;
+                    if (lineLimit != null)
+                    {
+                        this.LineLimit = (float)lineLimit;
+                    }
                 }
             }
         }

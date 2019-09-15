@@ -321,6 +321,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public int pointCounter = 0;
         public bool pathFound = false;
 
+        public void ResetPathFinding()
+        {
+            this.pointCounter = 0;
+            this.pathFound = false;
+        }
+
         List<Point> currentPath = new List<Point>()
         {
             new Point(1,1)
