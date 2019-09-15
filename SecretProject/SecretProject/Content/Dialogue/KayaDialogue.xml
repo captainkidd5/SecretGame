@@ -3,8 +3,16 @@
 <Asset Type ="XMLData.DialogueStuff.DialogueHolder">
   <SpeakerID>4</SpeakerID>
   <AllDialogue>
-    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+  <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>12</TimeEnd>
+   <TextToWrite>Hey!
+   </TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>2</SpeechID>
     <Day>0</Day>
     <TimeStart>13</TimeStart>
     <TimeEnd>18</TimeEnd>
@@ -12,7 +20,7 @@
    </TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
-    <SpeechID>2</SpeechID>
+    <SpeechID>3</SpeechID>
     <Day>0</Day>
     <TimeStart>21</TimeStart>
     <TimeEnd>8</TimeEnd>

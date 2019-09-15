@@ -22,7 +22,7 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 12;
+        public int TotalHours { get; set; } = 6;
         public int TotalDays { get; set; } = 0;
         public float ColorMultiplier { get; set; } = 9f;
 

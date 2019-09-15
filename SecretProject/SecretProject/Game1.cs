@@ -384,7 +384,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(500, 400), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(2000, 1000), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
@@ -544,7 +544,7 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(1400, 800), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(400, 400), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(512, 240), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
             {
@@ -556,7 +556,7 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(200, 200), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(192, 128), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,

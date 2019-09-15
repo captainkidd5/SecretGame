@@ -5,17 +5,17 @@
     <Routes>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
-      <TimeToStart>10</TimeToStart>
-      <TimeToFinish>15</TimeToFinish>
-       <StageToEndAt>1</StageToEndAt>
-      <EndX>20</EndX>
-      <EndY>12</EndY>
+      <TimeToStart>6</TimeToStart>
+      <TimeToFinish>8</TimeToFinish>
+       <StageToEndAt>6</StageToEndAt>
+      <EndX>4</EndX>
+      <EndY>21</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
         <TimeToStart>16</TimeToStart>
         <TimeToFinish>19</TimeToFinish>
-         <StageToEndAt>4</StageToEndAt>
+         <StageToEndAt>0</StageToEndAt>
         <EndX>20</EndX>
         <EndY>25</EndY>
       </Item>
@@ -34,14 +34,6 @@
          <StageToEndAt>1</StageToEndAt>
         <EndX>35</EndX>
         <EndY>40</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>5</ID>
-        <TimeToStart>4</TimeToStart>
-        <TimeToFinish>9</TimeToFinish>
-         <StageToEndAt>1</StageToEndAt>
-        <EndX>20</EndX>
-        <EndY>20</EndY>
       </Item>
     </Routes>
   </Asset>
