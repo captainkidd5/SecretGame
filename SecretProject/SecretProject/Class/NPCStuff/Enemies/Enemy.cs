@@ -88,28 +88,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
-            //switch (CurrentDirection)
-            //{
-            //    case 0:
-            //        NPCAnimatedSprite[0].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 1:
-            //        NPCAnimatedSprite[1].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 2:
-            //        NPCAnimatedSprite[2].UpdateAnimations(gameTime, Position);
-            //        break;
-            //    case 3:
-            //        NPCAnimatedSprite[3].UpdateAnimations(gameTime, Position);
-            //        break;
-            //}
-            //if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-            //{
-            //    mouse.ChangeMouseTexture(200);
-            //    mouse.ToggleGeneralInteraction = true;
-            //    Game1.isMyMouseVisible = false;
 
-            //}
             if (IsMoving)
             {
 
@@ -149,48 +128,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             new Point(1,1)
         };
 
-        //public void MoveToTile(GameTime gameTime, Route route)
-        //{
-        //    if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
-        //        Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
-        //    {
-        //        if ((!(this.Position.X == currentPath[currentPath.Count - 1].X * 16) && !(this.Position.Y == currentPath[currentPath.Count - 1].Y * 16)) ||
-        //            pointCounter < currentPath.Count)
-        //        {
-
-
-        //            if (pathFound == false)
-        //            {
-        //                this.IsMoving = true;
-
-        //                currentPath = Game1.GetCurrentStage().AllTiles.PathGrid.Pathfind(new Point((int)this.Position.X / 16,
-        //                    (int)this.Position.Y / 16), new Point(route.EndX, route.EndY));
-
-        //                pathFound = true;
-        //            }
-        //            timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-        //            if (timeBetweenJumps <= 0)
-        //            {
-        //                pointCounter++;
-        //                timeBetweenJumps = .4f;
-        //            }
-        //            if (pointCounter < currentPath.Count)
-        //            {
-        //                //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-        //                MoveTowardsPosition(new Vector2(currentPath[pointCounter].X * 16  , currentPath[pointCounter].Y * 16 ), new Rectangle(currentPath[pointCounter].X * 16 - 16, currentPath[pointCounter].Y * 16 - 16, 32, 32));
-        //                DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
-        //            }
-        //            else
-        //            {
-        //                pathFound = false;
-        //                pointCounter = 0;
-        //                this.IsMoving = false;
-        //                this.CurrentDirection = 0;
-        //            }
-        //        }
-        //    }
-
-        //}
+        
         //For use without route schedule
         public void MoveToTile(GameTime gameTime, Point point)
         {
@@ -280,8 +218,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                 if (this.CurrentTileX + newX < Game1.GetCurrentStage().MapRectangle.Width - 10 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < Game1.GetCurrentStage().MapRectangle.Height - 10 && this.CurrentTileY + newY > 0)
                 {
-                    //int testAStar = Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].AStarTileValue;
-                    //.AllObjects.ContainsKey(Game1.GetCurrentStage().AllTiles.AllTiles[1][this.CurrentTileX + newX, this.CurrentTileY + newY].GetTileKey(Game1.GetCurrentStage().AllTiles.mapWidth, Game1.GetCurrentStage().AllTiles.mapHeight)))
+                   
                     if (Game1.GetCurrentStage().AllTiles.PathGrid.Weight[this.CurrentTileX + newX, this.CurrentTileY + newY] != 0)
                         {
                         MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY));
@@ -326,17 +263,16 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case 0:
-                    float num = .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Top + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                     break;
                 case 1:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Top + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                     break;
                 case 2:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Top + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                     break;
                 case 3:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .4f + (.0001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Top + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                     break;
             }
         }

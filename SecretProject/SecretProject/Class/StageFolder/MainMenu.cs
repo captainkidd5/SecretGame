@@ -186,7 +186,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.Town,gameTime);
                         }
                         else if(worldSizeMedium.isClicked)
                         {

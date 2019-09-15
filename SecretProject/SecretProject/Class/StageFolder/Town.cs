@@ -56,7 +56,7 @@ namespace SecretProject.Class.StageFolder
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             if (this.BackDropNumber == 1)
             {
-                this.BackDropPosition = new Vector2(200, 200);
+                this.BackDropPosition = new Vector2(0, 200);
             }
         }
 
@@ -76,7 +76,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 2.5f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -213,7 +213,7 @@ namespace SecretProject.Class.StageFolder
                 // Dobbin.MoveToTile(gameTime, new Point(23, 55));
                 if (this.BackDropNumber == 1)
                 {
-                    if (player.position.Y < 250)
+                    if (player.position.Y < 850)
                     {
                         this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition) / 4);
                     }
