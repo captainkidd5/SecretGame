@@ -39,11 +39,12 @@ namespace SecretProject.Class.Controls
 
         public float RelativeMouseX { get; set; }
         public float RelativeMouseY { get; set; }
-        public int YOffSet1 { get; set; } = 367;
-        public int XOffSet1 { get; set; } = 647;
+        public int XOffSet1 { get; set; } = Game1.Utility.CenterScreenX + 8;
+        public int YOffSet1 { get; set; } = Game1.Utility.CenterScreenY + 8;
+        
 
-        public int XTileOffSet { get; set; } = 360;
-        public int YTileOffSet { get; set; } = 640;
+        public int XTileOffSet { get; set; } = Game1.Utility.CenterScreenX;
+        public int YTileOffSet { get; set; } = Game1.Utility.CenterScreenY;
         public Camera2D Camera1 { get; set; }
 
         public Vector2 SquarePosition { get; set; }

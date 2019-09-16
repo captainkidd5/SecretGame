@@ -836,6 +836,17 @@
    <frame tileid="1490" duration="100"/>
   </animation>
  </tile>
+ <tile id="1692">
+  <properties>
+   <property name="idleStart" value=""/>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+  <animation>
+   <frame tileid="1492" duration="100"/>
+  </animation>
+ </tile>
  <tile id="1752">
   <properties>
    <property name="layer" value="3"/>
@@ -851,6 +862,16 @@
   </properties>
   <animation>
    <frame tileid="1590" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="1792">
+  <properties>
+   <property name="action" value="sanctuaryAdd,123,0,0"/>
+   <property name="idleStart" value=""/>
+   <property name="spawnWith" value="1692"/>
+  </properties>
+  <animation>
+   <frame tileid="1592" duration="100"/>
   </animation>
  </tile>
  <tile id="1848">

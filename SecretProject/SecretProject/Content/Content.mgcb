@@ -981,3 +981,9 @@
 /processorParam:Quality=Best
 /build:Songs/DustStorm.wav
 
+#begin Songs/Title.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/Title.wav
+

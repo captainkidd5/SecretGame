@@ -238,17 +238,19 @@ namespace SecretProject
         #region INITIALIZE
         protected override void Initialize()
         {
-
+            ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
+            ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
+            Utility = new Utility();
             //CAMERA
             cam = new Camera2D(GraphicsDevice.Viewport);
             //MOUSE
+
             this.IsMouseVisible = isMyMouseVisible;
             myMouseManager = new MouseManager(cam, graphics.GraphicsDevice);
 
-            ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
-            ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
+            
 
-            Utility = new Utility();
+            
 
 
             //SCREEN
@@ -483,7 +485,8 @@ namespace SecretProject
                 new List<CheckListRequirement>()
                 {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
                 new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
-                new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false)
+                new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
+                new CheckListRequirement("SuperBulb",1792, 1, "plant", false)
                 });
 
 
@@ -587,8 +590,8 @@ namespace SecretProject
 
             AllEvents = new List<IEvent>()
             {
-                new IntroduceSanctuary(),
-                new IntroduceJulianShop()
+               // new IntroduceSanctuary(),
+               // new IntroduceJulianShop()
             };
             IsEventActive = false;
         }
