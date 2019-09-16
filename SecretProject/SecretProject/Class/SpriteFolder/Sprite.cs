@@ -66,6 +66,8 @@ namespace SecretProject.Class.SpriteFolder
         public float SpinAmount { get; set; }
         public float SpinSpeed { get; set; }
 
+        Vector2 destinationVector = new Vector2(0, 0);
+
 
 
 
@@ -101,6 +103,7 @@ namespace SecretProject.Class.SpriteFolder
             this.OffSetY = offSetY;
             this.Color = Color.White;
             this.Rotation = 0f;
+            
         }
 
 
@@ -141,6 +144,7 @@ namespace SecretProject.Class.SpriteFolder
                 CurrentFrame = 0;
             }
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
             DestinationRectangle = new Rectangle((int)position.X + OffSetX, (int)position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
@@ -173,7 +177,7 @@ namespace SecretProject.Class.SpriteFolder
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
         {
            
-            spriteBatch.Draw(AtlasTexture,  new Vector2(DestinationRectangle.X, DestinationRectangle.Y),sourceRectangle: SourceRectangle,
+            spriteBatch.Draw(AtlasTexture,  destinationVector,sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
