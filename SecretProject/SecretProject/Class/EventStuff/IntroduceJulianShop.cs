@@ -79,7 +79,7 @@ namespace SecretProject.Class.EventStuff
                         {
                             Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Julian.Position.X, Game1.Julian.Position.Y - 10));
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                                "This bookshelf contains all sorts of useful information. If you find any of the pages let me know and we might be able to learn a thing or two.", 2f, null, null);
+                                "This bookshelf contains #9 all sorts of useful information. If you find any of the pages let me know and we might be able to learn a thing or two.", 2f, null, null);
                             CurrentStep = 2;
                         }
                     }

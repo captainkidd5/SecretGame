@@ -72,8 +72,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale, Vector2? positionToWriteTo, float? lineLimit)
         {
-            if (!this.IsActive)
-            {
+
 
 
                 this.IsActive = true;
@@ -99,7 +98,7 @@ namespace SecretProject.Class.DialogueStuff
                         this.LineLimit = (float)lineLimit;
                     }
                 }
-            }
+            
         }
 
         public void Update(GameTime gameTime)
@@ -146,6 +145,10 @@ namespace SecretProject.Class.DialogueStuff
                     }
                     else if (typedTextLength < parsedText.Length)
                     {
+                        if(parsedText[(int)typedTextLength] == '#')
+                        {
+                            WriteSpeed = int.Parse(parsedText[(int)typedTextLength + 1].ToString());
+                        }
                         typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
                         int noiseRand = Game1.Utility.RGenerator.Next(1, 3);
                         if(noiseRand == 1)
