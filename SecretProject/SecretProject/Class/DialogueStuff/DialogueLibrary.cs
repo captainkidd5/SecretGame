@@ -21,9 +21,6 @@ namespace SecretProject.Class.DialogueStuff
         public DialogueSkeleton RetrieveDialogue(int speaker,int day, int time)
         {
             DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
-            // DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
-            //Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
-            //     Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
             
 
             DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time && x.Day == day);

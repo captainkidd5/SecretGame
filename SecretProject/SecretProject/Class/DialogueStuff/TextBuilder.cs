@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace SecretProject.Class.DialogueStuff
         double typedTextLength;
         bool isDoneDrawing;
 
+        List<SelectableOption> SelectableOptions;
         public float LineLimit { get; set; }
 
         public TextBox SpeechBox { get; set; }
@@ -64,6 +66,7 @@ namespace SecretProject.Class.DialogueStuff
             parsedText = parseText(stringToWrite);
             isDoneDrawing = false;
             this.IsPaused = false;
+            SelectableOptions = new List<SelectableOption>();
             
         }
 
@@ -259,11 +262,16 @@ namespace SecretProject.Class.DialogueStuff
 
         public void CheckSelectableOptions(DialogueSkeleton skeleton)
         {
-            string options = skeleton.SelectableOptions.Split(',')[0];
-            string response = options.Split('~')[0];
-            string action = options.Split('~')[1];
+            string[] options = skeleton.SelectableOptions.Split(',');
+            for(int s = 0; s < options.Length; s++)
+            {
+                string response = options[s].Split('~')[0];
+                string action = options[s].Split('~')[1];
+                SelectableOptions.Add(new SelectableOption(response,action, this.SpeechBox.position));
+            }
+            
             Reset();
-            Game1.Utility.PerformSpeechAction(action);
+            
             
         }
         
@@ -308,5 +316,33 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
+    }
+
+    public class SelectableOption
+    {
+        public Button Button { get; set; }
+        public string Response { get; set; }
+        public string Action { get; set; }
+
+        public SelectableOption(string response, string action, Vector2 position)
+        {
+            this.Response = response;
+            this.Action = action;
+            Button = new Button(new Rectangle((int)position.X, (int)position.Y, (int)Game1.AllTextures.MenuText.MeasureString(response).X,
+                (int)Game1.AllTextures.MenuText.MeasureString(response).Y)); 
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if(Button.isClicked)
+            {
+                Game1.Utility.PerformSpeechAction(this.Action);
+            }
+            
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            
+        }
     }
 }

@@ -15,9 +15,6 @@ namespace SecretProject.Class.MenuStuff
 {
     public class Button
     {
-        Game1 game;
-       // Texture2D Texture;
-
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public Rectangle HitBoxRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * HitBoxScale), (int)(BackGroundSourceRectangle.Height * HitBoxScale)); } set { } }
@@ -26,7 +23,6 @@ namespace SecretProject.Class.MenuStuff
 
         public Vector2 size;
 
-        bool down;
         public bool isClicked;
         public bool isClickedAndHeld;
         public bool wasJustReleased { get; set; }
@@ -72,6 +68,13 @@ namespace SecretProject.Class.MenuStuff
             //this.ItemSourceRectangleToDraw = sou
 
 
+        }
+
+        //for clickable text
+        public Button(Rectangle clickRangeRectangle)
+        {
+            this.HitBoxScale = 1f;
+            HitBoxRectangle = clickRangeRectangle;
         }
 
         
