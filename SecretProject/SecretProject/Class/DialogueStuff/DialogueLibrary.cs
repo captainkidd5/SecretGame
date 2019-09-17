@@ -18,7 +18,7 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public string RetrieveDialogue(int speaker,int day, int time)
+        public DialogueSkeleton RetrieveDialogue(int speaker,int day, int time)
         {
             DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
             // DialogueSkeleton skeleton = holder.AllDialogue.Find((x => x.SpeechID == speechID));
@@ -33,9 +33,9 @@ namespace SecretProject.Class.DialogueStuff
             }
             if(skeleton == null)
             {
-                return "my speech doesn't exist at this time!";
+                return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
             }
-            return skeleton.TextToWrite;
+            return skeleton;
         }
 
     }

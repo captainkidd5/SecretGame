@@ -15,6 +15,7 @@ using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using XMLData.DialogueStuff;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
@@ -227,8 +228,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 if (mouse.IsClicked)
                 {
 
-
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
+                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
+                    if (skeleton.SelectableOptions != null)
+                    {
+                        Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
+                    }
 
                     UpdateDirectionVector(Game1.Player.position);
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
@@ -250,8 +255,13 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 if (mouse.IsClicked)
                 {
 
-
-                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours), 2f, null, null);
+                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
+                    if(skeleton.SelectableOptions != null)
+                    {
+                        Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
+                    }
+                    
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
 
 

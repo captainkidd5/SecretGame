@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.Universal
 {
@@ -199,6 +201,19 @@ namespace SecretProject.Class.Universal
                 new Vector2(0, 0), // point in line about which to rotate
                 SpriteEffects.None, 1f);
 
+        }
+        #endregion
+        #region SPEECHUTILITY
+        public void PerformSpeechAction(string action)
+        {
+            switch(action)
+            {
+                case "OpenJulianShop":
+                    Game1.Player.UserInterface.IsShopMenu = true;
+                    Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+                    break;
+            }
         }
         #endregion
     }

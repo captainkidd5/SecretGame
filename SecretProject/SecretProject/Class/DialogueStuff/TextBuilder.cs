@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.DialogueStuff
 {
@@ -43,6 +44,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public bool IsPaused { get; set; }
 
+        public DialogueSkeleton Skeleton { get; set; }
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
@@ -117,13 +119,34 @@ namespace SecretProject.Class.DialogueStuff
                     this.SpeedAnchor = .1f;
                     if(this.IsPaused)
                     {
-                        MoveTextToNewWindow();
-                        this.IsPaused = false;
+                        if(Skeleton != null)
+                        {
+                            if(Skeleton.SelectableOptions!= null)
+                            {
+                                CheckSelectableOptions(Skeleton);
+                            }
+                            
+                        }
+                        else
+                        {
+                            MoveTextToNewWindow();
+                            this.IsPaused = false;
+                        }
+                        
+                        
                     }
                 }
                 if (NumberOfClicks == 2)
                 {
-                    Reset();
+                    if(this.Skeleton != null)
+                    {
+
+                    }
+                    else
+                    {
+                        Reset();
+                    }
+                    
                 }
                 if (Game1.myMouseManager.IsClicked)
                 {
@@ -151,7 +174,7 @@ namespace SecretProject.Class.DialogueStuff
                              
                         }
 
-
+                        
                         SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed);
                         if (SpeedAnchor > 2f)
                         {
@@ -210,6 +233,7 @@ namespace SecretProject.Class.DialogueStuff
             Game1.Player.UserInterface.BottomBar.IsActive = true;
             this.typedTextLength = 0;
             this.IsPaused = false;
+            this.Skeleton = null;
         }
       
 
@@ -231,6 +255,16 @@ namespace SecretProject.Class.DialogueStuff
             this.NumberOfClicks = 0;
             this.IsPaused = true;
 
+        }
+
+        public void CheckSelectableOptions(DialogueSkeleton skeleton)
+        {
+            string options = skeleton.SelectableOptions.Split(',')[0];
+            string response = options.Split('~')[0];
+            string action = options.Split('~')[1];
+            Reset();
+            Game1.Utility.PerformSpeechAction(action);
+            
         }
         
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
