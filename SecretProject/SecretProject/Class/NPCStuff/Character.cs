@@ -170,11 +170,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             
             if (!DisableInteractions)
             {
-                if (mouse.IsRightClicked)
-                {
-                   // Console.WriteLine(this.NPCHitBoxRectangle);
-
-                }
                 CheckSpeechInteraction(mouse, FrameToSet);
             }
 

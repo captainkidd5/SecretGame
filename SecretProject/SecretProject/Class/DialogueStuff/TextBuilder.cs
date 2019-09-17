@@ -21,8 +21,6 @@ namespace SecretProject.Class.DialogueStuff
         public string StringToWrite { get; set; }
         public bool IsActive { get; set; } = false;
         public float WriteSpeed { get; set; }
-        public float StringDisplayTimer { get; set; }
-        public float StringDisplayAnchor { get; set; }
         public float SpeedAnchor { get; set; }
         public Vector2 PositionToWriteTo { get; set; }
         public Vector2 TextBoxLocation { get; set; }
@@ -42,13 +40,14 @@ namespace SecretProject.Class.DialogueStuff
         public TextBox SpeechBox { get; set; }
         public float startDisplay { get; set; }
 
+
+        public bool IsPaused { get; set; }
+
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
             this.WriteSpeed = writeSpeed;
             this.SpeedAnchor = writeSpeed;
-            this.StringDisplayTimer = stringDisplayTimer;
-            this.StringDisplayAnchor = this.StringDisplayTimer;
             PositionToWriteTo = Game1.Utility.DialogueTextLocation;
             this.Scale = 2f;
             this.Color = Color.Black;
@@ -62,6 +61,7 @@ namespace SecretProject.Class.DialogueStuff
             typedText = "";
             parsedText = parseText(stringToWrite);
             isDoneDrawing = false;
+            this.IsPaused = false;
             
         }
 
@@ -81,6 +81,7 @@ namespace SecretProject.Class.DialogueStuff
                 this.FreezeStage = freezeStage;
                 this.StringToWrite = stringToWrite;
                 this.Scale = scale;
+                this.WriteSpeed = .5f;
 
 
                 ChangedParsedText();
@@ -113,15 +114,18 @@ namespace SecretProject.Class.DialogueStuff
                 
                 if (NumberOfClicks == 1)
                 {
-                    //StringDisplayTimer = 10f;
                     this.WriteSpeed = .1f;
-
+                    if(this.IsPaused)
+                    {
+                        MoveTextToNewWindow();
+                        this.IsPaused = false;
+                    }
                 }
                 if (NumberOfClicks == 2)
                 {
                     Reset();
                 }
-                if (Game1.myMouseManager.IsClicked && StringDisplayTimer <= StringDisplayAnchor -1 && !Game1.myMouseManager.MouseRectangle.Intersects(this.SpeechBox.DestinationRectangle))
+                if (Game1.myMouseManager.IsClicked)
                 {
                     NumberOfClicks++;
                 }
@@ -131,12 +135,7 @@ namespace SecretProject.Class.DialogueStuff
                 }
 
 
-                if (StringDisplayTimer <= 0)
-                {
-                    Reset();
-
-                }
-                if (!isDoneDrawing)
+                if (!isDoneDrawing && !IsPaused)
                 {
                     if (WriteSpeed == 0)
                     {
@@ -146,20 +145,21 @@ namespace SecretProject.Class.DialogueStuff
                     else if (typedTextLength < parsedText.Length)
                     {
                         if(parsedText[(int)typedTextLength] == '#')
-                        {
-                            WriteSpeed = int.Parse(parsedText[(int)typedTextLength + 1].ToString());
+                        {    
+     
+                                PauseUntilInput();
+                             
                         }
-                        typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
-                        int noiseRand = Game1.Utility.RGenerator.Next(1, 3);
-                        if(noiseRand == 1)
+ 
+                        
+
+                        if(gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed > SpeedAnchor)
                         {
-                            
-                            Game1.SoundManager.TextNoise.Play(.1f, 0f, 0f);
+                            typedTextLength++;
+                            PlayTextNoise();
                         }
-                        else
-                        {
-                            Game1.SoundManager.TextNoise2.Play(.1f, 0f, 0f);
-                        }
+                        //typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
+                        
                         
                         if (typedTextLength >= parsedText.Length)
                         {
@@ -171,7 +171,6 @@ namespace SecretProject.Class.DialogueStuff
                     }
                 }
 
-                StringDisplayTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             }
         }
@@ -198,19 +197,38 @@ namespace SecretProject.Class.DialogueStuff
 
         public void Reset()
         {
-            this.StringDisplayTimer = StringDisplayAnchor;
             this.StringToWrite = "";
             this.IsActive = false;
             this.UseTextBox = false;
             this.typedText = "";
             Game1.freeze = false;
-            this.StringDisplayTimer = this.StringDisplayAnchor;
             this.NumberOfClicks = 0;
-            this.WriteSpeed = SpeedAnchor;
+            this.WriteSpeed = .5f;
             this.isDoneDrawing = false;
             this.parsedText = "";
             Game1.Player.UserInterface.BottomBar.IsActive = true;
             this.typedTextLength = 0;
+            this.IsPaused = false;
+        }
+      
+
+        public void MoveTextToNewWindow()
+        {
+            this.typedText = "";
+            this.NumberOfClicks = 0;
+            this.typedTextLength = 0;
+            StringToWrite = StringToWrite.Split('#')[1];
+            //this.parsedText = StringToWrite.Split('#')[1];
+            
+            ChangedParsedText();
+            
+        }
+
+        public void PauseUntilInput()
+        {
+            this.NumberOfClicks = 0;
+            this.IsPaused = true;
+
         }
         
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
@@ -240,7 +258,19 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
+        public void PlayTextNoise()
+        {
+            int noiseRand = Game1.Utility.RGenerator.Next(1, 3);
+            if (noiseRand == 1)
+            {
 
-        
+                Game1.SoundManager.TextNoise.Play(.1f, 0f, 0f);
+            }
+            else
+            {
+                Game1.SoundManager.TextNoise2.Play(.1f, 0f, 0f);
+            }
+        }
+
     }
 }

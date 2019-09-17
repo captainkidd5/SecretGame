@@ -226,8 +226,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;
@@ -666,24 +666,24 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            foreach (IEvent e in AllEvents)
-            {
-                if ( e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
-                {
-                    int num = GetCurrentStageInt();
-                    if (!e.IsActive)
-                    {
-                        e.Start();
-                    }
-                    else
-                    {
-                        IsEventActive = true;
-                        e.Update(gameTime);
+            //foreach (IEvent e in AllEvents)
+            //{
+            //    if ( e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
+            //    {
+            //        int num = GetCurrentStageInt();
+            //        if (!e.IsActive)
+            //        {
+            //            e.Start();
+            //        }
+            //        else
+            //        {
+            //            IsEventActive = true;
+            //            e.Update(gameTime);
 
-                    }
+            //        }
 
-                }
-            }
+            //    }
+            //}
 
             if (!IsEventActive)
             {
