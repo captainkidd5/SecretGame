@@ -81,7 +81,7 @@ namespace SecretProject.Class.DialogueStuff
                 this.FreezeStage = freezeStage;
                 this.StringToWrite = stringToWrite;
                 this.Scale = scale;
-                this.WriteSpeed = .5f;
+                this.SpeedAnchor = .5f;
 
 
                 ChangedParsedText();
@@ -114,7 +114,7 @@ namespace SecretProject.Class.DialogueStuff
                 
                 if (NumberOfClicks == 1)
                 {
-                    this.WriteSpeed = .1f;
+                    this.SpeedAnchor = .1f;
                     if(this.IsPaused)
                     {
                         MoveTextToNewWindow();
@@ -145,18 +145,19 @@ namespace SecretProject.Class.DialogueStuff
                     else if (typedTextLength < parsedText.Length)
                     {
                         if(parsedText[(int)typedTextLength] == '#')
-                        {    
-     
+                        {
+                            parsedText.Remove((int)typedTextLength, 1);
                                 PauseUntilInput();
                              
                         }
- 
-                        
 
-                        if(gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed > SpeedAnchor)
+
+                        SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed);
+                        if (SpeedAnchor > 2f)
                         {
                             typedTextLength++;
                             PlayTextNoise();
+                            SpeedAnchor = 0f;
                         }
                         //typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
                         
@@ -218,6 +219,7 @@ namespace SecretProject.Class.DialogueStuff
             this.NumberOfClicks = 0;
             this.typedTextLength = 0;
             StringToWrite = StringToWrite.Split('#')[1];
+            
             //this.parsedText = StringToWrite.Split('#')[1];
             
             ChangedParsedText();
