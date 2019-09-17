@@ -18,7 +18,7 @@ namespace SecretProject.Class.MenuStuff
         public Texture2D Texture { get; set; }
         public Vector2 Position;
         public Rectangle HitBoxRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * HitBoxScale), (int)(BackGroundSourceRectangle.Height * HitBoxScale)); } set { } }
-
+        public Rectangle SelectableTextRectangle { get; set; }
         Color Color;
 
         public Vector2 size;
@@ -74,7 +74,7 @@ namespace SecretProject.Class.MenuStuff
         public Button(Rectangle clickRangeRectangle)
         {
             this.HitBoxScale = 1f;
-            HitBoxRectangle = clickRangeRectangle;
+            this.SelectableTextRectangle = clickRangeRectangle;
         }
 
         
@@ -120,9 +120,59 @@ namespace SecretProject.Class.MenuStuff
 
             
         }
+        //for selectableText
+        public void UpdateSelectableText(MouseManager mouse)
+        {
+            isClicked = false;
+            wasJustReleased = false;
+
+            if (mouse.IsHovering(SelectableTextRectangle) && mouse.IsClicked)
+            {
+                Color = Color.White * .5f;
+                isClicked = true;
+
+            }
+            else if (mouse.IsHovering(SelectableTextRectangle) && isClicked == false)
+            {
+                Color = Color.White * .5f;
+                IsHovered = true;
+
+            }
+            else
+            {
+                Color = Color.White;
+                isClicked = false;
+                IsHovered = false;
+
+            }
+
+            if (mouse.IsHovering(SelectableTextRectangle) && mouse.IsClickedAndHeld == true)
+            {
+                this.isClickedAndHeld = true;
+            }
+            if (this.isClickedAndHeld == true && !mouse.IsHovering(SelectableTextRectangle))
+            {
+                if (mouse.IsReleased)
+                {
+                    this.isClickedAndHeld = false;
+                    wasJustReleased = true;
+                }
+            }
+
+
+
+
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position,BackGroundSourceRectangle,  Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+        }
+
+
+        public void DrawSelectableTextBoxOption(SpriteBatch spriteBatch, string text)
+        {
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, text, new Vector2(this.SelectableTextRectangle.X, this.SelectableTextRectangle.Y), this.Color, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, layerDepth: .73f);
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepthCustom)

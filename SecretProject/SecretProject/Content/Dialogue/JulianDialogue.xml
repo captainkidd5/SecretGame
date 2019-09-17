@@ -8,9 +8,9 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a special deal. Five for three.
+   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a special deal. Five for three. # `
    </TextToWrite>
-   <SelectableOptions>Yes!~OpenJulianShop,</SelectableOptions>
+   <SelectableOptions>Yes!~OpenJulianShop,No~ExitDialogue,Maybe~ExitDialogue</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

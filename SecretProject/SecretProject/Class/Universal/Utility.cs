@@ -213,6 +213,10 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     break;
+
+                case "ExitDialogue":
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+                    break;
             }
         }
         #endregion
