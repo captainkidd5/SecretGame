@@ -8,7 +8,16 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Hey!
+   <TextToWrite>Hey! Anything I can do for you? `
+   </TextToWrite>
+   <SelectableOptions>nope doing just fine thanks!~Load.11</SelectableOptions>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>11</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>12</TimeEnd>
+   <TextToWrite>Great!
    </TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

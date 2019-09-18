@@ -295,7 +295,7 @@ namespace SecretProject.Class.StageFolder
                 AllTiles.Update(gameTime, mouse);
                 player.Update(gameTime, AllItems, AllTiles.CurrentObjects, mouse);
 
-
+                
                 for (int i = 0; i < AllItems.Count; i++)
                 {
                     AllItems[i].Update(gameTime);
@@ -305,7 +305,12 @@ namespace SecretProject.Class.StageFolder
                 {
                     if(Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
                     {
+                        OnScreenNPCS.Add(Boars[e]);
                         Boars[e].Update(gameTime, AllObjects, mouse);
+                    }
+                    else
+                    {
+                        OnScreenNPCS.Remove(Boars[e]);
                     }
                     
                     //Console.WriteLine(Boars[1].cu);

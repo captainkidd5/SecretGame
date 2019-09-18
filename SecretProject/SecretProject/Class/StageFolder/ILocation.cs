@@ -66,6 +66,7 @@ namespace SecretProject.Class.StageFolder
         bool IsLoaded { get; set; }
         List<Character> CharactersPresent { get; set; }
         List<StringWrapper> AllTextToWrite { get; set; }
+        List<INPC> OnScreenNPCS { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);

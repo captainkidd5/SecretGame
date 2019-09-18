@@ -313,7 +313,7 @@ namespace SecretProject.Class.DialogueStuff
             {
                 string response = options[s].Split('~')[0];
                 string action = options[s].Split('~')[1];
-                SelectableOptions.Add(new SelectableOption(response,action, new Vector2(PositionToWriteTo.X + s*100, PositionToWriteTo.Y)));
+                SelectableOptions.Add(new SelectableOption(response,action, new Vector2(PositionToWriteTo.X + s*300, PositionToWriteTo.Y + 50)));
             }
             if(options.Length > 0)
             {

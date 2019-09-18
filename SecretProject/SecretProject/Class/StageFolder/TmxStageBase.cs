@@ -122,6 +122,7 @@ namespace SecretProject.Class.StageFolder
 
         public List<StringWrapper> AllTextToWrite { get; set; }
 
+        public List<INPC> OnScreenNPCS { get; set; }
 
 
 
@@ -148,7 +149,7 @@ namespace SecretProject.Class.StageFolder
                 this.BackDropPosition = new Vector2(0, 50);
             }
 
-
+            this.OnScreenNPCS = new List<INPC>();
         }
 
         public virtual void LoadPreliminaryContent()
