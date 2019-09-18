@@ -8,9 +8,18 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a #special deal. Five for three. # hi `
+   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a special deal. Five for three. # whadya say? `
    </TextToWrite>
-   <SelectableOptions>Yes!~OpenJulianShop,No~ExitDialogue,Maybe~ExitDialogue</SelectableOptions>
+   <SelectableOptions>Yes!~OpenJulianShop,No~ExitDialogue,Maybe~ExitDialogue,Have you seen Dobbin anywhere?~Load.11</SelectableOptions>
+    </Item>
+     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>11</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>12</TimeEnd>
+   <TextToWrite>Hmm. No I haven't.... # Why? `
+   </TextToWrite>
+   <SelectableOptions>Oh. Sorry, no reason!~ExitDialogue</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

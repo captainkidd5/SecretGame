@@ -50,6 +50,9 @@ namespace SecretProject.Class.DialogueStuff
         public bool MoveToSelectableOptions { get; set; }
 
         public DialogueSkeleton Skeleton { get; set; }
+
+        public string SpeakerName { get; set; }
+        public int SpeakerID { get; set; }
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
@@ -84,15 +87,13 @@ namespace SecretProject.Class.DialogueStuff
         public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale, Vector2? positionToWriteTo, float? lineLimit)
         {
 
-
-
                 this.IsActive = true;
                 this.UseTextBox = useTextBox;
                 this.TextBoxType = textBoxType;
                 this.FreezeStage = freezeStage;
                 this.StringToWrite = stringToWrite;
                 this.Scale = scale;
-                this.SpeedAnchor = .5f;
+                this.SpeedAnchor = .1f;
 
 
                 ChangedParsedText();
@@ -126,7 +127,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
                     foreach (SelectableOption option in SelectableOptions)
                     {
-                        option.Update(gameTime);
+                        option.Update(gameTime,this.SpeakerName,this.SpeakerID);
                     }
                 }
 
@@ -196,13 +197,13 @@ namespace SecretProject.Class.DialogueStuff
                         {
                             if (parsedText[(int)typedTextLength] == '#')
                             {
-                                parsedText.Remove((int)typedTextLength, 1);
+                                parsedText.Remove((int)typedTextLength -1, 1);
                                 PauseUntilInput();
 
                             }
                             if (parsedText[(int)typedTextLength] == '`')
                             {
-                                parsedText.Remove((int)typedTextLength, 1);
+                                parsedText.Remove((int)typedTextLength-1, 1);
                                 PauseUntilInput();
                                 this.MoveToSelectableOptions = true;
 
@@ -253,13 +254,22 @@ namespace SecretProject.Class.DialogueStuff
             return returnString + line;
         }
 
-        public void Reset()
+        public void Reset(bool unfreeze = true)
         {
             this.StringToWrite = "";
             this.IsActive = false;
             this.UseTextBox = false;
             this.typedText = "";
-            Game1.freeze = false;
+            if (unfreeze)
+            {
+                this.FreezeStage = false;
+
+            }
+            else
+            {
+                this.FreezeStage = true;
+            }
+
             this.NumberOfClicks = 0;
             this.WriteSpeed = .5f;
             this.isDoneDrawing = false;
@@ -272,7 +282,11 @@ namespace SecretProject.Class.DialogueStuff
             this.HaveOptionsBeenChecked = false;
             this.AreSelectableOptionsActivated = false;
             this.MoveToSelectableOptions = false;
-        }
+            this.SpeakerName = null;
+            this.SpeakerID = -1;
+
+
+    }
       
 
         public void MoveTextToNewWindow()
@@ -376,13 +390,13 @@ namespace SecretProject.Class.DialogueStuff
                 (int)Game1.AllTextures.MenuText.MeasureString(response).Y)); 
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, string speakerName, int speakerID)
         {
             Button.UpdateSelectableText(Game1.myMouseManager);
             if(Button.isClicked)
             {
-                Game1.Utility.PerformSpeechAction(this.Action);
-                Game1.Player.UserInterface.TextBuilder.Reset();
+                Game1.Utility.PerformSpeechAction(this.Action, speakerID, speakerName);
+                
             }
             
         }

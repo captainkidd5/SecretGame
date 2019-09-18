@@ -120,7 +120,11 @@ namespace SecretProject.Class.UI
             switch(CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
-                    Game1.freeze = false;
+                    if(!TextBuilder.FreezeStage)
+                    {
+                        Game1.freeze = false;
+                    }
+                    
                     Esc.isTextChanged = false;
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
@@ -239,7 +243,7 @@ namespace SecretProject.Class.UI
             switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
-                    Game1.freeze = false;
+                    //ame1.freeze = false;
                     Esc.isTextChanged = false;
                     break;
                 case ExclusiveInterfaceItem.EscMenu:

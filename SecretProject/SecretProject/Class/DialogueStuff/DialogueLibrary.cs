@@ -35,5 +35,18 @@ namespace SecretProject.Class.DialogueStuff
             return skeleton;
         }
 
+        public DialogueSkeleton RetrieveDialogueNoTime(int speaker,int id)
+        {
+            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
+
+
+            DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.SpeechID == id);
+            if (skeleton == null)
+            {
+                return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
+            }
+            return skeleton;
+        }
+
     }
 }

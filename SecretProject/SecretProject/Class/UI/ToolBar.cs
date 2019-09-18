@@ -448,10 +448,10 @@ namespace SecretProject.Class.UI
                 TextBuilder.Activate(false, TextBoxType.normal, false, inventory.currentInventory[buttonIndex].GetItem().Name, 1f,
                     new Vector2(AllSlots[buttonIndex].Position.X, AllSlots[buttonIndex].Position.Y - 32), 200f);
             }
-            else
-            {
-                TextBuilder.Reset();
-            }
+            //else
+            //{
+            //    TextBuilder.Reset();
+            //}
 
         }
 

@@ -230,6 +230,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
+                    Game1.Player.UserInterface.TextBuilder.SpeakerName = this.Name;
+                    Game1.Player.UserInterface.TextBuilder.SpeakerID = this.SpeakerID;
                     if (skeleton.SelectableOptions != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;

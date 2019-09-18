@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.UI;
 using System;
@@ -204,19 +205,29 @@ namespace SecretProject.Class.Universal
         }
         #endregion
         #region SPEECHUTILITY
-        public void PerformSpeechAction(string action)
+        public void PerformSpeechAction(string action, int speakerID, string name)
         {
+            if(action.Contains('.'))
+            {
+                int newID = int.Parse(action.Split('.')[1]);
+                Game1.Player.UserInterface.TextBuilder.Reset(unfreeze: false);
+                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + Game1.DialogueLibrary.RetrieveDialogueNoTime(speakerID, newID).TextToWrite, 2f, null, null);
+                Game1.freeze = true;
+                return;
+            }
             switch(action)
             {
                 case "OpenJulianShop":
                     Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+                    Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
 
                 case "ExitDialogue":
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
+
             }
         }
         #endregion
