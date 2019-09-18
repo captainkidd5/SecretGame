@@ -211,7 +211,11 @@ namespace SecretProject.Class.Universal
             {
                 int newID = int.Parse(action.Split('.')[1]);
                 Game1.Player.UserInterface.TextBuilder.Reset(unfreeze: false);
-                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + Game1.DialogueLibrary.RetrieveDialogueNoTime(speakerID, newID).TextToWrite, 2f, null, null);
+                DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(speakerID, newID);
+                Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
+                Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
+                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + skeleton.TextToWrite, 2f, null, null);
+                
                 Game1.freeze = true;
                 return;
             }
