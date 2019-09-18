@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/walkGrass.wav</SourceFile>
-  <SourceTime>2019-09-13T16:08:06.227037-07:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/walkGrass.xnb</DestFile>
-  <DestTime>2019-09-17T12:06:52.1917657-07:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/walkGrass.wav</SourceFile>
+  <SourceTime>2019-09-13T11:31:20.182612-07:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/walkGrass.xnb</DestFile>
+  <DestTime>2019-09-17T16:48:05.0204586-07:00</DestTime>
   <Importer>WavImporter</Importer>
-  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
-  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>

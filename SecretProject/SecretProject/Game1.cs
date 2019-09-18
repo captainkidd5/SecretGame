@@ -391,7 +391,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(2000, 1000), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(300, 300), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:

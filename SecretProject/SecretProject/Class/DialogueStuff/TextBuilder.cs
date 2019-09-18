@@ -219,11 +219,11 @@ namespace SecretProject.Class.DialogueStuff
                             //typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
 
 
-                            if (typedTextLength >= parsedText.Length)
-                            {
-                                typedTextLength = parsedText.Length;
-                                isDoneDrawing = true;
-                            }
+                            //if (typedTextLength >= parsedText.Length)
+                            //{
+                            //    typedTextLength = parsedText.Length;
+                            //    isDoneDrawing = true;
+                            //}
 
                             typedText = parsedText.Substring(0, (int)typedTextLength);
                         }
@@ -280,10 +280,7 @@ namespace SecretProject.Class.DialogueStuff
             this.typedText = "";
             this.NumberOfClicks = 0;
             this.typedTextLength = 0;
-            StringToWrite = StringToWrite.Split('#')[1];
-            
-            //this.parsedText = StringToWrite.Split('#')[1];
-            
+            StringToWrite = StringToWrite.Split(new[] { '#' }, 2)[1];
             ChangedParsedText();
             
         }

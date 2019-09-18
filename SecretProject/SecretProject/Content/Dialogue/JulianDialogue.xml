@@ -8,7 +8,7 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a special deal. Five for three. # `
+   <TextToWrite>Mornin! Would you like to take a look at today's goods? # Today we have a #special deal. Five for three. # hi `
    </TextToWrite>
    <SelectableOptions>Yes!~OpenJulianShop,No~ExitDialogue,Maybe~ExitDialogue</SelectableOptions>
     </Item>
