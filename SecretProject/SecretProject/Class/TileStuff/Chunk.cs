@@ -9,15 +9,21 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk
     {
-        public int ID { get; set; }
+        public bool IsLoaded { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public List<Tile[,]> Tiles { get; set; }
 
+        public Chunk( int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+
 
         public void Save()
         {
-            string path = @"Content/SaveFiles/Chunks/Chunk" + this.ID + ".dat";
+            string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenWrite(path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
             for(int z =0; z < 5; z++)
@@ -35,7 +41,7 @@ namespace SecretProject.Class.TileStuff
         }
         public void Load()
         {
-            string path = @"Content/SaveFiles/Chunks/Chunk" + this.ID + ".dat";
+            string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
             for (int z = 0; z < 5; z++)
@@ -55,6 +61,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        
         public void Unload()
         {
 

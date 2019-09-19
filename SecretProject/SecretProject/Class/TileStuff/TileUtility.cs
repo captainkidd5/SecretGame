@@ -4,6 +4,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -221,6 +222,17 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        
+        public static bool CheckIfChunkExistsInMemory(int id)
+        {
+            if (File.Exists(@"Content/SaveFiles/Chunks/Chunk" + id + ".dat"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
