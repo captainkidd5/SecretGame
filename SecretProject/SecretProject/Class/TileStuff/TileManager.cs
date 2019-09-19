@@ -29,75 +29,46 @@ namespace SecretProject.Class.TileStuff
     public class TileManager : ITileManager
     {
         protected Game1 game;
-
         protected Texture2D tileSet;
         protected TmxMap MapName;
         protected TmxLayer layerName;
-
-
         public int tilesetTilesWide { get; set; }
         public int tilesetTilesHigh { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
-
-
         public int iD { get; set; }
         public int tileWidth { get; set; }
         public int tileHeight { get; set; }
         public int tileNumber { get; set; }
-
-
-
         public int tileCounter { get; set; }
-
-
         public Tile[,] Tiles { get; set; }
-
-
         public bool isActive = false;
         public bool isPlacement { get; set; } = false;
-
         public bool isInClickingRangeOfPlayer = false;
         ContentManager content;
-
         GraphicsDevice graphicsDevice;
-
         public int ReplaceTileGid { get; set; }
-
         public int CurrentIndexX { get; set; }
         public int CurrentIndexY { get; set; }
-
         public Tile TempTile { get; set; }
-
         public int OldIndexX { get; set; }
         public int OldIndexY { get; set; }
-
         public float Depth { get; set; }
-
         public int LayerIdentifier { get; set; }
-
         public List<TmxLayer> AllLayers;
         public List<Tile[,]> AllTiles { get; set; }
-
         public List<float> AllDepths;
-
         public bool TileInteraction { get; set; } = false;
-
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714, 100, 100, 100, 100);
-
         public int TileSetNumber { get; set; }
         public AStarPathFinder PathGrid { get; set; }
-
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
-
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
-
-
 
         #region CONSTRUCTORS
 
@@ -272,6 +243,8 @@ namespace SecretProject.Class.TileStuff
         public int NumberOfLayers { get; set; }
         //FOR PROCEDURAL
         #region PROCEDURALGENERATION CONSTRUCTOR
+
+        public List<Chunk> AllChunks { get; set; }
         public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
         {
             this.MapName = mapName;
