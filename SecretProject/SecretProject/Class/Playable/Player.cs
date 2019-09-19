@@ -63,9 +63,10 @@ namespace SecretProject.Class.Playable
             position.Y = newY;
         }
 
-        public int Health { get { return Health1; } set { value = Health1; } }
+        public int Health { get; set; }
+        public float Stamina { get; set; }
 
-        public int Health1 { get; set; } = 3;
+
         public Dir Direction { get; set; } = Dir.Down;
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public bool IsMoving { get; set; } = false;
@@ -136,6 +137,8 @@ namespace SecretProject.Class.Playable
         {
             this.content = content;
             Name = name;
+            this.Health = 3;
+            this.Stamina = 100f;
             Position = position;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;

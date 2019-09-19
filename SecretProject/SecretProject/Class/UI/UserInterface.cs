@@ -70,6 +70,8 @@ namespace SecretProject.Class.UI
         public ScrollTree ScrollTree { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
+        public HealthBar PlayerHealthBar { get; set; }
+        public StaminaBar PlayerStaminaBar { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
 
         //keyboard
@@ -95,6 +97,8 @@ namespace SecretProject.Class.UI
             ScrollTree = new ScrollTree(graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+            PlayerHealthBar = new HealthBar();
+            this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, 1f);
 
         }
 
@@ -126,6 +130,7 @@ namespace SecretProject.Class.UI
                     }
                     
                     Esc.isTextChanged = false;
+                    PlayerStaminaBar.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
@@ -243,8 +248,10 @@ namespace SecretProject.Class.UI
             switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
-                    //ame1.freeze = false;
+                    Game1.freeze = false;
                     Esc.isTextChanged = false;
+                    PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
+                    PlayerStaminaBar.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
                     Esc.Draw(spriteBatch);
