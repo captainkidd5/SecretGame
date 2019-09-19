@@ -187,7 +187,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.JulianShop,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.Town,gameTime);
                         }
                         else if(worldSizeMedium.isClicked)
                         {

@@ -81,12 +81,10 @@ namespace SecretProject.Class.StageFolder
             Cam.pos.Y = Game1.Player.position.Y;
 
 
-            //AllItems.Add(Game1.ItemVault.GenerateNewItem(129, new Vector2(500, 500), true));
-            //AllDockDialogue = Content.Load<DialogueHolder>("Dialogue/AllDialogue");
-            //Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue(1, 1);
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
+            this.AllTextToWrite = new List<StringWrapper>();
             this.IsLoaded = true;
         }
 
@@ -174,7 +172,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
-
+            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
             ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
@@ -196,7 +194,10 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.Update(gameTime, mouse);
-
+                for (int s = 0; s < AllTextToWrite.Count; s++)
+                {
+                    AllTextToWrite[s].Update(gameTime, AllTextToWrite);
+                }
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -222,7 +223,7 @@ namespace SecretProject.Class.StageFolder
 
             }
             Game1.Player.controls.UpdateKeys();
-            Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            
         }
         #endregion
 

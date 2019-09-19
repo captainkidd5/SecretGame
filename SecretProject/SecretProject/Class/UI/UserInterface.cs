@@ -21,7 +21,8 @@ namespace SecretProject.Class.UI
     {
         None = 0,
         ToolShop = 1,
-        DobbinShop = 2
+        DobbinShop = 2,
+        JulianShop = 3
         //LodgeInteior = 1,
         //Iliad = 2,
         //Exit = 3,

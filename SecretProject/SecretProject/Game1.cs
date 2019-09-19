@@ -74,6 +74,7 @@ namespace SecretProject
         Sanctuary = 4,
         ElixirShop = 5,
         JulianShop = 6,
+        DobbinHouse = 7,
         MainMenu = 50,
         Exit = 55
 
@@ -98,7 +99,8 @@ namespace SecretProject
         public static TmxStageBase Pass;
         public static TmxStageBase Sanctuary;
         public static TmxStageBase Center;
-        public static TmxStageBase JulianShop;
+        public static TmxStageBase JulianHouse;
+        public static TmxStageBase DobbinHouse;
         public static World World;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -284,7 +286,9 @@ namespace SecretProject
                 case Stages.ElixirShop:
                     return ElixirShop;
                 case Stages.JulianShop:
-                    return JulianShop;
+                    return JulianHouse;
+                case Stages.DobbinHouse:
+                    return DobbinHouse;
 
                 default:
                     return null;
@@ -316,8 +320,9 @@ namespace SecretProject
                 case 5:
                     return ElixirShop;
                 case 6:
-                    return JulianShop;
-
+                    return JulianHouse;
+                case 7:
+                    return DobbinHouse;
                 default:
                     return null;
 
@@ -346,6 +351,8 @@ namespace SecretProject
                     return 5;
                 case Stages.JulianShop:
                     return 6;
+                case Stages.DobbinHouse:
+                    return 7;
 
                 default:
                     return 50;
@@ -393,7 +400,7 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(300, 300), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(1600, 700), AllTextures.PlayerParts, 4, 10, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
@@ -503,13 +510,13 @@ namespace SecretProject
             Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
 
             ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
-            JulianShop = new TmxStageBase("JulianShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
-
+            JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
+            DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirShop, JulianShop };
+            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirShop, JulianHouse,DobbinHouse };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -541,10 +548,18 @@ namespace SecretProject
             DobbinShop.ShopMenu.TryAddStock(128, 10);
             DobbinShop.ShopMenu.TryAddStock(167, 10);
 
+            Shop JulianShop = new Shop(graphics.GraphicsDevice, 3, "JulianShop", new ShopMenu("JulianShopInventory", graphics.GraphicsDevice, 10));
+            JulianShop.ShopMenu.TryAddStock(0, 5);
+            JulianShop.ShopMenu.TryAddStock(1, 5);
+            JulianShop.ShopMenu.TryAddStock(2, 5);
+            JulianShop.ShopMenu.TryAddStock(3, 5);
+
+
             AllShops = new List<IShop>()
             {
                 ToolShop,
-                DobbinShop
+                DobbinShop,
+                JulianShop
             };
 
 
@@ -554,7 +569,7 @@ namespace SecretProject
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
             Elixer = new Elixir("Elixer", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(1400, 800), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(160, 128), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(512, 240), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
@@ -724,7 +739,10 @@ namespace SecretProject
                         ElixirShop.Update(gameTime, myMouseManager, Player);
                         break;
                     case Stages.JulianShop:
-                        JulianShop.Update(gameTime, myMouseManager, Player);
+                        JulianHouse.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.DobbinHouse:
+                        DobbinHouse.Update(gameTime, myMouseManager, Player);
                         break;
 
                 }
@@ -787,7 +805,11 @@ namespace SecretProject
                     break;
                 case Stages.JulianShop:
                     GraphicsDevice.Clear(Color.Black);
-                    JulianShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.DobbinHouse:
+                    GraphicsDevice.Clear(Color.Black);
+                    DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

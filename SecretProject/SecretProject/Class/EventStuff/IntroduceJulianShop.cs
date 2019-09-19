@@ -79,12 +79,23 @@ namespace SecretProject.Class.EventStuff
                         {
                             Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Julian.Position.X, Game1.Julian.Position.Y - 10));
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                                "This bookshelf contains #9 all sorts of useful information. If you find any of the pages let me know and we might be able to learn a thing or two.", 2f, null, null);
+                                "This bookshelf contains all sorts of useful information. If you find any of the pages let me know and we might be able to learn a thing or two.", 2f, null, null);
                             CurrentStep = 2;
                         }
                     }
                     break;
                 case 2:
+                    Game1.Julian.EventMoveToTile(gameTime, new Point(4, 21));
+                    if (Game1.Julian.IsAtTile(new Point(4, 21)))
+                    {
+                        Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
+                            "Anyway, it was nice to meet you!", 2f, null, null);
+                        CurrentStep = 3;
+                    }
+
+                        break;
+                case 3:
                     Console.WriteLine("Event has ended");
                     Game1.IsEventActive = false;
                     this.IsActive = false;
