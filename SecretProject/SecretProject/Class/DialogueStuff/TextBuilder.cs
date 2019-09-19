@@ -217,14 +217,6 @@ namespace SecretProject.Class.DialogueStuff
                                 PlayTextNoise();
                                 SpeedAnchor = 0f;
                             }
-                            //typedTextLength = typedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed;
-
-
-                            //if (typedTextLength >= parsedText.Length)
-                            //{
-                            //    typedTextLength = parsedText.Length;
-                            //    isDoneDrawing = true;
-                            //}
 
                             typedText = parsedText.Substring(0, (int)typedTextLength);
                         }

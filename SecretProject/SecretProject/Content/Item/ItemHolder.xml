@@ -104,6 +104,7 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>8</Price>
+<StaminaRestored>50</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFish</Name>
@@ -112,6 +113,7 @@
 <TextureColumn>5</TextureColumn>
 <TextureRow>6</TextureRow>
 <Price>20</Price>
+<StaminaRestored>15</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloomBerrySeedBag</Name>
@@ -187,6 +189,7 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>15</Price>
+<StaminaRestored>75</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloomBerryFruit</Name>
@@ -195,6 +198,7 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>8</Price>
+<StaminaRestored>5</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BoarDroppings</Name>
@@ -228,6 +232,7 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>1</Price>
+<StaminaRestored>2</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ThunderBirchSeed</Name>
@@ -253,6 +258,7 @@
 <TextureColumn>7</TextureColumn>
 <TextureRow>5</TextureRow>
 <Price>12</Price>
+<StaminaRestored>80</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BloodCornSeedBag</Name>
@@ -278,6 +284,7 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>2</Price>
+<StaminaRestored>15</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>ElmWoodSeed</Name>
@@ -311,6 +318,7 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>12</Price>
+<StaminaRestored>3</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>TumbleBushThorn</Name>
@@ -344,6 +352,7 @@
 <TextureColumn>10</TextureColumn>
 <TextureRow>7</TextureRow>
 <Price>12</Price>
+<StaminaRestored>2</StaminaRestored>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>FlaxCanvas</Name>

@@ -354,6 +354,8 @@ namespace SecretProject
 
         }
 
+        
+
         #region LOADCONTENT
         protected override void LoadContent()
         {
@@ -523,7 +525,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(187, 15);
             ToolShop.ShopMenu.TryAddStock(128, 100);
             ToolShop.ShopMenu.TryAddStock(121, 5);
-            ToolShop.ShopMenu.TryAddStock(143, 3);
+            ToolShop.ShopMenu.TryAddStock(127, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
             ToolShop.ShopMenu.TryAddStock(145, 1);
             ToolShop.ShopMenu.TryAddStock(165, 1);
@@ -533,6 +535,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(191, 1);
             ToolShop.ShopMenu.TryAddStock(123, 10);
             ToolShop.ShopMenu.TryAddStock(212, 10);
+            ToolShop.ShopMenu.TryAddStock(126, 10);
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
             DobbinShop.ShopMenu.TryAddStock(128, 10);
@@ -590,8 +593,8 @@ namespace SecretProject
 
             AllEvents = new List<IEvent>()
             {
-               // new IntroduceSanctuary(),
-               // new IntroduceJulianShop()
+                new IntroduceSanctuary(),
+                new IntroduceJulianShop()
             };
             IsEventActive = false;
         }
@@ -666,24 +669,24 @@ namespace SecretProject
                 ToggleFullScreen = false;
             }
 
-            //foreach (IEvent e in AllEvents)
-            //{
-            //    if ( e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
-            //    {
-            //        int num = GetCurrentStageInt();
-            //        if (!e.IsActive)
-            //        {
-            //            e.Start();
-            //        }
-            //        else
-            //        {
-            //            IsEventActive = true;
-            //            e.Update(gameTime);
+            foreach (IEvent e in AllEvents)
+            {
+                if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
+                {
+                    int num = GetCurrentStageInt();
+                    if (!e.IsActive)
+                    {
+                        e.Start();
+                    }
+                    else
+                    {
+                        IsEventActive = true;
+                        e.Update(gameTime);
 
-            //        }
+                    }
 
-            //    }
-            //}
+                }
+            }
 
             if (!IsEventActive)
             {
@@ -794,6 +797,7 @@ namespace SecretProject
             base.Draw(gameTime);
         }
         #endregion
+
     }
 
 }

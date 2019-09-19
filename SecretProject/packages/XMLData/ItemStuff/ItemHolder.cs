@@ -26,6 +26,10 @@ namespace XMLData.ItemStuff
             newItem.Durability = oldItem.Durability;
             newItem.PlaceID = oldItem.PlaceID;
 
+                newItem.StaminaRestored = oldItem.StaminaRestored;
+            
+        
+
 
             return newItem;
         }

@@ -64,7 +64,7 @@ namespace SecretProject.Class.Playable
         }
 
         public int Health { get; set; }
-        public float Stamina { get; set; }
+        public int Stamina { get; set; }
 
 
         public Dir Direction { get; set; } = Dir.Down;
@@ -138,7 +138,7 @@ namespace SecretProject.Class.Playable
             this.content = content;
             Name = name;
             this.Health = 3;
-            this.Stamina = 100f;
+            this.Stamina = 100;
             Position = position;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;

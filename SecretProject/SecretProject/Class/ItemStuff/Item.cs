@@ -70,6 +70,7 @@ namespace SecretProject.Class.ItemStuff
         public int SmeltedItem { get; set; }
         public int Durability { get; set; }
         public int PlaceID { get; set; }
+        public int StaminaRestored { get; set; }
 
 
 
@@ -91,6 +92,7 @@ namespace SecretProject.Class.ItemStuff
                 this.IsPlantable = itemData.Plantable;
             }
             this.PlaceID = itemData.PlaceID;
+            this.StaminaRestored = itemData.StaminaRestored;
 
         }
         public void Load()

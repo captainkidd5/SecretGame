@@ -98,7 +98,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
-            this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, 1f);
+            this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, .2f);
 
         }
 
