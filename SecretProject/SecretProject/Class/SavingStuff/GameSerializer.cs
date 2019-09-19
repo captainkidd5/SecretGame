@@ -147,9 +147,9 @@ namespace SecretProject.Class.SavingStuff
 
             for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
             {
-                for (int i = 0; i < location.AllTiles.tilesetTilesWide; i++)
+                for (int i = 0; i < location.AllTiles.mapWidth; i++)
                 {
-                    for (int j = 0; j < location.AllTiles.tilesetTilesHigh; j++)
+                    for (int j = 0; j < location.AllTiles.mapHeight; j++)
                     {
                         WriteTile(location.AllTiles.AllTiles[z][i, j], writer, version);
 
@@ -160,16 +160,17 @@ namespace SecretProject.Class.SavingStuff
 
         public static void ReadWorld(World location, GraphicsDevice graphics, BinaryReader reader, float version)
         {
-            location.LoadPreliminaryContent();
+            //location.LoadPreliminaryContent();
+            int worldSize = reader.ReadInt32();
             int allTilesCount = reader.ReadInt32();
             int tileSetTilesWide = reader.ReadInt32();
             int tileSetTilesHigh = reader.ReadInt32();
 
             for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
             {
-                for (int i = 0; i < location.AllTiles.tilesetTilesWide; i++)
+                for (int i = 0; i < location.AllTiles.mapWidth; i++)
                 {
-                    for (int j = 0; j < location.AllTiles.tilesetTilesHigh; j++)
+                    for (int j = 0; j < location.AllTiles.mapHeight; j++)
                     {
                         location.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,location.AllTiles.tilesetTilesWide, location.AllTiles.tilesetTilesHigh);
                     }
@@ -195,12 +196,12 @@ namespace SecretProject.Class.SavingStuff
         public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version, int tileSetTilesWide, int tileSetTilesHigh)
         {
             Tile newTile;
-
+            int gid = reader.ReadInt32();
             float X = reader.ReadSingle();
             float Y = reader.ReadSingle();
             float layer = reader.ReadSingle();
             float layerOffSet = reader.ReadSingle();
-            int gid = reader.ReadInt32();
+            
             
 
             newTile = new Tile(X, Y, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };

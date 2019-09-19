@@ -163,7 +163,7 @@ namespace SecretProject.Class.StageFolder
                         }
                         mySave.Load(graphics);
                         this.menuState = MenuState.primary;
-                        Game1.SwitchStage(0, (int)Stages.Town, gameTime);
+                        Game1.SwitchStage(0, (int)Stages.World, gameTime);
                     }
                     if (Exit.isClicked)
                     {

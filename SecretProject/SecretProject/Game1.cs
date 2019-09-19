@@ -641,9 +641,11 @@ namespace SecretProject
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
-            //  List<Portal> testPortal = GetCurrentStage().AllPortals;
+             // List<Portal> testPortal = GetCurrentStage().AllPortals;
             if (portal != null)
             {
+              //  ILocation location = GetCurrentStage();
+               // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 float x = tempPortal.PortalStart.X;
                 float width = tempPortal.PortalStart.Width / 2;
