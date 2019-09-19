@@ -59,7 +59,7 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
         public List<float> AllDepths;
         public bool TileInteraction { get; set; } = false;
-        public Tile DebugTile { get; set; } = new Tile(40, 40, 4714, 100, 100, 100, 100);
+        public Tile DebugTile { get; set; } = new Tile(40, 40, 4714);
         public int TileSetNumber { get; set; }
         public AStarPathFinder PathGrid { get; set; }
         public List<int> DirtGeneratableTiles;
@@ -118,7 +118,7 @@ namespace SecretProject.Class.TileStuff
             {
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
-                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+                    Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid);
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
                     if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
@@ -244,7 +244,7 @@ namespace SecretProject.Class.TileStuff
         //FOR PROCEDURAL
         #region PROCEDURALGENERATION CONSTRUCTOR
 
-        public List<Chunk> AllChunks { get; set; }
+        public List<Chunk> LoadedChunks { get; set; }
         public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
         {
             this.MapName = mapName;
@@ -255,6 +255,8 @@ namespace SecretProject.Class.TileStuff
 
             tilesetTilesWide = tileSet.Width / tileWidth;
             tilesetTilesHigh = tileSet.Height / tileHeight;
+
+
 
             mapWidth = worldWidth;
             mapHeight = worldHeight;
@@ -269,6 +271,7 @@ namespace SecretProject.Class.TileStuff
             this.content = content;
 
             this.AllDepths = allDepths;
+
             AllTiles = new List<Tile[,]>();
             this.TileSetNumber = tileSetNumber;
             DirtGeneratableTiles = new List<int>();
@@ -341,18 +344,18 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (z >= 1)
                         {
-                            AllTiles[z][i, j] = new Tile(i, j, 0, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                            AllTiles[z][i, j] = new Tile(i, j, 0);
                         }
 
                         else
                         {
                             if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
                             {
-                                AllTiles[z][i, j] = new Tile(i, j, 1106, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                                AllTiles[z][i, j] = new Tile(i, j, 1106);
                             }
                             else
                             {
-                                AllTiles[z][i, j] = new Tile(i, j, 1116, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
+                                AllTiles[z][i, j] = new Tile(i, j, 1116);
                             }
 
                         }
@@ -593,10 +596,10 @@ namespace SecretProject.Class.TileStuff
             if (!CheckIfTileAlreadyExists(newTileX, newTileY, layer) && CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, comparisonLayer))
             {
 
-                Tile sampleTile = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+                Tile sampleTile = new Tile(newTileX, newTileY, id);
                 if (!MapName.Tilesets[TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
-                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                     return;
                 }
 
@@ -627,7 +630,7 @@ namespace SecretProject.Class.TileStuff
                         if (!CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer))
                         {
                             //intermediateAllTiles.Add(AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY]);
-                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight) { LayerToDrawAt = intTilePropertyLayer });
+                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
                             //AllTiles[intTilePropertyLayer][newTileX + intGidX, newTileY + intGidY] = new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1, 100, 100, 100, 100);
                         }
                         else
@@ -646,7 +649,7 @@ namespace SecretProject.Class.TileStuff
                         AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
                         //AllTiles[intermediateNewTiles[tileSwapCounter]]
                     }
-                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+                    AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 }
             }
         }
@@ -685,7 +688,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
 
-                    AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+                    AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0);
                 }
             }
         }
@@ -731,7 +734,7 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, gid, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, gid);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
             AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
         }
@@ -774,7 +777,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
                     AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
-                        frameholder.Frames[frameholder.Counter].ID + 1, this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                        frameholder.Frames[frameholder.Counter].ID + 1);
                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                     {
                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
@@ -785,8 +788,7 @@ namespace SecretProject.Class.TileStuff
 
                                 //needs to refer to first tile ?
                                 int frameolDX = frameholder.OldX;
-                                AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1,
-                                    this.tilesetTilesWide, this.tilesetTilesHigh, this.mapWidth, this.mapHeight);
+                                AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer, this.mapWidth, this.mapHeight));
                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
@@ -1294,7 +1296,7 @@ namespace SecretProject.Class.TileStuff
 
         public void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID)
         {
-            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].X, AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID, tilesetTilesWide, tilesetTilesHigh, mapWidth, mapHeight);
+            Tile ReplaceMenttile = new Tile(AllTiles[layer][tileToReplaceX, tileToReplaceY].X, AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
             AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
         #endregion

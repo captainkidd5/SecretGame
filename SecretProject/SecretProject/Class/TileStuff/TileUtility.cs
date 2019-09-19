@@ -12,6 +12,8 @@ namespace SecretProject.Class.TileStuff
 {
     public static class TileUtility
     {
+        public static int ChunkX = 256;
+        public static int ChunkY = 256;
         #region TILING
 
         public static int GrassSpawnRate = 15;
@@ -77,7 +79,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
-                    newTiles[i, j] = new Tile(i, j, 1106, tileSetWide, tileSetHigh, worldWidth, worldHeight);
+                    newTiles[i, j] = new Tile(i, j, 1106);
                 }
             }
 

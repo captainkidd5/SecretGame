@@ -26,7 +26,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public Tile(float x, float y, int gID, int tilesetTilesWide, int tilesetTilesHigh, int mapWidth, int mapHeight)
+        public Tile(float x, float y, int gID)
         {
 
             this.X = x;

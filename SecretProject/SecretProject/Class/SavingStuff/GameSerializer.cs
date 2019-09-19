@@ -204,7 +204,7 @@ namespace SecretProject.Class.SavingStuff
             
             
 
-            newTile = new Tile(X, Y, gid, tileSetTilesWide, tileSetTilesHigh, 100, 100) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };
+            newTile = new Tile(X, Y, gid) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };
 
 
             return newTile;
