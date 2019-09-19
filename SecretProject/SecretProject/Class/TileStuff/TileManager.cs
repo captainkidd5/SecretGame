@@ -29,24 +29,24 @@ namespace SecretProject.Class.TileStuff
     public class TileManager : ITileManager
     {
         protected Game1 game;
-        protected Texture2D tileSet;
-        protected TmxMap MapName;
+        public Texture2D TileSet { get; set; }
+        public TmxMap MapName { get;set; }
         protected TmxLayer layerName;
         public int tilesetTilesWide { get; set; }
         public int tilesetTilesHigh { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
         public int iD { get; set; }
-        public int tileWidth { get; set; }
-        public int tileHeight { get; set; }
+        public int TileWidth { get; set; }
+        public int TileHeight { get; set; }
         public int tileNumber { get; set; }
         public int tileCounter { get; set; }
         public Tile[,] Tiles { get; set; }
         public bool isActive = false;
         public bool isPlacement { get; set; } = false;
         public bool isInClickingRangeOfPlayer = false;
-        ContentManager content;
-        GraphicsDevice graphicsDevice;
+        public ContentManager Content { get; set; }
+        public GraphicsDevice GraphicsDevice { get; set; }
         public int ReplaceTileGid { get; set; }
         public int CurrentIndexX { get; set; }
         public int CurrentIndexY { get; set; }
@@ -57,7 +57,7 @@ namespace SecretProject.Class.TileStuff
         public int LayerIdentifier { get; set; }
         public List<TmxLayer> AllLayers;
         public List<Tile[,]> AllTiles { get; set; }
-        public List<float> AllDepths;
+        public List<float> AllDepths { get; set; }
         public bool TileInteraction { get; set; } = false;
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714);
         public int TileSetNumber { get; set; }
@@ -79,22 +79,22 @@ namespace SecretProject.Class.TileStuff
 
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
         {
-            this.tileSet = tileSet;
+            this.TileSet = tileSet;
             this.MapName = mapName;
 
-            tileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
-            tileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
+            TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
+            TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
 
-            tilesetTilesWide = tileSet.Width / tileWidth;
-            tilesetTilesHigh = tileSet.Height / tileHeight;
+            tilesetTilesWide = tileSet.Width / TileWidth;
+            tilesetTilesHigh = tileSet.Height / TileHeight;
 
             mapWidth = mapName.Width;
             mapHeight = mapName.Height;
 
             this.tileCounter = 0;
 
-            this.graphicsDevice = graphicsDevice;
-            this.content = content;
+            this.GraphicsDevice = graphicsDevice;
+            this.Content = content;
 
             this.AllDepths = allDepths;
             this.AllLayers = allLayers;
@@ -244,17 +244,16 @@ namespace SecretProject.Class.TileStuff
         //FOR PROCEDURAL
         #region PROCEDURALGENERATION CONSTRUCTOR
 
-        public List<Chunk> LoadedChunks { get; set; }
-        public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, World currentStage)
+        public TileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
-            this.tileSet = tileSet;
+            this.TileSet = tileSet;
 
-            tileWidth = 16;
-            tileHeight = 16;
+            TileWidth = 16;
+            TileHeight = 16;
 
-            tilesetTilesWide = tileSet.Width / tileWidth;
-            tilesetTilesHigh = tileSet.Height / tileHeight;
+            tilesetTilesWide = tileSet.Width / TileWidth;
+            tilesetTilesHigh = tileSet.Height / TileHeight;
 
 
 
@@ -267,8 +266,8 @@ namespace SecretProject.Class.TileStuff
 
             this.tileCounter = 0;
 
-            this.graphicsDevice = graphicsDevice;
-            this.content = content;
+            this.GraphicsDevice = graphicsDevice;
+            this.Content = content;
 
             this.AllDepths = allDepths;
 
@@ -403,7 +402,7 @@ namespace SecretProject.Class.TileStuff
 
             portal.PortalStart = new Rectangle(worldWidth * 16 / 2 + 120, worldHeight * 16 / 2 + 120, 50, 50);
 
-            currentStage.AllPortals.Add(portal);
+            world.AllPortals.Add(portal);
             Game1.PortalGraph.AddEdge(portal.From, portal.To);
             //    }
 
@@ -446,7 +445,7 @@ namespace SecretProject.Class.TileStuff
                             if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
+                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
 
                             }
                         }
@@ -499,7 +498,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             stage.AllChests.Add(tileToAssign.GetTileKey(layer, mapWidth, mapHeight), new Chest(tileToAssign.GetTileKey(layer, mapWidth, mapHeight), 3,
                                     new Vector2(tileToAssign.X % mapWidth * 16,
-                               tileToAssign.Y % mapHeight * 16), this.graphicsDevice, true));
+                               tileToAssign.Y % mapHeight * 16), this.GraphicsDevice, true));
                         }
 
                     }
@@ -520,7 +519,7 @@ namespace SecretProject.Class.TileStuff
                         TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
-                        ObjectBody tempObjectBody = new ObjectBody(graphicsDevice,
+                        ObjectBody tempObjectBody = new ObjectBody(GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height) + 5), tileToAssign.GID);
@@ -1063,7 +1062,7 @@ namespace SecretProject.Class.TileStuff
                             if (Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
                             {
                                 ReplaceTile(3, i, j, -1);
-                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8,
+                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8,
                                     GetDestinationRectangle(AllTiles[z][i, j]).Y + 8), 16, 16)
                                 { ID = 232, SpinAmount = 10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                                 Game1.SoundManager.CraftMetal.Play();
@@ -1084,7 +1083,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 ReplaceTile(3, i, j, -1);
 
-                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.graphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
+                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(this.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
                                     new Vector2(GetDestinationRectangle(AllTiles[z][i, j]).X + 8, GetDestinationRectangle(AllTiles[z][i, j]).Y + 5), 16, 16)
                                 { ID = 233, SpinAmount = -10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                                 Game1.SoundManager.CraftMetal.Play();
@@ -1165,13 +1164,13 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                             }
                             else
                             {
-                                spriteBatch.Draw(tileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
                             }
 
@@ -1205,7 +1204,7 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[1][Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16].GID != -1)
                         {
 
-                            spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
+                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(placeID))
                             {
@@ -1219,7 +1218,7 @@ namespace SecretProject.Class.TileStuff
 
                         else
                         {
-                            spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
+                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(placeID))
                             {
@@ -1231,7 +1230,7 @@ namespace SecretProject.Class.TileStuff
                                     associatedTiles = Game1.Utility.ParseSpawnsWithKey(MapName.Tilesets[TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
                                     for (int a = 0; a < associatedTiles.Length; a++)
                                     {
-                                        spriteBatch.Draw(tileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]) * 16,
+                                        spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]) * 16,
                                             Game1.Player.UserInterface.TileSelectorY + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]) * 16), GetSourceRectangleWithoutTile(associatedTiles[a]), Color.Green * .5f,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"])]);
                                     }
