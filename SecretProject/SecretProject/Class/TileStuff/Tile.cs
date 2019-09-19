@@ -20,8 +20,8 @@ namespace SecretProject.Class.TileStuff
         public int GID { get { return gid - 1; } set { gid = value; } }
         public float Y { get; set; }
         public float X { get; set; }
-        public float LayerToDrawAt { get; set; }
-        public float LayerToDrawAtZOffSet { get; set; }
+        public float LayerToDrawAt { get; set; } = 0f;
+        public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
 
 

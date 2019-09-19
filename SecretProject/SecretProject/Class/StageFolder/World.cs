@@ -41,6 +41,7 @@ namespace SecretProject.Class.StageFolder
         public bool IsGondolaAtStartingPosition;
         public bool IsExitingOnGondola;
         public bool IsGondolaAtEndingPosition;
+        public int WorldSize { get; set; }
 
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve,backDropNumber)
@@ -56,6 +57,7 @@ namespace SecretProject.Class.StageFolder
 
         public void LoadPreliminaryContent(int worldSize)
         {
+            this.WorldSize = worldSize;
             AllLights = new List<LightSource>()
             {
 
@@ -106,7 +108,7 @@ namespace SecretProject.Class.StageFolder
  
             };
             AllPortals = new List<Portal>();
-            switch (worldSize)
+            switch (this.WorldSize)
             {
                 case 1:
                     this.WorldWidth = 400;

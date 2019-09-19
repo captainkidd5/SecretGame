@@ -8,7 +8,8 @@
     <Day>0</Day>
     <TimeStart>0</TimeStart>
     <TimeEnd>10</TimeEnd>
-   <TextToWrite>Hi</TextToWrite>
+   <TextToWrite>Looking to buy something? `</TextToWrite>
+   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

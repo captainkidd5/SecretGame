@@ -95,7 +95,7 @@ namespace SecretProject.Class.StageFolder
             }
         }
 
-        public void LoadContent()
+        public void LoadBackGround()
         {
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
@@ -113,6 +113,7 @@ namespace SecretProject.Class.StageFolder
             content.Unload();
             clouds = null;
         }
+
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
@@ -148,8 +149,21 @@ namespace SecretProject.Class.StageFolder
                     }
                     if (Load.isClicked)
                     {
+                        foreach (ILocation stage in Game1.AllStages)
+                        {
+                            if (stage == Game1.World)
+                            {
+                                Game1.World.LoadPreliminaryContent(1);
+                            }
+                            else
+                            {
+                                stage.LoadPreliminaryContent();
+                            }
+
+                        }
                         mySave.Load(graphics);
-                        Game1.gameStages = Stages.Pass;
+                        this.menuState = MenuState.primary;
+                        Game1.SwitchStage(0, (int)Stages.Town, gameTime);
                     }
                     if (Exit.isClicked)
                     {

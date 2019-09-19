@@ -85,6 +85,8 @@ namespace SecretProject
     {
         #region FIELDS
 
+        public static bool IsFirstTimeStartup;
+
         //ContentManagers
         public ContentManager HomeContentManager;
         public ContentManager SeaContentManager;
@@ -369,7 +371,7 @@ namespace SecretProject
             PresentationParameters = GraphicsDevice.PresentationParameters;
             MainTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-
+            
             //ORDER MATTERS!!!
             ElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");

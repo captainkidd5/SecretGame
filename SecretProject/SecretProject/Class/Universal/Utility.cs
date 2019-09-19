@@ -222,8 +222,17 @@ namespace SecretProject.Class.Universal
             switch(action)
             {
                 case "OpenJulianShop":
+                    Game1.freeze = true;
                     Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.JulianShop);
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+
+                    break;
+                case "OpenDobbinShop":
+                    Game1.freeze = true;
+                    Game1.Player.UserInterface.IsShopMenu = true;
+                    Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;

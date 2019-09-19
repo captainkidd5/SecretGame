@@ -82,7 +82,7 @@ namespace SecretProject.Class.MenuStuff
 
             if(MenuButton.isClicked)
             {
-                Game1.mainMenu.LoadContent();
+                Game1.mainMenu.LoadBackGround();
                 Game1.gameStages = Stages.MainMenu;
             }
 
