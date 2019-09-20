@@ -27,7 +27,7 @@ namespace SecretProject.Class.EventStuff
             };
             FreezePlayerControls = false;
             this.DayToTrigger = 0;
-            this.StageToTrigger = (int)Stages.JulianShop;
+            this.StageToTrigger = (int)Stages.JulianHouse;
             this.IsCompleted = false;
             CurrentStep = 0;
 
@@ -39,7 +39,7 @@ namespace SecretProject.Class.EventStuff
                 Game1.GetCurrentStage().CharactersPresent.Add(Game1.Julian);
             }
             
-            Game1.Julian.CurrentStageLocation = (int)Stages.JulianShop;
+            Game1.Julian.CurrentStageLocation = (int)Stages.JulianHouse;
             Game1.Julian.IsInEvent = true;
             Game1.Julian.Position = new Vector2(64, 336);
             Game1.Julian.ResetPathFinding();

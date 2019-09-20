@@ -355,7 +355,7 @@ namespace SecretProject.Class.UI
                         }
                     }
                     //SHIFT CLICK SELL TO SHOP
-                    else if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.IsShopMenu)
+                    else if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
                     {
                         for (int s = 0; s < Game1.AllShops.Find(x => x.ID == (int)Game1.Player.UserInterface.CurrentOpenShop).ShopMenu.allShopMenuItemButtons.Count; s++)
                         {
@@ -378,7 +378,7 @@ namespace SecretProject.Class.UI
                         }
                     }
                     //SELL SINGLE ITEM TO SHOP
-                    else if (!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.IsShopMenu)
+                    else if (!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.ShopMenu)
                     {
                         for (int s = 0; s < Game1.AllShops.Find(x => x.ID == (int)Game1.Player.UserInterface.CurrentOpenShop).ShopMenu.allShopMenuItemButtons.Count; s++)
                         {

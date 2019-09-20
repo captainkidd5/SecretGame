@@ -72,8 +72,8 @@ namespace SecretProject
         Center = 2,
         World = 3,
         Sanctuary = 4,
-        ElixirShop = 5,
-        JulianShop = 6,
+        ElixirHouse = 5,
+        JulianHouse = 6,
         DobbinHouse = 7,
         MainMenu = 50,
         Exit = 55
@@ -97,7 +97,7 @@ namespace SecretProject
         public static MainMenu mainMenu;
         //public static NormalStage Iliad;
         public static Town Town;
-        public static TmxStageBase ElixirShop;
+        public static TmxStageBase ElixirHouse;
         public static TmxStageBase Pass;
         public static TmxStageBase Sanctuary;
         public static TmxStageBase Center;
@@ -285,9 +285,9 @@ namespace SecretProject
                 case Stages.Sanctuary:
                     return Sanctuary;
 
-                case Stages.ElixirShop:
-                    return ElixirShop;
-                case Stages.JulianShop:
+                case Stages.ElixirHouse:
+                    return ElixirHouse;
+                case Stages.JulianHouse:
                     return JulianHouse;
                 case Stages.DobbinHouse:
                     return DobbinHouse;
@@ -320,7 +320,7 @@ namespace SecretProject
                 case 4:
                     return Sanctuary;
                 case 5:
-                    return ElixirShop;
+                    return ElixirHouse;
                 case 6:
                     return JulianHouse;
                 case 7:
@@ -349,9 +349,9 @@ namespace SecretProject
                 case Stages.Sanctuary:
                     return 4;
 
-                case Stages.ElixirShop:
+                case Stages.ElixirHouse:
                     return 5;
-                case Stages.JulianShop:
+                case Stages.JulianHouse:
                     return 6;
                 case Stages.DobbinHouse:
                     return 7;
@@ -511,14 +511,14 @@ namespace SecretProject
 
             Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
 
-            ElixirShop = new TmxStageBase("ElixirShop", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
+            ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
             JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
             DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirShop, JulianHouse,DobbinHouse };
+            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirHouse, JulianHouse,DobbinHouse };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -536,7 +536,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(121, 5);
             ToolShop.ShopMenu.TryAddStock(127, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
-            ToolShop.ShopMenu.TryAddStock(145, 1);
+            ToolShop.ShopMenu.TryAddStock(80, 5);
             ToolShop.ShopMenu.TryAddStock(165, 1);
             ToolShop.ShopMenu.TryAddStock(167, 100); //bloodcorn seeds
             ToolShop.ShopMenu.TryAddStock(231, 5);
@@ -556,12 +556,19 @@ namespace SecretProject
             JulianShop.ShopMenu.TryAddStock(2, 5);
             JulianShop.ShopMenu.TryAddStock(3, 5);
 
-
+            Shop ElixirShop = new Shop(graphics.GraphicsDevice, 4, "ElixirShop", new ShopMenu("ElixirShopInventory", graphics.GraphicsDevice, 10));
+            ElixirShop.ShopMenu.TryAddStock(80, 1);
+            ElixirShop.ShopMenu.TryAddStock(81, 1);
+            ElixirShop.ShopMenu.TryAddStock(82, 1);
+            ElixirShop.ShopMenu.TryAddStock(83, 1);
+            ElixirShop.ShopMenu.TryAddStock(84, 1);
+            ElixirShop.ShopMenu.TryAddStock(85, 1);
             AllShops = new List<IShop>()
             {
                 ToolShop,
                 DobbinShop,
-                JulianShop
+                JulianShop,
+                ElixirShop
             };
 
 
@@ -739,10 +746,10 @@ namespace SecretProject
                         break;
 
 
-                    case Stages.ElixirShop:
-                        ElixirShop.Update(gameTime, myMouseManager, Player);
+                    case Stages.ElixirHouse:
+                        ElixirHouse.Update(gameTime, myMouseManager, Player);
                         break;
-                    case Stages.JulianShop:
+                    case Stages.JulianHouse:
                         JulianHouse.Update(gameTime, myMouseManager, Player);
                         break;
                     case Stages.DobbinHouse:
@@ -803,11 +810,11 @@ namespace SecretProject
                     Town.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
-                case Stages.ElixirShop:
+                case Stages.ElixirHouse:
                     GraphicsDevice.Clear(Color.Black);
-                    ElixirShop.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
-                case Stages.JulianShop:
+                case Stages.JulianHouse:
                     GraphicsDevice.Clear(Color.Black);
                     JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;

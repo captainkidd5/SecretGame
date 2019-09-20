@@ -45,7 +45,6 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>4</TextureRow>
 <Price>50</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>TurquoiseAxe</Name>
@@ -54,7 +53,62 @@
 <TextureColumn>1</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>50</Price>
-<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Flask</Name>
+<ID>80</ID>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Flask</Name>
+<ID>80</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>WhiteWaterFlask</Name>
+<ID>81</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>1</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>LifeFlask</Name>
+<ID>82</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>EnergizerFlask</Name>
+<ID>83</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>RotundFlask</Name>
+<ID>84</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>50</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>LifeGiverFlask</Name>
+<ID>85</ID>
+<InvMaximum>20</InvMaximum>
+<TextureColumn>3</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>50</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Chest</Name>
