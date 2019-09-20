@@ -51,7 +51,7 @@ namespace SecretProject.Class.UI
         {
             if (Game1.GetCurrentStageInt() == (int)Stages.World)
             {
-
+                /*
 
                 float oldStam = Stamina;
                 Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI
                 {
                     if (Stamina <= 0)
                     {
-                        Game1.Player.Health -= 1;
+                        //Game1.Player.Health -= 1;
                         Stamina = 100;
                         return;
                     }
@@ -112,7 +112,7 @@ namespace SecretProject.Class.UI
                 {
                     this.Stamina = 100;
                 }
-
+                */
             }
 
         }

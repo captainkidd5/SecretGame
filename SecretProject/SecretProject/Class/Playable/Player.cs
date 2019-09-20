@@ -106,7 +106,7 @@ namespace SecretProject.Class.Playable
 
         public Texture2D BigHitBoxRectangleTexture;
         public Texture2D LittleHitBoxRectangleTexture;
-
+        public bool LockBounds { get; set; }
         public Rectangle Rectangle
         {
             get
@@ -198,7 +198,7 @@ namespace SecretProject.Class.Playable
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
 
             //controls.SecondaryDirection = SecondaryDir.Down;
-            
+            LockBounds = true;
 
         }
 
@@ -503,8 +503,11 @@ namespace SecretProject.Class.Playable
 
 
                     }
-
-                    CheckOutOfBounds(this.Position);
+                    if(LockBounds)
+                    {
+                        CheckOutOfBounds(this.Position);
+                    }
+                    
                 }
                 if (GameMode == 2)
                 {

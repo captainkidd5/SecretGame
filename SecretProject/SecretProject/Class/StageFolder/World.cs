@@ -166,7 +166,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 1f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -183,6 +183,7 @@ namespace SecretProject.Class.StageFolder
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
             WorldTileManager.LoadInitialChunks();
+            Game1.Player.LockBounds = false;
         }
 
         public override void UnloadContent()

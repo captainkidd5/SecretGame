@@ -105,8 +105,8 @@ namespace SecretProject.Class.TileStuff
         public Chunk[,] GetActiveChunkCoord(Vector2 playerPos)
         {
 
-            int currentChunkX = (int)(playerPos.X / 16 / 32);
-            int currentChunkY = (int)(playerPos.Y / 16 /32);
+            int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkX);
+            int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
             return new Chunk[,]
             {
                 { new Chunk(currentChunkX - 1, currentChunkY - 1), new Chunk (currentChunkX, currentChunkY - 1) , new Chunk(currentChunkX + 1, currentChunkY - 1) },
@@ -117,7 +117,7 @@ namespace SecretProject.Class.TileStuff
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            ChunkUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / 32), (int)(Game1.Player.Position.Y / 16 / 32));
+            ChunkUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
             if (ChunkUnderPlayerLastFrame != ChunkUnderPlayer)
             {
                 LoadInitialChunks();
@@ -129,7 +129,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < ActiveChunks.GetLength(1); j++)
                 {
-                    for (int z = 0; z < 5; z++)
+                    for (int z = 0; z < 2; z++)
                     {
                         for (int x = 0; x < TileUtility.ChunkX; x++)
                         {
@@ -164,7 +164,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < ActiveChunks.GetLength(1); j++)
                 {
-                    for (int z = 0; z < 5; z++)
+                    for (int z = 0; z < 2; z++)
                     {
                         for (int x = 0; x < TileUtility.ChunkX; x++)
                         {

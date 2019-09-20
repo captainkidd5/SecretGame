@@ -70,22 +70,26 @@ namespace SecretProject.Class.CameraStuff
                 (int)(Game1.GetCurrentStage().MapRectangle.Height - Game1.ScreenHeight / 2 / zoom));
 
 
-            if (pos.X < ViewPortRectangle.X)
+            if(Game1.Player.LockBounds)
             {
-                pos.X = ViewPortRectangle.X;
+                if (pos.X < ViewPortRectangle.X)
+                {
+                    pos.X = ViewPortRectangle.X;
+                }
+                if (pos.X > ViewPortRectangle.Width)
+                {
+                    pos.X = ViewPortRectangle.Width;
+                }
+                if (pos.Y < ViewPortRectangle.Y)
+                {
+                    pos.Y = ViewPortRectangle.Y;
+                }
+                if (pos.Y > ViewPortRectangle.Height)
+                {
+                    pos.Y = ViewPortRectangle.Height;
+                }
             }
-            if (pos.X > ViewPortRectangle.Width)
-            {
-                pos.X = ViewPortRectangle.Width;
-            }
-            if (pos.Y < ViewPortRectangle.Y)
-            {
-                pos.Y = ViewPortRectangle.Y;
-            }
-            if (pos.Y > ViewPortRectangle.Height)
-            {
-                pos.Y = ViewPortRectangle.Height;
-            }
+            
 
 
 

@@ -20,7 +20,7 @@ namespace SecretProject.Class.TileStuff
             this.X = x;
             this.Y = y;
             Tiles = new List<Tile[,]>();
-            for(int i =0; i < 5; i++)
+            for(int i =0; i < 2; i++)
             {
                 Tiles.Add(new Tile[32, 32]);
             }
@@ -32,13 +32,13 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenWrite(path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            for(int z =0; z < 5; z++)
+            for(int z =0; z < 2; z++)
             {
                 for(int i =0; i < TileUtility.ChunkX; i++)
                 {
                     for(int j =0; j< TileUtility.ChunkY; j++)
                     {
-                        binaryWriter.Write(Tiles[z][i, j].GID);
+                        binaryWriter.Write(Tiles[z][i, j].GID + 1);
                         binaryWriter.Write(Tiles[z][i, j].X);
                         binaryWriter.Write(Tiles[z][i, j].Y);
                     }
@@ -53,7 +53,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 2; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -74,7 +74,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Generate()
         {
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 2; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
