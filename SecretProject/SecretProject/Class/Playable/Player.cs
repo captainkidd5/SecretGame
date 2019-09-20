@@ -385,7 +385,7 @@ namespace SecretProject.Class.Playable
 
                     if (controls.IsSprinting)
                     {
-                        TotalVelocity = TotalVelocity * 5f;
+                        TotalVelocity = TotalVelocity * 15f;
                     }
                     Position += TotalVelocity;
                     PrimaryVelocity = Vector2.Zero;

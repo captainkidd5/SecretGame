@@ -135,7 +135,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int y = 0; y < TileUtility.ChunkY; y++)
                             {
-                                //LoadedChunks[i, j].Tiles[x,y]
+                                //update logic here per tile
                             }
                         }
                     }

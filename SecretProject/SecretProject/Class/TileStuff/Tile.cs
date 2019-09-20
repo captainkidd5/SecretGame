@@ -36,15 +36,13 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public string GetTileKey(int layer, int mapWidth, int mapHeight)
+        public string GetTileKey(int layer)
         {
-            int X = this.X;
             string XString = X.ToString();
             if(XString.Length < 4)
             {
                XString = XString.PadLeft(4, '0');
             }
-            int Y = this.Y;
             string YString = Y.ToString();
             if (YString.Length < 4)
             {

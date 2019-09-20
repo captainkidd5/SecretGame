@@ -80,7 +80,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        Tiles[z][i, j] = new Tile(this.X *32 + i, this.Y * 32 + j, 1107);
+                        Tiles[z][i, j] = new Tile(this.X *32 + i, this.Y * 32 + j, 1115);
                     }
                 }
             }

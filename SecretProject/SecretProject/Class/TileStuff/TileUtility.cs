@@ -164,9 +164,9 @@ namespace SecretProject.Class.TileStuff
                             
                                 tiles[3][i, j - 1].GID = 1753;
                                 tiles[1][i, j].GID = 1853;
-                            if (!location.AllChests.ContainsKey(tiles[1][i, j].GetTileKey(1, worldWidth, worldHeight)))
+                            if (!location.AllChests.ContainsKey(tiles[1][i, j].GetTileKey(1)))
                             {
-                                location.AllChests.Add(tiles[1][i, j].GetTileKey(1, worldWidth, worldHeight), new Chest(tiles[1][i, j].GetTileKey(1,worldWidth, worldHeight), 3,
+                                location.AllChests.Add(tiles[1][i, j].GetTileKey(1), new Chest(tiles[1][i, j].GetTileKey(1), 3,
                                     new Vector2(tiles[1][i, j].X % worldWidth * 16,
                                 tiles[1][i, j].Y % worldHeight * 16), graphics, true));
                             }
