@@ -172,7 +172,7 @@ namespace SecretProject.Class.SavingStuff
                 {
                     for (int j = 0; j < location.AllTiles.mapHeight; j++)
                     {
-                        location.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,location.AllTiles.tilesetTilesWide, location.AllTiles.tilesetTilesHigh);
+                       // location.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,location.AllTiles.tilesetTilesWide, location.AllTiles.tilesetTilesHigh);
                     }
                 }
             }
@@ -193,23 +193,23 @@ namespace SecretProject.Class.SavingStuff
 
         }
 
-        public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version, int tileSetTilesWide, int tileSetTilesHigh)
-        {
-            Tile newTile;
-            int gid = reader.ReadInt32();
-            float X = reader.ReadSingle();
-            float Y = reader.ReadSingle();
-            float layer = reader.ReadSingle();
-            float layerOffSet = reader.ReadSingle();
+        //public static Tile ReadTile(BinaryReader reader, GraphicsDevice graphics, float version, int tileSetTilesWide, int tileSetTilesHigh)
+        //{
+        //    Tile newTile;
+        //    int gid = reader.ReadInt32();
+        //    //float X = reader.ReadSingle();
+        //   // float Y = reader.ReadSingle();
+        //    float layer = reader.ReadSingle();
+        //    float layerOffSet = reader.ReadSingle();
             
             
 
-            newTile = new Tile(X, Y, gid) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };
+        //    //newTile = new Tile(X, Y, gid) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };
 
 
-            return newTile;
+        //    return newTile;
             
-        }
+        //}
 
         public static void WriteClock(Clock clock, BinaryWriter writer, float version)
         {

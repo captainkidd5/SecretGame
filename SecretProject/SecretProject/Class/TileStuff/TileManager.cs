@@ -535,14 +535,8 @@ namespace SecretProject.Class.TileStuff
 
         public Rectangle GetDestinationRectangle(Tile tile)
         {
-            int Column = tile.GID % tilesetTilesWide;
-            int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
-
-            float X = (tile.X % mapWidth) * 16;
-            float Y = (tile.Y % mapHeight) * 16;
-
-
-
+            float X = (tile.X * 16);
+            float Y = (tile.Y * 16);
             return new Rectangle((int)X, (int)Y, 16, 16);
         }
 

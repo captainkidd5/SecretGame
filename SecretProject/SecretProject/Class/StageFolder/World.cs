@@ -182,6 +182,7 @@ namespace SecretProject.Class.StageFolder
             IsGondolaAtStartingPosition = true;
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
+            WorldTileManager.LoadInitialChunks();
         }
 
         public override void UnloadContent()
@@ -296,8 +297,8 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-
-                AllTiles.Update(gameTime, mouse);
+                WorldTileManager.Update(gameTime, mouse);
+                //AllTiles.Update(gameTime, mouse);
                 player.Update(gameTime, AllItems, AllTiles.CurrentObjects, mouse);
 
                 
@@ -392,7 +393,8 @@ namespace SecretProject.Class.StageFolder
                     Game1.Elixer.DrawDebug(spriteBatch, .4f);
                 }
 
-                AllTiles.DrawTiles(spriteBatch);
+                WorldTileManager.DrawTiles(spriteBatch);
+                //AllTiles.DrawTiles(spriteBatch);
                 //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
                 //{
 

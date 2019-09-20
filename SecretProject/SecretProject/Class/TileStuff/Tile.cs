@@ -18,15 +18,15 @@ namespace SecretProject.Class.TileStuff
 
         private int gid;
         public int GID { get { return gid - 1; } set { gid = value; } }
-        public float Y { get; set; }
-        public float X { get; set; }
+        public int Y { get; set; }
+        public int X { get; set; }
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
 
 
 
-        public Tile(float x, float y, int gID)
+        public Tile(int x, int y, int gID)
         {
 
             this.X = x;
@@ -38,13 +38,13 @@ namespace SecretProject.Class.TileStuff
 
         public string GetTileKey(int layer, int mapWidth, int mapHeight)
         {
-            float X = this.X;
+            int X = this.X;
             string XString = X.ToString();
             if(XString.Length < 4)
             {
                XString = XString.PadLeft(4, '0');
             }
-            float Y = this.Y;
+            int Y = this.Y;
             string YString = Y.ToString();
             if (YString.Length < 4)
             {

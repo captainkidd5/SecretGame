@@ -43,8 +43,8 @@ namespace SecretProject.Class.TileStuff
 
         public int MaximumChunksLoaded { get; set; }
 
-        public Chunk ChunkUnderPlayerLastFrame { get; set; }
-        public Chunk ChunkUnderPlayer { get; set; }
+        public Point ChunkUnderPlayerLastFrame { get; set; }
+        public Point ChunkUnderPlayer { get; set; }
 
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
@@ -73,6 +73,7 @@ namespace SecretProject.Class.TileStuff
             ActiveChunks = new Chunk[3, 3];
 
             this.MaximumChunksLoaded = 3;
+            ChunkUnderPlayerLastFrame = new Point(1000, 1000);
 
         }
 
@@ -86,7 +87,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (!ActiveChunks[i, j].IsLoaded)
                     {
-                        if (TileUtility.CheckIfChunkExistsInMemory(i, j))
+                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
                         {
                             ActiveChunks[i, j].Load();
                         }
@@ -94,7 +95,6 @@ namespace SecretProject.Class.TileStuff
                         {
                             ActiveChunks[i, j].Generate();
                         }
-
                         ActiveChunks[i, j].Save();
                     }
                 }
@@ -105,8 +105,8 @@ namespace SecretProject.Class.TileStuff
         public Chunk[,] GetActiveChunkCoord(Vector2 playerPos)
         {
 
-            int currentChunkX = (int)(playerPos.X * 16 % 32);
-            int currentChunkY = (int)(playerPos.Y * 16 % 32);
+            int currentChunkX = (int)(playerPos.X / 16 / 32);
+            int currentChunkY = (int)(playerPos.Y / 16 /32);
             return new Chunk[,]
             {
                 { new Chunk(currentChunkX - 1, currentChunkY - 1), new Chunk (currentChunkX, currentChunkY - 1) , new Chunk(currentChunkX + 1, currentChunkY - 1) },
@@ -117,30 +117,14 @@ namespace SecretProject.Class.TileStuff
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            ChunkUnderPlayer = new Chunk((int)(Game1.Player.Position.X * 16 % 32), (int)(Game1.Player.Position.Y * 16 % 32));
+            ChunkUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / 32), (int)(Game1.Player.Position.Y / 16 / 32));
             if (ChunkUnderPlayerLastFrame != ChunkUnderPlayer)
             {
-                ActiveChunks = GetActiveChunkCoord(Game1.Player.Position);
+                LoadInitialChunks();
             }
             ChunkUnderPlayerLastFrame = ChunkUnderPlayer;
 
-            //for (int x =0; x < chunkCoords.GetLength(0); x++)
-            //{
-            //    for(int y = 0; y < chunkCoords.GetLength(1); y++)
-            //    {
 
-            //    }
-            //}
-            //LoadedChunks = 
-
-
-            //int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
-
-            //int startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
-
-            //int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
-
-            //int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
             for (int i = 0; i < ActiveChunks.GetLength(0); i++)
             {
                 for (int j = 0; j < ActiveChunks.GetLength(1); j++)
@@ -161,11 +145,9 @@ namespace SecretProject.Class.TileStuff
         }
         public Rectangle GetDestinationRectangle(Tile tile)
         {
-            int Column = tile.GID % tilesetTilesWide;
-            int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
 
-            float X = (tile.X % mapWidth) * 16;
-            float Y = (tile.Y % mapHeight) * 16;
+            float X = (tile.X  * 16);
+            float Y = (tile.Y * 16);
             return new Rectangle((int)X, (int)Y, 16, 16);
         }
         public Rectangle GetSourceRectangle(Tile tile)

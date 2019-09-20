@@ -22,7 +22,7 @@ namespace SecretProject.Class.TileStuff
             Tiles = new List<Tile[,]>();
             for(int i =0; i < 5; i++)
             {
-                Tiles.Add(new Tile[16, 16]);
+                Tiles.Add(new Tile[32, 32]);
             }
         }
 
@@ -44,6 +44,9 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+
+            binaryWriter.Flush();
+            binaryWriter.Close();
         }
         public void Load()
         {
@@ -65,6 +68,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             this.IsLoaded = true;
+            binaryReader.Close();
 
         }
 
@@ -76,7 +80,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        Tiles[z][i, j] = new Tile(this.X + i * 16, this.Y + j * 16, 1107);
+                        Tiles[z][i, j] = new Tile(this.X *32 + i, this.Y * 32 + j, 1107);
                     }
                 }
             }
