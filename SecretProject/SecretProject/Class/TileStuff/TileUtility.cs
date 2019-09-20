@@ -222,9 +222,9 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static bool CheckIfChunkExistsInMemory(int id)
+        public static bool CheckIfChunkExistsInMemory(int idX, int idY)
         {
-            if (File.Exists(@"Content/SaveFiles/Chunks/Chunk" + id + ".dat"))
+            if (File.Exists(@"Content/SaveFiles/Chunks/Chunk" + idX +idY + ".dat"))
             {
                 return true;
             }

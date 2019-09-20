@@ -60,7 +60,11 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+        
+        public void Generate()
+        {
 
+        }
         
         public void Unload()
         {

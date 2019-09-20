@@ -32,7 +32,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public Chunk[,] LoadedChunks { get; set; }
+        public Chunk[][,] LoadedChunks { get; set; }
         public TmxMap MapName { get; set; }
         public Texture2D TileSet { get; set; }
         public int TileWidth { get; set; }
@@ -70,9 +70,25 @@ namespace SecretProject.Class.TileStuff
 
             this.AllDepths = allDepths;
 
-            LoadedChunks = new Chunk[3, 3];
+            LoadedChunks = new Chunk[3][,];
+            
             this.MaximumChunksLoaded = 3;
 
+        }
+
+        public void LoadInitialChunks()
+        {
+            //int[,] chunkCoords = GetActiveChunkCoord(Game1.Player.Position);
+            //for (int x = 0; x < chunkCoords.GetLength(0); x++)
+            //{
+            //    for (int y = 0; y < chunkCoords.GetLength(1); y++)
+            //    {
+            //        if(TileUtility.CheckIfChunkExistsInMemory(chunkCoords.GetValue(x,y),  ))
+            //        {
+
+            //        }
+            //    }
+            //}
         }
 
 
@@ -97,14 +113,14 @@ namespace SecretProject.Class.TileStuff
                 int[,] chunkCoords = GetActiveChunkCoord(Game1.Player.Position);
             }
                 
-            for (int x =0; x < chunkCoords.GetLength(0); x++)
-            {
-                for(int y = 0; y < chunkCoords.GetLength(1); y++)
-                {
+            //for (int x =0; x < chunkCoords.GetLength(0); x++)
+            //{
+            //    for(int y = 0; y < chunkCoords.GetLength(1); y++)
+            //    {
 
-                }
-            }
-            LoadedChunks = 
+            //    }
+            //}
+            //LoadedChunks = 
 
 
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
