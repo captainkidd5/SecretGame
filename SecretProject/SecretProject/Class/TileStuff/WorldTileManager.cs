@@ -43,6 +43,9 @@ namespace SecretProject.Class.TileStuff
 
         public int MaximumChunksLoaded { get; set; }
 
+        public Chunk ChunkUnderPlayerLastFrame { get; set; }
+        public Chunk ChunkUnderPlayer { get; set; }
+
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -73,26 +76,35 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public List<int> GetActiveChunkCoord(float coord)
+        public int[,] GetActiveChunkCoord(Vector2 playerPos)
         {
-
-            int currentChunk = (int)(coord * 16 / 32);
-            return new List<int>() { currentChunk - 1, currentChunk, currentChunk + 1 };
+            
+            int currentChunkX = (int)(playerPos.X * 16 % 32);
+            int currentChunkY = (int)(playerPos.Y * 16 % 32);
+            return new int[,]
+            { 
+                { currentChunkX - 1, currentChunkY - 1 }, { currentChunkX, currentChunkY - 1 }, { currentChunkX + 1, currentChunkY - 1 },
+                { currentChunkX - 1, currentChunkY }, { currentChunkX , currentChunkY }, { currentChunkX +1, currentChunkY },
+                { currentChunkX - 1, currentChunkY + 1}, { currentChunkX , currentChunkY + 1}, { currentChunkX +1, currentChunkY + 1},
+            };
 
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            //LoadedChunks[]
-            List<int> xcoords = GetActiveChunkCoord(Game1.Player.position.X);
-            List<int> ycoords = GetActiveChunkCoord(Game1.Player.position.Y);
-            for(int x = 0; x < 3; x++)
+            ChunkUnderPlayer = new Chunk((int)(Game1.Player.Position.X * 16 % 32), (int)(Game1.Player.Position.Y * 16 % 32));
+            if (ChunkUnderPlayerLastFrame != ChunkUnderPlayer)
             {
+                int[,] chunkCoords = GetActiveChunkCoord(Game1.Player.Position);
+            }
                 
-                for(int y = 0; y < 3; y++)
+            for (int x =0; x < chunkCoords.GetLength(0); x++)
+            {
+                for(int y = 0; y < chunkCoords.GetLength(1); y++)
                 {
-                    LoadedChunks[x,y] = 
+
                 }
             }
+            LoadedChunks = 
 
 
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
