@@ -43,6 +43,8 @@ namespace SecretProject.Class.StageFolder
         public bool IsGondolaAtEndingPosition;
         public int WorldSize { get; set; }
 
+        public WorldTileManager WorldTileManager { get; set; }
+
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve,backDropNumber)
         {
@@ -51,6 +53,7 @@ namespace SecretProject.Class.StageFolder
             lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             Gondola = new Sprite(graphics, Game1.AllTextures.Gondola, new Rectangle(0, 0, Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height), new Vector2(Game1.Player.position.X - 300, Game1.Player.position.Y - 300), Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height);
+           
         }
 
         
@@ -126,7 +129,7 @@ namespace SecretProject.Class.StageFolder
             }
             AllChests = new Dictionary<string, Chest>();
             AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
-
+            this.WorldTileManager = new WorldTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
             TileHeight = Map.Tilesets[TileSetNumber].TileHeight;

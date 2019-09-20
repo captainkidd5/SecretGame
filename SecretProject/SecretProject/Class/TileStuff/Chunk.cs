@@ -16,8 +16,14 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk( int x, int y)
         {
+            this.IsLoaded = false;
             this.X = x;
             this.Y = y;
+            Tiles = new List<Tile[,]>();
+            for(int i =0; i < 5; i++)
+            {
+                Tiles.Add(new Tile[16, 16]);
+            }
         }
 
 
@@ -58,17 +64,27 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            this.IsLoaded = true;
 
         }
-        
+
         public void Generate()
         {
-
+            for (int z = 0; z < 5; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkX; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkY; j++)
+                    {
+                        Tiles[z][i, j] = new Tile(this.X + i * 16, this.Y + j * 16, 1107);
+                    }
+                }
+            }
         }
         
         public void Unload()
         {
-
+            this.IsLoaded = false;
         }
     }
 }

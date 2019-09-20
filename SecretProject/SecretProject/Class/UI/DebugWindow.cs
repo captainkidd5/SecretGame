@@ -31,15 +31,18 @@ namespace SecretProject.Class.UI
             DebugButton1.Update(Game1.myMouseManager);
             if(DebugButton1.isClicked)
             {
-                foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
-                {
-                    if (crop.UpdateGrowthCycle())
-                    {
-                        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop, Game1.GetCurrentStage());
-                    }
+
+                Game1.World.WorldTileManager.LoadInitialChunks();
+
+                //foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
+                //{
+                //    if (crop.UpdateGrowthCycle())
+                //    {
+                //        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop, Game1.GetCurrentStage());
+                //    }
 
 
-                }
+                //}
                 //for (int i =0; i < Game1.PortalGraph.Size; i++)
                 //{
                 //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");

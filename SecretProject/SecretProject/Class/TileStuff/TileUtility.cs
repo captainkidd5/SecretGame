@@ -13,8 +13,8 @@ namespace SecretProject.Class.TileStuff
 {
     public static class TileUtility
     {
-        public static int ChunkX = 256;
-        public static int ChunkY = 256;
+        public static int ChunkX = 16;
+        public static int ChunkY = 16;
         #region TILING
 
         public static int GrassSpawnRate = 15;
