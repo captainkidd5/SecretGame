@@ -22,8 +22,7 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
-        public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
-        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+       
         public AStarPathFinder PathGrid { get; set; }
 
 
@@ -46,6 +45,9 @@ namespace SecretProject.Class.TileStuff
         public Point ChunkUnderPlayerLastFrame { get; set; }
         public Point ChunkUnderPlayer { get; set; }
 
+        public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
+        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -125,38 +127,27 @@ namespace SecretProject.Class.TileStuff
             ChunkUnderPlayerLastFrame = ChunkUnderPlayer;
 
 
-            //for (int i = 0; i < ActiveChunks.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < ActiveChunks.GetLength(1); j++)
-            //    {
-            //        for (int z = 0; z < 2; z++)
-            //        {
-            //            for (int x = 0; x < TileUtility.ChunkX; x++)
-            //            {
-            //                for (int y = 0; y < TileUtility.ChunkY; y++)
-            //                {
-            //                    //update
-            //                }
-            //            }
-            //        }
-
-            //    }
-            //}
+            for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+            {
+                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                {
+                    if (Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                    {
+                        for (int z = 0; z < 1; z++)
+                        {
+                            for (int x = 0; x < TileUtility.ChunkX; x++)
+                            {
+                                for (int y = 0; y < TileUtility.ChunkY; y++)
+                                {
+                                    //update
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        public Rectangle GetDestinationRectangle(Tile tile)
-        {
 
-            float X = (tile.X  * 16);
-            float Y = (tile.Y * 16);
-            return new Rectangle((int)X, (int)Y, 16, 16);
-        }
-        public Rectangle GetSourceRectangle(Tile tile)
-        {
-            int Column = tile.GID % tilesetTilesWide;
-            int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
-
-            return new Rectangle(16 * Column, 16 * Row, 16, 16);
-        }
 
         public void DrawTiles(SpriteBatch spriteBatch)
         {
@@ -172,14 +163,14 @@ namespace SecretProject.Class.TileStuff
                             {
                                 for (int y = 0; y < TileUtility.ChunkY; y++)
                                 {
-                                    Rectangle SourceRectangle = GetSourceRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
-                                    Rectangle DestinationRectangle = GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
+                                    Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
+                                    Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
                                     spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
-                                    if (Game1.myMouseManager.IsHoveringTile(DestinationRectangle))
-                                    {
-                                        Console.WriteLine(ActiveChunks[i, j].Tiles[z][x, y].GID);
-                                    }
+                                    //if (Game1.myMouseManager.IsHoveringTile(DestinationRectangle))
+                                    //{
+                                    //    Console.WriteLine(ActiveChunks[i, j].Tiles[z][x, y].GID);
+                                    //}
 
                                 }
                             }

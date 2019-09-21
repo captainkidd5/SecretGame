@@ -226,7 +226,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < this.mapHeight; j++)
                     {
-                        if (AllTiles[z][i, j].GID != 0)
+                        if (AllTiles[z][i, j].GID != -1)
                         {
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
@@ -412,23 +412,23 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0,world);
             //stone
-            GenerateTiles(1, 979, "dirt", 2000, 0, world);
+            //GenerateTiles(1, 979, "dirt", 2000, 0, world);
             //    //grass
-            GenerateTiles(1, 1079, "dirt", 5000, 0, world);
+           // GenerateTiles(1, 1079, "dirt", 5000, 0, world);
             //    //redrunestone
-            GenerateTiles(1, 579, "dirt", 500, 0, world);
+           // GenerateTiles(1, 579, "dirt", 500, 0, world);
             ////bluerunestone
-            GenerateTiles(1, 779, "dirt", 1000, 0, world);
+           // GenerateTiles(1, 779, "dirt", 1000, 0, world);
             ////thunderbirch
-            GenerateTiles(1, 2264, "dirt", 5000, 0, world);
+            //GenerateTiles(1, 2264, "dirt", 5000, 0, world);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
             //GenerateTiles(1, 6687, "sand", 100, 0);
             ////juicyfruit
-            GenerateTiles(1, 1586, "dirt", 500, 0, world);
+          //  GenerateTiles(1, 1586, "dirt", 500, 0, world);
             ////orchardTree
-            GenerateTiles(1, 1664, "dirt", 800, 0, world);
+           // GenerateTiles(1, 1664, "dirt", 800, 0, world);
             //bubblegum
             //GenerateTiles(1, 6191, "dirt", 200, 0, world);
 

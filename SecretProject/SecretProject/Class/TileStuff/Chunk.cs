@@ -30,7 +30,8 @@ namespace SecretProject.Class.TileStuff
 
         public Rectangle GetChunkRectangle()
         {
-            return new Rectangle(this.X * TileUtility.ChunkX, this.Y * TileUtility.ChunkY, TileUtility.ChunkX * 16, TileUtility.ChunkY * 16);
+            Rectangle RectangleToReturn = new Rectangle(this.X * TileUtility.ChunkX * TileUtility.ChunkX, this.Y * TileUtility.ChunkY * TileUtility.ChunkY, TileUtility.ChunkX * 16, TileUtility.ChunkY * 16);
+            return RectangleToReturn;
         }
 
 

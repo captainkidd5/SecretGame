@@ -145,7 +145,7 @@ namespace SecretProject.Class.StageFolder
             AllCrops = new Dictionary<string, Crop>();
             
             Boars = new List<Boar>() { };
-            for (int i = 1; i < 150; i++)
+            for (int i = 1; i < 5; i++)
             {
                 Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
@@ -166,7 +166,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 1f;
+            Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 

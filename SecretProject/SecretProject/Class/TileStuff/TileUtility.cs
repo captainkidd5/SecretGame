@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -242,5 +244,133 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        public static Rectangle GetDestinationRectangle(Tile tile)
+        {
+
+            float X = (tile.X * 16);
+            float Y = (tile.Y * 16);
+            return new Rectangle((int)X, (int)Y, 16, 16);
+        }
+        public static Rectangle GetSourceRectangle(Tile tile)
+        {
+            int Column = tile.GID % tilesetTilesWide;
+            int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
+
+            return new Rectangle(16 * Column, 16 * Row, 16, 16);
+        }
+
+        public static void AssignProperties(Tile tileToAssign, TmxMap MapName, ITileManager manager, int tileSetNumber, int layer, int oldX, int oldY, ILocation stage)
+        {
+            if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
+            {
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
+                {
+                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                    for (int i = 0; i < MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
+                    {
+                        frames.Add(new EditableAnimationFrame(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
+                    }
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, tileToAssign.GID);
+                    manager.AnimationFrames.Add(tileToAssign.GetTileKey(layer), frameHolder);
+                }
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
+                {
+                    int lightType = int.Parse(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
+                    stage.AllLights.Add(new LightSource(lightType, new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y)));
+                }
+
+
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
+                {
+                    TileHitPoints[tileToAssign.GetTileKey(layer)] = Game1.Utility.GetTileHitpoints(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+
+                }
+
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
+                {
+                    tileToAssign.LayerToDrawAt = int.Parse(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
+                    //grass = 1, stone = 2, wood = 3, sand = 4
+                }
+
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
+                {
+                    if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
+                    {
+                        if (!stage.AllChests.ContainsKey(tileToAssign.GetTileKey(layer)))
+                        {
+                            stage.AllChests.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
+                                    new Vector2(tileToAssign.X % mapWidth * 16,
+                               tileToAssign.Y % mapHeight * 16), this.GraphicsDevice, true));
+                        }
+
+                    }
+                }
+                if (layer == 3)
+                {
+                    int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
+                    float randomFloat = (float)(randomInt * .0000001);
+                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .00001f + randomFloat;
+                }
+
+                if (MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
+                {
+
+
+                    for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
+                    {
+                        TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
+
+
+                        ObjectBody tempObjectBody = new ObjectBody(GraphicsDevice,
+                            new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
+                            (int)Math.Ceiling(tempObj.Height) + 5), tileToAssign.GID);
+
+                        string key = tileToAssign.GetTileKey(layer);
+
+                        stage.AllObjects.Add(key, tempObjectBody); // not gonna work for saving, gotta figure out.
+
+                    }
+                }
+            }
+        }
+    }
+
+    public class EditableAnimationFrame
+    {
+        public float CurrentDuration { get; set; }
+        public float AnchorDuration { get; set; }
+        public int ID { get; set; }
+
+        public EditableAnimationFrame(AnimationFrameHolder frame)
+        {
+            this.CurrentDuration = frame.Duration;
+            this.AnchorDuration = frame.Duration;
+            this.ID = frame.Id;
+
+        }
+    }
+
+    public class EditableAnimationFrameHolder
+    {
+        public List<EditableAnimationFrame> Frames { get; set; }
+        public float Timer { get; set; }
+        public int Counter { get; set; }
+        public int OldX { get; }
+        public int OldY { get; }
+        public int Layer { get; set; }
+        public int OriginalTileID { get; set; }
+        public bool Repeats { get; set; }
+
+        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID)
+        {
+            this.Frames = frames;
+            this.Counter = 0;
+            this.Timer = frames[Counter].AnchorDuration;
+            this.OldX = oldX;
+            this.OldY = oldY;
+            this.Layer = layer;
+            this.OriginalTileID = originalTileID;
+        }
     }
 }
