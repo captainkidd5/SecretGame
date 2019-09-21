@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
+using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.Controls
 {
@@ -249,6 +250,10 @@ namespace SecretProject.Class.Controls
             }
         }
 
+        public int GetMouseOverTile(ITileManager manager)
+        {
+            return (manager.AllTiles[0][MouseSquareCoordinateX, MouseSquareCoordinateY].GID);
+        }
     }
         
 }

@@ -375,7 +375,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < worldHeight; j++)
                 {
-                    TileUtility.ReassignTileForTiling(this.AllTiles, i, j, worldWidth, worldHeight);
+                    //TileUtility.ReassignTileForTiling(this.AllTiles, i, j, worldWidth, worldHeight);
                     if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
                     {
                         if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))

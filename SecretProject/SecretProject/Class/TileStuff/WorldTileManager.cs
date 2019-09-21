@@ -164,19 +164,28 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < ActiveChunks.GetLength(1); j++)
                 {
-                    for (int z = 0; z < 2; z++)
+                    if(Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
                     {
-                        for (int x = 0; x < TileUtility.ChunkX; x++)
+                        for (int z = 0; z < 1; z++)
                         {
-                            for (int y = 0; y < TileUtility.ChunkY; y++)
+                            for (int x = 0; x < TileUtility.ChunkX; x++)
                             {
-                                Rectangle SourceRectangle = GetSourceRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
-                                Rectangle DestinationRectangle = GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
-                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+                                for (int y = 0; y < TileUtility.ChunkY; y++)
+                                {
+                                    Rectangle SourceRectangle = GetSourceRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
+                                    Rectangle DestinationRectangle = GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
+                                    spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+                                    if (Game1.myMouseManager.IsHoveringTile(DestinationRectangle))
+                                    {
+                                        Console.WriteLine(ActiveChunks[i, j].Tiles[z][x, y].GID);
+                                    }
+
+                                }
                             }
                         }
                     }
+                    
 
                 }
             }

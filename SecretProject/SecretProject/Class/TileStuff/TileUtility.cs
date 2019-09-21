@@ -13,8 +13,8 @@ namespace SecretProject.Class.TileStuff
 {
     public static class TileUtility
     {
-        public static int ChunkX = 32;
-        public static int ChunkY = 32;
+        public static int ChunkX = 16;
+        public static int ChunkY = 16;
         #region TILING
 
         public static int GrassSpawnRate = 15;
@@ -73,14 +73,22 @@ namespace SecretProject.Class.TileStuff
 
         }
         #endregion
-        public static Tile[,] DoSimulation(Tile[,] tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight)
+        public static Tile[,] DoSimulation(Tile[,] tiles, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
         {
             Tile[,] newTiles = new Tile[worldWidth, worldHeight];
             for (int i = 0; i < newTiles.GetLength(0); i++)
             {
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
-                    newTiles[i, j] = new Tile(i, j, 1106);
+                    if(chunkOffSet != 0)
+                    {
+                        newTiles[i, j] = new Tile(chunkX * chunkOffSet + i, chunkY * chunkOffSet + j, 1106);
+                    }
+                    else
+                    {
+                        newTiles[i, j] = new Tile(i, j, 1106);
+                    }
+                    
                 }
             }
 
