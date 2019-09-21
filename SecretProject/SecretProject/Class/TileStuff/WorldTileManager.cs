@@ -125,23 +125,23 @@ namespace SecretProject.Class.TileStuff
             ChunkUnderPlayerLastFrame = ChunkUnderPlayer;
 
 
-            for (int i = 0; i < ActiveChunks.GetLength(0); i++)
-            {
-                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
-                {
-                    for (int z = 0; z < 2; z++)
-                    {
-                        for (int x = 0; x < TileUtility.ChunkX; x++)
-                        {
-                            for (int y = 0; y < TileUtility.ChunkY; y++)
-                            {
-                                //update logic here per tile
-                            }
-                        }
-                    }
+            //for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+            //    {
+            //        for (int z = 0; z < 2; z++)
+            //        {
+            //            for (int x = 0; x < TileUtility.ChunkX; x++)
+            //            {
+            //                for (int y = 0; y < TileUtility.ChunkY; y++)
+            //                {
+            //                    //update
+            //                }
+            //            }
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
         public Rectangle GetDestinationRectangle(Tile tile)
         {

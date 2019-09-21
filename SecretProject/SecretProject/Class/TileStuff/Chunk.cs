@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.SpriteFolder;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -72,16 +74,53 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+
+    
         public void Generate()
         {
+            float chanceToBeDirt = .45f;
             for (int z = 0; z < 2; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        Tiles[z][i, j] = new Tile(this.X *32 + i, this.Y * 32 + j, 1115);
+
+                        if (z >= 1)
+                        {
+                            Tiles[z][i, j] = new Tile(this.X * 32 + i, this.Y * 32 + j, 0);
+                        }
+
+                        else
+                        {
+                            if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
+                            {
+                                Tiles[z][i, j] = new Tile(this.X * 32 + i, this.Y * 32 + j, 1106);
+                            }
+                            else
+                            {
+                                Tiles[z][i, j] = new Tile(this.X * 32 + i, this.Y * 32 + j, 1116);
+
+                            }
+
+                        }
+                        
+                        
                     }
+                }
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Tiles[0] = TileUtility.DoSimulation(Tiles[0], 1000, 1000, 32, 32);
+            }
+
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j < 32; j++)
+                {
+                    TileUtility.ReassignTileForTiling(Tiles, i, j, 32, 32);
+                    
                 }
             }
         }
