@@ -37,8 +37,6 @@ namespace SecretProject.Class.TileStuff
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }
         bool AbleToDrawTileSelector { get; set; }
-
-        void UpdateCropTile(Crop crop, ILocation stage);
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);
