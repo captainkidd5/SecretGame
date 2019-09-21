@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
@@ -251,7 +252,7 @@ namespace SecretProject.Class.TileStuff
             float Y = (tile.Y * 16);
             return new Rectangle((int)X, (int)Y, 16, 16);
         }
-        public static Rectangle GetSourceRectangle(Tile tile)
+        public static Rectangle GetSourceRectangle(Tile tile, int tilesetTilesWide)
         {
             int Column = tile.GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
@@ -259,7 +260,7 @@ namespace SecretProject.Class.TileStuff
             return new Rectangle(16 * Column, 16 * Row, 16, 16);
         }
 
-        public static void AssignProperties(Tile tileToAssign, TmxMap MapName, ITileManager manager, int tileSetNumber, int layer, int oldX, int oldY, ILocation stage)
+        public static void AssignProperties(Tile tileToAssign, GraphicsDevice graphics,TmxMap MapName,int mapWidth, int mapHeight, ITileManager manager, int tileSetNumber, int layer, int oldX, int oldY, ILocation stage)
         {
             if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
@@ -282,7 +283,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
                 {
-                    TileHitPoints[tileToAssign.GetTileKey(layer)] = Game1.Utility.GetTileHitpoints(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                    manager.TileHitPoints[tileToAssign.GetTileKey(layer)] = Game1.Utility.GetTileHitpoints(MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
 
                 }
 
@@ -300,7 +301,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             stage.AllChests.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
                                     new Vector2(tileToAssign.X % mapWidth * 16,
-                               tileToAssign.Y % mapHeight * 16), this.GraphicsDevice, true));
+                               tileToAssign.Y % mapHeight * 16), graphics, true));
                         }
 
                     }
@@ -312,16 +313,16 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .00001f + randomFloat;
                 }
 
-                if (MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
+                if (MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
 
 
-                    for (int k = 0; k < MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
+                    for (int k = 0; k < MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
-                        TmxObject tempObj = MapName.Tilesets[TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
+                        TmxObject tempObj = MapName.Tilesets[tileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
-                        ObjectBody tempObjectBody = new ObjectBody(GraphicsDevice,
+                        ObjectBody tempObjectBody = new ObjectBody(graphics,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height) + 5), tileToAssign.GID);

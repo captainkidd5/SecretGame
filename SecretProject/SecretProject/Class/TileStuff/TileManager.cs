@@ -231,7 +231,9 @@ namespace SecretProject.Class.TileStuff
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
+                                //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j, currentStage);
+
 
                             }
                         }
@@ -445,7 +447,8 @@ namespace SecretProject.Class.TileStuff
                             if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
+                                //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j, world);
 
                             }
                         }
@@ -457,6 +460,8 @@ namespace SecretProject.Class.TileStuff
 
         #endregion
         #endregion
+
+       
         public void AssignProperties(Tile tileToAssign, int tileSetNumber, int layer, int oldX, int oldY, ILocation stage)
         {
             if (MapName.Tilesets[tileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
@@ -636,7 +641,8 @@ namespace SecretProject.Class.TileStuff
                     for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                     {
                         //intermediateNewTiles[tileSwapCounter] = DebugTile;
-                        AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
+                        //AssignProperties(intermediateNewTiles[tileSwapCounter], 0, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
+                        TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], this.GraphicsDevice, this.MapName, mapWidth, mapHeight, this, this.TileSetNumber, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
                         //AddObject(intermediateNewTiles[tileSwapCounter]);
 
                         AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
@@ -729,11 +735,14 @@ namespace SecretProject.Class.TileStuff
         {
             Tile ReplaceMenttile = new Tile(AllTiles[layer][oldX, oldY].X, AllTiles[layer][oldX, oldY].Y, gid);
             AllTiles[layer][oldX, oldY] = ReplaceMenttile;
-            AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
+            TileUtility.AssignProperties(AllTiles[layer][oldX, oldY], this.GraphicsDevice, this.MapName, mapWidth, mapHeight, this, this.TileSetNumber, layer,
+                oldX, oldY, stage);
+            //AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
         }
 
         #region UPDATE
         public bool AbleToDrawTileSelector { get; set; }
+       // Dictionary<string, TileStuff.EditableAnimationFrameHolder> ITileManager.AnimationFrames { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
@@ -1577,43 +1586,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region ANIMATIONFRAMES
-        public class EditableAnimationFrame
-        {
-            public float CurrentDuration { get; set; }
-            public float AnchorDuration { get; set; }
-            public int ID { get; set; }
-
-            public EditableAnimationFrame(AnimationFrameHolder frame)
-            {
-                this.CurrentDuration = frame.Duration;
-                this.AnchorDuration = frame.Duration;
-                this.ID = frame.Id;
-
-            }
-        }
-
-        public class EditableAnimationFrameHolder
-        {
-            public List<EditableAnimationFrame> Frames { get; set; }
-            public float Timer { get; set; }
-            public int Counter { get; set; }
-            public int OldX { get; }
-            public int OldY { get; }
-            public int Layer { get; set; }
-            public int OriginalTileID { get; set; }
-            public bool Repeats { get; set; }
-
-            public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID)
-            {
-                this.Frames = frames;
-                this.Counter = 0;
-                this.Timer = frames[Counter].AnchorDuration;
-                this.OldX = oldX;
-                this.OldY = oldY;
-                this.Layer = layer;
-                this.OriginalTileID = originalTileID;
-            }
-        }
+       
     }
     #endregion
     #endregion
