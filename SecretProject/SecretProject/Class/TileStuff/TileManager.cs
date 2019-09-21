@@ -411,7 +411,7 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0,world);
             //stone
-            //GenerateTiles(1, 979, "dirt", 2000, 0, world);
+            TileUtility.GenerateTiles(1, 979, "dirt", 2000, 0, this,AllTiles,world);
             //    //grass
            // GenerateTiles(1, 1079, "dirt", 5000, 0, world);
             //    //redrunestone
@@ -419,7 +419,7 @@ namespace SecretProject.Class.TileStuff
             ////bluerunestone
            // GenerateTiles(1, 779, "dirt", 1000, 0, world);
             ////thunderbirch
-            //GenerateTiles(1, 2264, "dirt", 5000, 0, world);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 5000, 0, this, AllTiles, world);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
