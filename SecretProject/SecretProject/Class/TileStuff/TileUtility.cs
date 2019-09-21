@@ -526,9 +526,219 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+
+        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, List<Tile[,]> tiles)
+        {
+            if (tiles[layer][tileX, tileY].GID != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static Rectangle GetSourceRectangleWithoutTile(int gid, int tilesetTilesWide)
+        {
+            int Column = gid % tilesetTilesWide;
+            int Row = (int)Math.Floor((double)gid / (double)tilesetTilesWide);
+
+            return new Rectangle(16 * Column, 16 * Row, 16, 16);
+        }
+
+        public static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles,List<Tile[,]> tiles, int comparisonLayer = 0)
+        {
+            for (int i = 0; i < acceptablTiles.Count; i++)
+            {
+                if (tiles[comparisonLayer][tileX, tileY].GID == acceptablTiles[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #region GENERATION
+        public static void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty,ITileManager tileManager, List<Tile[,]> tiles, ILocation stage)
+        {
+            List<int> acceptableGenerationTiles;
+            switch (placementKey)
+            {
+                case "dirt":
+                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
+
+                    break;
+                case "sand":
+                    acceptableGenerationTiles = Game1.Utility.SandGeneratableTiles;
+
+                    break;
+                default:
+                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
+
+                    break;
+            }
+
+            for (int g = 0; g < frequency; g++)
+            {
+                GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, stage, tileManager,tiles,layerToCheckIfEmpty);
+            }
+        }
+
+        public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage,ITileManager tileManager, List<Tile[,]> tiles, int comparisonLayer = 0)
+        {
+            int newTileX = Game1.Utility.RNumber(10, tileManager.mapWidth - 10);
+            int newTileY = Game1.Utility.RNumber(10, tileManager.mapHeight - 10);
+            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, tiles) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, tiles, comparisonLayer))
+            {
+                Tile sampleTile = new Tile(newTileX, newTileY, id);
+                if (!tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                {
+                    tiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                    return;
+                }
+                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
+                {
+                    string value = "";
+                    tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
+
+                    List<Tile> intermediateNewTiles = new List<Tile>();
+                    int[] spawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
+                    for (int index = 0; index < spawnsWith.Length; index++)
+                    {
+                        string gidX = "";
+                        tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
+                        string gidY = "";
+                        tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
+                        string tilePropertyLayer = "";
+                        tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                        int intGidX = int.Parse(gidX);
+                        int intGidY = int.Parse(gidY);
+                        int intTilePropertyLayer = int.Parse(tilePropertyLayer);
+                        int totalGID = tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[spawnsWith[index]].Id;
+                        //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
+                        if (!TileUtility.CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer, tiles))
+                        {
+                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
+                    {
+                        TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth, tileManager.mapHeight, tileManager, tileManager.TileSetNumber, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
+                        tiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
+                    }
+                    tiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                }
+            }
+        }
+        #endregion
+
+        #region GRIDITEMS
+        public static void DrawGridItem(SpriteBatch spriteBatch, ITileManager tileManager, List<Tile[,]> tiles)
+        {
+            if (tileManager.AbleToDrawTileSelector)
+            {
+                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                {
+
+
+                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID != 0)
+                    {
+                        int[] associatedTiles = new int[0];
+                        int placeID = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID;
+                        Rectangle sourceRectangle = TileUtility.GetSourceRectangleWithoutTile(placeID, tileManager.tilesetTilesWide);
+                        if (tiles[1][Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16].GID != -1)
+                        {
+
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Red * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
+                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(placeID))
+                            {
+                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                                {
+
+                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                                }
+                            }
+                        }
+
+                        else
+                        {
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY), sourceRectangle, Color.Green * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
+                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(placeID))
+                            {
+
+
+                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                                {
+
+                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                                    for (int a = 0; a < associatedTiles.Length; a++)
+                                    {
+                                        spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelectorX + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]) * 16,
+                                            Game1.Player.UserInterface.TileSelectorY + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(associatedTiles[a], tileManager.tilesetTilesWide), Color.Green * .5f,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"])]);
+                                    }
+                                }
+                            }
+                            if (Game1.myMouseManager.IsClicked)
+                            {
+                                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
+                                {
+
+
+                                    if (associatedTiles.Length > 0)
+                                    {
+                                        for (int a = 0; a < associatedTiles.Length; a++)
+                                        {
+                                            ReplaceTilePermanent(int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelectorX / 16 + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
+                                                Game1.Player.UserInterface.TileSelectorY / 16 + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), tileManager, tiles);
+                                        }
+                                    }
+                                    int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+                                    switch (soundRandom)
+                                    {
+                                        case 0:
+                                            Game1.SoundManager.PlaceItem1.Play();
+                                            break;
+                                        case 1:
+                                            Game1.SoundManager.PlaceItem2.Play();
+                                            break;
+                                    }
+                                    ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, placeID + 1, Game1.GetCurrentStage(), tileManager, tiles);
+                                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                }
+                            }
+                        }
+
+
+                    }
+
+                }
+
+            }
+
+
+
+        }
+        #endregion
+        public static void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage, ITileManager tileManager, List<Tile[,]> tiles)
+        {
+            Tile ReplaceMenttile = new Tile(tiles[layer][oldX, oldY].X, tiles[layer][oldX, oldY].Y, gid);
+            tiles[layer][oldX, oldY] = ReplaceMenttile;
+            TileUtility.AssignProperties(tiles[layer][oldX, oldY], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth, tileManager.mapHeight, tileManager, tileManager.TileSetNumber, layer,
+                oldX, oldY, stage);
+            //AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
+        }
     }
 
-    
+
 
     public class EditableAnimationFrame
     {

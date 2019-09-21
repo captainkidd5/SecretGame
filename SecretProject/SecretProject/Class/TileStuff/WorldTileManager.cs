@@ -50,6 +50,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Dictionary<string, int> TileHitPoints { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int TileSetNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool AbleToDrawTileSelector { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {

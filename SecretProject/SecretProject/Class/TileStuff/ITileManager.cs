@@ -36,6 +36,7 @@ namespace SecretProject.Class.TileStuff
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }
+        bool AbleToDrawTileSelector { get; set; }
 
         void UpdateCropTile(Crop crop, ILocation stage);
         void LoadInitialTileObjects(ILocation location);
