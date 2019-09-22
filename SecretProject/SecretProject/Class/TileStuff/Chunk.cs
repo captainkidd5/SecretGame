@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,21 @@ namespace SecretProject.Class.TileStuff
         public int Y { get; set; }
         public List<Tile[,]> Tiles { get; set; }
 
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<string, int> TileHitPoints { get; set; }
+       
+
         public Chunk(int x, int y)
         {
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
+            TileHitPoints = new Dictionary<string, int>();
+            CurrentObjects = new Dictionary<string, ObjectBody>();
             Tiles = new List<Tile[,]>();
             for(int i =0; i <5; i++)
             {
@@ -122,10 +133,27 @@ namespace SecretProject.Class.TileStuff
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
                     TileUtility.ReassignTileForTiling(Tiles, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
+                    if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
+                    {
+                        if (Game1.Utility.GrassGeneratableTiles.Contains(Tiles[0][i, j].GID))
+                        {
+
+                            int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                            List<GrassTuft> tufts = new List<GrassTuft>();
+                            for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                            {
+                                int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X, TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y)));
+
+                            }
+                            tileManager.AllTufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
+                        }
+                    }
 
                 }
             }
             TileUtility.PlaceChests(Tiles,Game1.World, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+
 
         }
         

@@ -163,9 +163,9 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(List<Tile[,]> tiles,ILocation location, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, GraphicsDevice graphics)
+        public static void PlaceChests(List<Tile[,]> tiles,Dictionary<string, Chest> chests, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, GraphicsDevice graphics)
         {
-            int hiddenTreasureLimit = 4;
+            int hiddenTreasureLimit = 8;
             for (int i = 10; i < tiles[0].GetLength(0) - 10; i++)
             {
                 for (int j = 10; j < tiles[0].GetLength(1) - 10; j++)
@@ -178,9 +178,9 @@ namespace SecretProject.Class.TileStuff
                             
                                 tiles[3][i, j - 1].GID = 1753;
                                 tiles[1][i, j].GID = 1853;
-                            if (!location.AllChests.ContainsKey(tiles[1][i, j].GetTileKey(1)))
+                            if (!chests.ContainsKey(tiles[1][i, j].GetTileKey(1)))
                             {
-                                location.AllChests.Add(tiles[1][i, j].GetTileKey(1), new Chest(tiles[1][i, j].GetTileKey(1), 3,
+                                chests.Add(tiles[1][i, j].GetTileKey(1), new Chest(tiles[1][i, j].GetTileKey(1), 3,
                                     new Vector2(tiles[1][i, j].X % worldWidth * 16,
                                 tiles[1][i, j].Y % worldHeight * 16), graphics, true));
                             }
