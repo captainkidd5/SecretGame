@@ -16,13 +16,13 @@ namespace SecretProject.Class.TileStuff
         public int Y { get; set; }
         public List<Tile[,]> Tiles { get; set; }
 
-        public Chunk( int x, int y)
+        public Chunk(int x, int y)
         {
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
             Tiles = new List<Tile[,]>();
-            for(int i =0; i <1; i++)
+            for(int i =0; i <5; i++)
             {
                 Tiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
@@ -40,7 +40,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenWrite(path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            for(int z =0; z <1; z++)
+            for(int z =0; z <5; z++)
             {
                 for(int i =0; i < TileUtility.ChunkX; i++)
                 {
@@ -61,7 +61,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            for (int z = 0; z < 1; z++)
+            for (int z = 0; z <5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -82,17 +82,21 @@ namespace SecretProject.Class.TileStuff
 
 
     
-        public void Generate()
+        public void Generate(ITileManager tileManager)
         {
             float chanceToBeDirt = .45f;
-            for (int z = 0; z < 1; z++)
+            for (int z = 0; z < 5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-
-   
+                        if (z > 1)
+                        {
+                            Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 0);
+                        }
+                        else
+                        {
                             if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
                             {
                                 Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
@@ -102,6 +106,9 @@ namespace SecretProject.Class.TileStuff
                                 Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1116);
 
                             }
+                        }
+   
+                            
 
                         
                         
@@ -123,6 +130,8 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            TileUtility.PlaceChests(Tiles,Game1.World, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+
         }
         
         public void Unload()

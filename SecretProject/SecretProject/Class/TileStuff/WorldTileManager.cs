@@ -47,10 +47,13 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
-        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Dictionary<string, int> TileHitPoints { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int TileSetNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool AbleToDrawTileSelector { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<string, int> TileHitPoints { get; set; }
+        public int TileSetNumber { get; set; }
+        public bool AbleToDrawTileSelector { get; set; }
+        public List<int> DirtGeneratableTiles;
+        public List<int> SandGeneratableTiles;
+        public List<int> GrassGeneratableTiles;
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -80,6 +83,15 @@ namespace SecretProject.Class.TileStuff
             this.MaximumChunksLoaded = 3;
             ChunkUnderPlayerLastFrame = new Point(1000, 1000);
 
+            DirtGeneratableTiles = new List<int>();
+            SandGeneratableTiles = new List<int>();
+            GrassGeneratableTiles = new List<int>();
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            AllTufts = new Dictionary<string, List<GrassTuft>>();
+            TileHitPoints = new Dictionary<string, int>();
+            CurrentObjects = new Dictionary<string, ObjectBody>();
+
+
         }
 
         public void LoadInitialChunks()
@@ -98,7 +110,8 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            ActiveChunks[i, j].Generate();
+                            ActiveChunks[i, j].Generate(this);
+
                         }
                         ActiveChunks[i, j].Save();
                     }
@@ -136,7 +149,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
                     {
-                        for (int z = 0; z < 1; z++)
+                        for (int z = 0; z <5; z++)
                         {
                             for (int x = 0; x < TileUtility.ChunkX; x++)
                             {
@@ -160,7 +173,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if(Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
                     {
-                        for (int z = 0; z < 1; z++)
+                        for (int z = 0; z < 5; z++)
                         {
                             for (int x = 0; x < TileUtility.ChunkX; x++)
                             {

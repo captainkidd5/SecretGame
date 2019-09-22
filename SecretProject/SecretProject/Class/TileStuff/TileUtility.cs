@@ -426,7 +426,8 @@ namespace SecretProject.Class.TileStuff
                                     tileToReplaceGID = tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
                                     TileUtility.ReplaceTile(layer, i + relationX, j + relationY, tileToReplaceGID, tileManager);
                                 }
-                                Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == tiles[z][i, j].GID).Name, new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10),
+                                Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == tiles[z][i, j].GID).Name,
+                                    new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10),
                                     TileUtility.GetDestinationRectangle(tiles[z][i, j]).X, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 100, 2f, 3f);
 
 
@@ -435,7 +436,8 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
                                 Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
                                 Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X + 10, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10);
+                                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X + 10,
+                                    TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10);
 
                                 Game1.SoundManager.SanctuaryAdd.Play();
                             }
@@ -750,7 +752,8 @@ namespace SecretProject.Class.TileStuff
                             //InteractWithoutPlayerAnimation(3, gameTime, oldX, oldY - 1, .25f);
                             DoPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, destinationRectangle, .25f);
                             ToolInteraction(tiles[layer][oldX, oldY], layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties["destructable"]),
-                                Game1.Utility.GetTileEffectColor(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle,tileManager, tiles, tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
+                                Game1.Utility.GetTileEffectColor(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties["destructable"]), world,
+                                destinationRectangle,tileManager, tiles, tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                             if (tileManager.TileHitPoints.ContainsKey(tiles[layer][oldX, oldY].GetTileKey(layer)))
                             {
                                 tileManager.TileHitPoints[tiles[layer][oldX, oldY].GetTileKey(layer)]--;
@@ -889,11 +892,13 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage,ITileManager tileManager, List<Tile[,]> tiles, int comparisonLayer = 0)
+        public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, ILocation stage,ITileManager tileManager, List<Tile[,]> tiles,
+            int comparisonLayer = 0)
         {
             int newTileX = Game1.Utility.RNumber(10, tileManager.mapWidth - 10);
             int newTileY = Game1.Utility.RNumber(10, tileManager.mapHeight - 10);
-            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, tiles) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer, acceptableTiles, tiles, comparisonLayer))
+            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, tiles) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
+                acceptableTiles, tiles, comparisonLayer))
             {
                 Tile sampleTile = new Tile(newTileX, newTileY, id);
                 if (!tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
@@ -933,8 +938,10 @@ namespace SecretProject.Class.TileStuff
 
                     for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                     {
-                        TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth, tileManager.mapHeight, tileManager, tileManager.TileSetNumber, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
-                        tiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
+                        TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth,
+                            tileManager.mapHeight, tileManager, tileManager.TileSetNumber, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, stage);
+                        tiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X,
+                            (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
                     }
                     tiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 }
