@@ -167,11 +167,22 @@ namespace SecretProject.Class.TileStuff
 
         public void DrawTiles(SpriteBatch spriteBatch)
         {
+
+            int starti = (int)(Game1.cam.Pos.X ) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
+
+            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 ) - 1;
+
+            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 ) + 2;
+
+            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 ) + 2;
+
+            Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
+
             for (int i = 0; i < ActiveChunks.GetLength(0); i++)
             {
                 for (int j = 0; j < ActiveChunks.GetLength(1); j++)
                 {
-                    if(Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                    if(ScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
                     {
                         for (int z = 0; z < 5; z++)
                         {
@@ -183,10 +194,6 @@ namespace SecretProject.Class.TileStuff
                                     Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
                                     spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
-                                    //if (Game1.myMouseManager.IsHoveringTile(DestinationRectangle))
-                                    //{
-                                    //    Console.WriteLine(ActiveChunks[i, j].Tiles[z][x, y].GID);
-                                    //}
 
                                 }
                             }

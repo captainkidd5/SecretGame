@@ -107,19 +107,14 @@ namespace SecretProject.Class.TileStuff
 
                             }
                         }
-   
-                            
 
-                        
-                        
-                        
                     }
                 }
             }
 
             for (int i = 0; i < 5; i++)
             {
-                Tiles[0] = TileUtility.DoSimulation(Tiles[0], 1000, 1000, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
+                Tiles[0] = TileUtility.DoSimulation(Tiles[0], tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
