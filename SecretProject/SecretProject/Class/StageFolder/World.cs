@@ -300,7 +300,7 @@ namespace SecretProject.Class.StageFolder
 
                 WorldTileManager.Update(gameTime, mouse);
                 //AllTiles.Update(gameTime, mouse);
-                player.Update(gameTime, AllItems, AllTiles.CurrentObjects, mouse);
+                player.Update(gameTime, AllItems, WorldTileManager.ChunkUnderPlayer.CurrentObjects, mouse);
 
                 
                 for (int i = 0; i < AllItems.Count; i++)
@@ -437,7 +437,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllObjects.Values)
+                foreach (var obj in WorldTileManager.ChunkUnderPlayer.CurrentObjects.Values)
                 {
                     if (ShowBorders)
                     {

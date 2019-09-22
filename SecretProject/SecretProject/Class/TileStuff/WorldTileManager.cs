@@ -42,8 +42,9 @@ namespace SecretProject.Class.TileStuff
 
         public int MaximumChunksLoaded { get; set; }
 
-        public Point ChunkUnderPlayerLastFrame { get; set; }
-        public Point ChunkUnderPlayer { get; set; }
+        public Point ChunkPointUnderPlayerLastFrame { get; set; }
+        public Point ChunkPointUnderPlayer { get; set; }
+        public Chunk ChunkUnderPlayer { get; set; }
 
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
@@ -81,7 +82,7 @@ namespace SecretProject.Class.TileStuff
             ActiveChunks = new Chunk[3, 3];
 
             this.MaximumChunksLoaded = 3;
-            ChunkUnderPlayerLastFrame = new Point(1000, 1000);
+            ChunkPointUnderPlayerLastFrame = new Point(1000, 1000);
 
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
@@ -91,6 +92,7 @@ namespace SecretProject.Class.TileStuff
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
+            this.ChunkUnderPlayer = new Chunk(0, 0);
 
         }
 
@@ -133,14 +135,15 @@ namespace SecretProject.Class.TileStuff
             };
 
         }
+
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            ChunkUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
-            if (ChunkUnderPlayerLastFrame != ChunkUnderPlayer)
+            ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
                 LoadInitialChunks();
             }
-            ChunkUnderPlayerLastFrame = ChunkUnderPlayer;
+            ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
 
             for (int i = 0; i < ActiveChunks.GetLength(0); i++)
@@ -149,6 +152,10 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
                     {
+                        if(Game1.Player.Rectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                        {
+                            this.ChunkUnderPlayer = ActiveChunks[i, j];
+                        }
                         for (int z = 0; z <5; z++)
                         {
                             for (int x = 0; x < TileUtility.ChunkX; x++)
@@ -194,6 +201,15 @@ namespace SecretProject.Class.TileStuff
                                     Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
                                     spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
                                     0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+
+                                    if(ActiveChunks[i, j].Tufts.ContainsKey(ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)))
+                                    {
+                                        for (int t = 0; t < ActiveChunks[i, j].Tufts[ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        {
+                                            ActiveChunks[i, j].Tufts[ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
+                                        }
+                                    }
+                                   
 
                                 }
                             }

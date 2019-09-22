@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -21,17 +22,20 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-       
+        public Dictionary<string,Chest> Chests { get; set; }
+
 
         public Chunk(int x, int y)
         {
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
-            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            Tufts = new Dictionary<string, List<GrassTuft>>();
-            TileHitPoints = new Dictionary<string, int>();
+            
+            Tufts = new Dictionary<string, List<GrassTuft>>();    
             CurrentObjects = new Dictionary<string, ObjectBody>();
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            TileHitPoints = new Dictionary<string, int>();
+            Chests = new Dictionary<string, Chest>();
             Tiles = new List<Tile[,]>();
             for(int i =0; i <5; i++)
             {
@@ -60,8 +64,15 @@ namespace SecretProject.Class.TileStuff
                         binaryWriter.Write(Tiles[z][i, j].GID + 1);
                         binaryWriter.Write(Tiles[z][i, j].X);
                         binaryWriter.Write(Tiles[z][i, j].Y);
+                        
                     }
                 }
+            }
+
+            binaryWriter.Write(this.Tufts.Count);
+            foreach(KeyValuePair<string, List<GrassTuft>> tufts in this.Tufts)
+            {
+
             }
 
             binaryWriter.Flush();
@@ -146,13 +157,13 @@ namespace SecretProject.Class.TileStuff
                                 tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X, TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y)));
 
                             }
-                            tileManager.AllTufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
+                             this.Tufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
                         }
                     }
 
                 }
             }
-            TileUtility.PlaceChests(Tiles,Game1.World, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+            TileUtility.PlaceChests(Tiles,this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
 
         }
