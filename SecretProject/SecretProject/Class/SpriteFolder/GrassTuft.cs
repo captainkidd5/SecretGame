@@ -20,11 +20,12 @@ namespace SecretProject.Class.SpriteFolder
         public float YOffSet { get; set; }
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
+
         public GrassTuft(int grassType,Vector2 position)
         {
             this.GrassType = grassType;
             this.Position = position;
-            this.DestinationRectangle = new Rectangle((int)Position.X + Game1.Utility.RGenerator.Next(-8, 8), (int)Position.Y + Game1.Utility.RGenerator.Next(-8, 8), 16, 32);
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, 16, 32);
             this.Rotation = 0f;
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;

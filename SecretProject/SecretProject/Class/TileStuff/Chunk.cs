@@ -70,9 +70,17 @@ namespace SecretProject.Class.TileStuff
             }
 
             binaryWriter.Write(this.Tufts.Count);
+
             foreach(KeyValuePair<string, List<GrassTuft>> tufts in this.Tufts)
             {
-
+                binaryWriter.Write(tufts.Key);
+                binaryWriter.Write(tufts.Value.Count);
+                for(int s =0; s < tufts.Value.Count; s++)
+                {
+                    binaryWriter.Write(tufts.Value[s].GrassType);
+                    binaryWriter.Write(tufts.Value[s].Position.X);
+                    binaryWriter.Write(tufts.Value[s].Position.Y);
+                }
             }
 
             binaryWriter.Flush();
@@ -96,6 +104,22 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
+            }
+            
+            int tuftCount = binaryReader.ReadInt32();
+            for( int t = 0; t < tuftCount; t++)
+            {
+                string key = binaryReader.ReadString();
+                List<GrassTuft> tileTufts = new List<GrassTuft>();
+                int tileTuftCount = binaryReader.ReadInt32();
+                for(int c = 0; c < tileTuftCount; c++)
+                {
+                    int grassType = binaryReader.ReadInt32();
+                    float posX = binaryReader.ReadSingle();
+                    float posY = binaryReader.ReadSingle();
+                    tileTufts.Add(new GrassTuft(grassType, new Vector2(posX, posY)));
+                }
+                Tufts.Add(key, tileTufts);
             }
             this.IsLoaded = true;
             binaryReader.Close();
@@ -154,7 +178,7 @@ namespace SecretProject.Class.TileStuff
                             for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
                                 int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X, TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y)));
+                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
                             }
                              this.Tufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
