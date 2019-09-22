@@ -91,7 +91,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        if (z > 1)
+                        if (z > 0)
                         {
                             Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 0);
                         }
