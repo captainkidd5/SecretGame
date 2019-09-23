@@ -45,7 +45,9 @@ namespace SecretProject.Class.TileStuff
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);
-        
+        void LoadGeneratableTileLists();
+
+
 
     }
 }

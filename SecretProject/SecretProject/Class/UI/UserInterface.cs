@@ -108,16 +108,20 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             IsAnyChestOpen = false;
-            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
+            if(Game1.GetCurrentStage().AllTiles != null)
             {
-                if (chest.Value.IsUpdating)
+                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
                 {
-                    chest.Value.Update(gameTime, mouse);
-                    this.IsAnyChestOpen = true;
-                    this.OpenChestKey = chest.Key;
-                }
+                    if (chest.Value.IsUpdating)
+                    {
+                        chest.Value.Update(gameTime, mouse);
+                        this.IsAnyChestOpen = true;
+                        this.OpenChestKey = chest.Key;
+                    }
 
+                }
             }
+            
             if (BottomBar.IsActive)
             {
                 BottomBar.Update(gameTime, inventory, mouse);
@@ -291,14 +295,18 @@ namespace SecretProject.Class.UI
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
-            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
+            if(Game1.GetCurrentStage().AllTiles != null)
             {
-                if (chest.Value.IsUpdating)
+                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
                 {
-                    chest.Value.Draw(spriteBatch);
-                }
+                    if (chest.Value.IsUpdating)
+                    {
+                        chest.Value.Draw(spriteBatch);
+                    }
 
+                }
             }
+            
 
             
 

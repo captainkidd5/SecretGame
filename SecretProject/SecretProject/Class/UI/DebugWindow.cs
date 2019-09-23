@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI
             if(DebugButton1.isClicked)
             {
 
-                Game1.World.WorldTileManager.LoadInitialChunks();
+                Game1.World.AllTiles.LoadInitialChunks();
 
                 //foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
                 //{

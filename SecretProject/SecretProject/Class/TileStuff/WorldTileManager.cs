@@ -100,10 +100,63 @@ namespace SecretProject.Class.TileStuff
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
+            AllChests = new Dictionary<string, Chest>();
+            AllLights = new List<LightSource>();
+
+            AllObjects = new Dictionary<string, ObjectBody>();
+
             this.ChunkUnderPlayer = new Chunk(0, 0);
 
 
 
+        }
+
+        public void LoadGeneratableTileLists()
+        {
+            for (int i = 0; i < 10000; i++)
+            {
+                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(i))
+                {
+                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
+                    {
+                        switch (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"])
+                        {
+
+
+                            case "dirt":
+                                if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "sand":
+                                if (!Game1.Utility.SandGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.SandGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "grass":
+                                if (!Game1.Utility.GrassGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.GrassGeneratableTiles.Add(i);
+                                }
+                                break;
+                            case "dirtBasic":
+                                if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtGeneratableTiles.Add(i);
+                                }
+                                if (!Game1.Utility.StandardGeneratableDirtTiles.Contains(i))
+                                {
+                                    Game1.Utility.StandardGeneratableDirtTiles.Add(i);
+                                }
+                                break;
+                        }
+
+
+                    }
+                }
+            }
         }
 
         public void LoadInitialChunks()
@@ -208,6 +261,10 @@ namespace SecretProject.Class.TileStuff
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
                 CheckActiveChunks();
+                ChunkUnderPlayer = ActiveChunks.Find(x => x.X == ChunkPointUnderPlayer.X && x.Y == ChunkPointUnderPlayer.Y);
+                this.AllChests = ChunkUnderPlayer.Chests;
+                this.AllObjects = ChunkUnderPlayer.CurrentObjects;
+
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
@@ -228,10 +285,6 @@ namespace SecretProject.Class.TileStuff
 
                 if (ScreenRectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
                 {
-                    if (Game1.Player.Rectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
-                    {
-                        this.ChunkUnderPlayer = ActiveChunks[i];
-                    }
                     for (int z = 0; z < 5; z++)
                     {
                         for (int x = 0; x < TileUtility.ChunkX; x++)

@@ -27,7 +27,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
-    public class World : TmxStageBase, ILocation
+    public class World : ILocation
     {
 
         RenderTarget2D lightsTarget;
@@ -42,11 +42,39 @@ namespace SecretProject.Class.StageFolder
         public bool IsExitingOnGondola;
         public bool IsGondolaAtEndingPosition;
         public int WorldSize { get; set; }
+        public int StageIdentifier {get;set;}
+        public string StageName {get;set;}
+        public int TileWidth {get;set;}
+        public int TileHeight {get;set;}
+        public int TilesetTilesWide {get;set;}
+        public int TilesetTilesHigh {get;set;}
+        public Texture2D TileSet {get;set;}
+        public ITileManager AllTiles {get;set;}
+        public Camera2D Cam {get;set;}
+        public int TileSetNumber {get;set;}
+        public List<Sprite> AllSprites {get;set;}
+        public List<Item> AllItems {get;set;}
+        public List<ActionTimer> AllActions {get;set;}
+        public List<Portal> AllPortals {get;set;}
+        public UserInterface MainUserInterface {get;set;}
+        public ContentManager Content {get;set;}
+        public GraphicsDevice Graphics {get;set;}
+        public Rectangle MapRectangle {get;set;}
+        public Dictionary<string, Crop> AllCrops {get;set;}
+        public bool IsDark {get;set;}
+        public bool ShowBorders {get;set;}
+        public ParticleEngine ParticleEngine {get;set;}
+        public TextBuilder TextBuilder {get;set;}
+        public bool IsLoaded {get;set;}
+        public List<Character> CharactersPresent {get;set;}
+        public List<StringWrapper> AllTextToWrite {get;set;}
+        public List<INPC> OnScreenNPCS {get;set;}
+        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public List<LightSource> AllLights { get; set; }
+        public List<float> MyProperty { get; set; }
 
-        public WorldTileManager WorldTileManager { get; set; }
 
-
-        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve,backDropNumber)
+        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
             this.TileHeight = 16;
@@ -128,9 +156,10 @@ namespace SecretProject.Class.StageFolder
 
             }
 
-            AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
-            this.WorldTileManager = new WorldTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
-            AllTiles.LoadInitialTileObjects(this);
+           // AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
+            this.AllTiles = new WorldTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
+            AllTiles.LoadGeneratableTileLists();
+            //AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
             TileHeight = Map.Tilesets[TileSetNumber].TileHeight;
 
@@ -152,7 +181,7 @@ namespace SecretProject.Class.StageFolder
 
            // Game1.SoundManager.DustStormInstance.Play();
         }
-        public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
+        public void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             RenderTarget2D lightsTarget;
             RenderTarget2D mainTarget;
@@ -182,11 +211,11 @@ namespace SecretProject.Class.StageFolder
             IsGondolaAtStartingPosition = true;
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
-            WorldTileManager.LoadInitialChunks();
+            AllTiles.LoadInitialChunks();
             
         }
 
-        public override void UnloadContent()
+        public void UnloadContent()
         {
             //throw new NotImplementedException();
         }
@@ -298,9 +327,9 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                WorldTileManager.Update(gameTime, mouse);
+                AllTiles.Update(gameTime, mouse);
                 //AllTiles.Update(gameTime, mouse);
-                player.Update(gameTime, AllItems, WorldTileManager.ChunkUnderPlayer.CurrentObjects, mouse);
+                player.Update(gameTime, AllItems, AllTiles.ChunkUnderPlayer.CurrentObjects, mouse);
 
                 
                 for (int i = 0; i < AllItems.Count; i++)
@@ -394,7 +423,7 @@ namespace SecretProject.Class.StageFolder
                     Game1.Elixer.DrawDebug(spriteBatch, .4f);
                 }
 
-                WorldTileManager.DrawTiles(spriteBatch);
+                AllTiles.DrawTiles(spriteBatch);
                 //AllTiles.DrawTiles(spriteBatch);
 
 
@@ -429,7 +458,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in WorldTileManager.ChunkUnderPlayer.CurrentObjects.Values)
+                foreach (var obj in AllTiles.ChunkUnderPlayer.CurrentObjects.Values)
                 {
                     if (ShowBorders)
                     {
@@ -466,6 +495,14 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        
+        public void LoadPreliminaryContent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

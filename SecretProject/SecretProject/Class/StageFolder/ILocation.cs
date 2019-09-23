@@ -66,6 +66,11 @@ namespace SecretProject.Class.StageFolder
         List<Character> CharactersPresent { get; set; }
         List<StringWrapper> AllTextToWrite { get; set; }
         List<INPC> OnScreenNPCS { get; set; }
+
+        Dictionary<string, ObjectBody> AllObjects { get; set; }
+         List<LightSource> AllLights { get; set; }
+         List<float> MyProperty { get; set; }
+        List<float> AllDepths { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);

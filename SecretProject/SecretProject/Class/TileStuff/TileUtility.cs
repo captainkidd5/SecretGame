@@ -895,8 +895,8 @@ namespace SecretProject.Class.TileStuff
         public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles,ITileManager tileManager, List<Tile[,]> tiles,
             int comparisonLayer = 0)
         {
-            int newTileX = Game1.Utility.RNumber(10, tileManager.mapWidth - 10);
-            int newTileY = Game1.Utility.RNumber(10, tileManager.mapHeight - 10);
+            int newTileX = Game1.Utility.RNumber(1, tiles[0].GetLength(0) - 1);
+            int newTileY = Game1.Utility.RNumber(1, tiles[0].GetLength(0) - 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, tiles) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
                 acceptableTiles, tiles, comparisonLayer))
             {
