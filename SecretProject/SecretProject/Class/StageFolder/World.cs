@@ -183,7 +183,7 @@ namespace SecretProject.Class.StageFolder
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
             WorldTileManager.LoadInitialChunks();
-            Game1.Player.LockBounds = false;
+            
         }
 
         public override void UnloadContent()

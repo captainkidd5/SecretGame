@@ -233,13 +233,17 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int y = 0; y < TileUtility.ChunkY; y++)
                             {
-                                if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
+                                if(z == 0)
                                 {
-                                    for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
                                     {
-                                        ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
+                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        {
+                                            ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
+                                        }
                                     }
                                 }
+                                
                                 //update
                             }
                         }

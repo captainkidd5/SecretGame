@@ -641,7 +641,14 @@ namespace SecretProject
 
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-
+            if(gameStages == Stages.World)
+            {
+                Game1.Player.LockBounds = false;
+            }
+            else
+            {
+                Game1.Player.LockBounds = true;
+            }
             if (!GetStageFromInt(stageToSwitchTo).IsLoaded)
             {
 
