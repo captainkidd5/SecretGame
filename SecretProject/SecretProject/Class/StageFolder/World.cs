@@ -127,7 +127,7 @@ namespace SecretProject.Class.StageFolder
                     break;
 
             }
-            AllChests = new Dictionary<string, Chest>();
+
             AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
             this.WorldTileManager = new WorldTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadInitialTileObjects(this);
@@ -396,15 +396,7 @@ namespace SecretProject.Class.StageFolder
 
                 WorldTileManager.DrawTiles(spriteBatch);
                 //AllTiles.DrawTiles(spriteBatch);
-                //foreach (KeyValuePair<string, List<GrassTuft>> tuft in AllTiles.AllTufts)
-                //{
 
-                //    for (int i = 0; i < tuft.Value.Count; i++)
-                //    {
-                //        tuft.Value[i].Draw(spriteBatch);
-                //    }
-
-                //}
 
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
@@ -444,14 +436,7 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
-                //foreach (KeyValuePair<float, Chest> chest in AllChests)
-                //{
-                //    if (chest.Value.IsUpdating)
-                //    {
-                //        chest.Value.Draw(spriteBatch);
-                //    }
 
-                //}
 
                 //Game1.Elixer.Draw(spriteBatch);
 

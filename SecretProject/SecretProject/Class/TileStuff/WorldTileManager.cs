@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
@@ -51,13 +53,16 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
+        public Dictionary<string, Chest> AllChests { get; set; }
+        public List<LightSource> AllLights { get; set; }
+        public Dictionary<string, ObjectBody> AllObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
+        
 
-        Thread ChunkLoadThread;
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -175,7 +180,7 @@ namespace SecretProject.Class.TileStuff
                 
 
             }
-            for(int i =0; i< ActiveChunks.Count;i++)
+            for(int i =ActiveChunks.Count - 1; i >= 0;i--)
             {
                 if (!pointsToCheck.Any(x => x.X == ActiveChunks[i].X && x.Y == ActiveChunks[i].Y))
                 {
@@ -314,5 +319,11 @@ namespace SecretProject.Class.TileStuff
         {
             throw new NotImplementedException();
         }
+
+        //public AStarPathFinder GetPathGrid(Vector2 entiyPosition)
+        //{
+        //    //lets create a path grid of the sorrounding 8 chunks around the entity
+
+        //}
     }
 }

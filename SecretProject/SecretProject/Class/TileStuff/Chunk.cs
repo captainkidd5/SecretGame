@@ -189,6 +189,7 @@ namespace SecretProject.Class.TileStuff
             }
             TileUtility.PlaceChests(Tiles,this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
+            TileUtility.GenerateTiles(1, 979, "dirt", 2000, 0, tileManager, Tiles);
 
         }
         

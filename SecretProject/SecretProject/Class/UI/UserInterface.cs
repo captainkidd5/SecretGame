@@ -108,7 +108,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             IsAnyChestOpen = false;
-            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllChests)
+            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
             {
                 if (chest.Value.IsUpdating)
                 {
@@ -291,7 +291,7 @@ namespace SecretProject.Class.UI
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
-            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllChests)
+            foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
             {
                 if (chest.Value.IsUpdating)
                 {

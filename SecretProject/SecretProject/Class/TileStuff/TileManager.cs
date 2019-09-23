@@ -69,6 +69,9 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, Chest> AllChests { get; set; }
+        public List<LightSource> AllLights { get; set; }
+        public Dictionary<string, ObjectBody> AllObjects { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
 
         #region CONSTRUCTORS
@@ -108,6 +111,9 @@ namespace SecretProject.Class.TileStuff
             AllTufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
+            AllObjects = new Dictionary<string, ObjectBody>();
+            AllLights = new List<LightSource>();
+            AllChests = new Dictionary<string, Chest>();
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -233,7 +239,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j, currentStage);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j);
 
 
                             }
@@ -368,7 +374,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight);
             }
 
-            TileUtility.PlaceChests(AllTiles, world.AllChests, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight, graphicsDevice);
+            TileUtility.PlaceChests(AllTiles, this.AllChests, tilesetTilesWide, tilesetTilesHigh, worldWidth, worldHeight, graphicsDevice);
 
             for (int i = 0; i < worldWidth; i++)
             {
@@ -411,7 +417,7 @@ namespace SecretProject.Class.TileStuff
             //green tall grass
             // GenerateTiles(3, 6393, "dirt", 2000, 0,world);
             //stone
-            TileUtility.GenerateTiles(1, 979, "dirt", 2000, 0, this,AllTiles,world);
+            TileUtility.GenerateTiles(1, 979, "dirt", 2000, 0, this,AllTiles);
             //    //grass
            // GenerateTiles(1, 1079, "dirt", 5000, 0, world);
             //    //redrunestone
@@ -419,7 +425,7 @@ namespace SecretProject.Class.TileStuff
             ////bluerunestone
            // GenerateTiles(1, 779, "dirt", 1000, 0, world);
             ////thunderbirch
-            TileUtility.GenerateTiles(1, 2264, "dirt", 5000, 0, this, AllTiles, world);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 5000, 0, this, AllTiles);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -445,7 +451,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j, world);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j);
 
                             }
                         }
@@ -462,7 +468,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
             
-            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, stage.AllObjects);
+            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, this.AllObjects);
 
         }
         #endregion
@@ -567,9 +573,9 @@ namespace SecretProject.Class.TileStuff
                                     AllTufts[TileKey][t].Update(gameTime);
                                 }
                             }
-                            if (Game1.GetCurrentStage().AllObjects.ContainsKey(TileKey))
+                            if (Game1.GetCurrentStage().AllTiles.AllObjects.ContainsKey(TileKey))
                             {
-                                CurrentObjects.Add(TileKey, Game1.GetCurrentStage().AllObjects[TileKey]);
+                                CurrentObjects.Add(TileKey, Game1.GetCurrentStage().AllTiles.AllObjects[TileKey]);
 
                             }
 

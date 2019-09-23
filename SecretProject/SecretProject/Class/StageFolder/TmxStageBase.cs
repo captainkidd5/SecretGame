@@ -116,7 +116,6 @@ namespace SecretProject.Class.StageFolder
         public ITileManager AllTiles { get; set; }
 
         public List<Character> CharactersPresent { get; set; }
-        public Dictionary<string, Chest> AllChests { get; set; }
         public int BackDropNumber { get; set; }
         public Vector2 BackDropPosition;
 
@@ -203,7 +202,6 @@ namespace SecretProject.Class.StageFolder
     
             };
             AllPortals = new List<Portal>();
-            AllChests = new Dictionary<string, Chest>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths, this);
             AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;

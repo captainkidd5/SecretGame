@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
@@ -33,6 +35,9 @@ namespace SecretProject.Class.TileStuff
          Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         Dictionary<string, int> TileHitPoints { get; set; }
+        Dictionary<string, Chest> AllChests { get; set; }
+        List<LightSource> AllLights { get; set; }
+        Dictionary<string, ObjectBody> AllObjects { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }
