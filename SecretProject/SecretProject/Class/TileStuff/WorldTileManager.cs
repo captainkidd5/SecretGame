@@ -23,7 +23,7 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
-       
+
         public AStarPathFinder PathGrid { get; set; }
 
 
@@ -32,7 +32,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public Chunk[,] ActiveChunks { get; set; }
+        public List<Chunk> ActiveChunks { get; set; }
         public TmxMap MapName { get; set; }
         public Texture2D TileSet { get; set; }
         public int TileWidth { get; set; }
@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
 
             this.AllDepths = allDepths;
 
-            ActiveChunks = new Chunk[3, 3];
+            ActiveChunks = new List<Chunk>();
 
             this.MaximumChunksLoaded = 3;
             ChunkPointUnderPlayerLastFrame = new Point(1000, 1000);
@@ -103,81 +103,97 @@ namespace SecretProject.Class.TileStuff
 
         public void LoadInitialChunks()
         {
-            
-            ActiveChunks = GetActiveChunkCoord(Game1.Player.position);
-            for (int i = 0; i < ActiveChunks.GetLength(0); i++)
-            {
-                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
-                {
-                    if (!ActiveChunks[i, j].IsLoaded)
-                    {
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
-                        {
-                            ActiveChunks[i, j].Load();
-                        }
-                        else
-                        {
-                            ActiveChunks[i, j].Generate(this);
 
-                        }
-                        ActiveChunks[i, j].Save();
+            ActiveChunks = GetActiveChunkCoord(Game1.Player.position);
+
+
+            foreach (Chunk chunk in ActiveChunks)
+            {
+
+
+                if (!chunk.IsLoaded)
+                {
+                    if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+                    {
+                        chunk.Load();
                     }
+                    else
+                    {
+                        chunk.Generate(this);
+
+                    }
+                    chunk.Save();
                 }
             }
+
+
         }
 
 
-        public Chunk[,] GetActiveChunkCoord(Vector2 playerPos)
+        public List<Chunk> GetActiveChunkCoord(Vector2 playerPos)
         {
 
             int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkX);
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
-            return new Chunk[,]
+            return new List<Chunk>
             {
-                { new Chunk(currentChunkX - 1, currentChunkY - 1), new Chunk (currentChunkX, currentChunkY - 1) , new Chunk(currentChunkX + 1, currentChunkY - 1) },
-                { new Chunk(currentChunkX - 1, currentChunkY), new Chunk(currentChunkX , currentChunkY), new Chunk (currentChunkX +1, currentChunkY )},
-                { new Chunk(currentChunkX - 1, currentChunkY + 1), new Chunk( currentChunkX , currentChunkY + 1), new Chunk( currentChunkX +1, currentChunkY + 1)},
+                 new Chunk(currentChunkX - 1, currentChunkY - 1), new Chunk (currentChunkX, currentChunkY - 1) , new Chunk(currentChunkX + 1, currentChunkY - 1) ,
+                 new Chunk(currentChunkX - 1, currentChunkY), new Chunk(currentChunkX , currentChunkY), new Chunk (currentChunkX +1, currentChunkY ),
+                 new Chunk(currentChunkX - 1, currentChunkY + 1), new Chunk( currentChunkX , currentChunkY + 1), new Chunk( currentChunkX +1, currentChunkY + 1)
             };
 
         }
 
         public void CheckActiveChunks()
         {
-            Point[,] pointsToCheck = ChunkPointsWhichShouldBeActive(Game1.Player.position);
+            List<Point> pointsToCheck = ChunkPointsWhichShouldBeActive(Game1.Player.position);
 
-            for (int i =0; i < ActiveChunks.GetLength(0); i++)
+
+            for (int i = 0; i < pointsToCheck.Count; i++)
             {
-                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                if (!ActiveChunks.Any(x => x.X == pointsToCheck[i].X && x.Y == pointsToCheck[i].Y))
                 {
-                   // if(ActiveChunks.)
-                    if (pointsToCheck[i,j].X != ActiveChunks[i,j].X && pointsToCheck[i,j].Y != ActiveChunks[i, j].Y)
+
+                    Chunk ChunkToAdd = new Chunk(pointsToCheck[i].X, pointsToCheck[i].Y);
+                    if (!ChunkToAdd.IsLoaded)
                     {
-                        ActiveChunks[i, j] = new Chunk(pointsToCheck[i, j].X, pointsToCheck[i, j].Y);
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
+                        if (TileUtility.CheckIfChunkExistsInMemory(ChunkToAdd.X, ChunkToAdd.Y))
                         {
-                            ActiveChunks[i, j].Load();
+                            ChunkToAdd.Load();
                         }
                         else
                         {
-                            ActiveChunks[i, j].Generate(this);
+                            ChunkToAdd.Generate(this);
 
                         }
-                        ActiveChunks[i, j].Save();
+                        ChunkToAdd.Save();
                     }
+                    ActiveChunks.Add(ChunkToAdd);
                 }
-                   
+                
+
+                
+
             }
+            for(int i =0; i< ActiveChunks.Count;i++)
+            {
+                if (!pointsToCheck.Any(x => x.X == ActiveChunks[i].X && x.Y == ActiveChunks[i].Y))
+                {
+                    ActiveChunks.RemoveAt(i);
+                }
+            }
+
         }
 
-        public Point[,] ChunkPointsWhichShouldBeActive(Vector2 playerPos)
+        public List<Point> ChunkPointsWhichShouldBeActive(Vector2 playerPos)
         {
             int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkX);
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
-            return new Point[,]
+            return new List<Point>
             {
-                { new Point(currentChunkX - 1, currentChunkY - 1), new Point (currentChunkX, currentChunkY - 1) , new Point(currentChunkX + 1, currentChunkY - 1) },
-                { new Point(currentChunkX - 1, currentChunkY), new Point(currentChunkX , currentChunkY), new Point(currentChunkX +1, currentChunkY ) },
-                { new Point(currentChunkX - 1, currentChunkY + 1), new Point( currentChunkX , currentChunkY + 1), new Point( currentChunkX +1, currentChunkY + 1) },
+                 new Point(currentChunkX - 1, currentChunkY - 1), new Point (currentChunkX, currentChunkY - 1) , new Point(currentChunkX + 1, currentChunkY - 1) ,
+                 new Point(currentChunkX - 1, currentChunkY), new Point(currentChunkX , currentChunkY), new Point(currentChunkX +1, currentChunkY ) ,
+                 new Point(currentChunkX - 1, currentChunkY + 1), new Point( currentChunkX , currentChunkY + 1), new Point( currentChunkX +1, currentChunkY + 1)
             };
         }
 
@@ -191,79 +207,92 @@ namespace SecretProject.Class.TileStuff
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
 
-            for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+            int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
+
+            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
+
+            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
+
+            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
+
+            Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
+            for (int i = 0; i < ActiveChunks.Count; i++)
             {
-                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+
+
+
+                if (ScreenRectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
                 {
-                    if (Game1.cam.CameraScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                    if (Game1.Player.Rectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
                     {
-                        if(Game1.Player.Rectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                        this.ChunkUnderPlayer = ActiveChunks[i];
+                    }
+                    for (int z = 0; z < 5; z++)
+                    {
+                        for (int x = 0; x < TileUtility.ChunkX; x++)
                         {
-                            this.ChunkUnderPlayer = ActiveChunks[i, j];
-                        }
-                        for (int z = 0; z <5; z++)
-                        {
-                            for (int x = 0; x < TileUtility.ChunkX; x++)
+                            for (int y = 0; y < TileUtility.ChunkY; y++)
                             {
-                                for (int y = 0; y < TileUtility.ChunkY; y++)
+                                if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
                                 {
-                                    //update
+                                    for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                    {
+                                        ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
+                                    }
                                 }
+                                //update
                             }
                         }
                     }
                 }
             }
+
         }
 
 
         public void DrawTiles(SpriteBatch spriteBatch)
         {
 
-            int starti = (int)(Game1.cam.Pos.X ) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
+            int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 
-            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 ) - 1;
+            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
 
-            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 ) + 2;
+            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
 
-            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 ) + 2;
+            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
-            for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+            for (int i = 0; i < ActiveChunks.Count; i++)
             {
-                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                if (ScreenRectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
                 {
-                    if(ScreenRectangle.Intersects(ActiveChunks[i, j].GetChunkRectangle()))
+                    for (int z = 0; z < 5; z++)
                     {
-                        for (int z = 0; z < 5; z++)
+                        for (int x = 0; x < TileUtility.ChunkX; x++)
                         {
-                            for (int x = 0; x < TileUtility.ChunkX; x++)
+                            for (int y = 0; y < TileUtility.ChunkY; y++)
                             {
-                                for (int y = 0; y < TileUtility.ChunkY; y++)
+                                Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i].Tiles[z][x, y], tilesetTilesWide);
+                                Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i].Tiles[z][x, y]);
+                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+
+                                if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
                                 {
-                                    Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i, j].Tiles[z][x, y],tilesetTilesWide);
-                                    Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i, j].Tiles[z][x, y]);
-                                    spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
-                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
-
-                                    if(ActiveChunks[i, j].Tufts.ContainsKey(ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)))
+                                    for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
                                     {
-                                        for (int t = 0; t < ActiveChunks[i, j].Tufts[ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)].Count; t++)
-                                        {
-                                            ActiveChunks[i, j].Tufts[ActiveChunks[i, j].Tiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
-                                        }
+                                        ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
                                     }
-                                   
-
                                 }
+
+
                             }
                         }
                     }
-                    
-
                 }
             }
+
         }
 
         public void LoadInitialTileObjects(ILocation location)
