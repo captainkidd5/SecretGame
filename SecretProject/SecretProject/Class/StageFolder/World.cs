@@ -72,7 +72,17 @@ namespace SecretProject.Class.StageFolder
         public Dictionary<string, ObjectBody> AllObjects { get; set; }
         public List<LightSource> AllLights { get; set; }
         public List<float> MyProperty { get; set; }
-
+        public List<float> AllDepths {get;set;}
+        public TmxLayer Buildings {get;set;}
+        public TmxLayer Background {get;set;}
+        public TmxLayer Background1 {get;set;}
+        public TmxLayer MidGround {get;set;}
+        public TmxLayer foreGround {get;set;}
+        public TmxLayer Placement {get;set;}
+        public List<TmxLayer> AllLayers {get;set;}
+        public string MapTexturePath {get;set;}
+        public string TmxMapPath {get;set;}
+        public TmxMap Map {get;set;}
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
@@ -81,7 +91,16 @@ namespace SecretProject.Class.StageFolder
             lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             Gondola = new Sprite(graphics, Game1.AllTextures.Gondola, new Rectangle(0, 0, Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height), new Vector2(Game1.Player.position.X - 300, Game1.Player.position.Y - 300), Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height);
-           
+            this.StageName = name;
+            this.Graphics = graphics;
+            this.Content = content;
+            this.TileSetNumber = tileSetNumber;
+            this.MapTexturePath = mapTexturePath;
+            this.TmxMapPath = tmxMapPath;
+            this.IsLoaded = false;
+            CharactersPresent = new List<Character>();
+
+            this.OnScreenNPCS = new List<INPC>();
         }
 
         
@@ -256,7 +275,10 @@ namespace SecretProject.Class.StageFolder
 
         }
         public int portalIndex;
-        public override void Update(GameTime gameTime, MouseManager mouse, Player player)
+
+        public event EventHandler SceneChanged;
+
+        public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             this.IsDark = Game1.GlobalClock.IsNight;
             for (int p = 0; p < AllPortals.Count; p++)
@@ -370,7 +392,15 @@ namespace SecretProject.Class.StageFolder
             }
 
         }
-        public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+
+        public void OnSceneChanged()
+        {
+            if (SceneChanged != null)
+            {
+                SceneChanged(this, EventArgs.Empty);
+            }
+        }
+        public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             if (player.Health > 0)
             {

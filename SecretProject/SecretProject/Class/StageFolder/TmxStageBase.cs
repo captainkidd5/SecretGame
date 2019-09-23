@@ -90,7 +90,7 @@ namespace SecretProject.Class.StageFolder
 
         public bool TilesLoaded { get; set; } = false;
 
-        public List<float> AllDepths;
+        public List<float> AllDepths { get; set; }
 
         public Rectangle MapRectangle { get; set; }
 
@@ -122,6 +122,8 @@ namespace SecretProject.Class.StageFolder
         public List<StringWrapper> AllTextToWrite { get; set; }
 
         public List<INPC> OnScreenNPCS { get; set; }
+        public List<float> MyProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
 
 
 

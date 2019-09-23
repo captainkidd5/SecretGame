@@ -47,6 +47,10 @@ namespace SecretProject.Class.TileStuff
         void DrawTiles(SpriteBatch spriteBatch);
         void LoadGeneratableTileLists();
 
+        //worldtilemanager specific
+        void LoadInitialChunks();
+        Chunk ChunkUnderPlayer { get; set; }
+
 
 
     }

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 using XMLData.ItemStuff;
 using XMLData.RouteStuff;
 
@@ -69,8 +70,26 @@ namespace SecretProject.Class.StageFolder
 
         Dictionary<string, ObjectBody> AllObjects { get; set; }
          List<LightSource> AllLights { get; set; }
-         List<float> MyProperty { get; set; }
         List<float> AllDepths { get; set; }
+
+         TmxLayer Buildings { get; set; }
+
+         TmxLayer Background { get; set; }
+
+         TmxLayer Background1 { get; set; }
+
+         TmxLayer MidGround { get; set; }
+
+         TmxLayer foreGround { get; set; }
+
+         TmxLayer Placement { get; set; }
+
+        List<TmxLayer> AllLayers { get; set; }
+
+         TmxMap Map { get; set; }
+        event EventHandler SceneChanged;
+        string MapTexturePath { get; set; }
+         string TmxMapPath { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);

@@ -250,6 +250,8 @@ namespace SecretProject.Class.TileStuff
 
         }
         public int NumberOfLayers { get; set; }
+        public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         //FOR PROCEDURAL
         #region PROCEDURALGENERATION CONSTRUCTOR
 
@@ -742,6 +744,11 @@ namespace SecretProject.Class.TileStuff
         }
 
         public void LoadGeneratableTileLists()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadInitialChunks()
         {
             throw new NotImplementedException();
         }
