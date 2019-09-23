@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -56,6 +57,8 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
+        Thread ChunkLoadThread;
+
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -94,11 +97,13 @@ namespace SecretProject.Class.TileStuff
 
             this.ChunkUnderPlayer = new Chunk(0, 0);
 
+
+
         }
 
         public void LoadInitialChunks()
         {
-
+            
             ActiveChunks = GetActiveChunkCoord(Game1.Player.position);
             for (int i = 0; i < ActiveChunks.GetLength(0); i++)
             {
@@ -136,12 +141,52 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public void CheckActiveChunks()
+        {
+            Point[,] pointsToCheck = ChunkPointsWhichShouldBeActive(Game1.Player.position);
+
+            for (int i =0; i < ActiveChunks.GetLength(0); i++)
+            {
+                for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                {
+                   // if(ActiveChunks.)
+                    if (pointsToCheck[i,j].X != ActiveChunks[i,j].X && pointsToCheck[i,j].Y != ActiveChunks[i, j].Y)
+                    {
+                        ActiveChunks[i, j] = new Chunk(pointsToCheck[i, j].X, pointsToCheck[i, j].Y);
+                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
+                        {
+                            ActiveChunks[i, j].Load();
+                        }
+                        else
+                        {
+                            ActiveChunks[i, j].Generate(this);
+
+                        }
+                        ActiveChunks[i, j].Save();
+                    }
+                }
+                   
+            }
+        }
+
+        public Point[,] ChunkPointsWhichShouldBeActive(Vector2 playerPos)
+        {
+            int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkX);
+            int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
+            return new Point[,]
+            {
+                { new Point(currentChunkX - 1, currentChunkY - 1), new Point (currentChunkX, currentChunkY - 1) , new Point(currentChunkX + 1, currentChunkY - 1) },
+                { new Point(currentChunkX - 1, currentChunkY), new Point(currentChunkX , currentChunkY), new Point(currentChunkX +1, currentChunkY ) },
+                { new Point(currentChunkX - 1, currentChunkY + 1), new Point( currentChunkX , currentChunkY + 1), new Point( currentChunkX +1, currentChunkY + 1) },
+            };
+        }
+
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
-                LoadInitialChunks();
+                CheckActiveChunks();
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
