@@ -755,22 +755,6 @@ namespace SecretProject.Class.TileStuff
 
         #endregion
 
-        #region REPLACETILES
-
-
-        #endregion
-
-        #region INTERACTIONS
-
-
-
-
-        //specify which animations you want to use depending on where the player is in relation to the object
-
-
-
-        #endregion
-
 
 
     }

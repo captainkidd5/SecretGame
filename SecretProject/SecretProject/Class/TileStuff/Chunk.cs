@@ -22,7 +22,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string,Chest> Chests { get; set; }
+        public Dictionary<string, Chest> Chests { get; set; }
 
 
         public Chunk(int x, int y)
@@ -30,14 +30,14 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
-            
-            Tufts = new Dictionary<string, List<GrassTuft>>();    
+
+            Tufts = new Dictionary<string, List<GrassTuft>>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
             Chests = new Dictionary<string, Chest>();
             Tiles = new List<Tile[,]>();
-            for(int i =0; i <5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Tiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
@@ -55,27 +55,27 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenWrite(path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            for(int z =0; z <5; z++)
+            for (int z = 0; z < 5; z++)
             {
-                for(int i =0; i < TileUtility.ChunkX; i++)
+                for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
-                    for(int j =0; j< TileUtility.ChunkY; j++)
+                    for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
                         binaryWriter.Write(Tiles[z][i, j].GID + 1);
                         binaryWriter.Write(Tiles[z][i, j].X);
                         binaryWriter.Write(Tiles[z][i, j].Y);
-                        
+
                     }
                 }
             }
 
             binaryWriter.Write(this.Tufts.Count);
 
-            foreach(KeyValuePair<string, List<GrassTuft>> tufts in this.Tufts)
+            foreach (KeyValuePair<string, List<GrassTuft>> tufts in this.Tufts)
             {
                 binaryWriter.Write(tufts.Key);
                 binaryWriter.Write(tufts.Value.Count);
-                for(int s =0; s < tufts.Value.Count; s++)
+                for (int s = 0; s < tufts.Value.Count; s++)
                 {
                     binaryWriter.Write(tufts.Value[s].GrassType);
                     binaryWriter.Write(tufts.Value[s].Position.X);
@@ -91,7 +91,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            for (int z = 0; z <5; z++)
+            for (int z = 0; z < 5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -105,14 +105,14 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            
+
             int tuftCount = binaryReader.ReadInt32();
-            for( int t = 0; t < tuftCount; t++)
+            for (int t = 0; t < tuftCount; t++)
             {
                 string key = binaryReader.ReadString();
                 List<GrassTuft> tileTufts = new List<GrassTuft>();
                 int tileTuftCount = binaryReader.ReadInt32();
-                for(int c = 0; c < tileTuftCount; c++)
+                for (int c = 0; c < tileTuftCount; c++)
                 {
                     int grassType = binaryReader.ReadInt32();
                     float posX = binaryReader.ReadSingle();
@@ -127,7 +127,7 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-    
+
         public void Generate(ITileManager tileManager)
         {
             float chanceToBeDirt = .45f;
@@ -181,18 +181,43 @@ namespace SecretProject.Class.TileStuff
                                 tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
                             }
-                             this.Tufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
+                            this.Tufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
                         }
                     }
 
                 }
             }
-            TileUtility.PlaceChests(Tiles,this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+            TileUtility.PlaceChests(Tiles, this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
             TileUtility.GenerateTiles(1, 979, "dirt", 2000, 0, tileManager, Tiles);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 5000, 0, tileManager, Tiles);
+
+
+            for (int z = 0; z < 5; z++)
+            {
+                for (int i = 0; i < TileUtility.ChunkX; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkY; j++)
+                    {
+                        if (Tiles[z][i, j].GID != 0)
+                        {
+                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(Tiles[z][i, j].GID))
+                            {
+
+                                //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
+                                TileUtility.AssignProperties(Tiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX, TileUtility.ChunkY, tileManager,tileManager.TileSetNumber, z, i, j);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+
+           
 
         }
-        
+
         public void Unload()
         {
             this.IsLoaded = false;
