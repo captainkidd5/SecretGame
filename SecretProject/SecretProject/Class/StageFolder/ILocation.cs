@@ -68,8 +68,6 @@ namespace SecretProject.Class.StageFolder
         List<StringWrapper> AllTextToWrite { get; set; }
         List<INPC> OnScreenNPCS { get; set; }
 
-        Dictionary<string, ObjectBody> AllObjects { get; set; }
-         List<LightSource> AllLights { get; set; }
         List<float> AllDepths { get; set; }
 
          TmxLayer Buildings { get; set; }

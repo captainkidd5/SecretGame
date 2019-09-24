@@ -329,7 +329,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
 
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects, mouse);
+                player.Update(gameTime, AllItems, AllTiles.Objects, mouse);
 
  
                 foreach (Sprite spr in AllSprites)
@@ -444,7 +444,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllObjects.Values)
+                foreach (var obj in AllTiles.Objects.Values)
                 {
                     if (ShowBorders)
                     {

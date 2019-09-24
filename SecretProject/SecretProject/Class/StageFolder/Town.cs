@@ -181,7 +181,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllObjects, mouse);
+                player.Update(gameTime, AllItems, AllTiles.Objects, mouse);
 
                 //--------------------------------------
                 //Update sprites
@@ -206,7 +206,7 @@ namespace SecretProject.Class.StageFolder
 
                 foreach (Character character in Game1.AllCharacters)
                 {
-                    character.Update(gameTime, AllObjects, mouse);
+                    character.Update(gameTime, AllTiles.Objects, mouse);
                 }
                 //Game1.Kaya.Update(gameTime, AllObjects, mouse);
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
@@ -313,7 +313,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllObjects.Values)
+                foreach (var obj in AllTiles.Objects.Values)
                 {
                     if (ShowBorders)
                     {

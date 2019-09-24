@@ -195,7 +195,7 @@ namespace SecretProject.Class.StageFolder
             Boars = new List<Boar>() { };
             for (int i = 1; i < 5; i++)
             {
-                Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
+                //Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
             }
 
            // Game1.SoundManager.DustStormInstance.Play();
@@ -351,7 +351,7 @@ namespace SecretProject.Class.StageFolder
 
                 AllTiles.Update(gameTime, mouse);
                 //AllTiles.Update(gameTime, mouse);
-                player.Update(gameTime, AllItems, AllTiles.ChunkUnderPlayer.CurrentObjects, mouse);
+                player.Update(gameTime, AllItems, AllTiles.ChunkUnderPlayer.Objects, mouse);
 
                 
                 for (int i = 0; i < AllItems.Count; i++)
@@ -488,7 +488,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllTiles.ChunkUnderPlayer.CurrentObjects.Values)
+                foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
                 {
                     if (ShowBorders)
                     {

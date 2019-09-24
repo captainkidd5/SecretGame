@@ -26,7 +26,7 @@ namespace SecretProject.Class.TileStuff
     /// <summary>
     /// background = 0, buildings = 1, midground =2, foreground =3, placement =4
     /// </summary>
-    public class TileManager : ITileManager
+    public class TileManager : ITileManager, IInformationContainer
     {
         protected Game1 game;
         public Texture2D TileSet { get; set; }
@@ -66,12 +66,12 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
-        public Dictionary<string, Chest> AllChests { get; set; }
-        public List<LightSource> AllLights { get; set; }
-        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public Dictionary<string, Chest> Chests { get; set; }
+        public List<LightSource> Lights { get; set; }
+        public Dictionary<string, ObjectBody> Objects { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
 
         #region CONSTRUCTORS
@@ -108,12 +108,12 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            AllTufts = new Dictionary<string, List<GrassTuft>>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
+            Objects = new Dictionary<string, ObjectBody>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
-            AllObjects = new Dictionary<string, ObjectBody>();
-            AllLights = new List<LightSource>();
-            AllChests = new Dictionary<string, Chest>();
+            Lights = new List<LightSource>();
+            Chests = new Dictionary<string, Chest>();
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -239,7 +239,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, this, tileSetNumber, z, i, j);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, tileSetNumber, z, i, j,this);
 
 
                             }
@@ -472,7 +472,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
             
-            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, this.AllObjects);
+            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, this.Objects);
 
         }
         #endregion
@@ -531,7 +531,7 @@ namespace SecretProject.Class.TileStuff
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
-                                    TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(),this, AllTiles);
+                                    TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(),this, AllTiles,this);
                                 }
 
                             }
@@ -570,16 +570,16 @@ namespace SecretProject.Class.TileStuff
                         {
                             string TileKey = AllTiles[z][i, j].GetTileKey(z);
                             Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
-                            if (AllTufts.ContainsKey(TileKey))
+                            if (Tufts.ContainsKey(TileKey))
                             {
-                                for (int t = 0; t < AllTufts[TileKey].Count; t++)
+                                for (int t = 0; t < Tufts[TileKey].Count; t++)
                                 {
-                                    AllTufts[TileKey][t].Update(gameTime);
+                                    Tufts[TileKey][t].Update(gameTime);
                                 }
                             }
-                            if (Game1.GetCurrentStage().AllTiles.AllObjects.ContainsKey(TileKey))
+                            if (Game1.GetCurrentStage().AllTiles.Objects.ContainsKey(TileKey))
                             {
-                                CurrentObjects.Add(TileKey, Game1.GetCurrentStage().AllTiles.AllObjects[TileKey]);
+                                CurrentObjects.Add(TileKey, Game1.GetCurrentStage().AllTiles.Objects[TileKey]);
 
                             }
 
@@ -623,7 +623,7 @@ namespace SecretProject.Class.TileStuff
 
                                                 if (mouse.IsClicked)
                                                 {
-                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(),this, AllTiles);
+                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(),this, AllTiles,this);
 
                                                 }
 
@@ -693,11 +693,11 @@ namespace SecretProject.Class.TileStuff
                         {
                             Rectangle SourceRectangle = TileUtility.GetSourceRectangle(AllTiles[z][i, j], this.tilesetTilesWide);
                             Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
-                            if (AllTufts.ContainsKey(AllTiles[z][i, j].GetTileKey(z)))
+                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKey(z)))
                             {
-                                for (int t = 0; t < AllTufts[AllTiles[z][i, j].GetTileKey(z)].Count; t++)
+                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKey(z)].Count; t++)
                                 {
-                                    AllTufts[AllTiles[z][i, j].GetTileKey(z)][t].Draw(spriteBatch);
+                                    Tufts[AllTiles[z][i, j].GetTileKey(z)][t].Draw(spriteBatch);
                                 }
                             }
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
@@ -739,7 +739,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            TileUtility.DrawGridItem(spriteBatch,this,AllTiles);
+            TileUtility.DrawGridItem(spriteBatch,this,AllTiles,this);
             
         }
 

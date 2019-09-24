@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI
             IsAnyChestOpen = false;
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
+                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.Chests)
                 {
                     if (chest.Value.IsUpdating)
                     {
@@ -297,7 +297,7 @@ namespace SecretProject.Class.UI
 
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.AllChests)
+                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.Chests)
                 {
                     if (chest.Value.IsUpdating)
                     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff
 {
-    public class Chunk
+    public class Chunk : IInformationContainer
     {
         public bool IsLoaded { get; set; }
         public int X { get; set; }
@@ -19,10 +20,11 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> Tiles { get; set; }
 
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, ObjectBody> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
+        public List<LightSource> Lights { get; set; }
 
 
         public Chunk(int x, int y)
@@ -32,11 +34,12 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
 
             Tufts = new Dictionary<string, List<GrassTuft>>();
-            CurrentObjects = new Dictionary<string, ObjectBody>();
+            Objects = new Dictionary<string, ObjectBody>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
             Chests = new Dictionary<string, Chest>();
             Tiles = new List<Tile[,]>();
+            Lights = new List<LightSource>();
             for (int i = 0; i < 5; i++)
             {
                 Tiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
@@ -190,7 +193,7 @@ namespace SecretProject.Class.TileStuff
             TileUtility.PlaceChests(Tiles, this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
             //TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager, Tiles);
-            //TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, Tiles);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, Tiles, this);
 
 
             for (int z = 0; z < 5; z++)
@@ -205,7 +208,8 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
-                                TileUtility.AssignProperties(Tiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX, TileUtility.ChunkY, tileManager,tileManager.TileSetNumber, z, i, j);
+                                TileUtility.AssignProperties(Tiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX,
+                                    TileUtility.ChunkY, tileManager.TileSetNumber, z, i, j,this);
 
                             }
                         }

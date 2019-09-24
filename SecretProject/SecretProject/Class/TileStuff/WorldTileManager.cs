@@ -49,13 +49,13 @@ namespace SecretProject.Class.TileStuff
         public Point ChunkPointUnderPlayer { get; set; }
         public Chunk ChunkUnderPlayer { get; set; }
 
-        public Dictionary<string, List<GrassTuft>> AllTufts { get; set; }
-        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        public Dictionary<string, ObjectBody> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, Chest> AllChests { get; set; }
-        public List<LightSource> AllLights { get; set; }
-        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public Dictionary<string, Chest> Chests { get; set; }
+        public List<LightSource> Lights { get; set; }
+        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
         public List<int> DirtGeneratableTiles;
@@ -96,14 +96,14 @@ namespace SecretProject.Class.TileStuff
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            AllTufts = new Dictionary<string, List<GrassTuft>>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
-            AllChests = new Dictionary<string, Chest>();
-            AllLights = new List<LightSource>();
+            Chests = new Dictionary<string, Chest>();
+            Lights = new List<LightSource>();
 
-            AllObjects = new Dictionary<string, ObjectBody>();
+            CurrentObjects = new Dictionary<string, ObjectBody>();
 
             this.ChunkUnderPlayer = new Chunk(0, 0);
 
@@ -262,8 +262,8 @@ namespace SecretProject.Class.TileStuff
             {
                 CheckActiveChunks();
                 ChunkUnderPlayer = ActiveChunks.Find(x => x.X == ChunkPointUnderPlayer.X && x.Y == ChunkPointUnderPlayer.Y);
-                this.AllChests = ChunkUnderPlayer.Chests;
-                this.AllObjects = ChunkUnderPlayer.CurrentObjects;
+                this.Chests = ChunkUnderPlayer.Chests;
+                this.CurrentObjects = ChunkUnderPlayer.Objects;
 
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;

@@ -330,9 +330,9 @@ namespace SecretProject.Class.UI
                     //FOR WHEN DROPPING STACK OF ITEMS
                     if(Game1.Player.UserInterface.IsAnyChestOpen)
                     {
-                        if(Game1.GetCurrentStage().AllTiles.AllChests[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
+                        if(Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
                         {
-                            if(Game1.GetCurrentStage().AllTiles.AllChests[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
+                            if(Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
                             {
                                 inventory.currentInventory[i].RemoveItemFromSlot();
                                 AllSlots[i].ItemCounter--;

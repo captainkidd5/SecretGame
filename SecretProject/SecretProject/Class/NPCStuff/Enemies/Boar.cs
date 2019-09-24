@@ -37,7 +37,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(Game1.GetCurrentStage().AllTiles.CurrentObjects, Position);
+            this.CollideOccured = Collider.DidCollide(Game1.GetCurrentStage().AllTiles.Objects, Position);
 
             for (int i = 0; i < 4; i++)
             {
