@@ -836,9 +836,9 @@ namespace SecretProject.Class.TileStuff
 
 
         }
-        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, List<Tile[,]> tiles)
+        public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
         {
-            if (tiles[layer][tileX, tileY].GID != -1)
+            if (container.AllTiles[layer][tileX, tileY].GID != -1)
             {
                 return true;
             }
@@ -856,11 +856,11 @@ namespace SecretProject.Class.TileStuff
             return new Rectangle(16 * Column, 16 * Row, 16, 16);
         }
 
-        public static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles,List<Tile[,]> tiles, int comparisonLayer = 0)
+        public static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles,IInformationContainer container, int comparisonLayer = 0)
         {
             for (int i = 0; i < acceptablTiles.Count; i++)
             {
-                if (tiles[comparisonLayer][tileX, tileY].GID == acceptablTiles[i])
+                if (container.AllTiles[comparisonLayer][tileX, tileY].GID == acceptablTiles[i])
                 {
                     return true;
                 }
@@ -869,7 +869,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region GENERATION
-        public static void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty,ITileManager tileManager, List<Tile[,]> tiles,IInformationContainer container)
+        public static void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty,ITileManager tileManager,IInformationContainer container)
         {
             List<int> acceptableGenerationTiles;
             switch (placementKey)
@@ -890,22 +890,22 @@ namespace SecretProject.Class.TileStuff
 
             for (int g = 0; g < frequency; g++)
             {
-                GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, tileManager,tiles, container,layerToCheckIfEmpty);
+                GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, tileManager, container,layerToCheckIfEmpty);
             }
         }
 
-        public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles,ITileManager tileManager, List<Tile[,]> tiles,IInformationContainer container,
+        public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles,ITileManager tileManager,IInformationContainer container,
             int comparisonLayer = 0)
         {
-            int newTileX = Game1.Utility.RNumber(1, tiles[0].GetLength(0) - 1);
-            int newTileY = Game1.Utility.RNumber(1, tiles[0].GetLength(0) - 1);
-            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, tiles) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
-                acceptableTiles, tiles, comparisonLayer))
+            int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
+            int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
+            if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
+                acceptableTiles, container,comparisonLayer))
             {
                 Tile sampleTile = new Tile(newTileX, newTileY, id);
                 if (!tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
                 {
-                    tiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                    container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                     return;
                 }
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
@@ -928,7 +928,7 @@ namespace SecretProject.Class.TileStuff
                         int intTilePropertyLayer = int.Parse(tilePropertyLayer);
                         int totalGID = tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[spawnsWith[index]].Id;
                         //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
-                        if (!TileUtility.CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer, tiles))
+                        if (!TileUtility.CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer, container))
                         {
                             intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
                         }
@@ -942,10 +942,10 @@ namespace SecretProject.Class.TileStuff
                     {
                         TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth,
                             tileManager.mapHeight, tileManager.TileSetNumber, layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y,container);
-                        tiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X,
+                        container.AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X,
                             (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
                     }
-                    tiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                    container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 }
             }
         }

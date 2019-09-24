@@ -214,7 +214,7 @@ namespace SecretProject.Class.TileStuff
             //////bluerunestone
             // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
-            //    GenerateTiles(1, 2264, "dirt", 200, 0, currentStage);
+                TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, this,this);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion

@@ -192,8 +192,9 @@ namespace SecretProject.Class.TileStuff
             }
             TileUtility.PlaceChests(this, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
-            //TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager, Tiles);
-            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, AllTiles, this);
+           // TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager,this);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, this);
+            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, tileManager,this);
 
 
             for (int z = 0; z < 5; z++)
