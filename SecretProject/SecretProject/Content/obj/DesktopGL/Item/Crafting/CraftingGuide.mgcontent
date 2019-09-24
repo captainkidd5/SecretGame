@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Crafting/CraftingGuide.xml</SourceFile>
-  <SourceTime>2019-09-18T18:49:31.4747689-07:00</SourceTime>
+  <SourceTime>2019-09-23T17:07:18.6986946-07:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/Crafting/CraftingGuide.xnb</DestFile>
-  <DestTime>2019-09-23T08:56:36.2774656-07:00</DestTime>
+  <DestTime>2019-09-23T17:07:56.6287187-07:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

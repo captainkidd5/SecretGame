@@ -338,7 +338,15 @@ namespace SecretProject.Class.TileStuff
 
                         string key = tileToAssign.GetTileKey(layer);
 
-                        manager.AllObjects.Add(key, tempObjectBody); // not gonna work for saving, gotta figure out.
+                        if(Game1.GetCurrentStageInt() == (int)Stages.World)
+                        {
+                            manager.ChunkUnderPlayer.CurrentObjects.Add(key, tempObjectBody);
+                        }
+                        else
+                        {
+                            manager.AllObjects.Add(key, tempObjectBody);
+                        }
+                        
 
                     }
                 }
