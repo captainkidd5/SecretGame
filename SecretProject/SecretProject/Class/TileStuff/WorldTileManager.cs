@@ -61,7 +61,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
-        
+
 
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
@@ -228,12 +228,12 @@ namespace SecretProject.Class.TileStuff
                     }
                     ActiveChunks.Add(ChunkToAdd);
                 }
-                
 
-                
+
+
 
             }
-            for(int i =ActiveChunks.Count - 1; i >= 0;i--)
+            for (int i = ActiveChunks.Count - 1; i >= 0; i--)
             {
                 if (!pointsToCheck.Any(x => x.X == ActiveChunks[i].X && x.Y == ActiveChunks[i].Y))
                 {
@@ -278,38 +278,91 @@ namespace SecretProject.Class.TileStuff
             int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
-            for (int i = 0; i < ActiveChunks.Count; i++)
+            for (int a = 0; a < ActiveChunks.Count; a++)
             {
 
 
 
-                if (ScreenRectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
+                if (ScreenRectangle.Intersects(ActiveChunks[a].GetChunkRectangle()))
                 {
                     for (int z = 0; z < 5; z++)
                     {
-                        for (int x = 0; x < TileUtility.ChunkX; x++)
+                        for (int i = 0; i < TileUtility.ChunkX; i++)
                         {
-                            for (int y = 0; y < TileUtility.ChunkY; y++)
+                            for (int j = 0; j < TileUtility.ChunkY; j++)
                             {
-                                if(z == 0)
+                                string TileKey = ActiveChunks[a].AllTiles[z][i, j].GetTileKey(z);
+                                Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[z][i, j]);
+                                if (z == 0)
                                 {
-                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)))
+                                    if (ActiveChunks[a].Tufts.ContainsKey(TileKey))
                                     {
-                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        for (int t = 0; t < ActiveChunks[a].Tufts[TileKey].Count; t++)
                                         {
-                                            ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
+                                            ActiveChunks[a].Tufts[TileKey][t].Update(gameTime);
                                         }
                                     }
                                 }
-                                
-                                //update
+
+                                if (destinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                                {
+
+                                    if (mouse.IsHoveringTile(destinationRectangle))
+                                    {
+                                        this.AbleToDrawTileSelector = true;
+                                        //CurrentIndexX = i;
+                                        //CurrentIndexY = j;
+
+                                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][i, j].GID))
+                                        {
+
+                                            if (z == 1)
+                                            {
+
+                                                if (MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties.ContainsKey("destructable"))
+                                                {
+                                                    Game1.Player.UserInterface.DrawTileSelector = true;
+                                                    Game1.isMyMouseVisible = false;
+                                                    Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
+                                                    Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
+
+                                                    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["destructable"]));
+
+                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
+
+                                                    if (mouse.IsClicked)
+                                                    {
+                                                        TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), this, ActiveChunks[a].AllTiles, ActiveChunks[a]);
+
+                                                    }
+
+                                                }
+                                                //return;
+
+                                            }
+                                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][i, j].GID))
+                                            {
+                                                if (MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
+                                                {
+
+                                                    TileUtility.ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["action"], mouse, this, ActiveChunks[a]);
+
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
                             }
+
                         }
                     }
                 }
             }
-
         }
+    
+
+
 
 
         public void DrawTiles(SpriteBatch spriteBatch)
