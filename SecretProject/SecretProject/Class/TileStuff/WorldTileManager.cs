@@ -293,11 +293,11 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if(z == 0)
                                 {
-                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
+                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)))
                                     {
-                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)].Count; t++)
                                         {
-                                            ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
+                                            ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)][t].Update(gameTime);
                                         }
                                     }
                                 }
@@ -335,18 +335,18 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int y = 0; y < TileUtility.ChunkY; y++)
                             {
-                                Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i].Tiles[z][x, y], tilesetTilesWide);
-                                Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i].Tiles[z][x, y]);
+                                Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i].AllTiles[z][x, y], tilesetTilesWide);
+                                Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i].AllTiles[z][x, y]);
                                 spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
 
                                 if(z == 0)
                                 {
-                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)))
+                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)))
                                     {
-                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)].Count; t++)
                                         {
-                                            ActiveChunks[i].Tufts[ActiveChunks[i].Tiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
+                                            ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
                                         }
                                     }
                                 }

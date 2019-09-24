@@ -163,31 +163,31 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(List<Tile[,]> tiles,Dictionary<string, Chest> chests, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, GraphicsDevice graphics)
+        public static void PlaceChests(IInformationContainer container, int tileSetWide, int tileSetHigh, int worldWidth, int worldHeight, GraphicsDevice graphics)
         {
             int hiddenTreasureLimit = 5;
-            for (int i = 1; i < tiles[0].GetLength(0) - 1; i++)
+            for (int i = 1; i < container.AllTiles[0].GetLength(0) - 1; i++)
             {
-                for (int j = 1; j < tiles[0].GetLength(1) - 1; j++)
+                for (int j = 1; j < container.AllTiles[0].GetLength(1) - 1; j++)
                 {
-                    if (tiles[0][i, j].GID == 1115)
+                    if (container.AllTiles[0][i, j].GID == 1115)
                     {
-                        int nbs = CountAliveNeighbors(tiles[0], 1, i, j);
+                        int nbs = CountAliveNeighbors(container.AllTiles[0], 1, i, j);
                         if (nbs >= hiddenTreasureLimit)
                         {
-                            
-                                tiles[3][i, j - 1].GID = 1753;
-                                tiles[1][i, j].GID = 1853;
-                            if (!chests.ContainsKey(tiles[1][i, j].GetTileKey(1)))
+
+                            container.AllTiles[3][i, j - 1].GID = 1753;
+                            container.AllTiles[1][i, j].GID = 1853;
+                            if (!container.Chests.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
                             {
-                                chests.Add(tiles[1][i, j].GetTileKey(1), new Chest(tiles[1][i, j].GetTileKey(1), 3,
-                                    new Vector2(tiles[1][i, j].X % worldWidth * 16,
-                                tiles[1][i, j].Y % worldHeight * 16), graphics, true));
+                                container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
+                                    new Vector2(container.AllTiles[1][i, j].X % worldWidth * 16,
+                                container.AllTiles[1][i, j].Y % worldHeight * 16), graphics, true));
                             }
                             else
                             {
-                                tiles[3][i, j - 1].GID = 0;
-                                tiles[1][i, j].GID = 0;
+                                container.AllTiles[3][i, j - 1].GID = 0;
+                                container.AllTiles[1][i, j].GID = 0;
                             }
                                 
 
@@ -236,10 +236,10 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, ITileManager tileManager)
+        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
         {
-            Tile ReplaceMenttile = new Tile(tileManager.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, tileManager.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
-            tileManager.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
+            Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
+            container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
 
         public static bool CheckIfChunkExistsInMemory(int idX, int idY)
@@ -345,12 +345,12 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse, ITileManager tileManager,List<Tile[,]> tiles)
+        public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse, ITileManager tileManager,IInformationContainer container)
         {
             //new Gid should be one larger, per usual
             string[] information = Game1.Utility.GetActionHelperInfo(action);
-            Game1.Player.UserInterface.TileSelectorX = TileUtility.GetDestinationRectangle(tiles[z][i, j]).X;
-            Game1.Player.UserInterface.TileSelectorY = TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y;
+            Game1.Player.UserInterface.TileSelectorX = TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X;
+            Game1.Player.UserInterface.TileSelectorY = TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y;
             switch (information[0])
             {
                 //including animation frame id to replace!
@@ -367,7 +367,7 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                            TileUtility.ReplaceTile(z, i, j, 86, tileManager);
+                            TileUtility.ReplaceTile(z, i, j, 86, container);
 
 
                         }
@@ -387,15 +387,15 @@ namespace SecretProject.Class.TileStuff
                             Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
-                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(tiles[1][i, j].GetTileKey(1)))
+                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    tempCrop.TileID = tiles[1][i, j].GetTileKey(1);
+                                    tempCrop.TileID = container.AllTiles[1][i, j].GetTileKey(1);
                                     tempCrop.GID++;
-                                    TileUtility.ReplaceTile(1, i, j, tempCrop.GID, tileManager);
-                                    Game1.GetCurrentStage().AllCrops[tiles[1][i, j].GetTileKey(1)] = tempCrop;
+                                    TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
+                                    Game1.GetCurrentStage().AllCrops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
@@ -416,29 +416,29 @@ namespace SecretProject.Class.TileStuff
                             int layer;
                             int tileToReplaceGID;
 
-                            if (Game1.SanctuaryCheckList.TryFillRequirement(tiles[z][i, j].GID))
+                            if (Game1.SanctuaryCheckList.TryFillRequirement(container.AllTiles[z][i, j].GID))
                             {
-                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
+                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
                                 {
-                                    newGID = int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[z][i, j].GID].Properties["spawnWith"]);
+                                    newGID = int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["spawnWith"]);
                                     relationX = int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[newGID].Properties["relationX"]);
                                     relationY = int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[newGID].Properties["relationY"]);
                                     layer = int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[newGID].Properties["layer"]);
                                     tileToReplaceGID = tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
-                                    TileUtility.ReplaceTile(layer, i + relationX, j + relationY, tileToReplaceGID, tileManager);
+                                    TileUtility.ReplaceTile(layer, i + relationX, j + relationY, tileToReplaceGID, container);
                                 }
-                                Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == tiles[z][i, j].GID).Name,
-                                    new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10),
-                                    TileUtility.GetDestinationRectangle(tiles[z][i, j]).X, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 100, 2f, 3f);
+                                Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == container.AllTiles[z][i, j].GID).Name,
+                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 10),
+                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 100, 2f, 3f);
 
 
-                                TileUtility.ReplaceTile(z, i, j, tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[z][i, j].GID].AnimationFrames[0].Id + 1, tileManager);
+                                TileUtility.ReplaceTile(z, i, j, tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1, container);
 
                                 Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
                                 Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
                                 Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X + 10,
-                                    TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y - 10);
+                                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 10,
+                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 10);
 
                                 Game1.SoundManager.SanctuaryAdd.Play();
                             }
@@ -448,7 +448,7 @@ namespace SecretProject.Class.TileStuff
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
-                        tileManager.Chests[tiles[z][i, j].GetTileKey(z)].IsUpdating = true;
+                        tileManager.Chests[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
                     }
                     break;
 
@@ -493,9 +493,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
                             {
-                                TileUtility.ReplaceTile(3, i, j, -1, tileManager);
-                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(tileManager.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16), new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X + 8,
-                                    TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y + 8), 16, 16)
+                                TileUtility.ReplaceTile(3, i, j, -1, container);
+                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(tileManager.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16),
+                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 8,
+                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y + 8), 16, 16)
                                 { ID = 232, SpinAmount = 10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                                 Game1.SoundManager.CraftMetal.Play();
                                 Game1.Player.Inventory.RemoveItem(232);
@@ -513,10 +514,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (Game1.Player.Inventory.FindNumberOfItemInInventory(233) > 0)
                             {
-                                TileUtility.ReplaceTile(3, i, j, -1, tileManager);
+                                TileUtility.ReplaceTile(3, i, j, -1, container);
 
                                 Game1.GetCurrentStage().AllSprites.Add(new Sprite(tileManager.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
-                                    new Vector2(TileUtility.GetDestinationRectangle(tiles[z][i, j]).X + 8, TileUtility.GetDestinationRectangle(tiles[z][i, j]).Y + 5), 16, 16)
+                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 8, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y + 5), 16, 16)
                                 { ID = 233, SpinAmount = -10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
                                 Game1.SoundManager.CraftMetal.Play();
                                 Game1.Player.Inventory.RemoveItem(233);
@@ -617,7 +618,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                    TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager, tiles,container);
+                    TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager,container);
 
                 }
                 else
@@ -637,7 +638,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         DestroySpawnWithTiles(tiles[layer][oldX, oldY], oldX, oldY, world, tileManager, tiles);
                     }
-                    TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager, tiles,container);
+                    TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager,container);
                 }
             }
 
@@ -826,12 +827,12 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().AllCrops.Remove(tiles[1][oldX, oldY].GetTileKey(layer));
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, tileManager, tiles,container);
+                    TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, tileManager,container);
                 }
             }
             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[tiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
 
-            TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager, tiles,container);
+            TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, tileManager,container);
 
 
         }
@@ -955,12 +956,12 @@ namespace SecretProject.Class.TileStuff
             string tileID = crop.TileID; ;
             int x = int.Parse(tileID.Substring(1, 4));
             int y = int.Parse(tileID.Substring(5, 4));
-            TileUtility.ReplaceTilePermanent(1, x, y, crop.GID, stage, tileManager, tiles,container);
+            TileUtility.ReplaceTilePermanent(1, x, y, crop.GID, stage, tileManager,container);
             if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    TileUtility.ReplaceTilePermanent(3, x, y - 1, int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage, tileManager, tiles,container);
+                    TileUtility.ReplaceTilePermanent(3, x, y - 1, int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage, tileManager,container);
                 }
             }
         }
@@ -1025,7 +1026,7 @@ namespace SecretProject.Class.TileStuff
                                         for (int a = 0; a < associatedTiles.Length; a++)
                                         {
                                             ReplaceTilePermanent(int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelectorX / 16 + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
-                                                Game1.Player.UserInterface.TileSelectorY / 16 + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), tileManager, tiles,container);
+                                                Game1.Player.UserInterface.TileSelectorY / 16 + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), tileManager,container);
                                         }
                                     }
                                     int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
@@ -1038,7 +1039,7 @@ namespace SecretProject.Class.TileStuff
                                             Game1.SoundManager.PlaceItem2.Play();
                                             break;
                                     }
-                                    ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, placeID + 1, Game1.GetCurrentStage(), tileManager, tiles,container);
+                                    ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelectorX / 16, Game1.Player.UserInterface.TileSelectorY / 16, placeID + 1, Game1.GetCurrentStage(), tileManager,container);
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
                                 }
                             }
@@ -1055,11 +1056,11 @@ namespace SecretProject.Class.TileStuff
 
         }
         #endregion
-        public static void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage, ITileManager tileManager, List<Tile[,]> tiles, IInformationContainer container)
+        public static void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage, ITileManager tileManager, IInformationContainer container)
         {
-            Tile ReplaceMenttile = new Tile(tiles[layer][oldX, oldY].X, tiles[layer][oldX, oldY].Y, gid);
-            tiles[layer][oldX, oldY] = ReplaceMenttile;
-            TileUtility.AssignProperties(tiles[layer][oldX, oldY], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth, tileManager.mapHeight, tileManager.TileSetNumber, layer,
+            Tile ReplaceMenttile = new Tile(container.AllTiles[layer][oldX, oldY].X, container.AllTiles[layer][oldX, oldY].Y, gid);
+            container.AllTiles[layer][oldX, oldY] = ReplaceMenttile;
+            TileUtility.AssignProperties(container.AllTiles[layer][oldX, oldY], tileManager.GraphicsDevice, tileManager.MapName, tileManager.mapWidth, tileManager.mapHeight, tileManager.TileSetNumber, layer,
                 oldX, oldY,container);
             //AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
         }

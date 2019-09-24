@@ -17,7 +17,7 @@ namespace SecretProject.Class.TileStuff
         public bool IsLoaded { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public List<Tile[,]> Tiles { get; set; }
+        public List<Tile[,]> AllTiles { get; set; }
 
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, ObjectBody> Objects { get; set; }
@@ -38,11 +38,11 @@ namespace SecretProject.Class.TileStuff
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
             Chests = new Dictionary<string, Chest>();
-            Tiles = new List<Tile[,]>();
+            AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             for (int i = 0; i < 5; i++)
             {
-                Tiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
+                AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
         }
 
@@ -64,9 +64,9 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        binaryWriter.Write(Tiles[z][i, j].GID + 1);
-                        binaryWriter.Write(Tiles[z][i, j].X);
-                        binaryWriter.Write(Tiles[z][i, j].Y);
+                        binaryWriter.Write(AllTiles[z][i, j].GID + 1);
+                        binaryWriter.Write(AllTiles[z][i, j].X);
+                        binaryWriter.Write(AllTiles[z][i, j].Y);
 
                     }
                 }
@@ -103,7 +103,7 @@ namespace SecretProject.Class.TileStuff
                         int gid = binaryReader.ReadInt32();
                         int x = binaryReader.ReadInt32();
                         int y = binaryReader.ReadInt32();
-                        Tiles[z][i, j] = new Tile(x, y, gid);
+                        AllTiles[z][i, j] = new Tile(x, y, gid);
 
                     }
                 }
@@ -142,17 +142,17 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (z > 0)
                         {
-                            Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 0);
+                            AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 0);
                         }
                         else
                         {
                             if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
                             {
-                                Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
                             }
                             else
                             {
-                                Tiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1116);
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1116);
 
                             }
                         }
@@ -163,17 +163,17 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 5; i++)
             {
-                Tiles[0] = TileUtility.DoSimulation(Tiles[0], tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    TileUtility.ReassignTileForTiling(Tiles, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
+                    TileUtility.ReassignTileForTiling(AllTiles, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
                     if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
                     {
-                        if (Game1.Utility.GrassGeneratableTiles.Contains(Tiles[0][i, j].GID))
+                        if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                         {
 
                             int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
@@ -181,19 +181,19 @@ namespace SecretProject.Class.TileStuff
                             for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
                                 int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(Tiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(Tiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
+                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
                             }
-                            this.Tufts[Tiles[0][i, j].GetTileKey(0)] = tufts;
+                            this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
                         }
                     }
 
                 }
             }
-            TileUtility.PlaceChests(Tiles, this.Chests, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+            TileUtility.PlaceChests(this, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
             //TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager, Tiles);
-            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, Tiles, this);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, AllTiles, this);
 
 
             for (int z = 0; z < 5; z++)
@@ -202,13 +202,13 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        if (Tiles[z][i, j].GID != 0)
+                        if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(Tiles[z][i, j].GID))
+                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
-                                TileUtility.AssignProperties(Tiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX,
+                                TileUtility.AssignProperties(AllTiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX,
                                     TileUtility.ChunkY, tileManager.TileSetNumber, z, i, j,this);
 
                             }

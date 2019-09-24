@@ -12,7 +12,8 @@ namespace SecretProject.Class.TileStuff
 {
     public interface IInformationContainer
     {
-         Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        List<Tile[,]> AllTiles { get; set; }
+        Dictionary<string, List<GrassTuft>> Tufts { get; set; }
          Dictionary<string, ObjectBody> Objects { get; set; }
          Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
          Dictionary<string, int> TileHitPoints { get; set; }
