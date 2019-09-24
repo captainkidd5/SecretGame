@@ -105,7 +105,7 @@ namespace SecretProject.Class.TileStuff
 
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
-            this.ChunkUnderPlayer = new Chunk(0, 0);
+            this.ChunkUnderPlayer = new Chunk(this,0, 0);
 
 
 
@@ -195,9 +195,9 @@ namespace SecretProject.Class.TileStuff
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
             return new List<Chunk>
             {
-                 new Chunk(currentChunkX - 1, currentChunkY - 1), new Chunk (currentChunkX, currentChunkY - 1) , new Chunk(currentChunkX + 1, currentChunkY - 1) ,
-                 new Chunk(currentChunkX - 1, currentChunkY), new Chunk(currentChunkX , currentChunkY), new Chunk (currentChunkX +1, currentChunkY ),
-                 new Chunk(currentChunkX - 1, currentChunkY + 1), new Chunk( currentChunkX , currentChunkY + 1), new Chunk( currentChunkX +1, currentChunkY + 1)
+                 new Chunk(this,currentChunkX - 1, currentChunkY - 1), new Chunk (this,currentChunkX, currentChunkY - 1) , new Chunk(this,currentChunkX + 1, currentChunkY - 1) ,
+                 new Chunk(this,currentChunkX - 1, currentChunkY), new Chunk(this,currentChunkX , currentChunkY), new Chunk (this,currentChunkX +1, currentChunkY ),
+                 new Chunk(this,currentChunkX - 1, currentChunkY + 1), new Chunk(this, currentChunkX , currentChunkY + 1), new Chunk(this, currentChunkX +1, currentChunkY + 1)
             };
 
         }
@@ -212,7 +212,7 @@ namespace SecretProject.Class.TileStuff
                 if (!ActiveChunks.Any(x => x.X == pointsToCheck[i].X && x.Y == pointsToCheck[i].Y))
                 {
 
-                    Chunk ChunkToAdd = new Chunk(pointsToCheck[i].X, pointsToCheck[i].Y);
+                    Chunk ChunkToAdd = new Chunk(this, pointsToCheck[i].X, pointsToCheck[i].Y);
                     if (!ChunkToAdd.IsLoaded)
                     {
                         if (TileUtility.CheckIfChunkExistsInMemory(ChunkToAdd.X, ChunkToAdd.Y))
@@ -345,7 +345,7 @@ namespace SecretProject.Class.TileStuff
                                                 if (MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
                                                 {
 
-                                                    TileUtility.ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["action"], mouse, this, ActiveChunks[a]);
+                                                    TileUtility.ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["action"], mouse, ActiveChunks[a]);
 
                                                 }
                                             }

@@ -33,7 +33,7 @@ namespace SecretProject.Class.SavingStuff
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
             GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
-            GameSerializer.WriteWorld(Game1.World, binaryWriter, 1);
+            //GameSerializer.WriteWorld(Game1.World, binaryWriter, 1);
             GameSerializer.WriteClock(Game1.GlobalClock, binaryWriter, 1);
 
             binaryWriter.Flush();
@@ -46,7 +46,7 @@ namespace SecretProject.Class.SavingStuff
             FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.dat");
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
-            GameSerializer.ReadWorld(Game1.World, graphics, binaryReader, 1);
+           // GameSerializer.ReadWorld(Game1.World, graphics, binaryReader, 1);
             GameSerializer.ReadClock(Game1.GlobalClock, binaryReader, 1);
 
             binaryReader.Close();

@@ -138,48 +138,47 @@ namespace SecretProject.Class.SavingStuff
 
 
         //just do items for now
-        public static void WriteWorld(World location, BinaryWriter writer, float version)
-        {
-            writer.Write(location.WorldSize);
-            writer.Write(location.AllTiles.AllTiles.Count);
-            writer.Write(location.AllTiles.tilesetTilesWide);
-            writer.Write(location.AllTiles.tilesetTilesHigh);
+        //public static void WriteWorld(World location, BinaryWriter writer, float version)
+        //{
+        //    writer.Write(location.WorldSize);
+        //    writer.Write(location.AllTiles.AllTiles.Count);
 
-            for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
-            {
-                for (int i = 0; i < location.AllTiles.mapWidth; i++)
-                {
-                    for (int j = 0; j < location.AllTiles.mapHeight; j++)
-                    {
-                        WriteTile(location.AllTiles.AllTiles[z][i, j], writer, version);
 
-                    }
-                }
-            }
-        }
+        //    for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
+        //    {
+        //        for (int i = 0; i < location.AllTiles.MapWidth; i++)
+        //        {
+        //            for (int j = 0; j < location.AllTiles.mapHeight; j++)
+        //            {
+        //                WriteTile(location.AllTiles.AllTiles[z][i, j], writer, version);
 
-        public static void ReadWorld(World location, GraphicsDevice graphics, BinaryReader reader, float version)
-        {
-            //location.LoadPreliminaryContent();
-            int worldSize = reader.ReadInt32();
-            int allTilesCount = reader.ReadInt32();
-            int tileSetTilesWide = reader.ReadInt32();
-            int tileSetTilesHigh = reader.ReadInt32();
+        //            }
+        //        }
+        //    }
+        //}
 
-            for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
-            {
-                for (int i = 0; i < location.AllTiles.mapWidth; i++)
-                {
-                    for (int j = 0; j < location.AllTiles.mapHeight; j++)
-                    {
-                       // location.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,location.AllTiles.tilesetTilesWide, location.AllTiles.tilesetTilesHigh);
-                    }
-                }
-            }
+        //public static void ReadWorld(World location, GraphicsDevice graphics, BinaryReader reader, float version)
+        //{
+        //    //location.LoadPreliminaryContent();
+        //    int worldSize = reader.ReadInt32();
+        //    int allTilesCount = reader.ReadInt32();
+        //    int tileSetTilesWide = reader.ReadInt32();
+        //    int tileSetTilesHigh = reader.ReadInt32();
 
-            location.AllTiles.LoadInitialTileObjects(location);
+        //    for (int z = 0; z < location.AllTiles.AllTiles.Count; z++)
+        //    {
+        //        for (int i = 0; i < location.AllTiles.mapWidth; i++)
+        //        {
+        //            for (int j = 0; j < location.AllTiles.mapHeight; j++)
+        //            {
+        //               // location.AllTiles.AllTiles[z][i, j] = ReadTile(reader, graphics, version,location.AllTiles.tilesetTilesWide, location.AllTiles.tilesetTilesHigh);
+        //            }
+        //        }
+        //    }
 
-        }
+        //    location.AllTiles.LoadInitialTileObjects(location);
+
+        //}
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)
         {
             writer.Write(tile.GID + 1);

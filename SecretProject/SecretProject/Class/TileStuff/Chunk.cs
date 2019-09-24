@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
@@ -15,6 +16,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
+        public GraphicsDevice GraphicsDevice { get; set; }
         public TmxMap MapName {get;set;}
         public int TileSetDimension {get;set;}
         public int TileSetNumber { get; set; }
@@ -175,7 +177,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 5; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0],this.TileSetDimension, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0],this, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -202,12 +204,12 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            TileUtility.PlaceChests(this, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
+            TileUtility.PlaceChests(this, tileManager.GraphicsDevice);
 
            // TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager,this);
-            TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, tileManager, this);
-            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, tileManager,this);
-            TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, tileManager, this);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);
+            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0,this);
+            TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
 
 
             for (int z = 0; z < 5; z++)
@@ -228,8 +230,7 @@ namespace SecretProject.Class.TileStuff
                                     AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkY * this.Y;
                                 }
                                 
-                                TileUtility.AssignProperties(AllTiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX,
-                                    TileUtility.ChunkY, tileManager.TileSetNumber, z, i, j,this);
+                                TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
                             }
                         }

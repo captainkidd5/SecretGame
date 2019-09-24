@@ -212,7 +212,7 @@ namespace SecretProject.Class.TileStuff
             //////bluerunestone
             // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
             //////thunderbirch
-                TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, this,this);
+               // TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, this,this);
             //////crown of swords
             //GenerateTiles(1, 6388, "sand", 50, 0);
             //////dandelion
@@ -237,7 +237,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, MapWidth, MapHeight, tileSetNumber, z, i, j,this);
+                                TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
 
                             }
@@ -529,7 +529,7 @@ namespace SecretProject.Class.TileStuff
                                 AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
-                                    TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(),this, AllTiles,this);
+                                    TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(),this);
                                 }
 
                             }
@@ -634,7 +634,7 @@ namespace SecretProject.Class.TileStuff
                                             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("action"))
                                             {
 
-                                                TileUtility.ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"], mouse,this,this);
+                                                TileUtility.ActionHelper(z, i, j, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["action"], mouse,this);
 
                                             }
                                         }
@@ -689,7 +689,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != -1)
                         {
-                            Rectangle SourceRectangle = TileUtility.GetSourceRectangle(AllTiles[z][i, j], this.tilesetTilesWide);
+                            Rectangle SourceRectangle = TileUtility.GetSourceRectangle(AllTiles[z][i, j], this.TileSetDimension);
                             Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
                             if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKey(z)))
                             {

@@ -1,4 +1,5 @@
-﻿using SecretProject.Class.ItemStuff;
+﻿using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
@@ -13,7 +14,7 @@ namespace SecretProject.Class.TileStuff
 {
     public interface IInformationContainer
     {
-
+        GraphicsDevice GraphicsDevice { get; set; }
         TmxMap MapName { get; set; }
         int TileSetDimension { get; set; }
          int MapWidth { get; set; }
