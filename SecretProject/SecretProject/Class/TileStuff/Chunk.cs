@@ -142,7 +142,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (z > 0)
                         {
-                            AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 0);
+                            AllTiles[z][i, j] = new Tile(i, j, 0);
                         }
                         else
                         {
@@ -193,8 +193,9 @@ namespace SecretProject.Class.TileStuff
             TileUtility.PlaceChests(this, tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, tileManager.GraphicsDevice);
 
            // TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager,this);
-            TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0, tileManager, this);
+            TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, tileManager, this);
             TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, tileManager,this);
+            TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, tileManager, this);
 
 
             for (int z = 0; z < 5; z++)
@@ -209,6 +210,12 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
+                                if(z > 0)
+                                {
+                                    AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkX * this.X;
+                                    AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkY * this.Y;
+                                }
+                                
                                 TileUtility.AssignProperties(AllTiles[z][i, j], tileManager.GraphicsDevice, tileManager.MapName, TileUtility.ChunkX,
                                     TileUtility.ChunkY, tileManager.TileSetNumber, z, i, j,this);
 
