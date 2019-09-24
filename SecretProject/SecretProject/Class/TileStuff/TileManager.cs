@@ -32,10 +32,8 @@ namespace SecretProject.Class.TileStuff
         public Texture2D TileSet { get; set; }
         public TmxMap MapName { get;set; }
         protected TmxLayer layerName;
-        public int tilesetTilesWide { get; set; }
-        public int tilesetTilesHigh { get; set; }
-        public int mapWidth { get; set; }
-        public int mapHeight { get; set; }
+        public int MapWidth { get; set; }
+        public int MapHeight { get; set; }
         public int iD { get; set; }
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
@@ -73,6 +71,7 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, ObjectBody> Objects { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
+        public int TileSetDimension { get; set; }
 
         #region CONSTRUCTORS
 
@@ -89,11 +88,10 @@ namespace SecretProject.Class.TileStuff
             TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
             TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
 
-            tilesetTilesWide = tileSet.Width / TileWidth;
-            tilesetTilesHigh = tileSet.Height / TileHeight;
+            TileSetDimension = tileSet.Width / TileWidth;
 
-            mapWidth = mapName.Width;
-            mapHeight = mapName.Height;
+            MapWidth = mapName.Width;
+            MapHeight = mapName.Height;
 
             this.tileCounter = 0;
 
@@ -229,9 +227,9 @@ namespace SecretProject.Class.TileStuff
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                for (int i = 0; i < this.mapWidth; i++)
+                for (int i = 0; i < this.MapWidth; i++)
                 {
-                    for (int j = 0; j < this.mapHeight; j++)
+                    for (int j = 0; j < this.MapHeight; j++)
                     {
                         if (AllTiles[z][i, j].GID != -1)
                         {
@@ -239,7 +237,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, mapWidth, mapHeight, tileSetNumber, z, i, j,this);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], graphicsDevice, mapName, MapWidth, MapHeight, tileSetNumber, z, i, j,this);
 
 
                             }
@@ -472,7 +470,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
             
-            PathGrid = new AStarPathFinder(mapWidth, mapHeight, AllTiles, this.Objects);
+            PathGrid = new AStarPathFinder(MapWidth, MapHeight, AllTiles, this.Objects);
 
         }
         #endregion
@@ -499,14 +497,14 @@ namespace SecretProject.Class.TileStuff
                 startj = 0;
             }
             int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
-            if (endi > this.mapWidth)
+            if (endi > this.MapWidth)
             {
-                endi = this.mapWidth;
+                endi = this.MapWidth;
             }
             int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) + 2;
-            if (endj > this.mapWidth)
+            if (endj > this.MapWidth)
             {
-                endj = this.mapWidth;
+                endj = this.MapWidth;
             }
 
             foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
@@ -623,7 +621,7 @@ namespace SecretProject.Class.TileStuff
 
                                                 if (mouse.IsClicked)
                                                 {
-                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(),this, AllTiles,this);
+                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(),this,this);
 
                                                 }
 
@@ -670,16 +668,16 @@ namespace SecretProject.Class.TileStuff
                 startj = (int)(Game1.cam.Pos.Y / 16) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16);
             }
             int endi = (int)(Game1.cam.Pos.X / 16) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2 / 16) + 2;
-            if (endi > this.mapWidth)
+            if (endi > this.MapWidth)
             {
-                endi = this.mapWidth;
+                endi = this.MapWidth;
             }
             int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 2;
-            if (endj > this.mapHeight)
+            if (endj > this.MapHeight)
             {
-                endj = this.mapWidth;
+                endj = this.MapWidth;
             }
-            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > mapWidth || endj > mapHeight)
+            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > MapWidth || endj > MapHeight)
             {
                 return;
             }

@@ -7,11 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 
 namespace SecretProject.Class.TileStuff
 {
     public interface IInformationContainer
     {
+
+        TmxMap MapName { get; set; }
+        int TileSetDimension { get; set; }
+         int MapWidth { get; set; }
+         int MapHeight { get; set; }
+        int TileSetNumber { get; set; }
         List<Tile[,]> AllTiles { get; set; }
         Dictionary<string, List<GrassTuft>> Tufts { get; set; }
          Dictionary<string, ObjectBody> Objects { get; set; }

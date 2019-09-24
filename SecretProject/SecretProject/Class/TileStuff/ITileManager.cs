@@ -24,10 +24,7 @@ namespace SecretProject.Class.TileStuff
         Texture2D TileSet { get; set; }
         List<Tile[,]> AllTiles { get; set; }
         AStarPathFinder PathGrid { get; set; }
-        int tilesetTilesWide { get; set; }
-         int tilesetTilesHigh { get; set; }
-         int mapWidth { get; set; }
-         int mapHeight { get; set; }
+
          int TileWidth { get; set; }
          int TileHeight { get; set; }
          int TileSetNumber { get; set; }

@@ -332,7 +332,7 @@ namespace SecretProject.Class.TileStuff
 
                                                     if (mouse.IsClicked)
                                                     {
-                                                        TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), this, ActiveChunks[a].AllTiles, ActiveChunks[a]);
+                                                        TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), this, ActiveChunks[a]);
 
                                                     }
 

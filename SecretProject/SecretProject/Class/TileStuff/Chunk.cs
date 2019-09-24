@@ -9,11 +9,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TiledSharp;
 
 namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
+        public TmxMap MapName {get;set;}
+        public int TileSetDimension {get;set;}
+        public int TileSetNumber { get; set; }
+        public int MapWidth { get; set; }
+        public int MapHeight { get; set; }
+
         public bool IsLoaded { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
@@ -25,10 +32,15 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
+        
 
-
-        public Chunk(int x, int y)
+        public Chunk(WorldTileManager tileManager,int x, int y)
         {
+            this.MapName = tileManager.MapName;
+            this.TileSetDimension = tileManager.tilesetTilesWide;
+            this.TileSetNumber = tileManager.TileSetNumber;
+            this.MapWidth = TileUtility.ChunkX;
+            this.MapHeight = TileUtility.ChunkY;
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
@@ -163,7 +175,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 5; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], tileManager.tilesetTilesWide, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0],this.TileSetDimension, tileManager.tilesetTilesHigh, TileUtility.ChunkX, TileUtility.ChunkY, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
