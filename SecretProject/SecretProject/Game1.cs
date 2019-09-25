@@ -158,6 +158,8 @@ namespace SecretProject
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
 
+        public static Texture2D RectangleOutlineTexture;
+
         //CLOCK
         public static Clock GlobalClock;
 
@@ -621,6 +623,9 @@ namespace SecretProject
                 new IntroduceJulianShop()
             };
             IsEventActive = false;
+
+            RectangleOutlineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            RectangleOutlineTexture.SetData(new Color[] { Color.Red });
         }
         #endregion
 

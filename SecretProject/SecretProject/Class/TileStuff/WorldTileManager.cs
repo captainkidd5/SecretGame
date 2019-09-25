@@ -105,7 +105,7 @@ namespace SecretProject.Class.TileStuff
 
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
-            this.ChunkUnderPlayer = new Chunk(this,0, 0);
+            this.ChunkUnderPlayer = new Chunk(this, 0, 0);
 
 
 
@@ -237,6 +237,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (!pointsToCheck.Any(x => x.X == ActiveChunks[i].X && x.Y == ActiveChunks[i].Y))
                 {
+                    ActiveChunks[i].Save();
                     ActiveChunks.RemoveAt(i);
                 }
             }
@@ -278,10 +279,56 @@ namespace SecretProject.Class.TileStuff
             int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
+            List<string> AnimationFrameKeysToRemove = new List<string>();
             for (int a = 0; a < ActiveChunks.Count; a++)
             {
 
+                foreach (EditableAnimationFrameHolder frameholder in ActiveChunks[a].AnimationFrames.Values)
+                {
+                    frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
+                    {
+                        frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
+                        ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
+                            frameholder.Frames[frameholder.Counter].ID + 1);
+                        if (frameholder.Counter == frameholder.Frames.Count - 1)
+                        {
+                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
+                            {
 
+                                if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
+                                {
+
+                                    //needs to refer to first tile ?
+                                    int frameolDX = frameholder.OldX;
+                                    ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                                    AnimationFrameKeysToRemove.Add(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
+                                    if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                    {
+                                        TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), ActiveChunks[a]);
+                                    }
+
+                                }
+                            }
+
+                            frameholder.Counter = 0;
+
+
+                        }
+                        else
+                        {
+
+                            frameholder.Counter++;
+
+                        }
+
+                    }
+                }
+
+                foreach (string key in AnimationFrameKeysToRemove)
+                {
+                    AnimationFrames.Remove(key);
+                }
 
                 if (ScreenRectangle.Intersects(ActiveChunks[a].GetChunkRectangle()))
                 {
@@ -303,6 +350,7 @@ namespace SecretProject.Class.TileStuff
                                         }
                                     }
                                 }
+
 
                                 if (destinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                 {
@@ -353,6 +401,7 @@ namespace SecretProject.Class.TileStuff
                                         }
                                     }
                                 }
+
                             }
 
                         }
@@ -360,7 +409,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-    
+
 
 
 
@@ -378,37 +427,70 @@ namespace SecretProject.Class.TileStuff
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
-            for (int i = 0; i < ActiveChunks.Count; i++)
+            for (int a = 0; a < ActiveChunks.Count; a++)
             {
-                if (ScreenRectangle.Intersects(ActiveChunks[i].GetChunkRectangle()))
+                if (ScreenRectangle.Intersects(ActiveChunks[a].GetChunkRectangle()))
                 {
                     for (int z = 0; z < 5; z++)
                     {
-                        for (int x = 0; x < TileUtility.ChunkX; x++)
+                        for (int i = 0; i < TileUtility.ChunkX; i++)
                         {
-                            for (int y = 0; y < TileUtility.ChunkY; y++)
+                            for (int j = 0; j < TileUtility.ChunkY; j++)
                             {
-                                Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[i].AllTiles[z][x, y], tilesetTilesWide);
-                                Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[i].AllTiles[z][x, y]);
-                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
-
-                                if(z == 0)
+                                if (ActiveChunks[a].AllTiles[z][i, j].GID != -1)
                                 {
-                                    if (ActiveChunks[i].Tufts.ContainsKey(ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)))
+
+
+                                    Rectangle SourceRectangle = TileUtility.GetSourceRectangle(ActiveChunks[a].AllTiles[z][i, j], tilesetTilesWide);
+                                    Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[z][i, j]);
+                                    
+
+                                    if (z == 0)
                                     {
-                                        for (int t = 0; t < ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)].Count; t++)
+                                        if (ActiveChunks[a].Tufts.ContainsKey(ActiveChunks[a].AllTiles[z][i, j].GetTileKey(0)))
                                         {
-                                            ActiveChunks[i].Tufts[ActiveChunks[i].AllTiles[z][x, y].GetTileKey(0)][t].Draw(spriteBatch);
+                                            for (int t = 0; t < ActiveChunks[a].Tufts[ActiveChunks[a].AllTiles[z][i, j].GetTileKey(0)].Count; t++)
+                                            {
+                                                ActiveChunks[a].Tufts[ActiveChunks[a].AllTiles[z][i, j].GetTileKey(0)][t].Draw(spriteBatch);
+                                            }
                                         }
                                     }
+                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][a, j].GID))
+                                    {
+                                        if (MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][a, j].GID].Properties.ContainsKey("newSource"))
+                                        {
+                                            int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][a, j].GID].Properties["newSource"]);
+
+
+                                            SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
+                                                SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
+
+
+                                            DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
+                                                DestinationRectangle.Width, DestinationRectangle.Height);
+                                        }
+                                    }
+                                    if (z == 3)
+                                    {
+                                        spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + ActiveChunks[a].AllTiles[z][i, j].LayerToDrawAtZOffSet);
+
+                                    }
+                                    else
+                                    {
+                                        spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+                                    }
+                                    
                                 }
-                                
+
 
 
                             }
                         }
                     }
+                    TileUtility.DrawGridItem(spriteBatch, this, ActiveChunks[a].AllTiles, ActiveChunks[a]);
+
                 }
             }
 

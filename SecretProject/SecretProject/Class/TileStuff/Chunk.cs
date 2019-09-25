@@ -119,7 +119,7 @@ namespace SecretProject.Class.TileStuff
                         int x = binaryReader.ReadInt32();
                         int y = binaryReader.ReadInt32();
                         AllTiles[z][i, j] = new Tile(x, y, gid);
-
+                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                     }
                 }
             }
@@ -176,7 +176,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 1; i++)
             {
                 AllTiles[0] = TileUtility.DoSimulation(AllTiles[0],this, this.X, this.Y, TileUtility.ChunkX);
             }

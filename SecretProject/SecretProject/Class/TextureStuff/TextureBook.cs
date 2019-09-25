@@ -110,6 +110,7 @@ namespace SecretProject.Class.TextureStuff
 
 
 
+
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
             PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
