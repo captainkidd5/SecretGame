@@ -38,6 +38,7 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk(WorldTileManager tileManager,int x, int y)
         {
+            this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
             this.TileSetDimension = tileManager.tilesetTilesWide;
             this.TileSetNumber = tileManager.TileSetNumber;
