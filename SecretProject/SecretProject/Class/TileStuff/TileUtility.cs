@@ -178,28 +178,7 @@ namespace SecretProject.Class.TileStuff
 
                             container.AllTiles[3][i, j - 1].GID = 1753;
                             container.AllTiles[1][i, j].GID = 1853;
-                            if (!container.Chests.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
-                            {
-                                if(chunkX != 0)
-                                {
-                                    float x = container.AllTiles[1][i, j].X * 16 + chunkX * 16 * 16;
-                                    float y = container.AllTiles[1][i, j].Y * 16 + chunkY * 16 * 16;
-                                    container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
-                                    new Vector2(x,y), graphics, true));
-                                }
-                                else
-                                {
-                                    container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
-                                    new Vector2(container.AllTiles[1][i, j].X % container.MapWidth * 16,
-                                container.AllTiles[1][i, j].Y % container.MapHeight * 16), graphics, true));
-                                }
-                                
-                            }
-                            else
-                            {
-                                container.AllTiles[3][i, j - 1].GID = 0;
-                                container.AllTiles[1][i, j].GID = 0;
-                            }
+                            
                                 
 
 
@@ -317,11 +296,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
                     {
+
                         if (!container.Chests.ContainsKey(tileToAssign.GetTileKey(layer)))
                         {
                             container.Chests.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
-                                    new Vector2(tileToAssign.X % container.MapWidth * 16,
-                               tileToAssign.Y % container.MapHeight * 16), container.GraphicsDevice, true));
+                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice, true));
                         }
 
                     }
@@ -354,6 +333,29 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
+
+                //if (!container.Chests.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
+                //{
+                //    if (chunkX != 0)
+                //    {
+                //        float x = container.AllTiles[1][i, j].X * 16 + chunkX * 16 * 16;
+                //        float y = container.AllTiles[1][i, j].Y * 16 + chunkY * 16 * 16;
+                //        container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
+                //        new Vector2(x, y), graphics, true));
+                //    }
+                //    else
+                //    {
+                //        container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
+                //        new Vector2(container.AllTiles[1][i, j].X % container.MapWidth * 16,
+                //    container.AllTiles[1][i, j].Y % container.MapHeight * 16), graphics, true));
+                //    }
+
+                //}
+                //else
+                //{
+                //    container.AllTiles[3][i, j - 1].GID = 0;
+                //    container.AllTiles[1][i, j].GID = 0;
+                //}
             }
         }
         public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse,IInformationContainer container)
