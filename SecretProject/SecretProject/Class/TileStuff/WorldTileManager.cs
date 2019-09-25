@@ -265,6 +265,7 @@ namespace SecretProject.Class.TileStuff
                 ChunkUnderPlayer = ActiveChunks.Find(x => x.X == ChunkPointUnderPlayer.X && x.Y == ChunkPointUnderPlayer.Y);
                 this.Chests = ChunkUnderPlayer.Chests;
                 this.CurrentObjects = ChunkUnderPlayer.Objects;
+                this.Chests = ChunkUnderPlayer.Chests;
 
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
@@ -282,7 +283,7 @@ namespace SecretProject.Class.TileStuff
             List<string> AnimationFrameKeysToRemove = new List<string>();
             for (int a = 0; a < ActiveChunks.Count; a++)
             {
-
+                
                 foreach (EditableAnimationFrameHolder frameholder in ActiveChunks[a].AnimationFrames.Values)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -385,7 +386,6 @@ namespace SecretProject.Class.TileStuff
                                                     }
 
                                                 }
-                                                //return;
 
                                             }
                                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][i, j].GID))

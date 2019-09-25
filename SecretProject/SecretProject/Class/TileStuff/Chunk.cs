@@ -205,7 +205,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            TileUtility.PlaceChests(this, tileManager.GraphicsDevice);
+            TileUtility.PlaceChests(this, tileManager.GraphicsDevice,this.X, this.Y);
 
            // TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager,this);
             TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);

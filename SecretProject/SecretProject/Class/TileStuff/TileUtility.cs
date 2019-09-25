@@ -163,7 +163,7 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(IInformationContainer container, GraphicsDevice graphics)
+        public static void PlaceChests(IInformationContainer container, GraphicsDevice graphics, int chunkX =0, int chunkY = 0)
         {
             int hiddenTreasureLimit = 5;
             for (int i = 1; i < container.AllTiles[0].GetLength(0) - 1; i++)
@@ -180,9 +180,20 @@ namespace SecretProject.Class.TileStuff
                             container.AllTiles[1][i, j].GID = 1853;
                             if (!container.Chests.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
                             {
-                                container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
+                                if(chunkX != 0)
+                                {
+                                    float x = container.AllTiles[1][i, j].X * 16 + chunkX * 16 * 16;
+                                    float y = container.AllTiles[1][i, j].Y * 16 + chunkY * 16 * 16;
+                                    container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
+                                    new Vector2(x,y), graphics, true));
+                                }
+                                else
+                                {
+                                    container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
                                     new Vector2(container.AllTiles[1][i, j].X % container.MapWidth * 16,
                                 container.AllTiles[1][i, j].Y % container.MapHeight * 16), graphics, true));
+                                }
+                                
                             }
                             else
                             {
@@ -604,7 +615,6 @@ namespace SecretProject.Class.TileStuff
             {
                 if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
                 {
-                    //ObjectBody newObject = new ObjectBody();
                     container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
                     if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
                     {
@@ -815,7 +825,6 @@ namespace SecretProject.Class.TileStuff
                     container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
                 }
             }
-            //AllTiles[layer][oldX, oldY].HasObject = false;
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
             {
 
@@ -1063,7 +1072,6 @@ namespace SecretProject.Class.TileStuff
             container.AllTiles[layer][oldX, oldY] = ReplaceMenttile;
             TileUtility.AssignProperties(container.AllTiles[layer][oldX, oldY], layer,
                 oldX, oldY,container);
-            //AssignProperties(AllTiles[layer][oldX, oldY], 0, layer, oldX, oldY, stage);
         }
     }
 
