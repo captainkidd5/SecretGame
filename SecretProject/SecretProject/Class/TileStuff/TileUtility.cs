@@ -178,10 +178,6 @@ namespace SecretProject.Class.TileStuff
 
                             container.AllTiles[3][i, j - 1].GID = 1753;
                             container.AllTiles[1][i, j].GID = 1853;
-                            
-                                
-
-
                         }
                     }
                 }
@@ -333,29 +329,6 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
-
-                //if (!container.Chests.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
-                //{
-                //    if (chunkX != 0)
-                //    {
-                //        float x = container.AllTiles[1][i, j].X * 16 + chunkX * 16 * 16;
-                //        float y = container.AllTiles[1][i, j].Y * 16 + chunkY * 16 * 16;
-                //        container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
-                //        new Vector2(x, y), graphics, true));
-                //    }
-                //    else
-                //    {
-                //        container.Chests.Add(container.AllTiles[1][i, j].GetTileKey(1), new Chest(container.AllTiles[1][i, j].GetTileKey(1), 3,
-                //        new Vector2(container.AllTiles[1][i, j].X % container.MapWidth * 16,
-                //    container.AllTiles[1][i, j].Y % container.MapHeight * 16), graphics, true));
-                //    }
-
-                //}
-                //else
-                //{
-                //    container.AllTiles[3][i, j - 1].GID = 0;
-                //    container.AllTiles[1][i, j].GID = 0;
-                //}
             }
         }
         public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse,IInformationContainer container)
@@ -963,17 +936,17 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
-        public static void UpdateCropTile(Crop crop, ILocation stage, ITileManager tileManager, List<Tile[,]> tiles,IInformationContainer container)
+        public static void UpdateCropTile(Crop crop, ILocation stage,  IInformationContainer container)
         {
             string tileID = crop.TileID; ;
             int x = int.Parse(tileID.Substring(1, 4));
             int y = int.Parse(tileID.Substring(5, 4));
             TileUtility.ReplaceTilePermanent(1, x, y, crop.GID, stage,container);
-            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
+            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {
-                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
                 {
-                    TileUtility.ReplaceTilePermanent(3, x, y - 1, int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage,container);
+                    TileUtility.ReplaceTilePermanent(3, x, y - 1, int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage,container);
                 }
             }
         }

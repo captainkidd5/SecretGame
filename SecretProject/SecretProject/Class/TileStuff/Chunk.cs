@@ -101,7 +101,23 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            binaryWriter.Flush();
+            binaryWriter.Write(Chests.Count);
+            foreach (KeyValuePair<string, Chest> chest in this.Chests)
+            {
+                binaryWriter.Write(chest.Key);
+                binaryWriter.Write(chest.Value.ID);
+                binaryWriter.Write(chest.Value.Size);
+                binaryWriter.Write(chest.Value.Location.X);
+                binaryWriter.Write(chest.Value.Location.Y);
+                for(int s =0; s < chest.Value.Size; s++)
+                {
+                    binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems.Count);
+                    binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                }
+                
+            }
+
+                binaryWriter.Flush();
             binaryWriter.Close();
         }
         public void Load()
@@ -139,6 +155,30 @@ namespace SecretProject.Class.TileStuff
                 }
                 Tufts.Add(key, tileTufts);
             }
+
+
+            int chestCount = binaryReader.ReadInt32();
+            for(int c =0; c < chestCount; c++)
+            {
+                string chestKey = binaryReader.ReadString();
+                string chestID = binaryReader.ReadString();
+                int chestSize = binaryReader.ReadInt32();
+                float locationX = binaryReader.ReadSingle();
+                float locationY = binaryReader.ReadSingle();
+                Chest chestToAdd = new Chest(chestID, chestSize, new Vector2(locationX,locationY),this.GraphicsDevice, false);
+                for (int i = 0; i < chestSize; i++)
+                {
+                    int numberOfItemsInSlot = binaryReader.ReadInt32();
+                    int itemID = binaryReader.ReadInt32();
+                    for(int j =0; j < numberOfItemsInSlot; j++)
+                    {
+                        chestToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                    }
+                }
+
+                this.Chests.Add(chestKey, chestToAdd);
+            }
+           
             this.IsLoaded = true;
             binaryReader.Close();
 

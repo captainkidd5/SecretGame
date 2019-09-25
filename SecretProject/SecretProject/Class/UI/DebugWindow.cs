@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.TileStuff;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
@@ -32,29 +33,29 @@ namespace SecretProject.Class.UI
             if(DebugButton1.isClicked)
             {
 
-                Game1.World.AllTiles.LoadInitialChunks();
+                //Game1.World.AllTiles.LoadInitialChunks();
 
-                //foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
-                //{
-                //    if (crop.UpdateGrowthCycle())
-                //    {
-                //        Game1.GetCurrentStage().AllTiles.UpdateCropTile(crop, Game1.GetCurrentStage());
-                //    }
+                foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
+                {
+                    if (crop.UpdateGrowthCycle())
+                    {
+                        //TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
+                    }
+                }
+
+                    //}
+                    //for (int i =0; i < Game1.PortalGraph.Size; i++)
+                    //{
+                    //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
+                    //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
+                    //    {
+                    //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
+                    //    }
+                    //    Console.WriteLine("\n\n");
+                    //}
 
 
-                //}
-                //for (int i =0; i < Game1.PortalGraph.Size; i++)
-                //{
-                //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
-                //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
-                //    {
-                //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
-                //    }
-                //    Console.WriteLine("\n\n");
-                //}
-                
-                
-            }
+                }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
         public void Draw(SpriteBatch spriteBatch)
