@@ -280,18 +280,17 @@ namespace SecretProject.Class.TileStuff
             int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
-            List<string> AnimationFrameKeysToRemove = new List<string>();
+            
             for (int a = 0; a < ActiveChunks.Count; a++)
             {
-                
+                List<string> AnimationFrameKeysToRemove = new List<string>();
                 foreach (EditableAnimationFrameHolder frameholder in ActiveChunks[a].AnimationFrames.Values)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                     {
                         frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                        ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
-                            frameholder.Frames[frameholder.Counter].ID + 1);
+                        TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, ActiveChunks[a]); 
                         if (frameholder.Counter == frameholder.Frames.Count - 1)
                         {
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
@@ -302,11 +301,12 @@ namespace SecretProject.Class.TileStuff
 
                                     //needs to refer to first tile ?
                                     int frameolDX = frameholder.OldX;
-                                    ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                                    TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a]); 
                                     AnimationFrameKeysToRemove.Add(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                     if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                     {
-                                        TileUtility.FinalizeTile(frameholder.Layer, gameTime,frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY], ActiveChunks[a].X, ActiveChunks[a].Y), Game1.GetCurrentStage(), ActiveChunks[a]);
+                                        TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY],
+                                            ActiveChunks[a].X, ActiveChunks[a].Y), Game1.GetCurrentStage(), ActiveChunks[a]);
                                     }
 
                                 }

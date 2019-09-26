@@ -257,21 +257,21 @@ namespace SecretProject.Class.StageFolder
                 }
                 
             }
-            if (this.Gondola.Position == new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100))
-            {
+            //if (this.Gondola.Position == new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100))
+            //{
                 IsGondolaAtEndingPosition = true;
-            }
-            else
-            {
-                IsGondolaAtEndingPosition = false;
-            }
-            if(!IsExitingOnGondola &&!IsGondolaAtEndingPosition)
-            {
-                Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
-                Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
-                IsGondolaAtStartingPosition = false;
-                return;
-            }
+            //}
+            //else
+            //{
+            //    IsGondolaAtEndingPosition = false;
+            //}
+            //if(!IsExitingOnGondola &&!IsGondolaAtEndingPosition)
+            //{
+            //    Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
+            //    Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
+            //    IsGondolaAtStartingPosition = false;
+            //    return;
+            //}
 
         }
         public int portalIndex;
