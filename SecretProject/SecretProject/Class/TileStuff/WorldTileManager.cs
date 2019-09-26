@@ -509,10 +509,13 @@ namespace SecretProject.Class.TileStuff
             throw new NotImplementedException();
         }
 
-        //public AStarPathFinder GetPathGrid(Vector2 entiyPosition)
-        //{
-        //    //lets create a path grid of the sorrounding 8 chunks around the entity
+        public AStarPathFinder GetPathGrid(Vector2 entityPosition)
+        {
+            //lets create a path grid of the sorrounding 8 chunks around the entity,
+            Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkX), (int)(entityPosition.Y / 16 / TileUtility.ChunkY));
+            Chunk ChunkCopy = ActiveChunks.Find(x => x.X == ChunkUnderEntity.X && x.Y == ChunkUnderEntity.Y);
+            return new AStarPathFinder(TileUtility.ChunkX, TileUtility.ChunkY, ChunkCopy.AllTiles, ChunkCopy.Objects);
 
-        //}
+        }
     }
 }

@@ -634,7 +634,17 @@ namespace SecretProject.Class.TileStuff
             if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && !Game1.Player.CurrentAction[0, 0].IsAnimated)
             {
                 int tool = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]);
-                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == tool)
+                //this is out here because any equipped item should be able to pick it up no matter what
+                if (tool == -50)
+                {
+                    FinalizeTile(layer, gameTime, oldX, oldY, destinationRectangle, world, container, delayTimer: .25f);
+                    if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+                    {
+                        container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
+                    }
+
+                }
+                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == tool)
                 {
                     switch (tool)
                     {
@@ -759,7 +769,7 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, container);
                 }
             }
-            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
+            // Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
 
             TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, container);
 
