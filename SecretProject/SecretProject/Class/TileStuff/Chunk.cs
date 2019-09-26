@@ -196,7 +196,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void Generate(ITileManager tileManager)
+        public void Generate(Object stateInfo)
         {
             float chanceToBeDirt = .45f;
             for (int z = 0; z < 5; z++)
@@ -255,12 +255,13 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            TileUtility.PlaceChests(this, tileManager.GraphicsDevice,this.X, this.Y);
+            TileUtility.PlaceChests(this, this.GraphicsDevice,this.X, this.Y);
 
-           // TileUtility.GenerateTiles(1, 979, "dirt", 500, 0, tileManager,this);
+            TileUtility.GenerateTiles(1, 979, "grass", 50, 0,this);
             TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0,this);
             TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
+            TileUtility.GenerateTiles(1, 1664, "dirt", 50, 0, this);
 
 
             for (int z = 0; z < 5; z++)
@@ -271,7 +272,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != 0)
                         {
-                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
@@ -290,8 +291,8 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-           
 
+            this.IsLoaded = true;
         }
 
         public void Unload()
