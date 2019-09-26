@@ -306,7 +306,7 @@ namespace SecretProject.Class.TileStuff
                                     AnimationFrameKeysToRemove.Add(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                     if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                     {
-                                        TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY], ActiveChunks[a].X, ActiveChunks[a].Y), Game1.GetCurrentStage(), ActiveChunks[a]);
+                                        TileUtility.FinalizeTile(frameholder.Layer, gameTime,frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY], ActiveChunks[a].X, ActiveChunks[a].Y), Game1.GetCurrentStage(), ActiveChunks[a]);
                                     }
 
                                 }
@@ -382,7 +382,7 @@ namespace SecretProject.Class.TileStuff
 
                                                     if (mouse.IsClicked)
                                                     {
-                                                        TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), this, ActiveChunks[a]);
+                                                        TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), ActiveChunks[a]);
 
                                                     }
 
