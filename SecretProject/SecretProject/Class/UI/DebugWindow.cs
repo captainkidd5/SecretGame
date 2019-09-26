@@ -35,27 +35,27 @@ namespace SecretProject.Class.UI
 
                 //Game1.World.AllTiles.LoadInitialChunks();
 
-                foreach (Crop crop in Game1.GetCurrentStage().AllCrops.Values)
+                foreach (Crop crop in Game1.GetCurrentStage().AllTiles.Crops.Values)
                 {
                     if (crop.UpdateGrowthCycle())
                     {
-                        //TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
+                       // TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
                     }
                 }
 
-                    //}
-                    //for (int i =0; i < Game1.PortalGraph.Size; i++)
-                    //{
-                    //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
-                    //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
-                    //    {
-                    //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
-                    //    }
-                    //    Console.WriteLine("\n\n");
-                    //}
+                //}
+                //for (int i =0; i < Game1.PortalGraph.Size; i++)
+                //{
+                //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
+                //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
+                //    {
+                //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
+                //    }
+                //    Console.WriteLine("\n\n");
+                //}
 
 
-                }
+            }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
         public void Draw(SpriteBatch spriteBatch)

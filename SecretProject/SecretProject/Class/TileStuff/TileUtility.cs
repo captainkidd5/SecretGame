@@ -240,12 +240,20 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static Rectangle GetDestinationRectangle(Tile tile)
+        public static Rectangle GetDestinationRectangle(Tile tile, int chunkX = 0, int chunkY = 0)
         {
 
             float X = (tile.X * 16);
             float Y = (tile.Y * 16);
-            return new Rectangle((int)X, (int)Y, 16, 16);
+            if(chunkX == 0 && chunkY == 0)
+            {
+                return new Rectangle((int)X, (int)Y, 16, 16);
+            }
+            else
+            {
+                return new Rectangle((int)(X + chunkX * ChunkX * ChunkX), (int)(Y + chunkY * ChunkY * ChunkY), 16, 16);
+            }
+            
         }
         public static Rectangle GetSourceRectangle(Tile tile, int tilesetTilesWide)
         {
@@ -373,7 +381,7 @@ namespace SecretProject.Class.TileStuff
                             Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
-                                if (!Game1.GetCurrentStage().AllCrops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
+                                if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
@@ -381,7 +389,7 @@ namespace SecretProject.Class.TileStuff
                                     tempCrop.TileID = container.AllTiles[1][i, j].GetTileKey(1);
                                     tempCrop.GID++;
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                    Game1.GetCurrentStage().AllCrops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
+                                    container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
@@ -808,9 +816,9 @@ namespace SecretProject.Class.TileStuff
             //mostly for crops
 
             GetDrop(layer, oldX, oldY, destinationRectangle, container);
-            if (Game1.GetCurrentStage().AllCrops.ContainsKey(container.AllTiles[1][oldX, oldY].GetTileKey(layer)))
+            if (container.Crops.ContainsKey(container.AllTiles[1][oldX, oldY].GetTileKey(layer)))
             {
-                Game1.GetCurrentStage().AllCrops.Remove(container.AllTiles[1][oldX, oldY].GetTileKey(layer));
+                container.Crops.Remove(container.AllTiles[1][oldX, oldY].GetTileKey(layer));
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
                 {
                     TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world,container);

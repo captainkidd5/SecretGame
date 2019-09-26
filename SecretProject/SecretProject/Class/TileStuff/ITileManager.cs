@@ -35,6 +35,7 @@ namespace SecretProject.Class.TileStuff
         Dictionary<string, Chest> Chests { get; set; }
         List<LightSource> Lights { get; set; }
         Dictionary<string, ObjectBody> Objects { get; set; }
+        Dictionary<string, Crop> Crops { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }

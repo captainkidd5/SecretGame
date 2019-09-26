@@ -62,7 +62,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-
+        public Dictionary<string,Crop> Crops { get; set; }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -306,7 +306,7 @@ namespace SecretProject.Class.TileStuff
                                     AnimationFrameKeysToRemove.Add(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                     if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                     {
-                                        TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), ActiveChunks[a]);
+                                        TileUtility.Destroy(frameholder.Layer, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY], ActiveChunks[a].X, ActiveChunks[a].Y), Game1.GetCurrentStage(), ActiveChunks[a]);
                                     }
 
                                 }
@@ -341,6 +341,8 @@ namespace SecretProject.Class.TileStuff
                             {
                                 string TileKey = ActiveChunks[a].AllTiles[z][i, j].GetTileKey(z);
                                 Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[z][i, j]);
+                                Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
+                                Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
                                 if (z == 0)
                                 {
                                     if (ActiveChunks[a].Tufts.ContainsKey(TileKey))
@@ -372,8 +374,7 @@ namespace SecretProject.Class.TileStuff
                                                 {
                                                     Game1.Player.UserInterface.DrawTileSelector = true;
                                                     Game1.isMyMouseVisible = false;
-                                                    Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
-                                                    Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
+                                                    
 
                                                     mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["destructable"]));
 

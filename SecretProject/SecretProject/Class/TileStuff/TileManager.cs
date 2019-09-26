@@ -73,6 +73,8 @@ namespace SecretProject.Class.TileStuff
         public bool AbleToDrawTileSelector { get; set; }
         public int TileSetDimension { get; set; }
 
+        public Dictionary<string, Crop> Crops { get; set; }
+
         #region CONSTRUCTORS
 
         private TileManager()
@@ -112,6 +114,7 @@ namespace SecretProject.Class.TileStuff
             CurrentObjects = new Dictionary<string, ObjectBody>();
             Lights = new List<LightSource>();
             Chests = new Dictionary<string, Chest>();
+            Crops = new Dictionary<string, Crop>();
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -206,7 +209,7 @@ namespace SecretProject.Class.TileStuff
             //    //stone
             //    GenerateTiles(1, 979, "dirt", 50, 0, currentStage);
             ////    //grass
-            //  GenerateTiles(1, 1079, "dirt", 50, 0, currentStage);
+            TileUtility.GenerateTiles(1, 1079, "dirt", 5000, 0, this);
             ////    //redrunestone
             //GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
             //////bluerunestone

@@ -57,7 +57,6 @@ namespace SecretProject.Class.StageFolder
         ContentManager Content { get; set; }
         GraphicsDevice Graphics { get; set; }
         Rectangle MapRectangle { get; set; }
-        Dictionary<string, Crop> AllCrops { get; set; }
 
         bool IsDark { get; set; }
         bool ShowBorders { get; set; }
