@@ -547,29 +547,6 @@ namespace SecretProject.Class.TileStuff
                     {
                         DestroySpawnWithTiles(tile, x, y, world, container);
                     }
-                    if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("AssociatedTiles"))
-                    {
-                        int[] associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["AssociatedTiles"]);
-
-                        for (int i = 0; i < associatedTiles.Length; i++)
-                        {
-                            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(associatedTiles[i]))
-                            {
-                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count > 0)
-                                {
-
-
-                                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                                    for (int j = 0; j < container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count; j++)
-                                    {
-                                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames[j]));
-                                    }
-                                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, associatedTiles[i]);
-                                    container.AnimationFrames.Add(container.AllTiles[layer][x, y - 1].GetTileKey(layer), frameHolder);
-                                }
-                            }
-                        }
-                    }
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames.Count > 0)
                 {
@@ -708,8 +685,6 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-
-
         }
 
         public static void GetDrop(int layer, int x, int y, Rectangle destinationRectangle, IInformationContainer container)
@@ -736,25 +711,37 @@ namespace SecretProject.Class.TileStuff
 
         public static void FinalizeTile(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container, float delayTimer = 0f)
         {
-            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+            if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
             {
+                int[] associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["AssociatedTiles"]);
 
-
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count > 0)
+                for (int i = 0; i < associatedTiles.Length; i++)
                 {
-                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                    for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].AnimationFrames.Count; i++)
+                    if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(associatedTiles[i]))
                     {
-                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].AnimationFrames[i]));
+                        if (container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count > 0)
+                        {
+
+
+                            List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                            for (int j = 0; j < container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames.Count; j++)
+                            {
+                                frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames[j]));
+                            }
+                            EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, associatedTiles[i]);
+                            container.AnimationFrames.Add(container.AllTiles[layer][oldX, oldY - 1].GetTileKey(layer), frameHolder);
+                        }
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, container.AllTiles[layer][oldX, oldY].GID);
-                    container.AnimationFrames.Add(container.AllTiles[layer][oldX, oldY].GetTileKey(layer), frameHolder);
                 }
             }
 
             if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
             {
                 container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+            }
+            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+            {
+                container.TileHitPoints.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
             }
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
             {

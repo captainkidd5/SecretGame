@@ -456,11 +456,11 @@ namespace SecretProject.Class.TileStuff
                                             }
                                         }
                                     }
-                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][a, j].GID))
+                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ActiveChunks[a].AllTiles[z][i, j].GID))
                                     {
-                                        if (MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][a, j].GID].Properties.ContainsKey("newSource"))
+                                        if (MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
                                         {
-                                            int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][a, j].GID].Properties["newSource"]);
+                                            int[] rectangleCoords = Game1.Utility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[ActiveChunks[a].AllTiles[z][i, j].GID].Properties["newSource"]);
 
 
                                             SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],

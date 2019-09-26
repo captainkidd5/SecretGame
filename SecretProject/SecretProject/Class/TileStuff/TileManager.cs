@@ -46,8 +46,6 @@ namespace SecretProject.Class.TileStuff
         public ContentManager Content { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public int ReplaceTileGid { get; set; }
-        public int CurrentIndexX { get; set; }
-        public int CurrentIndexY { get; set; }
         public Tile TempTile { get; set; }
         public int OldIndexX { get; set; }
         public int OldIndexY { get; set; }
@@ -239,7 +237,6 @@ namespace SecretProject.Class.TileStuff
                             if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                             {
 
-                                //AssignProperties(AllTiles[z][i, j], 0, z, i, j, currentStage);
                                 TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
 
@@ -253,11 +250,7 @@ namespace SecretProject.Class.TileStuff
         public int NumberOfLayers { get; set; }
         public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        //FOR PROCEDURAL
-        #region PROCEDURALGENERATION CONSTRUCTOR
 
-        #endregion
-        #endregion
 
         #region LOADTILESOBJECTS
         public void LoadInitialTileObjects(ILocation stage)
@@ -270,7 +263,6 @@ namespace SecretProject.Class.TileStuff
 
         #region UPDATE
         
-       // Dictionary<string, TileStuff.EditableAnimationFrameHolder> ITileManager.AnimationFrames { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
@@ -392,8 +384,6 @@ namespace SecretProject.Class.TileStuff
                                 if (mouse.IsHoveringTile(destinationRectangle))
                                 {
                                     this.AbleToDrawTileSelector = true;
-                                    CurrentIndexX = i;
-                                    CurrentIndexY = j;
 
                                     if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
@@ -546,7 +536,7 @@ namespace SecretProject.Class.TileStuff
 
         #endregion
 
-
+        #endregion
 
     }
 
