@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/BackDrops/wilderness.png</SourceFile>
-  <SourceTime>2019-09-25T09:41:24.5599675-07:00</SourceTime>
+  <SourceTime>2019-09-25T18:42:25.0965818-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/BackDrops/wilderness.xnb</DestFile>
-  <DestTime>2019-09-25T09:42:02.5852085-07:00</DestTime>
+  <DestTime>2019-09-25T18:43:21.1440634-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/IntheForest.mp3</SourceFile>
-  <SourceTime>2019-09-23T17:07:18.712657-07:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Music/IntheForest.xnb</DestFile>
-  <DestTime>2019-09-24T23:54:14.516604-07:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Music/IntheForest.mp3</SourceFile>
+  <SourceTime>2019-09-19T14:04:07.7767749-07:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Music/IntheForest.xnb</DestFile>
+  <DestTime>2019-09-25T18:43:09.1230982-07:00</DestTime>
   <Importer>Mp3Importer</Importer>
-  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SongProcessor</Processor>
-  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Music/IntheForest.ogg</string>
+    <string>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Music/IntheForest.ogg</string>
   </BuildOutput>
 </PipelineBuildEvent>
