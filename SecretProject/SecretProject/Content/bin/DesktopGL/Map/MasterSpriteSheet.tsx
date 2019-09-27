@@ -537,6 +537,20 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1194">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="1196">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1204">
   <properties>
    <property name="action" value="diggable"/>
@@ -623,6 +637,32 @@
    <property name="layer" value="1"/>
    <property name="relationX" value="1"/>
    <property name="relationY" value="0"/>
+  </properties>
+ </tile>
+ <tile id="1293">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100:1"/>
+  </properties>
+ </tile>
+ <tile id="1294">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100:1"/>
+   <property name="spawnWith" value="1194"/>
+  </properties>
+ </tile>
+ <tile id="1296">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100:1"/>
+   <property name="spawnWith" value="1196"/>
+  </properties>
+ </tile>
+ <tile id="1297">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="171:100:1"/>
   </properties>
  </tile>
  <tile id="1308">

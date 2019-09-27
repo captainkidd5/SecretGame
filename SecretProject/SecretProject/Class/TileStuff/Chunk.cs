@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
@@ -192,6 +193,8 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = true;
             binaryReader.Close();
 
+            Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+
         }
 
 
@@ -262,7 +265,10 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0,this);
             TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1664, "dirt", 50, 0, this);
-
+            TileUtility.GenerateTiles(1, 1294, "dirt", 50, 0, this);
+            TileUtility.GenerateTiles(1, 1295, "dirt", 50, 0, this);
+           TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
+            TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
 
             for (int z = 0; z < 5; z++)
             {

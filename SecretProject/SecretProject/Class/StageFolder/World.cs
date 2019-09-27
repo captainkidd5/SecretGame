@@ -193,10 +193,6 @@ namespace SecretProject.Class.StageFolder
             AllCrops = new Dictionary<string, Crop>();
             
             Boars = new List<Boar>() { };
-            for (int i = 1; i < 5; i++)
-            {
-                //Boars.Add(new Boar("Boar", new Vector2(Game1.Utility.RFloat(300, WorldWidth *12 ), Game1.Utility.RFloat(300, WorldHeight * 12)), Graphics, Game1.AllTextures.EnemySpriteSheet));
-            }
 
            // Game1.SoundManager.DustStormInstance.Play();
         }
@@ -350,7 +346,6 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.Update(gameTime, mouse);
-                //AllTiles.Update(gameTime, mouse);
                 player.Update(gameTime, AllItems, AllTiles.ChunkUnderPlayer.Objects, mouse);
 
                 
@@ -364,7 +359,7 @@ namespace SecretProject.Class.StageFolder
                     if(Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
                     {
                         OnScreenNPCS.Add(Boars[e]);
-                        Boars[e].Update(gameTime, AllObjects, mouse);
+                        Boars[e].Update(gameTime, AllTiles.GetChunkFromPosition(Boars[e].Position).Objects, mouse);
                     }
                     else
                     {
@@ -374,10 +369,6 @@ namespace SecretProject.Class.StageFolder
                     //Console.WriteLine(Boars[1].cu);
                     //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
                 }
-                // foreach (Character character in Game1.AllCharacters)
-                // {
-                //     character.Update(gameTime, AllObjects, mouse);
-                // }
 
             }
             Game1.Player.controls.UpdateKeys();
@@ -435,9 +426,6 @@ namespace SecretProject.Class.StageFolder
                 {
                     player.Draw(spriteBatch, .5f + (player.Rectangle.Top  + player.Rectangle.Height) * .00001f);
                 }
-                
-                //Console.WriteLine("Player Position" + player.position);
-
 
                 Game1.Elixer.Draw(spriteBatch);
                 Game1.Dobbin.Draw(spriteBatch);
@@ -454,8 +442,6 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                //AllTiles.DrawTiles(spriteBatch);
-
 
                 mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
@@ -495,10 +481,6 @@ namespace SecretProject.Class.StageFolder
                         obj.Draw(spriteBatch, .4f);
                     }
                 }
-
-
-                //Game1.Elixer.Draw(spriteBatch);
-
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();

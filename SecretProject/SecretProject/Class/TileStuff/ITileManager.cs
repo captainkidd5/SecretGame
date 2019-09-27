@@ -48,7 +48,8 @@ namespace SecretProject.Class.TileStuff
         //worldtilemanager specific
         void LoadInitialChunks();
         Chunk ChunkUnderPlayer { get; set; }
-
+        AStarPathFinder GetPathGrid(Vector2 entityPosition);
+        Chunk GetChunkFromPosition(Vector2 entityPosition);
 
 
     }

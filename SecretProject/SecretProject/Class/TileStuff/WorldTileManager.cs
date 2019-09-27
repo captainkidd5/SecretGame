@@ -202,6 +202,12 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public Chunk GetChunkFromPosition(Vector2 entityPosition)
+        {
+            Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkX), (int)(entityPosition.Y / 16 / TileUtility.ChunkY));
+            return ActiveChunks.Find(x => x.X == ChunkUnderEntity.X && x.Y == ChunkUnderEntity.Y);
+        }
+
         public void CheckActiveChunks()
         {
             List<Point> pointsToCheck = ChunkPointsWhichShouldBeActive(Game1.Player.position);
@@ -511,9 +517,8 @@ namespace SecretProject.Class.TileStuff
 
         public AStarPathFinder GetPathGrid(Vector2 entityPosition)
         {
-            //lets create a path grid of the sorrounding 8 chunks around the entity,
-            Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkX), (int)(entityPosition.Y / 16 / TileUtility.ChunkY));
-            Chunk ChunkCopy = ActiveChunks.Find(x => x.X == ChunkUnderEntity.X && x.Y == ChunkUnderEntity.Y);
+
+            Chunk ChunkCopy = GetChunkFromPosition(entityPosition);
             return new AStarPathFinder(TileUtility.ChunkX, TileUtility.ChunkY, ChunkCopy.AllTiles, ChunkCopy.Objects);
 
         }

@@ -259,10 +259,17 @@ namespace SecretProject.Class.TileStuff
             PathGrid = new AStarPathFinder(MapWidth, MapHeight, AllTiles, this.Objects);
 
         }
+
+        public AStarPathFinder GetPathGrid(Vector2 entityPosition)
+        {
+            return this.PathGrid;
+
+        }
+
         #endregion
 
         #region UPDATE
-        
+
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
@@ -530,6 +537,11 @@ namespace SecretProject.Class.TileStuff
         }
 
         public void LoadInitialChunks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Chunk GetChunkFromPosition(Vector2 entityPosition)
         {
             throw new NotImplementedException();
         }
