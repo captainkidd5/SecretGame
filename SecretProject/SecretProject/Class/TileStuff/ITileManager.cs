@@ -50,7 +50,7 @@ namespace SecretProject.Class.TileStuff
         Chunk ChunkUnderPlayer { get; set; }
         AStarPathFinder GetPathGrid(Vector2 entityPosition);
         Chunk GetChunkFromPosition(Vector2 entityPosition);
-
-
+        void UpdateCropTile();
+        void HandleClockChange(object sender, EventArgs eventArgs);
     }
 }

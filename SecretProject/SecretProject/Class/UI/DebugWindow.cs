@@ -34,7 +34,7 @@ namespace SecretProject.Class.UI
             {
 
                 //Game1.World.AllTiles.LoadInitialChunks();
-                Game1.GlobalClock.TotalDays++;
+                Game1.GlobalClock.IncrementDay();
                 //foreach (Crop crop in Game1.GetCurrentStage().AllTiles.Crops.Values)
                 //{
                 //    if (crop.UpdateGrowthCycle())

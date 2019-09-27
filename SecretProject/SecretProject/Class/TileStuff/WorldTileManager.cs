@@ -108,7 +108,7 @@ namespace SecretProject.Class.TileStuff
             this.ChunkUnderPlayer = new Chunk(this, 0, 0);
 
 
-
+            Game1.GlobalClock.DayChanged += this.HandleClockChange;
         }
 
         public void LoadGeneratableTileLists()
@@ -336,17 +336,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     ActiveChunks[a].AnimationFrames.Remove(key);
                 }
-                for(int c =0; c < ActiveChunks[a].Crops.Count; c++)
-                {
-                    if(Game1.GlobalClock.TotalDays - ActiveChunks[a].Crops.ElementAt(c).Value.DayPlanted >= ActiveChunks[a].Crops.ElementAt(c).Value.DaysToGrow)
-                    {
-                        ActiveChunks[a].Crops.ElementAt(c).Value.UpdateGrowthCycle();
-                        
-                            TileUtility.UpdateCropTile(ActiveChunks[a].Crops.ElementAt(c).Value, Game1.GetCurrentStage(), ActiveChunks[a]);
-                        
-                        
-                    }
-                }
+
 
                 if (ScreenRectangle.Intersects(ActiveChunks[a].GetChunkRectangle()))
                 {
@@ -521,9 +511,24 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void UpdateCropTile(Crop crop, ILocation stage)
+        public void UpdateCropTile()
         {
-            throw new NotImplementedException();
+            for(int c = 0; c < this.ActiveChunks.Count; c++)
+            {
+                for(int x = 0; x < ActiveChunks[c].Crops.Count;x++)
+                {
+                    ActiveChunks[c].Crops.ElementAt(x).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - ActiveChunks[c].Crops.ElementAt(x).Value.DayPlanted;
+
+                    ActiveChunks[c].Crops.ElementAt(x).Value.UpdateGrowthCycle();
+
+                    TileUtility.UpdateCropTile(ActiveChunks[c].Crops.ElementAt(x).Value, Game1.GetCurrentStage(), ActiveChunks[c]);
+                }
+            }
+        }
+        public void HandleClockChange(object sender, EventArgs eventArgs)
+        {
+
+            UpdateCropTile();
         }
 
         public AStarPathFinder GetPathGrid(Vector2 entityPosition)

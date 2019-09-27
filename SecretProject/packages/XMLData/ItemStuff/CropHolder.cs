@@ -21,6 +21,7 @@ namespace XMLData.ItemStuff
             newCrop.DaysToGrow = oldCrop.DaysToGrow;
             newCrop.CurrentGrowth = oldCrop.CurrentGrowth;
             newCrop.Harvestable = oldCrop.Harvestable;
+            newCrop.BaseGID = oldCrop.GID;
 
             return newCrop; 
         }

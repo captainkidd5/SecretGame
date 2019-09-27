@@ -37,6 +37,8 @@ namespace SecretProject.Class.Universal
         public float ClockSpeed { get; set; }
         TextBox ClockDisplay;
 
+        public event EventHandler DayChanged;
+
         public Clock()
         {
             ClockPosition = new Vector2(1100, 25);
@@ -45,8 +47,14 @@ namespace SecretProject.Class.Universal
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
             ClockSpeed = 15;
+            //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
 
 
+        }
+        public virtual void OnDayChanged(Object sender, EventArgs e)
+        {
+            EventHandler handler = DayChanged;
+            handler?.Invoke(this, e);
         }
 
         public void PlayRandomInstance(int timeOfDay) //1 = day, 2 = night
@@ -64,7 +72,11 @@ namespace SecretProject.Class.Universal
             
             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, roll, 1f);
         }
-
+        public void IncrementDay()
+        {
+            this.TotalDays++;
+            OnDayChanged(this, EventArgs.Empty);
+        }
         public void Update(GameTime gameTime)
         {
             //UnpausedTime += gameTime.ElapsedGameTime;
@@ -101,6 +113,7 @@ namespace SecretProject.Class.Universal
             if(TotalHours > 23)
             {
                 TotalDays++;
+                
                 TotalHours = 0;
   
             }

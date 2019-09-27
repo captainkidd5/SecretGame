@@ -113,6 +113,7 @@ namespace SecretProject.Class.TileStuff
             Lights = new List<LightSource>();
             Chests = new Dictionary<string, Chest>();
             Crops = new Dictionary<string, Crop>();
+            Game1.GlobalClock.DayChanged += this.HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -297,15 +298,6 @@ namespace SecretProject.Class.TileStuff
             if (endj > this.MapWidth)
             {
                 endj = this.MapWidth;
-            }
-            for (int c = 0; c < Crops.Count; c++)
-            {
-                Crops.ElementAt(c).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - Crops.ElementAt(c).Value.DayPlanted;
-
-                    Crops.ElementAt(c).Value.UpdateGrowthCycle();
-                    
-                        TileUtility.UpdateCropTile(Crops.ElementAt(c).Value, Game1.GetCurrentStage(), this);
-                    
             }
             foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
             {
@@ -553,7 +545,25 @@ namespace SecretProject.Class.TileStuff
         {
             throw new NotImplementedException();
         }
+        public void UpdateCropTile()
+        {
 
+                for (int x = 0; x < Crops.Count; x++)
+                {
+                   Crops.ElementAt(x).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - Crops.ElementAt(x).Value.DayPlanted;
+
+                   Crops.ElementAt(x).Value.UpdateGrowthCycle();
+
+                    TileUtility.UpdateCropTile(Crops.ElementAt(x).Value, Game1.GetCurrentStage(), this);
+                }
+            
+        }
+
+        public void HandleClockChange(object sender, EventArgs eventArgs)
+        {
+            UpdateCropTile();
+        }
+        
         #endregion
 
         #endregion

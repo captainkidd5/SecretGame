@@ -19,13 +19,16 @@ namespace XMLData.ItemStuff
         public bool Harvestable { get; set; } = false;
         [ContentSerializer(Optional = true)]
         public int DayPlanted { get; set; }
+        [ContentSerializer(Optional = true)]
+        public int BaseGID { get; set; }
+
 
         public void UpdateGrowthCycle()
         {
             if (CurrentGrowth < DaysToGrow)
             {
 
-                this.GID = this.GID + CurrentGrowth;
+                this.GID = this.BaseGID + CurrentGrowth + 1;
                 
 
             }
