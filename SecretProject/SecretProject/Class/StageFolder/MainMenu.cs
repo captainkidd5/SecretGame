@@ -120,7 +120,7 @@ namespace SecretProject.Class.StageFolder
             // customMouse.Update();
             //--------------------------------------
             //Update Buttons
-           // Game1.SoundManager.TitleInstance.Play();
+            //Game1.SoundManager.TitleInstance.Play();
             Game1.isMyMouseVisible = true;
             for (int i = 0; i < clouds.Count; i++)
             {

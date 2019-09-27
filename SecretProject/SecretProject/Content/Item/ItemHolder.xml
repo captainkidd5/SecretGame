@@ -383,6 +383,30 @@
 <Price>4</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sproutera</Name>
+<ID>182</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>4</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sun Folly</Name>
+<ID>183</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>4</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Zod Fern</Name>
+<ID>184</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>4</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BrineBulbSeeds</Name>
 <ID>187</ID>
 <InvMaximum>99</InvMaximum>
@@ -397,6 +421,14 @@
 <InvMaximum>99</InvMaximum>
 <TextureColumn>10</TextureColumn>
 <TextureRow>1</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Desmodus Bloom</Name>
+<ID>192</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>10</TextureColumn>
+<TextureRow>2</TextureRow>
 <Price>1</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
