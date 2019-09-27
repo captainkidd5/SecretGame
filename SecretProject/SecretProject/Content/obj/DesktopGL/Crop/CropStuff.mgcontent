@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Crop/CropStuff.xml</SourceFile>
-  <SourceTime>2019-09-19T14:04:07.7483949-07:00</SourceTime>
+  <SourceTime>2019-09-27T11:27:23.5893079-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Crop/CropStuff.xnb</DestFile>
-  <DestTime>2019-09-26T19:01:04.558263-07:00</DestTime>
+  <DestTime>2019-09-27T11:27:34.3715463-07:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

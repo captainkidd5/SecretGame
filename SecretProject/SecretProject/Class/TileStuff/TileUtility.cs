@@ -387,6 +387,7 @@ namespace SecretProject.Class.TileStuff
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
                                     tempCrop.TileID = container.AllTiles[1][i, j].GetTileKey(1);
+                                    tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
                                     tempCrop.GID++;
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
                                     container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;

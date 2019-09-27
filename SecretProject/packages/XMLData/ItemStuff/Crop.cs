@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,8 @@ namespace XMLData.ItemStuff
         public int DaysToGrow { get; set; }
         public int CurrentGrowth { get; set; } 
         public bool Harvestable { get; set; } = false;
+        [ContentSerializer(Optional = true)]
+        public int DayPlanted { get; set; }
 
         public bool UpdateGrowthCycle()
         {
@@ -34,9 +36,7 @@ namespace XMLData.ItemStuff
             }
             else return false;
             
-            
-
-            
+           
             
         }
     }

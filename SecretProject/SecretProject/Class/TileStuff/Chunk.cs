@@ -19,8 +19,8 @@ namespace SecretProject.Class.TileStuff
     public class Chunk : IInformationContainer
     {
         public GraphicsDevice GraphicsDevice { get; set; }
-        public TmxMap MapName {get;set;}
-        public int TileSetDimension {get;set;}
+        public TmxMap MapName { get; set; }
+        public int TileSetDimension { get; set; }
         public int TileSetNumber { get; set; }
         public int MapWidth { get; set; }
         public int MapHeight { get; set; }
@@ -39,7 +39,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Crop> Crops { get; set; }
 
 
-        public Chunk(WorldTileManager tileManager,int x, int y)
+        public Chunk(WorldTileManager tileManager, int x, int y)
         {
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
@@ -112,10 +112,10 @@ namespace SecretProject.Class.TileStuff
                 binaryWriter.Write(chest.Value.Size);
                 binaryWriter.Write(chest.Value.Location.X);
                 binaryWriter.Write(chest.Value.Location.Y);
-                for(int s =0; s < chest.Value.Size; s++)
+                for (int s = 0; s < chest.Value.Size; s++)
                 {
                     binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems.Count);
-                    if(chest.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                    if (chest.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
                     {
                         binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems[0].ID);
                     }
@@ -123,14 +123,31 @@ namespace SecretProject.Class.TileStuff
                     {
                         binaryWriter.Write(-1);
                     }
-                    
+
                 }
-                
+
             }
 
-                binaryWriter.Flush();
+            binaryWriter.Write(Crops.Count);
+            foreach (KeyValuePair<string, Crop> crop in this.Crops)
+            {
+                binaryWriter.Write(crop.Key);
+                binaryWriter.Write(crop.Value.ItemID);
+                binaryWriter.Write(crop.Value.Name);
+                binaryWriter.Write(crop.Value.GID);
+                binaryWriter.Write(crop.Value.TileID);
+                binaryWriter.Write(crop.Value.DaysToGrow);
+                binaryWriter.Write(crop.Value.CurrentGrowth);
+                binaryWriter.Write(crop.Value.Harvestable);
+                binaryWriter.Write(crop.Value.DayPlanted);
+
+            }
+            binaryWriter.Flush();
             binaryWriter.Close();
         }
+
+
+
         public void Load()
         {
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
@@ -169,19 +186,19 @@ namespace SecretProject.Class.TileStuff
 
             this.Chests = new Dictionary<string, Chest>();
             int chestCount = binaryReader.ReadInt32();
-            for(int c =0; c < chestCount; c++)
+            for (int c = 0; c < chestCount; c++)
             {
                 string chestKey = binaryReader.ReadString();
                 int chestSize = binaryReader.ReadInt32();
                 float locationX = binaryReader.ReadSingle();
                 float locationY = binaryReader.ReadSingle();
-                Chest chestToAdd = new Chest(chestKey, chestSize, new Vector2(locationX,locationY),this.GraphicsDevice, false);
+                Chest chestToAdd = new Chest(chestKey, chestSize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
                 for (int i = 0; i < chestSize; i++)
                 {
                     int numberOfItemsInSlot = binaryReader.ReadInt32();
                     int itemID = binaryReader.ReadInt32();
 
-                    for(int j =0; j < numberOfItemsInSlot; j++)
+                    for (int j = 0; j < numberOfItemsInSlot; j++)
                     {
                         chestToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
                     }
@@ -189,7 +206,24 @@ namespace SecretProject.Class.TileStuff
 
                 this.Chests.Add(chestKey, chestToAdd);
             }
-           
+
+            int cropCount = binaryReader.ReadInt32();
+            for(int c = 0; c < cropCount; c++)
+            {
+                string cropKey = binaryReader.ReadString();
+                int itemID = binaryReader.ReadInt32();
+                string name = binaryReader.ReadString();
+                int gid = binaryReader.ReadInt32();
+                string tileID = binaryReader.ReadString();
+                int daysToGrow = binaryReader.ReadInt32();
+                int currentGrow = binaryReader.ReadInt32();
+                bool harvestable = binaryReader.ReadBoolean();
+                int dayPlanted = binaryReader.ReadInt32();
+                Crop crop = new Crop() { ItemID = itemID, Name = name, GID = gid, TileID = tileID,
+                    DaysToGrow = daysToGrow, CurrentGrowth = currentGrow, Harvestable = harvestable, DayPlanted = dayPlanted };
+                this.Crops.Add(cropKey, crop);
+            }
+
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -231,7 +265,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 1; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0],this, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], this, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -258,16 +292,16 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            TileUtility.PlaceChests(this, this.GraphicsDevice,this.X, this.Y);
+            TileUtility.PlaceChests(this, this.GraphicsDevice, this.X, this.Y);
 
-            TileUtility.GenerateTiles(1, 979, "grass", 50, 0,this);
+            TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this);
             TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0,this);
+            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1664, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1294, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1295, "dirt", 50, 0, this);
-           TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
+            TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
 
             for (int z = 0; z < 5; z++)
@@ -276,27 +310,16 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                       // if (AllTiles[z][i, j].GID != 0)
-                      //  {
-                          //  if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                           // {
+                        if (z > 0)
+                        {
+                            AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkX * this.X;
+                            AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkY * this.Y;
+                        }
 
-                                //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
-                                if(z > 0)
-                                {
-                                    AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkX * this.X;
-                                    AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkY * this.Y;
-                                }
-                                
-                                TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
-
-                          //  }
-                        //}
+                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                     }
                 }
             }
-
-
 
             this.IsLoaded = true;
         }
