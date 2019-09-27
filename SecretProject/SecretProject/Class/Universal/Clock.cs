@@ -107,7 +107,7 @@ namespace SecretProject.Class.Universal
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
             float testColor = (float)(1 + ColorMultiplier * .1);
-            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Test: " + testColor.ToString();
+            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Days: " + TotalDays.ToString();
             ClockDisplay.Update(gameTime, true);
             
 

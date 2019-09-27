@@ -34,14 +34,14 @@ namespace SecretProject.Class.UI
             {
 
                 //Game1.World.AllTiles.LoadInitialChunks();
-
-                foreach (Crop crop in Game1.GetCurrentStage().AllTiles.Crops.Values)
-                {
-                    if (crop.UpdateGrowthCycle())
-                    {
-                       // TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
-                    }
-                }
+                Game1.GlobalClock.TotalDays++;
+                //foreach (Crop crop in Game1.GetCurrentStage().AllTiles.Crops.Values)
+                //{
+                //    if (crop.UpdateGrowthCycle())
+                //    {
+                //       // TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
+                //    }
+                //}
 
                 //}
                 //for (int i =0; i < Game1.PortalGraph.Size; i++)

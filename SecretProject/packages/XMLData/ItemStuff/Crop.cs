@@ -20,21 +20,20 @@ namespace XMLData.ItemStuff
         [ContentSerializer(Optional = true)]
         public int DayPlanted { get; set; }
 
-        public bool UpdateGrowthCycle()
+        public void UpdateGrowthCycle()
         {
             if (CurrentGrowth < DaysToGrow)
             {
 
-                this.GID++;
-                CurrentGrowth++;
-                return true;
+                this.GID = this.GID + CurrentGrowth;
+                
+
             }
-            else if (CurrentGrowth == DaysToGrow)
+            if (CurrentGrowth == DaysToGrow)
             {
                 this.Harvestable = true;
-                return false;
+
             }
-            else return false;
             
            
             

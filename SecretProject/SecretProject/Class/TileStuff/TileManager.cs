@@ -298,7 +298,15 @@ namespace SecretProject.Class.TileStuff
             {
                 endj = this.MapWidth;
             }
+            for (int c = 0; c < Crops.Count; c++)
+            {
+                Crops.ElementAt(c).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - Crops.ElementAt(c).Value.DayPlanted;
 
+                    Crops.ElementAt(c).Value.UpdateGrowthCycle();
+                    
+                        TileUtility.UpdateCropTile(Crops.ElementAt(c).Value, Game1.GetCurrentStage(), this);
+                    
+            }
             foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
             {
                 frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;

@@ -336,6 +336,17 @@ namespace SecretProject.Class.TileStuff
                 {
                     ActiveChunks[a].AnimationFrames.Remove(key);
                 }
+                for(int c =0; c < ActiveChunks[a].Crops.Count; c++)
+                {
+                    if(Game1.GlobalClock.TotalDays - ActiveChunks[a].Crops.ElementAt(c).Value.DayPlanted >= ActiveChunks[a].Crops.ElementAt(c).Value.DaysToGrow)
+                    {
+                        ActiveChunks[a].Crops.ElementAt(c).Value.UpdateGrowthCycle();
+                        
+                            TileUtility.UpdateCropTile(ActiveChunks[a].Crops.ElementAt(c).Value, Game1.GetCurrentStage(), ActiveChunks[a]);
+                        
+                        
+                    }
+                }
 
                 if (ScreenRectangle.Intersects(ActiveChunks[a].GetChunkRectangle()))
                 {
