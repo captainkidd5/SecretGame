@@ -276,10 +276,10 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        if (AllTiles[z][i, j].GID != 0)
-                        {
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                            {
+                       // if (AllTiles[z][i, j].GID != 0)
+                      //  {
+                          //  if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                           // {
 
                                 //AssignProperties(AllTiles[z][i, j], 0, z, i, j, world);
                                 if(z > 0)
@@ -290,8 +290,8 @@ namespace SecretProject.Class.TileStuff
                                 
                                 TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
-                            }
-                        }
+                          //  }
+                        //}
                     }
                 }
             }
