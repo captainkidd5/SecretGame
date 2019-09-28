@@ -1049,7 +1049,7 @@
     <property name="standardTo" value="6"/>
    </properties>
   </object>
-  <object id="34" x="2265" y="668" width="33" height="16">
+  <object id="34" x="2242.33" y="705.333" width="12.3333" height="12">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
