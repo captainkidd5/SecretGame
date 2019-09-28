@@ -913,7 +913,7 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region GRIDITEMS
-        public static void DrawGridItem(SpriteBatch spriteBatch, ITileManager tileManager, List<Tile[,]> tiles, IInformationContainer container)
+        public static void DrawGridItem(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
             if (tileManager.AbleToDrawTileSelector)
             {
@@ -926,17 +926,17 @@ namespace SecretProject.Class.TileStuff
                         int[] associatedTiles = new int[0];
                         int placeID = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID;
                         Rectangle sourceRectangle = TileUtility.GetSourceRectangleWithoutTile(placeID, container.TileSetDimension);
-                        if (tiles[1][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
+                        if (container.AllTiles[1][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
                         {
 
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), sourceRectangle, Color.Red * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
-                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(placeID))
+                            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(placeID))
                             {
-                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
                                 {
 
-                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
                                 }
                             }
                         }
@@ -945,19 +945,19 @@ namespace SecretProject.Class.TileStuff
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), sourceRectangle, Color.Green * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
-                            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(placeID))
+                            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(placeID))
                             {
 
 
-                                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
+                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
                                 {
 
-                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
+                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
                                     for (int a = 0; a < associatedTiles.Length; a++)
                                     {
-                                        spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]) * 16,
-                                            Game1.Player.UserInterface.TileSelector.WorldY + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(associatedTiles[a], container.TileSetDimension), Color.Green * .5f,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"])]);
+                                        spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]) * 16,
+                                            Game1.Player.UserInterface.TileSelector.WorldY + int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(associatedTiles[a], container.TileSetDimension), Color.Green * .5f,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"])]);
                                     }
                                 }
                             }
@@ -971,8 +971,8 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         for (int a = 0; a < associatedTiles.Length; a++)
                                         {
-                                            ReplaceTilePermanent(int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelector.IndexX+ int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
-                                                Game1.Player.UserInterface.TileSelector.IndexY + int.Parse(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
+                                            ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelector.IndexX+ int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
+                                                Game1.Player.UserInterface.TileSelector.IndexY + int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
                                         }
                                     }
                                     int soundRandom = Game1.Utility.RGenerator.Next(0, 2);

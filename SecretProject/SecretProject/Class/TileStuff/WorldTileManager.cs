@@ -47,8 +47,9 @@ namespace SecretProject.Class.TileStuff
 
         public Point ChunkPointUnderPlayerLastFrame { get; set; }
         public Point ChunkPointUnderPlayer { get; set; }
+        public Point ChunkPointUnderMouse { get; set; }
         public Chunk ChunkUnderPlayer { get; set; }
-
+        public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, ObjectBody> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
@@ -106,7 +107,7 @@ namespace SecretProject.Class.TileStuff
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
             this.ChunkUnderPlayer = new Chunk(this, 0, 0);
-
+            this.ChunkUnderMouse = new Chunk(this, 0, 0);
 
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
         }
@@ -265,6 +266,8 @@ namespace SecretProject.Class.TileStuff
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            ChunkPointUnderMouse = new Point((int)(mouse.WorldMousePosition.X / 16 / TileUtility.ChunkX), (int)(mouse.WorldMousePosition.Y / 16 / TileUtility.ChunkY));
+            ChunkUnderMouse = ActiveChunks.Find(x => x.X == ChunkPointUnderMouse.X && x.Y == ChunkPointUnderMouse.Y);
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
                 CheckActiveChunks();
@@ -500,7 +503,7 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
-                    TileUtility.DrawGridItem(spriteBatch, this, ActiveChunks[a].AllTiles, ActiveChunks[a]);
+                    TileUtility.DrawGridItem(spriteBatch, this, ChunkUnderMouse);
 
                 }
             }

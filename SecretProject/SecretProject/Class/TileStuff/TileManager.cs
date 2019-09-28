@@ -534,7 +534,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            TileUtility.DrawGridItem(spriteBatch,this,AllTiles,this);
+            TileUtility.DrawGridItem(spriteBatch,this,this);
             
         }
 

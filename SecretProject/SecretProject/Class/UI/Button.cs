@@ -32,10 +32,6 @@ namespace SecretProject.Class.MenuStuff
 
         public bool IsHovered { get; set; }
 
-        SpriteFont font;
-
-        
-
         public int Index { get; set; }
 
         public int ItemCounter { get; set; }
