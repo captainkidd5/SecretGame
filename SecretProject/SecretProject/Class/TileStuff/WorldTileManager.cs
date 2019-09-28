@@ -348,8 +348,8 @@ namespace SecretProject.Class.TileStuff
                             {
                                 string TileKey = ActiveChunks[a].AllTiles[z][i, j].GetTileKey(z);
                                 Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[z][i, j]);
-                                Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
-                                Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
+                                Game1.Player.UserInterface.TileSelector.IndexX = i;
+                                Game1.Player.UserInterface.TileSelector.IndexY = j;
                                 if (z == 0)
                                 {
                                     if (ActiveChunks[a].Tufts.ContainsKey(TileKey))

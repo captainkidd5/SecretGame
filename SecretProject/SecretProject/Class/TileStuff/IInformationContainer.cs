@@ -15,6 +15,7 @@ namespace SecretProject.Class.TileStuff
 {
     public interface IInformationContainer
     {
+         int Type { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }
         TmxMap MapName { get; set; }
         int TileSetDimension { get; set; }

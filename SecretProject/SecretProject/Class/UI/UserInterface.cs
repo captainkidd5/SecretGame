@@ -54,9 +54,7 @@ namespace SecretProject.Class.UI
 
         public Camera2D cam;
         public GraphicsDevice graphics { get; set; }
-
-        public int TileSelectorX { get; set; } = 0;
-        public int TileSelectorY { get; set; } = 0;
+        public TileSelector TileSelector;
 
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
 
@@ -101,7 +99,7 @@ namespace SecretProject.Class.UI
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
             this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, .2f);
-
+            TileSelector = new TileSelector();
         }
 
 

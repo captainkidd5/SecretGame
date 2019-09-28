@@ -28,6 +28,7 @@ namespace SecretProject.Class.TileStuff
     /// </summary>
     public class TileManager : ITileManager, IInformationContainer
     {
+        public int Type { get; set; }
         protected Game1 game;
         public Texture2D TileSet { get; set; }
         public TmxMap MapName { get;set; }
@@ -82,6 +83,7 @@ namespace SecretProject.Class.TileStuff
 
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
         {
+            this.Type = 0;
             this.TileSet = tileSet;
             this.MapName = mapName;
 
@@ -402,8 +404,8 @@ namespace SecretProject.Class.TileStuff
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
-                                                Game1.Player.UserInterface.TileSelectorX = destinationRectangle.X;
-                                                Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
+                                               // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
+                                                //Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
 
                                                 mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
 

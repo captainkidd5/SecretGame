@@ -18,6 +18,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
+        public int Type { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public TmxMap MapName { get; set; }
         public int TileSetDimension { get; set; }
@@ -41,6 +42,7 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk(WorldTileManager tileManager, int x, int y)
         {
+            this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
             this.TileSetDimension = tileManager.tilesetTilesWide;

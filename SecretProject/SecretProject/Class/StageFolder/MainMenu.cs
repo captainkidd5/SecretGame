@@ -163,7 +163,7 @@ namespace SecretProject.Class.StageFolder
                         }
                         mySave.Load(graphics);
                         this.menuState = MenuState.primary;
-                        Game1.SwitchStage(0, (int)Stages.World, gameTime);
+                        Game1.SwitchStage(0, (int)Stages.World);
                     }
                     if (Exit.isClicked)
                     {
@@ -201,7 +201,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Town,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.Town);
                         }
                         else if(worldSizeMedium.isClicked)
                         {
@@ -219,7 +219,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.World,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.World);
                         }
                         else if(worldSizeLarge.isClicked)
                         {
@@ -237,7 +237,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Pass,gameTime);
+                            Game1.SwitchStage(0, (int)Stages.Pass);
                         }
                     
                     break;

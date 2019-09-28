@@ -289,7 +289,7 @@ namespace SecretProject.Class.StageFolder
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
                     {
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
-                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime, AllPortals[p]);
+                        Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
                         OnSceneChanged();
                         this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                         return;
@@ -298,7 +298,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, gameTime, AllPortals[p]);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
                     OnSceneChanged();
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
@@ -428,8 +428,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY, 16, 16),
-                        new Rectangle(48, 0, 16, 16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
+                    Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
                 }
 
 

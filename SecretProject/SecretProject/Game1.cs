@@ -640,7 +640,7 @@ namespace SecretProject
 
 
 
-        public static void SwitchStage(int currentStage, int stageToSwitchTo, GameTime gameTime, Portal portal = null)
+        public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
         {
 
 
@@ -672,7 +672,7 @@ namespace SecretProject
                 float safteyX = tempPortal.SafteyOffSetX;
                 float safteyY = tempPortal.SafteyOffSetY;
                 Player.position = new Vector2(x + width + safteyX, y + safteyY);
-                Player.UpdateMovementAnimationsOnce(gameTime);
+                //Player.UpdateMovementAnimationsOnce(gameTime);
 
             }
         }

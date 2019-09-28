@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecretProject.Class.UI
+namespace SecretProject.Class.Transportation
 {
     public class LiftSystem
     {
@@ -16,5 +16,11 @@ namespace SecretProject.Class.UI
     {
         public int Stage { get; set; }
         public Rectangle DestinationRectangle { get; set; }
+
+        public void Transport(Lift LiftToTransportTo)
+        {
+            Game1.SwitchStage(Stage, LiftToTransportTo.Stage);
+            Game1.Player.Position = new Vector2(LiftToTransportTo.DestinationRectangle.X, LiftToTransportTo.DestinationRectangle.Y);
+        }
     }
 }

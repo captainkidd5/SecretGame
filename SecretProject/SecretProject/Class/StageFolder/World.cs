@@ -317,7 +317,7 @@ namespace SecretProject.Class.StageFolder
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
-                Game1.SwitchStage(5, 4, gameTime);
+                Game1.SwitchStage(5, 4);
                 return;
             }
 
@@ -336,10 +336,10 @@ namespace SecretProject.Class.StageFolder
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
 
-                if(!IsExitingOnGondola && !IsGondolaAtEndingPosition && !IsGondolaAtStartingPosition)
-                {
-                    MoveGondola();
-                }
+               // if(!IsExitingOnGondola && !IsGondolaAtEndingPosition && !IsGondolaAtStartingPosition)
+              //  {
+              //      MoveGondola();
+               // }
                 
 
                 //--------------------------------------
@@ -384,7 +384,7 @@ namespace SecretProject.Class.StageFolder
             {
                 IsGondolaAtStartingPosition = true;
                 IsExitingOnGondola = false;
-                Game1.SwitchStage(3, 0, gameTime);
+                Game1.SwitchStage(3, 0);
                 OnSceneChanged();
                 this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
             }
@@ -429,10 +429,10 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
-                if (IsGondolaAtEndingPosition)
-                {
+              //  if (IsGondolaAtEndingPosition)
+                //{
                     player.Draw(spriteBatch, .5f + (player.Rectangle.Top + player.Rectangle.Height) * .00001f);
-                }
+              //  }
 
                 Game1.Elixer.Draw(spriteBatch);
                 Game1.Dobbin.Draw(spriteBatch);
@@ -455,8 +455,7 @@ namespace SecretProject.Class.StageFolder
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelectorX, Game1.Player.UserInterface.TileSelectorY, 16, 16),
-                        new Rectangle(48, 0, 16, 16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
+                    Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
                 }
 
                 //--------------------------------------
