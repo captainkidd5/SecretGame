@@ -348,8 +348,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 string TileKey = ActiveChunks[a].AllTiles[z][i, j].GetTileKey(z);
                                 Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a].AllTiles[z][i, j]);
-                                Game1.Player.UserInterface.TileSelector.IndexX = i;
-                                Game1.Player.UserInterface.TileSelector.IndexY = j;
+                                
                                 if (z == 0)
                                 {
                                     if (ActiveChunks[a].Tufts.ContainsKey(TileKey))
@@ -368,6 +367,10 @@ namespace SecretProject.Class.TileStuff
                                     if (mouse.IsHoveringTile(destinationRectangle))
                                     {
                                         this.AbleToDrawTileSelector = true;
+                                        Game1.Player.UserInterface.TileSelector.IndexX = i;
+                                        Game1.Player.UserInterface.TileSelector.IndexY = j;
+                                        Game1.Player.UserInterface.TileSelector.WorldX = ActiveChunks[a].X * 16 * 16 + i * 16;
+                                        Game1.Player.UserInterface.TileSelector.WorldY = ActiveChunks[a].Y * 16 * 16 + j * 16;
                                         //CurrentIndexX = i;
                                         //CurrentIndexY = j;
 

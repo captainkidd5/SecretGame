@@ -393,6 +393,10 @@ namespace SecretProject.Class.TileStuff
                                 if (mouse.IsHoveringTile(destinationRectangle))
                                 {
                                     this.AbleToDrawTileSelector = true;
+                                    Game1.Player.UserInterface.TileSelector.IndexX = i;
+                                    Game1.Player.UserInterface.TileSelector.IndexY = j;
+                                    Game1.Player.UserInterface.TileSelector.WorldX = i * 16;
+                                    Game1.Player.UserInterface.TileSelector.WorldY = j * 16;
 
                                     if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
@@ -404,7 +408,8 @@ namespace SecretProject.Class.TileStuff
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.isMyMouseVisible = false;
-                                               // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
+                                                
+                                                // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
                                                 //Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
 
                                                 mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));

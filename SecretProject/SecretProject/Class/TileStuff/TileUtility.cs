@@ -344,8 +344,7 @@ namespace SecretProject.Class.TileStuff
             //new Gid should be one larger, per usual
             string[] information = Game1.Utility.GetActionHelperInfo(action);
 
-                Game1.Player.UserInterface.TileSelector.IndexX = i;
-                Game1.Player.UserInterface.TileSelector.IndexY = j;
+                
 
             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.None)
             {
