@@ -135,7 +135,6 @@ namespace SecretProject.Class.TileStuff
                 binaryWriter.Write(crop.Value.ItemID);
                 binaryWriter.Write(crop.Value.Name);
                 binaryWriter.Write(crop.Value.GID);
-                binaryWriter.Write(crop.Value.TileID);
                 binaryWriter.Write(crop.Value.DaysToGrow);
                 binaryWriter.Write(crop.Value.CurrentGrowth);
                 binaryWriter.Write(crop.Value.Harvestable);
@@ -214,12 +213,11 @@ namespace SecretProject.Class.TileStuff
                 int itemID = binaryReader.ReadInt32();
                 string name = binaryReader.ReadString();
                 int gid = binaryReader.ReadInt32();
-                string tileID = binaryReader.ReadString();
                 int daysToGrow = binaryReader.ReadInt32();
                 int currentGrow = binaryReader.ReadInt32();
                 bool harvestable = binaryReader.ReadBoolean();
                 int dayPlanted = binaryReader.ReadInt32();
-                Crop crop = new Crop() { ItemID = itemID, Name = name, GID = gid, TileID = tileID,
+                Crop crop = new Crop() { ItemID = itemID, Name = name, GID = gid,
                     DaysToGrow = daysToGrow, CurrentGrowth = currentGrow, Harvestable = harvestable, DayPlanted = dayPlanted };
                 this.Crops.Add(cropKey, crop);
             }

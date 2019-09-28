@@ -17,7 +17,6 @@ namespace XMLData.ItemStuff
             newCrop.ItemID = oldCrop.ItemID;
             newCrop.Name = oldCrop.Name;
             newCrop.GID = oldCrop.GID;
-            newCrop.TileID = oldCrop.TileID;
             newCrop.DaysToGrow = oldCrop.DaysToGrow;
             newCrop.CurrentGrowth = oldCrop.CurrentGrowth;
             newCrop.Harvestable = oldCrop.Harvestable;

@@ -386,9 +386,10 @@ namespace SecretProject.Class.TileStuff
 
                                     Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                    tempCrop.TileID = container.AllTiles[1][i, j].GetTileKey(1);
                                     tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
                                     tempCrop.GID++;
+                                    tempCrop.X = i;
+                                    tempCrop.Y = j;
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
                                     container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
@@ -892,9 +893,9 @@ namespace SecretProject.Class.TileStuff
 
         public static void UpdateCropTile(Crop crop, ILocation stage, IInformationContainer container)
         {
-            string tileID = crop.TileID; ;
-            int x = int.Parse(tileID.Substring(1, 4));
-            int y = int.Parse(tileID.Substring(5, 4));
+            int x = crop.X;
+            int y = crop.Y;
+
             TileUtility.ReplaceTilePermanent(1, x, y, crop.GID, stage, container);
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
             {

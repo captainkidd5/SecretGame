@@ -358,8 +358,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     if(Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
                     {
-                        OnScreenNPCS.Add(Boars[e]);
-                        Boars[e].Update(gameTime, AllTiles.GetChunkFromPosition(Boars[e].Position).Objects, mouse);
+                        //OnScreenNPCS.Add(Boars[e]);
+                       // Boars[e].Update(gameTime, AllTiles.GetChunkFromPosition(Boars[e].Position).Objects, mouse);
                     }
                     else
                     {
