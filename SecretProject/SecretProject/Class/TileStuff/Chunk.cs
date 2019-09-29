@@ -40,10 +40,19 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
 
-
+        public List<int> GeneratableTiles { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y)
         {
-            this.SimulationType = TileSimulationType.sand;
+            this.SimulationType = TileSimulationType.dirt;
+            switch(SimulationType)
+            {
+                case TileSimulationType.dirt:
+                    this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    break;
+                case TileSimulationType.sand:
+                    this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
+                    break;
+            }
             this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
@@ -322,7 +331,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            TileUtility.PlaceChests(this, this.GraphicsDevice, this.X, this.Y);
+            TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
 
             switch(this.SimulationType)
             {

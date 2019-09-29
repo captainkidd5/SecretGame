@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff
 
         static Dictionary<int, int> SandTiling = new Dictionary<int, int>()
         {
-            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1420},{6,707},{7, 1422}, {8, 1310}, {9, 706}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
+            {0, 1024},{1,1125}, {2, 1224 },  {3, 1423}, {4, 1124}, {5, 1420},{6,1026},{7, 1422}, {8, 1225}, {9, 1025}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
         };
 
         public static void ReassignTileForTiling(List<Tile[,]> tiles, TileSimulationType type, int x, int y, int worldWidth, int worldHeight)
@@ -51,7 +51,7 @@ namespace SecretProject.Class.TileStuff
                     break;
                 case TileSimulationType.sand:
                     TilingDictionary = SandTiling;
-                    GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    GeneratableTiles = Game1.Utility.SandGeneratableTiles;
                     break;
             }
             if (!GeneratableTiles.Contains(tiles[0][x, y].GID))
@@ -106,6 +106,7 @@ namespace SecretProject.Class.TileStuff
         {
             int mainGid = 0;
             int secondayGID = 0;
+            List<int> GeneratableTiles = new List<int>();
             Dictionary<int, int> TilingDictionary = new Dictionary<int, int>();
             switch (type)
             {
@@ -113,12 +114,14 @@ namespace SecretProject.Class.TileStuff
                     mainGid = 1106;
                     secondayGID = 1115;
                     TilingDictionary = DirtTiling;
+                    GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
                     break;
 
                 case TileSimulationType.sand:
                     mainGid = 1222;
                     secondayGID = 1115;
                     TilingDictionary = SandTiling;
+                    GeneratableTiles = Game1.Utility.SandGeneratableTiles;
                     break;
 
             }
@@ -144,12 +147,12 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
-                    int nbs = CountAliveNeighbors(container.AllTiles[0], 0, i, j);
+                    int nbs = CountAliveNeighbors(container.AllTiles[0], GeneratableTiles,0, i, j);
                     if (container.AllTiles[0][i, j].GID != secondayGID)
                     {
                         if (nbs < 3)
                         {
-                            newTiles[i, j].GID = newTiles[i, j].GID = Game1.Utility.DirtGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.DirtGeneratableTiles.Count - 1)] + 1;
+                            newTiles[i, j].GID = newTiles[i, j].GID = GeneratableTiles[Game1.Utility.RGenerator.Next(0, GeneratableTiles.Count - 1)] + 1;
 
                         }
                         else
@@ -168,7 +171,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            newTiles[i, j].GID = newTiles[i, j].GID = Game1.Utility.DirtGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.DirtGeneratableTiles.Count - 1)] + 1;
+                            newTiles[i, j].GID = newTiles[i, j].GID = GeneratableTiles[Game1.Utility.RGenerator.Next(0, GeneratableTiles.Count - 1)] + 1;
                         }
                     }
                 }
@@ -177,7 +180,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static int CountAliveNeighbors(Tile[,] tiles, int layer, int x, int y)
+        public static int CountAliveNeighbors(Tile[,] tiles,List<int> generatableTiles, int layer, int x, int y)
         {
             int count = 0;
             for (int i = -1; i < 2; i++)
@@ -196,7 +199,7 @@ namespace SecretProject.Class.TileStuff
                         count++;
 
                     }
-                    else if ((Game1.Utility.DirtGeneratableTiles.Contains(tiles[neighborX, neighborY].GID)))
+                    else if ((generatableTiles.Contains(tiles[neighborX, neighborY].GID)))
                     {
                         count++;
                     }
@@ -205,7 +208,7 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(IInformationContainer container, GraphicsDevice graphics, int chunkX = 0, int chunkY = 0)
+        public static void PlaceChests(IInformationContainer container, List<int> generatableTiles,GraphicsDevice graphics, int chunkX = 0, int chunkY = 0)
         {
             int hiddenTreasureLimit = 5;
             for (int i = 1; i < container.AllTiles[0].GetLength(0) - 1; i++)
@@ -214,7 +217,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (container.AllTiles[0][i, j].GID == 1115)
                     {
-                        int nbs = CountAliveNeighbors(container.AllTiles[0], 1, i, j);
+                        int nbs = CountAliveNeighbors(container.AllTiles[0],generatableTiles, 1, i, j);
                         if (nbs >= hiddenTreasureLimit)
                         {
 

@@ -456,6 +456,21 @@
    <property name="generate" value="grass"/>
   </properties>
  </tile>
+ <tile id="1024">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1025">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1026">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
  <tile id="1078">
   <properties>
    <property name="destructable" value="2,0,3,6"/>
@@ -536,6 +551,36 @@
  <tile id="1119">
   <properties>
    <property name="generate" value="grass"/>
+  </properties>
+ </tile>
+ <tile id="1120">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1121">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1122">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1123">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1124">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1125">
+  <properties>
+   <property name="generate" value="sand"/>
   </properties>
  </tile>
  <tile id="1185">
@@ -640,12 +685,32 @@
    <property name="generate" value="grass"/>
   </properties>
  </tile>
+ <tile id="1220">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
  <tile id="1221">
   <properties>
    <property name="generate" value="sand"/>
   </properties>
  </tile>
  <tile id="1222">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1223">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1224">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1225">
   <properties>
    <property name="generate" value="sand"/>
   </properties>
@@ -740,12 +805,22 @@
    <property name="generate" value="grass"/>
   </properties>
  </tile>
+ <tile id="1320">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
  <tile id="1321">
   <properties>
    <property name="generate" value="sand"/>
   </properties>
  </tile>
  <tile id="1322">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1323">
   <properties>
    <property name="generate" value="sand"/>
   </properties>
@@ -833,6 +908,26 @@
  <tile id="1419">
   <properties>
    <property name="generate" value="grass"/>
+  </properties>
+ </tile>
+ <tile id="1420">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1421">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1422">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1423">
+  <properties>
+   <property name="generate" value="sand"/>
   </properties>
  </tile>
  <tile id="1457">
