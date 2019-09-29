@@ -534,19 +534,19 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(2, 1);
             ToolShop.ShopMenu.TryAddStock(160, 50);
             ToolShop.ShopMenu.TryAddStock(187, 15);
-            ToolShop.ShopMenu.TryAddStock(128, 100);
+            ToolShop.ShopMenu.TryAddStock(128, 99);
             ToolShop.ShopMenu.TryAddStock(121, 5);
             ToolShop.ShopMenu.TryAddStock(127, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
             ToolShop.ShopMenu.TryAddStock(80, 5);
-            ToolShop.ShopMenu.TryAddStock(165, 1);
-            ToolShop.ShopMenu.TryAddStock(167, 100); //bloodcorn seeds
+            ToolShop.ShopMenu.TryAddStock(167, 9); //bloodcorn seeds
             ToolShop.ShopMenu.TryAddStock(231, 5);
             ToolShop.ShopMenu.TryAddStock(221, 5);
             ToolShop.ShopMenu.TryAddStock(191, 1);
             ToolShop.ShopMenu.TryAddStock(123, 10);
             ToolShop.ShopMenu.TryAddStock(212, 10);
             ToolShop.ShopMenu.TryAddStock(126, 10);
+            ToolShop.ShopMenu.TryAddStock(170, 10);
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
             DobbinShop.ShopMenu.TryAddStock(128, 10);

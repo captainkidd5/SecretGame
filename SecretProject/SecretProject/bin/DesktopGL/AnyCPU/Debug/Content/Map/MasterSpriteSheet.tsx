@@ -1139,6 +1139,13 @@
    <object id="1" x="0" y="0" width="16" height="6"/>
   </objectgroup>
  </tile>
+ <tile id="4180">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-2"/>
+  </properties>
+ </tile>
  <tile id="4205">
   <properties>
    <property name="lightSource" value="1"/>
@@ -1147,6 +1154,9 @@
  <tile id="4280">
   <properties>
    <property name="action" value="replaceLargeCog"/>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="4281">
@@ -1156,6 +1166,7 @@
  </tile>
  <tile id="4380">
   <properties>
+   <property name="AssociatedTiles" value="4280,4180"/>
    <property name="action" value="replaceSmallCog"/>
   </properties>
  </tile>

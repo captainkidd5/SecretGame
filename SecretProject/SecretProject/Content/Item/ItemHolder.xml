@@ -332,6 +332,15 @@
 <Price>5</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>LiftStation</Name>
+<ID>170</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>2</Price>
+<PlaceID>4380</PlaceID>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>ClueFruit</Name>
 <ID>171</ID>
 <InvMaximum>99</InvMaximum>
