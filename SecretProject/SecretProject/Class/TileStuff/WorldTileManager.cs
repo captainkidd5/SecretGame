@@ -178,7 +178,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     else
                     {
-                        chunk.Generate(this);
+                        chunk.Generate();
 
                     }
                     chunk.Save();
@@ -228,7 +228,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            ChunkToAdd.Generate(this);
+                            ChunkToAdd.Generate();
 
                         }
                         ChunkToAdd.Save();

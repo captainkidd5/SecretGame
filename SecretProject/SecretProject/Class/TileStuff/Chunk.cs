@@ -46,25 +46,12 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int,int> TilingDictionary { get; set; }
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
+        public float MainGIDSpawnChance { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y)
+           
         {
 
-            this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 3);
-            switch(SimulationType)
-            {
-                case TileSimulationType.dirt:
-                    this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
-                    this.TilingDictionary = TileUtility.DirtTiling;
-                    this.MainGid = 1106;
-                    this.SecondaryGid = 1115;
-                    break;
-                case TileSimulationType.sand:
-                    this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
-                    this.TilingDictionary = TileUtility.SandTiling;
-                    this.MainGid = 1222;
-                    this.SecondaryGid = 1115;
-                    break;
-            }
+            
             this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
@@ -264,12 +251,29 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public void Generate(Object stateInfo)
+        public void Generate()
         {
 
-            float chance = .75f;
+            this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 3);
+            switch (SimulationType)
+            {
+                case TileSimulationType.dirt:
+                    this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    this.TilingDictionary = TileUtility.DirtTiling;
+                    this.MainGid = 1106;
+                    this.SecondaryGid = 1115;
+                    this.MainGIDSpawnChance = .75f;
+                    break;
+                case TileSimulationType.sand:
+                    this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
+                    this.TilingDictionary = TileUtility.SandTiling;
+                    this.MainGid = 1222;
+                    this.SecondaryGid = 1115;
+                    MainGIDSpawnChance = .85f;
+                    break;
+            }
 
-            
+
             for (int z = 0; z < 5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -282,7 +286,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            if (Game1.Utility.RFloat(0, 1) > chance)
+                            if (Game1.Utility.RFloat(0, 1) > MainGIDSpawnChance)
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.MainGid);
                             }
