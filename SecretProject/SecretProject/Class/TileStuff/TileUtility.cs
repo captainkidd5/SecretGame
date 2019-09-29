@@ -17,6 +17,11 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
+    public enum TileSimulationType
+    {
+        dirt = 1,
+        sand = 2
+    }
     public static class TileUtility
     {
         public static int ChunkX = 16;
@@ -29,16 +34,34 @@ namespace SecretProject.Class.TileStuff
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
         };
 
-        public static void ReassignTileForTiling(List<Tile[,]> tiles, int x, int y, int worldWidth, int worldHeight)
+        static Dictionary<int, int> SandTiling = new Dictionary<int, int>()
         {
-            if (!Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y].GID))
+            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1420},{6,707},{7, 1422}, {8, 1310}, {9, 706}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
+        };
+
+        public static void ReassignTileForTiling(List<Tile[,]> tiles, TileSimulationType type, int x, int y, int worldWidth, int worldHeight)
+        {
+            Dictionary<int, int> TilingDictionary = new Dictionary<int, int>();
+            List<int> GeneratableTiles = new List<int>();
+            switch(type)
+            {
+                case TileSimulationType.dirt:
+                    TilingDictionary = DirtTiling;
+                    GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    break;
+                case TileSimulationType.sand:
+                    TilingDictionary = SandTiling;
+                    GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    break;
+            }
+            if (!GeneratableTiles.Contains(tiles[0][x, y].GID))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y - 1].GID))
+                if (GeneratableTiles.Contains(tiles[0][x, y - 1].GID))
                 {
                     keyToCheck += 1;
                 }
@@ -46,7 +69,7 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x, y + 1].GID))
+                if (GeneratableTiles.Contains(tiles[0][x, y + 1].GID))
                 {
                     keyToCheck += 8;
                 }
@@ -54,7 +77,7 @@ namespace SecretProject.Class.TileStuff
 
             if (x < worldWidth - 1)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x + 1, y].GID))
+                if (GeneratableTiles.Contains(tiles[0][x + 1, y].GID))
                 {
                     keyToCheck += 4;
                 }
@@ -62,25 +85,44 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (Game1.Utility.DirtGeneratableTiles.Contains(tiles[0][x - 1, y].GID))
+                if (GeneratableTiles.Contains(tiles[0][x - 1, y].GID))
                 {
                     keyToCheck += 2;
                 }
             }
             if (keyToCheck == 15)
             {
-                tiles[0][x, y].GID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count - 1)] + 1;
+                tiles[0][x, y].GID = GeneratableTiles[Game1.Utility.RGenerator.Next(0, TilingDictionary.Count - 1)] + 1;
             }
             else
             {
-                tiles[0][x, y].GID = DirtTiling[keyToCheck] + 1;
+                tiles[0][x, y].GID = TilingDictionary[keyToCheck] + 1;
             }
 
 
         }
         #endregion
-        public static Tile[,] DoSimulation(Tile[,] tiles, IInformationContainer container, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
+        public static Tile[,] DoSimulation(IInformationContainer container,TileSimulationType type, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
         {
+            int mainGid = 0;
+            int secondayGID = 0;
+            Dictionary<int, int> TilingDictionary = new Dictionary<int, int>();
+            switch (type)
+            {
+                case TileSimulationType.dirt:
+                    mainGid = 1106;
+                    secondayGID = 1115;
+                    TilingDictionary = DirtTiling;
+                    break;
+
+                case TileSimulationType.sand:
+                    mainGid = 1222;
+                    secondayGID = 1115;
+                    TilingDictionary = SandTiling;
+                    break;
+
+            }
+
             Tile[,] newTiles = new Tile[container.MapWidth, container.MapHeight];
             for (int i = 0; i < newTiles.GetLength(0); i++)
             {
@@ -88,11 +130,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (chunkOffSet != 0)
                     {
-                        newTiles[i, j] = new Tile(chunkX * chunkOffSet + i, chunkY * chunkOffSet + j, 1106);
+                        newTiles[i, j] = new Tile(chunkX * chunkOffSet + i, chunkY * chunkOffSet + j, mainGid);
                     }
                     else
                     {
-                        newTiles[i, j] = new Tile(i, j, 1106);
+                        newTiles[i, j] = new Tile(i, j, mainGid);
                     }
 
                 }
@@ -102,8 +144,8 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
-                    int nbs = CountAliveNeighbors(tiles, 0, i, j);
-                    if (tiles[i, j].GID != 1115)
+                    int nbs = CountAliveNeighbors(container.AllTiles[0], 0, i, j);
+                    if (container.AllTiles[0][i, j].GID != secondayGID)
                     {
                         if (nbs < 3)
                         {

@@ -19,6 +19,7 @@ namespace SecretProject.Class.TileStuff
     public class Chunk : IInformationContainer
     {
         public int Type { get; set; }
+        public TileSimulationType SimulationType { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public TmxMap MapName { get; set; }
         public int TileSetDimension { get; set; }
@@ -42,6 +43,7 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk(WorldTileManager tileManager, int x, int y)
         {
+            this.SimulationType = TileSimulationType.sand;
             this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
@@ -209,7 +211,7 @@ namespace SecretProject.Class.TileStuff
             }
 
             int cropCount = binaryReader.ReadInt32();
-            for(int c = 0; c < cropCount; c++)
+            for (int c = 0; c < cropCount; c++)
             {
                 string cropKey = binaryReader.ReadString();
                 int itemID = binaryReader.ReadInt32();
@@ -219,8 +221,16 @@ namespace SecretProject.Class.TileStuff
                 int currentGrow = binaryReader.ReadInt32();
                 bool harvestable = binaryReader.ReadBoolean();
                 int dayPlanted = binaryReader.ReadInt32();
-                Crop crop = new Crop() { ItemID = itemID, Name = name, GID = gid,
-                    DaysToGrow = daysToGrow, CurrentGrowth = currentGrow, Harvestable = harvestable, DayPlanted = dayPlanted };
+                Crop crop = new Crop()
+                {
+                    ItemID = itemID,
+                    Name = name,
+                    GID = gid,
+                    DaysToGrow = daysToGrow,
+                    CurrentGrowth = currentGrow,
+                    Harvestable = harvestable,
+                    DayPlanted = dayPlanted
+                };
                 this.Crops.Add(cropKey, crop);
             }
 
@@ -235,7 +245,23 @@ namespace SecretProject.Class.TileStuff
 
         public void Generate(Object stateInfo)
         {
-            float chanceToBeDirt = .45f;
+            int mainGid = 0;
+            int secondaryGid = 0;
+            float chance = .45f;
+            switch (this.SimulationType)
+            {
+                case TileSimulationType.dirt:
+                    mainGid = 1106;
+                    secondaryGid = 1115;
+                    break;
+
+                case TileSimulationType.sand:
+                    mainGid = 1222;
+                    secondaryGid = 1115;
+                    break;
+
+            }
+            
             for (int z = 0; z < 5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -248,13 +274,13 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            if (Game1.Utility.RFloat(0, 1) > chanceToBeDirt)
+                            if (Game1.Utility.RFloat(0, 1) > chance)
                             {
-                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, mainGid);
                             }
                             else
                             {
-                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1116);
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, secondaryGid);
 
                             }
                         }
@@ -265,28 +291,32 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 1; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(AllTiles[0], this, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(this, this.SimulationType, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    TileUtility.ReassignTileForTiling(AllTiles, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
-                    if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
+                    TileUtility.ReassignTileForTiling(AllTiles, this.SimulationType, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
+                    if (this.SimulationType == TileSimulationType.dirt)
                     {
-                        if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
+
+                        if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 5)
                         {
-
-                            int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
-                            List<GrassTuft> tufts = new List<GrassTuft>();
-                            for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                            if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                             {
-                                int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
+                                int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                                List<GrassTuft> tufts = new List<GrassTuft>();
+                                for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                                {
+                                    int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
+
+                                }
+                                this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
                             }
-                            this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
                         }
                     }
 
@@ -294,17 +324,23 @@ namespace SecretProject.Class.TileStuff
             }
             TileUtility.PlaceChests(this, this.GraphicsDevice, this.X, this.Y);
 
-            TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this);
-            TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1664, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1294, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1295, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
-            TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
+            switch(this.SimulationType)
+            {
+                case TileSimulationType.dirt:
+                    TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 2264, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1586, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1664, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1294, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1295, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
 
-            TileUtility.GenerateTiles(1, 1002, "dirt", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1002, "dirt", 50, 0, this);
+                    break;
+            }
+            
 
             for (int z = 0; z < 5; z++)
             {
