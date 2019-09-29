@@ -19,7 +19,7 @@ namespace SecretProject.Class.TileStuff
     public class Chunk : IInformationContainer
     {
         public int Type { get; set; }
-        public TileSimulationType SimulationType { get; set; }
+        
         public GraphicsDevice GraphicsDevice { get; set; }
         public TmxMap MapName { get; set; }
         public int TileSetDimension { get; set; }
@@ -40,17 +40,28 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
 
+        //GENERATION
+        public TileSimulationType SimulationType { get; set; }
         public List<int> GeneratableTiles { get; set; }
+        public Dictionary<int,int> TilingDictionary { get; set; }
+        public int MainGid { get; set; }
+        public int SecondaryGid { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y)
         {
-            this.SimulationType = TileSimulationType.dirt;
+            this.SimulationType = TileSimulationType.sand;
             switch(SimulationType)
             {
                 case TileSimulationType.dirt:
                     this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                    this.TilingDictionary = TileUtility.DirtTiling;
+                    this.MainGid = 1106;
+                    this.SecondaryGid = 1115;
                     break;
                 case TileSimulationType.sand:
                     this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
+                    this.TilingDictionary = TileUtility.SandTiling;
+                    this.MainGid = 1222;
+                    this.SecondaryGid = 1115;
                     break;
             }
             this.Type = 1;
@@ -300,14 +311,14 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 1; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(this, this.SimulationType, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(this,this.MainGid,this.SecondaryGid,this.GeneratableTiles,this.TilingDictionary, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    TileUtility.ReassignTileForTiling(AllTiles, this.SimulationType, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
+                    TileUtility.ReassignTileForTiling(AllTiles, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
                     if (this.SimulationType == TileSimulationType.dirt)
                     {
 
@@ -347,6 +358,10 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
 
                     TileUtility.GenerateTiles(1, 1002, "dirt", 50, 0, this);
+                    break;
+
+                case TileSimulationType.sand:
+                    TileUtility.GenerateTiles(1, 1286, "sand", 50, 0, this);
                     break;
             }
             
