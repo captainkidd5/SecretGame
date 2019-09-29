@@ -377,6 +377,21 @@
    <frame tileid="983" duration="100"/>
   </animation>
  </tile>
+ <tile id="1001">
+  <properties>
+   <property name="destructable" value="1,0,0,8"/>
+   <property name="loot" value="221:100:1,220:15:1"/>
+   <property name="spawnWith" value="1002"/>
+   <property name="tileSelectorAllowed" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1002">
+  <properties>
+   <property name="layer" value="1"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="0"/>
+  </properties>
+ </tile>
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>

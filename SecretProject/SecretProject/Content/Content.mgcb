@@ -14,6 +14,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin BackDrops/wilderness.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BackDrops/wilderness.png
+
 #begin Button/Cursor1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -136,6 +148,11 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Dialogue/ElixirDialogue.xml
+
+#begin Dialogue/JulianDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/JulianDialogue.xml
 
 #begin Dialogue/KayaDialogue.xml
 /importer:XmlImporter
@@ -360,6 +377,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Enemy/EnemySpriteSheet.png
+
+#begin NPC/Julian/Julian.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Julian/Julian.png
 
 #begin NPC/Kaya/KayaSpriteSheet.png
 /importer:TextureImporter
@@ -755,10 +784,27 @@
 /processor:PassThroughProcessor
 /build:Route/ElixerRouteSchedule.xml
 
+#begin Route/JulianRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/JulianRouteSchedule.xml
+
 #begin Route/KayaRouteSchedule.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Route/KayaRouteSchedule.xml
+
+#begin Songs/DustStorm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/DustStorm.wav
+
+#begin Songs/Title.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/Title.wav
 
 #begin SoundEffects/bubble.WAV
 /importer:WavImporter
@@ -796,6 +842,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/diggingDirt.wav
 
+#begin SoundEffects/FurnaceLight.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FurnaceLight.wav
+
+#begin SoundEffects/gearspin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/gearspin.wav
+
 #begin SoundEffects/metalCraft.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -820,11 +878,29 @@
 /processorParam:Quality=Best
 /build:SoundEffects/PigGrunt2.wav
 
+#begin SoundEffects/placeItem1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/placeItem1.wav
+
+#begin SoundEffects/placeItem2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/placeItem2.wav
+
 #begin SoundEffects/ropePop.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/ropePop.wav
+
+#begin SoundEffects/sanctuaryAddEffect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sanctuaryAddEffect.wav
 
 #begin SoundEffects/sandStep.wav
 /importer:WavImporter
@@ -881,11 +957,17 @@
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
 
-#begin SoundEffects/sanctuaryAddEffect.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/sanctuaryAddEffect.wav
+#begin WorldProps/gears.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WorldProps/gears.png
 
 #begin WorldProps/Gondola.png
 /importer:TextureImporter
@@ -899,18 +981,6 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/Gondola.png
 
-#begin BackDrops/wilderness.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:BackDrops/wilderness.png
-
 #begin WorldProps/tallGrass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -922,68 +992,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin NPC/Julian/Julian.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Julian/Julian.png
-
-#begin Route/JulianRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/JulianRouteSchedule.xml
-
-#begin Dialogue/JulianDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/JulianDialogue.xml
-
-#begin WorldProps/gears.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:WorldProps/gears.png
-
-#begin SoundEffects/gearspin.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/gearspin.wav
-
-#begin SoundEffects/placeItem1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/placeItem1.wav
-
-#begin SoundEffects/placeItem2.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/placeItem2.wav
-
-#begin Songs/DustStorm.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/DustStorm.wav
-
-#begin Songs/Title.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/Title.wav
 

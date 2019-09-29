@@ -465,6 +465,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     Game1.Player.Inventory.RemoveItem(tempItem.ID);
                                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(tempItem.SmeltedItem, null));
+                                    Game1.SoundManager.FurnaceLight.Play();
                                 }
                             }
                         }

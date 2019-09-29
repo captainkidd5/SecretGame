@@ -79,6 +79,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect PlaceItem1;
         public SoundEffect PlaceItem2;
 
+        public SoundEffect FurnaceLight;
         //songs
         public SoundEffect DustStorm;
         public SoundEffectInstance DustStormInstance;
@@ -158,6 +159,8 @@ namespace SecretProject.Class.SoundStuff
 
             PlaceItem1 = content.Load<SoundEffect>("SoundEffects/placeItem1");
             PlaceItem2 = content.Load<SoundEffect>("SoundEffects/placeItem2");
+
+            FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
 
             //Songs
             DustStorm = content.Load<SoundEffect>("Songs/DustStorm");

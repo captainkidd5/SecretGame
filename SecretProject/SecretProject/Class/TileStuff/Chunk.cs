@@ -304,6 +304,8 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateTiles(1, 1297, "dirt", 50, 0, this);
             TileUtility.GenerateTiles(1, 1298, "dirt", 50, 0, this);
 
+            TileUtility.GenerateTiles(1, 1002, "dirt", 50, 0, this);
+
             for (int z = 0; z < 5; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
