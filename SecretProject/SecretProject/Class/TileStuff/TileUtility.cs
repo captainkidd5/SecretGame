@@ -39,7 +39,7 @@ namespace SecretProject.Class.TileStuff
             {0, 1024},{1,1125}, {2, 1224 },  {3, 1423}, {4, 1124}, {5, 1420},{6,1026},{7, 1422}, {8, 1225}, {9, 1025}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
         };
 
-        public static void ReassignTileForTiling(List<Tile[,]> tiles, List<int> generatableTiles, Dictionary<int,int> tilingDictionary,int x, int y, int worldWidth, int worldHeight)
+        public static void ReassignTileForTiling(List<Tile[,]> tiles,int mainGid, List<int> generatableTiles, Dictionary<int,int> tilingDictionary,int x, int y, int worldWidth, int worldHeight)
         {
 
             if (!generatableTiles.Contains(tiles[0][x, y].GID))
@@ -80,7 +80,7 @@ namespace SecretProject.Class.TileStuff
             }
             if (keyToCheck == 15)
             {
-                tiles[0][x, y].GID = generatableTiles[Game1.Utility.RGenerator.Next(0, tilingDictionary.Count - 1)] + 1;
+                tiles[0][x, y].GID = mainGid;
             }
             else
             {

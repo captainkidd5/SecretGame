@@ -306,7 +306,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    TileUtility.ReassignTileForTiling(AllTiles, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
+                    TileUtility.ReassignTileForTiling(AllTiles, this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
                     if (this.SimulationType == TileSimulationType.dirt)
                     {
 
