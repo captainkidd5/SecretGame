@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
@@ -11,25 +12,35 @@ namespace SecretProject.Class.UI
 {
     public class LiftWindow
     {
-        public List<Button> LiftButtons { get; set; }
+        public GraphicsDevice Graphics { get; set; }
+        public List<LiftButton> LiftButtons { get; set; }
+        public Vector2 Position { get; set; }
+        public string CurrentLift { get; set; }
 
-        public LiftWindow()
+        public LiftWindow(GraphicsDevice graphics, Vector2 position)
         {
-            LiftButtons = new List<Button>();
+            this.Graphics = graphics;
+            LiftButtons = new List<LiftButton>();
+            this.Position = position;
         }
 
         public void Update(GameTime gameTime)
         {
             for(int i =0; i < LiftButtons.Count; i++)
             {
-                LiftButtons[i].Update(Game1.myMouseManager);
-                if()
+                LiftButtons[i].Update(Game1.myMouseManager, CurrentLift);
+
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+        }
 
+        public void AddLiftKeyButton(string liftKey)
+        {
+            this.LiftButtons.Add(new LiftButton(this.Graphics, Position, liftKey));
         }
 
     }
@@ -38,9 +49,24 @@ namespace SecretProject.Class.UI
     {
         public Vector2 Position { get; set; }
         public Button Button { get; set; }
-        public LiftButton(Vector2 position)
+        public string LiftKey { get; set; }
+        public LiftButton(GraphicsDevice graphics,Vector2 position, string liftKey)
         {
+            this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphics, position);
+            this.LiftKey = liftKey;
+        }
+        public void Update(MouseManager mouse, string currentLift)
+        {
+            Button.Update(mouse);
+            if(Button.isClicked)
+            {
+                Game1.Lifts[currentLift].Transport(Game1.Lifts[LiftKey]);
+            }
+        }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+                Button.Draw(spriteBatch, Game1.AllTextures.MenuText, LiftKey,Position, Color.BlueViolet, .69f, .75f);
         }
     }
 }
