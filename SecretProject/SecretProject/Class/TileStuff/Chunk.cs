@@ -291,7 +291,7 @@ namespace SecretProject.Class.TileStuff
                     this.TilingDictionary = TileUtility.WaterTiling;
                     this.MainGid = 427;
                     this.SecondaryGid = 1115;
-                    MainGIDSpawnChance = .85f;
+                    MainGIDSpawnChance = .75f;
                     break;
             }
 
@@ -370,18 +370,21 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1295, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1297, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1298, "dirt", 10, 0, this);
-
+                   // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
                     TileUtility.GenerateTiles(1, 1002, "dirt", 10, 0, this);
                     break;
 
                 case TileSimulationType.sand:
                     TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
                     TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
+                   // TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
                     break;
                 case TileSimulationType.water:
                     TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+
                     break;
             }
             

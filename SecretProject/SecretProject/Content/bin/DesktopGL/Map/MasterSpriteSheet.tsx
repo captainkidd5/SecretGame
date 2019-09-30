@@ -566,6 +566,14 @@
    <property name="generate" value="sand"/>
   </properties>
  </tile>
+ <tile id="1063">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="-32,-48,64,48"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1078">
   <properties>
    <property name="destructable" value="2,0,3,6"/>
@@ -676,6 +684,13 @@
  <tile id="1125">
   <properties>
    <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1163">
+  <properties>
+   <property name="destructable" value="0,4,1,3"/>
+   <property name="loot" value="142:100:5,122:10:2"/>
+   <property name="spawnWith" value="1063"/>
   </properties>
  </tile>
  <tile id="1185">
