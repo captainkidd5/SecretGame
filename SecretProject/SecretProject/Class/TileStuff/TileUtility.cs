@@ -508,9 +508,12 @@ namespace SecretProject.Class.TileStuff
                                 string liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
                                 if(!Game1.Lifts.ContainsKey(liftKey))
                                 {
-                                    Game1.Lifts.Add(liftKey, new Lift(liftKey,Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
+                                Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
+                                Game1.Lifts.Add(liftKey, new Lift(liftKey,Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
                                 }
-
+                            Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
+                            
+                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
                           //  }
                         }
                         break;

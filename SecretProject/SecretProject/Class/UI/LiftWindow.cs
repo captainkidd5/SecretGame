@@ -17,11 +17,11 @@ namespace SecretProject.Class.UI
         public Vector2 Position { get; set; }
         public string CurrentLift { get; set; }
 
-        public LiftWindow(GraphicsDevice graphics, Vector2 position)
+        public LiftWindow(GraphicsDevice graphics)
         {
             this.Graphics = graphics;
             LiftButtons = new List<LiftButton>();
-            this.Position = position;
+            this.Position = new Vector2(50, 50);
         }
 
         public void Update(GameTime gameTime)
@@ -36,11 +36,16 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            for(int i =0; i < LiftButtons.Count; i++)
+            {
+                LiftButtons[i].Draw(spriteBatch);
+            }
         }
 
         public void AddLiftKeyButton(string liftKey)
         {
-            this.LiftButtons.Add(new LiftButton(this.Graphics, Position, liftKey));
+            int count = LiftButtons.Count;
+            this.LiftButtons.Add(new LiftButton(this.Graphics, new Vector2(this.Position.X + 200 * count, this.Position.Y), liftKey));
         }
 
     }
@@ -53,6 +58,7 @@ namespace SecretProject.Class.UI
         public LiftButton(GraphicsDevice graphics,Vector2 position, string liftKey)
         {
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphics, position);
+            this.Position = position;
             this.LiftKey = liftKey;
         }
         public void Update(MouseManager mouse, string currentLift)

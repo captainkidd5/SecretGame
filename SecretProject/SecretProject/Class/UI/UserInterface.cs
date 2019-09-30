@@ -37,7 +37,8 @@ namespace SecretProject.Class.UI
         EscMenu = 1,
         ShopMenu = 2,
         CraftingMenu = 3,
-        SanctuaryCheckList = 4
+        SanctuaryCheckList = 4,
+        LiftWindow = 5
     }
     public class UserInterface
     {
@@ -68,6 +69,7 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
         public ScrollTree ScrollTree { get; set; }
+        public LiftWindow LiftWindow { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
@@ -95,6 +97,7 @@ namespace SecretProject.Class.UI
             CraftingMenu = new CraftingMenu();
             CraftingMenu.LoadContent(content, GraphicsDevice);
             ScrollTree = new ScrollTree(graphicsDevice);
+            LiftWindow = new LiftWindow(graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
@@ -210,6 +213,14 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
+                case ExclusiveInterfaceItem.LiftWindow:
+                    LiftWindow.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
 
             }
             
@@ -274,6 +285,9 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Draw(spriteBatch);
+                    break;
+                case ExclusiveInterfaceItem.LiftWindow:
+                    LiftWindow.Draw(spriteBatch);
                     break;
 
             }
