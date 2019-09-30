@@ -6,6 +6,7 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.Transportation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -504,6 +505,12 @@ namespace SecretProject.Class.TileStuff
                                 Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
                                 Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
                                 Game1.SoundManager.GearSpin.Play();
+                                string liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
+                                if(!Game1.Lifts.ContainsKey(liftKey))
+                                {
+                                    Game1.Lifts.Add(liftKey, new Lift(Game1.GetCurrentStageInt(), new Vector2(i,j)));
+                                }
+
                             }
                         }
                         break;

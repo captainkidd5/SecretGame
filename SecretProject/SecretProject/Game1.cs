@@ -32,6 +32,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
 using static SecretProject.Class.UI.CheckList;
 using SecretProject.Class.EventStuff;
+using SecretProject.Class.Transportation;
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -210,6 +211,7 @@ namespace SecretProject
 
         //PORTALS
         public static Graph PortalGraph;
+        public static Dictionary<string, Lift> Lifts;
 
         public static bool IsEventActive;
 
@@ -616,6 +618,8 @@ namespace SecretProject
 
 
             }
+
+            Lifts = new Dictionary<string, Lift>();
 
             AllEvents = new List<IEvent>()
             {

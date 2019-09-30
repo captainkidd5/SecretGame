@@ -33,5 +33,7 @@ namespace SecretProject.Class.TileStuff
 
         //specific to chunks
         Chunk[] RelativeChunks{ get; set; }
+         int X { get; set; }
+         int Y { get; set; }
     }
 }

@@ -74,6 +74,10 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<string, Crop> Crops { get; set; }
 
+        //not relevant:
+        public int X { get; set; }
+        public int Y { get; set; }
+
         #region CONSTRUCTORS
 
         private TileManager()
