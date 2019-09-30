@@ -575,7 +575,12 @@ namespace SecretProject.Class.TileStuff
         {
             UpdateCropTile();
         }
-        
+
+        public Rectangle GetChunkRectangle()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.ObjectFolder;
@@ -35,5 +36,6 @@ namespace SecretProject.Class.TileStuff
         Chunk[] RelativeChunks{ get; set; }
          int X { get; set; }
          int Y { get; set; }
+        Rectangle GetChunkRectangle();
     }
 }

@@ -1393,7 +1393,7 @@
  </tile>
  <tile id="4280">
   <properties>
-   <property name="action" value="replaceLargeCog"/>
+   <property name="action" value="triggerLift"/>
    <property name="layer" value="3"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>

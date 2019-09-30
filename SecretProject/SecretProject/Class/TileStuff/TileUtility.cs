@@ -500,18 +500,18 @@ namespace SecretProject.Class.TileStuff
                     case "triggerLift":
                         if (mouse.IsClicked)
                         {
-                            if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
-                            {
-                                Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
-                                Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
-                                Game1.SoundManager.GearSpin.Play();
+                           // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                           // {
+                              //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
+                              //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
+                              //  Game1.SoundManager.GearSpin.Play();
                                 string liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
                                 if(!Game1.Lifts.ContainsKey(liftKey))
                                 {
-                                    Game1.Lifts.Add(liftKey, new Lift(Game1.GetCurrentStageInt(), new Vector2(i,j)));
+                                    Game1.Lifts.Add(liftKey, new Lift(Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
                                 }
 
-                            }
+                          //  }
                         }
                         break;
                     case "replaceLargeCog":
