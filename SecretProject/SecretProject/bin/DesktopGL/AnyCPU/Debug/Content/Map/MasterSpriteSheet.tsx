@@ -134,6 +134,14 @@
    <property name="loot" value="147:100:1,128:20:2"/>
   </properties>
  </tile>
+ <tile id="563">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="-16,-48,32,48"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="578">
   <properties>
    <property name="AssociatedTiles" value="478"/>
@@ -154,6 +162,13 @@
    <frame tileid="583" duration="100"/>
    <frame tileid="584" duration="100"/>
   </animation>
+ </tile>
+ <tile id="663">
+  <properties>
+   <property name="destructable" value="0,4,1,3"/>
+   <property name="loot" value="142:100:5,122:10:2"/>
+   <property name="spawnWith" value="563"/>
+  </properties>
  </tile>
  <tile id="678">
   <properties>

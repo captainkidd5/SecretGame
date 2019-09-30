@@ -354,6 +354,7 @@ namespace SecretProject.Class.TileStuff
 
                 case TileSimulationType.sand:
                     TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
                     break;
             }
             
