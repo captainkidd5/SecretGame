@@ -269,7 +269,7 @@ namespace SecretProject.Class.TileStuff
         public void Generate()
         {
 
-            this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 3);
+            this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
             switch (SimulationType)
             {
                 case TileSimulationType.dirt:
@@ -283,6 +283,13 @@ namespace SecretProject.Class.TileStuff
                     this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
                     this.TilingDictionary = TileUtility.SandTiling;
                     this.MainGid = 1222;
+                    this.SecondaryGid = 1115;
+                    MainGIDSpawnChance = .85f;
+                    break;
+                case TileSimulationType.water:
+                    this.GeneratableTiles = Game1.Utility.WaterGeneratableTiles;
+                    this.TilingDictionary = TileUtility.WaterTiling;
+                    this.MainGid = 427;
                     this.SecondaryGid = 1115;
                     MainGIDSpawnChance = .85f;
                     break;
@@ -370,6 +377,11 @@ namespace SecretProject.Class.TileStuff
                 case TileSimulationType.sand:
                     TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
                     TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
+                    break;
+                case TileSimulationType.water:
+                    TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
                     break;
             }
             

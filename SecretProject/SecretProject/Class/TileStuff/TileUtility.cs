@@ -20,7 +20,8 @@ namespace SecretProject.Class.TileStuff
     public enum TileSimulationType
     {
         dirt = 1,
-        sand = 2
+        sand = 2,
+        water = 3
     }
     public static class TileUtility
     {
@@ -37,6 +38,11 @@ namespace SecretProject.Class.TileStuff
         public static Dictionary<int, int> SandTiling = new Dictionary<int, int>()
         {
             {0, 1024},{1,1125}, {2, 1224 },  {3, 1423}, {4, 1124}, {5, 1420},{6,1026},{7, 1422}, {8, 1225}, {9, 1025}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
+        };
+
+        public static Dictionary<int, int> WaterTiling = new Dictionary<int, int>()
+        {
+            {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
         public static void ReassignTileForTiling(List<Tile[,]> tiles,int mainGid, List<int> generatableTiles, Dictionary<int,int> tilingDictionary,int x, int y, int worldWidth, int worldHeight)
@@ -987,6 +993,7 @@ namespace SecretProject.Class.TileStuff
                                         {
                                             int relationX = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]);
                                             int relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]);
+
                                             //if tile extends into chunk above
                                             if(Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
                                             {

@@ -16,6 +16,21 @@
    <property name="relationY" value="-2"/>
   </properties>
  </tile>
+ <tile id="226">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="227">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="228">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
  <tile id="260">
   <properties>
    <property name="action" value="smelt"/>
@@ -41,6 +56,31 @@
    <property name="loot" value="177:100:1,167:20:3"/>
   </properties>
  </tile>
+ <tile id="325">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="326">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="327">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="328">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="329">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
  <tile id="360">
   <properties>
    <property name="AssociatedTiles" value="260,160"/>
@@ -57,6 +97,31 @@
  <tile id="362">
   <properties>
    <property name="action" value="1"/>
+  </properties>
+ </tile>
+ <tile id="425">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="426">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="427">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="428">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="429">
+  <properties>
+   <property name="generate" value="water"/>
   </properties>
  </tile>
  <tile id="478">
@@ -132,6 +197,21 @@
    <property name="AssociatedTiles" value="391"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="147:100:1,128:20:2"/>
+  </properties>
+ </tile>
+ <tile id="525">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="526">
+  <properties>
+   <property name="generate" value="water"/>
+  </properties>
+ </tile>
+ <tile id="527">
+  <properties>
+   <property name="generate" value="water"/>
   </properties>
  </tile>
  <tile id="563">
