@@ -18,6 +18,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
+        public WorldTileManager TileManager { get; set; }
         public int Type { get; set; }
         
         public GraphicsDevice GraphicsDevice { get; set; }
@@ -40,6 +41,8 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
 
+        public Chunk[] RelativeChunks{ get; set; }
+
         //GENERATION
         public TileSimulationType SimulationType { get; set; }
         public List<int> GeneratableTiles { get; set; }
@@ -50,7 +53,7 @@ namespace SecretProject.Class.TileStuff
         public Chunk(WorldTileManager tileManager, int x, int y)
            
         {
-
+            this.TileManager = tileManager;
             
             this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
@@ -241,7 +244,8 @@ namespace SecretProject.Class.TileStuff
                 };
                 this.Crops.Add(cropKey, crop);
             }
-
+            AssignRelativeChunks();
+            
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -249,6 +253,17 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public void AssignRelativeChunks()
+        {
+            //Down Up Left Right
+            this.RelativeChunks = new Chunk[4]
+            {
+                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X && x.Y == (this.Y + 1)),
+                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X && x.Y == (this.Y - 1)),
+                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X -1 && x.Y == (this.Y)),
+                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X +1 && x.Y == (this.Y))
+            };
+        }
 
 
         public void Generate()
@@ -375,6 +390,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            AssignRelativeChunks();
 
             this.IsLoaded = true;
         }

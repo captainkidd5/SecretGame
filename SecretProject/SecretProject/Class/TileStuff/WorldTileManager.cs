@@ -275,6 +275,10 @@ namespace SecretProject.Class.TileStuff
                 this.Chests = ChunkUnderPlayer.Chests;
                 this.CurrentObjects = ChunkUnderPlayer.Objects;
                 this.Chests = ChunkUnderPlayer.Chests;
+                foreach(Chunk chunk in ActiveChunks)
+                {
+                    chunk.AssignRelativeChunks();
+                }
 
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;

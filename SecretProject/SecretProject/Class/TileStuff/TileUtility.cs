@@ -989,7 +989,7 @@ namespace SecretProject.Class.TileStuff
                                             int relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]);
                                             if(Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
                                             {
-                                                int amountToExtendIntoNewChunkY = relationY + container.AllTiles[1].GetLength(1) - Game1.Player.UserInterface.TileSelector.IndexY;
+                                                int amountToExtendIntoNewChunkY = Math.Abs(relationY + Game1.Player.UserInterface.TileSelector.IndexY);
                                                 ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
                                                 Game1.Player.UserInterface.TileSelector.IndexX + relationX,
                                                 Game1.Player.UserInterface.TileSelector.IndexY + relationY,

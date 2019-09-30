@@ -30,5 +30,8 @@ namespace SecretProject.Class.TileStuff
          Dictionary<string, Chest> Chests { get; set; }
          List<LightSource> Lights { get; set; }
         Dictionary<string, Crop> Crops { get; set; }
+
+        //specific to chunks
+        Chunk[] RelativeChunks{ get; set; }
     }
 }
