@@ -340,7 +340,7 @@ namespace SecretProject.Class.TileStuff
             {
                 case TileSimulationType.dirt:
                     TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 2264, "dirt", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1079, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1586, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1664, "dirt", 10, 0, this);

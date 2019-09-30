@@ -985,8 +985,20 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         for (int a = 0; a < associatedTiles.Length; a++)
                                         {
-                                            ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]), Game1.Player.UserInterface.TileSelector.IndexX+ int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]),
-                                                Game1.Player.UserInterface.TileSelector.IndexY + int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]), associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
+                                            int relationX = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]);
+                                            int relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]);
+                                            if(Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
+                                            {
+                                                int amountToExtendIntoNewChunkY = relationY + container.AllTiles[1].GetLength(1) - Game1.Player.UserInterface.TileSelector.IndexY;
+                                                ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
+                                                Game1.Player.UserInterface.TileSelector.IndexX + relationX,
+                                                Game1.Player.UserInterface.TileSelector.IndexY + relationY,
+                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
+                                            }
+                                            ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
+                                                Game1.Player.UserInterface.TileSelector.IndexX+ relationX,
+                                                Game1.Player.UserInterface.TileSelector.IndexY + relationY,
+                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
                                         }
                                     }
                                     int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
