@@ -33,9 +33,10 @@ namespace SecretProject.Class.TileStuff
         Dictionary<string, Crop> Crops { get; set; }
 
         //specific to chunks
-        Chunk[] RelativeChunks{ get; set; }
          int X { get; set; }
          int Y { get; set; }
+        int ArrayI { get; set; }
+        int ArrayJ { get; set; }
         Rectangle GetChunkRectangle();
     }
 }

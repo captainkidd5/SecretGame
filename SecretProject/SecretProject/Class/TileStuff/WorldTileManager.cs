@@ -106,8 +106,8 @@ namespace SecretProject.Class.TileStuff
 
             CurrentObjects = new Dictionary<string, ObjectBody>();
 
-            this.ChunkUnderPlayer = new Chunk(this, 0, 0);
-            this.ChunkUnderMouse = new Chunk(this, 0, 0);
+            this.ChunkUnderPlayer = new Chunk(this, 0, 0, 1, 1);
+            this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
         }
@@ -209,7 +209,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for(int j =0; j < 3; j++)
                 {
-                    ChunksToReturn[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y);
+                    ChunksToReturn[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
                     y++;
                 }
                 y = -1;
@@ -247,7 +247,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int i = 0; i < 3; i++)
                     {
-                        ActiveChunks[i, 2] = new Chunk(this, currentChunkX - 1 + i,currentChunkY +  2);
+                        ActiveChunks[i, 2] = new Chunk(this, currentChunkX - 1 + i,currentChunkY +  2, i, 2);
                         if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 2].X, ActiveChunks[i, 2].Y))
                         {
                             ActiveChunks[i, 2].Load();
@@ -273,7 +273,7 @@ namespace SecretProject.Class.TileStuff
 
                     for(int i =0; i < 3; i++)
                     {
-                        ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY -2);
+                        ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY -2, i, 0);
                         if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 0].X, ActiveChunks[i, 0].Y))
                         {
                             ActiveChunks[i, 0].Load();
@@ -299,7 +299,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int i = 0; i < 3; i++)
                     {
-                        ActiveChunks[0, i] = new Chunk(this, currentChunkX - 2, currentChunkY - 1 + i);
+                        ActiveChunks[0, i] = new Chunk(this, currentChunkX - 2, currentChunkY - 1 + i, 0, i);
                         if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[0, i].X, ActiveChunks[0,i].Y))
                         {
                             ActiveChunks[0, i].Load();
@@ -325,7 +325,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int i = 0; i < 3; i++)
                     {
-                        ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i);
+                        ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
                         if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[2, i].X, ActiveChunks[2, i].Y))
                         {
                             ActiveChunks[2, i].Load();
@@ -370,10 +370,7 @@ namespace SecretProject.Class.TileStuff
                 ChunkUnderPlayer = ActiveChunks[1, 1];
                 this.Chests = ChunkUnderPlayer.Chests;
                 this.CurrentObjects = ChunkUnderPlayer.Objects;
-                foreach(Chunk chunk in ActiveChunks)
-                {
-                    chunk.AssignRelativeChunks();
-                }
+
 
             }
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;

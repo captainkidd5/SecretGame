@@ -256,7 +256,8 @@ namespace SecretProject.Class.TileStuff
         }
         public int NumberOfLayers { get; set; }
         public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Chunk[] RelativeChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 

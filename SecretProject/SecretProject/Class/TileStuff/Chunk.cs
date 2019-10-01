@@ -38,7 +38,8 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
 
-        public Chunk[] RelativeChunks { get; set; }
+        public int ArrayI { get; set; }
+        public int ArrayJ { get; set; }
 
         //GENERATION
         public TileSimulationType SimulationType { get; set; }
@@ -47,7 +48,7 @@ namespace SecretProject.Class.TileStuff
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
-        public Chunk(WorldTileManager tileManager, int x, int y)
+        public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
             this.TileManager = tileManager;
@@ -62,7 +63,8 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
-
+            this.ArrayI = arrayI;
+            this.ArrayI = arrayJ;
             Tufts = new Dictionary<string, List<GrassTuft>>();
             Objects = new Dictionary<string, ObjectBody>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
@@ -241,25 +243,12 @@ namespace SecretProject.Class.TileStuff
                 };
                 this.Crops.Add(cropKey, crop);
             }
-            AssignRelativeChunks();
 
             this.IsLoaded = true;
             binaryReader.Close();
 
-            Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            //Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
 
-        }
-
-        public void AssignRelativeChunks()
-        {
-            //Down Up Left Right
-            this.RelativeChunks = new Chunk[4]
-            {
-                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X && x.Y == (this.Y + 1)),
-                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X && x.Y == (this.Y - 1)),
-                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X -1 && x.Y == (this.Y)),
-                this.TileManager.ActiveChunks.SingleOrDefault(x => x.X == this.X +1 && x.Y == (this.Y))
-            };
         }
 
 
@@ -402,7 +391,6 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            AssignRelativeChunks();
 
             this.IsLoaded = true;
         }
