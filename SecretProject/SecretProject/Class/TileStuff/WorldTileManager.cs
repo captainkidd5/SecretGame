@@ -47,7 +47,6 @@ namespace SecretProject.Class.TileStuff
 
         public Point ChunkPointUnderPlayerLastFrame { get; set; }
         public Point ChunkPointUnderPlayer { get; set; }
-        public Point ChunkPointUnderMouse { get; set; }
         public Chunk ChunkUnderPlayer { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
@@ -346,8 +345,7 @@ namespace SecretProject.Class.TileStuff
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
-            ChunkPointUnderMouse = new Point((int)(mouse.WorldMousePosition.X / 16 / TileUtility.ChunkX), (int)(mouse.WorldMousePosition.Y / 16 / TileUtility.ChunkY));
-            ChunkUnderMouse = ActiveChunks[ChunkPointUnderMouse.X, ChunkPointUnderMouse.Y];
+           
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
                 if(ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
@@ -439,10 +437,14 @@ namespace SecretProject.Class.TileStuff
                     {
                         ActiveChunks[a,b].AnimationFrames.Remove(key);
                     }
+                    Rectangle ActiveChunkRectangle = ActiveChunks[a, b].GetChunkRectangle();
 
-
-                    if (ScreenRectangle.Intersects(ActiveChunks[a,b].GetChunkRectangle()))
+                    if (ScreenRectangle.Intersects(ActiveChunkRectangle))
                     {
+                        if(mouse.IsHoveringTile(ActiveChunkRectangle))
+                        {
+                            ChunkUnderMouse = ActiveChunks[a, b];
+                        }
                         for (int z = 0; z < 5; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
