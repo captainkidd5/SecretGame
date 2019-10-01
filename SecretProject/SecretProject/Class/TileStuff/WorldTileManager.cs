@@ -47,6 +47,7 @@ namespace SecretProject.Class.TileStuff
 
         public Point ChunkPointUnderPlayerLastFrame { get; set; }
         public Point ChunkPointUnderPlayer { get; set; }
+
         public Chunk ChunkUnderPlayer { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
@@ -192,6 +193,8 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
 
+            ChunkUnderPlayer = ActiveChunks[1, 1];
+
         }
 
 
@@ -202,7 +205,7 @@ namespace SecretProject.Class.TileStuff
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
 
             Chunk[,] ChunksToReturn = new Chunk[3, 3];
-            int x = -1;
+            int x = 0;
             int y = -1;
             for(int i =0; i < 3; i++)
             {
