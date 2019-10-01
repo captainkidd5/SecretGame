@@ -528,7 +528,6 @@ namespace SecretProject.Class.TileStuff
                             Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
 
                             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
-                            //  }
                         }
                         break;
                     case "replaceLargeCog":

@@ -214,6 +214,7 @@ namespace SecretProject.Class.UI
                     }
                     break;
                 case ExclusiveInterfaceItem.LiftWindow:
+                    Game1.freeze = true;
                     LiftWindow.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
