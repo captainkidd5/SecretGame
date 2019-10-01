@@ -46,7 +46,7 @@ namespace SecretProject.Class.TileStuff
             {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
-        public static void ReassignTileForTiling(List<Tile[,]> tiles,int mainGid, List<int> generatableTiles, Dictionary<int,int> tilingDictionary,int x, int y, int worldWidth, int worldHeight)
+        public static void ReassignTileForTiling(List<Tile[,]> tiles, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int x, int y, int worldWidth, int worldHeight)
         {
 
             if (!generatableTiles.Contains(tiles[0][x, y].GID))
@@ -97,7 +97,7 @@ namespace SecretProject.Class.TileStuff
 
         }
         #endregion
-        public static Tile[,] DoSimulation(IInformationContainer container,int mainGid, int secondaryGid, List<int> generatableTiles, Dictionary<int,int> tiling,int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
+        public static Tile[,] DoSimulation(IInformationContainer container, int mainGid, int secondaryGid, List<int> generatableTiles, Dictionary<int, int> tiling, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
         {
 
 
@@ -122,7 +122,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < newTiles.GetLength(1); j++)
                 {
-                    int nbs = CountAliveNeighbors(container.AllTiles[0], generatableTiles,0, i, j);
+                    int nbs = CountAliveNeighbors(container.AllTiles[0], generatableTiles, 0, i, j);
                     if (container.AllTiles[0][i, j].GID != secondaryGid)
                     {
                         if (nbs < 3)
@@ -155,7 +155,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static int CountAliveNeighbors(Tile[,] tiles,List<int> generatableTiles, int layer, int x, int y)
+        public static int CountAliveNeighbors(Tile[,] tiles, List<int> generatableTiles, int layer, int x, int y)
         {
             int count = 0;
             for (int i = -1; i < 2; i++)
@@ -183,7 +183,7 @@ namespace SecretProject.Class.TileStuff
             return count;
         }
 
-        public static void PlaceChests(IInformationContainer container, List<int> generatableTiles,GraphicsDevice graphics, int chunkX = 0, int chunkY = 0)
+        public static void PlaceChests(IInformationContainer container, List<int> generatableTiles, GraphicsDevice graphics, int chunkX = 0, int chunkY = 0)
         {
             int hiddenTreasureLimit = 5;
             for (int i = 1; i < container.AllTiles[0].GetLength(0) - 1; i++)
@@ -192,7 +192,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (container.AllTiles[0][i, j].GID == 1115)
                     {
-                        int nbs = CountAliveNeighbors(container.AllTiles[0],generatableTiles, 1, i, j);
+                        int nbs = CountAliveNeighbors(container.AllTiles[0], generatableTiles, 1, i, j);
                         if (nbs >= hiddenTreasureLimit)
                         {
 
@@ -364,7 +364,7 @@ namespace SecretProject.Class.TileStuff
             //new Gid should be one larger, per usual
             string[] information = Game1.Utility.GetActionHelperInfo(action);
 
-                
+
 
             if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.None)
             {
@@ -500,21 +500,35 @@ namespace SecretProject.Class.TileStuff
                     case "triggerLift":
                         if (mouse.IsClicked)
                         {
-                           // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
-                           // {
-                              //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
-                              //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
-                              //  Game1.SoundManager.GearSpin.Play();
-                                string liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
-                                if(!Game1.Lifts.ContainsKey(liftKey))
+                            // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
+                            // {
+                            //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
+                            //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
+                            //  Game1.SoundManager.GearSpin.Play();
+                            string liftKey;
+                            if (container.Type == 0)
+                            {
+                                liftKey = i.ToString() + j.ToString();
+                                if (!Game1.Lifts.ContainsKey(liftKey))
                                 {
-                                Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
-                                Game1.Lifts.Add(liftKey, new Lift(liftKey,Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
+                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16,j * 16)));
                                 }
+                            }
+                            else
+                            {
+                                liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
+                                if (!Game1.Lifts.ContainsKey(liftKey))
+                                {
+                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
+                                }
+                            }
+
                             Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
-                            
+
                             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
-                          //  }
+                            //  }
                         }
                         break;
                     case "replaceLargeCog":
@@ -1005,7 +1019,7 @@ namespace SecretProject.Class.TileStuff
                                             int relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]);
 
                                             //if tile extends into chunk above
-                                            if(Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
+                                            if (Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
                                             {
                                                 int amountToExtendIntoNewChunkY = Math.Abs(relationY + Game1.Player.UserInterface.TileSelector.IndexY);
                                                 int newYIndex = ChunkY - amountToExtendIntoNewChunkY;
@@ -1021,7 +1035,7 @@ namespace SecretProject.Class.TileStuff
                                                 Game1.Player.UserInterface.TileSelector.IndexY + relationY,
                                                 associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
                                             }
-                                            
+
                                         }
                                     }
                                     int soundRandom = Game1.Utility.RGenerator.Next(0, 2);

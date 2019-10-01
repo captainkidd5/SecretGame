@@ -620,6 +620,7 @@ namespace SecretProject
             }
 
             Lifts = new Dictionary<string, Lift>();
+            //Lifts.Add("000", new Lift("000", Stages.Town, ))
 
             AllEvents = new List<IEvent>()
             {
