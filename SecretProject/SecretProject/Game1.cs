@@ -621,7 +621,8 @@ namespace SecretProject
 
             Lifts = new Dictionary<string, Lift>();
             //Lifts.Add("000", new Lift("000", Stages.Town, ))
-
+            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("13944");
+            Game1.Lifts.Add("13944", new Lift("13944", (int)Stages.Town, new Vector2(139 * 16, 44 * 16)));
             AllEvents = new List<IEvent>()
             {
                 new IntroduceSanctuary(),
