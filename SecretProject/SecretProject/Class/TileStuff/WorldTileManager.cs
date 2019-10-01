@@ -236,9 +236,9 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             ChunkToAdd.Generate();
-
+                            ChunkToAdd.Save();
                         }
-                        ChunkToAdd.Save();
+                       
                     }
                     ActiveChunks.Add(ChunkToAdd);
                 }

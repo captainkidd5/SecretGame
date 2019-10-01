@@ -5,12 +5,9 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.SpriteFolder;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiledSharp;
 using XMLData.ItemStuff;
 
@@ -20,7 +17,7 @@ namespace SecretProject.Class.TileStuff
     {
         public WorldTileManager TileManager { get; set; }
         public int Type { get; set; }
-        
+
         public GraphicsDevice GraphicsDevice { get; set; }
         public TmxMap MapName { get; set; }
         public int TileSetDimension { get; set; }
@@ -41,20 +38,20 @@ namespace SecretProject.Class.TileStuff
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
 
-        public Chunk[] RelativeChunks{ get; set; }
+        public Chunk[] RelativeChunks { get; set; }
 
         //GENERATION
         public TileSimulationType SimulationType { get; set; }
         public List<int> GeneratableTiles { get; set; }
-        public Dictionary<int,int> TilingDictionary { get; set; }
+        public Dictionary<int, int> TilingDictionary { get; set; }
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y)
-           
+
         {
             this.TileManager = tileManager;
-            
+
             this.Type = 1;
             this.GraphicsDevice = tileManager.GraphicsDevice;
             this.MapName = tileManager.MapName;
@@ -245,7 +242,7 @@ namespace SecretProject.Class.TileStuff
                 this.Crops.Add(cropKey, crop);
             }
             AssignRelativeChunks();
-            
+
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -325,7 +322,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 1; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(this,this.MainGid,this.SecondaryGid,this.GeneratableTiles,this.TilingDictionary, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, this.TilingDictionary, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -358,7 +355,7 @@ namespace SecretProject.Class.TileStuff
             }
             TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
 
-            switch(this.SimulationType)
+            switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
                     TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this);
@@ -370,14 +367,14 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1295, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1297, "dirt", 10, 0, this);
                     TileUtility.GenerateTiles(1, 1298, "dirt", 10, 0, this);
-                   // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+                    // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
                     TileUtility.GenerateTiles(1, 1002, "dirt", 10, 0, this);
                     break;
 
                 case TileSimulationType.sand:
                     TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
                     TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
-                   // TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
+                    // TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
                     break;
                 case TileSimulationType.water:
                     TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
@@ -387,7 +384,7 @@ namespace SecretProject.Class.TileStuff
 
                     break;
             }
-            
+
 
             for (int z = 0; z < 5; z++)
             {
