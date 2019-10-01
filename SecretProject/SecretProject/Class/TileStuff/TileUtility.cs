@@ -1060,8 +1060,6 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-
-
         }
         #endregion
         public static void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage, IInformationContainer container)
