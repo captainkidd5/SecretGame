@@ -40,6 +40,11 @@ namespace SecretProject.Class.TileStuff
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }
         bool AbleToDrawTileSelector { get; set; }
+
+        bool DrawGridObject { get; set; }
+        Rectangle GridObjectSourceRectangle { get; set; }
+        bool DrawGridAssociatedTiles { get; set; }
+        int[] GridAssociatedTiles{ get; set; }
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);
@@ -52,5 +57,6 @@ namespace SecretProject.Class.TileStuff
         Chunk GetChunkFromPosition(Vector2 entityPosition);
         void UpdateCropTile();
         void HandleClockChange(object sender, EventArgs eventArgs);
+        Chunk[,] ActiveChunks { get; set; }
     }
 }

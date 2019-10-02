@@ -258,6 +258,7 @@ namespace SecretProject.Class.TileStuff
         public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 
@@ -540,7 +541,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            TileUtility.DrawGridItem(spriteBatch,this,this);
+            TileUtility.UpdateGridItem(spriteBatch,this,this);
             
         }
 

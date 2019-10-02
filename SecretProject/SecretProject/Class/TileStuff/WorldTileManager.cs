@@ -59,6 +59,13 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
+        public bool DrawGridObject { get; set; }
+        public bool DrawGridAssociatedTiles { get; set; }
+        public int[] GridAssociatedTiles { get; set; }
+
+
+
+        public Rectangle GridObjectSourceRectangle { get; set; }
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
@@ -528,6 +535,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            TileUtility.UpdateGridItem(this, ChunkUnderMouse);
         }
 
 
@@ -611,7 +619,23 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                         }
-                        TileUtility.DrawGridItem(spriteBatch, this, ChunkUnderMouse);
+                        if(this.DrawGridObject)
+                        {
+                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), this.GridObjectSourceRectangle, Color.Red * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
+                            if(this.DrawGridAssociatedTiles)
+                            {
+                                for (int g = 0; g < GridAssociatedTiles.Length; g++)
+                                {
+                                    spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationX"]) * 16,
+                                        Game1.Player.UserInterface.TileSelector.WorldY + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(GridAssociatedTiles[g], this.tilesetTilesWide), Color.Green * .5f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["layer"])]);
+                                }
+                            }
+                            this.DrawGridObject = false;
+                            this.DrawGridAssociatedTiles = false;
+                        }
+                        
 
                     }
                 }
