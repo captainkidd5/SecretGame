@@ -198,9 +198,10 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-
+         
             ChunkUnderPlayer = ActiveChunks[1, 1];
-
+            ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
         }
 
 
@@ -357,6 +358,8 @@ namespace SecretProject.Class.TileStuff
            
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
+               // ActiveChunks[1, 1].X = ChunkPointUnderPlayer.X;
+               // ActiveChunks[1, 1].Y = ChunkPointUnderPlayer.Y;
                 if(ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
                 {
                     UpdateGrid(Dir.Right);
@@ -374,12 +377,14 @@ namespace SecretProject.Class.TileStuff
                     UpdateGrid(Dir.Up);
                 }
 
-                ChunkUnderPlayer = ActiveChunks[1, 1];
-                this.Chests = ChunkUnderPlayer.Chests;
-                this.CurrentObjects = ChunkUnderPlayer.Objects;
+                
+                
 
 
             }
+            ChunkUnderPlayer = ActiveChunks[1, 1];
+            this.Chests = ChunkUnderPlayer.Chests;
+            this.CurrentObjects = ChunkUnderPlayer.Objects;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
 
@@ -631,8 +636,8 @@ namespace SecretProject.Class.TileStuff
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["layer"])]);
                                 }
                             }
-                            this.DrawGridObject = false;
-                            this.DrawGridAssociatedTiles = false;
+                            //this.DrawGridObject = false;
+                          //  this.DrawGridAssociatedTiles = false;
                         }
                         
 

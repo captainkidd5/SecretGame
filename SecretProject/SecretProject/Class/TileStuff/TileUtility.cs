@@ -986,8 +986,8 @@ namespace SecretProject.Class.TileStuff
 
                         else
                         {
-                           // spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), sourceRectangle, Color.Green * .5f,
-                                       // 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
+                            // spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), sourceRectangle, Color.Green * .5f,
+                            // 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
                             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(placeID))
                             {
 
@@ -1050,9 +1050,13 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
+                   
 
                 }
-
+                else
+                {
+                    tileManager.DrawGridObject = false;
+                }
             }
 
         }

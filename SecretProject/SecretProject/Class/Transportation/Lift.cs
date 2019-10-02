@@ -23,6 +23,16 @@ namespace SecretProject.Class.Transportation
 
         public void Transport(Lift LiftToTransportTo)
         {
+            if(CurrentStage ==  (int)Stages.World)
+            {
+                for(int i =0; i < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(1); j++)
+                    {
+                        Game1.GetCurrentStage().AllTiles.ActiveChunks[i, j].Save();
+                    }
+                }
+            }
             Game1.SwitchStage(CurrentStage, LiftToTransportTo.CurrentStage);
             Game1.Player.Position = new Vector2(LiftToTransportTo.LocalPosition.X, LiftToTransportTo.LocalPosition.Y);
             if(LiftToTransportTo.CurrentStage == (int)Stages.World)
