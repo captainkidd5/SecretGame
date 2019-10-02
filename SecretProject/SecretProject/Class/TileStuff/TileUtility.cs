@@ -334,7 +334,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
                     float randomFloat = (float)(randomInt * .0000001);
-                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .00001f + randomFloat;
+                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Top + GetDestinationRectangle(tileToAssign).Height) * .0001f + randomFloat;
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)

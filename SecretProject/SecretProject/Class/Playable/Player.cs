@@ -336,13 +336,12 @@ namespace SecretProject.Class.Playable
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, Dictionary<string, ObjectBody> objects, MouseManager mouse)
         {
-            //CollideOccured = false;
             if (Activate)
             {
 
-
                     KeyboardState kState = Keyboard.GetState();
                     float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Vector2 oldPosition = this.Position;
 
 
                     for (int i = 0; i < animations.GetLength(1); i++)
@@ -350,35 +349,7 @@ namespace SecretProject.Class.Playable
                         PlayerMovementAnimations[i] = animations[(int)controls.Direction,i];
                     }
 
-                    MyCollider.Rectangle = this.Rectangle;
-                    MyCollider.Velocity = this.PrimaryVelocity;
-                    MyCollider.DidCollideMagnet(items);
-
-
-
-                    bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
-                    
-                    this.PrimaryVelocity = MyCollider.Velocity;
-                //this.SecondaryVelocity = MyCollider.Velocity;
-                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
-                    {
-                        TotalVelocity = PrimaryVelocity;
-                   // SecondaryVelocity = Vector2.Zero;
-                    }
-                    else
-                    {
-                        TotalVelocity = PrimaryVelocity + SecondaryVelocity;
-                    }
-
-
-                    if (controls.IsSprinting)
-                    {
-                        TotalVelocity = TotalVelocity * 15f;
-                    }
-                    Position += TotalVelocity;
-                    PrimaryVelocity = Vector2.Zero;
-                    SecondaryVelocity = Vector2.Zero;
-                    TotalVelocity = Vector2.Zero;
+                   
 
 
                     if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
@@ -390,16 +361,11 @@ namespace SecretProject.Class.Playable
                                 animations[i, j].UpdateAnimations(gameTime, this.position);
                             }
                         }
-                        //for(int z =0; z < PlayerMovementAnimations.GetLength(0); z++)
-                        //{
-                        //    PlayerMovementAnimations[z].UpdateAnimations(gameTime, this.Position);
-                        //}
-                        
+        
                     }
                     else if (CurrentAction[0,0].IsAnimated == true)
                     {
                         PlayCollectiveActions(gameTime);
-                        //CurrentAction.PlayOnce(gameTime, Position);
 
                     }
 
@@ -490,7 +456,36 @@ namespace SecretProject.Class.Playable
                         }
 
 
-                    if(LockBounds)
+                    MyCollider.Rectangle = this.Rectangle;
+                    MyCollider.Velocity = this.PrimaryVelocity;
+                    MyCollider.DidCollideMagnet(items);
+                   // if(this.PrimaryVelocity.X > )
+
+
+                    bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
+
+                    this.PrimaryVelocity = MyCollider.Velocity;
+
+                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
+                    {
+                        TotalVelocity = PrimaryVelocity;
+                        // SecondaryVelocity = Vector2.Zero;
+                    }
+                    else
+                    {
+                        TotalVelocity = PrimaryVelocity + SecondaryVelocity;
+                    }
+
+
+                    if (controls.IsSprinting)
+                    {
+                        TotalVelocity = TotalVelocity * 15f;
+                    }
+                    Position += TotalVelocity;
+                    PrimaryVelocity = Vector2.Zero;
+                    SecondaryVelocity = Vector2.Zero;
+                    TotalVelocity = Vector2.Zero;
+                    if (LockBounds)
                     {
                         CheckOutOfBounds(this.Position);
                     }

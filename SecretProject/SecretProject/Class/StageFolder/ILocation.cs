@@ -79,8 +79,6 @@ namespace SecretProject.Class.StageFolder
 
          TmxLayer foreGround { get; set; }
 
-         TmxLayer Placement { get; set; }
-
         List<TmxLayer> AllLayers { get; set; }
 
          TmxMap Map { get; set; }

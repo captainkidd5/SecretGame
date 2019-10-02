@@ -100,7 +100,7 @@ namespace SecretProject.Class.StageFolder
             //Background = null;
            // MidGround = null;
            // foreGround = null;
-           // Placement = null;
+
 
            // this.Cam = null;
             //this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
@@ -265,7 +265,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 ParticleEngine.Draw(spriteBatch, 1f);
 
-                player.Draw(spriteBatch, .4f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height -10)));
+                player.Draw(spriteBatch, .5f + (.0001f * ((float)player.Rectangle.Y + player.Rectangle.Height + -4)));
                 //Console.WriteLine("Player Position" + player.position);
 
 

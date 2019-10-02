@@ -25,7 +25,7 @@ using SecretProject.Class.CollisionDetection;
 namespace SecretProject.Class.TileStuff
 {
     /// <summary>
-    /// background = 0, buildings = 1, midground =2, foreground =3, placement =4
+    /// background = 0, buildings = 1, midground =2, foreground =3, 
     /// </summary>
     public class TileManager : ITileManager, IInformationContainer
     {
@@ -43,7 +43,6 @@ namespace SecretProject.Class.TileStuff
         public int tileCounter { get; set; }
         public Tile[,] Tiles { get; set; }
         public bool isActive = false;
-        public bool isPlacement { get; set; } = false;
         public bool isInClickingRangeOfPlayer = false;
         public ContentManager Content { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }

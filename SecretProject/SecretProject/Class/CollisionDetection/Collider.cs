@@ -84,7 +84,7 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
                     {
                         velocity.X -= velocity.X; //+ (float).25;
-                        position.X = body.DestinationRectangle.Left;
+                     //   position.X = body.DestinationRectangle.Left;
                         return true;
                     }
 
@@ -93,7 +93,7 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
                     {
                         velocity.X -= velocity.X; //- (float).25;
-                        position.X = body.DestinationRectangle.Right;
+                     //   position.X = body.DestinationRectangle.Right;
                         return true;
                     }
 
@@ -101,14 +101,14 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
                     {
                         velocity.Y -= velocity.Y; //+ (float).25;
-                        position.Y = body.DestinationRectangle.Top;
+                      //  position.Y = body.DestinationRectangle.Top;
                         return true;
                     }
 
                     if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
                     {
                         velocity.Y -= velocity.Y;// - (float).25;
-                        position.Y = body.DestinationRectangle.Bottom;
+                       // position.Y = body.DestinationRectangle.Bottom;
                         return true;
                     }
 

@@ -74,7 +74,7 @@ namespace SecretProject.Class.TileStuff
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             Crops = new Dictionary<string, Crop>();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 4; i++)
             {
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
@@ -92,7 +92,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenWrite(path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -167,7 +167,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -283,7 +283,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
@@ -376,7 +376,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z <4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {

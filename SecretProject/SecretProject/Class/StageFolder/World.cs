@@ -79,7 +79,6 @@ namespace SecretProject.Class.StageFolder
         public TmxLayer Background1 { get; set; }
         public TmxLayer MidGround { get; set; }
         public TmxLayer foreGround { get; set; }
-        public TmxLayer Placement { get; set; }
         public List<TmxLayer> AllLayers { get; set; }
         public string MapTexturePath { get; set; }
         public string TmxMapPath { get; set; }
@@ -140,7 +139,6 @@ namespace SecretProject.Class.StageFolder
                 .2f,
                 .3f,
                 .5f,
-                .6f
             };
 
             this.Map = new TmxMap(this.TmxMapPath);
@@ -149,7 +147,6 @@ namespace SecretProject.Class.StageFolder
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
             foreGround = Map.Layers["foreGround"];
-            Placement = Map.Layers["placement"];
             AllLayers = new List<TmxLayer>()
             {
                 Background,

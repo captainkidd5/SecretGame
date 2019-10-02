@@ -67,7 +67,6 @@ namespace SecretProject.Class.StageFolder
 
         public TmxLayer foreGround { get; set; }
 
-        public TmxLayer Placement { get; set; }
 
         public Camera2D Cam { get; set; }
 
@@ -187,7 +186,6 @@ namespace SecretProject.Class.StageFolder
                 .2f,
                 .3f,
                 .5f,
-                .6f
             };
 
             this.Map = new TmxMap(this.TmxMapPath);
@@ -195,7 +193,6 @@ namespace SecretProject.Class.StageFolder
             Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
             foreGround = Map.Layers["foreGround"];
-            Placement = Map.Layers["placement"];
             AllLayers = new List<TmxLayer>()
             {
                 Background,
@@ -268,7 +265,6 @@ namespace SecretProject.Class.StageFolder
             //Background = null;
             //MidGround = null;
             //foreGround = null;
-            //Placement = null;
 
             //this.Cam = null;
             // this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;

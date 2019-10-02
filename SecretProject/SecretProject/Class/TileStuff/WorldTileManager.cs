@@ -460,7 +460,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             ChunkUnderMouse = ActiveChunks[a, b];
                         }
-                        for (int z = 0; z < 5; z++)
+                        for (int z = 0; z < 4; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
                             {
@@ -566,7 +566,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
                     {
-                        for (int z = 0; z < 5; z++)
+                        for (int z = 0; z < 4; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
                             {
