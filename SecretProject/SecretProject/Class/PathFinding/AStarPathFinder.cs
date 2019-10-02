@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SecretProject.Class.ObjectFolder;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;

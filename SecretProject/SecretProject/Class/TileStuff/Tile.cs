@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
-using SecretProject.Class.ObjectFolder;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

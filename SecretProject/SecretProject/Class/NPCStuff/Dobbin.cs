@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.ObjectFolder;
+
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;

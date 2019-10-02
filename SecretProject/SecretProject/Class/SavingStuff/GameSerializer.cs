@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
-using SecretProject.Class.ObjectFolder;
+
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Universal;
 

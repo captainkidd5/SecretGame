@@ -13,7 +13,7 @@ using TiledSharp;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
-using ObjectBody = SecretProject.Class.ObjectFolder.ObjectBody;
+
 using System;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
@@ -29,6 +29,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
 using XMLData.ItemStuff;
+using SecretProject.Class.CollisionDetection;
 
 namespace SecretProject.Class.StageFolder
 {

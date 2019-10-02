@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff.Enemies;
-using SecretProject.Class.ObjectFolder;
+
 using SecretProject.Class.SpriteFolder;
 using System.Collections.Generic;
 using System.IO;

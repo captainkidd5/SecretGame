@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
-using SecretProject.Class.ObjectFolder;
+
 using SecretProject.Class.SpriteFolder;
 using XMLData.RouteStuff;
 

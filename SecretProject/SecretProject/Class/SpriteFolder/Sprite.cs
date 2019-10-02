@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class Sprite
+    public class Sprite : ICollidable
     {
         public GraphicsDevice Graphics { get; set; }
         public Texture2D AtlasTexture { get; set; }

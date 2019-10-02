@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.ObjectFolder;
+
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;

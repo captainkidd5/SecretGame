@@ -229,16 +229,7 @@ namespace SecretProject.Class.UI
 
             TextBuilder.Update(gameTime);
 
-
-
-            if(this.ScrollTree.IsActive)
-            {
-                ScrollTree.Update(gameTime, Game1.Player.Wisdom);
-            }
-
            
-
-                
         }
 
         public void ActivateShop(OpenShop shopID)

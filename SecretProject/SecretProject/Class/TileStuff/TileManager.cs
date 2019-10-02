@@ -10,7 +10,7 @@ using TiledSharp;
 
 using System.Xml.Serialization;
 
-using SecretProject.Class.ObjectFolder;
+
 using SecretProject.Class.Controls;
 
 using Microsoft.Xna.Framework.Content;
@@ -20,6 +20,7 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using XMLData.ItemStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.CollisionDetection;
 
 namespace SecretProject.Class.TileStuff
 {

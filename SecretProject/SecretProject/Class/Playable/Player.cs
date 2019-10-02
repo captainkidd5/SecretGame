@@ -14,7 +14,6 @@ using System.Runtime.Serialization;
 
 
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.ObjectFolder;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Content;
@@ -101,9 +100,6 @@ namespace SecretProject.Class.Playable
 
         public UserInterface UserInterface { get; set; }
 
-        //1 for normal, 2 for ship
-        public int GameMode { get; set; } = 1;
-
         public Texture2D BigHitBoxRectangleTexture;
         public Texture2D LittleHitBoxRectangleTexture;
         public bool LockBounds { get; set; }
@@ -124,13 +120,6 @@ namespace SecretProject.Class.Playable
             }
         }
 
-
-        public int Wisdom { get; set; }
-
-        private Player()
-        {
-
-        }
 
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
@@ -350,8 +339,6 @@ namespace SecretProject.Class.Playable
             //CollideOccured = false;
             if (Activate)
             {
-                if (GameMode == 1)
-                {
 
 
                     KeyboardState kState = Keyboard.GetState();
@@ -372,10 +359,11 @@ namespace SecretProject.Class.Playable
                     bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
                     
                     this.PrimaryVelocity = MyCollider.Velocity;
-
-                    if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
+                //this.SecondaryVelocity = MyCollider.Velocity;
+                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
                     {
                         TotalVelocity = PrimaryVelocity;
+                   // SecondaryVelocity = Vector2.Zero;
                     }
                     else
                     {
@@ -502,17 +490,13 @@ namespace SecretProject.Class.Playable
                         }
 
 
-                    }
                     if(LockBounds)
                     {
                         CheckOutOfBounds(this.Position);
                     }
                     
                 }
-                if (GameMode == 2)
-                {
-   
-                }
+
             }
         }
 
@@ -541,8 +525,7 @@ namespace SecretProject.Class.Playable
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            if (GameMode == 1)
-            {
+
 
 
                 if (CurrentAction[0,0].IsAnimated == false)
@@ -560,7 +543,7 @@ namespace SecretProject.Class.Playable
                 {
                     DrawCollectiveActions(spriteBatch, layerDepth);
                 }
-            }
+            
         }
 
         private Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)

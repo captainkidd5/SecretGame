@@ -22,7 +22,7 @@ using SecretProject.Class.TextureStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SavingStuff;
 using Microsoft.Xna.Framework.Content;
-using SecretProject.Class.ObjectFolder;
+
 using XMLData.DialogueStuff;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ShopStuff;
