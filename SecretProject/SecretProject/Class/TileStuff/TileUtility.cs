@@ -1020,7 +1020,7 @@ namespace SecretProject.Class.TileStuff
                                                 ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
                                                 Game1.Player.UserInterface.TileSelector.IndexX + relationX,
                                                 newYIndex,
-                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
+                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles.ActiveChunks[container.ArrayI, container.ArrayJ]);
                                             }
                                             else
                                             {

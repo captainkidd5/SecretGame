@@ -59,13 +59,12 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
+
         public bool DrawGridObject { get; set; }
         public bool DrawGridAssociatedTiles { get; set; }
         public int[] GridAssociatedTiles { get; set; }
-
-
-
         public Rectangle GridObjectSourceRectangle { get; set; }
+
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
@@ -212,7 +211,7 @@ namespace SecretProject.Class.TileStuff
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
 
             Chunk[,] ChunksToReturn = new Chunk[3, 3];
-            int x = 0;
+            int x =-1;
             int y = -1;
             for(int i =0; i < 3; i++)
             {
