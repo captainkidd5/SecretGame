@@ -82,7 +82,7 @@ namespace SecretProject.Class.CollisionDetection
                              && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
                 {
                     
-                    if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, body.Rectangle, velocity))
                     {
                         velocity.X -= velocity.X; //+ (float).25;
                         position.X = body.Rectangle.Left - rectangle.Right;
@@ -91,7 +91,7 @@ namespace SecretProject.Class.CollisionDetection
                         
 
 
-                    if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, body.Rectangle, velocity))
                     {
                         velocity.X -= velocity.X; //- (float).25;
                         position.X = body.Rectangle.Right - rectangle.Left;
@@ -99,14 +99,14 @@ namespace SecretProject.Class.CollisionDetection
                     }
                         
 
-                    if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, body.Rectangle, velocity))
                     {
                         velocity.Y -= velocity.Y; //+ (float).25;
                         position.Y = body.Rectangle.Top - Rectangle.Top;
                         return true;
                     }
                         
-                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, body.Rectangle, velocity))
                     {
                         velocity.Y -= velocity.Y;// - (float).25;
                         position.Y = body.Rectangle.Bottom - Rectangle.Bottom;
@@ -130,15 +130,15 @@ namespace SecretProject.Class.CollisionDetection
                              && spr.DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && spr.DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
                 {
 
-                    if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, spr.DestinationRectangle, velocity))
                         velocity.X -= velocity.X; //+ (float).25;
 
-                    if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, spr.DestinationRectangle, velocity))
                         velocity.X -= velocity.X; //- (float).25;
 
-                    if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, spr.DestinationRectangle, velocity))
                         velocity.Y -= velocity.Y; //+ (float).25;
-                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr.DestinationRectangle, velocity))
                         velocity.Y -= velocity.Y;// - (float).25;
                 }
             }
@@ -159,24 +159,24 @@ namespace SecretProject.Class.CollisionDetection
                         //it.IsMagnetized = false;
                     }
 
-                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, item[i].ItemSprite, velocity))
+                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, item[i].ItemSprite.DestinationRectangle, velocity))
                     {
                         item[i].IsMagnetizable = true;
                     }
 
 
-                    else if (velocity.X < 0 && IsTouchingRight(rectangle, item[i].ItemSprite, velocity))
+                    else if (velocity.X < 0 && IsTouchingRight(rectangle, item[i].ItemSprite.DestinationRectangle, velocity))
                     {
                         item[i].IsMagnetizable = true;
                     }
 
 
-                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, item[i].ItemSprite, velocity))
+                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, item[i].ItemSprite.DestinationRectangle, velocity))
                     {
                         item[i].IsMagnetizable = true;
                     }
 
-                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, item[i].ItemSprite, velocity))
+                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, item[i].ItemSprite.DestinationRectangle, velocity))
                     {
                         item[i].IsMagnetizable = true;
                     }
@@ -194,66 +194,36 @@ namespace SecretProject.Class.CollisionDetection
             
         }
 
-        public bool IsTouchingLeft(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingLeft(Rectangle rectangle, Rectangle objectRectangle, Vector2 velocity)
         {
-            return rectangle.Right + velocity.X > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Left &&
-                rectangle.Bottom > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Bottom;
+            return rectangle.Right + velocity.X > objectRectangle.Left &&
+                rectangle.Left < objectRectangle.Left &&
+                rectangle.Bottom > objectRectangle.Top &&
+                rectangle.Top < objectRectangle.Bottom;
         }
-        public bool IsTouchingRight(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingRight(Rectangle rectangle, Rectangle objectRectangle, Vector2 velocity)
         {
-            return rectangle.Left + velocity.X < obj.Rectangle.Right &&
-                rectangle.Right > obj.Rectangle.Right &&
-                rectangle.Bottom > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Bottom;
+            return rectangle.Left + velocity.X < objectRectangle.Right &&
+                rectangle.Right > objectRectangle.Right &&
+                rectangle.Bottom > objectRectangle.Top &&
+                rectangle.Top < objectRectangle.Bottom;
         }
-        public bool IsTouchingTop(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingTop(Rectangle rectangle, Rectangle objectRectangle, Vector2 velocity)
         {
-            return rectangle.Bottom + velocity.Y > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Top &&
-                rectangle.Right > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Right;
+            return rectangle.Bottom + velocity.Y > objectRectangle.Top &&
+                rectangle.Top < objectRectangle.Top &&
+                rectangle.Right > objectRectangle.Left &&
+                rectangle.Left < objectRectangle.Right;
         }
-        public bool IsTouchingBottom(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingBottom(Rectangle rectangle, Rectangle objectRectangle, Vector2 velocity)
         {
-            return rectangle.Top + velocity.Y < obj.Rectangle.Bottom &&
-                rectangle.Bottom > obj.Rectangle.Bottom &&
-                rectangle.Right > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Right;
-        }
-
-        //Sprite part
-
-        public bool IsTouchingLeft(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Right + velocity.X > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Left &&
-                rectangle.Bottom > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Bottom;
-        }
-        public bool IsTouchingRight(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Left + velocity.X < sprite.DestinationRectangle.Right &&
-                rectangle.Right > sprite.DestinationRectangle.Right &&
-                rectangle.Bottom > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Bottom;
-        }
-        public bool IsTouchingTop(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Bottom + velocity.Y > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Top &&
-                rectangle.Right > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Right;
-        }
-        public bool IsTouchingBottom(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Top + velocity.Y < sprite.DestinationRectangle.Bottom &&
-                rectangle.Bottom > sprite.DestinationRectangle.Bottom &&
-                rectangle.Right > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Right;
+            return rectangle.Top + velocity.Y < objectRectangle.Bottom &&
+                rectangle.Bottom > objectRectangle.Bottom &&
+                rectangle.Right > objectRectangle.Left &&
+                rectangle.Left < objectRectangle.Right;
         }
 
+        
        
     }
 }
