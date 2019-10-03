@@ -69,7 +69,7 @@ namespace SecretProject.Class.SpriteFolder
 
         Vector2 destinationVector = new Vector2(0, 0);
 
-
+        public bool Flip { get; set; }
 
 
 
@@ -177,9 +177,17 @@ namespace SecretProject.Class.SpriteFolder
 
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
         {
-           
-            spriteBatch.Draw(AtlasTexture,  destinationVector,sourceRectangle: SourceRectangle,
+           if(this.Flip)
+            {
+                spriteBatch.Draw(AtlasTexture, destinationVector, sourceRectangle: SourceRectangle,
+                    color: this.Color * ColorMultiplier,effects: SpriteEffects.FlipHorizontally, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+            }
+            else
+            {
+                spriteBatch.Draw(AtlasTexture, destinationVector, sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+            }
+            
         }
 
         //for ship sprites

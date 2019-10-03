@@ -13,33 +13,12 @@ namespace SecretProject.Class.TextureStuff
 {
     public class TextureBook
     {
-        public Texture2D MainCharacterSpriteStrip;
-        public Texture2D PlayerSpriteSheet;
-        public Texture2D PlayerParts;
-        public Texture2D PlayerPartsMining;
-
-        //MINING FOLDER
-        //ARMS MINING
-        public Texture2D RightArmMining;
-
-        //HANDS MINING
-        public Texture2D HandsMining;
-
-        //HEAD MINING
-        public Texture2D HeadMining;
-
-        //LEGS MINING
-        public Texture2D BasicLegsMining;
-
-        //SHOES MINING
-        public Texture2D ShoesMining;
-
-        //TOOL MINING
-        public Texture2D BasicHammerMining;
-
-        //TORSO MINING
-        public Texture2D TorsoBlueMining;
-
+        //Player
+        public Texture2D PlayerBase;
+        public Texture2D PlayerHair;
+        public Texture2D PlayerShirt;
+        public Texture2D PlayerPants;
+        public Texture2D PlayerShoes;
         //NPCS
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -113,9 +92,13 @@ namespace SecretProject.Class.TextureStuff
 
         public TextureBook(ContentManager content, SpriteBatch spriteBatch)
         {
-            PlayerSpriteSheet = content.Load<Texture2D>("Player/MainPlayer/PlayerSpriteSheet");
-            PlayerParts = content.Load<Texture2D>("Player/MainPlayer/playerParts");
-            PlayerPartsMining = content.Load<Texture2D>("Player/MainPlayer/playerPartsMining");
+            //Player
+            PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
+          PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/blondeSpikyHair");
+            PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Pants/bluePants");
+            PlayerPants = content.Load<Texture2D>("Player/PlayerParts/Shirts/redShirt");
+            PlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Shoes/brownShoes");
+
 
             //NPC
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
@@ -126,7 +109,6 @@ namespace SecretProject.Class.TextureStuff
 
             SnawSpriteSheet = content.Load<Texture2D>("NPC/Snaw/Snaw");
 
-            MainCharacterSpriteStrip = content.Load<Texture2D>("Player/MainPlayer/newPlayer");
 
             EnemySpriteSheet = content.Load<Texture2D>("NPC/Enemy/EnemySpriteSheet");
 
@@ -159,24 +141,7 @@ namespace SecretProject.Class.TextureStuff
 
             //MINING FOLDER
 
-            RightArmMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ArmsMining/rightArmMining");
-
-            HandsMining = content.Load<Texture2D>("Player/MainPlayer/Mining/HandsMining/handsMining");
-
-            //HEAD MINING
-            HeadMining = content.Load<Texture2D>("Player/MainPlayer/Mining/HeadMining/HeadMining");
-
-            //LEGS MINING
-            BasicLegsMining = content.Load<Texture2D>("Player/MainPlayer/Mining/LegsMining/basicLegsMining");
-
-            //SHOES MINING
-            ShoesMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ShoesMining/ShoesMining");
-
-            //TOOL MINING
-            BasicHammerMining = content.Load<Texture2D>("Player/MainPlayer/Mining/ToolMining/basicHammerMining");
-
-            //TORSO MINING
-            TorsoBlueMining = content.Load<Texture2D>("Player/MainPlayer/Mining/TorsoMining/torsoBlueMining");
+            
 
             //props
             Gondola = content.Load<Texture2D>("WorldProps/Gondola");

@@ -171,17 +171,18 @@ namespace SecretProject.Class.Playable
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, Rectangle);
 
 
-            MiningDown[0, 0] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 0, 16, 48, 5, .1f, this.Position,0, -15) { LayerDepth = .0000011f };
-            MiningDown[0, 1] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 48, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .000001f };
-            MiningDown[0, 2] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 96, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000009f };
-            MiningDown[0, 3] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 144, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000008f };
-            MiningDown[0, 4] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 192, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000007f };
-            MiningDown[0, 5] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 240, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000006f };
-            MiningDown[0, 6] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 288, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000005f };
-            MiningDown[0, 7] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 336, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000004f };
-            MiningDown[0, 8] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 384, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000003f };
-            MiningDown[0, 9] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 432, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000002f };
-            MiningDown[0, 10] = new Sprite(graphics, Game1.AllTextures.PlayerPartsMining, 0, 480, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000001f };
+            //texture is placeholder
+            MiningDown[0, 0] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 0, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000011f };
+            MiningDown[0, 1] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 48, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .000001f };
+            MiningDown[0, 2] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 96, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000009f };
+            MiningDown[0, 3] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 144, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000008f };
+            MiningDown[0, 4] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 192, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000007f };
+            MiningDown[0, 5] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 240, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000006f };
+            MiningDown[0, 6] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 288, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000005f };
+            MiningDown[0, 7] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 336, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000004f };
+            MiningDown[0, 8] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 384, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000003f };
+            MiningDown[0, 9] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 432, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000002f };
+            MiningDown[0, 10] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 480, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000001f };
 
 
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
@@ -528,7 +529,7 @@ namespace SecretProject.Class.Playable
 
                     for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, layerDepth);
+                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, PlayerMovementAnimations[i].LayerDepth +  layerDepth);
                     }
                     
                 }
