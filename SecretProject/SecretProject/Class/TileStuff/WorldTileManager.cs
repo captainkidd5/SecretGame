@@ -361,7 +361,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            ChunkPointUnderPlayer = new Point((int)Math.Floor(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)Math.Floor(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
 
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
@@ -560,9 +560,9 @@ namespace SecretProject.Class.TileStuff
 
             int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
 
-            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
+            int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
 
-            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
+            int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
 
             Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
@@ -570,8 +570,9 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int b = 0; b < ActiveChunks.GetLength(1); b++)
                 {
-                    if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
-                    {
+                    Rectangle testRectangle = ActiveChunks[a, b].GetChunkRectangle();
+                   // if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
+                    //{
                         for (int z = 0; z < 4; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -648,7 +649,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
 
-                    }
+                   // }
                 }
             }
 

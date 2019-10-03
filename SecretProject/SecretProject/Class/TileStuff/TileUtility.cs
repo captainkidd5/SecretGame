@@ -266,14 +266,9 @@ namespace SecretProject.Class.TileStuff
 
             float X = (tile.X * 16);
             float Y = (tile.Y * 16);
-            if (chunkX == 0 && chunkY == 0)
-            {
-                return new Rectangle((int)X, (int)Y, 16, 16);
-            }
-            else
-            {
+
                 return new Rectangle((int)(X + chunkX * ChunkX * ChunkX), (int)(Y + chunkY * ChunkY * ChunkY), 16, 16);
-            }
+
 
         }
         public static Rectangle GetSourceRectangle(Tile tile, int tilesetTilesWide)
@@ -378,22 +373,26 @@ namespace SecretProject.Class.TileStuff
                     case "diggable":
                         if (container.Owned)
                         {
-
-
-                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
+                            if (container.AllTiles[1][i, j].GID == -1)
                             {
-                                Game1.isMyMouseVisible = false;
-                                Game1.Player.UserInterface.DrawTileSelector = true;
-                                Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                mouse.ChangeMouseTexture(3);
 
-                                if (mouse.IsClicked)
+
+
+                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                                 {
+                                    Game1.isMyMouseVisible = false;
+                                    Game1.Player.UserInterface.DrawTileSelector = true;
+                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                    mouse.ChangeMouseTexture(3);
 
-                                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                    TileUtility.ReplaceTile(z, i, j, 86, container);
+                                    if (mouse.IsClicked)
+                                    {
+
+                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                        TileUtility.ReplaceTile(z, i, j, 86, container);
 
 
+                                    }
                                 }
                             }
                         }
@@ -830,8 +829,9 @@ namespace SecretProject.Class.TileStuff
                 {
                     TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, container);
                 }
+                Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
             }
-            // Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
+             
 
             TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, container);
 
