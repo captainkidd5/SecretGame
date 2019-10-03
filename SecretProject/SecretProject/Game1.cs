@@ -410,11 +410,11 @@ namespace SecretProject
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
-            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000011f };
+            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000011f };//, Color = Color.Black };
             Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000010f };
             Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000009f };
             Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000008f };
-            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000007f };
+            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .0000007f};
 
 
             //up
