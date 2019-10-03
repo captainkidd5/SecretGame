@@ -49,6 +49,9 @@ namespace SecretProject.Class.TileStuff
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
+
+        //PROPERTY MANAGEMENT
+        public bool Owned { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -78,6 +81,7 @@ namespace SecretProject.Class.TileStuff
             {
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
+
         }
 
         public Rectangle GetChunkRectangle()
@@ -156,6 +160,7 @@ namespace SecretProject.Class.TileStuff
                 binaryWriter.Write(crop.Value.DayPlanted);
 
             }
+            binaryWriter.Write(this.Owned);
             binaryWriter.Flush();
             binaryWriter.Close();
         }
@@ -244,7 +249,7 @@ namespace SecretProject.Class.TileStuff
                 };
                 this.Crops.Add(cropKey, crop);
             }
-
+            this.Owned = binaryReader.ReadBoolean();
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -253,10 +258,17 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public void Generate()
+        public void Generate(TileSimulationType seed)
         {
-
-            this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
+            if(seed == 0)
+            {
+                this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
+            }
+            else
+            {
+                this.SimulationType = seed;
+            }
+            
             switch (SimulationType)
             {
                 case TileSimulationType.dirt:

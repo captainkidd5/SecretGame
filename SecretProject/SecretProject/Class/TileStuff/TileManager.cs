@@ -81,6 +81,12 @@ namespace SecretProject.Class.TileStuff
         //not relevant:
         public int X { get; set; }
         public int Y { get; set; }
+        public int NumberOfLayers { get; set; }
+        public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool Owned { get; set; }
 
         #region CONSTRUCTORS
 
@@ -123,6 +129,7 @@ namespace SecretProject.Class.TileStuff
             Lights = new List<LightSource>();
             Chests = new Dictionary<string, Chest>();
             Crops = new Dictionary<string, Crop>();
+            Owned = false;
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)
             {
@@ -258,11 +265,7 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
-        public int NumberOfLayers { get; set; }
-        public Chunk ChunkUnderPlayer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
 
 
 

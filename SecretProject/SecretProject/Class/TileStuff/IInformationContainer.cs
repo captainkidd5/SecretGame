@@ -39,5 +39,6 @@ namespace SecretProject.Class.TileStuff
         int ArrayI { get; set; }
         int ArrayJ { get; set; }
         Rectangle GetChunkRectangle();
+        bool Owned { get; set; }
     }
 }

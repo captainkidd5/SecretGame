@@ -376,55 +376,65 @@ namespace SecretProject.Class.TileStuff
                     //including animation frame id to replace!
 
                     case "diggable":
-                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
+                        if (container.Owned)
                         {
-                            Game1.isMyMouseVisible = false;
-                            Game1.Player.UserInterface.DrawTileSelector = true;
-                            Game1.myMouseManager.ToggleGeneralInteraction = true;
-                            mouse.ChangeMouseTexture(3);
 
-                            if (mouse.IsClicked)
+
+                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                             {
+                                Game1.isMyMouseVisible = false;
+                                Game1.Player.UserInterface.DrawTileSelector = true;
+                                Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                mouse.ChangeMouseTexture(3);
 
-                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                TileUtility.ReplaceTile(z, i, j, 86, container);
+                                if (mouse.IsClicked)
+                                {
+
+                                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                    TileUtility.ReplaceTile(z, i, j, 86, container);
 
 
+                                }
                             }
                         }
                         break;
 
                     case "plantable":
-                        Game1.isMyMouseVisible = false;
-                        Game1.Player.UserInterface.DrawTileSelector = true;
-                        Game1.myMouseManager.ToggleGeneralInteraction = true;
-                        mouse.ChangeMouseTexture(2);
-
-                        if (mouse.IsClicked)
+                        if (container.Owned)
                         {
-                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+
+
+                            Game1.isMyMouseVisible = false;
+                            Game1.Player.UserInterface.DrawTileSelector = true;
+                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                            mouse.ChangeMouseTexture(2);
+
+                            if (mouse.IsClicked)
                             {
-                                Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
-                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
+                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                                 {
-                                    if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
+                                    Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
+                                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                                     {
+                                        if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
+                                        {
 
-                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                        tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                                        tempCrop.GID++;
-                                        tempCrop.X = i;
-                                        tempCrop.Y = j;
-                                        TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                        container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
-                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                            Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                            tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
+                                            tempCrop.GID++;
+                                            tempCrop.X = i;
+                                            tempCrop.Y = j;
+                                            TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
+                                            container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
+                                            Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
+                                        }
                                     }
                                 }
-                            }
 
+                            }
                         }
                         break;
                     case "sanctuaryAdd":

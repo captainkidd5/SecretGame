@@ -218,7 +218,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.IsLoaded = true;
             GondolaStartingPosition = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
-            Game1.Player.Position = new Vector2(this.WorldWidth * 16 / 2, this.WorldHeight * 16 / 2);
+            Game1.Player.Position = new Vector2(0,0);
             this.Gondola.Position = GondolaStartingPosition;
             // this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100);
             IsGondolaAtStartingPosition = true;
