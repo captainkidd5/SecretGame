@@ -248,7 +248,8 @@ namespace SecretProject
         {
             ScreenRectangle.Width = graphics.PreferredBackBufferWidth;
             ScreenRectangle.Height = graphics.PreferredBackBufferHeight;
-            Utility = new Utility();
+            //seed parameter
+            Utility = new Utility(1);
             //CAMERA
             cam = new Camera2D(GraphicsDevice.Viewport);
             //MOUSE

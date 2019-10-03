@@ -39,9 +39,9 @@ namespace SecretProject.Class.Universal
 
         // public static Color = new Color(100, 100, 100, 100);
 
-        public Utility()
+        public Utility(int seed)
         {
-            RGenerator = new Random();
+            RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(CenterScreenX, CenterScreenY);
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
