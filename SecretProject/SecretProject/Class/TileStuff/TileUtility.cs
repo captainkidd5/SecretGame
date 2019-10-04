@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
 
         }
         #endregion
-        public static Tile[,] DoSimulation(IInformationContainer container, int mainGid, int secondaryGid, List<int> generatableTiles, Dictionary<int, int> tiling, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
+        public static Tile[,] DoSimulation(IInformationContainer container, int mainGid, int secondaryGid, List<int> generatableTiles, List<int> secondaryGeneratableTiles, int chunkX = 0, int chunkY = 0, int chunkOffSet = 0)
         {
 
 
@@ -133,7 +133,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            newTiles[i, j].GID = Game1.Utility.GrassGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count - 1)] + 1;
+                            newTiles[i, j].GID = secondaryGeneratableTiles[Game1.Utility.RGenerator.Next(0, secondaryGeneratableTiles.Count - 1)] + 1;
 
 
                         }
@@ -142,7 +142,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (nbs > 4)
                         {
-                            newTiles[i, j].GID = Game1.Utility.GrassGeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count - 1)] + 1;
+                            newTiles[i, j].GID = secondaryGeneratableTiles[Game1.Utility.RGenerator.Next(0, secondaryGeneratableTiles.Count - 1)] + 1;
 
                         }
                         else
@@ -168,7 +168,7 @@ namespace SecretProject.Class.TileStuff
 
                     if (i == 0 && j == 0)
                     {
-
+                        count--;
                     }
                     else if (neighborX < 0 || neighborY < 0 || neighborX >= tiles.GetLength(0) || neighborY >= tiles.GetLength(1))
                     {

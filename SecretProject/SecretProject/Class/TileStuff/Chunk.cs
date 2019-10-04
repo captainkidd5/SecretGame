@@ -268,12 +268,13 @@ namespace SecretProject.Class.TileStuff
             {
                 this.SimulationType = seed;
             }
-            
+            List<int> secondaryGeneratableTiles = new List<int>();
             switch (SimulationType)
             {
                 case TileSimulationType.dirt:
                     this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
                     this.TilingDictionary = TileUtility.DirtTiling;
+                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
                     this.MainGid = 1106;
                     this.SecondaryGid = 1115;
                     this.MainGIDSpawnChance = .75f;
@@ -281,16 +282,18 @@ namespace SecretProject.Class.TileStuff
                 case TileSimulationType.sand:
                     this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
                     this.TilingDictionary = TileUtility.SandTiling;
+                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
                     this.MainGid = 1222;
-                    this.SecondaryGid = 1115;
-                    MainGIDSpawnChance = .85f;
+                    this.SecondaryGid = 427;
+                    MainGIDSpawnChance = .95f;
                     break;
                 case TileSimulationType.water:
                     this.GeneratableTiles = Game1.Utility.WaterGeneratableTiles;
                     this.TilingDictionary = TileUtility.WaterTiling;
+                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
                     this.MainGid = 427;
                     this.SecondaryGid = 1115;
-                    MainGIDSpawnChance = .75f;
+                    MainGIDSpawnChance = .9f;
                     break;
             }
 
@@ -324,7 +327,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int i = 0; i < 1; i++)
             {
-                AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, this.TilingDictionary, this.X, this.Y, TileUtility.ChunkX);
+                AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, secondaryGeneratableTiles, this.X, this.Y, TileUtility.ChunkX);
             }
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -360,17 +363,18 @@ namespace SecretProject.Class.TileStuff
             switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1079, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1586, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1664, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1294, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1295, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1297, "dirt", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1298, "dirt", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1664, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1294, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1295, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1297, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1298, "dirt", 5, 0, this);
                     // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
-                    TileUtility.GenerateTiles(1, 1002, "dirt", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1002, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 2964, "dirt", 5, 0, this);
                     break;
 
                 case TileSimulationType.sand:

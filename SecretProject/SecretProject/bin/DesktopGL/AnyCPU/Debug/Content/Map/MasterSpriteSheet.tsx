@@ -249,6 +249,9 @@
    <property name="loot" value="142:100:5,122:10:2"/>
    <property name="spawnWith" value="563"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="3.125" y="0.875" width="8.25" height="12"/>
+  </objectgroup>
  </tile>
  <tile id="678">
   <properties>
@@ -1249,6 +1252,14 @@
    <object id="1" x="8" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="2863">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="-16,-64,32,64"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="2923">
   <objectgroup draworder="index">
    <object id="1" x="3" y="0" width="4" height="16"/>
@@ -1257,6 +1268,16 @@
  <tile id="2932">
   <objectgroup draworder="index">
    <object id="1" x="9" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2963">
+  <properties>
+   <property name="destructable" value="0,4,1,3"/>
+   <property name="loot" value="142:100:5,122:10:2"/>
+   <property name="spawnWith" value="2863"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="3.125" y="2.125" width="11.25" height="8.75"/>
   </objectgroup>
  </tile>
  <tile id="3023">
