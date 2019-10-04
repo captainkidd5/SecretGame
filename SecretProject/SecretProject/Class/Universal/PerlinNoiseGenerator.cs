@@ -66,9 +66,50 @@ namespace SecretProject.Class.Universal
             return smoothField;
         }
 
-        public float LinearInterpolate(float a, float b, float t)
+        public float[,] GeneratePerlinNoise(float[,] baseNoise, int octaveCount)
         {
-            return a * (1 - t) + t * b;
+            int width = baseNoise.GetLength(0);
+            int height = baseNoise.GetLength(1);
+
+            float[][,] smoothNoise = new float[octaveCount][,];
+
+            float persistance = .5f;
+
+            for(int i =0; i < octaveCount;i++)
+            {
+                smoothNoise[i] = SmoothNoiseField(baseNoise, i);
+            }
+            float[,] perlinNoise = new float[width, height];
+            float amplitude = 1f;
+            float totalAmplitude = 0.0f;
+
+            for(int octave = octaveCount - 1; octave > 0; octave-- )
+            {
+                amplitude *= persistance;
+                totalAmplitude += amplitude;
+
+                for(int i =0; i < width;i++)
+                {
+                    for(int j =0; j < height; j++)
+                    {
+                        perlinNoise[i, j] += smoothNoise[octave][i, j] * amplitude;
+                    }
+                }
+            }
+
+            for(int i =0; i < width; i++)
+            {
+                for(int j =0; j < height; j++)
+                {
+                    perlinNoise[i, j] /= totalAmplitude;
+                }
+            }
+            return perlinNoise;
+        }
+
+        public float LinearInterpolate(float a, float b, float alpha)
+        {
+            return a * (1 - alpha) + alpha * b;
         }
     }
 }
