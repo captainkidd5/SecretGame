@@ -883,6 +883,12 @@ namespace SecretProject.Class.TileStuff
                     acceptableGenerationTiles = Game1.Utility.SandGeneratableTiles;
 
                     break;
+                case "water":
+                    acceptableGenerationTiles = Game1.Utility.WaterGeneratableTiles;
+                    break;
+                case "grass":
+                    acceptableGenerationTiles = Game1.Utility.GrassGeneratableTiles;
+                    break;
                 default:
                     acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 

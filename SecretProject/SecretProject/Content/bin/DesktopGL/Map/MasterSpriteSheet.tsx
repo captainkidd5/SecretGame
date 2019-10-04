@@ -1431,6 +1431,16 @@
    <property name="action" value="replaceSmallCog"/>
   </properties>
  </tile>
+ <tile id="4413">
+  <properties>
+   <property name="prop" value="prop"/>
+  </properties>
+ </tile>
+ <tile id="4614">
+  <properties>
+   <property name="prop" value="prop"/>
+  </properties>
+ </tile>
  <tile id="6067">
   <properties>
    <property name="action" value="readSanctuary"/>

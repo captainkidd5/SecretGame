@@ -293,7 +293,7 @@ namespace SecretProject.Class.TileStuff
                     secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
                     this.MainGid = 427;
                     this.SecondaryGid = 1115;
-                    MainGIDSpawnChance = .9f;
+                    MainGIDSpawnChance = .6f;
                     break;
             }
 
@@ -383,10 +383,12 @@ namespace SecretProject.Class.TileStuff
                     // TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
                     break;
                 case TileSimulationType.water:
-                    TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+                   // TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
+                    //TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
+                   // TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1164, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
 
                     break;
             }
