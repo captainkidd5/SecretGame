@@ -250,9 +250,32 @@ namespace SecretProject.Class.Controls
             }
         }
 
-        public int GetMouseOverTile(ITileManager manager)
+        public Tile GetMouseOverTile(IInformationContainer container)
         {
-            return (manager.AllTiles[0][MouseSquareCoordinateX, MouseSquareCoordinateY].GID);
+            if (this.MouseSquareCoordinateX > 0 && this.MouseSquareCoordinateY > 0)
+            {
+
+                return container.AllTiles[0][MouseSquareCoordinateX, MouseSquareCoordinateY];
+
+            }
+            else
+            {
+                return container.AllTiles[0][0, 0];
+            }
+
+        }
+
+        public Tile[] GetMouseOverTileArray(IInformationContainer container)
+        {
+            Tile[] tilesToReturn = new Tile[container.AllTiles.Count];
+            if (this.MouseSquareCoordinateX > 0 && this.MouseSquareCoordinateY > 0)
+            {
+                for (int i = 0; i < container.AllTiles.Count; i++)
+                {
+                    tilesToReturn[i] = container.AllTiles[i][MouseSquareCoordinateX, MouseSquareCoordinateY];
+                }
+            }
+            return tilesToReturn;
         }
     }
         
