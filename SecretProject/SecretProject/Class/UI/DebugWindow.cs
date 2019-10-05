@@ -30,7 +30,11 @@ namespace SecretProject.Class.UI
             base.Update(gameTime, Keys.F1);
             ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
             DebugButton1.Update(Game1.myMouseManager);
-            if(DebugButton1.isClicked)
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
+            {
+                Game1.GlobalClock.IncrementDay();
+            }
+            if (DebugButton1.isClicked)
             {
 
                 //Game1.World.AllTiles.LoadInitialChunks();

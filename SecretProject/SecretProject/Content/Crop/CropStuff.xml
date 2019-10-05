@@ -14,7 +14,7 @@
                 <ItemID>167</ItemID>
                   <Name>BloodCorn</Name>
                   <GID>286</GID>
-                  <DaysToGrow>4</DaysToGrow>
+                  <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
                   </Item>
@@ -22,6 +22,30 @@
                 <ItemID>187</ItemID>
                   <Name>BrineVine</Name>
                   <GID>686</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+                  <Item Type="XMLData.ItemStuff.Crop">
+                <ItemID>207</ItemID>
+                  <Name>BlueZodFern</Name>
+                  <GID>292</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>227</ItemID>
+                  <Name>YallonFlower</Name>
+                  <GID>492</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>247</ItemID>
+                  <Name>DesmodusBloom</Name>
+                  <GID>692</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>

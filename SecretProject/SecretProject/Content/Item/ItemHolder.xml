@@ -400,22 +400,6 @@
 <Price>4</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Sun Folly</Name>
-<ID>183</ID>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>4</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Zod Fern</Name>
-<ID>184</ID>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>4</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BrineBulbSeeds</Name>
 <ID>187</ID>
 <InvMaximum>99</InvMaximum>
@@ -433,14 +417,6 @@
 <Price>1</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Desmodus Bloom</Name>
-<ID>192</ID>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>10</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BrineBulb</Name>
 <ID>197</ID>
 <InvMaximum>99</InvMaximum>
@@ -448,6 +424,15 @@
 <TextureRow>7</TextureRow>
 <Price>12</Price>
 <StaminaRestored>2</StaminaRestored>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>ZodFernSeeds</Name>
+<ID>207</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>11</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<Plantable>true</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>FlaxCanvas</Name>
@@ -467,6 +452,15 @@
 <PlaceID>1589</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>ZodFern</Name>
+<ID>217</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>12</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<StaminaRestored>2</StaminaRestored>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Clay</Name>
 <ID>220</ID>
 <InvMaximum>99</InvMaximum>
@@ -484,13 +478,21 @@
 <SmeltedItem>231</SmeltedItem>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>YallonSeeds</Name>
+<ID>227</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>13</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<Plantable>true</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>SteelIngot</Name>
 <ID>231</ID>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>14</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>70</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>LargeCog</Name>
@@ -499,7 +501,6 @@
 <TextureColumn>14</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>70</Price>
-<Plantable>false</Plantable>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SmallCog</Name>
@@ -508,7 +509,33 @@
 <TextureColumn>14</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>70</Price>
-<Plantable>false</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>YallonFlower</Name>
+<ID>237</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>14</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<StaminaRestored>2</StaminaRestored>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>DesmodusSeeds</Name>
+<ID>247</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>15</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<Plantable>true</Plantable>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>DesmodusBloom</Name>
+<ID>257</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>16</TextureColumn>
+<TextureRow>7</TextureRow>
+<Price>5</Price>
+<StaminaRestored>2</StaminaRestored>
 </Item>
 </AllItems>
 </Asset>

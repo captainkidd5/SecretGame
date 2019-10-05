@@ -369,9 +369,6 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
                     TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
                     TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1295, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1297, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1298, "grass", 5, 0, this);
                     // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
                     TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
                     TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);

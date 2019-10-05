@@ -56,6 +56,18 @@
    <property name="loot" value="177:100:1,167:20:3"/>
   </properties>
  </tile>
+ <tile id="295">
+  <properties>
+   <property name="AssociatedTiles" value="196"/>
+  </properties>
+ </tile>
+ <tile id="296">
+  <properties>
+   <property name="AssociatedTiles" value="197"/>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="217:100:1,207:20:3"/>
+  </properties>
+ </tile>
  <tile id="325">
   <properties>
    <property name="generate" value="water"/>
@@ -199,6 +211,18 @@
    <property name="loot" value="147:100:1,128:20:2"/>
   </properties>
  </tile>
+ <tile id="495">
+  <properties>
+   <property name="AssociatedTiles" value="396"/>
+  </properties>
+ </tile>
+ <tile id="496">
+  <properties>
+   <property name="AssociatedTiles" value="397"/>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="237:100:1,227:20:3"/>
+  </properties>
+ </tile>
  <tile id="525">
   <properties>
    <property name="generate" value="water"/>
@@ -315,6 +339,12 @@
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="197:100:2,187:20:2"/>
+  </properties>
+ </tile>
+ <tile id="696">
+  <properties>
+   <property name="destructable" value="-50,1,0,16"/>
+   <property name="loot" value="257:100:2,247:20:2"/>
   </properties>
  </tile>
  <tile id="705">
