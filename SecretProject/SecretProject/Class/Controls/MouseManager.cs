@@ -255,12 +255,12 @@ namespace SecretProject.Class.Controls
             if (this.MouseSquareCoordinateX > 0 && this.MouseSquareCoordinateY > 0)
             {
 
-                return container.AllTiles[0][MouseSquareCoordinateX, MouseSquareCoordinateY];
+                return container.AllTiles[0][MouseSquareCoordinateX / (container.X + 1), MouseSquareCoordinateY / (container.Y + 1)];
 
             }
             else
             {
-                return container.AllTiles[0][0, 0];
+                return null;
             }
 
         }
@@ -272,7 +272,7 @@ namespace SecretProject.Class.Controls
             {
                 for (int i = 0; i < container.AllTiles.Count; i++)
                 {
-                    tilesToReturn[i] = container.AllTiles[i][MouseSquareCoordinateX, MouseSquareCoordinateY];
+                    tilesToReturn[i] = container.AllTiles[i][MouseSquareCoordinateX / (container.X + 1), MouseSquareCoordinateY / (container.Y + 1)];
                 }
             }
             return tilesToReturn;
