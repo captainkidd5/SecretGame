@@ -512,7 +512,7 @@ namespace SecretProject
             ToolShop.ShopMenu.TryAddStock(187, 15);
             ToolShop.ShopMenu.TryAddStock(128, 99);
             ToolShop.ShopMenu.TryAddStock(227, 50);
-            ToolShop.ShopMenu.TryAddStock(207, 50);
+            ToolShop.ShopMenu.TryAddStock(127, 3);
             ToolShop.ShopMenu.TryAddStock(161, 5);
             ToolShop.ShopMenu.TryAddStock(80, 5);
             ToolShop.ShopMenu.TryAddStock(167, 9); //bloodcorn seeds

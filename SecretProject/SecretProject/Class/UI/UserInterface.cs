@@ -92,7 +92,7 @@ namespace SecretProject.Class.UI
             BottomBar = new ToolBar( graphicsDevice, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.cam = cam;
-            TextBuilder = new TextBuilder("", 50f, 10f);
+            TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
             CraftingMenu = new CraftingMenu();
             CraftingMenu.LoadContent(content, GraphicsDevice);
