@@ -498,7 +498,7 @@ namespace SecretProject.Class.TileStuff
             {
                 endi = this.MapWidth;
             }
-            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 2;
+            int endj = (int)(Game1.cam.Pos.Y / 16) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2 / 16) + 5;
             if (endj > this.MapHeight)
             {
                 endj = this.MapWidth;

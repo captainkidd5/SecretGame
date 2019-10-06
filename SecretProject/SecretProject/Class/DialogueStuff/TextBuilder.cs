@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI;
 using System;
@@ -118,13 +119,19 @@ namespace SecretProject.Class.DialogueStuff
         {
             if (IsActive)
             {
-                if(UseTextBox)
+                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                {
+                    Reset();
+                    this.IsActive = false;
+                }
+                    if (UseTextBox)
                 {
                     Game1.Player.UserInterface.BottomBar.IsActive = false;
                     
                 }
                 if (AreSelectableOptionsActivated)
                 {
+                    Game1.freeze = true;
                     foreach (SelectableOption option in SelectableOptions)
                     {
                         option.Update(gameTime,this.SpeakerName,this.SpeakerID);
@@ -135,7 +142,7 @@ namespace SecretProject.Class.DialogueStuff
                 {
 
 
-                    if (NumberOfClicks == 1)
+                    if (NumberOfClicks >= 1)
                     {
                         this.SpeedAnchor = .1f;
                         if (this.IsPaused)
@@ -180,9 +187,13 @@ namespace SecretProject.Class.DialogueStuff
                     {
                         NumberOfClicks++;
                     }
-                    if (FreezeStage)
+                    if (FreezeStage && NumberOfClicks < 2)
                     {
                         Game1.freeze = true;
+                    }
+                    else
+                    {
+                        Reset();
                     }
 
 
@@ -193,7 +204,7 @@ namespace SecretProject.Class.DialogueStuff
                             typedText = parsedText;
                             isDoneDrawing = true;
                         }
-                        else if (typedTextLength < parsedText.Length)
+                        else if (typedTextLength < parsedText.Length - 1)
                         {
                             if (parsedText[(int)typedTextLength + 1] == '#')
                             {

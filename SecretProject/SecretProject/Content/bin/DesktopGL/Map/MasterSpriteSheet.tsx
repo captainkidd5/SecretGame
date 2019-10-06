@@ -31,6 +31,11 @@
    <property name="generate" value="water"/>
   </properties>
  </tile>
+ <tile id="249">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
  <tile id="250">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
@@ -55,6 +60,11 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+ </tile>
+ <tile id="255">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
  </tile>
  <tile id="260">
   <properties>
@@ -118,6 +128,16 @@
    <property name="generate" value="water"/>
   </properties>
  </tile>
+ <tile id="349">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="355">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
  <tile id="360">
   <properties>
    <property name="AssociatedTiles" value="260,160"/>
@@ -160,6 +180,16 @@
   <properties>
    <property name="generate" value="water"/>
   </properties>
+ </tile>
+ <tile id="449">
+  <objectgroup draworder="index">
+   <object id="1" x="0.0454559" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="455">
+  <objectgroup draworder="index">
+   <object id="1" x="0.0454559" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
  </tile>
  <tile id="478">
   <properties>
@@ -296,31 +326,49 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.181818" y="7.63636" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="650">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.0909091" y="7.81818" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="651">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.181818" y="7.90909" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="652">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.0909091" y="8.27273" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="653">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.272727" y="8.63636" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="654">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="6.66134e-16" y="7.90909" width="16" height="6.36364"/>
+  </objectgroup>
  </tile>
  <tile id="655">
   <properties>
@@ -468,6 +516,11 @@
    <frame tileid="784" duration="100"/>
   </animation>
  </tile>
+ <tile id="854">
+  <objectgroup draworder="index">
+   <object id="1" x="0.500001" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
@@ -567,6 +620,31 @@
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
+ </tile>
+ <tile id="949">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="950">
+  <objectgroup draworder="index">
+   <object id="1" x="0.227274" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="952">
+  <objectgroup draworder="index">
+   <object id="1" x="7.95455" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="954">
+  <objectgroup draworder="index">
+   <object id="1" x="0.227274" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="955">
+  <objectgroup draworder="index">
+   <object id="1" x="8.13637" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
  </tile>
  <tile id="978">
   <properties>
@@ -711,6 +789,21 @@
   <properties>
    <property name="generate" value="sand"/>
   </properties>
+ </tile>
+ <tile id="1049">
+  <objectgroup draworder="index">
+   <object id="1" x="0.0454559" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1054">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1055">
+  <objectgroup draworder="index">
+   <object id="1" x="8.04546" y="0.454536" width="7.72727" height="15.8182"/>
+  </objectgroup>
  </tile>
  <tile id="1063">
   <properties>
@@ -863,6 +956,21 @@
   <properties>
    <property name="generate" value="sand"/>
   </properties>
+ </tile>
+ <tile id="1149">
+  <objectgroup draworder="index">
+   <object id="1" x="0.227274" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1154">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1155">
+  <objectgroup draworder="index">
+   <object id="1" x="8.04546" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
  </tile>
  <tile id="1163">
   <properties>
@@ -1030,6 +1138,21 @@
    <property name="generate" value="sand"/>
   </properties>
  </tile>
+ <tile id="1249">
+  <objectgroup draworder="index">
+   <object id="1" x="0.227274" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1254">
+  <objectgroup draworder="index">
+   <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1255">
+  <objectgroup draworder="index">
+   <object id="1" x="8.22727" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
  <tile id="1285">
   <properties>
    <property name="destructable" value="2,0,3,6"/>
@@ -1195,6 +1318,11 @@
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="-0.25" y="9.25" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="1355">
+  <objectgroup draworder="index">
+   <object id="1" x="8.22727" y="0.363627" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
  <tile id="1402">
@@ -1372,8 +1500,11 @@
  </tile>
  <tile id="1557">
   <properties>
-   <property name="AssociatedTiles" value="1457"/>
+   <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.318183" y="7.99999" width="7.72727" height="5.36365"/>
+  </objectgroup>
  </tile>
  <tile id="1563">
   <properties>

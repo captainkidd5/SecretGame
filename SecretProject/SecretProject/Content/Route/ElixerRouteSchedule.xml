@@ -8,16 +8,16 @@
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
       <StageToEndAt>0</StageToEndAt>
-      <EndX>80</EndX>
-        <EndY>80</EndY>
+      <EndX>83</EndX>
+        <EndY>43</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
         <TimeToStart>15</TimeToStart>
         <TimeToFinish>22</TimeToFinish>
          <StageToEndAt>0</StageToEndAt>
-        <EndX>80</EndX>
-        <EndY>80</EndY>
+        <EndX>83</EndX>
+        <EndY>43</EndY>
       </Item>
     </Routes>
   </Asset>

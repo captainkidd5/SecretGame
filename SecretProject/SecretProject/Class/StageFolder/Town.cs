@@ -153,13 +153,7 @@ namespace SecretProject.Class.StageFolder
                 player.Position = new Vector2(400, 400);
                 Game1.GlobalClock.TotalHours = 22;
             }
-            //if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Y)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Y)))
-            //{
-            //    ElixerNPC.IsUpdating = !ElixerNPC.IsUpdating;
-            //    //TextBuilder.IsActive = !TextBuilder.IsActive;
-            //    //ParticleEngine.ActivationTime = 5f;
-            //    //ParticleEngine.InvokeParticleEngine(gameTime, 20, mouse.WorldMousePosition);
-            //}
+
 
             
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))

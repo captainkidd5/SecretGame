@@ -218,7 +218,7 @@ namespace SecretProject.Class.Universal
                 Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
                 Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + skeleton.TextToWrite, 2f, null, null);
                 
-                Game1.freeze = true;
+             //   Game1.freeze = true;
                 return;
             }
             switch(action)
