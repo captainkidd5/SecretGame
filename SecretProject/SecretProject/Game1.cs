@@ -556,9 +556,9 @@ namespace SecretProject
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
             Elixer = new Elixir("Elixer", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(160, 128), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(512, 240), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
-            Snaw = new Character("Snaw", new Vector2(1280, 500), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+            Dobbin = new Dobbin("Dobbin", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
+            Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
@@ -569,7 +569,7 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(192, 128), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3]) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,
@@ -599,7 +599,7 @@ namespace SecretProject
             Game1.Lifts.Add("13944", new Lift("13944", (int)Stages.Town, new Vector2(139 * 16, 44 * 16)));
             AllEvents = new List<IEvent>()
             {
-                new IntroduceSanctuary(),
+               // new IntroduceSanctuary(),
                 new IntroduceJulianShop()
             };
             IsEventActive = false;

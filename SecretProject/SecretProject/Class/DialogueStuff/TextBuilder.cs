@@ -195,15 +195,17 @@ namespace SecretProject.Class.DialogueStuff
                         }
                         else if (typedTextLength < parsedText.Length)
                         {
-                            if (parsedText[(int)typedTextLength] == '#')
+                            if (parsedText[(int)typedTextLength + 1] == '#')
                             {
                                 parsedText.Remove((int)typedTextLength , 1);
+                                //typedTextLength--;
                                 PauseUntilInput();
 
                             }
-                            if (parsedText[(int)typedTextLength] == '`')
+                            if (parsedText[(int)typedTextLength + 1] == '`')
                             {
                                 parsedText.Remove((int)typedTextLength, 1);
+                                //typedTextLength--;
                                 PauseUntilInput();
                                 this.MoveToSelectableOptions = true;
 

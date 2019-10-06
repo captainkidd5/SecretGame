@@ -227,15 +227,6 @@
     <property name="standardTo" value="0"/>
    </properties>
   </object>
-  <object id="4" x="360" y="776" width="50" height="16.8485">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="50"/>
-    <property name="SafteyOffSetY" value="0"/>
-    <property name="standardFrom" value="1"/>
-    <property name="standardTo" value="4"/>
-   </properties>
-  </object>
   <object id="5" x="514" y="288" width="70.5" height="16">
    <properties>
     <property name="Click" value="true"/>

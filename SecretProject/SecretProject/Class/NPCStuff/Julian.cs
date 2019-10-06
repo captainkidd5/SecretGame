@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Julian : Character
     {
-        public Julian(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule, 6, false)
+        public Julian(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule, 0, false)
         {
             this.SpeakerID = 5;
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 16, 34, 6, .15f, this.Position);

@@ -394,17 +394,21 @@ namespace SecretProject.Class.TileStuff
                             }
                             Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
 
-                            //if (z == 0)
-                            //{
-                            //    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                            //    {
-                            //        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(destinationRectangle))
-                            //        {
-                            //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]), .75f);
-                            //        }
-                            //    }
+                            if (z == 0)
+                            {
+                                if(Game1.Player.IsMoving)
+                                {
+                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                                    {
+                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(destinationRectangle))
+                                        {
+                                            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]), .75f);
+                                        }
+                                    }
+                                }
+                                
 
-                            //}
+                            }
 
                             if (destinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
