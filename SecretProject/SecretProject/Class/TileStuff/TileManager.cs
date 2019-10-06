@@ -264,10 +264,10 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
+            currentStage.AllLights = this.Lights;
         }
-        
 
+       
 
 
         #region LOADTILESOBJECTS
@@ -291,6 +291,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+            int oldLightCount = this.Lights.Count;
             AbleToDrawTileSelector = false;
             CurrentObjects.Clear();
             //Game1.myMouseManager.TogglePlantInteraction = false;
@@ -462,6 +463,10 @@ namespace SecretProject.Class.TileStuff
 
                     
                 }
+            }
+            if(this.Lights.Count != oldLightCount)
+            {
+                Game1.GetCurrentStage().AllLights = this.Lights;
             }
             TileUtility.UpdateGridItem(this, this);
         }

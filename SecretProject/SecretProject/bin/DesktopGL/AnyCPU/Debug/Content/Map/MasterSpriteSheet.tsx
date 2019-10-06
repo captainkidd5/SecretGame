@@ -1581,6 +1581,19 @@
    <property name="action" value="readSanctuary"/>
   </properties>
  </tile>
+ <tile id="6759">
+  <properties>
+   <property name="lightSource" value="1"/>
+  </properties>
+ </tile>
+ <tile id="7159">
+  <properties>
+   <property name="newSource" value="0,-64,0,64"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1.375" y="0.5" width="12.75" height="12.75"/>
+  </objectgroup>
+ </tile>
  <tile id="7914">
   <animation>
    <frame tileid="7614" duration="100"/>

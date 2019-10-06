@@ -267,7 +267,7 @@ namespace SecretProject.Class.TileStuff
             float X = (tile.X * 16);
             float Y = (tile.Y * 16);
 
-                return new Rectangle((int)(X + chunkX * ChunkX * ChunkX), (int)(Y + chunkY * ChunkY * ChunkY), 16, 16);
+            return new Rectangle((int)(X + chunkX * ChunkX * ChunkX), (int)(Y + chunkY * ChunkY * ChunkY), 16, 16);
 
 
         }
@@ -283,8 +283,45 @@ namespace SecretProject.Class.TileStuff
         {
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
+
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("spawnWith"))
+                {
+                    string value = "";
+                    container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.TryGetValue("spawnWith", out value);
+
+                    List<Tile> intermediateNewTiles = new List<Tile>();
+                    int[] spawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
+                    for (int index = 0; index < spawnsWith.Length; index++)
+                    {
+                        string gidX = "";
+                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
+                        string gidY = "";
+                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
+                        string tilePropertyLayer = "";
+                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
+                        int intGidX = int.Parse(gidX);
+                        int intGidY = int.Parse(gidY) ;
+                        int intTilePropertyLayer = int.Parse(tilePropertyLayer);
+                        int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Id;
+                        //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
+
+                        intermediateNewTiles.Add(new Tile(oldX + intGidX, oldY + intGidY, totalGID + 1 ){ LayerToDrawAt = intTilePropertyLayer });
+                    }
+
+                    if(oldX != 79)
+                    {
+                        for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
+                        {
+                            TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, container);
+                            container.AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X,
+                                (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
+                        }
+                    }
+                    
+                }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
+
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
                     for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                     {
@@ -522,7 +559,7 @@ namespace SecretProject.Class.TileStuff
                                 if (!Game1.Lifts.ContainsKey(liftKey))
                                 {
                                     Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
-                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16,j * 16)));
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16)));
                                 }
                             }
                             else
@@ -831,7 +868,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 Game1.SoundManager.PlaySoundEffectFromInt(false, 1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), 1f);
             }
-             
+
 
             TileUtility.ReplaceTilePermanent(layer, oldX, oldY, 0, world, container);
 
@@ -910,49 +947,9 @@ namespace SecretProject.Class.TileStuff
                 acceptableTiles, container, comparisonLayer))
             {
                 Tile sampleTile = new Tile(newTileX, newTileY, id);
-                if (!container.MapName.Tilesets[container.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
-                {
-                    container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
-                    return;
-                }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[sampleTile.GID].Properties.ContainsKey("spawnWith"))
-                {
-                    string value = "";
-                    container.MapName.Tilesets[container.TileSetNumber].Tiles[sampleTile.GID].Properties.TryGetValue("spawnWith", out value);
 
-                    List<Tile> intermediateNewTiles = new List<Tile>();
-                    int[] spawnsWith = Game1.Utility.ParseSpawnsWithKey(value);
-                    for (int index = 0; index < spawnsWith.Length; index++)
-                    {
-                        string gidX = "";
-                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationX", out gidX);
-                        string gidY = "";
-                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("relationY", out gidY);
-                        string tilePropertyLayer = "";
-                        container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
-                        int intGidX = int.Parse(gidX);
-                        int intGidY = int.Parse(gidY);
-                        int intTilePropertyLayer = int.Parse(tilePropertyLayer);
-                        int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Id;
-                        //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
-                        if (!TileUtility.CheckIfTileAlreadyExists(newTileX + intGidX, newTileY + intGidY, layer, container))
-                        {
-                            intermediateNewTiles.Add(new Tile(newTileX + intGidX, newTileY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
+                container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
 
-                    for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
-                    {
-                        TileUtility.AssignProperties(intermediateNewTiles[tileSwapCounter], layer, (int)intermediateNewTiles[tileSwapCounter].X, (int)intermediateNewTiles[tileSwapCounter].Y, container);
-                        container.AllTiles[(int)intermediateNewTiles[tileSwapCounter].LayerToDrawAt][(int)intermediateNewTiles[tileSwapCounter].X,
-                            (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
-                    }
-                    container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
-                }
             }
         }
         #endregion
@@ -1067,7 +1064,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
-                   
+
 
                 }
                 else

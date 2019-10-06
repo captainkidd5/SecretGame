@@ -45,6 +45,7 @@ namespace SecretProject.Class.StageFolder
         List<Sprite> AllSprites { get; set; }
 
         List<Item> AllItems { get; set; }
+        List<LightSource> AllLights { get; set; }
 
 
         List<ActionTimer> AllActions { get; set; }
