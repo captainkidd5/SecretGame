@@ -178,7 +178,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialChunks()
         {
 
-            ActiveChunks = GetActiveChunkCoord(Game1.Player.position);
+            ActiveChunks = GetActiveChunkCoord(new Vector2(0,0));
 
 
             for (int i = 0; i < 3; i++)
@@ -546,9 +546,9 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
 
-                    foreach(Boar boar in ChunkUnderPlayer.Enemies)
+                    foreach(Boar boar in ActiveChunks[a, b].Enemies)
                     {
-                        boar.Update(gameTime, ChunkUnderPlayer.Objects, mouse, ChunkUnderPlayer);
+                       // boar.Update(gameTime, ActiveChunks[a, b].Objects, mouse, ActiveChunks[a, b]);
                     }
                 }
             }

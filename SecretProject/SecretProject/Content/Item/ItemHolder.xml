@@ -237,6 +237,14 @@
 <Price>45</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>LandToken</Name>
+<ID>144</ID>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>6</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>500</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFishPie</Name>
 <ID>145</ID>
 <InvMaximum>99</InvMaximum>

@@ -142,8 +142,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
 
-                    currentPath = container.PathGrid.Pathfind(new Point(Math.Abs((int)this.NPCPathFindRectangle.X) / 16,
-                        Math.Abs((int)this.NPCPathFindRectangle.Y) / 16), point,this.Name);
+                    currentPath = container.PathGrid.Pathfind(new Point(Math.Abs((int)(NPCPathFindRectangle.X / 16 - (container.X * 16))),
+                        Math.Abs((int)(NPCPathFindRectangle.Y / 16 - (container.Y * 16)))), point, this.Name);
                     if (currentPath.Contains(new Point(-1, -1)))
                     {
                        
@@ -156,7 +156,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 if (!currentPath.Contains(new Point(-1, -1)))
                 {
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 + container.X * 16, currentPath[pointCounter].Y * 16 + container.Y * 16, 16, 16);
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 * 16+ container.X * 16, currentPath[pointCounter].Y * 16 * 16 + container.Y * 16, 16, 16);
                     if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
@@ -165,7 +165,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + container.X * 16 + 8, currentPath[pointCounter].Y * 16 + + container.Y * 16 + 8, 4, 4),container);
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + container.X * 16 + 8, currentPath[pointCounter].Y * 16 +  container.Y * 16 + 8, 4, 4),container);
                         //DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else

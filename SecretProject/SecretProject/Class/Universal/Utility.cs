@@ -246,6 +246,13 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
+                case "OpenKayaShop":
+                    Game1.freeze = true;
+                    Game1.Player.UserInterface.IsShopMenu = true;
+                    Game1.Player.UserInterface.ActivateShop(OpenShop.KayaShop);
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+                    break;
 
                 case "ExitDialogue":
                     Game1.Player.UserInterface.TextBuilder.Reset();

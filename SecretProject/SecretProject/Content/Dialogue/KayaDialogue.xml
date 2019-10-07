@@ -10,7 +10,7 @@
     <TimeEnd>12</TimeEnd>
    <TextToWrite>Hey! Anything I can do for you? `
    </TextToWrite>
-   <SelectableOptions>nope doing just fine thanks!~Load.11</SelectableOptions>
+   <SelectableOptions>Id like to access the houseing shop~OpenKayaShop,no~Load.11</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>11</SpeechID>

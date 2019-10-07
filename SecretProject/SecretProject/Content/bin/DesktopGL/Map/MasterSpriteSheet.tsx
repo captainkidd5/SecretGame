@@ -1653,6 +1653,14 @@
    <frame tileid="1592" duration="100"/>
   </animation>
  </tile>
+ <tile id="1846">
+  <properties>
+   <property name="newSource" value="0,-16,16,16"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="7.27273" y="4.54545" width="3.63636" height="6.36364"/>
+  </objectgroup>
+ </tile>
  <tile id="1848">
   <objectgroup draworder="index">
    <object id="1" x="2" y="4" width="11" height="8"/>
@@ -1687,6 +1695,7 @@
  </tile>
  <tile id="2304">
   <properties>
+   <property name="action" value="triggerLift"/>
    <property name="newSource" value="-16,-48,32,48"/>
   </properties>
  </tile>

@@ -23,7 +23,8 @@ namespace SecretProject.Class.UI
         ToolShop = 1,
         DobbinShop = 2,
         JulianShop = 3,
-        ElixirShop = 4
+        ElixirShop = 4,
+        KayaShop = 5
         //LodgeInteior = 1,
         //Iliad = 2,
         //Exit = 3,

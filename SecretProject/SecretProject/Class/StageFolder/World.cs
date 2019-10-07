@@ -192,6 +192,8 @@ namespace SecretProject.Class.StageFolder
 
             Boars = new List<Boar>() { };
 
+            AllTiles.LoadInitialChunks();
+
             // Game1.SoundManager.DustStormInstance.Play();
         }
         public void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)

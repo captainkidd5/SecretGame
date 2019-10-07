@@ -484,6 +484,9 @@ namespace SecretProject
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1, 1) { StageIdentifier = 0 };
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
             Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
+            Lifts = new Dictionary<string, Lift>();
+            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248");
+            Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16)));
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
 
 
@@ -541,12 +544,16 @@ namespace SecretProject
             ElixirShop.ShopMenu.TryAddStock(83, 1);
             ElixirShop.ShopMenu.TryAddStock(84, 1);
             ElixirShop.ShopMenu.TryAddStock(85, 1);
+
+            Shop KayaShop = new Shop(graphics.GraphicsDevice, 5, "KayaShop", new ShopMenu("KayaShopInventory", graphics.GraphicsDevice, 10));
+            KayaShop.ShopMenu.TryAddStock(144, 5);
             AllShops = new List<IShop>()
             {
                 ToolShop,
                 DobbinShop,
                 JulianShop,
-                ElixirShop
+                ElixirShop,
+                KayaShop
             };
 
 
@@ -593,10 +600,7 @@ namespace SecretProject
 
             }
 
-            Lifts = new Dictionary<string, Lift>();
-            //Lifts.Add("000", new Lift("000", Stages.Town, ))
-            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("13944");
-            Game1.Lifts.Add("13944", new Lift("13944", (int)Stages.Town, new Vector2(139 * 16, 44 * 16)));
+            
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
