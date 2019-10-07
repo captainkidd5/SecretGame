@@ -9,6 +9,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.TileStuff;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff.Enemies
@@ -77,7 +78,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.DebugColor = Color.Red;
         }
 
-        public virtual void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse, IInformationContainer container)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -130,7 +131,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         
         //For use without route schedule
-        public void MoveToTile(GameTime gameTime, Point point)
+        public void MoveToTile(GameTime gameTime, Point point,IInformationContainer container)
         {
 
             if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
@@ -141,7 +142,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
 
-                    currentPath = Game1.GetCurrentStage().AllTiles.GetPathGrid(this.Position).Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                    currentPath = container.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                         (int)this.NPCPathFindRectangle.Y / 16), point,this.Name);
                     if (currentPath.Contains(new Point(-1, -1)))
                     {
@@ -164,7 +165,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 4, 4));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 4, 4),container);
                         //DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -183,7 +184,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         }
 
 
-        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
+        public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle, IInformationContainer container)
         {
 
             Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X, NPCPathFindRectangle.Y) + new Vector2((float).0000000001, (float).0000000001)));
@@ -205,7 +206,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         private float WanderTimer = 2f;
         private Vector2 wanderPosition = new Vector2(0, 0);
-        public void Wander(GameTime gameTime)
+        public void Wander(GameTime gameTime,IInformationContainer container)
         {
             //temporary
             //MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
@@ -216,12 +217,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
 
-                if (this.CurrentTileX + newX < Game1.GetCurrentStage().MapRectangle.Width - 10 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < Game1.GetCurrentStage().MapRectangle.Height - 10 && this.CurrentTileY + newY > 0)
+                if (this.CurrentTileX + newX < container.MapWidth - 2 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < container.MapHeight - 2 && this.CurrentTileY + newY > 0)
                 {
                    
-                    if (Game1.GetCurrentStage().AllTiles.PathGrid.Weight[this.CurrentTileX + newX, this.CurrentTileY + newY] != 0)
+                    if (container.PathGrid.Weight[this.CurrentTileX + newX, this.CurrentTileY + newY] != 0)
                         {
-                        MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY));
+                        MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY),container);
                         //wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
                        
                     }

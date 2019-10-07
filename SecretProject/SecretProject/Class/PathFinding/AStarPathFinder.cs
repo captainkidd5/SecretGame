@@ -19,14 +19,14 @@ namespace SecretProject.Class.PathFinding
 
 
 
-        public AStarPathFinder(int x, int y, List<Tile[,]> tiles, Dictionary<string, ObjectBody> dictionary, byte defaultValue = 0)
+        public AStarPathFinder(int mapWidth, int mapHeight, List<Tile[,]> tiles, Dictionary<string, ObjectBody> dictionary, byte defaultValue = 0)
         {
-            Size = new Rectangle(0, 0, x, y);
-            Weight = new byte[x, y];
+            Size = new Rectangle(0, 0, mapWidth, mapHeight);
+            Weight = new byte[mapWidth, mapHeight];
 
-            for (var i = 0; i < x; i++)
+            for (var i = 0; i < mapWidth; i++)
             {
-                for (var j = 0; j < y; j++)
+                for (var j = 0; j < mapHeight; j++)
                 {
                     if (dictionary.ContainsKey(tiles[1][i, j].GetTileKey(1)))
                     {

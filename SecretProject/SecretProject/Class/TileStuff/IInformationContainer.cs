@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
-
+using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -33,8 +33,10 @@ namespace SecretProject.Class.TileStuff
          List<LightSource> Lights { get; set; }
         Dictionary<string, Crop> Crops { get; set; }
 
+        AStarPathFinder PathGrid { get; set; }
+
         //specific to chunks
-         int X { get; set; }
+        int X { get; set; }
          int Y { get; set; }
         int ArrayI { get; set; }
         int ArrayJ { get; set; }

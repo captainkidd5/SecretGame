@@ -11,7 +11,8 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
-
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -544,6 +545,11 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
+
+                    foreach(Boar boar in ChunkUnderPlayer.Enemies)
+                    {
+                        boar.Update(gameTime, ChunkUnderPlayer.Objects, mouse, ChunkUnderPlayer);
+                    }
                 }
             }
 
@@ -709,7 +715,10 @@ namespace SecretProject.Class.TileStuff
                         }
 
 
-                   // }
+                    foreach (Boar boar in ActiveChunks[a, b].Enemies)
+                    {
+                        boar.Draw(spriteBatch);
+                    }
                 }
             }
 

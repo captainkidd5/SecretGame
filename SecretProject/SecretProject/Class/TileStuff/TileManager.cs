@@ -278,11 +278,6 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public AStarPathFinder GetPathGrid(Vector2 entityPosition)
-        {
-            return this.PathGrid;
-
-        }
 
         #endregion
 

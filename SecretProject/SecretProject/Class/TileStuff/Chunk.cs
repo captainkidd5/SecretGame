@@ -3,8 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
-
+using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using System.Collections.Generic;
 using System.IO;
@@ -52,6 +53,13 @@ namespace SecretProject.Class.TileStuff
 
         //PROPERTY MANAGEMENT
         public bool Owned { get; set; }
+
+
+        //NPCS
+        public List<Boar> Enemies { get; set; }
+
+        //PATHFINDING
+        public AStarPathFinder PathGrid { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -82,6 +90,9 @@ namespace SecretProject.Class.TileStuff
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
 
+            Enemies = new List<Boar>();
+
+            
         }
 
         public Rectangle GetChunkRectangle()
@@ -250,6 +261,7 @@ namespace SecretProject.Class.TileStuff
                 this.Crops.Add(cropKey, crop);
             }
             this.Owned = binaryReader.ReadBoolean();
+            PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -407,7 +419,8 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
+            PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
+            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].X, AllTiles[0][5, 5].Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
         }
 

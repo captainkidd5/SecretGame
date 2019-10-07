@@ -4,6 +4,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
         }
 
-        public override void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse)
+        public override void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse, IInformationContainer container)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -66,7 +67,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
             //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
-            Wander(gameTime);
+            Wander(gameTime, container);
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {
