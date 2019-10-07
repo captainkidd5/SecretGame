@@ -262,6 +262,7 @@ namespace SecretProject.Class.TileStuff
             }
             this.Owned = binaryReader.ReadBoolean();
             PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
+            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].X, AllTiles[0][5, 5].Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -375,15 +376,15 @@ namespace SecretProject.Class.TileStuff
             switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
-                    // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
-                    TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
+                    //// TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+                    //TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
                     break;
 
                 case TileSimulationType.sand:

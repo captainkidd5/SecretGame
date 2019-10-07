@@ -134,7 +134,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public void MoveToTile(GameTime gameTime, Point point,IInformationContainer container)
         {
 
-            if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
+            if (pointCounter < currentPath.Count && !this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16 * + container.X * 16, point.Y * 16 + container.Y * 16, 16, 16)))
             { 
                 if (pathFound == false)
                 {
@@ -156,7 +156,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 if (!currentPath.Contains(new Point(-1, -1)))
                 {
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 16, 16);
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 + container.X * 16, currentPath[pointCounter].Y * 16 + container.Y * 16, 16, 16);
                     if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
@@ -165,7 +165,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     if (pointCounter < currentPath.Count)
                     {
                         //this.Position = new Vector2(currentPath[counter].X * 16, currentPath[counter].Y * 16);
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 4, 4),container);
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X , NextPointRectangle.Y), new Rectangle(currentPath[pointCounter].X * 16 + container.X * 16 + 8, currentPath[pointCounter].Y * 16 + + container.Y * 16 + 8, 4, 4),container);
                         //DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
