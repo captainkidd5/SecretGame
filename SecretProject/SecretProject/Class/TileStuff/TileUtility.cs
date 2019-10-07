@@ -438,7 +438,19 @@ namespace SecretProject.Class.TileStuff
                                                 {
                                                     for(int q = -1; q < 2; q++)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
+                                                        if(i > 0 && j > 0)
+                                                        {
+                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
+                                                        }
+                                                        else if(i > 0 && j<=0)
+                                                        {
+                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight);
+                                                        }
+                                                        else if (i <= 0 && j> 0)
+                                                        {
+                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
+                                                        }
+
                                                     }
                                                 }
                                                 

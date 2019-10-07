@@ -546,9 +546,9 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
 
-                    foreach(Boar boar in ActiveChunks[a, b].Enemies)
+                    foreach(Boar boar in ChunkUnderPlayer.Enemies)
                     {
-                        boar.Update(gameTime, ActiveChunks[a, b].Objects, mouse, ChunkUnderPlayer);
+                        boar.Update(gameTime, ChunkUnderPlayer.Objects, mouse, ChunkUnderPlayer);
                     }
                 }
             }

@@ -67,7 +67,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
             //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
-          //  Wander(gameTime, container);
+            Wander(gameTime, container);
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {

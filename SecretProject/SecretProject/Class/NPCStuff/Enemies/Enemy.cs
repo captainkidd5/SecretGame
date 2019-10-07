@@ -55,8 +55,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public Texture2D NextPointTexture { get; set; }
         public Rectangle NextPointRectangle { get; set; }
         public Texture2D NextPointRectangleTexture { get; set; }
-        public int CurrentTileX { get { return (int)(this.Position.X / 16); } }
-        public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
+        //public int CurrentTileX { get { return (int)(this.Position.X / 16); } }
+       // public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
         public float SoundTimer { get; set; }
         public float SoundMin { get; set; }
         public float SoundMax { get; set; }
@@ -142,8 +142,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
 
-                    currentPath = container.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                        (int)this.NPCPathFindRectangle.Y / 16), point,this.Name);
+                    currentPath = container.PathGrid.Pathfind(new Point(Math.Abs((int)this.NPCPathFindRectangle.X) / 16,
+                        Math.Abs((int)this.NPCPathFindRectangle.Y) / 16), point,this.Name);
                     if (currentPath.Contains(new Point(-1, -1)))
                     {
                        
@@ -206,8 +206,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         private float WanderTimer = 2f;
         private Vector2 wanderPosition = new Vector2(0, 0);
-        public void Wander(GameTime gameTime,IInformationContainer container)
+        public void Wander(GameTime gameTime, IInformationContainer container)
         {
+            int currentTileX = Math.Abs((int)(this.Position.X / 16 - (container.X * 16)));
+            int currentTileY = Math.Abs((int)(this.Position.Y / 16 - (container.Y * 16)));
             //temporary
             //MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -217,14 +219,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
 
-                if (this.CurrentTileX  + newX < container.MapWidth - 2 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < container.MapHeight - 2 && this.CurrentTileY + newY > 0)
+                if (currentTileX + newX < container.MapWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < container.MapHeight - 2 && currentTileY + newY > 0)
                 {
-                   
-                    if (container.PathGrid.Weight[this.CurrentTileX / container.X + newX, this.CurrentTileY /container.Y + newY] != 0)
-                        {
-                        MoveToTile(gameTime, new Point(this.CurrentTileX + newX + container.X * 16, this.CurrentTileY + newY + container.Y * 16),container);
+
+                    if (container.PathGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
+                    {
+                        MoveToTile(gameTime, new Point(currentTileX   + newX, currentTileY+ newY), container);
                         //wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
-                       
+
                     }
 
                 }
