@@ -587,36 +587,42 @@
  </tile>
  <tile id="914">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="915">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="916">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="917">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="918">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="919">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -741,36 +747,42 @@
  </tile>
  <tile id="1014">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1015">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1016">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1017">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1018">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1019">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -893,36 +905,42 @@
  </tile>
  <tile id="1114">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1115">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1116">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1117">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1118">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1119">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -1074,36 +1092,42 @@
  </tile>
  <tile id="1214">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1215">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1216">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1217">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1218">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1219">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -1229,36 +1253,42 @@
  </tile>
  <tile id="1314">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1315">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1316">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1317">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1318">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1319">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -1393,36 +1423,42 @@
  </tile>
  <tile id="1414">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1415">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1416">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1417">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1418">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1419">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
   </properties>
@@ -1648,6 +1684,11 @@
   <objectgroup draworder="index">
    <object id="1" x="6" y="8" width="6" height="3"/>
   </objectgroup>
+ </tile>
+ <tile id="2304">
+  <properties>
+   <property name="newSource" value="-16,-48,32,48"/>
+  </properties>
  </tile>
  <tile id="2624">
   <objectgroup draworder="index">

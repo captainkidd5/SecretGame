@@ -424,9 +424,27 @@ namespace SecretProject.Class.TileStuff
 
                                     if (mouse.IsClicked)
                                     {
-
-                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                        TileUtility.ReplaceTile(z, i, j, 86, container);
+                                        switch(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[0][i, j].GID].Properties["generate"])
+                                        {
+                                            case "dirt":
+                                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                                TileUtility.ReplaceTile(z, i, j, 86, container);
+                                                break;
+                                            case "grass":
+                                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                                TileUtility.ReplaceTile(z, i, j, 1106, container);
+                                                ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
+                                                for (int t =-1; t < 2; t++)
+                                                {
+                                                    for(int q = -1; q < 2; q++)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
+                                                    }
+                                                }
+                                                
+                                                break;
+                                        }
+                                        
 
 
                                     }
