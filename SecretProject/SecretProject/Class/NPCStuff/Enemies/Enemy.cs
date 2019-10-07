@@ -217,12 +217,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
 
-                if (this.CurrentTileX + newX < container.MapWidth - 2 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < container.MapHeight - 2 && this.CurrentTileY + newY > 0)
+                if (this.CurrentTileX  + newX < container.MapWidth - 2 && this.CurrentTileX + newX > 0 && this.CurrentTileY + newY < container.MapHeight - 2 && this.CurrentTileY + newY > 0)
                 {
                    
-                    if (container.PathGrid.Weight[this.CurrentTileX + newX, this.CurrentTileY + newY] != 0)
+                    if (container.PathGrid.Weight[this.CurrentTileX / container.X + newX, this.CurrentTileY /container.Y + newY] != 0)
                         {
-                        MoveToTile(gameTime, new Point(this.CurrentTileX + newX, this.CurrentTileY + newY),container);
+                        MoveToTile(gameTime, new Point(this.CurrentTileX + newX + container.X * 16, this.CurrentTileY + newY + container.Y * 16),container);
                         //wanderPosition = new Vector2(Position.X + newX, Position.Y + newY);
                        
                     }
