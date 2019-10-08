@@ -9,13 +9,6 @@
    <property name="action" value="plantable"/>
   </properties>
  </tile>
- <tile id="160">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-2"/>
-  </properties>
- </tile>
  <tile id="226">
   <properties>
    <property name="generate" value="water"/>
@@ -69,9 +62,6 @@
  <tile id="260">
   <properties>
    <property name="action" value="smelt"/>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
   </properties>
  </tile>
  <tile id="288">
@@ -140,7 +130,8 @@
  </tile>
  <tile id="360">
   <properties>
-   <property name="AssociatedTiles" value="260,160"/>
+   <property name="action" value="smelt"/>
+   <property name="newSource" value="0,-32,0,32"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="1"/>

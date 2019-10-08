@@ -243,6 +243,7 @@
 <TextureColumn>6</TextureColumn>
 <TextureRow>4</TextureRow>
 <Price>500</Price>
+<PlaceID>6815</PlaceID>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFishPie</Name>

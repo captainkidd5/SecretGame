@@ -63,9 +63,10 @@ namespace SecretProject.Class.TileStuff
         public bool AbleToDrawTileSelector { get; set; }
 
         public bool DrawGridObject { get; set; }
-        public bool DrawGridAssociatedTiles { get; set; }
-        public int[] GridAssociatedTiles { get; set; }
         public Rectangle GridObjectSourceRectangle { get; set; }
+        public int GridObjectSourceRectangleOffSetX { get; set; }
+        public int GridObjectSourceRectangleOffSetY { get; set; }
+        public Color GridDrawColor { get; set; }
 
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
@@ -118,6 +119,7 @@ namespace SecretProject.Class.TileStuff
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
+            this.GridDrawColor = Color.White;
         }
 
         public void LoadGeneratableTileLists()
@@ -696,22 +698,12 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                         }
-                        if (this.DrawGridObject)
-                        {
-                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), this.GridObjectSourceRectangle, Color.Red * .5f,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
-                            if (this.DrawGridAssociatedTiles)
-                            {
-                                for (int g = 0; g < GridAssociatedTiles.Length; g++)
-                                {
-                                    spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationX"]) * 16,
-                                        Game1.Player.UserInterface.TileSelector.WorldY + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(GridAssociatedTiles[g], this.tilesetTilesWide), Color.Green * .5f,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["layer"])]);
-                                }
-                            }
-                            //this.DrawGridObject = false;
-                            //  this.DrawGridAssociatedTiles = false;
-                        }
+                    if (this.DrawGridObject)
+                    {
+                        spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
+                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
+
+                    }
 
 
                     foreach (Boar boar in ActiveChunks[a, b].Enemies)

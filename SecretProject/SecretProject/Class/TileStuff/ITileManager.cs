@@ -44,8 +44,9 @@ namespace SecretProject.Class.TileStuff
 
         bool DrawGridObject { get; set; }
         Rectangle GridObjectSourceRectangle { get; set; }
-        bool DrawGridAssociatedTiles { get; set; }
-        int[] GridAssociatedTiles{ get; set; }
+        int GridObjectSourceRectangleOffSetX { get; set; }
+        int GridObjectSourceRectangleOffSetY { get; set; }
+        Color GridDrawColor { get; set; }
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);

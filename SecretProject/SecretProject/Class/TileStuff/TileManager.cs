@@ -69,11 +69,14 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, ObjectBody> Objects { get; set; }
+
         public bool AbleToDrawTileSelector { get; set; }
         public bool DrawGridObject { get; set; }
-        public bool DrawGridAssociatedTiles { get; set; }
-        public int[] GridAssociatedTiles { get; set; }
         public Rectangle GridObjectSourceRectangle { get; set; }
+        public int GridObjectSourceRectangleOffSetX { get; set; }
+        public int GridObjectSourceRectangleOffSetY { get; set; }
+        public Color GridDrawColor { get; set; }
+
         public int TileSetDimension { get; set; }
 
         public Dictionary<string, Crop> Crops { get; set; }
@@ -131,6 +134,7 @@ namespace SecretProject.Class.TileStuff
             Crops = new Dictionary<string, Crop>();
             Owned = true;
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
+            this.GridDrawColor = Color.White;
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -560,19 +564,9 @@ namespace SecretProject.Class.TileStuff
             }
             if (this.DrawGridObject)
             {
-                spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), this.GridObjectSourceRectangle, Color.Red * .5f,
-                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[1]);
-                if (this.DrawGridAssociatedTiles)
-                {
-                    for (int g = 0; g < GridAssociatedTiles.Length; g++)
-                    {
-                        spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationX"]) * 16,
-                            Game1.Player.UserInterface.TileSelector.WorldY + int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["relationY"]) * 16), TileUtility.GetSourceRectangleWithoutTile(GridAssociatedTiles[g], TileSetDimension), Color.Green * .5f,
-                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[int.Parse(MapName.Tilesets[TileSetNumber].Tiles[GridAssociatedTiles[g]].Properties["layer"])]);
-                    }
-                }
-                this.DrawGridObject = false;
-                this.DrawGridAssociatedTiles = false;
+                spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
+                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
+
             }
 
         }

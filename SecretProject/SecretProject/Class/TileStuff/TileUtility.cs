@@ -1010,72 +1010,44 @@ namespace SecretProject.Class.TileStuff
 
                     if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID != 0)
                     {
-                        int[] associatedTiles = new int[0];
                         int placeID = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().PlaceID;
                         Rectangle sourceRectangle = TileUtility.GetSourceRectangleWithoutTile(placeID, container.TileSetDimension);
-                        if (container.AllTiles[1][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
+                        if (container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties.ContainsKey("newSource"))
                         {
-
-                            tileManager.DrawGridObject = true;
-                            tileManager.GridObjectSourceRectangle = sourceRectangle;
-                            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(placeID))
-                            {
-                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
-                                {
-
-                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
-                                }
-                            }
+                            int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties["newSource"]);
+                            sourceRectangle = new Rectangle(sourceRectangle.X + rectangleCoords[0], sourceRectangle.Y + rectangleCoords[1],
+                                                    sourceRectangle.Width + rectangleCoords[2], sourceRectangle.Height + rectangleCoords[3]);
+                            tileManager.GridObjectSourceRectangleOffSetX = rectangleCoords[0];
+                            tileManager.GridObjectSourceRectangleOffSetY = rectangleCoords[1];
                         }
 
-                        else
+                        bool ableToPlace = true;
+                        for(int z =1; z < container.AllTiles.Count; z++)
                         {
-                            // spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY), sourceRectangle, Color.Green * .5f,
-                            // 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[1]);
-                            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(placeID))
+                            if (container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
                             {
 
+                                tileManager.DrawGridObject = true;
+                                tileManager.GridDrawColor = Color.Red;
+                                tileManager.GridObjectSourceRectangle = sourceRectangle;
+                                ableToPlace = false;
 
-                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties.ContainsKey("AssociatedTiles"))
-                                {
-                                    tileManager.DrawGridAssociatedTiles = true;
-                                    associatedTiles = Game1.Utility.ParseSpawnsWithKey(container.MapName.Tilesets[container.TileSetNumber].Tiles[placeID].Properties["AssociatedTiles"]);
-                                    tileManager.GridAssociatedTiles = associatedTiles;
-                                }
                             }
+                        }
+                        if(ableToPlace)
+                        {
+                            tileManager.DrawGridObject = true;
+                            tileManager.GridDrawColor = Color.Green;
+                            tileManager.GridObjectSourceRectangle = sourceRectangle;
+
+
                             if (Game1.myMouseManager.IsClicked)
                             {
                                 if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                                 {
 
 
-                                    if (associatedTiles.Length > 0)
-                                    {
-                                        for (int a = 0; a < associatedTiles.Length; a++)
-                                        {
-                                            int relationX = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationX"]);
-                                            int relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["relationY"]);
 
-                                            //if tile extends into chunk above
-                                            if (Game1.Player.UserInterface.TileSelector.IndexY + relationY < 0)
-                                            {
-                                                int amountToExtendIntoNewChunkY = Math.Abs(relationY + Game1.Player.UserInterface.TileSelector.IndexY);
-                                                int newYIndex = ChunkY - amountToExtendIntoNewChunkY;
-                                                ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
-                                                Game1.Player.UserInterface.TileSelector.IndexX + relationX,
-                                                newYIndex,
-                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles.ActiveChunks[container.ArrayI, container.ArrayJ]);
-                                            }
-                                            else
-                                            {
-                                                ReplaceTilePermanent(int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[a]].Properties["layer"]),
-                                                Game1.Player.UserInterface.TileSelector.IndexX + relationX,
-                                                Game1.Player.UserInterface.TileSelector.IndexY + relationY,
-                                                associatedTiles[a] + 1, Game1.GetCurrentStage(), container);
-                                            }
-
-                                        }
-                                    }
                                     int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
                                     switch (soundRandom)
                                     {
@@ -1086,11 +1058,15 @@ namespace SecretProject.Class.TileStuff
                                             Game1.SoundManager.PlaceItem2.Play();
                                             break;
                                     }
-                                    ReplaceTilePermanent(1, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY, placeID + 1, Game1.GetCurrentStage(), container);
+                                    ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY, placeID + 1, Game1.GetCurrentStage(), container);
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                    return;
                                 }
                             }
                         }
+                        
+
+                        
 
 
                     }
