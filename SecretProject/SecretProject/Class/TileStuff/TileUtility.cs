@@ -365,8 +365,8 @@ namespace SecretProject.Class.TileStuff
                 if (layer == 3)
                 {
                     int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
-                    float randomFloat = (float)(randomInt * .0000001);
-                    tileToAssign.LayerToDrawAtZOffSet = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Height) * .00000001f + randomFloat;
+                    float randomFloat = (float)(randomInt * .0000000001);
+                    tileToAssign.LayerToDrawAtZOffSet = GetDestinationRectangle(tileToAssign).Y * .00000001f + randomFloat;
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
@@ -1058,17 +1058,18 @@ namespace SecretProject.Class.TileStuff
                                             Game1.SoundManager.PlaceItem2.Play();
                                             break;
                                     }
-                                    ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY, placeID + 1, Game1.GetCurrentStage(), container);
+                                    ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                        placeID + 1, Game1.GetCurrentStage(), container);
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
                                     return;
                                 }
                             }
                         }
                         
-
-                        
-
-
+                    }
+                    else
+                    {
+                        tileManager.DrawGridObject = false;
                     }
 
 

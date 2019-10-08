@@ -564,8 +564,9 @@ namespace SecretProject.Class.TileStuff
             }
             if (this.DrawGridObject)
             {
-                spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
-                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
+                spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX,
+                    Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle,
+                    this.GridDrawColor, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
 
             }
 

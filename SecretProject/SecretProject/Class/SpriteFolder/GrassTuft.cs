@@ -39,7 +39,7 @@ namespace SecretProject.Class.SpriteFolder
             
             
            
-            if(!StartShuff && new Rectangle(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y + 16, Game1.Player.Rectangle.Width, Game1.Player.Rectangle.Height).Intersects(DestinationRectangle))
+            if(!StartShuff && Game1.Player.ColliderRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, 16, 16)))
             {
                 this.StartShuff = true;
                    

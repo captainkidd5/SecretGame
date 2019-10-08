@@ -107,7 +107,16 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y + 26, 16, 6);
+                return new Rectangle((int)position.X, (int)position.Y , 16, 32);
+            }
+
+        }
+
+        public Rectangle ColliderRectangle
+        {
+            get
+            {
+                return new Rectangle((int)position.X, (int)position.Y + 28, 16, 4);
             }
 
         }
@@ -134,7 +143,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             MiningDown = new Sprite[1, 11];
 
-            MyCollider = new Collider(PrimaryVelocity, Rectangle);
+            MyCollider = new Collider(PrimaryVelocity, ColliderRectangle);
 
             Inventory = new Inventory(7) { Money = 10000 };
 
@@ -168,7 +177,7 @@ namespace SecretProject.Class.Playable
             CurrentAction = MiningDown;
 
             BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
-            LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, Rectangle);
+            LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, ColliderRectangle);
 
 
             //texture is placeholder
@@ -457,7 +466,7 @@ namespace SecretProject.Class.Playable
                         }
 
 
-                    MyCollider.Rectangle = this.Rectangle;
+                    MyCollider.Rectangle = this.ColliderRectangle;
                     MyCollider.Velocity = this.PrimaryVelocity;
                     MyCollider.DidCollideMagnet(items);
                    // if(this.PrimaryVelocity.X > )
@@ -572,7 +581,7 @@ namespace SecretProject.Class.Playable
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(ClickRangeRectangle.X, ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
-            spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(ColliderRectangle.X, ColliderRectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
 
