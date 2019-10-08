@@ -1112,6 +1112,17 @@ namespace SecretProject.Class.TileStuff
             TileUtility.AssignProperties(container.AllTiles[layer][oldX, oldY], layer,
                 oldX, oldY, container);
         }
+
+        public static int[] GetNewTileSourceRectangle(string info)
+        {
+            int[] numsToReturn = new int[4];
+            numsToReturn[0] = int.Parse(info.Split(',')[0]);
+            numsToReturn[1] = int.Parse(info.Split(',')[1]);
+            numsToReturn[2] = int.Parse(info.Split(',')[2]);
+            numsToReturn[3] = int.Parse(info.Split(',')[3]);
+
+            return numsToReturn;
+        }
     }
 
 

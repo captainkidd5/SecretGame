@@ -1983,6 +1983,11 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="6815">
+  <properties>
+   <property name="newSource" value="-32,-48,56,48"/>
+  </properties>
+ </tile>
  <tile id="7159">
   <properties>
    <property name="newSource" value="0,-64,0,64"/>
