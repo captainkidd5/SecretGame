@@ -42,10 +42,10 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void AddLiftKeyButton(string liftKey)
+        public void AddLiftKeyButton(string liftKey,string flavorText)
         {
             int count = LiftButtons.Count;
-            this.LiftButtons.Add(new LiftButton(this.Graphics, new Vector2(this.Position.X + 200 * count, this.Position.Y), liftKey));
+            this.LiftButtons.Add(new LiftButton(this.Graphics, new Vector2(this.Position.X + 200 * count, this.Position.Y), liftKey,flavorText));
         }
 
     }
@@ -55,11 +55,13 @@ namespace SecretProject.Class.UI
         public Vector2 Position { get; set; }
         public Button Button { get; set; }
         public string LiftKey { get; set; }
-        public LiftButton(GraphicsDevice graphics,Vector2 position, string liftKey)
+        public string FlavorText { get; set; }
+        public LiftButton(GraphicsDevice graphics,Vector2 position, string liftKey,string flavorText)
         {
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphics, position);
             this.Position = position;
             this.LiftKey = liftKey;
+            this.FlavorText = flavorText;
         }
         public void Update(MouseManager mouse, string currentLift)
         {
@@ -72,7 +74,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-                Button.Draw(spriteBatch, Game1.AllTextures.MenuText, LiftKey,Position, Color.BlueViolet, .69f, .75f);
+                Button.Draw(spriteBatch, Game1.AllTextures.MenuText, FlavorText + "WarpGate ", Position, Color.White, .69f, .75f);
         }
     }
 }

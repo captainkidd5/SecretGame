@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.0" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
  <tile id="258">
   <objectgroup draworder="index">
@@ -181,6 +181,11 @@
    <object id="1" x="0" y="4" width="8" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="839">
+  <properties>
+   <property name="newSource" value="0,-16,16,16"/>
+  </properties>
+ </tile>
  <tile id="856">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="9" height="16"/>
@@ -271,6 +276,11 @@
    <object id="1" x="0" y="0" width="16" height="10"/>
   </objectgroup>
  </tile>
+ <tile id="1044">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
  <tile id="1056">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="9" height="16"/>
@@ -315,6 +325,16 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="1434">
+  <properties>
+   <property name="newSource" value="0,-16,16,16"/>
+  </properties>
+ </tile>
+ <tile id="1540">
+  <properties>
+   <property name="newSource" value="0,-16,16,16"/>
+  </properties>
  </tile>
  <tile id="4743">
   <objectgroup draworder="index">

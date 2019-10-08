@@ -31,7 +31,7 @@ namespace SecretProject.Class.TileStuff
         public static int ChunkY = 16;
         #region TILING
 
-        public static int GrassSpawnRate = 15;
+        public static int GrassSpawnRate =10;
         public static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
         {
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
@@ -588,8 +588,8 @@ namespace SecretProject.Class.TileStuff
                                 liftKey = i.ToString() + j.ToString();
                                 if (!Game1.Lifts.ContainsKey(liftKey))
                                 {
-                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
-                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16)));
+                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16),i.ToString() + j.ToString()));
                                 }
                             }
                             else
@@ -597,8 +597,8 @@ namespace SecretProject.Class.TileStuff
                                 liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
                                 if (!Game1.Lifts.ContainsKey(liftKey))
                                 {
-                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
-                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16)));
+                                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
                                 }
                             }
 

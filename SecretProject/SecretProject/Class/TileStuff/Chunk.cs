@@ -351,8 +351,17 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.ReassignTileForTiling(AllTiles, this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY);
                     if (this.SimulationType == TileSimulationType.dirt)
                     {
-
-                        if (Game1.Utility.RGenerator.Next(1, TileUtility.GrassSpawnRate) == 10)
+                        int lowerBound = 1;
+                        //if a grass tuft is nearby another one is more likely to spawn
+                        if (i > 0 && i < TileUtility.ChunkX && j > 0 && j  < TileUtility.ChunkY)
+                        {
+                            if(this.Tufts.ContainsKey(AllTiles[0][i -1, j].GetTileKey(0)))
+                            {
+                                lowerBound = 6;
+                            }
+                        }
+                        
+                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) == 7)
                         {
                             if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                             {
@@ -362,7 +371,8 @@ namespace SecretProject.Class.TileStuff
                                 for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                                 {
                                     int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
+                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X 
+                                        + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
                                 }
                                 this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
@@ -382,12 +392,11 @@ namespace SecretProject.Class.TileStuff
                 string liftKey = "0085";
                 if (!Game1.Lifts.ContainsKey(liftKey))
                 {
-                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey);
-                    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16)));
+                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey,"Wilderness");
+                    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness") );
                 }
             }
-            else
-            {
+
                 switch (this.SimulationType)
                 {
                     case TileSimulationType.dirt:
@@ -417,7 +426,7 @@ namespace SecretProject.Class.TileStuff
 
                         break;
                 }
-            }
+            
 
 
             for (int z = 0; z < 4; z++)

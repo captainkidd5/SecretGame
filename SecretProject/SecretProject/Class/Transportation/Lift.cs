@@ -13,12 +13,14 @@ namespace SecretProject.Class.Transportation
         public string LiftKey { get; set; }
         public int CurrentStage { get; set; }
         public Vector2 LocalPosition { get; set; }
+        public string FlavorText { get; set; }
 
-        public Lift(string liftKey, int currentStage, Vector2 locationPosition)
+        public Lift(string liftKey, int currentStage, Vector2 locationPosition,string flavorText)
         {
             this.LiftKey = liftKey;
             this.CurrentStage = currentStage;
             this.LocalPosition = locationPosition;
+            this.FlavorText = flavorText;
         }
 
         public void Transport(Lift LiftToTransportTo)

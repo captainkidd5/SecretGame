@@ -434,8 +434,8 @@ namespace SecretProject.Class.StageFolder
                     player.Draw(spriteBatch, .5f + (player.Rectangle.Top + player.Rectangle.Height) * .00001f);
               //  }
 
-                Game1.Elixer.Draw(spriteBatch);
-                Game1.Dobbin.Draw(spriteBatch);
+               // Game1.Elixer.Draw(spriteBatch);
+                //Game1.Dobbin.Draw(spriteBatch);
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
@@ -444,8 +444,8 @@ namespace SecretProject.Class.StageFolder
                 {
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
-                    Game1.Dobbin.DrawDebug(spriteBatch, .4f);
-                    Game1.Elixer.DrawDebug(spriteBatch, .4f);
+                    //Game1.Dobbin.DrawDebug(spriteBatch, .4f);
+                   // Game1.Elixer.DrawDebug(spriteBatch, .4f);
                 }
 
                 AllTiles.DrawTiles(spriteBatch);

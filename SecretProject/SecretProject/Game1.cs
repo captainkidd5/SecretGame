@@ -485,8 +485,8 @@ namespace SecretProject
             Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
             Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, "Map/InteriorSpriteSheet1", "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
             Lifts = new Dictionary<string, Lift>();
-            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248");
-            Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16)));
+            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248","Town");
+            Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16), "Town"));
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, "Map/MasterSpriteSheet", "Content/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
 
 
