@@ -461,8 +461,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     Rectangle ActiveChunkRectangle = ActiveChunks[a, b].GetChunkRectangle();
 
-                    if (ScreenRectangle.Intersects(ActiveChunkRectangle))
-                    {
+                   
                         if (mouse.IsHoveringTile(ActiveChunkRectangle))
                         {
                             ChunkUnderMouse = ActiveChunks[a, b];
@@ -544,7 +543,7 @@ namespace SecretProject.Class.TileStuff
 
                             }
                         }
-                    }
+                    
 
                     foreach(Boar boar in ActiveChunks[a, b].Enemies)
                     {

@@ -431,7 +431,7 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
               //  if (IsGondolaAtEndingPosition)
                 //{
-                    player.Draw(spriteBatch, .5f + (player.Rectangle.Top + player.Rectangle.Height) * .00001f);
+                    player.Draw(spriteBatch, .5f + (player.Rectangle.Top + player.Rectangle.Height) * .00000001f);
               //  }
 
                // Game1.Elixer.Draw(spriteBatch);

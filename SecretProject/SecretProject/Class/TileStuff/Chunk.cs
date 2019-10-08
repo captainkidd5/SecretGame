@@ -357,11 +357,11 @@ namespace SecretProject.Class.TileStuff
                         {
                             if(this.Tufts.ContainsKey(AllTiles[0][i -1, j].GetTileKey(0)))
                             {
-                                lowerBound = 6;
+                                lowerBound = 8;
                             }
                         }
                         
-                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) == 7)
+                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) >=9)
                         {
                             if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                             {
