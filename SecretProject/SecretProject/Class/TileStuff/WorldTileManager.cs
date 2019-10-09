@@ -682,7 +682,7 @@ namespace SecretProject.Class.TileStuff
                                         if (z == 3)
                                         {
                                             spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3] + ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                                         }
                                         else

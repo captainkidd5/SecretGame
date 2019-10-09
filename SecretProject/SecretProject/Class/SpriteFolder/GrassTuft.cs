@@ -65,15 +65,15 @@ namespace SecretProject.Class.SpriteFolder
             {
                 case 1:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(0, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8,24), SpriteEffects.None, .5f + YOffSet+ (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8,24), SpriteEffects.None, .5f + (DestinationRectangle.Y) *.00000001f);
                     break;
                 case 2:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(16, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + YOffSet + (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f +(  DestinationRectangle.Y) *.00000001f);
                     break;
                 case 3:
                     spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(32, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + YOffSet + (DestinationRectangle.Top) * .00001f);
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f +(   DestinationRectangle.Y) * .00000001f);
                     break;
             }
         }
