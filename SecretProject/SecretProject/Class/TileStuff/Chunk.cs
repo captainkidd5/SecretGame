@@ -40,6 +40,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
+        public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public int ArrayI { get; set; }
         public int ArrayJ { get; set; }
@@ -86,6 +87,7 @@ namespace SecretProject.Class.TileStuff
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             Crops = new Dictionary<string, Crop>();
+            ForeGroundOffSetDictionary = new Dictionary<float, string>();
             for (int i = 0; i < 4; i++)
             {
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);

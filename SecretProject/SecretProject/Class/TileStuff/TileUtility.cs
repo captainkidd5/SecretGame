@@ -364,9 +364,15 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (layer == 3)
                 {
-                    int randomInt = Game1.Utility.RGenerator.Next(1, 1000);
-                    float randomFloat = (float)(randomInt * .0000000001);
-                    tileToAssign.LayerToDrawAtZOffSet = GetDestinationRectangle(tileToAssign).Y * .00000001f + randomFloat;
+                    float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Bottom) * .00000001f;
+                    while(container.ForeGroundOffSetDictionary.ContainsKey(offSetDrawValue))
+                    {
+
+                            offSetDrawValue += .0000000001f;
+
+                    }
+                    container.ForeGroundOffSetDictionary.Add(offSetDrawValue, tileToAssign.GetTileKey(layer));
+                    tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)

@@ -69,6 +69,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, ObjectBody> Objects { get; set; }
+        public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public bool AbleToDrawTileSelector { get; set; }
         public bool DrawGridObject { get; set; }
@@ -133,6 +134,7 @@ namespace SecretProject.Class.TileStuff
             Chests = new Dictionary<string, Chest>();
             Crops = new Dictionary<string, Crop>();
             Owned = true;
+            ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
             this.GridDrawColor = Color.White;
             for (int i = 0; i < allLayers.Count; i++)
