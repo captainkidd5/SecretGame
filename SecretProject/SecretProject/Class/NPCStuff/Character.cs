@@ -346,9 +346,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             nodeToEndAt = 100;
             if(PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
             {
+                //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
                 return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.X / 16,
-                            Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y / 16);
+                            (Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y+32) / 16);
             }
             else
             {

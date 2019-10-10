@@ -16,11 +16,13 @@ namespace SecretProject.Class.UI
     public class ShopMenu :IExclusiveInterfaceComponent
     {
         public List<Button> allShopMenuItemButtons;
+        public List<ShopMenuSlot> ShopMenuSlots { get; set; }
         //private Button shopMenuItemButton;
         private Button redEsc;
         private SpriteFont mainFont;
         public string Name;
         public Vector2 ShopMenuPosition;
+        public Rectangle ShopBackDropSourceRectangle { get; set; }
 
         public SpriteFont Font;
 
@@ -33,17 +35,18 @@ namespace SecretProject.Class.UI
         public ShopMenu(string name, GraphicsDevice graphicsDevice, int inventorySlotCount)
         {
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
-            ShopMenuPosition = new Vector2(150, 10);
+            ShopMenuPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, 0);
             this.Name = name;
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0,0,32,32),graphicsDevice, new Vector2(700, 200));
             this.mainFont = Game1.AllTextures.MenuText;
-            
 
+            ShopBackDropSourceRectangle = new Rectangle(864, 80, 144, 240);
             Font = Game1.AllTextures.MenuText;
 
             //ShopTextBox = new TextBox(Game1.AllTextures.MenuText, )
 
             allShopMenuItemButtons = new List<Button>();
+            ShopMenuSlots = new List<ShopMenuSlot>();
 
             int menuItemOffsetX = 0;
             int menuItemOffsetY = 0;
@@ -131,8 +134,9 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y, 1024, 672), new Rectangle(80, 400, 1024, 672),
-                Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .45f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y), this.ShopBackDropSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+          //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y), this.ShopBackDropSourceRectangle,
+              //  Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .45f);
             for (int i = 0; i < allShopMenuItemButtons.Count; i++)
             {
                 if(allShopMenuItemButtons[i].ItemCounter != 0)
@@ -167,6 +171,39 @@ namespace SecretProject.Class.UI
             return (Game1.ItemVault.GenerateNewItem(id, null, false).Price);
         }
 
+
+    }
+
+    public class ShopMenuSlot
+    {
+
+        public int ItemID { get; set; }
+        public Button Button { get; set; }
+        public Vector2 drawPosition;
+        public int Stock;
+        public float colorMultiplier;
+        public Rectangle BackgroundSourceRectangle { get; set; }
+        public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition)
+        {
+            Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
+            this.ItemID = itemID;
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
+            this.Stock = stock;
+            this.drawPosition = drawPosition;
+            this.colorMultiplier = .25f;
+            this.BackgroundSourceRectangle = new Rectangle(864, 48, 113, 32);
+        }
+
+        public void Update(GameTime gameTime, MouseManager mouse)
+        {
+            Button.Update(mouse);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
+               Stock.ToString(), drawPosition, Color.White * colorMultiplier, 1f, 3f);
+        }
 
     }
 }

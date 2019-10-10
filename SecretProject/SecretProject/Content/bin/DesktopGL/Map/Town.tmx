@@ -507,7 +507,7 @@
     <property name="standardTo" value="1"/>
    </properties>
   </object>
-  <object id="30" x="1433.5" y="601" width="19" height="16">
+  <object id="30" x="1433.5" y="592" width="19" height="31.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
@@ -516,7 +516,7 @@
     <property name="standardTo" value="5"/>
    </properties>
   </object>
-  <object id="33" x="1770.12" y="646.997" width="19" height="16">
+  <object id="33" x="1770.12" y="630.33" width="19" height="36.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
@@ -525,7 +525,7 @@
     <property name="standardTo" value="6"/>
    </properties>
   </object>
-  <object id="35" x="379.504" y="620.33" width="19" height="16">
+  <object id="35" x="379.504" y="605.663" width="19" height="32.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
