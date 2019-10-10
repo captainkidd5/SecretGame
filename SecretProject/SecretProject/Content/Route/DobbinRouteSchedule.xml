@@ -5,11 +5,11 @@
     <Routes>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
-      <TimeToStart>10</TimeToStart>
+      <TimeToStart>6</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
-       <StageToEndAt>0</StageToEndAt>
-      <EndX>20</EndX>
-      <EndY>20</EndY>
+       <StageToEndAt>7</StageToEndAt>
+      <EndX>8</EndX>
+      <EndY>12</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>
@@ -37,8 +37,8 @@
       </Item>
       <Item Type="XMLData.RouteStuff.Route">
         <ID>5</ID>
-        <TimeToStart>4</TimeToStart>
-        <TimeToFinish>9</TimeToFinish>
+        <TimeToStart>16</TimeToStart>
+        <TimeToFinish>20</TimeToFinish>
          <StageToEndAt>0</StageToEndAt>
         <EndX>84</EndX>
         <EndY>43</EndY>

@@ -38,7 +38,7 @@
       <Item Type="XMLData.RouteStuff.Route">
         <ID>5</ID>
         <TimeToStart>4</TimeToStart>
-        <TimeToFinish>6</TimeToFinish>
+        <TimeToFinish>5</TimeToFinish>
          <StageToEndAt>5</StageToEndAt>
         <EndX>81</EndX>
         <EndY>43</EndY>

@@ -7,9 +7,9 @@
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
-      <StageToEndAt>0</StageToEndAt>
-      <EndX>83</EndX>
-        <EndY>43</EndY>
+      <StageToEndAt>5</StageToEndAt>
+      <EndX>16</EndX>
+        <EndY>21</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
         <ID>2</ID>

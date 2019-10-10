@@ -326,6 +326,11 @@
    <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="1433">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
  <tile id="1434">
   <properties>
    <property name="newSource" value="0,-16,16,16"/>

@@ -360,7 +360,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
         }
 
-
+        //Note: if NPCs are moving faster than they should be its probably because two schedule times are overlapping.
         public void MoveToTile(GameTime gameTime, Route route)
         {
             if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
