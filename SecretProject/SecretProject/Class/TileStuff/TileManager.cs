@@ -436,7 +436,7 @@ namespace SecretProject.Class.TileStuff
                                                 // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
                                                 //Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
 
-                                                mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
+                                                mouse.ChangeMouseTexture((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["destructable"]));
 
                                                 Game1.myMouseManager.ToggleGeneralInteraction = true;
 

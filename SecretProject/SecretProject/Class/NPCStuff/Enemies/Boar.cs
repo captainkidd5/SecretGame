@@ -48,7 +48,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
-                mouse.ChangeMouseTexture(200);
+                mouse.ChangeMouseTexture(CursorType.Normal);
                 mouse.ToggleGeneralInteraction = true;
                 Game1.isMyMouseVisible = false;
 

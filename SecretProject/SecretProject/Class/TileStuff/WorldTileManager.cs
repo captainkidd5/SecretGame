@@ -514,7 +514,7 @@ namespace SecretProject.Class.TileStuff
                                                         Game1.isMyMouseVisible = false;
 
 
-                                                        mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a, b].AllTiles[z][i, j].GID].Properties["destructable"]));
+                                                        mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ActiveChunks[a, b].AllTiles[z][i, j].GID].Properties["destructable"])));
 
                                                         Game1.myMouseManager.ToggleGeneralInteraction = true;
 

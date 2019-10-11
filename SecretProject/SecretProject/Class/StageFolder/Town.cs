@@ -125,7 +125,7 @@ namespace SecretProject.Class.StageFolder
                         {
                         Game1.isMyMouseVisible = false;
                         Game1.myMouseManager.ToggleGeneralInteraction = true;
-                        mouse.ChangeMouseTexture(-50);
+                        mouse.ChangeMouseTexture(CursorType.Door);
                         if (mouse.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
@@ -292,7 +292,7 @@ namespace SecretProject.Class.StageFolder
 
                 AllTiles.DrawTiles(spriteBatch);
 
-                mouse.Draw(spriteBatch, 1);
+               // mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
                 if (Game1.Player.UserInterface.DrawTileSelector)

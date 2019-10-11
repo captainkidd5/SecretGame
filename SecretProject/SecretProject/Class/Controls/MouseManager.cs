@@ -11,6 +11,18 @@ using SecretProject.Class.TileStuff;
 
 namespace SecretProject.Class.Controls
 {
+    public enum CursorType
+    {
+        Normal = -50,
+        Chopping = 0,
+        Mining = 1,
+        Planting = 2,
+        Digging = 3,
+        Door = 4,
+        Currency = 5,
+        Chat = 200,
+
+    }
     public class MouseManager
     {
         public bool IsClicked { get; set; }
@@ -66,11 +78,14 @@ namespace SecretProject.Class.Controls
         public Rectangle CursorSourceRectangle { get; set; }
 
         public Rectangle NormalInteractionSourceRectangle { get; set; }
+        public Rectangle NormalInteractionPressedSourceRectangle { get; set; }
         public Rectangle PlantInteractionSourceRectangle { get; set; }
         public Rectangle MiningInteractionSourceRectangle { get; set; }
         public Rectangle ChoppingInteractionSourceRectangle { get; set; }
         public Rectangle DiggingInteractionSourceRectangle { get; set; }
         public Rectangle ChatInteractionSourceRectangle { get; set; }
+        public Rectangle CurrencyInteractionSourceRectangle { get; set; }
+        public Rectangle DoorInteractionSourceRectangle { get; set; }
 
         public float HoldTimer { get; set; }
         public float RequiredHoldTime { get; set; }
@@ -88,11 +103,14 @@ namespace SecretProject.Class.Controls
             this.Camera1 = camera;
             this.graphicsDevice = graphicsDevice;
             this.NormalInteractionSourceRectangle = new Rectangle(48, 256, 32, 32);
+            this.NormalInteractionPressedSourceRectangle = new Rectangle(48, 288, 32, 32);
             this.PlantInteractionSourceRectangle = new Rectangle(16, 256, 32, 32);
             this.MiningInteractionSourceRectangle = new Rectangle(112, 256, 32, 32);
             this.ChoppingInteractionSourceRectangle = new Rectangle(144, 256, 32, 32);
             this.DiggingInteractionSourceRectangle = new Rectangle(80, 256, 32, 32);
             this.ChatInteractionSourceRectangle = new Rectangle(176, 256, 32, 32);
+            this.CurrencyInteractionSourceRectangle = new Rectangle(16, 288, 32, 32);
+            this.DoorInteractionSourceRectangle = new Rectangle(112, 288, 32, 32);
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
             this.RequiredHoldTime = .5f;
         }
@@ -160,7 +178,7 @@ namespace SecretProject.Class.Controls
             {
                 if(IsClickedAndHeld)
                 {
-                    HoldTimer = 0f;
+                    
                     IsClickedAndHeld = false;
                     this.IsReleased = true;
 
@@ -169,6 +187,7 @@ namespace SecretProject.Class.Controls
                 {
                     IsClicked = true;
                 }
+                HoldTimer = 0f;
             }
             
         }
@@ -177,35 +196,40 @@ namespace SecretProject.Class.Controls
         {      
             if(ToggleGeneralInteraction)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(WorldMousePosition.X + 6, WorldMousePosition.Y + 6), this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero,2f, SpriteEffects.None, 1f);
             }
             
 
         }
 
-        public void ChangeMouseTexture(int type)
+        public void ChangeMouseTexture(CursorType type)
         {
             switch (type)
             {
-                case -50:
+                case CursorType.Normal:
                     this.CursorSourceRectangle = NormalInteractionSourceRectangle;
                     break;
-                case 0:
+                case CursorType.Chopping:
                     this.CursorSourceRectangle = ChoppingInteractionSourceRectangle;
                     break;
-                case 1:
+                case CursorType.Mining:
                     this.CursorSourceRectangle = MiningInteractionSourceRectangle;
                     break;
-                case 2:
+                case CursorType.Planting:
                     this.CursorSourceRectangle = PlantInteractionSourceRectangle;
                     break;
-                case 3:
+                case CursorType.Digging:
                     this.CursorSourceRectangle = DiggingInteractionSourceRectangle;
                     break;
-                case 200:
+                case CursorType.Chat:
                     this.CursorSourceRectangle = ChatInteractionSourceRectangle;
                     break;
-
+                case CursorType.Door:
+                    this.CursorSourceRectangle = DoorInteractionSourceRectangle;
+                    break;
+                case CursorType.Currency:
+                    this.CursorSourceRectangle = CurrencyInteractionSourceRectangle;
+                    break;
                 default:
                     this.CursorSourceRectangle = NormalInteractionSourceRectangle;
                     break;

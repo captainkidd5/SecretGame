@@ -13,157 +13,179 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
-    public class ShopMenu :IExclusiveInterfaceComponent
+    public class ShopMenu : IExclusiveInterfaceComponent
     {
+        public GraphicsDevice Graphics { get; set; }
         public List<Button> allShopMenuItemButtons;
-        public List<ShopMenuSlot> ShopMenuSlots { get; set; }
+        public List<List<ShopMenuSlot>> Pages { get; set; }
+        public int MaxMenuSlotsPerPage { get; set; }
+        public int CurrentPage { get; set; }
         //private Button shopMenuItemButton;
         private Button redEsc;
         private SpriteFont mainFont;
         public string Name;
         public Vector2 ShopMenuPosition;
         public Rectangle ShopBackDropSourceRectangle { get; set; }
+        public float BackDropScale { get; set; }
 
         public SpriteFont Font;
 
-        public Inventory ShopInventory;
 
         public TextBox ShopTextBox { get; set; }
         public bool IsActive { get; set; }
         public bool FreezesGame { get; set; }
 
+        public Button FowardButton { get; set; }
+        public Button BackButton { get; set; }
+
         public ShopMenu(string name, GraphicsDevice graphicsDevice, int inventorySlotCount)
         {
+            this.Graphics = graphicsDevice;
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             ShopMenuPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, 0);
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0,0,32,32),graphicsDevice, new Vector2(700, 200));
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphicsDevice, new Vector2(700, 200));
             this.mainFont = Game1.AllTextures.MenuText;
 
             ShopBackDropSourceRectangle = new Rectangle(864, 80, 144, 240);
+            this.BackDropScale = 3f;
             Font = Game1.AllTextures.MenuText;
 
             //ShopTextBox = new TextBox(Game1.AllTextures.MenuText, )
 
             allShopMenuItemButtons = new List<Button>();
-            ShopMenuSlots = new List<ShopMenuSlot>();
-
-            int menuItemOffsetX = 0;
-            int menuItemOffsetY = 0;
-
-            ShopInventory = new Inventory(inventorySlotCount);
-
-            for (int i = 1; i <= ShopInventory.currentInventory.Count; i++)
-            {                
-                allShopMenuItemButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet,new Rectangle(352, 15, 128, 112), graphicsDevice, new Vector2(ShopMenuPosition.X + 32 + menuItemOffsetX * 194,
-                    ShopMenuPosition.Y + 32 + 100 * menuItemOffsetY)));
-                if(i%5 == 0)
-                {
-                    menuItemOffsetX = -1;
-                    menuItemOffsetY++;
-                }
-                    menuItemOffsetX++;             
-            }
+            MaxMenuSlotsPerPage = 5;
+            Pages = new List<List<ShopMenuSlot>>() { new List<ShopMenuSlot>() };
+            FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.Graphics,
+                new Vector2(ShopMenuPosition.X + ShopBackDropSourceRectangle.Width * BackDropScale, ShopBackDropSourceRectangle.Y), this.BackDropScale);
+            BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
+                this.Graphics, new Vector2(ShopMenuPosition.X - 48, ShopBackDropSourceRectangle.Y), this.BackDropScale);
             this.FreezesGame = true;
             this.IsActive = false;
         }
 
+        public void TryAddStock(int id, int count)
+        {
+            bool added = false;
+            for (int i = 0; i < this.Pages.Count; i++)
+            {
+                for (int p = 0; p < Pages[i].Count; p++)
+                {
+                    if (Pages[i][p].ItemID == id)
+                    {
+                        Pages[i][p].Stock += count;
+                        added = true;
+                        return;
+                    }
+                }
+            }
+            if (!added)
+            {
+
+
+                for (int i = 0; i < this.Pages.Count; i++)
+                {
+                    if (Pages[i].Count < this.MaxMenuSlotsPerPage)
+                    {
+                        Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X, ShopMenuPosition.Y + 128 + (96 * Pages[i].Count)), this.BackDropScale));
+                        return;
+                    }
+                }
+                Pages.Add(new List<ShopMenuSlot>());
+                TryAddStock(id, count);
+            }
+        }
+
+
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            for (int i = 0; i < allShopMenuItemButtons.Count; i++)
+            for (int i = 0; i < Pages[CurrentPage].Count; i++)
             {
-                if (ShopInventory.currentInventory.ElementAt(i) == null)
-                {
-                    allShopMenuItemButtons[i].ItemCounter = 0;
-                }
-                else
-                {
-                    allShopMenuItemButtons[i].ItemCounter = ShopInventory.currentInventory.ElementAt(i).SlotItems.Count;
-                }
+                Pages[CurrentPage][i].Update(gameTime, mouse);
 
-                if (allShopMenuItemButtons[i].ItemCounter != 0)
+            }
+            this.FowardButton.Update(mouse);
+            if (this.FowardButton.IsHovered)
+            {
+                mouse.ChangeMouseTexture(CursorType.Normal);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+                if (this.FowardButton.isClicked)
                 {
-                    allShopMenuItemButtons[i].Texture = Game1.AllTextures.ItemSpriteSheet;
-                }
-                else
-                {
-                    allShopMenuItemButtons[i].Texture = Game1.AllTextures.ShopMenuItemButton;
-                }
-
-                allShopMenuItemButtons[i].Update(mouse);
-
-                //Make a transaction
-                if(!Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
-                {
-                    TryBuyFromShopSlot(i);
-                    //ShopInventory.currentInventory
-                }
-                else if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift) && allShopMenuItemButtons[i].isClicked && allShopMenuItemButtons[i].ItemCounter != 0)
-                {
-                    for(int z =0; z < ShopInventory.currentInventory.ElementAt(i).SlotItems.Count; z++)
+                    if (CurrentPage < Pages.Count - 1)
                     {
-                        TryBuyFromShopSlot(i);
+                        CurrentPage++;
+                    }
+
+                }
+            }
+
+            this.BackButton.Update(mouse);
+            if (this.BackButton.IsHovered)
+            {
+                mouse.ChangeMouseTexture(CursorType.Normal);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+                if (BackButton.isClicked)
+                {
+                    if (CurrentPage > 0)
+                    {
+                        CurrentPage--;
                     }
                 }
             }
 
-            
+
 
             redEsc.Update(mouse);
-
-            if(redEsc.isClicked)
+            if (redEsc.IsHovered)
             {
-                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-                Game1.Player.UserInterface.CurrentOpenShop = 0;
-            }
-        }
-
-        public void TryBuyFromShopSlot(int slotIndex)
-        {
-            if (Game1.Player.Inventory.Money >= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price)
-            {
-                if(Game1.Player.Inventory.TryAddItem(ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0]))
+                mouse.ChangeMouseTexture(CursorType.Normal);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+                if (redEsc.isClicked)
                 {
-                    Game1.Player.Inventory.Money -= ShopInventory.currentInventory.ElementAt(slotIndex).SlotItems[0].Price; //reduce players money if transaction goes through!
-                    ShopInventory.currentInventory.ElementAt(slotIndex).RemoveItemFromSlot();
-                    allShopMenuItemButtons[slotIndex].ItemCounter--;
+                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    Game1.Player.UserInterface.CurrentOpenShop = 0;
                 }
-                
             }
-        }
 
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y), this.ShopBackDropSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-          //  spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2((int)ShopMenuPosition.X, (int)ShopMenuPosition.Y), this.ShopBackDropSourceRectangle,
-              //  Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .45f);
-            for (int i = 0; i < allShopMenuItemButtons.Count; i++)
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.ShopMenuPosition, this.ShopBackDropSourceRectangle, Color.White,
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None,
+                Game1.Utility.StandardButtonDepth - .04f);
+            for (int i = 0; i < Pages[CurrentPage].Count; i++)
             {
-                if(allShopMenuItemButtons[i].ItemCounter != 0)
-                {
-                   allShopMenuItemButtons[i].Draw(spriteBatch, ShopInventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle, Font, "\n \n Stock: " + allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White,
-                    new Vector2(allShopMenuItemButtons[i].Position.X +45, allShopMenuItemButtons[i].Position.Y + 80), "Price: " + ShopInventory.currentInventory.ElementAt(i).SlotItems[0].Price.ToString());
-                }
-                else
-                {
-                    //allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White);
-                    allShopMenuItemButtons[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    allShopMenuItemButtons[i].Draw(spriteBatch, Font, allShopMenuItemButtons[i].ItemCounter.ToString(), allShopMenuItemButtons[i].Position, Color.White, .69f, .7f);
-                }
+                Pages[CurrentPage][i].Draw(spriteBatch, this.BackDropScale);
+            }
+            if (CurrentPage >= Pages.Count - 1)
+            {
+                this.FowardButton.DrawNormal(spriteBatch, FowardButton.Position, FowardButton.BackGroundSourceRectangle, Color.White * .5f,
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            }
+            else
+            {
+                this.FowardButton.DrawNormal(spriteBatch, FowardButton.Position, FowardButton.BackGroundSourceRectangle, Color.White,
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            }
+            if (CurrentPage <= 0)
+            {
+                this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White * .5f,
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                redEsc.Draw(spriteBatch, Color.White, .73f);
+            }
+            else
+            {
+                this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White,
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                redEsc.Draw(spriteBatch, Color.White, .73f);
             }
 
-            redEsc.Draw(spriteBatch,Color.White,  .73f);
         }
 
-        public void TryAddStock(int id, int amountToAdd)
-        {
-            for(int i = 0; i < amountToAdd; i++)
-            {
-                this.ShopInventory.TryAddItem(Game1.ItemVault.GenerateNewItem(id, null, false));
 
-            }
-            
-        }
 
         public int TrySellToShop(int id, int amountToSell)
         {
@@ -183,11 +205,11 @@ namespace SecretProject.Class.UI
         public int Stock;
         public float colorMultiplier;
         public Rectangle BackgroundSourceRectangle { get; set; }
-        public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition)
+        public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition, float buttonScale)
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.ItemID = itemID;
-            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, buttonScale);
             this.Stock = stock;
             this.drawPosition = drawPosition;
             this.colorMultiplier = .25f;
@@ -197,12 +219,34 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             Button.Update(mouse);
+            if (Stock > 0 && Button.IsHovered)
+            {
+                colorMultiplier = .5f;
+                Game1.isMyMouseVisible = false;
+                Game1.myMouseManager.ChangeMouseTexture(CursorType.Currency);
+                Game1.myMouseManager.ToggleGeneralInteraction = true;
+                if (Button.isClicked)
+                {
+                    Item item = Game1.ItemVault.GenerateNewItem(ItemID, null);
+                    if (Game1.Player.Inventory.Money >= item.Price)
+                    {
+                        Game1.Player.Inventory.TryAddItem(item);
+                        Stock--;
+                        Game1.Player.Inventory.Money -= item.Price;
+                        Game1.SoundManager.Sell1.Play();
+                    }
+                }
+            }
+            else
+            {
+                colorMultiplier = 1f;
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
             Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString(), drawPosition, Color.White * colorMultiplier, 1f, 3f);
+               Stock.ToString(), drawPosition, Color.White * colorMultiplier, backDropScale, backDropScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 
     }

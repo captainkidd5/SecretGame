@@ -426,7 +426,7 @@ namespace SecretProject.Class.TileStuff
                                     Game1.isMyMouseVisible = false;
                                     Game1.Player.UserInterface.DrawTileSelector = true;
                                     Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                    mouse.ChangeMouseTexture(3);
+                                    mouse.ChangeMouseTexture(CursorType.Digging);
 
                                     if (mouse.IsClicked)
                                     {
@@ -479,7 +479,7 @@ namespace SecretProject.Class.TileStuff
                             Game1.isMyMouseVisible = false;
                             Game1.Player.UserInterface.DrawTileSelector = true;
                             Game1.myMouseManager.ToggleGeneralInteraction = true;
-                            mouse.ChangeMouseTexture(2);
+                            mouse.ChangeMouseTexture(CursorType.Planting);
 
                             if (mouse.IsClicked)
                             {

@@ -222,7 +222,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         {
             if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
             {
-                mouse.ChangeMouseTexture(200);
+                mouse.ChangeMouseTexture(CursorType.Chat);
                 mouse.ToggleGeneralInteraction = true;
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
@@ -251,7 +251,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         {
             if (mouse.WorldMouseRectangle.Intersects(NPCDialogueRectangle))
             {
-                mouse.ChangeMouseTexture(200);
+                mouse.ChangeMouseTexture(CursorType.Chat);
                 mouse.ToggleGeneralInteraction = true;
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
