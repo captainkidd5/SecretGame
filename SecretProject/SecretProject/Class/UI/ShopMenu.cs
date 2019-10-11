@@ -44,7 +44,8 @@ namespace SecretProject.Class.UI
             //this.shopMenuItemButton = new Button(Game1.AllTextures.ShopMenuItemButton, graphicsDevice, new Vector2(Utility.centerScreenX, Utility.centerScreenY));
             ShopMenuPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, 0);
             this.Name = name;
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphicsDevice, new Vector2(700, 200));
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphicsDevice,
+                new Vector2(ShopMenuPosition.X + ShopBackDropSourceRectangle.Width * BackDropScale + 400, ShopBackDropSourceRectangle.Y + 100), CursorType.Normal);
             this.mainFont = Game1.AllTextures.MenuText;
 
             ShopBackDropSourceRectangle = new Rectangle(864, 80, 144, 240);
@@ -57,9 +58,9 @@ namespace SecretProject.Class.UI
             MaxMenuSlotsPerPage = 5;
             Pages = new List<List<ShopMenuSlot>>() { new List<ShopMenuSlot>() };
             FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.Graphics,
-                new Vector2(ShopMenuPosition.X + ShopBackDropSourceRectangle.Width * BackDropScale, ShopBackDropSourceRectangle.Y), this.BackDropScale);
+                new Vector2(ShopMenuPosition.X + ShopBackDropSourceRectangle.Width * BackDropScale, ShopBackDropSourceRectangle.Y), CursorType.Normal,this.BackDropScale);
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
-                this.Graphics, new Vector2(ShopMenuPosition.X - 48, ShopBackDropSourceRectangle.Y), this.BackDropScale);
+                this.Graphics, new Vector2(ShopMenuPosition.X - 48, ShopBackDropSourceRectangle.Y), CursorType.Normal,this.BackDropScale);
             this.FreezesGame = true;
             this.IsActive = false;
         }
@@ -105,11 +106,7 @@ namespace SecretProject.Class.UI
 
             }
             this.FowardButton.Update(mouse);
-            if (this.FowardButton.IsHovered)
-            {
-                mouse.ChangeMouseTexture(CursorType.Normal);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
+
                 if (this.FowardButton.isClicked)
                 {
                     if (CurrentPage < Pages.Count - 1)
@@ -118,14 +115,10 @@ namespace SecretProject.Class.UI
                     }
 
                 }
-            }
+            
 
             this.BackButton.Update(mouse);
-            if (this.BackButton.IsHovered)
-            {
-                mouse.ChangeMouseTexture(CursorType.Normal);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
+
                 if (BackButton.isClicked)
                 {
                     if (CurrentPage > 0)
@@ -133,22 +126,19 @@ namespace SecretProject.Class.UI
                         CurrentPage--;
                     }
                 }
-            }
+            
 
 
 
             redEsc.Update(mouse);
-            if (redEsc.IsHovered)
-            {
-                mouse.ChangeMouseTexture(CursorType.Normal);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
+
+
                 if (redEsc.isClicked)
                 {
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     Game1.Player.UserInterface.CurrentOpenShop = 0;
                 }
-            }
+            
 
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -174,14 +164,15 @@ namespace SecretProject.Class.UI
             {
                 this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White * .5f,
                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                redEsc.Draw(spriteBatch, Color.White, .73f);
+               
             }
             else
             {
                 this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White,
                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                redEsc.Draw(spriteBatch, Color.White, .73f);
+                
             }
+            redEsc.Draw(spriteBatch, Color.White, .73f);
 
         }
 
@@ -205,11 +196,13 @@ namespace SecretProject.Class.UI
         public int Stock;
         public float colorMultiplier;
         public Rectangle BackgroundSourceRectangle { get; set; }
+        public Item Item { get; set; }
         public ShopMenuSlot(GraphicsDevice graphics, int stock, int itemID, Vector2 drawPosition, float buttonScale)
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
+            this.Item = item;
             this.ItemID = itemID;
-            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, buttonScale);
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Currency,buttonScale);
             this.Stock = stock;
             this.drawPosition = drawPosition;
             this.colorMultiplier = .25f;
@@ -222,9 +215,6 @@ namespace SecretProject.Class.UI
             if (Stock > 0 && Button.IsHovered)
             {
                 colorMultiplier = .5f;
-                Game1.isMyMouseVisible = false;
-                Game1.myMouseManager.ChangeMouseTexture(CursorType.Currency);
-                Game1.myMouseManager.ToggleGeneralInteraction = true;
                 if (Button.isClicked)
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(ItemID, null);
@@ -246,7 +236,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
             Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString(), drawPosition, Color.White * colorMultiplier, backDropScale, backDropScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
+               Stock.ToString() + "\n \n                   " + this.Item.Name, drawPosition, Color.White * colorMultiplier, backDropScale, backDropScale + 1f, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 
     }

@@ -70,7 +70,7 @@ namespace SecretProject.Class.UI
                 new Tab(4, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 320))
 
             };
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(BackDropPosition.X + 300, BackDropPosition.Y));
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(BackDropPosition.X + 300, BackDropPosition.Y), CursorType.Normal);
             currentPage = 0;
             this.BackDropSourceRectangle = new Rectangle(864, 48, 288, 336);
         }
@@ -128,7 +128,7 @@ namespace SecretProject.Class.UI
         Rectangle foreGroundSourceRectangle;
         public Tab(int index,Texture2D texture, Rectangle backGroundSourceRectangle, Rectangle foreGroundSourceRectangle, GraphicsDevice graphics, Vector2 position)
         {
-            button = new Button(texture, backGroundSourceRectangle, graphics, position);
+            button = new Button(texture, backGroundSourceRectangle, graphics, position, CursorType.Normal);
             this.backGroundSourceRectangle = backGroundSourceRectangle;
             this.foreGroundSourceRectangle = foreGroundSourceRectangle;
             this.pageToOpen = index;
@@ -172,7 +172,7 @@ namespace SecretProject.Class.UI
         {
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.ItemID = itemID;
-            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition);
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Normal);
             this.countOfItemsRequired = countOfItemsRequired;
             this.drawPosition = drawPosition;
             this.colorMultiplier = .25f;
@@ -232,7 +232,7 @@ namespace SecretProject.Class.UI
             }
             this.BackgroundSourceRectangle = backGroundSourceRectangle;
             retrievableButton = new Button(Game1.ItemVault.GenerateNewItem(itemID, null).ItemSprite.AtlasTexture,
-                Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 128, CraftingSlots[tier - 1].drawPosition.Y));
+                Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 128, CraftingSlots[tier - 1].drawPosition.Y), CursorType.Normal);
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)

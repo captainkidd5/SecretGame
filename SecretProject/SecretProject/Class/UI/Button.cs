@@ -47,10 +47,11 @@ namespace SecretProject.Class.MenuStuff
 
         public Vector2 FontLocation { get { return new Vector2(HitBoxRectangle.X + 5, HitBoxRectangle.Y + BackGroundSourceRectangle.Height / 2); } set { } }
 
+        public CursorType CursorType { get; set; }
 
 
 
-        public Button(Texture2D newtexture, Rectangle sourceRectangle, GraphicsDevice graphicsDevice, Vector2 position, float scale = 1f)
+        public Button(Texture2D newtexture, Rectangle sourceRectangle, GraphicsDevice graphicsDevice, Vector2 position, CursorType cursorType, float scale = 1f)
         {
             Texture = newtexture;
             Position = position;
@@ -70,12 +71,12 @@ namespace SecretProject.Class.MenuStuff
 
             this.BackGroundSourceRectangle = sourceRectangle;
             //this.ItemSourceRectangleToDraw = sou
-
+            this.CursorType = cursorType;
 
         }
 
         //for clickable text
-        public Button(Rectangle clickRangeRectangle)
+        public Button(Rectangle clickRangeRectangle, CursorType cursorType)
         {
             this.HitBoxScale = 1f;
             this.SelectableTextRectangle = clickRangeRectangle;
@@ -87,16 +88,21 @@ namespace SecretProject.Class.MenuStuff
             isClicked = false;
             wasJustReleased = false;
 
-            if (mouse.IsHovering(HitBoxRectangle) && mouse.IsClicked)
-            {
-                Color = Color.White * .5f;
-                isClicked = true;
-
-            }
-            else if (mouse.IsHovering(HitBoxRectangle) && isClicked == false)
+            if (mouse.IsHovering(HitBoxRectangle))
             {
                 Color = Color.White * .5f;
                 IsHovered = true;
+                if(this.CursorType != 0)
+                {
+                    mouse.ChangeMouseTexture(this.CursorType);
+                    mouse.ToggleGeneralInteraction = true;
+                    Game1.isMyMouseVisible = false;
+                }
+                if (mouse.IsClicked)
+                {
+                    isClicked = true;
+                }
+                
 
             }
             else
@@ -129,17 +135,17 @@ namespace SecretProject.Class.MenuStuff
         {
             isClicked = false;
             wasJustReleased = false;
+            
 
-            if (mouse.IsHovering(SelectableTextRectangle) && mouse.IsClicked)
-            {
-                Color = Color.White * .5f;
-                isClicked = true;
-
-            }
-            else if (mouse.IsHovering(SelectableTextRectangle) && isClicked == false)
+            if (mouse.IsHovering(SelectableTextRectangle))
             {
                 Color = Color.White * .5f;
                 IsHovered = true;
+                if (mouse.IsClicked)
+                {
+                    isClicked = true;
+                }
+
 
             }
             else

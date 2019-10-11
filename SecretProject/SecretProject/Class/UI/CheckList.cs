@@ -21,7 +21,7 @@ namespace SecretProject.Class.UI
         public CheckList(GraphicsDevice graphics, Vector2 position, List<CheckListRequirement> allRequirements)
         {
             this.Position = position;
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(this.Position.X + 900, this.Position.Y));
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(this.Position.X + 900, this.Position.Y), CursorType.Normal);
             this.IsActive = false;
             this.AllRequirements = allRequirements;
             this.FreezesGame = true;

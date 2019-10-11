@@ -14,6 +14,7 @@ namespace SecretProject.Class.Controls
     public enum CursorType
     {
         Normal = -50,
+        NormalHeld = -49,
         Chopping = 0,
         Mining = 1,
         Planting = 2,
@@ -76,6 +77,7 @@ namespace SecretProject.Class.Controls
 
         public Texture2D MouseTypeTexture { get; set; }
         public Rectangle CursorSourceRectangle { get; set; }
+        public Rectangle HeldCursorSourceRectangle { get; set; }
 
         public Rectangle NormalInteractionSourceRectangle { get; set; }
         public Rectangle NormalInteractionPressedSourceRectangle { get; set; }
@@ -111,8 +113,13 @@ namespace SecretProject.Class.Controls
             this.ChatInteractionSourceRectangle = new Rectangle(176, 256, 32, 32);
             this.CurrencyInteractionSourceRectangle = new Rectangle(16, 288, 32, 32);
             this.DoorInteractionSourceRectangle = new Rectangle(112, 288, 32, 32);
+
+
+
+            //HELD
+            this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
-            this.RequiredHoldTime = .5f;
+            this.RequiredHoldTime = .1f;
         }
 
         public void Update(GameTime gameTime)
@@ -173,6 +180,9 @@ namespace SecretProject.Class.Controls
             if (HoldTimer > RequiredHoldTime)
             {
                 this.IsClickedAndHeld = true;
+                ChangeMouseTexture(CursorType.NormalHeld);
+                Game1.isMyMouseVisible = false;
+                this.ToggleGeneralInteraction = true;
             }
             if(MyMouse.LeftButton == ButtonState.Released)
             {
@@ -196,7 +206,16 @@ namespace SecretProject.Class.Controls
         {      
             if(ToggleGeneralInteraction)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero,2f, SpriteEffects.None, 1f);
+                Game1.isMyMouseVisible = false;
+                if (this.IsClickedAndHeld)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.HeldCursorSourceRectangle, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                }
+                else
+                {
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
+                }
+                
             }
             
 
@@ -208,6 +227,7 @@ namespace SecretProject.Class.Controls
             {
                 case CursorType.Normal:
                     this.CursorSourceRectangle = NormalInteractionSourceRectangle;
+                    this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
                     break;
                 case CursorType.Chopping:
                     this.CursorSourceRectangle = ChoppingInteractionSourceRectangle;

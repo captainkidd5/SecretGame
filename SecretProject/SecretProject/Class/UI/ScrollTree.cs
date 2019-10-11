@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using System;
@@ -55,7 +56,7 @@ namespace SecretProject.Class.UI
 
         public ScrollSlot(GraphicsDevice graphics,int itemID, Vector2 position)
         {
-            this.Icon = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(itemID, position).SourceTextureRectangle, graphics, position);
+            this.Icon = new Button(Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(itemID, position).SourceTextureRectangle, graphics, position, CursorType.Normal);
             this.isLocked = true;
 
 

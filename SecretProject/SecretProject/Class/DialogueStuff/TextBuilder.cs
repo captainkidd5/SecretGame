@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI;
 using System;
@@ -392,7 +393,7 @@ namespace SecretProject.Class.DialogueStuff
             this.Response = response;
             this.Action = action;
             Button = new Button(new Rectangle((int)position.X, (int)position.Y, (int)Game1.AllTextures.MenuText.MeasureString(response).X,
-                (int)Game1.AllTextures.MenuText.MeasureString(response).Y)); 
+                (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal); 
         }
 
         public void Update(GameTime gameTime, string speakerName, int speakerID)

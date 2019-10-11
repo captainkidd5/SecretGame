@@ -58,7 +58,7 @@ namespace SecretProject.Class.UI
         public string FlavorText { get; set; }
         public LiftButton(GraphicsDevice graphics,Vector2 position, string liftKey,string flavorText)
         {
-            this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphics, position);
+            this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphics, position, CursorType.Normal);
             this.Position = position;
             this.LiftKey = liftKey;
             this.FlavorText = flavorText;

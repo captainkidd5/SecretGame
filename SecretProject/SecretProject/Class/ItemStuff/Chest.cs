@@ -32,9 +32,9 @@ namespace SecretProject.Class.ItemStuff
             AllButtons = new List<Button>();
             for(int i =0; i < size; i++)
             {
-                AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1168, 752, 32, 32), graphics, new Vector2(Game1.ScreenWidth/2 - 64 + i*70, Game1.ScreenHeight/2 - 128)) { ItemCounter = 0, Index = size });
+                AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1168, 752, 32, 32), graphics, new Vector2(Game1.ScreenWidth/2 - 64 + i*70, Game1.ScreenHeight/2 - 128), CursorType.Normal) { ItemCounter = 0, Index = size });
             }
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(AllButtons[AllButtons.Count - 1].Position.X + 50, AllButtons[AllButtons.Count - 1].Position.Y));
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(AllButtons[AllButtons.Count - 1].Position.X + 50, AllButtons[AllButtons.Count - 1].Position.Y), CursorType.Normal);
             this.IsRandomlyGenerated = isRandomlyGenerated;
             if(isRandomlyGenerated)
             {

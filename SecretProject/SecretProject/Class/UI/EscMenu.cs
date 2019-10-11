@@ -43,12 +43,12 @@ namespace SecretProject.Class.MenuStuff
 
             Font = content.Load<SpriteFont>("SpriteFont/MenuText");
 
-            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet,new Rectangle(48,176,128,64),   graphicsDevice, new Vector2(Game1.Utility.centerScreen.X , Game1.Utility.CenterScreenY - 150));
+            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet,new Rectangle(48,176,128,64),   graphicsDevice, new Vector2(Game1.Utility.centerScreen.X , Game1.Utility.CenterScreenY - 150), CursorType.Normal);
             
-            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY- 90));
+            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY- 90), CursorType.Normal);
 
-            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64),graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY));
-            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY + 90));
+            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64),graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
+            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY + 90), CursorType.Normal);
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";
@@ -79,7 +79,7 @@ namespace SecretProject.Class.MenuStuff
             {
                 button.Update(mouse);
             }
-
+            
             if(MenuButton.isClicked)
             {
                 Game1.mainMenu.LoadBackGround();

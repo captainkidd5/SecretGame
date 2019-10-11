@@ -421,8 +421,6 @@ namespace SecretProject.Class.StageFolder
                     character.Draw(spriteBatch);
                 }
 
-                mouse.Draw(spriteBatch, 1);
-
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
