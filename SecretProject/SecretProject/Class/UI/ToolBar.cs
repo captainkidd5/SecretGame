@@ -90,11 +90,11 @@ namespace SecretProject.Class.UI
             //Initialize Textur
 
 
-            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635),CursorType.Normal);
+            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635), CursorType.Normal);
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(459, 645), CursorType.Normal);
             ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645), CursorType.Normal);
             AllSlots = new List<Button>();
-            
+
             for (int i = 0; i < 7; i++)
             {
                 AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500 + i * 65, 635), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
@@ -107,9 +107,9 @@ namespace SecretProject.Class.UI
                 OpenInventory,
                 InGameMenu,
                 ScrollTree,
-                
+
             };
-           
+
 
             //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
 
@@ -158,6 +158,19 @@ namespace SecretProject.Class.UI
             for (int i = 0; i < AllActions.Count; i++)
             {
                 AllActions[i].Update(gameTime, AllActions);
+            }
+
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Q)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Q)))
+            {
+                if(inventory.currentInventory[currentSliderPosition - 1].SlotItems.Count > 0)
+                {
+                    Item newWorldItem = Game1.ItemVault.GenerateNewItem(inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+                    newWorldItem.IsTossable = true;
+                    Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+                    inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
+                    AllSlots[currentSliderPosition - 1].ItemCounter--;
+                }
+  
             }
 
         }
@@ -246,11 +259,11 @@ namespace SecretProject.Class.UI
             {
                 Game1.Player.UserInterface.ScrollTree.IsActive = !Game1.Player.UserInterface.ScrollTree.IsActive;
             }
-            else if(ScrollTree.isClicked)
+            else if (ScrollTree.isClicked)
             {
 
             }
-            
+
         }
         #endregion
 
@@ -268,13 +281,13 @@ namespace SecretProject.Class.UI
 
         public Item GetCurrentEquippedToolAsItem()
         {
-            if (inventory!= null && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            if (inventory != null && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
                 return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
             }
             else
             {
-                return null; 
+                return null;
             }
         }
 
@@ -328,11 +341,11 @@ namespace SecretProject.Class.UI
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     //FOR WHEN DROPPING STACK OF ITEMS
-                    if(Game1.Player.UserInterface.IsAnyChestOpen)
+                    if (Game1.Player.UserInterface.IsAnyChestOpen)
                     {
-                        if(Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
+                        if (Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
                         {
-                            if(Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
+                            if (Game1.GetCurrentStage().AllTiles.Chests[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
                             {
                                 inventory.currentInventory[i].RemoveItemFromSlot();
                                 AllSlots[i].ItemCounter--;
@@ -420,24 +433,27 @@ namespace SecretProject.Class.UI
                     {
                         Sprite tempSprite = new Sprite(graphicsDevice, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,
                             mouse.WorldMousePosition, 16, 16)
-                        { IsBeingDragged = true, TextureScaleX = 2f, TextureScaleY = 2f };
+                        { IsBeingDragged = true, TextureScaleX = 5f, TextureScaleY = 5f };
                         DragSprite = tempSprite;
 
                     }
 
                 }
 
-                if(AllSlots[i].isClicked)
+                if (AllSlots[i].isClicked)
                 {
                     currentSliderPosition = i + 1;
                 }
-                
+
 
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
                     if (DragSprite != null)
                     {
-                        DragSprite.Update(gameTime, mouse.UIPosition);
+                        DragSprite.Update(gameTime, new Vector2(mouse.Position.X - 16, mouse.Position.Y - 16));
+                        mouse.ChangeMouseTexture(CursorType.Normal);
+
+
                     }
 
                 }
@@ -456,7 +472,7 @@ namespace SecretProject.Class.UI
         }
 
 
-       
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -470,7 +486,9 @@ namespace SecretProject.Class.UI
                 {
                     if (DragSprite != null)
                     {
-                        DragSprite.Draw(spriteBatch, .72f);
+
+
+                        DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
                     }
 
                 }
@@ -498,8 +516,8 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, sourceRectangle: this.ItemSwitchSourceRectangle, destinationRectangle: new Rectangle((int)Game1.Player.position.X + 3,
                     (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(1f, 1f));
             }
-           
-            
+
+
         }
 
     }

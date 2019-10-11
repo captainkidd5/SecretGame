@@ -100,7 +100,9 @@ namespace SecretProject.Class.CameraStuff
         public Matrix getTransformation(GraphicsDevice graphicsDevice)
         {
             
-                transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) * Matrix.CreateRotationZ(Rotation) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width * 0.5f, graphicsDevice.Viewport.Height * 0.5f, 0));
+                transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) * Matrix.CreateRotationZ(Rotation)
+                * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width * 0.5f,
+                graphicsDevice.Viewport.Height * 0.5f, 0));
             return transform;
         }
 

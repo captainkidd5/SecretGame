@@ -248,9 +248,10 @@ namespace SecretProject.Class.StageFolder
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
 
         {
+            
             //GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            Game1.myMouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), Color.White);
             for (int i = 0; i < clouds.Count; i++)
             {

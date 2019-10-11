@@ -119,7 +119,7 @@ namespace SecretProject.Class.Controls
             //HELD
             this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
-            this.RequiredHoldTime = .1f;
+            this.RequiredHoldTime = .2f;
         }
 
         public void Update(GameTime gameTime)
@@ -223,6 +223,7 @@ namespace SecretProject.Class.Controls
 
         public void ChangeMouseTexture(CursorType type)
         {
+            this.ToggleGeneralInteraction = true;
             switch (type)
             {
                 case CursorType.Normal:

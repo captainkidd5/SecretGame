@@ -128,6 +128,7 @@ namespace SecretProject.Class.SpriteFolder
                 Spin(gameTime, this.SpinAmount, this.SpinSpeed);
             }
                 this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.Position = position;
             
         }
 
@@ -173,6 +174,14 @@ namespace SecretProject.Class.SpriteFolder
                     color: Color.White * ColorMultiplier,rotation: this.Rotation,origin: this.Origin, layerDepth: layerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
 
             
+        }
+
+        public void DrawFromUIToWorld(SpriteBatch spriteBatch, float layerDepth)
+        {
+            DestinationRectangle = new Rectangle((int)this.Position.X , (int)this.Position.Y , (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+
+            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
+                    color: Color.White * ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
