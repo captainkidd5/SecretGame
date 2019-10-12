@@ -64,11 +64,11 @@ namespace SecretProject.Class.UI
 
             Tabs = new List<Tab>()
             {
-                new Tab(0, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(832,16, 64,64), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 64)),
-                new Tab(1, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 128)),
-                new Tab(2, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 192)),
-                new Tab(3, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 256)),
-                new Tab(4, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-16, BackDropPosition.Y + 320))
+                new Tab(0, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(832,16, 64,64), graphics, new Vector2(BackDropPosition.X-64, BackDropPosition.Y + 64)),
+                new Tab(1, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-64, BackDropPosition.Y + 128)),
+                new Tab(2, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-64, BackDropPosition.Y + 192)),
+                new Tab(3, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-64, BackDropPosition.Y + 256)),
+                new Tab(4, Game1.AllTextures.UserInterfaceTileSet, TabSourceRectangle,new Rectangle(32,288, 16,16), graphics, new Vector2(BackDropPosition.X-64, BackDropPosition.Y + 320))
 
             };
             RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(BackDropPosition.X + 300, BackDropPosition.Y), CursorType.Normal);
@@ -225,15 +225,16 @@ namespace SecretProject.Class.UI
             this.itemID = itemID;
             CraftingSlots = new List<CraftingSlot>();
             //number of separate items required to craft said item.
-            this.tier = guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired.Count;
+            Item item = Game1.ItemVault.GenerateNewItem(itemID, null, false);
+            this.tier = guide.CraftingRecipes.Find(x => x.ItemToCraftID == item.ID).AllItemsRequired.Count;
             for (int i = 0; i < tier; i++)
             {
-                CraftingSlots.Add(new CraftingSlot(graphics, guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].Count,
-                    guide.CraftingRecipes.Find(x => x.ItemToCraftID == Game1.ItemVault.GenerateNewItem(itemID, null, false).ID).AllItemsRequired[i].ItemID, new Vector2(drawPosition.X + (i * 100), drawPosition.Y)));
+                CraftingSlots.Add(new CraftingSlot(graphics, guide.CraftingRecipes.Find(x => x.ItemToCraftID == item.ID).AllItemsRequired[i].Count,
+                    guide.CraftingRecipes.Find(x => x.ItemToCraftID == item.ID).AllItemsRequired[i].ItemID, new Vector2(drawPosition.X + (i * 100), drawPosition.Y)));
             }
             this.BackgroundSourceRectangle = backGroundSourceRectangle;
-            retrievableButton = new Button(Game1.ItemVault.GenerateNewItem(itemID, null).ItemSprite.AtlasTexture,
-                Game1.ItemVault.GenerateNewItem(itemID, null).SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 128, CraftingSlots[tier - 1].drawPosition.Y), CursorType.Normal);
+            retrievableButton = new Button(item.ItemSprite.AtlasTexture,
+                item.SourceTextureRectangle, graphics, new Vector2(CraftingSlots[tier - 1].drawPosition.X + 128, CraftingSlots[tier - 1].drawPosition.Y), CursorType.Normal);
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
