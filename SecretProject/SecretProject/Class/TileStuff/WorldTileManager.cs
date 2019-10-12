@@ -74,6 +74,8 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<string, Crop> Crops { get; set; }
 
+        public Rectangle ScreenRectangle { get; set; }
+
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -180,7 +182,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialChunks()
         {
 
-            ActiveChunks = GetActiveChunkCoord(new Vector2(0,0));
+            ActiveChunks = GetActiveChunkCoord(new Vector2(0, 0));
 
 
             for (int i = 0; i < 3; i++)
@@ -402,11 +404,11 @@ namespace SecretProject.Class.TileStuff
 
             int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
 
-            int endi = (int)(Game1.cam.Pos.X) + (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
+            int endi = (int)(Game1.ScreenWidth/ Game1.cam.Zoom);
 
-            int endj = (int)(Game1.cam.Pos.Y) + (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
+            int endj = (int)(Game1.ScreenHeight/Game1.cam.Zoom);
 
-            Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
+            this.ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
             for (int a = 0; a < ActiveChunks.GetLength(0); a++)
             {
@@ -463,17 +465,20 @@ namespace SecretProject.Class.TileStuff
                     }
                     Rectangle ActiveChunkRectangle = ActiveChunks[a, b].GetChunkRectangle();
 
-                   
-                        if (mouse.IsHoveringTile(ActiveChunkRectangle))
+
+                    if (mouse.IsHoveringTile(ActiveChunkRectangle))
+                    {
+                        ChunkUnderMouse = ActiveChunks[a, b];
+                    }
+                    for (int z = 0; z < 4; z++)
+                    {
+                        for (int i = 0; i < TileUtility.ChunkX; i++)
                         {
-                            ChunkUnderMouse = ActiveChunks[a, b];
-                        }
-                        for (int z = 0; z < 4; z++)
-                        {
-                            for (int i = 0; i < TileUtility.ChunkX; i++)
+                            for (int j = 0; j < TileUtility.ChunkY; j++)
                             {
-                                for (int j = 0; j < TileUtility.ChunkY; j++)
+                                if (ActiveChunks[a, b].GetChunkRectangle().Intersects(this.ScreenRectangle))
                                 {
+
                                     string TileKey = ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(z);
                                     Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a, b].AllTiles[z][i, j]);
 
@@ -540,16 +545,19 @@ namespace SecretProject.Class.TileStuff
                                             }
                                         }
                                     }
-
                                 }
 
-                            }
-                        }
-                    
 
-                    foreach(Boar boar in ActiveChunks[a, b].Enemies)
+
+                            }
+
+                        }
+                    }
+
+
+                    foreach (Boar boar in ActiveChunks[a, b].Enemies)
                     {
-                       // boar.Update(gameTime, ActiveChunks[a, b].Objects, mouse, ActiveChunks[a, b]);
+                        // boar.Update(gameTime, ActiveChunks[a, b].Objects, mouse, ActiveChunks[a, b]);
                     }
                 }
             }
@@ -623,23 +631,14 @@ namespace SecretProject.Class.TileStuff
         public void DrawTiles(SpriteBatch spriteBatch)
         {
 
-            int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 
-            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
-
-            int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) + 2;
-
-            int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) + 2;
-
-            Rectangle ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
             for (int a = 0; a < ActiveChunks.GetLength(0); a++)
             {
                 for (int b = 0; b < ActiveChunks.GetLength(1); b++)
                 {
-                    Rectangle testRectangle = ActiveChunks[a, b].GetChunkRectangle();
-                   // if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
-                    //{
+                    if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
+                    {
                         for (int z = 0; z < 4; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -698,18 +697,19 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                         }
-                    if (this.DrawGridObject)
-                    {
-                        spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
-                                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
+                        if (this.DrawGridObject)
+                        {
+                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
 
-                    }
+                        }
 
 
-                    foreach (Boar boar in ActiveChunks[a, b].Enemies)
-                    {
-                        boar.Draw(spriteBatch);
-                        boar.DrawDebug(spriteBatch, .1f);
+                        foreach (Boar boar in ActiveChunks[a, b].Enemies)
+                        {
+                            boar.Draw(spriteBatch);
+                            boar.DrawDebug(spriteBatch, .1f);
+                        }
                     }
                 }
             }

@@ -56,6 +56,8 @@ namespace SecretProject.Class.CameraStuff
 
 
 
+
+
         public void Move(Vector2 amount)
         {
             pos += amount;
