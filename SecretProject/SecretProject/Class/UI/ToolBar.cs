@@ -330,6 +330,9 @@ namespace SecretProject.Class.UI
 
                 if (AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
+                    Game1.Player.UserInterface.InfoBox.IsActive = true;
+                    Game1.Player.UserInterface.InfoBox.StringToWrite = inventory.currentInventory[i].GetItem().Name;
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150) ;
                     IsAnySlotHovered = true;
                     buttonIndex = i;
 

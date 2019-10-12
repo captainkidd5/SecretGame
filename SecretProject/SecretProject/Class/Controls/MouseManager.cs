@@ -224,6 +224,7 @@ namespace SecretProject.Class.Controls
         public void ChangeMouseTexture(CursorType type)
         {
             this.ToggleGeneralInteraction = true;
+            Game1.isMyMouseVisible = false;
             switch (type)
             {
                 case CursorType.Normal:

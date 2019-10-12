@@ -141,6 +141,7 @@ namespace SecretProject.Class.MenuStuff
             {
                 Color = Color.White * .5f;
                 IsHovered = true;
+                mouse.ChangeMouseTexture(CursorType.Normal);
                 if (mouse.IsClicked)
                 {
                     isClicked = true;

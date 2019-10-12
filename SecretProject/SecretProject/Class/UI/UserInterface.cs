@@ -79,6 +79,8 @@ namespace SecretProject.Class.UI
 
         //keyboard
 
+        public InfoPopUp InfoBox { get; set; }
+
 
 
         private UserInterface()
@@ -104,11 +106,14 @@ namespace SecretProject.Class.UI
             PlayerHealthBar = new HealthBar();
             this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, .2f);
             TileSelector = new TileSelector();
+
+            InfoBox = new InfoPopUp("Text Not Assigned");
         }
 
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
+            InfoBox.IsActive = false;
             IsAnyChestOpen = false;
             if(Game1.GetCurrentStage().AllTiles != null)
             {
@@ -126,6 +131,7 @@ namespace SecretProject.Class.UI
             
             if (BottomBar.IsActive)
             {
+                InfoBox.Update(gameTime);
                 BottomBar.Update(gameTime, inventory, mouse);
             }
 
@@ -289,6 +295,7 @@ namespace SecretProject.Class.UI
             if (BottomBar.IsActive)
             {
                 BottomBar.Draw(spriteBatch);
+                InfoBox.Draw(spriteBatch);
             }
             
             if(ScrollTree.IsActive)
