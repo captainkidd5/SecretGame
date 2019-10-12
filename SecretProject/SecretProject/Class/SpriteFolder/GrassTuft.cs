@@ -21,6 +21,10 @@ namespace SecretProject.Class.SpriteFolder
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
 
+        public Rectangle Type1SourceRectangle { get; set; }
+        public Rectangle Type2SourceRectangle { get; set; }
+        public Rectangle Type3SourceRectangle { get; set; }
+
         public GrassTuft(int grassType,Vector2 position)
         {
             this.GrassType = grassType;
@@ -30,9 +34,13 @@ namespace SecretProject.Class.SpriteFolder
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
             this.StartShuff = false;
-            this.YOffSet = Game1.Utility.RFloat(0, .00001f);
+            this.YOffSet = Game1.Utility.RFloat(.0000001f, .000001f);
             this.ShuffDirection = Dir.Left;
             this.ShuffDirectionPicked = false;
+
+            this.Type1SourceRectangle = new Rectangle(0, 0, 16, 32);
+            this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
+            this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
         }
         public void Update(GameTime gameTime)
         {
@@ -64,16 +72,16 @@ namespace SecretProject.Class.SpriteFolder
             switch (GrassType)
             {
                 case 1:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(0, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8,24), SpriteEffects.None, .5f + (DestinationRectangle.Y) *.00000001f);
+                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type1SourceRectangle,
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y +16) * .0000001f + YOffSet);
                     break;
                 case 2:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(16, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f +(  DestinationRectangle.Y) *.00000001f);
+                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type2SourceRectangle,
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y + 16) * .0000001f + YOffSet);
                     break;
                 case 3:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, new Rectangle(32, 0, 16, 32),
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f +(   DestinationRectangle.Y) * .00000001f);
+                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type3SourceRectangle,
+                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y  + 16) * .0000001f + YOffSet);
                     break;
             }
         }

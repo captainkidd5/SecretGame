@@ -18,6 +18,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
+        public  Texture2D RectangleTexture { get; set; }
         public WorldTileManager TileManager { get; set; }
         public int Type { get; set; }
 
@@ -94,6 +95,8 @@ namespace SecretProject.Class.TileStuff
             }
 
             Enemies = new List<Boar>();
+
+            SetRectangleTexture(this.GraphicsDevice);
 
 
         }
@@ -278,8 +281,8 @@ namespace SecretProject.Class.TileStuff
         {
             if (seed == 0)
             {
-                 this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
-                //this.SimulationType = TileSimulationType.dirt;
+                // this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
+                this.SimulationType = TileSimulationType.dirt;
             }
             else
             {
@@ -456,6 +459,34 @@ namespace SecretProject.Class.TileStuff
         public void Unload()
         {
             this.IsLoaded = false;
+        }
+
+        //DEBUG
+        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
+        {
+            Rectangle chunkRectangle = GetChunkRectangle();
+            var Colors = new List<Color>();
+            for (int y = 0; y < chunkRectangle.Height; y++)
+            {
+                for (int x = 0; x < chunkRectangle.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == chunkRectangle.Width - 1 || //right side
+                        y == chunkRectangle.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            RectangleTexture = new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
+            RectangleTexture.SetData<Color>(Colors.ToArray());
         }
     }
 }

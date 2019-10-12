@@ -641,6 +641,10 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (ScreenRectangle.Intersects(ActiveChunks[a, b].GetChunkRectangle()))
                     {
+                        if(Game1.GetCurrentStage().ShowBorders)
+                        {
+                            spriteBatch.Draw(ActiveChunks[a, b].RectangleTexture, new Vector2(ActiveChunks[a, b].GetChunkRectangle().X, ActiveChunks[a, b].GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
+                        }
                         for (int z = 0; z < 4; z++)
                         {
                             for (int i = 0; i < TileUtility.ChunkX; i++)
