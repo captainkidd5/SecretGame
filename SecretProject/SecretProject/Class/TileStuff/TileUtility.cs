@@ -31,7 +31,7 @@ namespace SecretProject.Class.TileStuff
         public static int ChunkY = 16;
         #region TILING
 
-        public static int GrassSpawnRate =10;
+        public static int GrassSpawnRate = 10;
         public static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
         {
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
@@ -300,15 +300,15 @@ namespace SecretProject.Class.TileStuff
                         string tilePropertyLayer = "";
                         container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Properties.TryGetValue("layer", out tilePropertyLayer);
                         int intGidX = int.Parse(gidX);
-                        int intGidY = int.Parse(gidY) ;
+                        int intGidY = int.Parse(gidY);
                         int intTilePropertyLayer = int.Parse(tilePropertyLayer);
                         int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Id;
                         //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
 
-                        intermediateNewTiles.Add(new Tile(oldX + intGidX, oldY + intGidY, totalGID + 1 ){ LayerToDrawAt = intTilePropertyLayer });
+                        intermediateNewTiles.Add(new Tile(oldX + intGidX, oldY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
                     }
 
-                    if(oldX != 79)
+                    if (oldX != 79)
                     {
                         for (int tileSwapCounter = 0; tileSwapCounter < intermediateNewTiles.Count; tileSwapCounter++)
                         {
@@ -317,7 +317,7 @@ namespace SecretProject.Class.TileStuff
                                 (int)intermediateNewTiles[tileSwapCounter].Y] = intermediateNewTiles[tileSwapCounter];
                         }
                     }
-                    
+
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
@@ -365,10 +365,10 @@ namespace SecretProject.Class.TileStuff
                 if (layer == 3)
                 {
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + GetDestinationRectangle(tileToAssign).Bottom) * .00000001f;
-                    while(container.ForeGroundOffSetDictionary.ContainsKey(offSetDrawValue))
+                    while (container.ForeGroundOffSetDictionary.ContainsKey(offSetDrawValue))
                     {
 
-                            offSetDrawValue += .0000000001f;
+                        offSetDrawValue += .0000000001f;
 
                     }
                     container.ForeGroundOffSetDictionary.Add(offSetDrawValue, tileToAssign.GetTileKey(layer));
@@ -414,100 +414,112 @@ namespace SecretProject.Class.TileStuff
                     //including animation frame id to replace!
 
                     case "diggable":
-                        if (container.Owned)
+                        //  if (container.Owned)
+                        //  {
+                        if (container.AllTiles[1][i, j].GID == -1)
                         {
-                            if (container.AllTiles[1][i, j].GID == -1)
+
+
+
+                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                             {
+                                Game1.isMyMouseVisible = false;
+                                Game1.Player.UserInterface.DrawTileSelector = true;
+                                Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                mouse.ChangeMouseTexture(CursorType.Digging);
 
-
-
-                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
+                                if (mouse.IsClicked)
                                 {
-                                    Game1.isMyMouseVisible = false;
-                                    Game1.Player.UserInterface.DrawTileSelector = true;
-                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                    mouse.ChangeMouseTexture(CursorType.Digging);
-
-                                    if (mouse.IsClicked)
+                                    switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[0][i, j].GID].Properties["generate"])
                                     {
-                                        switch(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[0][i, j].GID].Properties["generate"])
-                                        {
-                                            case "dirt":
-                                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                                TileUtility.ReplaceTile(z, i, j, 86, container);
-                                                break;
-                                            case "grass":
-                                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                                TileUtility.ReplaceTile(z, i, j, 1106, container);
-                                                ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
-                                                for (int t =-1; t < 2; t++)
+                                        case "dirt":
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                            TileUtility.ReplaceTile(z, i, j, 86, container);
+                                            break;
+                                        case "grass":
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                            TileUtility.ReplaceTile(z, i, j, 1106, container);
+                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
+                                            for (int t = -1; t < 2; t++)
+                                            {
+                                                for (int q = -1; q < 2; q++)
                                                 {
-                                                    for(int q = -1; q < 2; q++)
+                                                    if (i > 0 && j > 0 && i < ChunkX  - 1 && j < ChunkY - 1)
                                                     {
-                                                        if(i > 0 && j > 0)
-                                                        {
-                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
-                                                        }
-                                                        else if(i > 0 && j<=0)
-                                                        {
-                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight);
-                                                        }
-                                                        else if (i <= 0 && j> 0)
-                                                        {
-                                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
-                                                        }
-
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
                                                     }
+                                                    else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight);
+                                                    }
+                                                    else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
+                                                    }
+                                                    else if (i >= ChunkX && j < ChunkY - 1)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
+                                                    }
+                                                    else if (i < ChunkX - 1 && j >= ChunkY)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j , container.MapWidth, container.MapHeight);
+                                                    }
+                                                    else if(i == ChunkX && j == ChunkY)
+                                                    {
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
+                                                    }
+
                                                 }
-                                                
-                                                break;
-                                        }
-                                        
+                                            }
 
-
+                                            break;
                                     }
+
+
+
                                 }
                             }
                         }
+                        // }
                         break;
 
                     case "plantable":
-                        if (container.Owned)
+                        //  if (container.Owned)
+                        //   {
+
+
+                        Game1.isMyMouseVisible = false;
+                        Game1.Player.UserInterface.DrawTileSelector = true;
+                        Game1.myMouseManager.ToggleGeneralInteraction = true;
+                        mouse.ChangeMouseTexture(CursorType.Planting);
+
+                        if (mouse.IsClicked)
                         {
-
-
-                            Game1.isMyMouseVisible = false;
-                            Game1.Player.UserInterface.DrawTileSelector = true;
-                            Game1.myMouseManager.ToggleGeneralInteraction = true;
-                            mouse.ChangeMouseTexture(CursorType.Planting);
-
-                            if (mouse.IsClicked)
+                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                             {
-                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                                Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
+                                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                                 {
-                                    Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
-                                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
+                                    if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
                                     {
-                                        if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
-                                        {
 
-                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
-                                            Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
-                                            tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                                            tempCrop.GID++;
-                                            tempCrop.X = i;
-                                            tempCrop.Y = j;
-                                            TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                            container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
-                                            Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
+                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                        tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
+                                        tempCrop.GID++;
+                                        tempCrop.X = i;
+                                        tempCrop.Y = j;
+                                        TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
+                                        container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
+                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
-                                        }
                                     }
                                 }
-
                             }
+
                         }
+                        //}
                         break;
                     case "sanctuaryAdd":
                         if (mouse.IsClicked)
@@ -595,7 +607,7 @@ namespace SecretProject.Class.TileStuff
                                 if (!Game1.Lifts.ContainsKey(liftKey))
                                 {
                                     Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16),i.ToString() + j.ToString()));
+                                    Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
                                 }
                             }
                             else
@@ -1028,7 +1040,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                         bool ableToPlace = true;
-                        for(int z =1; z < container.AllTiles.Count; z++)
+                        for (int z = 1; z < container.AllTiles.Count; z++)
                         {
                             if (container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
                             {
@@ -1040,7 +1052,7 @@ namespace SecretProject.Class.TileStuff
 
                             }
                         }
-                        if(ableToPlace)
+                        if (ableToPlace)
                         {
                             tileManager.DrawGridObject = true;
                             tileManager.GridDrawColor = Color.Green;
@@ -1071,7 +1083,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                         }
-                        
+
                     }
                     else
                     {

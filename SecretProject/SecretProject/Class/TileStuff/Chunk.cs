@@ -278,7 +278,8 @@ namespace SecretProject.Class.TileStuff
         {
             if (seed == 0)
             {
-                this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
+                 this.SimulationType = (TileSimulationType)Game1.Utility.RGenerator.Next(1, 4);
+                //this.SimulationType = TileSimulationType.dirt;
             }
             else
             {
