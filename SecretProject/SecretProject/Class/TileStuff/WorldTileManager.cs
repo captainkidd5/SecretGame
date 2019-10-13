@@ -406,7 +406,7 @@ namespace SecretProject.Class.TileStuff
 
             int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom);
 
-            int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom);
+            int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom + 64);
 
             this.ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
