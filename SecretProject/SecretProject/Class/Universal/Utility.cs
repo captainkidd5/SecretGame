@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
+using SecretProject.Class.Playable;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -118,10 +119,20 @@ namespace SecretProject.Class.Universal
             return amountToReturn;
         }
 
-        public int GetRequiredTileTool(string info)
+        public AnimationType GetRequiredTileTool(string info)
         {
             int toolToReturn = int.Parse(info.Split(',')[0]);
-            return toolToReturn;
+            switch(toolToReturn)
+            {
+                case -50:
+                    return AnimationType.HandsPicking;
+                case 0:
+                    return AnimationType.Chopping;
+                case 1:
+                    return AnimationType.Mining;
+
+                default: return AnimationType.Mining;
+            }
         }
         public int GetTileHitpoints(string info)
         {

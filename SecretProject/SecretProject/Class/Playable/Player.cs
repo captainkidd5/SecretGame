@@ -22,7 +22,12 @@ using SecretProject.Class.UI;
 
 namespace SecretProject.Class.Playable
 {
-    
+    public enum AnimationType
+    {
+        HandsPicking = -50,
+        Chopping = 0,
+        Mining =1,
+    }
 
 
     public class Player
@@ -83,21 +88,10 @@ namespace SecretProject.Class.Playable
 
         public Sprite[,] CurrentAction;
 
-        //these all need to be put into an array!
-        public Sprite CutGrassDown { get; set; }
-        public Sprite CutGrassRight { get; set; }
-        public Sprite CutGrassLeft { get; set; }
-        public Sprite CutGrassUp { get; set; }
+
 
         public Sprite[,] Mining { get; set;}
-        public Sprite MiningRight { get; set; }
-        public Sprite MiningLeft { get; set; }
-        public Sprite MiningUp { get; set; }
 
-        public Sprite ChoppingDown { get; set; }
-        public Sprite ChoppingRight { get; set; }
-        public Sprite ChoppingLeft { get; set; }
-        public Sprite ChoppingUp { get; set; }
 
         public UserInterface UserInterface { get; set; }
 
@@ -142,7 +136,7 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
-            Mining = new Sprite[5, numberOfBodyParts + 1];
+            Mining = new Sprite[5, 6];
 
             MyCollider = new Collider(PrimaryVelocity, ColliderRectangle);
 
@@ -152,146 +146,27 @@ namespace SecretProject.Class.Playable
 
 
 
-            CutGrassDown = new Sprite(graphics, this.Texture, 80,80,16,48,3,.15f,this.Position,0, 12);
-            //order of animation frames needs to be flipped
-            CutGrassRight = new Sprite(graphics, this.Texture, 176, 64, 48, 48, 3, .15f, this.Position, -1, 12);
-            CutGrassLeft = new Sprite(graphics, this.Texture, 320, 64, 48, 48, 3, .15f, this.Position, -33, 12);
-            CutGrassUp = new Sprite(graphics, this.Texture, 304, 128, 32, 48, 3, .15f, this.Position, -1, 0);
-
-
-
-
-            //MiningDown = new Sprite(graphics, this.Texture, 0,128,16,64,5,.1f, this.Position,0,-16);
-            MiningRight = new Sprite(graphics, this.Texture, 144, 416, 64, 64, 5, .1f, this.Position, -15, -16);
-            MiningLeft = new Sprite(graphics, this.Texture, 0, 336, 64, 64, 5, .1f, this.Position, -31, -16);
-            MiningUp = new Sprite(graphics, this.Texture, 96, 144, 16, 48, 5, .1f, this.Position, 0, 0);
-
-
-
-            ChoppingDown = new Sprite(graphics, this.Texture, 0, 240, 16, 64, 5, .1f, this.Position, 0, -16);
-            ChoppingRight = new Sprite(graphics, this.Texture, 160, 192, 64, 64, 5, .1f, this.Position, -15, -16);
-            ChoppingLeft = new Sprite(graphics, this.Texture, 160, 256, 64, 64, 5, .1f, this.Position, -33, -16);
-            ChoppingUp = new Sprite(graphics, this.Texture, 80, 256, 16, 48, 5, .1f, this.Position, 0, -0);
-
-
-
             CurrentAction = Mining;
 
             BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, ColliderRectangle);
 
-
-            //texture is placeholder
-
-
-
-            //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
-
-            //controls.SecondaryDirection = SecondaryDir.Down;
             LockBounds = true;
 
         }
 
         
 
-        public void PlayAnimation(GameTime gameTime, int action)
+        public void PlayAnimation(GameTime gameTime, AnimationType action)
         {
             
             switch (action)
             {
-                case 1:
-                    IsPerformingAction = true;
-                    CutGrassDown.PlayOnce(gameTime,Position);
-                   // CurrentAction = CutGrassDown;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 2:
-                   IsPerformingAction = true;
-                    CutGrassRight.PlayOnce(gameTime,Position);
-                   // CurrentAction = CutGrassRight;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 3:
-                    IsPerformingAction = true;
-                    CutGrassLeft.PlayOnce(gameTime, Position);
-                    //CurrentAction = CutGrassLeft;
-                    //CurrentAction.IsAnimated = true;
-                    break;
-
-                case 4:
-                    IsPerformingAction = true;
-                    CutGrassUp.PlayOnce(gameTime, Position);
-                    //CurrentAction = CutGrassUp;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 5:
+                case AnimationType.Mining:
                     IsPerformingAction = true;
                     CurrentAction = Mining;
-                    CurrentAction[0, 0].IsAnimated = true;
-                    PlayCollectiveActions(gameTime);
-                    //for (int i=0; i < MiningDown.GetLength(0);i++)
-                    //{
-                    //    for(int j =0; j<MiningDown.GetLength(1);j++)
-                    //    {
-                    //        MiningDown[i, j].PlayOnce(gameTime, Position);
-                    //        CurrentAction[i,j].IsAnimated = true;
-                    //    }
-                    //}
-                    //MiningDown.PlayOnce(gameTime, Position);
-                    
-                    
                     break;
 
-                case 6:
-                    IsPerformingAction = true;
-                    MiningRight.PlayOnce(gameTime, Position);
-                    //CurrentAction = MiningRight;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 7:
-                    IsPerformingAction = true;
-                    MiningLeft.PlayOnce(gameTime,Position);
-                   // CurrentAction = MiningLeft;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 8:
-                    IsPerformingAction = true;
-                    MiningUp.PlayOnce(gameTime,Position);
-                    //CurrentAction = MiningUp;
-                    //CurrentAction.IsAnimated = true;
-                    break;
-
-                case 9:
-                    IsPerformingAction = true;
-                    ChoppingDown.PlayOnce(gameTime,Position);
-                  //  CurrentAction = ChoppingDown;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-                case 10:
-                    IsPerformingAction = true;
-                    ChoppingRight.PlayOnce(gameTime,Position);
-                    //CurrentAction = ChoppingRight;
-                    //CurrentAction.IsAnimated = true;
-                    break;
-
-                case 11:
-                    IsPerformingAction = true;
-                    ChoppingLeft.PlayOnce(gameTime,Position);
-                    //CurrentAction = ChoppingLeft;
-                   // CurrentAction.IsAnimated = true;
-                    break;
-
-                case 12:
-                    IsPerformingAction = true;
-                    ChoppingUp.PlayOnce(gameTime,Position);
-                   // CurrentAction = ChoppingUp;
-                   // CurrentAction.IsAnimated = true;
-                    break;
 
 
 
@@ -300,9 +175,13 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public void PlayCollectiveActions(GameTime gameTime,int indexStart, int indexEnd)
+        public void PlayCollectiveActions(GameTime gameTime)
         {
-            CurrentAction[indexStart, indexStart].IsAnimated = true;
+            for (int i = 0; i < 5; i++)
+            {
+                PlayerActionAnimations[i] = CurrentAction[(int)controls.Direction, i];
+            }
+           // CurrentAction0, 0].IsAnimated = true;
             for (int i = 0; i < CurrentAction.GetLength(0); i++)
             {
                 for (int j = 0; j < CurrentAction.GetLength(1); j++)
@@ -311,6 +190,7 @@ namespace SecretProject.Class.Playable
                     
                 }
             }
+            IsPerformingAction = false;
         }
         public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
         {
@@ -364,7 +244,7 @@ namespace SecretProject.Class.Playable
                         }
         
                     }
-                    else if (CurrentAction[0,0].IsAnimated == true)
+                    else if (this.IsPerformingAction == true)
                     {
                         PlayCollectiveActions(gameTime);
 
@@ -535,7 +415,7 @@ namespace SecretProject.Class.Playable
                 }
 
                 //????
-                if (CurrentAction[0, 0].IsAnimated == true)
+                if (IsPerformingAction)
                 {
                     DrawCollectiveActions(spriteBatch, layerDepth);
                 }

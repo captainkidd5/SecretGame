@@ -4,7 +4,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
-
+using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.Transportation;
@@ -748,31 +748,28 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public static void DoPlayerAnimation(int layer, GameTime gameTime, int oldX, int oldY, int down, int right, int left, int up, Rectangle destinationRectangle, float delayTimer = 0f)
+        public static void DoPlayerAnimation(GameTime gameTime,Rectangle destinationRectangle, AnimationType animationType, float delayTimer = 0f)
         {
             if (Game1.Player.Position.Y < destinationRectangle.Y - 30)
             {
                 Game1.Player.controls.Direction = Dir.Down;
-                Game1.Player.PlayAnimation(gameTime, down);
+                
             }
 
             else if (Game1.Player.Position.Y > destinationRectangle.Y)
             {
                 Game1.Player.controls.Direction = Dir.Up;
-                Game1.Player.PlayAnimation(gameTime, up);
             }
 
             else if (Game1.Player.Position.X < destinationRectangle.X)
             {
                 Game1.Player.controls.Direction = Dir.Right;
-                Game1.Player.PlayAnimation(gameTime, right);
             }
             else if (Game1.Player.Position.X > destinationRectangle.X)
             {
                 Game1.Player.controls.Direction = Dir.Left;
-                Game1.Player.PlayAnimation(gameTime, left);
             }
-
+            Game1.Player.PlayAnimation(gameTime, animationType);
         }
         //for destructable keyword
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)
@@ -780,9 +777,9 @@ namespace SecretProject.Class.TileStuff
 
             if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && !Game1.Player.CurrentAction[0, 0].IsAnimated)
             {
-                int tool = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]);
+                AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]);
                 //this is out here because any equipped item should be able to pick it up no matter what
-                if (tool == -50)
+                if (actionType == AnimationType.HandsPicking)
                 {
                     FinalizeTile(layer, gameTime, oldX, oldY, destinationRectangle, world, container, delayTimer: .25f);
                     if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
@@ -791,53 +788,18 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == tool)
+                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == (int)actionType)
                 {
-                    switch (tool)
+
+                    DoPlayerAnimation(gameTime, destinationRectangle,actionType, .25f);
+                    ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
+                        Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, container,
+                        container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
+                    if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
                     {
-                        //bare hands
-                        case -50:
-                            FinalizeTile(layer, gameTime, oldX, oldY, destinationRectangle, world, container, delayTimer: .25f);
-                            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
-                            {
-                                container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
-                            }
-                            break;
-                        case 0:
-                            DoPlayerAnimation(layer, gameTime, oldX, oldY, 9, 10, 11, 12, destinationRectangle, .25f);
-                            ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
-                                Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
-                                world, destinationRectangle, container, container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
-                            {
-                                container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
-
-                            }
-
-                            break;
-
-                        case 1:
-
-                            DoPlayerAnimation(layer, gameTime, oldX, oldY, 5, 6, 7, 8, destinationRectangle, .25f);
-                            ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
-                                Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, container,
-                                container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
-                            {
-                                container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
-                            }
-                            break;
-                        case 2:
-                            DoPlayerAnimation(layer, gameTime, oldX, oldY, 1, 2, 3, 4, destinationRectangle, .25f);
-                            ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
-                                Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world,
-                                destinationRectangle, container, container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
-                            {
-                                container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
-                            }
-                            break;
+                        container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
                     }
+
 
                 }
 

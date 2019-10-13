@@ -838,7 +838,7 @@ namespace SecretProject
             Player.Mining[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000008f };
             Player.Mining[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .000000007f };
 
-            Player.PlayerActionAnimations = new Sprite[5];
+            Player.PlayerActionAnimations = new Sprite[6];
 
             for (int i = 0; i < Player.Mining.GetLength(1); i++)
             {
