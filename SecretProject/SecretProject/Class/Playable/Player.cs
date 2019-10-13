@@ -26,7 +26,7 @@ namespace SecretProject.Class.Playable
     {
         HandsPicking = -50,
         Chopping = 0,
-        Mining =1,
+        Mining = 1,
     }
 
 
@@ -90,7 +90,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public Sprite[,] Mining { get; set;}
+        public Sprite[,] Mining { get; set; }
 
 
         public UserInterface UserInterface { get; set; }
@@ -102,7 +102,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X, (int)position.Y , 16, 32);
+                return new Rectangle((int)position.X, (int)position.Y, 16, 32);
             }
 
         }
@@ -120,7 +120,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X - 16, (int)position.Y,  48,  64);
+                return new Rectangle((int)position.X - 16, (int)position.Y, 48, 64);
             }
         }
 
@@ -136,7 +136,7 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
-            Mining = new Sprite[5, 6];
+            Mining = new Sprite[4, 6];
 
             MyCollider = new Collider(PrimaryVelocity, ColliderRectangle);
 
@@ -155,11 +155,11 @@ namespace SecretProject.Class.Playable
 
         }
 
-        
+
 
         public void PlayAnimation(GameTime gameTime, AnimationType action)
         {
-            
+
             switch (action)
             {
                 case AnimationType.Mining:
@@ -167,41 +167,36 @@ namespace SecretProject.Class.Playable
                     CurrentAction = Mining;
                     break;
 
-
-
-
-
-
             }
         }
 
         public void PlayCollectiveActions(GameTime gameTime)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 PlayerActionAnimations[i] = CurrentAction[(int)controls.Direction, i];
+                PlayerActionAnimations[i].IsAnimated = true;
+                PlayerActionAnimations[i].PlayOnce(gameTime, Position);
             }
-           // CurrentAction0, 0].IsAnimated = true;
-            for (int i = 0; i < CurrentAction.GetLength(0); i++)
-            {
-                for (int j = 0; j < CurrentAction.GetLength(1); j++)
-                {
-                    CurrentAction[i, j].PlayOnce(gameTime, Position);
-                    
-                }
-            }
-            IsPerformingAction = false;
+            // CurrentAction0, 0].IsAnimated = true;
+            //for (int i = 0; i < CurrentAction.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < CurrentAction.GetLength(1); j++)
+            //    {
+            //        CurrentAction[i, j].IsAnimated = true;
+            //        CurrentAction[i, j].PlayOnce(gameTime, Position);
+
+            //    }
+            //}
+            //IsPerformingAction = false;
         }
         public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
         {
-            for (int i = 0; i < CurrentAction.GetLength(0); i++)
+            for (int i = 0; i < PlayerActionAnimations.Length; i++)
             {
-                for (int j = 0; j < CurrentAction.GetLength(1); j++)
-                {
-                    CurrentAction[i, j].DrawAnimation(spriteBatch, Position, layerDepth + CurrentAction[i, j].LayerDepth);
-                    
-                }
+                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position, PlayerActionAnimations[i].LayerDepth);
             }
+
         }
 
         public void UpdateMovementAnimationsOnce(GameTime gameTime)
@@ -219,128 +214,134 @@ namespace SecretProject.Class.Playable
         {
             if (Activate)
             {
+               // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
 
-                    KeyboardState kState = Keyboard.GetState();
-                    float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if(PlayerActionAnimations[0].IsAnimated)
+                {
+                    Console.WriteLine("animated");
+                }
+                KeyboardState kState = Keyboard.GetState();
+                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
 
 
-                    for (int i = 0; i < animations.GetLength(1); i++)
+                for (int i = 0; i < animations.GetLength(1); i++)
+                {
+                    PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
+                }
+
+
+
+
+                if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
+                {
+                    for (int i = 0; i < animations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i] = animations[(int)controls.Direction,i];
+                        for (int j = 0; j < animations.GetLength(1); j++)
+                        {
+                            animations[i, j].UpdateAnimations(gameTime, this.position);
+                        }
                     }
 
-                   
+                }
+                else if (this.IsPerformingAction == true)
+                {
+                    PlayCollectiveActions(gameTime);
+                    this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
 
+                }
 
-                    if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
+                else if (!CurrentAction[0, 0].IsAnimated && !controls.IsMoving)
+                {
+                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        for(int i = 0; i < animations.GetLength(0); i++)
-                        {
-                            for(int j = 0; j < animations.GetLength(1); j++)
+                        PlayerMovementAnimations[i].SetFrame(0);
+                    }
+
+                }
+
+
+                IsMoving = false;
+
+                if (!CurrentAction[0, 0].IsAnimated)
+                {
+                    controls.Update();
+                }
+
+
+                if (controls.IsMoving)
+                {
+                    IsMoving = true;
+                    switch (controls.Direction)
+                    {
+                        case Dir.Right:
+                            PrimaryVelocity.X = Speed1;
+                            break;
+
+                        case Dir.Left:
+                            PrimaryVelocity.X = -Speed1;
+                            break;
+
+                        case Dir.Down:
+                            PrimaryVelocity.Y = Speed1;
+                            break;
+
+                        case Dir.Up:
+                            PrimaryVelocity.Y = -Speed1;
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+
+                    switch (controls.SecondaryDirection)
+                    {
+                        case SecondaryDir.Right:
+                            SecondaryVelocity.X = SecondarySpeed;
+                            for (int i = 0; i < animations.GetLength(1); i++)
                             {
-                                animations[i, j].UpdateAnimations(gameTime, this.position);
+                                PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
                             }
-                        }
-        
-                    }
-                    else if (this.IsPerformingAction == true)
-                    {
-                        PlayCollectiveActions(gameTime);
+                            break;
+                        case SecondaryDir.Left:
+                            SecondaryVelocity.X = -SecondarySpeed;
+                            for (int i = 0; i < animations.GetLength(1); i++)
+                            {
+                                PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
+                            }
+
+                            break;
+                        case SecondaryDir.Down:
+                            SecondaryVelocity.Y = SecondarySpeed;
+                            for (int i = 0; i < animations.GetLength(1); i++)
+                            {
+                                PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
+                            }
+
+
+                            break;
+                        case SecondaryDir.Up:
+                            SecondaryVelocity.Y = -SecondarySpeed;
+                            for (int i = 0; i < animations.GetLength(1); i++)
+                            {
+                                PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
+                            }
+
+
+                            break;
+
+                        default:
+                            break;
 
                     }
-
-                    else if (!CurrentAction[0, 0].IsAnimated && !controls.IsMoving)
-                    {
-                        for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                        {
-                            PlayerMovementAnimations[i].SetFrame(0);
-                        }
-                        
-                    }
-
-
-                    IsMoving = false;
-
-                    if (!CurrentAction[0,0].IsAnimated)
-                    {
-                        controls.Update();
-                    }
-
-
-                    if (controls.IsMoving)
-                    {
-                        IsMoving = true;
-                        switch (controls.Direction)
-                        {
-                            case Dir.Right:
-                                PrimaryVelocity.X = Speed1;
-                                break;
-
-                            case Dir.Left:
-                                PrimaryVelocity.X = -Speed1;
-                                break;
-
-                            case Dir.Down:
-                                PrimaryVelocity.Y = Speed1;
-                                break;
-
-                            case Dir.Up:
-                                PrimaryVelocity.Y = -Speed1;
-                                break;
-
-                            default:
-                                break;
-
-                        }
-
-
-                        switch (controls.SecondaryDirection)
-                        {
-                            case SecondaryDir.Right:
-                                SecondaryVelocity.X = SecondarySpeed;
-                                for (int i = 0; i < animations.GetLength(1); i++)
-                                {
-                                    PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
-                                }
-                                break;
-                            case SecondaryDir.Left:
-                                SecondaryVelocity.X = -SecondarySpeed;
-                                for (int i = 0; i < animations.GetLength(1); i++)
-                                {
-                                    PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
-                                }
-
-                                break;
-                            case SecondaryDir.Down:
-                                SecondaryVelocity.Y = SecondarySpeed;
-                                for (int i = 0; i < animations.GetLength(1); i++)
-                                {
-                                    PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
-                                }
-
-
-                                break;
-                            case SecondaryDir.Up:
-                                SecondaryVelocity.Y = -SecondarySpeed;
-                                for (int i = 0; i < animations.GetLength(1); i++)
-                                {
-                                    PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
-                                }
-
-
-                                break;
-
-                            default:
-                                break;
-
-                        }
 
 
                     MyCollider.Rectangle = this.ColliderRectangle;
                     MyCollider.Velocity = this.PrimaryVelocity;
                     MyCollider.DidCollideMagnet(items);
-                   // if(this.PrimaryVelocity.X > )
+                    // if(this.PrimaryVelocity.X > )
 
 
                     bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
@@ -370,7 +371,7 @@ namespace SecretProject.Class.Playable
                     {
                         CheckOutOfBounds(this.Position);
                     }
-                    
+
                 }
 
             }
@@ -404,22 +405,22 @@ namespace SecretProject.Class.Playable
 
 
 
-                if (CurrentAction[0,0].IsAnimated == false)
-                {
+            if (!IsPerformingAction)
+            {
 
-                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
-                    {
-                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, PlayerMovementAnimations[i].LayerDepth +  layerDepth);
-                    }
-                    
+                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                {
+                    PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, PlayerMovementAnimations[i].LayerDepth + layerDepth);
                 }
 
-                //????
-                if (IsPerformingAction)
-                {
-                    DrawCollectiveActions(spriteBatch, layerDepth);
-                }
-            
+            }
+
+            //????
+            if (IsPerformingAction)
+            {
+                DrawCollectiveActions(spriteBatch, layerDepth);
+            }
+
         }
 
         private Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)

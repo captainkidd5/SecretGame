@@ -308,6 +308,7 @@ namespace SecretProject.Class.SpriteFolder
         public void PlayOnce(GameTime gameTime, Vector2 position)
         {
             this.Position = position;
+            this.destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
 
             AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
