@@ -407,57 +407,8 @@ namespace SecretProject
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
-            Player = new Player("joe", new Vector2(1600, 700), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
-            // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
-            //meaning hair of direction forward:
-            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };//, Color = Color.Black };
-            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f};
-
-
-            //up
-            Player.animations[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
-            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
-
-            //Left
-            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f, Flip = true };
-            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f, Flip = true };
-            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f, Flip = true };
-            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f, Flip = true };
-            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f, Flip = true };
-
-            //Right
-            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
-            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
-
-
-
-
-            //Player.PlayerMovementAnimations = Player.animations[0];
-            Player.PlayerMovementAnimations = new Sprite[5];
-            for (int i = 0; i < Player.animations.GetLength(1); i++)
-            {
-                Player.PlayerMovementAnimations[i] = Player.animations[0, i];
-            }
-
-            for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
-            {
-                Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
-                    (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
-                Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
-                    (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
-
-            }
-
+            LoadPlayer();
             //UI
 
             DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, GraphicsDevice);
@@ -502,6 +453,7 @@ namespace SecretProject
             AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirHouse, JulianHouse,DobbinHouse };
             PortalGraph = new Graph(AllStages.Count);
 
+            
 
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
@@ -819,6 +771,95 @@ namespace SecretProject
             base.Draw(gameTime);
         }
         #endregion
+
+        public void LoadPlayer()
+        {
+            Player = new Player("joe", new Vector2(1600, 700), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
+
+            //meaning hair of direction forward:
+            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };//, Color = Color.Black };
+            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+
+            //up
+            Player.animations[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+            //Left
+            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f, Flip = true };
+            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f, Flip = true };
+            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f, Flip = true };
+            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f, Flip = true };
+            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f, Flip = true };
+
+            //Right
+            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+            //MiningDown
+            Player.Mining[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingTestTool, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000012f };
+            Player.Mining[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.Mining[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.Mining[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.Mining[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.Mining[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 0, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+            //MiningUP
+            Player.Mining[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingTestTool, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000012f };
+            Player.Mining[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.Mining[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.Mining[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.Mining[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.Mining[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 480, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+            //MiningLeft
+            Player.Mining[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingTestTool, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000012f, Flip = true };
+            Player.Mining[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000011f, Flip = true };
+            Player.Mining[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000010f, Flip = true };
+            Player.Mining[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000009f, Flip = true };
+            Player.Mining[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000008f, Flip = true };
+            Player.Mining[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .000000007f, Flip = true };
+
+            //MiningRight
+            Player.Mining[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingTestTool, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000012f };
+            Player.Mining[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.Mining[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.Mining[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.Mining[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.Mining[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+
+            Player.PlayerActionAnimations = new Sprite[5];
+
+            for (int i = 0; i < Player.Mining.GetLength(1); i++)
+            {
+                Player.PlayerActionAnimations[i] = Player.Mining[0, i];
+            }
+
+            Player.PlayerMovementAnimations = new Sprite[5];
+            for (int i = 0; i < Player.animations.GetLength(1); i++)
+            {
+                Player.PlayerMovementAnimations[i] = Player.animations[0, i];
+            }
+
+            for (int i = 0; i < Player.PlayerMovementAnimations.GetLength(0); i++)
+            {
+                Player.PlayerMovementAnimations[i].SourceRectangle = new Rectangle((int)(Player.PlayerMovementAnimations[i].FirstFrameX + Player.PlayerMovementAnimations[i].FrameWidth * Player.PlayerMovementAnimations[i].CurrentFrame),
+                    (int)Player.PlayerMovementAnimations[i].FirstFrameY, (int)Player.PlayerMovementAnimations[i].FrameWidth, (int)Player.PlayerMovementAnimations[i].FrameHeight);
+                Player.PlayerMovementAnimations[i].DestinationRectangle = new Rectangle((int)Player.PlayerMovementAnimations[i].Position.X + Player.PlayerMovementAnimations[i].OffSetX,
+                    (int)Player.PlayerMovementAnimations[i].Position.Y + Player.PlayerMovementAnimations[i].OffSetY, Player.PlayerMovementAnimations[i].FrameWidth, Player.PlayerMovementAnimations[i].FrameHeight);
+
+            }
+        }
 
     }
 

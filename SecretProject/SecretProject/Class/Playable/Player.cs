@@ -72,6 +72,7 @@ namespace SecretProject.Class.Playable
         public float Speed1 { get; set; } = 1f;
         public float SecondarySpeed { get; set; } = 1f;
         public Sprite[] PlayerMovementAnimations { get; set; }
+        public Sprite[] PlayerActionAnimations { get; set; }
 
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
@@ -88,7 +89,7 @@ namespace SecretProject.Class.Playable
         public Sprite CutGrassLeft { get; set; }
         public Sprite CutGrassUp { get; set; }
 
-        public Sprite[,] MiningDown { get; set;}
+        public Sprite[,] Mining { get; set;}
         public Sprite MiningRight { get; set; }
         public Sprite MiningLeft { get; set; }
         public Sprite MiningUp { get; set; }
@@ -141,7 +142,7 @@ namespace SecretProject.Class.Playable
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
-            MiningDown = new Sprite[1, 11];
+            Mining = new Sprite[5, numberOfBodyParts + 1];
 
             MyCollider = new Collider(PrimaryVelocity, ColliderRectangle);
 
@@ -174,24 +175,14 @@ namespace SecretProject.Class.Playable
 
 
 
-            CurrentAction = MiningDown;
+            CurrentAction = Mining;
 
             BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, ColliderRectangle);
 
 
             //texture is placeholder
-            MiningDown[0, 0] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 0, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000011f };
-            MiningDown[0, 1] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 48, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .000001f };
-            MiningDown[0, 2] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 96, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000009f };
-            MiningDown[0, 3] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 144, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000008f };
-            MiningDown[0, 4] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 192, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000007f };
-            MiningDown[0, 5] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 240, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000006f };
-            MiningDown[0, 6] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 288, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000005f };
-            MiningDown[0, 7] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 336, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000004f };
-            MiningDown[0, 8] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 384, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000003f };
-            MiningDown[0, 9] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 432, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000002f };
-            MiningDown[0, 10] = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, 0, 480, 16, 48, 5, .1f, this.Position, 0, -15) { LayerDepth = .0000001f };
+
 
 
             //PlayerShip.Texture = Game1.AllTextures.ShipSpriteSheet;
@@ -238,7 +229,7 @@ namespace SecretProject.Class.Playable
 
                 case 5:
                     IsPerformingAction = true;
-                    CurrentAction = MiningDown;
+                    CurrentAction = Mining;
                     CurrentAction[0, 0].IsAnimated = true;
                     PlayCollectiveActions(gameTime);
                     //for (int i=0; i < MiningDown.GetLength(0);i++)
@@ -309,9 +300,9 @@ namespace SecretProject.Class.Playable
             }
         }
 
-        public void PlayCollectiveActions(GameTime gameTime)
+        public void PlayCollectiveActions(GameTime gameTime,int indexStart, int indexEnd)
         {
-            CurrentAction[0, 0].IsAnimated = true;
+            CurrentAction[indexStart, indexStart].IsAnimated = true;
             for (int i = 0; i < CurrentAction.GetLength(0); i++)
             {
                 for (int j = 0; j < CurrentAction.GetLength(1); j++)
