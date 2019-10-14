@@ -89,7 +89,7 @@ namespace SecretProject.Class.ItemStuff
             this.SmeltedItem = itemData.SmeltedItem;
             this.Durability = itemData.Durability;
 
-            if(itemData.Plantable)
+            if (itemData.Plantable)
             {
                 this.IsPlantable = itemData.Plantable;
             }
@@ -168,6 +168,16 @@ namespace SecretProject.Class.ItemStuff
                 ItemSprite.Position.Y -= playerpos.Y;
                 ItemSprite.TextureScaleX -= .1f;
                 ItemSprite.TextureScaleY -= .1f;
+            }
+        }
+
+
+        public void AlterDurability(int amountToSubtract)
+        {
+            this.Durability -= amountToSubtract;
+            if(this.Durability <= 0)
+            {
+                Game1.Player.Inventory.RemoveItem(this);
             }
         }
     }

@@ -21,7 +21,7 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>25</Price>
-<Plantable>false</Plantable>
+<Durability>3</Durability>
 <Type>22</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
@@ -40,7 +40,7 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>25</Price>
-<Plantable>false</Plantable>
+<Durability>3</Durability>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>BasicFlashlight</Name>
@@ -57,6 +57,7 @@
 <TextureColumn>1</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>50</Price>
+<Durability>3</Durability>
 <Type>21</Type>
 <AnimationColumn>96</AnimationColumn>
 </Item>

@@ -457,12 +457,12 @@ namespace SecretProject
 
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
-            ToolShop.ShopMenu.TryAddStock(3, 1);
-            ToolShop.ShopMenu.TryAddStock(0, 1);
-            ToolShop.ShopMenu.TryAddStock(1, 1);
-            ToolShop.ShopMenu.TryAddStock(2, 1);
-            ToolShop.ShopMenu.TryAddStock(4, 1);
-            ToolShop.ShopMenu.TryAddStock(20, 1);
+            ToolShop.ShopMenu.TryAddStock(3, 5);
+            ToolShop.ShopMenu.TryAddStock(0, 5);
+            ToolShop.ShopMenu.TryAddStock(1, 5);
+            ToolShop.ShopMenu.TryAddStock(2, 5);
+            ToolShop.ShopMenu.TryAddStock(4, 5);
+            ToolShop.ShopMenu.TryAddStock(20, 5);
             ToolShop.ShopMenu.TryAddStock(140, 50);
             ToolShop.ShopMenu.TryAddStock(247, 50);
             ToolShop.ShopMenu.TryAddStock(160, 50);

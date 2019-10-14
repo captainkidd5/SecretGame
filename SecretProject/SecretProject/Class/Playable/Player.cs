@@ -171,11 +171,6 @@ namespace SecretProject.Class.Playable
                     {
                         this.Mining[i, 0].FirstFrameY = textureColumn;
                     }
-                    //for (int i = 0; i < Mining.GetLength(1); i++)
-                    //{
-                    //    PlayerActionAnimations[i] = Player.Mining[0, i];
-                    //}
-
 
                     break;
 
