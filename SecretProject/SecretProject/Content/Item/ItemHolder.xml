@@ -57,6 +57,8 @@
 <TextureColumn>1</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>50</Price>
+<Type>21</Type>
+<AnimationColumn>96</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Flask</Name>
