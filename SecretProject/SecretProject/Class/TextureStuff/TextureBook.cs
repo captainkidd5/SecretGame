@@ -20,7 +20,10 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D PlayerPants;
         public Texture2D PlayerShoes;
 
+        //CHOPPING TOOLS
         public Texture2D ChoppingTestTool;
+        public Texture2D IronAxeTool;
+
         public Texture2D ChoppingPlayerBase;
         public Texture2D ChoppingPlayerHair;
         public Texture2D ChoppingPlayerShirt;
@@ -109,7 +112,10 @@ namespace SecretProject.Class.TextureStuff
 
             //ANIMATIONS
             //CHOPPING
+            //TOOLS
             ChoppingTestTool = content.Load<Texture2D>("Player/PlayerParts/Chopping/Tools/ChoppingTestTool");
+            IronAxeTool = content.Load<Texture2D>("Player/PlayerParts/Chopping/Tools/IronAxeTool");
+
             ChoppingPlayerBase = content.Load<Texture2D>("Player/PlayerParts/Chopping/Base/ChoppingBase");
             ChoppingPlayerHair = content.Load<Texture2D>("Player/PlayerParts/Chopping/Hair/ChoppingBlondeHair");
             ChoppingPlayerPants = content.Load<Texture2D>("Player/PlayerParts/Chopping/Pants/ChoppingPants");

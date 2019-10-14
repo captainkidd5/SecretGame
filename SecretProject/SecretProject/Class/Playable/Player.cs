@@ -24,9 +24,9 @@ namespace SecretProject.Class.Playable
 {
     public enum AnimationType
     {
-        HandsPicking = -50,
-        Chopping = 0,
-        Mining = 1,
+        HandsPicking = 0,
+        Chopping = 21,
+        Mining = 22,
     }
 
 
@@ -73,6 +73,7 @@ namespace SecretProject.Class.Playable
 
         public Dir Direction { get; set; } = Dir.Down;
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
+        public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
         public float Speed1 { get; set; } = 1f;
         public float SecondarySpeed { get; set; } = 1f;
@@ -165,16 +166,24 @@ namespace SecretProject.Class.Playable
                 case AnimationType.Mining:
                     IsPerformingAction = true;
                     CurrentAction = Mining;
+                    AnimationDirection = controls.Direction;
                     break;
 
+                case AnimationType.Chopping:
+                    IsPerformingAction = true;
+                    CurrentAction = Mining;
+                    AnimationDirection = controls.Direction;
+                    break;
             }
+
+
         }
 
         public void PlayCollectiveActions(GameTime gameTime)
         {
             for (int i = 0; i < 6; i++)
             {
-                PlayerActionAnimations[i] = CurrentAction[(int)controls.Direction, i];
+                PlayerActionAnimations[i] = CurrentAction[(int)AnimationDirection, i];
                 PlayerActionAnimations[i].IsAnimated = true;
                 PlayerActionAnimations[i].PlayOnce(gameTime, Position);
             }
@@ -194,7 +203,7 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < PlayerActionAnimations.Length; i++)
             {
-                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position, PlayerActionAnimations[i].LayerDepth);
+                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position,layerDepth +  PlayerActionAnimations[i].LayerDepth);
             }
 
         }
@@ -215,11 +224,8 @@ namespace SecretProject.Class.Playable
             if (Activate)
             {
                // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
+               
 
-                if(PlayerActionAnimations[0].IsAnimated)
-                {
-                    Console.WriteLine("animated");
-                }
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
@@ -232,8 +238,7 @@ namespace SecretProject.Class.Playable
 
 
 
-
-                if (controls.IsMoving && CurrentAction[0, 0].IsAnimated == false)
+                if (controls.IsMoving && !IsPerformingAction)
                 {
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {
@@ -269,7 +274,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (controls.IsMoving)
+                if (controls.IsMoving && !IsPerformingAction)
                 {
                     IsMoving = true;
                     switch (controls.Direction)
@@ -371,6 +376,7 @@ namespace SecretProject.Class.Playable
                     {
                         CheckOutOfBounds(this.Position);
                     }
+                    
 
                 }
 

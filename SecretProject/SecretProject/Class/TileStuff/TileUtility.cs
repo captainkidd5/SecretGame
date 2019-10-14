@@ -775,7 +775,7 @@ namespace SecretProject.Class.TileStuff
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)
         {
 
-            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && !Game1.Player.CurrentAction[0, 0].IsAnimated)
+            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && !Game1.Player.IsPerformingAction)
             {
                 AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]);
                 //this is out here because any equipped item should be able to pick it up no matter what
@@ -788,7 +788,7 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == (int)actionType)
+                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == (int)actionType)
                 {
 
                     DoPlayerAnimation(gameTime, destinationRectangle,actionType, .25f);

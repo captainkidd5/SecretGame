@@ -27,7 +27,7 @@ namespace XMLData.ItemStuff
             newItem.PlaceID = oldItem.PlaceID;
 
                 newItem.StaminaRestored = oldItem.StaminaRestored;
-            
+            newItem.Type = oldItem.Type;
         
 
 

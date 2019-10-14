@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.5" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <terraintypes>
   <terrain name="dirt" tile="904"/>
@@ -373,7 +373,7 @@
  </tile>
  <tile id="663">
   <properties>
-   <property name="destructable" value="0,4,1,3"/>
+   <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="142:100:5,122:10:2"/>
    <property name="spawnWith" value="563"/>
   </properties>
@@ -645,7 +645,7 @@
  </tile>
  <tile id="978">
   <properties>
-   <property name="destructable" value="1,0,0,8"/>
+   <property name="destructable" value="22,0,0,8"/>
    <property name="idleStart" value=""/>
    <property name="loot" value="130:100:1,220:15:1"/>
    <property name="tileSelectorAllowed" value="2"/>
@@ -983,7 +983,7 @@
  </tile>
  <tile id="1163">
   <properties>
-   <property name="destructable" value="0,4,1,3"/>
+   <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="142:100:5,122:10:2"/>
    <property name="spawnWith" value="1063"/>
   </properties>
@@ -1577,7 +1577,7 @@
  </tile>
  <tile id="1663">
   <properties>
-   <property name="destructable" value="0,4,1,3"/>
+   <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="142:100:5,122:10:2"/>
    <property name="spawnWith" value="1563"/>
   </properties>
@@ -1676,7 +1676,7 @@
  </tile>
  <tile id="2263">
   <properties>
-   <property name="destructable" value="0,4,1,3"/>
+   <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="123:25:5,122:5:2"/>
    <property name="spawnWith" value="2163"/>
   </properties>
@@ -1770,7 +1770,7 @@
  </tile>
  <tile id="2963">
   <properties>
-   <property name="destructable" value="0,4,1,3"/>
+   <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="142:100:5,122:10:2"/>
    <property name="spawnWith" value="2863"/>
   </properties>

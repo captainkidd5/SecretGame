@@ -30,5 +30,8 @@ namespace XMLData.ItemStuff
 
         [ContentSerializer(Optional = true)]
         public int StaminaRestored { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public int Type { get; set; }
     }
 }

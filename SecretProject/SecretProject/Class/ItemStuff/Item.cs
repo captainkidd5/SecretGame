@@ -71,6 +71,7 @@ namespace SecretProject.Class.ItemStuff
         public int Durability { get; set; }
         public int PlaceID { get; set; }
         public int StaminaRestored { get; set; }
+        public int Type { get; set; }
 
 
 
@@ -93,7 +94,7 @@ namespace SecretProject.Class.ItemStuff
             }
             this.PlaceID = itemData.PlaceID;
             this.StaminaRestored = itemData.StaminaRestored;
-
+            this.Type = itemData.Type;
         }
         public void Load()
         {

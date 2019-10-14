@@ -24,11 +24,8 @@
 12 = up
 
 ## Tool Keys
-1 = Hammer
 
-2 = Loppers
-
-0 = Axe
+Do not use 0. Keys 1-20 reserved for special cases. 20-30+ for tool interaction types.
 
 ## Destructable Key Code
 

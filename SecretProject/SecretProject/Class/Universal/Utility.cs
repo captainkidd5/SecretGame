@@ -124,11 +124,11 @@ namespace SecretProject.Class.Universal
             int toolToReturn = int.Parse(info.Split(',')[0]);
             switch(toolToReturn)
             {
-                case -50:
-                    return AnimationType.HandsPicking;
                 case 0:
+                    return AnimationType.HandsPicking;
+                case 21:
                     return AnimationType.Chopping;
-                case 1:
+                case 22:
                     return AnimationType.Mining;
 
                 default: return AnimationType.Mining;

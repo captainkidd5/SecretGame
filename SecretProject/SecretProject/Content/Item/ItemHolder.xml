@@ -11,6 +11,7 @@
 <Price>25</Price>
 <Plantable>false</Plantable>
 <Durability>5</Durability>
+<Type>21</Type>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Hammer</Name>
@@ -20,6 +21,7 @@
 <TextureRow>1</TextureRow>
 <Price>25</Price>
 <Plantable>false</Plantable>
+<Type>22</Type>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Loppers</Name>
