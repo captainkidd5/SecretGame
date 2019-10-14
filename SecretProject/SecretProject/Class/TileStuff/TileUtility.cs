@@ -769,7 +769,7 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.Player.controls.Direction = Dir.Left;
             }
-            Game1.Player.PlayAnimation(gameTime, animationType);
+            Game1.Player.PlayAnimation(gameTime, animationType, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AnimationColumn);
         }
         //for destructable keyword
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)

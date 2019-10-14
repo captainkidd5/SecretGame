@@ -72,6 +72,7 @@ namespace SecretProject.Class.ItemStuff
         public int PlaceID { get; set; }
         public int StaminaRestored { get; set; }
         public int Type { get; set; }
+        public int AnimationColumn { get; set; }
 
 
 
@@ -92,9 +93,11 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.IsPlantable = itemData.Plantable;
             }
+
             this.PlaceID = itemData.PlaceID;
             this.StaminaRestored = itemData.StaminaRestored;
             this.Type = itemData.Type;
+            this.AnimationColumn = itemData.AnimationColumn;
         }
         public void Load()
         {

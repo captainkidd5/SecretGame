@@ -23,6 +23,7 @@ namespace SecretProject.Class.TextureStuff
         //CHOPPING TOOLS
         public Texture2D ChoppingTestTool;
         public Texture2D IronAxeTool;
+        public Texture2D ChoppingToolAtlas;
 
         public Texture2D ChoppingPlayerBase;
         public Texture2D ChoppingPlayerHair;
@@ -115,6 +116,7 @@ namespace SecretProject.Class.TextureStuff
             //TOOLS
             ChoppingTestTool = content.Load<Texture2D>("Player/PlayerParts/Chopping/Tools/ChoppingTestTool");
             IronAxeTool = content.Load<Texture2D>("Player/PlayerParts/Chopping/Tools/IronAxeTool");
+            ChoppingToolAtlas = content.Load<Texture2D>("Player/PlayerParts/Chopping/Tools/ChoppingToolAtlas");
 
             ChoppingPlayerBase = content.Load<Texture2D>("Player/PlayerParts/Chopping/Base/ChoppingBase");
             ChoppingPlayerHair = content.Load<Texture2D>("Player/PlayerParts/Chopping/Hair/ChoppingBlondeHair");

@@ -12,6 +12,7 @@
 <Plantable>false</Plantable>
 <Durability>5</Durability>
 <Type>21</Type>
+<AnimationColumn>48</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Hammer</Name>
@@ -22,6 +23,7 @@
 <Price>25</Price>
 <Plantable>false</Plantable>
 <Type>22</Type>
+<AnimationColumn>0</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Loppers</Name>

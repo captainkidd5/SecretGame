@@ -33,5 +33,9 @@ namespace XMLData.ItemStuff
 
         [ContentSerializer(Optional = true)]
         public int Type { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public int AnimationColumn { get; set; }
+
     }
 }

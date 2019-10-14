@@ -846,6 +846,18 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/Chopping/Tools/ChoppingTestTool.png
 
+#begin Player/PlayerParts/Chopping/Tools/ChoppingToolAtlas.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/Chopping/Tools/ChoppingToolAtlas.png
+
 #begin Player/PlayerParts/Chopping/Tools/IronAxeTool.png
 /importer:TextureImporter
 /processor:TextureProcessor

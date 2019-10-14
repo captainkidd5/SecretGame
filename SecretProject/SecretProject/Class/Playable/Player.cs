@@ -158,7 +158,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public void PlayAnimation(GameTime gameTime, AnimationType action)
+        public void PlayAnimation(GameTime gameTime, AnimationType action, int textureColumn = 0)
         {
 
             switch (action)
@@ -167,12 +167,26 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CurrentAction = Mining;
                     AnimationDirection = controls.Direction;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        this.Mining[i, 0].FirstFrameY = textureColumn;
+                    }
+                    //for (int i = 0; i < Mining.GetLength(1); i++)
+                    //{
+                    //    PlayerActionAnimations[i] = Player.Mining[0, i];
+                    //}
+
+
                     break;
 
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
                     CurrentAction = Mining;
                     AnimationDirection = controls.Direction;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        this.Mining[i, 0].FirstFrameY = textureColumn;
+                    }
                     break;
             }
 
