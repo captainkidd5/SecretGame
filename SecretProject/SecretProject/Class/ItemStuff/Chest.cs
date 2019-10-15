@@ -100,7 +100,7 @@ namespace SecretProject.Class.ItemStuff
             RedEsc.Draw(spriteBatch);
             for (int i = 0; i < AllButtons.Count; i++)
             {
-                AllButtons[i].DrawCraftingSlot(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(),
+                AllButtons[i].Draw(spriteBatch, AllButtons[i].ItemSourceRectangleToDraw, AllButtons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllButtons[i].ItemCounter.ToString(),
                     new Vector2(AllButtons[i].Position.X, AllButtons[i].Position.Y), Color.White, 2f, 2f);
             }       
         }

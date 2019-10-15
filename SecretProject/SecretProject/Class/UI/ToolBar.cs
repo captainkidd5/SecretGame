@@ -494,7 +494,7 @@ namespace SecretProject.Class.UI
             InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
             for (int i = 0; i < AllSlots.Count; i++)
             {
-                AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.DarkRed, 2f);
+                AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.DarkRed, 2f,2f);
             }
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
                 Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);

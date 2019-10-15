@@ -235,7 +235,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
-            Button.DrawCraftingSlot(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
+            Button.Draw(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
                Stock.ToString() + "\n \n                   " + this.Item.Name, drawPosition, Color.White * colorMultiplier, backDropScale, backDropScale + 1f, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 

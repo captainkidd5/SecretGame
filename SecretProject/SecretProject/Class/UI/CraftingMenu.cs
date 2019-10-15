@@ -34,7 +34,7 @@ namespace SecretProject.Class.UI
 
         public int ActiveRecipe { get; set; }
         public Item ActiveItemToCraft { get; set; }
-        public Rectangle ItemToCraftSourceRectangleTexture { get; set; }
+        public Rectangle ItemToCraftSourceRectangle { get; set; }
         public Button ItemToCraftButton { get; set; }
         // public List< MyProperty { get; set; }
 
@@ -51,8 +51,8 @@ namespace SecretProject.Class.UI
             {
                 Tabs[i] = new Tab(this,GraphicsDevice, new Vector2(BackDropPosition.X - 32*BackDropScale, BackDropPosition.Y + 64 + i * 32 * BackDropScale), new Rectangle(272,384, 32,32), BackDropScale);
             }
-            Tabs[0].AddNewCraftableItem(124, 5, BackDropPosition, graphics, this);
-            //Tabs[0].AddNewCraftableItem(124, 5, BackDropPosition, graphics, this);
+            Tabs[0].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
+            Tabs[0].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
 
             ActiveTab = 0;
 
@@ -61,10 +61,11 @@ namespace SecretProject.Class.UI
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
                 this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
 
-            ItemToCraftSourceRectangleTexture = new Rectangle(0, 0, 1, 1);
+            ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
             ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
-                GraphicsDevice, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y),
+                GraphicsDevice, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 220, BackDropPosition.Y + 10),
                 CursorType.Normal, this.BackDropScale);
+            ItemToCraftButton.HitBoxRectangle = new Rectangle((int)ItemToCraftButton.Position.X, (int)ItemToCraftButton.Position.Y, 48, 48);
         }
 
         public void Update(GameTime gameTime)
@@ -76,6 +77,7 @@ namespace SecretProject.Class.UI
                 if(Tabs[i].Button.isClicked)
                 {
                     ActiveTab = i;
+                    
                 }
                 if (ActiveTab == i)
                 {
@@ -109,11 +111,6 @@ namespace SecretProject.Class.UI
                         Tabs[ActiveTab].ActivePage--;
                     }
                 }
-                //else
-                //{
-                //    Tabs[i].IsActive = false;
-                //    Tabs[i].ButtonColorMultiplier = 1f;
-                //}
             }
             
         }
@@ -151,9 +148,11 @@ namespace SecretProject.Class.UI
 
             }
 
+           // spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, ItemToCraftButton.Position, ItemToCraftButton.BackGroundSourceRectangle,
+             //   Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
-            ItemToCraftButton.DrawCraftingSlot(spriteBatch, this.ItemToCraftSourceRectangleTexture, ItemToCraftButton.BackGroundSourceRectangle,
-                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, 10f, Game1.Utility.StandardButtonDepth + .01f);
+            ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
+                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
         }
     }
 
@@ -290,6 +289,7 @@ namespace SecretProject.Class.UI
             if(this.Button.isClicked)
             {
                 CraftingMenu.ActiveRecipe = this.Item.ID;
+                CraftingMenu.ItemToCraftSourceRectangle = Item.SourceTextureRectangle;
             }
         }
 
