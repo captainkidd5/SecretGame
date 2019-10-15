@@ -51,6 +51,11 @@ namespace SecretProject.Class.UI
             }
             Tabs[0].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
             Tabs[0].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[0].AddNewCraftableItem(211, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            Tabs[0].AddNewCraftableItem(212, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            Tabs[0].AddNewCraftableItem(232, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
+            Tabs[0].AddNewCraftableItem(233, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[0].AddNewCraftableItem(145, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
 
             ActiveTab = 0;
 
@@ -221,6 +226,21 @@ namespace SecretProject.Class.UI
             else
             {
                 this.ColorMultiplier = .5f;
+
+            }
+
+            ItemToCraftButton.Update(Game1.myMouseManager);
+            if(ItemToCraftButton.isClicked)
+            {
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ActiveRecipe,null));
+                for (int i = 0; i < Ingredients.Count; i++)
+                {
+                    for(int j =0; j < Ingredients[i].CountRequired;j++)
+                    {
+                        Game1.Player.Inventory.RemoveItem(Ingredients[i].Item.ID);
+                    }
+                }
+                Game1.SoundManager.CraftMetal.Play();
             }
         }
 
@@ -331,7 +351,7 @@ namespace SecretProject.Class.UI
         public void AddNewCraftableItem(int id, int maxRecipesPerPage, Vector2 backDropPosition, GraphicsDevice graphics, CraftingMenu craftingMenu)
         {
 
-            for(int i =0; i < Pages.Count; i++)
+            for(int i =0; i < Pages.Count - 2; i++)
             {
                 for(int j = 0; j< Pages[i].ToolTips.Count;i++)
                 {
@@ -341,7 +361,7 @@ namespace SecretProject.Class.UI
                     }
                 }
             }
-
+            
             for (int i = 0; i < Pages.Count; i++)
             {
                 if (Pages[i].ToolTips.Count < maxRecipesPerPage)
@@ -349,12 +369,10 @@ namespace SecretProject.Class.UI
                     Pages[i].ToolTips.Add(new ToolTip(id, new Vector2(backDropPosition.X + 50, backDropPosition.Y + 200 + i * 50), graphics, craftingMenu));
                     return;
                 }
-                else
-                {
-                    Pages.Add(new ToolTipPage(craftingMenu));
-                    Pages[Pages.Count].ToolTips.Add(new ToolTip(id, new Vector2(backDropPosition.X + 50, backDropPosition.Y + 200 ), graphics, craftingMenu));
-                }
             }
+
+            Pages.Add(new ToolTipPage(craftingMenu));
+            Pages[Pages.Count].ToolTips.Add(new ToolTip(id, new Vector2(backDropPosition.X + 50, backDropPosition.Y + 200), graphics, craftingMenu));
         }
     }
 
