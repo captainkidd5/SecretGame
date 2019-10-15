@@ -32,12 +32,10 @@ namespace SecretProject.Class.UI
         public Button FowardButton { get; set; }
         public Button BackButton { get; set; }
 
-        public int ActiveRecipe { get; set; }
-        public Item ActiveItemToCraft { get; set; }
-        public Rectangle ItemToCraftSourceRectangle { get; set; }
-        public Button ItemToCraftButton { get; set; }
+        
         // public List< MyProperty { get; set; }
 
+        public CraftableRecipeBar CraftableRecipeBar { get; set; }
 
         public CraftingMenu(ContentManager content, GraphicsDevice graphics)
         {
@@ -61,11 +59,9 @@ namespace SecretProject.Class.UI
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
                 this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
 
-            ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
-            ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
-                GraphicsDevice, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 220, BackDropPosition.Y + 10),
-                CursorType.Normal, this.BackDropScale);
-            ItemToCraftButton.HitBoxRectangle = new Rectangle((int)ItemToCraftButton.Position.X, (int)ItemToCraftButton.Position.Y, 48, 48);
+            
+
+            this.CraftableRecipeBar = new CraftableRecipeBar(this.CraftingGuide,graphics, this.BackDropSourceRectangle, this.BackDropPosition,this.BackDropScale);
         }
 
         public void Update(GameTime gameTime)
@@ -148,14 +144,57 @@ namespace SecretProject.Class.UI
 
             }
 
+            CraftableRecipeBar.Draw(spriteBatch);
            // spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, ItemToCraftButton.Position, ItemToCraftButton.BackGroundSourceRectangle,
              //   Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
-            ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
-                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
+           
         }
     }
 
+
+    public class CraftableRecipeBar
+    {
+        public int ActiveRecipe { get; set; }
+        public Item ActiveItemToCraft { get; set; }
+        public Rectangle ItemToCraftSourceRectangle { get; set; }
+        public Button ItemToCraftButton { get; set; }
+        public float BackDropScale { get; set; }
+
+        public ItemRecipe Recipe { get; set; }
+
+        public List<Button> Ingredients { get; set; }
+
+        public CraftingGuide CraftingGuide { get; set; }
+        public CraftableRecipeBar(CraftingGuide craftingGuide,GraphicsDevice graphics, Rectangle backDropSourceRectangle,Vector2 backDropPosition, float backDropScale)
+        {
+            ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
+            this.BackDropScale = backDropScale;
+            ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
+                graphics, new Vector2(backDropPosition.X + backDropSourceRectangle.Width * backDropScale - 220, backDropPosition.Y + 10),
+                CursorType.Normal, backDropScale);
+            ItemToCraftButton.HitBoxRectangle = new Rectangle((int)ItemToCraftButton.Position.X, (int)ItemToCraftButton.Position.Y, 48, 48);
+
+            Ingredients = new List<Button>();
+            this.CraftingGuide = craftingGuide;
+        }
+
+        public void UpdateRecipe(int craftableItemID)
+        {
+            ///CraftingGuide.CraftingRecipes.
+        }
+
+        public void Update(GameTime gameTime)
+        {
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
+               Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
+        }
+    }
 
     public class Tab
     {
@@ -288,8 +327,8 @@ namespace SecretProject.Class.UI
             Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
-                CraftingMenu.ActiveRecipe = this.Item.ID;
-                CraftingMenu.ItemToCraftSourceRectangle = Item.SourceTextureRectangle;
+                CraftingMenu.CraftableRecipeBar.ActiveRecipe = this.Item.ID;
+                CraftingMenu.CraftableRecipeBar.ItemToCraftSourceRectangle = Item.SourceTextureRectangle;
             }
         }
 
