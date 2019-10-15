@@ -183,9 +183,13 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(Texture, Position, BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         }
 
+        public void DrawGeneric(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin,float scale, SpriteEffects effects, float layerDepth)
+        {
+            spriteBatch.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects,layerDepth);
+        }
 
         public void DrawSelectableTextBoxOption(SpriteBatch spriteBatch, string text)
         {
@@ -220,16 +224,6 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y), backgroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, layerDepthCustom);
             spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), itemSourceRectangle, tint, 0f, Game1.Utility.Origin, foreGroundScale, SpriteEffects.None, layerDepthCustom + .01f);
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
-
-            //this.Rectangle = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width * foreGroundScale, Rectangle.Height * foreGroundScale)
-        }
-
-        public void DrawCraftingSlotRetrievable(SpriteBatch spriteBatch, Rectangle itemSourceRectangle, Rectangle backgroundSourceRectangle, Color tint, float backGroundScale = 1f, float foreGroundScale = 1f, float layerDepthCustom = .69f)
-        {
-
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y), backgroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, layerDepthCustom);
-            spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), itemSourceRectangle, tint, 0f, Game1.Utility.Origin, foreGroundScale, SpriteEffects.None, layerDepthCustom + .01f);
-
 
             //this.Rectangle = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width * foreGroundScale, Rectangle.Height * foreGroundScale)
         }
