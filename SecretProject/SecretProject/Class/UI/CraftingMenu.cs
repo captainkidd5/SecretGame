@@ -25,13 +25,17 @@ namespace SecretProject.Class.UI
 
         public int ActiveTab { get; set; }
         public Tab[] Tabs { get; set; }
-        public int ActiveRecipe { get; set; }
+       
 
         public CraftingGuide CraftingGuide { get; set; }
 
         public Button FowardButton { get; set; }
         public Button BackButton { get; set; }
 
+        public int ActiveRecipe { get; set; }
+        public Item ActiveItemToCraft { get; set; }
+        public Rectangle ItemToCraftSourceRectangleTexture { get; set; }
+        public Button ItemToCraftButton { get; set; }
         // public List< MyProperty { get; set; }
 
 
@@ -56,6 +60,11 @@ namespace SecretProject.Class.UI
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale -50 , BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
                 this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+
+            ItemToCraftSourceRectangleTexture = new Rectangle(0, 0, 1, 1);
+            ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
+                GraphicsDevice, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y),
+                CursorType.Normal, this.BackDropScale);
         }
 
         public void Update(GameTime gameTime)
@@ -141,6 +150,10 @@ namespace SecretProject.Class.UI
                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
             }
+
+
+            ItemToCraftButton.DrawCraftingSlot(spriteBatch, this.ItemToCraftSourceRectangleTexture, ItemToCraftButton.BackGroundSourceRectangle,
+                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, 10f, Game1.Utility.StandardButtonDepth + .01f);
         }
     }
 
@@ -176,12 +189,16 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
 
-
+            for(int i =0; i < Pages[ActivePage].ToolTips.Count; i++)
+            {
+                Pages[ActivePage].ToolTips[i].Update(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Button.Draw(spriteBatch, Color.White * ButtonColorMultiplier, Game1.Utility.StandardButtonDepth);
+            Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ButtonColorMultiplier, 0f, Game1.Utility.Origin, Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            //Button.Draw(spriteBatch, Color.White * ButtonColorMultiplier, Game1.Utility.StandardButtonDepth);
             if (this.IsActive)
             {
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), CraftingMenu.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
@@ -269,6 +286,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
+            Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
                 CraftingMenu.ActiveRecipe = this.Item.ID;
@@ -278,7 +296,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
            // Button.Draw(spriteBatch, .9f);
-            Button.DrawGeneric(spriteBatch,Game1.AllTextures.ItemSpriteSheet, this.Position, Item.SourceTextureRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+            Button.DrawNormal(spriteBatch, this.Position, Item.SourceTextureRectangle, Button.Color, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
         }
     }
 

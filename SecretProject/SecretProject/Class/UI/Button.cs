@@ -19,7 +19,7 @@ namespace SecretProject.Class.MenuStuff
         public Vector2 Position;
         public Rectangle HitBoxRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * HitBoxScale), (int)(BackGroundSourceRectangle.Height * HitBoxScale)); } set { } }
         public Rectangle SelectableTextRectangle { get; set; }
-        Color Color;
+        public Color Color;
 
         public Vector2 size;
 
@@ -58,7 +58,7 @@ namespace SecretProject.Class.MenuStuff
             //128x64
             size = new Vector2((graphicsDevice.Viewport.Width / 10), (graphicsDevice.Viewport.Height / 11));
 
-            if(scale == 0)
+            if (scale == 0)
             {
                 this.HitBoxScale = 1f;
             }
@@ -66,8 +66,8 @@ namespace SecretProject.Class.MenuStuff
             {
                 this.HitBoxScale = scale;
             }
-           // this.HitBoxScale = scale;
-            
+            // this.HitBoxScale = scale;
+
 
             this.BackGroundSourceRectangle = sourceRectangle;
             UpdateHitBoxRectanlge(BackGroundSourceRectangle);
@@ -98,7 +98,7 @@ namespace SecretProject.Class.MenuStuff
             {
                 Color = Color.White * .5f;
                 IsHovered = true;
-                if(this.CursorType != 0)
+                if (this.CursorType != 0)
                 {
                     mouse.ChangeMouseTexture(this.CursorType);
                     mouse.ToggleGeneralInteraction = true;
@@ -108,7 +108,7 @@ namespace SecretProject.Class.MenuStuff
                 {
                     isClicked = true;
                 }
-                
+
 
             }
             else
@@ -141,7 +141,7 @@ namespace SecretProject.Class.MenuStuff
         {
             isClicked = false;
             wasJustReleased = false;
-            
+
 
             if (mouse.IsHovering(SelectableTextRectangle))
             {
@@ -176,9 +176,6 @@ namespace SecretProject.Class.MenuStuff
                 }
             }
 
-
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -186,25 +183,13 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.Draw(Texture, Position, BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, this.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         }
 
-        public void DrawGeneric(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin,float scale, SpriteEffects effects, float layerDepth)
-        {
-            spriteBatch.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects,layerDepth);
-        }
+
 
         public void DrawSelectableTextBoxOption(SpriteBatch spriteBatch, string text)
         {
             spriteBatch.DrawString(Game1.AllTextures.MenuText, text, new Vector2(this.SelectableTextRectangle.X, this.SelectableTextRectangle.Y), this.Color, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, layerDepth: .73f);
         }
 
-        public void Draw(SpriteBatch spriteBatch, float layerDepthCustom)
-        {
-            spriteBatch.Draw(Texture, destinationRectangle: HitBoxRectangle, color: Color, layerDepth: layerDepthCustom);
-        }
-
-        public void Draw(SpriteBatch spriteBatch, Color tint, float layerDepthCustom)
-        {
-            spriteBatch.Draw(this.Texture, this.HitBoxRectangle, this.BackGroundSourceRectangle, tint, 0f, Game1.Utility.Origin, SpriteEffects.None, layerDepthCustom);
-        }
 
         //for toolbar
         public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
@@ -228,14 +213,6 @@ namespace SecretProject.Class.MenuStuff
             //this.Rectangle = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width * foreGroundScale, Rectangle.Height * foreGroundScale)
         }
 
-        //for esc menu
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color tint, float layerDepthCustom = .69f)
-        {
-
-            spriteBatch.Draw(Texture, destinationRectangle: HitBoxRectangle, color: Color, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
-        }
-
         //for shopMenu
         public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, Vector2 priceLocation, string price, float layerDepthCustom = .69f)
         {
@@ -255,17 +232,6 @@ namespace SecretProject.Class.MenuStuff
             spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, textDepth);
         }
 
-
-        //for scrolltree
-        //public void Draw(SpriteBatch spriteBatch, Vector2 locationToDrawBackGround, Vector2 locationToDrawButtonImage, Rectangle buttonImageSourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
-        //{
-
-        //    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, locationToDrawBackGround, backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom);
-        //    spriteBatch.Draw(this.Texture, locationToDrawButtonImage, buttonImageSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
-
-        //    //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
-        //    spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
-        //}
         public void DrawNormal(SpriteBatch spriteBatch, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float depth)
         {
             spriteBatch.Draw(this.Texture, position, sourceRectangle, color,

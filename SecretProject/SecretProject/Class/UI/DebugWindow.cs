@@ -84,7 +84,7 @@ namespace SecretProject.Class.UI
                 //        spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() +"  ", new Vector2(position.X + (i * 20), position.Y - 500 + (j * 20)), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,1f);
                 //    }
                 //}
-                DebugButton1.Draw(spriteBatch, 1f);
+                DebugButton1.Draw(spriteBatch);
             }
             spriteBatch.End();
         }

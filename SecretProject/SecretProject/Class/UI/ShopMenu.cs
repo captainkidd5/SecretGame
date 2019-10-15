@@ -172,7 +172,7 @@ namespace SecretProject.Class.UI
                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 
             }
-            redEsc.Draw(spriteBatch, Color.White, .73f);
+            redEsc.Draw(spriteBatch);
 
         }
 
