@@ -53,22 +53,32 @@ namespace SecretProject.Class.UI
             ActiveTab = 0;
 
             FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.GraphicsDevice,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale -50 , BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
-                this.GraphicsDevice, new Vector2(BackDropPosition.X - 48, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+                this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
         }
 
         public void Update(GameTime gameTime)
         {
             for(int i =0; i < Tabs.Length;i++)
             {
-                Tabs[i].Update(gameTime);
+               
+                Tabs[i].Button.Update(Game1.myMouseManager);
                 if(Tabs[i].Button.isClicked)
                 {
                     ActiveTab = i;
-                    Tabs[i].IsActive = true;
-                   // Tabs[i].ButtonColorMultiplier = .5f;
                 }
+                if (ActiveTab == i)
+                {
+                    Tabs[i].IsActive = true;
+                    Tabs[i].ButtonColorMultiplier = .5f;
+                }
+                else
+                {
+                    Tabs[i].IsActive = false;
+                    Tabs[i].ButtonColorMultiplier = 1f;
+                }
+                Tabs[ActiveTab].Update(gameTime);
                 this.FowardButton.Update(Game1.myMouseManager);
 
                 if (this.FowardButton.isClicked)
@@ -165,12 +175,8 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            Button.Update(Game1.myMouseManager);
-            if (this.IsActive)
-            {
-                this.ButtonColorMultiplier = .5f;
-                this.Pages[ActivePage].Update(gameTime);
-            }
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
