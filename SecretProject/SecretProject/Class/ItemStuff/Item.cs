@@ -178,6 +178,7 @@ namespace SecretProject.Class.ItemStuff
             if(this.Durability <= 0)
             {
                 Game1.Player.Inventory.RemoveItem(this);
+                Game1.SoundManager.ToolBreak.Play();
             }
         }
     }

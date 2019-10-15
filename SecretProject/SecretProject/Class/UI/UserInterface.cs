@@ -69,7 +69,6 @@ namespace SecretProject.Class.UI
 
         public CraftingMenu CraftingMenu { get; set; }
 
-        public ScrollTree ScrollTree { get; set; }
         public LiftWindow LiftWindow { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
@@ -97,9 +96,8 @@ namespace SecretProject.Class.UI
             this.cam = cam;
             TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
-            CraftingMenu = new CraftingMenu();
-            CraftingMenu.LoadContent(content, GraphicsDevice);
-            ScrollTree = new ScrollTree(graphicsDevice);
+            CraftingMenu = new CraftingMenu(content, graphicsDevice);
+            //CraftingMenu.LoadContent(content, GraphicsDevice);
             LiftWindow = new LiftWindow(graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -201,7 +199,7 @@ namespace SecretProject.Class.UI
                     }
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
-                    CraftingMenu.Update(gameTime, mouse);
+                    CraftingMenu.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -298,10 +296,7 @@ namespace SecretProject.Class.UI
                 InfoBox.Draw(spriteBatch);
             }
             
-            if(ScrollTree.IsActive)
-            {
-                ScrollTree.Draw(spriteBatch);
-            }
+
 
             TextBuilder.Draw(spriteBatch, .71f);
 

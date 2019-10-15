@@ -67,14 +67,20 @@ namespace SecretProject.Class.MenuStuff
                 this.HitBoxScale = scale;
             }
            // this.HitBoxScale = scale;
-            HitBoxRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(sourceRectangle.Width * HitBoxScale), (int)(sourceRectangle.Height * HitBoxScale));
+            
 
             this.BackGroundSourceRectangle = sourceRectangle;
+            UpdateHitBoxRectanlge(BackGroundSourceRectangle);
             //this.ItemSourceRectangleToDraw = sou
             this.CursorType = cursorType;
 
         }
 
+        public void UpdateHitBoxRectanlge(Rectangle newSourceRectangle)
+        {
+            this.BackGroundSourceRectangle = newSourceRectangle;
+            HitBoxRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.BackGroundSourceRectangle.Width * HitBoxScale), (int)(this.BackGroundSourceRectangle.Height * HitBoxScale));
+        }
         //for clickable text
         public Button(Rectangle clickRangeRectangle, CursorType cursorType)
         {
@@ -257,15 +263,15 @@ namespace SecretProject.Class.MenuStuff
 
 
         //for scrolltree
-        public void Draw(SpriteBatch spriteBatch, Vector2 locationToDrawBackGround, Vector2 locationToDrawButtonImage, Rectangle buttonImageSourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
-        {
+        //public void Draw(SpriteBatch spriteBatch, Vector2 locationToDrawBackGround, Vector2 locationToDrawButtonImage, Rectangle buttonImageSourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float scale = 1f, float layerDepthCustom = .69f)
+        //{
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, locationToDrawBackGround, backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom);
-            spriteBatch.Draw(this.Texture, locationToDrawButtonImage, buttonImageSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
+        //    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, locationToDrawBackGround, backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom);
+        //    spriteBatch.Draw(this.Texture, locationToDrawButtonImage, buttonImageSourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
 
-            //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
-        }
+        //    //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
+        //    spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
+        //}
         public void DrawNormal(SpriteBatch spriteBatch, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float depth)
         {
             spriteBatch.Draw(this.Texture, position, sourceRectangle, color,

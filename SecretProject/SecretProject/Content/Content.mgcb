@@ -1094,6 +1094,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/textNoise2.wav
 
+#begin SoundEffects/toolBreak.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/toolBreak.wav
+
 #begin SoundEffects/walkGrass.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

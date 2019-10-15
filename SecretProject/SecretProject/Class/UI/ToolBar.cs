@@ -255,14 +255,6 @@ namespace SecretProject.Class.UI
 
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
             }
-            else if (OpenInventory.isClicked)
-            {
-                Game1.Player.UserInterface.ScrollTree.IsActive = !Game1.Player.UserInterface.ScrollTree.IsActive;
-            }
-            else if (ScrollTree.isClicked)
-            {
-
-            }
 
         }
         #endregion

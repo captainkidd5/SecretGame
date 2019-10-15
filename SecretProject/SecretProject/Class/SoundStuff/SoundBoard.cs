@@ -69,6 +69,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect TextNoise2;
 
         public SoundEffect CraftMetal;
+        public SoundEffect ToolBreak;
 
         public SoundEffect Sell1;
 
@@ -151,7 +152,7 @@ namespace SecretProject.Class.SoundStuff
             TextNoise2 = content.Load<SoundEffect>("SoundEffects/textNoise2");
 
             CraftMetal = content.Load<SoundEffect>("SoundEffects/metalCraft");
-
+            ToolBreak = content.Load<SoundEffect>("SoundEffects/toolBreak");
             Sell1 = content.Load<SoundEffect>("SoundEffects/sell1");
             SanctuaryAdd = content.Load<SoundEffect>("SoundEffects/sanctuaryAddEffect");
 
