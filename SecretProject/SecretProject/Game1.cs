@@ -476,13 +476,20 @@ namespace SecretProject
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
             DobbinShop.ShopMenu.TryAddStock(128, 10);
+            DobbinShop.ShopMenu.TryAddStock(162, 10);
             DobbinShop.ShopMenu.TryAddStock(167, 10);
+            DobbinShop.ShopMenu.TryAddStock(172, 10);
+            DobbinShop.ShopMenu.TryAddStock(207, 10);
+            DobbinShop.ShopMenu.TryAddStock(227, 10);
+            DobbinShop.ShopMenu.TryAddStock(247, 10);
+
 
             Shop JulianShop = new Shop(graphics.GraphicsDevice, 3, "JulianShop", new ShopMenu("JulianShopInventory", graphics.GraphicsDevice, 10));
             JulianShop.ShopMenu.TryAddStock(0, 5);
             JulianShop.ShopMenu.TryAddStock(1, 5);
             JulianShop.ShopMenu.TryAddStock(2, 5);
             JulianShop.ShopMenu.TryAddStock(3, 5);
+            JulianShop.ShopMenu.TryAddStock(20, 5);
 
             Shop ElixirShop = new Shop(graphics.GraphicsDevice, 4, "ElixirShop", new ShopMenu("ElixirShopInventory", graphics.GraphicsDevice, 10));
             ElixirShop.ShopMenu.TryAddStock(80, 1);

@@ -33,7 +33,6 @@ namespace SecretProject.Class.UI
         public Button BackButton { get; set; }
         private Button redEsc;
 
-        // public List< MyProperty { get; set; }
 
         public CraftableRecipeBar CraftableRecipeBar { get; set; }
 

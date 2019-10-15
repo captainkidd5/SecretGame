@@ -39,7 +39,8 @@ namespace SecretProject.Class.UI
         ShopMenu = 2,
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
-        LiftWindow = 5
+        LiftWindow = 5,
+        ProgressBook = 6
     }
     public class UserInterface
     {
@@ -70,6 +71,7 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
         public LiftWindow LiftWindow { get; set; }
+        public ProgressBook ProgressBook { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
@@ -99,6 +101,7 @@ namespace SecretProject.Class.UI
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
             LiftWindow = new LiftWindow(graphicsDevice);
+            ProgressBook = new ProgressBook(content, graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
@@ -166,6 +169,10 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ProgressBook;
+                    }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
                     Esc.Update(gameTime, mouse);
@@ -227,6 +234,19 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
+                case ExclusiveInterfaceItem.ProgressBook:
+                    Game1.freeze = true;
+                    ProgressBook.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
+                    break;
 
             }
             
@@ -286,7 +306,9 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.LiftWindow:
                     LiftWindow.Draw(spriteBatch);
                     break;
-
+                case ExclusiveInterfaceItem.ProgressBook:
+                    ProgressBook.Draw(spriteBatch);
+                    break;
             }
 
 
