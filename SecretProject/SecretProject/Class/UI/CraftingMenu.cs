@@ -31,8 +31,8 @@ namespace SecretProject.Class.UI
 
         public Button FowardButton { get; set; }
         public Button BackButton { get; set; }
+        private Button redEsc;
 
-        
         // public List< MyProperty { get; set; }
 
         public CraftableRecipeBar CraftableRecipeBar { get; set; }
@@ -47,15 +47,21 @@ namespace SecretProject.Class.UI
             Tabs = new Tab[6];
             for(int i = 0; i < Tabs.Length; i++)
             {
-                Tabs[i] = new Tab(this,GraphicsDevice, new Vector2(BackDropPosition.X - 32*BackDropScale, BackDropPosition.Y + 64 + i * 32 * BackDropScale), new Rectangle(272,384, 32,32), BackDropScale);
+                Tabs[i] = new Tab(this,GraphicsDevice, new Vector2(BackDropPosition.X - 32*BackDropScale, BackDropPosition.Y + 64 + i * 32 * BackDropScale), new Rectangle(272,384 + 32*i, 32,32), BackDropScale);
             }
-            Tabs[0].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
-            Tabs[0].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[0].AddNewCraftableItem(211, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
-            Tabs[0].AddNewCraftableItem(212, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
-            Tabs[0].AddNewCraftableItem(232, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
-            Tabs[0].AddNewCraftableItem(233, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[0].AddNewCraftableItem(145, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            //tabs 1 should be tools
+            Tabs[0].AddNewCraftableItem(0, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
+            Tabs[0].AddNewCraftableItem(1, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[0].AddNewCraftableItem(2, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            Tabs[0].AddNewCraftableItem(3, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            Tabs[0].AddNewCraftableItem(20, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
+            Tabs[1].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
+            Tabs[1].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[1].AddNewCraftableItem(211, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            Tabs[1].AddNewCraftableItem(212, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            Tabs[1].AddNewCraftableItem(232, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
+            Tabs[1].AddNewCraftableItem(233, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[1].AddNewCraftableItem(145, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
 
             ActiveTab = 0;
 
@@ -63,8 +69,9 @@ namespace SecretProject.Class.UI
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale -50 , BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
             BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
                 this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
 
-            
 
             this.CraftableRecipeBar = new CraftableRecipeBar(this.CraftingGuide,graphics, this.BackDropSourceRectangle, this.BackDropPosition,this.BackDropScale);
         }
@@ -117,6 +124,14 @@ namespace SecretProject.Class.UI
                 }
             }
             CraftableRecipeBar.Update(gameTime);
+            redEsc.Update(Game1.myMouseManager);
+
+
+            if (redEsc.isClicked)
+            {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                Game1.Player.UserInterface.CurrentOpenShop = 0;
+            }
 
         }
 
@@ -154,10 +169,10 @@ namespace SecretProject.Class.UI
             }
 
             CraftableRecipeBar.Draw(spriteBatch);
-           // spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, ItemToCraftButton.Position, ItemToCraftButton.BackGroundSourceRectangle,
-             //   Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            redEsc.Draw(spriteBatch);
 
-           
+
+
         }
     }
 
@@ -204,7 +219,7 @@ namespace SecretProject.Class.UI
             {
                 Item itemToReference = Game1.ItemVault.GenerateNewItem(recipe.AllItemsRequired[i].ItemID, null);
                 Ingredients.Add(new CraftableRecipeIngredient(GraphicsDevice, new Button(Game1.AllTextures.ItemSpriteSheet, itemToReference.SourceTextureRectangle, GraphicsDevice,
-                    new Vector2(BackDropPosition.X + 60 + i * 60, ItemToCraftButton.Position.Y + 60), CursorType.Normal, 4f),itemToReference, recipe.AllItemsRequired[i].Count));
+                    new Vector2(BackDropPosition.X + 60 + i * 112, ItemToCraftButton.Position.Y + 60), CursorType.Normal, 5f),itemToReference, recipe.AllItemsRequired[i].Count));
             }
 
         }
@@ -299,7 +314,7 @@ namespace SecretProject.Class.UI
         {
             Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
-                new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+                new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
         }
     }
 
@@ -347,7 +362,7 @@ namespace SecretProject.Class.UI
             //Button.Draw(spriteBatch, Color.White * ButtonColorMultiplier, Game1.Utility.StandardButtonDepth);
             if (this.IsActive)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), CraftingMenu.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), CraftingMenu.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
                 this.Pages[ActivePage].Draw(spriteBatch);
             }
             // Button.Draw()

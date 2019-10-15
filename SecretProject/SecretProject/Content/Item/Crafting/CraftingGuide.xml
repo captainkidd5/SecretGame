@@ -15,6 +15,77 @@
     </Item>
     </AllItemsRequired>
     </Item>
+
+
+<Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>0</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>130</ItemID>
+    <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>130</ItemID>
+    <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+     <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>2</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>130</ItemID>
+    <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+      <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>3</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>130</ItemID>
+    <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>20</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>142</ItemID>
+    <Count>3</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>173</ItemID>
+    <Count>2</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
     <Item Type="XMLData.ItemStuff.ItemRecipe">
     <ItemToCraftID>121</ItemToCraftID>
     <AllItemsRequired>
