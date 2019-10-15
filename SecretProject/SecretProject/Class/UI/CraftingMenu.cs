@@ -155,6 +155,7 @@ namespace SecretProject.Class.UI
 
     public class CraftableRecipeBar
     {
+        public GraphicsDevice GraphicsDevice { get; set; }
         public int ActiveRecipe { get; set; }
         public Item ActiveItemToCraft { get; set; }
         public Rectangle ItemToCraftSourceRectangle { get; set; }
@@ -163,11 +164,13 @@ namespace SecretProject.Class.UI
 
         public ItemRecipe Recipe { get; set; }
 
-        public List<Button> Ingredients { get; set; }
+        public List<Button> IngredientButtons { get; set; }
 
         public CraftingGuide CraftingGuide { get; set; }
+        public Vector2 BackDropPosition { get; set; }
         public CraftableRecipeBar(CraftingGuide craftingGuide,GraphicsDevice graphics, Rectangle backDropSourceRectangle,Vector2 backDropPosition, float backDropScale)
         {
+            this.GraphicsDevice = graphics;
             ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
             this.BackDropScale = backDropScale;
             ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
@@ -175,13 +178,22 @@ namespace SecretProject.Class.UI
                 CursorType.Normal, backDropScale);
             ItemToCraftButton.HitBoxRectangle = new Rectangle((int)ItemToCraftButton.Position.X, (int)ItemToCraftButton.Position.Y, 48, 48);
 
-            Ingredients = new List<Button>();
+            IngredientButtons = new List<Button>();
             this.CraftingGuide = craftingGuide;
+            this.BackDropPosition = backDropPosition;
         }
 
         public void UpdateRecipe(int craftableItemID)
         {
             ///CraftingGuide.CraftingRecipes.
+            IngredientButtons = new List<Button>();
+            ItemRecipe recipe = CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == craftableItemID);
+            for(int i =0; i < recipe.AllItemsRequired.Count; i++)
+            {
+                Item itemToReference = Game1.ItemVault.GenerateNewItem(recipe.AllItemsRequired[i].ItemID, null);
+                IngredientButtons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, itemToReference.SourceTextureRectangle, GraphicsDevice, new Vector2(BackDropPosition.X + i * 60, ItemToCraftButton.Position.Y), CursorType.Normal, 4f));
+            }
+
         }
 
         public void Update(GameTime gameTime)
@@ -193,6 +205,10 @@ namespace SecretProject.Class.UI
         {
             ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
+            for(int i =0; i < IngredientButtons.Count; i++)
+            {
+                IngredientButtons[i].DrawNormal(spriteBatch, IngredientButtons[i].Position, IngredientButtons[i].BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+            }
         }
     }
 
@@ -329,6 +345,7 @@ namespace SecretProject.Class.UI
             {
                 CraftingMenu.CraftableRecipeBar.ActiveRecipe = this.Item.ID;
                 CraftingMenu.CraftableRecipeBar.ItemToCraftSourceRectangle = Item.SourceTextureRectangle;
+                CraftingMenu.CraftableRecipeBar.UpdateRecipe(this.Item.ID);
             }
         }
 
