@@ -92,30 +92,32 @@ namespace SecretProject.Class.UI
                 }
                 Tabs[ActiveTab].Update(gameTime);
 
-                CraftableRecipeBar.Update(gameTime);
-                this.FowardButton.Update(Game1.myMouseManager);
+                
+                
+            }
+            this.FowardButton.Update(Game1.myMouseManager);
 
-                if (this.FowardButton.isClicked)
+            if (this.FowardButton.isClicked)
+            {
+                if (Tabs[ActiveTab].ActivePage < Tabs[ActiveTab].Pages.Count - 1)
                 {
-                    if (Tabs[ActiveTab].ActivePage < Tabs[ActiveTab].Pages.Count - 1)
-                    {
-                        Tabs[ActiveTab].ActivePage++;
-                    }
-
+                    Tabs[ActiveTab].ActivePage++;
                 }
 
+            }
 
-                this.BackButton.Update(Game1.myMouseManager);
 
-                if (BackButton.isClicked)
+            this.BackButton.Update(Game1.myMouseManager);
+
+            if (BackButton.isClicked)
+            {
+                if (Tabs[ActiveTab].ActivePage > 0)
                 {
-                    if (Tabs[ActiveTab].ActivePage > 0)
-                    {
-                        Tabs[ActiveTab].ActivePage--;
-                    }
+                    Tabs[ActiveTab].ActivePage--;
                 }
             }
-            
+            CraftableRecipeBar.Update(gameTime);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -230,7 +232,7 @@ namespace SecretProject.Class.UI
             }
 
             ItemToCraftButton.Update(Game1.myMouseManager);
-            if(ItemToCraftButton.isClicked)
+            if(ItemToCraftButton.isClicked && craftable)
             {
                 Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ActiveRecipe,null));
                 for (int i = 0; i < Ingredients.Count; i++)
@@ -241,6 +243,7 @@ namespace SecretProject.Class.UI
                     }
                 }
                 Game1.SoundManager.CraftMetal.Play();
+
             }
         }
 
@@ -295,6 +298,8 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
+                new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
         }
     }
 
