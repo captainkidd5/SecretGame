@@ -71,7 +71,7 @@ namespace SecretProject.Class.DialogueStuff
             SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
             this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
             typedText = "";
-            parsedText = parseText(stringToWrite);
+            parsedText = ParseText(stringToWrite, this.LineLimit, this.Scale);
             isDoneDrawing = false;
             this.IsPaused = false;
             SelectableOptions = new List<SelectableOption>();
@@ -83,7 +83,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public void ChangedParsedText()
         {
-            this.parsedText = parseText(this.StringToWrite);
+            this.parsedText = ParseText(this.StringToWrite, this.LineLimit, this.Scale);
         }
 
         public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale, Vector2? positionToWriteTo, float? lineLimit)
@@ -240,7 +240,7 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
-        private String parseText(String text)
+        public String ParseText(String text, float lineLimit, float scale)
         {
             String line = String.Empty;
             String returnString = String.Empty;
@@ -248,7 +248,7 @@ namespace SecretProject.Class.DialogueStuff
 
             foreach (String word in wordArray)
             {
-                if (Game1.AllTextures.MenuText.MeasureString(line + word).Length() * Scale > LineLimit)
+                if (Game1.AllTextures.MenuText.MeasureString(line + word).Length() * scale > lineLimit)
                 {
                     returnString = returnString + line + '\n';
                     line = String.Empty;

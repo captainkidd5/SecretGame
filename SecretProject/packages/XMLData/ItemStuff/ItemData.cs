@@ -10,7 +10,9 @@ namespace XMLData.ItemStuff
     public class ItemData
     {
         public string Name { get; set; }
+        
         public int ID { get; set; }
+        public string Description { get; set; }
         public int InvMaximum { get; set; }
         public int TextureColumn { get; set; }
         public int TextureRow { get; set; }

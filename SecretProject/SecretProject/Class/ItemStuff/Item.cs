@@ -17,6 +17,7 @@ namespace SecretProject.Class.ItemStuff
     {
         public string Name { get; set; }
         public int ID { get; set; }
+        public string Description { get; set; }
 
         public int Count { get; set; } = 0;
         public int InvMaximum { get; set; }
@@ -74,12 +75,15 @@ namespace SecretProject.Class.ItemStuff
         public int Type { get; set; }
         public int AnimationColumn { get; set; }
 
+     
+
 
 
 
         public Item(ItemData itemData)
         {
             this.Name = itemData.Name;
+            this.Description = itemData.Description;
             this.InvMaximum = itemData.InvMaximum;
             this.ID = itemData.ID;
             this.Price = itemData.Price;

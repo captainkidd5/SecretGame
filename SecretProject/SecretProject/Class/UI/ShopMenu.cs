@@ -88,7 +88,7 @@ namespace SecretProject.Class.UI
                 {
                     if (Pages[i].Count < this.MaxMenuSlotsPerPage)
                     {
-                        Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X, ShopMenuPosition.Y + 128 + (96 * Pages[i].Count)), this.BackDropScale));
+                        Pages[i].Add(new ShopMenuSlot(this.Graphics, count, id, new Vector2(ShopMenuPosition.X, ShopMenuPosition.Y + 128 + (96 * Pages[i].Count)), this.BackDropScale + 1f));
                         return;
                     }
                 }
@@ -214,6 +214,10 @@ namespace SecretProject.Class.UI
             Button.Update(mouse);
             if (Stock > 0 && Button.IsHovered)
             {
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.FitText(Item.Description, 2f);
+               // Game1.Player.UserInterface.InfoBox.StringToWrite = Item.Name + "\n " + Item.Description;
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(drawPosition.X - 200, drawPosition.Y);
                 colorMultiplier = .5f;
                 if (Button.isClicked)
                 {
@@ -236,7 +240,8 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
             Button.Draw(spriteBatch, Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString() + "\n \n                   " + this.Item.Name + "\n \n                   Price: " + this.Item.Price, drawPosition, Color.White * colorMultiplier, backDropScale, backDropScale + 1f, layerDepthCustom: Game1.Utility.StandardButtonDepth);
+               Stock.ToString() + "\n \n                   " + this.Item.Name + "\n \n                   Price: " + this.Item.Price, drawPosition,
+               Color.White * colorMultiplier, backDropScale, Button.HitBoxScale, layerDepthCustom: Game1.Utility.StandardButtonDepth);
         }
 
     }

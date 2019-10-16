@@ -16,6 +16,7 @@ namespace XMLData.ItemStuff
             int debugID = iD;
             ItemData oldItem = AllItems.Find(x => x.ID == iD);
             newItem.Name = oldItem.Name;
+            newItem.Description = oldItem.Description;
             newItem.ID = oldItem.ID;
             newItem.InvMaximum = oldItem.InvMaximum;
             newItem.TextureColumn = oldItem.TextureColumn;
