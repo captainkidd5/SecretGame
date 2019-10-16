@@ -29,6 +29,10 @@ namespace SecretProject.Class.UI
 
         public List<ProgressBookPageHolder> TabData { get; set; }
 
+        public Button FowardButton { get; set; }
+        public Button BackButton { get; set; }
+        private Button redEsc;
+
         public ProgressBook(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
@@ -56,30 +60,12 @@ namespace SecretProject.Class.UI
                 
             }
 
-            //{
-            //    new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 144),
-            //    new Rectangle(624, 101, 27,32), this.BackDropScale),
-
-            //     new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 288),
-            //    new Rectangle(624, 101, 27,32), this.BackDropScale),
-
-            //      new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 432),
-            //    new Rectangle(624, 101, 27,32), this.BackDropScale)
-            //};
-
-            List<ProgressPageRequirement> tabZeroPageZeroRequirements = new List<ProgressPageRequirement>();
-
-            //foreach()
-
-            //tabZeroPageZeroRequirements.Add(new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(3, null),
-            //    new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + tabZeroPageZeroRequirements.Count * 96), 2, tabZeroPageZeroRequirements.Count,
-            //    this.BackDropScale));
-            //tabZeroPageZeroRequirements.Add(new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(1, null),
-            //    new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + tabZeroPageZeroRequirements.Count * 96), 4, tabZeroPageZeroRequirements.Count,
-            //    this.BackDropScale));
-            //Tabs[0].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
-            //Tabs[1].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
-            //Tabs[2].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
+            FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.GraphicsDevice,
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+            BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
+                this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
 
         }
 
@@ -108,6 +94,36 @@ namespace SecretProject.Class.UI
             }
 
             Tabs[ActiveTab].Update(gameTime);
+
+            this.FowardButton.Update(Game1.myMouseManager);
+
+            if (this.FowardButton.isClicked)
+            {
+                if (Tabs[ActiveTab].ActivePage < Tabs[ActiveTab].Pages.Count - 1)
+                {
+                    Tabs[ActiveTab].ActivePage++;
+                }
+
+            }
+
+
+            this.BackButton.Update(Game1.myMouseManager);
+
+            if (BackButton.isClicked)
+            {
+                if (Tabs[ActiveTab].ActivePage > 0)
+                {
+                    Tabs[ActiveTab].ActivePage--;
+                }
+            }
+            redEsc.Update(Game1.myMouseManager);
+
+
+            if (redEsc.isClicked)
+            {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                Game1.Player.UserInterface.CurrentOpenShop = 0;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -120,6 +136,31 @@ namespace SecretProject.Class.UI
             }
 
             Tabs[ActiveTab].Draw(spriteBatch);
+
+            if (Tabs[ActiveTab].ActivePage >= Tabs[ActiveTab].Pages.Count - 1)
+            {
+                this.FowardButton.DrawNormal(spriteBatch, FowardButton.Position, FowardButton.BackGroundSourceRectangle, Color.White * .5f,
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            }
+            else
+            {
+                this.FowardButton.DrawNormal(spriteBatch, FowardButton.Position, FowardButton.BackGroundSourceRectangle, Color.White,
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            }
+            if (Tabs[ActiveTab].ActivePage <= 0)
+            {
+                this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White * .5f,
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+
+            }
+            else
+            {
+                this.BackButton.DrawNormal(spriteBatch, BackButton.Position, BackButton.BackGroundSourceRectangle, Color.White,
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+
+            }
+
+            redEsc.Draw(spriteBatch);
         }
     }
 

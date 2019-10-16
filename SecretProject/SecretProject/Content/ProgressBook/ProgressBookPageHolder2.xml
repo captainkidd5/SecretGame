@@ -20,6 +20,24 @@
     </Item>
     </Requirements>
     </Item>
+     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
+    <TabNumber>0</TabNumber>
+    <PageNumber>1</PageNumber>
+    <Requirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>143</ItemIDRequired>
+    <CountRequired>2</CountRequired>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>161</ItemIDRequired>
+    <CountRequired>2</CountRequired>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>162</ItemIDRequired>
+    <CountRequired>1</CountRequired>
+    </Item>
+    </Requirements>
+    </Item>
   </Pages>
   </Asset>
 </XnaContent>
