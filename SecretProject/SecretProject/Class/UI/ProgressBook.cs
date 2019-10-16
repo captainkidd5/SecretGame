@@ -43,7 +43,7 @@ namespace SecretProject.Class.UI
             Tabs = new List<CategoryTab>();
             for(int i= 0; i < TabData.Count; i++)
             {
-                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + i * 144),
+                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 96 + i * 144),
                     new Rectangle(624, 101 + i *42, 27, 32), this.BackDropScale));
 
                 for(int j =0; j < TabData[i].Pages.Count; j++)
@@ -54,10 +54,10 @@ namespace SecretProject.Class.UI
                     for (int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
                     {
                         ProgressPageRequirement requirement = new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
-                            new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
+                            new Vector2(this.BackDropPosition.X + 64, this.BackDropPosition.Y + 100 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
                         page.Requirements.Add(requirement);
                     }
-                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height ), this.BackDropScale);
+                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 ), this.BackDropScale);
                     reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].RewardItemID, null);
                     reward.ItemCount = TabData[i].Pages[j].RewardItemCount;
                     page.Reward = reward;

@@ -15,8 +15,8 @@ namespace SecretProject.Class.Controls
     {
         Normal = -50,
         NormalHeld = -49,
-        Chopping = 0,
-        Mining = 1,
+        Chopping = 21,
+        Mining = 22,
         Planting = 2,
         Digging = 3,
         Door = 4,

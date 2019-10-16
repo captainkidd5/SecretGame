@@ -424,9 +424,8 @@ namespace SecretProject.Class.TileStuff
 
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 3)
                             {
-                                Game1.isMyMouseVisible = false;
                                 Game1.Player.UserInterface.DrawTileSelector = true;
-                                Game1.myMouseManager.ToggleGeneralInteraction = true;
+
                                 mouse.ChangeMouseTexture(CursorType.Digging);
 
                                 if (mouse.IsClicked)
@@ -488,10 +487,7 @@ namespace SecretProject.Class.TileStuff
                         //  if (container.Owned)
                         //   {
 
-
-                        Game1.isMyMouseVisible = false;
                         Game1.Player.UserInterface.DrawTileSelector = true;
-                        Game1.myMouseManager.ToggleGeneralInteraction = true;
                         mouse.ChangeMouseTexture(CursorType.Planting);
 
                         if (mouse.IsClicked)
