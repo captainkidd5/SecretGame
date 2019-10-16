@@ -49,12 +49,18 @@ namespace SecretProject.Class.UI
                 for(int j =0; j < TabData[i].Pages.Count; j++)
                 {
                     ProgressPage page = new ProgressPage();
-                    for(int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
+                    
+                   
+                    for (int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
                     {
                         ProgressPageRequirement requirement = new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
                             new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
                         page.Requirements.Add(requirement);
                     }
+                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height ), this.BackDropScale);
+                    reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].RewardItemID, null);
+                    reward.ItemCount = TabData[i].Pages[j].RewardItemCount;
+                    page.Reward = reward;
                     Tabs[i].Pages.Add(page);
                 }
                 
@@ -90,6 +96,17 @@ namespace SecretProject.Class.UI
                 if (Tabs[i].Button.isClicked)
                 {
                     this.ActiveTab = i;
+
+                }
+                if (ActiveTab == i)
+                {
+                    Tabs[i].IsActive = true;
+                    Tabs[i].ButtonColorMultiplier = .5f;
+                }
+                else
+                {
+                    Tabs[i].IsActive = false;
+                    Tabs[i].ButtonColorMultiplier = 1f;
                 }
             }
 
@@ -191,7 +208,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
 
-            // Pages[ActivePage].Update(gameTime);
+            Pages[ActivePage].Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -209,7 +226,7 @@ namespace SecretProject.Class.UI
     public class ProgressPage
     {
         public List<ProgressPageRequirement> Requirements { get; set; }
-
+        public Reward Reward { get; set; }
         public ProgressPage()
         {
             Requirements = new List<ProgressPageRequirement>();
@@ -222,6 +239,12 @@ namespace SecretProject.Class.UI
             {
                 Requirements[i].Update(gameTime);
             }
+
+            Reward.Button.Update(Game1.myMouseManager);
+            if(Reward.Button.isClicked)
+            {
+                Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -230,6 +253,8 @@ namespace SecretProject.Class.UI
             {
                 Requirements[i].Draw(spriteBatch);
             }
+
+            Reward.Draw(spriteBatch);
         }
     }
 
@@ -263,17 +288,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime)
         {
             Button.Update(Game1.myMouseManager);
-            //this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(Item.ID);
-            //if (this.CurrentCount >= CountRequired)
-            //{
-            //    this.Satisfied = true;
-            //    ColorMultiplier = 1f;
-            //}
-            //else
-            //{
-            //    this.Satisfied = false;
-            //    ColorMultiplier = .5f;
-            //}
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -281,6 +296,50 @@ namespace SecretProject.Class.UI
             Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
                 new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
+        }
+    }
+
+    public class Reward
+    {
+        public GraphicsDevice GraphicsDevice { get; set; }
+        public Button Button { get; set; }
+        public bool AvailableToClaim { get; set; }
+        public bool Claimed { get; set; }
+
+        public Vector2 PositionToDraw { get; set; }
+        public float Scale { get; set; }
+        public Rectangle InvisibleChestSourceRectangle { get; set; }
+        public Rectangle UnopenedChestSourceRectangle { get; set; }
+        public Rectangle OpenedChestSourceRectangle { get; set; }
+
+        public Item Item { get; set; }
+        public int ItemCount { get; set; }
+
+        public Reward(GraphicsDevice graphicsDevice,Vector2 positionToDraw, float scale)
+        {
+            this.GraphicsDevice = graphicsDevice;
+            this.AvailableToClaim = false;
+            this.Claimed = false;
+
+            this.PositionToDraw = positionToDraw;
+            this.Scale = scale;
+            InvisibleChestSourceRectangle = new Rectangle(496, 320, 32, 32);
+            UnopenedChestSourceRectangle = new Rectangle(526, 320, 32, 32);
+            OpenedChestSourceRectangle = new Rectangle(560, 320, 32, 32);
+
+            Button = new Button(Game1.AllTextures.UserInterfaceTileSet, InvisibleChestSourceRectangle, this.GraphicsDevice, this.PositionToDraw, CursorType.Normal, this.Scale);
+
+            
+        }
+
+        public void Update(GameTime gameTime)
+        {
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, .95f);
         }
     }
 }

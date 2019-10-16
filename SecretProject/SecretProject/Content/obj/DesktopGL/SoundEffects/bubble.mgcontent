@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/bubble.WAV</SourceFile>
   <SourceTime>2019-09-29T13:10:31.0190164-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/bubble.xnb</DestFile>
-  <DestTime>2019-10-03T11:04:01.9429169-07:00</DestTime>
+  <DestTime>2019-10-16T13:57:50.626236-07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

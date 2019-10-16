@@ -3,8 +3,8 @@
 <Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
   <Pages>
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
-    <TabNumber>0</TabNumber>
-    <PageNumber>0</PageNumber>
+<RewardItemID>167</RewardItemID>
+    <RewardItemCount>5</RewardItemCount>
     <Requirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>4</ItemIDRequired>
