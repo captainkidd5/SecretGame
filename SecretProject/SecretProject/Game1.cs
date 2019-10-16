@@ -90,8 +90,6 @@ namespace SecretProject
 
         //ContentManagers
         public ContentManager HomeContentManager;
-        public ContentManager SeaContentManager;
-        public ContentManager OrchardContentManager;
         public ContentManager MainMenuContentManager;
 
         //STAGES
@@ -224,13 +222,9 @@ namespace SecretProject
             graphics = new GraphicsDeviceManager(this);
 
             HomeContentManager = new ContentManager(Content.ServiceProvider);
-            SeaContentManager = new ContentManager(Content.ServiceProvider);
-            OrchardContentManager = new ContentManager(Content.ServiceProvider);
             MainMenuContentManager = new ContentManager(Content.ServiceProvider);
             Content.RootDirectory = "Content";
-            SeaContentManager.RootDirectory = "Content";
             HomeContentManager.RootDirectory = "Content";
-            OrchardContentManager.RootDirectory = "Content";
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions

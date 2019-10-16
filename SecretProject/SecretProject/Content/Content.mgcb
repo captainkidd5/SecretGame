@@ -930,6 +930,21 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
+#begin ProgressBook/ProgressBookPageHolder0.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:ProgressBook/ProgressBookPageHolder0.xml
+
+#begin ProgressBook/ProgressBookPageHolder1.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:ProgressBook/ProgressBookPageHolder1.xml
+
+#begin ProgressBook/ProgressBookPageHolder2.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:ProgressBook/ProgressBookPageHolder2.xml
+
 #begin Route/DobbinRouteSchedule.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

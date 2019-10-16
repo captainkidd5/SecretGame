@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+  <Pages>
+    <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
+    <TabNumber>0</TabNumber>
+    <PageNumber>0</PageNumber>
+    <Requirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>4</ItemIDRequired>
+    <CountRequired>7</CountRequired>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>144</ItemIDRequired>
+    <CountRequired>7</CountRequired>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>145</ItemIDRequired>
+    <CountRequired>2</CountRequired>
+    </Item>
+    </Requirements>
+    </Item>
+  </Pages>
+  </Asset>
+</XnaContent>

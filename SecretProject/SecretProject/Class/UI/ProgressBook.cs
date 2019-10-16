@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.ProgressBookStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -26,27 +27,72 @@ namespace SecretProject.Class.UI
         public List<CategoryTab> Tabs { get; set; }
         public int ActiveTab { get; set; }
 
+        public List<ProgressBookPageHolder> TabData { get; set; }
+
         public ProgressBook(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(432, 80, 192, 240);
-            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, -0);
+            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, 0);
             this.BackDropScale = 3f;
-            Tabs = new List<CategoryTab>()
+            LoadContent(content);
+            Tabs = new List<CategoryTab>();
+            for(int i= 0; i < TabData.Count; i++)
             {
-                new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 144),
-                new Rectangle(624, 101, 27,32), this.BackDropScale),
+                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + i * 144),
+                    new Rectangle(624, 101 + i *42, 27, 32), this.BackDropScale));
 
-                 new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 288),
-                new Rectangle(624, 101, 27,32), this.BackDropScale),
+                for(int j =0; j < TabData[i].Pages.Count; j++)
+                {
+                    ProgressPage page = new ProgressPage();
+                    for(int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
+                    {
+                        ProgressPageRequirement requirement = new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
+                            new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
+                        page.Requirements.Add(requirement);
+                    }
+                    Tabs[i].Pages.Add(page);
+                }
+                
+            }
 
-                  new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 432),
-                new Rectangle(624, 101, 27,32), this.BackDropScale)
-            };
+            //{
+            //    new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 144),
+            //    new Rectangle(624, 101, 27,32), this.BackDropScale),
 
-            Tabs[0].Pages.Add(new ProgressPage());
-            Tabs[1].Pages.Add(new ProgressPage());
-            Tabs[2].Pages.Add(new ProgressPage());
+            //     new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 288),
+            //    new Rectangle(624, 101, 27,32), this.BackDropScale),
+
+            //      new CategoryTab(this,this.GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 432),
+            //    new Rectangle(624, 101, 27,32), this.BackDropScale)
+            //};
+
+            List<ProgressPageRequirement> tabZeroPageZeroRequirements = new List<ProgressPageRequirement>();
+
+            //foreach()
+
+            //tabZeroPageZeroRequirements.Add(new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(3, null),
+            //    new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + tabZeroPageZeroRequirements.Count * 96), 2, tabZeroPageZeroRequirements.Count,
+            //    this.BackDropScale));
+            //tabZeroPageZeroRequirements.Add(new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(1, null),
+            //    new Vector2(this.BackDropPosition.X + 200, this.BackDropPosition.Y + 200 + tabZeroPageZeroRequirements.Count * 96), 4, tabZeroPageZeroRequirements.Count,
+            //    this.BackDropScale));
+            //Tabs[0].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
+            //Tabs[1].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
+            //Tabs[2].Pages.Add(new ProgressPage(tabZeroPageZeroRequirements));
+
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            TabData = new List<ProgressBookPageHolder>()
+            {
+                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder0"),
+                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder1"),
+                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder2")
+
+
+             };
 
         }
 
@@ -152,19 +198,25 @@ namespace SecretProject.Class.UI
         public Button Button { get; set; }
         public bool Satisfied { get; set; }
         public Item Item { get; set; }
+        public Vector2 ButtonPosition { get; set; }
         public int CurrentCount { get; set; }
         public int CountRequired { get; set; }
         public float ColorMultiplier { get; set; }
+        public int Index { get; set; }
+        public float Scale { get; set; }
 
-        public ProgressPageRequirement(GraphicsDevice graphics, Button button, Item item, int countRequired)
+        public ProgressPageRequirement(GraphicsDevice graphics, Item item, Vector2 buttonPosition, int countRequired, int index, float scale)
         {
             this.GraphicsDevice = graphics;
-            this.Button = button;
             this.Satisfied = false;
             this.Item = item;
+            this.ButtonPosition = buttonPosition;
             this.CurrentCount = 0;
             this.CountRequired = countRequired;
             this.ColorMultiplier = 1f;
+            this.Index = index;
+            this.Scale = scale;
+            this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, this.GraphicsDevice, this.ButtonPosition, CursorType.Normal, this.Scale);
         }
 
         public void Update(GameTime gameTime)
