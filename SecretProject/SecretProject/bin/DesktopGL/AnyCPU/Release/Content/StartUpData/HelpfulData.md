@@ -25,7 +25,8 @@
 
 ## Tool Keys
 
-Do not use 0. Keys 1-20 reserved for special cases. 20-30+ for tool interaction types.
+0.  : no item held
+1. Keys 1-20 reserved for special cases. 20-30+ for tool interaction types.
 
 ## Destructable Key Code
 

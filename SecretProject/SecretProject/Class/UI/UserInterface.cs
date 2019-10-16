@@ -143,6 +143,7 @@ namespace SecretProject.Class.UI
                     {
                         Game1.freeze = false;
                     }
+                    BottomBar.IsActive = true;
                     
                     Esc.isTextChanged = false;
                     PlayerStaminaBar.Update(gameTime);
@@ -246,6 +247,7 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
+                    BottomBar.IsActive = false;
                     break;
 
             }
