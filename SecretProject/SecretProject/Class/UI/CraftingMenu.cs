@@ -246,19 +246,27 @@ namespace SecretProject.Class.UI
             }
 
             ItemToCraftButton.Update(Game1.myMouseManager);
-            if(ItemToCraftButton.isClicked && craftable)
+            if(ItemToCraftButton.IsHovered)
             {
-                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ActiveRecipe,null));
-                for (int i = 0; i < Ingredients.Count; i++)
+                Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.FitText(item.Name + ": " + item.Description, 1f);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(ItemToCraftButton.Position.X + 200, ItemToCraftButton.Position.Y + 50);
+                if (ItemToCraftButton.isClicked && craftable)
                 {
-                    for(int j =0; j < Ingredients[i].CountRequired;j++)
+                    Game1.Player.Inventory.TryAddItem(item);
+                    for (int i = 0; i < Ingredients.Count; i++)
                     {
-                        Game1.Player.Inventory.RemoveItem(Ingredients[i].Item.ID);
+                        for (int j = 0; j < Ingredients[i].CountRequired; j++)
+                        {
+                            Game1.Player.Inventory.RemoveItem(Ingredients[i].Item.ID);
+                        }
                     }
-                }
-                Game1.SoundManager.CraftMetal.Play();
+                    Game1.SoundManager.CraftMetal.Play();
 
+                }
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

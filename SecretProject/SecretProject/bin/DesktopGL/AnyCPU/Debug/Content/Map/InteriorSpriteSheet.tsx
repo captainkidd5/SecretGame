@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.0" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.5" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
  <tile id="258">
   <objectgroup draworder="index">
@@ -339,6 +339,26 @@
  <tile id="1540">
   <properties>
    <property name="newSource" value="0,-16,16,16"/>
+  </properties>
+ </tile>
+ <tile id="1638">
+  <properties>
+   <property name="action" value="openProgressBook"/>
+  </properties>
+ </tile>
+ <tile id="1639">
+  <properties>
+   <property name="action" value="openProgressBook"/>
+  </properties>
+ </tile>
+ <tile id="1738">
+  <properties>
+   <property name="action" value="openProgressBook"/>
+  </properties>
+ </tile>
+ <tile id="1739">
+  <properties>
+   <property name="action" value="openProgressBook"/>
   </properties>
  </tile>
  <tile id="4743">
