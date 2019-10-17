@@ -40,7 +40,8 @@ namespace SecretProject.Class.UI
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
         LiftWindow = 5,
-        ProgressBook = 6
+        ProgressBook = 6,
+        DepositBox = 7
     }
     public class UserInterface
     {
@@ -72,6 +73,7 @@ namespace SecretProject.Class.UI
 
         public LiftWindow LiftWindow { get; set; }
         public ProgressBook ProgressBook { get; set; }
+        public DepositBox DepositBox { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
@@ -102,6 +104,7 @@ namespace SecretProject.Class.UI
             //CraftingMenu.LoadContent(content, GraphicsDevice);
             LiftWindow = new LiftWindow(graphicsDevice);
             ProgressBook = new ProgressBook(content, graphicsDevice);
+            this.DepositBox = new DepositBox(content, graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
@@ -250,6 +253,16 @@ namespace SecretProject.Class.UI
                     BottomBar.IsActive = false;
                     break;
 
+                case ExclusiveInterfaceItem.DepositBox:
+                    Game1.freeze = true;
+                    DepositBox.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
+
             }
             
            
@@ -310,6 +323,9 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.ProgressBook:
                     ProgressBook.Draw(spriteBatch);
+                    break;
+                case ExclusiveInterfaceItem.DepositBox:
+                    DepositBox.Draw(spriteBatch);
                     break;
             }
 

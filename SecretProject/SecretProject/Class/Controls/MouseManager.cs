@@ -21,6 +21,7 @@ namespace SecretProject.Class.Controls
         Digging = 3,
         Door = 4,
         Currency = 5,
+        NextChatWindow = 6,
         Chat = 200,
 
     }
@@ -88,6 +89,7 @@ namespace SecretProject.Class.Controls
         public Rectangle ChatInteractionSourceRectangle { get; set; }
         public Rectangle CurrencyInteractionSourceRectangle { get; set; }
         public Rectangle DoorInteractionSourceRectangle { get; set; }
+        public Rectangle NextChatWindowInteractionSourceRectangle { get; set; }
 
         public float HoldTimer { get; set; }
         public float RequiredHoldTime { get; set; }
@@ -113,6 +115,7 @@ namespace SecretProject.Class.Controls
             this.ChatInteractionSourceRectangle = new Rectangle(176, 256, 32, 32);
             this.CurrencyInteractionSourceRectangle = new Rectangle(16, 288, 32, 32);
             this.DoorInteractionSourceRectangle = new Rectangle(112, 288, 32, 32);
+            this.NextChatWindowInteractionSourceRectangle = new Rectangle(80, 288, 32, 32);
 
 
 
@@ -251,6 +254,9 @@ namespace SecretProject.Class.Controls
                     break;
                 case CursorType.Currency:
                     this.CursorSourceRectangle = CurrencyInteractionSourceRectangle;
+                    break;
+                case CursorType.NextChatWindow:
+                    this.CursorSourceRectangle = NextChatWindowInteractionSourceRectangle;
                     break;
                 default:
                     this.CursorSourceRectangle = NormalInteractionSourceRectangle;

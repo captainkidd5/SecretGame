@@ -667,7 +667,7 @@ namespace SecretProject.Class.TileStuff
                         mouse.ChangeMouseTexture(CursorType.Normal);
                         if(mouse.IsClicked)
                         {
-                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.ProgressBook;
+                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.DepositBox;
                         }
                         
                         break;

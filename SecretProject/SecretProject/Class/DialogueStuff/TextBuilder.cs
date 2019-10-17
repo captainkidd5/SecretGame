@@ -78,7 +78,7 @@ namespace SecretProject.Class.DialogueStuff
             this.MoveToSelectableOptions = false;
             this.HaveOptionsBeenChecked = false;
             this.AreSelectableOptionsActivated = false;
-            
+
         }
 
         public void ChangedParsedText()
@@ -89,31 +89,31 @@ namespace SecretProject.Class.DialogueStuff
         public void Activate(bool useTextBox, TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale, Vector2? positionToWriteTo, float? lineLimit)
         {
 
-                this.IsActive = true;
-                this.UseTextBox = useTextBox;
-                this.TextBoxType = textBoxType;
-                this.FreezeStage = freezeStage;
-                this.StringToWrite = stringToWrite;
-                this.Scale = scale;
-                this.SpeedAnchor = .1f;
+            this.IsActive = true;
+            this.UseTextBox = useTextBox;
+            this.TextBoxType = textBoxType;
+            this.FreezeStage = freezeStage;
+            this.StringToWrite = stringToWrite;
+            this.Scale = scale;
+            this.SpeedAnchor = .1f;
 
 
-                ChangedParsedText();
+            ChangedParsedText();
 
-                if (this.UseTextBox)
+            if (this.UseTextBox)
+            {
+                this.PositionToWriteTo = new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y);
+                this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
+            }
+            else
+            {
+                this.PositionToWriteTo = (Vector2)positionToWriteTo;
+                if (lineLimit != null)
                 {
-                    this.PositionToWriteTo = new Vector2(SpeechBox.DestinationRectangle.X, SpeechBox.DestinationRectangle.Y);
-                    this.LineLimit = SpeechBox.DestinationRectangle.Width - 100;
+                    this.LineLimit = (float)lineLimit;
                 }
-                else
-                {
-                    this.PositionToWriteTo = (Vector2)positionToWriteTo;
-                    if (lineLimit != null)
-                    {
-                        this.LineLimit = (float)lineLimit;
-                    }
-                }
-            
+            }
+
         }
 
         public void Update(GameTime gameTime)
@@ -125,22 +125,28 @@ namespace SecretProject.Class.DialogueStuff
                     Reset();
                     this.IsActive = false;
                 }
-                    if (UseTextBox)
+                if (UseTextBox)
                 {
                     Game1.Player.UserInterface.BottomBar.IsActive = false;
-                    
+
                 }
                 if (AreSelectableOptionsActivated)
                 {
                     Game1.freeze = true;
+                    ClearWindowForResponse();
                     foreach (SelectableOption option in SelectableOptions)
                     {
-                        option.Update(gameTime,this.SpeakerName,this.SpeakerID);
+                        option.Update(gameTime, this.SpeakerName, this.SpeakerID);
                     }
                 }
 
                 else
                 {
+
+                    if (this.IsPaused && this.NumberOfClicks == 0 && Game1.myMouseManager.IsHovering(this.SpeechBox.DestinationRectangle))
+                    {
+                        Game1.myMouseManager.ChangeMouseTexture(CursorType.NextChatWindow);
+                    }
 
 
                     if (NumberOfClicks >= 1)
@@ -191,6 +197,7 @@ namespace SecretProject.Class.DialogueStuff
                     if (FreezeStage && NumberOfClicks < 2)
                     {
                         Game1.freeze = true;
+
                     }
                     else
                     {
@@ -209,7 +216,7 @@ namespace SecretProject.Class.DialogueStuff
                         {
                             if (parsedText[(int)typedTextLength + 1] == '#')
                             {
-                                parsedText.Remove((int)typedTextLength , 1);
+                                parsedText.Remove((int)typedTextLength, 1);
                                 //typedTextLength--;
                                 PauseUntilInput();
 
@@ -219,6 +226,7 @@ namespace SecretProject.Class.DialogueStuff
                                 parsedText.Remove((int)typedTextLength, 1);
                                 //typedTextLength--;
                                 PauseUntilInput();
+
                                 this.MoveToSelectableOptions = true;
 
                             }
@@ -292,8 +300,8 @@ namespace SecretProject.Class.DialogueStuff
             this.SpeakerID = -1;
 
 
-    }
-      
+        }
+
 
         public void MoveTextToNewWindow()
         {
@@ -302,7 +310,14 @@ namespace SecretProject.Class.DialogueStuff
             this.typedTextLength = 0;
             StringToWrite = StringToWrite.Split(new[] { '#' }, 2)[1];
             ChangedParsedText();
-            
+
+        }
+
+        public void ClearWindowForResponse()
+        {
+            this.typedText = "";
+            this.NumberOfClicks = 0;
+            this.typedTextLength = 0;
         }
 
         public void PauseUntilInput()
@@ -310,27 +325,28 @@ namespace SecretProject.Class.DialogueStuff
             this.NumberOfClicks = 0;
             this.IsPaused = true;
 
+
         }
 
         public void CheckSelectableOptions(DialogueSkeleton skeleton)
         {
             string[] options = skeleton.SelectableOptions.Split(',');
-            for(int s = 0; s < options.Length; s++)
+            for (int s = 0; s < options.Length; s++)
             {
                 string response = options[s].Split('~')[0];
                 string action = options[s].Split('~')[1];
-                SelectableOptions.Add(new SelectableOption(response,action, new Vector2(PositionToWriteTo.X + s*300, PositionToWriteTo.Y + 50)));
+                SelectableOptions.Add(new SelectableOption(response, action, new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y + 64 * s)));
             }
-            if(options.Length > 0)
+            if (options.Length > 0)
             {
                 this.AreSelectableOptionsActivated = true;
             }
-            
+
             //Reset();
-            
-            
+
+
         }
-        
+
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
             if (IsActive)
@@ -342,12 +358,12 @@ namespace SecretProject.Class.DialogueStuff
 
                         case TextBoxType.normal:
                             SpeechBox = new TextBox(TextBoxLocation, 0);
-                            SpeechBox.position = new Vector2(PositionToWriteTo.X , PositionToWriteTo.Y);
+                            SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
                             SpeechBox.DrawWithoutString(spriteBatch);
                             break;
                         case TextBoxType.dialogue:
                             SpeechBox = new TextBox(TextBoxLocation, 1);
-                            SpeechBox.position = new Vector2(PositionToWriteTo.X- 50, PositionToWriteTo.Y- 50);
+                            SpeechBox.position = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
                             SpeechBox.DrawWithoutString(spriteBatch);
                             break;
 
@@ -355,9 +371,9 @@ namespace SecretProject.Class.DialogueStuff
                 }
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, typedText, this.PositionToWriteTo, this.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, 1f);
 
-                if(this.AreSelectableOptionsActivated)
+                if (this.AreSelectableOptionsActivated)
                 {
-                    foreach(SelectableOption option in SelectableOptions)
+                    foreach (SelectableOption option in SelectableOptions)
                     {
                         option.Draw(spriteBatch);
                     }
@@ -393,18 +409,18 @@ namespace SecretProject.Class.DialogueStuff
             this.Response = response;
             this.Action = action;
             Button = new Button(new Rectangle((int)position.X, (int)position.Y, (int)Game1.AllTextures.MenuText.MeasureString(response).X,
-                (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal); 
+                (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal);
         }
 
         public void Update(GameTime gameTime, string speakerName, int speakerID)
         {
             Button.UpdateSelectableText(Game1.myMouseManager);
-            if(Button.isClicked)
+            if (Button.isClicked)
             {
                 Game1.Utility.PerformSpeechAction(this.Action, speakerID, speakerName);
-                
+
             }
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
