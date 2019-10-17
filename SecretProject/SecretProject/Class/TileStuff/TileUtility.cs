@@ -663,7 +663,14 @@ namespace SecretProject.Class.TileStuff
                         }
                         break;
 
-
+                    case "openProgressBook":
+                        mouse.ChangeMouseTexture(CursorType.Normal);
+                        if(mouse.IsClicked)
+                        {
+                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.ProgressBook;
+                        }
+                        
+                        break;
                 }
             }
         }
