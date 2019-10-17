@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 
 namespace SecretProject.Class.ItemStuff
 {
-    [Serializable,]
+
     public class Inventory
 
     {
@@ -42,11 +42,11 @@ namespace SecretProject.Class.ItemStuff
             ItemCount = 0;
             this.Capacity = capacity;
             currentInventory = new List<InventorySlot>(Capacity - 1);
-            for(int i = 0; i < Capacity; i++)
+            for (int i = 0; i < Capacity; i++)
             {
                 currentInventory.Add(new InventorySlot());
             }
-            
+
         }
 
         public void Update(GameTime gameTime)
@@ -134,8 +134,8 @@ namespace SecretProject.Class.ItemStuff
             int counter = 0;
             foreach (InventorySlot s in currentInventory)
             {
-               counter+=s.SlotItems.Count(x => x.ID == id);
-                       
+                counter += s.SlotItems.Count(x => x.ID == id);
+
             }
             return counter;
         }
@@ -182,8 +182,8 @@ namespace SecretProject.Class.ItemStuff
         }
 
         public void AddItemToSlot(Item item)
-        {  
-          SlotItems.Add(item);
+        {
+            SlotItems.Add(item);
         }
 
     }
