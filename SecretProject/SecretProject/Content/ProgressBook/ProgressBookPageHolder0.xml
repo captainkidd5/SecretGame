@@ -3,15 +3,18 @@
 <Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
   <Pages>
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
-<RewardItemID>207</RewardItemID>
-    <RewardItemCount>5</RewardItemCount>
-    <Requirements>
+    <UnlockableItems>
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>207</RewardItemID>
+    <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>4</ItemIDRequired>
-    <CountRequired>7</CountRequired>
+    <ItemIDRequired>3</ItemIDRequired>
+    <CountRequired>8</CountRequired>
     </Item>
-    </Requirements>
+    </ItemRequirements>
     </Item>
-  </Pages>
-  </Asset>
+    </UnlockableItems>
+    </Item>
+    </Pages>
+    </Asset>
 </XnaContent>

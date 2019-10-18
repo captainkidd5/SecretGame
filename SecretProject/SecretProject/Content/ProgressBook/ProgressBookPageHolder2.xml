@@ -3,41 +3,18 @@
 <Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
   <Pages>
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
-    <RewardItemID>187</RewardItemID>
-    <RewardItemCount>5</RewardItemCount>
-    <Requirements>
+    <UnlockableItems>
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>207</RewardItemID>
+    <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>4</ItemIDRequired>
-    <CountRequired>7</CountRequired>
+    <ItemIDRequired>2</ItemIDRequired>
+    <CountRequired>8</CountRequired>
     </Item>
-    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>144</ItemIDRequired>
-    <CountRequired>7</CountRequired>
+    </ItemRequirements>
     </Item>
-    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>145</ItemIDRequired>
-    <CountRequired>2</CountRequired>
+    </UnlockableItems>
     </Item>
-    </Requirements>
-    </Item>
-     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
-    <RewardItemID>227</RewardItemID>
-    <RewardItemCount>5</RewardItemCount>
-    <Requirements>
-    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>143</ItemIDRequired>
-    <CountRequired>2</CountRequired>
-    </Item>
-    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>161</ItemIDRequired>
-    <CountRequired>2</CountRequired>
-    </Item>
-    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>162</ItemIDRequired>
-    <CountRequired>1</CountRequired>
-    </Item>
-    </Requirements>
-    </Item>
-  </Pages>
-  </Asset>
+    </Pages>
+    </Asset>
 </XnaContent>

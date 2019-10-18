@@ -48,21 +48,34 @@ namespace SecretProject.Class.UI
 
                 for(int j =0; j < TabData[i].Pages.Count; j++)
                 {
-                    UnlockableItem page = new UnlockableItem();
-                    
+                    UnlockableItemPage page = new UnlockableItemPage();
+
                    
-                    for (int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
+                    for (int z =0; z < TabData[i].Pages[j].UnlockableItems.Count; z++)
                     {
-                        UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
-                            new Vector2(this.BackDropPosition.X + 64, this.BackDropPosition.Y + 100 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
-                        page.Requirements.Add(requirement);
+
+                        UnlockableItem unlockableItem = new UnlockableItem();
+                        for(int x = 0; x< TabData[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
+                        {
+                            UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].ItemIDRequired, null),
+                           new Vector2(this.BackDropPosition.X + 64, this.BackDropPosition.Y + 100 + z * 96), TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].CountRequired, z, this.BackDropScale);
+                            unlockableItem.Requirements.Add(requirement);
+                        }
+
+                        Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale);
+                        reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].UnlockableItems[z].RewardItemID, null);
+                        reward.RewardName = reward.Item.Name;
+                        unlockableItem.Reward = reward;
+
+                        page.UnlockableItems.Add(unlockableItem);
+
                     }
-                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 ), this.BackDropScale);
-                    reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].RewardItemID, null);
-                    reward.ItemCount = TabData[i].Pages[j].RewardItemCount;
-                    reward.RewardName = reward.Item.Name;
-                    page.Reward = reward;
+
                     Tabs[i].Pages.Add(page);
+
+
+
+                    
                 }
                 
             }
@@ -188,7 +201,7 @@ namespace SecretProject.Class.UI
         public int Index { get; set; }
         public bool IsActive { get; set; }
         public int ActivePage { get; set; }
-        public List<UnlockableItem> Pages { get; set; }
+        public List<UnlockableItemPage> Pages { get; set; }
 
         public Button Button { get; set; }
 
@@ -203,7 +216,7 @@ namespace SecretProject.Class.UI
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, SourceRectangle, graphics, PositionToDraw, CursorType.Normal, scale);
             this.ButtonColorMultiplier = 1f;
             this.ActivePage = 0;
-            this.Pages = new List<UnlockableItem>();
+            this.Pages = new List<UnlockableItemPage>();
         }
 
         public void Update(GameTime gameTime)
@@ -224,8 +237,36 @@ namespace SecretProject.Class.UI
 
     }
 
+    public class UnlockableItemPage
+    {
+        public List<UnlockableItem> UnlockableItems { get; set; }
+        public UnlockableItemPage()
+        {
+            UnlockableItems = new List<UnlockableItem>();
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            for(int i =0; i < UnlockableItems.Count;i++)
+            {
+                UnlockableItems[i].Update(gameTime);
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < UnlockableItems.Count; i++)
+            {
+                UnlockableItems[i].Draw(spriteBatch);
+            }
+        }
+    }
+
     public class UnlockableItem
     {
+        public Button ToolTip { get; set; }
+        public Rectangle ToolTipSourceRectangle { get; set; }
+        public Vector2 ToolTipPosition { get; set; }
         public List<UnlockableItemRequirement> Requirements { get; set; }
         public Reward Reward { get; set; }
         public UnlockableItem()
@@ -322,7 +363,6 @@ namespace SecretProject.Class.UI
         public Rectangle OpenedChestSourceRectangle { get; set; }
 
         public Item Item { get; set; }
-        public int ItemCount { get; set; }
 
         public Reward(GraphicsDevice graphicsDevice,Vector2 positionToDraw, float scale)
         {
