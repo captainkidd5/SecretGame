@@ -13,6 +13,15 @@
     </Item>
     </ItemRequirements>
     </Item>
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>232</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>231</ItemIDRequired>
+    <CountRequired>3</CountRequired>
+    </Item>
+    </ItemRequirements>
+    </Item>
     </UnlockableItems>
     </Item>
     </Pages>
