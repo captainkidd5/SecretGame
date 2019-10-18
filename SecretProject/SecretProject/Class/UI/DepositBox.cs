@@ -27,8 +27,8 @@ namespace SecretProject.Class.UI
         public DepositBox(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
-            this.BackDropSourceRectangle = new Rectangle(1120, 160, 240, 80);
-            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, Game1.ScreenHeight / 2);
+            this.BackDropSourceRectangle = new Rectangle(1072, 160, 288, 160);
+            this.BackDropPosition = new Vector2(Game1.ScreenWidth /7, Game1.ScreenHeight / 16);
             this.BackDropScale = 3f;
 
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,

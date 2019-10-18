@@ -8,18 +8,22 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Hey! Welcome to Town! # My name is Julian, I run the workshop. I could always use more help making schematics! Anyway, would you like to see whats for sale? `
+   <TextToWrite>Hey! Welcome to Town! # My name is Julian, I run the workshop. # 
+   If you want o learn new crafting recipes and make cool furniture and machines 
+   you're more than welcome to take a look at that blueprint table over there. #
+   Once all the missing parts have been filled in I can start my research and you'll have access
+   to our invention as well! `
    </TextToWrite>
-   <SelectableOptions>yes~OpenJulianShop,no~ExitDialogue, Where can I find schematics?~Load.11</SelectableOptions>
+   <SelectableOptions>Shop~OpenJulianShop,Great!~ExitDialogue, Where can I find blueprint parts?~Load.11</SelectableOptions>
     </Item>
      <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>11</SpeechID>
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>You can find them in chests scattered across the wilderness or discover them while crafting! # Is there anything else? `
+   <TextToWrite>You can find blueprint parts in the wilderness, but sometimes you'll need to craft them. # Is there anything else? `
    </TextToWrite>
-   <SelectableOptions>no~ExitDialogue</SelectableOptions>
+   <SelectableOptions>no~ExitDialogue,Shop~OpenJulianShop</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>

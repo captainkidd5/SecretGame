@@ -262,6 +262,8 @@ namespace SecretProject.Class.UI
     {
         public GraphicsDevice GraphicsDevice { get; set; }
         public Button Button { get; set; }
+        public Button ItemDropButton { get; set; }
+        public Rectangle ItemDropButtonSourceRectangle { get; set; }
         public bool Satisfied { get; set; }
         public Item Item { get; set; }
         public Vector2 ButtonPosition { get; set; }
@@ -283,11 +285,14 @@ namespace SecretProject.Class.UI
             this.Index = index;
             this.Scale = scale;
             this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, this.GraphicsDevice, this.ButtonPosition, CursorType.Normal, this.Scale);
+            this.ItemDropButtonSourceRectangle = new Rectangle(464, 320, 32, 32);
+            this.ItemDropButton = new Button(Game1.AllTextures.UserInterfaceTileSet, this.ItemDropButtonSourceRectangle, this.GraphicsDevice, new Vector2(this.ButtonPosition.X + 120, this.ButtonPosition.Y), CursorType.Normal, this.Scale);
         }
 
         public void Update(GameTime gameTime)
         {
             Button.Update(Game1.myMouseManager);
+            this.ItemDropButton.Update(Game1.myMouseManager);
 
         }
 
@@ -295,7 +300,9 @@ namespace SecretProject.Class.UI
         {
             Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
-                new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
+                new Vector2(Button.Position.X, Button.Position.Y + 50), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
+
+            this.ItemDropButton.DrawNormal(spriteBatch, ItemDropButton.Position, ItemDropButton.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
         }
     }
 

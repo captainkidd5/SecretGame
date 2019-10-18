@@ -386,6 +386,10 @@ namespace SecretProject
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue };
+            foreach(DialogueHolder holder in tempListHolder)
+            {
+                holder.RemoveAllNewLines();
+            }
             DialogueLibrary = new DialogueLibrary(tempListHolder);
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
