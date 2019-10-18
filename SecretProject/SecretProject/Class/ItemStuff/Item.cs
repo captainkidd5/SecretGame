@@ -45,8 +45,6 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice Graphics { get; set; }
 
         public ContentManager Content { get; set; }
-
-        public bool IsPlaceable { get; set; } = false;
         public bool IsPlantable { get; set; }
 
         public PlaceableBuilding Building { get; set; }

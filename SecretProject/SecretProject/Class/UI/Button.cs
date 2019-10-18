@@ -96,7 +96,7 @@ namespace SecretProject.Class.MenuStuff
 
             if (mouse.IsHovering(HitBoxRectangle))
             {
-                Color = Color.White * .5f;
+                Color = this.Color * .5f;
                 IsHovered = true;
                 if (this.CursorType != 0)
                 {
@@ -113,7 +113,7 @@ namespace SecretProject.Class.MenuStuff
             }
             else
             {
-                Color = Color.White;
+                Color = this.Color * 1f;
                 isClicked = false;
                 IsHovered = false;
 
@@ -145,7 +145,7 @@ namespace SecretProject.Class.MenuStuff
 
             if (mouse.IsHovering(SelectableTextRectangle))
             {
-                Color = Color.White * .5f;
+                Color = this.Color * .5f;
                 IsHovered = true;
                 mouse.ChangeMouseTexture(CursorType.Normal);
                 if (mouse.IsClicked)
@@ -157,7 +157,7 @@ namespace SecretProject.Class.MenuStuff
             }
             else
             {
-                Color = Color.White;
+                Color = this.Color * 1f;
                 isClicked = false;
                 IsHovered = false;
 

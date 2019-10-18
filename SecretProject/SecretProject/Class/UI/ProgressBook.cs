@@ -41,24 +41,24 @@ namespace SecretProject.Class.UI
             this.BackDropScale = 3f;
             LoadContent(content);
             Tabs = new List<CategoryTab>();
-            for(int i= 0; i < TabData.Count; i++)
+            for (int i = 0; i < TabData.Count; i++)
             {
-                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i*96, this.BackDropPosition.Y  - 96),
-                    new Rectangle(480 + i * 32, 80 , 32, 32), this.BackDropScale));
+                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 96, this.BackDropPosition.Y - 96),
+                    new Rectangle(480 + i * 32, 80, 32, 32), this.BackDropScale));
 
-                for(int j =0; j < TabData[i].Pages.Count; j++)
+                for (int j = 0; j < TabData[i].Pages.Count; j++)
                 {
                     UnlockableItemPage page = new UnlockableItemPage();
 
-                   
-                    for (int z =0; z < TabData[i].Pages[j].UnlockableItems.Count; z++)
+
+                    for (int z = 0; z < TabData[i].Pages[j].UnlockableItems.Count; z++)
                     {
 
                         UnlockableItem unlockableItem = new UnlockableItem();
-                        for(int x = 0; x< TabData[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
+                        for (int x = 0; x < TabData[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
                         {
                             UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].ItemIDRequired, null),
-                           new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * 2 -100  + x * 96, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2  - 64), TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].CountRequired, z, this.BackDropScale);
+                           new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * 2 - 100 + x * 96, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 - 64), TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].CountRequired, z, this.BackDropScale);
                             unlockableItem.Requirements.Add(requirement);
                         }
 
@@ -80,9 +80,9 @@ namespace SecretProject.Class.UI
 
 
 
-                    
+
                 }
-                
+
             }
 
             FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.GraphicsDevice,
@@ -250,12 +250,12 @@ namespace SecretProject.Class.UI
         {
             this.ActiveItem = 0;
             UnlockableItems = new List<UnlockableItem>();
-           
+
         }
 
         public void Update(GameTime gameTime)
         {
-            for(int i =0; i < UnlockableItems.Count;i++)
+            for (int i = 0; i < UnlockableItems.Count; i++)
             {
                 if (UnlockableItems[i].ToolTip.IsHovered)
                 {
@@ -266,7 +266,7 @@ namespace SecretProject.Class.UI
                     UnlockableItems[i].ToolTipColorMultiplier = 1f;
                 }
                 UnlockableItems[i].ToolTip.Update(Game1.myMouseManager);
-                if(UnlockableItems[i].ToolTip.isClicked)
+                if (UnlockableItems[i].ToolTip.isClicked)
                 {
                     this.ActiveItem = i;
                 }
@@ -279,7 +279,7 @@ namespace SecretProject.Class.UI
         {
             for (int i = 0; i < UnlockableItems.Count; i++)
             {
-                
+
                 UnlockableItems[i].ToolTip.DrawNormal(spriteBatch, UnlockableItems[i].ToolTip.Position, UnlockableItems[i].ToolTip.BackGroundSourceRectangle,
                     Color.White * UnlockableItems[i].ToolTipColorMultiplier, 0f, Game1.Utility.Origin, UnlockableItems[i].ToolTip.HitBoxScale,
                     SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
@@ -297,45 +297,75 @@ namespace SecretProject.Class.UI
         public Vector2 ToolTipPosition { get; set; }
         public List<UnlockableItemRequirement> Requirements { get; set; }
         public Reward Reward { get; set; }
+        public bool RewardSatisfied { get; set; }
         public UnlockableItem()
         {
             Requirements = new List<UnlockableItemRequirement>();
             this.ToolTipColorMultiplier = 1f;
+            this.RewardSatisfied = false;
         }
 
         public void Update(GameTime gameTime)
         {
-            // ToolTip.Update(Game1.myMouseManager);
-            this.ToolTipColorMultiplier = .5f;
+            if(!Reward.Claimed)
+            {
+                this.RewardSatisfied = true;
+                // ToolTip.Update(Game1.myMouseManager);
+                this.ToolTipColorMultiplier = .5f;
                 for (int i = 0; i < this.Requirements.Count; i++)
                 {
                     Requirements[i].Update(gameTime);
+                    if (!Requirements[i].Satisfied)
+                    {
+                        this.RewardSatisfied = false;
+                    }
                 }
 
                 Reward.Button.Update(Game1.myMouseManager);
-                if (Reward.Button.isClicked)
+                if (this.RewardSatisfied)
+                {
+                    Reward.Button.BackGroundSourceRectangle = Reward.UnopenedChestSourceRectangle;
+                }
+                if (Reward.Button.isClicked && Reward.Button.BackGroundSourceRectangle == Reward.UnopenedChestSourceRectangle)
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
+                    Reward.Claimed = true;
+                    for(int i =0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
+                    {
+                        for(int j =0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
+                        {
+                            for(int z =0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
+                            {
+                                if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == Reward.Item.ID)
+                                {
+                                    Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
+                                }
+                            }
+                        }
+                    }
+                    
                 }
-
-
+            }
             
+
+
+
         }
-            
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
 
 
-                for (int i = 0; i < this.Requirements.Count; i++)
-                {
-                    Requirements[i].Draw(spriteBatch);
-                }
 
-                Reward.Draw(spriteBatch);
+            for (int i = 0; i < this.Requirements.Count; i++)
+            {
+                Requirements[i].Draw(spriteBatch);
+            }
+
+            Reward.Draw(spriteBatch);
             ToolTip.DrawNormal(spriteBatch, new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 200), ToolTip.BackGroundSourceRectangle,
-                    Color.White, 0f, Game1.Utility.Origin,6f,
+                    Color.White, 0f, Game1.Utility.Origin, 6f,
                     SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
         }
@@ -377,6 +407,29 @@ namespace SecretProject.Class.UI
             Button.Update(Game1.myMouseManager);
             this.ItemDropButton.Update(Game1.myMouseManager);
 
+            if (!this.Satisfied)
+            {
+                if (ItemDropButton.IsHovered)
+                {
+                    if (Game1.Player.UserInterface.BottomBar.WasSlotJustReleased)
+                    {
+                        if (Game1.Player.UserInterface.BottomBar.ItemJustReleased.ID == this.Item.ID)
+                        {
+
+                            this.CurrentCount++;
+                            Game1.Player.Inventory.RemoveItem(this.Item.ID);
+                        }
+                       // Console.WriteLine(Game1.Player.UserInterface.BottomBar.ItemJustReleased.Name + "was just released");
+                    }
+                }
+            }
+
+            if(this.CurrentCount >= CountRequired)
+            {
+                this.Satisfied = true;
+            }
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -405,7 +458,7 @@ namespace SecretProject.Class.UI
 
         public Item Item { get; set; }
 
-        public Reward(GraphicsDevice graphicsDevice,Vector2 positionToDraw, float scale)
+        public Reward(GraphicsDevice graphicsDevice, Vector2 positionToDraw, float scale)
         {
             this.GraphicsDevice = graphicsDevice;
             this.AvailableToClaim = false;
@@ -414,12 +467,12 @@ namespace SecretProject.Class.UI
             this.PositionToDraw = positionToDraw;
             this.Scale = scale;
             InvisibleChestSourceRectangle = new Rectangle(496, 320, 32, 32);
-            UnopenedChestSourceRectangle = new Rectangle(526, 320, 32, 32);
+            UnopenedChestSourceRectangle = new Rectangle(528, 320, 32, 32);
             OpenedChestSourceRectangle = new Rectangle(560, 320, 32, 32);
 
             Button = new Button(Game1.AllTextures.UserInterfaceTileSet, InvisibleChestSourceRectangle, this.GraphicsDevice, this.PositionToDraw, CursorType.Normal, this.Scale);
 
-            
+
         }
 
         public void Update(GameTime gameTime)

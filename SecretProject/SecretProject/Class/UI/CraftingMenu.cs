@@ -193,6 +193,8 @@ namespace SecretProject.Class.UI
         public Vector2 BackDropPosition { get; set; }
 
         public float ColorMultiplier { get; set; }
+        public bool Locked { get; set; }
+        public Color Color { get; set; }
         public CraftableRecipeBar(CraftingGuide craftingGuide,GraphicsDevice graphics, Rectangle backDropSourceRectangle,Vector2 backDropPosition, float backDropScale)
         {
             this.GraphicsDevice = graphics;
@@ -208,6 +210,8 @@ namespace SecretProject.Class.UI
             this.BackDropPosition = backDropPosition;
 
             this.ColorMultiplier = 1f;
+            this.Locked = true;
+            this.Color = Color.Black;
         }
 
         public void UpdateRecipe(int craftableItemID)
@@ -225,57 +229,66 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            bool craftable = true;
-            for (int i = 0; i < Ingredients.Count; i++)
+            if(!this.Locked)
             {
-                Ingredients[i].Update(gameTime);
-                if(!Ingredients[i].Satisfied)
+                this.Color = Color.White;
+                bool craftable = true;
+                for (int i = 0; i < Ingredients.Count; i++)
                 {
-                    craftable = false;
+                    Ingredients[i].Update(gameTime);
+                    if (!Ingredients[i].Satisfied)
+                    {
+                        craftable = false;
+                    }
                 }
-            }
 
-            if(craftable)
-            {
-                this.ColorMultiplier = 1f;
+                if (craftable)
+                {
+                    this.ColorMultiplier = 1f;
+                }
+                else
+                {
+                    this.ColorMultiplier = .5f;
+
+                }
+
+                ItemToCraftButton.Update(Game1.myMouseManager);
+                if (ItemToCraftButton.IsHovered)
+                {
+                    Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
+                    Game1.Player.UserInterface.InfoBox.IsActive = true;
+                    Game1.Player.UserInterface.InfoBox.FitText(item.Name + ": " + item.Description, 1f);
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(ItemToCraftButton.Position.X + 200, ItemToCraftButton.Position.Y + 50);
+                    if (ItemToCraftButton.isClicked && craftable)
+                    {
+                        Game1.Player.Inventory.TryAddItem(item);
+                        for (int i = 0; i < Ingredients.Count; i++)
+                        {
+                            for (int j = 0; j < Ingredients[i].CountRequired; j++)
+                            {
+                                Game1.Player.Inventory.RemoveItem(Ingredients[i].Item.ID);
+                            }
+                        }
+                        Game1.SoundManager.CraftMetal.Play();
+
+                    }
+                }
             }
             else
             {
-                this.ColorMultiplier = .5f;
-
+                this.Color = Color.Black;
             }
-
-            ItemToCraftButton.Update(Game1.myMouseManager);
-            if(ItemToCraftButton.IsHovered)
-            {
-                Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
-                Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText(item.Name + ": " + item.Description, 1f);
-                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(ItemToCraftButton.Position.X + 200, ItemToCraftButton.Position.Y + 50);
-                if (ItemToCraftButton.isClicked && craftable)
-                {
-                    Game1.Player.Inventory.TryAddItem(item);
-                    for (int i = 0; i < Ingredients.Count; i++)
-                    {
-                        for (int j = 0; j < Ingredients[i].CountRequired; j++)
-                        {
-                            Game1.Player.Inventory.RemoveItem(Ingredients[i].Item.ID);
-                        }
-                    }
-                    Game1.SoundManager.CraftMetal.Play();
-
-                }
-            }
+            
             
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
-               Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, Color.White * ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
+               Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, this.Color * ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
             for(int i =0; i < Ingredients.Count; i++)
             {
-                Ingredients[i].Draw(spriteBatch);
+                Ingredients[i].Draw(spriteBatch,this.Color);
             }
         }
     }
@@ -290,6 +303,7 @@ namespace SecretProject.Class.UI
         public int CountRequired { get; set; }
         public float ColorMultiplier { get; set; }
 
+
         public CraftableRecipeIngredient(GraphicsDevice graphics, Button button, Item item, int countRequired)
         {
             this.GraphicsDevice = graphics;
@@ -299,27 +313,32 @@ namespace SecretProject.Class.UI
             this.CurrentCount = 0;
             this.CountRequired = countRequired;
             this.ColorMultiplier = 1f;
+
         }
 
         public void Update(GameTime gameTime)
         {
             Button.Update(Game1.myMouseManager);
-            this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(Item.ID);
-            if(this.CurrentCount >= CountRequired)
-            {
-                this.Satisfied = true;
-                ColorMultiplier = 1f;
-            }
-            else
-            {
-                this.Satisfied = false;
-                ColorMultiplier = .5f;
-            }
+
+                this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(Item.ID);
+                if (this.CurrentCount >= CountRequired)
+                {
+                    this.Satisfied = true;
+                    ColorMultiplier = 1f;
+                }
+                else
+                {
+                    this.Satisfied = false;
+                    ColorMultiplier = .5f;
+                }
+            
+
+            
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+            Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, color * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
                 new Vector2(Button.Position.X, Button.Position.Y + 50), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
         }
@@ -441,6 +460,9 @@ namespace SecretProject.Class.UI
         public Item Item { get; set; }
         public CraftingMenu CraftingMenu { get; set; }
 
+        public bool Locked { get; set; }
+        public Color Color { get; set; }
+
         public ToolTip(int itemToCraftID, Vector2 position,GraphicsDevice graphics, CraftingMenu craftingMenu)
         {
             this.Position = position;
@@ -448,10 +470,21 @@ namespace SecretProject.Class.UI
             Item = Game1.ItemVault.GenerateNewItem(itemToCraftID, null);
             Button = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, GraphicsDevice, this.Position, CursorType.Normal, 3f);
             CraftingMenu = craftingMenu;
+            this.Locked = true;
+            this.Color = Color.Black;
+           
         }
 
         public void Update(GameTime gameTime)
         {
+            if(this.Locked)
+            {
+                Button.Color = Color.Black;
+            }
+            else
+            {
+                Button.Color = Color.White;
+            }
             Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
