@@ -250,7 +250,7 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
-                    BottomBar.IsActive = false;
+                    //BottomBar.IsActive = false;
                     break;
 
                 case ExclusiveInterfaceItem.DepositBox:

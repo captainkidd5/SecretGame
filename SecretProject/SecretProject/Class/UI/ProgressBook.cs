@@ -36,30 +36,31 @@ namespace SecretProject.Class.UI
         public ProgressBook(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
-            this.BackDropSourceRectangle = new Rectangle(432, 80, 192, 240);
-            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, 0);
+            this.BackDropSourceRectangle = new Rectangle(448, 112, 288, 160);
+            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
             LoadContent(content);
             Tabs = new List<CategoryTab>();
             for(int i= 0; i < TabData.Count; i++)
             {
-                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y + 96 + i * 144),
-                    new Rectangle(624, 101 + i *42, 27, 32), this.BackDropScale));
+                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i*96, this.BackDropPosition.Y  - 96),
+                    new Rectangle(480 + i * 32, 80 , 32, 32), this.BackDropScale));
 
                 for(int j =0; j < TabData[i].Pages.Count; j++)
                 {
-                    ProgressPage page = new ProgressPage();
+                    UnlockableItem page = new UnlockableItem();
                     
                    
                     for (int z =0; z < TabData[i].Pages[j].Requirements.Count; z++)
                     {
-                        ProgressPageRequirement requirement = new ProgressPageRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
+                        UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].Requirements[z].ItemIDRequired, null),
                             new Vector2(this.BackDropPosition.X + 64, this.BackDropPosition.Y + 100 + z * 96), TabData[i].Pages[j].Requirements[z].CountRequired, z, this.BackDropScale);
                         page.Requirements.Add(requirement);
                     }
-                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 ), this.BackDropScale);
+                    Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 ), this.BackDropScale);
                     reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].RewardItemID, null);
                     reward.ItemCount = TabData[i].Pages[j].RewardItemCount;
+                    reward.RewardName = reward.Item.Name;
                     page.Reward = reward;
                     Tabs[i].Pages.Add(page);
                 }
@@ -187,7 +188,7 @@ namespace SecretProject.Class.UI
         public int Index { get; set; }
         public bool IsActive { get; set; }
         public int ActivePage { get; set; }
-        public List<ProgressPage> Pages { get; set; }
+        public List<UnlockableItem> Pages { get; set; }
 
         public Button Button { get; set; }
 
@@ -202,7 +203,7 @@ namespace SecretProject.Class.UI
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, SourceRectangle, graphics, PositionToDraw, CursorType.Normal, scale);
             this.ButtonColorMultiplier = 1f;
             this.ActivePage = 0;
-            this.Pages = new List<ProgressPage>();
+            this.Pages = new List<UnlockableItem>();
         }
 
         public void Update(GameTime gameTime)
@@ -223,13 +224,13 @@ namespace SecretProject.Class.UI
 
     }
 
-    public class ProgressPage
+    public class UnlockableItem
     {
-        public List<ProgressPageRequirement> Requirements { get; set; }
+        public List<UnlockableItemRequirement> Requirements { get; set; }
         public Reward Reward { get; set; }
-        public ProgressPage()
+        public UnlockableItem()
         {
-            Requirements = new List<ProgressPageRequirement>();
+            Requirements = new List<UnlockableItemRequirement>();
 
         }
 
@@ -258,7 +259,7 @@ namespace SecretProject.Class.UI
         }
     }
 
-    public class ProgressPageRequirement
+    public class UnlockableItemRequirement
     {
         public GraphicsDevice GraphicsDevice { get; set; }
         public Button Button { get; set; }
@@ -273,7 +274,7 @@ namespace SecretProject.Class.UI
         public int Index { get; set; }
         public float Scale { get; set; }
 
-        public ProgressPageRequirement(GraphicsDevice graphics, Item item, Vector2 buttonPosition, int countRequired, int index, float scale)
+        public UnlockableItemRequirement(GraphicsDevice graphics, Item item, Vector2 buttonPosition, int countRequired, int index, float scale)
         {
             this.GraphicsDevice = graphics;
             this.Satisfied = false;
@@ -302,12 +303,13 @@ namespace SecretProject.Class.UI
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
                 new Vector2(Button.Position.X, Button.Position.Y + 50), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
 
-            this.ItemDropButton.DrawNormal(spriteBatch, ItemDropButton.Position, ItemDropButton.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .95f);
+            this.ItemDropButton.DrawNormal(spriteBatch, ItemDropButton.Position, ItemDropButton.BackGroundSourceRectangle, Color.White * ColorMultiplier, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
         }
     }
 
     public class Reward
     {
+        public string RewardName { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public Button Button { get; set; }
         public bool AvailableToClaim { get; set; }
@@ -347,6 +349,8 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             Button.DrawNormal(spriteBatch, Button.Position, Button.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, .95f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RewardName,
+                new Vector2(Button.Position.X, Button.Position.Y - 300), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .95f);
         }
     }
 }
