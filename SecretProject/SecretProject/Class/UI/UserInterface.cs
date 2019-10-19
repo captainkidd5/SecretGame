@@ -77,8 +77,6 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
         public LiftWindow LiftWindow { get; set; }
-        public ProgressBook JulianProgressBook { get; set; }
-        public ProgressBook ElixirProgressBook { get; set; }
         public DepositBox DepositBox { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
@@ -247,7 +245,13 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.ProgressBook:
                     Game1.freeze = true;
-                    JulianProgressBook.Update(gameTime);
+                    for(int i =0; i < Game1.AllProgressBooks.Count; i++)
+                    {
+                        if(Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
+                        {
+                            Game1.AllProgressBooks[i].Update(gameTime);
+                        }
+                    }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -282,6 +286,7 @@ namespace SecretProject.Class.UI
         public void ActivateProgressBook(CurrentOpenProgressBook progressBookID)
         {
             this.CurrentOpenProgressBook = progressBookID;
+            this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ProgressBook;
         }
 
         public void ActivateShop(OpenShop shopID)
@@ -334,7 +339,13 @@ namespace SecretProject.Class.UI
                     LiftWindow.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.ProgressBook:
-                    JulianProgressBook.Draw(spriteBatch);
+                    for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
+                    {
+                        if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
+                        {
+                            Game1.AllProgressBooks[i].Draw(spriteBatch);
+                        }
+                    }
                     break;
                 case ExclusiveInterfaceItem.DepositBox:
                     DepositBox.Draw(spriteBatch);

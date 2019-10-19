@@ -667,7 +667,16 @@ namespace SecretProject.Class.TileStuff
                         mouse.ChangeMouseTexture(CursorType.Normal);
                         if(mouse.IsClicked)
                         {
-                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.DepositBox;
+                            switch (Game1.GetCurrentStageInt())
+                            {
+                                case (int)Stages.JulianHouse:
+                                    Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Julian);
+                                    break;
+                                case (int)Stages.ElixirHouse:
+                                    Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Elixir);
+                                    break;
+                            }
+
                         }
                         
                         break;
