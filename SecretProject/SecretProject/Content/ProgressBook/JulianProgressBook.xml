@@ -9,11 +9,20 @@
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
     <UnlockableItems>
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
-    <RewardItemID>207</RewardItemID>
+    <RewardItemID>233</RewardItemID>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>3</ItemIDRequired>
-    <CountRequired>8</CountRequired>
+    <ItemIDRequired>231</ItemIDRequired>
+    <CountRequired>2</CountRequired>
+    </Item>
+    </ItemRequirements>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>234</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>231</ItemIDRequired>
+    <CountRequired>4</CountRequired>
     </Item>
     </ItemRequirements>
     </Item>
