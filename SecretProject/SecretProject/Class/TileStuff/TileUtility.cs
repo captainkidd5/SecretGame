@@ -273,6 +273,7 @@ namespace SecretProject.Class.TileStuff
         }
         public static Rectangle GetSourceRectangle(Tile tile, int tilesetTilesWide)
         {
+
             int Column = tile.GID % tilesetTilesWide;
             int Row = (int)Math.Floor((double)tile.GID / (double)tilesetTilesWide);
 
@@ -281,6 +282,10 @@ namespace SecretProject.Class.TileStuff
 
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
+
+                tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
+                tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
+            
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
 
@@ -361,6 +366,18 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
+                }
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
+                {
+                    int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
+
+
+                    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1],
+                        tileToAssign.SourceRectangle.Width + rectangleCoords[2], tileToAssign.SourceRectangle.Height + rectangleCoords[3]);
+
+
+                    tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
+                        tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
                 }
                 if (layer == 3)
                 {
@@ -925,6 +942,7 @@ namespace SecretProject.Class.TileStuff
 
         public static Rectangle GetSourceRectangleWithoutTile(int gid, int tilesetTilesWide)
         {
+            
             int Column = gid % tilesetTilesWide;
             int Row = (int)Math.Floor((double)gid / (double)tilesetTilesWide);
 
@@ -1026,6 +1044,7 @@ namespace SecretProject.Class.TileStuff
                                                     sourceRectangle.Width + rectangleCoords[2], sourceRectangle.Height + rectangleCoords[3]);
                             tileManager.GridObjectSourceRectangleOffSetX = rectangleCoords[0];
                             tileManager.GridObjectSourceRectangleOffSetY = rectangleCoords[1];
+
                         }
 
                         bool ableToPlace = true;

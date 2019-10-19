@@ -23,6 +23,9 @@ namespace SecretProject.Class.TileStuff
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
 
+        public Rectangle SourceRectangle { get; set; }
+        public Rectangle DestinationRectangle { get; set; }
+
 
 
 
@@ -33,6 +36,8 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
 
             this.GID = gID;
+            
+            
 
         }
 
