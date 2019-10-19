@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemSpriteSheet.png</SourceFile>
-  <SourceTime>2019-10-17T09:29:40.381542-07:00</SourceTime>
+  <SourceTime>2019-10-19T10:32:38.4103215-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Item/ItemSpriteSheet.xnb</DestFile>
-  <DestTime>2019-10-17T09:30:28.77801-07:00</DestTime>
+  <DestTime>2019-10-19T11:17:48.5557208-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
