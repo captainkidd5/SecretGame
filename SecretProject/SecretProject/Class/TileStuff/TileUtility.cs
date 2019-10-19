@@ -47,7 +47,7 @@ namespace SecretProject.Class.TileStuff
             {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
-        public static void ReassignTileForTiling(List<Tile[,]> tiles, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int x, int y, int worldWidth, int worldHeight)
+        public static void ReassignTileForTiling(List<Tile[,]> tiles, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
 
             if (!generatableTiles.Contains(tiles[0][x, y].GID))
@@ -88,11 +88,11 @@ namespace SecretProject.Class.TileStuff
             }
             if (keyToCheck == 15)
             {
-                tiles[0][x, y].GID = mainGid;
+                ReplaceTile(0, x, y, mainGid, container);
             }
             else
             {
-                tiles[0][x, y].GID = tilingDictionary[keyToCheck] + 1;
+                ReplaceTile(0, x, y, tilingDictionary[keyToCheck] + 1, container);
             }
 
 
@@ -246,6 +246,7 @@ namespace SecretProject.Class.TileStuff
         public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
         {
             Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
+            AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
 
@@ -456,34 +457,34 @@ namespace SecretProject.Class.TileStuff
                                         case "grass":
                                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                             TileUtility.ReplaceTile(z, i, j, 1106, container);
-                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
+                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight,container);
                                             for (int t = -1; t < 2; t++)
                                             {
                                                 for (int q = -1; q < 2; q++)
                                                 {
                                                     if (i > 0 && j > 0 && i < ChunkX  - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i >= ChunkX && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i < ChunkX - 1 && j >= ChunkY)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j , container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j , container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if(i == ChunkX && j == ChunkY)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight, container);
                                                     }
 
                                                 }
