@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-<Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+<Asset Type ="XMLData.ProgressBookStuff.ProgressBookHolder">
+<ID>2</ID>
+<Tabs>
+<Item Type="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+<TabName>Potions</TabName>
   <Pages>
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
     <UnlockableItems>
@@ -13,8 +17,19 @@
     </Item>
     </ItemRequirements>
     </Item>
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>232</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>231</ItemIDRequired>
+    <CountRequired>3</CountRequired>
+    </Item>
+    </ItemRequirements>
+    </Item>
     </UnlockableItems>
     </Item>
     </Pages>
+    </Item>
+    </Tabs>
     </Asset>
 </XnaContent>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-<Asset Type ="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+<Asset Type ="XMLData.ProgressBookStuff.ProgressBookHolder">
+<ID>1</ID>
+<Tabs>
+<Item Type="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+<TabName>Basic</TabName>
   <Pages>
     <Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
     <UnlockableItems>
@@ -25,5 +29,7 @@
     </UnlockableItems>
     </Item>
     </Pages>
+    </Item>
+    </Tabs>
     </Asset>
 </XnaContent>

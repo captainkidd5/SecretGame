@@ -31,7 +31,12 @@ namespace SecretProject.Class.UI
         //Sea = 4,
         //RoyalDock = 5
     }
-
+    public enum CurrentOpenProgressBook
+    {
+        None = 0,
+        Julian = 1,
+        Elixir = 2,
+    }
     public enum ExclusiveInterfaceItem
     {
         None = 0,
@@ -72,13 +77,15 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
         public LiftWindow LiftWindow { get; set; }
-        public ProgressBook ProgressBook { get; set; }
+        public ProgressBook JulianProgressBook { get; set; }
+        public ProgressBook ElixirProgressBook { get; set; }
         public DepositBox DepositBox { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar PlayerStaminaBar { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
+        public CurrentOpenProgressBook CurrentOpenProgressBook;
 
         //keyboard
 
@@ -103,7 +110,6 @@ namespace SecretProject.Class.UI
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
             LiftWindow = new LiftWindow(graphicsDevice);
-            ProgressBook = new ProgressBook(content, graphicsDevice);
             this.DepositBox = new DepositBox(content, graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -112,6 +118,7 @@ namespace SecretProject.Class.UI
             TileSelector = new TileSelector();
 
             InfoBox = new InfoPopUp("Text Not Assigned");
+            this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
         }
 
 
@@ -240,7 +247,7 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.ProgressBook:
                     Game1.freeze = true;
-                    ProgressBook.Update(gameTime);
+                    JulianProgressBook.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -270,6 +277,11 @@ namespace SecretProject.Class.UI
             TextBuilder.Update(gameTime);
 
            
+        }
+
+        public void ActivateProgressBook(CurrentOpenProgressBook progressBookID)
+        {
+            this.CurrentOpenProgressBook = progressBookID;
         }
 
         public void ActivateShop(OpenShop shopID)
@@ -322,7 +334,7 @@ namespace SecretProject.Class.UI
                     LiftWindow.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.ProgressBook:
-                    ProgressBook.Draw(spriteBatch);
+                    JulianProgressBook.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.DepositBox:
                     DepositBox.Draw(spriteBatch);

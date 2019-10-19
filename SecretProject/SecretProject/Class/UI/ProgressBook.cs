@@ -13,12 +13,13 @@ using XMLData.ProgressBookStuff;
 
 namespace SecretProject.Class.UI
 {
+    
     public class ProgressBook : IExclusiveInterfaceComponent
     {
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
+        public int ID { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public Rectangle BackDropSourceRectangle { get; set; }
         public Vector2 BackDropPosition { get; set; }
@@ -27,43 +28,44 @@ namespace SecretProject.Class.UI
         public List<CategoryTab> Tabs { get; set; }
         public int ActiveTab { get; set; }
 
-        public List<ProgressBookPageHolder> TabData { get; set; }
+        public ProgressBookHolder ProgressBookHolder { get; set; }
 
         public Button FowardButton { get; set; }
         public Button BackButton { get; set; }
         private Button redEsc;
 
-        public ProgressBook(ContentManager content, GraphicsDevice graphics)
+        public ProgressBook(ContentManager content, GraphicsDevice graphics, int iD)
         {
+            this.ID = iD;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(448, 112, 288, 160);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
-            LoadContent(content);
+            LoadContent(content, iD);
             Tabs = new List<CategoryTab>();
-            for (int i = 0; i < TabData.Count; i++)
+            for (int i = 0; i < ProgressBookHolder.Tabs.Count; i++)
             {
                 Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 96, this.BackDropPosition.Y - 96),
                     new Rectangle(480 + i * 32, 80, 32, 32), this.BackDropScale));
 
-                for (int j = 0; j < TabData[i].Pages.Count; j++)
+                for (int j = 0; j < ProgressBookHolder.Tabs[i].Pages.Count; j++)
                 {
                     UnlockableItemPage page = new UnlockableItemPage();
 
 
-                    for (int z = 0; z < TabData[i].Pages[j].UnlockableItems.Count; z++)
+                    for (int z = 0; z < ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems.Count; z++)
                     {
 
                         UnlockableItem unlockableItem = new UnlockableItem();
-                        for (int x = 0; x < TabData[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
+                        for (int x = 0; x < ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
                         {
-                            UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].ItemIDRequired, null),
-                           new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * 2 - 100 + x * 96, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 - 64), TabData[i].Pages[j].UnlockableItems[z].ItemRequirements[x].CountRequired, z, this.BackDropScale);
+                            UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].ItemRequirements[x].ItemIDRequired, null),
+                           new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * 2 - 100 + x * 96, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2 - 64), ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].ItemRequirements[x].CountRequired, z, this.BackDropScale);
                             unlockableItem.Requirements.Add(requirement);
                         }
 
                         Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale);
-                        reward.Item = Game1.ItemVault.GenerateNewItem(TabData[i].Pages[j].UnlockableItems[z].RewardItemID, null);
+                        reward.Item = Game1.ItemVault.GenerateNewItem(ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].RewardItemID, null);
                         reward.RewardName = reward.Item.Name;
                         unlockableItem.Reward = reward;
                         unlockableItem.ToolTipSourceRectangle = reward.Item.SourceTextureRectangle;
@@ -94,17 +96,19 @@ namespace SecretProject.Class.UI
 
         }
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, int iD)
         {
-            TabData = new List<ProgressBookPageHolder>()
+            switch(iD)
             {
-                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder0"),
-                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder1"),
-                content.Load<ProgressBookPageHolder>("ProgressBook/ProgressBookPageHolder2")
+                case 1:
+                    ProgressBookHolder = content.Load<ProgressBookHolder>("ProgressBook/JulianProgressBook");
+                    break;
 
+                case 2:
+                    ProgressBookHolder = content.Load<ProgressBookHolder>("ProgressBook/ElixirProgressBook");
+                    break;
 
-             };
-
+            }
         }
 
         public void Update(GameTime gameTime)

@@ -185,7 +185,10 @@ namespace SecretProject
         //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
 
+
+        //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
+        public static List<ProgressBook> AllProgressBooks { get; set; }
 
         //RENDERTARGETS
         public RenderTarget2D MainTarget;
@@ -510,7 +513,13 @@ namespace SecretProject
                 KayaShop
             };
 
-
+            ProgressBook JulianProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 1);
+            ProgressBook ElixirProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 2);
+            AllProgressBooks = new List<ProgressBook>()
+            {
+                JulianProgressBook,
+                ElixirProgressBook
+            };
 
 
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);

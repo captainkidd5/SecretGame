@@ -132,7 +132,7 @@ namespace SecretProject.Class.StageFolder
                 clouds[i].Position.X += (float)(clouds[i].Speed * gameTime.ElapsedGameTime.TotalSeconds);
 
             }
-            switch(this.menuState)
+            switch (this.menuState)
             {
                 case MenuState.primary:
                     foreach (Button button in primaryButtons)
@@ -185,70 +185,70 @@ namespace SecretProject.Class.StageFolder
                     {
                         button.Update(mouse);
                     }
-                        if(worldSizeSmall.isClicked)
+                    if (worldSizeSmall.isClicked)
+                    {
+                        UnloadContent();
+                        foreach (ILocation stage in Game1.AllStages)
                         {
-                            UnloadContent();
-                            foreach (ILocation stage in Game1.AllStages)
+                            if (stage == Game1.World)
                             {
-                                if (stage == Game1.World)
-                                {
-                                    Game1.World.LoadPreliminaryContent(1);
-                                }
-                                else
-                                {
-                                    stage.LoadPreliminaryContent();
-                                }
-
+                                Game1.World.LoadPreliminaryContent(1);
                             }
-                            this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Town);
+                            else
+                            {
+                                stage.LoadPreliminaryContent();
+                            }
+
                         }
-                        else if(worldSizeMedium.isClicked)
+                        this.menuState = MenuState.primary;
+                        Game1.SwitchStage(0, (int)Stages.Town);
+                    }
+                    else if (worldSizeMedium.isClicked)
+                    {
+                        UnloadContent();
+                        foreach (ILocation stage in Game1.AllStages)
                         {
-                            UnloadContent();
-                            foreach (ILocation stage in Game1.AllStages)
+                            if (stage == Game1.World)
                             {
-                                if (stage == Game1.World)
-                                {
-                                    Game1.World.LoadPreliminaryContent(1);
-                                }
-                                else
-                                {
-                                    stage.LoadPreliminaryContent();
-                                }
-
+                                Game1.World.LoadPreliminaryContent(1);
                             }
-                            this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.World);
+                            else
+                            {
+                                stage.LoadPreliminaryContent();
+                            }
+
                         }
-                        else if(worldSizeLarge.isClicked)
+                        this.menuState = MenuState.primary;
+                        Game1.SwitchStage(0, (int)Stages.World);
+                    }
+                    else if (worldSizeLarge.isClicked)
+                    {
+                        UnloadContent();
+                        foreach (ILocation stage in Game1.AllStages)
                         {
-                            UnloadContent();
-                            foreach (ILocation stage in Game1.AllStages)
+                            if (stage == Game1.World)
                             {
-                                if (stage == Game1.World)
-                                {
-                                    Game1.World.LoadPreliminaryContent(3);
-                                }
-                                else
-                                {
-                                    stage.LoadPreliminaryContent();
-                                }
-
+                                Game1.World.LoadPreliminaryContent(3);
                             }
-                            this.menuState = MenuState.primary;
-                            Game1.SwitchStage(0, (int)Stages.Pass);
+                            else
+                            {
+                                stage.LoadPreliminaryContent();
+                            }
+
                         }
-                    
+                        this.menuState = MenuState.primary;
+                        Game1.SwitchStage(0, (int)Stages.Pass);
+                    }
+
                     break;
             }
-            
+
         }
 
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
 
         {
-            
+
             //GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
@@ -262,22 +262,22 @@ namespace SecretProject.Class.StageFolder
             switch (this.menuState)
             {
                 case MenuState.primary:
-                    reloadMap.Draw(spriteBatch, font, "Reload Map", reloadMap.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    reloadMap.Draw(spriteBatch, font, "Reload Map", reloadMap.FontLocation, reloadMap.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     //reloadMap.Draw(spriteBatch, font, "Reload Map", new Vector2(515, 122), Color.CornflowerBlue);
-                    newGame.Draw(spriteBatch, font, "New Game", newGame.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    newGame.Draw(spriteBatch, font, "New Game", newGame.FontLocation, newGame.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     //resumeGame.Draw(spriteBatch, font, "Resume Game", new Vector2(510, 222), Color.CornflowerBlue);
-                    Load.Draw(spriteBatch, font, "Load Game", Load.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, Color.CornflowerBlue, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Load.Draw(spriteBatch, font, "Load Game", Load.FontLocation, Load.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
                     //Load.Draw(spriteBatch, font, "Load Game", new Vector2(520, 322), Color.CornflowerBlue); Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
                     //Exit.Draw(spriteBatch, font, "Exit", new Vector2(545, 422), Color.CornflowerBlue);
                     break;
 
                 case MenuState.chooseWorldSize:
-                    worldSizeSmall.Draw(spriteBatch, font, "Small World", worldSizeSmall.FontLocation, Color.Green, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    worldSizeMedium.Draw(spriteBatch, font, "Medium World", worldSizeMedium.FontLocation, Color.Green, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    worldSizeLarge.Draw(spriteBatch, font, "Large World", worldSizeLarge.FontLocation, Color.Green, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    worldSizeSmall.Draw(spriteBatch, font, "Small World", worldSizeSmall.FontLocation, worldSizeSmall.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    worldSizeMedium.Draw(spriteBatch, font, "Medium World", worldSizeMedium.FontLocation, worldSizeMedium.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    worldSizeLarge.Draw(spriteBatch, font, "Large World", worldSizeLarge.FontLocation, worldSizeLarge.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     break;
             }
 

@@ -43,6 +43,7 @@
     <Compile Include="ItemStuff\ItemRecipe.cs" />
     <Compile Include="ItemStuff\ItemsRequired.cs" />
     <Compile Include="ProgressBookStuff\ItemRequirementSkeleton.cs" />
+    <Compile Include="ProgressBookStuff\ProgressBookHolder.cs" />
     <Compile Include="ProgressBookStuff\ProgressBookPageHolder.cs" />
     <Compile Include="ProgressBookStuff\ProgressBookPageSkeleton.cs" />
     <Compile Include="ProgressBookStuff\UnlockableItemSkeleton.cs" />

@@ -73,6 +73,7 @@ namespace SecretProject.Class.MenuStuff
             UpdateHitBoxRectanlge(BackGroundSourceRectangle);
             //this.ItemSourceRectangleToDraw = sou
             this.CursorType = cursorType;
+            //this.Color = Color.White;
 
         }
 
@@ -96,7 +97,7 @@ namespace SecretProject.Class.MenuStuff
 
             if (mouse.IsHovering(HitBoxRectangle))
             {
-                Color = this.Color * .5f;
+                Color = Color.White * .5f;
                 IsHovered = true;
                 if (this.CursorType != 0)
                 {
@@ -113,7 +114,7 @@ namespace SecretProject.Class.MenuStuff
             }
             else
             {
-                Color = this.Color * 1f;
+                Color = Color.White * 1f;
                 isClicked = false;
                 IsHovered = false;
 
@@ -145,7 +146,7 @@ namespace SecretProject.Class.MenuStuff
 
             if (mouse.IsHovering(SelectableTextRectangle))
             {
-                Color = this.Color * .5f;
+                Color = Color.White * .5f;
                 IsHovered = true;
                 mouse.ChangeMouseTexture(CursorType.Normal);
                 if (mouse.IsClicked)
@@ -157,7 +158,7 @@ namespace SecretProject.Class.MenuStuff
             }
             else
             {
-                Color = this.Color * 1f;
+                Color = Color.White * 1f;
                 isClicked = false;
                 IsHovered = false;
 
