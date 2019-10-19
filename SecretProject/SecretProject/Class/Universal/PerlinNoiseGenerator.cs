@@ -66,24 +66,34 @@ namespace SecretProject.Class.Universal
             return smoothField;
         }
 
-        public float[,] GeneratePerlinNoise(float[,] baseNoise, int octaveCount)
+        public float[,] GetChunkNoiseField(int chunkX, int chunkY)
         {
-            int width = baseNoise.GetLength(0);
-            int height = baseNoise.GetLength(1);
+            return GeneratePerlinNoise(chunkX, chunkY);
+        }
 
-            float[][,] smoothNoise = new float[octaveCount][,];
+        public float[,] GeneratePerlinNoise(int chunkX, int chunkY)
+        {
+            float[,] whiteNoise = GenerateWhiteNoise(chunkX * 16, chunkY * 16);
+            float[,] smoothNoise = SmoothNoiseField(whiteNoise, this.OctaveCount);
 
-            float persistance = .5f;
+ 
 
-            for(int i =0; i < octaveCount;i++)
+            int width = smoothNoise.GetLength(0);
+            int height = smoothNoise.GetLength(1);
+
+            float[][,] newSmoothNoise = new float[this.OctaveCount][,];
+
+            float persistance = this.Persistence;
+
+            for(int i =0; i < this.OctaveCount; i++)
             {
-                smoothNoise[i] = SmoothNoiseField(baseNoise, i);
+                newSmoothNoise[i] = SmoothNoiseField(smoothNoise, i);
             }
             float[,] perlinNoise = new float[width, height];
             float amplitude = 1f;
             float totalAmplitude = 0.0f;
 
-            for(int octave = octaveCount - 1; octave > 0; octave-- )
+            for(int octave = this.OctaveCount - 1; octave > 0; octave-- )
             {
                 amplitude *= persistance;
                 totalAmplitude += amplitude;
@@ -92,7 +102,7 @@ namespace SecretProject.Class.Universal
                 {
                     for(int j =0; j < height; j++)
                     {
-                        perlinNoise[i, j] += smoothNoise[octave][i, j] * amplitude;
+                        perlinNoise[i, j] += newSmoothNoise[octave][i, j] * amplitude;
                     }
                 }
             }

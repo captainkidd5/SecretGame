@@ -20,6 +20,7 @@ namespace SecretProject.Class.Universal
         public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
         public Vector2 centerScreen;
         public Random RGenerator;
+        public PerlinNoiseGenerator PerlinNoiseGenerator;
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
         public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
@@ -49,6 +50,10 @@ namespace SecretProject.Class.Universal
             GrassGeneratableTiles = new List<int>();
             WaterGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
+
+            PerlinNoiseGenerator = new PerlinNoiseGenerator(2, .6f);
+
+          
         }
 
 

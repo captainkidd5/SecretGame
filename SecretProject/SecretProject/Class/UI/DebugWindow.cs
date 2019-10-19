@@ -38,26 +38,10 @@ namespace SecretProject.Class.UI
             if (DebugButton1.isClicked)
             {
 
-                //Game1.World.AllTiles.LoadInitialChunks();
-                Game1.GlobalClock.IncrementDay();
-                //foreach (Crop crop in Game1.GetCurrentStage().AllTiles.Crops.Values)
-                //{
-                //    if (crop.UpdateGrowthCycle())
-                //    {
-                //       // TileUtility.UpdateCropTile(crop, Game1.GetCurrentStage(), Game1.GetCurrentStage().AllTiles);
-                //    }
-                //}
 
-                //}
-                //for (int i =0; i < Game1.PortalGraph.Size; i++)
-                //{
-                //    Console.WriteLine("Stage " + Game1.GetStageFromInt(i).StageName + " is connected to: \n");
-                //    foreach (int num in Game1.PortalGraph.GetSuccessors(i))
-                //    {
-                //        Console.WriteLine(Game1.GetStageFromInt(num).StageName + ", ");
-                //    }
-                //    Console.WriteLine("\n\n");
-                //}
+                Game1.GlobalClock.IncrementDay();
+                float[,] testValues = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(2, 2);
+
 
 
             }

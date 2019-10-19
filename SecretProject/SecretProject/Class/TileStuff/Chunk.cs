@@ -317,6 +317,7 @@ namespace SecretProject.Class.TileStuff
                     break;
             }
 
+            float[,] noise = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(1, 1);
 
             for (int z = 0; z < 4; z++)
             {
@@ -330,25 +331,44 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            if (Game1.Utility.RFloat(0, 1) > MainGIDSpawnChance)
+
+                            if(noise[i, j] >= 0 && noise[i, j] <= .2f)
                             {
-                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.MainGid);
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 427);
+                            }
+                            else if(noise[i, j] > .2f && noise[i, j] <= .5f)
+                            {
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1222);
+                            }
+                            else if(noise[i, j] > .5f && noise[i, j] <= .7f)
+                            {
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
                             }
                             else
                             {
-                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.SecondaryGid);
-
+                                AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1115);
                             }
+         
+                            
+                            //if (Game1.Utility.RFloat(0, 1) > MainGIDSpawnChance)
+                            //{
+                            //    AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.MainGid);
+                            //}
+                            //else
+                            //{
+                            //    AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.SecondaryGid);
+
+                            //}
                         }
 
                     }
                 }
             }
 
-            for (int i = 0; i < 1; i++)
-            {
-                AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, secondaryGeneratableTiles, this.X, this.Y, TileUtility.ChunkX);
-            }
+            //for (int i = 0; i < 1; i++)
+            //{
+            //    AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, secondaryGeneratableTiles, this.X, this.Y, TileUtility.ChunkX);
+            //}
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
             {
