@@ -91,6 +91,7 @@ namespace SecretProject.Class.TileStuff
         public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool Owned { get; set; }
+        WorldTileManager IInformationContainer.TileManager { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         #region CONSTRUCTORS
 

@@ -195,12 +195,6 @@ namespace SecretProject.Class.TileStuff
                         {
                             ActiveChunks[i, j].Load();
                         }
-                        //starting chunk should always be dirt
-                        else if (ActiveChunks[i, j].X == 0 && ActiveChunks[i, j].Y == 0)
-                        {
-                            ActiveChunks[i, j].Generate(TileSimulationType.dirt);
-                            ActiveChunks[i, j].Owned = true;
-                        }
                         else
                         {
                             ActiveChunks[i, j].Generate(0);

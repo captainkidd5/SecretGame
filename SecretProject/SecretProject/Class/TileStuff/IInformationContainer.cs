@@ -43,5 +43,6 @@ namespace SecretProject.Class.TileStuff
         int ArrayJ { get; set; }
         Rectangle GetChunkRectangle();
         bool Owned { get; set; }
+        WorldTileManager TileManager { get; set; }
     }
 }
