@@ -21,6 +21,7 @@ namespace SecretProject.Class.Universal
         public Vector2 centerScreen;
         public Random RGenerator;
         public PerlinNoiseGenerator PerlinNoiseGenerator;
+        public FastNoise FastNoise;
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
         public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
@@ -51,9 +52,10 @@ namespace SecretProject.Class.Universal
             WaterGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
 
-            PerlinNoiseGenerator = new PerlinNoiseGenerator(2, .6f);
+            PerlinNoiseGenerator = new PerlinNoiseGenerator(6, 1f);
+            FastNoise = new FastNoise();
+            FastNoise.SetNoiseType(FastNoise.NoiseType.Value);
 
-          
         }
 
 

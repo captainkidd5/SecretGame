@@ -68,12 +68,27 @@ namespace SecretProject.Class.Universal
 
         public float[,] GetChunkNoiseField(int chunkX, int chunkY)
         {
-            return GeneratePerlinNoise(chunkX, chunkY);
+            float[,] perlinField = GeneratePerlinNoise(Math.Abs(chunkX), Math.Abs(chunkY));
+            float[,] fieldToReturn = new float[16, 16];
+            int x = 0;
+            int y = 0;
+            for(int i =perlinField.GetLength(0) - 16; i < perlinField.GetLength(0); i++)
+            {
+                y = 0;
+                for (int j = perlinField.GetLength(1) - 16; j < perlinField.GetLength(1); j++)
+                {
+                    fieldToReturn[x, y] = perlinField[i, j];
+                    y++;
+                }
+                x++;
+            }
+
+            return fieldToReturn;
         }
 
         public float[,] GeneratePerlinNoise(int chunkX, int chunkY)
         {
-            float[,] whiteNoise = GenerateWhiteNoise(chunkX * 16, chunkY * 16);
+            float[,] whiteNoise = GenerateWhiteNoise(16 + chunkX * 16, 16 + chunkY * 16);
             float[,] smoothNoise = SmoothNoiseField(whiteNoise, this.OctaveCount);
 
  

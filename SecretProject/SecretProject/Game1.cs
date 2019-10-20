@@ -216,7 +216,6 @@ namespace SecretProject
 
         public static bool IsEventActive;
 
-
         #endregion
 
         #region CONSTRUCTOR
@@ -573,6 +572,8 @@ namespace SecretProject
 
             RectangleOutlineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             RectangleOutlineTexture.SetData(new Color[] { Color.Red });
+
+           
         }
         #endregion
 

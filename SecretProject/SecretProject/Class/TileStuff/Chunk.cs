@@ -8,6 +8,7 @@ using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Transportation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SecretProject.Class.TileStuff
 {
     public class Chunk : IInformationContainer
     {
-        public  Texture2D RectangleTexture { get; set; }
+        public Texture2D RectangleTexture { get; set; }
         public WorldTileManager TileManager { get; set; }
         public int Type { get; set; }
 
@@ -317,7 +318,16 @@ namespace SecretProject.Class.TileStuff
                     break;
             }
 
-            float[,] noise = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(1, 1);
+            //float[,] noise = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(this.X, this.Y);
+            float[,] noise = new float[16, 16];
+
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    noise[i,j] = Game1.Utility.FastNoise.GetNoise(this.X * 16 * 100 + 16*i, this.Y * 16 * 100 + 16*j);
+                }
+            }
 
             for (int z = 0; z < 4; z++)
             {
@@ -332,15 +342,15 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
 
-                            if(noise[i, j] >= 0 && noise[i, j] <= .2f)
+                            if (noise[i, j] >= 0 && noise[i, j] <= .2f)
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 427);
                             }
-                            else if(noise[i, j] > .2f && noise[i, j] <= .5f)
+                            else if (noise[i, j] > .2f && noise[i, j] <= .5f)
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1222);
                             }
-                            else if(noise[i, j] > .5f && noise[i, j] <= .7f)
+                            else if (noise[i, j] > .5f && noise[i, j] <= .7f)
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1106);
                             }
@@ -348,8 +358,8 @@ namespace SecretProject.Class.TileStuff
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1115);
                             }
-         
-                            
+
+
                             //if (Game1.Utility.RFloat(0, 1) > MainGIDSpawnChance)
                             //{
                             //    AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, this.MainGid);
@@ -374,20 +384,20 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    TileUtility.ReassignTileForTiling(AllTiles, this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY,this);
+                    TileUtility.ReassignTileForTiling(AllTiles, this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this);
                     if (this.SimulationType == TileSimulationType.dirt)
                     {
                         int lowerBound = 1;
                         //if a grass tuft is nearby another one is more likely to spawn
-                        if (i > 0 && i < TileUtility.ChunkX && j > 0 && j  < TileUtility.ChunkY)
+                        if (i > 0 && i < TileUtility.ChunkX && j > 0 && j < TileUtility.ChunkY)
                         {
-                            if(this.Tufts.ContainsKey(AllTiles[0][i -1, j].GetTileKey(0)))
+                            if (this.Tufts.ContainsKey(AllTiles[0][i - 1, j].GetTileKey(0)))
                             {
                                 lowerBound = 8;
                             }
                         }
-                        
-                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) >=9)
+
+                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) >= 9)
                         {
                             if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                             {
@@ -397,7 +407,7 @@ namespace SecretProject.Class.TileStuff
                                 for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                                 {
                                     int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X 
+                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                         + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
 
                                 }
@@ -418,41 +428,41 @@ namespace SecretProject.Class.TileStuff
                 string liftKey = "0085";
                 if (!Game1.Lifts.ContainsKey(liftKey))
                 {
-                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey,"Wilderness");
-                    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness") );
+                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, "Wilderness");
+                    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness"));
                 }
             }
 
-                switch (this.SimulationType)
-                {
-                    case TileSimulationType.dirt:
-                        TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
-                        // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
-                        TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
-                        break;
+            switch (this.SimulationType)
+            {
+                case TileSimulationType.dirt:
+                    TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
+                    // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+                    TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
+                    break;
 
-                    case TileSimulationType.sand:
-                        TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
-                        TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
-                        //TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
-                        break;
-                    case TileSimulationType.water:
-                        TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
-                        TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
-                        TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
-                        TileUtility.GenerateTiles(1, 1164, "grass", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-                        TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+                case TileSimulationType.sand:
+                    TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
+                    //TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
+                    break;
+                case TileSimulationType.water:
+                    TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
+                    TileUtility.GenerateTiles(1, 1164, "grass", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                    TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
 
-                        break;
-                }
-            
+                    break;
+            }
+
 
 
             for (int z = 0; z < 4; z++)
