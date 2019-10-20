@@ -325,7 +325,7 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    noise[i,j] = Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                    noise[i, j] = Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
                 }
             }
 
@@ -345,6 +345,7 @@ namespace SecretProject.Class.TileStuff
                             if (noise[i, j] >= .02f && noise[i, j] <= 1f)
                             {
                                 AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, 1115);
+
                             }
                             else if (noise[i, j] >= .01f && noise[i, j] < .02f)
                             {
@@ -365,16 +366,12 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //for (int i = 0; i < 1; i++)
-            //{
-            //    AllTiles[0] = TileUtility.DoSimulation(this, this.MainGid, this.SecondaryGid, this.GeneratableTiles, secondaryGeneratableTiles, this.X, this.Y, TileUtility.ChunkX);
-            //}
 
             for (int i = 0; i < TileUtility.ChunkX; i++)
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
-                    switch(AllTiles[0][i, j].GID)
+                    switch (AllTiles[0][i, j].GID)
                     {
                         case 1115:
                             this.GeneratableTiles = Game1.Utility.GrassGeneratableTiles;
@@ -393,17 +390,7 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.ReassignTileForTiling(AllTiles, this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this);
                     if (this.SimulationType == TileSimulationType.dirt)
                     {
-                        int lowerBound = 1;
-                        //if a grass tuft is nearby another one is more likely to spawn
-                        if (i > 0 && i < TileUtility.ChunkX && j > 0 && j < TileUtility.ChunkY)
-                        {
-                            if (this.Tufts.ContainsKey(AllTiles[0][i - 1, j].GetTileKey(0)))
-                            {
-                                lowerBound = 8;
-                            }
-                        }
-
-                        if (Game1.Utility.RGenerator.Next(lowerBound, TileUtility.GrassSpawnRate) >= 9)
+                        if (noise[i, j] >= .2f && noise[i, j] <= .3f)
                         {
                             if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
                             {
@@ -420,6 +407,10 @@ namespace SecretProject.Class.TileStuff
                                 this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
                             }
                         }
+
+
+                        
+
                     }
 
                 }
@@ -442,19 +433,16 @@ namespace SecretProject.Class.TileStuff
             switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
-                    // TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
-                    TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
-                    //if (noise[i, j] >= .02f && noise[i, j] <= 1f)
-                    //{
+                    //TileUtility.GenerateTiles(1, 979, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this);
+                    //// TileUtility.GenerateTiles(1, 1164, "grass", 50, 0, this);
+                    //TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this);
 
-                    //}
-                        TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
+                    // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this);
                     TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
                     TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
                     TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
@@ -462,7 +450,7 @@ namespace SecretProject.Class.TileStuff
                     break;
 
                 case TileSimulationType.sand:
-                    
+
                     //TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
                     break;
                 case TileSimulationType.water:
@@ -476,13 +464,20 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-
             for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
+                        if (i > 1 && j > 1)
+                        {
+                            if (noise[i, j] >= .1f && noise[i, j] <= .2f)
+                            {
+                                TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 5);
+                            }
+                        }
+
                         if (z > 0)
                         {
                             AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkX * this.X;

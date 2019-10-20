@@ -206,43 +206,6 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        //public static void SpawnBaseCamp(List<Tile[,]> tiles)
-        //{
-        //    //top and bottom fences
-        //    for (int i = worldWidth /2; i < worldWidth/2 + 50; i++)
-        //    {
-        //        tiles[3][i, worldWidth / 2].GID = 1251;
-        //        tiles[1][i, worldWidth / 2 + 1].GID = 1350;
-        //        tiles[3][i, worldWidth / 2 + 50].GID = 1251;
-        //        tiles[1][i, worldWidth / 2 + 51].GID = 1350;
-        //    }
-
-        //    //left and right fences
-        //    for (int i = worldWidth / 2; i < worldWidth / 2 + 50; i++)
-        //    {
-        //        tiles[1][worldWidth / 2, i].GID = 1055;
-        //        tiles[1][worldWidth / 2 + 50, i].GID = 1055;
-        //        //tiles[1][i, 20].GID = 1350;
-        //    }
-        //    //spawn gondola platform
-        //    int iCounter = 0;
-        //    int jCounter = 0;
-        //    for (int i = worldWidth / 2 + 5; i < worldWidth / 2 + 14; i++)
-        //    {
-        //        for (int j = worldWidth / 2 + 10; j < worldWidth / 2 + 17; j++)
-        //        {
-        //            tiles[1][i, j].GID = 3963 + jCounter + iCounter;
-        //            jCounter += 100;
-        //        }
-        //        jCounter = 0;
-        //        if(iCounter < 8)
-        //        {
-        //            iCounter++;
-        //        }
-
-        //    }
-        //}
-
         public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
         {
             Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
@@ -284,9 +247,9 @@ namespace SecretProject.Class.TileStuff
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
 
-                tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
-                tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
-            
+            tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
+            tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
+
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
 
@@ -457,12 +420,12 @@ namespace SecretProject.Class.TileStuff
                                         case "grass":
                                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirtInstance, false, 1);
                                             TileUtility.ReplaceTile(z, i, j, 1106, container);
-                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight,container);
+                                            ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight, container);
                                             for (int t = -1; t < 2; t++)
                                             {
                                                 for (int q = -1; q < 2; q++)
                                                 {
-                                                    if (i > 0 && j > 0 && i < ChunkX  - 1 && j < ChunkY - 1)
+                                                    if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
                                                         ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
@@ -480,9 +443,9 @@ namespace SecretProject.Class.TileStuff
                                                     }
                                                     else if (i < ChunkX - 1 && j >= ChunkY)
                                                     {
-                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j , container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
-                                                    else if(i == ChunkX && j == ChunkY)
+                                                    else if (i == ChunkX && j == ChunkY)
                                                     {
                                                         ReassignTileForTiling(container.AllTiles, 1106, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight, container);
                                                     }
@@ -683,7 +646,7 @@ namespace SecretProject.Class.TileStuff
 
                     case "openProgressBook":
                         mouse.ChangeMouseTexture(CursorType.Normal);
-                        if(mouse.IsClicked)
+                        if (mouse.IsClicked)
                         {
                             switch (Game1.GetCurrentStageInt())
                             {
@@ -696,7 +659,7 @@ namespace SecretProject.Class.TileStuff
                             }
 
                         }
-                        
+
                         break;
                 }
             }
@@ -778,12 +741,12 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public static void DoPlayerAnimation(GameTime gameTime,Rectangle destinationRectangle, AnimationType animationType, float delayTimer = 0f, Item item = null)
+        public static void DoPlayerAnimation(GameTime gameTime, Rectangle destinationRectangle, AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
             if (Game1.Player.Position.Y < destinationRectangle.Y - 30)
             {
                 Game1.Player.controls.Direction = Dir.Down;
-                
+
             }
 
             else if (Game1.Player.Position.Y > destinationRectangle.Y)
@@ -799,7 +762,7 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.Player.controls.Direction = Dir.Left;
             }
-            if(item != null)
+            if (item != null)
             {
                 Game1.Player.PlayAnimation(gameTime, animationType, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AnimationColumn);
             }
@@ -807,7 +770,7 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.Player.PlayAnimation(gameTime, animationType);
             }
-            
+
         }
         //for destructable keyword
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)
@@ -841,7 +804,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
 
-                          
+
                         }
 
                     }
@@ -943,7 +906,7 @@ namespace SecretProject.Class.TileStuff
 
         public static Rectangle GetSourceRectangleWithoutTile(int gid, int tilesetTilesWide)
         {
-            
+
             int Column = gid % tilesetTilesWide;
             int Row = (int)Math.Floor((double)gid / (double)tilesetTilesWide);
 
@@ -992,6 +955,32 @@ namespace SecretProject.Class.TileStuff
             {
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, container, layerToCheckIfEmpty);
             }
+        }
+
+        public static void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
+        {
+            if (chance == 100)
+            {
+                if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+               acceptableGenerationTiles, container, comparisonLayer))
+                {
+                    container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+                }
+            }
+
+            else
+            {
+                if (Game1.Utility.RGenerator.Next(0, 101) < chance)
+                {
+                    if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
+               acceptableGenerationTiles, container, comparisonLayer))
+                    {
+                        container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
+                    }
+                }
+
+            }
+
         }
 
         public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
