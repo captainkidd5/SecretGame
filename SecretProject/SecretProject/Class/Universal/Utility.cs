@@ -56,7 +56,7 @@ namespace SecretProject.Class.Universal
             FastNoise.SetFractalOctaves(4);
             //FastNoise.SetFractalLacunarity(1);
             //FastNoise.SetFractalGain(2);
-            FastNoise.SetFrequency(.005f);
+            FastNoise.SetFrequency(.01f);
 
         }
 
