@@ -63,13 +63,24 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 1;
                 }
             }
-            //if chunk above current chunk exists we compare our top tile to its bottom tile
-            else if ( container.ArrayJ - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
+            else if (container.ArrayJ - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ -1].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ -1].AllTiles[0][x, 15].GID))
                 {
                     keyToCheck += 1;
                 }
+            }
+            //if chunk above current chunk exists we compare our top tile to its bottom tile
+            //else if ( container.ArrayJ - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
+            //{
+            //    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID))
+            //    {
+            //        keyToCheck += 1;
+            //    }
+            //}
+            else
+            {
+                keyToCheck += 1;
             }
 
 
@@ -84,8 +95,12 @@ namespace SecretProject.Class.TileStuff
             {
                 if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID))
                 {
-                    keyToCheck += 1;
+                    keyToCheck += 8;
                 }
+            }
+            else
+            {
+                keyToCheck += 8;
             }
 
             if (x < worldWidth - 1)
@@ -95,12 +110,16 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 4;
                 }
             }
-            else if (container.ArrayI - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
+            else if (container.ArrayI + 1 <=2 && container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID))
                 {
-                    keyToCheck += 1;
+                    keyToCheck += 4;
                 }
+            }
+            else
+            {
+                keyToCheck += 4;
             }
 
             if (x > 0)
@@ -110,14 +129,18 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 2;
                 }
             }
-            else if (container.ArrayI + 1 <=2 && container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
+            else if (container.ArrayI - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID))
                 {
-                    keyToCheck += 1;
+                    keyToCheck += 2;
                 }
             }
-            if (keyToCheck == 15)
+            else
+            {
+                keyToCheck += 2;
+            }
+            if (keyToCheck >= 15)
             {
                 ReplaceTile(0, x, y, mainGid, container);
             }

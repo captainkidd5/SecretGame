@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
             this.X = x;
             this.Y = y;
             this.ArrayI = arrayI;
-            this.ArrayI = arrayJ;
+            this.ArrayJ = arrayJ;
             Tufts = new Dictionary<string, List<GrassTuft>>();
             Objects = new Dictionary<string, ObjectBody>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
