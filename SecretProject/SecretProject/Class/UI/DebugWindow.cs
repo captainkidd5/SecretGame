@@ -40,7 +40,6 @@ namespace SecretProject.Class.UI
 
 
                 Game1.GlobalClock.IncrementDay();
-                float[,] testValues = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(2, 2);
 
 
 
