@@ -557,65 +557,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //Tile mouseOverTile = mouse.GetMouseOverTile(ChunkUnderMouse);
-            //if(mouseOverTile != null)
-            //{
-
-            //}
-            //Rectangle MouseOverTileDestinationRectangle = TileUtility.GetDestinationRectangle(mouseOverTile);
-            //if (MouseOverTileDestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
-            //{
-            //    Tile[] intersectedTiles = mouse.GetMouseOverTileArray(ChunkUnderMouse);
-
-            //    this.AbleToDrawTileSelector = true;
-
-            //    Game1.Player.UserInterface.TileSelector.IndexX = mouseOverTile.X;
-            //    Game1.Player.UserInterface.TileSelector.IndexY = mouseOverTile.Y;
-            //    Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseOverTile.X * 16;
-            //    Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseOverTile.Y * 16;
-
-            //    for (int z = 0; z < intersectedTiles.Length; z++)
-            //    {
-            //        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(intersectedTiles[z].GID))
-            //        {
-
-            //            if (intersectedTiles[z].LayerToDrawAt == 1)
-            //            {
-
-            //                if (MapName.Tilesets[TileSetNumber].Tiles[intersectedTiles[z].GID].Properties.ContainsKey("destructable"))
-            //                {
-            //                    Game1.Player.UserInterface.DrawTileSelector = true;
-            //                    Game1.isMyMouseVisible = false;
-
-            //                    // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
-            //                    //Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
-
-            //                    mouse.ChangeMouseTexture(Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[intersectedTiles[z].GID].Properties["destructable"]));
-
-            //                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-
-            //                    if (mouse.IsClicked)
-            //                    {
-            //                        TileUtility.InteractWithBuilding((int)intersectedTiles[z].LayerToDrawAt, gameTime, intersectedTiles[z].X, intersectedTiles[z].Y, MouseOverTileDestinationRectangle, Game1.GetCurrentStage(), ChunkUnderMouse);
-
-            //                    }
-
-            //                }
-            //                //return;
-
-            //            }
-            //            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(intersectedTiles[z].GID))
-            //            {
-            //                if (MapName.Tilesets[TileSetNumber].Tiles[intersectedTiles[z].GID].Properties.ContainsKey("action"))
-            //                {
-
-            //                    TileUtility.ActionHelper((int)z, intersectedTiles[z].X, intersectedTiles[z].Y, MapName.Tilesets[TileSetNumber].Tiles[intersectedTiles[z].GID].Properties["action"], mouse, ChunkUnderMouse);
-
-            //                }
-            //            }
-
-            //        }
-            //    }
+           
             TileUtility.UpdateGridItem(this, ChunkUnderMouse);
         }
 

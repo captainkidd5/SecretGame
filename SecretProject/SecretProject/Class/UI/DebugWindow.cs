@@ -52,7 +52,7 @@ namespace SecretProject.Class.UI
 
             if (IsActivated)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(272, 128, 256, 224),
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n TileselectorX: "  +
                     Game1.Player.UserInterface.TileSelector.IndexX + " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n cameraY: "

@@ -235,42 +235,7 @@ namespace SecretProject.Class.StageFolder
             //throw new NotImplementedException();
         }
 
-        public void MoveGondola()
-        {
-            if (IsExitingOnGondola)
-            {
-                IsGondolaAtEndingPosition = false;
-                if (Gondola.Position != GondolaStartingPosition)
-                {
-                    Gondola.Position = new Vector2(Gondola.Position.X - 1, Gondola.Position.Y - 1);
-                    Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
-                    return;
-                }
-                else
-                {
-                    IsGondolaAtStartingPosition = true;
-                    return;
-                }
-
-            }
-            if (this.Gondola.Position == new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100))
-            {
-                IsGondolaAtEndingPosition = true;
-             //   AllObjects.Add("gondola",new ObjectBody(this.Graphics, new Rectangle((int)Gondola.Position.X, (int)Gondola.Position.Y, Gondola.SourceRectangle.Width, Gondola.SourceRectangle.Height), -50));
-            }
-            else
-            {
-                IsGondolaAtEndingPosition = false;
-            }
-            if (!IsExitingOnGondola && !IsGondolaAtEndingPosition)
-            {
-                Gondola.Position = new Vector2(Gondola.Position.X + 1, Gondola.Position.Y + 1);
-                Game1.Player.position = new Vector2(Gondola.Position.X + 40, Gondola.Position.Y + 40);
-                IsGondolaAtStartingPosition = false;
-                return;
-            }
-
-        }
+        
         public int portalIndex;
 
         public event EventHandler SceneChanged;
@@ -335,11 +300,6 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-
-               // if(!IsExitingOnGondola && !IsGondolaAtEndingPosition && !IsGondolaAtStartingPosition)
-              //  {
-              //      MoveGondola();
-               // }
                 
 
                 //--------------------------------------
@@ -380,14 +340,7 @@ namespace SecretProject.Class.StageFolder
             }
             Game1.Player.controls.UpdateKeys();
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
-            if (IsExitingOnGondola && this.IsGondolaAtStartingPosition)
-            {
-                IsGondolaAtStartingPosition = true;
-                IsExitingOnGondola = false;
-                Game1.SwitchStage(3, 0);
-                OnSceneChanged();
-                this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
-            }
+
 
         }
 
@@ -429,13 +382,10 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
-              //  if (IsGondolaAtEndingPosition)
-                //{
-                    player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height)* .0000001f);
-              //  }
 
-               // Game1.Elixer.Draw(spriteBatch);
-                //Game1.Dobbin.Draw(spriteBatch);
+                    player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height)* .0000001f);
+
+
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
@@ -464,7 +414,6 @@ namespace SecretProject.Class.StageFolder
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
-                Gondola.Draw(spriteBatch, .8f);
                 for (int e = 0; e < Boars.Count; e++)
                 {
                     if (Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))

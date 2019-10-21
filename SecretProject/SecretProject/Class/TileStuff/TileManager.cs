@@ -258,16 +258,16 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < this.MapHeight; j++)
                     {
-                        if (AllTiles[z][i, j].GID != -1)
-                        {
-                            if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                            {
+                        //if (AllTiles[z][i, j].GID != -1)
+                        //{
+                          //  if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
+                          //  {
 
                                 TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
 
-                            }
-                        }
+                         //   }
+                      //  }
                     }
                 }
             }
@@ -394,7 +394,7 @@ namespace SecretProject.Class.TileStuff
 
                                 }
                             }
-                            Rectangle destinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
+                           
 
                             if (z == 0)
                             {
@@ -402,7 +402,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                     {
-                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(destinationRectangle))
+                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][i, j].DestinationRectangle))
                                         {
                                             Game1.SoundManager.PlaySoundEffectFromInt(false, 1, (int)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["step"]), .75f);
                                         }
@@ -412,10 +412,10 @@ namespace SecretProject.Class.TileStuff
 
                             }
 
-                            if (destinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                            if (AllTiles[z][i, j].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
 
-                                if (mouse.IsHoveringTile(destinationRectangle))
+                                if (mouse.IsHoveringTile(AllTiles[z][i, j].DestinationRectangle))
                                 {
                                     this.AbleToDrawTileSelector = true;
                                     Game1.Player.UserInterface.TileSelector.IndexX = i;
@@ -443,7 +443,7 @@ namespace SecretProject.Class.TileStuff
 
                                                 if (mouse.IsClicked)
                                                 {
-                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, destinationRectangle, Game1.GetCurrentStage(), this);
+                                                    TileUtility.InteractWithBuilding(z, gameTime, i, j, AllTiles[z][i, j].DestinationRectangle, Game1.GetCurrentStage(), this);
 
                                                 }
 
@@ -517,8 +517,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][i, j].GID != -1)
                         {
-                            Rectangle SourceRectangle = TileUtility.GetSourceRectangle(AllTiles[z][i, j], this.TileSetDimension);
-                            Rectangle DestinationRectangle = TileUtility.GetDestinationRectangle(AllTiles[z][i, j]);
+
                             if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKey(z)))
                             {
                                 for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKey(z)].Count; t++)
@@ -526,37 +525,23 @@ namespace SecretProject.Class.TileStuff
                                     Tufts[AllTiles[z][i, j].GetTileKey(z)][t].Draw(spriteBatch);
                                 }
                             }
-                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                            {
-                                if (MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties.ContainsKey("newSource"))
-                                {
-                                    int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(MapName.Tilesets[this.TileSetNumber].Tiles[AllTiles[z][i, j].GID].Properties["newSource"]);
-
-
-                                    SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
-                                        SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
-
-
-                                    DestinationRectangle = new Rectangle(DestinationRectangle.X + rectangleCoords[0], DestinationRectangle.Y + rectangleCoords[1],
-                                        DestinationRectangle.Width, DestinationRectangle.Height);
-                                }
-                            }
+                           
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
+                                spriteBatch.Draw(TileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Game1.GlobalClock.TimeOfDayColor,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                             }
                             else
                             {
-                                spriteBatch.Draw(TileSet, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), SourceRectangle, Color.White,
+                                spriteBatch.Draw(TileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Color.White,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
                             }
 
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(DestinationRectangle.X, DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
                             }
 

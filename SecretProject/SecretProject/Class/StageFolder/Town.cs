@@ -214,14 +214,7 @@ namespace SecretProject.Class.StageFolder
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
                 // ElixerNPC.MoveToTile(gameTime, new Point(40, 40));
                 // Dobbin.MoveToTile(gameTime, new Point(23, 55));
-                if (this.BackDropNumber == 1)
-                {
-                    if (player.position.Y < 850)
-                    {
-                        this.BackDropPosition.Y += ((player.position.Y - playerOldYPosition) / 4);
-                    }
 
-                }
 
             }
             Game1.Player.controls.UpdateKeys();
@@ -261,10 +254,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                if (this.BackDropNumber == 1)
-                {
-                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .0001f);
-                }
+
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
