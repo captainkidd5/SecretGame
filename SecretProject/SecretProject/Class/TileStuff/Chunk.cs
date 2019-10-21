@@ -279,7 +279,6 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-
         public void Generate(TileSimulationType seed)
         {
             if (seed == 0)
@@ -291,36 +290,7 @@ namespace SecretProject.Class.TileStuff
             {
                 this.SimulationType = seed;
             }
-            List<int> secondaryGeneratableTiles = new List<int>();
-            switch (SimulationType)
-            {
-                case TileSimulationType.dirt:
-                    this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
-                    this.TilingDictionary = TileUtility.DirtTiling;
-                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
-                    this.MainGid = 1106;
-                    this.SecondaryGid = 1115;
-                    this.MainGIDSpawnChance = .25f;
-                    break;
-                case TileSimulationType.sand:
-                    this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
-                    this.TilingDictionary = TileUtility.SandTiling;
-                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
-                    this.MainGid = 1222;
-                    this.SecondaryGid = 427;
-                    MainGIDSpawnChance = .95f;
-                    break;
-                case TileSimulationType.water:
-                    this.GeneratableTiles = Game1.Utility.WaterGeneratableTiles;
-                    this.TilingDictionary = TileUtility.WaterTiling;
-                    secondaryGeneratableTiles = Game1.Utility.GrassGeneratableTiles;
-                    this.MainGid = 427;
-                    this.SecondaryGid = 1115;
-                    MainGIDSpawnChance = .85f;
-                    break;
-            }
 
-            //float[,] noise = Game1.Utility.PerlinNoiseGenerator.GetChunkNoiseField(this.X, this.Y);
             float[,] noise = new float[16, 16];
 
             for (int i = 0; i < 16; i++)
@@ -352,14 +322,17 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 else
                                 {
-                                    newGID = 1106;//GRASS
+                                    newGID = 1106;//DIRT
                                 }
                                 
 
                             }
                             else if (noise[i, j] >= .01f && noise[i, j] < .02f)
                             {
-                                newGID = 1115;//GRASS
+                                newGID = 1115;
+                                
+                                //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
+                                // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
                             }
                             else if (noise[i, j] >= -.02f && noise[i, j] < .01f)
                             {
@@ -370,6 +343,20 @@ namespace SecretProject.Class.TileStuff
                                 newGID = 427;//WATER
                             }
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, newGID);
+                            if(newGID == 1115)
+                            {
+                                int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                                List<GrassTuft> tufts = new List<GrassTuft>();
+                                for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                                {
+                                    int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
+                                        + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
+
+                                }
+                                this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
+                            }
+                            
                         }
 
                     }
@@ -381,6 +368,8 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 0; j < TileUtility.ChunkY; j++)
                 {
+
+
                     switch (AllTiles[0][i, j].GID)
                     {
                         case 1114:
@@ -399,32 +388,15 @@ namespace SecretProject.Class.TileStuff
                             this.MainGid = 427;
                             break;
 
+
+                        default:
+                            this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
+                            this.TilingDictionary = TileUtility.DirtTiling;
+                            this.MainGid = 1115;
+                            break;
+
                     }
                     TileUtility.ReassignTileForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this);
-                    if (this.SimulationType == TileSimulationType.dirt)
-                    {
-                        if (noise[i, j] >= .2f && noise[i, j] <= .3f || (noise[i, j] >= .02f && noise[i, j] <= .08f))
-                        {
-                            if (Game1.Utility.GrassGeneratableTiles.Contains(AllTiles[0][i, j].GID))
-                            {
-
-                                int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
-                                List<GrassTuft> tufts = new List<GrassTuft>();
-                                for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
-                                {
-                                    int grassType = Game1.Utility.RGenerator.Next(1, 4);
-                                    tufts.Add(new GrassTuft(grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
-                                        + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8))));
-
-                                }
-                                this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
-                            }
-                        }
-
-
-
-
-                    }
 
                 }
             }
