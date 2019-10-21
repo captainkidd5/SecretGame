@@ -418,7 +418,7 @@ namespace SecretProject.Class.TileStuff
                             if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                             {
                                 frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, ActiveChunks[a, b]);
+                                TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, ActiveChunks[a, b], false);
                                 if (frameholder.Counter == frameholder.Frames.Count - 1)
                                 {
                                     if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
@@ -429,7 +429,7 @@ namespace SecretProject.Class.TileStuff
 
                                             //needs to refer to first tile ?
                                             int frameolDX = frameholder.OldX;
-                                            TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b]);
+                                            TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b], false);
                                             AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKey(frameholder.Layer));
                                             if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                             {

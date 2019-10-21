@@ -51,33 +51,26 @@ namespace SecretProject.Class.TileStuff
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
 
-            if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID))
+            if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID + 1))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y - 1].GID))
+                if (generatableTiles.Contains(container.AllTiles[0][x, y - 1].GID + 1))
                 {
                     keyToCheck += 1;
                 }
             }
             else if (container.ArrayJ - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ -1].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ -1].AllTiles[0][x, 15].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ -1].AllTiles[0][x, 15].GID + 1))
                 {
                     keyToCheck += 1;
                 }
             }
-            //if chunk above current chunk exists we compare our top tile to its bottom tile
-            //else if ( container.ArrayJ - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
-            //{
-            //    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID))
-            //    {
-            //        keyToCheck += 1;
-            //    }
-            //}
+
             else
             {
                 keyToCheck += 1;
@@ -86,14 +79,14 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y + 1].GID))
+                if (generatableTiles.Contains(container.AllTiles[0][x, y + 1].GID + 1))
                 {
                     keyToCheck += 8;
                 }
             }
             else if (container.ArrayJ + 1 <= 2 && container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][0,0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID + 1))
                 {
                     keyToCheck += 8;
                 }
@@ -105,14 +98,14 @@ namespace SecretProject.Class.TileStuff
 
             if (x < worldWidth - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x + 1, y].GID))
+                if (generatableTiles.Contains(container.AllTiles[0][x + 1, y].GID + 1))
                 {
                     keyToCheck += 4;
                 }
             }
             else if (container.ArrayI + 1 <=2 && container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID + 1))
                 {
                     keyToCheck += 4;
                 }
@@ -124,14 +117,14 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x - 1, y].GID))
+                if (generatableTiles.Contains(container.AllTiles[0][x - 1, y].GID + 1))
                 {
                     keyToCheck += 2;
                 }
             }
             else if (container.ArrayI - 1 >= 0 && container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
             {
-                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID))
+                if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID + 1))
                 {
                     keyToCheck += 2;
                 }
@@ -260,10 +253,14 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
+        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container,bool assignProperties = true)
         {
             Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
-            AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
+            if(assignProperties)
+            {
+                AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
+            }
+            
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
 

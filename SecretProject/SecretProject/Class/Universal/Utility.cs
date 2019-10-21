@@ -51,12 +51,12 @@ namespace SecretProject.Class.Universal
             WaterGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
 
-            FastNoise = new FastNoise();
+            FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(4);
             //FastNoise.SetFractalLacunarity(1);
             //FastNoise.SetFractalGain(2);
-            FastNoise.SetFrequency(.01f);
+            FastNoise.SetFrequency(.005f);
 
         }
 
