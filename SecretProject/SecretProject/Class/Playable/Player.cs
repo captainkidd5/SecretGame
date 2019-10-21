@@ -357,12 +357,23 @@ namespace SecretProject.Class.Playable
                     MyCollider.DidCollideMagnet(items);
                     // if(this.PrimaryVelocity.X > )
 
+                    // MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
+                    List<Collider> returnObjects = new List<Collider>();
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MyCollider);
+                    for (int i = 0; i < returnObjects.Count; i++)
+                    {
+                        //if obj collided with item in list stop it from moving boom badda bing
+                        if (MyCollider.DidCollide(returnObjects[i], position))
+                        {
+                            //Console.WriteLine("collide occurred");
+                            //player.MyCollider.Velocity = player.PrimaryVelocity;
+                            CollideOccured = true;
+                        }
 
-                    bool collideOccurred = false;// MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
-
+                    }
                     this.PrimaryVelocity = MyCollider.Velocity;
 
-                    if (collideOccurred) //if collision occurred we don't want to take diagonal movement into account
+                    if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
                         TotalVelocity = PrimaryVelocity;
                         // SecondaryVelocity = Vector2.Zero;

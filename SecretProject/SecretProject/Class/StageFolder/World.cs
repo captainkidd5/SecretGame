@@ -245,6 +245,7 @@ namespace SecretProject.Class.StageFolder
 
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            player.CollideOccured = false;
             QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
 
             foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
@@ -254,31 +255,22 @@ namespace SecretProject.Class.StageFolder
 
             QuadTree.Insert(player.MyCollider);
 
-            List<Collider> returnObjects = new List<Collider>();
-            QuadTree.Retrieve(returnObjects, player.MyCollider);
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                //if obj collided with item in list stop it from moving boom badda bing
-                if (player.MyCollider.DidCollide(returnObjects[i], player.position))
-                {
-                    //Console.WriteLine("collide occurred");
 
-                }
 
-            }
-            //foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            //List<Collider> returnObjects = new List<Collider>();
+            //QuadTree.Retrieve(returnObjects, player.MyCollider);
+            //for (int i = 0; i < returnObjects.Count; i++)
             //{
-            //    if(obj.CollisionType == 1)
+            //    //if obj collided with item in list stop it from moving boom badda bing
+            //    if (player.MyCollider.DidCollide(returnObjects[i], player.position))
             //    {
-            //        returnObjects.Clear();
-            //        QuadTree.Retrieve(returnObjects, obj);
-            //        for (int i = 0; i < returnObjects.Count; i++)
-            //        {
-            //            //if obj collided with item in list stop it from moving boom badda bing
-            //        }
+            //        //Console.WriteLine("collide occurred");
+            //        //player.MyCollider.Velocity = player.PrimaryVelocity;
+            //        player.CollideOccured = true;
             //    }
-                
+
             //}
+
 
             
             this.IsDark = Game1.GlobalClock.IsNight;

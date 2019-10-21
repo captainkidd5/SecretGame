@@ -30,6 +30,7 @@ using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using XMLData.ItemStuff;
+using SecretProject.Class.CollisionDetection;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -85,6 +86,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
+            this.QuadTree = new QuadTree(5, MapRectangle);
             this.IsLoaded = true;
         }
 
@@ -111,6 +113,20 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            player.CollideOccured = false;
+            QuadTree = new QuadTree(5, MapRectangle);
+
+            foreach (var obj in AllTiles.CurrentObjects.Values)
+            {
+                QuadTree.Insert(obj);
+            }
+
+            QuadTree.Insert(player.MyCollider);
+
+            foreach (Character character in CharactersPresent)
+            {
+                QuadTree.Insert(character.Collider);
+            }
             float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
             Game1.myMouseManager.ToggleGeneralInteraction = false;

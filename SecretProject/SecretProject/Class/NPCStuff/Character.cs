@@ -146,7 +146,18 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
+            List<Collider> returnObjects = new List<Collider>();
+            Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
+            for (int i = 0; i < returnObjects.Count; i++)
+            {
+                //if obj collided with item in list stop it from moving boom badda bing
+                if (Collider.DidCollide(returnObjects[i], Position))
+                {
+                    CollideOccured = true;
+                }
+
+            }
+            //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
             for(int i = 0; i < 4; i++)
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);

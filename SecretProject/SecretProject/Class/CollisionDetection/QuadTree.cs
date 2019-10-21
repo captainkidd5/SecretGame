@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿//Massive credit to https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374 
+//Steven Lambert
+
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

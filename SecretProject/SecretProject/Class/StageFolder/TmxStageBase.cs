@@ -122,6 +122,7 @@ namespace SecretProject.Class.StageFolder
         public List<StringWrapper> AllTextToWrite { get; set; }
 
         public List<INPC> OnScreenNPCS { get; set; }
+        public QuadTree QuadTree { get; set; }
         public List<float> MyProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         
 
@@ -219,6 +220,7 @@ namespace SecretProject.Class.StageFolder
 
 
             //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
+            this.QuadTree = new QuadTree(5, MapRectangle);
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -241,7 +243,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             this.AllTextToWrite = new List<StringWrapper>();
-
+            
             this.IsLoaded = true;
 
         }
@@ -277,6 +279,20 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            player.CollideOccured = false;
+            QuadTree = new QuadTree(5, MapRectangle);
+
+            foreach (var obj in AllTiles.CurrentObjects.Values)
+            {
+                QuadTree.Insert(obj);
+            }
+
+            QuadTree.Insert(player.MyCollider);
+
+            foreach (Character character in CharactersPresent)
+            {
+                QuadTree.Insert(character.Collider);
+            }
             this.IsDark = Game1.GlobalClock.IsNight;
             float playerOldYPosition = player.position.Y;
             for (int p = 0; p < AllPortals.Count; p++)

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CameraStuff;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
@@ -86,6 +87,8 @@ namespace SecretProject.Class.StageFolder
         event EventHandler SceneChanged;
         string MapTexturePath { get; set; }
          string TmxMapPath { get; set; }
+
+        QuadTree QuadTree { get; set; }
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
