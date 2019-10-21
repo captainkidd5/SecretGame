@@ -34,7 +34,7 @@ namespace SecretProject.Class.NPCStuff
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
-            Collider = new Collider(this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle);
             this.DebugColor = Color.HotPink;
         }
 

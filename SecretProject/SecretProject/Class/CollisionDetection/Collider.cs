@@ -7,51 +7,55 @@ using System.Threading.Tasks;
 
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.ItemStuff;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.CollisionDetection
 {
-    public struct RectangleCollider
-    {
-        private Vector2 topLeft;
-        private Vector2 bottomRight;
-        public Vector2 TopLeft { get { return topLeft; } set { topLeft = value; } }
-        public Vector2 BottomRight { get { return bottomRight; } set { bottomRight = value; } }
+    //public struct RectangleCollider
+    //{
+    //    private Vector2 topLeft;
+    //    private Vector2 bottomRight;
+    //    public Vector2 TopLeft { get { return topLeft; } set { topLeft = value; } }
+    //    public Vector2 BottomRight { get { return bottomRight; } set { bottomRight = value; } }
 
-        public Vector2 TopRight { get { return new Vector2(bottomRight.X, topLeft.Y); } }
-        public Vector2 BottomLeft { get { return new Vector2(topLeft.X, bottomRight.Y); } }
+    //    public Vector2 TopRight { get { return new Vector2(bottomRight.X, topLeft.Y); } }
+    //    public Vector2 BottomLeft { get { return new Vector2(topLeft.X, bottomRight.Y); } }
 
-        public float Top { get { return topLeft.Y; } }
-        public float Right { get { return bottomRight.X; } }
-        public float Left { get { return topLeft.X; } }
-        public float Bottom { get { return bottomRight.Y; } }
+    //    public float Top { get { return topLeft.Y; } }
+    //    public float Right { get { return bottomRight.X; } }
+    //    public float Left { get { return topLeft.X; } }
+    //    public float Bottom { get { return bottomRight.Y; } }
 
-        public RectangleCollider(Vector2 topLeft, Vector2 bottomRight)
-        {
-            this.topLeft = topLeft;
-            this.bottomRight = bottomRight;
-
-
-        }
-
-        public bool Contains(Vector2 Point)
-        {
-            return (topLeft.X <= Point.X && bottomRight.X >= Point.X &&
-                    topLeft.Y <= Point.Y && bottomRight.Y >= Point.Y);
-        }
-
-        public bool Intersects(RectangleCollider Rect)
-        {
-            return (!(Bottom < Rect.Top ||
-                       Top > Rect.Bottom ||
-                       Right < Rect.Left ||
-                       Left > Rect.Right));
-        }
+    //    public RectangleCollider(Vector2 topLeft, Vector2 bottomRight)
+    //    {
+    //        this.topLeft = topLeft;
+    //        this.bottomRight = bottomRight;
 
 
-    }
+    //    }
+
+    //    public bool Contains(Vector2 Point)
+    //    {
+    //        return (topLeft.X <= Point.X && bottomRight.X >= Point.X &&
+    //                topLeft.Y <= Point.Y && bottomRight.Y >= Point.Y);
+    //    }
+
+    //    public bool Intersects(RectangleCollider Rect)
+    //    {
+    //        return (!(Bottom < Rect.Top ||
+    //                   Top > Rect.Bottom ||
+    //                   Right < Rect.Left ||
+    //                   Left > Rect.Right));
+    //    }
+
+
+    //}
 
     public class Collider
     {
+        protected Texture2D rectangleTexture;
+
+        public bool ShowRectangle { get; set; }
         //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
         public int CollisionType { get; set; }
 
@@ -67,11 +71,15 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public Collider(Vector2 velocity, Rectangle rectangle, int collisionType = 0)
+        public Collider(GraphicsDevice graphicsDevice,Vector2 velocity, Rectangle rectangle, int collisionType = 0)
         {
             this.velocity = velocity;
             this.rectangle = rectangle;
             this.CollisionType = collisionType;
+
+            SetRectangleTexture(graphicsDevice);
+
+            ShowRectangle = true;
         }
 
 
@@ -256,7 +264,46 @@ namespace SecretProject.Class.CollisionDetection
                 rectangle.Right > sprite.DestinationRectangle.Left &&
                 rectangle.Left < sprite.DestinationRectangle.Right;
         }
+        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < Rectangle.Height; y++)
+            {
+                for (int x = 0; x < Rectangle.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == Rectangle.Width - 1 || //right side
+                        y == Rectangle.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
 
+                    }
+
+                }
+            }
+            rectangleTexture = new Texture2D(graphicsDevice, Rectangle.Width, Rectangle.Height);
+            rectangleTexture.SetData<Color>(Colors.ToArray());
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), Color.White);
+
+
+
+
+        }
+        public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
+        {
+
+            spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+
+        }
 
     }
 }

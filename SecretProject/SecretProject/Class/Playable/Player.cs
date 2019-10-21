@@ -139,7 +139,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
 
-            MyCollider = new Collider(PrimaryVelocity, ColliderRectangle);
+            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle);
 
             Inventory = new Inventory(7) { Money = 10000 };
 
