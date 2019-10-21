@@ -37,6 +37,9 @@ namespace SecretProject.Class.CollisionDetection
 
         public float Identifier { get; set; } = 1;
 
+        //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
+        public int CollisionType { get; set; }
+
 
 
         public ObjectBody(GraphicsDevice graphicsDevice, Rectangle rectangle, float Identifier)
@@ -48,6 +51,7 @@ namespace SecretProject.Class.CollisionDetection
 
             ShowRectangle = true;
             this.Identifier = Identifier;
+            this.CollisionType = 0;
         }
 
 

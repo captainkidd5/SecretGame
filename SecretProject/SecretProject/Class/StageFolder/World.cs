@@ -103,7 +103,7 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
 
             this.OnScreenNPCS = new List<INPC>();
-            this.QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
+           
         }
 
 
@@ -216,7 +216,7 @@ namespace SecretProject.Class.StageFolder
             Cam.Zoom = 4f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
-
+            this.QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
 
 
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);

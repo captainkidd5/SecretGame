@@ -52,6 +52,9 @@ namespace SecretProject.Class.CollisionDetection
 
     public class Collider
     {
+        //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
+        public int CollisionType { get; set; }
+
         private Vector2 velocity;
         private Rectangle rectangle;
 
@@ -64,10 +67,11 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public Collider(Vector2 velocity, Rectangle rectangle)
+        public Collider(Vector2 velocity, Rectangle rectangle, int collisionType = 0)
         {
             this.velocity = velocity;
             this.rectangle = rectangle;
+            this.CollisionType = collisionType;
         }
 
 
