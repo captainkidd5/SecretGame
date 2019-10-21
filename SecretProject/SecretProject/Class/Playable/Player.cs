@@ -358,7 +358,7 @@ namespace SecretProject.Class.Playable
                     // if(this.PrimaryVelocity.X > )
 
 
-                    bool collideOccurred = MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
+                    bool collideOccurred = false;// MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
 
                     this.PrimaryVelocity = MyCollider.Velocity;
 

@@ -258,16 +258,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < this.MapHeight; j++)
                     {
-                        //if (AllTiles[z][i, j].GID != -1)
-                        //{
-                          //  if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
-                          //  {
+
 
                                 TileUtility.AssignProperties(AllTiles[z][i, j],  z, i, j,this);
 
 
-                         //   }
-                      //  }
                     }
                 }
             }
