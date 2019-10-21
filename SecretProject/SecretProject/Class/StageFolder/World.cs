@@ -84,6 +84,8 @@ namespace SecretProject.Class.StageFolder
         public string TmxMapPath { get; set; }
         public TmxMap Map { get; set; }
 
+        public QuadTree QuadTree { get; set; }
+
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
@@ -101,6 +103,7 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
 
             this.OnScreenNPCS = new List<INPC>();
+            this.QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
         }
 
 
@@ -242,6 +245,23 @@ namespace SecretProject.Class.StageFolder
 
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
+            QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
+
+            foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            {
+                QuadTree.Insert(obj);
+            }
+
+            List<ObjectBody> returnObjects = new List<ObjectBody>();
+            foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            {
+                returnObjects.Clear();
+                QuadTree.Retrieve(returnObjects, obj);
+                for(int i =0; i < returnObjects.Count; i++)
+                {
+                    //if obj collided with item in list stop it from moving boom badda bing
+                }
+            }
             this.IsDark = Game1.GlobalClock.IsNight;
             //if (IsGondolaAtEndingPosition)
             //{
