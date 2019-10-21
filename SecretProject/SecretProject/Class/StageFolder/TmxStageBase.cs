@@ -72,7 +72,7 @@ namespace SecretProject.Class.StageFolder
 
         public int TileSetNumber { get; set; }
 
-        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public Dictionary<string, Collider> AllObjects { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
@@ -165,7 +165,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<string, ObjectBody>()
+            AllObjects = new Dictionary<string, Collider>()
             {
 
             };

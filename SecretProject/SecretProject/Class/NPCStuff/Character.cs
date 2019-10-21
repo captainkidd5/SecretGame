@@ -128,7 +128,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
         //for normal, moving NPCS
         #region UPDATE METHODS
-        public virtual void Update(GameTime gameTime, Dictionary<string, ObjectBody> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse)
         {
             if (this.IsBasicNPC)
             {

@@ -14,7 +14,7 @@ namespace SecretProject.Class.CollisionDetection
         private int MAX_LEVELS = 5;
 
         private int level;
-        private List<ObjectBody> Objects;
+        private List<Collider> Objects;
         private Rectangle bounds;
         private QuadTree[] nodes;
 
@@ -24,7 +24,7 @@ namespace SecretProject.Class.CollisionDetection
         public QuadTree(int pLevel, Rectangle pBounds)
         {
             level = pLevel;
-            Objects = new List<ObjectBody>();
+            Objects = new List<Collider>();
             bounds = pBounds;
             nodes = new QuadTree[4];
         }
@@ -55,19 +55,19 @@ namespace SecretProject.Class.CollisionDetection
             nodes[2] = new QuadTree(level + 1, new Rectangle(x, y + subHeight, subWidth, subHeight));
             nodes[3] = new QuadTree(level + 1, new Rectangle(x + subWidth, y + subHeight, subWidth, subHeight));
         }
-        private int GetIndex(ObjectBody objectBody)
+        private int GetIndex(Collider objectBody)
         {
             int index = -1;
             double verticalMidpoint = bounds.X + (bounds.Width / 2);
             double horizontalMidpoint = bounds.Y + (bounds.Height / 2);
 
             // Object can completely fit within the top quadrants
-            bool topQuadrant = (objectBody.DestinationRectangle.Y < horizontalMidpoint && objectBody.DestinationRectangle.Y + objectBody.DestinationRectangle.Height < horizontalMidpoint);
+            bool topQuadrant = (objectBody.Rectangle.Y < horizontalMidpoint && objectBody.Rectangle.Y + objectBody.Rectangle.Height < horizontalMidpoint);
             // Object can completely fit within the bottom quadrants
-            bool bottomQuadrant = (objectBody.DestinationRectangle.Y > horizontalMidpoint);
+            bool bottomQuadrant = (objectBody.Rectangle.Y > horizontalMidpoint);
 
             // Object can completely fit within the left quadrants
-            if (objectBody.DestinationRectangle.X < verticalMidpoint && objectBody.DestinationRectangle.X + objectBody.DestinationRectangle.Width < verticalMidpoint)
+            if (objectBody.Rectangle.X < verticalMidpoint && objectBody.Rectangle.X + objectBody.Rectangle.Width < verticalMidpoint)
             {
                 if (topQuadrant)
                 {
@@ -79,7 +79,7 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
             // Object can completely fit within the right quadrants
-            else if (objectBody.DestinationRectangle.X > verticalMidpoint)
+            else if (objectBody.Rectangle.X > verticalMidpoint)
             {
                 if (topQuadrant)
                 {
@@ -94,7 +94,7 @@ namespace SecretProject.Class.CollisionDetection
             return index;
         }
 
-        public void Insert(ObjectBody objectBody)
+        public void Insert(Collider objectBody)
         {
             if (nodes[0] != null)
             {
@@ -134,7 +134,7 @@ namespace SecretProject.Class.CollisionDetection
             }
         }
 
-        public List<ObjectBody> Retrieve(List<ObjectBody> returnObjects, ObjectBody objectBody)
+        public List<Collider> Retrieve(List<Collider> returnObjects, Collider objectBody)
         {
             int index = GetIndex(objectBody);
             if (index != -1 && nodes[0] != null)

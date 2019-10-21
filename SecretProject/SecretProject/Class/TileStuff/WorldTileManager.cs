@@ -53,12 +53,12 @@ namespace SecretProject.Class.TileStuff
         public Chunk ChunkUnderPlayer { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<string, ObjectBody> Objects { get; set; }
+        public Dictionary<string, Collider> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
-        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, Collider> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
 
@@ -110,12 +110,12 @@ namespace SecretProject.Class.TileStuff
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
-            CurrentObjects = new Dictionary<string, ObjectBody>();
+            CurrentObjects = new Dictionary<string, Collider>();
 
             Chests = new Dictionary<string, Chest>();
             Lights = new List<LightSource>();
 
-            CurrentObjects = new Dictionary<string, ObjectBody>();
+            CurrentObjects = new Dictionary<string, Collider>();
 
             this.ChunkUnderPlayer = new Chunk(this, 0, 0, 1, 1);
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);

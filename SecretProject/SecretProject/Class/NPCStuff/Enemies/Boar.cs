@@ -34,7 +34,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
         }
 
-        public override void Update(GameTime gameTime, Dictionary<string,ObjectBody> objects, MouseManager mouse, IInformationContainer container)
+        public override void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse, IInformationContainer container)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;

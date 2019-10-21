@@ -65,10 +65,10 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, ObjectBody> CurrentObjects { get; set; }
+        public Dictionary<string, Collider> CurrentObjects { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
         public List<LightSource> Lights { get; set; }
-        public Dictionary<string, ObjectBody> Objects { get; set; }
+        public Dictionary<string, Collider> Objects { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public bool AbleToDrawTileSelector { get; set; }
@@ -129,8 +129,8 @@ namespace SecretProject.Class.TileStuff
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
-            Objects = new Dictionary<string, ObjectBody>();
-            CurrentObjects = new Dictionary<string, ObjectBody>();
+            Objects = new Dictionary<string, Collider>();
+            CurrentObjects = new Dictionary<string, Collider>();
             Lights = new List<LightSource>();
             Chests = new Dictionary<string, Chest>();
             Crops = new Dictionary<string, Crop>();

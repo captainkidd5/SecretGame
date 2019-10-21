@@ -417,7 +417,7 @@ namespace SecretProject.Class.TileStuff
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
-                        ObjectBody tempObjectBody = new ObjectBody(container.GraphicsDevice,
+                        Collider tempObjectBody = new Collider(container.GraphicsDevice,new Vector2(0,0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height) + 5), tileToAssign.GID);

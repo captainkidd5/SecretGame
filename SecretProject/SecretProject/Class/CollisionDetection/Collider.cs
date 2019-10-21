@@ -84,13 +84,13 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(Dictionary<string, ObjectBody> objectBody, Vector2 position)
+        public bool DidCollide(Dictionary<string, Collider> objectBody, Vector2 position)
         {
 
             foreach (var body in objectBody.Values)
             {
-                if (body.DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
-                             && body.DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
+                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
+                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
                 {
 
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
@@ -128,6 +128,54 @@ namespace SecretProject.Class.CollisionDetection
 
                 }
             }
+            return false;
+
+        }
+
+        //SINGULAR
+        public bool DidCollide(Collider objectBody, Vector2 position)
+        {
+
+
+                if (objectBody.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && objectBody.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
+                             && objectBody.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && objectBody.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
+                {
+
+                    if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
+                    {
+                        velocity.X -= velocity.X; //+ (float).25;
+                                                  //   position.X = objectBody.DestinationRectangle.Left;
+                        return true;
+                    }
+
+
+
+                    if (velocity.X < 0 && IsTouchingRight(rectangle, objectBody, velocity))
+                    {
+                        velocity.X -= velocity.X; //- (float).25;
+                                                  //   position.X = objectBody.DestinationRectangle.Right;
+                        return true;
+                    }
+
+
+                    if (velocity.Y > 0 && IsTouchingTop(rectangle, objectBody, velocity))
+                    {
+                        velocity.Y -= velocity.Y; //+ (float).25;
+                                                  //  position.Y = objectBody.DestinationRectangle.Top;
+                        return true;
+                    }
+
+                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, objectBody, velocity))
+                    {
+                        velocity.Y -= velocity.Y;// - (float).25;
+                                                 // position.Y = objectBody.DestinationRectangle.Bottom;
+                        return true;
+                    }
+
+
+
+                }
+            
             return false;
 
         }
@@ -205,33 +253,33 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public bool IsTouchingLeft(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingLeft(Rectangle rectangle, Collider obj, Vector2 velocity)
         {
-            return rectangle.Right + velocity.X > obj.DestinationRectangle.Left &&
-                rectangle.Left < obj.DestinationRectangle.Left &&
-                rectangle.Bottom > obj.DestinationRectangle.Top &&
-                rectangle.Top < obj.DestinationRectangle.Bottom;
+            return rectangle.Right + velocity.X > obj.Rectangle.Left &&
+                rectangle.Left < obj.Rectangle.Left &&
+                rectangle.Bottom > obj.Rectangle.Top &&
+                rectangle.Top < obj.Rectangle.Bottom;
         }
-        public bool IsTouchingRight(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingRight(Rectangle rectangle, Collider obj, Vector2 velocity)
         {
-            return rectangle.Left + velocity.X < obj.DestinationRectangle.Right &&
-                rectangle.Right > obj.DestinationRectangle.Right &&
-                rectangle.Bottom > obj.DestinationRectangle.Top &&
-                rectangle.Top < obj.DestinationRectangle.Bottom;
+            return rectangle.Left + velocity.X < obj.Rectangle.Right &&
+                rectangle.Right > obj.Rectangle.Right &&
+                rectangle.Bottom > obj.Rectangle.Top &&
+                rectangle.Top < obj.Rectangle.Bottom;
         }
-        public bool IsTouchingTop(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingTop(Rectangle rectangle, Collider obj, Vector2 velocity)
         {
-            return rectangle.Bottom + velocity.Y > obj.DestinationRectangle.Top &&
-                rectangle.Top < obj.DestinationRectangle.Top &&
-                rectangle.Right > obj.DestinationRectangle.Left &&
-                rectangle.Left < obj.DestinationRectangle.Right;
+            return rectangle.Bottom + velocity.Y > obj.Rectangle.Top &&
+                rectangle.Top < obj.Rectangle.Top &&
+                rectangle.Right > obj.Rectangle.Left &&
+                rectangle.Left < obj.Rectangle.Right;
         }
-        public bool IsTouchingBottom(Rectangle rectangle, ObjectBody obj, Vector2 velocity)
+        public bool IsTouchingBottom(Rectangle rectangle, Collider obj, Vector2 velocity)
         {
-            return rectangle.Top + velocity.Y < obj.DestinationRectangle.Bottom &&
-                rectangle.Bottom > obj.DestinationRectangle.Bottom &&
-                rectangle.Right > obj.DestinationRectangle.Left &&
-                rectangle.Left < obj.DestinationRectangle.Right;
+            return rectangle.Top + velocity.Y < obj.Rectangle.Bottom &&
+                rectangle.Bottom > obj.Rectangle.Bottom &&
+                rectangle.Right > obj.Rectangle.Left &&
+                rectangle.Left < obj.Rectangle.Right;
         }
 
         //Sprite part

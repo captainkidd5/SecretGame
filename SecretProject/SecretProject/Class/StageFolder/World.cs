@@ -70,7 +70,7 @@ namespace SecretProject.Class.StageFolder
         public List<Character> CharactersPresent { get; set; }
         public List<StringWrapper> AllTextToWrite { get; set; }
         public List<INPC> OnScreenNPCS { get; set; }
-        public Dictionary<string, ObjectBody> AllObjects { get; set; }
+        public Dictionary<string, Collider> AllObjects { get; set; }
         public List<LightSource> AllLights { get; set; }
         public List<float> MyProperty { get; set; }
         public List<float> AllDepths { get; set; }
@@ -121,7 +121,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<string, ObjectBody>()
+            AllObjects = new Dictionary<string, Collider>()
             {
 
             };
@@ -252,16 +252,35 @@ namespace SecretProject.Class.StageFolder
                 QuadTree.Insert(obj);
             }
 
-            List<ObjectBody> returnObjects = new List<ObjectBody>();
-            foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            QuadTree.Insert(player.MyCollider);
+
+            List<Collider> returnObjects = new List<Collider>();
+            QuadTree.Retrieve(returnObjects, player.MyCollider);
+            for (int i = 0; i < returnObjects.Count; i++)
             {
-                returnObjects.Clear();
-                QuadTree.Retrieve(returnObjects, obj);
-                for(int i =0; i < returnObjects.Count; i++)
+                //if obj collided with item in list stop it from moving boom badda bing
+                if (player.MyCollider.DidCollide(returnObjects[i], player.position))
                 {
-                    //if obj collided with item in list stop it from moving boom badda bing
+                    //Console.WriteLine("collide occurred");
+
                 }
+
             }
+            //foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            //{
+            //    if(obj.CollisionType == 1)
+            //    {
+            //        returnObjects.Clear();
+            //        QuadTree.Retrieve(returnObjects, obj);
+            //        for (int i = 0; i < returnObjects.Count; i++)
+            //        {
+            //            //if obj collided with item in list stop it from moving boom badda bing
+            //        }
+            //    }
+                
+            //}
+
+            
             this.IsDark = Game1.GlobalClock.IsNight;
             //if (IsGondolaAtEndingPosition)
             //{

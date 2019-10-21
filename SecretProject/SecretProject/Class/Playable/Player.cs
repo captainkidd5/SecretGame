@@ -139,7 +139,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
 
-            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle);
+            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle, 1);
 
             Inventory = new Inventory(7) { Money = 10000 };
 
@@ -228,7 +228,7 @@ namespace SecretProject.Class.Playable
             }
         }
         public bool CollideOccured { get; set; }
-        public void Update(GameTime gameTime, List<Item> items, Dictionary<string, ObjectBody> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, List<Item> items, Dictionary<string, Collider> objects, MouseManager mouse)
         {
             if (Activate)
             {
