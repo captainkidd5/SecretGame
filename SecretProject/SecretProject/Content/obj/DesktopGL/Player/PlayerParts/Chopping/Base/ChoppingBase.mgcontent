@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Chopping/Base/ChoppingBase.png</SourceFile>
-  <SourceTime>2019-10-13T09:51:20.8178129-07:00</SourceTime>
+  <SourceTime>2019-10-19T10:32:38.466638-07:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Player/PlayerParts/Chopping/Base/ChoppingBase.xnb</DestFile>
-  <DestTime>2019-10-16T13:57:46.814575-07:00</DestTime>
+  <DestTime>2019-10-21T17:08:01.6425019-07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

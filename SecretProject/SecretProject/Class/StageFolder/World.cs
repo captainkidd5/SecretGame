@@ -248,10 +248,17 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
 
-            foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+            for(int i =0; i < AllTiles.ActiveChunks.GetLength(0); i++)
             {
-                QuadTree.Insert(obj);
+                for(int j =0; j < AllTiles.ActiveChunks.GetLength(1); j++)
+                {
+                    foreach (var obj in AllTiles.ActiveChunks[i,j].Objects.Values)
+                    {
+                        QuadTree.Insert(obj);
+                    }
+                }
             }
+            
 
             QuadTree.Insert(player.MyCollider);
 
