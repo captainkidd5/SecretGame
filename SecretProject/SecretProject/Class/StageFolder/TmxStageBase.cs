@@ -72,7 +72,7 @@ namespace SecretProject.Class.StageFolder
 
         public int TileSetNumber { get; set; }
 
-        public Dictionary<string, Collider> AllObjects { get; set; }
+        public Dictionary<string, ICollidable> AllObjects { get; set; }
         public Dictionary<string, Crop> AllCrops { get; set; }
 
         public List<Sprite> AllSprites { get; set; }
@@ -166,7 +166,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<string, Collider>()
+            AllObjects = new Dictionary<string, ICollidable>()
             {
 
             };
@@ -342,7 +342,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
 
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems, AllTiles.Objects, mouse);
+                player.Update(gameTime, AllItems, mouse);
 
  
                 foreach (Sprite spr in AllSprites)
@@ -364,7 +364,7 @@ namespace SecretProject.Class.StageFolder
                 }
                 foreach (Character character in Game1.AllCharacters)
                 {
-                    character.Update(gameTime, AllObjects, mouse);
+                    character.Update(gameTime, mouse);
                 }
                 if (this.BackDropNumber == 1)
                 {

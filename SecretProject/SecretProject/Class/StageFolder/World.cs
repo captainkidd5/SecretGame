@@ -263,40 +263,8 @@ namespace SecretProject.Class.StageFolder
             QuadTree.Insert(player.MyCollider);
 
 
-
-            //List<Collider> returnObjects = new List<Collider>();
-            //QuadTree.Retrieve(returnObjects, player.MyCollider);
-            //for (int i = 0; i < returnObjects.Count; i++)
-            //{
-            //    //if obj collided with item in list stop it from moving boom badda bing
-            //    if (player.MyCollider.DidCollide(returnObjects[i], player.position))
-            //    {
-            //        //Console.WriteLine("collide occurred");
-            //        //player.MyCollider.Velocity = player.PrimaryVelocity;
-            //        player.CollideOccured = true;
-            //    }
-
-            //}
-
-
             
             this.IsDark = Game1.GlobalClock.IsNight;
-            //if (IsGondolaAtEndingPosition)
-            //{
-
-
-            //    if (mouse.IsHovering(AllObjects["gondola"].Rectangle))
-            //    {
-            //        if (mouse.IsClicked)
-            //        {
-            //            IsExitingOnGondola = true;
-            //            //this.portalIndex = p;
-            //            return;
-            //        }
-            //    }
-            //}
-            // this.Gondola.Position = GondolaStartingPosition;
-            
 
 
 
@@ -351,7 +319,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 AllTiles.Update(gameTime, mouse);
-                player.Update(gameTime, AllItems, AllTiles.ChunkUnderPlayer.Objects, mouse);
+                player.Update(gameTime, AllItems, mouse);
 
 
                 for (int i = 0; i < AllItems.Count; i++)

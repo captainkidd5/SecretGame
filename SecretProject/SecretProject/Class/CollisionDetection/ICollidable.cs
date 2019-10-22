@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace SecretProject.Class.CollisionDetection
 {
     public interface ICollidable
     {
-        Rectangle DestinationRectangle { get; set; }
+        Rectangle Rectangle { get; set; }
+
+        void Draw(SpriteBatch spriteBatch, float layerDepth);
     }
 }

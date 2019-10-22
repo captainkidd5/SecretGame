@@ -128,7 +128,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
         //for normal, moving NPCS
         #region UPDATE METHODS
-        public virtual void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse)
+        public virtual void Update(GameTime gameTime, MouseManager mouse)
         {
             if (this.IsBasicNPC)
             {
@@ -146,18 +146,15 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            List<Collider> returnObjects = new List<Collider>();
+            List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
-                if(returnObjects[i].CollisionType == 0)
-                {
-                    if (Collider.DidCollide(returnObjects[i], Position))
-                    {
-                        CollideOccured = true;
-                    }
 
+                if (Collider.DidCollide(returnObjects[i], Position))
+                {
+                    CollideOccured = true;
                 }
 
             }

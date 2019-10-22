@@ -33,7 +33,6 @@ namespace SecretProject.Class.Playable
     public class Player
     {
 
-        //TODO: Work on gametime
         public Vector2 position;
         public Vector2 PrimaryVelocity;
         public Vector2 SecondaryVelocity;
@@ -196,17 +195,7 @@ namespace SecretProject.Class.Playable
                 PlayerActionAnimations[i].IsAnimated = true;
                 PlayerActionAnimations[i].PlayOnce(gameTime, Position);
             }
-            // CurrentAction0, 0].IsAnimated = true;
-            //for (int i = 0; i < CurrentAction.GetLength(0); i++)
-            //{
-            //    for (int j = 0; j < CurrentAction.GetLength(1); j++)
-            //    {
-            //        CurrentAction[i, j].IsAnimated = true;
-            //        CurrentAction[i, j].PlayOnce(gameTime, Position);
 
-            //    }
-            //}
-            //IsPerformingAction = false;
         }
         public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
         {
@@ -228,7 +217,7 @@ namespace SecretProject.Class.Playable
             }
         }
         public bool CollideOccured { get; set; }
-        public void Update(GameTime gameTime, List<Item> items, Dictionary<string, Collider> objects, MouseManager mouse)
+        public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
         {
             if (Activate)
             {
@@ -355,19 +344,16 @@ namespace SecretProject.Class.Playable
                     MyCollider.Rectangle = this.ColliderRectangle;
                     MyCollider.Velocity = this.PrimaryVelocity;
                     MyCollider.DidCollideMagnet(items);
-                    // if(this.PrimaryVelocity.X > )
 
-                    // MyCollider.DidCollide(objects, position); //did a collision with an object happen this loop?
-                    List<Collider> returnObjects = new List<Collider>();
+                    List<ICollidable> returnObjects = new List<ICollidable>();
                     Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MyCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
-                        //if obj collided with item in list stop it from moving boom badda bing
+
 
                         if (MyCollider.DidCollide(returnObjects[i], position))
                         {
-                            //Console.WriteLine("collide occurred");
-                            //player.MyCollider.Velocity = player.PrimaryVelocity;
+
                             CollideOccured = true;
                         }
 

@@ -11,47 +11,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.CollisionDetection
 {
-    //public struct RectangleCollider
-    //{
-    //    private Vector2 topLeft;
-    //    private Vector2 bottomRight;
-    //    public Vector2 TopLeft { get { return topLeft; } set { topLeft = value; } }
-    //    public Vector2 BottomRight { get { return bottomRight; } set { bottomRight = value; } }
-
-    //    public Vector2 TopRight { get { return new Vector2(bottomRight.X, topLeft.Y); } }
-    //    public Vector2 BottomLeft { get { return new Vector2(topLeft.X, bottomRight.Y); } }
-
-    //    public float Top { get { return topLeft.Y; } }
-    //    public float Right { get { return bottomRight.X; } }
-    //    public float Left { get { return topLeft.X; } }
-    //    public float Bottom { get { return bottomRight.Y; } }
-
-    //    public RectangleCollider(Vector2 topLeft, Vector2 bottomRight)
-    //    {
-    //        this.topLeft = topLeft;
-    //        this.bottomRight = bottomRight;
 
 
-    //    }
-
-    //    public bool Contains(Vector2 Point)
-    //    {
-    //        return (topLeft.X <= Point.X && bottomRight.X >= Point.X &&
-    //                topLeft.Y <= Point.Y && bottomRight.Y >= Point.Y);
-    //    }
-
-    //    public bool Intersects(RectangleCollider Rect)
-    //    {
-    //        return (!(Bottom < Rect.Top ||
-    //                   Top > Rect.Bottom ||
-    //                   Right < Rect.Left ||
-    //                   Left > Rect.Right));
-    //    }
-
-
-    //}
-
-    public class Collider
+    public class Collider : ICollidable
     {
         protected Texture2D rectangleTexture;
 
@@ -87,7 +49,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
         //SINGULAR
-        public bool DidCollide(Collider objectBody, Vector2 position)
+        public bool DidCollide(ICollidable objectBody, Vector2 position)
         {
 
 
@@ -207,28 +169,28 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public bool IsTouchingLeft(Rectangle rectangle, Collider obj, Vector2 velocity)
+        public bool IsTouchingLeft(Rectangle rectangle, ICollidable obj, Vector2 velocity)
         {
             return rectangle.Right + velocity.X > obj.Rectangle.Left &&
                 rectangle.Left < obj.Rectangle.Left &&
                 rectangle.Bottom > obj.Rectangle.Top &&
                 rectangle.Top < obj.Rectangle.Bottom;
         }
-        public bool IsTouchingRight(Rectangle rectangle, Collider obj, Vector2 velocity)
+        public bool IsTouchingRight(Rectangle rectangle, ICollidable obj, Vector2 velocity)
         {
             return rectangle.Left + velocity.X < obj.Rectangle.Right &&
                 rectangle.Right > obj.Rectangle.Right &&
                 rectangle.Bottom > obj.Rectangle.Top &&
                 rectangle.Top < obj.Rectangle.Bottom;
         }
-        public bool IsTouchingTop(Rectangle rectangle, Collider obj, Vector2 velocity)
+        public bool IsTouchingTop(Rectangle rectangle, ICollidable obj, Vector2 velocity)
         {
             return rectangle.Bottom + velocity.Y > obj.Rectangle.Top &&
                 rectangle.Top < obj.Rectangle.Top &&
                 rectangle.Right > obj.Rectangle.Left &&
                 rectangle.Left < obj.Rectangle.Right;
         }
-        public bool IsTouchingBottom(Rectangle rectangle, Collider obj, Vector2 velocity)
+        public bool IsTouchingBottom(Rectangle rectangle, ICollidable obj, Vector2 velocity)
         {
             return rectangle.Top + velocity.Y < obj.Rectangle.Bottom &&
                 rectangle.Bottom > obj.Rectangle.Bottom &&

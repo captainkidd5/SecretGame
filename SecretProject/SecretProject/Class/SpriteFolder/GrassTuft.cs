@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class GrassTuft
+    public class GrassTuft : ICollidable
     {
         public int GrassType { get; set; }
         public Vector2 Position { get; set; }
@@ -22,7 +22,7 @@ namespace SecretProject.Class.SpriteFolder
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
 
-        public Collider Collider { get; set; }
+        public Rectangle Rectangle { get; set; }
 
         public Rectangle Type1SourceRectangle { get; set; }
         public Rectangle Type2SourceRectangle { get; set; }
@@ -45,7 +45,6 @@ namespace SecretProject.Class.SpriteFolder
             this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
             this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
 
-            this.Collider = new Collider(graphics, new Vector2(0, 0), DestinationRectangle); 
         }
         public void Update(GameTime gameTime)
         {
@@ -161,6 +160,11 @@ namespace SecretProject.Class.SpriteFolder
             {
                 this.StartShuff = false;
             }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, float layerDepth)
+        {
+            throw new NotImplementedException();
         }
     }
 }

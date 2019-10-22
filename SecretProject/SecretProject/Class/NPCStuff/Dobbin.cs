@@ -38,7 +38,7 @@ namespace SecretProject.Class.NPCStuff
             this.DebugColor = Color.HotPink;
         }
 
-        public override void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse)
+        public override void Update(GameTime gameTime, MouseManager mouse)
         {
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
@@ -51,7 +51,7 @@ namespace SecretProject.Class.NPCStuff
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            List<Collider> returnObjects = new List<Collider>();
+            List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {

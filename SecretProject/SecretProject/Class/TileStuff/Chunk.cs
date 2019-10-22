@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
 
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<string, Collider> Objects { get; set; }
+        public Dictionary<string, ICollidable> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
@@ -84,7 +84,7 @@ namespace SecretProject.Class.TileStuff
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
             Tufts = new Dictionary<string, List<GrassTuft>>();
-            Objects = new Dictionary<string, Collider>();
+            Objects = new Dictionary<string, ICollidable>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
             Chests = new Dictionary<string, Chest>();

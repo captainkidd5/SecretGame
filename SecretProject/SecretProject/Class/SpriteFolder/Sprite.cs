@@ -70,6 +70,8 @@ namespace SecretProject.Class.SpriteFolder
         Vector2 destinationVector = new Vector2(0, 0);
 
         public bool Flip { get; set; }
+        //for collider
+        public Rectangle Rectangle { get; set; }
 
 
 

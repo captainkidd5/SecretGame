@@ -34,23 +34,21 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
         }
 
-        public override void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse, IInformationContainer container)
+        public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            List<Collider> returnObjects = new List<Collider>();
+            List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
-                if (returnObjects[i].CollisionType == 0)
-                {
                     if (Collider.DidCollide(returnObjects[i], Position))
                     {
                         CollideOccured = true;
                     }
-                }
+                
 
             }
 

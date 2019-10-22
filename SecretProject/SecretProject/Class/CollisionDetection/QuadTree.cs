@@ -17,7 +17,7 @@ namespace SecretProject.Class.CollisionDetection
         private int MAX_LEVELS = 5;
 
         private int level;
-        private List<Collider> Objects;
+        private List<ICollidable> Objects;
         private Rectangle bounds;
         private QuadTree[] nodes;
 
@@ -27,7 +27,7 @@ namespace SecretProject.Class.CollisionDetection
         public QuadTree(int pLevel, Rectangle pBounds)
         {
             level = pLevel;
-            Objects = new List<Collider>();
+            Objects = new List<ICollidable>();
             bounds = pBounds;
             nodes = new QuadTree[4];
         }
@@ -58,7 +58,7 @@ namespace SecretProject.Class.CollisionDetection
             nodes[2] = new QuadTree(level + 1, new Rectangle(x, y + subHeight, subWidth, subHeight));
             nodes[3] = new QuadTree(level + 1, new Rectangle(x + subWidth, y + subHeight, subWidth, subHeight));
         }
-        private int GetIndex(Collider objectBody)
+        private int GetIndex(ICollidable objectBody)
         {
             int index = -1;
             double verticalMidpoint = bounds.X + (bounds.Width / 2);
@@ -97,7 +97,7 @@ namespace SecretProject.Class.CollisionDetection
             return index;
         }
 
-        public void Insert(Collider objectBody)
+        public void Insert(ICollidable objectBody)
         {
             if (nodes[0] != null)
             {
@@ -137,7 +137,7 @@ namespace SecretProject.Class.CollisionDetection
             }
         }
 
-        public List<Collider> Retrieve(List<Collider> returnObjects, Collider objectBody)
+        public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
         {
             int index = GetIndex(objectBody);
             if (index != -1 && nodes[0] != null)
