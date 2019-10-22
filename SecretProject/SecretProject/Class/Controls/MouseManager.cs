@@ -161,8 +161,15 @@ namespace SecretProject.Class.Controls
             uIPosition.Y = MyMouse.Position.Y - 20;
 
             
-
-            WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
+            if(Game1.GetCurrentStageInt() == (int)Stages.World)
+            {
+                WorldMousePosition = new Vector2((int)worldPosition.X - XTileOffSet, (int)worldPosition.Y - YTileOffSet);
+            }
+            else
+            {
+                WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
+            }
+            
             //relativeMouseX = position.X + Camera
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);

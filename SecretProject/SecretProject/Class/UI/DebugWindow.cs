@@ -52,10 +52,11 @@ namespace SecretProject.Class.UI
 
             if (IsActivated)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
-                    Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n TileselectorX: "  +
-                    Game1.Player.UserInterface.TileSelector.IndexX + " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n cameraY: "
+                //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
+                //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n Mouse I  "  +
+                   (int)(Game1.myMouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.World.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n cameraY: "
                     + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
                     Game1.myMouseManager.WorldMousePosition.Y  + "\n\n Kaya position y " + Game1.Kaya.Position.Y, position, Color.Red, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
