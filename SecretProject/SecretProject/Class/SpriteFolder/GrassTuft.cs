@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace SecretProject.Class.SpriteFolder
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
 
+        public Collider Collider { get; set; }
+
         public Rectangle Type1SourceRectangle { get; set; }
         public Rectangle Type2SourceRectangle { get; set; }
         public Rectangle Type3SourceRectangle { get; set; }
 
-        public GrassTuft(int grassType,Vector2 position)
+        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {
             this.GrassType = grassType;
             this.Position = position;
@@ -41,6 +44,8 @@ namespace SecretProject.Class.SpriteFolder
             this.Type1SourceRectangle = new Rectangle(0, 0, 16, 32);
             this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
             this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
+
+            this.Collider = new Collider(graphics, new Vector2(0, 0), DestinationRectangle); 
         }
         public void Update(GameTime gameTime)
         {

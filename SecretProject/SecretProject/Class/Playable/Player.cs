@@ -363,6 +363,7 @@ namespace SecretProject.Class.Playable
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         //if obj collided with item in list stop it from moving boom badda bing
+
                         if (MyCollider.DidCollide(returnObjects[i], position))
                         {
                             //Console.WriteLine("collide occurred");

@@ -39,7 +39,20 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            this.CollideOccured = Collider.DidCollide(container.Objects, Position);
+            List<Collider> returnObjects = new List<Collider>();
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, Collider);
+            for (int i = 0; i < returnObjects.Count; i++)
+            {
+                //if obj collided with item in list stop it from moving boom badda bing
+                if (returnObjects[i].CollisionType == 0)
+                {
+                    if (Collider.DidCollide(returnObjects[i], Position))
+                    {
+                        CollideOccured = true;
+                    }
+                }
+
+            }
 
             for (int i = 0; i < 4; i++)
             {

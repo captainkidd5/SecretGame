@@ -66,6 +66,8 @@ namespace SecretProject.Class.CollisionDetection
 
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
+
+
         private Collider()
         {
 
@@ -84,54 +86,6 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-        public bool DidCollide(Dictionary<string, Collider> objectBody, Vector2 position)
-        {
-
-            foreach (var body in objectBody.Values)
-            {
-                if (body.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && body.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
-                             && body.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && body.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
-                {
-
-                    if (velocity.X > 0 && IsTouchingLeft(rectangle, body, velocity))
-                    {
-                        velocity.X -= velocity.X; //+ (float).25;
-                     //   position.X = body.DestinationRectangle.Left;
-                        return true;
-                    }
-
-
-
-                    if (velocity.X < 0 && IsTouchingRight(rectangle, body, velocity))
-                    {
-                        velocity.X -= velocity.X; //- (float).25;
-                     //   position.X = body.DestinationRectangle.Right;
-                        return true;
-                    }
-
-
-                    if (velocity.Y > 0 && IsTouchingTop(rectangle, body, velocity))
-                    {
-                        velocity.Y -= velocity.Y; //+ (float).25;
-                      //  position.Y = body.DestinationRectangle.Top;
-                        return true;
-                    }
-
-                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, body, velocity))
-                    {
-                        velocity.Y -= velocity.Y;// - (float).25;
-                       // position.Y = body.DestinationRectangle.Bottom;
-                        return true;
-                    }
-
-
-
-                }
-            }
-            return false;
-
-        }
-
         //SINGULAR
         public bool DidCollide(Collider objectBody, Vector2 position)
         {
@@ -144,7 +98,7 @@ namespace SecretProject.Class.CollisionDetection
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
                     {
                         velocity.X -= velocity.X; //+ (float).25;
-                                                  //   position.X = objectBody.DestinationRectangle.Left;
+
                         return true;
                     }
 

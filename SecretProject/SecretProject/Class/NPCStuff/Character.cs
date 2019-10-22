@@ -121,7 +121,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, 1);
             this.CurrentDirection = 0;
 
         }
@@ -151,9 +151,13 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
-                if (Collider.DidCollide(returnObjects[i], Position))
+                if(returnObjects[i].CollisionType == 0)
                 {
-                    CollideOccured = true;
+                    if (Collider.DidCollide(returnObjects[i], Position))
+                    {
+                        CollideOccured = true;
+                    }
+
                 }
 
             }
