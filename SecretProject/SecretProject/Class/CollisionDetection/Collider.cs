@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.CollisionDetection
 {
-
+   
 
     public class Collider : ICollidable
     {
@@ -19,7 +19,6 @@ namespace SecretProject.Class.CollisionDetection
 
         public bool ShowRectangle { get; set; }
         //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
-        public int CollisionType { get; set; }
 
         private Vector2 velocity;
         private Rectangle rectangle;
@@ -29,17 +28,17 @@ namespace SecretProject.Class.CollisionDetection
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
 
-
+        public ColliderType ColliderType { get; set; }
         private Collider()
         {
 
         }
 
-        public Collider(GraphicsDevice graphicsDevice,Vector2 velocity, Rectangle rectangle, int collisionType = 0)
+        public Collider(GraphicsDevice graphicsDevice,Vector2 velocity, Rectangle rectangle, ColliderType colliderType = ColliderType.inert)
         {
             this.velocity = velocity;
             this.rectangle = rectangle;
-            this.CollisionType = collisionType;
+            this.ColliderType = colliderType;
 
             SetRectangleTexture(graphicsDevice);
 
@@ -53,9 +52,7 @@ namespace SecretProject.Class.CollisionDetection
         {
 
 
-                if (objectBody.Rectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2 / Game1.cam.Zoom) && objectBody.Rectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2 / Game1.cam.Zoom + 16)
-                             && objectBody.Rectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16) && objectBody.Rectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2 / Game1.cam.Zoom + 16))
-                {
+
 
                     if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
                     {
@@ -90,7 +87,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
 
-                }
+                
             
             return false;
 
@@ -269,5 +266,14 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
+        public void Update(GameTime gameTime, Dir direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Shuff(GameTime gameTime, int direction)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

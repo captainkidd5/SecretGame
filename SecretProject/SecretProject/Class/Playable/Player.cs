@@ -138,7 +138,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
 
-            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle, 1);
+            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle, ColliderType.inert);
 
             Inventory = new Inventory(7) { Money = 10000 };
 
@@ -354,14 +354,23 @@ namespace SecretProject.Class.Playable
                         if (MyCollider.DidCollide(returnObjects[i], position))
                         {
 
-                            CollideOccured = true;
+                            
+                            if(returnObjects[i].ColliderType == ColliderType.grass)
+                            {
+                                returnObjects[i].Update(gameTime, controls.Direction);
+                            }
+                            else
+                            {
+                                CollideOccured = true;
+                            }
                         }
 
                     }
-                    this.PrimaryVelocity = MyCollider.Velocity;
+                    
 
                     if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
+                        this.PrimaryVelocity = MyCollider.Velocity;
                         TotalVelocity = PrimaryVelocity;
                         // SecondaryVelocity = Vector2.Zero;
                     }

@@ -374,13 +374,13 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][i, j].GID != -1)
                         {
                             string TileKey = AllTiles[z][i, j].GetTileKey(z);
-                            if (Tufts.ContainsKey(TileKey))
-                            {
-                                for (int t = 0; t < Tufts[TileKey].Count; t++)
-                                {
-                                    Tufts[TileKey][t].Update(gameTime);
-                                }
-                            }
+                            //if (Tufts.ContainsKey(TileKey))
+                            //{
+                            //    for (int t = 0; t < Tufts[TileKey].Count; t++)
+                            //    {
+                            //        Tufts[TileKey][t].Update(gameTime);
+                            //    }
+                            //}
                             if(!CurrentObjects.ContainsKey(TileKey))
                             {
                                 if (Objects.ContainsKey(TileKey))

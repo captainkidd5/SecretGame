@@ -478,13 +478,13 @@ namespace SecretProject.Class.TileStuff
 
                                         if (z == 0)
                                         {
-                                            if (ActiveChunks[a, b].Tufts.ContainsKey(TileKey))
-                                            {
-                                                for (int t = 0; t < ActiveChunks[a, b].Tufts[TileKey].Count; t++)
-                                                {
-                                                    ActiveChunks[a, b].Tufts[TileKey][t].Update(gameTime);
-                                                }
-                                            }
+                                            //if (ActiveChunks[a, b].Tufts.ContainsKey(TileKey))
+                                            //{
+                                            //    for (int t = 0; t < ActiveChunks[a, b].Tufts[TileKey].Count; t++)
+                                            //    {
+                                            //        ActiveChunks[a, b].Tufts[TileKey][t].Update(gameTime, Game1.Player.controls.Direction);
+                                            //    }
+                                            //}
                                         }
 
 

@@ -28,6 +28,8 @@ namespace SecretProject.Class.SpriteFolder
         public Rectangle Type2SourceRectangle { get; set; }
         public Rectangle Type3SourceRectangle { get; set; }
 
+        public ColliderType ColliderType { get; set; }
+
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {
             this.GrassType = grassType;
@@ -44,17 +46,20 @@ namespace SecretProject.Class.SpriteFolder
             this.Type1SourceRectangle = new Rectangle(0, 0, 16, 32);
             this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
             this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
+            this.Rectangle = DestinationRectangle;
+
+            this.ColliderType = ColliderType.grass;
 
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Dir direction)
         {
-            
-            
-           
-            if(!StartShuff && Game1.Player.ColliderRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, 16, 16)))
+
+
+
+            if (!StartShuff)
             {
                 this.StartShuff = true;
-                   
+
             }
 
 
@@ -66,7 +71,7 @@ namespace SecretProject.Class.SpriteFolder
             }
             if (this.StartShuff)
             {
-                Shuff(gameTime, (int)Game1.Player.controls.Direction);
+                Shuff(gameTime, (int)direction);
                 ShuffDirectionPicked = true;
             }
         }

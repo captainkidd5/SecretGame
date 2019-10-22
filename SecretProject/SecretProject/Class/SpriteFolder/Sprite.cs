@@ -72,6 +72,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool Flip { get; set; }
         //for collider
         public Rectangle Rectangle { get; set; }
+        public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 
@@ -334,5 +335,14 @@ namespace SecretProject.Class.SpriteFolder
             //DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
+        public void Update(GameTime gameTime, Dir direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Shuff(GameTime gameTime, int direction)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
