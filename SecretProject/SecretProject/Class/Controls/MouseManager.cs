@@ -161,14 +161,14 @@ namespace SecretProject.Class.Controls
             uIPosition.Y = MyMouse.Position.Y - 20;
 
             
-            if(Game1.GetCurrentStageInt() == (int)Stages.World)
-            {
+            //if(Game1.GetCurrentStageInt() == (int)Stages.World)
+            //{
                 WorldMousePosition = new Vector2((int)worldPosition.X - XTileOffSet, (int)worldPosition.Y - YTileOffSet);
-            }
-            else
-            {
-                WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
-            }
+            //}
+            //else
+            //{
+            //    WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
+            //}
             
             //relativeMouseX = position.X + Camera
 

@@ -282,7 +282,7 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(5, MapRectangle);
 
-            foreach (var obj in AllTiles.CurrentObjects.Values)
+            foreach (var obj in AllTiles.Objects.Values)
             {
                 QuadTree.Insert(obj);
             }
