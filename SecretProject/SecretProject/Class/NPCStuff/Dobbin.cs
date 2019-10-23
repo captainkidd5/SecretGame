@@ -34,7 +34,7 @@ namespace SecretProject.Class.NPCStuff
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             DebugTexture = SetRectangleTexture(graphics, NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, ColliderType.inert);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, ColliderType.NPC);
             this.DebugColor = Color.HotPink;
         }
 
@@ -56,7 +56,7 @@ namespace SecretProject.Class.NPCStuff
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
-                if (Collider.DidCollide(returnObjects[i], Position))
+                if (returnObjects[i].ColliderType != ColliderType.NPC && Collider.DidCollide(returnObjects[i], Position))
                 {
                     CollideOccured = true;
                 }
@@ -72,7 +72,11 @@ namespace SecretProject.Class.NPCStuff
 
 
                 UpdateDirection();
-                this.PrimaryVelocity = Collider.Velocity;
+                if(CollideOccured)
+                {
+                    this.PrimaryVelocity = Collider.Velocity;
+                }
+                
             }
             else
             {

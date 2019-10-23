@@ -11,7 +11,8 @@ namespace SecretProject.Class.CollisionDetection
     public enum ColliderType
     {
         inert = 0,
-        grass = 1
+        grass = 1,
+        NPC = 2
     }
     public interface ICollidable
     {

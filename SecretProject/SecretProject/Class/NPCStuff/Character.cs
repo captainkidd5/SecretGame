@@ -121,7 +121,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, ColliderType.inert);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, ColliderType.NPC);
             this.CurrentDirection = 0;
 
         }
@@ -152,7 +152,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             {
                 //if obj collided with item in list stop it from moving boom badda bing
 
-                if (Collider.DidCollide(returnObjects[i], Position))
+                if (returnObjects[i].ColliderType != ColliderType.NPC && Collider.DidCollide(returnObjects[i], Position))
                 {
                     CollideOccured = true;
                 }
@@ -169,7 +169,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
                 UpdateDirection();
-                this.PrimaryVelocity = Collider.Velocity;
+                if(CollideOccured)
+                {
+                    this.PrimaryVelocity = Collider.Velocity;
+                }
+                
             }
             else
             {
