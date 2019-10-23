@@ -366,7 +366,7 @@ namespace SecretProject.Class.TileStuff
             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16);
             for (int z = 0; z < AllTiles.Count; z++)
             {
-                if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
+                if (mouseI < AllTiles[z].GetLength(0) && mouseJ < AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
                 {
 
 
@@ -375,13 +375,7 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
                             string TileKey = AllTiles[z][mouseI, mouseJ].GetTileKey(z);
-                            //if (Tufts.ContainsKey(TileKey))
-                            //{
-                            //    for (int t = 0; t < Tufts[TileKey].Count; t++)
-                            //    {
-                            //        Tufts[TileKey][t].Update(gameTime);
-                            //    }
-                            //}
+
 
 
 
