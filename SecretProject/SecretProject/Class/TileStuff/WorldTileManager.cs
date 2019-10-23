@@ -466,8 +466,8 @@ namespace SecretProject.Class.TileStuff
                             ChunkUnderMouse = ActiveChunks[a, b];
                         }
 
-                        int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X /16 - (Math.Abs(ChunkUnderMouse.X ) * 16));
-                        int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y /16 - (Math.Abs(ChunkUnderMouse.Y ) * 16));
+                        int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X /16 - (ChunkUnderMouse.X  * 16));
+                        int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y /16 - (ChunkUnderMouse.Y * 16));
 
                         for (int z = 0; z < 4; z++)
                         {
@@ -497,8 +497,8 @@ namespace SecretProject.Class.TileStuff
                                         }
 
 
-                                       // if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
-                                       // {
+                                        if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                                        {
 
 
                                             this.AbleToDrawTileSelector = true;
@@ -546,7 +546,7 @@ namespace SecretProject.Class.TileStuff
 
                                             }
 
-                                       // }
+                                        }
                                     }
                                 }
 

@@ -169,7 +169,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
