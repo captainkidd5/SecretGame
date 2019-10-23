@@ -54,42 +54,41 @@ namespace SecretProject.Class.CollisionDetection
         {
 
 
+            if(this.Rectangle.Intersects(objectBody.Rectangle))
+            {
+                if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
+                {
+                    velocity.X -= velocity.X; //+ (float).25;
 
-
-                    if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
-                    {
-                        velocity.X -= velocity.X; //+ (float).25;
-
-                        return true;
-                    }
-
-
-
-                    if (velocity.X < 0 && IsTouchingRight(rectangle, objectBody, velocity))
-                    {
-                        velocity.X -= velocity.X; //- (float).25;
-                                                  //   position.X = objectBody.DestinationRectangle.Right;
-                        return true;
-                    }
-
-
-                    if (velocity.Y > 0 && IsTouchingTop(rectangle, objectBody, velocity))
-                    {
-                        velocity.Y -= velocity.Y; //+ (float).25;
-                                                  //  position.Y = objectBody.DestinationRectangle.Top;
-                        return true;
-                    }
-
-                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, objectBody, velocity))
-                    {
-                        velocity.Y -= velocity.Y;// - (float).25;
-                                                 // position.Y = objectBody.DestinationRectangle.Bottom;
-                        return true;
-                    }
+                    return true;
+                }
 
 
 
-                
+                if (velocity.X < 0 && IsTouchingRight(rectangle, objectBody, velocity))
+                {
+                    velocity.X -= velocity.X; //- (float).25;
+                                              //   position.X = objectBody.DestinationRectangle.Right;
+                    return true;
+                }
+
+
+                if (velocity.Y > 0 && IsTouchingTop(rectangle, objectBody, velocity))
+                {
+                    velocity.Y -= velocity.Y; //+ (float).25;
+                                              //  position.Y = objectBody.DestinationRectangle.Top;
+                    return true;
+                }
+
+                if (velocity.Y < 0 && IsTouchingBottom(rectangle, objectBody, velocity))
+                {
+                    velocity.Y -= velocity.Y;// - (float).25;
+                                             // position.Y = objectBody.DestinationRectangle.Bottom;
+                    return true;
+                }
+            }
+
+                       
             
             return false;
 
