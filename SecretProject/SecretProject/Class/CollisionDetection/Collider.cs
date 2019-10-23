@@ -29,6 +29,8 @@ namespace SecretProject.Class.CollisionDetection
 
 
         public ColliderType ColliderType { get; set; }
+        public string LocationKey { get; set; }
+
         private Collider()
         {
 

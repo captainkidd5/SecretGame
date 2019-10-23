@@ -29,6 +29,7 @@ namespace SecretProject.Class.SpriteFolder
         public Rectangle Type3SourceRectangle { get; set; }
 
         public ColliderType ColliderType { get; set; }
+        public string LocationKey { get; set; }
 
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {

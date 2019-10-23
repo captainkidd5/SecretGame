@@ -282,10 +282,11 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(5, MapRectangle);
 
-            foreach (var obj in AllTiles.Objects.Values)
+            for (int z = 0; z < AllTiles.Objects.Count; z++)
             {
-                QuadTree.Insert(obj);
+                QuadTree.Insert(AllTiles.Objects[z]);
             }
+
 
             QuadTree.Insert(player.MyCollider);
 
@@ -454,11 +455,11 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllTiles.Objects.Values)
+                for (int i = 0; i < AllTiles.Objects.Count; i++)
                 {
                     if (ShowBorders)
                     {
-                        obj.Draw(spriteBatch, .4f);
+                        AllTiles.Objects[i].Draw(spriteBatch, .4f);
                     }
                 }
 

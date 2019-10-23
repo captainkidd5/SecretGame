@@ -70,7 +70,6 @@ namespace SecretProject.Class.StageFolder
         public List<Character> CharactersPresent { get; set; }
         public List<StringWrapper> AllTextToWrite { get; set; }
         public List<INPC> OnScreenNPCS { get; set; }
-        public Dictionary<string, Collider> AllObjects { get; set; }
         public List<LightSource> AllLights { get; set; }
         public List<float> MyProperty { get; set; }
         public List<float> AllDepths { get; set; }
@@ -121,10 +120,6 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            AllObjects = new Dictionary<string, Collider>()
-            {
-
-            };
 
             AllItems = new List<Item>()
             {
@@ -253,10 +248,12 @@ namespace SecretProject.Class.StageFolder
             {
                 for(int j =0; j < AllTiles.ActiveChunks.GetLength(1); j++)
                 {
-                    foreach (var obj in AllTiles.ActiveChunks[i,j].Objects.Values)
+
+                    for(int z = 0; z < AllTiles.ActiveChunks[i,j].Objects.Count; z++)
                     {
-                        QuadTree.Insert(obj);
+                        QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
                     }
+
                 }
             }
             
@@ -434,13 +431,15 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllTiles.ChunkUnderPlayer.Objects.Values)
+
+                for(int i = 0; i < AllTiles.ChunkUnderPlayer.Objects.Count; i++)
                 {
                     if (ShowBorders)
                     {
-                        obj.Draw(spriteBatch, .4f);
+                        AllTiles.ChunkUnderPlayer.Objects[i].Draw(spriteBatch, .4f);
                     }
                 }
+
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();

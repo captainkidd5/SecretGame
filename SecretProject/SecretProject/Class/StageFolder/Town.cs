@@ -61,7 +61,7 @@ namespace SecretProject.Class.StageFolder
             }
         }
 
-        public override void LoadContent( Camera2D camera, List<RouteSchedule> routeSchedules )
+        public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             RenderTarget2D lightsTarget;
             RenderTarget2D mainTarget;
@@ -72,8 +72,8 @@ namespace SecretProject.Class.StageFolder
             particleTextures.Add(Game1.AllTextures.RockParticle);
             ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
-        
-            
+
+
 
 
             this.Cam = camera;
@@ -94,17 +94,17 @@ namespace SecretProject.Class.StageFolder
         {
             //Content.Unload();
             //AllObjects = null;
-           // AllLayers = null;
+            // AllLayers = null;
             //AllTiles = null;
             //AllSprites = null;
             //AllDepths = null;
             //AllItems = null;
             //Background = null;
-           // MidGround = null;
-           // foreGround = null;
+            // MidGround = null;
+            // foreGround = null;
 
 
-           // this.Cam = null;
+            // this.Cam = null;
             //this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
         }
 
@@ -116,9 +116,9 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(5, MapRectangle);
 
-            foreach (var obj in AllTiles.Objects.Values)
+            for(int i =0; i < AllTiles.Objects.Count; i++)
             {
-                QuadTree.Insert(obj);
+                QuadTree.Insert(AllTiles.Objects[i]);
             }
 
             QuadTree.Insert(player.MyCollider);
@@ -133,12 +133,12 @@ namespace SecretProject.Class.StageFolder
             Game1.isMyMouseVisible = true;
             //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
-            for (int p = 0; p< AllPortals.Count; p++)
+            for (int p = 0; p < AllPortals.Count; p++)
             {
                 if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
                 {
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart))
-                        {
+                    {
                         Game1.isMyMouseVisible = false;
                         Game1.myMouseManager.ToggleGeneralInteraction = true;
                         mouse.ChangeMouseTexture(CursorType.Door);
@@ -151,35 +151,35 @@ namespace SecretProject.Class.StageFolder
                             return;
                         }
                     }
-                    
-                        
+
+
                 }
                 else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
                 {
-                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To,AllPortals[p]);
+                    Game1.SwitchStage(AllPortals[p].From, AllPortals[p].To, AllPortals[p]);
                     OnSceneChanged();
                     this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
             }
 
-           
-            
+
+
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
                 ShowBorders = !ShowBorders;
-                
+
             }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
             {
-                
+
                 player.Position = new Vector2(400, 400);
                 Game1.GlobalClock.TotalHours = 22;
             }
 
 
-            
+
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.M)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.M)))
             {
                 Game1.SwitchStage(5, 4);
@@ -195,11 +195,11 @@ namespace SecretProject.Class.StageFolder
 
             if (!Game1.freeze)
             {
-                 Game1.GlobalClock.Update(gameTime);
+                Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
-                player.Update(gameTime, AllItems,mouse);
+                player.Update(gameTime, AllItems, mouse);
 
                 //--------------------------------------
                 //Update sprites
@@ -224,7 +224,7 @@ namespace SecretProject.Class.StageFolder
 
                 foreach (Character character in Game1.AllCharacters)
                 {
-                    character.Update(gameTime,  mouse);
+                    character.Update(gameTime, mouse);
                 }
                 //Game1.Kaya.Update(gameTime, AllObjects, mouse);
                 //Boar.MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
@@ -234,7 +234,7 @@ namespace SecretProject.Class.StageFolder
 
             }
             Game1.Player.controls.UpdateKeys();
-            
+
         }
         #endregion
 
@@ -250,16 +250,16 @@ namespace SecretProject.Class.StageFolder
 
                     graphics.SetRenderTarget(lightsTarget);
                     //graphics.Clear(Color.White);
-                    graphics.Clear(new Color(50,50,50,220));
+                    graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllLights.Count; l++)
                     {
                         spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
                     }
-                   if(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
+                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
                     {
-                        spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width/2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
+                        spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
                     }
                     spriteBatch.End();
                 }
@@ -289,7 +289,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
-                    
+
                     foreach (Character character in CharactersPresent)
                     {
                         character.DrawDebug(spriteBatch, .4f);
@@ -298,13 +298,13 @@ namespace SecretProject.Class.StageFolder
 
                 AllTiles.DrawTiles(spriteBatch);
 
-               // mouse.Draw(spriteBatch, 1);
+                // mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY,16,16),
-                        new Rectangle(48,0, 16,16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Player.UserInterface.TileSelector.WorldX, Game1.Player.UserInterface.TileSelector.WorldY, 16, 16),
+                        new Rectangle(48, 0, 16, 16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
                 }
 
                 //--------------------------------------
@@ -321,15 +321,15 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (var obj in AllTiles.Objects.Values)
+                for (int i = 0; i < AllTiles.Objects.Count; i++)
                 {
                     if (ShowBorders)
                     {
-                        obj.Draw(spriteBatch, .4f);
+                        AllTiles.Objects[i].Draw(spriteBatch, .4f);
                     }
                 }
 
-               
+
                 Game1.Elixer.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
@@ -337,24 +337,24 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
 
                 graphics.SetRenderTarget(null);
-               // graphics.Clear(Color.Black);
+                // graphics.Clear(Color.Black);
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                if(IsDark)
+                if (IsDark)
                 {
                     Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
                     Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
                 }
 
-                spriteBatch.Draw(mainTarget,Game1.ScreenRectangle, Color.White);
+                spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
                 //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);
-                
+
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
             Game1.GlobalClock.Draw(spriteBatch);
-          //  Graphics.SetRenderTarget(null);
+            //  Graphics.SetRenderTarget(null);
         }
         #endregion
     }

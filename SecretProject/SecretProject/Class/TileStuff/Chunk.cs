@@ -35,8 +35,8 @@ namespace SecretProject.Class.TileStuff
         public int Y { get; set; }
         public List<Tile[,]> AllTiles { get; set; }
 
-        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<string, ICollidable> Objects { get; set; }
+ 
+        public List<ICollidable> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, Chest> Chests { get; set; }
@@ -83,8 +83,7 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
-            Tufts = new Dictionary<string, List<GrassTuft>>();
-            Objects = new Dictionary<string, ICollidable>();
+            Objects = new List<ICollidable>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
             Chests = new Dictionary<string, Chest>();
@@ -130,19 +129,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            binaryWriter.Write(this.Tufts.Count);
 
-            foreach (KeyValuePair<string, List<GrassTuft>> tufts in this.Tufts)
-            {
-                binaryWriter.Write(tufts.Key);
-                binaryWriter.Write(tufts.Value.Count);
-                for (int s = 0; s < tufts.Value.Count; s++)
-                {
-                    binaryWriter.Write(tufts.Value[s].GrassType);
-                    binaryWriter.Write(tufts.Value[s].Position.X);
-                    binaryWriter.Write(tufts.Value[s].Position.Y);
-                }
-            }
 
             binaryWriter.Write(Chests.Count);
             foreach (KeyValuePair<string, Chest> chest in this.Chests)
@@ -207,21 +194,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            int tuftCount = binaryReader.ReadInt32();
-            for (int t = 0; t < tuftCount; t++)
-            {
-                string key = binaryReader.ReadString();
-                List<GrassTuft> tileTufts = new List<GrassTuft>();
-                int tileTuftCount = binaryReader.ReadInt32();
-                for (int c = 0; c < tileTuftCount; c++)
-                {
-                    int grassType = binaryReader.ReadInt32();
-                    float posX = binaryReader.ReadSingle();
-                    float posY = binaryReader.ReadSingle();
-                    tileTufts.Add(new GrassTuft(this.GraphicsDevice,grassType, new Vector2(posX, posY)));
-                }
-                Tufts.Add(key, tileTufts);
-            }
 
             this.Chests = new Dictionary<string, Chest>();
             int chestCount = binaryReader.ReadInt32();
@@ -355,11 +327,10 @@ namespace SecretProject.Class.TileStuff
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                         tufts.Add(grassTuft);
+                                        Objects.Add(grassTuft);
                                       //  Objects.Add(AllTiles[0][i, j].GetTileKey(0), grassTuft);
 
                                     }
-                                    this.Tufts[AllTiles[0][i, j].GetTileKey(0)] = tufts;
-                                    Objects.Add(AllTiles[0][i, j].GetTileKey(0), tufts[0]);
                                 }
                                 
                             }

@@ -415,16 +415,17 @@ namespace SecretProject.Class.TileStuff
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
-
-
-                        Collider tempObjectBody = new Collider(container.GraphicsDevice,new Vector2(0,0),
-                            new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
-                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                            (int)Math.Ceiling(tempObj.Height) + 5),  ColliderType.inert);
-
                         string key = tileToAssign.GetTileKey(layer);
 
-                        container.Objects.Add(key, tempObjectBody);
+                        Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
+                            new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                            GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
+                            (int)Math.Ceiling(tempObj.Height) + 5), ColliderType.inert)
+                        { LocationKey = key };
+
+
+
+                        container.Objects.Add(tempObjectBody);
 
 
                     }
@@ -782,11 +783,13 @@ namespace SecretProject.Class.TileStuff
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
-
-                    if (container.Objects.ContainsKey(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKey(intTilePropertyLayer)))
+                    ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKey(intTilePropertyLayer));
+                    if(colliderObject != null)
                     {
-                        container.Objects.Remove(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKey(intTilePropertyLayer));
+                        container.Objects.Remove(colliderObject);
                     }
+ 
+
 
                     container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0);
                 }
@@ -911,11 +914,15 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
-            if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+            ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+            if (colliderObject != null)
             {
-                container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+                container.Objects.Remove(colliderObject);
             }
+            //if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+            //{
+            //    container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+            //}
             if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
             {
                 container.TileHitPoints.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));

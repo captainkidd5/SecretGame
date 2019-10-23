@@ -19,7 +19,7 @@ namespace SecretProject.Class.PathFinding
 
 
 
-        public AStarPathFinder(int mapWidth, int mapHeight, List<Tile[,]> tiles, Dictionary<string, ICollidable> dictionary, byte defaultValue = 0)
+        public AStarPathFinder(int mapWidth, int mapHeight, List<Tile[,]> tiles, List<ICollidable> objects, byte defaultValue = 0)
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
@@ -28,7 +28,8 @@ namespace SecretProject.Class.PathFinding
             {
                 for (var j = 0; j < mapHeight; j++)
                 {
-                    if (dictionary.ContainsKey(tiles[1][i, j].GetTileKey(1)))
+                    string tileKey = tiles[1][i, j].GetTileKey(1);
+                    if (objects.Exists(x => x.LocationKey == tileKey))
                     {
                         Weight[i, j] = 0;
                     }

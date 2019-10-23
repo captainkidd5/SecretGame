@@ -25,8 +25,7 @@ namespace SecretProject.Class.TileStuff
          int MapHeight { get; set; }
         int TileSetNumber { get; set; }
         List<Tile[,]> AllTiles { get; set; }
-        Dictionary<string, List<GrassTuft>> Tufts { get; set; }
-         Dictionary<string, ICollidable> Objects { get; set; }
+         List<ICollidable> Objects { get; set; }
          Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
          Dictionary<string, int> TileHitPoints { get; set; }
          Dictionary<string, Chest> Chests { get; set; }

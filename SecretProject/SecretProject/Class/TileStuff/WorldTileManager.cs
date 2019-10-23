@@ -75,6 +75,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
+        List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
@@ -390,7 +391,6 @@ namespace SecretProject.Class.TileStuff
             }
             ChunkUnderPlayer = ActiveChunks[1, 1];
             this.Chests = ChunkUnderPlayer.Chests;
-            this.CurrentObjects = ChunkUnderPlayer.Objects;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
 
@@ -597,16 +597,16 @@ namespace SecretProject.Class.TileStuff
                                     if (ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
                                     {
 
-                                        if (z == 0)
-                                        {
-                                            if (ActiveChunks[a, b].Tufts.ContainsKey(ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)))
-                                            {
-                                                for (int t = 0; t < ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)].Count; t++)
-                                                {
-                                                    ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)][t].Draw(spriteBatch);
-                                                }
-                                            }
-                                        }
+                                        //if (z == 0)
+                                        //{
+                                        //    if (ActiveChunks[a, b].Tufts.ContainsKey(ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)))
+                                        //    {
+                                        //        for (int t = 0; t < ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)].Count; t++)
+                                        //        {
+                                        //            ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)][t].Draw(spriteBatch);
+                                        //        }
+                                        //    }
+                                        //}
                                         
                                         if (z == 3)
                                         {
@@ -625,6 +625,14 @@ namespace SecretProject.Class.TileStuff
 
 
                                 }
+                            }
+                        }
+
+                        for(int i = 0; i < ActiveChunks[a, b].Objects.Count; i++)
+                        {
+                            if (ActiveChunks[a, b].Objects[i].ColliderType == ColliderType.grass)
+                            {
+                                ActiveChunks[a, b].Objects[i].Draw(spriteBatch);
                             }
                         }
                         if (this.DrawGridObject)

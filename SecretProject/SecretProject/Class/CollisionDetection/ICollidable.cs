@@ -17,11 +17,12 @@ namespace SecretProject.Class.CollisionDetection
     public interface ICollidable
     {
         ColliderType ColliderType { get; set; }
+        string LocationKey { get; set; }
         Rectangle Rectangle { get; set; }
 
         void Update(GameTime gameTime, Dir direction);
         void Draw(SpriteBatch spriteBatch, float layerDepth);
-
+        void Draw(SpriteBatch spriteBatch);
         void Shuff(GameTime gameTime, int direction);
         
 

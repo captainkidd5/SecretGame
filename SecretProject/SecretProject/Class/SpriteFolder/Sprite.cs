@@ -73,6 +73,7 @@ namespace SecretProject.Class.SpriteFolder
         //for collider
         public Rectangle Rectangle { get; set; }
         public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 
@@ -341,6 +342,11 @@ namespace SecretProject.Class.SpriteFolder
         }
 
         public void Shuff(GameTime gameTime, int direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
         {
             throw new NotImplementedException();
         }
