@@ -129,7 +129,20 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
+            //binaryWriter.Write(Objects.Count);
+            //foreach(ICollidable obj in Objects)
+            //{
+            //    binaryWriter.Write((int)obj.ColliderType);
+            //    if(obj.ColliderType == ColliderType.grass)
+            //    {
+            //        binaryWriter.Write()
+            //    }
+            //    binaryWriter.Write(obj.Rectangle.X);
+            //    binaryWriter.Write(obj.Rectangle.Y);
+            //    binaryWriter.Write(obj.Rectangle.Width);
+            //    binaryWriter.Write(obj.Rectangle.Height);
+            //    binaryWriter.Write(obj.LocationKey);
+            //}
 
             binaryWriter.Write(Chests.Count);
             foreach (KeyValuePair<string, Chest> chest in this.Chests)

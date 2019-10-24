@@ -19,8 +19,10 @@ namespace SecretProject.Class.CollisionDetection
         ColliderType ColliderType { get; set; }
         string LocationKey { get; set; }
         Rectangle Rectangle { get; set; }
+        Dir InitialShuffDirection { get; set; }
 
-        void Update(GameTime gameTime, Dir direction);
+        bool IsUpdating { get; set; }
+        void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, float layerDepth);
         void Draw(SpriteBatch spriteBatch);
         void Shuff(GameTime gameTime, int direction);

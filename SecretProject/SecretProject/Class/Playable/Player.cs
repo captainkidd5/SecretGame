@@ -138,7 +138,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
 
-            MyCollider = new Collider(graphics,PrimaryVelocity, ColliderRectangle, ColliderType.inert);
+            MyCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
 
             Inventory = new Inventory(7) { Money = 10000 };
 
@@ -201,7 +201,7 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < PlayerActionAnimations.Length; i++)
             {
-                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position,layerDepth +  PlayerActionAnimations[i].LayerDepth);
+                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position, layerDepth + PlayerActionAnimations[i].LayerDepth);
             }
 
         }
@@ -221,8 +221,8 @@ namespace SecretProject.Class.Playable
         {
             if (Activate)
             {
-               // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
-               
+                // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
+
 
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -349,24 +349,25 @@ namespace SecretProject.Class.Playable
                     Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MyCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
-
-
-                        if (MyCollider.DidCollide(returnObjects[i], position))
+                        if (returnObjects[i].ColliderType == ColliderType.grass)
                         {
-
-                            
-                            if(returnObjects[i].ColliderType == ColliderType.grass)
+                            if (MyCollider.IsIntersecting(returnObjects[i]))
                             {
-                                returnObjects[i].Update(gameTime, controls.Direction);
+                                returnObjects[i].IsUpdating = true;
+                                returnObjects[i].InitialShuffDirection = this.controls.Direction;
                             }
-                            else
+                        }
+                        else
+                        {
+                            if (MyCollider.DidCollide(returnObjects[i], position))
                             {
                                 CollideOccured = true;
+                                returnObjects[i].InitialShuffDirection = this.controls.Direction;
                             }
                         }
 
                     }
-                    
+
 
                     if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
@@ -392,7 +393,7 @@ namespace SecretProject.Class.Playable
                     {
                         CheckOutOfBounds(this.Position);
                     }
-                    
+
 
                 }
 

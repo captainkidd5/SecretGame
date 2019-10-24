@@ -251,6 +251,14 @@ namespace SecretProject.Class.StageFolder
 
                     for(int z = 0; z < AllTiles.ActiveChunks[i,j].Objects.Count; z++)
                     {
+                        if(AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+                        {
+                            if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                            {
+                                AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                            }
+                           
+                        }
                         QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
                     }
 

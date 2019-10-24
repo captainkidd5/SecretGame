@@ -19,6 +19,8 @@ namespace SecretProject.Class.SpriteFolder
         public bool StartShuff { get; set; }
         public float ShuffSpeed { get; set; }
         public float YOffSet { get; set; }
+
+        public Dir InitialShuffDirection { get; set; }
         public Dir ShuffDirection { get; set; }
         public bool ShuffDirectionPicked { get; set; }
 
@@ -30,6 +32,8 @@ namespace SecretProject.Class.SpriteFolder
 
         public ColliderType ColliderType { get; set; }
         public string LocationKey { get; set; }
+
+        public bool IsUpdating { get; set; }
 
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {
@@ -50,14 +54,15 @@ namespace SecretProject.Class.SpriteFolder
             this.Rectangle = DestinationRectangle;
 
             this.ColliderType = ColliderType.grass;
+            this.IsUpdating = false;
 
         }
-        public void Update(GameTime gameTime, Dir direction)
+        public void Update(GameTime gameTime)
         {
 
 
 
-            if (!StartShuff)
+            if (!StartShuff && !ShuffDirectionPicked)
             {
                 this.StartShuff = true;
 
@@ -65,14 +70,15 @@ namespace SecretProject.Class.SpriteFolder
 
 
 
-            if (!this.StartShuff)
+            if (!this.StartShuff && ShuffDirectionPicked)
             {
                 RotateBackToOrigin(gameTime);
-                this.ShuffDirectionPicked = false;
+                //this.ShuffDirectionPicked = false;
+              //  this.IsUpdating = false;
             }
             if (this.StartShuff)
             {
-                Shuff(gameTime, (int)direction);
+                Shuff(gameTime, (int)this.InitialShuffDirection);
                 ShuffDirectionPicked = true;
             }
         }
@@ -158,13 +164,15 @@ namespace SecretProject.Class.SpriteFolder
             {
                 this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds /2;
             }
-            else if(Rotation < 0)
+            else if(Rotation < 0 )
             {
                 this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
             }
             else
             {
                 this.StartShuff = false;
+                this.IsUpdating = false;
+                this.ShuffDirectionPicked = false;
             }
         }
 

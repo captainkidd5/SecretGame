@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SecretProject.Class.CollisionDetection
 {
-   
+
 
     public class Collider : ICollidable
     {
@@ -30,13 +30,15 @@ namespace SecretProject.Class.CollisionDetection
 
         public ColliderType ColliderType { get; set; }
         public string LocationKey { get; set; }
+        public bool IsUpdating { get; set; }
+        public Dir InitialShuffDirection { get; set; }
 
         private Collider()
         {
 
         }
 
-        public Collider(GraphicsDevice graphicsDevice,Vector2 velocity, Rectangle rectangle, ColliderType colliderType = ColliderType.inert)
+        public Collider(GraphicsDevice graphicsDevice, Vector2 velocity, Rectangle rectangle, ColliderType colliderType = ColliderType.inert)
         {
             this.velocity = velocity;
             this.rectangle = rectangle;
@@ -45,16 +47,29 @@ namespace SecretProject.Class.CollisionDetection
             SetRectangleTexture(graphicsDevice);
 
             ShowRectangle = true;
+            this.IsUpdating = false;
         }
 
 
 
         //SINGULAR
+
+        public bool IsIntersecting(ICollidable objectBody)
+        {
+            if (this.Rectangle.Intersects(objectBody.Rectangle))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool DidCollide(ICollidable objectBody, Vector2 position)
         {
 
 
-            if(this.Rectangle.Intersects(objectBody.Rectangle))
+            if (this.Rectangle.Intersects(objectBody.Rectangle))
             {
                 if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
                 {
@@ -88,8 +103,8 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
 
-                       
-            
+
+
             return false;
 
         }
@@ -273,6 +288,11 @@ namespace SecretProject.Class.CollisionDetection
         }
 
         public void Shuff(GameTime gameTime, int direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
         }
