@@ -163,10 +163,25 @@ namespace SecretProject.Class.SpriteFolder
             if (this.Rotation > 0 )
             {
                 this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds /2;
+
+                if(Rotation <= 0)
+                {
+                    this.StartShuff = false;
+                    this.IsUpdating = false;
+                    this.ShuffDirectionPicked = false;
+                    return;
+                }
             }
             else if(Rotation < 0 )
             {
                 this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
+                if (Rotation >= 0)
+                {
+                    this.StartShuff = false;
+                    this.IsUpdating = false;
+                    this.ShuffDirectionPicked = false;
+                    return;
+                }
             }
             else
             {
