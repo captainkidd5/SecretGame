@@ -50,7 +50,7 @@ namespace SecretProject.Class.TileStuff
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container,List<int[]> adjacentChunkInfo = null)
         {
-
+            
             if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID + 1))
             {
                 return;
@@ -64,26 +64,38 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             //if top tile is 0 we look at the chunk above it
-            else if (container.ArrayJ - 1 >= 0)
-            {
-                if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
-                {
-                    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID + 1))
-                    {
-                        keyToCheck += 1;
-                    }
-                }
-                else
-                {
-                    keyToCheck += 1;
-                }
-
-            }
-
-            else
+            else if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
             {
                 keyToCheck += 1;
             }
+            //else if (container.ArrayJ - 1 >= 0)
+            //{
+            //    if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
+            //    {
+            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID + 1))
+            //        {
+            //            keyToCheck += 1;
+            //        }
+            //    }
+            //    else
+            //    {
+
+            //        if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
+            //        {
+            //            keyToCheck += 1;
+            //        }
+            //    }
+
+            //}
+
+
+            //else
+            //{
+            //    if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
+            //    {
+            //        keyToCheck += 1;
+            //    }
+            //}
 
 
             if (y < worldHeight - 1)
@@ -93,25 +105,35 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 8;
                 }
             }
-            else if (container.ArrayJ + 1 <= 2)
-            {
-                if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][0, 0] != null)
-                {
-                    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID + 1))
-                    {
-                        keyToCheck += 8;
-                    }
-                }
-                else
-                {
-                    keyToCheck += 8;
-                }
-
-            }
-            else
+            else if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
             {
                 keyToCheck += 8;
             }
+            //else if (container.ArrayJ + 1 <= 2)
+            //{
+            //    if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][0, 0] != null)
+            //    {
+            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID + 1))
+            //        {
+            //            keyToCheck += 8;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
+            //        {
+            //            keyToCheck += 8;
+            //        }
+            //    }
+
+            //}
+            //else
+            //{
+            //    if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
+            //    {
+            //        keyToCheck += 8;
+            //    }
+            //}
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
@@ -120,27 +142,38 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 4;
                 }
             }
-            else if (container.ArrayI + 1 <= 2)
-            {
-                if (container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
-                {
-                    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID + 1))
-                    {
-                        keyToCheck += 4;
-                    }
-
-                }
-                else
-                {
-
-                    keyToCheck += 4;
-                }
-
-            }
-            else
+            else if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
             {
                 keyToCheck += 4;
             }
+            //else if (container.ArrayI + 1 <= 2)
+            //{
+            //    if (container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
+            //    {
+            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID + 1))
+            //        {
+            //            keyToCheck += 4;
+            //        }
+
+            //    }
+            //    else
+            //    {
+
+            //        if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
+            //        {
+            //            keyToCheck += 4;
+            //        }
+            //    }
+
+            //}
+            //else
+            //{
+            //    if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
+            //    {
+            //        keyToCheck += 4;
+            //    }
+            //   // keyToCheck += 4;
+            //}
 
             if (x > 0)
             {
@@ -149,25 +182,35 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 2;
                 }
             }
-            else if (container.ArrayI - 1 >= 0)
-            {
-                if(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
-                {
-                    if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID + 1))
-                    {
-                        keyToCheck += 2;
-                    }
-                }
-                else
-                {
-                    keyToCheck += 2;
-                }
-                
-            }
-            else
+            else if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
             {
                 keyToCheck += 2;
             }
+            //else if (container.ArrayI - 1 >= 0)
+            //{
+            //    if(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
+            //    {
+            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID + 1))
+            //        {
+            //            keyToCheck += 2;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
+            //        {
+            //            keyToCheck += 2;
+            //        }
+            //    }
+                
+            //}
+            //else
+            //{
+            //    if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
+            //    {
+            //        keyToCheck += 2;
+            //    }
+            //}
             if (keyToCheck >= 15)
             {
                 ReplaceTile(0, x, y, mainGid, container);
