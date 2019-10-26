@@ -596,17 +596,6 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     if (ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
                                     {
-
-                                        //if (z == 0)
-                                        //{
-                                        //    if (ActiveChunks[a, b].Tufts.ContainsKey(ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)))
-                                        //    {
-                                        //        for (int t = 0; t < ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)].Count; t++)
-                                        //        {
-                                        //            ActiveChunks[a, b].Tufts[ActiveChunks[a, b].AllTiles[z][i, j].GetTileKey(0)][t].Draw(spriteBatch);
-                                        //        }
-                                        //    }
-                                        //}
                                         
                                         if (z == 3)
                                         {
