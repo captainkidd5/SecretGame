@@ -32,6 +32,17 @@ namespace SecretProject.Class.TileStuff
         #region TILING
 
         public static int GrassSpawnRate = 10;
+
+        ////
+        //public static int[] waterMain = new int[16]
+        //{
+        //    4606, 4607, 4608, 4609,
+        //    4706, 4707, 4708, 4709,
+        //    4806, 4807, 4808, 4809,
+        //    4906, 4907, 4908, 4909
+        //};
+
+
         public static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
         {
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
@@ -68,34 +79,7 @@ namespace SecretProject.Class.TileStuff
             {
                 keyToCheck += 1;
             }
-            //else if (container.ArrayJ - 1 >= 0)
-            //{
-            //    if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][0, 0] != null)
-            //    {
-            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[0][x, 15].GID + 1))
-            //        {
-            //            keyToCheck += 1;
-            //        }
-            //    }
-            //    else
-            //    {
 
-            //        if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
-            //        {
-            //            keyToCheck += 1;
-            //        }
-            //    }
-
-            //}
-
-
-            //else
-            //{
-            //    if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
-            //    {
-            //        keyToCheck += 1;
-            //    }
-            //}
 
 
             if (y < worldHeight - 1)
@@ -109,31 +93,7 @@ namespace SecretProject.Class.TileStuff
             {
                 keyToCheck += 8;
             }
-            //else if (container.ArrayJ + 1 <= 2)
-            //{
-            //    if (container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][0, 0] != null)
-            //    {
-            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[0][x, 0].GID + 1))
-            //        {
-            //            keyToCheck += 8;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
-            //        {
-            //            keyToCheck += 8;
-            //        }
-            //    }
 
-            //}
-            //else
-            //{
-            //    if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
-            //    {
-            //        keyToCheck += 8;
-            //    }
-            //}
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
@@ -146,34 +106,7 @@ namespace SecretProject.Class.TileStuff
             {
                 keyToCheck += 4;
             }
-            //else if (container.ArrayI + 1 <= 2)
-            //{
-            //    if (container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, 0] != null)
-            //    {
-            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[0][0, y].GID + 1))
-            //        {
-            //            keyToCheck += 4;
-            //        }
 
-            //    }
-            //    else
-            //    {
-
-            //        if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
-            //        {
-            //            keyToCheck += 4;
-            //        }
-            //    }
-
-            //}
-            //else
-            //{
-            //    if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
-            //    {
-            //        keyToCheck += 4;
-            //    }
-            //   // keyToCheck += 4;
-            //}
 
             if (x > 0)
             {
@@ -186,33 +119,11 @@ namespace SecretProject.Class.TileStuff
             {
                 keyToCheck += 2;
             }
-            //else if (container.ArrayI - 1 >= 0)
-            //{
-            //    if(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][0, 0] != null)
-            //    {
-            //        if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[0][15, y].GID + 1))
-            //        {
-            //            keyToCheck += 2;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
-            //        {
-            //            keyToCheck += 2;
-            //        }
-            //    }
-                
-            //}
-            //else
-            //{
-            //    if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
-            //    {
-            //        keyToCheck += 2;
-            //    }
-            //}
+
             if (keyToCheck >= 15)
             {
+               // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
+
                 ReplaceTile(0, x, y, mainGid, container);
             }
             else
