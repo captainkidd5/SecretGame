@@ -48,7 +48,7 @@ namespace SecretProject.Class.TileStuff
         };
 
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
-            int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
+            int x, int y, int worldWidth, int worldHeight, IInformationContainer container,List<int[]> adjacentChunkInfo = null)
         {
 
             if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID + 1))
@@ -1049,7 +1049,7 @@ namespace SecretProject.Class.TileStuff
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, container, layerToCheckIfEmpty);
             }
         }
-
+        #region NOISE
         public static void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
         {
             if (chance == 100)
@@ -1075,6 +1075,41 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
+
+        public static int GetTileFromNoise(float perlinValue)
+        {
+            int newGID = 0;
+            if (perlinValue >= .02f && perlinValue <= 1f)
+            {
+                if (Game1.Utility.RGenerator.Next(0, 101) < 90)
+                {
+                    newGID = 1115;//GRASS
+                }
+                else
+                {
+                    newGID = 1106;//DIRT
+                }
+
+
+            }
+            else if (perlinValue >= .01f && perlinValue < .02f)
+            {
+                newGID = 1115;
+
+                //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
+                // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
+            }
+            else if (perlinValue >= -.02f && perlinValue < .01f)
+            {
+                newGID = 1222;//SAND
+            }
+            else if (perlinValue >= -1f && perlinValue < -.02f)
+            {
+                newGID = 427;//WATER
+            }
+            return newGID;
+        }
+        #endregion
 
         public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
             int comparisonLayer = 0)
@@ -1106,6 +1141,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+
+
 
         #region GRIDITEMS
         public static void UpdateGridItem(ITileManager tileManager, IInformationContainer container)

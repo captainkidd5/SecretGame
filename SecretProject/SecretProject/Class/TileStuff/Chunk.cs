@@ -263,10 +263,7 @@ namespace SecretProject.Class.TileStuff
             //Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
 
         }
-        float[] topRowInfo = new float[16];
-        float[] bottomRowInfo = new float[16];
-        float[] leftColumnInfo = new float[16];
-        float[] rightColumnInfo = new float[16];
+       
 
         public void Generate(TileSimulationType seed)
         {
@@ -291,10 +288,29 @@ namespace SecretProject.Class.TileStuff
             }
 
             //get row of tiles on all sides of current chunk
-            for(int i =0; i < 16; i++)
+            int[] topRowNoise = new int[16];
+            int[] bottomRowNoise = new int[16];
+            int[] leftColumnNoise = new int[16];
+            int[] rightColumnNoise = new int[16];
+
+           
+
+            for (int i =0; i < 16; i++)
             {
-                topRowInfo[i] = Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15);
+                topRowNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15));
+                bottomRowNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 ));
+
+                leftColumnNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i));
+
+                rightColumnNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i));
             }
+
+            List<int[]> adjacentNoise = new List<int[]>()
+            { topRowNoise,
+            bottomRowNoise,
+            leftColumnNoise,
+            rightColumnNoise
+            };
 
             for (int z = 0; z < 4; z++)
             {
@@ -308,35 +324,8 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            int newGID = 0;
-                            if (noise[i, j] >= .02f && noise[i, j] <= 1f)
-                            {
-                                if(Game1.Utility.RGenerator.Next(0,101) < 90)
-                                {
-                                    newGID = 1115;//GRASS
-                                }
-                                else
-                                {
-                                    newGID = 1106;//DIRT
-                                }
-                                
+                            int newGID = TileUtility.GetTileFromNoise(noise[i, j]);
 
-                            }
-                            else if (noise[i, j] >= .01f && noise[i, j] < .02f)
-                            {
-                                newGID = 1115;
-                                
-                                //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
-                                // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
-                            }
-                            else if (noise[i, j] >= -.02f && noise[i, j] < .01f)
-                            {
-                                newGID = 1222;//SAND
-                            }
-                            else if (noise[i, j] >= -1f && noise[i, j] < -.02f)
-                            {
-                                newGID = 427;//WATER
-                            }
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, newGID);
                             if(newGID == 1115)
                             {
