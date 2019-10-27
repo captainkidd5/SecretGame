@@ -53,10 +53,10 @@ namespace SecretProject.Class.Universal
 
             FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
-            FastNoise.SetFractalOctaves(4);
+            FastNoise.SetFractalOctaves(6);
             //FastNoise.SetFractalLacunarity(1);
             //FastNoise.SetFractalGain(2);
-            FastNoise.SetFrequency(.005f);
+            FastNoise.SetFrequency(.001f);
 
         }
 

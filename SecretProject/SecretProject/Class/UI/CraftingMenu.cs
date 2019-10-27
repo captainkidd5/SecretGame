@@ -210,7 +210,7 @@ namespace SecretProject.Class.UI
             this.BackDropPosition = backDropPosition;
 
             this.ColorMultiplier = 1f;
-            this.Locked = true;
+            this.Locked = false;
             this.Color = Color.Black;
         }
 
@@ -470,7 +470,7 @@ namespace SecretProject.Class.UI
             Item = Game1.ItemVault.GenerateNewItem(itemToCraftID, null);
             Button = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, GraphicsDevice, this.Position, CursorType.Normal, 3f);
             CraftingMenu = craftingMenu;
-            this.Locked = true;
+            this.Locked = false;
             this.Color = Color.Black;
            
         }

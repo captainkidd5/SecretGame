@@ -1015,6 +1015,13 @@
    <object id="1" x="4" y="1.375" width="7.125" height="9.625"/>
   </objectgroup>
  </tile>
+ <tile id="1177">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1185">
   <properties>
    <property name="layer" value="3"/>
@@ -1190,6 +1197,16 @@
  <tile id="1255">
   <objectgroup draworder="index">
    <object id="1" x="8.22727" y="0.0909" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1277">
+  <properties>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.0909091" y="0.0909091" width="15.8182" height="14"/>
   </objectgroup>
  </tile>
  <tile id="1285">
@@ -1504,6 +1521,36 @@
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
+ </tile>
+ <tile id="1475">
+  <properties>
+   <property name="destructable" value="21,4,1,3"/>
+   <property name="loot" value="142:100:5,122:10:2"/>
+   <property name="spawnWith" value="1476,1477"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="2" x="5.18182" y="11.9091" width="10.7273" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1476">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="1"/>
+   <property name="relationY" value="0"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.181805" y="11.8182" width="15.4546" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="1477">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="relationX" value="2"/>
+   <property name="relationY" value="0"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.363623" y="11.8182" width="10.7273" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="1484">
   <properties>

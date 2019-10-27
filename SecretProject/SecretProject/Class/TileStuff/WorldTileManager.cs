@@ -512,8 +512,7 @@ namespace SecretProject.Class.TileStuff
                                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
                                             {
 
-                                                if (z == 1)
-                                                {
+                                                
 
                                                     if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
                                                     {
@@ -533,7 +532,7 @@ namespace SecretProject.Class.TileStuff
 
                                                     }
 
-                                                }
+                                                
                                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
                                                 {
                                                     if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))

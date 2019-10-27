@@ -59,9 +59,9 @@ namespace SecretProject.Class.TileStuff
         };
 
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
-            int x, int y, int worldWidth, int worldHeight, IInformationContainer container,List<int[]> adjacentChunkInfo = null)
+            int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
-            
+
             if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID + 1))
             {
                 return;
@@ -122,7 +122,7 @@ namespace SecretProject.Class.TileStuff
 
             if (keyToCheck >= 15)
             {
-               // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
+                // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
 
                 ReplaceTile(0, x, y, mainGid, container);
             }
@@ -242,14 +242,14 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container,bool assignProperties = true)
+        public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container, bool assignProperties = true)
         {
             Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
-            if(assignProperties)
+            if (assignProperties)
             {
                 AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
             }
-            
+
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
 
@@ -773,11 +773,11 @@ namespace SecretProject.Class.TileStuff
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
                     ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKey(intTilePropertyLayer));
-                    if(colliderObject != null)
+                    if (colliderObject != null)
                     {
                         container.Objects.Remove(colliderObject);
                     }
- 
+
 
 
                     container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY] = new Tile(xCoord + intGidX, yCoord + intGidY, 0);
@@ -998,7 +998,9 @@ namespace SecretProject.Class.TileStuff
                     break;
             }
 
-            for (int g = 0; g < frequency; g++)
+            int cap = Game1.Utility.RGenerator.Next(0, frequency);
+
+            for (int g = 0; g < cap; g++)
             {
                 GenerateRandomTiles(layerToPlace, gid, acceptableGenerationTiles, container, layerToCheckIfEmpty);
             }
@@ -1033,7 +1035,15 @@ namespace SecretProject.Class.TileStuff
         public static int GetTileFromNoise(float perlinValue)
         {
             int newGID = 0;
-            if (perlinValue >= .02f && perlinValue <= 1f)
+            if(perlinValue >= .15f && perlinValue <= 1f)
+            {
+                newGID = 1115;//GRASS
+            }
+            else if (perlinValue >= .1f && perlinValue <= .15f)
+            {
+                newGID = 427;//WATER
+            }
+            else if (perlinValue >= .02f && perlinValue <= .1f)
             {
                 if (Game1.Utility.RGenerator.Next(0, 101) < 90)
                 {
@@ -1046,18 +1056,19 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            else if (perlinValue >= .01f && perlinValue < .02f)
+
+            else if (perlinValue >= -.09f && perlinValue < .02f)
             {
                 newGID = 1115;
 
                 //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
                 // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
             }
-            else if (perlinValue >= -.02f && perlinValue < .01f)
+            else if (perlinValue >= -.1f && perlinValue < -.09f)
             {
                 newGID = 1222;//SAND
             }
-            else if (perlinValue >= -1f && perlinValue < -.02f)
+            else if (perlinValue >= -1f && perlinValue < -.1f)
             {
                 newGID = 427;//WATER
             }

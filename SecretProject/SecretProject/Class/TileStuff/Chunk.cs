@@ -408,20 +408,24 @@ namespace SecretProject.Class.TileStuff
             switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //ROCKS
-                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
-                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
-                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
-                    TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
-                    TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
-                    TileUtility.GenerateTiles(1, 1164, "grass", 1, 0, this); //WILLOW
-                    TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this); //FISSURE
+                    //TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //ROCKS
+                    //TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
+                    //TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
+                    //TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
+                    //TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
+                    //TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
+                    //TileUtility.GenerateTiles(1, 1164, "grass", 1, 0, this); //WILLOW
+                    //TileUtility.GenerateTiles(1, 1002, "grass", 5, 0, this); //FISSURE
+                    //TileUtility.GenerateTiles(3, 1476, "grass",6, 0, this); //FallenOak
+                    //TileUtility.GenerateTiles(3, 1278, "grass", 5, 0, this); //Steel Vein
 
-                    // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
-                    TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+
+                    //// TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
+                    //TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
+                    //TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
+                    //TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                    //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+
                     break;
 
                 case TileSimulationType.sand:
@@ -445,18 +449,18 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        if (i > 1 && j > 1)
-                        {
-                            if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
-                            {
-                              //  TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                            }
+                        //if (i > 1 && j > 1)
+                        //{
+                        //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
+                        //    {
+                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                        //    }
 
-                            if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
-                            {
-                               // TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                            }
-                        }
+                        //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
+                        //    {
+                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                        //    }
+                        //}
 
                         if (z > 0)
                         {
