@@ -58,6 +58,11 @@ namespace SecretProject.Class.TileStuff
             {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
+        public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
+        {
+            {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 930}
+        };
+
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
@@ -992,6 +997,9 @@ namespace SecretProject.Class.TileStuff
                 case "grass":
                     acceptableGenerationTiles = Game1.Utility.GrassGeneratableTiles;
                     break;
+                case "stone":
+                    acceptableGenerationTiles = Game1.Utility.StoneGeneratableTiles;
+                    break;
                 default:
                     acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
@@ -1035,13 +1043,13 @@ namespace SecretProject.Class.TileStuff
         public static int GetTileFromNoise(float perlinValue)
         {
             int newGID = 0;
-            if(perlinValue >= .15f && perlinValue <= 1f)
+            if (perlinValue >= .12f && perlinValue <= 1f)
             {
                 newGID = 1115;//GRASS
             }
-            else if (perlinValue >= .1f && perlinValue <= .15f)
+            else if (perlinValue >= .1f && perlinValue <= .12f)
             {
-                newGID = 427;//WATER
+                newGID = 930;//Stone
             }
             else if (perlinValue >= .02f && perlinValue <= .1f)
             {
@@ -1064,6 +1072,9 @@ namespace SecretProject.Class.TileStuff
                 //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
                 // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
             }
+
+                //newGID = 930; //STONE
+            
             else if (perlinValue >= -.1f && perlinValue < -.09f)
             {
                 newGID = 1222;//SAND

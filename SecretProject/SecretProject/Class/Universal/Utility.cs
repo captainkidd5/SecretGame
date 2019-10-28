@@ -34,6 +34,7 @@ namespace SecretProject.Class.Universal
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
         public List<int> WaterGeneratableTiles;
+        public List<int> StoneGeneratableTiles { get; set; }
         public List<int> StandardGeneratableDirtTiles;
 
 
@@ -49,14 +50,20 @@ namespace SecretProject.Class.Universal
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             WaterGeneratableTiles = new List<int>();
+            StoneGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
 
             FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(6);
-            //FastNoise.SetFractalLacunarity(1);
-            //FastNoise.SetFractalGain(2);
-            FastNoise.SetFrequency(.001f);
+            FastNoise.SetFractalLacunarity(3f);
+
+            //Smaller the smooth the biomes
+            FastNoise.SetFractalGain(.5f);
+
+            //larger the smaller the biomes
+            FastNoise.SetFrequency(.0008f);
+           // FastNoise.SetFractalType(FastNoise.FractalType.Billow)
 
         }
 

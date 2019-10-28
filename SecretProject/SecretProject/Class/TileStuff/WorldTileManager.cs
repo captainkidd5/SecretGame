@@ -162,6 +162,12 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 break;
 
+                            case "stone":
+                                if (!Game1.Utility.StoneGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.StoneGeneratableTiles.Add(i);
+                                }
+                                break;
                             case "dirtBasic":
                                 if (!Game1.Utility.DirtGeneratableTiles.Contains(i))
                                 {
@@ -559,7 +565,7 @@ namespace SecretProject.Class.TileStuff
 
                     foreach (Boar boar in ActiveChunks[a, b].Enemies)
                     {
-                        // boar.Update(gameTime, ActiveChunks[a, b].Objects, mouse, ActiveChunks[a, b]);
+                         boar.Update(gameTime, mouse, ActiveChunks[a, b]);
                     }
                 }
             }

@@ -531,6 +531,36 @@
    <frame tileid="784" duration="100"/>
   </animation>
  </tile>
+ <tile id="828">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="829">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="830">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="831">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="832">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="833">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
  <tile id="854">
   <objectgroup draworder="index">
    <object id="1" x="0.500001" y="0.0909" width="7.72727" height="15.8182"/>
@@ -640,6 +670,31 @@
    <property name="action" value="diggable"/>
    <property name="generate" value="grass"/>
    <property name="step" value="1"/>
+  </properties>
+ </tile>
+ <tile id="928">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="929">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="930">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="931">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="932">
+  <properties>
+   <property name="generate" value="stone"/>
   </properties>
  </tile>
  <tile id="949">
@@ -815,6 +870,31 @@
  <tile id="1026">
   <properties>
    <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1028">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="1029">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="1030">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="1031">
+  <properties>
+   <property name="generate" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="1032">
+  <properties>
+   <property name="generate" value="stone"/>
   </properties>
  </tile>
  <tile id="1049">
@@ -1015,13 +1095,6 @@
    <object id="1" x="4" y="1.375" width="7.125" height="9.625"/>
   </objectgroup>
  </tile>
- <tile id="1177">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1185">
   <properties>
    <property name="layer" value="3"/>
@@ -1201,7 +1274,7 @@
  </tile>
  <tile id="1277">
   <properties>
-   <property name="destructable" value="22,0,0,8"/>
+   <property name="destructable" value="22,3,0,8"/>
    <property name="loot" value="130:100:1,220:15:1"/>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
