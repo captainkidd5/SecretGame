@@ -27,6 +27,7 @@ namespace SecretProject.Class.Playable
         HandsPicking = 0,
         Chopping = 21,
         Mining = 22,
+        Swiping = 25,
     }
 
 
@@ -91,6 +92,7 @@ namespace SecretProject.Class.Playable
 
 
         public Sprite[,] Mining { get; set; }
+        public Sprite[,] Swiping { get; set; }
 
 
         public UserInterface UserInterface { get; set; }
@@ -137,6 +139,7 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
+            Swiping = new Sprite[4, 6];
 
             MyCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
 
@@ -180,6 +183,16 @@ namespace SecretProject.Class.Playable
                     for (int i = 0; i < 4; i++)
                     {
                         this.Mining[i, 0].FirstFrameY = textureColumn;
+                    }
+                    break;
+
+                case AnimationType.Swiping:
+                    IsPerformingAction = true;
+                    CurrentAction = Swiping;
+                    AnimationDirection = controls.Direction;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        this.Swiping[i, 0].FirstFrameY = textureColumn;
                     }
                     break;
             }
@@ -234,6 +247,10 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
+                if(mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
+                {
+                    DoPlayerAnimation(gameTime, AnimationType.Swiping);
+                }
 
 
                 if (controls.IsMoving && !IsPerformingAction)
@@ -442,6 +459,38 @@ namespace SecretProject.Class.Playable
             if (IsPerformingAction)
             {
                 DrawCollectiveActions(spriteBatch, layerDepth);
+            }
+
+        }
+
+        public void DoPlayerAnimation(GameTime gameTime, AnimationType animationType, float delayTimer = 0f, Item item = null)
+        {
+            if (Position.Y < Game1.myMouseManager.WorldMousePosition.Y - 30)
+            {
+                controls.Direction = Dir.Down;
+
+            }
+
+            else if (Game1.Player.Position.Y > Game1.myMouseManager.WorldMousePosition.Y)
+            {
+                controls.Direction = Dir.Up;
+            }
+
+            else if (Position.X < Game1.myMouseManager.WorldMousePosition.X)
+            {
+                controls.Direction = Dir.Right;
+            }
+            else if (Position.X > Game1.myMouseManager.WorldMousePosition.X)
+            {
+                controls.Direction = Dir.Left;
+            }
+            if (item != null)
+            {
+                PlayAnimation(gameTime, animationType, UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AnimationColumn);
+            }
+            else
+            {
+                PlayAnimation(gameTime, animationType);
             }
 
         }

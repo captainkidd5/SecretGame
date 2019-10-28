@@ -789,37 +789,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        public static void DoPlayerAnimation(GameTime gameTime, Rectangle destinationRectangle, AnimationType animationType, float delayTimer = 0f, Item item = null)
-        {
-            if (Game1.Player.Position.Y < destinationRectangle.Y - 30)
-            {
-                Game1.Player.controls.Direction = Dir.Down;
 
-            }
-
-            else if (Game1.Player.Position.Y > destinationRectangle.Y)
-            {
-                Game1.Player.controls.Direction = Dir.Up;
-            }
-
-            else if (Game1.Player.Position.X < destinationRectangle.X)
-            {
-                Game1.Player.controls.Direction = Dir.Right;
-            }
-            else if (Game1.Player.Position.X > destinationRectangle.X)
-            {
-                Game1.Player.controls.Direction = Dir.Left;
-            }
-            if (item != null)
-            {
-                Game1.Player.PlayAnimation(gameTime, animationType, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AnimationColumn);
-            }
-            else
-            {
-                Game1.Player.PlayAnimation(gameTime, animationType);
-            }
-
-        }
         //for destructable keyword
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)
         {
@@ -843,7 +813,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        DoPlayerAnimation(gameTime, destinationRectangle, actionType, .25f, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem());
+                        Game1.Player.DoPlayerAnimation(gameTime, actionType, .25f, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem());
                         ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                             Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, container,
                             container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));

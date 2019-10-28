@@ -208,8 +208,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         private Vector2 wanderPosition = new Vector2(0, 0);
         public void Wander(GameTime gameTime, IInformationContainer container)
         {
-            int currentTileX = Math.Abs((int)(this.Position.X / 16 - (container.X * 16)));
-            int currentTileY = Math.Abs((int)(this.Position.Y / 16 - (container.Y * 16)));
+            int currentTileX = (int)(this.Position.X / 16 - (container.X * 16));
+            int currentTileY = (int)(this.Position.Y / 16 - (container.Y * 16));
             //temporary
             //MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;

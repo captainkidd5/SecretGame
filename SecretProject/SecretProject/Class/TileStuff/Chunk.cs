@@ -414,7 +414,7 @@ namespace SecretProject.Class.TileStuff
             switch (this.SimulationType)
             {
                 case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //ROCKS
+                    TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //STONE
                     TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
                     TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
                     TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
@@ -424,6 +424,9 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1002, "stone", 5, 0, this); //FISSURE
                     TileUtility.GenerateTiles(3, 1476, "grass", 6, 0, this); //FallenOak
                     TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(1, 1581, "grass", 5, 0, this); //ROCK
+                    TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
+                    TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 
 
                     // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
@@ -479,7 +482,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
-            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].X * 16 + this.X * 16, AllTiles[0][5, 5].Y * 16 + this.Y * 16), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            //Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].X , AllTiles[0][5, 5].Y ), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
         }
 

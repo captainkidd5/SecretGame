@@ -56,6 +56,17 @@
 <Price>50</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>TrainingSword</Name>
+<ID>5</ID>
+<Description>A weak sword.</Description>
+<InvMaximum>1</InvMaximum>
+<TextureColumn>0</TextureColumn>
+<TextureRow>5</TextureRow>
+<Price>50</Price>
+<Durability>25</Durability>
+<Type>25</Type>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>TurquoiseAxe</Name>
 <ID>20</ID>
 <Description>A beautiful axe made from turquoise.</Description>
@@ -464,6 +475,24 @@
 <Price>1</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Red Mushroom</Name>
+<ID>192</ID>
+<Description>A little red mushroom.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>10</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Blue Mushroom</Name>
+<ID>193</ID>
+<Description>A little blue mushroom.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>10</TextureColumn>
+<TextureRow>3</TextureRow>
+<Price>1</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>BrineBulb</Name>
 <ID>197</ID>
 <Description>A sweaty, bulbous fruit which smells like pickles.</Description>
@@ -528,6 +557,16 @@
 <InvMaximum>99</InvMaximum>
 <TextureColumn>13</TextureColumn>
 <TextureRow>1</TextureRow>
+<Price>69</Price>
+<SmeltedItem>231</SmeltedItem>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>rock</Name>
+<ID>222</ID>
+<Description>A small jagged rock.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>13</TextureColumn>
+<TextureRow>2</TextureRow>
 <Price>69</Price>
 <SmeltedItem>231</SmeltedItem>
 </Item>

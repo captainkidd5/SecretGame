@@ -1685,6 +1685,24 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1580">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="222:100:1"/>
+  </properties>
+ </tile>
+ <tile id="1581">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="192:100:1"/>
+  </properties>
+ </tile>
+ <tile id="1582">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="193:100:1"/>
+  </properties>
+ </tile>
  <tile id="1583">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
