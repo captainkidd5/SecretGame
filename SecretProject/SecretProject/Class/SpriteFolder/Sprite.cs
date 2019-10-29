@@ -63,6 +63,7 @@ namespace SecretProject.Class.SpriteFolder
         public Vector2 Origin { get; set; }
         public int ID { get; set; }
         public float Rotation { get; set; }
+        public float RotationAnchor { get; set; }
         public bool IsSpinning { get; set; }
         public float SpinAmount { get; set; }
         public float SpinSpeed { get; set; }
@@ -89,6 +90,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Width = width;
             this.Height = height;
             this.Rotation = 0f;
+            this.RotationAnchor = 0f;
             this.Origin = Game1.Utility.Origin;
             
         }
@@ -110,6 +112,7 @@ namespace SecretProject.Class.SpriteFolder
             this.OffSetY = offSetY;
             this.Color = Color.White;
             this.Rotation = 0f;
+            this.RotationAnchor = 0f;
             
         }
 
@@ -282,7 +285,7 @@ namespace SecretProject.Class.SpriteFolder
         {
             if(amount >  0)
             {
-                if (this.Rotation < amount)
+                if (this.RotationAnchor < amount)
                 {
                     this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                 }
@@ -290,6 +293,7 @@ namespace SecretProject.Class.SpriteFolder
                 {
 
                     this.IsSpinning = false;
+                    this.RotationAnchor = 0f;
                     return;
                 }
 
@@ -298,7 +302,7 @@ namespace SecretProject.Class.SpriteFolder
 
             if(amount < 0)
             {
-                if (this.Rotation > amount)
+                if (this.RotationAnchor > amount)
                 {
                     this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                 }
@@ -341,6 +345,11 @@ namespace SecretProject.Class.SpriteFolder
         public void Update(GameTime gameTime, Dir direction)
         {
             throw new NotImplementedException();
+        }
+
+        public void UpdateAnimationTool(GameTime gameTime,float amount, float speed)
+        {
+            Spin(gameTime, amount, speed);
         }
 
         public void Shuff(GameTime gameTime, int direction)

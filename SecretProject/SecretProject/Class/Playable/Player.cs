@@ -141,7 +141,7 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
-            Swiping = new Sprite[4, 6];
+            Swiping = new Sprite[4, 5];
 
             MyCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
 
@@ -158,7 +158,7 @@ namespace SecretProject.Class.Playable
 
             LockBounds = true;
 
-            this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
+           // this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
 
         }
 
@@ -194,6 +194,9 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CurrentAction = Swiping;
                     AnimationDirection = controls.Direction;
+                    this.CurrentTool = UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ItemSprite;
+                    this.CurrentTool.Origin = new Vector2(CurrentTool.SourceRectangle.Width, CurrentTool.SourceRectangle.Height);
+                    AdjustCurrentTool(controls.Direction, this.CurrentTool);
                     for (int i = 0; i < 4; i++)
                     {
                         this.Swiping[i, 0].FirstFrameY = textureColumn;
@@ -204,9 +207,56 @@ namespace SecretProject.Class.Playable
 
         }
 
+        //adjusts current equipped items position based on direction player is facing
+        public void AdjustCurrentTool(Dir direction, Sprite sprite)
+        {
+            switch(direction)
+            {
+                case Dir.Up:
+                    sprite.Position = new Vector2(this.position.X + 12, this.position.Y + 14);
+                    sprite.Rotation = 0f;
+                    sprite.SpinAmount = 3f;
+                    sprite.LayerDepth = .000000006f;
+                    sprite.SpinSpeed =5f;
+                    break;
+
+                case Dir.Down:
+                    sprite.Position = new Vector2(this.position.X + 12, this.position.Y + 22);
+                    sprite.Rotation = 5f;
+                    sprite.SpinAmount = -4f;
+                    sprite.LayerDepth = .00000012f;
+                    sprite.SpinSpeed = 6f;
+                    break;
+
+                case Dir.Right:
+                    sprite.Position = new Vector2(this.position.X + 14, this.position.Y + 18);
+                    sprite.Rotation = 1f;
+                    sprite.SpinAmount = 6f;
+                    sprite.LayerDepth = .00000012f;
+                    sprite.SpinSpeed = 6f;
+                    break;
+
+                case Dir.Left:
+                    sprite.Position = new Vector2(this.position.X + 4, this.position.Y + 18);
+                    sprite.Rotation = 6f;
+                    sprite.SpinAmount = -6f;
+                    sprite.LayerDepth = .00000012f;
+                    sprite.SpinSpeed = 6f;
+                    break;
+                default:
+                    sprite.Position = new Vector2(this.position.X + 16, this.position.Y + 16);
+                    sprite.Rotation = 0f;
+                    sprite.SpinAmount = 2f;
+                    break;
+            }
+        }
+
+
+
+
         public void PlayCollectiveActions(GameTime gameTime)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < CurrentAction.GetLength(1); i++)
             {
                 PlayerActionAnimations[i] = CurrentAction[(int)AnimationDirection, i];
                 PlayerActionAnimations[i].IsAnimated = true;
@@ -272,6 +322,11 @@ namespace SecretProject.Class.Playable
                 {
                     PlayCollectiveActions(gameTime);
                     this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
+                    CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
+                    if(this.IsPerformingAction == false)
+                    {
+                        this.CurrentTool = null;
+                    }
 
                 }
 
@@ -463,6 +518,11 @@ namespace SecretProject.Class.Playable
             if (IsPerformingAction)
             {
                 DrawCollectiveActions(spriteBatch, layerDepth);
+            }
+
+            if(this.CurrentTool != null)
+            {
+                CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
             }
 
         }

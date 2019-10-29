@@ -860,37 +860,37 @@ namespace SecretProject
 
 
             //SwipingDown
-            Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+           // Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
 
             //SwipingUp
-            Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+           // Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
             //SwipingLeft
-            Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f, Flip = true };
-            Player.Swiping[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f, Flip = true };
-            Player.Swiping[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f, Flip = true };
-            Player.Swiping[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f, Flip = true };
-            Player.Swiping[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f, Flip = true };
-            Player.Swiping[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f, Flip = true };
+           // Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f, Flip = true };
+            Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f, Flip = true };
+            Player.Swiping[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f, Flip = true };
+            Player.Swiping[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f, Flip = true };
+            Player.Swiping[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f, Flip = true };
+            Player.Swiping[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f, Flip = true };
 
             //SwipingRight
-            Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+          //  Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
             Player.PlayerActionAnimations = new Sprite[6];
 
