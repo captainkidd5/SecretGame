@@ -94,6 +94,8 @@ namespace SecretProject.Class.Playable
         public Sprite[,] Mining { get; set; }
         public Sprite[,] Swiping { get; set; }
 
+        public Sprite CurrentTool { get; set; }
+
 
         public UserInterface UserInterface { get; set; }
 
@@ -155,6 +157,8 @@ namespace SecretProject.Class.Playable
             LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, ColliderRectangle);
 
             LockBounds = true;
+
+            this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
 
         }
 
@@ -264,7 +268,7 @@ namespace SecretProject.Class.Playable
                     }
 
                 }
-                else if (this.IsPerformingAction == true)
+                else if (this.IsPerformingAction)
                 {
                     PlayCollectiveActions(gameTime);
                     this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
