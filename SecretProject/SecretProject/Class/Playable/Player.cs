@@ -322,7 +322,11 @@ namespace SecretProject.Class.Playable
                 {
                     PlayCollectiveActions(gameTime);
                     this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
-                    CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
+                    if(CurrentTool != null)
+                    {
+                        CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
+                    }
+                    
                     if(this.IsPerformingAction == false)
                     {
                         this.CurrentTool = null;
