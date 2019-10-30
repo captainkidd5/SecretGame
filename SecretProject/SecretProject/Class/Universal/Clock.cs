@@ -14,6 +14,17 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.Universal
 {
+    public enum DayOfWeek
+    {
+        Monday = 1,
+        Tuesday = 2, 
+        Wednesday = 3,
+        Thursday = 4,
+        Friday = 5,
+        Saturday = 6,
+        Sunday = 7
+
+    }
     public class Clock
     {
         public int GlobalTime { get;  set; } = 0;
@@ -37,6 +48,8 @@ namespace SecretProject.Class.Universal
         public float ClockSpeed { get; set; }
         TextBox ClockDisplay;
 
+        public DayOfWeek WeekDay { get; set; }
+
         public event EventHandler DayChanged;
 
         public Clock()
@@ -44,7 +57,8 @@ namespace SecretProject.Class.Universal
             ClockPosition = new Vector2(1100, 25);
            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
-            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString(), Game1.AllTextures.UserInterfaceTileSet);
+            WeekDay = DayOfWeek.Monday;
+            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet);
 
             ClockSpeed = 15;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
@@ -113,6 +127,15 @@ namespace SecretProject.Class.Universal
             if(TotalHours > 23)
             {
                 TotalDays++;
+                if(WeekDay < DayOfWeek.Sunday)
+                {
+                    WeekDay++;
+                }
+                else
+                {
+                    WeekDay = DayOfWeek.Monday;
+                }
+                
                 
                 TotalHours = 0;
   
@@ -120,7 +143,7 @@ namespace SecretProject.Class.Universal
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
             float testColor = (float)(1 + ColorMultiplier * .1);
-            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Days: " + TotalDays.ToString();
+            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Days: " + TotalDays.ToString() + "\n" + WeekDay.ToString();
             ClockDisplay.Update(gameTime, true);
             
 

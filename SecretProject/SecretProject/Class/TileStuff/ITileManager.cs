@@ -41,11 +41,7 @@ namespace SecretProject.Class.TileStuff
         List<float> AllDepths { get; set; }
         bool AbleToDrawTileSelector { get; set; }
 
-        bool DrawGridObject { get; set; }
-        Rectangle GridObjectSourceRectangle { get; set; }
-        int GridObjectSourceRectangleOffSetX { get; set; }
-        int GridObjectSourceRectangleOffSetY { get; set; }
-        Color GridDrawColor { get; set; }
+        GridItem GridItem { get; set; }
         void LoadInitialTileObjects(ILocation location);
         void Update(GameTime gameTime, MouseManager mouse);
         void DrawTiles(SpriteBatch spriteBatch);

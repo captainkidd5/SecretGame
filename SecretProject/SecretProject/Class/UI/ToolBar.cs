@@ -129,7 +129,11 @@ namespace SecretProject.Class.UI
             UpdateScrollWheel(mouse);
             TextBuilder.Update(gameTime);
             IsAnySlotHovered = false;
+            this.inventory = inventory;
 
+            UpdateNonInventoryButtons(mouse);
+
+            UpdateInventoryButtons(inventory, gameTime, mouse);
             if (WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
 
@@ -140,11 +144,7 @@ namespace SecretProject.Class.UI
                 ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
             }
 
-            this.inventory = inventory;
-
-            UpdateNonInventoryButtons(mouse);
-
-            UpdateInventoryButtons(inventory, gameTime, mouse);
+           
 
 
             if (mouse.IsHovering(BackGroundTextureRectangle))
@@ -158,6 +158,16 @@ namespace SecretProject.Class.UI
 
             if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
             {
+                if(Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                {
+                    Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+
+                }
+                else
+                {
+                    Game1.GetCurrentStage().AllTiles.GridItem = null;
+                }
+                
                 AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
             }
 
@@ -407,6 +417,7 @@ namespace SecretProject.Class.UI
                 if (AllSlots[i].isClicked)
                 {
                     currentSliderPosition = i + 1;
+                    WasSliderUpdated = true;
                 }
 
 

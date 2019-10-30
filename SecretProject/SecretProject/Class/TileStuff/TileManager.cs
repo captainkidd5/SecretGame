@@ -71,11 +71,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public bool AbleToDrawTileSelector { get; set; }
-        public bool DrawGridObject { get; set; }
-        public Rectangle GridObjectSourceRectangle { get; set; }
-        public int GridObjectSourceRectangleOffSetX { get; set; }
-        public int GridObjectSourceRectangleOffSetY { get; set; }
-        public Color GridDrawColor { get; set; }
+        public GridItem GridItem { get; set; }
 
         public int TileSetDimension { get; set; }
 
@@ -134,7 +130,6 @@ namespace SecretProject.Class.TileStuff
             Owned = true;
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
-            this.GridDrawColor = Color.White;
             for (int i = 0; i < allLayers.Count; i++)
             {
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
@@ -454,7 +449,11 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllLights = this.Lights;
             }
-            TileUtility.UpdateGridItem(this, this);
+            if(GridItem != null)
+            {
+                GridItem.Update(gameTime, this, this);
+            }
+            
         }
 
         #endregion
@@ -530,13 +529,13 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            if (this.DrawGridObject)
+            if(GridItem != null)
             {
-                spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX,
-                    Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle,
-                    this.GridDrawColor, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
-
+                GridItem.Draw(spriteBatch, this);
             }
+           
+           
+
 
         }
 

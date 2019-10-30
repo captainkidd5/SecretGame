@@ -13,7 +13,7 @@ using XMLData.ProgressBookStuff;
 
 namespace SecretProject.Class.UI
 {
-    
+
     public class ProgressBook : IExclusiveInterfaceComponent
     {
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -98,7 +98,7 @@ namespace SecretProject.Class.UI
 
         public void LoadContent(ContentManager content, int iD)
         {
-            switch(iD)
+            switch (iD)
             {
                 case 1:
                     ProgressBookHolder = content.Load<ProgressBookHolder>("ProgressBook/JulianProgressBook");
@@ -288,6 +288,14 @@ namespace SecretProject.Class.UI
                     Color.White * UnlockableItems[i].ToolTipColorMultiplier, 0f, Game1.Utility.Origin, UnlockableItems[i].ToolTip.HitBoxScale,
                     SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
                 //UnlockableItems[i].Draw(spriteBatch);
+
+                if (UnlockableItems[i].Reward.Claimed)
+                {
+
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, UnlockableItems[i].ToolTip.Position, new Rectangle(208, 256, 32, 32),
+                        Color.White, 0f, Game1.Utility.Origin, UnlockableItems[i].ToolTip.HitBoxScale - 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+
+                }
             }
             UnlockableItems[ActiveItem].Draw(spriteBatch);
         }
@@ -311,7 +319,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            if(!Reward.Claimed)
+            if (!Reward.Claimed)
             {
                 this.RewardSatisfied = true;
                 // ToolTip.Update(Game1.myMouseManager);
@@ -334,11 +342,11 @@ namespace SecretProject.Class.UI
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
                     Reward.Claimed = true;
-                    for(int i =0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
+                    for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
                     {
-                        for(int j =0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
+                        for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
                         {
-                            for(int z =0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
+                            for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
                             {
                                 if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == Reward.Item.ID)
                                 {
@@ -347,10 +355,10 @@ namespace SecretProject.Class.UI
                             }
                         }
                     }
-                    
+
                 }
             }
-            
+
 
 
 
@@ -371,6 +379,11 @@ namespace SecretProject.Class.UI
             ToolTip.DrawNormal(spriteBatch, new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 200), ToolTip.BackGroundSourceRectangle,
                     Color.White, 0f, Game1.Utility.Origin, 6f,
                     SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            if (Reward.Claimed)
+            {
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 200), new Rectangle(208, 256, 32, 32),
+                    Color.White, 0f, Game1.Utility.Origin, 6f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+            }
 
         }
     }
@@ -423,12 +436,12 @@ namespace SecretProject.Class.UI
                             this.CurrentCount++;
                             Game1.Player.Inventory.RemoveItem(this.Item.ID);
                         }
-                       // Console.WriteLine(Game1.Player.UserInterface.BottomBar.ItemJustReleased.Name + "was just released");
+                        // Console.WriteLine(Game1.Player.UserInterface.BottomBar.ItemJustReleased.Name + "was just released");
                     }
                 }
             }
 
-            if(this.CurrentCount >= CountRequired)
+            if (this.CurrentCount >= CountRequired)
             {
                 this.Satisfied = true;
             }

@@ -62,11 +62,7 @@ namespace SecretProject.Class.TileStuff
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
 
-        public bool DrawGridObject { get; set; }
-        public Rectangle GridObjectSourceRectangle { get; set; }
-        public int GridObjectSourceRectangleOffSetX { get; set; }
-        public int GridObjectSourceRectangleOffSetY { get; set; }
-        public Color GridDrawColor { get; set; }
+        public GridItem GridItem { get; set; }
 
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
@@ -122,7 +118,7 @@ namespace SecretProject.Class.TileStuff
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
-            this.GridDrawColor = Color.White;
+
         }
 
         public void LoadGeneratableTileLists()
@@ -562,7 +558,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
 
-
+                    GridItem.Update(gameTime, this, ActiveChunks[a, b]);
                     foreach (Boar boar in ActiveChunks[a, b].Enemies)
                     {
                          boar.Update(gameTime, mouse, ActiveChunks[a, b]);
@@ -570,8 +566,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
+
            
-            TileUtility.UpdateGridItem(this, ChunkUnderMouse);
         }
 
 
@@ -629,12 +625,7 @@ namespace SecretProject.Class.TileStuff
                                 ActiveChunks[a, b].Objects[i].Draw(spriteBatch);
                             }
                         }
-                        if (this.DrawGridObject)
-                        {
-                            spriteBatch.Draw(TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + this.GridObjectSourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + GridObjectSourceRectangleOffSetY), this.GridObjectSourceRectangle, this.GridDrawColor,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[3]);
-
-                        }
+                        GridItem.Draw(spriteBatch, this);
 
 
                         foreach (Boar boar in ActiveChunks[a, b].Enemies)

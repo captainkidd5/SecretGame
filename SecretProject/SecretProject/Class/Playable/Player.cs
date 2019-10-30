@@ -19,6 +19,7 @@ using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Controls;
 using SecretProject.Class.UI;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.Playable
 {
@@ -93,6 +94,7 @@ namespace SecretProject.Class.Playable
 
         public Sprite[,] Mining { get; set; }
         public Sprite[,] Swiping { get; set; }
+        public Line ToolLine { get; set; }
 
         public Sprite CurrentTool { get; set; }
 
@@ -124,7 +126,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X - 16, (int)position.Y, 48, 64);
+                return new Rectangle((int)position.X - 16, (int)position.Y, 64, 64);
             }
         }
 
@@ -197,6 +199,8 @@ namespace SecretProject.Class.Playable
                     this.CurrentTool = UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(CurrentTool.SourceRectangle.Width, CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
+                    this.ToolLine = new Line(CurrentTool.Position, new Vector2(CurrentTool.Position.X + 50, CurrentTool.Position.Y));
+                    //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
                     for (int i = 0; i < 4; i++)
                     {
                         this.Swiping[i, 0].FirstFrameY = textureColumn;
@@ -325,6 +329,11 @@ namespace SecretProject.Class.Playable
                     if(CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
+                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + CurrentTool.SourceRectangle.Height + CurrentTool.Rotation, CurrentTool.Position.Y + CurrentTool.SourceRectangle.Height+ CurrentTool.Rotation);
+                        if(ToolLine.IntersectsRectangle(Game1.Julian.NPCHitBoxRectangle))
+                        {
+                            Console.WriteLine("Line intersected Julian");
+                        }
                     }
                     
                     if(this.IsPerformingAction == false)
@@ -527,6 +536,7 @@ namespace SecretProject.Class.Playable
             if(this.CurrentTool != null)
             {
                 CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
+                ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red);
             }
 
         }

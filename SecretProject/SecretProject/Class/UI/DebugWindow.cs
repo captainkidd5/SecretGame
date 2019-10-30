@@ -40,6 +40,7 @@ namespace SecretProject.Class.UI
 
 
                 Game1.GlobalClock.IncrementDay();
+                Console.Clear();
 
 
 
