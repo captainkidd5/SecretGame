@@ -288,7 +288,8 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            QuadTree.Insert(player.MyCollider);
+            //QuadTree.Insert(player.MainCollider);
+            QuadTree.Insert(player.BigCollider);
 
             foreach (Character character in CharactersPresent)
             {

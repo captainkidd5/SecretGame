@@ -260,6 +260,16 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
+        public void KnockBack(Dir direction, int amount)
+        {
+            switch(direction)
+            {
+                case Dir.Down:
+                    this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
+                    break;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             switch (CurrentDirection)

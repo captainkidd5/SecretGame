@@ -84,7 +84,8 @@ namespace SecretProject.Class.Playable
         public Texture2D Texture { get; set; }
         public int FrameNumber { get; set; }
 
-        public Collider MyCollider { get; set; }
+        public Collider MainCollider { get; set; }
+        public Collider BigCollider { get; set; }
 
         public bool IsPerformingAction = false;
 
@@ -145,8 +146,8 @@ namespace SecretProject.Class.Playable
             Mining = new Sprite[4, 6];
             Swiping = new Sprite[4, 5];
 
-            MyCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
-
+            MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
+            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, ColliderType.inert);
             Inventory = new Inventory(7) { Money = 10000 };
 
             controls = new PlayerControls(0);
@@ -329,10 +330,12 @@ namespace SecretProject.Class.Playable
                     if(CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
-                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + CurrentTool.SourceRectangle.Height + CurrentTool.Rotation, CurrentTool.Position.Y + CurrentTool.SourceRectangle.Height+ CurrentTool.Rotation);
+                        ToolLine.Point2 = CurrentTool.Origin + CurrentTool.Position - Game1.Utility.RotateVector2(CurrentTool.Position, CurrentTool.Rotation + .35f);
+
                         if(ToolLine.IntersectsRectangle(Game1.Julian.NPCHitBoxRectangle))
                         {
                             Console.WriteLine("Line intersected Julian");
+                            Game1.Julian.KnockBack(controls.Direction, 5);
                         }
                     }
                     
@@ -430,25 +433,35 @@ namespace SecretProject.Class.Playable
                     }
 
 
-                    MyCollider.Rectangle = this.ColliderRectangle;
-                    MyCollider.Velocity = this.PrimaryVelocity;
-                    MyCollider.DidCollideMagnet(items);
+                    MainCollider.Rectangle = this.ColliderRectangle;
+                    MainCollider.Velocity = this.PrimaryVelocity;
+                    MainCollider.DidCollideMagnet(items);
+
+                    BigCollider.Rectangle = this.ClickRangeRectangle;
+                    BigCollider.Velocity = this.PrimaryVelocity;
 
                     List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MyCollider);
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         if (returnObjects[i].ColliderType == ColliderType.grass)
                         {
-                            if (MyCollider.IsIntersecting(returnObjects[i]))
+                            if (MainCollider.IsIntersecting(returnObjects[i]))
                             {
                                 returnObjects[i].IsUpdating = true;
                                 returnObjects[i].InitialShuffDirection = this.controls.Direction;
                             }
+                            if(this.CurrentTool != null)
+                            {
+                                if(ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                                {
+                                    Console.WriteLine("Intersected grass");
+                                }
+                            }
                         }
                         else
                         {
-                            if (MyCollider.DidCollide(returnObjects[i], position))
+                            if (MainCollider.DidCollide(returnObjects[i], position))
                             {
                                 CollideOccured = true;
                                 returnObjects[i].InitialShuffDirection = this.controls.Direction;
@@ -460,7 +473,7 @@ namespace SecretProject.Class.Playable
 
                     if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
-                        this.PrimaryVelocity = MyCollider.Velocity;
+                        this.PrimaryVelocity = MainCollider.Velocity;
                         TotalVelocity = PrimaryVelocity;
                         // SecondaryVelocity = Vector2.Zero;
                     }

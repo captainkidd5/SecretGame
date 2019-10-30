@@ -266,10 +266,10 @@ namespace SecretProject.Class.StageFolder
             }
             
 
-            QuadTree.Insert(player.MyCollider);
+            //QuadTree.Insert(player.MainCollider);
+            QuadTree.Insert(player.BigCollider);
 
 
-            
             this.IsDark = Game1.GlobalClock.IsNight;
 
 

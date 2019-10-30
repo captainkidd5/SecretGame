@@ -463,6 +463,27 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             
 
         }
+
+        #region COMBAT
+        public void KnockBack(Dir direction, int amount)
+        {
+            switch (direction)
+            {
+                case Dir.Down:
+                    this.Position = new Vector2(this.Position.X, this.Position.Y + amount);
+                    break;
+                case Dir.Right:
+                    this.Position = new Vector2(this.Position.X + amount, this.Position.Y);
+                    break;
+                case Dir.Left:
+                    this.Position = new Vector2(this.Position.X - amount, this.Position.Y);
+                    break;
+                case Dir.Up:
+                    this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
+                    break;
+            }
+        }
+        #endregion
         //forEvents
         public void EventMoveToTile(GameTime gameTime, Point point)
         {

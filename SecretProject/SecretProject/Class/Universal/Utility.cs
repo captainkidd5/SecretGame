@@ -225,6 +225,13 @@ namespace SecretProject.Class.Universal
                 SpriteEffects.None, 1f);
 
         }
+
+        public Vector2 RotateVector2(Vector2 value, float radians)
+        {
+            var cos = (float)Math.Cos(radians);
+            var sin = (float)Math.Sin(radians);
+            return new Vector2(value.X * cos - value.Y * sin, value.X * sin + value.Y * cos);
+        }
         #endregion
         #region SPEECHUTILITY
         public void PerformSpeechAction(string action, int speakerID, string name)
