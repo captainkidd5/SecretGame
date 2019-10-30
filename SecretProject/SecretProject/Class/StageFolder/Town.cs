@@ -114,7 +114,7 @@ namespace SecretProject.Class.StageFolder
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(5, MapRectangle);
+            QuadTree = new QuadTree(0, MapRectangle);
 
             for(int i =0; i < AllTiles.Objects.Count; i++)
             {

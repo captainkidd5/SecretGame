@@ -242,24 +242,29 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
+            QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
 
             for(int i =0; i < AllTiles.ActiveChunks.GetLength(0); i++)
             {
                 for(int j =0; j < AllTiles.ActiveChunks.GetLength(1); j++)
                 {
-
-                    for(int z = 0; z < AllTiles.ActiveChunks[i,j].Objects.Count; z++)
+                    if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
                     {
-                        if(AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+
+
+                        for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
                         {
-                            if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                            if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
                             {
-                                AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                                {
+                                    AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                }
+
                             }
-                           
+                            QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
+                            QuadTree.TotalObjects++;
                         }
-                        QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
                     }
 
                 }
