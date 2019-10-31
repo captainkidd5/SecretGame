@@ -26,7 +26,9 @@ namespace SecretProject.Class.CollisionDetection
         void Draw(SpriteBatch spriteBatch, float layerDepth);
         void Draw(SpriteBatch spriteBatch);
         void Shuff(GameTime gameTime, int direction);
-        
+        void SelfDestruct();
+
+
 
 
     }

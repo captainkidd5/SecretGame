@@ -161,7 +161,7 @@ namespace SecretProject.Class.Playable
 
             LockBounds = true;
 
-           // this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
+            // this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
 
         }
 
@@ -215,14 +215,14 @@ namespace SecretProject.Class.Playable
         //adjusts current equipped items position based on direction player is facing
         public void AdjustCurrentTool(Dir direction, Sprite sprite)
         {
-            switch(direction)
+            switch (direction)
             {
                 case Dir.Up:
                     sprite.Position = new Vector2(this.position.X + 12, this.position.Y + 14);
                     sprite.Rotation = 0f;
                     sprite.SpinAmount = 3f;
                     sprite.LayerDepth = .000000006f;
-                    sprite.SpinSpeed =5f;
+                    sprite.SpinSpeed = 5f;
                     break;
 
                 case Dir.Down:
@@ -306,7 +306,7 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if(mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
+                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
                 {
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
                 }
@@ -327,19 +327,19 @@ namespace SecretProject.Class.Playable
                 {
                     PlayCollectiveActions(gameTime);
                     this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
-                    if(CurrentTool != null)
+                    if (CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
                         ToolLine.Point2 = CurrentTool.Origin + CurrentTool.Position - Game1.Utility.RotateVector2(CurrentTool.Position, CurrentTool.Rotation + .35f);
 
-                        if(ToolLine.IntersectsRectangle(Game1.Julian.NPCHitBoxRectangle))
+                        if (ToolLine.IntersectsRectangle(Game1.Julian.NPCHitBoxRectangle))
                         {
                             Console.WriteLine("Line intersected Julian");
                             Game1.Julian.KnockBack(controls.Direction, 5);
                         }
                     }
-                    
-                    if(this.IsPerformingAction == false)
+
+                    if (this.IsPerformingAction == false)
                     {
                         this.CurrentTool = null;
                     }
@@ -441,7 +441,7 @@ namespace SecretProject.Class.Playable
                     BigCollider.Velocity = this.PrimaryVelocity;
 
                     List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MainCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         if (returnObjects[i].ColliderType == ColliderType.grass)
@@ -451,9 +451,9 @@ namespace SecretProject.Class.Playable
                                 returnObjects[i].IsUpdating = true;
                                 returnObjects[i].InitialShuffDirection = this.controls.Direction;
                             }
-                            if(this.CurrentTool != null)
+                            if (this.CurrentTool != null)
                             {
-                                if(ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                                if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                                 {
                                     Console.WriteLine("Intersected grass");
                                 }
@@ -497,6 +497,30 @@ namespace SecretProject.Class.Playable
                     }
 
 
+                }
+
+                else if (CurrentTool != null)
+                {
+
+                    BigCollider.Rectangle = this.ClickRangeRectangle;
+
+                    List<ICollidable> returnObjects = new List<ICollidable>();
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+                    for (int i = 0; i < returnObjects.Count; i++)
+                    {
+                        if (returnObjects[i].ColliderType == ColliderType.grass)
+                        {
+
+
+                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                            {
+                                Console.WriteLine("Intersected grass");
+                                returnObjects[i].SelfDestruct();
+                            }
+
+                        }
+
+                    }
                 }
 
             }
@@ -546,7 +570,7 @@ namespace SecretProject.Class.Playable
                 DrawCollectiveActions(spriteBatch, layerDepth);
             }
 
-            if(this.CurrentTool != null)
+            if (this.CurrentTool != null)
             {
                 CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
                 ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red);

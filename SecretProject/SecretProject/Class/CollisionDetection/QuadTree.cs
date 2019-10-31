@@ -14,16 +14,14 @@ namespace SecretProject.Class.CollisionDetection
     {
         public int TotalObjects { get; set; }
         private int MAX_OBJECTS = 10;
-        private int MAX_LEVELS = 15;
+        private int MAX_LEVELS = 8;
 
         private int level;
         private List<ICollidable> Objects;
         private Rectangle bounds;
         private QuadTree[] nodes;
 
-        /*
-         * Constructor
-         */
+
         public QuadTree(int pLevel, Rectangle pBounds)
         {
             TotalObjects = 0;
@@ -59,42 +57,50 @@ namespace SecretProject.Class.CollisionDetection
             nodes[2] = new QuadTree(level + 1, new Rectangle(x, y + subHeight, subWidth, subHeight));
             nodes[3] = new QuadTree(level + 1, new Rectangle(x + subWidth, y + subHeight, subWidth, subHeight));
         }
-        private int GetIndex(ICollidable objectBody)
+
+        //will return number between 0 and 3 which represent which node of the tree contains the object
+        //if didn't fit completely inside of any quadrant return -1
+        private int GetIndex(ICollidable collider)
         {
             int index = -1;
             double verticalMidpoint = bounds.X + (bounds.Width / 2);
             double horizontalMidpoint = bounds.Y + (bounds.Height / 2);
 
             // Object can completely fit within the top quadrants
-            bool topQuadrant = (objectBody.Rectangle.Y < horizontalMidpoint && objectBody.Rectangle.Y + objectBody.Rectangle.Height < horizontalMidpoint);
+            bool topQuadrant = (collider.Rectangle.Y + collider.Rectangle.Height < horizontalMidpoint);
             // Object can completely fit within the bottom quadrants
-            bool bottomQuadrant = (objectBody.Rectangle.Y > horizontalMidpoint);
+            bool bottomQuadrant = (collider.Rectangle.Y > horizontalMidpoint);
 
             // Object can completely fit within the left quadrants
-            if (objectBody.Rectangle.X < verticalMidpoint && objectBody.Rectangle.X + objectBody.Rectangle.Width < verticalMidpoint)
+            if (collider.Rectangle.X + collider.Rectangle.Width < verticalMidpoint)
             {
                 if (topQuadrant)
                 {
+                    //TOPLEFT
                     index = 1;
                 }
                 else if (bottomQuadrant)
                 {
+                    //BOTTOM LEFT
                     index = 2;
                 }
             }
             // Object can completely fit within the right quadrants
-            else if (objectBody.Rectangle.X > verticalMidpoint)
+            else if (collider.Rectangle.X > verticalMidpoint)
             {
                 if (topQuadrant)
                 {
+                    //TOP RIGHT
                     index = 0;
                 }
                 else if (bottomQuadrant)
                 {
+                    //BOTTOM RIGHT
                     index = 3;
                 }
             }
 
+            
             return index;
         }
 
@@ -138,26 +144,7 @@ namespace SecretProject.Class.CollisionDetection
             }
         }
 
-        //public void Retrieve(List<ICollidable> returnedObjs, ICollidable obj)
-        //{
-        //    if (nodes[0] != null)
-        //    {
-        //        var index = GetIndex(obj);
-        //        if (index != -1)
-        //        {
-        //            nodes[index].Retrieve(returnedObjs, obj);
-        //        }
-        //        else
-        //        {
-        //            for (int i = 0; i < nodes.Length; i++)
-        //            {
-        //                nodes[i].Retrieve(returnedObjs, obj);
-        //            }
-        //        }
-        //        returnedObjs.AddRange(Objects);
-        //    }
-           
-        //}
+
         public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
         {
             int index = GetIndex(objectBody);
@@ -170,5 +157,22 @@ namespace SecretProject.Class.CollisionDetection
 
             return returnObjects;
         }
+
+        //private List<SquareOne> Retrieve(List<SquareOne> fSpriteList, Rect pRect)
+        //{
+        //    List<int> indexes = GetIndexes(pRect);
+        //    for (int ii = 0; ii < indexes.Count; ii++)
+        //    {
+        //        int index = indexes[ii];
+        //        if (index != -1 && nodes[0] != null)
+        //        {
+        //            nodes[index].Retrieve(fSpriteList, pRect);
+        //        }
+
+        //        fSpriteList.AddRange(objects);
+        //    }
+
+        //    return fSpriteList;
+        //}
     }
 }

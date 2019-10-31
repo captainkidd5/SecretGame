@@ -296,5 +296,10 @@ namespace SecretProject.Class.CollisionDetection
         {
             throw new NotImplementedException();
         }
+
+        public void SelfDestruct()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

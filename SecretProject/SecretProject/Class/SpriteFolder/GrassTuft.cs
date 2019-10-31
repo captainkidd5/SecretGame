@@ -34,11 +34,13 @@ namespace SecretProject.Class.SpriteFolder
         public string LocationKey { get; set; }
 
         public bool IsUpdating { get; set; }
+        public List<ICollidable> Objects { get; set; }
 
-        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
+        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position, List<ICollidable> objects)
         {
             this.GrassType = grassType;
             this.Position = position;
+            this.Objects = objects;
             this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, 16, 32);
             this.Rotation = 0f;
             this.RotationCap = .25f;
@@ -100,6 +102,11 @@ namespace SecretProject.Class.SpriteFolder
                         Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y  ) * .0000001f + YOffSet);
                     break;
             }
+        }
+
+        public void SelfDestruct()
+        {
+            Objects.Remove(this);
         }
 
         public void Shuff(GameTime gameTime, int direction)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class Sprite : ICollidable
+    public class Sprite 
     {
         public GraphicsDevice Graphics { get; set; }
         public Texture2D AtlasTexture { get; set; }
@@ -73,10 +73,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool Flip { get; set; }
         //for collider
         public Rectangle Rectangle { get; set; }
-        public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Dir InitialShuffDirection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
 
 
 
