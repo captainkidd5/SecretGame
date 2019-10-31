@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.NPCStuff
 {
-    public interface INPC
+    public interface INPC : IEntity
     {
         string Name { get; set; }
         Vector2 Position { get; set; }

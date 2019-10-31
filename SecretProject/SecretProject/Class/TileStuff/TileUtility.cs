@@ -414,7 +414,7 @@ namespace SecretProject.Class.TileStuff
                         Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
-                            (int)Math.Ceiling(tempObj.Height) + 5), ColliderType.inert)
+                            (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert)
                         { LocationKey = key };
 
 

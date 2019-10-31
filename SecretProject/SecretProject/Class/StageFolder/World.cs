@@ -263,7 +263,12 @@ namespace SecretProject.Class.StageFolder
 
                             }
                             QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
-                            QuadTree.TotalObjects++;
+                            
+                            
+                        }
+                        for(int e=0; e< AllTiles.ActiveChunks[i, j].Enemies.Count; e++)
+                        {
+                            QuadTree.Insert(AllTiles.ActiveChunks[i, j].Enemies[e].Collider);
                         }
                     }
 

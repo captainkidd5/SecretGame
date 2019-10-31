@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace SecretProject.Class.CollisionDetection
     {
         inert = 0,
         grass = 1,
-        NPC = 2
+        NPC = 2,
+        Enemy = 3
     }
     public interface ICollidable
     {
@@ -20,7 +22,7 @@ namespace SecretProject.Class.CollisionDetection
         string LocationKey { get; set; }
         Rectangle Rectangle { get; set; }
         Dir InitialShuffDirection { get; set; }
-
+        IEntity Entity { get; set; }
         bool IsUpdating { get; set; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, float layerDepth);

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -32,13 +33,14 @@ namespace SecretProject.Class.CollisionDetection
         public string LocationKey { get; set; }
         public bool IsUpdating { get; set; }
         public Dir InitialShuffDirection { get; set; }
+        public IEntity Entity { get; set; }
 
         private Collider()
         {
 
         }
 
-        public Collider(GraphicsDevice graphicsDevice, Vector2 velocity, Rectangle rectangle, ColliderType colliderType = ColliderType.inert)
+        public Collider(GraphicsDevice graphicsDevice, Vector2 velocity, Rectangle rectangle, IEntity entity, ColliderType colliderType = ColliderType.inert)
         {
             this.velocity = velocity;
             this.rectangle = rectangle;
@@ -47,6 +49,7 @@ namespace SecretProject.Class.CollisionDetection
             SetRectangleTexture(graphicsDevice);
 
             ShowRectangle = true;
+            this.Entity = entity;
             this.IsUpdating = false;
         }
 

@@ -69,7 +69,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.Name = name;
             this.Position = position;
             this.Texture = spriteSheet;
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 

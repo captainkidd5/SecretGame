@@ -20,6 +20,7 @@ using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Controls;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
+using SecretProject.Class.NPCStuff;
 
 namespace SecretProject.Class.Playable
 {
@@ -32,7 +33,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player
+    public class Player : IEntity
     {
 
         public Vector2 position;
@@ -146,8 +147,8 @@ namespace SecretProject.Class.Playable
             Mining = new Sprite[4, 6];
             Swiping = new Sprite[4, 5];
 
-            MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, ColliderType.inert);
-            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, ColliderType.inert);
+            MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, this, ColliderType.inert);
+            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle,this, ColliderType.inert);
             Inventory = new Inventory(7) { Money = 10000 };
 
             controls = new PlayerControls(0);
@@ -332,11 +333,7 @@ namespace SecretProject.Class.Playable
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
                         ToolLine.Point2 = CurrentTool.Origin + CurrentTool.Position - Game1.Utility.RotateVector2(CurrentTool.Position, CurrentTool.Rotation + .35f);
 
-                        if (ToolLine.IntersectsRectangle(Game1.Julian.NPCHitBoxRectangle))
-                        {
-                            Console.WriteLine("Line intersected Julian");
-                            Game1.Julian.KnockBack(controls.Direction, 5);
-                        }
+                        
                     }
 
                     if (this.IsPerformingAction == false)
@@ -451,13 +448,6 @@ namespace SecretProject.Class.Playable
                                 returnObjects[i].IsUpdating = true;
                                 returnObjects[i].InitialShuffDirection = this.controls.Direction;
                             }
-                            if (this.CurrentTool != null)
-                            {
-                                if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                                {
-                                    Console.WriteLine("Intersected grass");
-                                }
-                            }
                         }
                         else
                         {
@@ -508,6 +498,7 @@ namespace SecretProject.Class.Playable
                     Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
+
                         if (returnObjects[i].ColliderType == ColliderType.grass)
                         {
 
@@ -518,6 +509,10 @@ namespace SecretProject.Class.Playable
                                 returnObjects[i].SelfDestruct();
                             }
 
+                        }
+                        else if(returnObjects[i].ColliderType == ColliderType.NPC || returnObjects[i].ColliderType == ColliderType.Enemy)
+                        {
+                            returnObjects[i].Entity.KnockBack(controls.Direction, 5);
                         }
 
                     }
@@ -649,5 +644,9 @@ namespace SecretProject.Class.Playable
             this.UserInterface.Draw(spriteBatch);
         }
 
+        public void KnockBack(Dir direction, int amount)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

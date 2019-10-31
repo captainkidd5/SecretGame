@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public bool IsUpdating { get; set; }
         public List<ICollidable> Objects { get; set; }
+        public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position, List<ICollidable> objects)
         {

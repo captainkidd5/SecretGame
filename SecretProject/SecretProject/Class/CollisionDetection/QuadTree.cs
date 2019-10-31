@@ -119,6 +119,7 @@ namespace SecretProject.Class.CollisionDetection
             }
 
             Objects.Add(objectBody);
+            this.TotalObjects++;
 
             if (Objects.Count > MAX_OBJECTS && level < MAX_LEVELS)
             {

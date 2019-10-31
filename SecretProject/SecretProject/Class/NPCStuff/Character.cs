@@ -96,7 +96,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
@@ -121,7 +121,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, ColliderType.NPC);
+            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.CurrentDirection = 0;
 
         }
