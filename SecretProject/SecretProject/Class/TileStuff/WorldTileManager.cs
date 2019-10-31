@@ -262,21 +262,28 @@ namespace SecretProject.Class.TileStuff
                     ActiveChunks[0, 1] = ActiveChunks[0, 2];
                     ActiveChunks[1, 1] = ActiveChunks[1, 2];
                     ActiveChunks[2, 1] = ActiveChunks[2, 2];
-
-                    for (int i = 0; i < 3; i++)
+                    lock (locker)
                     {
-                        ActiveChunks[i, 2] = new Chunk(this, currentChunkX - 1 + i, currentChunkY + 2, i, 2);
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 2].X, ActiveChunks[i, 2].Y))
+                        for (int i = 0; i < 3; i++)
                         {
-                            ActiveChunks[i, 2].Load();
-                        }
-                        else
-                        {
-                            ActiveChunks[i, 2].Generate(0);
-                            ActiveChunks[i, 2].Save();
+                            int index = i;
+
+                            ActiveChunks[i, 2] = new Chunk(this, currentChunkX - 1 + i, currentChunkY + 2, i, 2);
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 2]));
+
+
+
+                            //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 2].X, ActiveChunks[i, 2].Y))
+                            //{
+                            //    ActiveChunks[i, 2].Load();
+                            //}
+                            //else
+                            //{
+                            //    ActiveChunks[i, 2].Generate(0);
+                            //    ActiveChunks[i, 2].Save();
+                            //}
                         }
                     }
-
                     break;
                 //correct
                 case Dir.Up:
@@ -288,20 +295,29 @@ namespace SecretProject.Class.TileStuff
                     ActiveChunks[0, 1] = ActiveChunks[0, 0];
                     ActiveChunks[1, 1] = ActiveChunks[1, 0];
                     ActiveChunks[2, 1] = ActiveChunks[2, 0];
+                    
+                        for (int i = 0; i < 3; i++)
+                        {
 
-                    for (int i = 0; i < 3; i++)
-                    {
-                        ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY - 2, i, 0);
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 0].X, ActiveChunks[i, 0].Y))
-                        {
-                            ActiveChunks[i, 0].Load();
+                        int index = i;
+
+                            ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY - 2, i, 0);
+                       // lock (locker)
+                       // {
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 0]));
+                     //   }
+
+                            //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 0].X, ActiveChunks[i, 0].Y))
+                            //{
+                            //    ActiveChunks[i, 0].Load();
+                            //}
+                            //else
+                            //{
+                            //    ActiveChunks[i, 0].Generate(0);
+                            //    ActiveChunks[i, 0].Save();
+                            //}
                         }
-                        else
-                        {
-                            ActiveChunks[i, 0].Generate(0);
-                            ActiveChunks[i, 0].Save();
-                        }
-                    }
+                    
 
                     break;
 
@@ -314,18 +330,25 @@ namespace SecretProject.Class.TileStuff
                     ActiveChunks[1, 0] = ActiveChunks[0, 0];
                     ActiveChunks[1, 1] = ActiveChunks[0, 1];
                     ActiveChunks[1, 2] = ActiveChunks[0, 2];
-
-                    for (int i = 0; i < 3; i++)
+                    lock (locker)
                     {
-                        ActiveChunks[0, i] = new Chunk(this, currentChunkX - 2, currentChunkY - 1 + i, 0, i);
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[0, i].X, ActiveChunks[0, i].Y))
+                        for (int i = 0; i < 3; i++)
                         {
-                            ActiveChunks[0, i].Load();
-                        }
-                        else
-                        {
-                            ActiveChunks[0, i].Generate(0);
-                            ActiveChunks[0, i].Save();
+                            int index = i;
+
+                            ActiveChunks[0, i] = new Chunk(this, currentChunkX - 2, currentChunkY - 1 + i, 0, i);
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[0, index]));
+
+
+                            //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[0, i].X, ActiveChunks[0, i].Y))
+                            //{
+                            //    ActiveChunks[0, i].Load();
+                            //}
+                            //else
+                            //{
+                            //    ActiveChunks[0, i].Generate(0);
+                            //    ActiveChunks[0, i].Save();
+                            //}
                         }
                     }
 
@@ -341,23 +364,48 @@ namespace SecretProject.Class.TileStuff
                     ActiveChunks[1, 1] = ActiveChunks[2, 1];
                     ActiveChunks[1, 2] = ActiveChunks[2, 2];
 
-                    for (int i = 0; i < 3; i++)
+                    lock (locker)
                     {
-                        ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[2, i].X, ActiveChunks[2, i].Y))
+                        for (int i = 0; i < 3; i++)
                         {
-                            ActiveChunks[2, i].Load();
-                        }
-                        else
-                        {
-                            ActiveChunks[2, i].Generate(0);
-                            ActiveChunks[2, i].Save();
+
+
+                            int index = i;
+
+                            ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
+
+
+                            //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[2, i].X, ActiveChunks[2, i].Y))
+                            //{
+                            //    ActiveChunks[2, i].Load();
+                            //}
+                            //else
+                            //{
+                            //    ActiveChunks[2, i].Generate(0);
+                            //    ActiveChunks[2, i].Save();
+                            //}
+
                         }
                     }
 
                     break;
             }
+            ChunkUnderPlayer = ActiveChunks[1, 1];
 
+        }
+
+        public void ChunkCheck(ref Chunk chunk)
+        {
+            if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+            {
+                chunk.Load();
+            }
+            else
+            {
+                chunk.Generate(0);
+                chunk.Save();
+            }
         }
         static readonly object locker = new object();
 
@@ -367,35 +415,34 @@ namespace SecretProject.Class.TileStuff
 
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
-                lock(locker)
+
+                // ActiveChunks[1, 1].X = ChunkPointUnderPlayer.X;
+                // ActiveChunks[1, 1].Y = ChunkPointUnderPlayer.Y;
+                if (ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
                 {
-                    // ActiveChunks[1, 1].X = ChunkPointUnderPlayer.X;
-                    // ActiveChunks[1, 1].Y = ChunkPointUnderPlayer.Y;
-                    if (ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
-                    {
-    
 
-                        Task.Run(() => UpdateGrid(Dir.Right));
 
-                       // UpdateGrid(Dir.Right);
-                    }
-                    else if (ChunkPointUnderPlayer.X < ChunkPointUnderPlayerLastFrame.X)
-                    {
-                        //UpdateGrid(Dir.Left);
-                        Task.Run(() => UpdateGrid(Dir.Left));
-                    }
-                    else if (ChunkPointUnderPlayer.Y > ChunkPointUnderPlayerLastFrame.Y)
-                    {
-                       // UpdateGrid(Dir.Down);
-                        Task.Run(() => UpdateGrid(Dir.Down));
-                    }
-                    else if (ChunkPointUnderPlayer.Y < ChunkPointUnderPlayerLastFrame.Y)
-                    {
-                       // UpdateGrid(Dir.Up);
-                        Task.Run(() => UpdateGrid(Dir.Up));
-                    }
+                    // Task.Run(() => UpdateGrid(Dir.Right));
+
+                    UpdateGrid(Dir.Right);
                 }
-                
+                else if (ChunkPointUnderPlayer.X < ChunkPointUnderPlayerLastFrame.X)
+                {
+                    UpdateGrid(Dir.Left);
+                    // Task.Run(() => UpdateGrid(Dir.Left));
+                }
+                else if (ChunkPointUnderPlayer.Y > ChunkPointUnderPlayerLastFrame.Y)
+                {
+                    UpdateGrid(Dir.Down);
+                    // Task.Run(() => UpdateGrid(Dir.Down));
+                }
+                else if (ChunkPointUnderPlayer.Y < ChunkPointUnderPlayerLastFrame.Y)
+                {
+                    UpdateGrid(Dir.Up);
+                    // Task.Run(() => UpdateGrid(Dir.Up));
+                }
+
+
             }
             ChunkUnderPlayer = ActiveChunks[1, 1];
             this.Chests = ChunkUnderPlayer.Chests;
@@ -582,7 +629,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-           
+
         }
 
 
