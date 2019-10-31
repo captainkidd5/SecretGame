@@ -208,7 +208,7 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
+            Cam.Zoom = 1f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
             
@@ -248,27 +248,32 @@ namespace SecretProject.Class.StageFolder
             {
                 for(int j =0; j < AllTiles.ActiveChunks.GetLength(1); j++)
                 {
-                    if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
+                    if (AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
 
 
-                        for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
+                        if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
                         {
-                            if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+
+
+                            for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
                             {
-                                if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                                if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
                                 {
-                                    AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                    if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                                    {
+                                        AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                    }
+
                                 }
+                                QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
+
 
                             }
-                            QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
-                            
-                            
-                        }
-                        for(int e=0; e< AllTiles.ActiveChunks[i, j].Enemies.Count; e++)
-                        {
-                            QuadTree.Insert(AllTiles.ActiveChunks[i, j].Enemies[e].Collider);
+                            for (int e = 0; e < AllTiles.ActiveChunks[i, j].Enemies.Count; e++)
+                            {
+                                QuadTree.Insert(AllTiles.ActiveChunks[i, j].Enemies[e].Collider);
+                            }
                         }
                     }
 

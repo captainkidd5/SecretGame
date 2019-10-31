@@ -158,10 +158,17 @@ namespace SecretProject.Class.UI
 
             if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
             {
-                if(Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                //this might be broken
+                if (Game1.ItemVault.ExteriorGridItems != null)
                 {
-                    Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
 
+
+
+                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+
+                    }
                 }
                 else
                 {
