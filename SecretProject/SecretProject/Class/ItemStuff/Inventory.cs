@@ -96,6 +96,20 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
+        public bool IsPossibleToAddItem(Item item)
+        {
+            foreach (InventorySlot s in currentInventory)
+            {
+                if ((s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum) || s.SlotItems.Count == 0)
+                {
+                    return true;
+
+                }
+            }
+            return false;
+            
+        }
+
         public void RemoveItem(Item item)
         {
             bool removed = false;

@@ -75,10 +75,10 @@ namespace SecretProject.Class.SpriteFolder
         public bool Flip { get; set; }
         //for collider
         public Rectangle Rectangle { get; set; }
-        public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ColliderType ColliderType { get; set; }
         public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Dir InitialShuffDirection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IEntity Entity { get; set; }
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
@@ -129,7 +129,9 @@ namespace SecretProject.Class.SpriteFolder
             {
                 UpdateAnimations(gameTime,Position);
             }
-           // this.Rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            // this.Rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.Rectangle = DestinationRectangle;
         }
 
 

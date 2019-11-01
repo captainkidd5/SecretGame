@@ -465,9 +465,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         }
 
         #region COMBAT
-        public void KnockBack(Dir direction, int amount)
+        public void PlayerCollisionInteraction()
         {
-            switch (direction)
+            int amount = 5;
+            switch (Game1.Player.controls.Direction)
             {
                 case Dir.Down:
                     this.Position = new Vector2(this.Position.X, this.Position.Y + amount);

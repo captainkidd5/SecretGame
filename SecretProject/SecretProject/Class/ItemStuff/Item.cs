@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff.BuildingItems;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
-    public class Item
+    public class Item : IEntity
     {
         public string Name { get; set; }
         public int ID { get; set; }
@@ -27,10 +29,6 @@ namespace SecretProject.Class.ItemStuff
         public bool IsFull { get; set; }
         public bool Ignored { get; set; }
 
-
-        public bool IsMagnetized { get; set; } = false;
-
-        public bool IsMagnetizable { get; set; } = false;
 
 
         public Vector2 WorldPosition;
@@ -107,7 +105,8 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite = new Sprite(Graphics, Game1.AllTextures.ItemSpriteSheet, SourceTextureRectangle,
                     this.WorldPosition, 16, 16)
-                { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f };
+                { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item, Entity = this };
+                this.Ignored = true;
             }
             if (!IsWorldItem)
             {
@@ -119,23 +118,18 @@ namespace SecretProject.Class.ItemStuff
         {
             if (IsWorldItem)
             {
+                ItemSprite.Update(gameTime);
 
-                if (!ItemSprite.PickedUp)
-                {
-                    this.ItemSprite.Bobber(gameTime);
-                }
-                if (IsMagnetizable && Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null, false)))
-                {
-                    IsMagnetized = true;
-                    IsDropped = false;
-
-                    IsMagnetizable = false;
-
-                }
 
                 if (IsTossable == true)
                 {
                     ItemSprite.Toss(gameTime, 1f, 1f);
+                    if(ItemSprite.IsTossed)
+                    {
+                        this.Ignored = false;
+                        IsTossable = false;
+                        ItemSprite.IsTossed = false;
+                    }
                 }
             }
         }
@@ -149,27 +143,37 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
+        public void PlayerCollisionInteraction()
+        {
+            if(!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
+            {
+                Magnetize(Game1.Player.position);
+            }
+            
+        }
+
         public void Magnetize(Vector2 playerpos)
         {
             if (IsWorldItem)
             {
 
-                if (ItemSprite.TextureScaleX <= 0f || ItemSprite.TextureScaleY <= 0f)
+                if (Game1.Player.MainCollider.IsIntersecting(ItemSprite))
                 {
-                    if (!ItemSprite.PickedUp)
-                    {
+
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
-                        ItemSprite.PickedUp = true;
-                        Ignored = true;
-                        this.IsMagnetized = false;
                         Game1.GetCurrentStage().AllItems.Remove(this);
-                    }
+
+                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
+                   
+                    
 
                 }
-                ItemSprite.Position.X -= playerpos.X - 2;
-                ItemSprite.Position.Y -= playerpos.Y;
-                ItemSprite.TextureScaleX -= .1f;
-                ItemSprite.TextureScaleY -= .1f;
+                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - ItemSprite.Position;
+                dir.Normalize();
+                ItemSprite.Position += dir;
+                //ItemSprite.Position.X -= playerpos.X ;
+                //ItemSprite.Position.Y -= playerpos.Y;
+
             }
         }
 
@@ -182,6 +186,11 @@ namespace SecretProject.Class.ItemStuff
                 Game1.Player.Inventory.RemoveItem(this);
                 Game1.SoundManager.ToolBreak.Play();
             }
+        }
+
+        public void KnockBack(Dir direction, int amount)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -112,78 +112,10 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public void DidCollide(List<Sprite> sprite)
-        {
-
-            foreach (var spr in sprite)
-            {
-                if (spr.DestinationRectangle.Left < Game1.cam.Pos.X + (Game1.ScreenWidth / 2) - 400 && spr.DestinationRectangle.Left > Game1.cam.Pos.X - (Game1.ScreenWidth / 2) - 400
-                             && spr.DestinationRectangle.Y < Game1.cam.Pos.Y + (Game1.ScreenHeight / 2) + 300 && spr.DestinationRectangle.Y > Game1.cam.Pos.Y - (Game1.ScreenHeight / 2) + 300)
-                {
-
-                    if (velocity.X > 0 && IsTouchingLeft(rectangle, spr, velocity))
-                        velocity.X -= velocity.X; //+ (float).25;
-
-                    if (velocity.X < 0 && IsTouchingRight(rectangle, spr, velocity))
-                        velocity.X -= velocity.X; //- (float).25;
-
-                    if (velocity.Y > 0 && IsTouchingTop(rectangle, spr, velocity))
-                        velocity.Y -= velocity.Y; //+ (float).25;
-                    if (velocity.Y < 0 && IsTouchingBottom(rectangle, spr, velocity))
-                        velocity.Y -= velocity.Y;// - (float).25;
-                }
-            }
-
-        }
+ 
 
 
 
-        public void DidCollideMagnet(List<Item> item)
-        {
-            for (int i = 0; i < item.Count; i++)
-            {
-                if (item[i].Ignored == false)
-                {
-                    if (item[i].IsMagnetized)
-                    {
-                        item[i].Magnetize(velocity);
-                        //it.IsMagnetized = false;
-                    }
-
-                    else if (velocity.X > 0 && IsTouchingLeft(rectangle, item[i].ItemSprite, velocity))
-                    {
-                        item[i].IsMagnetizable = true;
-                    }
-
-
-                    else if (velocity.X < 0 && IsTouchingRight(rectangle, item[i].ItemSprite, velocity))
-                    {
-                        item[i].IsMagnetizable = true;
-                    }
-
-
-                    else if (velocity.Y > 0 && IsTouchingTop(rectangle, item[i].ItemSprite, velocity))
-                    {
-                        item[i].IsMagnetizable = true;
-                    }
-
-                    else if (velocity.Y < 0 && IsTouchingBottom(rectangle, item[i].ItemSprite, velocity))
-                    {
-                        item[i].IsMagnetizable = true;
-                    }
-
-                    else
-                    {
-                        item[i].IsMagnetizable = false;
-                    }
-                }
-            }
-
-
-
-
-
-        }
 
         public bool IsTouchingLeft(Rectangle rectangle, ICollidable obj, Vector2 velocity)
         {
@@ -216,34 +148,7 @@ namespace SecretProject.Class.CollisionDetection
 
         //Sprite part
 
-        public bool IsTouchingLeft(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Right + velocity.X > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Left &&
-                rectangle.Bottom > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Bottom;
-        }
-        public bool IsTouchingRight(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Left + velocity.X < sprite.DestinationRectangle.Right &&
-                rectangle.Right > sprite.DestinationRectangle.Right &&
-                rectangle.Bottom > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Bottom;
-        }
-        public bool IsTouchingTop(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Bottom + velocity.Y > sprite.DestinationRectangle.Top &&
-                rectangle.Top < sprite.DestinationRectangle.Top &&
-                rectangle.Right > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Right;
-        }
-        public bool IsTouchingBottom(Rectangle rectangle, Sprite sprite, Vector2 velocity)
-        {
-            return rectangle.Top + velocity.Y < sprite.DestinationRectangle.Bottom &&
-                rectangle.Bottom > sprite.DestinationRectangle.Bottom &&
-                rectangle.Right > sprite.DestinationRectangle.Left &&
-                rectangle.Left < sprite.DestinationRectangle.Right;
-        }
+        
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {
             var Colors = new List<Color>();

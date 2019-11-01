@@ -14,7 +14,8 @@ namespace SecretProject.Class.CollisionDetection
         inert = 0,
         grass = 1,
         NPC = 2,
-        Enemy = 3
+        Enemy = 3,
+        Item = 4
     }
     public interface ICollidable
     {

@@ -8,6 +8,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public interface IEntity
     {
-        void KnockBack(Dir direction, int amount);
+        
+        void PlayerCollisionInteraction();
     }
 }

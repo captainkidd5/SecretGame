@@ -120,6 +120,10 @@ namespace SecretProject.Class.StageFolder
             {
                 QuadTree.Insert(AllTiles.Objects[i]);
             }
+            for(int i =0; i < AllItems.Count; i++)
+            {
+                QuadTree.Insert(AllItems[i].ItemSprite);
+            }
 
             QuadTree.Insert(player.BigCollider);
 

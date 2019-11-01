@@ -429,16 +429,16 @@ namespace SecretProject.Class.Playable
 
                     }
 
-
+                }
                     MainCollider.Rectangle = this.ColliderRectangle;
                     MainCollider.Velocity = this.PrimaryVelocity;
-                    MainCollider.DidCollideMagnet(items);
+                    //MainCollider.DidCollideMagnet(items);
 
                     BigCollider.Rectangle = this.ClickRangeRectangle;
                     BigCollider.Velocity = this.PrimaryVelocity;
 
                     List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, MainCollider);
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
                     for (int i = 0; i < returnObjects.Count; i++)
                     {
                         if (returnObjects[i].ColliderType == ColliderType.grass)
@@ -447,6 +447,14 @@ namespace SecretProject.Class.Playable
                             {
                                 returnObjects[i].IsUpdating = true;
                                 returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                            }
+                        }
+                        else if (returnObjects[i].ColliderType == ColliderType.Item)
+                        {
+                            
+                            if(BigCollider.IsIntersecting(returnObjects[i]))
+                            {
+                                returnObjects[i].Entity.PlayerCollisionInteraction();
                             }
                         }
                         else
@@ -459,7 +467,8 @@ namespace SecretProject.Class.Playable
                         }
 
                     }
-
+                if (controls.IsMoving && !IsPerformingAction)
+                {
 
                     if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
                     {
@@ -489,34 +498,34 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                else if (CurrentTool != null)
-                {
+                //if (CurrentTool != null)
+                //{
 
-                    BigCollider.Rectangle = this.ClickRangeRectangle;
+                //    BigCollider.Rectangle = this.ClickRangeRectangle;
 
-                    List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
-                    for (int i = 0; i < returnObjects.Count; i++)
-                    {
+                //    List<ICollidable> returnObjects = new List<ICollidable>();
+                //    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+                //    for (int i = 0; i < returnObjects.Count; i++)
+                //    {
 
-                        if (returnObjects[i].ColliderType == ColliderType.grass)
-                        {
+                //        if (returnObjects[i].ColliderType == ColliderType.grass)
+                //        {
 
 
-                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                            {
-                                Console.WriteLine("Intersected grass");
-                                returnObjects[i].SelfDestruct();
-                            }
+                //            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                //            {
+                //                Console.WriteLine("Intersected grass");
+                //                returnObjects[i].SelfDestruct();
+                //            }
 
-                        }
-                        else if(returnObjects[i].ColliderType == ColliderType.NPC || returnObjects[i].ColliderType == ColliderType.Enemy)
-                        {
-                            returnObjects[i].Entity.KnockBack(controls.Direction, 5);
-                        }
+                //        }
+                //        else if(returnObjects[i].ColliderType == ColliderType.NPC || returnObjects[i].ColliderType == ColliderType.Enemy)
+                //        {
+                //            returnObjects[i].Entity.PlayerCollisionInteraction();
+                //        }
 
-                    }
-                }
+                //    }
+                //}
 
             }
         }
@@ -647,6 +656,16 @@ namespace SecretProject.Class.Playable
         public void KnockBack(Dir direction, int amount)
         {
             throw new NotImplementedException();
+        }
+
+        public void Interact()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlayerCollisionInteraction()
+        {
+           
         }
     }
 }

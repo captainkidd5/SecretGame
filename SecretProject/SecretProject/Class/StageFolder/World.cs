@@ -279,7 +279,10 @@ namespace SecretProject.Class.StageFolder
 
                 }
             }
-            
+            for(int i =0; i < AllItems.Count; i++)
+            {
+                QuadTree.Insert(AllItems[i].ItemSprite);
+            }
 
             //QuadTree.Insert(player.MainCollider);
             QuadTree.Insert(player.BigCollider);
