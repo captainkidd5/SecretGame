@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
-    public class Sprite 
+    public class Sprite : ICollidable
     {
         public GraphicsDevice Graphics { get; set; }
         public Texture2D AtlasTexture { get; set; }
@@ -26,6 +27,7 @@ namespace SecretProject.Class.SpriteFolder
 
         //keep as field
         public Vector2 Position;
+        public Vector2 Velocity { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public bool IsWorldItem { get; set; } = false;
@@ -73,6 +75,11 @@ namespace SecretProject.Class.SpriteFolder
         public bool Flip { get; set; }
         //for collider
         public Rectangle Rectangle { get; set; }
+        public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Dir InitialShuffDirection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
 
@@ -84,6 +91,7 @@ namespace SecretProject.Class.SpriteFolder
             this.AtlasTexture = atlasTexture;
             this.SourceRectangle = sourceRectangle;
             this.Position = position;
+            this.Velocity = Vector2.Zero;
             this.Width = width;
             this.Height = height;
             this.Rotation = 0f;
@@ -121,7 +129,7 @@ namespace SecretProject.Class.SpriteFolder
             {
                 UpdateAnimations(gameTime,Position);
             }
-
+           // this.Rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
         }
 
 
@@ -134,6 +142,7 @@ namespace SecretProject.Class.SpriteFolder
                 Spin(gameTime, this.SpinAmount, this.SpinSpeed);
             }
                 this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.Rectangle = DestinationRectangle;
             this.Position = position;
             
         }
@@ -154,6 +163,7 @@ namespace SecretProject.Class.SpriteFolder
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
             destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
             DestinationRectangle = new Rectangle((int)position.X + OffSetX, (int)position.Y + OffSetY, FrameWidth, FrameHeight);
+            this.Rectangle = DestinationRectangle;
         }
 
         public void UpdatePlayerPartAnimations(GameTime gameTime, Vector2 position)
@@ -312,6 +322,11 @@ namespace SecretProject.Class.SpriteFolder
             
         }
 
+        public void Eject(GameTime gameTime)
+        {
+            
+        }
+
         public void PlayOnce(GameTime gameTime, Vector2 position)
         {
             this.Position = position;
@@ -355,6 +370,11 @@ namespace SecretProject.Class.SpriteFolder
         }
 
         public void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SelfDestruct()
         {
             throw new NotImplementedException();
         }
