@@ -1272,6 +1272,48 @@
    <object id="1" x="8.22727" y="0.0909" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="1271">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1272">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1273">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1274">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1275">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1276">
+  <properties>
+   <property name="destructable" value="22,3,0,8"/>
+   <property name="loot" value="130:100:1,220:15:1"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
  <tile id="1277">
   <properties>
    <property name="destructable" value="22,3,0,8"/>

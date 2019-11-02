@@ -424,6 +424,11 @@ namespace SecretProject.Class.TileStuff
                     TileUtility.GenerateTiles(1, 1002, "stone", 5, 0, this); //FISSURE
                     TileUtility.GenerateTiles(3, 1476, "grass", 6, 0, this); //FallenOak
                     TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(3, 1277, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(3, 1276, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(3, 1275, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
+                    TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
                     TileUtility.GenerateTiles(1, 1581, "grass", 5, 0, this); //ROCK
                     TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
                     TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM

@@ -148,7 +148,7 @@ namespace SecretProject.Class.Playable
             Swiping = new Sprite[4, 5];
 
             MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, this, ColliderType.inert);
-            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle,this, ColliderType.inert);
+            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, this, ColliderType.inert);
             Inventory = new Inventory(7) { Money = 10000 };
 
             controls = new PlayerControls(0);
@@ -333,7 +333,7 @@ namespace SecretProject.Class.Playable
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
                         ToolLine.Point2 = CurrentTool.Origin + CurrentTool.Position - Game1.Utility.RotateVector2(CurrentTool.Position, CurrentTool.Rotation + .35f);
 
-                        
+
                     }
 
                     if (this.IsPerformingAction == false)
@@ -430,43 +430,47 @@ namespace SecretProject.Class.Playable
                     }
 
                 }
-                    MainCollider.Rectangle = this.ColliderRectangle;
-                    MainCollider.Velocity = this.PrimaryVelocity;
-                    //MainCollider.DidCollideMagnet(items);
+                MainCollider.Rectangle = this.ColliderRectangle;
+                MainCollider.Velocity = this.PrimaryVelocity;
+                //MainCollider.DidCollideMagnet(items);
 
-                    BigCollider.Rectangle = this.ClickRangeRectangle;
-                    BigCollider.Velocity = this.PrimaryVelocity;
+                BigCollider.Rectangle = this.ClickRangeRectangle;
+                BigCollider.Velocity = this.PrimaryVelocity;
 
-                    List<ICollidable> returnObjects = new List<ICollidable>();
-                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
-                    for (int i = 0; i < returnObjects.Count; i++)
+                List<ICollidable> returnObjects = new List<ICollidable>();
+                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+                for (int i = 0; i < returnObjects.Count; i++)
+                {
+                    if (returnObjects[i].ColliderType == ColliderType.grass)
                     {
-                        if (returnObjects[i].ColliderType == ColliderType.grass)
+                        if (MainCollider.IsIntersecting(returnObjects[i]))
                         {
-                            if (MainCollider.IsIntersecting(returnObjects[i]))
-                            {
-                                returnObjects[i].IsUpdating = true;
-                                returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                            }
+                            returnObjects[i].IsUpdating = true;
+                            returnObjects[i].InitialShuffDirection = this.controls.Direction;
                         }
-                        else if (returnObjects[i].ColliderType == ColliderType.Item)
-                        {
-                            
-                            if(BigCollider.IsIntersecting(returnObjects[i]))
-                            {
-                                returnObjects[i].Entity.PlayerCollisionInteraction();
-                            }
-                        }
-                        else
-                        {
-                            if (MainCollider.DidCollide(returnObjects[i], position))
-                            {
-                                CollideOccured = true;
-                                returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                            }
-                        }
-
                     }
+                    else if (returnObjects[i].ColliderType == ColliderType.Item)
+                    {
+
+                        if (BigCollider.IsIntersecting(returnObjects[i]))
+                        {
+                            returnObjects[i].Entity.PlayerCollisionInteraction();
+                        }
+                        else if (MainCollider.IsIntersecting(returnObjects[i]))
+                        {
+                            Console.WriteLine("Hi");
+                        }
+                    }
+                    else
+                    {
+                        if (MainCollider.DidCollide(returnObjects[i], position))
+                        {
+                            CollideOccured = true;
+                            //returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                        }
+                    }
+
+                }
                 if (controls.IsMoving && !IsPerformingAction)
                 {
 
@@ -665,7 +669,7 @@ namespace SecretProject.Class.Playable
 
         public void PlayerCollisionInteraction()
         {
-           
+
         }
     }
 }
