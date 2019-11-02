@@ -307,7 +307,7 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedToolAsItem()!= null && UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 25)
+                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null && UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 25)
                 {
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
                 }
@@ -441,17 +441,13 @@ namespace SecretProject.Class.Playable
                 Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
                 for (int i = 0; i < returnObjects.Count; i++)
                 {
-                    
+
                     if (returnObjects[i].ColliderType == ColliderType.Item)
                     {
 
                         if (BigCollider.IsIntersecting(returnObjects[i]))
                         {
                             returnObjects[i].Entity.PlayerCollisionInteraction();
-                        }
-                        else if (MainCollider.IsIntersecting(returnObjects[i]))
-                        {
-                            Console.WriteLine("Hi");
                         }
                     }
                     else if (returnObjects[i].ColliderType == ColliderType.grass)
@@ -464,23 +460,22 @@ namespace SecretProject.Class.Playable
                     }
                     else
                     {
-                        if(IsMoving)
+                        if (IsMoving)
                         {
-                            if(returnObjects[i].Entity != this)
+                            if (returnObjects[i].Entity != this)
                             {
-                                if (MainCollider.IsIntersecting(returnObjects[i]))
+
+                                if (MainCollider.DidCollide(returnObjects[i], position))
                                 {
-                                    if (MainCollider.DidCollide(returnObjects[i], position))
-                                    {
-                                        CollideOccured = true;
-                                        //returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                                    }
+                                    CollideOccured = true;
+                                    //returnObjects[i].InitialShuffDirection = this.controls.Direction;
                                 }
+
                             }
-                            
-                           
+
+
                         }
-                        
+
                     }
 
                 }

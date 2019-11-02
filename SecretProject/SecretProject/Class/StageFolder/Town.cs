@@ -86,7 +86,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
-            this.QuadTree = new QuadTree(5, MapRectangle);
+            this.QuadTree = new QuadTree(5, Cam.ViewPortRectangle);
             this.IsLoaded = true;
         }
 
@@ -114,7 +114,7 @@ namespace SecretProject.Class.StageFolder
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(0, MapRectangle);
+            QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
             for(int i =0; i < AllTiles.Objects.Count; i++)
             {
