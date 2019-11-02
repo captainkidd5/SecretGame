@@ -742,6 +742,7 @@
 <TextureColumn>26</TextureColumn>
 <TextureRow>15</TextureRow>
 <Price>80</Price>
+<PlaceID>2139</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

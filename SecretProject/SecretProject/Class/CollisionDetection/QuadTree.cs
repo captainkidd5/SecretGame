@@ -14,7 +14,7 @@ namespace SecretProject.Class.CollisionDetection
     {
         public int TotalObjects { get; set; }
         private int MAX_OBJECTS = 10;
-        private int MAX_LEVELS = 8;
+        private int MAX_LEVELS =5;
 
         private int level;
         private List<ICollidable> Objects;

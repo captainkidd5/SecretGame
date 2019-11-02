@@ -138,10 +138,6 @@
   </objectgroup>
  </tile>
  <tile id="360">
-  <properties>
-   <property name="action" value="smelt"/>
-   <property name="newSource" value="0,-32,0,32"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="1"/>
   </objectgroup>
@@ -1736,7 +1732,7 @@
  <tile id="1580">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="222:100:1"/>
+   <property name="loot" value="940:100:1"/>
   </properties>
  </tile>
  <tile id="1581">
@@ -1875,6 +1871,32 @@
   <objectgroup draworder="index">
    <object id="1" x="1" y="5" width="14" height="8"/>
   </objectgroup>
+ </tile>
+ <tile id="2051">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="2139">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="2142">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="2143">
+  <properties>
+   <property name="action" value="smelt"/>
+   <property name="newSource" value="0,-32,0,32"/>
+  </properties>
+ </tile>
+ <tile id="2144">
+  <properties>
+   <property name="newSource" value="0,-16,16,16"/>
+  </properties>
  </tile>
  <tile id="2163">
   <properties>
