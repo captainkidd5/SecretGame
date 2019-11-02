@@ -66,6 +66,8 @@ namespace SecretProject.Class.TileStuff
         public AStarPathFinder PathGrid { get; set; }
 
         public WorldTileManager TileManager { get; set; }
+        public List<int[]> AdjacentNoise { get; set; }
+
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -181,7 +183,46 @@ namespace SecretProject.Class.TileStuff
 
             }
             binaryWriter.Write(this.Owned);
-            binaryWriter.Flush();
+
+            //int[] topRowNoise = new int[16];
+            //int[] bottomRowNoise = new int[16];
+            //int[] leftColumnNoise = new int[16];
+            //int[] rightColumnNoise = new int[16];
+
+
+
+            //for (int i = 0; i < 16; i++)
+            //{
+            //    topRowNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15));
+            //    bottomRowNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16));
+
+            //    leftColumnNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i));
+
+            //    rightColumnNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i));
+            //}
+
+            //AdjacentNoise = new List<int[]>()
+            //{ topRowNoise,
+            //bottomRowNoise,
+            //leftColumnNoise,
+            //rightColumnNoise
+            //};
+
+            //binaryWriter.Write(AdjacentNoise.Count);
+            //for(int i =0; i < AdjacentNoise.Count; i++)
+            //{
+            //    binaryWriter.Write(AdjacentNoise[i].Length);
+            //}
+
+            //for (int i = 0; i < AdjacentNoise.Count; i++)
+            //{
+            //    for(int j =0; j < AdjacentNoise[i].Length; j++)
+            //    {
+            //        binaryWriter.Write(AdjacentNoise[i][j]);
+            //    }
+            //}
+
+                binaryWriter.Flush();
             binaryWriter.Close();
         }
 
@@ -255,7 +296,25 @@ namespace SecretProject.Class.TileStuff
                 this.Crops.Add(cropKey, crop);
             }
             this.Owned = binaryReader.ReadBoolean();
+            //int adjacentNoiseCount = binaryReader.ReadInt32();
+            //this.AdjacentNoise = new List<int[]>();
+            //for (int i = 0; i < adjacentNoiseCount; i++)
+            //{
+            //    this.AdjacentNoise.Add(new int[binaryReader.ReadInt32()]);
+            //}
+
+            //for(int i =0; i < this.AdjacentNoise.Count; i++)
+            //{
+            //    for (int j = 0; j < this.AdjacentNoise[i].Length; j++)
+            //    {
+            //        this.AdjacentNoise[i][j] = binaryReader.ReadInt32();
+            //    }
+            //}
+            
+            
             PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
+
+
            // Enemies.Add(new Boar("boar" + this.X.ToString() + this.Y.ToString(), new Vector2(AllTiles[0][5, 5].X * 16 + this.X * 16, AllTiles[0][5, 5].Y * 16 + this.Y * 16), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
             binaryReader.Close();
@@ -305,7 +364,7 @@ namespace SecretProject.Class.TileStuff
                 rightColumnNoise[i] = TileUtility.GetTileFromNoise(Game1.Utility.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i));
             }
 
-            List<int[]> adjacentNoise = new List<int[]>()
+            AdjacentNoise = new List<int[]>()
             { topRowNoise,
             bottomRowNoise,
             leftColumnNoise,
@@ -392,7 +451,7 @@ namespace SecretProject.Class.TileStuff
                             break;
 
                     }
-                    TileUtility.ReassignTileForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this, adjacentNoise);
+                    TileUtility.ReassignTileForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this, this.AdjacentNoise);
 
                 }
             }

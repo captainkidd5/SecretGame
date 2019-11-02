@@ -80,7 +80,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             //if top tile is 0 we look at the chunk above it
-            else if (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
             {
                 keyToCheck += 1;
             }
@@ -94,7 +95,8 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 8;
                 }
             }
-            else if (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
             {
                 keyToCheck += 8;
             }
@@ -107,7 +109,9 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 4;
                 }
             }
-            else if (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
+
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
             {
                 keyToCheck += 4;
             }
@@ -120,7 +124,8 @@ namespace SecretProject.Class.TileStuff
                     keyToCheck += 2;
                 }
             }
-            else if (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
             {
                 keyToCheck += 2;
             }
