@@ -138,6 +138,7 @@
 <TextureRow>0</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
+<Type>23</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -149,6 +150,7 @@
 <TextureRow>1</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
+<Type>23</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

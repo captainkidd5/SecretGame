@@ -29,6 +29,7 @@ namespace SecretProject.Class.Playable
         HandsPicking = 0,
         Chopping = 21,
         Mining = 22,
+        Digging = 23,
         Swiping = 25,
     }
 

@@ -3,15 +3,15 @@
   <Asset Type="XMLData.ItemStuff.CropHolder">
     <AllCrops>
         <Item Type="XMLData.ItemStuff.Crop">
-          <ItemID>128</ItemID>
-            <Name>BloomBerry</Name>
+          <ItemID>688</ItemID>
+            <Name>Bloomberry</Name>
             <GID>486</GID>        
             <DaysToGrow>5</DaysToGrow>
             <CurrentGrowth>0</CurrentGrowth>
             <Harvestable>false</Harvestable>
             </Item>
             <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>167</ItemID>
+                <ItemID>690</ItemID>
                   <Name>BloodCorn</Name>
                   <GID>286</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -19,7 +19,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
             <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>187</ItemID>
+                <ItemID>692</ItemID>
                   <Name>BrineVine</Name>
                   <GID>686</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -27,7 +27,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>207</ItemID>
+                <ItemID>694</ItemID>
                   <Name>BlueZodFern</Name>
                   <GID>292</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -35,7 +35,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>227</ItemID>
+                  <ItemID>696</ItemID>
                   <Name>YallonFlower</Name>
                   <GID>492</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -43,7 +43,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>247</ItemID>
+                  <ItemID>698</ItemID>
                   <Name>DesmodusBloom</Name>
                   <GID>692</GID>
                   <DaysToGrow>5</DaysToGrow>
