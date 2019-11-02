@@ -146,17 +146,37 @@ namespace SecretProject.Class.CollisionDetection
         }
 
 
-        public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
+        //public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
+        //{
+        //    int index = GetIndex(objectBody);
+        //    if (index != -1 && nodes[0] != null)
+        //    {
+        //        nodes[index].Retrieve(returnObjects, objectBody);
+        //    }
+
+        //    returnObjects.AddRange(Objects);
+
+        //    return returnObjects;
+        //}
+
+        public void Retrieve(List<ICollidable> returnedObjs, ICollidable obj)
         {
-            int index = GetIndex(objectBody);
-            if (index != -1 && nodes[0] != null)
+            if (nodes[0] != null)
             {
-                nodes[index].Retrieve(returnObjects, objectBody);
+                var index = GetIndex(obj);
+                if (index != -1)
+                {
+                    nodes[index].Retrieve(returnedObjs, obj);
+                }
+                else
+                {
+                    for (int i = 0; i < nodes.Length; i++)
+                    {
+                        nodes[i].Retrieve(returnedObjs, obj);
+                    }
+                }
             }
-
-            returnObjects.AddRange(Objects);
-
-            return returnObjects;
+            returnedObjs.AddRange(Objects);
         }
 
         //private List<SquareOne> Retrieve(List<SquareOne> fSpriteList, Rect pRect)

@@ -131,6 +131,10 @@ namespace SecretProject.Class.ItemStuff
                         ItemSprite.IsTossed = false;
                     }
                 }
+                else
+                {
+                    this.Ignored = false;
+                }
             }
         }
 

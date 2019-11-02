@@ -398,7 +398,7 @@
    <property name="spawnWith" value="563"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="3.125" y="0.875" width="8.25" height="12"/>
+   <object id="1" x="3.125" y="0.25" width="8.25" height="12.625"/>
   </objectgroup>
  </tile>
  <tile id="678">
@@ -1094,7 +1094,7 @@
    <property name="spawnWith" value="1063"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="4" y="1.375" width="7.125" height="9.625"/>
+   <object id="1" x="4" y="0.25" width="7.125" height="10.75"/>
   </objectgroup>
  </tile>
  <tile id="1185">
@@ -1642,7 +1642,7 @@
  <tile id="1475">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="142:100:5,122:10:2"/>
+   <property name="loot" value="520:100:5,943:10:2"/>
    <property name="spawnWith" value="1476,1477"/>
   </properties>
   <objectgroup draworder="index">
@@ -1788,7 +1788,7 @@
    <property name="spawnWith" value="1563"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="2" x="3" y="4" width="10" height="8"/>
+   <object id="2" x="3" y="0.375" width="10" height="11.625"/>
   </objectgroup>
  </tile>
  <tile id="1690">
@@ -1913,7 +1913,7 @@
    <property name="spawnWith" value="2163"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="6" y="8" width="6" height="3"/>
+   <object id="1" x="6" y="0.375" width="6" height="10.625"/>
   </objectgroup>
  </tile>
  <tile id="2304">
@@ -2007,7 +2007,7 @@
    <property name="spawnWith" value="2863"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="3.125" y="2.125" width="11.25" height="8.75"/>
+   <object id="1" x="3.125" y="0.375" width="11.25" height="10.5"/>
   </objectgroup>
  </tile>
  <tile id="3023">
