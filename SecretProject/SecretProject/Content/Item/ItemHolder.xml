@@ -49,6 +49,7 @@
 <Price>25</Price>
 <Type>21</Type>
 </Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFish</Name>
 <ID>15</ID>
 <Description>A fierce, pointy fish.</Description>
@@ -58,6 +59,7 @@
 <Price>25</Price>
 <Type>21</Type>
 </Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Empty Flask</Name>
 <ID>28</ID>
 <Description>Made of glass.</Description>
@@ -92,7 +94,7 @@
 <Type>22</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
-
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dark Hammer</Name>
 <ID>42</ID>
 <Description>A cold, dark hammer.</Description>
@@ -104,7 +106,7 @@
 <Type>22</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
-
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Ghostly Flask</Name>
 <ID>68</ID>
 <Description>A ghostly, swirling mist dances within the bottle.</Description>
@@ -343,6 +345,26 @@
 <Price>10</Price>
 </Item>
 
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Oak Seed</Name>
+<ID>608</ID>
+<Description>Grows into an Oak tree when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>16</TextureColumn>
+<TextureRow>27</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Thunderbird Seed</Name>
+<ID>609</ID>
+<Description>Grows into a Thunderbirch tree when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>16</TextureColumn>
+<TextureRow>28</TextureRow>
+<Price>1</Price>
+</Item>
+
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Ingot</Name>
@@ -415,6 +437,66 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Plump Fruit</Name>
+<ID>649</ID>
+<Description>A rather plump-looking fruit.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>27</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Gum Fruit</Name>
+<ID>650</ID>
+<Description>Looks like bubble-gum.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>28</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Red Mushroom</Name>
+<ID>651</ID>
+<Description>A bright red fungus.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>29</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Blue Mushroom</Name>
+<ID>652</ID>
+<Description>A bright blue fungus.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>30</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Thorn</Name>
+<ID>653</ID>
+<Description>Ow!</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>31</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Dandelion</Name>
+<ID>654</ID>
+<Description>A pretty, yellow flower.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>17</TextureColumn>
+<TextureRow>32</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Spring</Name>
 <ID>660</ID>
 <Description>A bouncy metal part.</Description>
@@ -422,6 +504,126 @@
 <TextureColumn>18</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>10</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bloomberry Seeds</Name>
+<ID>689</ID>
+<Description>Grows into a Bloomberry bush when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>27</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bloomberry</Name>
+<ID>690</ID>
+<Description>A bright, blue berry.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>28</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bloodcorn Seeds</Name>
+<ID>691</ID>
+<Description>Grows into a Bloodcorn crop when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>29</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bloodcorn</Name>
+<ID>692</ID>
+<Description>A bushel of bright red corn.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>30</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Brinebulb Seeds</Name>
+<ID>693</ID>
+<Description>Grows into a Brinebulb vine when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>31</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Brinebulb</Name>
+<ID>693</ID>
+<Description>A pre-pickled plant.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>32</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Zodfern Seeds</Name>
+<ID>694</ID>
+<Description>Grows into a Zodfern when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>33</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Zodfern</Name>
+<ID>695</ID>
+<Description>A whip-like plant.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>34</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Yallon Seeds</Name>
+<ID>696</ID>
+<Description>Grows into a Yallon flower when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>35</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Yallon</Name>
+<ID>697</ID>
+<Description>Dandelion's big sister.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>36</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Desmodus Seeds</Name>
+<ID>698</ID>
+<Description>Grows into a Desmodus bloom when planted.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>37</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Desmodus Bloom</Name>
+<ID>699</ID>
+<Description>A large, stinky plant.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>38</TextureRow>
+<Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -435,6 +637,26 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sproutera Seeds</Name>
+<ID>729</ID>
+<Description>Grows into a Sproutera plant.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>19</TextureColumn>
+<TextureRow>27</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sproutera</Name>
+<ID>730</ID>
+<Description>Leafy.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>19</TextureColumn>
+<TextureRow>28</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Large)</Name>
 <ID>740</ID>
 <Description>Part of something bigger than itself.</Description>
@@ -443,6 +665,8 @@
 <TextureRow>0</TextureRow>
 <Price>20</Price>
 </Item>
+
+
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Small Rock</Name>
@@ -502,6 +726,66 @@
 <TextureColumn>26</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>5</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Cauldron</Name>
+<ID>995</ID>
+<Description>Can be used to cook recipes.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>26</TextureColumn>
+<TextureRow>15</TextureRow>
+<Price>80</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Egg</Name>
+<ID>1035</ID>
+<Description>An unfertilized egg.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>27</TextureColumn>
+<TextureRow>15</TextureRow>
+<Price>2</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Pie Dish</Name>
+<ID>1075</ID>
+<Description>The starting point of any good pie.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>28</TextureColumn>
+<TextureRow>15</TextureRow>
+<Price>25</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Pumpkin Pie</Name>
+<ID>1076</ID>
+<Description>A delicious, festive pie.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>28</TextureColumn>
+<TextureRow>16</TextureRow>
+<Price>12</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Fish Pie</Name>
+<ID>1077</ID>
+<Description>A pie made from fish.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>28</TextureColumn>
+<TextureRow>17</TextureRow>
+<Price>12</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Darkberry Pie</Name>
+<ID>1078</ID>
+<Description>A spooky-looking desert.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>28</TextureColumn>
+<TextureRow>18</TextureRow>
+<Price>12</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -634,616 +918,6 @@
 <Price>25</Price>
 </Item>
 
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Shovel</Name>
-<ID>3</ID>
-<Description>A basic tool for digging the ground. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>25</Price>
-<Durability>25</Durability>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BasicFlashlight</Name>
-<ID>4</ID>
-<Description>Used to light up the dark.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>TrainingSword</Name>
-<ID>5</ID>
-<Description>A weak sword.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>50</Price>
-<Durability>25</Durability>
-<Type>25</Type>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>TurquoiseAxe</Name>
-<ID>20</ID>
-<Description>A beautiful axe made from turquoise.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>1</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>50</Price>
-<Durability>30</Durability>
-<Type>21</Type>
-<AnimationColumn>96</AnimationColumn>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Flask</Name>
-<ID>80</ID>
-<Description>A container for liquid.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>WhiteWaterFlask</Name>
-<ID>81</ID>
-<Description>A ghostly drink.</Description>
-<InvMaximum>20</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>LifeFlask</Name>
-<ID>82</ID>
-<Description>A drink to restore health.</Description>
-<InvMaximum>20</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>EnergizerFlask</Name>
-<ID>83</ID>
-<Description>Speeds you up!</Description>
-<InvMaximum>20</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>RotundFlask</Name>
-<ID>84</ID>
-<Description>A bulky drink.</Description>
-<InvMaximum>20</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>LifeGiverFlask</Name>
-<ID>85</ID>
-<Description>The plants seem drawn to this.</Description>
-<InvMaximum>20</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>50</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Chest</Name>
-<ID>121</ID>
-<Description>Used to store things.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>150</Price>
-<PlaceID>1852</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BirdsNest</Name>
-<ID>122</ID>
-<Description>Made from twigs and fibres.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ThunderWood</Name>
-<ID>123</ID>
-<Description>Its texture seems to give off energy.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>5</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ProspectorDish</Name>
-<ID>124</ID>
-<Description>A tool for sifting through soot.</Description>
-<InvMaximum>5</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>100</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>HouseKey</Name>
-<ID>125</ID>
-<Description>The key to my house in town.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>100</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>PumpkinPie</Name>
-<ID>126</ID>
-<Description>The scariest food around.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>8</Price>
-<StaminaRestored>50</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SwordFish</Name>
-<ID>127</ID>
-<Description>A rather pointy fish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>6</TextureRow>
-<Price>20</Price>
-<StaminaRestored>15</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BloomBerrySeedBag</Name>
-<ID>128</ID>
-<Description>Grows into a BloomBerry Bush.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>2</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>GreenGrass1</Name>
-<ID>129</ID>
-<Description>It's.. grass.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>8</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BasicStone1</Name>
-<ID>130</ID>
-<Description>A stone.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>9</TextureRow>
-<Price>2</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Furnace</Name>
-<ID>140</ID>
-<Description>Used to refine minerals.</Description>
-<InvMaximum>120</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>5</Price>
-<PlaceID>360</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BirdsNestEgg</Name>
-<ID>141</ID>
-<Description>An bird egg in a nest.</Description>
-<InvMaximum>120</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>5</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ElmWood</Name>
-<ID>142</ID>
-<Description>Basic wood. Used for crafting.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>2</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>GoldNugget</Name>
-<ID>143</ID>
-<Description>Shiny!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>45</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>LandToken</Name>
-<ID>144</ID>
-<Description>uhhh</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>500</Price>
-<PlaceID>6815</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SwordFishPie</Name>
-<ID>145</ID>
-<Description>A delicious and fishy pie.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>15</Price>
-<StaminaRestored>75</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BloomBerryFruit</Name>
-<ID>147</ID>
-<Description>A bright, rotund fruit.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>8</Price>
-<StaminaRestored>5</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BoarDroppings</Name>
-<ID>148</ID>
-<Description>I bet plants will love this.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>8</TextureRow>
-<Price>3</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ThunderOrb</Name>
-<ID>149</ID>
-<Description>An energy-filled orb.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>6</TextureColumn>
-<TextureRow>9</TextureRow>
-<Price>5</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Fence</Name>
-<ID>160</ID>
-<Description>Can be placed on the ground.</Description>
-<InvMaximum>120</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>5</Price>
-<PlaceID>1557</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Egg</Name>
-<ID>161</ID>
-<Description>An unfertilized egg.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
-<StaminaRestored>2</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Thunderbirch Seed</Name>
-<ID>162</ID>
-<Description>Grows into a ThunderBirch tree when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>FishBones</Name>
-<ID>163</ID>
-<Description>The remains of a fish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>3</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>DarkBerryPie</Name>
-<ID>165</ID>
-<Description>A magical treat.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>12</Price>
-<StaminaRestored>80</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BloodCornSeedBag</Name>
-<ID>167</ID>
-<Description>Grows into a BloodCorn crop.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>MagmaOrb</Name>
-<ID>169</ID>
-<Description>It's burning hot!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>9</TextureRow>
-<Price>5</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>LiftStation</Name>
-<ID>170</ID>
-<Description>lol this won't make it into the game.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>2</Price>
-<PlaceID>4380</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ClueFruit</Name>
-<ID>171</ID>
-<Description>A fruit of mystery.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>2</Price>
-<StaminaRestored>15</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ElmWoodSeed</Name>
-<ID>172</ID>
-<Description>Grows into an Elmwood tree when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Turquoise</Name>
-<ID>173</ID>
-<Description>A beautiful blue stone.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>100</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>PieDish</Name>
-<ID>175</ID>
-<Description>Used for baking pies.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>15</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BloodCorn</Name>
-<ID>177</ID>
-<Description>A dark red crop.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>12</Price>
-<StaminaRestored>3</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>TumbleBushThorn</Name>
-<ID>181</ID>
-<Description>Ouch!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>4</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Sproutera</Name>
-<ID>182</ID>
-<Description>A wild sprout-like plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>4</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BrineBulbSeeds</Name>
-<ID>187</ID>
-<Description>Grows into a Brine Bulb Vine when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>4</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Dandelion</Name>
-<ID>191</ID>
-<Description>A yellow flower.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>10</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Red Mushroom</Name>
-<ID>192</ID>
-<Description>A little red mushroom.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>10</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Blue Mushroom</Name>
-<ID>193</ID>
-<Description>A little blue mushroom.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>10</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>1</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>BrineBulb</Name>
-<ID>197</ID>
-<Description>A sweaty, bulbous fruit which smells like pickles.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>10</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>12</Price>
-<StaminaRestored>2</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ZodFernSeeds</Name>
-<ID>207</ID>
-<Description>Grows into a Zod Fern when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>11</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>FlaxCanvas</Name>
-<ID>211</ID>
-<Description>A cloth made from plants.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>12</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>3</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>FlaxPlantPot</Name>
-<ID>212</ID>
-<Description>Can hold crops and trees.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>12</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>10</Price>
-<PlaceID>1589</PlaceID>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>ZodFern</Name>
-<ID>217</ID>
-<Description>A stretchy blue arm-like plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>12</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<StaminaRestored>2</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Clay</Name>
-<ID>220</ID>
-<Description>A soft substance from the earth.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>3</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SteelSlag</Name>
-<ID>221</ID>
-<Description>Unrefined Steel.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>69</Price>
-<SmeltedItem>231</SmeltedItem>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>rock</Name>
-<ID>222</ID>
-<Description>A small jagged rock.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>69</Price>
-<SmeltedItem>231</SmeltedItem>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>YallonSeeds</Name>
-<ID>227</ID>
-<Description>Grows into a Yallon Flower when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SteelIngot</Name>
-<ID>231</ID>
-<Description>A tough metal.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>70</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>LargeCog</Name>
-<ID>232</ID>
-<Description>A large mechanical gear.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>70</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SmallCog</Name>
-<ID>233</ID>
-<Description>A small mechanical gear.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>70</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>SteelSpring</Name>
-<ID>234</ID>
-<Description>A bouncy metal spring.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>70</Price>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>YallonFlower</Name>
-<ID>237</ID>
-<Description>A bright yellow flower.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<StaminaRestored>2</StaminaRestored>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>DesmodusSeeds</Name>
-<ID>247</ID>
-<Description>Grows into Desmodus Bloom when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>15</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<Plantable>true</Plantable>
-</Item>
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>DesmodusBloom</Name>
-<ID>257</ID>
-<Description>A large, smelly flower.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>7</TextureRow>
-<Price>5</Price>
-<StaminaRestored>2</StaminaRestored>
-</Item>
 </AllItems>
 </Asset>
 </XnaContent>
