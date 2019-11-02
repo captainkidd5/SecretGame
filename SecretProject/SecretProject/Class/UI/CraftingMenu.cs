@@ -51,17 +51,17 @@ namespace SecretProject.Class.UI
             }
             //tabs 1 should be tools
             Tabs[0].AddNewCraftableItem(0, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
-            Tabs[0].AddNewCraftableItem(1, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[0].AddNewCraftableItem(2, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
-            Tabs[0].AddNewCraftableItem(3, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
-            Tabs[0].AddNewCraftableItem(20, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
-            Tabs[1].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
-            Tabs[1].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[1].AddNewCraftableItem(211, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
-            Tabs[1].AddNewCraftableItem(212, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
-            Tabs[1].AddNewCraftableItem(232, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
-            Tabs[1].AddNewCraftableItem(233, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[1].AddNewCraftableItem(145, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            Tabs[0].AddNewCraftableItem(40, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            Tabs[0].AddNewCraftableItem(120, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            Tabs[0].AddNewCraftableItem(160, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            //Tabs[0].AddNewCraftableItem(20, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
+            //Tabs[1].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
+            //Tabs[1].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            //Tabs[1].AddNewCraftableItem(211, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
+            //Tabs[1].AddNewCraftableItem(212, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            //Tabs[1].AddNewCraftableItem(232, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
+            //Tabs[1].AddNewCraftableItem(233, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
+            //Tabs[1].AddNewCraftableItem(145, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
 
             ActiveTab = 0;
 

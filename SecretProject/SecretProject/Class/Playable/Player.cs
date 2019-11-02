@@ -307,7 +307,7 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedTool() == 5)
+                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 25)
                 {
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
                 }

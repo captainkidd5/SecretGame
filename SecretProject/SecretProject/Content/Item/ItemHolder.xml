@@ -22,7 +22,6 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>25</Price>
-<Plantable>false</Plantable>
 <Durability>25</Durability>
 <Type>21</Type>
 <AnimationColumn>48</AnimationColumn>
@@ -40,12 +39,12 @@
 <AnimationColumn>48</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Fish</Name>
+<Name>Fish Bones</Name>
 <ID>14</ID>
 <Description>All that's left of a fish.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>0</TextureColumn>
-<TextureRow>13</TextureRow>
+<TextureRow>14</TextureRow>
 <Price>25</Price>
 <Type>21</Type>
 </Item>
@@ -55,7 +54,7 @@
 <Description>A fierce, pointy fish.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>0</TextureColumn>
-<TextureRow>14</TextureRow>
+<TextureRow>15</TextureRow>
 <Price>25</Price>
 <Type>21</Type>
 </Item>
@@ -65,7 +64,7 @@
 <Description>Made of glass.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>0</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 <Type>21</Type>
 </Item>
@@ -112,7 +111,7 @@
 <Description>A ghostly, swirling mist dances within the bottle.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>1</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
 <Type>22</Type>
@@ -126,7 +125,7 @@
 <Description>A drink to restore health.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>2</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 </Item>
 
@@ -158,7 +157,7 @@
 <Description>Just looking at it gives you the jitters.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>3</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 </Item>
 
@@ -192,7 +191,7 @@
 <Description>A thick drink.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>4</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 </Item>
 
@@ -351,7 +350,7 @@
 <Description>Grows into an Oak tree when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>16</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -361,7 +360,7 @@
 <Description>Grows into a Thunderbirch tree when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>16</TextureColumn>
-<TextureRow>28</TextureRow>
+<TextureRow>29</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -442,7 +441,7 @@
 <Description>A rather plump-looking fruit.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -452,7 +451,7 @@
 <Description>Looks like bubble-gum.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>28</TextureRow>
+<TextureRow>29</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -462,7 +461,7 @@
 <Description>A bright red fungus.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>29</TextureRow>
+<TextureRow>30</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -472,7 +471,7 @@
 <Description>A bright blue fungus.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>30</TextureRow>
+<TextureRow>31</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -482,7 +481,7 @@
 <Description>Ow!</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>31</TextureRow>
+<TextureRow>32</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -492,7 +491,7 @@
 <Description>A pretty, yellow flower.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>17</TextureColumn>
-<TextureRow>32</TextureRow>
+<TextureRow>33</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -508,28 +507,19 @@
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Bloomberry Seeds</Name>
-<ID>689</ID>
+<ID>688</ID>
 <Description>Grows into a Bloomberry bush when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>27</TextureRow>
-<Price>1</Price>
-</Item>
-
-<Item Type="XMLData.ItemStuff.ItemData">
-<Name>Bloomberry</Name>
-<ID>690</ID>
-<Description>A bright, blue berry.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
 <TextureRow>28</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Bloodcorn Seeds</Name>
-<ID>691</ID>
-<Description>Grows into a Bloodcorn crop when planted.</Description>
+<Name>Bloomberry</Name>
+<ID>689</ID>
+<Description>A bright, blue berry.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
 <TextureRow>29</TextureRow>
@@ -537,23 +527,35 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Bloodcorn</Name>
-<ID>692</ID>
-<Description>A bushel of bright red corn.</Description>
+<Name>Bloodcorn Seeds</Name>
+<ID>690</ID>
+<Description>Grows into a Bloodcorn crop when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
 <TextureRow>30</TextureRow>
+<Price>1</Price>
+<Plantable>true</Plantable>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bloodcorn</Name>
+<ID>691</ID>
+<Description>A bushel of bright red corn.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>18</TextureColumn>
+<TextureRow>31</TextureRow>
 <Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Brinebulb Seeds</Name>
-<ID>693</ID>
+<ID>692</ID>
 <Description>Grows into a Brinebulb vine when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>31</TextureRow>
+<TextureRow>32</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -562,7 +564,7 @@
 <Description>A pre-pickled plant.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>32</TextureRow>
+<TextureRow>33</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -572,8 +574,9 @@
 <Description>Grows into a Zodfern when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>33</TextureRow>
+<TextureRow>34</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -582,7 +585,7 @@
 <Description>A whip-like plant.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>34</TextureRow>
+<TextureRow>35</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -592,8 +595,9 @@
 <Description>Grows into a Yallon flower when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>35</TextureRow>
+<TextureRow>36</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -602,7 +606,7 @@
 <Description>Dandelion's big sister.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>36</TextureRow>
+<TextureRow>37</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -612,8 +616,9 @@
 <Description>Grows into a Desmodus bloom when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>37</TextureRow>
+<TextureRow>38</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -622,7 +627,7 @@
 <Description>A large, stinky plant.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>18</TextureColumn>
-<TextureRow>38</TextureRow>
+<TextureRow>39</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -638,21 +643,22 @@
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Sproutera Seeds</Name>
-<ID>729</ID>
+<ID>728</ID>
 <Description>Grows into a Sproutera plant.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>19</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Sproutera</Name>
-<ID>730</ID>
+<ID>729</ID>
 <Description>Leafy.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>19</TextureColumn>
-<TextureRow>28</TextureRow>
+<TextureRow>29</TextureRow>
 <Price>1</Price>
 </Item>
 
@@ -796,6 +802,7 @@
 <TextureColumn>29</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>50</Price>
+<PlaceID>2051</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -806,6 +813,7 @@
 <TextureColumn>29</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>2</Price>
+<PlaceID>2050</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -816,6 +824,7 @@
 <TextureColumn>29</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>5</Price>
+<PlaceID>1557</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -826,6 +835,7 @@
 <TextureColumn>29</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>5</Price>
+<PlaceID>1589</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -836,6 +846,7 @@
 <TextureColumn>30</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>100</Price>
+<PlaceID>2142</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -846,6 +857,7 @@
 <TextureColumn>30</TextureColumn>
 <TextureRow>1</TextureRow>
 <Price>100</Price>
+<PlaceID>2144</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -856,6 +868,7 @@
 <TextureColumn>30</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>100</Price>
+<PlaceID>2143</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -866,6 +879,7 @@
 <TextureColumn>30</TextureColumn>
 <TextureRow>3</TextureRow>
 <Price>500</Price>
+<PlaceID>1557</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -876,6 +890,7 @@
 <TextureColumn>31</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>20</Price>
+<PlaceID>1852</PlaceID>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -914,7 +929,7 @@
 <Description>Nature in a bottle.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>5</TextureColumn>
-<TextureRow>27</TextureRow>
+<TextureRow>28</TextureRow>
 <Price>25</Price>
 </Item>
 

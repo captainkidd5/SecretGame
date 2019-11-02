@@ -3,161 +3,58 @@
 <Asset Type ="XMLData.ItemStuff.CraftingGuide">
   <CraftingRecipes>
     <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>124</ItemToCraftID>
+    <ItemToCraftID>0</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>145</ItemID>
-    <Count>1</Count>
+    <ItemID>940</ItemID>
+    <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>143</ItemID>
-    <Count>1</Count>
+    <ItemID>520</ItemID>
+    <Count>2</Count>
     </Item>
     </AllItemsRequired>
     </Item>
 
 
 <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>0</ItemToCraftID>
+    <ItemToCraftID>40</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>130</ItemID>
-    <Count>2</Count>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>1</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>130</ItemID>
-    <Count>2</Count>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-
-     <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>2</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>130</ItemID>
-    <Count>2</Count>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-      <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>3</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>130</ItemID>
-    <Count>2</Count>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>20</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
+    <ItemID>940</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>173</ItemID>
+    <ItemID>520</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
     </Item>
 
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>121</ItemToCraftID>
+   <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>120</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>142</ItemID>
-    <Count>5</Count>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>231</ItemID>
-    <Count>1</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>211</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>129</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>212</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>211</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>3</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>123</ItemID>
+    <ItemID>940</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>130</ItemID>
-    <Count>1</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>232</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>231</ItemID>
-    <Count>3</Count>
-    </Item>
-    </AllItemsRequired>
-    </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>233</ItemToCraftID>
-    <AllItemsRequired>
-    <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>231</ItemID>
+    <ItemID>520</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
     </Item>
-    <Item Type="XMLData.ItemStuff.ItemRecipe">
-    <ItemToCraftID>145</ItemToCraftID>
+
+<Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>160</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>161</ItemID>
+    <ItemID>940</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>127</ItemID>
-    <Count>1</Count>
+    <ItemID>520</ItemID>
+    <Count>2</Count>
     </Item>
     </AllItemsRequired>
     </Item>

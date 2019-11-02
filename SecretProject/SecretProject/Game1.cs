@@ -457,53 +457,36 @@ namespace SecretProject
 
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
-            ToolShop.ShopMenu.TryAddStock(3, 5);
-            ToolShop.ShopMenu.TryAddStock(0, 5);
-            ToolShop.ShopMenu.TryAddStock(1, 5);
-            ToolShop.ShopMenu.TryAddStock(2, 5);
-            ToolShop.ShopMenu.TryAddStock(4, 5);
-            ToolShop.ShopMenu.TryAddStock(5, 5);
-            ToolShop.ShopMenu.TryAddStock(20, 5);
-            ToolShop.ShopMenu.TryAddStock(140, 50);
-            ToolShop.ShopMenu.TryAddStock(247, 50);
-            ToolShop.ShopMenu.TryAddStock(160, 50);
-            ToolShop.ShopMenu.TryAddStock(187, 15);
-            ToolShop.ShopMenu.TryAddStock(128, 99);
-            ToolShop.ShopMenu.TryAddStock(227, 50);
-            ToolShop.ShopMenu.TryAddStock(167, 9); //bloodcorn seeds
-            ToolShop.ShopMenu.TryAddStock(170, 10);
-            ToolShop.ShopMenu.TryAddStock(144, 10);
-            ToolShop.ShopMenu.TryAddStock(231, 20);
-            ToolShop.ShopMenu.TryAddStock(121, 20);
-            ToolShop.ShopMenu.TryAddStock(234, 20);
+            for(int i =0; i < AllItems.AllItems.Count; i++)
+            {
+                ToolShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
+            }
+            
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
-            DobbinShop.ShopMenu.TryAddStock(128, 10);
-            DobbinShop.ShopMenu.TryAddStock(162, 10);
-            DobbinShop.ShopMenu.TryAddStock(167, 10);
-            DobbinShop.ShopMenu.TryAddStock(172, 10);
-            DobbinShop.ShopMenu.TryAddStock(207, 10);
-            DobbinShop.ShopMenu.TryAddStock(227, 10);
-            DobbinShop.ShopMenu.TryAddStock(247, 10);
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                DobbinShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
+            }
 
 
             Shop JulianShop = new Shop(graphics.GraphicsDevice, 3, "JulianShop", new ShopMenu("JulianShopInventory", graphics.GraphicsDevice, 10));
-            JulianShop.ShopMenu.TryAddStock(0, 5);
-            JulianShop.ShopMenu.TryAddStock(1, 5);
-            JulianShop.ShopMenu.TryAddStock(2, 5);
-            JulianShop.ShopMenu.TryAddStock(3, 5);
-            JulianShop.ShopMenu.TryAddStock(20, 5);
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                JulianShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
+            }
 
             Shop ElixirShop = new Shop(graphics.GraphicsDevice, 4, "ElixirShop", new ShopMenu("ElixirShopInventory", graphics.GraphicsDevice, 10));
-            ElixirShop.ShopMenu.TryAddStock(80, 1);
-            ElixirShop.ShopMenu.TryAddStock(81, 1);
-            ElixirShop.ShopMenu.TryAddStock(82, 1);
-            ElixirShop.ShopMenu.TryAddStock(83, 1);
-            ElixirShop.ShopMenu.TryAddStock(84, 1);
-            ElixirShop.ShopMenu.TryAddStock(85, 1);
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                ElixirShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
+            }
 
             Shop KayaShop = new Shop(graphics.GraphicsDevice, 5, "KayaShop", new ShopMenu("KayaShopInventory", graphics.GraphicsDevice, 10));
-            KayaShop.ShopMenu.TryAddStock(144, 5);
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                KayaShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
+            }
             AllShops = new List<IShop>()
             {
                 ToolShop,
