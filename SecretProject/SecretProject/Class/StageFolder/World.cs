@@ -225,7 +225,7 @@ namespace SecretProject.Class.StageFolder
             IsGondolaAtEndingPosition = false;
             IsExitingOnGondola = false;
             AllTiles.LoadInitialChunks();
-            this.QuadTree = new QuadTree(5, Cam.CameraScreenRectangle);
+            this.QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
 
         }
 

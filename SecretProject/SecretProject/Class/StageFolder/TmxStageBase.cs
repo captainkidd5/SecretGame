@@ -220,7 +220,7 @@ namespace SecretProject.Class.StageFolder
 
 
             //Sprite KayaSprite = new Sprite(graphics, Kaya, new Rectangle(0, 0, 16, 32), new Vector2(400, 400), 16, 32);
-            this.QuadTree = new QuadTree(5, MapRectangle);
+            this.QuadTree = new QuadTree(0, MapRectangle);
         }
 
         public virtual void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -280,15 +280,18 @@ namespace SecretProject.Class.StageFolder
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(5, MapRectangle);
+            QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
             for (int z = 0; z < AllTiles.Objects.Count; z++)
             {
                 QuadTree.Insert(AllTiles.Objects[z]);
             }
+            for (int i = 0; i < AllItems.Count; i++)
+            {
+                QuadTree.Insert(AllItems[i].ItemSprite);
+            }
 
-
-            //QuadTree.Insert(player.MainCollider);
+            // QuadTree.Insert(player.MainCollider);
             QuadTree.Insert(player.BigCollider);
 
             foreach (Character character in CharactersPresent)
