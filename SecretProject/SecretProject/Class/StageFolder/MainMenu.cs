@@ -221,6 +221,8 @@ namespace SecretProject.Class.StageFolder
                             }
 
                         }
+                        Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
+                        Game1.ItemVault.LoadInteriorContent(Game1.World.AllTiles);
                         this.menuState = MenuState.primary;
                         Game1.SwitchStage(0, (int)Stages.World);
                     }

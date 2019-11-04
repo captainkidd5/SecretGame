@@ -532,7 +532,7 @@ namespace SecretProject.Class.TileStuff
             }
             if(GridItem != null)
             {
-                GridItem.Draw(spriteBatch, this);
+                GridItem.Draw(spriteBatch, this, this);
             }
            
            

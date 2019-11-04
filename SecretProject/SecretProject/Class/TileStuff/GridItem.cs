@@ -60,6 +60,9 @@ namespace SecretProject.Class.TileStuff
                     bool ableToPlace = true;
                     for (int z = 1; z < container.AllTiles.Count; z++)
                     {
+
+
+
                         //tile under mouse is occupied
                         if (container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
                         {
@@ -115,18 +118,51 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, ITileManager tileManager)
+        public void Draw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
             if (this.IsDrawn)
             {
-                spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + SourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + SourceRectangleOffSetY), this.SourceRectangle, this.DrawColor,
-                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
+                int negativeX = rectangleCoords[0] / 16;
+                int negativeY = rectangleCoords[1] / 16;
+                int positiveX = rectangleCoords[2] / 16;
+                int positiveY = rectangleCoords[3] / 16;
+                for (int z = 1; z < container.AllTiles.Count; z++)
+                {
+                    for (int i = negativeX; i < positiveX + Math.Abs(negativeX); i++)
+                    {
+                        for (int j = negativeY; j < positiveY + Math.Abs(negativeY); j++)
+                        {
+                            if (container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].GID == -1)
+                            {
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
+                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
+                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].SourceRectangle, Color.White,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
+                            }
+                            else
+                            {
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
+                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
+                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].SourceRectangle, Color.Red,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
+                            }
+                        }
+
+                    }
+                }
+
             }
         }
 
-        //public List<Rectangle> GetTileRectanglesFromNewSource(int currentTileIndexX, int currentTileIndexY)
-        //{
 
-        //}
+        //spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + SourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + SourceRectangleOffSetY), this.SourceRectangle, this.DrawColor,
+        //                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
     }
+
+
+
 }
+
+    
+
