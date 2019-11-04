@@ -496,6 +496,8 @@ namespace SecretProject
                 KayaShop
             };
 
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401,null));
+
             ProgressBook JulianProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 1);
             ProgressBook ElixirProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 2);
             AllProgressBooks = new List<ProgressBook>()

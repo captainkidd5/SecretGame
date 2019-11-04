@@ -465,7 +465,7 @@ namespace SecretProject.Class.Playable
                         {
                             if (returnObjects[i].Entity != this)
                             {
-
+         
                                 if (MainCollider.DidCollide(returnObjects[i], position))
                                 {
                                     CollideOccured = true;

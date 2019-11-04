@@ -13,8 +13,8 @@ namespace SecretProject.Class.CollisionDetection
     public class QuadTree
     {
         public int TotalObjects { get; set; }
-        private int MAX_OBJECTS = 5;
-        private int MAX_LEVELS =8;
+        private int MAX_OBJECTS = 10;
+        private int MAX_LEVELS =15;
 
         private int level;
         private List<ICollidable> Objects;
