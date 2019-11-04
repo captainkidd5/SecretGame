@@ -183,10 +183,10 @@
    <property name="generate" value="water"/>
   </properties>
  </tile>
- <tile id="449">
-  <objectgroup draworder="index">
-   <object id="1" x="0.0454559" y="0.272718" width="7.72727" height="15.8182"/>
-  </objectgroup>
+ <tile id="450">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
  </tile>
  <tile id="455">
   <objectgroup draworder="index">
@@ -337,17 +337,11 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.181818" y="7.63636" width="16" height="6.36364"/>
-  </objectgroup>
  </tile>
  <tile id="650">
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.0909091" y="7.81818" width="16" height="6.36364"/>
-  </objectgroup>
  </tile>
  <tile id="651">
   <properties>
@@ -361,9 +355,6 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.0909091" y="8.27273" width="16" height="6.36364"/>
-  </objectgroup>
  </tile>
  <tile id="653">
   <properties>
@@ -377,9 +368,6 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="6.66134e-16" y="7.90909" width="16" height="6.36364"/>
-  </objectgroup>
  </tile>
  <tile id="655">
   <properties>
