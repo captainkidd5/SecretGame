@@ -693,7 +693,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             if (GridItem != null)
                             {
-                                GridItem.Draw(spriteBatch, this, ActiveChunks[a, b]);
+                                GridItem.Draw(spriteBatch, this, ChunkUnderMouse);
 
                             }
 
