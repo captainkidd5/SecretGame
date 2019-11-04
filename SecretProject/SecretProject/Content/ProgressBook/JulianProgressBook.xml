@@ -11,10 +11,10 @@
 
 
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
-    <RewardItemID>660</RewardItemID>
+    <RewardItemID>560</RewardItemID>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>620</ItemIDRequired>
+    <ItemIDRequired>560</ItemIDRequired>
     <CountRequired>2</CountRequired>
     </Item>
     </ItemRequirements>

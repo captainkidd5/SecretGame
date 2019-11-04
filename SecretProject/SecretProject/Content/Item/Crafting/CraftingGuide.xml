@@ -6,11 +6,11 @@
     <ItemToCraftID>0</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>940</ItemID>
+    <ItemID>560</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>520</ItemID>
+    <ItemID>560</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
@@ -21,11 +21,11 @@
     <ItemToCraftID>40</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>940</ItemID>
+    <ItemID>560</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>520</ItemID>
+    <ItemID>560</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
@@ -35,11 +35,11 @@
     <ItemToCraftID>120</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>940</ItemID>
+    <ItemID>560</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>520</ItemID>
+    <ItemID>560</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
@@ -49,11 +49,11 @@
     <ItemToCraftID>160</ItemToCraftID>
     <AllItemsRequired>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>940</ItemID>
+    <ItemID>560</ItemID>
     <Count>3</Count>
     </Item>
     <Item Type="XMLData.ItemStuff.ItemsRequired">
-    <ItemID>520</ItemID>
+    <ItemID>560</ItemID>
     <Count>2</Count>
     </Item>
     </AllItemsRequired>

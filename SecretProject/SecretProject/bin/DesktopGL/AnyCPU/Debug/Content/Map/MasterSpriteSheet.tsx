@@ -1463,6 +1463,9 @@
   </properties>
  </tile>
  <tile id="1349">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="4" width="16" height="5"/>
   </objectgroup>
@@ -1711,6 +1714,21 @@
  <tile id="1507">
   <properties>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1550">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1551">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
+ </tile>
+ <tile id="1552">
+  <properties>
+   <property name="newSource" value="0,-16,0,16"/>
   </properties>
  </tile>
  <tile id="1557">
