@@ -127,28 +127,51 @@ namespace SecretProject.Class.TileStuff
                 int negativeY = rectangleCoords[1] / 16;
                 int positiveX = rectangleCoords[2] / 16;
                 int positiveY = rectangleCoords[3] / 16;
+
+                int activeChunkX = container.ArrayI;
+                int activeChunkY = container.ArrayJ + 1;
+
+                int x = 0;
+                int y = 0;
+
                 for (int z = 1; z < container.AllTiles.Count; z++)
                 {
-                    for (int i = negativeX; i < positiveX + Math.Abs(negativeX); i++)
+                    
+                    for (int i = negativeX; i < positiveX ; i++)
                     {
-                        for (int j = negativeY; j < positiveY + Math.Abs(negativeY); j++)
+                        x = i;
+                        activeChunkX = container.ArrayI;
+                        for (int j = negativeY; j < positiveY; j++)
                         {
-                            int gid = container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].GID;
+                            y = j;
+
+                            activeChunkY = container.ArrayJ + 1;
+
+
+                            //check if index is out of bounds of current chunk
+                            if ((Game1.Player.UserInterface.TileSelector.IndexX + x) > 15)
+                            {
+                                //difference between this chunk and next
+                                x = Game1.Player.UserInterface.TileSelector.IndexX + x - 15;
+                                activeChunkX++;
+                            }
+
+                            int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + x, Game1.Player.UserInterface.TileSelector.IndexY + j].GID;
                             int newGID = PlaceID + i + (j * 100);
                             Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
                             if (gid == -1)
                             {
                                 
 
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
-                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
+                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
                                     newSourceRectangle, Color.White,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
                             }
                             else
                             {
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
-                                    container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.X,
+                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX + i, Game1.Player.UserInterface.TileSelector.IndexY + j].DestinationRectangle.Y),
                                     newSourceRectangle, Color.Red,
                                             0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
                             }
