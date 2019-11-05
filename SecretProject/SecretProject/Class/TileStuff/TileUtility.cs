@@ -387,11 +387,11 @@ namespace SecretProject.Class.TileStuff
 
 
                     tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1],
-                        tileToAssign.SourceRectangle.Width + rectangleCoords[2], tileToAssign.SourceRectangle.Height + rectangleCoords[3]);
+                        rectangleCoords[2], rectangleCoords[3]);
 
 
                     tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
-                        tileToAssign.DestinationRectangle.Width, tileToAssign.DestinationRectangle.Height);
+                       rectangleCoords[2],  rectangleCoords[3]);
                 }
                 if (layer == 3)
                 {

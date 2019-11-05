@@ -1730,7 +1730,7 @@
  <tile id="1563">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-48,32,48"/>
+   <property name="newSource" value="-16,-48,48,64"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -1880,17 +1880,17 @@
  </tile>
  <tile id="2051">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2139">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,16"/>
   </properties>
  </tile>
  <tile id="2142">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2143">
@@ -1901,18 +1901,18 @@
  </tile>
  <tile id="2144">
   <properties>
-   <property name="newSource" value="0,-16,16,16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2157">
   <properties>
-   <property name="newSource" value="-32,-48,48,48"/>
+   <property name="newSource" value="-32,-48,64,64"/>
   </properties>
  </tile>
  <tile id="2163">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-32,-40,56,48"/>
+   <property name="newSource" value="-32,-48,80,64"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>

@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
                             //check if index is out of bounds of current chunk
                             if (subX > 15)
                             {
-                                subX = subX - 15;
+                                subX = subX - 16;
 
 
                                 if (activeChunkX < 2)
@@ -109,7 +109,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else if (subX < 0)
                             {
-                                subX = 15 + subX;
+                                subX = 16 + subX;
                                 if (activeChunkX > 0)
                                 {
                                     activeChunkX--;
@@ -119,7 +119,7 @@ namespace SecretProject.Class.TileStuff
 
                             if (subY > 15)
                             {
-                                subY = subY - 15 - 1;
+                                subY = subY - 16;
                                 if (activeChunkY < 2)
                                 {
                                     activeChunkY++;
@@ -128,7 +128,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else if (subY < 0)
                             {
-                                subY = subY + 15;
+                                subY = subY + 16;
                                 if (activeChunkY > 0)
                                 {
                                     activeChunkY--;
@@ -179,7 +179,7 @@ namespace SecretProject.Class.TileStuff
                                 container.Objects.Add(new Collider(this.GraphicsDevice, Vector2.Zero,
                                     new Rectangle(container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.X + RectangleCoordinates[0],
                                     container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.Y + RectangleCoordinates[1],
-                                    this.SourceRectangle.Width, this.SourceRectangle.Height),this, ColliderType.inert));
+                                    RectangleCoordinates[2], RectangleCoordinates[3]), this, ColliderType.inert));
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
                                 return;
                             }
@@ -234,7 +234,7 @@ namespace SecretProject.Class.TileStuff
                         //check if index is out of bounds of current chunk
                         if (subX > 15)
                         {
-                            subX = subX - 15;
+                            subX = subX - 16;
 
 
                             if (activeChunkX < 2)
@@ -245,7 +245,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else if (subX < 0)
                         {
-                            subX = 15 + subX;
+                            subX = 16 + subX;
                             if (activeChunkX > 0)
                             {
                                 activeChunkX--;
@@ -255,7 +255,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (subY > 15)
                         {
-                            subY = subY - 15 - 1;
+                            subY = subY - 16;
                             if (activeChunkY < 2)
                             {
                                 activeChunkY++;
@@ -264,7 +264,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else if (subY < 0)
                         {
-                            subY = subY + 15;
+                            subY = subY + 16;
                             if (activeChunkY > 0)
                             {
                                 activeChunkY--;
@@ -293,14 +293,14 @@ namespace SecretProject.Class.TileStuff
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
                                 tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
-                                newSourceRectangle, Color.White * .1f,
+                                newSourceRectangle, Color.White * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
                                 tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
-                                newSourceRectangle, Color.Red * .1f,
+                                newSourceRectangle, Color.Red * .5f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }
