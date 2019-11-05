@@ -295,29 +295,30 @@ namespace SecretProject.Class.TileStuff
                     ActiveChunks[0, 1] = ActiveChunks[0, 0];
                     ActiveChunks[1, 1] = ActiveChunks[1, 0];
                     ActiveChunks[2, 1] = ActiveChunks[2, 0];
-                    
+
+                    lock (locker)
+                    {
                         for (int i = 0; i < 3; i++)
                         {
 
-                        int index = i;
+                            int index = i;
 
                             ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY - 2, i, 0);
-                       // lock (locker)
-                       // {
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 0]));
-                     //   }
 
-                            //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 0].X, ActiveChunks[i, 0].Y))
-                            //{
-                            //    ActiveChunks[i, 0].Load();
-                            //}
-                            //else
-                            //{
-                            //    ActiveChunks[i, 0].Generate(0);
-                            //    ActiveChunks[i, 0].Save();
-                            //}
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 0]));
                         }
-                    
+
+                        //if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, 0].X, ActiveChunks[i, 0].Y))
+                        //{
+                        //    ActiveChunks[i, 0].Load();
+                        //}
+                        //else
+                        //{
+                        //    ActiveChunks[i, 0].Generate(0);
+                        //    ActiveChunks[i, 0].Save();
+                        //}
+                    }
+
 
                     break;
 
@@ -617,7 +618,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (GridItem != null)
                         {
-                            GridItem.Update(gameTime, this, ActiveChunks[a, b]);
+                            GridItem.Update(gameTime, this, ChunkUnderMouse);
                         }
 
                         foreach (Boar boar in ActiveChunks[a, b].Enemies)

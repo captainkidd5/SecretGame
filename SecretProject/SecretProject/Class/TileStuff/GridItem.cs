@@ -129,7 +129,7 @@ namespace SecretProject.Class.TileStuff
                 int positiveY = rectangleCoords[3] / 16;
 
                 int activeChunkX = container.ArrayI;
-                int activeChunkY = container.ArrayJ + 1;
+                int activeChunkY = container.ArrayJ;
 
                 int x = 0;
                 int y = 0;
@@ -140,25 +140,37 @@ namespace SecretProject.Class.TileStuff
                     for (int i = negativeX; i < positiveX ; i++)
                     {
 
-                        
+                        x = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                        activeChunkX = container.ArrayI;
                         for (int j = negativeY; j < positiveY; j++)
                         {
-                            x = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                            
                             y = Game1.Player.UserInterface.TileSelector.IndexY + j;
-                            activeChunkX = container.ArrayI;
+                            
                             activeChunkY = container.ArrayJ + 1;
 
 
                             //check if index is out of bounds of current chunk
-                            if ((x) > 15)
+                            if (x > 15)
                             {
                                 x = x - 15;
-                                activeChunkX = 2;
+                                activeChunkX ++;
                             }
-                            if ((x) < 0)
+                            else if (x < 0)
                             {
-                                x = 15 - x;
+                                x = 15 + x;
                                 activeChunkX --;
+                            }
+
+                            if(y > 15)
+                            {
+                                y = y - 15;
+                                activeChunkY ++;
+                            }
+                            else if (y < 0)
+                            {
+                                y = y + 15;
+                                activeChunkY --;
                             }
 
                             int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].GID;
