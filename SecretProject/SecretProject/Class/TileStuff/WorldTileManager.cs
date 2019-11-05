@@ -401,28 +401,17 @@ namespace SecretProject.Class.TileStuff
 
         public void CycleChunk(int oldX, int oldY, int newX, int newY)
         {
-            //int oldArrayI = ActiveChunks[oldX, oldY].ArrayI;
-            //int oldArrayJ = ActiveChunks[oldX, oldY].ArrayJ;
 
-            //int anotherX = oldArrayI;
-            //int anotherY = oldArrayJ;
-            //Chunk copiedChunk = Array.Copy()
+
 
             Chunk tempChunk = ActiveChunks[newX, newY];
-
 
             ActiveChunks[oldX, oldY] = tempChunk;
 
             ActiveChunks[oldX, oldY].ArrayI = oldX;
             ActiveChunks[oldX, oldY].ArrayJ = oldY;
 
-           // ActiveChunks[newX, newY] = tempChunk;
 
-
-
-
-            //ActiveChunks[oldX, oldY].ArrayI = anotherX;
-            //ActiveChunks[oldX, oldY].ArrayJ = anotherY;
 
         }
 
