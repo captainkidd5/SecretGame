@@ -165,6 +165,11 @@ namespace SecretProject.Class.TileStuff
             {
                 this.IsDrawn = false;
             }
+
+            if(CanPlace)
+            {
+
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
