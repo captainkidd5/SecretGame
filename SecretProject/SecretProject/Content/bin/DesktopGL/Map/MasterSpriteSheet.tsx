@@ -1896,7 +1896,7 @@
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
-   <property name="newSource" value="0,-32,0,32"/>
+   <property name="newSource" value="0,-32,16,48"/>
   </properties>
  </tile>
  <tile id="2144">

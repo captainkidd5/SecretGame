@@ -84,7 +84,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        for (int j = this.NegativeY; j < this.PositiveY; j++)
+                        for (int j = this.NegativeY; j < 0; j++)
                         {
                             this.CanPlace = true;
 
@@ -219,9 +219,9 @@ namespace SecretProject.Class.TileStuff
                 for (int i = this.NegativeX; i < this.PositiveX; i++)
                 {
 
+                    //assumes newsource is always at bottom tiles, left or right doesn't matter though
 
-
-                    for (int j = this.NegativeY; j < this.PositiveY; j++)
+                    for (int j = this.NegativeY; j < 1; j++)
                     {
                         bool canPlace = true;
 
