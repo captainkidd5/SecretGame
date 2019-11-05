@@ -170,6 +170,10 @@ namespace SecretProject.Class.UI
                        
 
                     }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
                 }
                 else
                 {

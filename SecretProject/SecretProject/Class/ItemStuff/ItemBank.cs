@@ -16,7 +16,7 @@ namespace SecretProject.Class.ItemStuff
     {
         public Dictionary<int, GridItem> ExteriorGridItems { get; set; }
         public Dictionary<int, GridItem> InteriorGridItems { get; set; }
-
+       
         public ItemBank()
         {
             

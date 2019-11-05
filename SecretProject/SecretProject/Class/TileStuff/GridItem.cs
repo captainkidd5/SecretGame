@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff
 {
-    public class GridItem
+    public class GridItem : IEntity
     {
+        public GraphicsDevice GraphicsDevice { get; set; }
         public bool IsDrawn { get; set; }
         public int PlaceID { get; set; }
         public bool CanPlace { get; set; }
@@ -18,6 +21,9 @@ namespace SecretProject.Class.TileStuff
         public int[] RectangleCoordinates { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
+        int SourceRectangleOffSetX { get; set; }
+        int SourceRectangleOffSetY { get; set; }
+
         public int NegativeX { get; set; }
         public int NegativeY { get; set; }
         public int PositiveX { get; set; }
@@ -25,6 +31,7 @@ namespace SecretProject.Class.TileStuff
 
         public GridItem(ITileManager tileManager, int placeID)
         {
+            this.GraphicsDevice = tileManager.GraphicsDevice;
             this.IsDrawn = false;
             this.CanPlace = true;
 
@@ -32,20 +39,6 @@ namespace SecretProject.Class.TileStuff
             this.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(PlaceID, 100);
             LoadNewItem(tileManager);
 
-            //if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(PlaceID))
-            //{
-
-
-            //    if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
-            //    {
-            //        int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-            //        SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
-            //                                SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
-            //        SourceRectangleOffSetX = rectangleCoords[0];
-            //        SourceRectangleOffSetY = rectangleCoords[1];
-
-            //    }
-            //}
         }
 
         public void LoadNewItem(ITileManager tileManager)
@@ -54,11 +47,16 @@ namespace SecretProject.Class.TileStuff
             {
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
                 {
-                    int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-                    this.NegativeX = rectangleCoords[0] / 16;
-                    this.NegativeY = rectangleCoords[1] / 16;
-                    this.PositiveX = rectangleCoords[2] / 16;
-                    this.PositiveY = rectangleCoords[3] / 16;
+                    this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
+                    this.NegativeX = RectangleCoordinates[0] / 16;
+                    this.NegativeY = RectangleCoordinates[1] / 16;
+                    this.PositiveX = RectangleCoordinates[2] / 16;
+                    this.PositiveY = RectangleCoordinates[3] / 16;
+
+                    SourceRectangle = new Rectangle(SourceRectangle.X + RectangleCoordinates[0], SourceRectangle.Y + RectangleCoordinates[1],
+                                           SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
+                    SourceRectangleOffSetX = RectangleCoordinates[0];
+                    SourceRectangleOffSetY = RectangleCoordinates[1];
                 }
             }
             
@@ -79,7 +77,7 @@ namespace SecretProject.Class.TileStuff
                     int subX = 0;
                     int subY = 0;
 
-
+                    bool canPlaceTotal = true;
 
                     for (int i = this.NegativeX; i < this.PositiveX; i++)
                     {
@@ -147,6 +145,7 @@ namespace SecretProject.Class.TileStuff
                                 else
                                 {
                                     this.CanPlace = false;
+                                    canPlaceTotal = false;
 
                                 }
                             }
@@ -154,6 +153,37 @@ namespace SecretProject.Class.TileStuff
 
                         }
 
+                    }
+
+                    if(canPlaceTotal)
+                    {
+                        if (Game1.myMouseManager.IsClicked)
+                        {
+                            if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
+                            {
+
+
+
+                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+                                switch (soundRandom)
+                                {
+                                    case 0:
+                                        Game1.SoundManager.PlaceItem1.Play();
+                                        break;
+                                    case 1:
+                                        Game1.SoundManager.PlaceItem2.Play();
+                                        break;
+                                }
+                                TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    this.PlaceID + 1, Game1.GetCurrentStage(), container);
+                                container.Objects.Add(new Collider(this.GraphicsDevice, Vector2.Zero,
+                                    new Rectangle(container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.X + RectangleCoordinates[0],
+                                    container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.Y + RectangleCoordinates[1],
+                                    this.SourceRectangle.Width, this.SourceRectangle.Height),this, ColliderType.inert));
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                return;
+                            }
+                        }
                     }
                 }
                 else
@@ -193,7 +223,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int j = this.NegativeY; j < this.PositiveY; j++)
                     {
-
+                        bool canPlace = true;
 
                         subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
                         subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
@@ -245,18 +275,32 @@ namespace SecretProject.Class.TileStuff
                         int newGID = PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
-                        if (this.CanPlace)
+                        for (int z = 1; z < container.AllTiles.Count; z++)
+                        {
+                            int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+
+                            if (gid == -1)
+                            {
+                            }
+                            else
+                            {
+                               canPlace = false;
+
+                            }
+                        }
+
+                        if (canPlace)
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
                                 tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
-                                newSourceRectangle, Color.White,
+                                newSourceRectangle, Color.White * .1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
                                 tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
-                                newSourceRectangle, Color.Red,
+                                newSourceRectangle, Color.Red * .1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }
@@ -268,6 +312,10 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        public void PlayerCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
