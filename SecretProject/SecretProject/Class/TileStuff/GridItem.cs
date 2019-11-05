@@ -134,16 +134,18 @@ namespace SecretProject.Class.TileStuff
                 int x = 0;
                 int y = 0;
 
-                for (int z = 1; z < container.AllTiles.Count; z++)
-                {
-                    
-                    for (int i = negativeX; i < positiveX ; i++)
-                    {
 
+
+                for (int i = negativeX; i < positiveX; i++)
+                {
+
+
+
+                    for (int j = negativeY; j < positiveY; j++)
+                    {
+                        bool canPlace = true;
                         
-                        
-                        for (int j = negativeY; j < positiveY; j++)
-                        {
+                            
                             x = Game1.Player.UserInterface.TileSelector.IndexX + i;
                             y = Game1.Player.UserInterface.TileSelector.IndexY + j;
                             activeChunkX = container.ArrayI;
@@ -153,78 +155,86 @@ namespace SecretProject.Class.TileStuff
                             //check if index is out of bounds of current chunk
                             if (x > 15)
                             {
-                                x = x - 15 - 1;
-                                
-                                if(activeChunkX < 2)
+                                x = x - 15;
+
+
+                                if (activeChunkX < 2)
                                 {
                                     activeChunkX++;
                                 }
-                                
+
                             }
                             else if (x < 0)
                             {
                                 x = 15 + x;
-                                if(activeChunkX > 0)
+                                if (activeChunkX > 0)
                                 {
                                     activeChunkX--;
                                 }
-                                
+
                             }
 
-                            if(y > 15)
+                            if (y > 15)
                             {
                                 y = y - 15 - 1;
-                                if(activeChunkY < 2)
+                                if (activeChunkY < 2)
                                 {
                                     activeChunkY++;
                                 }
-                                
+
                             }
                             else if (y < 0)
                             {
                                 y = y + 15;
-                                if(activeChunkY > 0)
+                                if (activeChunkY > 0)
                                 {
                                     activeChunkY--;
                                 }
-                                
-                            }
 
+                            }
+                        for (int z = 1; z < container.AllTiles.Count; z++)
+                        {
                             int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].GID;
-                            int newGID = PlaceID + i + (j * 100);
-                            Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
+
                             if (gid == -1)
                             {
-                                
-
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].DestinationRectangle.X,
-                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].DestinationRectangle.Y),
-                                    newSourceRectangle, Color.White,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
                             }
                             else
                             {
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].DestinationRectangle.X,
-                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x,y].DestinationRectangle.Y),
-                                    newSourceRectangle, Color.Red,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[z]);
+                                canPlace = false;
+
                             }
                         }
-
+                            int newGID = PlaceID + i + (j * 100);
+                            Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
+                            if (canPlace)
+                            {
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.X,
+                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.Y),
+                                    newSourceRectangle, Color.White,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                            }
+                            else
+                            {
+                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.X,
+                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.Y),
+                                    newSourceRectangle, Color.Red,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                            }
+                        
                     }
+
                 }
+
 
             }
         }
 
-
-        //spriteBatch.Draw(tileManager.TileSet, new Vector2(Game1.Player.UserInterface.TileSelector.WorldX + SourceRectangleOffSetX, Game1.Player.UserInterface.TileSelector.WorldY + SourceRectangleOffSetY), this.SourceRectangle, this.DrawColor,
-        //                    0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
     }
 
 
 
 }
 
-    
+
 
