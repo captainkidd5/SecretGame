@@ -147,7 +147,7 @@ namespace SecretProject.Class.TileStuff
                             
                             y = Game1.Player.UserInterface.TileSelector.IndexY + j;
                             
-                            activeChunkY = container.ArrayJ + 1;
+                            activeChunkY = container.ArrayJ;
 
 
                             //check if index is out of bounds of current chunk
