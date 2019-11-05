@@ -24,7 +24,7 @@ namespace SecretProject.Class.TileStuff
         public GridItem(ITileManager tileManager, int placeID)
         {
             this.IsDrawn = false;
-            this.CanPlace = false;
+            this.CanPlace = true;
 
             this.PlaceID = placeID;
             this.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(PlaceID, 100);
@@ -49,34 +49,18 @@ namespace SecretProject.Class.TileStuff
 
         public void Update(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
-            this.CanPlace = true;
-            this.IsDrawn = true;
+
             if (tileManager.AbleToDrawTileSelector)
             {
                 if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                 {
 
+                    this.IsDrawn = true;
 
-                    bool ableToPlace = true;
-                    for (int z = 1; z < container.AllTiles.Count; z++)
+
+                    if (this.CanPlace)
                     {
-
-
-
-                        //tile under mouse is occupied
-                        if (container.AllTiles[z][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].GID != -1)
-                        {
-
-
-                            this.DrawColor = Color.Red;
-
-                            ableToPlace = false;
-
-                        }
-                    }
-                    if (ableToPlace)
-                    {
-                        this.DrawColor = Color.Green;
+                       
 
 
                         if (Game1.myMouseManager.IsClicked)
@@ -143,7 +127,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int j = negativeY; j < positiveY; j++)
                     {
-                        bool canPlace = true;
+                      this.CanPlace = true;
                         
                             
                             x = Game1.Player.UserInterface.TileSelector.IndexX + i;
@@ -201,13 +185,13 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                canPlace = false;
+                                this.CanPlace = false;
 
                             }
                         }
                             int newGID = PlaceID + i + (j * 100);
                             Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
-                            if (canPlace)
+                            if (this.CanPlace)
                             {
                                 spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.X,
                                     tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.Y),
