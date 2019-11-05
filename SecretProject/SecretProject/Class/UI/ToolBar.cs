@@ -167,6 +167,7 @@ namespace SecretProject.Class.UI
                     if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                     {
                         Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+                       
 
                     }
                 }

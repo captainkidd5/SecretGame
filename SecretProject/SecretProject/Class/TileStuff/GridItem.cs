@@ -18,8 +18,10 @@ namespace SecretProject.Class.TileStuff
         public int[] RectangleCoordinates { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
-        int SourceRectangleOffSetX { get; set; }
-        int SourceRectangleOffSetY { get; set; }
+        public int NegativeX { get; set; }
+        public int NegativeY { get; set; }
+        public int PositiveX { get; set; }
+        public int PositiveY { get; set; }
 
         public GridItem(ITileManager tileManager, int placeID)
         {
@@ -28,67 +30,131 @@ namespace SecretProject.Class.TileStuff
 
             this.PlaceID = placeID;
             this.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(PlaceID, 100);
+            LoadNewItem(tileManager);
 
-            SourceRectangleOffSetX = 0;
-            SourceRectangleOffSetY = 0;
+            //if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(PlaceID))
+            //{
+
+
+            //    if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
+            //    {
+            //        int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
+            //        SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
+            //                                SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
+            //        SourceRectangleOffSetX = rectangleCoords[0];
+            //        SourceRectangleOffSetY = rectangleCoords[1];
+
+            //    }
+            //}
+        }
+
+        public void LoadNewItem(ITileManager tileManager)
+        {
             if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(PlaceID))
             {
-
-
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
                 {
                     int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-                    SourceRectangle = new Rectangle(SourceRectangle.X + rectangleCoords[0], SourceRectangle.Y + rectangleCoords[1],
-                                            SourceRectangle.Width + rectangleCoords[2], SourceRectangle.Height + rectangleCoords[3]);
-                    SourceRectangleOffSetX = rectangleCoords[0];
-                    SourceRectangleOffSetY = rectangleCoords[1];
-
+                    this.NegativeX = rectangleCoords[0] / 16;
+                    this.NegativeY = rectangleCoords[1] / 16;
+                    this.PositiveX = rectangleCoords[2] / 16;
+                    this.PositiveY = rectangleCoords[3] / 16;
                 }
             }
+            
         }
 
         public void Update(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
-
             if (tileManager.AbleToDrawTileSelector)
             {
                 if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
                 {
-
                     this.IsDrawn = true;
 
 
-                    if (this.CanPlace)
+                    int activeChunkX = container.ArrayI;
+                    int activeChunkY = container.ArrayJ;
+
+                    int subX = 0;
+                    int subY = 0;
+
+
+
+                    for (int i = this.NegativeX; i < this.PositiveX; i++)
                     {
-                       
 
 
-                        if (Game1.myMouseManager.IsClicked)
+
+                        for (int j = this.NegativeY; j < this.PositiveY; j++)
                         {
-                            if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
+                            this.CanPlace = true;
+
+
+                            subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                            subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
+                            activeChunkX = container.ArrayI;
+                            activeChunkY = container.ArrayJ;
+
+
+                            //check if index is out of bounds of current chunk
+                            if (subX > 15)
                             {
+                                subX = subX - 15;
 
 
-
-                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
-                                switch (soundRandom)
+                                if (activeChunkX < 2)
                                 {
-                                    case 0:
-                                        Game1.SoundManager.PlaceItem1.Play();
-                                        break;
-                                    case 1:
-                                        Game1.SoundManager.PlaceItem2.Play();
-                                        break;
+                                    activeChunkX++;
                                 }
-                                TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, Game1.GetCurrentStage(), container);
-                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
-                                return;
+
                             }
+                            else if (subX < 0)
+                            {
+                                subX = 15 + subX;
+                                if (activeChunkX > 0)
+                                {
+                                    activeChunkX--;
+                                }
+
+                            }
+
+                            if (subY > 15)
+                            {
+                                subY = subY - 15 - 1;
+                                if (activeChunkY < 2)
+                                {
+                                    activeChunkY++;
+                                }
+
+                            }
+                            else if (subY < 0)
+                            {
+                                subY = subY + 15;
+                                if (activeChunkY > 0)
+                                {
+                                    activeChunkY--;
+                                }
+
+                            }
+                            for (int z = 1; z < container.AllTiles.Count; z++)
+                            {
+                                int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+
+                                if (gid == -1)
+                                {
+                                }
+                                else
+                                {
+                                    this.CanPlace = false;
+
+                                }
+                            }
+
+
                         }
+
                     }
-
-
                 }
                 else
                 {
@@ -99,116 +165,99 @@ namespace SecretProject.Class.TileStuff
             {
                 this.IsDrawn = false;
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
             if (this.IsDrawn)
             {
-                int[] rectangleCoords = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-                int negativeX = rectangleCoords[0] / 16;
-                int negativeY = rectangleCoords[1] / 16;
-                int positiveX = rectangleCoords[2] / 16;
-                int positiveY = rectangleCoords[3] / 16;
+
 
                 int activeChunkX = container.ArrayI;
                 int activeChunkY = container.ArrayJ;
 
-                int x = 0;
-                int y = 0;
+                int subX = 0;
+                int subY = 0;
 
 
 
-                for (int i = negativeX; i < positiveX; i++)
+                for (int i = this.NegativeX; i < this.PositiveX; i++)
                 {
 
 
 
-                    for (int j = negativeY; j < positiveY; j++)
+                    for (int j = this.NegativeY; j < this.PositiveY; j++)
                     {
-                      this.CanPlace = true;
-                        
-                            
-                            x = Game1.Player.UserInterface.TileSelector.IndexX + i;
-                            y = Game1.Player.UserInterface.TileSelector.IndexY + j;
-                            activeChunkX = container.ArrayI;
-                            activeChunkY = container.ArrayJ;
 
 
-                            //check if index is out of bounds of current chunk
-                            if (x > 15)
-                            {
-                                x = x - 15;
+                        subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                        subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
+                        activeChunkX = container.ArrayI;
+                        activeChunkY = container.ArrayJ;
 
 
-                                if (activeChunkX < 2)
-                                {
-                                    activeChunkX++;
-                                }
-
-                            }
-                            else if (x < 0)
-                            {
-                                x = 15 + x;
-                                if (activeChunkX > 0)
-                                {
-                                    activeChunkX--;
-                                }
-
-                            }
-
-                            if (y > 15)
-                            {
-                                y = y - 15 - 1;
-                                if (activeChunkY < 2)
-                                {
-                                    activeChunkY++;
-                                }
-
-                            }
-                            else if (y < 0)
-                            {
-                                y = y + 15;
-                                if (activeChunkY > 0)
-                                {
-                                    activeChunkY--;
-                                }
-
-                            }
-                        for (int z = 1; z < container.AllTiles.Count; z++)
+                        //check if index is out of bounds of current chunk
+                        if (subX > 15)
                         {
-                            int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][x, y].GID;
+                            subX = subX - 15;
 
-                            if (gid == -1)
-                            {
-                            }
-                            else
-                            {
-                                this.CanPlace = false;
 
+                            if (activeChunkX < 2)
+                            {
+                                activeChunkX++;
                             }
+
                         }
-                            int newGID = PlaceID + i + (j * 100);
-                            Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
-                            if (this.CanPlace)
+                        else if (subX < 0)
+                        {
+                            subX = 15 + subX;
+                            if (activeChunkX > 0)
                             {
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.X,
-                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.Y),
-                                    newSourceRectangle, Color.White,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                                activeChunkX--;
                             }
-                            else
+
+                        }
+
+                        if (subY > 15)
+                        {
+                            subY = subY - 15 - 1;
+                            if (activeChunkY < 2)
                             {
-                                spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.X,
-                                    tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][x, y].DestinationRectangle.Y),
-                                    newSourceRectangle, Color.Red,
-                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                                activeChunkY++;
                             }
-                        
+
+                        }
+                        else if (subY < 0)
+                        {
+                            subY = subY + 15;
+                            if (activeChunkY > 0)
+                            {
+                                activeChunkY--;
+                            }
+
+                        }
+
+                        int newGID = PlaceID + i + (j * 100);
+                        Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
+
+                        if (this.CanPlace)
+                        {
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
+                                tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
+                                newSourceRectangle, Color.White,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.X,
+                                tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle.Y),
+                                newSourceRectangle, Color.Red,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                        }
                     }
 
                 }
+                
 
 
             }
