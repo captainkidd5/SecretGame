@@ -41,7 +41,10 @@ namespace SecretProject.Class.TextureStuff
         //NPCS
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
+
         public Texture2D DobbinSpriteSheet;
+        public Texture2D DobbinPortrait;
+
         public Texture2D EnemySpriteSheet;
 
         public Texture2D KayaSpriteSheet;
@@ -146,6 +149,8 @@ namespace SecretProject.Class.TextureStuff
 
 
             DobbinSpriteSheet = content.Load<Texture2D>("NPC/Dobbin/DobbinSpriteSheet");
+            DobbinPortrait = content.Load<Texture2D>("NPC/Dobbin/dobbinPortrait");
+
 
             SnawSpriteSheet = content.Load<Texture2D>("NPC/Snaw/Snaw");
 

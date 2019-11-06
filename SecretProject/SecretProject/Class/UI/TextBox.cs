@@ -83,18 +83,9 @@ namespace SecretProject.Class.UI
                 
                 spriteBatch.Draw(this.Texture, textBoxLocation, new Rectangle(48, 176, 128, 64), Color.White, 0f,
                     Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.DrawString(textFont, TextToWrite, textStartLocation, Color.Red, 0f, Game1.Utility.Origin,1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
-               // Game1.Player.UserInterface.BottomBar.
+              
             }
-            else
-            {
-                //Game1.Player.UserInterface.BottomBar.IsActive = true;
-                //if(RemovesToolBar)
-                //{
-                //    Game1.Player.UserInterface.BottomBar.IsActive = true;
-                //    this.RemovesToolBar = false;
-                //}
-            }
+
             spriteBatch.End();
 
         }

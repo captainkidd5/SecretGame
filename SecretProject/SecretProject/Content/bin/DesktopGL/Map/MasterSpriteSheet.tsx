@@ -1331,7 +1331,7 @@
  <tile id="1293">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="182:100:1"/>
+   <property name="loot" value="789:100:1"/>
   </properties>
  </tile>
  <tile id="1294">
@@ -1452,7 +1452,7 @@
  </tile>
  <tile id="1349">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0" y="4" width="16" height="5"/>

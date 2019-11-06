@@ -17,7 +17,7 @@ namespace SecretProject.Class.NPCStuff
     public class Dobbin  : Character
     {
 
-        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule,0, false)
+        public Dobbin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule,0, false, characterPortraitTexture)
         {
             NPCAnimatedSprite = new Sprite[4];
 

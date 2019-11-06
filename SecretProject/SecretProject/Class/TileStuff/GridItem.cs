@@ -21,8 +21,7 @@ namespace SecretProject.Class.TileStuff
         public int[] RectangleCoordinates { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
-        int SourceRectangleOffSetX { get; set; }
-        int SourceRectangleOffSetY { get; set; }
+
 
         public int NegativeX { get; set; }
         public int NegativeY { get; set; }
@@ -48,18 +47,30 @@ namespace SecretProject.Class.TileStuff
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
                 {
                     this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-                    this.NegativeX = RectangleCoordinates[0] / 16;
-                    this.NegativeY = RectangleCoordinates[1] / 16;
-                    this.PositiveX = RectangleCoordinates[2] / 16;
-                    this.PositiveY = RectangleCoordinates[3] / 16;
+                   
 
-                    SourceRectangle = new Rectangle(SourceRectangle.X + RectangleCoordinates[0], SourceRectangle.Y + RectangleCoordinates[1],
-                                           SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
-                    SourceRectangleOffSetX = RectangleCoordinates[0];
-                    SourceRectangleOffSetY = RectangleCoordinates[1];
+                }
+                else
+                {
+                    this.RectangleCoordinates = new int[4]
+                   {0,0,16,16};
                 }
             }
-            
+            else
+            {
+                this.RectangleCoordinates = new int[4]
+                    {0,0,16,16};
+
+            }
+
+            this.NegativeX = RectangleCoordinates[0] / 16;
+            this.NegativeY = RectangleCoordinates[1] / 16;
+            this.PositiveX = RectangleCoordinates[2] / 16;
+            this.PositiveY = RectangleCoordinates[3] / 16;
+
+            SourceRectangle = new Rectangle(SourceRectangle.X + RectangleCoordinates[0], SourceRectangle.Y + RectangleCoordinates[1],
+                                   SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
+
         }
 
         public void Update(GameTime gameTime, ITileManager tileManager, IInformationContainer container)

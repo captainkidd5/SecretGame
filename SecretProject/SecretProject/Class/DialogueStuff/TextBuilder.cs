@@ -55,6 +55,10 @@ namespace SecretProject.Class.DialogueStuff
 
         public string SpeakerName { get; set; }
         public int SpeakerID { get; set; }
+        
+
+        public Texture2D SpeakerTexture { get; set; }
+        public Rectangle SpeakerPortraitSourceRectangle { get; set; }
         public TextBuilder(string stringToWrite, float writeSpeed, float stringDisplayTimer)
         {
             this.StringToWrite = stringToWrite;
@@ -365,6 +369,10 @@ namespace SecretProject.Class.DialogueStuff
                             SpeechBox = new TextBox(TextBoxLocation, 1);
                             SpeechBox.position = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
                             SpeechBox.DrawWithoutString(spriteBatch);
+                            if(this.SpeakerTexture != null)
+                            {
+                                spriteBatch.Draw(SpeakerTexture, new Vector2(SpeechBox.position.X, SpeechBox.position.Y - 255), this.SpeakerPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
+                            }
                             break;
 
                     }

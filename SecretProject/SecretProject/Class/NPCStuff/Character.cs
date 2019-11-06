@@ -86,7 +86,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
         public Color DebugColor { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC)
+        public Texture2D CharacterPortraitTexture { get; set; }
+        public Rectangle CharacterPortraitSourceRectangle { get; set; }
+
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, int currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
             this.Position = position;
@@ -109,6 +112,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             //NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);
             DebugColor = Color.White;
             this.PortalTraverser = new GraphTraverser(Game1.PortalGraph);
+
+            if(characterPortraitTexture != null)
+            {
+                this.CharacterPortraitTexture = characterPortraitTexture;
+            }
+
+            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
+            
             
         }
 
@@ -243,7 +254,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
                 {
-
+                    if(this.CharacterPortraitTexture != null)
+                    {
+                        Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
+                        Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
+                    }
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     Game1.Player.UserInterface.TextBuilder.SpeakerName = this.Name;

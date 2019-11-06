@@ -501,6 +501,7 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1200, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1201, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1161, null));
             }
             
 
@@ -517,7 +518,7 @@ namespace SecretProject
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
             Elixer = new Elixir("Elixer", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0]) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
