@@ -1996,7 +1996,7 @@
  <tile id="2863">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-64,32,64"/>
+   <property name="newSource" value="-16,-64,48,80"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>

@@ -360,6 +360,7 @@ namespace SecretProject.Class.TileStuff
                 case Dir.Right:
 
                    // ActiveChunks[0, 0] = ActiveChunks[1, 0];
+
                     CycleChunk(0, 0, 1, 0);
 
 
@@ -402,11 +403,14 @@ namespace SecretProject.Class.TileStuff
         public void CycleChunk(int oldX, int oldY, int newX, int newY)
         {
 
+           // ActiveChunks[oldX, oldY].Save();
 
+            Chunk tempChunkNew = ActiveChunks[newX, newY];
+            Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
-            Chunk tempChunk = ActiveChunks[newX, newY];
+            Task.Run(() => tempChunkOld.Save());
 
-            ActiveChunks[oldX, oldY] = tempChunk;
+            ActiveChunks[oldX, oldY] = tempChunkNew;
 
             ActiveChunks[oldX, oldY].ArrayI = oldX;
             ActiveChunks[oldX, oldY].ArrayJ = oldY;
@@ -436,30 +440,26 @@ namespace SecretProject.Class.TileStuff
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
 
-                // ActiveChunks[1, 1].X = ChunkPointUnderPlayer.X;
-                // ActiveChunks[1, 1].Y = ChunkPointUnderPlayer.Y;
+
                 if (ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
                 {
-
-
-                    // Task.Run(() => UpdateGrid(Dir.Right));
 
                     UpdateGrid(Dir.Right);
                 }
                 else if (ChunkPointUnderPlayer.X < ChunkPointUnderPlayerLastFrame.X)
                 {
                     UpdateGrid(Dir.Left);
-                    // Task.Run(() => UpdateGrid(Dir.Left));
+
                 }
                 else if (ChunkPointUnderPlayer.Y > ChunkPointUnderPlayerLastFrame.Y)
                 {
                     UpdateGrid(Dir.Down);
-                    // Task.Run(() => UpdateGrid(Dir.Down));
+
                 }
                 else if (ChunkPointUnderPlayer.Y < ChunkPointUnderPlayerLastFrame.Y)
                 {
                     UpdateGrid(Dir.Up);
-                    // Task.Run(() => UpdateGrid(Dir.Up));
+
                 }
 
 

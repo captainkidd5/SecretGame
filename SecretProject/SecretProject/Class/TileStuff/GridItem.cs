@@ -183,7 +183,9 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
                                 return;
                             }
+                            
                         }
+                        
                     }
                 }
                 else
@@ -196,10 +198,6 @@ namespace SecretProject.Class.TileStuff
                 this.IsDrawn = false;
             }
 
-            if(CanPlace)
-            {
-
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
