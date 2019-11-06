@@ -159,26 +159,7 @@ namespace SecretProject.Class.UI
             if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
             {
                 //this might be broken
-                if (Game1.ItemVault.ExteriorGridItems != null)
-                {
-
-
-
-                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
-                       
-
-                    }
-                    else
-                    {
-                        Game1.GetCurrentStage().AllTiles.GridItem = null;
-                    }
-                }
-                else
-                {
-                    Game1.GetCurrentStage().AllTiles.GridItem = null;
-                }
+                CheckGridItem();
                 
                 AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
             }
@@ -202,6 +183,8 @@ namespace SecretProject.Class.UI
             }
 
         }
+
+        
         #region SCROLLWHEEL
         private void UpdateScrollWheel(MouseManager mouse)
         {
@@ -308,6 +291,30 @@ namespace SecretProject.Class.UI
             else
             {
                 return null;
+            }
+        }
+
+        public void CheckGridItem()
+        {
+            if (Game1.ItemVault.ExteriorGridItems != null)
+            {
+
+
+
+                if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                {
+                    Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+
+
+                }
+                else
+                {
+                    Game1.GetCurrentStage().AllTiles.GridItem = null;
+                }
+            }
+            else
+            {
+                Game1.GetCurrentStage().AllTiles.GridItem = null;
             }
         }
 

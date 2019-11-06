@@ -167,9 +167,11 @@ namespace SecretProject.Class.ItemStuff
                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItemInstance, false, 0);
                         Game1.GetCurrentStage().AllItems.Remove(this);
 
-                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
-                   
                     
+                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
+                    Game1.Player.UserInterface.BottomBar.CheckGridItem();
+
+
 
                 }
                 Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - ItemSprite.Position;

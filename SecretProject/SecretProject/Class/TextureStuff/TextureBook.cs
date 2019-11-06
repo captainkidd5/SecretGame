@@ -51,6 +51,7 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D SnawSpriteSheet;
         public Texture2D JulianSpriteSheet;
+        public Texture2D JulianPortrait;
 
         //playeractions
 
@@ -158,8 +159,9 @@ namespace SecretProject.Class.TextureStuff
             EnemySpriteSheet = content.Load<Texture2D>("NPC/Enemy/EnemySpriteSheet");
 
             KayaSpriteSheet = content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet");
-            JulianSpriteSheet = content.Load<Texture2D>("NPC/Julian/Julian");
 
+            JulianSpriteSheet = content.Load<Texture2D>("NPC/Julian/Julian");
+            JulianPortrait = content.Load<Texture2D>("NPC/Julian/julianPortrait");
 
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");

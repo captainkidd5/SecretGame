@@ -1885,7 +1885,7 @@
  </tile>
  <tile id="2139">
   <properties>
-   <property name="newSource" value="0,-16,16,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2142">

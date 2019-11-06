@@ -1249,3 +1249,15 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Dobbin/dobbinPortrait.png
 
+#begin NPC/Julian/julianPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Julian/julianPortrait.png
+
