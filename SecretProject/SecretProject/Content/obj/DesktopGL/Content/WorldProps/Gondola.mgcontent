@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Gondola.png</SourceFile>
-  <SourceTime>2019-10-30T16:59:52.9737867-07:00</SourceTime>
+  <SourceTime>2019-11-06T14:02:23.8084131-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/WorldProps/Gondola.xnb</DestFile>
-  <DestTime>2019-10-30T17:22:02.3258973-07:00</DestTime>
+  <DestTime>2019-11-06T14:11:19.7045404-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

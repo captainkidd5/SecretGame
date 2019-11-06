@@ -46,7 +46,8 @@ namespace SecretProject.Class.UI
         SanctuaryCheckList = 4,
         LiftWindow = 5,
         ProgressBook = 6,
-        DepositBox = 7
+        DepositBox = 7,
+        CookingMenu = 8
     }
     public class UserInterface
     {
@@ -84,6 +85,7 @@ namespace SecretProject.Class.UI
         public StaminaBar PlayerStaminaBar { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
+        public CookingMenu CookingMenu { get; set; }
 
         //keyboard
 
@@ -117,6 +119,7 @@ namespace SecretProject.Class.UI
 
             InfoBox = new InfoPopUp("Text Not Assigned");
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
+            this.CookingMenu = new CookingMenu(graphicsDevice);
         }
 
 
@@ -274,6 +277,16 @@ namespace SecretProject.Class.UI
                     }
                     break;
 
+                case ExclusiveInterfaceItem.CookingMenu:
+                    //Game1.freeze = true;
+                    CookingMenu.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
+
             }
             
            
@@ -349,6 +362,10 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.DepositBox:
                     DepositBox.Draw(spriteBatch);
+                    break;
+
+                case ExclusiveInterfaceItem.CookingMenu:
+                    CookingMenu.Draw(spriteBatch);
                     break;
             }
 

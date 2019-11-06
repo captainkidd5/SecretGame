@@ -408,7 +408,10 @@ namespace SecretProject.Class.TileStuff
             Chunk tempChunkNew = ActiveChunks[newX, newY];
             Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
-            Task.Run(() => tempChunkOld.Save());
+
+                Task.Run(() => tempChunkOld.Save());
+            
+            
 
             ActiveChunks[oldX, oldY] = tempChunkNew;
 
