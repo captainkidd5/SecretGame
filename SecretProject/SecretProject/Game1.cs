@@ -440,20 +440,20 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/Map/Town.tmx", 1, 1) { StageIdentifier = 0 };
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
-            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1) { StageIdentifier = 0 };
+            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
+            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
             Lifts = new Dictionary<string, Lift>();
             Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248","Town");
             Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16), "Town"));
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
 
 
-            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
+            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
 
-            ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
-            JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
-            DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
+            ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
+            JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
+            DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
             GlobalClock = new Clock();
 
 

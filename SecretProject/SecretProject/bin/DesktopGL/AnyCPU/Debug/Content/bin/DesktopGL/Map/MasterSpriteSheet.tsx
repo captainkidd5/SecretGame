@@ -1524,6 +1524,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="3" x="3.45455" y="3.81818" width="9.45455" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="1408">
   <properties>
