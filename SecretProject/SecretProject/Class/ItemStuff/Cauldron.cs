@@ -13,6 +13,7 @@ namespace SecretProject.Class.ItemStuff
 {
     public class Cauldron : IStorableItem
     {
+        public StorableItemType StorableItemType { get; set; }
         public string ID { get; set; }
         public int Size { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
@@ -32,6 +33,7 @@ namespace SecretProject.Class.ItemStuff
         List<CookingSlot> CookingSlots;
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
+            this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
             this.Location = location;
@@ -66,6 +68,12 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.IsUpdating = false;
             }
+
+
+            for(int i =0; i < CookingSlots.Count; i++)
+            {
+                CookingSlots[i].Update(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -73,6 +81,11 @@ namespace SecretProject.Class.ItemStuff
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
                 Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             redEsc.Draw(spriteBatch);
+
+            for (int i = 0; i < CookingSlots.Count; i++)
+            {
+                CookingSlots[i].Draw(spriteBatch);
+            }
         }
         public class CookingSlot
         {

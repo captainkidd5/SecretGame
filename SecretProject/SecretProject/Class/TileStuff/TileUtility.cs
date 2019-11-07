@@ -731,17 +731,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        //if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.CookingMenu)
-                        //{
-                        //    Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;
-                        //    mouse.IsClicked = false;
-
-                        //}
-                        //else
-                        //{
-                        //    Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.CookingMenu;
-                        //    mouse.IsClicked = false;
-                        //}
+                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
 
                     }
                     break;

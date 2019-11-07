@@ -149,7 +149,9 @@ namespace SecretProject.Class.TileStuff
             binaryWriter.Write(StoreableItems.Count);
             foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
             {
+                
                 binaryWriter.Write(storeableItem.Key);
+                binaryWriter.Write((int)storeableItem.Value.StorableItemType);
                 binaryWriter.Write(storeableItem.Value.Size);
                 binaryWriter.Write(storeableItem.Value.Location.X);
                 binaryWriter.Write(storeableItem.Value.Location.Y);
@@ -250,26 +252,53 @@ namespace SecretProject.Class.TileStuff
 
 
             this.StoreableItems = new Dictionary<string, IStorableItem>();
-            int chestCount = binaryReader.ReadInt32();
-            for (int c = 0; c < chestCount; c++)
+            int storableItemCount = binaryReader.ReadInt32();
+            for (int c = 0; c < storableItemCount; c++)
             {
-                string chestKey = binaryReader.ReadString();
-                int chestSize = binaryReader.ReadInt32();
+                string storageKey = binaryReader.ReadString();
+                int storableItemType = binaryReader.ReadInt32();
+                StorableItemType itemType = (StorableItemType)storableItemType;
+                int inventorySize = binaryReader.ReadInt32();
                 float locationX = binaryReader.ReadSingle();
                 float locationY = binaryReader.ReadSingle();
-                Chest chestToAdd = new Chest(chestKey, chestSize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
-                for (int i = 0; i < chestSize; i++)
+   
+                switch (itemType)
                 {
-                    int numberOfItemsInSlot = binaryReader.ReadInt32();
-                    int itemID = binaryReader.ReadInt32();
+                    case StorableItemType.Chest:
+                        Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+                        for (int i = 0; i < inventorySize; i++)
+                        {
+                            int numberOfItemsInSlot = binaryReader.ReadInt32();
+                            int itemID = binaryReader.ReadInt32();
 
-                    for (int j = 0; j < numberOfItemsInSlot; j++)
-                    {
-                        chestToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-                    }
+                            for (int j = 0; j < numberOfItemsInSlot; j++)
+                            {
+                                storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                            }
+                        }
+
+                        this.StoreableItems.Add(storageKey, storeageItemToAdd);
+                        break;
+
+                    case StorableItemType.Cauldron:
+                        Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+                        for (int i = 0; i < inventorySize; i++)
+                        {
+                            int numberOfItemsInSlot = binaryReader.ReadInt32();
+                            int itemID = binaryReader.ReadInt32();
+
+                            for (int j = 0; j < numberOfItemsInSlot; j++)
+                            {
+                                cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                            }
+                        }
+
+                        this.StoreableItems.Add(storageKey, cauldronToAdd);
+                        break;
                 }
 
-                this.StoreableItems.Add(chestKey, chestToAdd);
+                
+                
             }
 
             int cropCount = binaryReader.ReadInt32();
