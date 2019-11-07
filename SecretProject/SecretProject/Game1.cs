@@ -77,7 +77,8 @@ namespace SecretProject
         JulianHouse = 6,
         DobbinHouse = 7,
         MainMenu = 50,
-        Exit = 55
+        Exit = 55,
+        PlayerHouse = 100
 
     }
 
@@ -103,6 +104,7 @@ namespace SecretProject
         public static TmxStageBase JulianHouse;
         public static TmxStageBase DobbinHouse;
         public static World World;
+        public static TmxStageBase PlayerHouse;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -292,6 +294,8 @@ namespace SecretProject
                     return JulianHouse;
                 case Stages.DobbinHouse:
                     return DobbinHouse;
+                case Stages.PlayerHouse:
+                    return PlayerHouse;
 
                 default:
                     return null;
@@ -326,6 +330,8 @@ namespace SecretProject
                     return JulianHouse;
                 case 7:
                     return DobbinHouse;
+                case 100:
+                    return PlayerHouse;
                 default:
                     return null;
 
@@ -356,6 +362,8 @@ namespace SecretProject
                     return 6;
                 case Stages.DobbinHouse:
                     return 7;
+                case Stages.PlayerHouse:
+                    return 100;
 
                 default:
                     return 50;
