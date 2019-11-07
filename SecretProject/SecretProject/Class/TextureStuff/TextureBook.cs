@@ -170,7 +170,7 @@ namespace SecretProject.Class.TextureStuff
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
 
-            //MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
+            MasterTileSet = content.Load<Texture2D>("Map/MasterSpriteSheet");
             InteriorTileSet1 = content.Load<Texture2D>("Map/InteriorSpriteSheet1");
             //OrchardTileSet = content.Load<Texture2D>("Map/orchard");
 

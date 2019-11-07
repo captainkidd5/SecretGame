@@ -79,13 +79,12 @@ namespace SecretProject.Class.StageFolder
         public TmxLayer MidGround { get; set; }
         public TmxLayer foreGround { get; set; }
         public List<TmxLayer> AllLayers { get; set; }
-        public string MapTexturePath { get; set; }
         public string TmxMapPath { get; set; }
         public TmxMap Map { get; set; }
 
         public QuadTree QuadTree { get; set; }
 
-        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
             this.TileHeight = 16;
@@ -96,7 +95,7 @@ namespace SecretProject.Class.StageFolder
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
-            this.MapTexturePath = mapTexturePath;
+            this.TileSet = tileSet;
             this.TmxMapPath = tmxMapPath;
             this.IsLoaded = false;
             CharactersPresent = new List<Character>();
@@ -125,10 +124,6 @@ namespace SecretProject.Class.StageFolder
             {
 
             };
-
-
-
-            this.TileSet = Content.Load<Texture2D>(this.MapTexturePath);
 
 
             AllDepths = new List<float>()

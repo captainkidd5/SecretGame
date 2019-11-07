@@ -85,7 +85,6 @@ namespace SecretProject.Class.StageFolder
 
          TmxMap Map { get; set; }
         event EventHandler SceneChanged;
-        string MapTexturePath { get; set; }
          string TmxMapPath { get; set; }
 
         QuadTree QuadTree { get; set; }

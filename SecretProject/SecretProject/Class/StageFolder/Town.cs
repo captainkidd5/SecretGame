@@ -48,7 +48,7 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
-        public Town(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, mapTexturePath, tmxMapPath, dialogueToRetrieve, backDropNumber)
+        public Town(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
             this.Graphics = graphics;
             this.Content = content;

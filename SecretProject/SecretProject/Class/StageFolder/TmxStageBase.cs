@@ -104,7 +104,6 @@ namespace SecretProject.Class.StageFolder
         public TextBuilder TextBuilder { get; set; }
         public List<Portal> AllPortals { get; set; }
 
-        public string MapTexturePath { get; set; }
         public string TmxMapPath { get; set; }
         public int DialogueToRetrieve { get; set; }
         public bool IsDark { get; set; }
@@ -134,13 +133,12 @@ namespace SecretProject.Class.StageFolder
 
 
 
-        public TmxStageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, string mapTexturePath, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
-            this.MapTexturePath = mapTexturePath;
             this.TmxMapPath = tmxMapPath;
             this.DialogueToRetrieve = dialogueToRetrieve;
             this.IsLoaded = false;
@@ -152,6 +150,7 @@ namespace SecretProject.Class.StageFolder
             }
 
             this.OnScreenNPCS = new List<INPC>();
+            this.TileSet = tileSet;
         }
 
         public virtual void LoadPreliminaryContent()
@@ -178,7 +177,7 @@ namespace SecretProject.Class.StageFolder
 
             //AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            this.TileSet = Content.Load<Texture2D>(this.MapTexturePath);
+            
 
 
             AllDepths = new List<float>()
