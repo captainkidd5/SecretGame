@@ -522,18 +522,18 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkY; j++)
                     {
-                        if (i > 1 && j > 1)
-                        {
-                            if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
-                            {
-                                TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                            }
+                        //if (i > 1 && j > 1)
+                        //{
+                        //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
+                        //    {
+                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                        //    }
 
-                            if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
-                            {
-                                TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                            }
-                        }
+                        //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
+                        //    {
+                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                        //    }
+                        //}
 
                         if (z > 0)
                         {

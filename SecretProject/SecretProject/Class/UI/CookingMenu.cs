@@ -20,6 +20,8 @@ namespace SecretProject.Class.UI
         public float BackDropScale { get; set; }
 
         private Button redEsc;
+
+        List<CookingSlot> CookingSlots;
         public CookingMenu(GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
@@ -29,6 +31,13 @@ namespace SecretProject.Class.UI
 
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
+
+            CookingSlots = new List<CookingSlot>();
+            for (int i = 0; i < 3; i++)
+            {
+                CookingSlots.Add(new CookingSlot(graphics, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), BackDropScale));
+                //AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(320, 32, 32, 32), graphics, this.BackDropPosition, CursorType.Normal, BackDropScale);
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -47,6 +56,27 @@ namespace SecretProject.Class.UI
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
                 Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             redEsc.Draw(spriteBatch);
+        }
+        public class CookingSlot
+        {
+            public GraphicsDevice GraphicsDevice { get; set; }
+            public int Index { get; set; }
+            public int Count { get; set; }
+            public Vector2 Position { get; set; }
+            public float Scale { get; set; }
+            public Button Button { get; set; }
+            
+
+            public CookingSlot(GraphicsDevice graphics, int index, Vector2 position, float scale)
+            {
+                this.GraphicsDevice = graphics;
+                this.Index = index;
+                this.Count = 0;
+                this.Position = position;
+                this.Scale = scale;
+                this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(320, 32, 32, 32),this.GraphicsDevice, this.Position, CursorType.Normal, this.Scale); 
+            }
+
         }
     }
 }

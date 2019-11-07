@@ -359,38 +359,40 @@ namespace SecretProject.Class.TileStuff
 
                 case Dir.Right:
 
-                   // ActiveChunks[0, 0] = ActiveChunks[1, 0];
-
-                    CycleChunk(0, 0, 1, 0);
-
-
-                  //  ActiveChunks[0, 1] = ActiveChunks[1, 1];
-                    CycleChunk(0, 1, 1, 1);
-
-                    //ActiveChunks[0, 2] = ActiveChunks[1, 2];
-                    CycleChunk(0, 2, 1, 2);
-
-                   // ActiveChunks[1, 0] = ActiveChunks[2, 0];
-                    CycleChunk(1, 0, 2, 0);
-
-                  //  ActiveChunks[1, 1] = ActiveChunks[2, 1];
-                    CycleChunk(1, 1, 2, 1);
-
-
-                   // ActiveChunks[1, 2] = ActiveChunks[2, 2];
-                    CycleChunk(1, 2, 2, 2);
-
+                    // ActiveChunks[0, 0] = ActiveChunks[1, 0];
                     lock (locker)
                     {
-                        for (int i = 0; i < 3; i++)
+                        CycleChunk(0, 0, 1, 0);
+
+
+                        //  ActiveChunks[0, 1] = ActiveChunks[1, 1];
+                        CycleChunk(0, 1, 1, 1);
+
+                        //ActiveChunks[0, 2] = ActiveChunks[1, 2];
+                        CycleChunk(0, 2, 1, 2);
+
+                        // ActiveChunks[1, 0] = ActiveChunks[2, 0];
+                        CycleChunk(1, 0, 2, 0);
+
+                        //  ActiveChunks[1, 1] = ActiveChunks[2, 1];
+                        CycleChunk(1, 1, 2, 1);
+
+
+                        // ActiveChunks[1, 2] = ActiveChunks[2, 2];
+                        CycleChunk(1, 2, 2, 2);
+
+                        lock (locker)
                         {
+                            for (int i = 0; i < 3; i++)
+                            {
 
 
-                            int index = i;
+                                int index = i;
 
-                            ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
+                                ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
+                                Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
 
+                            }
                         }
                     }
 
@@ -400,6 +402,8 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+
+
         public void CycleChunk(int oldX, int oldY, int newX, int newY)
         {
 
@@ -408,8 +412,11 @@ namespace SecretProject.Class.TileStuff
             Chunk tempChunkNew = ActiveChunks[newX, newY];
             Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
-
+           
                 Task.Run(() => tempChunkOld.Save());
+            
+
+                
             
             
 

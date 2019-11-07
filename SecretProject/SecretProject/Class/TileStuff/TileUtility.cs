@@ -717,6 +717,7 @@ namespace SecretProject.Class.TileStuff
                     break;
 
                 case "cook":
+                    mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
                         if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.CookingMenu)
