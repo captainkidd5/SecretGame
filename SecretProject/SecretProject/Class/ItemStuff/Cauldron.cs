@@ -36,6 +36,7 @@ namespace SecretProject.Class.ItemStuff
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
+            this.Inventory = new Inventory(Size);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(320, 0, 96, 80);

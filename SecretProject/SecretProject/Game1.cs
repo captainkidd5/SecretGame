@@ -503,6 +503,7 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1161, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
             }
             
 
