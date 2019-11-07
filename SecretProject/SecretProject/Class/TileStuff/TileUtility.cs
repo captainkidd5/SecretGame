@@ -8,6 +8,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.Transportation;
+using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -373,10 +374,20 @@ namespace SecretProject.Class.TileStuff
                     if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
                     {
 
-                        if (!container.Chests.ContainsKey(tileToAssign.GetTileKey(layer)))
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKey(layer)))
                         {
-                            container.Chests.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
+                            container.StoreableItems.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
                                     new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice, true));
+                        }
+
+                    }
+                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "cook")
+                    {
+
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKey(layer)))
+                        {
+                            container.StoreableItems.Add(tileToAssign.GetTileKey(layer), new Cauldron(tileToAssign.GetTileKey(layer), 3,
+                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice));
                         }
 
                     }
@@ -596,7 +607,7 @@ namespace SecretProject.Class.TileStuff
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
-                        container.Chests[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
+                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
                     }
                     break;
 
@@ -720,17 +731,17 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.CookingMenu)
-                        {
-                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;
-                            mouse.IsClicked = false;
+                        //if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == UI.ExclusiveInterfaceItem.CookingMenu)
+                        //{
+                        //    Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;
+                        //    mouse.IsClicked = false;
 
-                        }
-                        else
-                        {
-                            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.CookingMenu;
-                            mouse.IsClicked = false;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.CookingMenu;
+                        //    mouse.IsClicked = false;
+                        //}
 
                     }
                     break;

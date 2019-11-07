@@ -56,7 +56,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, ICollidable> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, Chest> Chests { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, ICollidable> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
@@ -109,7 +109,7 @@ namespace SecretProject.Class.TileStuff
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ICollidable>();
 
-            Chests = new Dictionary<string, Chest>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
             Lights = new List<LightSource>();
 
             CurrentObjects = new Dictionary<string, ICollidable>();
@@ -475,7 +475,7 @@ namespace SecretProject.Class.TileStuff
 
             }
             ChunkUnderPlayer = ActiveChunks[1, 1];
-            this.Chests = ChunkUnderPlayer.Chests;
+            this.StoreableItems = ChunkUnderPlayer.StoreableItems;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
 

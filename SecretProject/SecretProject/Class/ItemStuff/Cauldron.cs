@@ -9,24 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecretProject.Class.UI
+namespace SecretProject.Class.ItemStuff
 {
-    public class CookingMenu : IExclusiveInterfaceComponent
+    public class Cauldron : IStorableItem
     {
+        public string ID { get; set; }
+        public int Size { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public bool IsActive { get; set; }
         public bool FreezesGame { get; set; }
         public Rectangle BackDropSourceRectangle { get; set; }
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
+        public bool IsInventoryHovered { get; set; }
+        public bool IsUpdating { get; set; }
 
         public Inventory Inventory { get; set; }
+        public Vector2 Location { get; set; }
 
         private Button redEsc;
 
         List<CookingSlot> CookingSlots;
-        public CookingMenu(GraphicsDevice graphics)
+        public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
+            this.ID = iD;
+            this.Size = size;
+            this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(320, 0, 96, 80);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
@@ -50,7 +58,13 @@ namespace SecretProject.Class.UI
 
             if (redEsc.isClicked)
             {
-                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                this.IsUpdating = false;
+               
+            }
+
+            if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
+            {
+                this.IsUpdating = false;
             }
         }
 

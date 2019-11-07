@@ -47,7 +47,6 @@ namespace SecretProject.Class.UI
         LiftWindow = 5,
         ProgressBook = 6,
         DepositBox = 7,
-        CookingMenu = 8
     }
     public class UserInterface
     {
@@ -85,7 +84,7 @@ namespace SecretProject.Class.UI
         public StaminaBar PlayerStaminaBar { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
-        public CookingMenu CookingMenu { get; set; }
+
 
         //keyboard
 
@@ -119,7 +118,7 @@ namespace SecretProject.Class.UI
 
             InfoBox = new InfoPopUp("Text Not Assigned");
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
-            this.CookingMenu = new CookingMenu(graphicsDevice);
+
         }
 
 
@@ -129,13 +128,13 @@ namespace SecretProject.Class.UI
             IsAnyChestOpen = false;
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.Chests)
+                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
                 {
-                    if (chest.Value.IsUpdating)
+                    if (storeableItem.Value.IsUpdating)
                     {
-                        chest.Value.Update(gameTime, mouse);
+                        storeableItem.Value.Update(gameTime);
                         this.IsAnyChestOpen = true;
-                        this.OpenChestKey = chest.Key;
+                        this.OpenChestKey = storeableItem.Key;
                     }
 
                 }
@@ -277,15 +276,15 @@ namespace SecretProject.Class.UI
                     }
                     break;
 
-                case ExclusiveInterfaceItem.CookingMenu:
-                    //Game1.freeze = true;
-                    CookingMenu.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                //case ExclusiveInterfaceItem.CookingMenu:
+                //    //Game1.freeze = true;
+                //    CookingMenu.Update(gameTime);
+                //    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                //    {
+                //        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
-                    }
-                    break;
+                //    }
+                //    break;
 
             }
             
@@ -364,9 +363,9 @@ namespace SecretProject.Class.UI
                     DepositBox.Draw(spriteBatch);
                     break;
 
-                case ExclusiveInterfaceItem.CookingMenu:
-                    CookingMenu.Draw(spriteBatch);
-                    break;
+                //case ExclusiveInterfaceItem.CookingMenu:
+                //    CookingMenu.Draw(spriteBatch);
+                //    break;
             }
 
 
@@ -384,11 +383,11 @@ namespace SecretProject.Class.UI
 
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<string, Chest> chest in Game1.GetCurrentStage().AllTiles.Chests)
+                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
                 {
-                    if (chest.Value.IsUpdating)
+                    if (storeableItem.Value.IsUpdating)
                     {
-                        chest.Value.Draw(spriteBatch);
+                        storeableItem.Value.Draw(spriteBatch);
                     }
 
                 }

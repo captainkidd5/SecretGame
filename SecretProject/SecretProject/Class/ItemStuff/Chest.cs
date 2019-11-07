@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-    public class Chest
+    public class Chest : IStorableItem
     {
         public string ID { get; set; }
         public int Size { get; set; }
@@ -41,17 +41,17 @@ namespace SecretProject.Class.ItemStuff
                 FillWithLoot(size);
             }
         }
-        public void Update(GameTime gameTime, MouseManager mouse)
+        public void Update(GameTime gameTime)
         {
             this.IsInventoryHovered = false;
-            RedEsc.Update(mouse);
+            RedEsc.Update(Game1.myMouseManager);
             if (RedEsc.isClicked)
             {
                 this.IsUpdating = false;
             }
             for (int i = 0; i < AllButtons.Count; i++)
             {
-                AllButtons[i].Update(mouse);
+                AllButtons[i].Update(Game1.myMouseManager);
                 if (AllButtons[i].IsHovered)
                 {
                     this.IsInventoryHovered = true;

@@ -66,7 +66,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public List<ICollidable> Objects { get; set; }
-        public Dictionary<string, Chest> Chests { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
@@ -126,7 +126,7 @@ namespace SecretProject.Class.TileStuff
             Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             Lights = new List<LightSource>();
-            Chests = new Dictionary<string, Chest>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
             Crops = new Dictionary<string, Crop>();
             Owned = true;
             ForeGroundOffSetDictionary = new Dictionary<float, string>();

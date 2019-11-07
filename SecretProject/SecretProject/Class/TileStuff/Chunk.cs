@@ -39,7 +39,7 @@ namespace SecretProject.Class.TileStuff
         public List<ICollidable> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, Chest> Chests { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
@@ -88,7 +88,7 @@ namespace SecretProject.Class.TileStuff
             Objects = new List<ICollidable>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
-            Chests = new Dictionary<string, Chest>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             Crops = new Dictionary<string, Crop>();
@@ -146,19 +146,19 @@ namespace SecretProject.Class.TileStuff
             //    binaryWriter.Write(obj.LocationKey);
             //}
 
-            binaryWriter.Write(Chests.Count);
-            foreach (KeyValuePair<string, Chest> chest in this.Chests)
+            binaryWriter.Write(StoreableItems.Count);
+            foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
             {
-                binaryWriter.Write(chest.Key);
-                binaryWriter.Write(chest.Value.Size);
-                binaryWriter.Write(chest.Value.Location.X);
-                binaryWriter.Write(chest.Value.Location.Y);
-                for (int s = 0; s < chest.Value.Size; s++)
+                binaryWriter.Write(storeableItem.Key);
+                binaryWriter.Write(storeableItem.Value.Size);
+                binaryWriter.Write(storeableItem.Value.Location.X);
+                binaryWriter.Write(storeableItem.Value.Location.Y);
+                for (int s = 0; s < storeableItem.Value.Size; s++)
                 {
-                    binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems.Count);
-                    if (chest.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
+                    if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
                     {
-                        binaryWriter.Write(chest.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
                     }
                     else
                     {
@@ -249,7 +249,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            this.Chests = new Dictionary<string, Chest>();
+            this.StoreableItems = new Dictionary<string, IStorableItem>();
             int chestCount = binaryReader.ReadInt32();
             for (int c = 0; c < chestCount; c++)
             {
@@ -269,7 +269,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
 
-                this.Chests.Add(chestKey, chestToAdd);
+                this.StoreableItems.Add(chestKey, chestToAdd);
             }
 
             int cropCount = binaryReader.ReadInt32();
