@@ -77,7 +77,7 @@ namespace SecretProject.Class.TileStuff
         {
             if (tileManager.AbleToDrawTileSelector)
             {
-                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
                 {
                     this.IsDrawn = true;
 
@@ -95,7 +95,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        for (int j = this.NegativeY; j < 0; j++)
+                        for (int j = this.NegativeY; j < 1; j++)
                         {
                             this.CanPlace = true;
 
@@ -187,10 +187,6 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, Game1.GetCurrentStage(), container);
-                                container.Objects.Add(new Collider(this.GraphicsDevice, Vector2.Zero,
-                                    new Rectangle(container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.X + RectangleCoordinates[0],
-                                    container.AllTiles[0][Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY].DestinationRectangle.Y + RectangleCoordinates[1],
-                                    RectangleCoordinates[2], RectangleCoordinates[3]), this, ColliderType.inert));
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
                                 return;
                             }

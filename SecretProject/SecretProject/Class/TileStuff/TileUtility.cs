@@ -418,6 +418,23 @@ namespace SecretProject.Class.TileStuff
                     tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
                 }
 
+
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newHitBox"))
+                {
+                    int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newHitBox"]);
+                    string key = tileToAssign.GetTileKey(layer);
+
+                    Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
+                            new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
+                            GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
+                            rectangleCoords[3]), null, ColliderType.inert)
+                    { LocationKey = key };
+
+
+
+                    container.Objects.Add(tempObjectBody);
+                }
+
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
 

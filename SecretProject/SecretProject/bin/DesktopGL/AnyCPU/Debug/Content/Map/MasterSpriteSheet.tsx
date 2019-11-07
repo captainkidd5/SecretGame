@@ -716,7 +716,7 @@
   <properties>
    <property name="destructable" value="22,0,0,8"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="1001:100:1,940:15:1"/>
+   <property name="loot" value="1001:100:1"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index">
@@ -1330,7 +1330,7 @@
  </tile>
  <tile id="1293">
   <properties>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="789:100:1"/>
   </properties>
  </tile>
@@ -1743,13 +1743,13 @@
  </tile>
  <tile id="1581">
   <properties>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="710:100:1"/>
   </properties>
  </tile>
  <tile id="1582">
   <properties>
-   <property name="destructable" value="-50,1,0,5"/>
+   <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="711:100:1"/>
   </properties>
  </tile>
@@ -1886,22 +1886,26 @@
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2142">
   <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
  </tile>
  <tile id="2144">
   <properties>
+   <property name="newHitBox" value="0,8, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
