@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace SecretProject.Class.UI
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
 
+        public Inventory Inventory { get; set; }
+
         private Button redEsc;
 
         List<CookingSlot> CookingSlots;
@@ -35,7 +38,7 @@ namespace SecretProject.Class.UI
             CookingSlots = new List<CookingSlot>();
             for (int i = 0; i < 3; i++)
             {
-                CookingSlots.Add(new CookingSlot(graphics, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), BackDropScale));
+                CookingSlots.Add(new CookingSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), BackDropScale));
                 //AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(320, 32, 32, 32), graphics, this.BackDropPosition, CursorType.Normal, BackDropScale);
             }
         }
@@ -60,6 +63,7 @@ namespace SecretProject.Class.UI
         public class CookingSlot
         {
             public GraphicsDevice GraphicsDevice { get; set; }
+            public Inventory Inventory { get; set; }
             public int Index { get; set; }
             public int Count { get; set; }
             public Vector2 Position { get; set; }
@@ -67,14 +71,35 @@ namespace SecretProject.Class.UI
             public Button Button { get; set; }
             
 
-            public CookingSlot(GraphicsDevice graphics, int index, Vector2 position, float scale)
+            public CookingSlot(GraphicsDevice graphics, Inventory inventory, int index, Vector2 position, float scale)
             {
                 this.GraphicsDevice = graphics;
+                this.Inventory = inventory;
                 this.Index = index;
                 this.Count = 0;
                 this.Position = position;
                 this.Scale = scale;
                 this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(320, 32, 32, 32),this.GraphicsDevice, this.Position, CursorType.Normal, this.Scale); 
+            }
+
+            public void Update(GameTime gameTime)
+            {
+                if(this.Button.isClicked)
+                {
+                    if (this.Inventory.currentInventory[this.Index].SlotItems.Count > 0 && this.Inventory.currentInventory[this.Index].SlotItems[0] != null)
+                    {
+                        if (Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[this.Index].SlotItems[0]))
+                        {
+                            this.Inventory.currentInventory[this.Index].RemoveItemFromSlot();
+                        }
+                    }
+                }
+            }
+
+            public void Draw(SpriteBatch spriteBatch)
+            {
+                Button.Draw(spriteBatch, Button.ItemSourceRectangleToDraw, Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
+                    Button.Position, Color.White, this.Scale, this.Scale);
             }
 
         }
