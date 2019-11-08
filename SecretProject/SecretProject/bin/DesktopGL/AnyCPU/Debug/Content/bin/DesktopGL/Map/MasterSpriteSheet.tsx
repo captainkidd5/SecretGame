@@ -1524,9 +1524,6 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="3" x="3.45455" y="3.81818" width="9.45455" height="8"/>
-  </objectgroup>
  </tile>
  <tile id="1408">
   <properties>
@@ -1892,6 +1889,11 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="2057">
+  <properties>
+   <property name="action" value="enterPlayerHouse"/>
+  </properties>
+ </tile>
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
@@ -1920,6 +1922,7 @@
  </tile>
  <tile id="2157">
   <properties>
+   <property name="action" value="enterPlayerHouse"/>
    <property name="newHitBox" value="-32,-16,64,32"/>
    <property name="newSource" value="-32,-48,64,64"/>
   </properties>

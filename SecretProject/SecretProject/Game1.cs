@@ -76,9 +76,10 @@ namespace SecretProject
         ElixirHouse = 5,
         JulianHouse = 6,
         DobbinHouse = 7,
+        PlayerHouse = 8,
         MainMenu = 50,
         Exit = 55,
-        PlayerHouse = 100
+        
 
     }
 
@@ -330,7 +331,7 @@ namespace SecretProject
                     return JulianHouse;
                 case 7:
                     return DobbinHouse;
-                case 100:
+                case 8:
                     return PlayerHouse;
                 default:
                     return null;
@@ -362,8 +363,9 @@ namespace SecretProject
                     return 6;
                 case Stages.DobbinHouse:
                     return 7;
+
                 case Stages.PlayerHouse:
-                    return 100;
+                    return 8;
 
                 default:
                     return 50;
@@ -454,11 +456,12 @@ namespace SecretProject
             ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
             JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
             DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
+            PlayerHouse = new TmxStageBase("PlayerHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = 8 };
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirHouse, JulianHouse,DobbinHouse };
+            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -507,11 +510,11 @@ namespace SecretProject
             {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1200, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1201, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1161, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
+                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1201, null));
+                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
+                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1161, null));
+                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
             }
             
 
@@ -718,6 +721,9 @@ namespace SecretProject
                     case Stages.DobbinHouse:
                         DobbinHouse.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.PlayerHouse:
+                        PlayerHouse.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -784,6 +790,11 @@ namespace SecretProject
                 case Stages.DobbinHouse:
                     GraphicsDevice.Clear(Color.Black);
                     DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+
+                case Stages.PlayerHouse:
+                    GraphicsDevice.Clear(Color.Black);
+                    PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

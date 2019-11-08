@@ -451,10 +451,10 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllLights = this.Lights;
             }
-            if(GridItem != null)
-            {
-                GridItem.Update(gameTime, this, this);
-            }
+            //if(GridItem != null)
+            //{
+            //    GridItem.Update(gameTime, this, this);
+            //}
             
         }
 
@@ -531,10 +531,10 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            if(GridItem != null)
-            {
-                GridItem.Draw(spriteBatch, this, this);
-            }
+            //if(GridItem != null)
+            //{
+            //    GridItem.Draw(spriteBatch, this, this);
+            //}
            
            
 

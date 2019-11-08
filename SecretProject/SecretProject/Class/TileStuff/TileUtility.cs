@@ -752,6 +752,15 @@ namespace SecretProject.Class.TileStuff
 
                     }
                     break;
+                case "enterPlayerHouse":
+                    mouse.ChangeMouseTexture(CursorType.Door);
+                    {
+                        if (mouse.IsClicked)
+                        {
+                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 8);
+                        }
+                    }
+                    break;
 
             }
         }

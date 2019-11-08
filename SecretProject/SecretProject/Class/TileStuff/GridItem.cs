@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -148,7 +149,15 @@ namespace SecretProject.Class.TileStuff
                             }
                             for (int z = 1; z < container.AllTiles.Count; z++)
                             {
-                                int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+                                int gid = 0;
+                                if(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
+                                {
+                                     gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+                                }
+                                else
+                                {
+                                    return;
+                                }
 
                                 if (gid == -1)
                                 {
@@ -185,9 +194,22 @@ namespace SecretProject.Class.TileStuff
                                         Game1.SoundManager.PlaceItem2.Play();
                                         break;
                                 }
+                                if (this.PlaceID == 2157)
+                                {
+                                    Portal tempPortal = new Portal(3, 8, 0, 50, true);
+                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle;
+                                   // tempPortal.
+                                    Game1.World.AllPortals.Add(tempPortal);
+
+                                    if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
+                                    {
+                                        Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
+                                    }
+                                }
                                 TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, Game1.GetCurrentStage(), container);
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                
                                 return;
                             }
                             
@@ -282,7 +304,15 @@ namespace SecretProject.Class.TileStuff
 
                         for (int z = 1; z < container.AllTiles.Count; z++)
                         {
-                            int gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+                            int gid = 0;
+                            if (tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
+                            {
+                                gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+                            }
+                            else
+                            {
+                                return;
+                            }
 
                             if (gid == -1)
                             {
