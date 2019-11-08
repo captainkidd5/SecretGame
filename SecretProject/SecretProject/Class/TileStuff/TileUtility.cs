@@ -757,7 +757,8 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (mouse.IsClicked)
                         {
-                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 8);
+                            Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.To == 8);
+                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 8, portal);
                         }
                     }
                     break;

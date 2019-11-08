@@ -41,7 +41,7 @@
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="50"/>
+    <property name="SafteyOffSetY" value="-50"/>
     <property name="standardFrom" value="8"/>
     <property name="standardTo" value="3"/>
    </properties>
