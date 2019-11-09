@@ -35,7 +35,7 @@ namespace SecretProject.Class.Transportation
                     }
                 }
             }
-            Game1.SwitchStage(CurrentStage, LiftToTransportTo.CurrentStage);
+            Game1.SwitchStage((Stages)CurrentStage, (Stages)LiftToTransportTo.CurrentStage);
             Game1.Player.Position = new Vector2(LiftToTransportTo.LocalPosition.X, LiftToTransportTo.LocalPosition.Y);
             if(LiftToTransportTo.CurrentStage == (int)Stages.World)
             {

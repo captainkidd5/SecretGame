@@ -39,7 +39,7 @@ namespace SecretProject.Class.EventStuff
                 Game1.GetCurrentStage().CharactersPresent.Add(Game1.Julian);
             }
             
-            Game1.Julian.CurrentStageLocation = (int)Stages.JulianHouse;
+            Game1.Julian.CurrentStageLocation = Stages.JulianHouse;
             Game1.Julian.IsInEvent = true;
             Game1.Julian.Position = new Vector2(64, 336);
             Game1.Julian.ResetPathFinding();

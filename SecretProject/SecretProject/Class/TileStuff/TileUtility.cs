@@ -667,7 +667,7 @@ namespace SecretProject.Class.TileStuff
                             if (!Game1.Lifts.ContainsKey(liftKey))
                             {
                                 Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                                Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
+                                Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
                             }
                         }
                         else
@@ -676,7 +676,7 @@ namespace SecretProject.Class.TileStuff
                             if (!Game1.Lifts.ContainsKey(liftKey))
                             {
                                 Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                                Game1.Lifts.Add(liftKey, new Lift(liftKey, Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
+                                Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
                             }
                         }
 
@@ -732,10 +732,10 @@ namespace SecretProject.Class.TileStuff
                     {
                         switch (Game1.GetCurrentStageInt())
                         {
-                            case (int)Stages.JulianHouse:
+                            case Stages.JulianHouse:
                                 Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Julian);
                                 break;
-                            case (int)Stages.ElixirHouse:
+                            case Stages.ElixirHouse:
                                 Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Elixir);
                                 break;
                         }
@@ -758,7 +758,7 @@ namespace SecretProject.Class.TileStuff
                         if (mouse.IsClicked)
                         {
                             Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.To == 8);
-                            Game1.SwitchStage(Game1.GetCurrentStageInt(), 8, portal);
+                            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.PlayerHouse, portal);
                         }
                     }
                     break;

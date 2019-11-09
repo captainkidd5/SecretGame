@@ -198,7 +198,7 @@ namespace SecretProject.Class.TileStuff
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-                Portal portal = new Portal(int.Parse(keyFrom), int.Parse(keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
+                Portal portal = new Portal((int)Enum.Parse(typeof(Stages),keyFrom), (int)Enum.Parse(typeof(Stages), keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
 
 
                 int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
@@ -367,6 +367,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (z == 0)
                     {
+
                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
                         {
                             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))

@@ -49,7 +49,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            if (Game1.GetCurrentStageInt() == (int)Stages.World)
+            if (Game1.GetCurrentStageInt() == Stages.World)
             {
                 /*
 
@@ -119,7 +119,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (Game1.GetCurrentStageInt() == (int)Stages.World)
+            if (Game1.GetCurrentStageInt() == Stages.World)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.PositionToDraw, new Rectangle(32, 320, 32, 496), Color.White, 0f,
                     Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);

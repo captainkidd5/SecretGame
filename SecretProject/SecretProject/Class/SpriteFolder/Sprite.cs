@@ -163,6 +163,11 @@ namespace SecretProject.Class.SpriteFolder
                 CurrentFrame = 0;
             }
             SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            
+        }
+
+        public void UpdateAnimationPosition(Vector2 position)
+        {
             destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
             DestinationRectangle = new Rectangle((int)position.X + OffSetX, (int)position.Y + OffSetY, FrameWidth, FrameHeight);
             this.Rectangle = DestinationRectangle;

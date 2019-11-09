@@ -320,6 +320,7 @@ namespace SecretProject.Class.Playable
                     {
                         for (int j = 0; j < animations.GetLength(1); j++)
                         {
+                            animations[i, j].UpdateAnimationPosition(this.Position);
                             animations[i, j].UpdateAnimations(gameTime, this.position);
                         }
                     }

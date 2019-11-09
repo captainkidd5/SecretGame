@@ -7,18 +7,10 @@
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
-      <StageToEndAt>5</StageToEndAt>
-      <EndX>16</EndX>
-        <EndY>21</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>8</EndX>
+      <EndY>12</EndY>
     </Item>
-    <Item Type="XMLData.RouteStuff.Route">
-        <ID>2</ID>
-        <TimeToStart>15</TimeToStart>
-        <TimeToFinish>22</TimeToFinish>
-         <StageToEndAt>0</StageToEndAt>
-        <EndX>83</EndX>
-        <EndY>43</EndY>
-      </Item>
     </Routes>
   </Asset>
 </XnaContent>

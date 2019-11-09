@@ -69,14 +69,11 @@ namespace SecretProject
     public enum Stages
     {
         Town = 0,
-        Pass = 1,
-        Center = 2,
+        ElixirHouse = 1,
+        JulianHouse = 2,
         World = 3,
-        Sanctuary = 4,
-        ElixirHouse = 5,
-        JulianHouse = 6,
-        DobbinHouse = 7,
-        PlayerHouse = 8,
+        DobbinHouse = 4,
+        PlayerHouse = 5,
         MainMenu = 50,
         Exit = 55,
         
@@ -99,9 +96,8 @@ namespace SecretProject
         //public static NormalStage Iliad;
         public static Town Town;
         public static TmxStageBase ElixirHouse;
-        public static TmxStageBase Pass;
-        public static TmxStageBase Sanctuary;
-        public static TmxStageBase Center;
+
+
         public static TmxStageBase JulianHouse;
         public static TmxStageBase DobbinHouse;
         public static World World;
@@ -280,14 +276,10 @@ namespace SecretProject
                 case Stages.World:
                     return World;
 
-                case Stages.Center:
-                    return Center;
+
                 case Stages.Town:
                     return Town;
-                case Stages.Pass:
-                    return Pass;
-                case Stages.Sanctuary:
-                    return Sanctuary;
+
 
                 case Stages.ElixirHouse:
                     return ElixirHouse;
@@ -311,27 +303,23 @@ namespace SecretProject
         //Sanctuary = 4,
         //ElixirShop = 5,
         //julianshop = 6
-        public static ILocation GetStageFromInt(int stageNumber)
+        public static ILocation GetStageFromInt(Stages stage)
         {
-            switch (stageNumber)
+            switch (stage)
             {
-                case 0:
+                case Stages.Town:
                     return Town;
-                case 1:
-                    return Pass;
-                case 2:
-                    return Center;
-                case 3:
+ 
+                case Stages.World:
                     return World;
-                case 4:
-                    return Sanctuary;
-                case 5:
+
+                case Stages.ElixirHouse:
                     return ElixirHouse;
-                case 6:
+                case Stages.JulianHouse:
                     return JulianHouse;
-                case 7:
+                case Stages.DobbinHouse:
                     return DobbinHouse;
-                case 8:
+                case Stages.PlayerHouse:
                     return PlayerHouse;
                 default:
                     return null;
@@ -340,35 +328,31 @@ namespace SecretProject
 
         }
 
-        public static int GetCurrentStageInt()
+        public static Stages GetCurrentStageInt()
         {
             switch (gameStages)
             {
                 case Stages.Town:
-                    return 0;
-                case Stages.Pass:
-                    return 1;
-                case Stages.Center:
-                    return 2;
+                    return (int)Stages.Town;
+
 
                 case Stages.World:
-                    return 3;
+                    return Stages.World;
 
-                case Stages.Sanctuary:
-                    return 4;
+
 
                 case Stages.ElixirHouse:
-                    return 5;
+                    return Stages.ElixirHouse;
                 case Stages.JulianHouse:
-                    return 6;
+                    return Stages.JulianHouse;
                 case Stages.DobbinHouse:
-                    return 7;
+                    return Stages.DobbinHouse;
 
                 case Stages.PlayerHouse:
-                    return 8;
+                    return Stages.PlayerHouse;
 
                 default:
-                    return 50;
+                    return Stages.Town;
 
             }
 
@@ -442,26 +426,24 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1) { StageIdentifier = 0 };
-            Pass = new TmxStageBase("Pass", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Pass.tmx", 1, 1) { StageIdentifier = 1 };
-            Center = new TmxStageBase("Center", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Center.tmx", 1, 0) { StageIdentifier = 2 };
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1) { StageIdentifier = (int)Stages.Town};
+
             Lifts = new Dictionary<string, Lift>();
             Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248","Town");
             Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16), "Town"));
-            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = 3 };
+            World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.World };
 
 
-            Sanctuary = new TmxStageBase("Sanctuary", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Sanctuary.tmx", 1, 1) { StageIdentifier = 4, BackDropPosition = new Vector2(900, 50) };
 
-            ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = 5 };
-            JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = 6 };
-            DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = 7 };
-            PlayerHouse = new TmxStageBase("PlayerHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = 8 };
+            ElixirHouse = new TmxStageBase("ElixirHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
+            JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
+            DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
+            PlayerHouse = new TmxStageBase("PlayerHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Pass, Town, Center, World, Sanctuary, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse };
+            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -540,7 +522,7 @@ namespace SecretProject
                 0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
                 CurrentDirection = 0,
                 SpeakerID = 3,
-                CurrentStageLocation = 4,
+                CurrentStageLocation = Stages.Town,
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
@@ -558,7 +540,7 @@ namespace SecretProject
             {
                 foreach (Character character in AllCharacters)
                 {
-                    if (character.CurrentStageLocation == stage.StageIdentifier)
+                    if (character.CurrentStageLocation == (Stages)stage.StageIdentifier)
                     {
                         stage.CharactersPresent.Add(character);
                     }
@@ -594,7 +576,7 @@ namespace SecretProject
 
 
 
-        public static void SwitchStage(int currentStage, int stageToSwitchTo, Portal portal = null)
+        public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
         {
 
 
@@ -663,9 +645,9 @@ namespace SecretProject
 
             foreach (IEvent e in AllEvents)
             {
-                if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == GetCurrentStageInt() && !e.IsCompleted)
+                if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
                 {
-                    int num = GetCurrentStageInt();
+                    int num = (int)GetCurrentStageInt();
                     if (!e.IsActive)
                     {
                         e.Start();
@@ -693,16 +675,6 @@ namespace SecretProject
                     case Stages.World:
 
                         World.Update(gameTime, myMouseManager, Player);
-                        break;
-                    case Stages.Center:
-                        Center.Update(gameTime, myMouseManager, Player);
-                        break;
-
-                    case Stages.Pass:
-                        Pass.Update(gameTime, myMouseManager, Player);
-                        break;
-                    case Stages.Sanctuary:
-                        Sanctuary.Update(gameTime, myMouseManager, Player);
                         break;
 
 
@@ -758,20 +730,6 @@ namespace SecretProject
                 case Stages.World:
                     GraphicsDevice.Clear(Color.Black);
                     World.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-                case Stages.Center:
-                    GraphicsDevice.Clear(Color.Black);
-                    Center.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-
-                case Stages.Pass:
-                    GraphicsDevice.Clear(Color.Black);
-                    Pass.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
-                    break;
-
-                case Stages.Sanctuary:
-                    GraphicsDevice.Clear(Color.Black);
-                    Sanctuary.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.Town:

@@ -498,22 +498,13 @@
 </data>
  </layer>
  <objectgroup name="Portal">
-  <object id="28" x="993.5" y="536.5" width="33" height="41">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="50"/>
-    <property name="standardFrom" value="0"/>
-    <property name="standardTo" value="1"/>
-   </properties>
-  </object>
   <object id="30" x="1479" y="399" width="19" height="31.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="50"/>
-    <property name="standardFrom" value="0"/>
-    <property name="standardTo" value="5"/>
+    <property name="standardFrom" value="Town"/>
+    <property name="standardTo" value="ElixirHouse"/>
    </properties>
   </object>
   <object id="33" x="1240.12" y="886.33" width="19" height="36.6667">
@@ -521,8 +512,8 @@
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="50"/>
-    <property name="standardFrom" value="0"/>
-    <property name="standardTo" value="6"/>
+    <property name="standardFrom" value="Town"/>
+    <property name="standardTo" value="JulianHouse"/>
    </properties>
   </object>
   <object id="35" x="762.17" y="495.83" width="19" height="32.6667">
@@ -530,17 +521,8 @@
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="50"/>
-    <property name="standardFrom" value="0"/>
-    <property name="standardTo" value="7"/>
-   </properties>
-  </object>
-  <object id="38" x="1406" y="185" width="103" height="16.8485">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="20"/>
-    <property name="standardFrom" value="0"/>
-    <property name="standardTo" value="4"/>
+    <property name="standardFrom" value="Town"/>
+    <property name="standardTo" value="DobbinHouse"/>
    </properties>
   </object>
  </objectgroup>

@@ -6,35 +6,11 @@
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
-      <TimeToFinish>12</TimeToFinish>
-       <StageToEndAt>6</StageToEndAt>
-      <EndX>4</EndX>
-        <EndY>20</EndY>
+      <TimeToFinish>15</TimeToFinish>
+       <EndStage>Town</EndStage>
+      <EndX>8</EndX>
+      <EndY>12</EndY>
     </Item>
-    <Item Type="XMLData.RouteStuff.Route">
-        <ID>2</ID>
-        <TimeToStart>16</TimeToStart>
-        <TimeToFinish>19</TimeToFinish>
-         <StageToEndAt>0</StageToEndAt>
-        <EndX>82</EndX>
-        <EndY>43</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>3</ID>
-        <TimeToStart>20</TimeToStart>
-        <TimeToFinish>22</TimeToFinish>
-         <StageToEndAt>0</StageToEndAt>
-        <EndX>82</EndX>
-        <EndY>43</EndY>
-      </Item>
-      <Item Type="XMLData.RouteStuff.Route">
-        <ID>4</ID>
-        <TimeToStart>23</TimeToStart>
-        <TimeToFinish>3</TimeToFinish>
-         <StageToEndAt>0</StageToEndAt>
-        <EndX>82</EndX>
-        <EndY>43</EndY>
-      </Item>
     </Routes>
   </Asset>
 </XnaContent>
