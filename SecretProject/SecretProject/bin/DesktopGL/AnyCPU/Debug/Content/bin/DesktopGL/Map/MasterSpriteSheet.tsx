@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <terraintypes>
   <terrain name="dirt" tile="904"/>
@@ -905,7 +905,7 @@
  <tile id="1063">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-32,-48,64,48"/>
+   <property name="newSource" value="-32,-48,80,64"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>
@@ -2140,6 +2140,9 @@
    <property name="loot" value="520:100:5,1003:10:2"/>
    <property name="spawnWith" value="3563"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="1.125" y="0.3125" width="13.6875" height="2.3125"/>
+  </objectgroup>
  </tile>
  <tile id="3723">
   <objectgroup draworder="index">
