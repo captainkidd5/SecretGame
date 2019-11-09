@@ -58,7 +58,7 @@ namespace SecretProject.Class.Universal
            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
             WeekDay = DayOfWeek.Monday;
-            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet);
+            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
             ClockSpeed = 15;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
@@ -156,7 +156,7 @@ namespace SecretProject.Class.Universal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition);
+            ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition, ClockDisplay.SourceRectangle,2f);
         }
     }
 }

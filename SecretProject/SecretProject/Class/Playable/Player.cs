@@ -129,7 +129,7 @@ namespace SecretProject.Class.Playable
         {
             get
             {
-                return new Rectangle((int)position.X - 16, (int)position.Y, 64, 64);
+                return new Rectangle((int)position.X - 24, (int)position.Y, 64, 64);
             }
         }
 
@@ -149,7 +149,7 @@ namespace SecretProject.Class.Playable
             Swiping = new Sprite[4, 5];
 
             MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, this, ColliderType.inert);
-            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, this, ColliderType.inert);
+            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, this, ColliderType.Undetectable);
             Inventory = new Inventory(7) { Money = 10000 };
 
             controls = new PlayerControls(0);

@@ -70,7 +70,7 @@ namespace SecretProject.Class.UI
             IsActivated = stayActivated;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation, Rectangle sourceRectangle, float scale)
         {
             spriteBatch.Begin();
 
@@ -81,8 +81,9 @@ namespace SecretProject.Class.UI
                     Game1.Player.UserInterface.BottomBar.IsActive = false;
                 }
                 
-                spriteBatch.Draw(this.Texture, textBoxLocation, new Rectangle(48, 176, 128, 64), Color.White, 0f,
-                    Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.Draw(this.Texture, textBoxLocation, sourceRectangle, Color.White, 0f,
+                    Game1.Utility.Origin, scale,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White);
               
             }
 

@@ -40,6 +40,8 @@ namespace SecretProject.Class.NPCStuff
 
         public override void Update(GameTime gameTime, MouseManager mouse)
         {
+            this.IsMoving = true;
+            CollideOccured = false;
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;
@@ -58,7 +60,10 @@ namespace SecretProject.Class.NPCStuff
                 //if obj collided with item in list stop it from moving boom badda bing
                 if (returnObjects[i].ColliderType != ColliderType.NPC && Collider.DidCollide(returnObjects[i], Position))
                 {
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
                     CollideOccured = true;
+                    IsMoving = false;
+
                 }
 
             }

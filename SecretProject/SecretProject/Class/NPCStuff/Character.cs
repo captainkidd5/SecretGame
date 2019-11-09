@@ -141,6 +141,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         #region UPDATE METHODS
         public virtual void Update(GameTime gameTime, MouseManager mouse)
         {
+            this.IsMoving = true;
+            CollideOccured = false;
             if (this.IsBasicNPC)
             {
                 UpdateBasicNPC(gameTime, mouse);
@@ -163,21 +165,23 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             {
                 //if obj collided with item in list stop it from moving boom badda bing
 
-                if (returnObjects[i].ColliderType != ColliderType.NPC && Collider.DidCollide(returnObjects[i], Position))
+                if (returnObjects[i].ColliderType != ColliderType.NPC && returnObjects[i].ColliderType != ColliderType.Undetectable && Collider.DidCollide(returnObjects[i], Position))
                 {
+                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
                     CollideOccured = true;
+                    IsMoving = false;
                 }
 
             }
             //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
-            for(int i = 0; i < 4; i++)
-            {
-                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-            }
+           
 
             if (IsMoving)
             {
-
+                for (int i = 0; i < 4; i++)
+                {
+                    NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+                }
 
                 UpdateDirection();
                 if(CollideOccured)
@@ -346,11 +350,16 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         #region SCHEDULE AND PATHFINDING
         public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
         {
-            for (int i = 0; i < routeSchedule.Routes.Count; i++)
+            if (!this.CollideOccured)
             {
 
-                MoveToTile(gameTime, this.RouteSchedule.Routes[i]);
 
+                for (int i = 0; i < routeSchedule.Routes.Count; i++)
+                {
+
+                    MoveToTile(gameTime, this.RouteSchedule.Routes[i]);
+
+                }
             }
 
         }
@@ -405,7 +414,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                     if (pathFound == false)
                     {
-                        this.IsMoving = true;
+
+                            this.IsMoving = true;
+                        
+                       
                         if (route.StageToEndAt == CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,

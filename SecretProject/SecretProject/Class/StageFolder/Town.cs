@@ -127,7 +127,7 @@ namespace SecretProject.Class.StageFolder
 
             QuadTree.Insert(player.BigCollider);
 
-           //QuadTree.Insert(player.MainCollider);
+           QuadTree.Insert(player.MainCollider);
 
 
             foreach (Character character in CharactersPresent)

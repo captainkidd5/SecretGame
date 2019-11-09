@@ -315,7 +315,7 @@ namespace SecretProject.Class.TileStuff
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
                     TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
                     //AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
-                      //  frameholder.Frames[frameholder.Counter].ID + 1);
+                    //  frameholder.Frames[frameholder.Counter].ID + 1);
                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                     {
                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
@@ -359,8 +359,24 @@ namespace SecretProject.Class.TileStuff
             Game1.Player.CollideOccured = false;
             int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X / 16);
             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16);
+            int playerI = (int)((Game1.Player.Position.X +16) / 16);
+            int playerJ = (int)((Game1.Player.Position.Y + 16 )/ 16);
             for (int z = 0; z < AllTiles.Count; z++)
             {
+                if (Game1.Player.IsMoving)
+                {
+                    if (z == 0)
+                    {
+                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
+                        {
+                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            {
+                                Game1.SoundManager.PlaySoundEffectFromInt(false, 1, int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]), .75f);
+                            }
+                        }
+                        //    {
+                    }
+                }
                 if (mouseI < AllTiles[z].GetLength(0) && mouseJ < AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
                 {
 
@@ -376,16 +392,18 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 0)
                             {
-                                //if (Game1.Player.IsMoving)
-                                //{
-                                //    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][mouseI, mouseJ].GID))
-                                //    {
-                                //        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][mouseI, mouseJ].DestinationRectangle))
-                                //        {
-                                //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, (int)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["step"]), .75f);
-                                //        }
-                                //    }
-                                //}
+                                if (Game1.Player.IsMoving)
+                                {
+
+
+                                    //    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][mouseI, mouseJ].GID))
+                                    //    {
+                                    //        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][mouseI, mouseJ].DestinationRectangle))
+                                    //        {
+                                    //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, (int)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["step"]), .75f);
+                                    //        }
+                                    //    }
+                                }
 
 
                             }
@@ -455,7 +473,7 @@ namespace SecretProject.Class.TileStuff
             //{
             //    GridItem.Update(gameTime, this, this);
             //}
-            
+
         }
 
         #endregion
@@ -535,8 +553,8 @@ namespace SecretProject.Class.TileStuff
             //{
             //    GridItem.Draw(spriteBatch, this, this);
             //}
-           
-           
+
+
 
 
         }
