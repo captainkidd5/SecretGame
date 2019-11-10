@@ -6,10 +6,10 @@
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
-      <TimeToFinish>15</TimeToFinish>
+      <TimeToFinish>12</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>8</EndX>
-      <EndY>12</EndY>
+      <EndX>39</EndX>
+      <EndY>55</EndY>
     </Item>
     
     </Routes>

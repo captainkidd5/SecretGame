@@ -60,7 +60,7 @@ namespace SecretProject.Class.Universal
             WeekDay = DayOfWeek.Monday;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
-            ClockSpeed = 15;
+            ClockSpeed = 5;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
 
 
@@ -143,7 +143,20 @@ namespace SecretProject.Class.Universal
             //int cleanTime = int.Parse(UnpausedTime.ToString());
             // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
             float testColor = (float)(1 + ColorMultiplier * .1);
-            ClockDisplay.TextToWrite = "Total Hours: " + TotalHours.ToString() + " \n Days: " + TotalDays.ToString() + "\n" + WeekDay.ToString();
+            string displayString = "";
+            if (TotalHours > 11)
+            {
+                displayString = (TotalHours - 12).ToString() + ":00 PM";
+            }
+            else if(TotalHours ==0)
+            {
+                displayString = "12:00 AM";
+            }
+            else
+            {
+                displayString = TotalHours.ToString() + ":00 AM";
+            }
+            ClockDisplay.TextToWrite = "      " + displayString + " \n Days: " + TotalDays.ToString() + "\n" + WeekDay.ToString();
             ClockDisplay.Update(gameTime, true);
             
 
