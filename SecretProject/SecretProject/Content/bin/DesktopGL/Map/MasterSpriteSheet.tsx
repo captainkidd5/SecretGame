@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.2.5" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <terraintypes>
   <terrain name="dirt" tile="904"/>
@@ -892,6 +892,11 @@
    <object id="1" x="0.0454559" y="0.181809" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="1051">
+  <objectgroup draworder="index">
+   <object id="1" x="3.625" y="0.4375" width="8.75" height="15.375"/>
+  </objectgroup>
+ </tile>
  <tile id="1054">
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.272718" width="7.72727" height="15.8182"/>
@@ -1062,7 +1067,22 @@
  </tile>
  <tile id="1149">
   <objectgroup draworder="index">
-   <object id="1" x="0.227274" y="0.0909" width="7.72727" height="15.8182"/>
+   <object id="1" x="4.22727" y="-0.0341" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="1150">
+  <objectgroup draworder="index">
+   <object id="1" x="3.5" y="0.3125" width="8.75" height="15.375"/>
+  </objectgroup>
+ </tile>
+ <tile id="1151">
+  <objectgroup draworder="index">
+   <object id="1" x="3.75" y="0.375" width="8.75" height="15.375"/>
+  </objectgroup>
+ </tile>
+ <tile id="1152">
+  <objectgroup draworder="index">
+   <object id="1" x="3.875" y="0.3125" width="8.75" height="15.375"/>
   </objectgroup>
  </tile>
  <tile id="1154">
@@ -1249,7 +1269,7 @@
  </tile>
  <tile id="1249">
   <objectgroup draworder="index">
-   <object id="1" x="0.227274" y="0.181809" width="7.72727" height="15.8182"/>
+   <object id="1" x="3.85227" y="0.181809" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
  <tile id="1254">
@@ -1455,7 +1475,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="0" y="4" width="16" height="5"/>
+   <object id="1" x="4.25" y="7.625" width="7.875" height="5"/>
   </objectgroup>
  </tile>
  <tile id="1350">
@@ -1479,7 +1499,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="0" y="9.25" width="16" height="5"/>
+   <object id="1" x="0" y="9.25" width="12" height="5"/>
   </objectgroup>
  </tile>
  <tile id="1353">
@@ -1487,7 +1507,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
-   <object id="1" x="-0.25" y="9.25" width="16" height="5"/>
+   <object id="1" x="4.5" y="8.375" width="11.5" height="5"/>
   </objectgroup>
  </tile>
  <tile id="1355">
@@ -1708,16 +1728,25 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="7.875" width="11.5" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1551">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="3.75" y="9.75" width="8.25" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1552">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="4" y="8.125" width="12.25" height="5"/>
+  </objectgroup>
  </tile>
  <tile id="1557">
   <properties>
