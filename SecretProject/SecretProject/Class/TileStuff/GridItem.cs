@@ -196,7 +196,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 if (this.PlaceID == 2157)
                                 {
-                                    Portal tempPortal = new Portal(3, 8, 0, 50, true);
+                                    Portal tempPortal = new Portal(3,5, 0, 50, true);
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle;
                                    // tempPortal.
                                     Game1.World.AllPortals.Add(tempPortal);
