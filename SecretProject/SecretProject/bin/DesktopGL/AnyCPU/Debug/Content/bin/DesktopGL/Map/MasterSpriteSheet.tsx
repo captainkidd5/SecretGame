@@ -2346,6 +2346,7 @@
  <tile id="9024">
   <properties>
    <property name="action" value="triggerLift"/>
+   <property name="newHitBox" value="-16,-16,64,32"/>
    <property name="newSource" value="-32,-96,96,112"/>
   </properties>
  </tile>

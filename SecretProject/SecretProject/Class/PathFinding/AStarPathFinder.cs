@@ -16,13 +16,18 @@ namespace SecretProject.Class.PathFinding
 
         public byte[,] Weight;
 
-
+        //0 means no object, 1 means object
 
 
         public AStarPathFinder(int mapWidth, int mapHeight, List<Tile[,]> tiles, List<ICollidable> objects, byte defaultValue = 0)
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
+
+            for(int i = 0; i < objects.Count; i++)
+            {
+
+            }
             for (int z = 0; z < 4; z++)
             {
 
