@@ -23,21 +23,25 @@ namespace SecretProject.Class.PathFinding
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
-
-            for (var i = 0; i < mapWidth; i++)
+            for (int z = 0; z < 4; z++)
             {
-                for (var j = 0; j < mapHeight; j++)
-                {
-                    string tileKey = tiles[1][i, j].GetTileKey(1);
-                    if (objects.Exists(x => x.LocationKey == tileKey))
-                    {
-                        Weight[i, j] = 0;
-                    }
-                    else
-                    {
-                        Weight[i, j] = 1;
-                    }
 
+
+                for (var i = 0; i < mapWidth; i++)
+                {
+                    for (var j = 0; j < mapHeight; j++)
+                    {
+                        string tileKey = tiles[z][i, j].GetTileKey(1);
+                        if (objects.Exists(x => x.LocationKey == tileKey))
+                        {
+                            Weight[i, j] = 0;
+                        }
+                        else
+                        {
+                            Weight[i, j] = 1;
+                        }
+
+                    }
                 }
             }
         }

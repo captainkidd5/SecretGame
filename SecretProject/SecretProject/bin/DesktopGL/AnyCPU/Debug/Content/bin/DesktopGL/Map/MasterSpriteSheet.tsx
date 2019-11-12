@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <terraintypes>
   <terrain name="dirt" tile="904"/>
@@ -1067,7 +1067,7 @@
  </tile>
  <tile id="1149">
   <objectgroup draworder="index">
-   <object id="1" x="0.227274" y="0.0909" width="7.72727" height="15.8182"/>
+   <object id="1" x="4.22727" y="-0.0341" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
  <tile id="1150">
@@ -1269,7 +1269,7 @@
  </tile>
  <tile id="1249">
   <objectgroup draworder="index">
-   <object id="1" x="0.227274" y="0.181809" width="7.72727" height="15.8182"/>
+   <object id="1" x="3.85227" y="0.181809" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
  <tile id="1254">
@@ -2342,6 +2342,18 @@
    <frame tileid="7815" duration="100"/>
    <frame tileid="7515" duration="100"/>
   </animation>
+ </tile>
+ <tile id="9024">
+  <properties>
+   <property name="action" value="triggerLift"/>
+   <property name="newSource" value="-32,-96,96,112"/>
+  </properties>
+ </tile>
+ <tile id="9624">
+  <properties>
+   <property name="action" value="triggerLift"/>
+   <property name="newSource" value="-32,-80,96,96"/>
+  </properties>
  </tile>
  <tile id="9702">
   <animation>
