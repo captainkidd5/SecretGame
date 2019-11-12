@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+  
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -99,7 +101,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this);
+            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
@@ -113,14 +115,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             DebugColor = Color.White;
             this.PortalTraverser = new GraphTraverser(Game1.PortalGraph);
 
-            if(characterPortraitTexture != null)
+            if (characterPortraitTexture != null)
             {
                 this.CharacterPortraitTexture = characterPortraitTexture;
             }
 
             this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
-            
-            
+
+
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
@@ -132,7 +134,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
 
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.NPC);
+            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.CurrentDirection = 0;
 
         }
@@ -174,27 +176,27 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
             }
             //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
-           
 
 
-                for (int i = 0; i < 4; i++)
-                {
-                    NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
-                }
 
-                UpdateDirection();
-                if(CollideOccured)
-                {
-                    this.PrimaryVelocity = Collider.Velocity;
-                }
-                
+            for (int i = 0; i < 4; i++)
+            {
+                NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
+            }
+
+            UpdateDirection();
+            if (CollideOccured)
+            {
+                this.PrimaryVelocity = Collider.Velocity;
+            }
 
 
-            if(!this.IsInEvent)
+
+            if (!this.IsInEvent)
             {
                 FollowSchedule(gameTime, this.RouteSchedule);
             }
-            
+
             if (!DisableInteractions)
             {
                 CheckSpeechInteraction(mouse, FrameToSet);
@@ -211,7 +213,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
             }
-            
+
         }
 
         public void EventUpdate(GameTime gameTime)
@@ -264,7 +266,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
                 {
-                    if(this.CharacterPortraitTexture != null)
+                    if (this.CharacterPortraitTexture != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
@@ -300,11 +302,11 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
-                    if(skeleton.SelectableOptions != null)
+                    if (skeleton.SelectableOptions != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
                     }
-                    
+
                     this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
 
 
@@ -313,7 +315,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
         }
         #endregion
-        
+
         #region PLAYER DIRECTION
         public void UpdateDirectionVector(Vector2 positionToFace)
         {
@@ -369,7 +371,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
 
         }
-       
+
         float timeBetweenJumps = .4f;
         public int pointCounter = 0;
         public bool pathFound = false;
@@ -390,12 +392,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public Point FindIntermediateStages(int stageFrom, int stageTo)
         {
             nodeToEndAt = 100;
-            if(PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
+            if (PortalTraverser.Graph.HasEdge(stageFrom, stageTo))
             {
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
                 return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.X / 16,
-                            (Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y+32) / 16);
+                            (Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y + 32) / 16);
             }
             else
             {
@@ -421,23 +423,23 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     if (pathFound == false)
                     {
 
-                            this.IsMoving = true;
-                        
-                       
+                        this.IsMoving = true;
+
+
                         if (route.StageToEndAt == (int)CurrentStageLocation)
                         {
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY),this.Name);
+                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY), this.Name);
 
                             pathFound = true;
                         }
                         else
                         {
-                        
+
                             Point testPoint = FindIntermediateStages((int)CurrentStageLocation, route.StageToEndAt);
                             currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
                              ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
-                           testPoint,this.Name);
+                           testPoint, this.Name);
 
                             pathFound = true;
                         }
@@ -457,7 +459,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     if (pointCounter < currentPath.Count)
                     {
                         Rectangle debugREctangle = NPCPathFindRectangle;
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count-1].X * 16 + 8, currentPath[currentPath.Count -1].Y * 16 + 8, 8, 8));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 8, currentPath[currentPath.Count - 1].Y * 16 + 8, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -469,16 +471,16 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                         if (route.StageToEndAt != (int)CurrentStageLocation)
                         {
-                            if(nodeToEndAt!= (int)CurrentStageLocation)
+                            if (nodeToEndAt != (int)CurrentStageLocation)
                             {
                                 this.Position = new Vector2(Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.X,
-                                Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To ==(int)CurrentStageLocation).PortalStart.Y);
+                                Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.Y);
                                 Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
                                 CurrentStageLocation = (Stages)nodeToEndAt;
                                 Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);
                             }
 
-                            
+
 
                         }
 
@@ -493,7 +495,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     this.CurrentDirection = 0;
                 }
             }
-            
+
 
         }
 
@@ -523,62 +525,62 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         {
 
 
-                if (!this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
+            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
+            {
+
+
+                if (pathFound == false)
                 {
+                    this.IsMoving = true;
+
+                    currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
+                    ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point, this.Name);
+
+                    pathFound = true;
 
 
-                    if (pathFound == false)
-                    {
-                        this.IsMoving = true;
 
-                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point, this.Name);
-
-                            pathFound = true;
-                        
-
-
-                    }
-                    //
-                    timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 6, 6);
-                    if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
-                    {
-                        pointCounter++;
-                        timeBetweenJumps = .4f;
-                    }
-
-
-                    if (pointCounter < currentPath.Count)
-                    {
-                        Rectangle debugREctangle = NPCPathFindRectangle;
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 8, currentPath[currentPath.Count - 1].Y * 16 + 8, 8, 8));
-                    }
-                    else
-                    {
-                        pathFound = false;
-                        pointCounter = 0;
-                        this.IsMoving = false;
-                        this.CurrentDirection = 0;
-
-                    }
+                }
+                //
+                timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16, currentPath[pointCounter].Y * 16, 6, 6);
+                if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
+                {
+                    pointCounter++;
+                    timeBetweenJumps = .4f;
                 }
 
+
+                if (pointCounter < currentPath.Count)
+                {
+                    Rectangle debugREctangle = NPCPathFindRectangle;
+                    MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 8, currentPath[currentPath.Count - 1].Y * 16 + 8, 8, 8));
+                }
                 else
                 {
                     pathFound = false;
                     pointCounter = 0;
                     this.IsMoving = false;
                     this.CurrentDirection = 0;
+
                 }
-            
+            }
+
+            else
+            {
+                pathFound = false;
+                pointCounter = 0;
+                this.IsMoving = false;
+                this.CurrentDirection = 0;
+            }
+
 
 
         }
 
         public bool IsAtTile(Point point)
         {
-            if(this.NPCPathFindRectangle.Intersects(new Rectangle(point.X*16, point.Y*16, 16,16)))
+            if (this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
             {
                 return true;
             }
@@ -629,7 +631,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 }
                 switch (CurrentDirection)
                 {
-                   
+
                     case 0:
                         float num = .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
                         NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
@@ -648,7 +650,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
         }
         #endregion
-        
+
 
         #region DEBUG
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
@@ -680,17 +682,17 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            if(NextPointRectangleTexture != null && DebugTexture != null)
+            if (NextPointRectangleTexture != null && DebugTexture != null)
             {
                 //spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
-            spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: DebugColor, layerDepth: layerDepth);
+                spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: DebugColor, layerDepth: layerDepth);
 
-            for (int i = 0; i < currentPath.Count - 1; i++)
-            {
-                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16, currentPath[i].Y * 16), new Vector2(currentPath[i + 1].X * 16, currentPath[i + 1].Y * 16),this.DebugColor);
+                for (int i = 0; i < currentPath.Count - 1; i++)
+                {
+                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(currentPath[i].X * 16 + 8, currentPath[i].Y * 16 +8), new Vector2(currentPath[i + 1].X * 16 + 8, currentPath[i + 1].Y * 16 + 8), this.DebugColor);
+                }
             }
-            }
-            
+
 
             //spriteBatch.Draw(NextPointTexture, DebugNextPoint, color: Color.Blue, layerDepth: layerDepth);
         }
@@ -698,3 +700,4 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
     }
 }
+
