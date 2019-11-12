@@ -31,12 +31,8 @@ namespace SecretProject.Class.PathFinding
                 {
                     for (var j = 0; j < mapHeight; j++)
                     {
-                        string tileKey = tiles[z][i, j].GetTileKey(1);
+                        string tileKey = tiles[z][i, j].GetTileKey(z);
                         if (objects.Exists(x => x.LocationKey == tileKey))
-                        {
-                            Weight[i, j] = 0;
-                        }
-                        else
                         {
                             Weight[i, j] = 1;
                         }
@@ -156,7 +152,7 @@ namespace SecretProject.Class.PathFinding
             // up
             if (node.Y > 0)
             {
-                if (Weight[node.X, node.Y - 1] > 0)
+                if (Weight[node.X, node.Y - 1] < 1)
                 {
                     nodes.Add(new Point(node.X, node.Y - 1));
                 }
@@ -168,7 +164,7 @@ namespace SecretProject.Class.PathFinding
             {
 
 
-                if (Weight[node.X + 1, node.Y] > 0)
+                if (Weight[node.X + 1, node.Y] < 1)
                 {
                     nodes.Add(new Point(node.X + 1, node.Y));
                 }
@@ -177,7 +173,7 @@ namespace SecretProject.Class.PathFinding
             // down
             if (node.Y < Weight.GetLength(1) - 1)
             {
-                if (Weight[node.X, node.Y + 1] > 0)
+                if (Weight[node.X, node.Y + 1] < 1)
                 {
                     nodes.Add(new Point(node.X, node.Y + 1));
                 }
@@ -187,7 +183,7 @@ namespace SecretProject.Class.PathFinding
             // left
             if (node.X > 0)
             {
-                if (Weight[node.X - 1, node.Y] > 0)
+                if (Weight[node.X - 1, node.Y] < 1)
                 {
                     nodes.Add(new Point(node.X - 1, node.Y));
                 }
