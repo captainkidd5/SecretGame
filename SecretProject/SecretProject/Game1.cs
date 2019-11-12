@@ -74,6 +74,7 @@ namespace SecretProject
         World = 3,
         DobbinHouse = 4,
         PlayerHouse = 5,
+        GeneralStore = 6,
         MainMenu = 50,
         Exit = 55,
         
@@ -102,6 +103,7 @@ namespace SecretProject
         public static TmxStageBase DobbinHouse;
         public static World World;
         public static TmxStageBase PlayerHouse;
+        public static TmxStageBase GeneralStore;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -289,6 +291,8 @@ namespace SecretProject
                     return DobbinHouse;
                 case Stages.PlayerHouse:
                     return PlayerHouse;
+               case Stages.GeneralStore:
+                    return GeneralStore;
 
                 default:
                     return null;
@@ -321,6 +325,8 @@ namespace SecretProject
                     return DobbinHouse;
                 case Stages.PlayerHouse:
                     return PlayerHouse;
+                case Stages.GeneralStore:
+                    return GeneralStore;
                 default:
                     return null;
 
@@ -350,6 +356,8 @@ namespace SecretProject
 
                 case Stages.PlayerHouse:
                     return Stages.PlayerHouse;
+                case Stages.GeneralStore:
+                    return Stages.GeneralStore;
 
                 default:
                     return Stages.Town;
@@ -439,11 +447,13 @@ namespace SecretProject
             JulianHouse = new TmxStageBase("JulianHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
             DobbinHouse = new TmxStageBase("DobbinHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             PlayerHouse = new TmxStageBase("PlayerHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
+            GeneralStore = new TmxStageBase("GeneralStore", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
+
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse };
+            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -696,6 +706,9 @@ namespace SecretProject
                     case Stages.PlayerHouse:
                         PlayerHouse.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.GeneralStore:
+                        GeneralStore.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -753,6 +766,10 @@ namespace SecretProject
                 case Stages.PlayerHouse:
                     GraphicsDevice.Clear(Color.Black);
                     PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.GeneralStore:
+                    GraphicsDevice.Clear(Color.Black);
+                    GeneralStore.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

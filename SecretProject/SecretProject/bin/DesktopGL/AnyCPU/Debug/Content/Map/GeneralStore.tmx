@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="32">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextobjectid="32">
  <tileset firstgid="1" source="InteriorSpriteSheet.tsx"/>
  <tileset firstgid="10001" source="MasterSpriteSheet.tsx"/>
- <layer id="1" name="background" width="30" height="30">
+ <layer name="background" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -36,18 +36,18 @@
 0,0,0,0,106,107,106,107,106,107,106,107,106,107,106,107,106,206,207,206,207,206,207,206,207,206,207,0,0,0
 </data>
  </layer>
- <objectgroup id="2" name="Portal">
-  <object id="31" x="312.25" y="380.417" width="19" height="16">
+ <objectgroup name="Portal">
+  <object id="31" x="271" y="456" width="19" height="16">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-32"/>
-    <property name="standardFrom" value="ElixirHouse"/>
+    <property name="standardFrom" value="GeneralStore"/>
     <property name="standardTo" value="Town"/>
    </properties>
   </object>
  </objectgroup>
- <layer id="3" name="buildings" width="30" height="30">
+ <layer name="buildings" width="30" height="30" opacity="0.9">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -56,9 +56,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,253,254,254,254,254,254,254,254,254,254,254,254,254,254,255,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,355,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,355,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,355,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,353,454,454,454,454,454,454,454,454,454,454,454,454,454,455,254,254,254,254,254,254,254,254,256,0,0,0,
+0,0,0,353,0,0,0,0,0,0,1420,1421,1420,1421,1420,1421,0,355,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,353,0,0,0,0,0,0,1520,1521,1520,1521,1520,1521,0,355,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,353,454,454,454,454,454,454,1620,1621,1620,1621,1620,1621,454,455,254,254,254,254,254,254,254,254,256,0,0,0,
 0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,353,0,0,0,
 0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,353,0,0,0,
 0,0,0,353,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,353,0,0,0,
@@ -81,7 +81,7 @@
 0,0,0,555,254,254,254,254,254,254,254,254,254,254,254,254,0,0,0,254,254,254,254,254,254,254,453,0,0,0
 </data>
  </layer>
- <layer id="4" name="midGround" width="30" height="30">
+ <layer name="midGround" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -115,7 +115,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="foreGround" width="30" height="30">
+ <layer name="foreGround" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
