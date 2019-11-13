@@ -557,9 +557,27 @@ namespace SecretProject.Class.TileStuff
 
                             int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X / 16 - (ChunkUnderMouse.X * 16));
                             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16 - (ChunkUnderMouse.Y * 16));
+                            int playerI = (int)(Game1.Player.position.X / 16 - (ChunkUnderPlayer.X * 16));
+                            int playerJ = (int)(Game1.Player.position.Y / 16 - (ChunkUnderPlayer.Y * 16));
 
                             for (int z = 0; z < 4; z++)
                             {
+                                if (Game1.Player.IsMoving)
+                                {
+                                    if (z == 0)
+                                    {
+
+                                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID))
+                                        {
+                                            if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                            {
+
+                                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                            }
+                                        }
+
+                                    }
+                                }
                                 // ActiveChunks[a, b].AllTiles[z][mouseI, mouseJ]
                                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                                 {

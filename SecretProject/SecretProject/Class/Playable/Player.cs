@@ -322,7 +322,9 @@ namespace SecretProject.Class.Playable
                         {
                             animations[i, j].UpdateAnimationPosition(this.Position);
                             animations[i, j].UpdateAnimations(gameTime, this.position);
+                            
                         }
+                        
                     }
 
                 }
@@ -434,7 +436,6 @@ namespace SecretProject.Class.Playable
                 }
                 MainCollider.Rectangle = this.ColliderRectangle;
                 MainCollider.Velocity = this.PrimaryVelocity;
-                //MainCollider.DidCollideMagnet(items);
 
                 BigCollider.Rectangle = this.ClickRangeRectangle;
                 BigCollider.Velocity = this.PrimaryVelocity;
@@ -565,7 +566,8 @@ namespace SecretProject.Class.Playable
                 this.Position = new Vector2(this.position.X, Game1.GetCurrentStage().MapRectangle.Bottom - 16);
             }
         }
-
+        int oldSoundFrame1 = 0;
+        public int WalkSoundEffect { get; set; }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
@@ -578,6 +580,15 @@ namespace SecretProject.Class.Playable
                 for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                 {
                     PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, PlayerMovementAnimations[i].LayerDepth + layerDepth);
+                    if(IsMoving)
+                    {
+                        if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                        {
+                            Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect, Game1.SoundManager.GameVolume);
+                        }
+                    }
+                    
+                    oldSoundFrame1 = PlayerMovementAnimations[i].CurrentFrame;
                 }
 
             }

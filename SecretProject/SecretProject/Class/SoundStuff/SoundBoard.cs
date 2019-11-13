@@ -174,10 +174,11 @@ namespace SecretProject.Class.SoundStuff
 
         public void PlaySoundEffectInstance(SoundEffect soundEffect, float volume)
         {
-            SoundEffectInstance instance = soundEffect.CreateInstance();
-            instance.Volume = volume;
-            instance.Play();
-            instance.Dispose();
+            //SoundEffectInstance instance = soundEffect.CreateInstance();
+            //instance.Volume = volume;
+            //instance.Play();
+            //instance.Dispose();
+            soundEffect.Play(volume, 1f, 1f);
         }
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey, float volume)
