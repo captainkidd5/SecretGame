@@ -7,7 +7,7 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
-using SecretProject.Class.Transportation;
+
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -655,34 +655,35 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
                         // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
                         // {
                         //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
                         //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
                         //  Game1.SoundManager.GearSpin.Play();
-                        string liftKey;
-                        if (container.Type == 0)
-                        {
-                            liftKey = i.ToString() + j.ToString();
-                            if (!Game1.Lifts.ContainsKey(liftKey))
-                            {
-                                Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                                Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
-                            }
-                        }
-                        else
-                        {
-                            liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
-                            if (!Game1.Lifts.ContainsKey(liftKey))
-                            {
-                                Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                                Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
-                            }
-                        }
+                        //string liftKey;
+                        //if (container.Type == 0)
+                        //{
+                        //    liftKey = i.ToString() + j.ToString();
+                        //    if (!Game1.Lifts.ContainsKey(liftKey))
+                        //    {
+                        //        Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
+                        //        Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
+                        //    if (!Game1.Lifts.ContainsKey(liftKey))
+                        //    {
+                        //        Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
+                        //        Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
+                        //    }
+                        //}
 
-                        Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
+                        //Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
 
-                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
+                        //Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
                     }
                     break;
                 case "replaceLargeCog":

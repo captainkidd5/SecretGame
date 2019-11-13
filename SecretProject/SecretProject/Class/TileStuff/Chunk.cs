@@ -440,13 +440,13 @@ namespace SecretProject.Class.TileStuff
             {
                 //STARTING CHUNK
 
-                AllTiles[3][8, 5] = new Tile(8, 5, 2305);
-                string liftKey = "0085";
-                if (!Game1.Lifts.ContainsKey(liftKey))
-                {
-                    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, "Wilderness");
-                    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness"));
-                }
+                //AllTiles[3][8, 5] = new Tile(8, 5, 2305);
+                //string liftKey = "0085";
+                //if (!Game1.Lifts.ContainsKey(liftKey))
+                //{
+                //    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, "Wilderness");
+                //    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness"));
+                //}
             }
 
             switch (this.SimulationType)

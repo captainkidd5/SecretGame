@@ -32,7 +32,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
 using static SecretProject.Class.UI.CheckList;
 using SecretProject.Class.EventStuff;
-using SecretProject.Class.Transportation;
+
 
 
 //TODO: Make enum for player actions, items, world items etc so that strings aren't used
@@ -213,7 +213,7 @@ namespace SecretProject
 
         //PORTALS
         public static Graph PortalGraph;
-        public static Dictionary<string, Lift> Lifts;
+
 
         public static bool IsEventActive;
 
@@ -436,9 +436,6 @@ namespace SecretProject
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
             Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1) { StageIdentifier = (int)Stages.Town};
 
-            Lifts = new Dictionary<string, Lift>();
-            Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton("9248","Town");
-            Game1.Lifts.Add("9248", new Lift("9248", (int)Stages.Town, new Vector2(92 * 16, 48 * 16), "Town"));
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.World };
 
 
@@ -782,7 +779,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("joe", new Vector2(1600, 700), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(800, 800), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:

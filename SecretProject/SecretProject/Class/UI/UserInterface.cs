@@ -13,6 +13,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.Transportation;
 using static SecretProject.Class.UI.CheckList;
 
 namespace SecretProject.Class.UI
@@ -44,7 +45,7 @@ namespace SecretProject.Class.UI
         ShopMenu = 2,
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
-        LiftWindow = 5,
+        WarpGate = 5,
         ProgressBook = 6,
         DepositBox = 7,
     }
@@ -76,12 +77,13 @@ namespace SecretProject.Class.UI
 
         public CraftingMenu CraftingMenu { get; set; }
 
-        public LiftWindow LiftWindow { get; set; }
+
         public DepositBox DepositBox { get; set; }
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar PlayerStaminaBar { get; set; }
+        public WarpGate WarpGate { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
 
@@ -108,12 +110,12 @@ namespace SecretProject.Class.UI
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-            LiftWindow = new LiftWindow(graphicsDevice);
             this.DepositBox = new DepositBox(content, graphicsDevice);
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
             this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, .2f);
+            WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
             InfoBox = new InfoPopUp("Text Not Assigned");
@@ -236,15 +238,7 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
-                case ExclusiveInterfaceItem.LiftWindow:
-                    Game1.freeze = true;
-                    LiftWindow.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
-                    }
-                    break;
                 case ExclusiveInterfaceItem.ProgressBook:
                     Game1.freeze = true;
                     for(int i =0; i < Game1.AllProgressBooks.Count; i++)
@@ -269,6 +263,16 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.DepositBox:
                     Game1.freeze = true;
                     DepositBox.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
+
+                case ExclusiveInterfaceItem.WarpGate:
+                    Game1.freeze = true;
+                    WarpGate.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -347,9 +351,7 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Draw(spriteBatch);
                     break;
-                case ExclusiveInterfaceItem.LiftWindow:
-                    LiftWindow.Draw(spriteBatch);
-                    break;
+
                 case ExclusiveInterfaceItem.ProgressBook:
                     for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
                     {
@@ -361,6 +363,10 @@ namespace SecretProject.Class.UI
                     break;
                 case ExclusiveInterfaceItem.DepositBox:
                     DepositBox.Draw(spriteBatch);
+                    break;
+
+                case ExclusiveInterfaceItem.WarpGate:
+                    WarpGate.Draw(spriteBatch);
                     break;
 
                 //case ExclusiveInterfaceItem.CookingMenu:
