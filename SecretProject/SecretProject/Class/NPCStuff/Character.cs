@@ -448,7 +448,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     }
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 + 8, currentPath[pointCounter].Y * 16 + 8, 6, 6);
+                    NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 , currentPath[pointCounter].Y * 16 , 16,16);
                     if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
                     {
                         pointCounter++;
@@ -459,7 +459,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     if (pointCounter < currentPath.Count)
                     {
                         Rectangle debugREctangle = NPCPathFindRectangle;
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 8, currentPath[currentPath.Count - 1].Y * 16 + 8, 8, 8));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X + 15, NextPointRectangle.Y + 15), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 3, currentPath[currentPath.Count - 1].Y * 16 + 3, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -592,19 +592,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {
 
-            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X, NPCPathFindRectangle.Y) + new Vector2((float).0000000001, (float).0000000001)));
+            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X , NPCPathFindRectangle.Y ) + new Vector2((float).0000000001, (float).0000000001)));
 
             this.DirectionVector = direction;
-            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(rectangle.X, rectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y, rectangle.Width, rectangle.Height)))
-            {
+
                 Position += (direction * Speed) * PrimaryVelocity;
                 IsMoving = true;
-            }
-            else
-            {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-                IsMoving = false;
-            }
+            
+
 
         }
         #endregion
