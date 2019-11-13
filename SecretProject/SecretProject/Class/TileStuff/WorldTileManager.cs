@@ -388,8 +388,9 @@ namespace SecretProject.Class.TileStuff
 
 
                                 int index = i;
-
-                                ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
+                                Chunk chunkToSave = ActiveChunks[2, index];
+                            Task.Run(() => chunkToSave.Save());
+                               ActiveChunks[2, index] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + index, 2, index);
                                 Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
 
                             }
@@ -413,7 +414,7 @@ namespace SecretProject.Class.TileStuff
             Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
            
-                Task.Run(() => tempChunkOld.Save());
+               // Task.Run(() => tempChunkOld.Save());
             
 
                 
