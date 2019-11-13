@@ -18,6 +18,7 @@ namespace SecretProject.Class.Transportation
 
         public Button Yes { get; set; }
         public Button No { get; set; }
+        public Stages To { get; set; }
         public WarpGate(GraphicsDevice graphics)
         {
             Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 50, 81, 28), graphics, new Vector2(Game1.Utility.CenterScreenX - 200, Game1.Utility.CenterScreenY), CursorType.Normal,Game1.Utility.GlobalButtonScale);
@@ -30,7 +31,7 @@ namespace SecretProject.Class.Transportation
             No.Update(Game1.myMouseManager);
             if(Yes.isClicked)
             {
-                Transport(Stages.Town);
+                Transport(this.To);
             }
             else if(No.isClicked)
             {
@@ -62,7 +63,8 @@ namespace SecretProject.Class.Transportation
             else
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.GetCurrentStage().AllTiles.LoadInitialChunks();
+                Game1.Player.Position = new Vector2(80, 80);
+                Game1.World.AllTiles.LoadInitialChunks();
             }
             
             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;

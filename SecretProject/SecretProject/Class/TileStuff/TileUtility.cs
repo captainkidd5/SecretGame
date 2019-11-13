@@ -655,6 +655,15 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
+                        if(Game1.GetCurrentStageInt() == Stages.World)
+                        {
+                            Game1.Player.UserInterface.WarpGate.To = Stages.Town;
+                        }
+                        else if(Game1.GetCurrentStageInt() == Stages.Town)
+                        {
+                            Game1.Player.UserInterface.WarpGate.To = Stages.World;
+                        }
+                        
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
                         // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
                         // {
