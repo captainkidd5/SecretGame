@@ -519,7 +519,7 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixer = new Elixir("Elixer", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
+            Elixer = new Elixir("Elixer", new Vector2(300, 115), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(150, 200), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
@@ -533,7 +533,7 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(200, 100), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,

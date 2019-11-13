@@ -8,8 +8,8 @@
       <TimeToStart>6</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>8</EndX>
-      <EndY>12</EndY>
+      <EndX>58</EndX>
+      <EndY>70</EndY>
     </Item>
     </Routes>
   </Asset>

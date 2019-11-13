@@ -441,7 +441,7 @@ namespace SecretProject.Class.TileStuff
                 //STARTING CHUNK
 
                 AllTiles[3][8, 5] = new Tile(8, 5, 9025);
-                AllTiles[1][8, 5] = new Tile(8, 5, 9625);
+                AllTiles[1][8, 5] = new Tile(8, 4, 9625); 
                 //string liftKey = "0085";
                 //if (!Game1.Lifts.ContainsKey(liftKey))
                 //{
@@ -450,50 +450,54 @@ namespace SecretProject.Class.TileStuff
                 //}
             }
 
-            switch (this.SimulationType)
+            else
             {
-                case TileSimulationType.dirt:
-                    TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //STONE
-                    TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
-                    TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
-                    TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
-                    TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
-                    TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
-                    TileUtility.GenerateTiles(1, 1164, "grass", 1, 0, this); //WILLOW
-                    TileUtility.GenerateTiles(1, 1002, "stone", 5, 0, this); //FISSURE
-                    TileUtility.GenerateTiles(3, 1476, "grass", 6, 0, this); //FallenOak
-                    TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(3, 1277, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(3, 1276, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(3, 1275, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
-                    TileUtility.GenerateTiles(1, 1581, "grass", 5, 0, this); //ROCK
-                    TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
-                    TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
+                switch (this.SimulationType)
+                {
+                    case TileSimulationType.dirt:
+                        TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //STONE
+                        TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
+                        TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
+                        TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
+                        TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
+                        TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
+                        TileUtility.GenerateTiles(1, 1164, "grass", 1, 0, this); //WILLOW
+                        TileUtility.GenerateTiles(1, 1002, "stone", 5, 0, this); //FISSURE
+                        TileUtility.GenerateTiles(3, 1476, "grass", 6, 0, this); //FallenOak
+                        TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(3, 1277, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(3, 1276, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(3, 1275, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
+                        TileUtility.GenerateTiles(1, 1581, "grass", 5, 0, this); //ROCK
+                        TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
+                        TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 
 
-                    // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
-                    TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
-                    TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
-                    TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-                    TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+                        // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
+                        TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
+                        TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
+                        TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                        TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
 
-                    break;
+                        break;
 
-                case TileSimulationType.sand:
+                    case TileSimulationType.sand:
 
-                    //TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
-                    break;
-                case TileSimulationType.water:
-                    //TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
-                    //TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
-                    //TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
-                    //TileUtility.GenerateTiles(1, 1164, "grass", 5, 0, this);
+                        //TileUtility.GenerateTiles(1, 1164, "sand", 20, 0, this);
+                        break;
+                    case TileSimulationType.water:
+                        //TileUtility.GenerateTiles(1, 2264, "grass", 10, 0, this);
+                        //TileUtility.GenerateTiles(1, 1079, "grass", 10, 0, this);
+                        //TileUtility.GenerateTiles(1, 1586, "grass", 10, 0, this);
+                        //TileUtility.GenerateTiles(1, 1164, "grass", 5, 0, this);
 
 
-                    break;
+                        break;
+                }
             }
+           
 
 
             for (int z = 0; z < 4; z++)

@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
+ <tile id="150">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="152">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="154">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="156">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="250">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="251">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="253">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="255">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="256">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="258">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="9" height="16"/>
@@ -26,19 +71,143 @@
    <object id="1" x="0" y="1" width="16" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="350">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="351">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="352">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="354">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="355">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="356">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
  <tile id="358">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
- <tile id="458">
+ <tile id="448">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="449">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="451">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="452">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="453">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="454">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="455">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="456">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="457">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="458">
+  <objectgroup draworder="index">
+   <object id="3" x="0" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
  <tile id="469">
   <objectgroup draworder="index">
    <object id="1" x="1" y="4" width="8" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="549">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="550">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="551">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="552">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="554">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="555">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="556">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
+  </objectgroup>
+ </tile>
+ <tile id="557">
+  <objectgroup draworder="index">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+   <object id="2" x="0" y="6" width="16" height="10"/>
   </objectgroup>
  </tile>
  <tile id="558">
@@ -299,11 +468,6 @@
  <tile id="1076">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="8" height="15"/>
-  </objectgroup>
- </tile>
- <tile id="1156">
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="1" width="16" height="8"/>
   </objectgroup>
  </tile>
  <tile id="1164">
