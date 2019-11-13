@@ -28,6 +28,14 @@ namespace SecretProject.Class.Transportation
         {
             Yes.Update(Game1.myMouseManager);
             No.Update(Game1.myMouseManager);
+            if(Yes.isClicked)
+            {
+                Transport(Stages.Town);
+            }
+            else if(No.isClicked)
+            {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -37,9 +45,27 @@ namespace SecretProject.Class.Transportation
         }
        
 
-        public void Transport(Stages from, Stages to)
+        public void Transport(Stages to)
         {
-
+            if (Game1.GetCurrentStageInt() == Stages.World)
+            {
+                for (int i = 0; i < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(1); j++)
+                    {
+                        Game1.GetCurrentStage().AllTiles.ActiveChunks[i, j].Save();
+                    }
+                }
+                Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
+                Game1.Player.Position = new Vector2(800, 800);
+            }
+            else
+            {
+                Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
+                Game1.GetCurrentStage().AllTiles.LoadInitialChunks();
+            }
+            
+            Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;
         }
     }
 }

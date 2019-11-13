@@ -440,7 +440,8 @@ namespace SecretProject.Class.TileStuff
             {
                 //STARTING CHUNK
 
-                //AllTiles[3][8, 5] = new Tile(8, 5, 2305);
+                AllTiles[3][8, 5] = new Tile(8, 5, 9025);
+                AllTiles[1][8, 5] = new Tile(8, 5, 9625);
                 //string liftKey = "0085";
                 //if (!Game1.Lifts.ContainsKey(liftKey))
                 //{
