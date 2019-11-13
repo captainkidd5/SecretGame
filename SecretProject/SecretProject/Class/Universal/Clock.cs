@@ -60,7 +60,7 @@ namespace SecretProject.Class.Universal
             WeekDay = DayOfWeek.Monday;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
-            ClockSpeed = 5;
+            ClockSpeed = 10;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
 
 

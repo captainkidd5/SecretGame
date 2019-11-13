@@ -25,10 +25,10 @@ namespace SecretProject.Class.NPCStuff
             NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 167, 0, 28, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 335, 0, 28, 48, 6, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 503, 0, 28, 48, 6, .15f, this.Position);
-            this.NPCRectangleXOffSet = 8;
-            this.NPCRectangleYOffSet = 38;
-            this.NPCRectangleHeightOffSet = 8;
-            this.NPCRectangleWidthOffSet = 8;
+            this.NPCRectangleXOffSet = 15;
+            this.NPCRectangleYOffSet = 40;
+            this.NPCRectangleHeightOffSet = 2;
+            this.NPCRectangleWidthOffSet = 2;
             this.SpeakerID = 2;
            // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NPCPathFindRectangle);

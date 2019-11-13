@@ -449,7 +449,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     //
                     timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                     NextPointRectangle = new Rectangle(currentPath[pointCounter].X * 16 , currentPath[pointCounter].Y * 16 , 16,16);
-                    if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
+                    if (new Rectangle(NPCHitBoxRectangle.X, NPCHitBoxRectangle.Y, 16,16).Intersects(NextPointRectangle))
                     {
                         pointCounter++;
                         timeBetweenJumps = .4f;
@@ -459,7 +459,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     if (pointCounter < currentPath.Count)
                     {
                         Rectangle debugREctangle = NPCPathFindRectangle;
-                        MoveTowardsPosition(new Vector2(NextPointRectangle.X + 15, NextPointRectangle.Y + 15), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 3, currentPath[currentPath.Count - 1].Y * 16 + 3, 8, 8));
+                        MoveTowardsPosition(new Vector2(NextPointRectangle.X - this.NPCRectangleXOffSet, NextPointRectangle.Y - this.NPCRectangleYOffSet + 14), new Rectangle(currentPath[currentPath.Count - 1].X * 16 + 3, currentPath[currentPath.Count - 1].Y * 16 + 3, 8, 8));
                         DebugNextPoint = new Vector2(route.EndX * 16, route.EndY * 16);
                     }
                     else
@@ -592,7 +592,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         public void MoveTowardsPosition(Vector2 positionToMoveTowards, Rectangle rectangle)
         {
 
-            Vector2 direction = Vector2.Normalize((positionToMoveTowards - new Vector2(NPCPathFindRectangle.X , NPCPathFindRectangle.Y ) + new Vector2((float).0000000001, (float).0000000001)));
+            Vector2 direction = Vector2.Normalize((positionToMoveTowards - Position + new Vector2((float).0000000001, (float).0000000001)));
 
             this.DirectionVector = direction;
 
@@ -680,7 +680,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             if (NextPointRectangleTexture != null && DebugTexture != null)
             {
                 //spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
-                spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: DebugColor, layerDepth: layerDepth);
+                spriteBatch.Draw(DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: DebugColor, layerDepth:1f);
 
                 for (int i = 0; i < currentPath.Count - 1; i++)
                 {
