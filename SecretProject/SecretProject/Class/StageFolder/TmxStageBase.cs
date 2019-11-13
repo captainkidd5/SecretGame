@@ -305,7 +305,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart) && mouse.IsClicked)
                     {
-                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DoorOpenInstance, false, 1);
+                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DoorOpen, Game1.SoundManager.GameVolume);
                         Game1.SwitchStage((Stages)AllPortals[p].From, (Stages)AllPortals[p].To, AllPortals[p]);
                         OnSceneChanged();
                         this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;

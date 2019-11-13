@@ -372,7 +372,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
-                                Game1.SoundManager.PlaySoundEffectFromInt(false, 1, int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]), .75f);
+                                Game1.SoundManager.PlaySoundEffectFromInt(1, int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]), Game1.SoundManager.GameVolume - .25f);
                             }
                         }
                         //    {

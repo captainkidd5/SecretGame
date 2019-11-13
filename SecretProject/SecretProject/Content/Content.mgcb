@@ -1261,3 +1261,9 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Julian/julianPortrait.png
 
+#begin SoundEffects/unlockitem.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/unlockitem.wav
+

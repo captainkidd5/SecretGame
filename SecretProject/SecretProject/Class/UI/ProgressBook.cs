@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
@@ -342,6 +343,11 @@ namespace SecretProject.Class.UI
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
                     Reward.Claimed = true;
+                    SoundEffectInstance unlockItemInstance = Game1.SoundManager.UnlockItem.CreateInstance();
+                    unlockItemInstance.Volume = Game1.SoundManager.GameVolume/2;
+                    unlockItemInstance.Play();
+                    unlockItemInstance.Dispose();
+                    //Game1.SoundManager.UnlockItem.Play();
                     for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
                     {
                         for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)

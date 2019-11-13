@@ -105,7 +105,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(SoundTimer <= 0)
             {
-                PlaySound(SoundID);
+                Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
             }
 
@@ -330,10 +330,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
          
-        public void PlaySound(int soundID)
-        {
-            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, soundID, 1f);
-        }
 
     }
 }

@@ -82,7 +82,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {
-                PlaySound(SoundID);
+                Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
                 RollDrop(gameTime, 148, this.Position, 10);
             }
