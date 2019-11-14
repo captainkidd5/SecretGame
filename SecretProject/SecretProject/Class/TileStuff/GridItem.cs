@@ -76,7 +76,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Update(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
-            if (tileManager.AbleToDrawTileSelector)
+            if (Game1.Player.UserInterface.DrawTileSelector)
             {
                 if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
                 {
@@ -328,14 +328,14 @@ namespace SecretProject.Class.TileStuff
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).X,
                                 TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).Y),
-                                newSourceRectangle, Color.White * .5f,
+                                newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).X,
                                 TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).Y),
-                                newSourceRectangle, Color.Red * .5f,
+                                newSourceRectangle, Color.Red * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }

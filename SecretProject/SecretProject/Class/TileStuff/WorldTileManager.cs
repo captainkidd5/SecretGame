@@ -567,7 +567,9 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     if (z == 0)
                                     {
-                                        if (ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
+                                        if (playerI < ChunkUnderPlayer.AllTiles[z] .GetLength(0) &&
+                                            playerJ < ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
+                                             ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
                                         {
 
 
@@ -597,23 +599,13 @@ namespace SecretProject.Class.TileStuff
 
                                             string TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKey(z);
 
-                                            if (z == 0)
-                                            {
-                                                //if (ChunkUnderMouse.Tufts.ContainsKey(TileKey))
-                                                //{
-                                                //    for (int t = 0; t < ChunkUnderMouse.Tufts[TileKey].Count; t++)
-                                                //    {
-                                                //        ChunkUnderMouse.Tufts[TileKey][t].Update(gameTime, Game1.Player.controls.Direction);
-                                                //    }
-                                                //}
-                                            }
 
 
                                             if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                                             {
 
 
-                                                this.AbleToDrawTileSelector = true;
+                                                Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
                                                 Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
                                                 Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
@@ -628,7 +620,7 @@ namespace SecretProject.Class.TileStuff
 
                                                     if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
                                                     {
-                                                        Game1.Player.UserInterface.DrawTileSelector = true;
+                                                        
                                                         Game1.isMyMouseVisible = false;
 
 
@@ -657,6 +649,10 @@ namespace SecretProject.Class.TileStuff
 
                                                 }
 
+                                            }
+                                            else
+                                            {
+                                                Game1.Player.UserInterface.DrawTileSelector = false;
                                             }
                                         }
                                     }
