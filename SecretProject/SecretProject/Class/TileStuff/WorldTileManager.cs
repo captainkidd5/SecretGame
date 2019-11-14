@@ -666,7 +666,7 @@ namespace SecretProject.Class.TileStuff
 
                         if (GridItem != null)
                         {
-                            GridItem.Update(gameTime, this, ChunkUnderMouse);
+                            GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
                         }
 
                         foreach (Boar boar in ActiveChunks[a, b].Enemies)
@@ -744,7 +744,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             if (GridItem != null)
                             {
-                                GridItem.Draw(spriteBatch, this, ChunkUnderMouse);
+                                GridItem.ChunkDraw(spriteBatch, this, ChunkUnderMouse);
 
                             }
 

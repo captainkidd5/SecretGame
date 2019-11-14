@@ -74,7 +74,185 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void Update(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
+        public void NormalUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
+        {
+            if (Game1.Player.UserInterface.DrawTileSelector)
+            {
+                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
+                {
+                    this.IsDrawn = true;
+
+
+
+                    int subX = 0;
+                    int subY = 0;
+
+                    bool canPlaceTotal = true;
+
+                    for (int i = this.NegativeX; i < this.PositiveX; i++)
+                    {
+
+
+
+                        for (int j = this.NegativeY; j < 1; j++)
+                        {
+                            this.CanPlace = true;
+
+
+                            subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                            subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
+
+
+                            //check if index is out of bounds of current chunk
+                          
+                            for (int z = 1; z < container.AllTiles.Count; z++)
+                            {
+                                int gid = 0;
+                                if (tileManager.AllTiles[z][subX, subY] != null)
+                                {
+                                    gid = tileManager.AllTiles[z][subX, subY].GID;
+                                }
+                                else
+                                {
+                                    return;
+                                }
+
+                                if (gid == -1)
+                                {
+                                }
+                                else
+                                {
+                                    this.CanPlace = false;
+                                    canPlaceTotal = false;
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                    if (canPlaceTotal)
+                    {
+                        if (Game1.myMouseManager.IsClicked)
+                        {
+                            if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
+                            {
+
+
+
+                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+                                switch (soundRandom)
+                                {
+                                    case 0:
+                                        Game1.SoundManager.PlaceItem1.Play();
+                                        break;
+                                    case 1:
+                                        Game1.SoundManager.PlaceItem2.Play();
+                                        break;
+                                }
+
+                                TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    this.PlaceID + 1, Game1.GetCurrentStage(), container);
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+
+                                return;
+                            }
+
+                        }
+
+                    }
+                }
+                else
+                {
+                    this.IsDrawn = false;
+                }
+            }
+            else
+            {
+                this.IsDrawn = false;
+            }
+
+        }
+
+        public void NormalDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
+        {
+            if (this.IsDrawn)
+            {
+
+
+                int subX = 0;
+                int subY = 0;
+
+
+
+                for (int i = this.NegativeX; i < this.PositiveX; i++)
+                {
+
+                    //assumes newsource is always at bottom tiles, left or right doesn't matter though
+
+                    for (int j = this.NegativeY; j < 1; j++)
+                    {
+                        bool canPlace = true;
+
+                        subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
+                        subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
+
+
+
+                        //check if index is out of bounds of current chunk
+
+
+                        int newGID = PlaceID + i + (j * 100);
+                        Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
+
+                        for (int z = 1; z < container.AllTiles.Count; z++)
+                        {
+                            int gid = 0;
+                            if (tileManager.AllTiles[z][subX, subY] != null)
+                            {
+                                gid = tileManager.AllTiles[z][subX, subY].GID;
+                            }
+                            else
+                            {
+                                return;
+                            }
+
+                            if (gid == -1)
+                            {
+                            }
+                            else
+                            {
+                                canPlace = false;
+
+                            }
+                        }
+
+                        if (canPlace)
+                        {
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).X,
+                                TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).Y),
+                                newSourceRectangle, Color.White * .25f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).X,
+                                TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).Y),
+                                newSourceRectangle, Color.Red * .25f,
+                                        0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
+                        }
+                    }
+
+                }
+
+
+
+            }
+        }
+
+        public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
@@ -229,7 +407,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
+        public void ChunkDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
             if (this.IsDrawn)
             {

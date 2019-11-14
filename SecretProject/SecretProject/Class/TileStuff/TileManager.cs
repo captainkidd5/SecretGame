@@ -198,7 +198,7 @@ namespace SecretProject.Class.TileStuff
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetX", out safteyX);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("SafteyOffSetY", out safteyY);
                 mapName.ObjectGroups["Portal"].Objects[i].Properties.TryGetValue("Click", out click);
-                Portal portal = new Portal((int)Enum.Parse(typeof(Stages),keyFrom), (int)Enum.Parse(typeof(Stages), keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
+                Portal portal = new Portal((int)Enum.Parse(typeof(Stages), keyFrom), (int)Enum.Parse(typeof(Stages), keyTo), int.Parse(safteyX), int.Parse(safteyY), bool.Parse(click));
 
 
                 int portalX = (int)mapName.ObjectGroups["Portal"].Objects[i].X;
@@ -359,17 +359,18 @@ namespace SecretProject.Class.TileStuff
             Game1.Player.CollideOccured = false;
             int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X / 16);
             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16);
-            int playerI = (int)((Game1.Player.Position.X +16) / 16);
-            int playerJ = (int)((Game1.Player.Position.Y + 16 )/ 16);
+            int playerI = (int)((Game1.Player.Position.X + 16) / 16);
+            int playerJ = (int)((Game1.Player.Position.Y + 16) / 16);
             for (int z = 0; z < AllTiles.Count; z++)
             {
                 if (Game1.Player.IsMoving)
                 {
                     if (z == 0)
                     {
-                        if (AllTiles[z][playerI, playerJ] != null)
+                        if (playerI < AllTiles[z].GetLength(0) &&
+                            playerJ < AllTiles[z].GetLength(1) &&
+                            AllTiles[z][playerI, playerJ] != null)
                         {
-
 
                             if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
                             {
@@ -380,7 +381,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                         }
-               
+
                     }
                 }
                 if (mouseI < AllTiles[z].GetLength(0) && mouseJ < AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
@@ -417,7 +418,7 @@ namespace SecretProject.Class.TileStuff
                             if (AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
 
-                                this.AbleToDrawTileSelector = true;
+                                Game1.Player.UserInterface.DrawTileSelector = true;
                                 Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
                                 Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
                                 Game1.Player.UserInterface.TileSelector.WorldX = mouseI * 16;
@@ -464,6 +465,10 @@ namespace SecretProject.Class.TileStuff
                                 }
 
                             }
+                            else
+                            {
+                                Game1.Player.UserInterface.DrawTileSelector = false;
+                            }
                         }
 
                     }
@@ -475,10 +480,10 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllLights = this.Lights;
             }
-            //if(GridItem != null)
-            //{
-            //    GridItem.Update(gameTime, this, this);
-            //}
+            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && GridItem != null)
+            {
+                GridItem.NormalUpdate(gameTime, this, this);
+            }
 
         }
 
@@ -555,10 +560,10 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            //if(GridItem != null)
-            //{
-            //    GridItem.Draw(spriteBatch, this, this);
-            //}
+            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && GridItem != null)
+            {
+                GridItem.NormalDraw(spriteBatch, this, this);
+            }
 
 
 

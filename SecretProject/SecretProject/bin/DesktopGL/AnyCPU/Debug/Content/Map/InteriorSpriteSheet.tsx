@@ -470,6 +470,13 @@
    <object id="1" x="0" y="0" width="8" height="15"/>
   </objectgroup>
  </tile>
+ <tile id="1135">
+  <properties>
+   <property name="action" value="sleep"/>
+   <property name="newHitBox" value="0,-32,32,48"/>
+   <property name="newSource" value="0,-32,32,48"/>
+  </properties>
+ </tile>
  <tile id="1164">
   <objectgroup draworder="index">
    <object id="1" x="0" y="1" width="16" height="8"/>
@@ -497,12 +504,12 @@
  </tile>
  <tile id="1434">
   <properties>
-   <property name="newSource" value="0,-16,16,16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1540">
   <properties>
-   <property name="newSource" value="0,-16,16,16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1638">

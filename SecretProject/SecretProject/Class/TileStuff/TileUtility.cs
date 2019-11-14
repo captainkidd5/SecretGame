@@ -581,6 +581,14 @@ namespace SecretProject.Class.TileStuff
                     }
                     //}
                     break;
+
+                case "sleep":
+                    if (mouse.IsClicked)
+                    {
+                        Game1.GlobalClock.TotalDays++;
+                        Game1.GlobalClock.TotalHours = 6;
+                    }
+                    break;
                 case "sanctuaryAdd":
                     if (mouse.IsClicked)
                     {
