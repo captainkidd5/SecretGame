@@ -162,19 +162,19 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                //if obj collided with item in list stop it from moving boom badda bing
+            //Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
+            //for (int i = 0; i < returnObjects.Count; i++)
+            //{
+            //    //if obj collided with item in list stop it from moving boom badda bing
 
-                if (returnObjects[i].ColliderType != ColliderType.NPC && returnObjects[i].ColliderType != ColliderType.Undetectable && Collider.DidCollide(returnObjects[i], Position))
-                {
-                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-                    CollideOccured = true;
-                    IsMoving = false;
-                }
+            //    if (returnObjects[i].ColliderType != ColliderType.NPC && returnObjects[i].ColliderType != ColliderType.Undetectable && Collider.DidCollide(returnObjects[i], Position))
+            //    {
+            //        this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+            //        CollideOccured = true;
+            //        IsMoving = false;
+            //    }
 
-            }
+            //}
             //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
 
 
