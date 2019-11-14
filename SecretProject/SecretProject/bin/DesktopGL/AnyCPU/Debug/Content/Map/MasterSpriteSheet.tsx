@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
  <terraintypes>
   <terrain name="dirt" tile="904"/>
@@ -307,7 +307,7 @@
  <tile id="563">
   <properties>
    <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-48,32,48"/>
+   <property name="newSource" value="-16,-64,48,80"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
   </properties>

@@ -583,6 +583,7 @@ namespace SecretProject.Class.TileStuff
                     break;
 
                 case "sleep":
+                    mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
                         Game1.GlobalClock.IncrementDay();
