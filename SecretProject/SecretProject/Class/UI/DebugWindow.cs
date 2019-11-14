@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.TileStuff;
 using XMLData.ItemStuff;
 
@@ -39,10 +40,18 @@ namespace SecretProject.Class.UI
             {
 
 
-                Game1.GlobalClock.IncrementDay();
-                Console.Clear();
-
-
+                //Game1.GlobalClock.IncrementDay();
+                //Console.Clear();
+                byte[,] byteList = new byte[120, 120];
+                for(int i =0; i < 120; i++)
+                {
+                    for(int j =0; j < 120; j++)
+                    {
+                        byteList[i, j] = 1;
+                    }
+                }
+                PathFinder pathfinder = new PathFinder(byteList);
+                List<PathFinderNode> debugNodes = pathfinder.FindPath(new Point(65, 37), new Point(74, 82));
 
             }
         }

@@ -15,6 +15,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 
 using SecretProject.Class.PathFinding;
+using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using XMLData.DialogueStuff;
@@ -382,10 +383,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             this.pathFound = false;
         }
 
-        List<Point> currentPath = new List<Point>()
-        {
-            new Point(1,1)
-        };
+        List<PathFinderNode> currentPath = new List<PathFinderNode>();
 
 
         int nodeToEndAt;
@@ -425,22 +423,30 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                         this.IsMoving = true;
 
-
+                        PathFinder finder = new PathFinder(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
                         if (route.StageToEndAt == (int)CurrentStageLocation)
                         {
-                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                            ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), new Point(route.EndX, route.EndY), this.Name);
-
+                            Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
+                             ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16);
+                            Point end = new Point(route.EndX, route.EndY);
+                            currentPath = finder.FindPath(start,end);
+                            if(currentPath == null)
+                            {
+                                throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                            }
                             pathFound = true;
                         }
                         else
                         {
-
-                            Point testPoint = FindIntermediateStages((int)CurrentStageLocation, route.StageToEndAt);
-                            currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                             ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16),
-                           testPoint, this.Name);
-
+                            Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
+                             ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16);
+                            Point end = FindIntermediateStages((int)CurrentStageLocation, route.StageToEndAt);
+                            
+                            currentPath = finder.FindPath(start, end);
+                            if (currentPath == null)
+                            {
+                                throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                            }
                             pathFound = true;
                         }
 
@@ -533,8 +539,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 {
                     this.IsMoving = true;
 
-                    currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Pathfind(new Point((int)this.NPCPathFindRectangle.X / 16,
-                    ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point, this.Name);
+                    currentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathFinder.FindPath(new Point((int)this.NPCPathFindRectangle.X / 16,
+                    ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point);
 
                     pathFound = true;
 

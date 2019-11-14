@@ -23,11 +23,14 @@ namespace SecretProject.Class.PathFinding
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
-
-            for(int i = 0; i < objects.Count; i++)
+            for(int i =0; i < mapWidth; i++)
             {
-
+                for(int j =0; j < mapHeight; j++)
+                {
+                    Weight[i, j] = 1;
+                }
             }
+
             for (int z = 0; z < 4; z++)
             {
 
@@ -39,7 +42,7 @@ namespace SecretProject.Class.PathFinding
                         string tileKey = tiles[z][i, j].GetTileKey(z);
                         if (objects.Exists(x => x.LocationKey == tileKey))
                         {
-                            Weight[i, j] = 1;
+                            Weight[i, j] = 0;
                         }
 
                     }

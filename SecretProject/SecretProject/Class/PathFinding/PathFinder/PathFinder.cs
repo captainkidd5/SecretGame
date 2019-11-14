@@ -79,7 +79,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         private bool mStopped = true;
         private int mHoriz = 0;
         private HeuristicFormula mFormula = HeuristicFormula.Manhattan;
-        private bool mDiagonals = true;
+        private bool mDiagonals = false;
         private int mHEstimate = 2;
         private bool mPunishChangeDirection = false;
         private bool mReopenCloseNodes = false;
@@ -179,6 +179,12 @@ namespace SecretProject.Class.PathFinding.PathFinder
         {
             mStop = true;
         }
+
+        //public List<Point> ReturnPath(Point start, Point end)
+        //{
+        //    List<PathFinderNode> complicatedNodes = FindPath(start, end);
+
+        //}
 
         public List<PathFinderNode> FindPath(Point start, Point end)
         {

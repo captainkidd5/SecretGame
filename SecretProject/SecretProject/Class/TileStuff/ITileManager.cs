@@ -7,6 +7,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 
 using SecretProject.Class.PathFinding;
+using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using System;
@@ -25,6 +26,7 @@ namespace SecretProject.Class.TileStuff
         Texture2D TileSet { get; set; }
         List<Tile[,]> AllTiles { get; set; }
         AStarPathFinder PathGrid { get; set; }
+        PathFinder PathFinder { get; set; }
 
          int TileWidth { get; set; }
          int TileHeight { get; set; }

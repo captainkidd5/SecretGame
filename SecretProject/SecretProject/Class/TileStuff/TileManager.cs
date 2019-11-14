@@ -21,6 +21,7 @@ using SecretProject.Class.PathFinding;
 using XMLData.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.PathFinding.PathFinder;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -59,6 +60,7 @@ namespace SecretProject.Class.TileStuff
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714);
         public int TileSetNumber { get; set; }
         public AStarPathFinder PathGrid { get; set; }
+        public PathFinder PathFinder { get; set; }
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
@@ -271,7 +273,7 @@ namespace SecretProject.Class.TileStuff
         {
 
             PathGrid = new AStarPathFinder(MapWidth, MapHeight, AllTiles, this.Objects);
-
+            PathFinder = new PathFinder(PathGrid.Weight);
         }
 
 
