@@ -956,6 +956,17 @@
 <Price>20</Price>
 </Item>
 
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Oak Dresser</Name>
+<ID>1440</ID>
+<Description>Can store clothing.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>36</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>20</Price>
+<PlaceID>-1540</PlaceID>
+</Item>
+
 
 
 </AllItems>

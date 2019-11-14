@@ -296,21 +296,37 @@ namespace SecretProject.Class.UI
 
         public void CheckGridItem()
         {
-            if (Game1.ItemVault.ExteriorGridItems != null)
+            if (Game1.ItemVault.ExteriorGridItems != null && Game1.ItemVault.InteriorGridItems != null)
             {
-
-
-
-                if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                if(Game1.GetCurrentStageInt() == Stages.World)
                 {
-                    Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
 
 
+                    }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
                 }
-                else
+                else if (Game1.GetCurrentStageInt() == Stages.PlayerHouse)
                 {
-                    Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    if (Game1.ItemVault.InteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
+
+
+                    }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
                 }
+
+
+                
             }
             else
             {

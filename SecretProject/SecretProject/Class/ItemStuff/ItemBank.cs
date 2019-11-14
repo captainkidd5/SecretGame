@@ -30,7 +30,11 @@ namespace SecretProject.Class.ItemStuff
             {
                 if (Game1.AllItems.AllItems[i].PlaceID != 0)
                 {
-                    ExteriorGridItems.Add(Game1.AllItems.AllItems[i].ID, new GridItem(exteriorTileManager, Game1.AllItems.AllItems[i].PlaceID));
+                    if(Game1.AllItems.AllItems[i].PlaceID > 0)
+                    {
+                        ExteriorGridItems.Add(Game1.AllItems.AllItems[i].ID, new GridItem(exteriorTileManager, Game1.AllItems.AllItems[i].PlaceID));
+                    }
+                    
                 }
             }
         }
@@ -42,7 +46,11 @@ namespace SecretProject.Class.ItemStuff
             {
                 if (Game1.AllItems.AllItems[i].PlaceID != 0)
                 {
-                    InteriorGridItems.Add(Game1.AllItems.AllItems[i].ID, new GridItem(interiorTileManager, Game1.AllItems.AllItems[i].PlaceID));
+                    if (Game1.AllItems.AllItems[i].PlaceID < 0)
+                    {
+                        InteriorGridItems.Add(Game1.AllItems.AllItems[i].ID, new GridItem(interiorTileManager, Math.Abs(Game1.AllItems.AllItems[i].PlaceID)));
+                    }
+                        
                 }
             }
         }
