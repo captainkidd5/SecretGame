@@ -46,7 +46,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Chirp1;
 
         public SoundEffect Chirp2;
- 
+
         public SoundEffect Chirp3;
 
 
@@ -57,7 +57,7 @@ namespace SecretProject.Class.SoundStuff
 
 
         public SoundEffect PigGrunt;
-    
+
 
         public SoundEffect PigGrunt2;
 
@@ -83,11 +83,15 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect FurnaceLight;
 
         public SoundEffect UnlockItem;
+
+
         //songs
         public SoundEffect DustStorm;
-
-
+        public SoundEffect Lakescape;
         public SoundEffect Title;
+
+        public SoundEffect CurrentSong { get; set; }
+        public SoundEffectInstance CurrentSongInstance { get; set; }
 
 
         public SoundBoard(Game1 game, ContentManager content)
@@ -96,19 +100,19 @@ namespace SecretProject.Class.SoundStuff
 
 
             GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
-    
+
 
             PlaceBarrel = content.Load<SoundEffect>("SoundEffects/placeBarrel");
-     
+
 
             DoorOpen = content.Load<SoundEffect>("SoundEffects/doorOpen");
-    
+
 
             DigDirt = content.Load<SoundEffect>("SoundEffects/diggingDirt");
-  
+
 
             StoneSmash = content.Load<SoundEffect>("SoundEffects/stoneSmash");
-    
+
 
             WalkGrass = content.Load<SoundEffect>("SoundEffects/walkGrass");
 
@@ -126,7 +130,7 @@ namespace SecretProject.Class.SoundStuff
 
 
             Chirp2 = content.Load<SoundEffect>("SoundEffects/chirp2");
-    
+
 
             Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
 
@@ -161,15 +165,46 @@ namespace SecretProject.Class.SoundStuff
 
             FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
 
-            UnlockItem  = content.Load<SoundEffect>("SoundEffects/unlockitem");
+            UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
 
             //Songs
             DustStorm = content.Load<SoundEffect>("Songs/DustStorm");
 
             Title = content.Load<SoundEffect>("Songs/Title");
+            Lakescape = content.Load<SoundEffect>("Songs/Lakescape");
+
+            this.CurrentSong = Title;
+            this.CurrentSongInstance = CurrentSong.CreateInstance();
+
+        }
+        public void PlaySong()
+        {
+            if (this.CurrentSongInstance.State == SoundState.Stopped)
+            {
+                this.CurrentSongInstance = FetchNewSong().CreateInstance() ;
+                this.CurrentSongInstance.Volume = GameVolume * .4f;
+                this.CurrentSongInstance.Play();
+            }
 
         }
 
+        public SoundEffect FetchNewSong()
+        {
+            switch (Game1.gameStages)
+            {
+                case Stages.MainMenu:
+                    return Title;
+                case Stages.World:
+                
+                    return DustStorm;
+                case Stages.Town:
+                    return Lakescape;
+                default:
+                    return Title;
+
+            }
+
+        }
 
 
         public void PlaySoundEffectInstance(SoundEffect soundEffect, float volume)
@@ -178,7 +213,7 @@ namespace SecretProject.Class.SoundStuff
             //instance.Volume = volume;
             //instance.Play();
             //instance.Dispose();
-            soundEffect.Play(volume, 1f, 1f);
+            soundEffect.Play(volume, 0f, 1f);
         }
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey, float volume)
@@ -250,8 +285,8 @@ namespace SecretProject.Class.SoundStuff
                 }
             }
 
-                
-            
+
+
         }
     }
 }

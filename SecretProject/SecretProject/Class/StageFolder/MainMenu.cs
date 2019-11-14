@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
@@ -58,6 +59,7 @@ namespace SecretProject.Class.StageFolder
         List<Sprite> clouds;
 
 
+
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
             //--------------------------------------
@@ -93,6 +95,7 @@ namespace SecretProject.Class.StageFolder
                     new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
                 { Speed = (float)Game1.Utility.RFloat(5f, 50f) });
             }
+
         }
 
         public void LoadBackGround()

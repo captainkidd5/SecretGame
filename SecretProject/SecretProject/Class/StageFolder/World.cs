@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -84,6 +85,7 @@ namespace SecretProject.Class.StageFolder
 
         public QuadTree QuadTree { get; set; }
 
+
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
@@ -101,7 +103,7 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
 
             this.OnScreenNPCS = new List<INPC>();
-           
+
         }
 
 

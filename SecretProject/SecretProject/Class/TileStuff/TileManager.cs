@@ -367,13 +367,17 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (z == 0)
                     {
-
-                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
+                        if (AllTiles[z][playerI, playerJ] != null)
                         {
-                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+
+
+                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
                             {
-                              
-                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                {
+
+                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                }
                             }
                         }
                

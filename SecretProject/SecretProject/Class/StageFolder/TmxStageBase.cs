@@ -30,6 +30,7 @@ using SecretProject.Class.LightStuff;
 using XMLData.RouteStuff;
 using XMLData.ItemStuff;
 using SecretProject.Class.CollisionDetection;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -85,7 +86,7 @@ namespace SecretProject.Class.StageFolder
 
         public List<TmxLayer> AllLayers { get; set; }
 
-
+  
 
 
         public bool TilesLoaded { get; set; } = false;
@@ -151,6 +152,8 @@ namespace SecretProject.Class.StageFolder
 
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
+     
+            
         }
 
         public virtual void LoadPreliminaryContent()

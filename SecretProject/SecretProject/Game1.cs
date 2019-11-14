@@ -32,6 +32,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
 using static SecretProject.Class.UI.CheckList;
 using SecretProject.Class.EventStuff;
+using Microsoft.Xna.Framework.Audio;
 
 
 
@@ -434,7 +435,8 @@ namespace SecretProject
 
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
-            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1) { StageIdentifier = (int)Stages.Town};
+            Town = new Town("Town", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
+            { StageIdentifier = (int)Stages.Town};
 
             World = new World("World", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.World };
 
@@ -519,7 +521,7 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixer = new Elixir("Elixer", new Vector2(300, 115), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1]) { FrameToSet = 0 };
+            Elixer = new Elixir("Elixer", new Vector2(300, 115), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(150, 200), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
@@ -641,6 +643,7 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
+            //SoundManager.PlaySong();
 
             //KEYBOARD
 
