@@ -585,7 +585,7 @@ namespace SecretProject.Class.TileStuff
                 case "sleep":
                     if (mouse.IsClicked)
                     {
-                        Game1.GlobalClock.TotalDays++;
+                        Game1.GlobalClock.IncrementDay();
                         Game1.GlobalClock.TotalHours = 6;
                     }
                     break;

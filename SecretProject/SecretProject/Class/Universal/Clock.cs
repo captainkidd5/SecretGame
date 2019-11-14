@@ -89,6 +89,14 @@ namespace SecretProject.Class.Universal
         public void IncrementDay()
         {
             this.TotalDays++;
+            if (WeekDay < DayOfWeek.Sunday)
+            {
+                WeekDay++;
+            }
+            else
+            {
+                WeekDay = DayOfWeek.Monday;
+            }
             OnDayChanged(this, EventArgs.Empty);
         }
         public void Update(GameTime gameTime)
@@ -126,15 +134,7 @@ namespace SecretProject.Class.Universal
             }
             if(TotalHours > 23)
             {
-                TotalDays++;
-                if(WeekDay < DayOfWeek.Sunday)
-                {
-                    WeekDay++;
-                }
-                else
-                {
-                    WeekDay = DayOfWeek.Monday;
-                }
+                IncrementDay();
                 
                 
                 TotalHours = 0;
