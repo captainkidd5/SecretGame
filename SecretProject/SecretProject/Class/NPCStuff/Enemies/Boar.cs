@@ -36,6 +36,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
+            this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
@@ -51,7 +52,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 
 
             }
-
+            for (int i = 0; i < 4; i++)
+            {
+                NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
+            }
             for (int i = 0; i < 4; i++)
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
@@ -64,6 +68,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 Game1.isMyMouseVisible = false;
 
             }
+            
+
+            //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
+            Wander(gameTime, container);
             if (IsMoving)
             {
 
@@ -74,11 +82,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             else
             {
                 this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
-                
-            }
 
-            //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
-            Wander(gameTime, container);
+            }
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {

@@ -571,6 +571,8 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         if (playerI < ChunkUnderPlayer.AllTiles[z] .GetLength(0) &&
                                             playerJ < ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
+                                            playerI >= 0 && 
+                                            playerJ >= 0 &&
                                              ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
                                         {
 
@@ -754,7 +756,7 @@ namespace SecretProject.Class.TileStuff
                             foreach (Boar boar in ActiveChunks[a, b].Enemies)
                             {
                                 boar.Draw(spriteBatch);
-                                boar.DrawDebug(spriteBatch, .1f);
+                                boar.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
                             }
                         }
                     }

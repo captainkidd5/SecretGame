@@ -294,7 +294,7 @@ namespace SecretProject.Class.TileStuff
             PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
 
 
-           // Enemies.Add(new Boar("boar" + this.X.ToString() + this.Y.ToString(), new Vector2(AllTiles[0][5, 5].X * 16 + this.X * 16, AllTiles[0][5, 5].Y * 16 + this.Y * 16), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            Enemies.Add(new Boar("boar" + this.X.ToString() + this.Y.ToString(), new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -530,7 +530,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             PathGrid = new AStarPathFinder(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
-            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].X , AllTiles[0][5, 5].Y ), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X , AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
         }
 
