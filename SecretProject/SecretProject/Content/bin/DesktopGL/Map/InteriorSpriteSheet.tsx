@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
+<tileset version="1.2" tiledversion="1.3.0" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
  <tile id="150">
   <objectgroup draworder="index">
@@ -504,11 +504,19 @@
  </tile>
  <tile id="1434">
   <properties>
+   <property name="newHitBox" value="0,0,32,16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1540">
   <properties>
+   <property name="newHitBox" value="0,0,32,16"/>
+   <property name="newSource" value="0,-16,32,32"/>
+  </properties>
+ </tile>
+ <tile id="1631">
+  <properties>
+   <property name="newHitBox" value="0,0,32,16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>

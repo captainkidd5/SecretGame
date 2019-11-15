@@ -375,18 +375,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
         }
 
-        float timeBetweenJumps = .4f;
-        public int pointCounter = 0;
-        public bool pathFound = false;
-
-        public void ResetPathFinding()
-        {
-            this.pointCounter = 0;
-            this.pathFound = false;
-        }
-
-
-
 
         int nodeToEndAt;
         public Point FindIntermediateStages(int stageFrom, int stageTo)
@@ -472,7 +460,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         {
                             throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                         }
-                        pathFound = true;
                     }
                     else
                     {
@@ -485,7 +472,6 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         {
                             throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                         }
-                        pathFound = true;
                     }
                 }
                 else
@@ -493,13 +479,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     this.IsMoving = false;
                     this.CurrentDirection = 0;
                 }
-
-
-
             }
-            
-
-
         }
 
         #region COMBAT
@@ -528,54 +508,54 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         {
 
 
-            if (!this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
-            {
+            //if (!this.NPCPathFindRectangle.Intersects(new Rectangle(point.X * 16, point.Y * 16, 16, 16)))
+            //{
 
 
-                if (pathFound == false)
-                {
-                    this.IsMoving = true;
+            //    if (pathFound == false)
+            //    {
+            //        this.IsMoving = true;
 
-                    CurrentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathFinder.FindPath(new Point((int)this.NPCPathFindRectangle.X / 16,
-                    ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point);
+            //        CurrentPath = Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathFinder.FindPath(new Point((int)this.NPCPathFindRectangle.X / 16,
+            //        ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16), point);
 
-                    pathFound = true;
-
-
-
-                }
-                //
-                timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                NextPointRectangle = new Rectangle(CurrentPath[pointCounter].X * 16, CurrentPath[pointCounter].Y * 16, 6, 6);
-                if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
-                {
-                    pointCounter++;
-                    timeBetweenJumps = .4f;
-                }
+            //        pathFound = true;
 
 
-                if (pointCounter < CurrentPath.Count)
-                {
-                    Rectangle debugREctangle = NPCPathFindRectangle;
-                    MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(CurrentPath[CurrentPath.Count - 1].X * 16 + 8, CurrentPath[CurrentPath.Count - 1].Y * 16 + 8, 8, 8));
-                }
-                else
-                {
-                    pathFound = false;
-                    pointCounter = 0;
-                    this.IsMoving = false;
-                    this.CurrentDirection = 0;
 
-                }
-            }
+            //    }
+            //    //
+            //    timeBetweenJumps -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    NextPointRectangle = new Rectangle(CurrentPath[pointCounter].X * 16, CurrentPath[pointCounter].Y * 16, 6, 6);
+            //    if (this.NPCPathFindRectangle.Intersects(NextPointRectangle))
+            //    {
+            //        pointCounter++;
+            //        timeBetweenJumps = .4f;
+            //    }
 
-            else
-            {
-                pathFound = false;
-                pointCounter = 0;
-                this.IsMoving = false;
-                this.CurrentDirection = 0;
-            }
+
+            //    if (pointCounter < CurrentPath.Count)
+            //    {
+            //        Rectangle debugREctangle = NPCPathFindRectangle;
+            //        MoveTowardsPosition(new Vector2(NextPointRectangle.X, NextPointRectangle.Y), new Rectangle(CurrentPath[CurrentPath.Count - 1].X * 16 + 8, CurrentPath[CurrentPath.Count - 1].Y * 16 + 8, 8, 8));
+            //    }
+            //    else
+            //    {
+            //        pathFound = false;
+            //        pointCounter = 0;
+            //        this.IsMoving = false;
+            //        this.CurrentDirection = 0;
+
+            //    }
+            //}
+
+            //else
+            //{
+            //    pathFound = false;
+            //    pointCounter = 0;
+            //    this.IsMoving = false;
+            //    this.CurrentDirection = 0;
+            //}
 
 
 

@@ -2371,6 +2371,11 @@
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3320">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3321">
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="0" width="13" height="16"/>
@@ -2411,9 +2416,19 @@
    <object id="1" x="0" y="0" width="13" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3329">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3332">
   <objectgroup draworder="index">
    <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3419">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="8" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3421">
@@ -2426,9 +2441,19 @@
    <object id="1" x="0" y="0" width="13" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3430">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3432">
   <objectgroup draworder="index">
    <object id="1" x="10" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3518">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="0" width="8" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3521">
@@ -2439,6 +2464,11 @@
  <tile id="3528">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="13" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3531">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="0" width="8" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3532">
@@ -2454,6 +2484,11 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="3617">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="8" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3621">
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="0" width="13" height="16"/>
@@ -2465,7 +2500,7 @@
   </objectgroup>
  </tile>
  <tile id="3632">
-  <objectgroup draworder="index">
+  <objectgroup draworder="index" id="2">
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
