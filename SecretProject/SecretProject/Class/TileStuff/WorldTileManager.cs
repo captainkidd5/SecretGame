@@ -29,7 +29,7 @@ namespace SecretProject.Class.TileStuff
         public int mapWidth { get; set; }
         public int mapHeight { get; set; }
 
-        public AStarPathFinder PathGrid { get; set; }
+        public ObstacleGrid PathGrid { get; set; }
 
 
         public int tilesetTilesWide { get; set; }
@@ -796,11 +796,11 @@ namespace SecretProject.Class.TileStuff
             UpdateCropTile();
         }
 
-        public AStarPathFinder GetPathGrid(Vector2 entityPosition)
+        public ObstacleGrid GetPathGrid(Vector2 entityPosition)
         {
 
             Chunk ChunkCopy = GetChunkFromPosition(entityPosition);
-            return new AStarPathFinder(TileUtility.ChunkX, TileUtility.ChunkY, ChunkCopy.AllTiles, ChunkCopy.Objects);
+            return new ObstacleGrid(TileUtility.ChunkX, TileUtility.ChunkY, ChunkCopy.AllTiles, ChunkCopy.Objects);
 
         }
     }

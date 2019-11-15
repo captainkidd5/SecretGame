@@ -56,7 +56,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public Rectangle NextPointRectangle { get; set; }
         public Texture2D NextPointRectangleTexture { get; set; }
         //public int CurrentTileX { get { return (int)(this.Position.X / 16); } }
-       // public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
+        // public int CurrentTileY { get { return (int)(this.Position.Y / 16); } }
         public float SoundTimer { get; set; }
         public float SoundMin { get; set; }
         public float SoundMax { get; set; }
@@ -70,7 +70,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.Name = name;
             this.Position = position;
             this.Texture = spriteSheet;
-            Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
+            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
@@ -85,7 +85,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-           // this.CollideOccured = Collider.DidCollide(objects, Position);
+            // this.CollideOccured = Collider.DidCollide(objects, Position);
 
             for (int i = 0; i < 4; i++)
             {
@@ -109,7 +109,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
 
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(SoundTimer <= 0)
+            if (SoundTimer <= 0)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
@@ -118,10 +118,10 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         }
 
-        public void RollDrop(GameTime gameTime,int iD, Vector2 positionToDrop, int upperChance)
+        public void RollDrop(GameTime gameTime, int iD, Vector2 positionToDrop, int upperChance)
         {
             int success = Game1.Utility.RNumber(1, upperChance);
-            if(success == 1)
+            if (success == 1)
             {
                 Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(iD, positionToDrop, true));
             }
@@ -131,13 +131,14 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         private bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
         {
             // If we're already at the goal return immediatly
+            this.IsMoving = true;
             if (Position == goal) return true;
 
             // Find direction from current position to goal
             Vector2 direction = Vector2.Normalize(goal - Position);
             this.DirectionVector = direction;
             // Move in that direction
-            Position += direction * Speed;
+            Position += direction * Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // If we moved PAST the goal, move it back to the goal
             if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - Position)) + 1) < 0.1f)
@@ -146,7 +147,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             // Return whether we've reached the goal or not
             return Position == goal;
         }
-        public void MoveToTile(GameTime gameTime, Point endPoint, IInformationContainer container)
+        public void MoveToTile(GameTime gameTime, IInformationContainer container)
         {
             if (CurrentPath.Count > 0)
             {
@@ -154,67 +155,51 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 {
                     CurrentPath.RemoveAt(CurrentPath.Count - 1);
                 }
-               
 
-                }
-            else if (WanderTimer <= 0)
+
+
+            }
+            else if(WanderTimer <= 0)
             {
-                PathFinderFast finder = new PathFinderFast(container.PathGrid.Weight);
-
-
-                Point start = new Point(Math.Abs((int)this.Position.X / 16 - container.X * 16),
-                 (Math.Abs((int)this.Position.Y / 16 - container.Y * 16)));
-                Point end = endPoint;
-                CurrentPath = finder.FindPath(start, end);
-                if (CurrentPath == null)
+                int currentTileX = (int)(this.Position.X / 16 - (container.X * 16));
+                int currentTileY = (int)(this.Position.Y / 16 - (container.Y * 16));
+                int newX = Game1.Utility.RGenerator.Next(-10, 10);
+                int newY = Game1.Utility.RGenerator.Next(-10, 10);
+                if (currentTileX + newX < container.MapWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < container.MapHeight - 2 && currentTileY + newY > 0)
                 {
-                    throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                }
-                WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
+                    if (container.PathGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
+                    {
+                        Point end = new Point(currentTileX + newX, currentTileY + newY);
 
+
+
+                        PathFinderFast finder = new PathFinderFast(container.PathGrid.Weight);
+
+
+                        Point start = new Point(Math.Abs((int)this.Position.X / 16 - container.X * 16),
+                         (Math.Abs((int)this.Position.Y / 16 - container.Y * 16)));
+
+                        CurrentPath = finder.FindPath(start, end);
+                        if (CurrentPath == null)
+                        {
+                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                        }
+                        WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
+                    }
+                }
             }
-            else
-            {
-                this.IsMoving = false;
-                this.CurrentDirection = 0;
-               
-            }
+
 
         }
 
 
-
-
         private float WanderTimer = 2f;
-        private Vector2 wanderPosition = new Vector2(0, 0);
+ 
         public void Wander(GameTime gameTime, IInformationContainer container)
         {
-            int currentTileX = (int)(this.Position.X / 16 - (container.X * 16));
-            int currentTileY = (int)(this.Position.Y / 16 - (container.Y * 16));
-            //temporary
-            //MoveTowardsPosition(wanderPosition, new Rectangle((int)wanderPosition.X, (int)wanderPosition.Y, 20, 20));
+            
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (WanderTimer <= 0)
-            {
-
-                int newX = Game1.Utility.RGenerator.Next(-10, 10);
-                int newY = Game1.Utility.RGenerator.Next(-10, 10);
-
-                if (currentTileX + newX < container.MapWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < container.MapHeight - 2 && currentTileY + newY > 0)
-                {
-
-                    if (container.PathGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
-                    {
-                        MoveToTile(gameTime, new Point(currentTileX   + newX, currentTileY+ newY), container);
-                        
-
-                    }
-
-                }
-
-
-
-            }
+            MoveToTile(gameTime, container);
         }
         public void UpdateDirection()
         {
@@ -244,7 +229,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public void PlayerCollisionInteraction()
         {
             int amount = 5;
-            switch(Game1.Player.controls.Direction)
+            switch (Game1.Player.controls.Direction)
             {
                 case Dir.Down:
                     this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
@@ -305,12 +290,12 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
             for (int i = 0; i < this.CurrentPath.Count - 1; i++)
             {
-                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(CurrentPath[i].X * 16  + container.X * 16 * 16, CurrentPath[i].Y * 16  + container.Y * 16 * 16), new Vector2(CurrentPath[i + 1].X * 16  + container.X * 16 * 16, CurrentPath[i + 1].Y * 16  + container.Y * 16 * 16),this.DebugColor);
+                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(CurrentPath[i].X * 16 + container.X * 16 * 16, CurrentPath[i].Y * 16 + container.Y * 16 * 16), new Vector2(CurrentPath[i + 1].X * 16 + container.X * 16 * 16, CurrentPath[i + 1].Y * 16 + container.Y * 16 * 16), this.DebugColor);
             }
         }
 
 
-         
+
 
     }
 }

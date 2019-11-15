@@ -28,7 +28,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleYOffSet = 15;
             this.NPCRectangleHeightOffSet = 4;
             this.NPCRectangleWidthOffSet = 4;
-            this.Speed = 1f;
+            this.Speed = .1f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundID = 14;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
@@ -36,7 +36,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
-            this.IsMoving = true;
+            this.IsMoving = false;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
@@ -56,10 +56,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
             }
-            for (int i = 0; i < 4; i++)
-            {
-                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-            }
+            UpdateDirection();
 
             if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
             {
@@ -69,15 +66,22 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             }
             
-
-            //MoveTowardsPosition(Game1.Player.Position, Game1.Player.Rectangle);
+            if(CollideOccured)
+            {
+                this.PrimaryVelocity = Collider.Velocity;
+            }
             Wander(gameTime, container);
+            
             if (IsMoving)
             {
+                
+                for (int i = 0; i < 4; i++)
+                {
+                    NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+                }
 
 
-                UpdateDirection();
-                this.PrimaryVelocity = Collider.Velocity;
+                
             }
             else
             {

@@ -25,7 +25,7 @@ namespace SecretProject.Class.TileStuff
         TmxMap MapName { get; set; }
         Texture2D TileSet { get; set; }
         List<Tile[,]> AllTiles { get; set; }
-        AStarPathFinder PathGrid { get; set; }
+        ObstacleGrid PathGrid { get; set; }
         PathFinder PathFinder { get; set; }
 
          int TileWidth { get; set; }

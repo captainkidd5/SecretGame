@@ -437,7 +437,11 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
-
+                    if(container.PathGrid != null)
+                    {
+                        container.PathGrid.UpdateGrid(oldX, oldY, 0);
+                    }
+                    
 
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
@@ -456,6 +460,20 @@ namespace SecretProject.Class.TileStuff
 
 
                     }
+                }
+                else
+                {
+                    if (container.PathGrid != null)
+                    {
+                        container.PathGrid.UpdateGrid(oldX, oldY, 1);
+                    }
+                }
+            }
+            else
+            {
+                if (container.PathGrid != null)
+                {
+                    container.PathGrid.UpdateGrid(oldX, oldY, 1);
                 }
             }
         }

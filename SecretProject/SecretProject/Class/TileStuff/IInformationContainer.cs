@@ -33,7 +33,7 @@ namespace SecretProject.Class.TileStuff
         Dictionary<string, Crop> Crops { get; set; }
         Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
-        AStarPathFinder PathGrid { get; set; }
+        ObstacleGrid PathGrid { get; set; }
 
         //specific to chunks
         int X { get; set; }

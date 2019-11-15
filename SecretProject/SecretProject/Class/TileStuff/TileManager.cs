@@ -59,7 +59,7 @@ namespace SecretProject.Class.TileStuff
         public bool TileInteraction { get; set; } = false;
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714);
         public int TileSetNumber { get; set; }
-        public AStarPathFinder PathGrid { get; set; }
+        public ObstacleGrid PathGrid { get; set; }
         public PathFinder PathFinder { get; set; }
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
@@ -272,7 +272,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
 
-            PathGrid = new AStarPathFinder(MapWidth, MapHeight, AllTiles, this.Objects);
+            PathGrid = new ObstacleGrid(MapWidth, MapHeight, AllTiles, this.Objects);
             PathFinder = new PathFinder(PathGrid.Weight);
         }
 
