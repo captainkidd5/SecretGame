@@ -418,7 +418,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
             // Find direction from current position to goal
             Vector2 direction = Vector2.Normalize(goal - Position);
-
+            this.DirectionVector = direction;
             // Move in that direction
             Position += direction * Speed ;
 
@@ -497,11 +497,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
             }
-            else
-            {
-                this.IsMoving = false;
-                this.CurrentDirection = 0;
-            }
+            
 
 
         }

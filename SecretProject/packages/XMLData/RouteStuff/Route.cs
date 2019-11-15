@@ -12,29 +12,38 @@ namespace XMLData.RouteStuff
     {
         public Route()
         {
+            
+
+        }
+
+        public void ProcessStageToEndAt()
+        {
             switch (this.EndStage)
             {
                 case ("Town"):
                     this.StageToEndAt = 0;
                     break;
                 case ("ElixirHouse"):
-                    this.StageToEndAt = 0;
+                    this.StageToEndAt = 1;
                     break;
                 case ("JulianHouse"):
-                    this.StageToEndAt = 0;
+                    this.StageToEndAt = 2;
                     break;
                 case ("World"):
-                    this.StageToEndAt = 0;
+                    this.StageToEndAt = 3;
                     break;
                 case ("DobbinHouse"):
-                    this.StageToEndAt = 0;
+                    this.StageToEndAt = 4;
                     break;
                 case ("PlayerHouse"):
-                    this.StageToEndAt = 0;
+                    this.StageToEndAt = 5;
+                    break;
+                case ("GeneralStore"):
+                    this.StageToEndAt = 6;
                     break;
 
-            }
 
+            }
         }
     
         public int ID { get; set; }

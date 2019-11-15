@@ -388,6 +388,13 @@ namespace SecretProject
             KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
             JulianRouteSchedule = Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
             AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule };
+            for(int i =0; i < AllSchedules.Count; i++)
+            {
+                foreach(Route route in AllSchedules[i].Routes)
+                {
+                    route.ProcessStageToEndAt();
+                }
+            }
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
             List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue };
