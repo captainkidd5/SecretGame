@@ -9,7 +9,7 @@
 //
 //  Copyright (C) 2006 Franco, Gustavo 
 //
-#define DEBUGON
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,7 +85,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         private bool mReopenCloseNodes = false;
         private bool mTieBreaker = false;
         private bool mHeavyDiagonals = false;
-        private int mSearchLimit = 2000;
+        private int mSearchLimit = 100000;
         private double mCompletedTime = 0;
         private bool mDebugProgress = false;
         private bool mDebugFoundPath = false;

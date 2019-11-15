@@ -437,9 +437,9 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
                 if (CurrentPath.Count > 0)
                 {
-                    if (MoveTowardsPoint(new Vector2(CurrentPath[0].X * 16, CurrentPath[0].Y * 16), gameTime))
+                    if (MoveTowardsPoint(new Vector2(CurrentPath[CurrentPath.Count - 1].X * 16, CurrentPath[CurrentPath.Count - 1].Y * 16), gameTime))
                     {
-                        CurrentPath.RemoveAt(0);
+                        CurrentPath.RemoveAt(CurrentPath.Count - 1);
                     }
 
                     if (CurrentPath.Count == 0)
@@ -461,7 +461,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                 }
                 else if (this.Position != new Vector2(route.EndX * 16, route.EndY * 16))
                 {
-                    PathFinder finder = new PathFinder(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
+                    PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
                     if (route.StageToEndAt == (int)CurrentStageLocation)
                     {
                         Point start = new Point((int)this.NPCPathFindRectangle.X / 16,

@@ -9,7 +9,7 @@
 //
 //  Copyright (C) 2006 Franco, Gustavo 
 //
-#define DEBUGON
+//#define DEBUGON
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -52,7 +52,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         private bool mStopped = true;
         private int mHoriz = 0;
         private HeuristicFormula mFormula = HeuristicFormula.Manhattan;
-        private bool mDiagonals = true;
+        private bool mDiagonals = false;
         private int mHEstimate = 2;
         private bool mPunishChangeDirection = false;
         private bool mReopenCloseNodes = true;
