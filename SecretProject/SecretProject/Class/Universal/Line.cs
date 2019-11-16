@@ -19,12 +19,12 @@ namespace SecretProject.Class.Universal
             this.Point2 = point2;
         }
 
-        public void DrawLine(Texture2D texture, SpriteBatch spriteBatch,  Color color)
+        public void DrawLine(Texture2D texture, SpriteBatch spriteBatch,  Color color, float angle)
         {
             Vector2 edge = Point2 - Point1;
             // calculate angle to rotate line
-            float angle =
-                (float)Math.Atan2(edge.Y, edge.X);
+          //  float angle =
+               // (float)Math.Atan2(edge.Y, edge.X);
 
 
             spriteBatch.Draw(texture,

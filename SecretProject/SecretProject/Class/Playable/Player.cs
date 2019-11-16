@@ -202,7 +202,7 @@ namespace SecretProject.Class.Playable
                     this.CurrentTool = UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(CurrentTool.SourceRectangle.Width, CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
-                    this.ToolLine = new Line(CurrentTool.Position, new Vector2(CurrentTool.Position.X + 50, CurrentTool.Position.Y));
+                    this.ToolLine = new Line(CurrentTool.Position, new Vector2(1, 1));
                     //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
                     for (int i = 0; i < 4; i++)
                     {
@@ -335,7 +335,7 @@ namespace SecretProject.Class.Playable
                     if (CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
-                        ToolLine.Point2 = CurrentTool.Origin + CurrentTool.Position - Game1.Utility.RotateVector2(CurrentTool.Position, CurrentTool.Rotation + .35f);
+                        ToolLine.Point2 = Position;
 
 
                     }
@@ -622,7 +622,11 @@ namespace SecretProject.Class.Playable
             if (this.CurrentTool != null)
             {
                 CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
-                ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red);
+                if(Game1.GetCurrentStage().ShowBorders)
+                {
+                    ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, CurrentTool.Rotation + 4);
+                }
+                
             }
 
         }

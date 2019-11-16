@@ -244,6 +244,10 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public void UpdateBasicNPC(GameTime gameTime, MouseManager mouse)
         {
             NPCAnimatedSprite[0].Update(gameTime);
+            for (int i = 0; i < NPCAnimatedSprite.Length; i++)
+            {
+                NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
+            }
             if (Game1.GetCurrentStageInt() == this.CurrentStageLocation)
             {
                 this.DisableInteractions = false;

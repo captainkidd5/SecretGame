@@ -63,7 +63,7 @@ namespace SecretProject.Class.Universal
             FastNoise.SetFractalGain(.5f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.0008f);
+            FastNoise.SetFrequency(.008f);
            // FastNoise.SetFractalType(FastNoise.FractalType.Billow)
 
         }
@@ -227,11 +227,9 @@ namespace SecretProject.Class.Universal
 
         }
 
-        public Vector2 RotateVector2(Vector2 value, float radians)
+        public Vector2 RotateVector2(Vector2 value,Vector2 origin, float radians)
         {
-            var cos = (float)Math.Cos(radians);
-            var sin = (float)Math.Sin(radians);
-            return new Vector2(value.X * cos - value.Y * sin, value.X * sin + value.Y * cos);
+            return Vector2.Transform(value, Matrix.CreateRotationZ(radians)) + origin;
         }
         #endregion
         #region SPEECHUTILITY

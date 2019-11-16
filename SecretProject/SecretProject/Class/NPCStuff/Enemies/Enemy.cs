@@ -157,6 +157,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         }
         public void MoveToTile(GameTime gameTime, IInformationContainer container)
         {
+
             if (CurrentPath.Count > 0)
             {
                 if (MoveTowardsPoint(new Vector2(CurrentPath[CurrentPath.Count - 1].X * 16 + container.X * 16 * 16, CurrentPath[CurrentPath.Count - 1].Y * 16 + container.Y * 16 * 16), gameTime))
@@ -190,6 +191,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         CurrentPath = finder.FindPath(start, end);
                         if (CurrentPath == null)
                         {
+                            CurrentPath = new List<PathFinderNode>();
+                            return;
                             throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                         }
                         WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
@@ -308,10 +311,14 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             spriteBatch.Draw(DebugTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.Blue, layerDepth: layerDepth);
             spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
-            for (int i = 0; i < this.CurrentPath.Count - 1; i++)
+            if(this.CurrentPath != null)
             {
-                Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(CurrentPath[i].X * 16 + container.X * 16 * 16, CurrentPath[i].Y * 16 + container.Y * 16 * 16), new Vector2(CurrentPath[i + 1].X * 16 + container.X * 16 * 16, CurrentPath[i + 1].Y * 16 + container.Y * 16 * 16), this.DebugColor);
+                for (int i = 0; i < this.CurrentPath.Count - 1; i++)
+                {
+                    Game1.Utility.DrawLine(Game1.LineTexture, spriteBatch, new Vector2(CurrentPath[i].X * 16 + container.X * 16 * 16, CurrentPath[i].Y * 16 + container.Y * 16 * 16), new Vector2(CurrentPath[i + 1].X * 16 + container.X * 16 * 16, CurrentPath[i + 1].Y * 16 + container.Y * 16 * 16), this.DebugColor);
+                }
             }
+            
         }
 
 
