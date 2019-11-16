@@ -18,7 +18,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
     public enum CurrentBehaviour
     {
         Wander = 1,
-        Chase = 2
+        Chase = 2, 
+        Hurt = 3
     }
     public class Enemy : INPC
     {
@@ -240,6 +241,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public void PlayerCollisionInteraction()
         {
             int amount = 30;
+            this.CurrentBehaviour = CurrentBehaviour.Hurt;
             switch (Game1.Player.controls.Direction)
             {
                 case Dir.Down:

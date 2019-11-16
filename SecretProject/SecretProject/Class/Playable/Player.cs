@@ -310,6 +310,7 @@ namespace SecretProject.Class.Playable
 
                 if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null && UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 25)
                 {
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1, Game1.SoundManager.GameVolume);
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
                 }
 

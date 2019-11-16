@@ -361,6 +361,21 @@ namespace SecretProject.Class.SpriteFolder
             //DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
+       public void Flash(GameTime gameTime, float duration, Color color)
+        {
+            duration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(duration >= 0)
+            {
+                this.Color = color;
+            }
+            else
+            {
+                this.Color = Color.White;
+            }
+
+        }
+
         public void Update(GameTime gameTime, Dir direction)
         {
             throw new NotImplementedException();

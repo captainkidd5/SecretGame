@@ -28,15 +28,16 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleYOffSet = 15;
             this.NPCRectangleHeightOffSet = 4;
             this.NPCRectangleWidthOffSet = 4;
-            this.Speed = .1f;
+            this.Speed = .05f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundID = 14;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
+            this.CurrentBehaviour = CurrentBehaviour.Wander;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
-            this.CurrentBehaviour = CurrentBehaviour.Wander;
+           
             this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -95,6 +96,13 @@ namespace SecretProject.Class.NPCStuff.Enemies
                         break;
                     case CurrentBehaviour.Chase:
                         MoveTowardsPoint(Game1.Player.position, gameTime);
+                        break;
+                    case CurrentBehaviour.Hurt:
+                        for(int i =0; i < NPCAnimatedSprite.Length; i++)
+                        {
+                            NPCAnimatedSprite[i].Flash(gameTime, .05f, Color.Red);
+                        }
+                        //CurrentBehaviour = CurrentBehaviour.Wander;
                         break;
                 }
 

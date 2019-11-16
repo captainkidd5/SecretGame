@@ -13,7 +13,7 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } = 0f;
+        public float GameVolume { get; set; } = 1f;
         //Sound Effects are WAV
         //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
@@ -85,6 +85,10 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect UnlockItem;
 
+
+        //COMBAT
+        public SoundEffect Slash1;
+        public SoundEffect BushCut;
 
         //songs
         public SoundEffect DustStorm;
@@ -167,6 +171,10 @@ namespace SecretProject.Class.SoundStuff
             FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
 
             UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
+
+            //COMBAT
+            Slash1 = content.Load<SoundEffect>("SoundEffects/Slash1");
+            BushCut = content.Load<SoundEffect>("SoundEffects/bushCut");
 
             //Songs
             DustStorm = content.Load<SoundEffect>("Songs/DustStorm");

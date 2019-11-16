@@ -1285,3 +1285,15 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Elixir/elixirPortrait.png
 
+#begin SoundEffects/Slash1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Slash1.wav
+
+#begin SoundEffects/bushCut.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bushCut.wav
+

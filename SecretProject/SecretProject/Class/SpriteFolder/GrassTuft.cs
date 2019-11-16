@@ -108,6 +108,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void SelfDestruct()
         {
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BushCut, Game1.SoundManager.GameVolume / 4);
             Objects.Remove(this);
         }
 
