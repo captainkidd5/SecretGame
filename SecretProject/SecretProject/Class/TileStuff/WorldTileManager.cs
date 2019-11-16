@@ -673,9 +673,9 @@ namespace SecretProject.Class.TileStuff
                             GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
                         }
 
-                        foreach (Boar boar in ActiveChunks[a, b].Enemies)
+                        foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
                         {
-                            boar.Update(gameTime, mouse, ActiveChunks[a, b]);
+                            enemy.Update(gameTime, mouse, ActiveChunks[a, b]);
                         }
                     }
                 }
@@ -753,10 +753,10 @@ namespace SecretProject.Class.TileStuff
                             }
 
 
-                            foreach (Boar boar in ActiveChunks[a, b].Enemies)
+                            foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
                             {
-                                boar.Draw(spriteBatch);
-                                boar.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
+                                enemy.Draw(spriteBatch);
+                                enemy.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
                             }
                         }
                     }

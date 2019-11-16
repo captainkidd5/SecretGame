@@ -37,6 +37,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsUpdating { get; set; }
         public List<ICollidable> Objects { get; set; }
         public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected Texture2D rectangleTexture;
 
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position, List<ICollidable> objects)
         {
@@ -59,6 +60,7 @@ namespace SecretProject.Class.SpriteFolder
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
+            SetRectangleTexture(graphics);
 
         }
         public void Update(GameTime gameTime)
@@ -203,7 +205,33 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            
+            spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+        }
+
+        private void SetRectangleTexture(GraphicsDevice graphicsDevice)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < Rectangle.Height; y++)
+            {
+                for (int x = 0; x < Rectangle.Width; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == Rectangle.Width - 1 || //right side
+                        y == Rectangle.Height - 1) //bottom side
+                    {
+                        Colors.Add(new Color(255, 255, 255, 255));
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            rectangleTexture = new Texture2D(graphicsDevice, Rectangle.Width, Rectangle.Height);
+            rectangleTexture.SetData<Color>(Colors.ToArray());
         }
     }
 }

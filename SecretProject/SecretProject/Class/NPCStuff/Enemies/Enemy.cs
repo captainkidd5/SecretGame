@@ -87,41 +87,145 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.DebugColor = Color.Red;
             this.CurrentPath = new List<PathFinderNode>();
             this.CurrentBehaviour = CurrentBehaviour.Wander;
+
+            switch (name)
+            {
+                case "boar":
+                    NPCAnimatedSprite = new Sprite[4];
+
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
+                    NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
+                    NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
+                    NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 432, 0, 48, 32, 3, .15f, this.Position);
+
+                    this.NPCRectangleXOffSet = 15;
+                    this.NPCRectangleYOffSet = 15;
+                    this.NPCRectangleHeightOffSet = 4;
+                    this.NPCRectangleWidthOffSet = 4;
+                    this.Speed = .05f;
+                    this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+                    this.SoundID = 14;
+                    this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
+                    this.CurrentBehaviour = CurrentBehaviour.Wander;
+                    break;
+                case "crab":
+                    NPCAnimatedSprite = new Sprite[4];
+
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 32, 48, 32, 1, .15f, this.Position);
+                    NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
+                    NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
+                    NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
+
+                    this.NPCRectangleXOffSet = 15;
+                    this.NPCRectangleYOffSet = 15;
+                    this.NPCRectangleHeightOffSet = 4;
+                    this.NPCRectangleWidthOffSet = 4;
+                    this.Speed = .05f;
+                    this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+                    this.SoundID = 14;
+                    this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
+                    this.CurrentBehaviour = CurrentBehaviour.Wander;
+                    break;
+            }
+
         }
 
-        public virtual void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse, IInformationContainer container)
+        public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
+            this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
-            // this.CollideOccured = Collider.DidCollide(objects, Position);
-
-            for (int i = 0; i < 4; i++)
+            List<ICollidable> returnObjects = new List<ICollidable>();
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, Collider);
+            for (int i = 0; i < returnObjects.Count; i++)
             {
-                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-            }
+                //if obj collided with item in list stop it from moving boom badda bing
+                if (Collider.DidCollide(returnObjects[i], Position))
+                {
+                    CollideOccured = true;
+                    if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
+                    {
+                        this.CurrentBehaviour = CurrentBehaviour.Chase;
+                    }
+                    else if (returnObjects[i].ColliderType == ColliderType.grass)
+                    {
+                        if (Collider.IsIntersecting(returnObjects[i]))
+                        {
+                            returnObjects[i].IsUpdating = true;
+                            returnObjects[i].InitialShuffDirection = this.CurrentDirection;
+                        }
+                    }
 
+
+                    //  IsMoving = false;
+                }
+
+
+            }
             for (int i = 0; i < 4; i++)
             {
                 NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
             }
+            UpdateDirection();
+
+            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
+            {
+                mouse.ChangeMouseTexture(CursorType.Normal);
+                mouse.ToggleGeneralInteraction = true;
+                Game1.isMyMouseVisible = false;
+
+            }
+
+            if (CollideOccured)
+            {
+                this.PrimaryVelocity = Collider.Velocity;
+            }
+            if (IsMoving)
+            {
+                switch (CurrentBehaviour)
+                {
+                    case CurrentBehaviour.Wander:
+                        Wander(gameTime, container);
+                        break;
+                    case CurrentBehaviour.Chase:
+                        MoveTowardsPoint(Game1.Player.position, gameTime);
+                        break;
+                    case CurrentBehaviour.Hurt:
+                        for (int i = 0; i < NPCAnimatedSprite.Length; i++)
+                        {
+                            NPCAnimatedSprite[i].Flash(gameTime, .05f, Color.Red);
+                        }
+                        //CurrentBehaviour = CurrentBehaviour.Wander;
+                        break;
+                }
+
+
+            }
+
+
             if (IsMoving)
             {
 
+                for (int i = 0; i < 4; i++)
+                {
+                    NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+                }
 
-                UpdateDirection();
-                this.PrimaryVelocity = Collider.Velocity;
+
+
             }
             else
             {
                 this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
-            }
 
+            }
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
+                RollDrop(gameTime, 148, this.Position, 10);
             }
 
 

@@ -60,7 +60,7 @@ namespace SecretProject.Class.TileStuff
 
 
         //NPCS
-        public List<Boar> Enemies { get; set; }
+        public List<Enemy> Enemies { get; set; }
 
         //PATHFINDING
         public ObstacleGrid PathGrid { get; set; }
@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
             }
 
-            Enemies = new List<Boar>();
+            Enemies = new List<Enemy>();
 
             SetRectangleTexture(this.GraphicsDevice);
 
@@ -294,7 +294,7 @@ namespace SecretProject.Class.TileStuff
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
 
 
-            Enemies.Add(new Boar("boar" + this.X.ToString() + this.Y.ToString(), new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -530,7 +530,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
-            Enemies.Add(new Boar("boar1", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X , AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X , AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
         }
 
