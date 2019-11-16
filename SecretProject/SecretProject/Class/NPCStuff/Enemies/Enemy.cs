@@ -236,10 +236,22 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public void PlayerCollisionInteraction()
         {
-            int amount = 5;
+            int amount = 30;
             switch (Game1.Player.controls.Direction)
             {
                 case Dir.Down:
+                    this.Position = new Vector2(this.Position.X, this.Position.Y + amount);
+                    break;
+                case Dir.Right:
+                    this.Position = new Vector2(this.Position.X + amount, this.Position.Y);
+                    break;
+                case Dir.Left:
+                    this.Position = new Vector2(this.Position.X - amount, this.Position.Y);
+                    break;
+                case Dir.Up:
+                    this.Position = new Vector2(this.Position.X , this.Position.Y - amount);
+                    break;
+                default:
                     this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
                     break;
             }

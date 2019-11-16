@@ -460,6 +460,26 @@ namespace SecretProject.Class.Playable
                             returnObjects[i].IsUpdating = true;
                             returnObjects[i].InitialShuffDirection = this.controls.Direction;
                         }
+                        #region SWORD INTERACTIONS
+                        if (CurrentTool != null)
+                        {
+                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                            {
+                               Console.WriteLine("Intersected grass");
+                             returnObjects[i].SelfDestruct();
+                            }
+                        }
+                        #endregion
+                    }
+                    else if(returnObjects[i].ColliderType == ColliderType.Enemy)
+                    {
+                        if (CurrentTool != null)
+                        {
+                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                            {
+                                returnObjects[i].Entity.PlayerCollisionInteraction();
+                            }
+                        }
                     }
                     else
                     {
