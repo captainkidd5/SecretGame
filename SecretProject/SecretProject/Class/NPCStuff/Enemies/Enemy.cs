@@ -15,6 +15,11 @@ using XMLData.RouteStuff;
 namespace SecretProject.Class.NPCStuff.Enemies
 {
     //TODO: Write method which allows pathfinding with wandering.
+    public enum CurrentBehaviour
+    {
+        Wander = 1,
+        Chase = 2
+    }
     public class Enemy : INPC
     {
         public string Name { get; set; }
@@ -30,8 +35,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             get
             {
-                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X + 16,
-NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
+                return new Rectangle(NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.X + 16,
+NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
             set { }
         }
@@ -40,7 +45,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public float Speed { get; set; }
         //0 = down, 1 = left, 2 =  right, 3 = up
-        public int CurrentDirection { get; set; }
+        public Dir CurrentDirection { get; set; }
         public bool IsMoving { get; set; }
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
@@ -65,6 +70,8 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public Color DebugColor { get; set; }
         public List<PathFinderNode> CurrentPath { get; set; }
 
+        public CurrentBehaviour CurrentBehaviour { get; set; }
+
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
         {
             this.Name = name;
@@ -78,6 +85,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             NextPointRectangleTexture = SetRectangleTexture(graphics, NextPointRectangle);
             this.DebugColor = Color.Red;
             this.CurrentPath = new List<PathFinderNode>();
+            this.CurrentBehaviour = CurrentBehaviour.Wander;
         }
 
         public virtual void Update(GameTime gameTime, Dictionary<string, Collider> objects, MouseManager mouse, IInformationContainer container)
@@ -105,7 +113,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
             else
             {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
             }
 
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -128,7 +136,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         }
 
 
-        private bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
+        public bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
         {
             // If we're already at the goal return immediatly
             this.IsMoving = true;
@@ -205,24 +213,24 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         {
             if (DirectionVector.X > .5f)
             {
-                CurrentDirection = 2; //right
+                CurrentDirection = Dir.Right; //right
             }
             else if (DirectionVector.X < -.5f)
             {
-                CurrentDirection = 1; //left
+                CurrentDirection = Dir.Left; //left
             }
             else if (DirectionVector.Y < .5f) // up
             {
-                CurrentDirection = 3;
+                CurrentDirection = Dir.Up;
             }
 
             else if (DirectionVector.Y > .5f)
             {
-                CurrentDirection = 0;
+                CurrentDirection = Dir.Down;
             }
             else
             {
-                CurrentDirection = 0;
+                CurrentDirection = Dir.Down;
             }
         }
 
@@ -242,16 +250,16 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             switch (CurrentDirection)
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
-                case 0:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, 1f);
+                case Dir.Down:
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Top + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                     break;
-                case 1:
+                case Dir.Left:
                     NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Top + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                     break;
-                case 2:
+                case Dir.Right:
                     NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Top + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                     break;
-                case 3:
+                case Dir.Up:
                     NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Top + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                     break;
             }

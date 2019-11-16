@@ -36,7 +36,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
-            this.IsMoving = false;
+            this.CurrentBehaviour = CurrentBehaviour.Wander;
+            this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
             Collider.Velocity = this.PrimaryVelocity;
@@ -48,7 +49,22 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     if (Collider.DidCollide(returnObjects[i], Position))
                     {
                         CollideOccured = true;
+                    if(returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
+                    {
+                        this.CurrentBehaviour = CurrentBehaviour.Chase;
                     }
+                    else if (returnObjects[i].ColliderType == ColliderType.grass)
+                    {
+                        if (Collider.IsIntersecting(returnObjects[i]))
+                        {
+                            returnObjects[i].IsUpdating = true;
+                            returnObjects[i].InitialShuffDirection = this.CurrentDirection;
+                        }
+                    }
+
+
+                    //  IsMoving = false;
+                }
                 
 
             }
@@ -70,7 +86,21 @@ namespace SecretProject.Class.NPCStuff.Enemies
             {
                 this.PrimaryVelocity = Collider.Velocity;
             }
-            Wander(gameTime, container);
+            if(IsMoving)
+            {
+                switch (CurrentBehaviour)
+                {
+                    case CurrentBehaviour.Wander:
+                        Wander(gameTime, container);
+                        break;
+                    case CurrentBehaviour.Chase:
+                        MoveTowardsPoint(Game1.Player.position, gameTime);
+                        break;
+                }
+
+                
+            }
+            
             
             if (IsMoving)
             {
@@ -85,7 +115,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
             else
             {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
 
             }
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;

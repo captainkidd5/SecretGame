@@ -35,7 +35,7 @@ namespace SecretProject.Class.NPCStuff
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
-        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[CurrentDirection].SourceRectangle.Height); } }
+        public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Height); } }
 
 
         public float Speed { get; set; } = .65f; //.65
@@ -46,7 +46,7 @@ namespace SecretProject.Class.NPCStuff
 
 
         //0 = down, 1 = left, 2 =  right, 3 = up
-        public int CurrentDirection { get; set; }
+        public Dir CurrentDirection { get; set; }
 
 
         public Collider Collider { get; set; }
@@ -71,8 +71,8 @@ namespace SecretProject.Class.NPCStuff
         {
             get
             {
-                return new Rectangle(NPCAnimatedSprite[CurrentDirection].DestinationRectangle.X,
-NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height, 4, 4);
+                return new Rectangle(NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.X,
+NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height, 4, 4);
             }
             set { }
         }
@@ -214,7 +214,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
             else
             {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
             }
 
         }
@@ -236,7 +236,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
             }
             else
             {
-                this.NPCAnimatedSprite[CurrentDirection].SetFrame(0);
+                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
             }
         }
 
@@ -284,7 +284,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     }
 
                     UpdateDirectionVector(Game1.Player.position);
-                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
+                    this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(frameToSet);
 
 
                 }
@@ -310,7 +310,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
                     }
 
-                    this.NPCAnimatedSprite[CurrentDirection].SetFrame(frameToSet);
+                    this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(frameToSet);
 
 
                 }
@@ -336,24 +336,24 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
         {
             if (DirectionVector.X > .5f)
             {
-                CurrentDirection = 2; //right
+                CurrentDirection = Dir.Right; //right
             }
             else if (DirectionVector.X < -.5f)
             {
-                CurrentDirection = 1; //left
+                CurrentDirection = Dir.Left; //left
             }
             else if (DirectionVector.Y < .5f) // up
             {
-                CurrentDirection = 3;
+                CurrentDirection = Dir.Up;
             }
 
             else if (DirectionVector.Y > .5f)
             {
-                CurrentDirection = 0;
+                CurrentDirection = Dir.Down;
             }
             else
             {
-                CurrentDirection = 0;
+                CurrentDirection = Dir.Down;
             }
         }
         #endregion
@@ -453,7 +453,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     if (route.StageToEndAt == (int)CurrentStageLocation)
                     {
                         Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                         ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16);
+                         ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
                         Point end = new Point(route.EndX, route.EndY);
                         CurrentPath = finder.FindPath(start, end);
                         if (CurrentPath == null)
@@ -464,7 +464,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                     else
                     {
                         Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                         ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16);
+                         ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
                         Point end = FindIntermediateStages((int)CurrentStageLocation, route.StageToEndAt);
 
                         CurrentPath = finder.FindPath(start, end);
@@ -518,7 +518,7 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
 
 
                     Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                     ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Height) / 16);
+                     ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
                     Point end = endPoint;
                     CurrentPath = finder.FindPath(start, end);
                     if (CurrentPath == null)
@@ -578,13 +578,13 @@ NPCAnimatedSprite[CurrentDirection].DestinationRectangle.Y + NPCAnimatedSprite[C
                         float num = .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height));
                         NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                         break;
-                    case 1:
+                    case Dir.Left:
                         NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                         break;
-                    case 2:
+                    case Dir.Right:
                         NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                         break;
-                    case 3:
+                    case Dir.Up:
                         NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                         break;
                 }

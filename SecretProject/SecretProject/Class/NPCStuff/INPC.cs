@@ -27,7 +27,7 @@ namespace SecretProject.Class.NPCStuff
          Vector2 PrimaryVelocity { get; set; }
          Vector2 TotalVelocity { get; set; }
          Vector2 DirectionVector { get; set; }
-         int CurrentDirection { get; set; }
+         Dir CurrentDirection { get; set; }
          int FrameNumber { get; set; }
          Collider Collider { get; set; }
          bool CollideOccured { get; set; }

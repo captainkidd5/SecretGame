@@ -16,7 +16,8 @@ namespace SecretProject.Class.CollisionDetection
         NPC = 2,
         Enemy = 3,
         Item = 4,
-        Undetectable = 5
+        Undetectable = 5, 
+        PlayerBigBox = 6
     }
     public interface ICollidable
     {
