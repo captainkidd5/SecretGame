@@ -336,7 +336,8 @@ namespace SecretProject.Class.Playable
                     if (CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
-                        ToolLine.Point2 = Position;
+                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + 16, CurrentTool.Position.Y + 16);
+                        ToolLine.Rotation = CurrentTool.Rotation + 4;
 
 
                     }
@@ -534,35 +535,6 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                //if (CurrentTool != null)
-                //{
-
-                //    BigCollider.Rectangle = this.ClickRangeRectangle;
-
-                //    List<ICollidable> returnObjects = new List<ICollidable>();
-                //    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
-                //    for (int i = 0; i < returnObjects.Count; i++)
-                //    {
-
-                //        if (returnObjects[i].ColliderType == ColliderType.grass)
-                //        {
-
-
-                //            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                //            {
-                //                Console.WriteLine("Intersected grass");
-                //                returnObjects[i].SelfDestruct();
-                //            }
-
-                //        }
-                //        else if(returnObjects[i].ColliderType == ColliderType.NPC || returnObjects[i].ColliderType == ColliderType.Enemy)
-                //        {
-                //            returnObjects[i].Entity.PlayerCollisionInteraction();
-                //        }
-
-                //    }
-                //}
-
             }
         }
 
@@ -592,8 +564,6 @@ namespace SecretProject.Class.Playable
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-
-
 
             if (!IsPerformingAction)
             {

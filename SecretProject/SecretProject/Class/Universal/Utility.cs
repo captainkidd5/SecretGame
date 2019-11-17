@@ -227,9 +227,10 @@ namespace SecretProject.Class.Universal
 
         }
 
-        public Vector2 RotateVector2(Vector2 value,Vector2 origin, float radians)
+        public Vector2 RotateVector2(Vector2 pointToRotate,Vector2 origin, float angle)
         {
-            return Vector2.Transform(value, Matrix.CreateRotationZ(radians)) + origin;
+            Matrix rotationMatrix = Matrix.CreateRotationZ(angle);
+            return Vector2.Transform(pointToRotate - origin, rotationMatrix);
         }
         #endregion
         #region SPEECHUTILITY

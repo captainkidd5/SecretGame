@@ -756,7 +756,11 @@ namespace SecretProject.Class.TileStuff
                             foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
                             {
                                 enemy.Draw(spriteBatch);
-                                enemy.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
+                                if(Game1.GetCurrentStage().ShowBorders)
+                                {
+                                    enemy.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
+                                }
+                                
                             }
                         }
                     }

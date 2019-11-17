@@ -124,7 +124,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
                     this.SoundID = 14;
                     this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
-                    this.CurrentBehaviour = CurrentBehaviour.Wander;
+                    
                     break;
             }
 
@@ -132,6 +132,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
         {
+            this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
