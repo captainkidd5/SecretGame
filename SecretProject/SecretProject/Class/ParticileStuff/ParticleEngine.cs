@@ -16,6 +16,7 @@ namespace SecretProject.Class.ParticileStuff
         private List<Texture2D> textures;
         public float ActivationTime { get; set; } = 0f;
         public Color Color { get; set; } = Color.White;
+        public float AddNewParticleTimer { get; set; } = .01f;
 
         public ParticleEngine(List<Texture2D> textures, Vector2 location)
         {
@@ -30,13 +31,13 @@ namespace SecretProject.Class.ParticileStuff
             Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
             Vector2 position = EmitterLocation;
             Vector2 velocity = new Vector2(
-                .25f * (float)(Game1.Utility.RGenerator.NextDouble() * 2 -1),
-                .5f * (float)(Game1.Utility.RGenerator.NextDouble() * 2 - 1));
-            float angle = 0;
-            float angularVelocity = 0.1f * (float)(Game1.Utility.RGenerator.NextDouble() * 2 - 1);
+                1.25f * Game1.Utility.RFloat(-1,1),
+                -1);
+            float angle = -1f;
+            float angularVelocity = .25f;
             Color color = Color;
             float size = 1f;
-            int ttl = 20 + Game1.Utility.RGenerator.Next(40);
+            int ttl = 100 + Game1.Utility.RGenerator.Next(40);
 
             return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
         }
@@ -47,41 +48,51 @@ namespace SecretProject.Class.ParticileStuff
             if (ActivationTime > 0)
             {
 
-                int total = 2;
+                int total = 1;
+                AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                for (int i = 0; i < total; i++)
+                if (AddNewParticleTimer <= 0)
                 {
-                    particles.Add(GenerateNewParticle());
+                    for (int i = 0; i < total; i++)
+                    {
+                        particles.Add(GenerateNewParticle());
+                    }
+                    AddNewParticleTimer = Game1.Utility.RFloat(.01f, .2f);
                 }
+                ActivationTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }  
 
                 for (int particle = 0; particle < particles.Count; particle++)
                 {
                     particles[particle].Update(gameTime);
+                if (particles[particle].TTL <= 40)
+                {
+                    particles[particle].ColorMultiplier -= .1f;
+                }
                     if (particles[particle].TTL <= 0)
                     {
                         particles.RemoveAt(particle);
                         particle--;
                     }
                 }
-                ActivationTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            else
-            {
-                particles.Clear();
-            }
+               
+           
         }
 
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            if(ActivationTime > 0)
-            {
-                for (int index = 0; index < particles.Count; index++)
+            
+                if(particles.Count > 0)
                 {
-                    particles[index].Draw(spriteBatch, layerDepth);
+                    for (int index = 0; index < particles.Count; index++)
+                    {
+                        particles[index].Draw(spriteBatch, layerDepth);
+                    }
                 }
+                
 
-            }
+            
             
         }
     }

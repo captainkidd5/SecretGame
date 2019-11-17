@@ -178,6 +178,8 @@ namespace SecretProject.Class.Universal
                     return Color.Green;
                 case 4:
                     return Color.Blue;
+                case 5:
+                    return Color.Brown;
                 default:
                     return Color.White;
             }

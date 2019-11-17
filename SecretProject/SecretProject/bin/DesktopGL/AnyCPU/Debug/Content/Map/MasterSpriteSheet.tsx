@@ -1889,7 +1889,7 @@
  </tile>
  <tile id="1663">
   <properties>
-   <property name="destructable" value="21,4,1,3"/>
+   <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
    <property name="spawnWith" value="1563"/>
   </properties>
@@ -2243,7 +2243,7 @@
  </tile>
  <tile id="2963">
   <properties>
-   <property name="destructable" value="21,4,1,3"/>
+   <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
    <property name="spawnWith" value="2863"/>
   </properties>
@@ -2521,7 +2521,7 @@
  </tile>
  <tile id="3663">
   <properties>
-   <property name="destructable" value="21,4,1,3"/>
+   <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
    <property name="spawnWith" value="3563"/>
   </properties>

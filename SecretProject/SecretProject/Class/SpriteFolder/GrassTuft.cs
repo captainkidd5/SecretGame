@@ -56,7 +56,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Type1SourceRectangle = new Rectangle(0, 0, 16, 32);
             this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
             this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
-            this.Rectangle = DestinationRectangle;
+            this.Rectangle = new Rectangle(DestinationRectangle.X, DestinationRectangle.Y, 8, 8);
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;

@@ -336,7 +336,7 @@ namespace SecretProject.Class.Playable
                     if (CurrentTool != null)
                     {
                         CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
-                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + 16, CurrentTool.Position.Y + 16);
+                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + 20, CurrentTool.Position.Y + 20);
                         ToolLine.Rotation = CurrentTool.Rotation + 4;
 
 
