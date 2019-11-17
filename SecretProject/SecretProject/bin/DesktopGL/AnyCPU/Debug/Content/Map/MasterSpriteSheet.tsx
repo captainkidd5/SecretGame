@@ -1706,6 +1706,14 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1472">
+  <properties>
+   <property name="layer" value="3"/>
+   <property name="newSource" value="0,-16,16,32"/>
+   <property name="relationX" value="0"/>
+   <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
  <tile id="1475">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
@@ -1818,6 +1826,13 @@
    <property name="newSource" value="-16,-48,48,64"/>
    <property name="relationX" value="0"/>
    <property name="relationY" value="-1"/>
+  </properties>
+ </tile>
+ <tile id="1572">
+  <properties>
+   <property name="destructable" value="21,4,1,3"/>
+   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="spawnWith" value="1472"/>
   </properties>
  </tile>
  <tile id="1580">

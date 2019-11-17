@@ -295,6 +295,7 @@ namespace SecretProject.Class.TileStuff
 
 
             Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -474,6 +475,7 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
                         TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 
+                        TileUtility.GenerateTiles(1, 1573, "grass", 10, 0, this); //Reeds
 
                         // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
                         TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
