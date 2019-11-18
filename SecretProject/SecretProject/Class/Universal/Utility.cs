@@ -37,10 +37,11 @@ namespace SecretProject.Class.Universal
         public List<int> WaterGeneratableTiles;
         public List<int> StoneGeneratableTiles { get; set; }
         public List<int> StandardGeneratableDirtTiles;
+        public List<int> FenceGeneratableTiles { get; set; }
 
         public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
         {
-            {0, 256},{1,457}, {2, 656 },  {3, 455}, {4, 456}, {5, 453},{6,258},{7, 454}, {8, 557}, {9, 257}, {10, 155}, {11, 255}, {12,153}, {13,253}, {14,154}, {15, 929}
+            {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 456}
         };
         //public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
         //{
@@ -60,6 +61,7 @@ namespace SecretProject.Class.Universal
             WaterGeneratableTiles = new List<int>();
             StoneGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
+            FenceGeneratableTiles = new List<int>();
 
             FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);

@@ -9,6 +9,26 @@
    <property name="action" value="plantable"/>
   </properties>
  </tile>
+ <tile id="153">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
+ <tile id="154">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
+ <tile id="155">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
+ <tile id="156">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
  <tile id="226">
   <properties>
    <property name="generate" value="water"/>
@@ -39,33 +59,30 @@
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
  </tile>
- <tile id="252">
-  <properties>
-   <property name="newSource" value="0,-16,0,16"/>
-  </properties>
- </tile>
  <tile id="253">
   <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
  </tile>
  <tile id="254">
   <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
  </tile>
  <tile id="255">
+  <properties>
+   <property name="generate" value="fence"/>
+   <property name="newSource" value="0,-16,0,16"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.181809" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
  <tile id="256">
   <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
- </tile>
- <tile id="258">
-  <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -152,10 +169,28 @@
    <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="353">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
+ <tile id="354">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
+ </tile>
  <tile id="355">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
   </objectgroup>
+ </tile>
+ <tile id="356">
+  <properties>
+   <property name="generate" value="fence"/>
+  </properties>
  </tile>
  <tile id="360">
   <objectgroup draworder="index">
@@ -228,16 +263,19 @@
  </tile>
  <tile id="453">
   <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="454">
   <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="455">
   <properties>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
@@ -246,11 +284,8 @@
  </tile>
  <tile id="456">
   <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
- </tile>
- <tile id="457">
-  <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="generate" value="fence"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -446,27 +481,9 @@
   </properties>
  </tile>
  <tile id="653">
-  <properties>
-   <property name="newSource" value="0,-16,0,16"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="8.63636" width="16" height="6.36364"/>
   </objectgroup>
- </tile>
- <tile id="654">
-  <properties>
-   <property name="newSource" value="0,-16,0,16"/>
-  </properties>
- </tile>
- <tile id="655">
-  <properties>
-   <property name="newSource" value="0,-16,0,16"/>
-  </properties>
- </tile>
- <tile id="656">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
  </tile>
  <tile id="663">
   <properties>

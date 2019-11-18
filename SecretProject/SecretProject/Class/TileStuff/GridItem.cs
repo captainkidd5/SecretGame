@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 using System;
@@ -48,13 +49,31 @@ namespace SecretProject.Class.TileStuff
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
                 {
                     this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
-                   
+
 
                 }
                 else
                 {
                     this.RectangleCoordinates = new int[4]
                    {0,0,16,16};
+                }
+
+                //we use this so only the hitbox section of the tile to place is checking to see if tiles underneath are empty. 
+                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("checkTile"))
+                {
+                    int[] newRectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["checkTile"]);
+
+                    this.NegativeX = newRectangleCoordinates[0] / 16;
+                    this.NegativeY = newRectangleCoordinates[1] / 16;
+                    this.PositiveX = newRectangleCoordinates[2] / 16;
+                    this.PositiveY = newRectangleCoordinates[3] / 16;
+                }
+                else
+                {
+                    this.NegativeX = RectangleCoordinates[0] / 16;
+                    this.NegativeY = RectangleCoordinates[1] / 16;
+                    this.PositiveX = RectangleCoordinates[2] / 16;
+                    this.PositiveY = RectangleCoordinates[3] / 16;
                 }
             }
             else
@@ -64,10 +83,6 @@ namespace SecretProject.Class.TileStuff
 
             }
 
-            this.NegativeX = RectangleCoordinates[0] / 16;
-            this.NegativeY = RectangleCoordinates[1] / 16;
-            this.PositiveX = RectangleCoordinates[2] / 16;
-            this.PositiveY = RectangleCoordinates[3] / 16;
 
             SourceRectangle = new Rectangle(SourceRectangle.X + RectangleCoordinates[0], SourceRectangle.Y + RectangleCoordinates[1],
                                    SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
@@ -104,7 +119,7 @@ namespace SecretProject.Class.TileStuff
 
 
                             //check if index is out of bounds of current chunk
-                          
+
                             for (int z = 1; z < container.AllTiles.Count; z++)
                             {
                                 int gid = 0;
@@ -147,7 +162,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     case 0:
                                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, Game1.SoundManager.GameVolume);
-                                        
+
                                         break;
                                     case 1:
                                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2, Game1.SoundManager.GameVolume);
@@ -329,9 +344,9 @@ namespace SecretProject.Class.TileStuff
                             for (int z = 1; z < container.AllTiles.Count; z++)
                             {
                                 int gid = 0;
-                                if(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
+                                if (tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
                                 {
-                                     gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
+                                    gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
                                 }
                                 else
                                 {
@@ -354,7 +369,7 @@ namespace SecretProject.Class.TileStuff
 
                     }
 
-                    if(canPlaceTotal)
+                    if (canPlaceTotal)
                     {
                         if (Game1.myMouseManager.IsClicked)
                         {
@@ -376,9 +391,9 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 if (this.PlaceID == 2157)
                                 {
-                                    Portal tempPortal = new Portal(3,5, 0, 50, true);
+                                    Portal tempPortal = new Portal(3, 5, 0, 50, true);
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle;
-                                   // tempPortal.
+                                    // tempPortal.
                                     Game1.World.AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
@@ -386,15 +401,59 @@ namespace SecretProject.Class.TileStuff
                                         Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
                                     }
                                 }
+                                Item item = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                                 TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, Game1.GetCurrentStage(), container);
+                                if (item.TilingDictionary != null)
+                                {
+
+                                    ReassignTileForTiling(this.PlaceID, Game1.Utility.FenceGeneratableTiles,
+                                        item.TilingDictionary, 3,
+                                        Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                        TileUtility.ChunkX, TileUtility.ChunkY, container, container.AdjacentNoise);
+                                    int i = Game1.Player.UserInterface.TileSelector.IndexX;
+                                    int j = Game1.Player.UserInterface.TileSelector.IndexY;
+                                    for (int t = -1; t < 2; t++)
+                                    {
+                                        for (int q = -1; q < 2; q++)
+                                        {
+                                            if (i > 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j + q, container.MapWidth, container.MapHeight, container);
+                                            }
+                                            else if (i > 0 && j <= 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
+                                            }
+                                            else if (i <= 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
+                                            }
+                                            else if (i >= TileUtility.ChunkX && j < TileUtility.ChunkY - 1)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
+                                            }
+                                            else if (i < TileUtility.ChunkX - 1 && j >= TileUtility.ChunkY)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
+                                            }
+                                            else if (i == TileUtility.ChunkX && j == TileUtility.ChunkY)
+                                            {
+                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j, container.MapWidth, container.MapHeight, container);
+                                            }
+
+                                        }
+                                    }
+
+                                }
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
-                                
+
+
                                 return;
                             }
-                            
+
                         }
-                        
+
                     }
                 }
                 else
@@ -499,7 +558,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                               canPlace = false;
+                                canPlace = false;
 
                             }
                         }
@@ -521,10 +580,84 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-                
+
 
 
             }
+        }
+
+        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+            int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
+        {
+
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
+            {
+                return;
+            }
+            int keyToCheck = 0;
+            if (y > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                {
+                    keyToCheck += 1;
+                }
+            }
+            //if top tile is 0 we look at the chunk above it
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
+            {
+                keyToCheck += 1;
+            }
+
+
+
+            if (y < worldHeight - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
+                {
+                    keyToCheck += 8;
+                }
+            }
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
+            {
+                keyToCheck += 8;
+            }
+
+            //looking at rightmost tile
+            if (x < worldWidth - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
+                {
+                    keyToCheck += 4;
+                }
+            }
+
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
+            {
+                keyToCheck += 4;
+            }
+
+
+            if (x > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
+                {
+                    keyToCheck += 2;
+                }
+            }
+
+            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
+            {
+                keyToCheck += 2;
+            }
+
+
+                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+            
+
+
         }
 
         public void PlayerCollisionInteraction()

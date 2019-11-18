@@ -64,18 +64,18 @@ namespace SecretProject.Class.TileStuff
             {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
         };
 
-        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
+        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,int layer,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
 
-            if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID ))
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID ))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y - 1].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID ))
                 {
                     keyToCheck += 1;
                 }
@@ -91,7 +91,7 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y + 1].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID ))
                 {
                     keyToCheck += 8;
                 }
@@ -105,7 +105,7 @@ namespace SecretProject.Class.TileStuff
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x + 1, y].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID ))
                 {
                     keyToCheck += 4;
                 }
@@ -120,7 +120,7 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x - 1, y].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID ))
                 {
                     keyToCheck += 2;
                 }
@@ -135,11 +135,11 @@ namespace SecretProject.Class.TileStuff
             {
                 // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
 
-                ReplaceTile(0, x, y, mainGid, container);
+                ReplaceTile(layer, x, y, mainGid, container);
             }
             else
             {
-                ReplaceTile(0, x, y, tilingDictionary[keyToCheck] + 1, container);
+                ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
             }
 
 
@@ -513,34 +513,34 @@ namespace SecretProject.Class.TileStuff
                                         case "grass":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight, container);
+                                            ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j, container.MapWidth, container.MapHeight, container);
                                             for (int t = -1; t < 2; t++)
                                             {
                                                 for (int q = -1; q < 2; q++)
                                                 {
                                                     if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0,i + t, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i >= ChunkX && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0,i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i < ChunkX - 1 && j >= ChunkY)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i == ChunkX && j == ChunkY)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, i, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j, container.MapWidth, container.MapHeight, container);
                                                     }
 
                                                 }

@@ -176,6 +176,12 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Utility.StandardGeneratableDirtTiles.Add(i);
                                 }
                                 break;
+                            case "fence":
+                                if (!Game1.Utility.FenceGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.FenceGeneratableTiles.Add(i);
+                                }
+                                break;
                         }
 
 
