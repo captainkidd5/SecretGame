@@ -59,6 +59,16 @@
    <object id="1" x="0.136365" y="0.181809" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="256">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="258">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="260">
   <properties>
    <property name="action" value="smelt"/>
@@ -216,10 +226,33 @@
    <object id="2" x="1" y="9" width="14" height="5"/>
   </objectgroup>
  </tile>
+ <tile id="453">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="454">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="455">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.0454559" y="0.272718" width="7.72727" height="15.8182"/>
   </objectgroup>
+ </tile>
+ <tile id="456">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="457">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="478">
   <properties>
@@ -432,7 +465,7 @@
  </tile>
  <tile id="656">
   <properties>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="663">

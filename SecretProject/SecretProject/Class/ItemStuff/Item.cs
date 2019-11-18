@@ -67,11 +67,12 @@ namespace SecretProject.Class.ItemStuff
         public int SmeltedItem { get; set; }
         public int Durability { get; set; }
         public int PlaceID { get; set; }
+        public string TilingSet { get; set; }
         public int StaminaRestored { get; set; }
         public int Type { get; set; }
         public int AnimationColumn { get; set; }
 
-     
+        public Dictionary<int, int> TilingDictionary { get; set; }
 
 
 
@@ -95,9 +96,22 @@ namespace SecretProject.Class.ItemStuff
             }
 
             this.PlaceID = itemData.PlaceID;
+            
             this.StaminaRestored = itemData.StaminaRestored;
             this.Type = itemData.Type;
             this.AnimationColumn = itemData.AnimationColumn;
+
+            this.TilingSet = itemData.TilingSet;
+            if(this.TilingSet != null)
+            {
+                switch (TilingSet)
+                {
+                    case "FenceTiling":
+                        this.TilingDictionary = Game1.Utility.FenceTiling;
+                        break;
+                }
+                
+            }
         }
         public void Load()
         {

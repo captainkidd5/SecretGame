@@ -1105,7 +1105,7 @@ namespace SecretProject.Class.TileStuff
             }
             else if (perlinValue >= .12f && perlinValue <= .2f)
             {
-                newGID = 1115;//GRASS
+                newGID = 1106;//GRASS
             }
             else if (perlinValue >= .1f && perlinValue <= .12f)
             {

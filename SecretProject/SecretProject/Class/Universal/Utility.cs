@@ -38,7 +38,14 @@ namespace SecretProject.Class.Universal
         public List<int> StoneGeneratableTiles { get; set; }
         public List<int> StandardGeneratableDirtTiles;
 
-
+        public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
+        {
+            {0, 256},{1,457}, {2, 656 },  {3, 455}, {4, 456}, {5, 453},{6,258},{7, 454}, {8, 557}, {9, 257}, {10, 155}, {11, 255}, {12,153}, {13,253}, {14,154}, {15, 929}
+        };
+        //public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
+        //{
+        //    {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
+        //};
 
 
         // public static Color = new Color(100, 100, 100, 100);

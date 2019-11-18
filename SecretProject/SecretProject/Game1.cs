@@ -516,9 +516,12 @@ namespace SecretProject
                 //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
             }
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
+            for (int i = 0; i < 25; i++)
+            {
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
+            }
 
-
-            ProgressBook JulianProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 1);
+                ProgressBook JulianProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 1);
             ProgressBook ElixirProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 2);
             AllProgressBooks = new List<ProgressBook>()
             {

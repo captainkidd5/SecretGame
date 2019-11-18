@@ -26,6 +26,7 @@ namespace XMLData.ItemStuff
             newItem.SmeltedItem = oldItem.SmeltedItem;
             newItem.Durability = oldItem.Durability;
             newItem.PlaceID = oldItem.PlaceID;
+            newItem.TilingSet = oldItem.TilingSet;
 
                 newItem.StaminaRestored = oldItem.StaminaRestored;
             newItem.Type = oldItem.Type;

@@ -40,7 +40,7 @@ namespace SecretProject.Class.TileStuff
             LoadNewItem(tileManager);
 
         }
-
+        //negative ID means indoors only
         public void LoadNewItem(ITileManager tileManager)
         {
             if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(PlaceID))
@@ -146,10 +146,11 @@ namespace SecretProject.Class.TileStuff
                                 switch (soundRandom)
                                 {
                                     case 0:
-                                        Game1.SoundManager.PlaceItem1.Play();
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, Game1.SoundManager.GameVolume);
+                                        
                                         break;
                                     case 1:
-                                        Game1.SoundManager.PlaceItem2.Play();
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2, Game1.SoundManager.GameVolume);
                                         break;
                                 }
 
@@ -366,10 +367,11 @@ namespace SecretProject.Class.TileStuff
                                 switch (soundRandom)
                                 {
                                     case 0:
-                                        Game1.SoundManager.PlaceItem1.Play();
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, Game1.SoundManager.GameVolume);
+
                                         break;
                                     case 1:
-                                        Game1.SoundManager.PlaceItem2.Play();
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2, Game1.SoundManager.GameVolume);
                                         break;
                                 }
                                 if (this.PlaceID == 2157)

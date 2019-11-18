@@ -31,6 +31,9 @@ namespace XMLData.ItemStuff
         public int PlaceID { get; set; }
 
         [ContentSerializer(Optional = true)]
+        public string TilingSet { get; set; }
+
+        [ContentSerializer(Optional = true)]
         public int StaminaRestored { get; set; }
 
         [ContentSerializer(Optional = true)]
