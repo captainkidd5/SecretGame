@@ -282,7 +282,7 @@ namespace SecretProject.Class.TileStuff
             float X = (tile.X * 16);
             float Y = (tile.Y * 16);
 
-            return new Rectangle((int)(X + chunkX * ChunkX * ChunkX), (int)(Y + chunkY * ChunkY * ChunkY), 16, 16);
+            return new Rectangle((int)(X), (int)(Y), 16, 16);
 
 
         }
@@ -408,13 +408,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     float randomOffSet = Game1.Utility.RFloat(.0000001f, .000001f);
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + 16) * .0000001f + randomOffSet;
-                    //while (container.ForeGroundOffSetDictionary.ContainsKey(offSetDrawValue))
-                    //{
-
-                    //    offSetDrawValue += .0000000001f;
-
-                    //}
-                    //container.ForeGroundOffSetDictionary.Add(offSetDrawValue, tileToAssign.GetTileKey(layer));
+                    
                     tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
                 }
 

@@ -379,7 +379,7 @@ namespace SecretProject.Class.TileStuff
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)), this.Objects);
                                         tufts.Add(grassTuft);
                                         Objects.Add(grassTuft);
-                                      //  Objects.Add(AllTiles[0][i, j].GetTileKey(0), grassTuft);
+                                      
 
                                     }
                                 }
@@ -443,12 +443,7 @@ namespace SecretProject.Class.TileStuff
 
                 AllTiles[3][8, 5] = new Tile(8, 5, 9025);
                 AllTiles[1][8, 5] = new Tile(8, 4, 9625); 
-                //string liftKey = "0085";
-                //if (!Game1.Lifts.ContainsKey(liftKey))
-                //{
-                //    Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, "Wilderness");
-                //    Game1.Lifts.Add(liftKey, new Lift(liftKey, 3, new Vector2(this.GetChunkRectangle().X + 8 * 16, this.GetChunkRectangle().Y + 5 * 16), "Wilderness"));
-                //}
+
             }
 
             else
@@ -533,6 +528,7 @@ namespace SecretProject.Class.TileStuff
             }
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
             Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X , AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+
             this.IsLoaded = true;
         }
 

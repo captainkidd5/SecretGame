@@ -34,15 +34,10 @@ namespace SecretProject.Class.StageFolder
 
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
-        public int WorldWidth { get; set; }
-        public int WorldHeight { get; set; }
+
         public List<Boar> Boars;
 
-        public Sprite Gondola;
-        public Vector2 GondolaStartingPosition;
-        public bool IsGondolaAtStartingPosition;
-        public bool IsExitingOnGondola;
-        public bool IsGondolaAtEndingPosition;
+
         public int WorldSize { get; set; }
         public int StageIdentifier { get; set; }
         public string StageName { get; set; }
@@ -92,7 +87,7 @@ namespace SecretProject.Class.StageFolder
             this.TileHeight = 16;
             lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
-            Gondola = new Sprite(graphics, Game1.AllTextures.Gondola, new Rectangle(0, 0, Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height), new Vector2(Game1.Player.position.X - 300, Game1.Player.position.Y - 300), Game1.AllTextures.Gondola.Width, Game1.AllTextures.Gondola.Height);
+         
             this.StageName = name;
             this.Graphics = graphics;
             this.Content = content;
@@ -151,25 +146,10 @@ namespace SecretProject.Class.StageFolder
 
             };
             AllPortals = new List<Portal>();
-            switch (this.WorldSize)
-            {
-                case 1:
-                    this.WorldWidth = 400;
-                    this.WorldHeight = 400;
-                    break;
-                case 2:
-                    this.WorldWidth = 700;
-                    this.WorldHeight = 700;
-                    break;
-                case 3:
-                    this.WorldWidth = 1000;
-                    this.WorldHeight = 1000;
-                    break;
 
-            }
 
             // AllTiles = new TileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
-            this.AllTiles = new WorldTileManager(this, TileSet, AllLayers, Map, 5, WorldWidth, WorldHeight, Graphics, Content, TileSetNumber, AllDepths);
+            this.AllTiles = new WorldTileManager(this, TileSet, AllLayers, Map, 5, 100, 100, Graphics, Content, TileSetNumber, AllDepths);
             AllTiles.LoadGeneratableTileLists();
             //AllTiles.LoadInitialTileObjects(this);
             TileWidth = Map.Tilesets[TileSetNumber].TileWidth;
@@ -181,13 +161,13 @@ namespace SecretProject.Class.StageFolder
 
             AllActions = new List<ActionTimer>();
 
-            MapRectangle = new Rectangle(0, 0, TileWidth * WorldWidth, TileHeight * WorldHeight);
+            MapRectangle = new Rectangle(0, 0, TileWidth * 100, TileHeight * 100);
             Map = null;
             AllCrops = new Dictionary<string, Crop>();
 
             Boars = new List<Boar>() { };
 
-            AllTiles.LoadInitialChunks();
+           // AllTiles.LoadInitialChunks();
 
             // Game1.SoundManager.DustStormInstance.Play();
         }
@@ -214,13 +194,10 @@ namespace SecretProject.Class.StageFolder
             TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.IsLoaded = true;
-            GondolaStartingPosition = new Vector2((this.WorldWidth * 16 / 2) - 200, (this.WorldHeight * 16 / 2) - 200);
+           
             Game1.Player.Position = new Vector2(0,0);
-            this.Gondola.Position = GondolaStartingPosition;
-            // this.Gondola.Position = new Vector2((this.WorldWidth * 16 / 2) + 100, (this.WorldHeight * 16 / 2) + 100);
-            IsGondolaAtStartingPosition = true;
-            IsGondolaAtEndingPosition = false;
-            IsExitingOnGondola = false;
+
+
             AllTiles.LoadInitialChunks();
             this.QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
 
@@ -309,7 +286,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
+           // TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
@@ -342,21 +319,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Update(gameTime);
                 }
 
-                for (int e = 0; e < Boars.Count; e++)
-                {
-                    if (Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
-                    {
-                        //OnScreenNPCS.Add(Boars[e]);
-                        // Boars[e].Update(gameTime, AllTiles.GetChunkFromPosition(Boars[e].Position).Objects, mouse);
-                    }
-                    else
-                    {
-                        OnScreenNPCS.Remove(Boars[e]);
-                    }
-
-                    //Console.WriteLine(Boars[1].cu);
-                    //Boars[e].MoveTowardsPosition(Game1.Player.Position,Game1.Player.Rectangle);
-                }
+               
 
             }
             Game1.Player.controls.UpdateKeys();
@@ -435,13 +398,7 @@ namespace SecretProject.Class.StageFolder
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
-                for (int e = 0; e < Boars.Count; e++)
-                {
-                    if (Boars[e].NPCHitBoxRectangle.Intersects(Cam.CameraScreenRectangle))
-                    {
-                        Boars[e].Draw(spriteBatch);
-                    }
-                }
+               
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
