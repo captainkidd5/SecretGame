@@ -3,7 +3,7 @@
   <Asset Type="XMLData.ItemStuff.CropHolder">
     <AllCrops>
         <Item Type="XMLData.ItemStuff.Crop">
-          <ItemID>688</ItemID>
+          <ItemID>748</ItemID>
             <Name>Bloomberry</Name>
             <GID>486</GID>        
             <DaysToGrow>5</DaysToGrow>
@@ -11,7 +11,7 @@
             <Harvestable>false</Harvestable>
             </Item>
             <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>690</ItemID>
+                <ItemID>750</ItemID>
                   <Name>BloodCorn</Name>
                   <GID>286</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -19,7 +19,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
             <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>692</ItemID>
+                <ItemID>752</ItemID>
                   <Name>BrineVine</Name>
                   <GID>686</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -27,7 +27,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                <ItemID>694</ItemID>
+                <ItemID>754</ItemID>
                   <Name>BlueZodFern</Name>
                   <GID>292</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -35,7 +35,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>696</ItemID>
+                  <ItemID>756</ItemID>
                   <Name>YallonFlower</Name>
                   <GID>492</GID>
                   <DaysToGrow>5</DaysToGrow>
@@ -43,7 +43,7 @@
                   <Harvestable>false</Harvestable>
                   </Item>
                   <Item Type="XMLData.ItemStuff.Crop">
-                  <ItemID>698</ItemID>
+                  <ItemID>758</ItemID>
                   <Name>DesmodusBloom</Name>
                   <GID>692</GID>
                   <DaysToGrow>5</DaysToGrow>

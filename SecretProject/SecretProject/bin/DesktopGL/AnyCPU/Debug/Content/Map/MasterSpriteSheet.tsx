@@ -78,7 +78,7 @@
   <properties>
    <property name="AssociatedTiles" value="191"/>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="691:100:1,690:20:3"/>
+   <property name="loot" value="750:100:1,751:20:3"/>
   </properties>
  </tile>
  <tile id="295">
@@ -90,7 +90,7 @@
   <properties>
    <property name="AssociatedTiles" value="197"/>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="695:100:1,694:20:3"/>
+   <property name="loot" value="755:100:1,754:20:3"/>
   </properties>
  </tile>
  <tile id="325">
@@ -293,7 +293,7 @@
   <properties>
    <property name="AssociatedTiles" value="391"/>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="689:100:1,688:20:2"/>
+   <property name="loot" value="749:100:1,748:20:2"/>
   </properties>
  </tile>
  <tile id="495">
@@ -305,7 +305,7 @@
   <properties>
    <property name="AssociatedTiles" value="397"/>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="697:100:1,696:20:3"/>
+   <property name="loot" value="757:100:1,756:20:3"/>
   </properties>
  </tile>
  <tile id="525">
@@ -506,13 +506,13 @@
  <tile id="690">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="693:100:2,691:20:2"/>
+   <property name="loot" value="753:100:2,752:20:2"/>
   </properties>
  </tile>
  <tile id="696">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="699:100:2,698:20:2"/>
+   <property name="loot" value="758:100:2,759:20:2"/>
   </properties>
  </tile>
  <tile id="705">

@@ -61,21 +61,21 @@ namespace SecretProject.Class.TileStuff
 
         public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
         {
-            {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 930}
+            {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
         };
 
         public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
 
-            if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID + 1))
+            if (!generatableTiles.Contains(container.AllTiles[0][x, y].GID ))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y - 1].GID + 1))
+                if (generatableTiles.Contains(container.AllTiles[0][x, y - 1].GID ))
                 {
                     keyToCheck += 1;
                 }
@@ -91,7 +91,7 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x, y + 1].GID + 1))
+                if (generatableTiles.Contains(container.AllTiles[0][x, y + 1].GID ))
                 {
                     keyToCheck += 8;
                 }
@@ -105,7 +105,7 @@ namespace SecretProject.Class.TileStuff
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x + 1, y].GID + 1))
+                if (generatableTiles.Contains(container.AllTiles[0][x + 1, y].GID ))
                 {
                     keyToCheck += 4;
                 }
@@ -120,7 +120,7 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[0][x - 1, y].GID + 1))
+                if (generatableTiles.Contains(container.AllTiles[0][x - 1, y].GID ))
                 {
                     keyToCheck += 2;
                 }
@@ -1099,7 +1099,11 @@ namespace SecretProject.Class.TileStuff
         public static int GetTileFromNoise(float perlinValue)
         {
             int newGID = 0;
-            if (perlinValue >= .12f && perlinValue <= 1f)
+            if (perlinValue >= .2f && perlinValue <= 1f)
+            {
+                newGID = 1106;//DIRT
+            }
+            else if (perlinValue >= .12f && perlinValue <= .2f)
             {
                 newGID = 1115;//GRASS
             }
