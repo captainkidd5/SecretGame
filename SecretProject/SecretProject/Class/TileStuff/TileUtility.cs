@@ -297,7 +297,7 @@ namespace SecretProject.Class.TileStuff
 
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
-
+            
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
 

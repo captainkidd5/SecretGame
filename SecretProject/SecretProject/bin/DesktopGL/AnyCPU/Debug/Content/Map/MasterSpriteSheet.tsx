@@ -1730,9 +1730,6 @@
    <property name="relationX" value="1"/>
    <property name="relationY" value="0"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.181805" y="11.8182" width="15.4546" height="4"/>
-  </objectgroup>
  </tile>
  <tile id="1477">
   <properties>
@@ -1740,9 +1737,6 @@
    <property name="relationX" value="2"/>
    <property name="relationY" value="0"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.363623" y="11.8182" width="10.7273" height="4"/>
-  </objectgroup>
  </tile>
  <tile id="1484">
   <properties>

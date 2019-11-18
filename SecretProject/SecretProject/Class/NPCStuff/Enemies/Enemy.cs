@@ -373,16 +373,16 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case Dir.Down:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Top + NPCAnimatedSprite[0].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y + NPCAnimatedSprite[0].DestinationRectangle.Height)));
                     break;
                 case Dir.Left:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Top + NPCAnimatedSprite[1].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y + NPCAnimatedSprite[1].DestinationRectangle.Height)));
                     break;
                 case Dir.Right:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Top + NPCAnimatedSprite[2].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y + NPCAnimatedSprite[2].DestinationRectangle.Height)));
                     break;
                 case Dir.Up:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .5f + (.00001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Top + NPCAnimatedSprite[3].DestinationRectangle.Height)));
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, Position, .5f + (.0000001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y + NPCAnimatedSprite[3].DestinationRectangle.Height)));
                     break;
             }
         }
