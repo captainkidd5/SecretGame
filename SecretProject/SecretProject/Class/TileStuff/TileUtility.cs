@@ -46,7 +46,7 @@ namespace SecretProject.Class.TileStuff
 
         public static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
         {
-            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1006}
+            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1106}
         };
 
         public static Dictionary<int, int> SandTiling = new Dictionary<int, int>()
@@ -135,7 +135,7 @@ namespace SecretProject.Class.TileStuff
             {
                 // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
 
-                ReplaceTile(layer, x, y, mainGid, container);
+               // ReplaceTile(layer, x, y, mainGid, container);
             }
             else
             {
@@ -1113,14 +1113,10 @@ namespace SecretProject.Class.TileStuff
             }
             else if (perlinValue >= .02f && perlinValue <= .1f)
             {
-                if (Game1.Utility.RGenerator.Next(0, 101) < 90)
-                {
+                
                     newGID = 1115;//GRASS
-                }
-                else
-                {
-                    newGID = 1106;//DIRT
-                }
+                
+                
 
 
             }

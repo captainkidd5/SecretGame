@@ -419,23 +419,23 @@ namespace SecretProject.Class.TileStuff
                                         {
                                             if (i > 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j + q, container.MapWidth, container.MapHeight, container);
+                                                ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j + q, container.MapWidth, container.MapHeight, container);
                                             }
                                             else if (i > 0 && j <= 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
                                             }
                                             else if (i <= 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
                                             }
                                             else if (i >= TileUtility.ChunkX && j < TileUtility.ChunkY - 1)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
                                             }
                                             else if (i < TileUtility.ChunkX - 1 && j >= TileUtility.ChunkY)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
                                             }
                                             else if (i == TileUtility.ChunkX && j == TileUtility.ChunkY)
                                             {

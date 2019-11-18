@@ -293,9 +293,12 @@ namespace SecretProject.Class.TileStuff
             
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
 
-
-            Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
-            Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            if (this.X != 0 && this.Y != 0)
+            {
+                Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+                Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            }
+            
             this.IsLoaded = true;
             binaryReader.Close();
 
@@ -453,7 +456,7 @@ namespace SecretProject.Class.TileStuff
                     case TileSimulationType.dirt:
                         TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //STONE
                         TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
-                        TileUtility.GenerateTiles(1, 1079, "dirt", 5, 0, this); //GRASSTUFT
+                        TileUtility.GenerateTiles(1, 1079, "dirt", 15, 0, this); //GRASSTUFT
                         TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
                         TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
                         TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
@@ -466,7 +469,7 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(3, 1275, "stone", 5, 0, this); //Steel Vein
                         TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
                         TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
-                        TileUtility.GenerateTiles(1, 1581, "grass", 5, 0, this); //ROCK
+                        TileUtility.GenerateTiles(1, 1581, "dirt", 15, 0, this); //ROCK
                         TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
                         TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 
@@ -527,7 +530,11 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
-            Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X , AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            if(this.X != 0 && this.Y != 0)
+            {
+                Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+            }
+            
 
             this.IsLoaded = true;
         }

@@ -62,19 +62,19 @@
  <tile id="253">
   <properties>
    <property name="generate" value="fence"/>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="254">
   <properties>
    <property name="generate" value="fence"/>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="255">
   <properties>
    <property name="generate" value="fence"/>
-   <property name="newSource" value="0,-16,0,16"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.181809" width="7.72727" height="15.8182"/>

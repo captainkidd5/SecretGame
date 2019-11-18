@@ -41,7 +41,7 @@ namespace SecretProject.Class.Universal
 
         public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
         {
-            {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 456}
+            {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 254}
         };
         //public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
         //{

@@ -504,17 +504,9 @@ namespace SecretProject
                 ElixirShop,
                 KayaShop
             };
-            for(int i =0; i < 5; i++)
-            {
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1200, null));
-                
-                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1201, null));
-                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1161, null));
-                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
-                //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
-            }
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1200, null));
+           
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
             for (int i = 0; i < 25; i++)
             {
@@ -655,7 +647,7 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
-           // SoundManager.PlaySong();
+            SoundManager.PlaySong();
 
             //KEYBOARD
 
