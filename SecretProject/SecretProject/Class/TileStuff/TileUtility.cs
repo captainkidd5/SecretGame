@@ -64,7 +64,7 @@ namespace SecretProject.Class.TileStuff
             {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
         };
 
-        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+        public static void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
             List<int> secondaryTiles;
@@ -97,7 +97,7 @@ namespace SecretProject.Class.TileStuff
             }
             //if top tile is 0 we look at the chunk above it
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][x] ) || secondaryTiles.Contains(adjacentChunkInfo[0][x])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][x]) || secondaryTiles.Contains(adjacentChunkInfo[0][x])))
             {
                 keyToCheck += 1;
             }
@@ -112,7 +112,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][x] ) || secondaryTiles.Contains(adjacentChunkInfo[1][x] )))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][x]) || secondaryTiles.Contains(adjacentChunkInfo[1][x])))
             {
                 keyToCheck += 8;
             }
@@ -127,7 +127,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][y] ) || secondaryTiles.Contains(adjacentChunkInfo[3][y] )))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][y]) || secondaryTiles.Contains(adjacentChunkInfo[3][y])))
             {
                 keyToCheck += 4;
             }
@@ -141,16 +141,14 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][y] ) || secondaryTiles.Contains(adjacentChunkInfo[2][y] )))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][y]) || secondaryTiles.Contains(adjacentChunkInfo[2][y])))
             {
                 keyToCheck += 2;
             }
 
             if (keyToCheck >= 15)
             {
-                // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
 
-                // ReplaceTile(layer, x, y, mainGid, container);
             }
             else
             {
@@ -532,36 +530,44 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                            GenerationReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
                                             for (int t = -1; t < 2; t++)
                                             {
-                                                for (int q = -2; q < 2; q++)
+                                                for (int q = -1; q < 2; q++)
                                                 {
                                                     //tile isnt touching any borders
                                                     if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j + q, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     //tile is touching top
                                                     else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
                                                     }
+                                                    //tile is touching left
                                                     else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
                                                     }
-                                                    else if (i >= ChunkX && j < ChunkY - 1)
+                                                    //tile is touching right
+                                                    else if (i >= ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
                                                     }
-                                                    else if (i < ChunkX - 1 && j >= ChunkY)
+                                                    //tile is touching bottom
+                                                    else if (i < ChunkX - 1 && j >= ChunkY -1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
                                                     }
+                                                    //bottom right corner
                                                     else if (i == ChunkX && j == ChunkY)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container, container.AdjacentNoise);
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
                                                     }
 
                                                 }
@@ -817,7 +823,103 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+        public static void PlayerInvokedReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
+            int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
+        {
+            List<int> secondaryTiles;
+            if (generatableTiles == Game1.Utility.DirtGeneratableTiles)
+            {
+                secondaryTiles = Game1.Utility.StandardGeneratableDirtTiles;
+            }
+            else if (generatableTiles == Game1.Utility.GrassGeneratableTiles)
+            {
+                secondaryTiles = Game1.Utility.StandardGeneratableGrassTiles;
+            }
 
+            else
+            {
+                secondaryTiles = new List<int>();
+            }
+
+
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
+            {
+                return;
+            }
+            int keyToCheck = 0;
+            if (y > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
+                {
+                    keyToCheck += 1;
+                }
+            }
+            //if top tile is 0 we look at the chunk above it
+            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID) ||
+                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
+            {
+                keyToCheck += 1;
+            }
+
+            //now look at chunk below 
+            if (y < worldHeight - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
+                {
+                    keyToCheck += 8;
+                }
+            }
+
+            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID) ||
+                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
+            {
+                keyToCheck += 8;
+            }
+
+            //looking at rightmost tile
+            if (x < worldWidth - 1)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
+                {
+                    keyToCheck += 4;
+                }
+            }
+
+            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID) ||
+                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
+            {
+                keyToCheck += 4;
+            }
+
+
+            //left
+            if (x > 0)
+            {
+                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
+                {
+                    keyToCheck += 2;
+                }
+            }
+            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID) ||
+                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
+            {
+                keyToCheck += 2;
+            }
+
+            if (keyToCheck >= 15)
+            {
+
+                ReplaceTile(layer, x, y, mainGid, container);
+
+
+            }
+            else
+            {
+                ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+            }
+
+
+        }
         public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, int setSoundInt, Color particleColor, ILocation world, Rectangle destinationRectangle, IInformationContainer container, bool hasSpawnTiles = false)
         {
             if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKey(layer)))

@@ -439,7 +439,7 @@ namespace SecretProject.Class.TileStuff
                                             }
                                             else if (i == TileUtility.ChunkX && j == TileUtility.ChunkY)
                                             {
-                                                TileUtility.ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j, container.MapWidth, container.MapHeight, container);
+                                                TileUtility.GenerationReassignForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j, container.MapWidth, container.MapHeight, container);
                                             }
 
                                         }

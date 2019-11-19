@@ -434,7 +434,7 @@ namespace SecretProject.Class.TileStuff
                             break;
 
                     }
-                    TileUtility.ReassignTileForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, 0, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this, this.AdjacentNoise);
+                    TileUtility.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, 0, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this, this.AdjacentNoise);
 
                 }
             }
