@@ -37,6 +37,7 @@ namespace SecretProject.Class.Universal
         public List<int> WaterGeneratableTiles;
         public List<int> StoneGeneratableTiles { get; set; }
         public List<int> StandardGeneratableDirtTiles;
+        public List<int> StandardGeneratableGrassTiles { get; set; }
         public List<int> FenceGeneratableTiles { get; set; }
 
         public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
@@ -61,6 +62,7 @@ namespace SecretProject.Class.Universal
             WaterGeneratableTiles = new List<int>();
             StoneGeneratableTiles = new List<int>();
             StandardGeneratableDirtTiles = new List<int>();
+            StandardGeneratableGrassTiles = new List<int>();
             FenceGeneratableTiles = new List<int>();
 
             FastNoise = new FastNoise(45);

@@ -64,25 +64,40 @@ namespace SecretProject.Class.TileStuff
             {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
         };
 
-        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary,int layer,
+        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
         {
+            List<int> secondaryTiles;
+            if (generatableTiles == Game1.Utility.DirtGeneratableTiles)
+            {
+                secondaryTiles = Game1.Utility.StandardGeneratableDirtTiles;
+            }
+            else if (generatableTiles == Game1.Utility.GrassGeneratableTiles)
+            {
+                secondaryTiles = Game1.Utility.StandardGeneratableGrassTiles;
+            }
 
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID ))
+            else
+            {
+                secondaryTiles = new List<int>();
+            }
+
+
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
             {
                 return;
             }
             int keyToCheck = 0;
             if (y > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
                 {
                     keyToCheck += 1;
                 }
             }
             //if top tile is 0 we look at the chunk above it
 
-            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[0][x] + 1))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][x] + 1) || secondaryTiles.Contains(adjacentChunkInfo[0][x] + 1)))
             {
                 keyToCheck += 1;
             }
@@ -91,13 +106,13 @@ namespace SecretProject.Class.TileStuff
 
             if (y < worldHeight - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
                 {
                     keyToCheck += 8;
                 }
             }
 
-            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[1][x] + 1))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][x] + 1) || secondaryTiles.Contains(adjacentChunkInfo[1][x] + 1)))
             {
                 keyToCheck += 8;
             }
@@ -105,14 +120,14 @@ namespace SecretProject.Class.TileStuff
             //looking at rightmost tile
             if (x < worldWidth - 1)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
                 {
                     keyToCheck += 4;
                 }
             }
 
 
-            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[3][y] + 1))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][y] + 1) || secondaryTiles.Contains(adjacentChunkInfo[3][y] + 1)))
             {
                 keyToCheck += 4;
             }
@@ -120,13 +135,13 @@ namespace SecretProject.Class.TileStuff
 
             if (x > 0)
             {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID ))
+                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
                 {
                     keyToCheck += 2;
                 }
             }
 
-            else if (adjacentChunkInfo != null && generatableTiles.Contains(adjacentChunkInfo[2][y] + 1))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][y] + 1) || secondaryTiles.Contains(adjacentChunkInfo[2][y] + 1)))
             {
                 keyToCheck += 2;
             }
@@ -135,7 +150,7 @@ namespace SecretProject.Class.TileStuff
             {
                 // int newRandomIndex = Game1.Utility.RGenerator.Next(0, generatableTiles.Count);
 
-               // ReplaceTile(layer, x, y, mainGid, container);
+                // ReplaceTile(layer, x, y, mainGid, container);
             }
             else
             {
@@ -297,7 +312,7 @@ namespace SecretProject.Class.TileStuff
 
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
-            
+
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
 
@@ -408,7 +423,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     float randomOffSet = Game1.Utility.RFloat(.0000001f, .000001f);
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + 16) * .0000001f + randomOffSet;
-                    
+
                     tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
                 }
 
@@ -431,11 +446,11 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
-                    if(container.PathGrid != null)
+                    if (container.PathGrid != null)
                     {
                         container.PathGrid.UpdateGrid(oldX, oldY, 0);
                     }
-                    
+
 
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
@@ -510,37 +525,41 @@ namespace SecretProject.Class.TileStuff
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             break;
-                                        case "grass":
+                                        case "dirtBasic":
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
+                                            TileUtility.ReplaceTile(z, i, j, 86, container);
+                                            break;
+                                        case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j, container.MapWidth, container.MapHeight, container);
+                                            ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
                                             for (int t = -1; t < 2; t++)
                                             {
                                                 for (int q = -1; q < 2; q++)
                                                 {
                                                     if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0,i + t, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i >= ChunkX && j < ChunkY - 1)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0,i, j + q, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i < ChunkX - 1 && j >= ChunkY)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i + t, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
                                                     }
                                                     else if (i == ChunkX && j == ChunkY)
                                                     {
-                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling,0, i, j, container.MapWidth, container.MapHeight, container);
+                                                        ReassignTileForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
                                                     }
 
                                                 }
@@ -676,15 +695,15 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
-                        if(Game1.GetCurrentStageInt() == Stages.World)
+                        if (Game1.GetCurrentStageInt() == Stages.World)
                         {
                             Game1.Player.UserInterface.WarpGate.To = Stages.Town;
                         }
-                        else if(Game1.GetCurrentStageInt() == Stages.Town)
+                        else if (Game1.GetCurrentStageInt() == Stages.Town)
                         {
                             Game1.Player.UserInterface.WarpGate.To = Stages.World;
                         }
-                        
+
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
                         // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
                         // {
@@ -813,7 +832,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.TileHitPoints[tile.GetTileKey(layer)] < 1)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt( 1, setSoundInt, Game1.SoundManager.GameVolume);
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt, Game1.SoundManager.GameVolume);
                     container.TileHitPoints.Remove(tile.GetTileKey(layer));
                     if (hasSpawnTiles)
                     {
@@ -1101,11 +1120,13 @@ namespace SecretProject.Class.TileStuff
             int newGID = 0;
             if (perlinValue >= .2f && perlinValue <= 1f)
             {
-                newGID = 1106;//DIRT
+                //newGID = 1106;
+                newGID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
             }
             else if (perlinValue >= .12f && perlinValue <= .2f)
             {
-                newGID = 1106;//GRASS
+                newGID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
+                //newGID = 1106;
             }
             else if (perlinValue >= .1f && perlinValue <= .12f)
             {
@@ -1113,17 +1134,17 @@ namespace SecretProject.Class.TileStuff
             }
             else if (perlinValue >= .02f && perlinValue <= .1f)
             {
-                
-                    newGID = 1115;//GRASS
-                
-                
+
+                newGID = Game1.Utility.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
+
+
 
 
             }
 
             else if (perlinValue >= -.09f && perlinValue < .02f)
             {
-                newGID = 1115;
+                newGID = Game1.Utility.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
 
                 //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
                 // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];

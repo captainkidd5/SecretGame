@@ -665,28 +665,28 @@
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="905">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="906">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="907">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -729,42 +729,42 @@
  <tile id="914">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="915">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="916">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="917">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="918">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="919">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -854,28 +854,28 @@
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1005">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1006">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1007">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -914,42 +914,42 @@
  <tile id="1014">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1015">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1016">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1017">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1018">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1019">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1042,28 +1042,28 @@
  <tile id="1104">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1105">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1106">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1107">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -1102,42 +1102,42 @@
  <tile id="1114">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1115">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1116">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1117">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1118">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1119">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1242,28 +1242,28 @@
  <tile id="1204">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1205">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1206">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1207">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="dirtBasic"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -1304,42 +1304,42 @@
  <tile id="1214">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1215">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1216">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1217">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1218">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1219">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1517,42 +1517,42 @@
  <tile id="1314">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1315">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1316">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1317">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1318">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1319">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1690,42 +1690,42 @@
  <tile id="1414">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1415">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1416">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1417">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1418">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1419">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
   </properties>
  </tile>

@@ -153,6 +153,16 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Utility.GrassGeneratableTiles.Add(i);
                                 }
                                 break;
+                            case "grassBasic":
+                                if (!Game1.Utility.GrassGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.GrassGeneratableTiles.Add(i);
+                                }
+                                if (!Game1.Utility.StandardGeneratableGrassTiles.Contains(i))
+                                {
+                                    Game1.Utility.StandardGeneratableGrassTiles.Add(i);
+                                }
+                                break;
                             case "water":
                                 if (!Game1.Utility.WaterGeneratableTiles.Contains(i))
                                 {
