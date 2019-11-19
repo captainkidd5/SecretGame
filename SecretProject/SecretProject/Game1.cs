@@ -505,7 +505,7 @@ namespace SecretProject
                 KayaShop
             };
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1200, null));
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(120, null));
            
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
             for (int i = 0; i < 25; i++)

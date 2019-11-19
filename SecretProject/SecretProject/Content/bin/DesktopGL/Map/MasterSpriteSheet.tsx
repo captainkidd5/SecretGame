@@ -1879,7 +1879,7 @@
    <property name="spawnWith" value="1472"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="1" y="1" width="6" height="14"/>
+   <object id="1" x="2" y="1" width="5" height="14"/>
   </objectgroup>
  </tile>
  <tile id="1580">
