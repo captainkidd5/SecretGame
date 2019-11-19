@@ -275,7 +275,7 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < PlayerActionAnimations.Length; i++)
             {
-                PlayerActionAnimations[i].DrawAnimation(spriteBatch, Position, layerDepth + PlayerActionAnimations[i].LayerDepth);
+                PlayerActionAnimations[i].DrawAnimation(spriteBatch, PlayerActionAnimations[i].destinationVector, layerDepth + PlayerActionAnimations[i].LayerDepth);
             }
 
         }
@@ -570,7 +570,7 @@ namespace SecretProject.Class.Playable
 
                 for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                 {
-                    PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.Position, PlayerMovementAnimations[i].LayerDepth + layerDepth);
+                    PlayerMovementAnimations[i].DrawAnimation(spriteBatch, PlayerMovementAnimations[i].destinationVector, PlayerMovementAnimations[i].LayerDepth + layerDepth);
                     if(IsMoving)
                     {
                         if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))

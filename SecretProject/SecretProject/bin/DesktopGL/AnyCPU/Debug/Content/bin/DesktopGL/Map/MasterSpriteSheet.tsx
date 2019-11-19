@@ -1878,6 +1878,9 @@
    <property name="loot" value="520:100:5,1003:10:2"/>
    <property name="spawnWith" value="1472"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="1" width="6" height="14"/>
+  </objectgroup>
  </tile>
  <tile id="1580">
   <properties>

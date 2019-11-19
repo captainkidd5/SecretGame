@@ -70,7 +70,7 @@ namespace SecretProject.Class.SpriteFolder
         public float SpinAmount { get; set; }
         public float SpinSpeed { get; set; }
 
-        Vector2 destinationVector = new Vector2(0, 0);
+        public Vector2 destinationVector = new Vector2(0, 0);
 
         public bool Flip { get; set; }
         //for collider
@@ -211,12 +211,12 @@ namespace SecretProject.Class.SpriteFolder
         {
            if(this.Flip)
             {
-                spriteBatch.Draw(AtlasTexture, destinationVector, sourceRectangle: SourceRectangle,
+                spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier,effects: SpriteEffects.FlipHorizontally, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
             }
             else
             {
-                spriteBatch.Draw(AtlasTexture, destinationVector, sourceRectangle: SourceRectangle,
+                spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
                     color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
             }
             

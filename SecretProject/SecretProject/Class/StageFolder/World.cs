@@ -385,6 +385,10 @@ namespace SecretProject.Class.StageFolder
                 for (int i = 0; i < Enemies.Count; i++)
                 {
                     Enemies[i].Draw(spriteBatch);
+                    if(ShowBorders)
+                    {
+                        Enemies[i].DrawDebug(spriteBatch, 1f);
+                    }
                 }
 
 

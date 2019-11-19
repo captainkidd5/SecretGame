@@ -473,7 +473,7 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
                         TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 
-                        TileUtility.GenerateTiles(1, 1573, "grass", 10, 0, this); //Reeds
+                        TileUtility.GenerateTiles(1, 1573, "sand", 10, 0, this); //Reeds
 
                         // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
                         TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
