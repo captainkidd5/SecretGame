@@ -1152,14 +1152,14 @@ namespace SecretProject.Class.TileStuff
 
             //newGID = 930; //STONE
 
-            else if (perlinValue >= -.1f && perlinValue < -.09f)
+            else if (perlinValue >= -1f && perlinValue < -.09f)
             {
                 newGID = 1222;//SAND
             }
-            else if (perlinValue >= -1f && perlinValue < -.1f)
-            {
-                newGID = 427;//WATER
-            }
+            //else if (perlinValue >= -1f && perlinValue < -.1f)
+            //{
+            //    newGID = 427;//WATER
+            //}
             return newGID;
         }
         #endregion

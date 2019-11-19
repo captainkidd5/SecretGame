@@ -295,8 +295,8 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
-                Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
-                Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+                Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
+                Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
             }
             
             this.IsLoaded = true;
@@ -532,7 +532,7 @@ namespace SecretProject.Class.TileStuff
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
             if(this.X != 0 && this.Y != 0)
             {
-                Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
+               // Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
             }
             
 

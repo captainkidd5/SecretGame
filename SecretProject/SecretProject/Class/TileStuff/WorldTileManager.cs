@@ -689,10 +689,10 @@ namespace SecretProject.Class.TileStuff
                             GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
                         }
 
-                        foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
-                        {
-                            enemy.Update(gameTime, mouse, ActiveChunks[a, b]);
-                        }
+                        //foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
+                        //{
+                        //    enemy.Update(gameTime, mouse);
+                        //}
                     }
                 }
             }
@@ -769,15 +769,15 @@ namespace SecretProject.Class.TileStuff
                             }
 
 
-                            foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
-                            {
-                                enemy.Draw(spriteBatch);
-                                if(Game1.GetCurrentStage().ShowBorders)
-                                {
-                                    enemy.DrawDebug(spriteBatch, .1f, ActiveChunks[a, b]);
-                                }
+                            //foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
+                            //{
+                            //    enemy.Draw(spriteBatch);
+                            //    if(Game1.GetCurrentStage().ShowBorders)
+                            //    {
+                            //        enemy.DrawDebug(spriteBatch, .1f);
+                            //    }
                                 
-                            }
+                            //}
                         }
                     }
                 }
