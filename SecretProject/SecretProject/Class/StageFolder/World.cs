@@ -35,7 +35,7 @@ namespace SecretProject.Class.StageFolder
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
-        public List<Boar> Boars;
+        public List<Enemy> Enemies { get; set; }
 
 
         public int WorldSize { get; set; }
@@ -165,7 +165,7 @@ namespace SecretProject.Class.StageFolder
             Map = null;
             AllCrops = new Dictionary<string, Crop>();
 
-            Boars = new List<Boar>() { };
+            Enemies = new List<Enemy>();
 
            // AllTiles.LoadInitialChunks();
 

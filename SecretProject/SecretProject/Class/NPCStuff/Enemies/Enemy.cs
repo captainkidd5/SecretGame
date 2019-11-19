@@ -14,7 +14,7 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
-    //TODO: Write method which allows pathfinding with wandering.
+
     public enum CurrentBehaviour
     {
         Wander = 1,
@@ -73,6 +73,9 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
 
+        //TODO
+        public float TimeInUnloadedChunk { get; set; }
+
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet)
         {
             this.Name = name;
@@ -127,7 +130,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     
                     break;
             }
-
+            TimeInUnloadedChunk = 0f;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, IInformationContainer container)
