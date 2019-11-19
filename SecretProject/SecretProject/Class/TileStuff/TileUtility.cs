@@ -490,17 +490,12 @@ namespace SecretProject.Class.TileStuff
             string[] information = Game1.Utility.GetActionHelperInfo(action);
 
 
-
-
-
-
             switch (information[0])
             {
                 //including animation frame id to replace!
 
                 case "diggable":
-                    //  if (container.Owned)
-                    //  {
+
                     if (container.AllTiles[1][i, j].GID == -1)
                     {
 
@@ -530,7 +525,7 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            GenerationReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                            PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
                                             for (int t = -1; t < 2; t++)
                                             {
                                                 for (int q = -1; q < 2; q++)
@@ -553,21 +548,60 @@ namespace SecretProject.Class.TileStuff
                                                         PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
                                                     }
                                                     //tile is touching right
-                                                    else if (i >= ChunkX - 1 && j < ChunkY - 1)
+                                                    else if (i >= ChunkX - 1 && j < ChunkY - 1 && j > 0)
                                                     {
                                                         PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
                                                         PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
                                                     }
                                                     //tile is touching bottom
-                                                    else if (i < ChunkX - 1 && j >= ChunkY -1)
+                                                    else if (i < ChunkX - 1 && i > 0 &&  j >= ChunkY -1)
                                                     {
                                                         PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
                                                         PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
                                                     }
                                                     //bottom right corner
-                                                    else if (i == ChunkX && j == ChunkY)
+                                                    else if (i == ChunkX - 1 && j == ChunkY -1)
                                                     {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                                       // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                                        //immediate right
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ ]);
+                                                        //right one, down one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
+                                                        //down one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
+                                                    }
+
+                                                    //bottom left corner
+                                                    else if (i == 0 && j == ChunkY - 1)
+                                                    {
+                                                        //immediate left
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
+                                                        //left one down one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
+                                                        //down one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
+                                                    }
+                                                    //top right corner
+                                                    else if (i == ChunkX - 1 && j ==0)
+                                                    {
+                                                        // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                                        //immediate right
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
+                                                        //right one, up one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
+                                                        //up one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
+                                                    }
+                                                    //top left corner
+                                                    else if (i == 0 && j == 0)
+                                                    {
+                                                        // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
+                                                        //immediate left
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
+                                                        //left one, up one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
+                                                        //up one
+                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
                                                     }
 
                                                 }
@@ -713,74 +747,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
-                        // if (Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232) && Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
-                        // {
-                        //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 232).IsSpinning = true;
-                        //  Game1.GetCurrentStage().AllSprites.Find(x => x.ID == 233).IsSpinning = true;
-                        //  Game1.SoundManager.GearSpin.Play();
-                        //string liftKey;
-                        //if (container.Type == 0)
-                        //{
-                        //    liftKey = i.ToString() + j.ToString();
-                        //    if (!Game1.Lifts.ContainsKey(liftKey))
-                        //    {
-                        //        Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                        //        Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(i * 16, j * 16), i.ToString() + j.ToString()));
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    liftKey = container.X.ToString() + container.Y.ToString() + i.ToString() + j.ToString();
-                        //    if (!Game1.Lifts.ContainsKey(liftKey))
-                        //    {
-                        //        Game1.Player.UserInterface.LiftWindow.AddLiftKeyButton(liftKey, i.ToString() + j.ToString());
-                        //        Game1.Lifts.Add(liftKey, new Lift(liftKey, (int)Game1.GetCurrentStageInt(), new Vector2(container.GetChunkRectangle().X + i * 16, container.GetChunkRectangle().Y + j * 16), i.ToString() + j.ToString()));
-                        //    }
-                        //}
 
-                        //Game1.Player.UserInterface.LiftWindow.CurrentLift = liftKey;
-
-                        //Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.LiftWindow;
-                    }
-                    break;
-                case "replaceLargeCog":
-                    if (mouse.IsClicked)
-                    {
-                        if (!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 232))
-                        {
-                            if (Game1.Player.Inventory.FindNumberOfItemInInventory(232) > 0)
-                            {
-                                TileUtility.ReplaceTile(3, i, j, -1, container);
-                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(container.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(48, 0, 16, 16),
-                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 8,
-                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y + 8), 16, 16)
-                                { ID = 232, SpinAmount = 10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
-                                Game1.SoundManager.CraftMetal.Play();
-                                Game1.Player.Inventory.RemoveItem(232);
-
-                            }
-
-                        }
-                    }
-
-                    break;
-                case "replaceSmallCog":
-                    if (mouse.IsClicked)
-                    {
-                        if (!Game1.GetCurrentStage().AllSprites.Any(x => x.ID == 233))
-                        {
-                            if (Game1.Player.Inventory.FindNumberOfItemInInventory(233) > 0)
-                            {
-                                TileUtility.ReplaceTile(3, i, j, -1, container);
-
-                                Game1.GetCurrentStage().AllSprites.Add(new Sprite(container.GraphicsDevice, Game1.AllTextures.Gears, new Rectangle(16, 0, 16, 16),
-                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 8, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y + 5), 16, 16)
-                                { ID = 233, SpinAmount = -10f, SpinSpeed = 2f, Origin = new Vector2(8, 8) });
-                                Game1.SoundManager.CraftMetal.Play();
-                                Game1.Player.Inventory.RemoveItem(233);
-
-                            }
-                        }
                     }
                     break;
 
