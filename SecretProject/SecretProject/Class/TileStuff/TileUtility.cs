@@ -484,6 +484,89 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
+        public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int,int> tilingDictionary, IInformationContainer container)
+        {
+            for (int t = -1; t < 2; t++)
+            {
+                for (int q = -1; q < 2; q++)
+                {
+                    //tile isnt touching any borders
+                    if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
+                    {
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j + q, container.MapWidth, container.MapHeight, container);
+                    }
+                    //tile is touching top
+                    else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
+                    {
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
+                    }
+                    //tile is touching left
+                    else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
+                    {
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
+                    }
+                    //tile is touching right
+                    else if (i >= ChunkX - 1 && j < ChunkY - 1 && j > 0)
+                    {
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
+                    }
+                    //tile is touching bottom
+                    else if (i < ChunkX - 1 && i > 0 && j >= ChunkY - 1)
+                    {
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
+                    }
+                    //bottom right corner
+                    else if (i == ChunkX - 1 && j == ChunkY - 1)
+                    {
+
+                        //immediate right
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
+                        //right one, down one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
+                        //down one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
+                    }
+
+                    //bottom left corner
+                    else if (i == 0 && j == ChunkY - 1)
+                    {
+                        //immediate left
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
+                        //left one down one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
+                        //down one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
+                    }
+                    //top right corner
+                    else if (i == ChunkX - 1 && j == 0)
+                    {
+
+                        //immediate right
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
+                        //right one, up one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
+                        //up one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
+                    }
+                    //top left corner
+                    else if (i == 0 && j == 0)
+                    {
+
+                        //immediate left
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
+                        //left one, up one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
+                        //up one
+                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
+                    }
+
+                }
+            }
+        }
         public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse, IInformationContainer container)
         {
             //new Gid should be one larger, per usual
@@ -512,7 +595,7 @@ namespace SecretProject.Class.TileStuff
 
                                 if (mouse.IsClicked)
                                 {
-                                    switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[0][i, j].GID].Properties["generate"])
+                                    switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["generate"])
                                     {
                                         case "dirt":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
@@ -525,87 +608,9 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
-                                            for (int t = -1; t < 2; t++)
-                                            {
-                                                for (int q = -1; q < 2; q++)
-                                                {
-                                                    //tile isnt touching any borders
-                                                    if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                                                    {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j + q, container.MapWidth, container.MapHeight, container);
-                                                    }
-                                                    //tile is touching top
-                                                    else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                                                    {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                                                    }
-                                                    //tile is touching left
-                                                    else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                                                    {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                                                    }
-                                                    //tile is touching right
-                                                    else if (i >= ChunkX - 1 && j < ChunkY - 1 && j > 0)
-                                                    {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j + q, container.MapWidth, container.MapHeight, container);
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                                                    }
-                                                    //tile is touching bottom
-                                                    else if (i < ChunkX - 1 && i > 0 &&  j >= ChunkY -1)
-                                                    {
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, j, container.MapWidth, container.MapHeight, container);
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                                                    }
-                                                    //bottom right corner
-                                                    else if (i == ChunkX - 1 && j == ChunkY -1)
-                                                    {
-                                                       // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
-                                                        //immediate right
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ ]);
-                                                        //right one, down one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                                                        //down one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                                                    }
-
-                                                    //bottom left corner
-                                                    else if (i == 0 && j == ChunkY - 1)
-                                                    {
-                                                        //immediate left
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                                                        //left one down one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                                                        //down one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                                                    }
-                                                    //top right corner
-                                                    else if (i == ChunkX - 1 && j ==0)
-                                                    {
-                                                        // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
-                                                        //immediate right
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                                                        //right one, up one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                                                        //up one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                                                    }
-                                                    //top left corner
-                                                    else if (i == 0 && j == 0)
-                                                    {
-                                                        // PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, j, container.MapWidth, container.MapHeight, container);
-                                                        //immediate left
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                                                        //left one, up one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, 15, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                                                        //up one
-                                                        PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, 0, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                                                    }
-
-                                                }
-                                            }
+                                            PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
+                                            ReassignGroupOfTiles(z, i, j, 1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, container);
+        
 
                                             break;
                                     }
