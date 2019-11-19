@@ -32,7 +32,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public int NPCRectangleYOffSet { get; set; }
         public int NPCRectangleWidthOffSet { get; set; } = 1;
         public int NPCRectangleHeightOffSet { get; set; } = 1;
-        public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
+        public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X - NPCRectangleXOffSet, (int)Position.Y - NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
         public Rectangle NPCPathFindRectangle
         {
             get
@@ -173,7 +173,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     }
 
 
-                    //  IsMoving = false;
+                      IsMoving = false;
                 }
 
 
