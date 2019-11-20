@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace XMLData.ItemStuff
     {
         public int ItemToCraftID { get; set; }
         public List<ItemsRequired> AllItemsRequired { get; set; }
+        [ContentSerializer(Optional = true)]
+        public bool Unlocked { get; set; }
+
     }
 
     

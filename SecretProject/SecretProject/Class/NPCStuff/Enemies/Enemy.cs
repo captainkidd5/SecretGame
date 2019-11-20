@@ -161,7 +161,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     CollideOccured = true;
                     if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                     {
-                        //this.CurrentBehaviour = CurrentBehaviour.Chase;
+                        this.CurrentBehaviour = CurrentBehaviour.Chase;
                     }
                     else if (returnObjects[i].ColliderType == ColliderType.grass)
                     {
@@ -173,7 +173,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     }
 
 
-                      IsMoving = false;
+                     // IsMoving = false;
                 }
 
 

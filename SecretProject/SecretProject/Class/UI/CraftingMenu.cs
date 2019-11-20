@@ -40,8 +40,8 @@ namespace SecretProject.Class.UI
         public CraftingMenu(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
-            BackDropSourceRectangle = new Rectangle(304, 352, 224, 224);
-            BackDropPosition = new Vector2(Game1.ScreenWidth / 4, (int)(Game1.ScreenHeight / 16));
+            BackDropSourceRectangle = new Rectangle(304, 352, 112, 176);
+            BackDropPosition = new Vector2(Game1.ScreenWidth / 8, (int)(Game1.ScreenHeight / 16));
             BackDropScale = 3f;
             CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
             Tabs = new Tab[6];
@@ -51,9 +51,9 @@ namespace SecretProject.Class.UI
             }
             //tabs 1 should be tools
             Tabs[0].AddNewCraftableItem(0, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
-            Tabs[0].AddNewCraftableItem(40, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
-            Tabs[0].AddNewCraftableItem(120, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 96), graphics, this);
-            Tabs[0].AddNewCraftableItem(160, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 144), graphics, this);
+            Tabs[0].AddNewCraftableItem(40, 5, new Vector2(BackDropPosition.X + 48, BackDropPosition.Y ), graphics, this);
+            Tabs[0].AddNewCraftableItem(120, 5, new Vector2(BackDropPosition.X + 96, BackDropPosition.Y ), graphics, this);
+            Tabs[0].AddNewCraftableItem(160, 5, new Vector2(BackDropPosition.X + 144, BackDropPosition.Y ), graphics, this);
             //Tabs[0].AddNewCraftableItem(20, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 192), graphics, this);
             //Tabs[1].AddNewCraftableItem(124, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y), graphics, this);
             //Tabs[1].AddNewCraftableItem(121, 5, new Vector2(BackDropPosition.X, BackDropPosition.Y + 48), graphics, this);
@@ -65,15 +65,15 @@ namespace SecretProject.Class.UI
 
             ActiveTab = 0;
 
-            FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1008, 176, 16, 64), this.GraphicsDevice,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
-            BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(848, 176, 16, 64),
-                this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y), CursorType.Normal, this.BackDropScale);
+            FowardButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(384, 528, 32, 16), this.GraphicsDevice,
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 96, BackDropSourceRectangle.Y + BackDropSourceRectangle.Height), CursorType.Normal, this.BackDropScale);
+            BackButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(304, 528, 32, 16),
+                this.GraphicsDevice, new Vector2(BackDropPosition.X, BackDropSourceRectangle.Y + BackDropSourceRectangle.Height), CursorType.Normal, this.BackDropScale);
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 32, BackDropPosition.Y + 32 ), CursorType.Normal);
 
 
-            this.CraftableRecipeBar = new CraftableRecipeBar(this, this.CraftingGuide, graphics, this.BackDropSourceRectangle, this.BackDropPosition, this.BackDropScale);
+            this.CraftableRecipeBar = new CraftableRecipeBar(this, graphics, this.BackDropSourceRectangle, this.BackDropPosition, this.BackDropScale);
         }
 
         public void Update(GameTime gameTime)
@@ -82,7 +82,7 @@ namespace SecretProject.Class.UI
             {
 
                 Tabs[i].Button.Update(Game1.myMouseManager);
-                if (Tabs[i].Button.isClicked)
+                if (Tabs[i].Button.IsHovered)
                 {
                     ActiveTab = i;
 
@@ -184,6 +184,7 @@ namespace SecretProject.Class.UI
         public int ActiveRecipe { get; set; }
         public Item ActiveItemToCraft { get; set; }
         public Rectangle ItemToCraftSourceRectangle { get; set; }
+        public Rectangle BackGroundSourceRectangle { get; set; }
         public Button ItemToCraftButton { get; set; }
         public float BackDropScale { get; set; }
 
@@ -195,25 +196,30 @@ namespace SecretProject.Class.UI
         public Vector2 BackDropPosition { get; set; }
 
         public float ColorMultiplier { get; set; }
-        public bool Locked { get; set; }
+        public bool Unlocked { get; set; }
         public Color Color { get; set; }
-        public CraftableRecipeBar(CraftingMenu craftingMenu,CraftingGuide craftingGuide, GraphicsDevice graphics, Rectangle backDropSourceRectangle, Vector2 backDropPosition, float backDropScale)
+
+        public bool IsDrawn { get; set; }
+
+
+        public CraftableRecipeBar(CraftingMenu craftingMenu, GraphicsDevice graphics, Rectangle backDropSourceRectangle, Vector2 backDropPosition, float backDropScale)
         {
             this.CraftingMenu = craftingMenu;
             this.GraphicsDevice = graphics;
             ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
             this.BackDropScale = backDropScale;
+            this.BackGroundSourceRectangle = new Rectangle(432, 400, 80, 96);
             ItemToCraftButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(528, 352, 48, 48),
                 graphics, new Vector2(backDropPosition.X + backDropSourceRectangle.Width * backDropScale - 220, backDropPosition.Y + 10),
                 CursorType.Normal, backDropScale);
             ItemToCraftButton.HitBoxRectangle = new Rectangle((int)ItemToCraftButton.Position.X, (int)ItemToCraftButton.Position.Y, 48, 48);
 
             Ingredients = new List<CraftableRecipeIngredient>();
-            this.CraftingGuide = craftingGuide;
+            this.CraftingGuide = craftingMenu.CraftingGuide;
             this.BackDropPosition = backDropPosition;
 
             this.ColorMultiplier = 1f;
-            this.Locked = false;
+            this.Unlocked = false;
             this.Color = Color.Black;
         }
 
@@ -221,6 +227,7 @@ namespace SecretProject.Class.UI
         {
             Ingredients = new List<CraftableRecipeIngredient>();
             ItemRecipe recipe = CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == craftableItemID);
+            this.Unlocked = recipe.Unlocked;
             for (int i = 0; i < recipe.AllItemsRequired.Count; i++)
             {
                 Item itemToReference = Game1.ItemVault.GenerateNewItem(recipe.AllItemsRequired[i].ItemID, null);
@@ -234,15 +241,17 @@ namespace SecretProject.Class.UI
         {
             if(CraftingMenu.ActiveToolTip != null)
             {
-                this.Locked = CraftingMenu.ActiveToolTip.Locked;
+                this.Unlocked = CraftingMenu.ActiveToolTip.Locked;
+                this.IsDrawn = true;
             }
             else
             {
                 ItemToCraftSourceRectangle = new Rectangle(0, 0, 1, 1);
+                this.IsDrawn = false;
                 return;
             }
             
-            if (!this.Locked)
+            if (!this.Unlocked)
             {
                 this.Color = Color.White;
                 bool craftable = true;
@@ -297,7 +306,9 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if(!this.Locked && CraftingMenu.ActiveToolTip != null)
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Game1.myMouseManager.Position.X + 32, Game1.myMouseManager.Position.Y + 16),
+                this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            if(!this.Unlocked && CraftingMenu.ActiveToolTip != null)
             {
                 ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
                Game1.AllTextures.MenuText, "", ItemToCraftButton.Position, this.Color * ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
@@ -311,7 +322,7 @@ namespace SecretProject.Class.UI
                 ItemToCraftButton.Draw(spriteBatch, ItemToCraftSourceRectangle, ItemToCraftButton.BackGroundSourceRectangle,
                Game1.AllTextures.MenuText, "", new Vector2(ItemToCraftButton.Position.X - 400, ItemToCraftButton.Position.Y + 200), this.Color * ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
             }
-            else if(this.Locked)
+            else if(this.Unlocked)
             {
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, "LOCKED", ItemToCraftButton.Position, Color.Black, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             }
@@ -489,6 +500,7 @@ namespace SecretProject.Class.UI
         public bool Locked { get; set; }
         public Color Color { get; set; }
 
+
         public ToolTip(int itemToCraftID, Vector2 position, GraphicsDevice graphics, CraftingMenu craftingMenu)
         {
             this.Position = position;
@@ -496,7 +508,7 @@ namespace SecretProject.Class.UI
             Item = Game1.ItemVault.GenerateNewItem(itemToCraftID, null);
             Button = new Button(Game1.AllTextures.ItemSpriteSheet, Item.SourceTextureRectangle, GraphicsDevice, this.Position, CursorType.Normal, 3f);
             CraftingMenu = craftingMenu;
-            this.Locked = true;
+            this.Locked = CraftingMenu.CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == itemToCraftID).Unlocked;
             this.Color = Color.Black;
 
         }

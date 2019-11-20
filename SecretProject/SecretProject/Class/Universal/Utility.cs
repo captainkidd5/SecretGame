@@ -67,14 +67,14 @@ namespace SecretProject.Class.Universal
 
             FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
-            FastNoise.SetFractalOctaves(6);
+            FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);
 
             //Smaller the smooth the biomes
             FastNoise.SetFractalGain(.5f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.008f);
+            FastNoise.SetFrequency(.012f);
            // FastNoise.SetFractalType(FastNoise.FractalType.Billow)
 
         }
