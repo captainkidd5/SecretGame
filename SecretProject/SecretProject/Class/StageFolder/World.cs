@@ -246,7 +246,11 @@ namespace SecretProject.Class.StageFolder
                             }
                             for (int e = 0; e < Enemies.Count; e++)
                             {
-                                QuadTree.Insert(Enemies[e].Collider);
+                                if(Enemies[e] != null)
+                                {
+                                    QuadTree.Insert(Enemies[e].Collider);
+                                }
+                                
                             }
                         }
                     }
