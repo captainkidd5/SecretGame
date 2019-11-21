@@ -217,7 +217,7 @@ namespace SecretProject.Class.UI
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
                 Game1.Player.UserInterface.InfoBox.FitText(Item.Description, 2f);
                // Game1.Player.UserInterface.InfoBox.StringToWrite = Item.Name + "\n " + Item.Description;
-                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(drawPosition.X - 200, drawPosition.Y);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(drawPosition.X - 232, drawPosition.Y);
                 colorMultiplier = .5f;
                 if (Button.isClicked)
                 {
