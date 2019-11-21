@@ -221,7 +221,7 @@ namespace SecretProject.Class.MenuStuff
         
         public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color textTint, float textureDepth, float textDepth)
         {
-            spriteBatch.Draw(this.Texture, HitBoxRectangle, this.BackGroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, textDepth);
+            spriteBatch.Draw(this.Texture, HitBoxRectangle, this.BackGroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, textureDepth);
             spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, textDepth);
         }
 
