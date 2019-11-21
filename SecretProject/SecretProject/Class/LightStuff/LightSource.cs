@@ -18,7 +18,7 @@ namespace SecretProject.Class.LightStuff
         {
             
             this.LightTexture = GetTextureFromID(id);
-            this.Position = new Vector2(position.X +10 - this.LightTexture.Width / 2, position.Y - this.LightTexture.Height / 2);
+            this.Position = new Vector2(position.X + 8 - this.LightTexture.Width / 2, position.Y - this.LightTexture.Height / 2);
         }
 
         private Texture2D GetTextureFromID(int id)
@@ -31,6 +31,17 @@ namespace SecretProject.Class.LightStuff
                     return Game1.AllTextures.lightMask;
             }
 
+        }
+
+        public static int ParseLightType(string data)
+        {
+            return int.Parse(data.Split(',')[0]);
+        }
+        public static Vector2 ParseLightData(string data)
+        {
+            int x = int.Parse(data.Split(',')[1]);
+            int y = int.Parse(data.Split(',')[2]);
+            return new Vector2(x,y);
         }
     }
 }

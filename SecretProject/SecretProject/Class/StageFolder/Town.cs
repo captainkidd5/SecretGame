@@ -257,10 +257,10 @@ namespace SecretProject.Class.StageFolder
                     {
                         spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
                     }
-                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
-                    {
+                  //  if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
+                    //{
                         spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
-                    }
+                  //  }
                     spriteBatch.End();
                 }
 
