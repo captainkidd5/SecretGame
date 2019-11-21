@@ -50,6 +50,7 @@
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
                   </Item>
+                  
     </AllCrops>
   </Asset>
 </XnaContent>

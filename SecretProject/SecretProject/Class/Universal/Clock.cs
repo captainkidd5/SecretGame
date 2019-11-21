@@ -54,7 +54,7 @@ namespace SecretProject.Class.Universal
 
         public Clock()
         {
-            ClockPosition = new Vector2(1100, 25);
+            ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
             WeekDay = DayOfWeek.Monday;

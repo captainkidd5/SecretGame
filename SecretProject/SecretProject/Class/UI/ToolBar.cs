@@ -92,14 +92,14 @@ namespace SecretProject.Class.UI
             //Initialize Textur
 
 
-            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(367, 635), CursorType.Normal);
-            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(459, 645), CursorType.Normal);
+            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f , Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
+            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .25f , Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
             ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645), CursorType.Normal);
             AllSlots = new List<Button>();
 
             for (int i = 0; i < 7; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(500 + i * 65, 635), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
             }
 
 
@@ -370,12 +370,24 @@ namespace SecretProject.Class.UI
             int buttonIndex = 0;
             for (int i = 0; i < 7; i++)
             {
-
+                
                 if (AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    Game1.Player.UserInterface.InfoBox.FitText(inventory.currentInventory[i].GetItem().Name + ":  " + inventory.currentInventory[i].GetItem().Description, 1f);
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
+                    switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
+                    {
+                        case ExclusiveInterfaceItem.ShopMenu:
+                            Game1.Player.UserInterface.InfoBox.FitText(inventory.currentInventory[i].GetItem().Name + ":  " + "Shop will buy for " + inventory.currentInventory[i].GetItem().Price + ".", 1f);
+                            Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
+                            break;
+
+                        default:
+                            Game1.Player.UserInterface.InfoBox.FitText(inventory.currentInventory[i].GetItem().Name + ":  " + inventory.currentInventory[i].GetItem().Description, 1f);
+                            Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
+                            break;
+                    }
+                    
+                    
                     IsAnySlotHovered = true;
                     buttonIndex = i;
 
@@ -501,8 +513,8 @@ namespace SecretProject.Class.UI
             }
 
 
-            OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", new Vector2(450, 660), Color.CornflowerBlue, .69f, .7f);
-            InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", new Vector2(377, 660), Color.CornflowerBlue, .69f, .7f);
+            OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", OpenInventory.Position, Color.CornflowerBlue, .69f, .7f);
+            InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", InGameMenu.Position, Color.CornflowerBlue, .69f, .7f);
             for (int i = 0; i < AllSlots.Count; i++)
             {
                 AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f);
