@@ -513,13 +513,7 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
             }
 
-                ProgressBook JulianProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 1);
-            ProgressBook ElixirProgressBook = new ProgressBook(Content, graphics.GraphicsDevice, 2);
-            AllProgressBooks = new List<ProgressBook>()
-            {
-                JulianProgressBook,
-                ElixirProgressBook
-            };
+              
 
 
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
@@ -547,6 +541,14 @@ namespace SecretProject
                 Kaya,
                 Snaw,
                 Julian
+            };
+
+            ProgressBook JulianProgressBook = new ProgressBook(Julian,Content, graphics.GraphicsDevice, 1);
+            ProgressBook ElixirProgressBook = new ProgressBook(Elixer,Content, graphics.GraphicsDevice, 2);
+            AllProgressBooks = new List<ProgressBook>()
+            {
+                JulianProgressBook,
+                ElixirProgressBook
             };
 
             foreach (ILocation stage in AllStages)

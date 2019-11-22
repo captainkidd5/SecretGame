@@ -12,6 +12,7 @@
 
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
     <RewardItemID>560</RewardItemID>
+       <DaysToComplete>2</DaysToComplete>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>560</ItemIDRequired>
@@ -38,6 +39,7 @@
 
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
     <RewardItemID>1201</RewardItemID>
+    <DaysToComplete>2</DaysToComplete>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>520</ItemIDRequired>
@@ -52,6 +54,7 @@
 
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
     <RewardItemID>1202</RewardItemID>
+        <DaysToComplete>1</DaysToComplete>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>640</ItemIDRequired>
@@ -63,6 +66,7 @@
 
       <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
     <RewardItemID>1200</RewardItemID>
+      <DaysToComplete>3</DaysToComplete>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>1001</ItemIDRequired>

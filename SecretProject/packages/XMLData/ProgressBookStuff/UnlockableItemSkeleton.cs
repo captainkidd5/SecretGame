@@ -9,6 +9,7 @@ namespace XMLData.ProgressBookStuff
     public class UnlockableItemSkeleton
     {
         public int RewardItemID { get; set; }
+        public int DaysToComplete { get; set; }
         public List<ItemRequirementSkeleton> ItemRequirements { get; set; }
     }
 }

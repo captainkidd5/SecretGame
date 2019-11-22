@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace SecretProject.Class.UI
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public Character CharacterWhoOwns { get; set; }
         public int ID { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public Rectangle BackDropSourceRectangle { get; set; }
@@ -35,10 +37,11 @@ namespace SecretProject.Class.UI
         public Button BackButton { get; set; }
         private Button redEsc;
 
-        public ProgressBook(ContentManager content, GraphicsDevice graphics, int iD)
+        public ProgressBook(Character characterWhoOwns, ContentManager content, GraphicsDevice graphics, int iD)
         {
             this.ID = iD;
             this.GraphicsDevice = graphics;
+            this.CharacterWhoOwns = characterWhoOwns;
             this.BackDropSourceRectangle = new Rectangle(448, 112, 288, 160);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
@@ -57,7 +60,7 @@ namespace SecretProject.Class.UI
                     for (int z = 0; z < ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems.Count; z++)
                     {
 
-                        UnlockableItem unlockableItem = new UnlockableItem();
+                        UnlockableItem unlockableItem = new UnlockableItem(this);
                         for (int x = 0; x < ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].ItemRequirements.Count; x++)
                         {
                             UnlockableItemRequirement requirement = new UnlockableItemRequirement(GraphicsDevice, Game1.ItemVault.GenerateNewItem(ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].ItemRequirements[x].ItemIDRequired, null),
@@ -65,7 +68,7 @@ namespace SecretProject.Class.UI
                             unlockableItem.Requirements.Add(requirement);
                         }
 
-                        Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale);
+                        Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale, (ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].DaysToComplete));
                         reward.Item = Game1.ItemVault.GenerateNewItem(ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].RewardItemID, null);
                         reward.RewardName = reward.Item.Name;
                         unlockableItem.Reward = reward;
@@ -125,12 +128,12 @@ namespace SecretProject.Class.UI
                 if (ActiveTab == i)
                 {
                     Tabs[i].IsActive = true;
-                    Tabs[i].ButtonColorMultiplier = .5f;
+                    Tabs[i].ButtonColorMultiplier = 1f;
                 }
                 else
                 {
                     Tabs[i].IsActive = false;
-                    Tabs[i].ButtonColorMultiplier = 1f;
+                    Tabs[i].ButtonColorMultiplier = .5f;
                 }
             }
 
@@ -241,7 +244,7 @@ namespace SecretProject.Class.UI
         {
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), ProgressBook.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(ProgressBook.BackDropPosition.X + ProgressBook.BackDropSourceRectangle.Width /8 * ProgressBook.BackDropScale, ProgressBook.BackDropPosition.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(ProgressBook.BackDropPosition.X + ProgressBook.BackDropSourceRectangle.Width / 8 * ProgressBook.BackDropScale, ProgressBook.BackDropPosition.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             this.Pages[ActivePage].Draw(spriteBatch);
 
 
@@ -307,6 +310,7 @@ namespace SecretProject.Class.UI
 
     public class UnlockableItem
     {
+        public ProgressBook ProgressBook { get; set; }
         public Button ToolTip { get; set; }
         public float ToolTipColorMultiplier { get; set; }
         public Rectangle ToolTipSourceRectangle { get; set; }
@@ -314,8 +318,9 @@ namespace SecretProject.Class.UI
         public List<UnlockableItemRequirement> Requirements { get; set; }
         public Reward Reward { get; set; }
         public bool RewardSatisfied { get; set; }
-        public UnlockableItem()
+        public UnlockableItem(ProgressBook progressBook)
         {
+            this.ProgressBook = progressBook;
             Requirements = new List<UnlockableItemRequirement>();
             this.ToolTipColorMultiplier = 1f;
             this.RewardSatisfied = false;
@@ -342,12 +347,12 @@ namespace SecretProject.Class.UI
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.UnopenedChestSourceRectangle;
                 }
-                if (Reward.Button.isClicked && Reward.Button.BackGroundSourceRectangle == Reward.UnopenedChestSourceRectangle)
+                if (Reward.Button.isClicked && this.ProgressBook.CharacterWhoOwns.CurrentResearch != null && this.ProgressBook.CharacterWhoOwns.CurrentResearch.Complete && Reward.Button.BackGroundSourceRectangle == Reward.UnopenedChestSourceRectangle)
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
                     Reward.Claimed = true;
                     SoundEffectInstance unlockItemInstance = Game1.SoundManager.UnlockItem.CreateInstance();
-                    unlockItemInstance.Volume = Game1.SoundManager.GameVolume/2;
+                    unlockItemInstance.Volume = Game1.SoundManager.GameVolume / 2;
                     unlockItemInstance.Play();
                     unlockItemInstance.Dispose();
                     //Game1.SoundManager.UnlockItem.Play();
@@ -364,6 +369,8 @@ namespace SecretProject.Class.UI
                             }
                         }
                     }
+
+                    ProgressBook.CharacterWhoOwns.CurrentResearch = new ResearchAssignment(Reward.Item.ID, Reward.DaysToComplete);
 
                 }
             }
@@ -433,27 +440,20 @@ namespace SecretProject.Class.UI
             Button.Update(Game1.myMouseManager);
             this.ItemDropButton.Update(Game1.myMouseManager);
 
-            if (!this.Satisfied)
-            {
-                if (ItemDropButton.IsHovered)
-                {
-                    if (Game1.Player.UserInterface.BottomBar.WasSlotJustReleased)
-                    {
-                        if (Game1.Player.UserInterface.BottomBar.ItemJustReleased.ID == this.Item.ID)
-                        {
 
-                            this.CurrentCount++;
-                            Game1.Player.Inventory.RemoveItem(this.Item.ID);
-                        }
-                        // Console.WriteLine(Game1.Player.UserInterface.BottomBar.ItemJustReleased.Name + "was just released");
-                    }
-                }
-            }
 
+            this.CurrentCount = Game1.Player.Inventory.FindNumberOfItemInInventory(Item.ID);
             if (this.CurrentCount >= CountRequired)
             {
                 this.Satisfied = true;
+                ColorMultiplier = 1f;
             }
+            else
+            {
+                this.Satisfied = false;
+                ColorMultiplier = .5f;
+            }
+
 
 
         }
@@ -483,8 +483,9 @@ namespace SecretProject.Class.UI
         public Rectangle OpenedChestSourceRectangle { get; set; }
 
         public Item Item { get; set; }
+        public int DaysToComplete { get; set; }
 
-        public Reward(GraphicsDevice graphicsDevice, Vector2 positionToDraw, float scale)
+        public Reward(GraphicsDevice graphicsDevice, Vector2 positionToDraw, float scale, int daysToComplete)
         {
             this.GraphicsDevice = graphicsDevice;
             this.AvailableToClaim = false;
@@ -497,6 +498,7 @@ namespace SecretProject.Class.UI
             OpenedChestSourceRectangle = new Rectangle(560, 320, 32, 32);
 
             Button = new Button(Game1.AllTextures.UserInterfaceTileSet, InvisibleChestSourceRectangle, this.GraphicsDevice, this.PositionToDraw, CursorType.Normal, this.Scale);
+            this.DaysToComplete = daysToComplete;
 
 
         }

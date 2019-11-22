@@ -10,6 +10,7 @@
     <UnlockableItems>
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
     <RewardItemID>188</RewardItemID>
+        <DaysToComplete>2</DaysToComplete>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
     <ItemIDRequired>188</ItemIDRequired>
