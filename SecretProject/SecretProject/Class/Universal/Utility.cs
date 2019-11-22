@@ -294,6 +294,8 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
 
+                case "CheckCurrentProject":
+
                 case "ExitDialogue":
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;

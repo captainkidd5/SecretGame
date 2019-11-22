@@ -16,8 +16,17 @@ namespace XMLData.DialogueStuff
         public int TimeEnd { get; set; }
         public string TextToWrite { get; set; }
 
+
         [ContentSerializer(Optional = true)]
         public string SelectableOptions { get; set; }
 
+        [ContentSerializer(Optional = true)]
+        public string RequiredLocation { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public bool HasOccurredAtleastOnce { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public bool Once { get; set; }
     }
 }

@@ -32,6 +32,19 @@ namespace SecretProject.Class.DialogueStuff
             {
                 return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
             }
+            if(skeleton.HasOccurredAtleastOnce)
+            {
+                if(skeleton.Once)
+                {
+                    skeleton = null;
+                    return skeleton;
+                }
+            }
+            else
+            {
+                skeleton.HasOccurredAtleastOnce = true;
+            }
+            
             return skeleton;
         }
 

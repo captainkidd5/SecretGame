@@ -8,22 +8,23 @@
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>Hey! Welcome to Town! # My name is Julian, I run the workshop. # 
-   If you want o learn new crafting recipes and make cool furniture and machines 
-   you're more than welcome to take a look at that blueprint table over there. #
-   Once all the missing parts have been filled in I can start my research and you'll have access
-   to our invention as well! `
+   <TextToWrite>Hey! Welcome to Town! # My name is Julian, I run the workshop.#
+   I'd love some help if you're up for it. My blueprint table has a list of 
+   prototypes which I still need materials for to research. # Once you've filled in the materials 
+   for a particular invention let me know and I'll start working on it right away! `
    </TextToWrite>
-   <SelectableOptions>Shop~OpenJulianShop,Great!~ExitDialogue, Where can I find blueprint parts?~Load.11</SelectableOptions>
+   <SelectableOptions>Shop~OpenJulianShop,Great!~ExitDialogue, Where can I find materials?~Load.11</SelectableOptions>
+   <Once>true</Once>
     </Item>
      <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>11</SpeechID>
     <Day>0</Day>
     <TimeStart>6</TimeStart>
     <TimeEnd>12</TimeEnd>
-   <TextToWrite>You can find blueprint parts in the wilderness, but sometimes you'll need to craft them. # Is there anything else? `
+   <TextToWrite>Nearly all the materials I need can be found in the wilderness, some of the materials
+   may require a fair bit of exploring to find, however.  `
    </TextToWrite>
-   <SelectableOptions>no~ExitDialogue,Shop~OpenJulianShop</SelectableOptions>
+   <SelectableOptions>Thanks!~ExitDialogue,Shop~OpenJulianShop</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
