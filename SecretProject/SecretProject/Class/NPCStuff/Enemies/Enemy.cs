@@ -142,7 +142,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                     break;
             }
-            this.PulseTimer = new SimpleTimer(1f);
+            this.PulseTimer = new SimpleTimer(.25f);
             TimeInUnloadedChunk = 0f;
             this.CurrentChunkX = container.X;
             this.CurrentChunkY = container.Y;
@@ -167,7 +167,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
-            Collider.Rectangle = this.NPCHitBoxRectangle;
+            Collider.Rectangle = new Rectangle((int)(this.Position.X + NPCRectangleXOffSet / 2), (int)(this.Position.Y + NPCRectangleYOffSet / 2), (int)(NPCRectangleWidthOffSet * 2), (int)(NPCRectangleHeightOffSet * 2));
             Collider.Velocity = this.PrimaryVelocity;
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, Collider);
@@ -411,7 +411,12 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public void PlayerCollisionInteraction()
         {
-            int amount = 30;
+            int amount = 10;
+            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
+            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
+            Game1.GetCurrentStage().ParticleEngine.Color = Color.Black;
+
+
             this.CurrentBehaviour = CurrentBehaviour.Hurt;
             switch (Game1.Player.controls.Direction)
             {
