@@ -46,7 +46,7 @@ namespace SecretProject.Class.UI
             Tabs = new List<CategoryTab>();
             for (int i = 0; i < ProgressBookHolder.Tabs.Count; i++)
             {
-                Tabs.Add(new CategoryTab(this, ProgressBookHolder.Tabs[i].TabName, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 96 * BackDropScale, this.BackDropPosition.Y - 96),
+                Tabs.Add(new CategoryTab(this, ProgressBookHolder.Tabs[i].TabName, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 144, this.BackDropPosition.Y - 96),
                     new Rectangle(464, 80, 48, 32), this.BackDropScale));
 
                 for (int j = 0; j < ProgressBookHolder.Tabs[i].Pages.Count; j++)

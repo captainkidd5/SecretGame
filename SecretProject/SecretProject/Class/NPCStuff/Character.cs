@@ -94,6 +94,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
         public List<PathFinderNode> CurrentPath { get; set; }
 
+        public ResearchAssignment CurrentResearch { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
@@ -278,7 +280,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                         Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
-                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     if(skeleton != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
@@ -311,7 +313,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 if (mouse.IsClicked)
                 {
 
-                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this.SpeakerID, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     if (skeleton.SelectableOptions != null)
                     {
@@ -323,6 +325,17 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
                 }
 
+            }
+        }
+
+        public void UpdateResearchAssignment()
+        {
+            if(CurrentResearch != null)
+            {
+                if(CurrentResearch.ContinueResearch())
+                {
+
+                }
             }
         }
         #endregion

@@ -18,9 +18,9 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public DialogueSkeleton RetrieveDialogue(int speaker,int day, int time)
+        public DialogueSkeleton RetrieveDialogue(Character character,int day, int time)
         {
-            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
+            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
             
 
             DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time && x.Day == day);

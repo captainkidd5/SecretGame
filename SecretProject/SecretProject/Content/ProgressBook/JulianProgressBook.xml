@@ -37,15 +37,39 @@
 
 
     <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
-    <RewardItemID>560</RewardItemID>
+    <RewardItemID>1201</RewardItemID>
     <ItemRequirements>
     <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
-    <ItemIDRequired>560</ItemIDRequired>
-    <CountRequired>1</CountRequired>
+    <ItemIDRequired>520</ItemIDRequired>
+    <CountRequired>5</CountRequired>
+    </Item>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>680</ItemIDRequired>
+    <CountRequired>2</CountRequired>
     </Item>
     </ItemRequirements>
     </Item>
 
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>1202</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>640</ItemIDRequired>
+    <CountRequired>5</CountRequired>
+    </Item>
+
+    </ItemRequirements>
+    </Item>
+
+      <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>1200</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>1001</ItemIDRequired>
+    <CountRequired>10</CountRequired>
+    </Item>
+</ItemRequirements>
+    </Item>
 
   
 

@@ -83,7 +83,7 @@ namespace SecretProject.Class.StageFolder
 
 
 
-            TextBuilder = new TextBuilder(Game1.DialogueLibrary.RetrieveDialogue(1, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite, .1f, 5f);
+            TextBuilder = new TextBuilder("", .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
             this.QuadTree = new QuadTree(5, Cam.ViewPortRectangle);
