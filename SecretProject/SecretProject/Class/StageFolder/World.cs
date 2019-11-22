@@ -339,7 +339,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         Enemies[i].TimeInUnloadedChunk += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     }
-                    Enemies[i].Update(gameTime, mouse);
+                    Enemies[i].Update(gameTime, mouse,Enemies);
                 }
 
             }
@@ -385,7 +385,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
                graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect, depthStencilState: DepthStencilState.Default);
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
                 
 
                 ParticleEngine.Draw(spriteBatch, 1f);

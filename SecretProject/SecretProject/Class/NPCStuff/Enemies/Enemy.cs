@@ -78,6 +78,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public SimpleTimer PulseTimer { get; set; }
         public Effect CurrentEffect { get; set; }
 
+        public int HitPoints { get; private set; }
+
         //TODO
         public int CurrentChunkX { get; set; }
         public int CurrentChunkY { get; set; }
@@ -118,6 +120,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     this.SoundID = 14;
                     this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
                     this.CurrentBehaviour = CurrentBehaviour.Wander;
+                    this.HitPoints = 2;
                     break;
                 case "crab":
                     NPCAnimatedSprite = new Sprite[4];
@@ -135,6 +138,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
                     this.SoundID = 14;
                     this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
+                    this.HitPoints = 1;
 
                     break;
             }
@@ -147,12 +151,18 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentEffect = null;
         }
 
-        public void Update(GameTime gameTime, MouseManager mouse)
+        public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies)
         {
              this.CurrentEffect = null;
             if (this.TimeInUnloadedChunk > 100)
             {
-                Game1.World.Enemies.Remove(this);
+                enemies.Remove(this);
+                return;
+            }
+            if(this.HitPoints <= 0)
+            {
+                enemies.Remove(this);
+                return;
             }
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
@@ -218,6 +228,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         this.CurrentEffect = Game1.AllTextures.Pulse;
                         if (PulseTimer.Run(gameTime))
                         {
+                            this.HitPoints--;
                             CurrentBehaviour = CurrentBehaviour.Wander;
                         }
 
