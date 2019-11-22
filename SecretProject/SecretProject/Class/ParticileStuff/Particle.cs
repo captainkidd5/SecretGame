@@ -27,7 +27,7 @@ namespace SecretProject.Class.ParticileStuff
         {
             this.ParticleTexture = particleTexture;
             this.Position = position;
-            this.BaseY = Game1.Utility.RFloat(position.Y - 10, position.Y + 20);
+            this.BaseY = Game1.Utility.RFloat(position.Y - 5, position.Y + 20);
             this.Velocity = velocity;
             this.Angle = angle;
             this.AngularVelocity = angularVelocity;

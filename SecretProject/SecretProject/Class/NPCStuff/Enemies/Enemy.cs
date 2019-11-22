@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
@@ -75,10 +76,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
 
+
+        //DAMAGE RELATED THINGS
         public SimpleTimer PulseTimer { get; set; }
         public Effect CurrentEffect { get; set; }
 
         public int HitPoints { get; private set; }
+        public Color DamageColor { get; private set; }
+
+        public List<Loot> PossibleLoot { get; set; }
 
         //TODO
         public int CurrentChunkX { get; set; }
@@ -121,6 +127,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
                     this.CurrentBehaviour = CurrentBehaviour.Wander;
                     this.HitPoints = 2;
+                    this.DamageColor = Color.Black;
+                    this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
                     break;
                 case "crab":
                     NPCAnimatedSprite = new Sprite[4];
@@ -139,6 +147,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     this.SoundID = 14;
                     this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
                     this.HitPoints = 1;
+                    this.DamageColor = Color.Red;
+                    this.PossibleLoot = new List<Loot>() { new Loot(14, 75) };
 
                     break;
             }
@@ -161,6 +171,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
             if(this.HitPoints <= 0)
             {
+                RollDrop(this.Position);
                 enemies.Remove(this);
                 return;
             }
@@ -229,7 +240,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         if (PulseTimer.Run(gameTime))
                         {
                             this.HitPoints--;
-                            CurrentBehaviour = CurrentBehaviour.Wander;
+                            CurrentBehaviour = CurrentBehaviour.Chase;
                         }
 
                         break;
@@ -260,19 +271,23 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             {
                 Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
                 SoundTimer = Game1.Utility.RFloat(5f, 50f);
-                RollDrop(gameTime, 148, this.Position, 10);
+
+                RollDrop(this.Position);
             }
 
 
         }
 
-        public void RollDrop(GameTime gameTime, int iD, Vector2 positionToDrop, int upperChance)
+        public void RollDrop(Vector2 positionToDrop)
         {
-            int success = Game1.Utility.RNumber(1, upperChance);
-            if (success == 1)
+            for(int i =0; i < this.PossibleLoot.Count;i++)
             {
-                Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(iD, positionToDrop, true));
+                if(PossibleLoot[i].DidReceive())
+                {
+                    Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(PossibleLoot[i].ID, positionToDrop, true));
+                }
             }
+
         }
 
 
@@ -414,7 +429,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             int amount = 10;
             Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
-            Game1.GetCurrentStage().ParticleEngine.Color = Color.Black;
+            Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
 
 
             this.CurrentBehaviour = CurrentBehaviour.Hurt;
