@@ -79,6 +79,7 @@ namespace SecretProject.Class.StageFolder
         public TmxMap Map { get; set; }
 
         public QuadTree QuadTree { get; set; }
+        public Effect CurrentEffect;
 
 
         public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
@@ -383,9 +384,10 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
+               graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect, depthStencilState: DepthStencilState.Default);
+                
 
-                graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
@@ -419,7 +421,14 @@ namespace SecretProject.Class.StageFolder
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
-
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    Enemies[i].Draw(spriteBatch, Graphics, ref CurrentEffect);
+                    if (ShowBorders)
+                    {
+                        Enemies[i].DrawDebug(spriteBatch, 1f);
+                    }
+                }
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -438,17 +447,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
-               
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: Game1.AllTextures.Pulse);
-                for (int i = 0; i < Enemies.Count; i++)
-                {
-                    Enemies[i].Draw(spriteBatch);
-                    if (ShowBorders)
-                    {
-                        Enemies[i].DrawDebug(spriteBatch, 1f);
-                    }
-                }
-                spriteBatch.End();
+
                 graphics.SetRenderTarget(null);
                 // graphics.Clear(Color.Black);
                 

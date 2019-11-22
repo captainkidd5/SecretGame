@@ -76,6 +76,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public CurrentBehaviour CurrentBehaviour { get; set; }
 
         public SimpleTimer PulseTimer { get; set; }
+        public Effect CurrentEffect { get; set; }
 
         //TODO
         public int CurrentChunkX { get; set; }
@@ -143,10 +144,12 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentChunkY = container.Y;
             this.ObstacleGrid = container.PathGrid;
             this.CurrentBehaviour = CurrentBehaviour.Wander;
+            this.CurrentEffect = null;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
+             this.CurrentEffect = null;
             if (this.TimeInUnloadedChunk > 100)
             {
                 Game1.World.Enemies.Remove(this);
@@ -178,7 +181,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     }
 
 
-                     // IsMoving = false;
+                    // IsMoving = false;
                 }
 
 
@@ -212,7 +215,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         MoveTowardsPoint(Game1.Player.position, gameTime);
                         break;
                     case CurrentBehaviour.Hurt:
-                        if(PulseTimer.Run(gameTime))
+                        this.CurrentEffect = Game1.AllTextures.Pulse;
+                        if (PulseTimer.Run(gameTime))
                         {
                             CurrentBehaviour = CurrentBehaviour.Wander;
                         }
@@ -418,29 +422,42 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
         {
-            if(CurrentBehaviour == CurrentBehaviour.Hurt)
+            if (CurrentBehaviour == CurrentBehaviour.Hurt)
             {
-                Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)PulseTimer.Time/PulseTimer.TargetTime + (float)Math.PI /2* ((float)(Math.PI * 3))));
+
+                Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)PulseTimer.Time * 2 / PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
                 Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
                 Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
+
+
+
             }
-   
+
+            if (this.CurrentEffect != effect)
+            {
+                spriteBatch.End();
+                effect = CurrentEffect;
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Game1.GetCurrentStage().Cam.getTransformation(graphics), effect: this.CurrentEffect, depthStencilState: DepthStencilState.Default);
+
+            }
+
+
             switch (CurrentDirection)
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
                 case Dir.Down:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y )));
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)));
                     break;
                 case Dir.Left:
                     NPCAnimatedSprite[1].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y)));
                     break;
                 case Dir.Right:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y )));
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y)));
                     break;
                 case Dir.Up:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y )));
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (.0000001f * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y)));
                     break;
             }
         }

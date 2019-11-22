@@ -27,7 +27,7 @@ namespace SecretProject.Class.Universal
         }
         public bool Test()
         {
-            if(this.Time == TargetTime)
+            if(this.Time >= TargetTime)
             {
                 ResetToZero();
                 return true;

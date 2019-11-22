@@ -224,6 +224,10 @@ namespace SecretProject.Class.PathFinding.PathFinder
 
                 mLocation = (start.Y << mGridYLog2) + start.X;
                 mEndLocation = (end.Y << mGridYLog2) + end.X;
+                if(mLocation > mCalcGrid.Length)
+                {
+                    mLocation = mCalcGrid.Length;
+                }
                 mCalcGrid[mLocation].G = 0;
                 mCalcGrid[mLocation].F = mHEstimate;
                 mCalcGrid[mLocation].PX = (ushort)start.X;

@@ -79,7 +79,7 @@ namespace SecretProject.Class.Universal
 
         }
 
-
+        
 
         public bool HasProperty(object obj, string propertyName)
         {
