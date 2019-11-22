@@ -345,9 +345,13 @@ namespace SecretProject.Class.UI
                 Reward.Button.Update(Game1.myMouseManager);
                 if (this.RewardSatisfied)
                 {
-                    Reward.Button.BackGroundSourceRectangle = Reward.UnopenedChestSourceRectangle;
+                    if(!this.ProgressBook.CharacterWhoOwns.HasActiveResearch)
+                    {
+                        Reward.Button.BackGroundSourceRectangle = Reward.UnopenedChestSourceRectangle;
+                    }
+                    
                 }
-                if (Reward.Button.isClicked && this.ProgressBook.CharacterWhoOwns.CurrentResearch != null && this.ProgressBook.CharacterWhoOwns.CurrentResearch.Complete && Reward.Button.BackGroundSourceRectangle == Reward.UnopenedChestSourceRectangle)
+                if (Reward.Button.isClicked && !this.ProgressBook.CharacterWhoOwns.HasActiveResearch && Reward.Button.BackGroundSourceRectangle == Reward.UnopenedChestSourceRectangle)
                 {
                     Reward.Button.BackGroundSourceRectangle = Reward.OpenedChestSourceRectangle;
                     Reward.Claimed = true;
@@ -371,6 +375,7 @@ namespace SecretProject.Class.UI
                     }
 
                     ProgressBook.CharacterWhoOwns.CurrentResearch = new ResearchAssignment(Reward.Item.ID, Reward.DaysToComplete);
+                    ProgressBook.CharacterWhoOwns.HasActiveResearch = true;
 
                 }
             }

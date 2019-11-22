@@ -30,6 +30,7 @@ namespace SecretProject.Class.NPCStuff
             Collider = new Collider(graphics,this.PrimaryVelocity, this.NPCHitBoxRectangle, this,ColliderType.NPC);
             this.DebugColor = Color.LightBlue;
             //this.CurrentStageLocation = (int)Stages.Pass;
+            Game1.GlobalClock.DayChanged += this.OnDayIncreased;
         }
     }
 }

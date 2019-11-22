@@ -95,6 +95,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public List<PathFinderNode> CurrentPath { get; set; }
 
         public ResearchAssignment CurrentResearch { get; set; }
+        public bool HasActiveResearch { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
@@ -127,7 +128,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
             this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
             this.CurrentPath = new List<PathFinderNode>();
-
+            Game1.GlobalClock.DayChanged += this.OnDayIncreased;
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
@@ -328,14 +329,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             }
         }
 
-        public void UpdateResearchAssignment()
+        public void OnDayIncreased(object sender, EventArgs e)
         {
-            if(CurrentResearch != null)
+            if(this.HasActiveResearch)
             {
                 if(CurrentResearch.ContinueResearch())
                 {
-
+                    this.HasActiveResearch = false;
                 }
+
             }
         }
         #endregion

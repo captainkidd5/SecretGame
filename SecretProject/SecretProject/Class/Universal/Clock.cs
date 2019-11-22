@@ -64,6 +64,8 @@ namespace SecretProject.Class.Universal
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
             //IsNight = true;
 
+            
+
         }
         public virtual void OnDayChanged(Object sender, EventArgs e)
         {
