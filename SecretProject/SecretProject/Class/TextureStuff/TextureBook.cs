@@ -99,6 +99,7 @@ namespace SecretProject.Class.TextureStuff
 
         public Effect practiceLightMaskEffect;
         public Effect nightTint;
+        public Effect Pulse;
         public Texture2D lightMask;
 
         //Debug
@@ -183,9 +184,12 @@ namespace SecretProject.Class.TextureStuff
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
 
+
+            //EFFECTS
             lightMask = content.Load<Texture2D>("Effects/lightmask");
             practiceLightMaskEffect = content.Load<Effect>("Effects/practiceLighting1");
             nightTint = content.Load<Effect>("Effects/nightTint");
+            Pulse = content.Load<Effect>("Effects/Pulse");
 
             redPixel = content.Load<Texture2D>("Debug/solidRed");
 

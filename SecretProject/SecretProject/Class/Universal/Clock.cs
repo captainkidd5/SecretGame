@@ -33,11 +33,11 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 6;
+        public int TotalHours { get; set; } = 8;
         public int TotalDays { get; set; } = 0;
-        public float ColorMultiplier { get; set; } = 9f;
 
-        public Color TimeOfDayColor { get; set; } = Color.White;
+
+
 
         public int DayTimeSoundEffectStart { get; set; } = 9;
         public int DayTimeSoundEffectEnd { get; set; } = 12;
@@ -60,9 +60,9 @@ namespace SecretProject.Class.Universal
             WeekDay = DayOfWeek.Monday;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
-            ClockSpeed = 10;
+            ClockSpeed = 15f;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
-
+            //IsNight = true;
 
         }
         public virtual void OnDayChanged(Object sender, EventArgs e)
@@ -110,10 +110,7 @@ namespace SecretProject.Class.Universal
                 TotalHours++;
 
                 
-                if(TotalHours > 18 && TotalHours < 23)
-                {
-                    ColorMultiplier-=3;
-                }
+
                 if(TotalHours > 2 && TotalHours < 18)
                 {
                     PlayRandomInstance(1);
@@ -125,12 +122,7 @@ namespace SecretProject.Class.Universal
                     Game1.SoundManager.PlaySoundEffectFromInt(1, 12, Game1.SoundManager.GameVolume);
                     IsNight = true;
                 }
-                if(TotalHours < 7 && TotalHours > 2)
-                {
-                    
-                    ColorMultiplier+=3;
 
-                }
             }
             if(TotalHours > 23)
             {
@@ -140,9 +132,7 @@ namespace SecretProject.Class.Universal
                 TotalHours = 0;
   
             }
-            //int cleanTime = int.Parse(UnpausedTime.ToString());
-            // GlobalTime += (int)gameTime.ElapsedGameTime.TotalSeconds;
-            float testColor = (float)(1 + ColorMultiplier * .1);
+
             string displayString = "";
             if (TotalHours > 11)
             {
@@ -160,7 +150,6 @@ namespace SecretProject.Class.Universal
             ClockDisplay.Update(gameTime, true);
             
 
-            this.TimeOfDayColor = Color.DarkGray * (float)(1+ColorMultiplier * .1);
             
 
             

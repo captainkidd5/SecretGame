@@ -188,6 +188,12 @@
 /processorParam:DebugMode=Auto
 /build:Effects/practiceLighting1.fx
 
+#begin Effects/Pulse.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/Pulse.fx
+
 #begin Enemy/enemyship1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -330,6 +336,18 @@
 /processorParam:Quality=Best
 /build:Music/walkGrass1.mp3
 
+#begin NPC/Dobbin/dobbinPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Dobbin/dobbinPortrait.png
+
 #begin NPC/Dobbin/DobbinSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -353,6 +371,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/ElixerTest.png
+
+#begin NPC/Elixir/elixirPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Elixir/elixirPortrait.png
 
 #begin NPC/Elixir/ElixirSpriteSheet.png
 /importer:TextureImporter
@@ -389,6 +419,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Julian/Julian.png
+
+#begin NPC/Julian/julianPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Julian/julianPortrait.png
 
 #begin NPC/Kaya/KayaSpriteSheet.png
 /importer:TextureImporter
@@ -1038,6 +1080,12 @@
 /processorParam:Quality=Best
 /build:Songs/DustStorm.wav
 
+#begin Songs/Lakescape.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/Lakescape.wav
+
 #begin Songs/Title.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1049,6 +1097,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/bubble.WAV
+
+#begin SoundEffects/bushCut.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bushCut.wav
 
 #begin SoundEffects/chirp1.wav
 /importer:WavImporter
@@ -1152,6 +1206,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/sell1.wav
 
+#begin SoundEffects/Slash1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Slash1.wav
+
 #begin SoundEffects/stoneSmash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1181,6 +1241,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/toolBreak.wav
+
+#begin SoundEffects/unlockitem.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/unlockitem.wav
 
 #begin SoundEffects/walkGrass.wav
 /importer:WavImporter
@@ -1236,64 +1302,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin NPC/Dobbin/dobbinPortrait.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Dobbin/dobbinPortrait.png
-
-#begin NPC/Julian/julianPortrait.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Julian/julianPortrait.png
-
-#begin SoundEffects/unlockitem.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/unlockitem.wav
-
-#begin Songs/Lakescape.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/Lakescape.wav
-
-#begin NPC/Elixir/elixirPortrait.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Elixir/elixirPortrait.png
-
-#begin SoundEffects/Slash1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/Slash1.wav
-
-#begin SoundEffects/bushCut.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/bushCut.wav
 

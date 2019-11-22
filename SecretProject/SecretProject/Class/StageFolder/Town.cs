@@ -250,17 +250,17 @@ namespace SecretProject.Class.StageFolder
 
                     graphics.SetRenderTarget(lightsTarget);
                     //graphics.Clear(Color.White);
-                    graphics.Clear(new Color(50, 50, 50, 220));
+                    graphics.Clear(new Color(50, 50, 50, 256));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllLights.Count; l++)
                     {
-                        spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
+                        AllLights[l].Draw(spriteBatch);
                     }
-                  //  if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
-                    //{
+                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
+                    {
                         spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
-                  //  }
+                    }
                     spriteBatch.End();
                 }
 

@@ -199,6 +199,9 @@ namespace SecretProject.Class.StageFolder
 
 
             AllTiles.LoadInitialChunks();
+            Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue(1f);
+            Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.White.ToVector4());
+            Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
             this.QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
 
         }
@@ -354,6 +357,7 @@ namespace SecretProject.Class.StageFolder
         }
         public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
+            Effect currentEffect = null;
             if (player.Health > 0)
             {
                 if (this.IsDark)
@@ -379,21 +383,14 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
 
-                for (int i = 0; i < Enemies.Count; i++)
-                {
-                    Enemies[i].Draw(spriteBatch);
-                    if(ShowBorders)
-                    {
-                        Enemies[i].DrawDebug(spriteBatch, 1f);
-                    }
-                }
+               
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
@@ -441,10 +438,20 @@ namespace SecretProject.Class.StageFolder
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
-
+               
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: Game1.AllTextures.Pulse);
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    Enemies[i].Draw(spriteBatch);
+                    if (ShowBorders)
+                    {
+                        Enemies[i].DrawDebug(spriteBatch, 1f);
+                    }
+                }
+                spriteBatch.End();
                 graphics.SetRenderTarget(null);
                 // graphics.Clear(Color.Black);
-
+                
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 if (IsDark)

@@ -11,6 +11,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff.Enemies
@@ -74,6 +75,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
 
+        public SimpleTimer PulseTimer { get; set; }
+
         //TODO
         public int CurrentChunkX { get; set; }
         public int CurrentChunkY { get; set; }
@@ -134,10 +137,12 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                     break;
             }
+            this.PulseTimer = new SimpleTimer(1f);
             TimeInUnloadedChunk = 0f;
             this.CurrentChunkX = container.X;
             this.CurrentChunkY = container.Y;
             this.ObstacleGrid = container.PathGrid;
+            this.CurrentBehaviour = CurrentBehaviour.Wander;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse)
@@ -146,7 +151,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             {
                 Game1.World.Enemies.Remove(this);
             }
-            this.CurrentBehaviour = CurrentBehaviour.Wander;
+            //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
@@ -207,11 +212,11 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         MoveTowardsPoint(Game1.Player.position, gameTime);
                         break;
                     case CurrentBehaviour.Hurt:
-                        for (int i = 0; i < NPCAnimatedSprite.Length; i++)
+                        if(PulseTimer.Run(gameTime))
                         {
-                            NPCAnimatedSprite[i].Flash(gameTime, .05f, Color.Red);
+                            CurrentBehaviour = CurrentBehaviour.Wander;
                         }
-                        //CurrentBehaviour = CurrentBehaviour.Wander;
+
                         break;
                 }
 
@@ -415,6 +420,13 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if(CurrentBehaviour == CurrentBehaviour.Hurt)
+            {
+                Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)PulseTimer.Time/PulseTimer.TargetTime + (float)Math.PI /2* ((float)(Math.PI * 3))));
+                Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
+                Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
+            }
+   
             switch (CurrentDirection)
             {
                 //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;

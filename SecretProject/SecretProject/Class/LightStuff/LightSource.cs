@@ -33,6 +33,11 @@ namespace SecretProject.Class.LightStuff
 
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(LightTexture, Position, Color.White);
+        }
+
         public static int ParseLightType(string data)
         {
             return int.Parse(data.Split(',')[0]);
