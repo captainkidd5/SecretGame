@@ -28,6 +28,33 @@
     </Item>
     </Pages>
     </Item>
+    <Item Type="XMLData.ProgressBookStuff.ProgressBookPageHolder">
+<TabName>Stations</TabName>
+<Pages>
+<Item Type="XMLData.ProgressBookStuff.ProgressBookPageSkeleton">
+    <UnlockableItems>
+
+
+
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>560</RewardItemID>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>560</ItemIDRequired>
+    <CountRequired>1</CountRequired>
+    </Item>
+    </ItemRequirements>
+    </Item>
+
+
+  
+
+
+
+    </UnlockableItems>
+    </Item>
+</Pages>
+</Item>
     </Tabs>
     </Asset>
 </XnaContent>

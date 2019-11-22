@@ -47,7 +47,7 @@ namespace SecretProject.Class.UI
         SanctuaryCheckList = 4,
         WarpGate = 5,
         ProgressBook = 6,
-        DepositBox = 7,
+
     }
     public class UserInterface
     {
@@ -78,7 +78,7 @@ namespace SecretProject.Class.UI
         public CraftingMenu CraftingMenu { get; set; }
 
 
-        public DepositBox DepositBox { get; set; }
+
         public bool IsAnyChestOpen { get; set; }
         public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-            this.DepositBox = new DepositBox(content, graphicsDevice);
+
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
@@ -260,15 +260,6 @@ namespace SecretProject.Class.UI
                     //BottomBar.IsActive = false;
                     break;
 
-                case ExclusiveInterfaceItem.DepositBox:
-                    Game1.freeze = true;
-                    DepositBox.Update(gameTime);
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-
-                    }
-                    break;
 
                 case ExclusiveInterfaceItem.WarpGate:
                     Game1.freeze = true;
@@ -360,9 +351,6 @@ namespace SecretProject.Class.UI
                             Game1.AllProgressBooks[i].Draw(spriteBatch);
                         }
                     }
-                    break;
-                case ExclusiveInterfaceItem.DepositBox:
-                    DepositBox.Draw(spriteBatch);
                     break;
 
                 case ExclusiveInterfaceItem.WarpGate:

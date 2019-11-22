@@ -46,8 +46,8 @@ namespace SecretProject.Class.UI
             Tabs = new List<CategoryTab>();
             for (int i = 0; i < ProgressBookHolder.Tabs.Count; i++)
             {
-                Tabs.Add(new CategoryTab(this, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 96, this.BackDropPosition.Y - 96),
-                    new Rectangle(480 + i * 32, 80, 32, 32), this.BackDropScale));
+                Tabs.Add(new CategoryTab(this, ProgressBookHolder.Tabs[i].TabName, GraphicsDevice, new Vector2(this.BackDropPosition.X + 96 + i * 96 * BackDropScale, this.BackDropPosition.Y - 96),
+                    new Rectangle(464, 80, 48, 32), this.BackDropScale));
 
                 for (int j = 0; j < ProgressBookHolder.Tabs[i].Pages.Count; j++)
                 {
@@ -208,6 +208,7 @@ namespace SecretProject.Class.UI
     public class CategoryTab
     {
         public ProgressBook ProgressBook { get; set; }
+        public string Name { get; set; }
         public int Index { get; set; }
         public bool IsActive { get; set; }
         public int ActivePage { get; set; }
@@ -218,8 +219,9 @@ namespace SecretProject.Class.UI
         public Vector2 PositionToDraw { get; set; }
         public Rectangle SourceRectangle { get; set; }
         public float ButtonColorMultiplier { get; set; }
-        public CategoryTab(ProgressBook book, GraphicsDevice graphics, Vector2 positionToDraw, Rectangle sourceRectangle, float scale)
+        public CategoryTab(ProgressBook book, string name, GraphicsDevice graphics, Vector2 positionToDraw, Rectangle sourceRectangle, float scale)
         {
+            this.Name = name;
             this.ProgressBook = book;
             this.PositionToDraw = positionToDraw;
             this.SourceRectangle = sourceRectangle;
@@ -239,6 +241,7 @@ namespace SecretProject.Class.UI
         {
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), ProgressBook.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(ProgressBook.BackDropPosition.X + ProgressBook.BackDropSourceRectangle.Width /8 * ProgressBook.BackDropScale, ProgressBook.BackDropPosition.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             this.Pages[ActivePage].Draw(spriteBatch);
 
 
