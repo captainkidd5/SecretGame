@@ -41,6 +41,17 @@
     <TimeEnd>8</TimeEnd>
    <TextToWrite>carry the two... eighteen? No wait... thirty two? That doesn't seem right either.</TextToWrite>
     </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>100</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>12</TimeEnd>
+   <TextToWrite>Oh hey! I managed to prototype your latest invention. # Here are my notes...#
+   You'll now be able to create it on your own! `
+   </TextToWrite>
+   <SelectableOptions>Shop~OpenJulianShop,Great!~ExitDialogue, Where can I find materials?~Load.11</SelectableOptions>
+   <Once>true</Once>
+    </Item>
   </AllDialogue>
   </Asset>
 </XnaContent>

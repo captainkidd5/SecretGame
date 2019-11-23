@@ -11,6 +11,7 @@ namespace SecretProject.Class.NPCStuff
         public int ID { get; set; }
         public int DaysUntilCompletion { get; set; }
         public bool Complete { get; set; }
+        public bool Claimed { get; set; }
 
         public ResearchAssignment(int iD, int daysUntilCompletion)
         {

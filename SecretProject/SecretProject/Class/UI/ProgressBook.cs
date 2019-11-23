@@ -360,19 +360,7 @@ namespace SecretProject.Class.UI
                     unlockItemInstance.Play();
                     unlockItemInstance.Dispose();
                     //Game1.SoundManager.UnlockItem.Play();
-                    for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
-                    {
-                        for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
-                        {
-                            for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
-                            {
-                                if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == Reward.Item.ID)
-                                {
-                                    Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
-                                }
-                            }
-                        }
-                    }
+                   
 
                     ProgressBook.CharacterWhoOwns.CurrentResearch = new ResearchAssignment(Reward.Item.ID, Reward.DaysToComplete);
                     ProgressBook.CharacterWhoOwns.HasActiveResearch = true;

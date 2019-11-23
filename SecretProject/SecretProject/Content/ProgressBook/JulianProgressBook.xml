@@ -21,6 +21,18 @@
     </ItemRequirements>
     </Item>
 
+    <Item Type="XMLData.ProgressBookStuff.UnlockableItemSkeleton">
+    <RewardItemID>0</RewardItemID>
+       <DaysToComplete>2</DaysToComplete>
+    <ItemRequirements>
+    <Item Type="XMLData.ProgressBookStuff.ItemRequirementSkeleton">
+    <ItemIDRequired>560</ItemIDRequired>
+    <CountRequired>2</CountRequired>
+    </Item>
+    </ItemRequirements>
+    </Item>
+
+
 
   
 

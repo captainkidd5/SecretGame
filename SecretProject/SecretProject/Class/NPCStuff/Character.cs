@@ -281,7 +281,30 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                         Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
-                    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    DialogueSkeleton skeleton;
+                    if (CurrentResearch != null && CurrentResearch.Complete && !CurrentResearch.Claimed)
+                    {
+                        skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(this.SpeakerID, 100);
+                        for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
+                        {
+                            for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
+                            {
+                                for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
+                                {
+                                    if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == CurrentResearch.ID)
+                                    {
+                                        Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
+                                    }
+                                }
+                            }
+                        }
+                        CurrentResearch.Claimed = true;
+                    }
+                    else
+                    {
+                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
+                    }
+                     
                     if(skeleton != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
