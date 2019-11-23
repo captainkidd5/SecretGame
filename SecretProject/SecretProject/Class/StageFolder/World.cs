@@ -169,7 +169,7 @@ namespace SecretProject.Class.StageFolder
             AllCrops = new Dictionary<string, Crop>();
 
             Enemies = new List<Enemy>();
-
+            AllRisingText = new List<RisingText>();
             // AllTiles.LoadInitialChunks();
 
             // Game1.SoundManager.DustStormInstance.Play();

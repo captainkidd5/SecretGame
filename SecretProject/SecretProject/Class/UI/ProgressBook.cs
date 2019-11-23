@@ -68,7 +68,7 @@ namespace SecretProject.Class.UI
                             unlockableItem.Requirements.Add(requirement);
                         }
 
-                        Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale, (ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].DaysToComplete));
+                        Reward reward = new Reward(this.GraphicsDevice, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * 2 - 32, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * 2), this.BackDropScale, (ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].DaysToComplete));
                         reward.Item = Game1.ItemVault.GenerateNewItem(ProgressBookHolder.Tabs[i].Pages[j].UnlockableItems[z].RewardItemID, null);
                         reward.RewardName = reward.Item.Name;
                         unlockableItem.Reward = reward;
