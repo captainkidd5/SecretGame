@@ -75,6 +75,7 @@ namespace SecretProject.Class.UI
                         unlockableItem.ToolTipSourceRectangle = reward.Item.SourceTextureRectangle;
                         unlockableItem.ToolTipPosition = new Vector2(this.BackDropPosition.X + 32 + z * 64, this.BackDropPosition.Y + 96);
                         unlockableItem.ToolTip = new Button(Game1.AllTextures.ItemSpriteSheet, unlockableItem.ToolTipSourceRectangle, this.GraphicsDevice, unlockableItem.ToolTipPosition, CursorType.Normal, this.BackDropScale);
+                        unlockableItem.LargeItemIcon = new Button(Game1.AllTextures.ItemSpriteSheet, unlockableItem.ToolTipSourceRectangle, this.GraphicsDevice, new Vector2(unlockableItem.Reward.PositionToDraw.X, unlockableItem. Reward.PositionToDraw.Y - 200), CursorType.Normal, this.BackDropScale);
 
 
 
@@ -312,6 +313,7 @@ namespace SecretProject.Class.UI
     {
         public ProgressBook ProgressBook { get; set; }
         public Button ToolTip { get; set; }
+        public Button LargeItemIcon { get; set; }
         public float ToolTipColorMultiplier { get; set; }
         public Rectangle ToolTipSourceRectangle { get; set; }
         public Vector2 ToolTipPosition { get; set; }
@@ -328,10 +330,18 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
+            LargeItemIcon.Update(Game1.myMouseManager);
+            if(LargeItemIcon.IsHovered)
+            {
+ 
+                    Game1.Player.UserInterface.InfoBox.IsActive = true;
+                   Game1.Player.UserInterface.InfoBox.FitText(Reward.Item.Name + ": " + Reward.Item.Description, 1f);
+                   Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X, Game1.myMouseManager.Position.Y + 64);
+            }
             if (!Reward.Claimed)
             {
                 this.RewardSatisfied = true;
-                // ToolTip.Update(Game1.myMouseManager);
+
                 this.ToolTipColorMultiplier = .5f;
                 for (int i = 0; i < this.Requirements.Count; i++)
                 {
@@ -385,13 +395,18 @@ namespace SecretProject.Class.UI
             }
 
             Reward.Draw(spriteBatch);
-            ToolTip.DrawNormal(spriteBatch, new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 200), ToolTip.BackGroundSourceRectangle,
+            LargeItemIcon.DrawNormal(spriteBatch, LargeItemIcon.Position, ToolTip.BackGroundSourceRectangle,
                     Color.White, 0f, Game1.Utility.Origin, 6f,
                     SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             if (Reward.Claimed)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 200), new Rectangle(208, 256, 32, 32),
                     Color.White, 0f, Game1.Utility.Origin, 6f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+            }
+            else
+            {
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Days to research: " + Reward.DaysToComplete.ToString(), new Vector2(Reward.PositionToDraw.X, Reward.PositionToDraw.Y - 256),
+                    Color.White, 0f, Game1.Utility.Origin, Reward.Scale / 3, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
             }
 
         }
