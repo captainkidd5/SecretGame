@@ -200,7 +200,10 @@ namespace SecretProject.Class.StageFolder
                 //Update players
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, mouse);
-
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Update(gameTime, AllRisingText);
+                }
                 //--------------------------------------
                 //Update sprites
                 foreach (Sprite spr in AllSprites)
@@ -274,7 +277,10 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
-                //Console.WriteLine("Player Position" + player.position);
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Draw(spriteBatch);
+                }
 
 
                 foreach (Character character in Game1.AllCharacters)

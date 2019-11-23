@@ -79,6 +79,8 @@ namespace SecretProject.Class.StageFolder
         public TmxMap Map { get; set; }
 
         public QuadTree QuadTree { get; set; }
+        public List<RisingText> AllRisingText { get; set; }
+
         public Effect CurrentEffect;
 
 
@@ -320,7 +322,10 @@ namespace SecretProject.Class.StageFolder
 
                 AllTiles.Update(gameTime, mouse);
                 player.Update(gameTime, AllItems, mouse);
-
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Update(gameTime, AllRisingText);
+                }
 
                 for (int i = 0; i < AllItems.Count; i++)
                 {
@@ -392,7 +397,10 @@ namespace SecretProject.Class.StageFolder
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
 
-               
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Draw(spriteBatch);
+                }
 
 
                 TextBuilder.Draw(spriteBatch, .71f);
@@ -478,6 +486,11 @@ namespace SecretProject.Class.StageFolder
         public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
         {
             throw new NotImplementedException();
+        }
+
+        public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color)
+        {
+            AllRisingText.Add(new RisingText(yStart, yEnd, stringToWrite, speed, color));
         }
     }
 }

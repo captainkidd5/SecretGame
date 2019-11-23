@@ -89,12 +89,18 @@ namespace SecretProject.Class.StageFolder
          string TmxMapPath { get; set; }
 
         QuadTree QuadTree { get; set; }
+
+        List<RisingText> AllRisingText { get; set; }
+
         void Update(GameTime gameTime, MouseManager mouse, Player player);
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
         void UnloadContent();
         void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
         void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration);
-        
+        void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color);
+
+
+
     }
 }

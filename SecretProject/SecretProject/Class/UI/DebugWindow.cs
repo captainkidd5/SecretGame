@@ -35,23 +35,14 @@ namespace SecretProject.Class.UI
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
             {
                 Game1.GlobalClock.IncrementDay();
+                
             }
             if (DebugButton1.isClicked)
             {
 
-
+                Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White);
                 Game1.GlobalClock.IncrementDay();
-                //Console.Clear();
-                //byte[,] byteList = new byte[120, 120];
-                //for(int i =0; i < 120; i++)
-                //{
-                //    for(int j =0; j < 120; j++)
-                //    {
-                //        byteList[i, j] = 1;
-                //    }
-                //}
-                //PathFinder pathfinder = new PathFinder(byteList);
-                //List<PathFinderNode> debugNodes = pathfinder.FindPath(new Point(65, 37), new Point(74, 82));
+
 
             }
         }

@@ -124,7 +124,8 @@ namespace SecretProject.Class.StageFolder
         public List<INPC> OnScreenNPCS { get; set; }
         public QuadTree QuadTree { get; set; }
         public List<float> MyProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        
+        public List<RisingText> AllRisingText { get; set; }
+
 
 
 
@@ -152,7 +153,7 @@ namespace SecretProject.Class.StageFolder
 
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
-     
+            AllRisingText = new List<RisingText>();
             
         }
 
@@ -350,8 +351,11 @@ namespace SecretProject.Class.StageFolder
 
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 player.Update(gameTime, AllItems, mouse);
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Update(gameTime, AllRisingText);
+                }
 
- 
                 foreach (Sprite spr in AllSprites)
                 {
 
@@ -424,6 +428,10 @@ namespace SecretProject.Class.StageFolder
                 ParticleEngine.Draw(spriteBatch, 1f);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Bottom) * .00000001f);
+                for (int i = 0; i < this.AllRisingText.Count; i++)
+                {
+                    AllRisingText[i].Draw(spriteBatch);
+                }
                 TextBuilder.Draw(spriteBatch, .71f);
 
                 if (ShowBorders)
@@ -500,6 +508,11 @@ namespace SecretProject.Class.StageFolder
         public Camera2D GetCamera()
         {
             return this.Cam;
+        }
+
+        public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color)
+        {
+            AllRisingText.Add(new RisingText(yStart, yEnd, stringToWrite, speed, color));
         }
         #endregion
     }

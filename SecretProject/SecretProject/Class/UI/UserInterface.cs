@@ -92,6 +92,8 @@ namespace SecretProject.Class.UI
 
         public InfoPopUp InfoBox { get; set; }
 
+        public List<RisingText> AllRisingText { get; set; }
+
 
 
         private UserInterface()
@@ -120,6 +122,7 @@ namespace SecretProject.Class.UI
 
             InfoBox = new InfoPopUp("Text Not Assigned");
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
+            this.AllRisingText = new List<RisingText>();
 
         }
 
@@ -270,7 +273,7 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
-
+                    
                 //case ExclusiveInterfaceItem.CookingMenu:
                 //    //Game1.freeze = true;
                 //    CookingMenu.Update(gameTime);
@@ -283,13 +286,16 @@ namespace SecretProject.Class.UI
 
             }
             
-           
+           for(int i =0; i < this.AllRisingText.Count; i++)
+            {
+                AllRisingText[i].Update(gameTime, AllRisingText);
+            }
 
             TextBuilder.Update(gameTime);
 
            
         }
-
+        
         public void ActivateProgressBook(CurrentOpenProgressBook progressBookID)
         {
             this.CurrentOpenProgressBook = progressBookID;
@@ -362,7 +368,6 @@ namespace SecretProject.Class.UI
                 //    break;
             }
 
-
             if (BottomBar.IsActive)
             {
                 BottomBar.Draw(spriteBatch);
@@ -403,6 +408,10 @@ namespace SecretProject.Class.UI
             this.TextBuilder.IsActive = true;
             
         }
+
+        
+        
+
     }
 
     

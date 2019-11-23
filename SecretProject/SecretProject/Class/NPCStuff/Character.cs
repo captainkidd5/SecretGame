@@ -284,6 +284,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                     DialogueSkeleton skeleton;
                     if (CurrentResearch != null && CurrentResearch.Complete && !CurrentResearch.Claimed)
                     {
+                        string itemStringToWrite = "error!";
                         skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(this.SpeakerID, 100);
                         for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
                         {
@@ -294,11 +295,13 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                                     if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == CurrentResearch.ID)
                                     {
                                         Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
+                                        itemStringToWrite = Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.Name + " Unlocked!";
                                     }
                                 }
                             }
                         }
                         CurrentResearch.Claimed = true;
+                         Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White);
                     }
                     else
                     {
