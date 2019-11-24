@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemHolder.xml</SourceFile>
-  <SourceTime>2019-11-21T12:17:04.3833765-08:00</SourceTime>
-  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/ItemHolder.xnb</DestFile>
-  <DestTime>2019-11-21T13:58:52.0375537-08:00</DestTime>
+  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/ItemHolder.xml</SourceFile>
+  <SourceTime>2019-11-18T12:59:29.8885662-08:00</SourceTime>
+  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/ItemHolder.xnb</DestFile>
+  <DestTime>2019-11-24T08:59:30.0723912-08:00</DestTime>
   <Importer>XmlImporter</Importer>
-  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>
-  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
   <Dependencies />
   <BuildAsset />
   <BuildOutput />
