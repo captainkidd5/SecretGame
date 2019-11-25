@@ -26,10 +26,11 @@ namespace SecretProject.Class.UI
 
         public TextBox(SpriteFont textFont, Vector2 position, string textToWrite, Texture2D texture)
         {
-            this.textFont = textFont;
+            this.textFont = Game1.AllTextures.MenuText;
             this.position = position;
             this.TextToWrite = textToWrite;
             this.Texture = texture;
+
         }
 
         public TextBox(Vector2 position, int size)
@@ -50,11 +51,15 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch,bool useString, float scale = 1f)
         {
             
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            if(useString)
+            {
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            }
+            
         }
         public virtual void Update(GameTime gameTime, Keys activationKey)
         {
