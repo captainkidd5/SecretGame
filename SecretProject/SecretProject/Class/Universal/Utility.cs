@@ -246,6 +246,17 @@ namespace SecretProject.Class.Universal
             return Vector2.Transform(pointToRotate - origin, rotationMatrix);
         }
         #endregion
+        public Texture2D GetColoredRectangle(GraphicsDevice graphics, int width, int height, Color desiredColor)
+        {
+            Color[] dataColors = new Color[width * height];
+            for(int i =0; i < dataColors.Length; i++)
+            {
+                dataColors[i] = desiredColor;
+            }
+            Texture2D texture = new Texture2D(graphics, width, height);
+            texture.SetData(0, new Rectangle(0, 0, width, height), dataColors, 0, width * height);
+            return texture;
+        }
         #region SPEECHUTILITY
         public void PerformSpeechAction(string action, int speakerID, string name)
         {

@@ -14,6 +14,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.Transportation;
+using SecretProject.Class.Universal;
 using static SecretProject.Class.UI.CheckList;
 
 namespace SecretProject.Class.UI
@@ -95,6 +96,12 @@ namespace SecretProject.Class.UI
         public List<RisingText> AllRisingText { get; set; }
 
 
+        //transition
+        public Texture2D BlackTransitionTexture { get; set; }
+        public bool IsTransitioning { get; set; } 
+        SimpleTimer TransitionTimer { get; set; }
+        public float BlackTransitionColorMultiplier{ get; set; }
+
 
         private UserInterface()
         {
@@ -123,6 +130,11 @@ namespace SecretProject.Class.UI
             InfoBox = new InfoPopUp("Text Not Assigned");
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             this.AllRisingText = new List<RisingText>();
+
+
+            this.BlackTransitionTexture = Game1.Utility.GetColoredRectangle(GraphicsDevice, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
+            BlackTransitionColorMultiplier = 1f;
+            this.TransitionTimer = new SimpleTimer(2f);
 
         }
 
@@ -293,9 +305,40 @@ namespace SecretProject.Class.UI
 
             TextBuilder.Update(gameTime);
 
+            if(this.IsTransitioning)
+            {
+                BeginTransitionCycle(gameTime);
+            }
+
            
         }
         
+        public void BeginTransitionCycle(GameTime gameTime)
+        {
+            if(TransitionTimer.Time <= TransitionTimer.TargetTime)
+            {
+                this.BlackTransitionColorMultiplier-= .05f;
+            }
+            else
+            {
+                this.BlackTransitionColorMultiplier += .05f;
+            }
+            if(!TransitionTimer.Run(gameTime))
+            {
+                this.IsTransitioning = true;
+                
+            }
+            else
+            {
+                BlackTransitionColorMultiplier = 1f;
+                this.IsTransitioning = false;
+            }
+        }
+
+        public void DrawTransitionTexture(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f); ;
+        }
         public void ActivateProgressBook(CurrentOpenProgressBook progressBookID)
         {
             this.CurrentOpenProgressBook = progressBookID;
@@ -393,6 +436,10 @@ namespace SecretProject.Class.UI
                 }
             }
             
+            if(IsTransitioning)
+            {
+                DrawTransitionTexture(spriteBatch);
+            }
 
             
 

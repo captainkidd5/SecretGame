@@ -617,7 +617,7 @@ namespace SecretProject
 
         public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
         {
-
+            Game1.Player.UserInterface.IsTransitioning = true;
 
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
