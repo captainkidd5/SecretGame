@@ -7,17 +7,17 @@
       <ID>1</ID>
       <TimeToStart>7</TimeToStart>
       <TimeToFinish>10</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>80</EndX>
-      <EndY>80</EndY>
+       <EndStage>Cafe</EndStage>
+      <EndX>22</EndX>
+      <EndY>23</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
       <TimeToStart>11</TimeToStart>
       <TimeToFinish>17</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>70</EndX>
-      <EndY>28</EndY>
+       <EndStage>Cafe</EndStage>
+      <EndX>22</EndX>
+      <EndY>30</EndY>
     </Item>
     </Routes>
   </Asset>

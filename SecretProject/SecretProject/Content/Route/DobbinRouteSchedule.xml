@@ -17,8 +17,8 @@
       <TimeToStart>11</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
        <EndStage>GeneralStore</EndStage>
-      <EndX>10</EndX>
-      <EndY>14</EndY>
+      <EndX>30</EndX>
+      <EndY>33</EndY>
     </Item>
     
     </Routes>

@@ -41,6 +41,12 @@ namespace XMLData.RouteStuff
                 case ("GeneralStore"):
                     this.StageToEndAt = 6;
                     break;
+                case ("KayaHouse"):
+                    this.StageToEndAt = 7;
+                    break;
+                case ("Cafe"):
+                    this.StageToEndAt = 8;
+                    break;
 
 
             }
