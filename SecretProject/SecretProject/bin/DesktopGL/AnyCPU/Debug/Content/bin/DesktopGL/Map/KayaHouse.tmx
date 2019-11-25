@@ -343,11 +343,11 @@
 </data>
  </layer>
  <objectgroup id="7" name="Portal">
-  <object id="32" x="462" y="601" width="36" height="16">
+  <object id="32" x="485" y="569" width="36" height="16">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="50"/>
+    <property name="SafteyOffSetY" value="-50"/>
     <property name="standardFrom" value="KayaHouse"/>
     <property name="standardTo" value="Town"/>
    </properties>

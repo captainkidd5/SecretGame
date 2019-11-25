@@ -77,6 +77,7 @@ namespace SecretProject
         PlayerHouse = 5,
         GeneralStore = 6,
         KayaHouse = 7,
+        Cafe = 8,
         MainMenu = 50,
         Exit = 55,
         
@@ -107,6 +108,7 @@ namespace SecretProject
         public static TmxStageBase PlayerHouse;
         public static TmxStageBase GeneralStore;
         public static TmxStageBase KayaHouse;
+        public static TmxStageBase Cafe;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -176,11 +178,13 @@ namespace SecretProject
         public DialogueHolder SnawDialogue;
         public DialogueHolder KayaDialogue;
         public DialogueHolder JulianDialogue;
+        public DialogueHolder SarahDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
         public RouteSchedule KayaRouteSchedule;
         public RouteSchedule JulianRouteSchedule;
+        public RouteSchedule SarahRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
 
@@ -212,6 +216,7 @@ namespace SecretProject
 
         public static Character Snaw;
         public static Julian Julian;
+        public static Sarah Sarah;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -234,8 +239,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;
@@ -298,6 +303,8 @@ namespace SecretProject
                     return GeneralStore;
                 case Stages.KayaHouse:
                     return KayaHouse;
+                case Stages.Cafe:
+                    return Cafe;
 
                 default:
                     return null;
@@ -334,6 +341,8 @@ namespace SecretProject
                     return GeneralStore;
                 case Stages.KayaHouse:
                     return KayaHouse;
+                case Stages.Cafe:
+                    return Cafe;
                 default:
                     return null;
 
@@ -367,6 +376,8 @@ namespace SecretProject
                     return Stages.GeneralStore;
                 case Stages.KayaHouse:
                     return Stages.KayaHouse;
+                case Stages.Cafe:
+                    return Stages.Cafe;
 
                 default:
                     return Stages.Town;
@@ -390,12 +401,14 @@ namespace SecretProject
             SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
             KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
             JulianDialogue = Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
+            SarahDialogue = Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
 
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
             KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
             JulianRouteSchedule = Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule };
+            SarahRouteSchedule = Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule };
             for(int i =0; i < AllSchedules.Count; i++)
             {
                 foreach(Route route in AllSchedules[i].Routes)
@@ -405,7 +418,7 @@ namespace SecretProject
             }
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue,SarahDialogue };
             foreach(DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
@@ -463,11 +476,12 @@ namespace SecretProject
             PlayerHouse = new TmxStageBase("PlayerHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
             GeneralStore = new TmxStageBase("GeneralStore", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
             KayaHouse = new TmxStageBase("KayaHouse", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
+            Cafe = new TmxStageBase("Cafe", graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse };
+            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -529,7 +543,7 @@ namespace SecretProject
 
             Elixer = new Elixir("Elixer", new Vector2(300, 115), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(150, 200), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(490, 275), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
             {
@@ -542,13 +556,15 @@ namespace SecretProject
                 IsBasicNPC = true
             };
             Julian = new Julian("Julian", new Vector2(250, 360), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
+            Sarah = new Sarah("Sarah", new Vector2(250, 360), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], AllTextures.JulianPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixer,
                 Dobbin,
                 Kaya,
                 Snaw,
-                Julian
+                Julian, 
+                Sarah
             };
 
             ProgressBook JulianProgressBook = new ProgressBook(Julian,Content, graphics.GraphicsDevice, 1);
@@ -726,6 +742,9 @@ namespace SecretProject
                     case Stages.KayaHouse:
                         KayaHouse.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.Cafe:
+                        Cafe.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -791,6 +810,10 @@ namespace SecretProject
                 case Stages.KayaHouse:
                     GraphicsDevice.Clear(Color.Black);
                     KayaHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.Cafe:
+                    GraphicsDevice.Clear(Color.Black);
+                    Cafe.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

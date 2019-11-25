@@ -16,8 +16,8 @@
       <TimeToStart>13</TimeToStart>
       <TimeToFinish>18</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>61</EndX>
-      <EndY>46</EndY>
+      <EndX>66</EndX>
+      <EndY>92</EndY>
     </Item>
     </Routes>
   </Asset>

@@ -1303,3 +1303,25 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin NPC/Sarah/Sarah.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Sarah/Sarah.png
+
+#begin Route/SarahRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/SarahRouteSchedule.xml
+
+#begin Dialogue/SarahDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/SarahDialogue.xml
+

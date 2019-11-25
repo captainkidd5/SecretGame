@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Kaya : Character
     {
-        public Kaya(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule, 0, false)
+        public Kaya(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.KayaHouse, false)
         {
             this.SpeakerID = 4;
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 16, 34, 6, .15f, this.Position);

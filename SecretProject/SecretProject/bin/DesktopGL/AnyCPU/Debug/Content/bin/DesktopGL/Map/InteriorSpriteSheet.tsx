@@ -530,6 +530,21 @@
    <property name="action" value="openProgressBook"/>
   </properties>
  </tile>
+ <tile id="1649">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1650">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1651">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1738">
   <properties>
    <property name="action" value="openProgressBook"/>
