@@ -2056,7 +2056,6 @@
  </tile>
  <tile id="1852">
   <properties>
-   <property name="AssociatedTiles" value="1752"/>
    <property name="action" value="chestLoot"/>
   </properties>
   <objectgroup draworder="index">

@@ -473,7 +473,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
-            Game1.GlobalClock.Draw(spriteBatch);
+   
             //  Graphics.SetRenderTarget(null);
 
         }

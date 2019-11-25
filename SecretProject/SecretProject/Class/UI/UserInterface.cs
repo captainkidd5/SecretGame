@@ -321,6 +321,7 @@ namespace SecretProject.Class.UI
         {
             
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
+            Game1.GlobalClock.Draw(spriteBatch);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
             switch (CurrentOpenInterfaceItem)
             {

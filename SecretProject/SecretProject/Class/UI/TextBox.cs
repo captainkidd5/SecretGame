@@ -50,11 +50,11 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public virtual void DrawWithoutString(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 1f,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
         }
         public virtual void Update(GameTime gameTime, Keys activationKey)
         {
@@ -70,25 +70,25 @@ namespace SecretProject.Class.UI
             IsActivated = stayActivated;
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation, Rectangle sourceRectangle, float scale)
-        {
-            spriteBatch.Begin();
+        //public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation, Rectangle sourceRectangle, float scale)
+        //{
+        //    spriteBatch.Begin();
 
-            if(IsActivated)
-            {
-                if(RemovesToolBar)
-                {
-                    Game1.Player.UserInterface.BottomBar.IsActive = false;
-                }
+        //    if(IsActivated)
+        //    {
+        //        if(RemovesToolBar)
+        //        {
+        //            Game1.Player.UserInterface.BottomBar.IsActive = false;
+        //        }
                 
-                spriteBatch.Draw(this.Texture, textBoxLocation, sourceRectangle, Color.White, 0f,
-                    Game1.Utility.Origin, scale,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White);
+        //        spriteBatch.Draw(this.Texture, textBoxLocation, sourceRectangle, Color.White, 0f,
+        //            Game1.Utility.Origin, scale,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+        //        spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White);
               
-            }
+        //    }
 
-            spriteBatch.End();
+        //    spriteBatch.End();
 
-        }
+        //}
     }
 }

@@ -160,7 +160,8 @@ namespace SecretProject.Class.Universal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition, ClockDisplay.SourceRectangle,2f);
+            ClockDisplay.Draw(spriteBatch);
+            //ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition, ClockDisplay.SourceRectangle,2f);
         }
     }
 }

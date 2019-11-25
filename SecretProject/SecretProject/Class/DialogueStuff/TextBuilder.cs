@@ -363,12 +363,12 @@ namespace SecretProject.Class.DialogueStuff
                         case TextBoxType.normal:
                             SpeechBox = new TextBox(TextBoxLocation, 0);
                             SpeechBox.position = new Vector2(PositionToWriteTo.X, PositionToWriteTo.Y);
-                            SpeechBox.DrawWithoutString(spriteBatch);
+                            SpeechBox.Draw(spriteBatch);
                             break;
                         case TextBoxType.dialogue:
                             SpeechBox = new TextBox(TextBoxLocation, 1);
                             SpeechBox.position = new Vector2(PositionToWriteTo.X - 50, PositionToWriteTo.Y - 50);
-                            SpeechBox.DrawWithoutString(spriteBatch);
+                            SpeechBox.Draw(spriteBatch);
                             if(this.SpeakerTexture != null)
                             {
                                 spriteBatch.Draw(SpeakerTexture, new Vector2(SpeechBox.position.X, SpeechBox.position.Y - 255), this.SpeakerPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
