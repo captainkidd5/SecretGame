@@ -57,6 +57,11 @@ namespace SecretProject.Class.TileStuff
             
         }
 
+        public int GetTileKeyAsInt(int layer)
+        {
+            return (X << 16) | (Y << 9) | layer;
+        }
+
 
 
 
