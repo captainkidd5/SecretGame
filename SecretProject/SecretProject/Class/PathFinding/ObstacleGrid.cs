@@ -39,7 +39,7 @@ namespace SecretProject.Class.PathFinding
                 {
                     for (var j = 0; j < mapHeight; j++)
                     {
-                        string tileKey = tiles[z][i, j].GetTileKey(z);
+                        int tileKey = tiles[z][i, j].GetTileKeyAsInt(z);
                         if (objects.Exists(x => x.LocationKey == tileKey))
                         {
                             Weight[i, j] = 0;

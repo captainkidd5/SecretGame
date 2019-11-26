@@ -30,7 +30,7 @@ namespace SecretProject.Class.CollisionDetection
 
 
         public ColliderType ColliderType { get; set; }
-        public string LocationKey { get; set; }
+        public int LocationKey { get; set; }
         public bool IsUpdating { get; set; }
         public Dir InitialShuffDirection { get; set; }
         public IEntity Entity { get; set; }

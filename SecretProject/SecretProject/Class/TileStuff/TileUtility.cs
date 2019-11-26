@@ -430,7 +430,7 @@ namespace SecretProject.Class.TileStuff
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newHitBox"))
                 {
                     int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newHitBox"]);
-                    string key = tileToAssign.GetTileKey(layer);
+                    int key = tileToAssign.GetTileKeyAsInt(layer);
 
                     Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
@@ -472,7 +472,7 @@ namespace SecretProject.Class.TileStuff
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
-                        string key = tileToAssign.GetTileKey(layer);
+                        int key = tileToAssign.GetTileKeyAsInt(layer);
 
                         Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
@@ -657,7 +657,7 @@ namespace SecretProject.Class.TileStuff
                             Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
-                                if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKey(1)))
+                                if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKeyAsInt(1)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
@@ -667,7 +667,7 @@ namespace SecretProject.Class.TileStuff
                                     tempCrop.X = i;
                                     tempCrop.Y = j;
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                    container.Crops[container.AllTiles[1][i, j].GetTileKey(1)] = tempCrop;
+                                    container.Crops[container.AllTiles[1][i, j].GetTileKeyAsInt(1)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
 
 
@@ -977,7 +977,7 @@ namespace SecretProject.Class.TileStuff
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
-                    ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKey(intTilePropertyLayer));
+                    ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer));
                     if (colliderObject != null)
                     {
                         container.Objects.Remove(colliderObject);
@@ -1078,7 +1078,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+            ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
             if (colliderObject != null)
             {
                 container.Objects.Remove(colliderObject);
@@ -1099,9 +1099,9 @@ namespace SecretProject.Class.TileStuff
             //mostly for crops
 
             GetDrop(layer, oldX, oldY, destinationRectangle, container);
-            if (container.Crops.ContainsKey(container.AllTiles[1][oldX, oldY].GetTileKey(layer)))
+            if (container.Crops.ContainsKey(container.AllTiles[1][oldX, oldY].GetTileKeyAsInt(layer)))
             {
-                container.Crops.Remove(container.AllTiles[1][oldX, oldY].GetTileKey(layer));
+                container.Crops.Remove(container.AllTiles[1][oldX, oldY].GetTileKeyAsInt(layer));
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("AssociatedTiles"))
                 {
                     TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, container);

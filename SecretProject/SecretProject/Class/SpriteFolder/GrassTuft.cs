@@ -32,7 +32,7 @@ namespace SecretProject.Class.SpriteFolder
         public Rectangle Type3SourceRectangle { get; set; }
 
         public ColliderType ColliderType { get; set; }
-        public string LocationKey { get; set; }
+        public int LocationKey { get; set; }
 
         public bool IsUpdating { get; set; }
         public List<ICollidable> Objects { get; set; }

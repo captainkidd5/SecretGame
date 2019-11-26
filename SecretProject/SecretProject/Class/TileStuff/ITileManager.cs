@@ -37,7 +37,7 @@ namespace SecretProject.Class.TileStuff
         Dictionary<int, int> TileHitPoints { get; set; }
         Dictionary<int, IStorableItem> StoreableItems { get; set; }
         List<LightSource> Lights { get; set; }
-        Dictionary<string, Crop> Crops { get; set; }
+        Dictionary<int, Crop> Crops { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }

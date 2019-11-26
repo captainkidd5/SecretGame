@@ -69,7 +69,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-        public Dictionary<string, Crop> Crops { get; set; }
+        public Dictionary<int, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
         List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -617,7 +617,7 @@ namespace SecretProject.Class.TileStuff
                                         if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
                                         {
 
-                                            string TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKey(z);
+                                            int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z);
 
 
 

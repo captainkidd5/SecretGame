@@ -41,21 +41,21 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public string GetTileKey(int layer)
-        {
-            string XString = X.ToString();
-            if(XString.Length < 4)
-            {
-               XString = XString.PadLeft(4, '0');
-            }
-            string YString = Y.ToString();
-            if (YString.Length < 4)
-            {
-               YString = YString.PadLeft(4, '0');
-            }
-            return layer.ToString() + XString + YString;
+        //public string GetTileKey(int layer)
+        //{
+        //    string XString = X.ToString();
+        //    if(XString.Length < 4)
+        //    {
+        //       XString = XString.PadLeft(4, '0');
+        //    }
+        //    string YString = Y.ToString();
+        //    if (YString.Length < 4)
+        //    {
+        //       YString = YString.PadLeft(4, '0');
+        //    }
+        //    return layer.ToString() + XString + YString;
             
-        }
+        //}
 
         public int GetTileKeyAsInt(int layer)
         {

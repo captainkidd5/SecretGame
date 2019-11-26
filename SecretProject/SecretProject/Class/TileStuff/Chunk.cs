@@ -41,7 +41,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, int> TileHitPoints { get; set; }
         public Dictionary<int, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
-        public Dictionary<string, Crop> Crops { get; set; }
+        public Dictionary<int, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public int ArrayI { get; set; }
@@ -91,7 +91,7 @@ namespace SecretProject.Class.TileStuff
             StoreableItems = new Dictionary<int, IStorableItem>();
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
-            Crops = new Dictionary<string, Crop>();
+            Crops = new Dictionary<int, Crop>();
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             for (int i = 0; i < 4; i++)
             {
@@ -172,7 +172,7 @@ namespace SecretProject.Class.TileStuff
             }
 
             binaryWriter.Write(Crops.Count);
-            foreach (KeyValuePair<string, Crop> crop in this.Crops)
+            foreach (KeyValuePair<int, Crop> crop in this.Crops)
             {
                 binaryWriter.Write(crop.Key);
                 binaryWriter.Write(crop.Value.ItemID);
@@ -267,7 +267,7 @@ namespace SecretProject.Class.TileStuff
             int cropCount = binaryReader.ReadInt32();
             for (int c = 0; c < cropCount; c++)
             {
-                string cropKey = binaryReader.ReadString();
+                int cropKey = binaryReader.ReadInt32();
                 int itemID = binaryReader.ReadInt32();
                 string name = binaryReader.ReadString();
                 int gid = binaryReader.ReadInt32();

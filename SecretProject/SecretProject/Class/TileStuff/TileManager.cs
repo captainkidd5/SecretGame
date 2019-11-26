@@ -77,7 +77,7 @@ namespace SecretProject.Class.TileStuff
 
         public int TileSetDimension { get; set; }
 
-        public Dictionary<string, Crop> Crops { get; set; }
+        public Dictionary<int, Crop> Crops { get; set; }
 
         //not relevant:
         public int X { get; set; }
@@ -129,7 +129,7 @@ namespace SecretProject.Class.TileStuff
             TileHitPoints = new Dictionary<int, int>();
             Lights = new List<LightSource>();
             StoreableItems = new Dictionary<int, IStorableItem>();
-            Crops = new Dictionary<string, Crop>();
+            Crops = new Dictionary<int, Crop>();
             Owned = true;
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
@@ -394,7 +394,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                            string TileKey = AllTiles[z][mouseI, mouseJ].GetTileKey(z);
+                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z);
 
 
 

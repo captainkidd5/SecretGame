@@ -76,7 +76,7 @@ namespace SecretProject.Class.SpriteFolder
         //for collider
         public Rectangle Rectangle { get; set; }
         public ColliderType ColliderType { get; set; }
-        public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Dir InitialShuffDirection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IEntity Entity { get; set; }
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
