@@ -68,6 +68,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<int, int> TileHitPoints { get; set; }
         public List<ICollidable> Objects { get; set; }
+        //public Dictionary<int, List<ICollidable> Objects { get; set; }
         public Dictionary<int, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
