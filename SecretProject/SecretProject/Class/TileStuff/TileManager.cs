@@ -67,8 +67,8 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<int, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<int, int> TileHitPoints { get; set; }
-        public List<ICollidable> Objects { get; set; }
-        //public Dictionary<int, List<ICollidable> Objects { get; set; }
+       // public List<ICollidable> Objects { get; set; }
+        public Dictionary<int, List<ICollidable>> Objects { get; set; }
         public Dictionary<int, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
@@ -139,7 +139,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
 
             }
-            Objects = new List<ICollidable>();
+            Objects = new Dictionary<int, List<ICollidable>>();
 
 
             for (int i = 0; i < AllTiles.Count; i++)

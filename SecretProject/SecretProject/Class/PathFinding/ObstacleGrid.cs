@@ -19,7 +19,7 @@ namespace SecretProject.Class.PathFinding
         //0 means no object, 1 means object
 
 
-        public ObstacleGrid(int mapWidth, int mapHeight, List<Tile[,]> tiles, List<ICollidable> objects, byte defaultValue = 0)
+        public ObstacleGrid(int mapWidth, int mapHeight, List<Tile[,]> tiles, Dictionary<int, List<ICollidable>> objects, byte defaultValue = 0)
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
@@ -40,7 +40,7 @@ namespace SecretProject.Class.PathFinding
                     for (var j = 0; j < mapHeight; j++)
                     {
                         int tileKey = tiles[z][i, j].GetTileKeyAsInt(z);
-                        if (objects.Exists(x => x.LocationKey == tileKey))
+                        if (objects.ContainsKey(tileKey))
                         {
                             Weight[i, j] = 0;
                         }

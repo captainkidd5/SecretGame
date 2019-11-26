@@ -36,7 +36,7 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
 
  
-        public List<ICollidable> Objects { get; set; }
+        public Dictionary<int, List<ICollidable>> Objects { get; set; }
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<int, int> TileHitPoints { get; set; }
         public Dictionary<int, IStorableItem> StoreableItems { get; set; }
@@ -85,7 +85,7 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
-            Objects = new List<ICollidable>();
+            Objects = new Dictionary<int, List<ICollidable>>();
             AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<int, int>();
             StoreableItems = new Dictionary<int, IStorableItem>();
@@ -381,7 +381,15 @@ namespace SecretProject.Class.TileStuff
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)), this.Objects);
                                         tufts.Add(grassTuft);
-                                        Objects.Add(grassTuft);
+                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyAsInt(0)))
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            Objects.Add(AllTiles[0][i, j].GetTileKeyAsInt(0), new List<ICollidable>());
+                                        }
+                                        Objects[AllTiles[0][i, j].GetTileKeyAsInt(0)].Add(grassTuft);+
                                       
 
                                     }

@@ -54,7 +54,7 @@ namespace SecretProject.Class.TileStuff
         public Chunk ChunkUnderPlayer { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<int, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<int, ICollidable> Objects { get; set; }
+        public Dictionary<int, List<ICollidable>> Objects { get; set; }
         public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<int, int> TileHitPoints { get; set; }
         public Dictionary<int, IStorableItem> StoreableItems { get; set; }
@@ -72,7 +72,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
-        List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+       // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public PathFinder PathFinder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
@@ -754,14 +754,23 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                             }
-
-                            for (int i = 0; i < ActiveChunks[a, b].Objects.Count; i++)
+                            foreach (KeyValuePair<int, List<ICollidable>> entry in ActiveChunks[a, b].Objects)
                             {
-                                if (ActiveChunks[a, b].Objects[i].ColliderType == ColliderType.grass)
+                                for(int i =0; i < entry.Value.Count; i++)
                                 {
-                                    ActiveChunks[a, b].Objects[i].Draw(spriteBatch);
+                                    if(entry.Value[i].ColliderType == ColliderType.grass)
+                                    {
+                                        entry.Value[i].Draw(spriteBatch);
+                                    }
                                 }
                             }
+                            //    for (int i = 0; i < ActiveChunks[a, b].Objects.Count; i++)
+                            //{
+                            //    if (ActiveChunks[a, b].Objects[i].ColliderType == ColliderType.grass)
+                            //    {
+                            //        ActiveChunks[a, b].Objects[i].Draw(spriteBatch);
+                            //    }
+                            //}
                             if (GridItem != null)
                             {
                                 GridItem.ChunkDraw(spriteBatch, this, ChunkUnderMouse);

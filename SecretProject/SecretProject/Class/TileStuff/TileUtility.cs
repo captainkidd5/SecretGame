@@ -438,9 +438,15 @@ namespace SecretProject.Class.TileStuff
                             rectangleCoords[3]), null, ColliderType.inert)
                     { LocationKey = key };
 
+                    if (container.Objects.ContainsKey(key))
+                    {
 
-
-                    container.Objects.Add(tempObjectBody);
+                    }
+                    else
+                    {
+                        container.Objects.Add(key, new List<ICollidable>());
+                    }
+                    container.Objects[key].Add(tempObjectBody);
 
                     
 
@@ -467,12 +473,20 @@ namespace SecretProject.Class.TileStuff
                     {
                         container.PathGrid.UpdateGrid(oldX, oldY, 0);
                     }
+                    int key = tileToAssign.GetTileKeyAsInt(layer);
+                    if (container.Objects.ContainsKey(key))
+                    {
 
+                    }
+                    else
+                    {
+                        container.Objects.Add(key, new List<ICollidable>());
+                    }
 
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
-                        int key = tileToAssign.GetTileKeyAsInt(layer);
+                        
 
                         Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
@@ -482,7 +496,8 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        container.Objects.Add(tempObjectBody);
+                        container.Objects[key].Add(tempObjectBody);
+
 
 
                     }
@@ -977,10 +992,10 @@ namespace SecretProject.Class.TileStuff
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
-                    ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer));
-                    if (colliderObject != null)
+                    List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer)];
+                    if (colliderObjectList != null)
                     {
-                        container.Objects.Remove(colliderObject);
+                        container.Objects.Remove(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer));
                     }
 
 
@@ -1078,10 +1093,16 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
-            if (colliderObject != null)
+            //ICollidable colliderObject = container.Objects.Find(x => x.LocationKey == container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
+            //if (colliderObject != null)
+            //{
+            //    container.Objects.Remove(colliderObject);
+            //}
+
+            List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)];
+            if (colliderObjectList != null)
             {
-                container.Objects.Remove(colliderObject);
+                container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
             }
             //if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
             //{

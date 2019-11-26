@@ -32,7 +32,7 @@ namespace SecretProject.Class.TileStuff
          int TileHeight { get; set; }
          int TileSetNumber { get; set; }
         Dictionary<int, List<GrassTuft>> Tufts { get; set; }
-        List<ICollidable> Objects { get; set; }
+        Dictionary<int, List<ICollidable>> Objects { get; set; }
         Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         Dictionary<int, int> TileHitPoints { get; set; }
         Dictionary<int, IStorableItem> StoreableItems { get; set; }
