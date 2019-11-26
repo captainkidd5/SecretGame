@@ -39,11 +39,10 @@ namespace SecretProject.Class.SpriteFolder
         public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         protected Texture2D rectangleTexture;
 
-        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position, List<ICollidable> objects)
+        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {
             this.GrassType = grassType;
             this.Position = position;
-            this.Objects = objects;
             this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, 16, 32);
             this.Rotation = 0f;
             this.RotationCap = .25f;

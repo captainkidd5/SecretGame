@@ -116,11 +116,14 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
-            for(int i =0; i < AllTiles.Objects.Count; i++)
+            foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.Objects)
             {
-                QuadTree.Insert(AllTiles.Objects[i]);
+                for (int z = 0; z < obj.Value.Count; z++)
+                {
+                    QuadTree.Insert(obj.Value[z]);
+                }
             }
-            for(int i =0; i < AllItems.Count; i++)
+            for (int i =0; i < AllItems.Count; i++)
             {
                 QuadTree.Insert(AllItems[i].ItemSprite);
             }
@@ -327,16 +330,20 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                for (int i = 0; i < AllTiles.Objects.Count; i++)
+                foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.Objects)
                 {
                     if (ShowBorders)
                     {
-                        AllTiles.Objects[i].Draw(spriteBatch, .4f);
+                        for (int j = 0; j < obj.Value.Count; j++)
+                        {
+                            obj.Value[j].Draw(spriteBatch, .4f);
+                        }
+
                     }
                 }
 
 
-             //   Game1.Elixer.Draw(spriteBatch);
+                //   Game1.Elixer.Draw(spriteBatch);
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 

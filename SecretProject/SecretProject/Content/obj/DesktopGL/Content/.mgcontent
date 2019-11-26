@@ -140,8 +140,14 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/gears.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Gondola.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/tallGrass.png</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Sarah/Sarah.png</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/SarahRouteSchedule.xml</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/SarahDialogue.xml</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

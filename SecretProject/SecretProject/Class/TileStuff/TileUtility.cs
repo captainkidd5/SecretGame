@@ -1098,12 +1098,15 @@ namespace SecretProject.Class.TileStuff
             //{
             //    container.Objects.Remove(colliderObject);
             //}
-
-            List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)];
-            if (colliderObjectList != null)
+            if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)))
             {
                 container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
             }
+            //List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)];
+            //if (colliderObjectList != null)
+            //{
+            //    container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
+            //}
             //if (container.Objects.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
             //{
             //    container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));

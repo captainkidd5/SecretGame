@@ -235,28 +235,41 @@ namespace SecretProject.Class.StageFolder
                         if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
                         {
 
-
-                            for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
+                            foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.ActiveChunks[i, j].Objects)
                             {
-                                if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+                                for (int z = 0; z < obj.Value.Count; z++)
                                 {
-                                    if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                                    if(obj.Value[z].IsUpdating)
                                     {
-                                        AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                        if(obj.Value[z].ColliderType == ColliderType.grass)
+                                        {
+                                            obj.Value[z].Update(gameTime);
+                                        }
                                     }
-
+                                    QuadTree.Insert(obj.Value[z]);
                                 }
-                                QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
-
-
                             }
+                            //for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
+                            //{
+                            //    if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+                            //    {
+                            //        if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                            //        {
+                            //            AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                            //        }
+
+                            //    }
+                            //    QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
+
+
+                            //}
                             for (int e = 0; e < Enemies.Count; e++)
                             {
-                                if(Enemies[e] != null)
+                                if (Enemies[e] != null)
                                 {
                                     QuadTree.Insert(Enemies[e].Collider);
                                 }
-                                
+
                             }
                         }
                     }
@@ -344,7 +357,7 @@ namespace SecretProject.Class.StageFolder
                     {
                         Enemies[i].TimeInUnloadedChunk += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     }
-                    Enemies[i].Update(gameTime, mouse,Enemies);
+                    Enemies[i].Update(gameTime, mouse, Enemies);
                 }
 
             }
@@ -389,9 +402,9 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
-               graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
+                graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
-                
+
 
                 ParticleEngine.Draw(spriteBatch, 1f);
 
@@ -444,13 +457,24 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                for (int i = 0; i < AllTiles.ChunkUnderPlayer.Objects.Count; i++)
+                foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.ChunkUnderPlayer.Objects)
                 {
                     if (ShowBorders)
                     {
-                        AllTiles.ChunkUnderPlayer.Objects[i].Draw(spriteBatch, .4f);
+                        for (int j = 0; j < obj.Value.Count; j++)
+                        {
+                            obj.Value[j].Draw(spriteBatch, .4f);
+                        }
+
                     }
                 }
+                //for (int i = 0; i < AllTiles.ChunkUnderPlayer.Objects.Count; i++)
+                //{
+                //    if (ShowBorders)
+                //    {
+                //        AllTiles.ChunkUnderPlayer.Objects[i].Draw(spriteBatch, .4f);
+                //    }
+                //}
 
                 Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
 
@@ -458,7 +482,7 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(null);
                 // graphics.Clear(Color.Black);
-                
+
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 if (IsDark)
@@ -473,7 +497,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
-   
+
             //  Graphics.SetRenderTarget(null);
 
         }
