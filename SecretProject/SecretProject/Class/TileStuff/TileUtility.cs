@@ -441,6 +441,24 @@ namespace SecretProject.Class.TileStuff
 
 
                     container.Objects.Add(tempObjectBody);
+
+                    
+
+                    //if (container.Type == 0)
+                    //{
+                    //    int startI = rectangleCoords[0] / 16;
+                    //    int endI = rectangleCoords[2] / 16;
+
+                    //    int startJ = rectangleCoords[1] / 16;
+                    //    int endJ = rectangleCoords[3] / 16;
+                    //    for (int i = startI; i < endI; i++)
+                    //    {
+                    //        for(int j = startJ; j < endJ; j++)
+                    //        {
+                    //            container.PathGrid.UpdateGrid(oldX + i, oldY + j, 1);
+                    //        }
+                    //    }
+                    //}
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)

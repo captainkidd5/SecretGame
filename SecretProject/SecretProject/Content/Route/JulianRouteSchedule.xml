@@ -10,14 +10,18 @@
        <EndStage>Town</EndStage>
       <EndX>65</EndX>
       <EndY>70</EndY>
+
+
+
+      
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
       <TimeToStart>11</TimeToStart>
       <TimeToFinish>15</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>39</EndX>
-      <EndY>75</EndY>
+       <EndStage>Cafe</EndStage>
+      <EndX>20</EndX>
+      <EndY>24</EndY>
     </Item>
     </Routes>
   </Asset>

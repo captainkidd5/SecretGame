@@ -15,9 +15,9 @@
       <ID>2</ID>
       <TimeToStart>11</TimeToStart>
       <TimeToFinish>17</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>70</EndX>
-      <EndY>28</EndY>
+       <EndStage>Cafe</EndStage>
+      <EndX>36</EndX>
+      <EndY>25</EndY>
     </Item>
     </Routes>
   </Asset>

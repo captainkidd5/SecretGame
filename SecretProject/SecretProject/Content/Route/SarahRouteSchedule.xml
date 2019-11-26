@@ -9,7 +9,7 @@
       <TimeToFinish>10</TimeToFinish>
        <EndStage>Cafe</EndStage>
       <EndX>22</EndX>
-      <EndY>23</EndY>
+      <EndY>20</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
