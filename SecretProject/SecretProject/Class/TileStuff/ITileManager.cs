@@ -31,11 +31,11 @@ namespace SecretProject.Class.TileStuff
          int TileWidth { get; set; }
          int TileHeight { get; set; }
          int TileSetNumber { get; set; }
-        Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        Dictionary<int, List<GrassTuft>> Tufts { get; set; }
         List<ICollidable> Objects { get; set; }
-        Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        Dictionary<string, int> TileHitPoints { get; set; }
-        Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        Dictionary<int, int> TileHitPoints { get; set; }
+        Dictionary<int, IStorableItem> StoreableItems { get; set; }
         List<LightSource> Lights { get; set; }
         Dictionary<string, Crop> Crops { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }

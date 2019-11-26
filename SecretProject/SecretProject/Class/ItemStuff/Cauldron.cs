@@ -14,7 +14,7 @@ namespace SecretProject.Class.ItemStuff
     public class Cauldron : IStorableItem
     {
         public StorableItemType StorableItemType { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public int Size { get; set; }
         public GraphicsDevice GraphicsDevice { get; set; }
         public bool IsActive { get; set; }
@@ -31,7 +31,7 @@ namespace SecretProject.Class.ItemStuff
         private Button redEsc;
 
         List<CookingSlot> CookingSlots;
-        public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
+        public Cauldron(int iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;

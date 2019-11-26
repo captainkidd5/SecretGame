@@ -37,9 +37,9 @@ namespace SecretProject.Class.TileStuff
 
  
         public List<ICollidable> Objects { get; set; }
-        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<int, int> TileHitPoints { get; set; }
+        public Dictionary<int, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
@@ -86,9 +86,9 @@ namespace SecretProject.Class.TileStuff
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
             Objects = new List<ICollidable>();
-            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            TileHitPoints = new Dictionary<string, int>();
-            StoreableItems = new Dictionary<string, IStorableItem>();
+            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
+            TileHitPoints = new Dictionary<int, int>();
+            StoreableItems = new Dictionary<int, IStorableItem>();
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             Crops = new Dictionary<string, Crop>();
@@ -147,7 +147,7 @@ namespace SecretProject.Class.TileStuff
             //}
 
             binaryWriter.Write(StoreableItems.Count);
-            foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
+            foreach (KeyValuePair<int, IStorableItem> storeableItem in this.StoreableItems)
             {
                 
                 binaryWriter.Write(storeableItem.Key);
@@ -214,11 +214,11 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            this.StoreableItems = new Dictionary<string, IStorableItem>();
+            this.StoreableItems = new Dictionary<int, IStorableItem>();
             int storableItemCount = binaryReader.ReadInt32();
             for (int c = 0; c < storableItemCount; c++)
             {
-                string storageKey = binaryReader.ReadString();
+                int storageKey = binaryReader.ReadInt32();
                 int storableItemType = binaryReader.ReadInt32();
                 StorableItemType itemType = (StorableItemType)storableItemType;
                 int inventorySize = binaryReader.ReadInt32();

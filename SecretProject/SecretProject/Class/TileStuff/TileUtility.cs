@@ -361,7 +361,7 @@ namespace SecretProject.Class.TileStuff
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
                     }
                     EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, tileToAssign.GID);
-                    container.AnimationFrames.Add(tileToAssign.GetTileKey(layer), frameHolder);
+                    container.AnimationFrames.Add(tileToAssign.GetTileKeyAsInt(layer), frameHolder);
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
@@ -373,7 +373,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
                 {
-                    container.TileHitPoints[tileToAssign.GetTileKey(layer)] = Game1.Utility.GetTileHitpoints(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
+                    container.TileHitPoints[tileToAssign.GetTileKeyAsInt(layer)] = Game1.Utility.GetTileHitpoints(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
 
                 }
 
@@ -388,9 +388,9 @@ namespace SecretProject.Class.TileStuff
                     if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
                     {
 
-                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKey(layer)))
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKeyAsInt(layer)))
                         {
-                            container.StoreableItems.Add(tileToAssign.GetTileKey(layer), new Chest(tileToAssign.GetTileKey(layer), 3,
+                            container.StoreableItems.Add(tileToAssign.GetTileKeyAsInt(layer), new Chest(tileToAssign.GetTileKeyAsInt(layer), 3,
                                     new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice, true));
                         }
 
@@ -398,9 +398,9 @@ namespace SecretProject.Class.TileStuff
                     else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "cook")
                     {
 
-                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKey(layer)))
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKeyAsInt(layer)))
                         {
-                            container.StoreableItems.Add(tileToAssign.GetTileKey(layer), new Cauldron(tileToAssign.GetTileKey(layer), 3,
+                            container.StoreableItems.Add(tileToAssign.GetTileKeyAsInt(layer), new Cauldron(tileToAssign.GetTileKeyAsInt(layer), 3,
                                     new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice));
                         }
 
@@ -730,7 +730,7 @@ namespace SecretProject.Class.TileStuff
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
-                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
+                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyAsInt(z)].IsUpdating = true;
                     }
                     break;
 
@@ -797,7 +797,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKey(z)].IsUpdating = true;
+                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyAsInt(z)].IsUpdating = true;
 
                     }
                     break;
@@ -913,10 +913,10 @@ namespace SecretProject.Class.TileStuff
         }
         public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, int setSoundInt, Color particleColor, ILocation world, Rectangle destinationRectangle, IInformationContainer container, bool hasSpawnTiles = false)
         {
-            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKey(layer)))
+            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyAsInt(layer)))
             {
 
-                if (container.TileHitPoints[tile.GetTileKey(layer)] > 0)
+                if (container.TileHitPoints[tile.GetTileKeyAsInt(layer)] > 0)
                 {
                     Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt, Game1.SoundManager.GameVolume);
                     Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
@@ -925,10 +925,10 @@ namespace SecretProject.Class.TileStuff
                     return;
                 }
 
-                if (container.TileHitPoints[tile.GetTileKey(layer)] < 1)
+                if (container.TileHitPoints[tile.GetTileKeyAsInt(layer)] < 1)
                 {
                     Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt, Game1.SoundManager.GameVolume);
-                    container.TileHitPoints.Remove(tile.GetTileKey(layer));
+                    container.TileHitPoints.Remove(tile.GetTileKeyAsInt(layer));
                     if (hasSpawnTiles)
                     {
                         DestroySpawnWithTiles(tile, x, y, world, container);
@@ -942,7 +942,7 @@ namespace SecretProject.Class.TileStuff
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames[i]));
                     }
                     EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID);
-                    container.AnimationFrames.Add(container.AllTiles[layer][x, y].GetTileKey(layer), frameHolder);
+                    container.AnimationFrames.Add(container.AllTiles[layer][x, y].GetTileKeyAsInt(layer), frameHolder);
                 }
                 else
                 {
@@ -994,16 +994,16 @@ namespace SecretProject.Class.TileStuff
         public static void InteractWithBuilding(int layer, GameTime gameTime, int oldX, int oldY, Rectangle destinationRectangle, ILocation world, IInformationContainer container)
         {
 
-            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)) && !Game1.Player.IsPerformingAction)
+            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)) && !Game1.Player.IsPerformingAction)
             {
                 AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]);
                 //this is out here because any equipped item should be able to pick it up no matter what
                 if (actionType == AnimationType.HandsPicking)
                 {
                     FinalizeTile(layer, gameTime, oldX, oldY, destinationRectangle, world, container, delayTimer: .25f);
-                    if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+                    if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)))
                     {
-                        container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
+                        container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)]--;
                     }
 
                 }
@@ -1018,9 +1018,9 @@ namespace SecretProject.Class.TileStuff
                             Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, container,
                             container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
                         Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AlterDurability(1);
-                        if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+                        if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)))
                         {
-                            container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKey(layer)]--;
+                            container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)]--;
 
 
                         }
@@ -1073,7 +1073,7 @@ namespace SecretProject.Class.TileStuff
                                 frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[associatedTiles[i]].AnimationFrames[j]));
                             }
                             EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, oldX, oldY, layer, associatedTiles[i]);
-                            container.AnimationFrames.Add(container.AllTiles[layer][oldX, oldY - 1].GetTileKey(layer), frameHolder);
+                            container.AnimationFrames.Add(container.AllTiles[layer][oldX, oldY - 1].GetTileKeyAsInt(layer), frameHolder);
                         }
                     }
                 }
@@ -1087,9 +1087,9 @@ namespace SecretProject.Class.TileStuff
             //{
             //    container.Objects.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
             //}
-            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKey(layer)))
+            if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer)))
             {
-                container.TileHitPoints.Remove(container.AllTiles[layer][oldX, oldY].GetTileKey(layer));
+                container.TileHitPoints.Remove(container.AllTiles[layer][oldX, oldY].GetTileKeyAsInt(layer));
             }
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"))
             {

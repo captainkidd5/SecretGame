@@ -13,7 +13,7 @@ namespace SecretProject.Class.ItemStuff
     public class Chest : IStorableItem
     {
         public StorableItemType StorableItemType { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public int Size { get; set; }
         public Vector2 Location { get; set; }
         public Inventory Inventory { get; set; }
@@ -22,7 +22,7 @@ namespace SecretProject.Class.ItemStuff
         public bool IsInventoryHovered { get; set; }
         List<Button> AllButtons;
         Button RedEsc;
-        public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
+        public Chest(int iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
             this.StorableItemType = StorableItemType.Chest;
             this.ID = ID;
