@@ -310,7 +310,7 @@ namespace SecretProject.Class.TileStuff
 
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
-            bool reassignGrid = true;
+         //   bool reassignGrid = true;
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
@@ -450,14 +450,16 @@ namespace SecretProject.Class.TileStuff
                     container.Objects[key].Add(tempObjectBody);
 
 
-                    reassignGrid = false;
+                   // reassignGrid = false;
                     if (container.Type == 0)
                     {
                         int startI = rectangleCoords[0] / 16;
                         int endI = rectangleCoords[2] / 16;
+                        endI = endI + startI;
 
                         int startJ = rectangleCoords[1] / 16;
                         int endJ = rectangleCoords[3] / 16;
+                        endJ = startJ + endJ;
                         for (int i = startI; i < endI; i++)
                         {
                             for (int j = startJ; j < endJ; j++)
@@ -505,20 +507,20 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-            if (reassignGrid)
-            {
-                int gridAssignment = 1;
+            //if (reassignGrid)
+            //{
+            //    int gridAssignment = 1;
 
-                for (int i = 0; i < 4; i++)
-                {
-                    if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
-                    {
-                        gridAssignment = 0;
+            //    for (int i = 0; i < 4; i++)
+            //    {
+            //        if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
+            //        {
+            //            gridAssignment = 0;
 
-                    }
-                }
-                container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
-            }
+            //        }
+            //    }
+            //    container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
+            //}
 
  
 

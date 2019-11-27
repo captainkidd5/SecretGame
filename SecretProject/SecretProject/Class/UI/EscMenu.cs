@@ -21,7 +21,7 @@ namespace SecretProject.Class.MenuStuff
 
         //  SaveLoadManager saveManager;
         SaveLoadManager mySave;
-
+        private Rectangle BackGroundSourceRectangle;
         internal Button MenuButton { get; set; }
         internal Button SettingsButton { get; set; }
         internal Button ReturnButton { get; set; }
@@ -33,15 +33,18 @@ namespace SecretProject.Class.MenuStuff
         private SpriteFont Font { get; set; }
         public bool IsActive { get; set; }
         public bool FreezesGame { get; set; }
+        private float Scale { get; set; }
 
         public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
         {
             mySave = new SaveLoadManager();
-            
 
-           
 
-            Font = content.Load<SpriteFont>("SpriteFont/MenuText");
+
+            Scale = 2f;
+            Font = Game1.AllTextures.MenuText;
+
+            BackGroundSourceRectangle = new Rectangle(64, 416, 128, 224);
 
             ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet,new Rectangle(48,176,128,64),   graphicsDevice, new Vector2(Game1.Utility.centerScreen.X , Game1.Utility.CenterScreenY - 150), CursorType.Normal);
             
@@ -107,14 +110,18 @@ namespace SecretProject.Class.MenuStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Utility.CenterScreenX -200, Game1.Utility.CenterScreenY -200 , 224,304),
-              //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
-            MenuButton.Draw(spriteBatch, Font, MenuText, MenuButton.FontLocation, Color.BlueViolet, .69f, .75f);
-            ReturnButton.Draw(spriteBatch, Font, ReturnText, ReturnButton.FontLocation, Color.BlueViolet, .69f, .75f);
-            SettingsButton.Draw(spriteBatch, Font, SettingsText, SettingsButton.FontLocation, Color.BlueViolet, .69f, .75f);
-            ToggleFullScreenButton.Draw(spriteBatch, Font, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.BlueViolet, .69f, .75f);
+            //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height ) ,
+                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin,   Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
 
-            
+            MenuButton.Draw(spriteBatch, Font, MenuText, MenuButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
+            ReturnButton.Draw(spriteBatch, Font, ReturnText, ReturnButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
+            SettingsButton.Draw(spriteBatch, Font, SettingsText, SettingsButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
+            ToggleFullScreenButton.Draw(spriteBatch, Font, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
+
+
+
         }
 
        

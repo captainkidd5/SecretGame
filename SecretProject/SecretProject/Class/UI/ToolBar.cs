@@ -133,7 +133,7 @@ namespace SecretProject.Class.UI
 
             UpdateNonInventoryButtons(mouse);
 
-            UpdateInventoryButtons(inventory, gameTime, mouse);
+            UpdateToolBarButtons(inventory, gameTime, mouse);
             if (WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
 
@@ -339,7 +339,7 @@ namespace SecretProject.Class.UI
             return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
         }
 
-        public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
+        public void UpdateToolBarButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
             for (int i = 0; i < 7; i++)

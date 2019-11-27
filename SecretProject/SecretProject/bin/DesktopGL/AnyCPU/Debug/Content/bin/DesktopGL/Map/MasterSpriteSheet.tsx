@@ -2750,15 +2750,39 @@
    <property name="action" value="readSanctuary"/>
   </properties>
  </tile>
+ <tile id="6209">
+  <properties>
+   <property name="newHitBox" value="-32, -64, 80, 80"/>
+   <property name="newSource" value="-32, -112, 80,128"/>
+  </properties>
+ </tile>
+ <tile id="6228">
+  <properties>
+   <property name="newHitBox" value="-48, -48, 112,64"/>
+   <property name="newSource" value="-48, -96, 128,112"/>
+  </properties>
+ </tile>
  <tile id="6320">
   <properties>
-   <property name="newHitBox" value="-32,-48, 96,48"/>
+   <property name="newHitBox" value="-32,-64, 96,64"/>
    <property name="newSource" value="-32,-144, 112, 160"/>
   </properties>
  </tile>
  <tile id="6759">
   <properties>
    <property name="lightSource" value="1"/>
+  </properties>
+ </tile>
+ <tile id="6907">
+  <properties>
+   <property name="newHitBox" value="-16, -64, 112, 80"/>
+   <property name="newSource" value="-16, -80, 112,96"/>
+  </properties>
+ </tile>
+ <tile id="7120">
+  <properties>
+   <property name="newHitBox" value="-16, -64, 80, 80"/>
+   <property name="newSource" value="-16, -96, 80,112"/>
   </properties>
  </tile>
  <tile id="7159">

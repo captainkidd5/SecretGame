@@ -209,7 +209,7 @@ namespace SecretProject.Class.TileStuff
                 int portalWidth = (int)mapName.ObjectGroups["Portal"].Objects[i].Width;
                 int portalHeight = (int)mapName.ObjectGroups["Portal"].Objects[i].Height;
 
-                portal.PortalStart = new Rectangle(portalX - portalWidth / 2, portalY - portalHeight / 2, portalWidth, portalHeight);
+                portal.PortalStart = new Rectangle(portalX, portalY, portalWidth, portalHeight);
 
                 currentStage.AllPortals.Add(portal);
 
