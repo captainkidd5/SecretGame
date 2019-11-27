@@ -36,7 +36,7 @@ namespace SecretProject.Class.PathFinding
         //1 empty, 0 obstructed
         public void UpdateGrid(int indexI, int indexJ, int newValue)
         {
-            Weight[indexI, indexI] = (byte)newValue;
+            Weight[indexI, indexJ] = (byte)newValue;
         }
 
         

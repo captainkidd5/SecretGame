@@ -60,7 +60,7 @@ namespace SecretProject.Class.TileStuff
         public Tile DebugTile { get; set; } = new Tile(40, 40, 4714);
         public int TileSetNumber { get; set; }
         public ObstacleGrid PathGrid { get; set; }
-        public PathFinder PathFinder { get; set; }
+
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
@@ -274,7 +274,7 @@ namespace SecretProject.Class.TileStuff
         {
 
             
-            PathFinder = new PathFinder(PathGrid.Weight);
+
         }
 
 

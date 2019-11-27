@@ -502,42 +502,25 @@ namespace SecretProject.Class.TileStuff
 
                     }
                 }
-                else
-                {
-                    int gridAssignment = 1;
-                    //  if (container.PathGrid != null)
-                    //{
-                    for (int i = 0; i < 4; i++)
-                    {
-                        if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
-                        {
-                            gridAssignment = 0;
 
-                        }
-                    }
-
-                    container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
-
-                }
             }
-            else
+
+            int gridAssignment = 1;
+            // if (container.PathGrid != null)
+            //  {
+            for (int i = 0; i < 4; i++)
             {
-                int gridAssignment = 1;
-                // if (container.PathGrid != null)
-                //  {
-                for (int i = 0; i < 4; i++)
+                if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
                 {
-                    if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
-                    {
-                        gridAssignment = 0;
+                    gridAssignment = 0;
 
-                    }
                 }
-
-  
-
-                container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
             }
+
+
+
+            container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
+
         }
         public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, IInformationContainer container)
         {
@@ -1013,11 +996,15 @@ namespace SecretProject.Class.TileStuff
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
-                    List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer)];
-                    if (colliderObjectList != null)
+                    if(container.Objects.ContainsKey(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer)))
                     {
                         container.Objects.Remove(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer));
                     }
+                    //List<ICollidable> colliderObjectList = container.Objects[container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer)];
+                    //if (colliderObjectList != null)
+                    //{
+                    //    container.Objects.Remove(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyAsInt(intTilePropertyLayer));
+                    //}
 
 
 

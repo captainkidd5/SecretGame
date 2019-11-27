@@ -26,7 +26,6 @@ namespace SecretProject.Class.TileStuff
         Texture2D TileSet { get; set; }
         List<Tile[,]> AllTiles { get; set; }
         ObstacleGrid PathGrid { get; set; }
-        PathFinder PathFinder { get; set; }
 
          int TileWidth { get; set; }
          int TileHeight { get; set; }
