@@ -89,6 +89,7 @@ namespace SecretProject.Class.TileStuff
             AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<int, int>();
             StoreableItems = new Dictionary<int, IStorableItem>();
+            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
             Crops = new Dictionary<int, Crop>();
@@ -198,6 +199,7 @@ namespace SecretProject.Class.TileStuff
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             FileStream fileStream = File.OpenRead(path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
+            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < TileUtility.ChunkX; i++)
@@ -291,7 +293,7 @@ namespace SecretProject.Class.TileStuff
 
             
             
-            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
+         
 
             if (this.X != 0 && this.Y != 0)
             {
@@ -318,7 +320,7 @@ namespace SecretProject.Class.TileStuff
             {
                 this.SimulationType = seed;
             }
-
+            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             float[,] noise = new float[16, 16];
 
             for (int i = 0; i < 16; i++)
@@ -538,7 +540,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight, this.AllTiles, this.Objects);
+            
             if(this.X != 0 && this.Y != 0)
             {
                // Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));

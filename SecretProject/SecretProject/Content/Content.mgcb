@@ -159,6 +159,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/KayaDialogue.xml
 
+#begin Dialogue/SarahDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/SarahDialogue.xml
+
 #begin Dialogue/SnawDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -443,6 +448,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Kaya/KayaSpriteSheet.png
+
+#begin NPC/Sarah/Sarah.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Sarah/Sarah.png
+
+#begin NPC/Sarah/SarahPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Sarah/SarahPortrait.png
 
 #begin NPC/Snaw/Snaw.png
 /importer:TextureImporter
@@ -1074,6 +1103,11 @@
 /processor:PassThroughProcessor
 /build:Route/KayaRouteSchedule.xml
 
+#begin Route/SarahRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/SarahRouteSchedule.xml
+
 #begin Songs/DustStorm.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1302,26 +1336,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin NPC/Sarah/Sarah.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Sarah/Sarah.png
-
-#begin Route/SarahRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/SarahRouteSchedule.xml
-
-#begin Dialogue/SarahDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/SarahDialogue.xml
 

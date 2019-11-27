@@ -367,7 +367,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     int lightType = LightSource.ParseLightType(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
                     Vector2 lightOffSet = LightSource.ParseLightData(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
-                    container.Lights.Add(new LightSource(lightType, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y +lightOffSet.Y)));
+                    container.Lights.Add(new LightSource(lightType, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y)));
                 }
 
 
@@ -448,7 +448,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     container.Objects[key].Add(tempObjectBody);
 
-                    
+
 
                     //if (container.Type == 0)
                     //{
@@ -459,9 +459,9 @@ namespace SecretProject.Class.TileStuff
                     //    int endJ = rectangleCoords[3] / 16;
                     //    for (int i = startI; i < endI; i++)
                     //    {
-                    //        for(int j = startJ; j < endJ; j++)
+                    //        for (int j = startJ; j < endJ; j++)
                     //        {
-                    //            container.PathGrid.UpdateGrid(oldX + i, oldY + j, 1);
+                    //            container.PathGrid.UpdateGrid(oldX + i, oldY + j, 0);
                     //        }
                     //    }
                     //}
@@ -469,10 +469,10 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
-                    if (container.PathGrid != null)
-                    {
-                        container.PathGrid.UpdateGrid(oldX, oldY, 0);
-                    }
+                    //  if (container.PathGrid != null)
+                    //{
+                    container.PathGrid.UpdateGrid(oldX, oldY, 0);
+                    // }
                     int key = tileToAssign.GetTileKeyAsInt(layer);
                     if (container.Objects.ContainsKey(key))
                     {
@@ -486,7 +486,7 @@ namespace SecretProject.Class.TileStuff
                     for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
-                        
+
 
                         Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
@@ -504,21 +504,42 @@ namespace SecretProject.Class.TileStuff
                 }
                 else
                 {
-                    if (container.PathGrid != null)
+                    int gridAssignment = 1;
+                    //  if (container.PathGrid != null)
+                    //{
+                    for (int i = 0; i < 4; i++)
                     {
-                        container.PathGrid.UpdateGrid(oldX, oldY, 1);
+                        if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
+                        {
+                            gridAssignment = 0;
+
+                        }
                     }
+
+                    container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
+
                 }
             }
             else
             {
-                if (container.PathGrid != null)
+                int gridAssignment = 1;
+                // if (container.PathGrid != null)
+                //  {
+                for (int i = 0; i < 4; i++)
                 {
-                    container.PathGrid.UpdateGrid(oldX, oldY, 1);
+                    if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
+                    {
+                        gridAssignment = 0;
+
+                    }
                 }
+
+  
+
+                container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
             }
         }
-        public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int,int> tilingDictionary, IInformationContainer container)
+        public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, IInformationContainer container)
         {
             for (int t = -1; t < 2; t++)
             {
@@ -644,7 +665,7 @@ namespace SecretProject.Class.TileStuff
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
                                             PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
                                             ReassignGroupOfTiles(z, i, j, 1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, container);
-        
+
 
                                             break;
                                     }

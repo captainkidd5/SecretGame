@@ -57,6 +57,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D JulianPortrait;
 
         public Texture2D SarahSpriteSheet;
+        public Texture2D SarahPortrait;
 
         //playeractions
 
@@ -170,6 +171,8 @@ namespace SecretProject.Class.TextureStuff
             JulianPortrait = content.Load<Texture2D>("NPC/Julian/julianPortrait");
 
             SarahSpriteSheet = content.Load<Texture2D>("NPC/Sarah/Sarah");
+            SarahPortrait = content.Load<Texture2D>("NPC/Sarah/SarahPortrait");
+
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
 

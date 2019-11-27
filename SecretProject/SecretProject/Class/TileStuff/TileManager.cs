@@ -141,7 +141,7 @@ namespace SecretProject.Class.TileStuff
             }
             Objects = new Dictionary<int, List<ICollidable>>();
 
-
+            PathGrid = new ObstacleGrid(MapWidth, MapHeight);
             for (int i = 0; i < AllTiles.Count; i++)
             {
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
@@ -273,7 +273,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
 
-            PathGrid = new ObstacleGrid(MapWidth, MapHeight, AllTiles, this.Objects);
+            
             PathFinder = new PathFinder(PathGrid.Weight);
         }
 

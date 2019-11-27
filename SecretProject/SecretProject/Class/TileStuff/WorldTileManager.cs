@@ -828,8 +828,8 @@ namespace SecretProject.Class.TileStuff
         public ObstacleGrid GetPathGrid(Vector2 entityPosition)
         {
 
-            Chunk ChunkCopy = GetChunkFromPosition(entityPosition);
-            return new ObstacleGrid(TileUtility.ChunkX, TileUtility.ChunkY, ChunkCopy.AllTiles, ChunkCopy.Objects);
+
+            return PathGrid;
 
         }
     }
