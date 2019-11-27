@@ -2750,6 +2750,12 @@
    <property name="action" value="readSanctuary"/>
   </properties>
  </tile>
+ <tile id="6320">
+  <properties>
+   <property name="newHitBox" value="-32,-48, 96,48"/>
+   <property name="newSource" value="-32,-144, 112, 160"/>
+  </properties>
+ </tile>
  <tile id="6759">
   <properties>
    <property name="lightSource" value="1"/>

@@ -433,15 +433,16 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             {
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
-                return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.X / 16,
-                            (Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo).PortalStart.Y + 32) / 16);
+                Portal portal = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo);
+                return new Point((portal.PortalStart.X + portal.SafteyOffSetX )/ 16 , (portal.PortalStart.Y + portal.SafteyOffSetY) / 16 );
             }
             else
             {
                 int node = PortalTraverser.GetNextNodeInPath(stageFrom, stageTo);
                 nodeToEndAt = node;
-                return new Point(Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node).PortalStart.X / 16,
-                             Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node).PortalStart.Y / 16);
+                Portal portal = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node);
+                return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16,
+                            (portal.PortalStart.Y + portal.SafteyOffSetY) / 16);
                 //throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
             }
         }
@@ -485,8 +486,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                         {
                             if (nodeToEndAt != (int)CurrentStageLocation)
                             {
-                                this.Position = new Vector2(Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.X,
-                                Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.Y);
+                                this.Position = new Vector2(Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.X + 16,
+                                Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)CurrentStageLocation).PortalStart.Y + 32);
                                 Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Remove(this);
                                 CurrentStageLocation = (Stages)nodeToEndAt;
                                 Game1.GetStageFromInt(CurrentStageLocation).CharactersPresent.Add(this);

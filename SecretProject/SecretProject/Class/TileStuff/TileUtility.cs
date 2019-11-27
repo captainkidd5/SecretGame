@@ -310,6 +310,7 @@ namespace SecretProject.Class.TileStuff
 
         public static void AssignProperties(Tile tileToAssign, int layer, int oldX, int oldY, IInformationContainer container)
         {
+            bool reassignGrid = true;
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
@@ -449,22 +450,22 @@ namespace SecretProject.Class.TileStuff
                     container.Objects[key].Add(tempObjectBody);
 
 
+                    reassignGrid = false;
+                    if (container.Type == 0)
+                    {
+                        int startI = rectangleCoords[0] / 16;
+                        int endI = rectangleCoords[2] / 16;
 
-                    //if (container.Type == 0)
-                    //{
-                    //    int startI = rectangleCoords[0] / 16;
-                    //    int endI = rectangleCoords[2] / 16;
-
-                    //    int startJ = rectangleCoords[1] / 16;
-                    //    int endJ = rectangleCoords[3] / 16;
-                    //    for (int i = startI; i < endI; i++)
-                    //    {
-                    //        for (int j = startJ; j < endJ; j++)
-                    //        {
-                    //            container.PathGrid.UpdateGrid(oldX + i, oldY + j, 0);
-                    //        }
-                    //    }
-                    //}
+                        int startJ = rectangleCoords[1] / 16;
+                        int endJ = rectangleCoords[3] / 16;
+                        for (int i = startI; i < endI; i++)
+                        {
+                            for (int j = startJ; j < endJ; j++)
+                            {
+                                container.PathGrid.UpdateGrid(oldX + i, oldY + j, 0);
+                            }
+                        }
+                    }
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
@@ -504,22 +505,22 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-
-            int gridAssignment = 1;
-            // if (container.PathGrid != null)
-            //  {
-            for (int i = 0; i < 4; i++)
+            if (reassignGrid)
             {
-                if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
-                {
-                    gridAssignment = 0;
+                int gridAssignment = 1;
 
+                for (int i = 0; i < 4; i++)
+                {
+                    if (container.Objects.ContainsKey(tileToAssign.GetTileKeyAsInt(i)))
+                    {
+                        gridAssignment = 0;
+
+                    }
                 }
+                container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
             }
 
-
-
-            container.PathGrid.UpdateGrid(oldX, oldY, gridAssignment);
+ 
 
         }
         public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, IInformationContainer container)
