@@ -41,11 +41,14 @@ namespace SecretProject.Class.UI
             Pages[ActivePage].Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 backDropPosition, Rectangle backDropSourceRectangle, float backDropScale)
+        public void Draw(SpriteBatch spriteBatch,  Rectangle backDropSourceRectangle, float backDropScale, bool drawString = true)
         {
-
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), backDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(backDropPosition.X + backDropSourceRectangle.Width / 8 * backDropScale, backDropPosition.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            if(drawString)
+            {
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(PositionToDraw.X + backDropSourceRectangle.Width / 8 * backDropScale, PositionToDraw.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            }
+            
             this.Pages[ActivePage].Draw(spriteBatch);
 
 

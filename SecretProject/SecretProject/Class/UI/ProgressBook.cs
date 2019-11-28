@@ -180,7 +180,7 @@ namespace SecretProject.Class.UI
                 Tabs[i].Button.DrawNormal(spriteBatch, Tabs[i].Button.Position, Tabs[i].Button.BackGroundSourceRectangle, Color.White * Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, Tabs[i].Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
 
-            Tabs[ActiveTab].Draw(spriteBatch, BackDropPosition, BackDropSourceRectangle, BackDropScale);
+            Tabs[ActiveTab].Draw(spriteBatch, BackDropSourceRectangle, BackDropScale);
 
             if (Tabs[ActiveTab].ActivePage >= Tabs[ActiveTab].Pages.Count - 1)
             {
