@@ -180,7 +180,7 @@ namespace SecretProject.Class.MenuStuff
         public SliderBar VolumeSetting { get; set; }
         public SettingsPage(GraphicsDevice graphics,Rectangle backgroundSourceRectangle, float scale)
         {
-            VolumeSetting = new SliderBar(graphics, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY), scale);
+            VolumeSetting = new SliderBar(graphics, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2 - 48, Game1.Utility.CenterScreenY - backgroundSourceRectangle.Height/4), scale);
         }
 
         public void Update(GameTime gameTime)
@@ -190,7 +190,8 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            VolumeSetting.Draw(spriteBatch);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Volume",new Vector2( VolumeSetting.SliderBackgroundPosition.X + 16 * VolumeSetting.Scale, VolumeSetting.SliderBackgroundPosition.Y - 80 * VolumeSetting.Scale), Color.Black, 0f, Game1.Utility.Origin, VolumeSetting.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            VolumeSetting.Draw(spriteBatch, "Music: ");
         }
 
         

@@ -674,7 +674,7 @@ namespace SecretProject
             //SOUND
             MediaPlayer.IsRepeating = true;
             SoundManager.PlaySong();
-
+            SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
             //KEYBOARD
 
             if (ToggleFullScreen)
