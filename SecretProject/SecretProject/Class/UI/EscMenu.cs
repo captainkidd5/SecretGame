@@ -16,7 +16,7 @@ namespace SecretProject.Class.MenuStuff
     public class EscMenu : IExclusiveInterfaceComponent
     {
         public bool isTextChanged = false;
-
+        public int ActiveTab { get; set; }
 
         //  SaveLoadManager saveManager;
         SaveLoadManager mySave;
@@ -43,10 +43,13 @@ namespace SecretProject.Class.MenuStuff
             {
                 new CategoryTab("Esc", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * Scale),
                 new Rectangle(64,392, 32,25),2f),
+                new CategoryTab("Settings", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width + 64, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * Scale),
+                new Rectangle(64,392, 32,25),2f),
 
             };
 
-            Tabs[0].Pages.Add(new MainEscPage(graphicsDevice));
+            Tabs[0].Pages.Add(new MainEscPage(graphicsDevice,BackGroundSourceRectangle));
+            Tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle,Scale));
 
         }
 
@@ -56,8 +59,24 @@ namespace SecretProject.Class.MenuStuff
 
             for (int i = 0; i < Tabs.Count; i++)
             {
-                Tabs[i].Update(gameTime);
+                Tabs[i].Button.Update(Game1.myMouseManager);
+                if (Tabs[i].Button.isClicked)
+                {
+                    this.ActiveTab = i;
+
+                }
+                if (ActiveTab == i)
+                {
+                    Tabs[i].IsActive = true;
+                    Tabs[i].ButtonColorMultiplier = 1f;
+                }
+                else
+                {
+                    Tabs[i].IsActive = false;
+                    Tabs[i].ButtonColorMultiplier = .5f;
+                }
             }
+            Tabs[ActiveTab].Update(gameTime);
  
         }
 
@@ -70,11 +89,11 @@ namespace SecretProject.Class.MenuStuff
 
             for (int i = 0; i < Tabs.Count; i++)
             {
-                Tabs[i].Draw(spriteBatch, BackGroundSourceRectangle, Scale, false);
+                
                 Tabs[i].Button.DrawNormal(spriteBatch, Tabs[i].Button.Position, Tabs[i].Button.BackGroundSourceRectangle, Color.White * Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
 
-
+            Tabs[ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, Scale, false);
 
 
         }
@@ -96,14 +115,14 @@ namespace SecretProject.Class.MenuStuff
         private string ToggleFullScreenButtonText;
 
 
-        public MainEscPage(GraphicsDevice graphicsDevice)
+        public MainEscPage(GraphicsDevice graphicsDevice, Rectangle backgroundSourceRectangle)
         {
-            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY - 150), CursorType.Normal);
+            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY - 150), CursorType.Normal);
 
-            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY - 90), CursorType.Normal);
+            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY - 90), CursorType.Normal);
 
-            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
-            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY + 90), CursorType.Normal);
+            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY), CursorType.Normal);
+            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY + 90), CursorType.Normal);
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";
@@ -154,5 +173,26 @@ namespace SecretProject.Class.MenuStuff
         }
 
 
+    }
+
+    class SettingsPage : IPage
+    {
+        public SliderBar VolumeSetting { get; set; }
+        public SettingsPage(GraphicsDevice graphics,Rectangle backgroundSourceRectangle, float scale)
+        {
+            VolumeSetting = new SliderBar(graphics, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY), scale);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            VolumeSetting.Update();
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            VolumeSetting.Draw(spriteBatch);
+        }
+
+        
     }
 }
