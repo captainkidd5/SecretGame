@@ -185,7 +185,7 @@ namespace SecretProject.Class.MenuStuff
 
         public void Update(GameTime gameTime)
         {
-            VolumeSetting.Update();
+           Game1.SoundManager.GameVolume = VolumeSetting.Update(Game1.SoundManager.GameVolume);
         }
 
         public void Draw(SpriteBatch spriteBatch)

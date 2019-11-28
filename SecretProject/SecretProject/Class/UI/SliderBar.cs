@@ -22,32 +22,47 @@ namespace SecretProject.Class.UI
         {
             SliderBackground = new Rectangle(48, 160, 100, 16);
             SliderBackgroundPosition = position;
-            SliderButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(64,144,16,16), graphics, position, Controls.CursorType.Normal, scale);
+            MinSliderX = (int)position.X;
+            MaxSliderX = (int)position.X + 100;
+            SliderButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(64,144,16,16), graphics, new Vector2(MaxSliderX, position.Y), Controls.CursorType.Normal, scale);
             Scale = scale;
+            DisplayValue = 100;
         }
 
-        public void Update()
+        public float Update( float valueToAffect)
         {
             SliderButton.Update(Game1.myMouseManager);
             if(SliderButton.isClickedAndHeld)
             {
-
+                if(Game1.myMouseManager.UIPosition.X > Game1.myMouseManager.OldMouseInterfacePosition.X)
+                {
+                    SliderButton.Position = new Vector2(SliderButton.Position.X + Game1.myMouseManager.UIPosition.X - Game1.myMouseManager.OldMouseInterfacePosition.X, SliderButton.Position.Y);
+                }
+                else if(Game1.myMouseManager.UIPosition.X < Game1.myMouseManager.OldMouseInterfacePosition.X)
+                {
+                    SliderButton.Position = new Vector2(SliderButton.Position.X - Math.Abs(Game1.myMouseManager.OldMouseInterfacePosition.X- Game1.myMouseManager.UIPosition.X), SliderButton.Position.Y);
+                }
             }
 
-            if(SliderButton.Position.X > MaxSliderX)
+            if (SliderButton.Position.X > MaxSliderX)
             {
                 SliderButton.Position.X = MaxSliderX;
             }
-            if(SliderButton.Position.X < MinSliderX)
+            if (SliderButton.Position.X < MinSliderX)
             {
                 SliderButton.Position.X = MinSliderX;
             }
+
+            DisplayValue = (int)SliderButton.Position.X - MinSliderX;
+            float floatDisplayValue = (float)DisplayValue;
+            return floatDisplayValue / 100;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, SliderBackgroundPosition, SliderBackground, Color.White, 0f, Game1.Utility.Origin, Scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-            SliderButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.DisplayValue.ToString(), SliderBackgroundPosition, Color.Black, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .01f);
+            SliderButton.DrawNormal(spriteBatch, SliderButton.Position, SliderButton.BackGroundSourceRectangle, SliderButton.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, DisplayValue.ToString(), new Vector2(SliderBackgroundPosition.X, SliderBackgroundPosition.Y - 100), Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
         }
     }
 }

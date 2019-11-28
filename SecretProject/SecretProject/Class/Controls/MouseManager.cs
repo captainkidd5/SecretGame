@@ -73,6 +73,7 @@ namespace SecretProject.Class.Controls
         public bool ToggleGeneralInteraction { get; set; } = false;
 
         Vector2 worldPosition;
+        public Vector2 OldMouseInterfacePosition { get; set; }
 
         public Rectangle WorldMouseRectangle { get; set; }
 
@@ -123,6 +124,8 @@ namespace SecretProject.Class.Controls
             this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
             //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
             this.RequiredHoldTime = .2f;
+
+            OldMouseInterfacePosition = Vector2.Zero;
         }
 
         public void Update(GameTime gameTime)
@@ -135,8 +138,8 @@ namespace SecretProject.Class.Controls
             
             HasScrollWheelValueIncreased = false;
             HasScrollWheelValueDecreased = false;
-             
 
+            OldMouseInterfacePosition = UIPosition;
             MouseState oldMouse = MyMouse;
             MyMouse = Mouse.GetState();
             ///
