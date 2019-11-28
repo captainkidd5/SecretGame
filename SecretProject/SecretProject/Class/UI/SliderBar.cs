@@ -63,7 +63,7 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, SliderBackgroundPosition, SliderBackground, Color.White, 0f, Game1.Utility.Origin, Scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             SliderButton.DrawNormal(spriteBatch, SliderButton.Position, SliderButton.BackGroundSourceRectangle, SliderButton.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, textToIdentifyNumber + DisplayValue.ToString(), new Vector2(SliderBackgroundPosition.X + SliderBackground.Width /2 * Scale, SliderBackgroundPosition.Y - 100), Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, textToIdentifyNumber + DisplayValue.ToString(), new Vector2(SliderBackgroundPosition.X, SliderBackgroundPosition.Y - 100), Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
         }
     }
 }

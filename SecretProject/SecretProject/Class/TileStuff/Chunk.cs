@@ -373,7 +373,7 @@ namespace SecretProject.Class.TileStuff
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, newGID);
                             if(newGID == 1115)
                             {
-                                if(Game1.Utility.RGenerator.Next(0,10) < 2)
+                                if(Game1.Utility.RGenerator.Next(0,10) < 10)
                                 {
                                     int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
                                     List<GrassTuft> tufts = new List<GrassTuft>();
@@ -465,9 +465,13 @@ namespace SecretProject.Class.TileStuff
                 switch (this.SimulationType)
                 {
                     case TileSimulationType.dirt:
-                        TileUtility.GenerateTiles(1, 979, "grass", 10, 0, this); //STONE
+
+                        
+
+                        TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this); //STONE
+                        TileUtility.GenerateTiles(1, 979, "dirt", 50, 0, this); //STONE
                         TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
-                        TileUtility.GenerateTiles(1, 1079, "dirt", 15, 0, this); //GRASSTUFT
+                        TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this); //GRASSTUFT
                         TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
                         TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
                         TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
@@ -491,7 +495,10 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
                         TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
                         TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
-
+                        TileUtility.GenerateTiles(1, 2964, "grass", 25, 0, this); //oak2
+                        TileUtility.GenerateTiles(1, 3664, "grass", 25, 0, this); //oak3
+                        TileUtility.GenerateTiles(1, 2964, "dirt", 25, 0, this); //oak2
+                        TileUtility.GenerateTiles(1, 3664, "dirt", 25, 0, this); //oak3
                         break;
 
                     case TileSimulationType.sand:
