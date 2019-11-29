@@ -376,17 +376,15 @@ namespace SecretProject.Class.UI
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
+            ;
             for (int i = 0; i < AllSlots.Count; i++)
             {
                 UpdateInventorySlotTexture(inventory, i);
                 AllSlots[i].Update(mouse);
-            }
-            int buttonIndex = 0;
-            for (int i = 0; i < AllSlots.Count; i++)
-            {
-
                 if (AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
+                    TextBuilder.Activate(false, TextBoxType.normal, false, inventory.currentInventory[i].GetItem().Name, 1f,
+                  new Vector2(AllSlots[i].Position.X, AllSlots[i].Position.Y - 32), 200f);
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
                     switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
                     {
@@ -403,7 +401,7 @@ namespace SecretProject.Class.UI
 
 
                     IsAnySlotHovered = true;
-                    buttonIndex = i;
+
 
 
                 }
@@ -415,17 +413,11 @@ namespace SecretProject.Class.UI
 
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     this.ItemJustReleased = tempItem;
-                    //FOR WHEN DROPPING STACK OF ITEMS
-                    if (Game1.Player.UserInterface.IsAnyChestOpen)
+
+
+                    if (InteractWithChest(i))
                     {
-                        if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
-                        {
-                            if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[i].GetItem()))
-                            {
-                                inventory.currentInventory[i].RemoveItemFromSlot();
-                                AllSlots[i].ItemCounter--;
-                            }
-                        }
+
                     }
                     else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                     {
@@ -470,7 +462,8 @@ namespace SecretProject.Class.UI
                         mouse.WorldMousePosition, 16, 16)
                     { IsBeingDragged = true, TextureScaleX = 5f, TextureScaleY = 5f };
                     DragSprite = tempSprite;
-
+                    DragSprite.Update(gameTime, new Vector2(mouse.Position.X - 16, mouse.Position.Y - 16));
+                    mouse.ChangeMouseTexture(CursorType.Normal);
 
 
                 }
@@ -482,28 +475,31 @@ namespace SecretProject.Class.UI
                 }
 
 
-                if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
-                {
-                    if (DragSprite != null)
-                    {
-                        DragSprite.Update(gameTime, new Vector2(mouse.Position.X - 16, mouse.Position.Y - 16));
-                        mouse.ChangeMouseTexture(CursorType.Normal);
 
 
-                    }
-
-                }
-
-            }
-            if (IsAnySlotHovered)
-            {
-                TextBuilder.Activate(false, TextBoxType.normal, false, inventory.currentInventory[buttonIndex].GetItem().Name, 1f,
-                    new Vector2(AllSlots[buttonIndex].Position.X, AllSlots[buttonIndex].Position.Y - 32), 200f);
             }
 
         }
 
-
+        public bool InteractWithChest(int index)
+        {
+            if (Game1.Player.UserInterface.IsAnyChestOpen)
+            {
+                if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
+                {
+                    if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[index].GetItem()))
+                    {
+                        inventory.currentInventory[index].RemoveItemFromSlot();
+                        AllSlots[index].ItemCounter--;
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
         public void Draw(SpriteBatch spriteBatch)
