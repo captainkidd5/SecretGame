@@ -123,11 +123,11 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if (mouse.IsHovering(HitBoxRectangle) && mouse.IsClickedAndHeld == true)
+            if (mouse.IsHovering(HitBoxRectangle) && mouse.IsClickedAndHeld)
             {
                 this.isClickedAndHeld = true;
             }
-            if (this.isClickedAndHeld == true && !mouse.IsHovering(HitBoxRectangle))
+            if (this.isClickedAndHeld && !mouse.IsHovering(HitBoxRectangle))
             {
                 if (mouse.IsReleased)
                 {

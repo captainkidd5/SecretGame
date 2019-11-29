@@ -51,7 +51,6 @@ namespace SecretProject.Class.UI
 
         public Rectangle BackGroundTextureRectangle { get; set; }
 
-        public bool MouseOverToolBar { get; set; }
 
         public buttonIsClicked toolBarState = buttonIsClicked.none;
         GraphicsDevice graphicsDevice;
@@ -79,6 +78,8 @@ namespace SecretProject.Class.UI
         public bool IsAnySlotHovered { get; set; } = false;
         public bool WasSlotJustReleased { get; set; }
         public Item ItemJustReleased { get; set; }
+
+        public int ToolBarButtonCount { get; set; }
 
         public ToolBar(GraphicsDevice graphicsDevice, BackPack backPack, ContentManager content)
         {
@@ -114,7 +115,7 @@ namespace SecretProject.Class.UI
             TextBuilder = new TextBuilder("", .01f, 5);
             this.WasSlotJustReleased = false;
             this.ItemJustReleased = null;
-
+            this.ToolBarButtonCount = 10;
         }
 
         public void ReturnToolBarButtonsToStandardPosition()
@@ -149,17 +150,6 @@ namespace SecretProject.Class.UI
                 ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
             }
 
-
-
-
-            if (mouse.IsHovering(BackGroundTextureRectangle))
-            {
-                MouseOverToolBar = true;
-            }
-            else
-            {
-                MouseOverToolBar = false;
-            }
 
             if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
             {
@@ -414,8 +404,21 @@ namespace SecretProject.Class.UI
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     this.ItemJustReleased = tempItem;
 
-
-                    if (InteractWithChest(i))
+                    if(IsAnySlotHovered)
+                    {
+                        for(int m =0; m < ToolBarButtonCount; m++)
+                        {
+                            if(AllSlots[m].IsHovered)
+                            {
+                                InventorySlot currentItems = inventory.currentInventory[i];
+                                inventory.currentInventory[i] = inventory.currentInventory[m];
+                                inventory.currentInventory[m] = currentItems;
+                                return;
+                            }
+                            
+                        }
+                    }
+                    else if (InteractWithChest(i))
                     {
 
                     }
