@@ -336,32 +336,36 @@ namespace SecretProject.Class.UI
             return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
         }
 
+        public void UpdateInventorySlotTexture(Inventory inventory, int index)
+        {
+            if (inventory.currentInventory.ElementAt(index) == null)
+            {
+                AllSlots[index].ItemCounter = 0;
+
+            }
+            else
+            {
+                AllSlots[index].ItemCounter = inventory.currentInventory.ElementAt(index).SlotItems.Count;
+            }
+
+            if (AllSlots[index].ItemCounter > 0)
+            {
+                AllSlots[index].Texture = inventory.currentInventory.ElementAt(index).SlotItems[0].ItemSprite.AtlasTexture;
+                AllSlots[index].ItemSourceRectangleToDraw = inventory.currentInventory.ElementAt(index).SlotItems[0].SourceTextureRectangle;
+            }
+            else
+            {
+                AllSlots[index].Texture = Game1.AllTextures.UserInterfaceTileSet;
+                AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
+            }
+        }
+
         public void UpdateToolBarButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
             for (int i = 0; i < 7; i++)
             {
-                if (inventory.currentInventory.ElementAt(i) == null)
-                {
-                    AllSlots[i].ItemCounter = 0;
-
-                }
-                else
-                {
-                    AllSlots[i].ItemCounter = inventory.currentInventory.ElementAt(i).SlotItems.Count;
-                }
-
-                if (AllSlots[i].ItemCounter > 0)
-                {
-                    AllSlots[i].Texture = inventory.currentInventory.ElementAt(i).SlotItems[0].ItemSprite.AtlasTexture;
-                    AllSlots[i].ItemSourceRectangleToDraw = inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle;
-                }
-                else
-                {
-                    AllSlots[i].Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    AllSlots[i].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
-                }
-
+                UpdateInventorySlotTexture(inventory, i);
                 AllSlots[i].Update(mouse);
             }
             int buttonIndex = 0;

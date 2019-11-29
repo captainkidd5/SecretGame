@@ -121,7 +121,7 @@ namespace SecretProject.Class.UI
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-            BackPack = new BackPack(Game1.Player.Inventory.Capacity);
+            BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -172,6 +172,10 @@ namespace SecretProject.Class.UI
                     if(!TextBuilder.FreezeStage)
                     {
                         Game1.freeze = false;
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
+                    {
+                        BackPack.IsActive = !BackPack.IsActive;
                     }
                     BottomBar.IsActive = true;
                     
@@ -247,6 +251,10 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
+                    {
+                        BackPack.IsActive = !BackPack.IsActive;
+                    }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Update(gameTime, mouse);
@@ -300,7 +308,8 @@ namespace SecretProject.Class.UI
                 //    break;
 
             }
-            
+
+            BackPack.Update(gameTime);
            for(int i =0; i < this.AllRisingText.Count; i++)
             {
                 AllRisingText[i].Update(gameTime, AllRisingText);
@@ -420,8 +429,8 @@ namespace SecretProject.Class.UI
                 BottomBar.Draw(spriteBatch);
                 InfoBox.Draw(spriteBatch);
             }
-            
 
+            BackPack.Draw(spriteBatch);
 
             TextBuilder.Draw(spriteBatch, .71f);
 

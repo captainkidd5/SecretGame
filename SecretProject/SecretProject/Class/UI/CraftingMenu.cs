@@ -40,7 +40,7 @@ namespace SecretProject.Class.UI
         public CraftingMenu(ContentManager content, GraphicsDevice graphics)
         {
             this.GraphicsDevice = graphics;
-            BackDropSourceRectangle = new Rectangle(304, 352, 112, 176);
+            BackDropSourceRectangle = new Rectangle(304, 365, 112, 163);
             BackDropPosition = new Vector2(Game1.ScreenWidth / 8, (int)(Game1.ScreenHeight / 16));
             BackDropScale = 3f;
             CraftingGuide = content.Load<CraftingGuide>("Item/Crafting/CraftingGuide");
