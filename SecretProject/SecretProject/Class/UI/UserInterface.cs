@@ -175,9 +175,21 @@ namespace SecretProject.Class.UI
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        BackPack.IsActive = !BackPack.IsActive;
+                        if(BackPack.IsActive)
+                        {
+                            BackPack.IsActive = false;
+                            BottomBar.ReturnToolBarButtonsToStandardPosition();
+                            BottomBar.IsActive = true;
+                        }
+                        else
+                        {
+                            BackPack.Activate();
+                            BottomBar.IsActive = false;
+                        }
+                       
+                        //BackPack.IsActive = !BackPack.IsActive;
                     }
-                    BottomBar.IsActive = true;
+                   // BottomBar.IsActive = true;
                     
                     Esc.isTextChanged = false;
                     PlayerStaminaBar.Update(gameTime);

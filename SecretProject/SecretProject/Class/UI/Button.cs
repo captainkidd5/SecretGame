@@ -49,7 +49,10 @@ namespace SecretProject.Class.MenuStuff
 
         public CursorType CursorType { get; set; }
 
+        public Button()
+        {
 
+        }
 
         public Button(Texture2D newtexture, Rectangle sourceRectangle, GraphicsDevice graphicsDevice, Vector2 position, CursorType cursorType, float scale = 1f)
         {
@@ -193,14 +196,14 @@ namespace SecretProject.Class.MenuStuff
 
 
         //for toolbar
-        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .69f)
+        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f)
         {
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, layerDepthCustom);
-            spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepthCustom + .01f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: .73f);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: Game1.Utility.StandardButtonDepth + .02f);
         }
 
         //for crafting menu

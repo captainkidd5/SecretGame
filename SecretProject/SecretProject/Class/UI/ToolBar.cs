@@ -82,6 +82,7 @@ namespace SecretProject.Class.UI
 
         public ToolBar(GraphicsDevice graphicsDevice, BackPack backPack, ContentManager content)
         {
+            this.IsActive = true;
             BackGroundTexturePosition = new Vector2(320, 635);
 
 
@@ -95,12 +96,9 @@ namespace SecretProject.Class.UI
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
             OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .25f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
             ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645), CursorType.Normal);
-            AllSlots = new List<Button>();
+            AllSlots = backPack.AllSlots;
 
-            for (int i = 0; i < backPack.Inventory.currentInventory.Count; i++)
-            {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
-            }
+
 
 
 
@@ -119,6 +117,14 @@ namespace SecretProject.Class.UI
 
         }
 
+        public void ReturnToolBarButtonsToStandardPosition()
+        {
+            for (int i = 0; i < AllSlots.Count; i++)
+            {
+                AllSlots[i].Position = new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f);
+            }
+        }
+
         public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
         {
             WasSlotJustReleased = false;
@@ -129,8 +135,10 @@ namespace SecretProject.Class.UI
             this.inventory = inventory;
 
             UpdateNonInventoryButtons(mouse);
-
-            UpdateInventoryButtons(inventory, gameTime, mouse);
+            if (this.IsActive)
+            {
+                UpdateInventoryButtons(inventory, gameTime, mouse);
+            }
             if (WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
 
@@ -500,34 +508,38 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            TextBuilder.Draw(spriteBatch, .75f);
-
-
-            for (int i = 0; i < AllSlots.Count; i++)
+            if (this.IsActive)
             {
-                if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
+
+
+                TextBuilder.Draw(spriteBatch, .75f);
+
+
+                for (int i = 0; i < AllSlots.Count; i++)
                 {
-                    if (DragSprite != null)
+                    if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                     {
+                        if (DragSprite != null)
+                        {
 
 
-                        DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
+                            DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
+                        }
+
                     }
-
                 }
+
+
+                OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", OpenInventory.Position, Color.CornflowerBlue, .69f, .7f);
+                InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", InGameMenu.Position, Color.CornflowerBlue, .69f, .7f);
+                for (int i = 0; i < AllSlots.Count; i++)
+                {
+                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f);
+                }
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
+                    Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
+
             }
-
-
-            OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", OpenInventory.Position, Color.CornflowerBlue, .69f, .7f);
-            InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", InGameMenu.Position, Color.CornflowerBlue, .69f, .7f);
-            for (int i = 0; i < AllSlots.Count; i++)
-            {
-                AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f);
-            }
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
-                Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
-
         }
 
         //use this when we want to draw relative to another camera.

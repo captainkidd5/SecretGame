@@ -32,7 +32,7 @@ namespace SecretProject.Class.UI
             this.Graphics = graphics;
             this.Inventory = inventory;
             this.IsActive = false;
-            this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 2, Game1.PresentationParameters.BackBufferHeight / 2);
+            this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight / 4);
             this.BackGroundSourceRectangle = new Rectangle(208, 560, 288, 176);
             this.Scale = 2f;
 
@@ -45,14 +45,23 @@ namespace SecretProject.Class.UI
 
         }
 
+        public void Activate()
+        {
+            this.IsActive = true;
+            for (int i = 0; i < AllSlots.Count; i++)
+            {
+                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * i * Scale, BackGroundSourceRectangle.Y - 364);
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             if (this.IsActive)
             {
-                //if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
-                //{
-                //    this.IsActive = false;
-                //}
+                for (int i = 0; i < AllSlots.Count; i++)
+                {
+                    AllSlots[i].Update(Game1.myMouseManager);
+                }
             }
         }
 
@@ -61,9 +70,14 @@ namespace SecretProject.Class.UI
             if(this.IsActive)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-
+                for (int i = 0; i < AllSlots.Count; i++)
+                {
+                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(BackGroundSourceRectangle.X * Scale + 32 * i, BackGroundSourceRectangle.Y - 364), Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth);
+                }
             }
             
         }
+
+
     }
 }
