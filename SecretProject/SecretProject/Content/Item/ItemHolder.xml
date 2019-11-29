@@ -221,7 +221,7 @@
 <Name>Boar Droppings</Name>
 <ID>294</ID>
 <Description>The plants love it.</Description>
-<InvMaximum>1</InvMaximum>
+<InvMaximum>99</InvMaximum>
 <TextureColumn>7</TextureColumn>
 <TextureRow>14</TextureRow>
 <Price>1</Price>

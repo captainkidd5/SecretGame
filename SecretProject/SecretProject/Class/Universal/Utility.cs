@@ -74,7 +74,7 @@ namespace SecretProject.Class.Universal
             FastNoise.SetFractalGain(.5f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.012f);
+            FastNoise.SetFrequency(.001f);
            // FastNoise.SetFractalType(FastNoise.FractalType.Billow)
 
         }

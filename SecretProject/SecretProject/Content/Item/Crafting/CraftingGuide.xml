@@ -59,6 +59,34 @@
     </Item>
     </AllItemsRequired>
     </Item>
+
+<!--Fence Post -->
+<Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1162</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>520</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+<!--Cauldron -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1055</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1001</ItemID>
+    <Count>5</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>643</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+
   </CraftingRecipes>
   </Asset>
 </XnaContent>
