@@ -113,15 +113,15 @@ namespace SecretProject.Class.UI
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
-            
-            BottomBar = new ToolBar( graphicsDevice, content);
+            BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
+            BottomBar = new ToolBar( graphicsDevice,BackPack, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.cam = cam;
             TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-            BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
+            
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;

@@ -80,7 +80,7 @@ namespace SecretProject.Class.UI
         public bool WasSlotJustReleased { get; set; }
         public Item ItemJustReleased { get; set; }
 
-        public ToolBar(GraphicsDevice graphicsDevice, ContentManager content)
+        public ToolBar(GraphicsDevice graphicsDevice, BackPack backPack, ContentManager content)
         {
             BackGroundTexturePosition = new Vector2(320, 635);
 
@@ -92,12 +92,12 @@ namespace SecretProject.Class.UI
             //Initialize Textur
 
 
-            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f , Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
-            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .25f , Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
+            InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
+            OpenInventory = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .25f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
             ScrollTree = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(192, 16, 32, 32), graphicsDevice, new Vector2(200, 645), CursorType.Normal);
             AllSlots = new List<Button>();
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < backPack.Inventory.currentInventory.Count; i++)
             {
                 AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
             }
@@ -130,7 +130,7 @@ namespace SecretProject.Class.UI
 
             UpdateNonInventoryButtons(mouse);
 
-            UpdateToolBarButtons(inventory, gameTime, mouse);
+            UpdateInventoryButtons(inventory, gameTime, mouse);
             if (WasSliderUpdated && inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
 
@@ -141,7 +141,7 @@ namespace SecretProject.Class.UI
                 ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
             }
 
-           
+
 
 
             if (mouse.IsHovering(BackGroundTextureRectangle))
@@ -157,7 +157,7 @@ namespace SecretProject.Class.UI
             {
                 //this might be broken
                 CheckGridItem();
-                
+
                 AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
             }
 
@@ -170,18 +170,23 @@ namespace SecretProject.Class.UI
             {
                 if (inventory.currentInventory[currentSliderPosition - 1].SlotItems.Count > 0)
                 {
-                    Item newWorldItem = Game1.ItemVault.GenerateNewItem(inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
-                    newWorldItem.IsTossable = true;
-                    Game1.GetCurrentStage().AllItems.Add(newWorldItem);
-                    inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
-                    AllSlots[currentSliderPosition - 1].ItemCounter--;
+                    EjectItem();
                 }
-
             }
+        }
+
+
+        public void EjectItem()
+        {
+
+            Item newWorldItem = Game1.ItemVault.GenerateNewItem(inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+            newWorldItem.IsTossable = true;
+            Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+            inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
+            AllSlots[currentSliderPosition - 1].ItemCounter--;
 
         }
 
-        
         #region SCROLLWHEEL
         private void UpdateScrollWheel(MouseManager mouse)
         {
@@ -230,9 +235,9 @@ namespace SecretProject.Class.UI
                 currentSliderPosition -= 1;
             }
 
-            if (currentSliderPosition > 7)
+            if (currentSliderPosition > AllSlots.Count)
             {
-                currentSliderPosition = 7;
+                currentSliderPosition = AllSlots.Count;
             }
             if (currentSliderPosition < 1)
             {
@@ -295,7 +300,7 @@ namespace SecretProject.Class.UI
         {
             if (Game1.ItemVault.ExteriorGridItems != null && Game1.ItemVault.InteriorGridItems != null)
             {
-                if(Game1.GetCurrentStageInt() == Stages.World)
+                if (Game1.GetCurrentStageInt() == Stages.World)
                 {
                     if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                     {
@@ -323,7 +328,7 @@ namespace SecretProject.Class.UI
                 }
 
 
-                
+
             }
             else
             {
@@ -360,18 +365,18 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void UpdateToolBarButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
+        public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < AllSlots.Count; i++)
             {
                 UpdateInventorySlotTexture(inventory, i);
                 AllSlots[i].Update(mouse);
             }
             int buttonIndex = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < AllSlots.Count; i++)
             {
-                
+
                 if (AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
@@ -387,8 +392,8 @@ namespace SecretProject.Class.UI
                             Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
                             break;
                     }
-                    
-                    
+
+
                     IsAnySlotHovered = true;
                     buttonIndex = i;
 
@@ -399,7 +404,7 @@ namespace SecretProject.Class.UI
                 if (AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
                 {
                     this.WasSlotJustReleased = true;
-                    
+
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     this.ItemJustReleased = tempItem;
                     //FOR WHEN DROPPING STACK OF ITEMS
@@ -416,7 +421,7 @@ namespace SecretProject.Class.UI
                     }
                     else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                     {
-                        if(Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
+                        if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
                         {
                             int currentItemCount = AllSlots[i].ItemCounter;
                             for (int j = 0; j < currentItemCount; j++)
@@ -443,8 +448,8 @@ namespace SecretProject.Class.UI
                         }
 
                     }
-                   
-                   
+
+
 
                     DragSprite = null;
                 }
@@ -499,7 +504,7 @@ namespace SecretProject.Class.UI
             TextBuilder.Draw(spriteBatch, .75f);
 
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < AllSlots.Count; i++)
             {
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {

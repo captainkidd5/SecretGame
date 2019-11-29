@@ -150,7 +150,7 @@ namespace SecretProject.Class.Playable
 
             MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, this, ColliderType.inert);
             BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, this, ColliderType.PlayerBigBox);
-            Inventory = new Inventory(7) { Money = 10000 };
+            Inventory = new Inventory(10) { Money = 10000 };
 
             controls = new PlayerControls(0);
 
