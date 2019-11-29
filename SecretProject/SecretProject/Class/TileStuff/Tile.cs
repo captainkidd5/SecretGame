@@ -41,6 +41,11 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public string GetTileKeyStringNew(int layer, IInformationContainer container)
+        {
+            return "" + X + "," + Y + "," + layer;
+        }
+
         public string GetTileKey(int layer)
         {
             string XString = X.ToString();
