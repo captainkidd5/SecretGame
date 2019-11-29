@@ -330,7 +330,7 @@ namespace SecretProject.Class.TileStuff
                                 //needs to refer to first tile ?
                                 int frameolDX = frameholder.OldX;
                                 AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer));
+                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer, this));
                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), this);
@@ -395,7 +395,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z);
+                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z,this);
 
 
 
@@ -531,11 +531,11 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyAsInt(z)))
+                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyAsInt(z,this)))
                             {
-                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z)].Count; t++)
+                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z,this)].Count; t++)
                                 {
-                                    Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z)][t].Draw(spriteBatch);
+                                    Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z,this)][t].Draw(spriteBatch);
                                 }
                             }
 

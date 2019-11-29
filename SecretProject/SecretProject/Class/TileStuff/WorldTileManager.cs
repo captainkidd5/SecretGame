@@ -538,7 +538,7 @@ namespace SecretProject.Class.TileStuff
                                                 //needs to refer to first tile ?
                                                 int frameolDX = frameholder.OldX;
                                                 TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b], false);
-                                                AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer));
+                                                AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer, ActiveChunks[a, b]));
                                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                                 {
                                                     // Rectangle testDestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a,b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]);
@@ -617,7 +617,7 @@ namespace SecretProject.Class.TileStuff
                                         if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
                                         {
 
-                                            int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z);
+                                            int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
 
 
 

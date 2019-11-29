@@ -383,16 +383,16 @@ namespace SecretProject.Class.TileStuff
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                         tufts.Add(grassTuft);
-                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyAsInt(0)))
+                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyAsInt(0, this)))
                                         {
 
                                         }
                                         else
                                         {
-                                            Objects.Add(AllTiles[0][i, j].GetTileKeyAsInt(0), new List<ICollidable>());
+                                            Objects.Add(AllTiles[0][i, j].GetTileKeyAsInt(0, this), new List<ICollidable>());
                                         }
-                                        grassTuft.Objects = Objects[AllTiles[0][i, j].GetTileKeyAsInt(0)];
-                                        Objects[AllTiles[0][i, j].GetTileKeyAsInt(0)].Add(grassTuft);
+                                        grassTuft.Objects = Objects[AllTiles[0][i, j].GetTileKeyAsInt(0, this)];
+                                        Objects[AllTiles[0][i, j].GetTileKeyAsInt(0, this)].Add(grassTuft);
                                       
 
                                     }
