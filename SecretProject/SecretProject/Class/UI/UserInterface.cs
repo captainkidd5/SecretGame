@@ -78,6 +78,8 @@ namespace SecretProject.Class.UI
 
         public CraftingMenu CraftingMenu { get; set; }
 
+        public BackPack BackPack { get; set; }
+
 
 
         public bool IsAnyChestOpen { get; set; }
@@ -119,6 +121,7 @@ namespace SecretProject.Class.UI
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
+            BackPack = new BackPack(Game1.Player.Inventory.Capacity);
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;

@@ -112,9 +112,6 @@ namespace SecretProject.Class.UI
 
             };
 
-
-            //DragSprite = new Sprite(graphicsDevice, content, ToolBarButton, new Vector2(500f, 500f), false, .5f);
-
             AllActions = new List<ActionTimer>();
             TextBuilder = new TextBuilder("", .01f, 5);
             this.WasSlotJustReleased = false;
