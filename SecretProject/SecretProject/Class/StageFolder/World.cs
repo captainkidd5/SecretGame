@@ -235,7 +235,7 @@ namespace SecretProject.Class.StageFolder
                         if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
                         {
 
-                            foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.ActiveChunks[i, j].Objects)
+                            foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.ActiveChunks[i, j].Objects)
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
                                 {
@@ -457,7 +457,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.ChunkUnderPlayer.Objects)
+                foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.ChunkUnderPlayer.Objects)
                 {
                     if (ShowBorders)
                     {

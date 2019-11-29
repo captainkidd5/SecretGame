@@ -36,12 +36,12 @@ namespace SecretProject.Class.TileStuff
         public List<Tile[,]> AllTiles { get; set; }
 
  
-        public Dictionary<int, List<ICollidable>> Objects { get; set; }
-        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<int, int> TileHitPoints { get; set; }
-        public Dictionary<int, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, List<ICollidable>> Objects { get; set; }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<string, int> TileHitPoints { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
-        public Dictionary<int, Crop> Crops { get; set; }
+        public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public int ArrayI { get; set; }
@@ -85,14 +85,14 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
-            Objects = new Dictionary<int, List<ICollidable>>();
-            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
-            TileHitPoints = new Dictionary<int, int>();
-            StoreableItems = new Dictionary<int, IStorableItem>();
+            Objects = new Dictionary<string, List<ICollidable>>();
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            TileHitPoints = new Dictionary<string, int>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
-            Crops = new Dictionary<int, Crop>();
+            Crops = new Dictionary<string, Crop>();
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             for (int i = 0; i < 4; i++)
             {
@@ -148,7 +148,7 @@ namespace SecretProject.Class.TileStuff
             //}
 
             binaryWriter.Write(StoreableItems.Count);
-            foreach (KeyValuePair<int, IStorableItem> storeableItem in this.StoreableItems)
+            foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
             {
                 
                 binaryWriter.Write(storeableItem.Key);
@@ -173,7 +173,7 @@ namespace SecretProject.Class.TileStuff
             }
 
             binaryWriter.Write(Crops.Count);
-            foreach (KeyValuePair<int, Crop> crop in this.Crops)
+            foreach (KeyValuePair<string, Crop> crop in this.Crops)
             {
                 binaryWriter.Write(crop.Key);
                 binaryWriter.Write(crop.Value.ItemID);
@@ -216,11 +216,11 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            this.StoreableItems = new Dictionary<int, IStorableItem>();
+            this.StoreableItems = new Dictionary<string, IStorableItem>();
             int storableItemCount = binaryReader.ReadInt32();
             for (int c = 0; c < storableItemCount; c++)
             {
-                int storageKey = binaryReader.ReadInt32();
+                string storageKey = binaryReader.ReadString();
                 int storableItemType = binaryReader.ReadInt32();
                 StorableItemType itemType = (StorableItemType)storableItemType;
                 int inventorySize = binaryReader.ReadInt32();
@@ -269,7 +269,7 @@ namespace SecretProject.Class.TileStuff
             int cropCount = binaryReader.ReadInt32();
             for (int c = 0; c < cropCount; c++)
             {
-                int cropKey = binaryReader.ReadInt32();
+                string cropKey = binaryReader.ReadString();
                 int itemID = binaryReader.ReadInt32();
                 string name = binaryReader.ReadString();
                 int gid = binaryReader.ReadInt32();
@@ -297,8 +297,12 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
-                Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
+                if(Game1.Utility.RGenerator.Next(0, 10) < 9)
+                {
+                    Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
+                    Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
+                }
+                
             }
             
             this.IsLoaded = true;
@@ -383,16 +387,16 @@ namespace SecretProject.Class.TileStuff
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                         tufts.Add(grassTuft);
-                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyAsInt(0, this)))
+                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)))
                                         {
 
                                         }
                                         else
                                         {
-                                            Objects.Add(AllTiles[0][i, j].GetTileKeyAsInt(0, this), new List<ICollidable>());
+                                            Objects.Add(AllTiles[0][i, j].GetTileKeyStringNew(0, this), new List<ICollidable>());
                                         }
-                                        grassTuft.Objects = Objects[AllTiles[0][i, j].GetTileKeyAsInt(0, this)];
-                                        Objects[AllTiles[0][i, j].GetTileKeyAsInt(0, this)].Add(grassTuft);
+                                        grassTuft.Objects = Objects[AllTiles[0][i, j].GetTileKeyStringNew(0, this)];
+                                        Objects[AllTiles[0][i, j].GetTileKeyStringNew(0, this)].Add(grassTuft);
                                       
 
                                     }
@@ -468,8 +472,8 @@ namespace SecretProject.Class.TileStuff
 
                         
 
-                        TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this); //STONE
-                        TileUtility.GenerateTiles(1, 979, "dirt", 50, 0, this); //STONE
+                        TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this); //tree
+                        TileUtility.GenerateTiles(1, 979, "dirt", 50, 0, this); //tree
                         TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
                         TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this); //GRASSTUFT
                         TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
@@ -485,6 +489,9 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
                         TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
                         TileUtility.GenerateTiles(1, 1581, "dirt", 15, 0, this); //ROCK
+                        TileUtility.GenerateTiles(1, 1581, "grass", 15, 0, this); //ROCK
+                        TileUtility.GenerateTiles(1, 1580, "dirt", 15, 0, this); //stick
+                        TileUtility.GenerateTiles(1, 1580, "grass", 15, 0, this); //stick
                         TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
                         TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
 

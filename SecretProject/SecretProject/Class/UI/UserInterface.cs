@@ -81,7 +81,7 @@ namespace SecretProject.Class.UI
 
 
         public bool IsAnyChestOpen { get; set; }
-        public int OpenChestKey { get; set; }
+        public string OpenChestKey { get; set; }
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar PlayerStaminaBar { get; set; }
         public WarpGate WarpGate { get; set; }
@@ -145,7 +145,7 @@ namespace SecretProject.Class.UI
             IsAnyChestOpen = false;
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<int, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
+                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
                 {
                     if (storeableItem.Value.IsUpdating)
                     {
@@ -426,7 +426,7 @@ namespace SecretProject.Class.UI
 
             if(Game1.GetCurrentStage().AllTiles != null)
             {
-                foreach (KeyValuePair<int, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
+                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
                 {
                     if (storeableItem.Value.IsUpdating)
                     {

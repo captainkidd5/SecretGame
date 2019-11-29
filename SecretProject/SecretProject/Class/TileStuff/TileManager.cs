@@ -64,12 +64,12 @@ namespace SecretProject.Class.TileStuff
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
-        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<int, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<int, int> TileHitPoints { get; set; }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        public Dictionary<string, int> TileHitPoints { get; set; }
        // public List<ICollidable> Objects { get; set; }
-        public Dictionary<int, List<ICollidable>> Objects { get; set; }
-        public Dictionary<int, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, List<ICollidable>> Objects { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
@@ -78,7 +78,7 @@ namespace SecretProject.Class.TileStuff
 
         public int TileSetDimension { get; set; }
 
-        public Dictionary<int, Crop> Crops { get; set; }
+        public Dictionary<string, Crop> Crops { get; set; }
 
         //not relevant:
         public int X { get; set; }
@@ -125,12 +125,12 @@ namespace SecretProject.Class.TileStuff
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
-            Tufts = new Dictionary<int, List<GrassTuft>>();
-            TileHitPoints = new Dictionary<int, int>();
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
+            TileHitPoints = new Dictionary<string, int>();
             Lights = new List<LightSource>();
-            StoreableItems = new Dictionary<int, IStorableItem>();
-            Crops = new Dictionary<int, Crop>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
+            Crops = new Dictionary<string, Crop>();
             Owned = true;
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
@@ -139,7 +139,7 @@ namespace SecretProject.Class.TileStuff
                 AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
 
             }
-            Objects = new Dictionary<int, List<ICollidable>>();
+            Objects = new Dictionary<string, List<ICollidable>>();
 
             PathGrid = new ObstacleGrid(MapWidth, MapHeight);
             for (int i = 0; i < AllTiles.Count; i++)
@@ -289,7 +289,7 @@ namespace SecretProject.Class.TileStuff
             AbleToDrawTileSelector = false;
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
-            List<int> AnimationFrameKeysToRemove = new List<int>();
+            List<string> AnimationFrameKeysToRemove = new List<string>();
             int starti = (int)(Game1.cam.Pos.X / 16) - (int)(Game1.ScreenWidth / Game1.GetCurrentStage().Cam.Zoom / 2 / 16) - 1;
             if (starti < 0)
             {
@@ -330,7 +330,7 @@ namespace SecretProject.Class.TileStuff
                                 //needs to refer to first tile ?
                                 int frameolDX = frameholder.OldX;
                                 AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer, this));
+                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), this);
@@ -353,7 +353,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            foreach (int key in AnimationFrameKeysToRemove)
+            foreach (string key in AnimationFrameKeysToRemove)
             {
                 AnimationFrames.Remove(key);
             }
@@ -531,11 +531,11 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyAsInt(z,this)))
+                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyStringNew(z,this)))
                             {
-                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z,this)].Count; t++)
+                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z,this)].Count; t++)
                                 {
-                                    Tufts[AllTiles[z][i, j].GetTileKeyAsInt(z,this)][t].Draw(spriteBatch);
+                                    Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z,this)][t].Draw(spriteBatch);
                                 }
                             }
 

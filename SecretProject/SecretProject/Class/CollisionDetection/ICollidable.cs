@@ -22,7 +22,7 @@ namespace SecretProject.Class.CollisionDetection
     public interface ICollidable
     {
         ColliderType ColliderType { get; set; }
-        int LocationKey { get; set; }
+        string LocationKey { get; set; }
         Rectangle Rectangle { get; set; }
         Dir InitialShuffDirection { get; set; }
         IEntity Entity { get; set; }

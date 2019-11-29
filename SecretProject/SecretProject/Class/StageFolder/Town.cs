@@ -116,7 +116,7 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
-            foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.Objects)
+            foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
             {
                 for (int z = 0; z < obj.Value.Count; z++)
                 {
@@ -330,7 +330,7 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (KeyValuePair<int, List<ICollidable>> obj in AllTiles.Objects)
+                foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
                 {
                     if (ShowBorders)
                     {

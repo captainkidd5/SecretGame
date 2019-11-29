@@ -30,13 +30,13 @@ namespace SecretProject.Class.TileStuff
          int TileWidth { get; set; }
          int TileHeight { get; set; }
          int TileSetNumber { get; set; }
-        Dictionary<int, List<GrassTuft>> Tufts { get; set; }
-        Dictionary<int, List<ICollidable>> Objects { get; set; }
-        Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        Dictionary<int, int> TileHitPoints { get; set; }
-        Dictionary<int, IStorableItem> StoreableItems { get; set; }
+        Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        Dictionary<string, List<ICollidable>> Objects { get; set; }
+        Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        Dictionary<string, int> TileHitPoints { get; set; }
+        Dictionary<string, IStorableItem> StoreableItems { get; set; }
         List<LightSource> Lights { get; set; }
-        Dictionary<int, Crop> Crops { get; set; }
+        Dictionary<string, Crop> Crops { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }

@@ -1905,6 +1905,12 @@
    <object id="1" x="2" y="1" width="5" height="14"/>
   </objectgroup>
  </tile>
+ <tile id="1579">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="1005:100:1"/>
+  </properties>
+ </tile>
  <tile id="1580">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>

@@ -25,12 +25,12 @@ namespace SecretProject.Class.TileStuff
          int MapHeight { get; set; }
         int TileSetNumber { get; set; }
         List<Tile[,]> AllTiles { get; set; }
-        Dictionary<int, List<ICollidable>> Objects { get; set; }
-        Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-         Dictionary<int, int> TileHitPoints { get; set; }
-         Dictionary<int, IStorableItem> StoreableItems { get; set; }
+        Dictionary<string, List<ICollidable>> Objects { get; set; }
+        Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+         Dictionary<string, int> TileHitPoints { get; set; }
+         Dictionary<string, IStorableItem> StoreableItems { get; set; }
          List<LightSource> Lights { get; set; }
-        Dictionary<int, Crop> Crops { get; set; }
+        Dictionary<string, Crop> Crops { get; set; }
         Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         ObstacleGrid PathGrid { get; set; }

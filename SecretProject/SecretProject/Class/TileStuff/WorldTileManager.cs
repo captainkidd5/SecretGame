@@ -53,13 +53,13 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk ChunkUnderPlayer { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
-        public Dictionary<int, List<GrassTuft>> Tufts { get; set; }
-        public Dictionary<int, List<ICollidable>> Objects { get; set; }
-        public Dictionary<int, EditableAnimationFrameHolder> AnimationFrames { get; set; }
-        public Dictionary<int, int> TileHitPoints { get; set; }
-        public Dictionary<int, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+        public Dictionary<string, List<ICollidable>> Objects { get; set; }
+        public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
+        public Dictionary<string, int> TileHitPoints { get; set; }
+        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
-        public Dictionary<int, ICollidable> CurrentObjects { get; set; }
+        public Dictionary<string, ICollidable> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
 
@@ -69,7 +69,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> SandGeneratableTiles;
         public List<int> GrassGeneratableTiles;
 
-        public Dictionary<int, Crop> Crops { get; set; }
+        public Dictionary<string, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
        // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -106,15 +106,15 @@ namespace SecretProject.Class.TileStuff
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-            AnimationFrames = new Dictionary<int, EditableAnimationFrameHolder>();
-            Tufts = new Dictionary<int, List<GrassTuft>>();
-            TileHitPoints = new Dictionary<int, int>();
-            CurrentObjects = new Dictionary<int, ICollidable>();
+            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
+            TileHitPoints = new Dictionary<string, int>();
+            CurrentObjects = new Dictionary<string, ICollidable>();
 
-            StoreableItems = new Dictionary<int, IStorableItem>();
+            StoreableItems = new Dictionary<string, IStorableItem>();
             Lights = new List<LightSource>();
 
-            CurrentObjects = new Dictionary<int, ICollidable>();
+            CurrentObjects = new Dictionary<string, ICollidable>();
 
             this.ChunkUnderPlayer = new Chunk(this, 0, 0, 1, 1);
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
@@ -519,7 +519,7 @@ namespace SecretProject.Class.TileStuff
                         if (ActiveChunks[a, b].GetChunkRectangle().Intersects(this.ScreenRectangle))
                         {
 
-                            List<int> AnimationFrameKeysToRemove = new List<int>();
+                            List<string> AnimationFrameKeysToRemove = new List<string>();
                             foreach (EditableAnimationFrameHolder frameholder in ActiveChunks[a, b].AnimationFrames.Values)
                             {
                                 frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -538,7 +538,7 @@ namespace SecretProject.Class.TileStuff
                                                 //needs to refer to first tile ?
                                                 int frameolDX = frameholder.OldX;
                                                 TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b], false);
-                                                AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyAsInt(frameholder.Layer, ActiveChunks[a, b]));
+                                                AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, ActiveChunks[a, b]));
                                                 if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                                 {
                                                     // Rectangle testDestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a,b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]);
@@ -562,7 +562,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
 
-                            foreach (int key in AnimationFrameKeysToRemove)
+                            foreach (string key in AnimationFrameKeysToRemove)
                             {
                                 ActiveChunks[a, b].AnimationFrames.Remove(key);
                             }
@@ -754,7 +754,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                             }
-                            foreach (KeyValuePair<int, List<ICollidable>> entry in ActiveChunks[a, b].Objects)
+                            foreach (KeyValuePair<string, List<ICollidable>> entry in ActiveChunks[a, b].Objects)
                             {
                                 for(int i =0; i < entry.Value.Count; i++)
                                 {
