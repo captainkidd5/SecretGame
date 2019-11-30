@@ -31,6 +31,7 @@ namespace SecretProject.Class.UI
 
     public class ToolBar
     {
+        public BackPack BackPack { get; set; }
         //--------------------------------------
         //Textures
         public Button InGameMenu { get; set; }
@@ -88,6 +89,7 @@ namespace SecretProject.Class.UI
 
 
             this.graphicsDevice = graphicsDevice;
+            this.BackPack = backPack;
             this.content = content;
 
             //--------------------------------------
@@ -120,7 +122,7 @@ namespace SecretProject.Class.UI
 
         public void ReturnToolBarButtonsToStandardPosition()
         {
-            for (int i = 0; i < AllSlots.Count; i++)
+            for (int i = 0; i < ToolBarButtonCount; i++)
             {
                 AllSlots[i].Position = new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f);
             }
@@ -233,9 +235,9 @@ namespace SecretProject.Class.UI
                 currentSliderPosition -= 1;
             }
 
-            if (currentSliderPosition > AllSlots.Count)
+            if (currentSliderPosition > ToolBarButtonCount)
             {
-                currentSliderPosition = AllSlots.Count;
+                currentSliderPosition = ToolBarButtonCount;
             }
             if (currentSliderPosition < 1)
             {
@@ -339,37 +341,15 @@ namespace SecretProject.Class.UI
             return inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
         }
 
-        public void UpdateInventorySlotTexture(Inventory inventory, int index)
-        {
-            if (inventory.currentInventory.ElementAt(index) == null)
-            {
-                AllSlots[index].ItemCounter = 0;
 
-            }
-            else
-            {
-                AllSlots[index].ItemCounter = inventory.currentInventory.ElementAt(index).SlotItems.Count;
-            }
-
-            if (AllSlots[index].ItemCounter > 0)
-            {
-                AllSlots[index].Texture = inventory.currentInventory.ElementAt(index).SlotItems[0].ItemSprite.AtlasTexture;
-                AllSlots[index].ItemSourceRectangleToDraw = inventory.currentInventory.ElementAt(index).SlotItems[0].SourceTextureRectangle;
-            }
-            else
-            {
-                AllSlots[index].Texture = Game1.AllTextures.UserInterfaceTileSet;
-                AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
-            }
-        }
 
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
-            ;
-            for (int i = 0; i < AllSlots.Count; i++)
+
+            for (int i = 0; i < ToolBarButtonCount; i++)
             {
-                UpdateInventorySlotTexture(inventory, i);
+                BackPack.UpdateInventorySlotTexture(inventory, i);
                 AllSlots[i].Update(mouse);
                 if (AllSlots[i].IsHovered && AllSlots[i].ItemCounter > 0)
                 {
@@ -404,21 +384,29 @@ namespace SecretProject.Class.UI
                     Item tempItem = inventory.currentInventory[i].GetItem();
                     this.ItemJustReleased = tempItem;
 
-                    if(IsAnySlotHovered)
+                    if (IsAnySlotHovered)
                     {
-                        for(int m =0; m < ToolBarButtonCount; m++)
+                        int index = 0;
+                        for (int m = 0; m < ToolBarButtonCount; m++)
                         {
-                            if(AllSlots[m].IsHovered)
+                            index = m;
+                            if (AllSlots[m].IsHovered)
                             {
                                 InventorySlot currentItems = inventory.currentInventory[i];
-                                inventory.currentInventory[i] = inventory.currentInventory[m];
-                                inventory.currentInventory[m] = currentItems;
+                                inventory.currentInventory.RemoveAt(i);
+                                if (index > m)
+                                {
+                                    index--;
+                                }
+                                inventory.currentInventory.Insert(index, currentItems);
+                                //inventory.currentInventory[i] = inventory.currentInventory[m];
+                                //inventory.currentInventory[m] = currentItems;
                                 return;
                             }
-                            
+
                         }
                     }
-                    else if (InteractWithChest(i))
+                    else if (BackPack.InteractWithChest(i))
                     {
 
                     }
@@ -457,7 +445,7 @@ namespace SecretProject.Class.UI
                     DragSprite = null;
                 }
 
-                if (AllSlots[i].isClickedAndHeld == true && AllSlots[i].ItemCounter != 0)
+                if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                 {
                     Item tempItem = inventory.currentInventory[i].GetItem();
 
@@ -484,25 +472,6 @@ namespace SecretProject.Class.UI
 
         }
 
-        public bool InteractWithChest(int index)
-        {
-            if (Game1.Player.UserInterface.IsAnyChestOpen)
-            {
-                if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
-                {
-                    if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(inventory.currentInventory[index].GetItem()))
-                    {
-                        inventory.currentInventory[index].RemoveItemFromSlot();
-                        AllSlots[index].ItemCounter--;
-                    }
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -514,7 +483,7 @@ namespace SecretProject.Class.UI
                 TextBuilder.Draw(spriteBatch, .75f);
 
 
-                for (int i = 0; i < AllSlots.Count; i++)
+                for (int i = 0; i < ToolBarButtonCount; i++)
                 {
                     if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
                     {
@@ -531,9 +500,16 @@ namespace SecretProject.Class.UI
 
                 OpenInventory.Draw(spriteBatch, Game1.AllTextures.MenuText, "Inv", OpenInventory.Position, Color.CornflowerBlue, .69f, .7f);
                 InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", InGameMenu.Position, Color.CornflowerBlue, .69f, .7f);
-                for (int i = 0; i < AllSlots.Count; i++)
+                for (int i = 0; i < ToolBarButtonCount; i++)
                 {
-                    AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f);
+                    if (AllSlots[i].IsHovered)
+                    {
+                        AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White * .5f, 2f, 2f, Game1.Utility.StandardButtonDepth);
+                    }
+                    else
+                    {
+                        AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth);
+                    }
                 }
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);

@@ -391,8 +391,8 @@ namespace SecretProject.Class.TileStuff
 
                         if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKeyStringNew(layer, container)))
                         {
-                            container.StoreableItems.Add(tileToAssign.GetTileKeyStringNew(layer, container), new Chest(tileToAssign.GetTileKeyStringNew(layer, container), 3,
-                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice, true));
+                            container.StoreableItems.Add(tileToAssign.GetTileKeyStringNew(layer, container), new Chest(tileToAssign.GetTileKeyStringNew(layer, container), 6,
+                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice, false));
                         }
 
                     }
