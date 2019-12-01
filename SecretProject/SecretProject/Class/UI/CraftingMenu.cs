@@ -137,7 +137,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, BackDropPosition, BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
 
             for (int i = 0; i < Tabs.Length; i++)
             {
@@ -226,8 +226,8 @@ namespace SecretProject.Class.UI
             this.Color = Color.Black;
             this.CraftButtonColor = Color.White;
 
-            this.CraftButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(448, 496, 32, 16), graphics,
-                new Vector2(BackDropPosition.X + BackGroundSourceRectangle.Width / 2, BackDropPosition.Y + BackGroundSourceRectangle.Height * backDropScale - 64), CursorType.Normal, 3f);
+            this.CraftButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
+                new Vector2(BackDropPosition.X + BackGroundSourceRectangle.Width / 3, BackDropPosition.Y + BackGroundSourceRectangle.Height * backDropScale - 80), CursorType.Normal, 3f);
         }
 
         public void UpdateRecipe(int craftableItemID)
@@ -331,7 +331,7 @@ namespace SecretProject.Class.UI
                     Ingredients[i].Draw(spriteBatch, this.Color, new Vector2(BackDropPosition.X + 32 + i * 64, BackDropPosition.Y + BackGroundSourceRectangle.Height), 1f);
                 }
 
-                CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", CraftButton.Position, this.CraftButtonColor, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .1f);
+                CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", new Vector2(CraftButton.Position.X + CraftButton.BackGroundSourceRectangle.Width/2, CraftButton.Position.Y), this.CraftButtonColor, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .1f);
             }
             else if (CraftingMenu.ActiveToolTip == null)
             {

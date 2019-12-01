@@ -31,8 +31,11 @@ namespace SecretProject.Class.UI
         public Item ItemJustReleased { get; set; }
         public Sprite DragSprite { get; set; }
         public List<Button> AllSlots { get; set; }
+        Button RedEsc;
 
         TextBuilder TextBuilder;
+
+        public bool MouseIntersectsBackDrop { get; set; }
 
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
@@ -40,7 +43,7 @@ namespace SecretProject.Class.UI
             this.Inventory = Inventory;
             this.IsActive = false;
             this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight / 4);
-            this.BackGroundSourceRectangle = new Rectangle(208, 560, 288, 176);
+            this.BackGroundSourceRectangle = new Rectangle(208, 560, 336, 128);
             this.Scale = 2f;
 
             AllSlots = new List<Button>();
@@ -59,31 +62,30 @@ namespace SecretProject.Class.UI
             }
             TextBuilder = new TextBuilder("", .01f, 5);
 
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(Position.X + BackGroundSourceRectangle.Width * Scale, Position.Y), CursorType.Normal);
+
         }
 
         public void Activate()
         {
             this.IsActive = true;
-            //for (int i = 0; i < AllSlots.Count; i++)
-            //{
-            //    AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * i * Scale, BackGroundSourceRectangle.Y - 364);
-            //}
+
             int index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale, BackGroundSourceRectangle.Y / Scale);
+                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale - 64);
                 index++;
             }
             index = 0;
             for (int i = 10; i < 20; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale, BackGroundSourceRectangle.Y / Scale + 64);
+                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale );
                 index++;
             }
             index = 0;
             for (int i = 20; i < 30; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale, BackGroundSourceRectangle.Y / Scale + 128);
+                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale + 64);
                 index++;
             }
         }
@@ -92,6 +94,18 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
+                MouseIntersectsBackDrop = false;
+                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * Scale), (int)(BackGroundSourceRectangle.Height * Scale))))
+                {
+                    MouseIntersectsBackDrop = true;
+                }
+                RedEsc.Update(Game1.myMouseManager);
+                if (RedEsc.isClicked)
+                {
+                    this.IsActive = false;
+                    Game1.Player.UserInterface.BottomBar.ReturnToolBarButtonsToStandardPosition();
+                    Game1.Player.UserInterface.BottomBar.IsActive = true;
+                }
                 TextBuilder.Update(gameTime);
                 IsAnySlotHovered = false;
                 for (int i = 0; i < AllSlots.Count; i++)
@@ -124,7 +138,7 @@ namespace SecretProject.Class.UI
                     }
 
                     //INTERACTIONS WITH RELEASE ITEM 
-                    if (AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
+                    if (MouseIntersectsBackDrop && AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
                     {
                         this.WasSlotJustReleased = true;
 
@@ -217,7 +231,7 @@ namespace SecretProject.Class.UI
         {
             if(this.IsActive)
             {
-
+                RedEsc.Draw(spriteBatch);
                 TextBuilder.Draw(spriteBatch, .75f);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
                 for (int i = 0; i < AllSlots.Count; i++)
