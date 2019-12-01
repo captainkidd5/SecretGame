@@ -44,6 +44,8 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
+        public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
+
         public int ArrayI { get; set; }
         public int ArrayJ { get; set; }
 
@@ -55,8 +57,7 @@ namespace SecretProject.Class.TileStuff
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
 
-        //PROPERTY MANAGEMENT
-        public bool Owned { get; set; }
+
 
 
         //NPCS
@@ -94,6 +95,7 @@ namespace SecretProject.Class.TileStuff
             Lights = new List<LightSource>();
             Crops = new Dictionary<string, Crop>();
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
+            Tufts = new Dictionary<string, List<GrassTuft>>();
             for (int i = 0; i < 4; i++)
             {
                 AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
@@ -185,7 +187,7 @@ namespace SecretProject.Class.TileStuff
                 binaryWriter.Write(crop.Value.DayPlanted);
 
             }
-            binaryWriter.Write(this.Owned);
+
 
 
                 binaryWriter.Flush();
@@ -289,7 +291,7 @@ namespace SecretProject.Class.TileStuff
                 };
                 this.Crops.Add(cropKey, crop);
             }
-            this.Owned = binaryReader.ReadBoolean();
+
 
             
             
@@ -386,17 +388,18 @@ namespace SecretProject.Class.TileStuff
                                         int grassType = Game1.Utility.RGenerator.Next(1, 4);
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
+                                        grassTuft.TuftsIsPartOf = tufts;
                                         tufts.Add(grassTuft);
-                                        if(Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)))
+                                        if(Tufts.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)) || Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)))
                                         {
 
                                         }
                                         else
                                         {
-                                            Objects.Add(AllTiles[0][i, j].GetTileKeyStringNew(0, this), new List<ICollidable>());
+                                            Tufts.Add(AllTiles[0][i, j].GetTileKeyStringNew(0, this), tufts);
+                                           
                                         }
-                                        grassTuft.Objects = Objects[AllTiles[0][i, j].GetTileKeyStringNew(0, this)];
-                                        Objects[AllTiles[0][i, j].GetTileKeyStringNew(0, this)].Add(grassTuft);
+
                                       
 
                                     }
@@ -476,6 +479,7 @@ namespace SecretProject.Class.TileStuff
                         TileUtility.GenerateTiles(1, 979, "dirt", 50, 0, this); //tree
                         TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
                         TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this); //GRASSTUFT
+                        TileUtility.GenerateTiles(1, 1079, "grass", 50, 0, this); //GRASSTUFT
                         TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
                         TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
                         TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA

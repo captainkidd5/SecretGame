@@ -239,31 +239,38 @@ namespace SecretProject.Class.StageFolder
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
                                 {
-                                    if(obj.Value[z].IsUpdating)
-                                    {
-                                        if(obj.Value[z].ColliderType == ColliderType.grass)
-                                        {
-                                            obj.Value[z].Update(gameTime);
-                                        }
-                                    }
+   
                                     QuadTree.Insert(obj.Value[z]);
                                 }
                             }
-                            //for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
-                            //{
-                            //    if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
-                            //    {
-                            //        if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
-                            //        {
-                            //            AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
-                            //        }
 
-                            //    }
-                            //    QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
+                            foreach (KeyValuePair<string, List<GrassTuft>> grass in AllTiles.ActiveChunks[i, j].Tufts)
+                            {
+                                for(int g =0; g < grass.Value.Count; g++)
+                                {
+                                    if(grass.Value[g].IsUpdating)
+                                    {
+                                        grass.Value[g].Update(gameTime);
+                                    }
+                                    
+                                    QuadTree.Insert(grass.Value[g]);
+                                }
+                            }
+                                //for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
+                                //{
+                                //    if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
+                                //    {
+                                //        if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
+                                //        {
+                                //            AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
+                                //        }
+
+                                //    }
+                                //    QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
 
 
-                            //}
-                            for (int e = 0; e < Enemies.Count; e++)
+                                //}
+                                for (int e = 0; e < Enemies.Count; e++)
                             {
                                 if (Enemies[e] != null)
                                 {

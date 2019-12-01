@@ -72,7 +72,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
-       // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public PathFinder PathFinder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
@@ -276,7 +276,7 @@ namespace SecretProject.Class.TileStuff
                     //ActiveChunks[0, 0] = ActiveChunks[0, 1];
                     CycleChunk(0, 0, 0, 1);
 
-                   // ActiveChunks[1, 0] = ActiveChunks[1, 1];
+                    // ActiveChunks[1, 0] = ActiveChunks[1, 1];
                     CycleChunk(1, 0, 1, 1);
 
                     //ActiveChunks[2, 0] = ActiveChunks[2, 1];
@@ -285,7 +285,7 @@ namespace SecretProject.Class.TileStuff
                     //ActiveChunks[0, 1] = ActiveChunks[0, 2];
                     CycleChunk(0, 1, 0, 2);
 
-                   // ActiveChunks[1, 1] = ActiveChunks[1, 2];
+                    // ActiveChunks[1, 1] = ActiveChunks[1, 2];
                     CycleChunk(1, 1, 1, 2);
 
                     //ActiveChunks[2, 1] = ActiveChunks[2, 2];
@@ -306,16 +306,16 @@ namespace SecretProject.Class.TileStuff
                 //correct
                 case Dir.Up:
 
-                  //  ActiveChunks[0, 2] = ActiveChunks[0, 1];
+                    //  ActiveChunks[0, 2] = ActiveChunks[0, 1];
                     CycleChunk(0, 2, 0, 1);
 
-                 //   ActiveChunks[1, 2] = ActiveChunks[1, 1];
+                    //   ActiveChunks[1, 2] = ActiveChunks[1, 1];
                     CycleChunk(1, 2, 1, 1);
 
-                  //  ActiveChunks[2, 2] = ActiveChunks[2, 1];
-                    CycleChunk(2,2,2,1);
+                    //  ActiveChunks[2, 2] = ActiveChunks[2, 1];
+                    CycleChunk(2, 2, 2, 1);
 
-                   // ActiveChunks[0, 1] = ActiveChunks[0, 0];
+                    // ActiveChunks[0, 1] = ActiveChunks[0, 0];
 
                     CycleChunk(0, 1, 0, 0);
 
@@ -344,19 +344,19 @@ namespace SecretProject.Class.TileStuff
 
                 case Dir.Left:
 
-                  //  ActiveChunks[2, 0] = ActiveChunks[1, 0];
+                    //  ActiveChunks[2, 0] = ActiveChunks[1, 0];
                     CycleChunk(2, 0, 1, 0);
 
-                  //  ActiveChunks[2, 1] = ActiveChunks[1, 1];
+                    //  ActiveChunks[2, 1] = ActiveChunks[1, 1];
                     CycleChunk(2, 1, 1, 1);
 
                     //ActiveChunks[2, 2] = ActiveChunks[1, 2];
                     CycleChunk(2, 2, 1, 2);
 
-                   // ActiveChunks[1, 0] = ActiveChunks[0, 0];
+                    // ActiveChunks[1, 0] = ActiveChunks[0, 0];
                     CycleChunk(1, 0, 0, 0);
 
-                   // ActiveChunks[1, 1] = ActiveChunks[0, 1];
+                    // ActiveChunks[1, 1] = ActiveChunks[0, 1];
                     CycleChunk(1, 1, 0, 1);
 
                     //ActiveChunks[1, 2] = ActiveChunks[0, 2];
@@ -406,9 +406,9 @@ namespace SecretProject.Class.TileStuff
 
 
                                 int index = i;
-                               // Chunk chunkToSave = ActiveChunks[2, index];
-                           // Task.Run(() => chunkToSave.Save());
-                               ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
+                                // Chunk chunkToSave = ActiveChunks[2, index];
+                                // Task.Run(() => chunkToSave.Save());
+                                ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
                                 Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
 
                             }
@@ -426,18 +426,18 @@ namespace SecretProject.Class.TileStuff
         public void CycleChunk(int oldX, int oldY, int newX, int newY)
         {
 
-           // ActiveChunks[oldX, oldY].Save();
+            // ActiveChunks[oldX, oldY].Save();
 
             Chunk tempChunkNew = ActiveChunks[newX, newY];
             Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
-           
-                Task.Run(() => tempChunkOld.Save());
-            
 
-                
-            
-            
+            Task.Run(() => tempChunkOld.Save());
+
+
+
+
+
 
             ActiveChunks[oldX, oldY] = tempChunkNew;
 
@@ -585,9 +585,9 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     if (z == 0)
                                     {
-                                        if (playerI < ChunkUnderPlayer.AllTiles[z] .GetLength(0) &&
+                                        if (playerI < ChunkUnderPlayer.AllTiles[z].GetLength(0) &&
                                             playerJ < ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
-                                            playerI >= 0 && 
+                                            playerI >= 0 &&
                                             playerJ >= 0 &&
                                              ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
                                         {
@@ -640,7 +640,7 @@ namespace SecretProject.Class.TileStuff
 
                                                     if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
                                                     {
-                                                        
+
                                                         Game1.isMyMouseVisible = false;
 
 
@@ -723,7 +723,7 @@ namespace SecretProject.Class.TileStuff
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
                                 spriteBatch.Draw(ActiveChunks[a, b].RectangleTexture, new Vector2(ActiveChunks[a, b].GetChunkRectangle().X, ActiveChunks[a, b].GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActiveChunks[a, b].ArrayI.ToString() + ActiveChunks[a, b].ArrayJ.ToString(), 
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActiveChunks[a, b].ArrayI.ToString() + ActiveChunks[a, b].ArrayJ.ToString(),
                                     new Vector2(ActiveChunks[a, b].GetChunkRectangle().X + 100, ActiveChunks[a, b].GetChunkRectangle().Y), Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, 1f);
                             }
                             for (int z = 0; z < 4; z++)
@@ -737,7 +737,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (z == 3)
                                             {
-                                                spriteBatch.Draw(TileSet, new Vector2(ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle,Color.White,
+                                                spriteBatch.Draw(TileSet, new Vector2(ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White,
                                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                                             }
@@ -754,14 +754,13 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                             }
-                            foreach (KeyValuePair<string, List<ICollidable>> entry in ActiveChunks[a, b].Objects)
+                            foreach (KeyValuePair<string, List<GrassTuft>> entry in ActiveChunks[a, b].Tufts)
                             {
-                                for(int i =0; i < entry.Value.Count; i++)
+                                for (int i = 0; i < entry.Value.Count; i++)
                                 {
-                                    if(entry.Value[i].ColliderType == ColliderType.grass)
-                                    {
-                                        entry.Value[i].Draw(spriteBatch);
-                                    }
+
+                                    entry.Value[i].Draw(spriteBatch);
+
                                 }
                             }
                             //    for (int i = 0; i < ActiveChunks[a, b].Objects.Count; i++)
@@ -785,7 +784,7 @@ namespace SecretProject.Class.TileStuff
                             //    {
                             //        enemy.DrawDebug(spriteBatch, .1f);
                             //    }
-                                
+
                             //}
                         }
                     }

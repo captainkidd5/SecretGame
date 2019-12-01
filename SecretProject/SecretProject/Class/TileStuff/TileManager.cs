@@ -88,7 +88,6 @@ namespace SecretProject.Class.TileStuff
         public int ArrayI { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int ArrayJ { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Chunk[,] ActiveChunks { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool Owned { get; set; }
         WorldTileManager IInformationContainer.TileManager { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<int[]> AdjacentNoise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -131,7 +130,6 @@ namespace SecretProject.Class.TileStuff
             Lights = new List<LightSource>();
             StoreableItems = new Dictionary<string, IStorableItem>();
             Crops = new Dictionary<string, Crop>();
-            Owned = true;
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)

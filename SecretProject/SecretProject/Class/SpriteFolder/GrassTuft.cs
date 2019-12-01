@@ -35,9 +35,9 @@ namespace SecretProject.Class.SpriteFolder
         public string LocationKey { get; set; }
 
         public bool IsUpdating { get; set; }
-        public List<ICollidable> Objects { get; set; }
         public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         protected Texture2D rectangleTexture;
+        public List<GrassTuft> TuftsIsPartOf { get; set; }
 
         public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
         {
@@ -113,7 +113,7 @@ namespace SecretProject.Class.SpriteFolder
             Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
             Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
-            Objects.Remove(this);
+            TuftsIsPartOf.Remove(this);
         }
 
         public void Shuff(GameTime gameTime, int direction)
