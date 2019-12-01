@@ -763,13 +763,7 @@ namespace SecretProject.Class.TileStuff
 
                                 }
                             }
-                            //    for (int i = 0; i < ActiveChunks[a, b].Objects.Count; i++)
-                            //{
-                            //    if (ActiveChunks[a, b].Objects[i].ColliderType == ColliderType.grass)
-                            //    {
-                            //        ActiveChunks[a, b].Objects[i].Draw(spriteBatch);
-                            //    }
-                            //}
+
                             if (GridItem != null)
                             {
                                 GridItem.ChunkDraw(spriteBatch, this, ChunkUnderMouse);
@@ -777,15 +771,7 @@ namespace SecretProject.Class.TileStuff
                             }
 
 
-                            //foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
-                            //{
-                            //    enemy.Draw(spriteBatch);
-                            //    if(Game1.GetCurrentStage().ShowBorders)
-                            //    {
-                            //        enemy.DrawDebug(spriteBatch, .1f);
-                            //    }
 
-                            //}
                         }
                     }
                 }

@@ -926,6 +926,17 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Street Lamp</Name>
+<ID>1204</ID>
+<Description>An industrial light.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>30</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>500</Price>
+<PlaceID>1845</PlaceID>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Basic Chest</Name>
 <ID>1240</ID>
 <Description>Stores items.</Description>

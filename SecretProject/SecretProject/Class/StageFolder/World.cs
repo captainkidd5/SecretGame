@@ -256,20 +256,7 @@ namespace SecretProject.Class.StageFolder
                                     QuadTree.Insert(grass.Value[g]);
                                 }
                             }
-                                //for (int z = 0; z < AllTiles.ActiveChunks[i, j].Objects.Count; z++)
-                                //{
-                                //    if (AllTiles.ActiveChunks[i, j].Objects[z].IsUpdating)
-                                //    {
-                                //        if (AllTiles.ActiveChunks[i, j].Objects[z].ColliderType == ColliderType.grass)
-                                //        {
-                                //            AllTiles.ActiveChunks[i, j].Objects[z].Update(gameTime);
-                                //        }
 
-                                //    }
-                                //    QuadTree.Insert(AllTiles.ActiveChunks[i, j].Objects[z]);
-
-
-                                //}
                                 for (int e = 0; e < Enemies.Count; e++)
                             {
                                 if (Enemies[e] != null)
@@ -395,10 +382,21 @@ namespace SecretProject.Class.StageFolder
                     graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    for (int l = 0; l < this.AllLights.Count; l++)
+                    for (int i = 0; i < AllTiles.ActiveChunks.GetLength(0); i++)
                     {
-                        spriteBatch.Draw(AllLights[l].LightTexture, AllLights[l].Position, Color.White);
+                        for (int j = 0; j < AllTiles.ActiveChunks.GetLength(1); j++)
+                        {
+                            if (AllTiles.ActiveChunks[i, j].IsLoaded)
+                            {
+                                for (int l = 0; l < AllTiles.ActiveChunks[i, j].Lights.Count; l++)
+                                {
+                                    spriteBatch.Draw(AllTiles.ActiveChunks[i, j].Lights[l].LightTexture,
+                                        AllTiles.ActiveChunks[i, j].Lights[l].Position, Color.White);
+                                }
+                            }
+                        }
                     }
+                                
                     if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() == 4)
                     {
                         spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);

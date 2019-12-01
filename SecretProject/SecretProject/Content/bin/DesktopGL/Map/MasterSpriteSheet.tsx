@@ -2041,6 +2041,7 @@
  <tile id="1845">
   <properties>
    <property name="lightSource" value="1,0,-48"/>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
   </properties>
   <objectgroup draworder="index">

@@ -134,20 +134,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //binaryWriter.Write(Objects.Count);
-            //foreach(ICollidable obj in Objects)
-            //{
-            //    binaryWriter.Write((int)obj.ColliderType);
-            //    if(obj.ColliderType == ColliderType.grass)
-            //    {
-            //        binaryWriter.Write()
-            //    }
-            //    binaryWriter.Write(obj.Rectangle.X);
-            //    binaryWriter.Write(obj.Rectangle.Y);
-            //    binaryWriter.Write(obj.Rectangle.Width);
-            //    binaryWriter.Write(obj.Rectangle.Height);
-            //    binaryWriter.Write(obj.LocationKey);
-            //}
 
             binaryWriter.Write(StoreableItems.Count);
             foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
@@ -274,10 +260,7 @@ namespace SecretProject.Class.TileStuff
 
                         this.StoreableItems.Add(storageKey, cauldronToAdd);
                         break;
-                }
-
-                
-                
+                } 
             }
 
             int cropCount = binaryReader.ReadInt32();
@@ -321,13 +304,10 @@ namespace SecretProject.Class.TileStuff
                 Tufts.Add(key, tufts);
             }
 
-            
-            
-         
 
             if (this.X != 0 && this.Y != 0)
             {
-                if(Game1.Utility.RGenerator.Next(0, 10) < 9)
+                if(Game1.Utility.RGenerator.Next(0, 10) < 2)
                 {
                     Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
                     Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
