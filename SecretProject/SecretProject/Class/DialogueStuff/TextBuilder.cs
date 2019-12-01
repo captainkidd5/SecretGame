@@ -292,7 +292,7 @@ namespace SecretProject.Class.DialogueStuff
             this.WriteSpeed = .5f;
             this.isDoneDrawing = false;
             this.parsedText = "";
-            Game1.Player.UserInterface.BottomBar.IsActive = true;
+            //Game1.Player.UserInterface.BottomBar.IsActive = true;
             this.typedTextLength = 0;
             this.IsPaused = false;
             this.Skeleton = null;

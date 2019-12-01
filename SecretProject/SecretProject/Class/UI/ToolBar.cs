@@ -130,6 +130,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, Inventory inventory, MouseManager mouse)
         {
+
             WasSlotJustReleased = false;
 
             UpdateScrollWheel(mouse);

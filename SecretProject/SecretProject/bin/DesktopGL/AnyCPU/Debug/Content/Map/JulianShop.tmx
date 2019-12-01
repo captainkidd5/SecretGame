@@ -71,11 +71,11 @@
 </data>
  </layer>
  <objectgroup id="2" name="Portal">
-  <object id="31" x="564" y="637" width="19" height="16">
+  <object id="31" x="565" y="687.75" width="19" height="16">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
-    <property name="SafteyOffSetY" value="-100"/>
+    <property name="SafteyOffSetY" value="-32"/>
     <property name="standardFrom" value="JulianHouse"/>
     <property name="standardTo" value="Town"/>
    </properties>
