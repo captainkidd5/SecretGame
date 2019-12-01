@@ -118,7 +118,7 @@ namespace SecretProject.Class.Controls
 
             //HELD
             this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
-            this.RequiredHoldTime = .1f;
+            this.RequiredHoldTime = .15f;
 
             OldMouseInterfacePosition = Vector2.Zero;
         }

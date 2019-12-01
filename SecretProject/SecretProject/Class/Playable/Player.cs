@@ -273,7 +273,7 @@ namespace SecretProject.Class.Playable
         }
         public void DrawCollectiveActions(SpriteBatch spriteBatch, float layerDepth)
         {
-            for (int i = 0; i < PlayerActionAnimations.Length; i++)
+            for (int i = 0; i < CurrentAction.GetLength(1); i++)
             {
                 PlayerActionAnimations[i].DrawAnimation(spriteBatch, PlayerActionAnimations[i].destinationVector, layerDepth + PlayerActionAnimations[i].LayerDepth);
             }

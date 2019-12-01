@@ -177,14 +177,7 @@ namespace SecretProject.Class.UI
                                         InventorySlot currentItems = Inventory.currentInventory[i];
                                         Inventory.currentInventory[i] = Inventory.currentInventory[m];
                                         Inventory.currentInventory[m] = currentItems;
-                                        //Inventory.currentInventory.RemoveAt(i);
-                                        //if (index > m)
-                                        //{
-                                        //    index--;
-                                        //}
-                                        //Inventory.currentInventory.Insert(index, currentItems);
-                                        //Inventory.currentInventory[i] = Inventory.currentInventory[m];
-                                        //Inventory.currentInventory[m] = currentItems;
+
                                         return;
                                     }
 

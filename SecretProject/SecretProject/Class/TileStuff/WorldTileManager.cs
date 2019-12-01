@@ -526,7 +526,7 @@ namespace SecretProject.Class.TileStuff
                                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                                 {
                                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                    TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, ActiveChunks[a, b], false);
+                                    TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, ActiveChunks[a, b]);
                                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                                     {
                                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
