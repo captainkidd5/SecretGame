@@ -347,7 +347,7 @@ namespace SecretProject.Class.UI
         public void UpdateInventoryButtons(Inventory inventory, GameTime gameTime, MouseManager mouse)
         {
 
-
+            DragSprite = null;
             for (int i = 0; i < ToolBarButtonCount; i++)
             {
                 BackPack.UpdateInventorySlotTexture(inventory, i);
@@ -443,7 +443,7 @@ namespace SecretProject.Class.UI
 
 
 
-                    DragSprite = null;
+                   
                 }
 
                 if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)

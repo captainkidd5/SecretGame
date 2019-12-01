@@ -27,20 +27,16 @@ namespace SecretProject.Class.Controls
     }
     public class MouseManager
     {
+        public bool IsDown { get; set; }
         public bool IsClicked { get; set; }
         public bool IsRightClicked { get; set; }
 
         public bool IsClickedAndHeld { get; set; }
 
-        public bool IsReleased { get; set; }
+        public Vector2 Position { get; set; }
 
-        public bool WasJustPressed { get; set; }
 
-        Vector2 position;
-        public Vector2 Position { get { return position; } set { position = value; } }
-
-        Vector2 uIPosition;
-        public Vector2 UIPosition { get { return uIPosition; } set { uIPosition = value; } }
+        public Vector2 UIPosition { get; set; }
 
         Vector2 worldMousePosition;
         public Vector2 WorldMousePosition { get { return worldMousePosition; } set { worldMousePosition = value; } }
@@ -49,13 +45,9 @@ namespace SecretProject.Class.Controls
         public Rectangle MouseRectangle { get; set; }
         public Rectangle MouseSquareCoordinateRectangle { get; set; }
 
-        public int MouseSquareCoordinateX { get; set; }
-        public int MouseSquareCoordinateY { get; set; }
-
         public float RelativeMouseX { get; set; }
         public float RelativeMouseY { get; set; }
-        public int XOffSet1 { get; set; } = Game1.Utility.CenterScreenX + 8;
-        public int YOffSet1 { get; set; } = Game1.Utility.CenterScreenY + 8;
+
         
 
         public int XTileOffSet { get; set; } = Game1.Utility.CenterScreenX;
@@ -78,6 +70,8 @@ namespace SecretProject.Class.Controls
         public Rectangle WorldMouseRectangle { get; set; }
 
         public Texture2D MouseTypeTexture { get; set; }
+
+        #region MOUSE CURSORTYPE RECTANGLES
         public Rectangle CursorSourceRectangle { get; set; }
         public Rectangle HeldCursorSourceRectangle { get; set; }
 
@@ -91,9 +85,11 @@ namespace SecretProject.Class.Controls
         public Rectangle CurrencyInteractionSourceRectangle { get; set; }
         public Rectangle DoorInteractionSourceRectangle { get; set; }
         public Rectangle NextChatWindowInteractionSourceRectangle { get; set; }
-
+        #endregion
         public float HoldTimer { get; set; }
         public float RequiredHoldTime { get; set; }
+
+        public bool ButtonOccupied { get; set; }
 
         GraphicsDevice graphicsDevice;
 
@@ -122,8 +118,7 @@ namespace SecretProject.Class.Controls
 
             //HELD
             this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
-            //this.MouseTypeTexture = Game1.AllTextures.CursorWhiteHand;
-            this.RequiredHoldTime = .2f;
+            this.RequiredHoldTime = .1f;
 
             OldMouseInterfacePosition = Vector2.Zero;
         }
@@ -133,8 +128,7 @@ namespace SecretProject.Class.Controls
             //ChangeMouseTexture(-50);
             IsClicked = false;
             IsRightClicked = false;
-            WasJustPressed = false;
-            this.IsReleased = false;
+            IsDown = false;
             
             HasScrollWheelValueIncreased = false;
             HasScrollWheelValueDecreased = false;
@@ -157,30 +151,21 @@ namespace SecretProject.Class.Controls
             ///
             worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera1.GetViewMatrix(Vector2.One)));
 
-            position.X = MyMouse.Position.X ;
-            position.Y = MyMouse.Position.Y;
 
-            uIPosition.X = MyMouse.Position.X - 20;
-            uIPosition.Y = MyMouse.Position.Y - 20;
+            Position = new Vector2(MyMouse.Position.X, MyMouse.Position.Y);
+
+            UIPosition = new Vector2(MyMouse.Position.X - 20, MyMouse.Position.Y - 20);
 
             
-            //if(Game1.GetCurrentStageInt() == (int)Stages.World)
-            //{
+
                 WorldMousePosition = new Vector2((int)worldPosition.X - XTileOffSet, (int)worldPosition.Y - YTileOffSet);
-            //}
-            //else
-            //{
-            //    WorldMousePosition = new Vector2((int)worldPosition.X - XOffSet1, (int)worldPosition.Y - YOffSet1);
-            //}
-            
-            //relativeMouseX = position.X + Camera
+
 
             MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
-            MouseSquareCoordinateRectangle = new Rectangle((int)SquarePosition.X, (int)SquarePosition.Y, 16, 16);
             SquarePosition = GetMouseSquarePosition(WorldMousePosition);
+            MouseSquareCoordinateRectangle = new Rectangle((int)SquarePosition.X, (int)SquarePosition.Y, 16, 16);
+           
 
-            MouseSquareCoordinateX = (int)(WorldMousePosition.X / 16);
-            MouseSquareCoordinateY = (int)(WorldMousePosition.Y / 16);
 
             
 
@@ -188,10 +173,12 @@ namespace SecretProject.Class.Controls
 
             if (MyMouse.LeftButton == ButtonState.Pressed)
             {
+                IsDown = true;
                 HoldTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (HoldTimer > RequiredHoldTime)
             {
+
                 this.IsClickedAndHeld = true;
                 ChangeMouseTexture(CursorType.NormalHeld);
                 Game1.isMyMouseVisible = false;
@@ -203,7 +190,6 @@ namespace SecretProject.Class.Controls
                 {
                     
                     IsClickedAndHeld = false;
-                    this.IsReleased = true;
 
                 }
                 else if(oldMouse.LeftButton == ButtonState.Pressed)
@@ -314,10 +300,10 @@ namespace SecretProject.Class.Controls
 
         public Tile GetMouseOverTile(IInformationContainer container)
         {
-            if (this.MouseSquareCoordinateX > 0 && this.MouseSquareCoordinateY > 0)
+            if (this.SquarePosition.X > 0 && this.SquarePosition.Y > 0)
             {
 
-                return container.AllTiles[0][MouseSquareCoordinateX / (container.X + 1), MouseSquareCoordinateY / (container.Y + 1)];
+                return container.AllTiles[0][(int)SquarePosition.X / (container.X + 1), (int)SquarePosition.Y / (container.Y + 1)];
 
             }
             else
@@ -330,11 +316,11 @@ namespace SecretProject.Class.Controls
         public Tile[] GetMouseOverTileArray(IInformationContainer container)
         {
             Tile[] tilesToReturn = new Tile[container.AllTiles.Count];
-            if (this.MouseSquareCoordinateX > 0 && this.MouseSquareCoordinateY > 0)
+            if (this.SquarePosition.X > 0 && this.SquarePosition.Y > 0)
             {
                 for (int i = 0; i < container.AllTiles.Count; i++)
                 {
-                    tilesToReturn[i] = container.AllTiles[i][MouseSquareCoordinateX / (container.X + 1), MouseSquareCoordinateY / (container.Y + 1)];
+                    tilesToReturn[i] = container.AllTiles[i][(int)SquarePosition.X / (container.X + 1), (int)SquarePosition.Y / (container.Y + 1)];
                 }
             }
             return tilesToReturn;

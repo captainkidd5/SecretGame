@@ -94,6 +94,7 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
+                DragSprite = null;
                 MouseIntersectsBackDrop = false;
                 if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * Scale), (int)(BackGroundSourceRectangle.Height * Scale))))
                 {
@@ -174,12 +175,14 @@ namespace SecretProject.Class.UI
                                     if (AllSlots[m].IsHovered)
                                     {
                                         InventorySlot currentItems = Inventory.currentInventory[i];
-                                        Inventory.currentInventory.RemoveAt(i);
-                                        if (index > m)
-                                        {
-                                            index--;
-                                        }
-                                        Inventory.currentInventory.Insert(index, currentItems);
+                                        Inventory.currentInventory[i] = Inventory.currentInventory[m];
+                                        Inventory.currentInventory[m] = currentItems;
+                                        //Inventory.currentInventory.RemoveAt(i);
+                                        //if (index > m)
+                                        //{
+                                        //    index--;
+                                        //}
+                                        //Inventory.currentInventory.Insert(index, currentItems);
                                         //Inventory.currentInventory[i] = Inventory.currentInventory[m];
                                         //Inventory.currentInventory[m] = currentItems;
                                         return;
@@ -261,6 +264,12 @@ namespace SecretProject.Class.UI
                         AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth);
                     }
 
+                }
+                if (DragSprite != null)
+                {
+
+
+                    DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
                 }
             }
 

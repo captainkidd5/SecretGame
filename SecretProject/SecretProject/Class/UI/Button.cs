@@ -95,8 +95,13 @@ namespace SecretProject.Class.MenuStuff
 
         public void Update(MouseManager mouse)
         {
-            isClicked = false;
             wasJustReleased = false;
+            if (!mouse.IsClickedAndHeld)
+            {
+                isClicked = false;
+            }
+            
+
 
             if (mouse.IsHovering(HitBoxRectangle))
             {
@@ -123,16 +128,18 @@ namespace SecretProject.Class.MenuStuff
 
             }
 
-            if (mouse.IsHovering(HitBoxRectangle) && mouse.IsClickedAndHeld)
+            if (mouse.IsHovering(HitBoxRectangle) && mouse.IsClickedAndHeld && !mouse.ButtonOccupied)
             {
                 this.isClickedAndHeld = true;
+                mouse.ButtonOccupied = true;
             }
-            if (this.isClickedAndHeld && !mouse.IsHovering(HitBoxRectangle))
+            if (this.isClickedAndHeld )
             {
-                if (mouse.IsReleased)
+                if (!mouse.IsDown)
                 {
                     this.isClickedAndHeld = false;
                     wasJustReleased = true;
+                    mouse.ButtonOccupied = false;
                 }
             }
 
@@ -173,7 +180,7 @@ namespace SecretProject.Class.MenuStuff
             }
             if (this.isClickedAndHeld == true && !mouse.IsHovering(SelectableTextRectangle))
             {
-                if (mouse.IsReleased)
+                if (!mouse.IsDown)
                 {
                     this.isClickedAndHeld = false;
                     wasJustReleased = true;
