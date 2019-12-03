@@ -50,7 +50,7 @@ namespace SecretProject.Class.ItemStuff
             for (int i = 0; i < 3; i++)
             {
                 CookingSlots.Add(new CookingSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), BackDropScale));
-                //AllButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(320, 32, 32, 32), graphics, this.BackDropPosition, CursorType.Normal, BackDropScale);
+                
             }
         }
 

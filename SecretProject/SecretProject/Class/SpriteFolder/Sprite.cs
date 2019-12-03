@@ -262,7 +262,7 @@ namespace SecretProject.Class.SpriteFolder
 
                 TossTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (TossTimer < .5)
+                if (TossTimer < 1)
                 {
                     switch (Game1.Player.controls.Direction)
                     {
@@ -288,7 +288,7 @@ namespace SecretProject.Class.SpriteFolder
                     
 
                 }
-                if (TossTimer >= .5)
+                if (TossTimer >= 1)
                 {
                     IsTossed = true;
                 }

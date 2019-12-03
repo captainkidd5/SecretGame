@@ -190,9 +190,9 @@ namespace SecretProject
 
         public static CropHolder AllCrops;
 
-        //DIALOGUE
         public static DialogueLibrary DialogueLibrary;
 
+        public static CookingGuide AllCookingRecipes;
 
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
@@ -424,6 +424,7 @@ namespace SecretProject
                 holder.RemoveAllNewLines();
             }
             DialogueLibrary = new DialogueLibrary(tempListHolder);
+            AllCookingRecipes = Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
             //TEXTURES
             spriteBatch = new SpriteBatch(GraphicsDevice);
             AllTextures = new TextureBook(Content, spriteBatch);

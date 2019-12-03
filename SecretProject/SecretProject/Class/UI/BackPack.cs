@@ -34,7 +34,6 @@ namespace SecretProject.Class.UI
         public Item ItemJustReleased { get; set; }
         public Sprite DragSprite { get; set; }
         public List<Button> AllSlots { get; set; }
-        Button RedEsc;
         Button ExpandButton;
         public Rectangle ExpandedButtonRectangle { get; set; }
         public Rectangle RetractedButtonRectangle { get; set; }
@@ -59,35 +58,37 @@ namespace SecretProject.Class.UI
             this.Graphics = graphics;
             this.Inventory = Inventory;
             this.IsActive = true;
-            this.BigPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight * .65f);
-            this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight * .9f);
             this.LargeBackgroundSourceRectangle = new Rectangle(208, 576, 336, 112);
             this.SmallBackgroundSourceRectangle = new Rectangle(208, 688, 336, 32);
             this.Scale = 2f;
+            this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight * .9f);
+            this.BigPosition = new Vector2(SmallPosition.X, SmallPosition.Y - LargeBackgroundSourceRectangle.Height * Scale + 32 * Scale);
+            
+           
+            
 
             AllSlots = new List<Button>();
             int index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, BigPosition.Y + LargeBackgroundSourceRectangle.Height + 32 * Scale), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y ), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, BigPosition.Y + LargeBackgroundSourceRectangle.Height), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 32 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, BigPosition.Y + 32), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 64 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
             TextBuilder = new TextBuilder("", .01f, 5);
 
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(BigPosition.X + 32 * index * Scale, BigPosition.Y + 16), CursorType.Normal);
-            ExpandedButtonRectangle = new Rectangle(544, 656, 16, 48);
+           ExpandedButtonRectangle = new Rectangle(544, 656, 16, 48);
             RetractedButtonRectangle = new Rectangle(560, 656, 16, 48);
             ExpandButton = new Button(Game1.AllTextures.UserInterfaceTileSet, ExpandedButtonRectangle, graphics, new Vector2(SmallPosition.X + SmallBackgroundSourceRectangle.Width * Scale, SmallPosition.Y), CursorType.Normal, Scale);
            
@@ -103,8 +104,6 @@ namespace SecretProject.Class.UI
                 if (Expanded)
                 {
                     NumberOfSlotsToUpdate = 30;
-
-                        RedEsc.Update(Game1.myMouseManager);
                     ExpandButton.BackGroundSourceRectangle = RetractedButtonRectangle;
                     
                 }
@@ -157,10 +156,6 @@ namespace SecretProject.Class.UI
                 MouseIntersectsBackDrop = DoesMouseIntersectBackDrop();
                 
 
-                if (RedEsc.isClicked)
-                {
-                    this.Expanded = false;
-                }
                 TextBuilder.Update(gameTime);
                 IsAnySlotHovered = false;
 
@@ -314,10 +309,7 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                if(this.Expanded)
-                {
-                    RedEsc.Draw(spriteBatch);
-                }
+
                 ExpandButton.Draw(spriteBatch);
                 
                 TextBuilder.Draw(spriteBatch, .75f);

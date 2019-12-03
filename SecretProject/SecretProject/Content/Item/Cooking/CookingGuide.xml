@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.ItemStuff.CookingGuide">
+
+<AllRecipes>
+<Item Type="XMLData.ItemStuff.CookingRecipe">
+<ItemID>1096</ItemID>
+<MeatValueMin>1</MeatValueMin>
+<MeatValueMax>5</MeatValueMax>
+<VegetableValueMin>1</VegetableValueMin>
+<VegetableValueMax>5</VegetableValueMax>
+<FruitValueMin>0</FruitValueMin>
+<FruitValueMax>1</FruitValueMax>
+</Item>
+</AllRecipes>
+  <!-- comment -->
+  </Asset>
+</XnaContent>

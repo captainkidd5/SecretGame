@@ -1337,3 +1337,8 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin Item/Cooking/CookingGuide.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/Cooking/CookingGuide.xml
+

@@ -35,6 +35,8 @@
   <ItemGroup>
     <Compile Include="DialogueStuff\DialogueHolder.cs" />
     <Compile Include="DialogueStuff\DialogueSkeleton.cs" />
+    <Compile Include="ItemStuff\CookingRecipe.cs" />
+    <Compile Include="ItemStuff\CookingGuide.cs" />
     <Compile Include="ItemStuff\CraftingGuide.cs" />
     <Compile Include="ItemStuff\Crop.cs" />
     <Compile Include="ItemStuff\CropHolder.cs" />
