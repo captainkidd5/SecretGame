@@ -9,5 +9,6 @@ namespace XMLData.ItemStuff
     public class CookingGuide
     {
         public List<CookingRecipe> AllRecipes { get; set; }
+
     }
 }

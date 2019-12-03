@@ -384,11 +384,11 @@ namespace SecretProject.Class.UI
 
         public bool InteractWithChest(int index)
         {
-            if (Game1.Player.UserInterface.IsAnyChestOpen)
+            if (Game1.Player.UserInterface.IsAnyStorageItemOpen)
             {
-                if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].IsInventoryHovered)
+                if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsInventoryHovered)
                 {
-                    if (Game1.GetCurrentStage().AllTiles.StoreableItems[Game1.Player.UserInterface.OpenChestKey].Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
+                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
                     {
                         Inventory.currentInventory[index].RemoveItemFromSlot();
                         AllSlots[index].ItemCounter--;

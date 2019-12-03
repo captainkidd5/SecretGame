@@ -82,8 +82,11 @@ namespace SecretProject.Class.UI
 
 
 
-        public bool IsAnyChestOpen { get; set; }
-        public string OpenChestKey { get; set; }
+        public bool IsAnyStorageItemOpen { get; set; }
+
+
+        public IStorableItem CurrentAccessedStorableItem { get; set; }
+
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar PlayerStaminaBar { get; set; }
         public WarpGate WarpGate { get; set; }
@@ -100,33 +103,33 @@ namespace SecretProject.Class.UI
 
         //transition
         public Texture2D BlackTransitionTexture { get; set; }
-        public bool IsTransitioning { get; set; } 
+        public bool IsTransitioning { get; set; }
         SimpleTimer TransitionTimer { get; set; }
-        public float BlackTransitionColorMultiplier{ get; set; }
+        public float BlackTransitionColorMultiplier { get; set; }
 
 
         private UserInterface()
         {
 
         }
-        public UserInterface(Player player, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam )
+        public UserInterface(Player player, GraphicsDevice graphicsDevice, ContentManager content, Camera2D cam)
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
             BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
-            BottomBar = new ToolBar( graphicsDevice,BackPack, content);
+            BottomBar = new ToolBar(graphicsDevice, BackPack, content);
             Esc = new EscMenu(graphicsDevice, content);
             this.cam = cam;
             TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
             CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-            
+
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             PlayerHealthBar = new HealthBar();
-            this.PlayerStaminaBar = new StaminaBar(graphicsDevice,Game1.Player.Stamina, .2f);
+            this.PlayerStaminaBar = new StaminaBar(graphicsDevice, Game1.Player.Stamina, .2f);
             WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
@@ -145,49 +148,44 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             InfoBox.IsActive = false;
-            IsAnyChestOpen = false;
-            if(Game1.GetCurrentStage().AllTiles != null)
+            IsAnyStorageItemOpen = false;
+            if (CurrentAccessedStorableItem != null)
             {
-                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
+                if (CurrentAccessedStorableItem.IsUpdating)
                 {
-                    if (storeableItem.Value.IsUpdating)
-                    {
-                        storeableItem.Value.Update(gameTime);
-                        this.IsAnyChestOpen = true;
-                        this.OpenChestKey = storeableItem.Key;
-                    }
-
+                    CurrentAccessedStorableItem.Update(gameTime);
+                    this.IsAnyStorageItemOpen = true;
                 }
             }
-            
+
             if (BottomBar.IsActive)
             {
                 InfoBox.Update(gameTime);
                 BottomBar.Update(gameTime, inventory, mouse);
             }
 
-            switch(CurrentOpenInterfaceItem)
+            switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
-                    if(!TextBuilder.FreezeStage)
+                    if (!TextBuilder.FreezeStage)
                     {
                         Game1.freeze = false;
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        if(BackPack.Expanded)
+                        if (BackPack.Expanded)
                         {
                             BackPack.Expanded = false;
                         }
                         else
                         {
                             BackPack.Expanded = true;
-     
+
                         }
-                       
+
                     }
 
-                    
+
                     Esc.isTextChanged = false;
                     PlayerStaminaBar.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
@@ -276,9 +274,9 @@ namespace SecretProject.Class.UI
 
                 case ExclusiveInterfaceItem.ProgressBook:
                     Game1.freeze = true;
-                    for(int i =0; i < Game1.AllProgressBooks.Count; i++)
+                    for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
                     {
-                        if(Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
+                        if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
                         {
                             Game1.AllProgressBooks[i].Update(gameTime);
                         }
@@ -305,49 +303,49 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
-                    
-                //case ExclusiveInterfaceItem.CookingMenu:
-                //    //Game1.freeze = true;
-                //    CookingMenu.Update(gameTime);
-                //    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                //    {
-                //        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
-                //    }
-                //    break;
+                    //case ExclusiveInterfaceItem.CookingMenu:
+                    //    //Game1.freeze = true;
+                    //    CookingMenu.Update(gameTime);
+                    //    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    //    {
+                    //        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    //    }
+                    //    break;
 
             }
 
             BackPack.Update(gameTime);
-           for(int i =0; i < this.AllRisingText.Count; i++)
+            for (int i = 0; i < this.AllRisingText.Count; i++)
             {
                 AllRisingText[i].Update(gameTime, AllRisingText);
             }
 
             TextBuilder.Update(gameTime);
 
-            if(this.IsTransitioning)
+            if (this.IsTransitioning)
             {
                 BeginTransitionCycle(gameTime);
             }
 
-           
+
         }
-        
+
         public void BeginTransitionCycle(GameTime gameTime)
         {
-            if(TransitionTimer.Time <= TransitionTimer.TargetTime)
+            if (TransitionTimer.Time <= TransitionTimer.TargetTime)
             {
-                this.BlackTransitionColorMultiplier-= .05f;
+                this.BlackTransitionColorMultiplier -= .05f;
             }
             else
             {
                 this.BlackTransitionColorMultiplier += .05f;
             }
-            if(!TransitionTimer.Run(gameTime))
+            if (!TransitionTimer.Run(gameTime))
             {
                 this.IsTransitioning = true;
-                
+
             }
             else
             {
@@ -369,7 +367,7 @@ namespace SecretProject.Class.UI
         public void ActivateShop(OpenShop shopID)
         {
 
-            for(int i = 0; i < Game1.AllShops.Count; i++)
+            for (int i = 0; i < Game1.AllShops.Count; i++)
             {
                 Game1.AllShops[i].IsActive = false;
             }
@@ -383,7 +381,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
             Game1.GlobalClock.Draw(spriteBatch);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
@@ -428,9 +426,9 @@ namespace SecretProject.Class.UI
                     WarpGate.Draw(spriteBatch);
                     break;
 
-                //case ExclusiveInterfaceItem.CookingMenu:
-                //    CookingMenu.Draw(spriteBatch);
-                //    break;
+                    //case ExclusiveInterfaceItem.CookingMenu:
+                    //    CookingMenu.Draw(spriteBatch);
+                    //    break;
             }
 
             if (BottomBar.IsActive)
@@ -445,24 +443,24 @@ namespace SecretProject.Class.UI
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
 
-            if(Game1.GetCurrentStage().AllTiles != null)
+            if (CurrentAccessedStorableItem != null)
             {
-                foreach (KeyValuePair<string, IStorableItem> storeableItem in Game1.GetCurrentStage().AllTiles.StoreableItems)
+                if (CurrentAccessedStorableItem.IsUpdating)
                 {
-                    if (storeableItem.Value.IsUpdating)
-                    {
-                        storeableItem.Value.Draw(spriteBatch);
-                    }
-
+                    CurrentAccessedStorableItem.Draw(spriteBatch);
                 }
             }
-            
-            if(IsTransitioning)
+
+
+
+
+
+            if (IsTransitioning)
             {
                 DrawTransitionTexture(spriteBatch);
             }
 
-            
+
 
             spriteBatch.End();
 
@@ -475,13 +473,13 @@ namespace SecretProject.Class.UI
             this.TextBuilder.Scale = 4f;
             this.TextBuilder.Color = Color.Black;
             this.TextBuilder.IsActive = true;
-            
+
         }
 
-        
-        
+
+
 
     }
 
-    
+
 }

@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using TiledSharp;
 using XMLData.ItemStuff;
 
@@ -752,7 +752,8 @@ namespace SecretProject.Class.TileStuff
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
-                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)].IsUpdating = true;
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
                     }
                     break;
 
@@ -819,7 +820,9 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)].IsUpdating = true;
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+                       
 
                     }
                     break;
