@@ -220,22 +220,8 @@ namespace SecretProject.Class.UI
 
                         }
                     }
-                   
-
-
-
-
-
-
-                    // DragSprite = null;
-
-
 
                 }
-
-
-
-
             }
         }
 

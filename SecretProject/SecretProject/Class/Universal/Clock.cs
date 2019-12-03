@@ -33,7 +33,7 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 8;
+        public int TotalHours { get; set; } = 21;
         public int TotalDays { get; set; } = 0;
 
 

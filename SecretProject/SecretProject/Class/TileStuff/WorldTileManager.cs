@@ -378,8 +378,7 @@ namespace SecretProject.Class.TileStuff
                 case Dir.Right:
 
                     // ActiveChunks[0, 0] = ActiveChunks[1, 0];
-                    lock (locker)
-                    {
+
                         CycleChunk(0, 0, 1, 0);
 
 
@@ -413,7 +412,7 @@ namespace SecretProject.Class.TileStuff
 
                             }
                         }
-                    }
+                    
 
                     break;
             }
@@ -426,8 +425,6 @@ namespace SecretProject.Class.TileStuff
         public void CycleChunk(int oldX, int oldY, int newX, int newY)
         {
 
-            // ActiveChunks[oldX, oldY].Save();
-
             Chunk tempChunkNew = ActiveChunks[newX, newY];
             Chunk tempChunkOld = ActiveChunks[oldX, oldY];
 
@@ -435,12 +432,7 @@ namespace SecretProject.Class.TileStuff
             Task.Run(() => tempChunkOld.Save());
 
 
-
-
-
-
             ActiveChunks[oldX, oldY] = tempChunkNew;
-
             ActiveChunks[oldX, oldY].ArrayI = oldX;
             ActiveChunks[oldX, oldY].ArrayJ = oldY;
 
