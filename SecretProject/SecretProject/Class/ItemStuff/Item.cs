@@ -183,7 +183,7 @@ namespace SecretProject.Class.ItemStuff
 
                     
                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
-                    Game1.Player.UserInterface.BottomBar.CheckGridItem();
+                    Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
 

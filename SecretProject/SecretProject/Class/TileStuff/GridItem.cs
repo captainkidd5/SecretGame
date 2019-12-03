@@ -93,7 +93,7 @@ namespace SecretProject.Class.TileStuff
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
-                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
+                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
                 {
                     this.IsDrawn = true;
 
@@ -171,7 +171,7 @@ namespace SecretProject.Class.TileStuff
 
                                 TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, Game1.GetCurrentStage(), container);
-                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
 
                                 return;
                             }
@@ -272,7 +272,7 @@ namespace SecretProject.Class.TileStuff
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
-                if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
+                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
                 {
                     this.IsDrawn = true;
 
@@ -401,7 +401,7 @@ namespace SecretProject.Class.TileStuff
                                         Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
                                     }
                                 }
-                                Item item = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
+                                Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                                 TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, Game1.GetCurrentStage(), container);
                                 if (item.TilingDictionary != null)
@@ -447,7 +447,7 @@ namespace SecretProject.Class.TileStuff
                                     //}
 
                                 }
-                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool());
+                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
 
 
                                 return;

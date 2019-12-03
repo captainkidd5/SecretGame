@@ -199,7 +199,7 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CurrentAction = Swiping;
                     AnimationDirection = controls.Direction;
-                    this.CurrentTool = UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ItemSprite;
+                    this.CurrentTool = UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(CurrentTool.SourceRectangle.Width, CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
                     this.ToolLine = new Line(CurrentTool.Position, new Vector2(1, 1));
@@ -308,7 +308,7 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if (mouse.IsClicked && UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null && UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 25)
+                if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null && UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 25)
                 {
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1, Game1.SoundManager.GameVolume);
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
@@ -625,7 +625,7 @@ namespace SecretProject.Class.Playable
             }
             if (item != null)
             {
-                PlayAnimation(gameTime, animationType, UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AnimationColumn);
+                PlayAnimation(gameTime, animationType, UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
             }
             else
             {

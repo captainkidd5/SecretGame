@@ -123,16 +123,28 @@ namespace SecretProject.Class.UI
                 {
                     AllActions[i].Update(gameTime, AllActions);
                 }
+
+                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Q)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Q)))
+                {
+                    if (Inventory.currentInventory[currentSliderPosition - 1].SlotItems.Count > 0)
+                    {
+                        EjectItem();
+                    }
+                }
+
+
                 if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * Scale), (int)(BackGroundSourceRectangle.Height * Scale))))
                 {
                     MouseIntersectsBackDrop = true;
                 }
-                RedEsc.Update(Game1.myMouseManager);
+                if(this.Expanded)
+                {
+                    RedEsc.Update(Game1.myMouseManager);
+                }
+                
                 if (RedEsc.isClicked)
                 {
-                    this.IsActive = false;
-                    Game1.Player.UserInterface.BottomBar.ReturnToolBarButtonsToStandardPosition();
-                    Game1.Player.UserInterface.BottomBar.IsActive = true;
+                    this.Expanded = false;
                 }
                 TextBuilder.Update(gameTime);
                 IsAnySlotHovered = false;
@@ -258,7 +270,11 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                RedEsc.Draw(spriteBatch);
+                if(this.Expanded)
+                {
+                    RedEsc.Draw(spriteBatch);
+                }
+                
                 TextBuilder.Draw(spriteBatch, .75f);
                 if(Expanded)
                 {
@@ -287,6 +303,17 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
             }
+
+        }
+
+        public void EjectItem()
+        {
+
+            Item newWorldItem = Game1.ItemVault.GenerateNewItem(Inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+            newWorldItem.IsTossable = true;
+            Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+            Inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
+            AllSlots[currentSliderPosition - 1].ItemCounter--;
 
         }
 

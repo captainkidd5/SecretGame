@@ -178,18 +178,15 @@ namespace SecretProject.Class.UI
                         if(BackPack.Expanded)
                         {
                             BackPack.Expanded = false;
-                            BottomBar.ReturnToolBarButtonsToStandardPosition();
-                            BottomBar.IsActive = true;
                         }
                         else
                         {
                             BackPack.Expanded = true;
-                            BottomBar.IsActive = false;
+     
                         }
                        
-                        //BackPack.IsActive = !BackPack.IsActive;
                     }
-                   // BottomBar.IsActive = true;
+
                     
                     Esc.isTextChanged = false;
                     PlayerStaminaBar.Update(gameTime);

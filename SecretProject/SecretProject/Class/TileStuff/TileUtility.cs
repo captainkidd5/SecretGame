@@ -623,12 +623,12 @@ namespace SecretProject.Class.TileStuff
                     if (container.AllTiles[1][i, j].GID == -1)
                     {
 
-                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                         {
 
 
 
-                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == 23)
+                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 23)
                             {
                                 Game1.Player.UserInterface.DrawTileSelector = true;
 
@@ -674,23 +674,23 @@ namespace SecretProject.Class.TileStuff
 
                     if (mouse.IsClicked)
                     {
-                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                         {
-                            Item testItem = Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem();
-                            if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().IsPlantable)
+                            Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
                                 if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)))
                                 {
 
                                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
-                                    Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                    Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
                                     tempCrop.GID++;
                                     tempCrop.X = i;
                                     tempCrop.Y = j;
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
                                     container.Crops[container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)] = tempCrop;
-                                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().ID);
+                                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
 
                                 }
@@ -759,11 +759,11 @@ namespace SecretProject.Class.TileStuff
                 case "smelt":
                     if (mouse.IsClicked)
                     {
-                        if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool() != -50)
+                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
                         {
 
 
-                            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BottomBar.GetCurrentEquippedTool(), null);
+                            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool(), null);
                             if (tempItem.SmeltedItem != 0)
                             {
                                 Game1.Player.Inventory.RemoveItem(tempItem.ID);
@@ -1033,17 +1033,17 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-                else if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem() != null)
+                else if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    if (Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().Type == (int)actionType)
+                    if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == (int)actionType)
                     {
 
 
-                        Game1.Player.DoPlayerAnimation(gameTime, actionType, .25f, Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem());
+                        Game1.Player.DoPlayerAnimation(gameTime, actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
                         ToolInteraction(container.AllTiles[layer][oldX, oldY], gameTime, layer, oldX, oldY, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]),
                             Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), world, destinationRectangle, container,
                             container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties.ContainsKey("spawnWith"));
-                        Game1.Player.UserInterface.BottomBar.GetCurrentEquippedToolAsItem().AlterDurability(1);
+                        Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
                         if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][oldX, oldY].GetTileKeyStringNew(layer, container)))
                         {
                             container.TileHitPoints[container.AllTiles[layer][oldX, oldY].GetTileKeyStringNew(layer, container)]--;
