@@ -175,15 +175,15 @@ namespace SecretProject.Class.UI
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        if(BackPack.IsActive)
+                        if(BackPack.Expanded)
                         {
-                            BackPack.IsActive = false;
+                            BackPack.Expanded = false;
                             BottomBar.ReturnToolBarButtonsToStandardPosition();
                             BottomBar.IsActive = true;
                         }
                         else
                         {
-                            BackPack.Activate();
+                            BackPack.Expanded = true;
                             BottomBar.IsActive = false;
                         }
                        
@@ -265,7 +265,7 @@ namespace SecretProject.Class.UI
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        BackPack.IsActive = !BackPack.IsActive;
+                        BackPack.Expanded = !BackPack.Expanded;
                     }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:

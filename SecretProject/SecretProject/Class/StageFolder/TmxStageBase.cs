@@ -492,7 +492,7 @@ namespace SecretProject.Class.StageFolder
                 //    }
                 //}
 
-                Game1.Player.UserInterface.BottomBar.DrawToStageMatrix(spriteBatch);
+                Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
 

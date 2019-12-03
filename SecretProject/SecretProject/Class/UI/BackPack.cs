@@ -6,6 +6,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,65 +38,91 @@ namespace SecretProject.Class.UI
 
         public bool MouseIntersectsBackDrop { get; set; }
 
+        public bool Expanded { get; set; }
+        public int NumberOfSlotsToUpdate { get; set; }
+
+        //MAIN TOOLBAR STUFF
+        public Rectangle ItemSwitchSourceRectangle { get; set; }
+        public Item TempItem { get; set; }
+        public int currentSliderPosition = 1;
+        public bool WasSliderUpdated = false;
+
+        public List<ActionTimer> AllActions;
+
         public BackPack(GraphicsDevice graphics, Inventory Inventory)
         {
             this.Graphics = graphics;
             this.Inventory = Inventory;
-            this.IsActive = false;
-            this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight / 4);
+            this.IsActive = true;
+            this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight * .65f);
             this.BackGroundSourceRectangle = new Rectangle(208, 560, 336, 128);
             this.Scale = 2f;
 
             AllSlots = new List<Button>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f + 32 * Scale), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Game1.PresentationParameters.BackBufferWidth * .35f + i * 65, Game1.PresentationParameters.BackBufferHeight * .9f + 64 * Scale), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
-            }
-            TextBuilder = new TextBuilder("", .01f, 5);
-
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(Position.X + BackGroundSourceRectangle.Width * Scale, Position.Y), CursorType.Normal);
-
-        }
-
-        public void Activate()
-        {
-            this.IsActive = true;
-
             int index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale - 64);
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Position.X + 32 * index * Scale, Position.Y + BackGroundSourceRectangle.Height + 32 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
             index = 0;
-            for (int i = 10; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale);
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Position.X + 32 * index * Scale, Position.Y + BackGroundSourceRectangle.Height - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
             index = 0;
-            for (int i = 20; i < 30; i++)
+            for (int i = 0; i < 10; i++)
             {
-                AllSlots[i].Position = new Vector2(BackGroundSourceRectangle.X * Scale + 32 * index * Scale + 32, BackGroundSourceRectangle.Y / Scale + 64);
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(Position.X + 32 * index * Scale, Position.Y + 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
                 index++;
             }
+            TextBuilder = new TextBuilder("", .01f, 5);
+
+            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(Position.X + 32 * index * Scale, Position.Y + 16), CursorType.Normal);
+            AllActions = new List<ActionTimer>();
         }
+
+
 
         public void Update(GameTime gameTime)
         {
             if (this.IsActive)
             {
+                if (Expanded)
+                {
+                    NumberOfSlotsToUpdate = 30;
+                }
+                else
+                {
+                    NumberOfSlotsToUpdate = 10;
+                }
+                UpdateScrollWheel(Game1.myMouseManager);
                 DragSprite = null;
                 MouseIntersectsBackDrop = false;
+                if (WasSliderUpdated && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+                {
+
+                    ItemSwitchSourceRectangle = GetCurrentItemTexture();
+                }
+                else if (WasSliderUpdated && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count <= 0)
+                {
+                    ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
+                }
+
+
+                if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
+                {
+                    //this might be broken
+                    CheckGridItem();
+
+                    AllActions.Add(new ActionTimer(1, AllActions.Count - 1));
+                }
+
+                for (int i = 0; i < AllActions.Count; i++)
+                {
+                    AllActions[i].Update(gameTime, AllActions);
+                }
                 if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)Position.X, (int)Position.Y, (int)(BackGroundSourceRectangle.Width * Scale), (int)(BackGroundSourceRectangle.Height * Scale))))
                 {
                     MouseIntersectsBackDrop = true;
@@ -109,7 +136,9 @@ namespace SecretProject.Class.UI
                 }
                 TextBuilder.Update(gameTime);
                 IsAnySlotHovered = false;
-                for (int i = 0; i < AllSlots.Count; i++)
+
+                
+                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
                 {
                     UpdateInventorySlotTexture(Inventory, i);
                     AllSlots[i].Update(Game1.myMouseManager);
@@ -152,7 +181,7 @@ namespace SecretProject.Class.UI
                 }
 
                 
-                for (int i = 0; i < AllSlots.Count; i++)
+                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
                 {
                     //INTERACTIONS WITH RELEASE ITEM 
                     if (AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
@@ -231,8 +260,12 @@ namespace SecretProject.Class.UI
             {
                 RedEsc.Draw(spriteBatch);
                 TextBuilder.Draw(spriteBatch, .75f);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
-                for (int i = 0; i < AllSlots.Count; i++)
+                if(Expanded)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
+                }
+              
+                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
                 {
                     if (AllSlots[i].IsHovered)
                     {
@@ -250,6 +283,9 @@ namespace SecretProject.Class.UI
 
                     DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
                 }
+
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
+                    Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
             }
 
         }
@@ -298,6 +334,150 @@ namespace SecretProject.Class.UI
             }
         }
 
+        #region SCROLLWHEEL
+        private void UpdateScrollWheel(MouseManager mouse)
+        {
+            WasSliderUpdated = false;
+            int oldSliderPosition = currentSliderPosition;
+
+            if ((Game1.Player.controls.pressedKeys != null))
+            {
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D1))
+                {
+                    currentSliderPosition = 1;
+                }
+
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D2))
+                {
+                    currentSliderPosition = 2;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D3))
+                {
+                    currentSliderPosition = 3;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D4))
+                {
+                    currentSliderPosition = 4;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D5))
+                {
+                    currentSliderPosition = 5;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D6))
+                {
+                    currentSliderPosition = 6;
+                }
+                if (Game1.Player.controls.pressedKeys.Contains(Keys.D7))
+                {
+                    currentSliderPosition = 7;
+                }
+            }
+
+            if (mouse.HasScrollWheelValueDecreased)
+            {
+                currentSliderPosition += 1;
+            }
+            else if (mouse.HasScrollWheelValueIncreased)
+            {
+                currentSliderPosition -= 1;
+            }
+
+            if (currentSliderPosition > 10)
+            {
+                currentSliderPosition = 10;
+            }
+            if (currentSliderPosition < 1)
+            {
+                currentSliderPosition = 1;
+            }
+
+            if (oldSliderPosition != currentSliderPosition)
+            {
+                WasSliderUpdated = true;
+            }
+
+        }
+        #endregion
+        public int GetCurrentEquippedTool()
+        {
+            if (Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            {
+                return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().ID;
+            }
+            else
+            {
+                return -50; //Placeholder
+            }
+        }
+
+        public Item GetCurrentEquippedToolAsItem()
+        {
+            if (Inventory != null && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            {
+                return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void CheckGridItem()
+        {
+            if (Game1.ItemVault.ExteriorGridItems != null && Game1.ItemVault.InteriorGridItems != null)
+            {
+                if (Game1.GetCurrentStageInt() == Stages.World)
+                {
+                    if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.ExteriorGridItems[GetCurrentEquippedTool()];
+
+
+                    }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
+                }
+                else if (Game1.GetCurrentStageInt() == Stages.PlayerHouse)
+                {
+                    if (Game1.ItemVault.InteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = Game1.ItemVault.InteriorGridItems[GetCurrentEquippedTool()];
+
+
+                    }
+                    else
+                    {
+                        Game1.GetCurrentStage().AllTiles.GridItem = null;
+                    }
+                }
+
+
+
+            }
+            else
+            {
+                Game1.GetCurrentStage().AllTiles.GridItem = null;
+            }
+        }
+
+        public Rectangle GetCurrentItemTexture()
+        {
+            return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
+        }
+
+        public void DrawToStageMatrix(SpriteBatch spriteBatch)
+        {
+            //if action still exists and isn't complete we'll still draw it. 
+            if (AllActions.Count > 0 && !AllActions[AllActions.Count - 1].ActionComplete)
+            {
+                spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, sourceRectangle: this.ItemSwitchSourceRectangle, destinationRectangle: new Rectangle((int)Game1.Player.position.X + 3,
+                    (int)Game1.Player.position.Y - 15, 16, 16), color: Color.White, layerDepth: 1, scale: new Vector2(1f, 1f));
+            }
+
+
+        }
 
     }
 }
