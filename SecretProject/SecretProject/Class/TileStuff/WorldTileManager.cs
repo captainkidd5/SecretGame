@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
@@ -72,6 +73,8 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, Crop> Crops { get; set; }
 
         public Rectangle ScreenRectangle { get; set; }
+
+        
         // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public PathFinder PathFinder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -454,6 +457,25 @@ namespace SecretProject.Class.TileStuff
         }
         static readonly object locker = new object();
 
+        int range = 1;
+
+        public Point GetChunkPositionFromCamera(float x, float y)
+        {
+            return new Point((int)(x / 16/ 16), (int)(y / 16/ 16));
+        }
+        Point[] ChunkPositions = new Point[9];
+        public void GetProperArrayData(Camera2D cam)
+        {
+            Point rooPosition = GetChunkPositionFromCamera(cam.Pos.X, cam.Pos.Y);
+            int i = 0;
+            for (int y = rooPosition.Y +  range ; y >= rooPosition.Y -  range; y -= 1)
+            {
+                for (int x = rooPosition.X - range; x <= rooPosition.X + range; x += 1)
+                {
+                    ChunkPositions[i++] = new Point(x, y);
+                }
+            }
+        }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             ChunkPointUnderPlayer = new Point((int)Math.Floor(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)Math.Floor(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
@@ -485,10 +507,12 @@ namespace SecretProject.Class.TileStuff
 
 
             }
+            GetProperArrayData(Game1.cam);
             ChunkUnderPlayer = ActiveChunks[1, 1];
             this.StoreableItems = ChunkUnderPlayer.StoreableItems;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
+            
 
             int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 

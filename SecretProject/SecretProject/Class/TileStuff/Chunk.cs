@@ -31,8 +31,10 @@ namespace SecretProject.Class.TileStuff
         public int MapHeight { get; set; }
 
         public bool IsLoaded { get; set; }
+        public Point WorldPosition { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public Point ChunkPosition { get; set; }
         public List<Tile[,]> AllTiles { get; set; }
 
  
@@ -84,6 +86,7 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
+            this.ChunkPosition = new Point(X, Y);
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
             Objects = new Dictionary<string, List<ICollidable>>();
