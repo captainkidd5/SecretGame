@@ -492,7 +492,7 @@ namespace SecretProject.Class.Playable
          
                                 if (MainCollider.DidCollide(returnObjects[i], position))
                                 {
-                                    CollideOccured = true;
+                                  //  CollideOccured = true;
                                     //returnObjects[i].InitialShuffDirection = this.controls.Direction;
                                 }
 

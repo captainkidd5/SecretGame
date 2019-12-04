@@ -448,6 +448,7 @@ namespace SecretProject.Class.TileStuff
 
             switch (direction)
             {
+                //CORRECT
                 case Dir.Down:
                     //shifts everything down one
                     for (int i = 0; i < ActiveChunks.GetLength(0); i++)
@@ -472,14 +473,14 @@ namespace SecretProject.Class.TileStuff
                     break;
                 case Dir.Up:
                     //shifts everything up one
-                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    for (int i = ActiveChunks.GetLength(0) - 1; i > -1 ; i--)
                     {
-                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        for (int j = ActiveChunks.GetLength(1) - 1; j> -1; j--)
                         {
                             if (j == 0)
                             {
-                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[0 + i].X,
-                                    ChunkPositions[0 + i].Y, i, j);
+                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i].X,
+                                    ChunkPositions[i].Y, i, j);
                                 ChunkCheck(ref ActiveChunks[i, j]);
                             }
                             else
@@ -497,21 +498,75 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (int j = 0; j < ActiveChunks.GetLength(1); j++)
                         {
-                            if (i == ActiveChunks.GetUpperBound(0))
+                            if (i == 0)
                             {
-                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ActiveChunks.GetUpperBound(0) - i].X,
-                                    ChunkPositions[ActiveChunks.GetUpperBound(0) - i].Y, i, j);
+                                if (j == 0)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[0].X,
+                                    ChunkPositions[0].Y, i, j);
+                                }
+                                else if (j == 1)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[3].X,
+                                    ChunkPositions[3].Y, i, j);
+
+                                }
+                                else if (j == 2)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[6].X,
+                                    ChunkPositions[6].Y, i, j);
+                                }
+
                                 ChunkCheck(ref ActiveChunks[i, j]);
                             }
+
                             else
                             {
-                                ActiveChunks[i - 1, j] = ActiveChunks[i, j];
+
+                                ActiveChunks[i, j] = ActiveChunks[i - 1, j];
+
+
                             }
                         }
                     }
                     break;
+                    //CORRECT
                 case Dir.Right:
+                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        {
+                            if (i == 2)
+                            {
+                                if(j ==0)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[2].X,
+                                    ChunkPositions[2].Y, i, j);
+                                }
+                                else if(j == 1)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[5].X,
+                                    ChunkPositions[5].Y, i, j);
 
+                                }
+                                else if (j == 2)
+                                {
+                                    ActiveChunks[i, j] = new Chunk(this, ChunkPositions[8].X,
+                                    ChunkPositions[8].Y, i, j);
+                                }
+                                
+                                ChunkCheck(ref ActiveChunks[i, j]);
+                            }
+
+                            else
+                            {
+
+                                ActiveChunks[i, j] = ActiveChunks[i + 1, j ];
+
+
+                            }
+                        }
+                    }
                     break;
             }
 
@@ -532,8 +587,6 @@ namespace SecretProject.Class.TileStuff
         }
         static readonly object locker = new object();
 
-        int range = 1;
-
         public Point GetChunkPositionFromCamera(float x, float y)
         {
             return new Point((int)(x / 16 / 16), (int)(y / 16 / 16));
@@ -553,14 +606,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
-            //for (int y = rootPosition.Y +  range ; y >= rootPosition.Y -  range; y -= 1)
-            //{
-            //    for (int x = rootPosition.X - range; x <= rootPosition.X + range; x += 1)
-            //    {
-            //        ChunkPositions[i++] = new Point(x, y);
-            //    }
-            //}
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
