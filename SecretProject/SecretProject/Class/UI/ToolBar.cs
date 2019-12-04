@@ -77,8 +77,8 @@ namespace SecretProject.Class.UI
             InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(80, 80, 64, 64), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal);
 
             GoldIcon = new Rectangle(16, 320, 32, 32);
-            GoldIconPosition = new Vector2(backPack.SmallPosition.X - 128, backPack.SmallPosition.Y);
-            GoldIconBackGroundSourceRectangle = new Rectangle(160, 688, 48, 32);
+            GoldIconPosition = new Vector2(backPack.SmallPosition.X + backPack.SmallBackgroundSourceRectangle.Width * backPack.Scale + 80, backPack.SmallPosition.Y);
+            GoldIconBackGroundSourceRectangle = new Rectangle(128, 688, 80, 32);
 
             Scale = 2f;
 
@@ -135,8 +135,8 @@ namespace SecretProject.Class.UI
               
                 InGameMenu.Draw(spriteBatch, Game1.AllTextures.MenuText, "Menu", InGameMenu.Position, Color.CornflowerBlue, .69f, .7f);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, GoldIconPosition, GoldIconBackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(GoldIconPosition.X - 64, GoldIconPosition.Y), GoldIcon, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), GoldIconPosition, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(GoldIconPosition.X + 112, GoldIconPosition.Y), GoldIcon, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), new Vector2(GoldIconPosition.X + 16, GoldIconPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
             }
         }

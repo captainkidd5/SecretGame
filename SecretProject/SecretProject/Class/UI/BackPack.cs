@@ -61,7 +61,7 @@ namespace SecretProject.Class.UI
             this.LargeBackgroundSourceRectangle = new Rectangle(208, 576, 336, 112);
             this.SmallBackgroundSourceRectangle = new Rectangle(208, 688, 336, 32);
             this.Scale = 2f;
-            this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 3, Game1.PresentationParameters.BackBufferHeight * .9f);
+            this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 4, Game1.PresentationParameters.BackBufferHeight * .9f);
             this.BigPosition = new Vector2(SmallPosition.X, SmallPosition.Y - LargeBackgroundSourceRectangle.Height * Scale + 32 * Scale);
             
            
@@ -177,6 +177,12 @@ namespace SecretProject.Class.UI
                                 case ExclusiveInterfaceItem.ShopMenu:
                                     Game1.Player.UserInterface.InfoBox.FitText(Inventory.currentInventory[i].GetItem().Name + ":  " + "Shop will buy for " + Inventory.currentInventory[i].GetItem().Price + ".", 1f);
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
+                                    if(AllSlots[i].isClicked)
+                                    {
+                                        
+                                        Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(Inventory.currentInventory[i].GetItem(), 1);
+                                        Inventory.currentInventory[i].RemoveItemFromSlot();
+                                    }
                                     break;
 
                                 default:

@@ -178,10 +178,16 @@ namespace SecretProject.Class.UI
 
 
 
-        public int TrySellToShop(int id, int amountToSell)
+        public void TrySellToShop(Item item, int amountToSell)
         {
-            TryAddStock(id, amountToSell);
-            return (Game1.ItemVault.GenerateNewItem(id, null, false).Price);
+            TryAddStock(item.ID, amountToSell);
+            for(int i =0; i < amountToSell;i++)
+            {
+                Game1.Player.Inventory.Money += item.Price;
+            }
+            
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1, Game1.SoundManager.GameVolume);
+            
         }
 
 
@@ -202,7 +208,7 @@ namespace SecretProject.Class.UI
             Item item = Game1.ItemVault.GenerateNewItem(itemID, null);
             this.Item = item;
             this.ItemID = itemID;
-            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Currency,buttonScale);
+            Button = new Button(item.ItemSprite.AtlasTexture, item.SourceTextureRectangle, graphics, drawPosition, CursorType.Currency,buttonScale );
             this.Stock = stock;
             this.drawPosition = drawPosition;
             this.colorMultiplier = .25f;
@@ -224,10 +230,13 @@ namespace SecretProject.Class.UI
                     Item item = Game1.ItemVault.GenerateNewItem(ItemID, null);
                     if (Game1.Player.Inventory.Money >= item.Price)
                     {
-                        Game1.Player.Inventory.TryAddItem(item);
-                        Stock--;
-                        Game1.Player.Inventory.Money -= item.Price;
-                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1, Game1.SoundManager.GameVolume);
+                        if(Game1.Player.Inventory.TryAddItem(item))
+                        {
+                            Stock--;
+                            Game1.Player.Inventory.Money -= item.Price;
+                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1, Game1.SoundManager.GameVolume);
+                        }
+                        
                         //Game1.SoundManager.Sell1.Play();
                     }
                 }

@@ -13,6 +13,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.Universal;
 using static SecretProject.Class.UI.CheckList;
@@ -53,14 +54,14 @@ namespace SecretProject.Class.UI
     public class UserInterface
     {
         ContentManager content;
-        public bool IsShopMenu { get; set; }
+
 
         public bool DrawTileSelector { get; set; } = true;
 
         public GraphicsDevice GraphicsDevice { get; set; }
         public Game1 Game { get; set; }
         public EscMenu Esc { get; set; }
-        //public ShopMenu ShopMenu { get; set; }
+
         internal ToolBar BottomBar { get; set; }
 
         public Camera2D cam;
@@ -75,6 +76,7 @@ namespace SecretProject.Class.UI
         public Player Player { get; set; }
 
         public OpenShop CurrentOpenShop { get; set; } = OpenShop.None;
+        public IShop CurrentShop{ get; set; }
 
         public CraftingMenu CraftingMenu { get; set; }
 
@@ -195,7 +197,7 @@ namespace SecretProject.Class.UI
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
-                        this.IsShopMenu = true;
+
                         ActivateShop(OpenShop.ToolShop);
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
 
@@ -227,15 +229,11 @@ namespace SecretProject.Class.UI
                     }
                     break;
                 case ExclusiveInterfaceItem.ShopMenu:
-                    for (int i = 0; i < Game1.AllShops.Count; i++)
-                    {
-                        if (Game1.AllShops[i].IsActive)
-                        {
+
                             Game1.isMyMouseVisible = true;
                             Game1.freeze = true;
-                            Game1.AllShops[i].Update(gameTime, mouse);
-                        }
-                    }
+                            CurrentShop.Update(gameTime, mouse);
+                 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -243,7 +241,7 @@ namespace SecretProject.Class.UI
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
-                        this.IsShopMenu = false;
+  
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     break;
@@ -371,12 +369,11 @@ namespace SecretProject.Class.UI
             {
                 Game1.AllShops[i].IsActive = false;
             }
-            Game1.AllShops.Find(x => x.ID == (int)shopID).IsActive = IsShopMenu;
+            CurrentShop = Game1.AllShops.Find(x => x.ID == (int)shopID);
+            CurrentShop.IsActive = true;
             Player.UserInterface.CurrentOpenShop = shopID;
-            if (!IsShopMenu)
-            {
-                Player.UserInterface.CurrentOpenShop = 0;
-            }
+            CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -397,13 +394,7 @@ namespace SecretProject.Class.UI
                     Esc.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.ShopMenu:
-                    for (int i = 0; i < Game1.AllShops.Count; i++)
-                    {
-                        if (Game1.AllShops[i].IsActive)
-                        {
-                            Game1.AllShops[i].Draw(spriteBatch);
-                        }
-                    }
+                    CurrentShop.Draw(spriteBatch);
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
                     CraftingMenu.Draw(spriteBatch);

@@ -276,32 +276,21 @@ namespace SecretProject.Class.Universal
             {
                 case "OpenJulianShop":
                     Game1.freeze = true;
-                    Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.JulianShop);
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
 
                     break;
                 case "OpenDobbinShop":
-                    Game1.freeze = true;
-                    Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.DobbinShop);
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
 
                 case "OpenElixirShop":
-                    Game1.freeze = true;
-                    Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.ElixirShop);
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
                 case "OpenKayaShop":
-                    Game1.freeze = true;
-                    Game1.Player.UserInterface.IsShopMenu = true;
                     Game1.Player.UserInterface.ActivateShop(OpenShop.KayaShop);
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
 
