@@ -55,8 +55,13 @@ namespace SecretProject.Class.UI
             Tabs[0].AddNewCraftableItem(40, 5, BackDropPosition, graphics, this);
             Tabs[0].AddNewCraftableItem(120, 5, BackDropPosition, graphics, this);
             Tabs[0].AddNewCraftableItem(160, 5, BackDropPosition, graphics, this);
-            //FOOD
+            //FOOD --> needs to be changed to stations
+            //cauldron
             Tabs[1].AddNewCraftableItem(1055, 5, BackDropPosition, graphics, this);
+            //saw table
+            Tabs[1].AddNewCraftableItem(1201, 5, BackDropPosition, graphics, this);
+            //furnace
+            Tabs[1].AddNewCraftableItem(1202, 5, BackDropPosition, graphics, this);
 
             //CONSTRUCTION
             Tabs[2].AddNewCraftableItem(1162, 5, BackDropPosition, graphics, this);
@@ -203,6 +208,8 @@ namespace SecretProject.Class.UI
         public Button CraftButton { get; set; }
         public Color CraftButtonColor { get; set; }
 
+
+
         public CraftableRecipeBar(CraftingMenu craftingMenu, GraphicsDevice graphics, Vector2 backDropPosition, float backDropScale)
         {
             this.CraftingMenu = craftingMenu;
@@ -274,13 +281,12 @@ namespace SecretProject.Class.UI
                 if (craftable)
                 {
                     this.ColorMultiplier = 1f;
-                    this.CraftButtonColor = Color.Green;
+
                     
                 }
                 else
                 {
                     this.ColorMultiplier = .5f;
-                    this.CraftButtonColor = Color.Red;
 
                 }
 
@@ -330,8 +336,8 @@ namespace SecretProject.Class.UI
                 {
                     Ingredients[i].Draw(spriteBatch, this.Color, new Vector2(BackDropPosition.X + 32 + i * 64, BackDropPosition.Y + BackGroundSourceRectangle.Height), 1f);
                 }
-
-                CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", new Vector2(CraftButton.Position.X + CraftButton.BackGroundSourceRectangle.Width/2, CraftButton.Position.Y), this.CraftButtonColor, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .1f);
+                
+                CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", new Vector2(CraftButton.Position.X + CraftButton.BackGroundSourceRectangle.Width/2 + 16, CraftButton.Position.Y + 16), this.CraftButtonColor * ColorMultiplier, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .1f, 2f);
             }
             else if (CraftingMenu.ActiveToolTip == null)
             {

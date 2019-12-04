@@ -229,10 +229,10 @@ namespace SecretProject.Class.MenuStuff
         }
 
         
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color textTint, float textureDepth, float textDepth)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color textTint, float textureDepth, float textDepth, float scale = 1f)
         {
             spriteBatch.Draw(this.Texture, HitBoxRectangle, this.BackGroundSourceRectangle, this.Color, 0f, Game1.Utility.Origin, SpriteEffects.None, textureDepth);
-            spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, textDepth);
+            spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin,scale, SpriteEffects.None, textDepth);
         }
 
         public void DrawNormal(SpriteBatch spriteBatch, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float depth)

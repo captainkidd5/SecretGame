@@ -433,7 +433,7 @@ namespace SecretProject.Class.UI
 
             if (BottomBar.IsActive)
             {
-                BottomBar.Draw(spriteBatch);
+                BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
                 InfoBox.Draw(spriteBatch);
             }
 

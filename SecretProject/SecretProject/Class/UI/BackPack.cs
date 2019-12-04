@@ -235,7 +235,7 @@ namespace SecretProject.Class.UI
                                 }
                             }
                         }
-                        else if (InteractWithChest(i))
+                        else if (InteractWithStorageItem(i))
                         {
 
                         }
@@ -382,7 +382,7 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public bool InteractWithChest(int index)
+        public bool InteractWithStorageItem(int index)
         {
             if (Game1.Player.UserInterface.IsAnyStorageItemOpen)
             {

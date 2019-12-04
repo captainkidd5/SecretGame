@@ -25,6 +25,7 @@ namespace SecretProject.Class.MenuStuff
         public bool IsActive { get; set; }
         public bool FreezesGame { get; set; }
         private float Scale { get; set; }
+        public Vector2 Position { get; set; }
 
         public EscMenu(GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -33,10 +34,11 @@ namespace SecretProject.Class.MenuStuff
 
 
             Scale = 2f;
-
+            
             BackGroundSourceRectangle = new Rectangle(64, 416, 128, 224);
+            Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height);
 
-           
+
             this.IsActive = false;
             this.FreezesGame = true;
             this.Tabs = new List<CategoryTab>()
@@ -48,7 +50,7 @@ namespace SecretProject.Class.MenuStuff
 
             };
 
-            Tabs[0].Pages.Add(new MainEscPage(graphicsDevice,BackGroundSourceRectangle));
+            Tabs[0].Pages.Add(new MainEscPage(graphicsDevice,BackGroundSourceRectangle, Position));
             Tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle,Scale));
 
         }
@@ -84,7 +86,7 @@ namespace SecretProject.Class.MenuStuff
         {
             //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Utility.CenterScreenX -200, Game1.Utility.CenterScreenY -200 , 224,304),
             //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height),
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position,
                 BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
             for (int i = 0; i < Tabs.Count; i++)
@@ -114,15 +116,17 @@ namespace SecretProject.Class.MenuStuff
         private string MenuText { get; set; }
         private string ToggleFullScreenButtonText;
 
+        public Vector2 Position { get; private set; }
 
-        public MainEscPage(GraphicsDevice graphicsDevice, Rectangle backgroundSourceRectangle)
+
+        public MainEscPage(GraphicsDevice graphicsDevice, Rectangle backgroundSourceRectangle, Vector2 Position)
         {
-            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY - 150), CursorType.Normal);
+            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width /3, Position.Y + 16 * 2), CursorType.Normal, 2f);
 
-            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY - 90), CursorType.Normal);
+            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 64 * 2), CursorType.Normal,2f);
 
-            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY), CursorType.Normal);
-            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2, Game1.Utility.CenterScreenY + 90), CursorType.Normal);
+            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 112 * 2), CursorType.Normal,2f);
+            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 160 * 2), CursorType.Normal,2f);
 
             MenuText = "Exit Game";
             SettingsText = "Save Game";
@@ -165,10 +169,10 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, MenuText, MenuButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
-            ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ReturnText, ReturnButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
-            SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, SettingsText, SettingsButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
-            ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.BlueViolet, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f);
+            MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, MenuText, MenuButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ReturnText, ReturnButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, SettingsText, SettingsButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
 
         }
 

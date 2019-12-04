@@ -86,6 +86,38 @@
     </AllItemsRequired>
     </Item>
 
+    <!--Saw Table -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1201</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>520</ItemID>
+    <Count>100</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>521</ItemID>
+    <Count>50</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>680</ItemID>
+    <Count>5</Count>
+    </Item>
+    </AllItemsRequired>
+    <Unlocked>true</Unlocked>
+    </Item>
+
+     <!--Furnace -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1202</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>640</ItemID>
+    <Count>20</Count>
+    </Item>
+    </AllItemsRequired>
+    <Unlocked>true</Unlocked>
+    </Item>
+
 
   </CraftingRecipes>
   </Asset>
