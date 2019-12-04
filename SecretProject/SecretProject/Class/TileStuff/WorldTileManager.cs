@@ -473,9 +473,9 @@ namespace SecretProject.Class.TileStuff
                     break;
                 case Dir.Up:
                     //shifts everything up one
-                    for (int i = ActiveChunks.GetLength(0) - 1; i > -1 ; i--)
+                    for (int i = ActiveChunks.GetLength(0) - 1; i > -1; i--)
                     {
-                        for (int j = ActiveChunks.GetLength(1) - 1; j> -1; j--)
+                        for (int j = ActiveChunks.GetLength(1) - 1; j > -1; j--)
                         {
                             if (j == 0)
                             {
@@ -494,9 +494,9 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
                 case Dir.Left:
-                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    for (int i = ActiveChunks.GetLength(0) - 1; i > -1; i--)
                     {
-                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        for (int j = ActiveChunks.GetLength(1) - 1; j > -1; j--)
                         {
                             if (i == 0)
                             {
@@ -530,7 +530,7 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                     break;
-                    //CORRECT
+                //CORRECT
                 case Dir.Right:
                     for (int i = 0; i < ActiveChunks.GetLength(0); i++)
                     {
@@ -538,12 +538,12 @@ namespace SecretProject.Class.TileStuff
                         {
                             if (i == 2)
                             {
-                                if(j ==0)
+                                if (j == 0)
                                 {
                                     ActiveChunks[i, j] = new Chunk(this, ChunkPositions[2].X,
                                     ChunkPositions[2].Y, i, j);
                                 }
-                                else if(j == 1)
+                                else if (j == 1)
                                 {
                                     ActiveChunks[i, j] = new Chunk(this, ChunkPositions[5].X,
                                     ChunkPositions[5].Y, i, j);
@@ -554,14 +554,14 @@ namespace SecretProject.Class.TileStuff
                                     ActiveChunks[i, j] = new Chunk(this, ChunkPositions[8].X,
                                     ChunkPositions[8].Y, i, j);
                                 }
-                                
+
                                 ChunkCheck(ref ActiveChunks[i, j]);
                             }
 
                             else
                             {
 
-                                ActiveChunks[i, j] = ActiveChunks[i + 1, j ];
+                                ActiveChunks[i, j] = ActiveChunks[i + 1, j];
 
 
                             }
@@ -589,11 +589,18 @@ namespace SecretProject.Class.TileStuff
 
         public Point GetChunkPositionFromCamera(float x, float y)
         {
+            int returnX = (int)(x / 16 / 16);
+            int returnY = (int)(y / 16 / 16);
+            if(x < 0)
+            {
+                returnX--;
+            }
             if(y < 0)
             {
-                return new Point((int)(x / 16 / 16), (int)(y / 16 / 16) - 1);
+                returnY--;
             }
-            return new Point((int)(x / 16 / 16), (int)(y / 16 / 16));
+
+            return new Point(returnX, returnY);
         }
         Point[] ChunkPositions = new Point[9];
         public void GetProperArrayData()
@@ -623,25 +630,23 @@ namespace SecretProject.Class.TileStuff
 
                 if (ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
                 {
-
-                    //UpdateGrid(Dir.Right);
                     MoveChunks(Dir.Right);
                 }
                 else if (ChunkPointUnderPlayer.X < ChunkPointUnderPlayerLastFrame.X)
                 {
-                    // UpdateGrid(Dir.Left);
+
                     MoveChunks(Dir.Left);
 
                 }
                 else if (ChunkPointUnderPlayer.Y > ChunkPointUnderPlayerLastFrame.Y)
                 {
-                    //UpdateGrid(Dir.Down);
+
                     MoveChunks(Dir.Down);
 
                 }
                 else if (ChunkPointUnderPlayer.Y < ChunkPointUnderPlayerLastFrame.Y)
                 {
-                    // UpdateGrid(Dir.Up);
+
                     MoveChunks(Dir.Up);
 
                 }
