@@ -393,7 +393,7 @@ namespace SecretProject.Class.TileStuff
                                     List<GrassTuft> tufts = new List<GrassTuft>();
                                     for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                                     {
-                                        int grassType = Game1.Utility.RGenerator.Next(1, 4);
+                                        int grassType = Game1.Utility.RGenerator.Next(1, 5);
                                         GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
                                             + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                                         grassTuft.TuftsIsPartOf = tufts;

@@ -432,7 +432,7 @@ namespace SecretProject.Class.UI
 
             TextBuilder.Draw(spriteBatch, .71f);
 
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.Player.Inventory.Money.ToString(), new Vector2(340, 645), Color.Red, 0f, Origin, 1f, SpriteEffects.None, layerDepth: .71f);
+          
 
             if (CurrentAccessedStorableItem != null)
             {

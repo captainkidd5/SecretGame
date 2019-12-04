@@ -27,9 +27,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public Rectangle Rectangle { get; set; }
 
-        public Rectangle Type1SourceRectangle { get; set; }
-        public Rectangle Type2SourceRectangle { get; set; }
-        public Rectangle Type3SourceRectangle { get; set; }
+        public Rectangle SourceRectangle { get; set; }
 
         public ColliderType ColliderType { get; set; }
         public string LocationKey { get; set; }
@@ -39,7 +37,7 @@ namespace SecretProject.Class.SpriteFolder
         protected Texture2D rectangleTexture;
         public List<GrassTuft> TuftsIsPartOf { get; set; }
 
-        public GrassTuft(GraphicsDevice graphics,int grassType,Vector2 position)
+        public GrassTuft(GraphicsDevice graphics, int grassType, Vector2 position)
         {
             this.GrassType = grassType;
             this.Position = position;
@@ -52,14 +50,13 @@ namespace SecretProject.Class.SpriteFolder
             this.ShuffDirection = Dir.Left;
             this.ShuffDirectionPicked = false;
 
-            this.Type1SourceRectangle = new Rectangle(0, 0, 16, 32);
-            this.Type2SourceRectangle = new Rectangle(16, 0, 16, 32);
-            this.Type3SourceRectangle = new Rectangle(32, 0, 16, 32);
             this.Rectangle = new Rectangle(DestinationRectangle.X, DestinationRectangle.Y, 8, 8);
 
             this.ColliderType = ColliderType.grass;
             this.IsUpdating = false;
             SetRectangleTexture(graphics);
+            this.SourceRectangle = new Rectangle(grassType * 16, 0, 16, 32);
+
 
         }
         public void Update(GameTime gameTime)
@@ -79,7 +76,7 @@ namespace SecretProject.Class.SpriteFolder
             {
                 RotateBackToOrigin(gameTime);
                 //this.ShuffDirectionPicked = false;
-              //  this.IsUpdating = false;
+                //  this.IsUpdating = false;
             }
             if (this.StartShuff)
             {
@@ -89,22 +86,11 @@ namespace SecretProject.Class.SpriteFolder
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-         
-            switch (GrassType)
-            {
-                case 1:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type1SourceRectangle,
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y ) * .0000001f + YOffSet);
-                    break;
-                case 2:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type2SourceRectangle,
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y ) * .0000001f + YOffSet);
-                    break;
-                case 3:
-                    spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, Type3SourceRectangle,
-                        Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y  ) * .0000001f + YOffSet);
-                    break;
-            }
+
+
+            spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, SourceRectangle,
+                Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y) * .0000001f + YOffSet);
+
         }
 
         public void SelfDestruct()
@@ -118,13 +104,13 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Shuff(GameTime gameTime, int direction)
         {
-            if(!ShuffDirectionPicked)
+            if (!ShuffDirectionPicked)
             {
                 if (direction == (int)Dir.Up || direction == (int)Dir.Down)
                 {
                     this.ShuffDirection = (Dir)Game1.Utility.RGenerator.Next(2, 4);
                 }
-                if(direction == (int)Dir.Right)
+                if (direction == (int)Dir.Right)
                 {
                     this.ShuffDirection = Dir.Right;
                 }
@@ -174,11 +160,11 @@ namespace SecretProject.Class.SpriteFolder
 
         public void RotateBackToOrigin(GameTime gameTime)
         {
-            if (this.Rotation > 0 )
+            if (this.Rotation > 0)
             {
-                this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds /2;
+                this.Rotation -= (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
 
-                if(Rotation <= 0)
+                if (Rotation <= 0)
                 {
                     this.StartShuff = false;
                     this.IsUpdating = false;
@@ -186,7 +172,7 @@ namespace SecretProject.Class.SpriteFolder
                     return;
                 }
             }
-            else if(Rotation < 0 )
+            else if (Rotation < 0)
             {
                 this.Rotation += (float)gameTime.ElapsedGameTime.TotalSeconds / 2;
                 if (Rotation >= 0)
