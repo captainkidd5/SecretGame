@@ -74,7 +74,7 @@ namespace SecretProject.Class.TileStuff
 
         public Rectangle ScreenRectangle { get; set; }
 
-        
+
         // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public PathFinder PathFinder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -382,40 +382,40 @@ namespace SecretProject.Class.TileStuff
 
                     // ActiveChunks[0, 0] = ActiveChunks[1, 0];
 
-                        CycleChunk(0, 0, 1, 0);
+                    CycleChunk(0, 0, 1, 0);
 
 
-                        //  ActiveChunks[0, 1] = ActiveChunks[1, 1];
-                        CycleChunk(0, 1, 1, 1);
+                    //  ActiveChunks[0, 1] = ActiveChunks[1, 1];
+                    CycleChunk(0, 1, 1, 1);
 
-                        //ActiveChunks[0, 2] = ActiveChunks[1, 2];
-                        CycleChunk(0, 2, 1, 2);
+                    //ActiveChunks[0, 2] = ActiveChunks[1, 2];
+                    CycleChunk(0, 2, 1, 2);
 
-                        // ActiveChunks[1, 0] = ActiveChunks[2, 0];
-                        CycleChunk(1, 0, 2, 0);
+                    // ActiveChunks[1, 0] = ActiveChunks[2, 0];
+                    CycleChunk(1, 0, 2, 0);
 
-                        //  ActiveChunks[1, 1] = ActiveChunks[2, 1];
-                        CycleChunk(1, 1, 2, 1);
+                    //  ActiveChunks[1, 1] = ActiveChunks[2, 1];
+                    CycleChunk(1, 1, 2, 1);
 
 
-                        // ActiveChunks[1, 2] = ActiveChunks[2, 2];
-                        CycleChunk(1, 2, 2, 2);
+                    // ActiveChunks[1, 2] = ActiveChunks[2, 2];
+                    CycleChunk(1, 2, 2, 2);
 
-                        lock (locker)
+                    lock (locker)
+                    {
+                        for (int i = 0; i < 3; i++)
                         {
-                            for (int i = 0; i < 3; i++)
-                            {
 
 
-                                int index = i;
-                                // Chunk chunkToSave = ActiveChunks[2, index];
-                                // Task.Run(() => chunkToSave.Save());
-                                ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
-                                Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
+                            int index = i;
+                            // Chunk chunkToSave = ActiveChunks[2, index];
+                            // Task.Run(() => chunkToSave.Save());
+                            ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
+                            Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
 
-                            }
                         }
-                    
+                    }
+
 
                     break;
             }
@@ -443,6 +443,81 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public void MoveChunks(Dir direction)
+        {
+
+            switch (direction)
+            {
+                case Dir.Down:
+                    //shifts everything down one
+                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        {
+                            if (j == ActiveChunks.GetUpperBound(1))
+                            {
+                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ChunkPositions.Length - 3 + i].X,
+                                    ChunkPositions[ChunkPositions.Length - 3 + i].Y, i, j);
+                                ChunkCheck(ref ActiveChunks[i, j]);
+                            }
+                            else
+                            {
+
+                                ActiveChunks[i, j] = ActiveChunks[i, j + 1];
+
+
+                            }
+                        }
+                    }
+                    break;
+                case Dir.Up:
+                    //shifts everything up one
+                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        {
+                            if (j == 0)
+                            {
+                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[0 + i].X,
+                                    ChunkPositions[0 + i].Y, i, j);
+                                ChunkCheck(ref ActiveChunks[i, j]);
+                            }
+                            else
+                            {
+
+                                ActiveChunks[i, j] = ActiveChunks[i, j - 1];
+
+
+                            }
+                        }
+                    }
+                    break;
+                case Dir.Left:
+                    for (int i = 0; i < ActiveChunks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < ActiveChunks.GetLength(1); j++)
+                        {
+                            if (i == ActiveChunks.GetUpperBound(0))
+                            {
+                                ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ActiveChunks.GetUpperBound(0) - i].X,
+                                    ChunkPositions[ActiveChunks.GetUpperBound(0) - i].Y, i, j);
+                                ChunkCheck(ref ActiveChunks[i, j]);
+                            }
+                            else
+                            {
+                                ActiveChunks[i - 1, j] = ActiveChunks[i, j];
+                            }
+                        }
+                    }
+                    break;
+                case Dir.Right:
+
+                    break;
+            }
+
+
+        }
+
         public void ChunkCheck(ref Chunk chunk)
         {
             if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
@@ -461,24 +536,37 @@ namespace SecretProject.Class.TileStuff
 
         public Point GetChunkPositionFromCamera(float x, float y)
         {
-            return new Point((int)(x / 16/ 16), (int)(y / 16/ 16));
+            return new Point((int)(x / 16 / 16), (int)(y / 16 / 16));
         }
         Point[] ChunkPositions = new Point[9];
         public void GetProperArrayData(Camera2D cam)
         {
-            Point rooPosition = GetChunkPositionFromCamera(cam.Pos.X, cam.Pos.Y);
+            Point rootPosition = GetChunkPositionFromCamera(cam.Pos.X, cam.Pos.Y);
             int i = 0;
-            for (int y = rooPosition.Y +  range ; y >= rooPosition.Y -  range; y -= 1)
+
+
+            for (int y = rootPosition.Y - 1; y < rootPosition.Y + 2; y++)
             {
-                for (int x = rooPosition.X - range; x <= rooPosition.X + range; x += 1)
+                for (int x = rootPosition.X - 1; x < rootPosition.X + 2; x++)
                 {
                     ChunkPositions[i++] = new Point(x, y);
                 }
             }
+
+
+            //for (int y = rootPosition.Y +  range ; y >= rootPosition.Y -  range; y -= 1)
+            //{
+            //    for (int x = rootPosition.X - range; x <= rootPosition.X + range; x += 1)
+            //    {
+            //        ChunkPositions[i++] = new Point(x, y);
+            //    }
+            //}
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            ChunkPointUnderPlayer = new Point((int)Math.Floor(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)Math.Floor(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            GetProperArrayData(Game1.cam);
+
+            ChunkPointUnderPlayer = ChunkPositions[4];
 
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
@@ -487,32 +575,35 @@ namespace SecretProject.Class.TileStuff
                 if (ChunkPointUnderPlayer.X > ChunkPointUnderPlayerLastFrame.X)
                 {
 
-                    UpdateGrid(Dir.Right);
+                    //UpdateGrid(Dir.Right);
+                    MoveChunks(Dir.Right);
                 }
                 else if (ChunkPointUnderPlayer.X < ChunkPointUnderPlayerLastFrame.X)
                 {
-                    UpdateGrid(Dir.Left);
+                    // UpdateGrid(Dir.Left);
+                    MoveChunks(Dir.Left);
 
                 }
                 else if (ChunkPointUnderPlayer.Y > ChunkPointUnderPlayerLastFrame.Y)
                 {
-                    UpdateGrid(Dir.Down);
+                    //UpdateGrid(Dir.Down);
+                    MoveChunks(Dir.Down);
 
                 }
                 else if (ChunkPointUnderPlayer.Y < ChunkPointUnderPlayerLastFrame.Y)
                 {
-                    UpdateGrid(Dir.Up);
+                    // UpdateGrid(Dir.Up);
+                    MoveChunks(Dir.Up);
 
                 }
 
 
             }
-            GetProperArrayData(Game1.cam);
             ChunkUnderPlayer = ActiveChunks[1, 1];
             this.StoreableItems = ChunkUnderPlayer.StoreableItems;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
-            
+
 
             int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 
