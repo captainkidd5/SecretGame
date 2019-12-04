@@ -118,78 +118,86 @@ namespace SecretProject.Class.TileStuff
         public void Save()
         {
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
-            FileStream fileStream = File.OpenWrite(path);
-            BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            for (int z = 0; z < 4; z++)
+            using (FileStream fileStream = File.OpenWrite(path))
             {
-                for (int i = 0; i < TileUtility.ChunkX; i++)
+
+
+                using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                 {
-                    for (int j = 0; j < TileUtility.ChunkY; j++)
-                    {
-                        binaryWriter.Write(AllTiles[z][i, j].GID + 1);
-                        binaryWriter.Write(AllTiles[z][i, j].X);
-                        binaryWriter.Write(AllTiles[z][i, j].Y);
-
-                    }
-                }
-            }
 
 
-            binaryWriter.Write(StoreableItems.Count);
-            foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
-            {
-                
-                binaryWriter.Write(storeableItem.Key);
-                binaryWriter.Write((int)storeableItem.Value.StorableItemType);
-                binaryWriter.Write(storeableItem.Value.Size);
-                binaryWriter.Write(storeableItem.Value.Location.X);
-                binaryWriter.Write(storeableItem.Value.Location.Y);
-                for (int s = 0; s < storeableItem.Value.Size; s++)
-                {
-                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
-                    if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                    for (int z = 0; z < 4; z++)
                     {
-                        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
-                    }
-                    else
-                    {
-                        binaryWriter.Write(-1);
+                        for (int i = 0; i < TileUtility.ChunkX; i++)
+                        {
+                            for (int j = 0; j < TileUtility.ChunkY; j++)
+                            {
+                                binaryWriter.Write(AllTiles[z][i, j].GID + 1);
+                                binaryWriter.Write(AllTiles[z][i, j].X);
+                                binaryWriter.Write(AllTiles[z][i, j].Y);
+
+                            }
+                        }
                     }
 
+
+                    binaryWriter.Write(StoreableItems.Count);
+                    foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
+                    {
+
+                        binaryWriter.Write(storeableItem.Key);
+                        binaryWriter.Write((int)storeableItem.Value.StorableItemType);
+                        binaryWriter.Write(storeableItem.Value.Size);
+                        binaryWriter.Write(storeableItem.Value.Location.X);
+                        binaryWriter.Write(storeableItem.Value.Location.Y);
+                        for (int s = 0; s < storeableItem.Value.Size; s++)
+                        {
+                            binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
+                            if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                            {
+                                binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                            }
+                            else
+                            {
+                                binaryWriter.Write(-1);
+                            }
+
+                        }
+
+                    }
+
+                    binaryWriter.Write(Crops.Count);
+                    foreach (KeyValuePair<string, Crop> crop in this.Crops)
+                    {
+                        binaryWriter.Write(crop.Key);
+                        binaryWriter.Write(crop.Value.ItemID);
+                        binaryWriter.Write(crop.Value.Name);
+                        binaryWriter.Write(crop.Value.GID);
+                        binaryWriter.Write(crop.Value.DaysToGrow);
+                        binaryWriter.Write(crop.Value.CurrentGrowth);
+                        binaryWriter.Write(crop.Value.Harvestable);
+                        binaryWriter.Write(crop.Value.DayPlanted);
+
+                    }
+
+                    binaryWriter.Write(Tufts.Count);
+                    foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
+                    {
+                        binaryWriter.Write(tuft.Key);
+                        binaryWriter.Write(tuft.Value.Count);
+
+                        for (int i = 0; i < tuft.Value.Count; i++)
+                        {
+                            binaryWriter.Write(tuft.Value[i].GrassType);
+                            binaryWriter.Write(tuft.Value[i].Position.X);
+                            binaryWriter.Write(tuft.Value[i].Position.Y);
+                        }
+                    }
+
+                    binaryWriter.Flush();
+                    binaryWriter.Close();
                 }
-
             }
-
-            binaryWriter.Write(Crops.Count);
-            foreach (KeyValuePair<string, Crop> crop in this.Crops)
-            {
-                binaryWriter.Write(crop.Key);
-                binaryWriter.Write(crop.Value.ItemID);
-                binaryWriter.Write(crop.Value.Name);
-                binaryWriter.Write(crop.Value.GID);
-                binaryWriter.Write(crop.Value.DaysToGrow);
-                binaryWriter.Write(crop.Value.CurrentGrowth);
-                binaryWriter.Write(crop.Value.Harvestable);
-                binaryWriter.Write(crop.Value.DayPlanted);
-
-            }
-
-            binaryWriter.Write(Tufts.Count);
-            foreach(KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
-            {
-                binaryWriter.Write(tuft.Key);
-                binaryWriter.Write(tuft.Value.Count);
-
-                for(int i =0; i < tuft.Value.Count; i++)
-                {
-                    binaryWriter.Write(tuft.Value[i].GrassType);
-                    binaryWriter.Write(tuft.Value[i].Position.X);
-                    binaryWriter.Write(tuft.Value[i].Position.Y);
-                }
-            }
-
-                binaryWriter.Flush();
-            binaryWriter.Close();
         }
 
 
@@ -197,129 +205,136 @@ namespace SecretProject.Class.TileStuff
         public void Load()
         {
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
-            FileStream fileStream = File.OpenRead(path);
-            BinaryReader binaryReader = new BinaryReader(fileStream);
-            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-            for (int z = 0; z < 4; z++)
+            using (FileStream fileStream = File.OpenRead(path))
             {
-                for (int i = 0; i < TileUtility.ChunkX; i++)
+
+
+                using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
-                    for (int j = 0; j < TileUtility.ChunkY; j++)
+
+
+                    PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+                    for (int z = 0; z < 4; z++)
                     {
-                        int gid = binaryReader.ReadInt32();
-                        int x = binaryReader.ReadInt32();
-                        int y = binaryReader.ReadInt32();
-                        AllTiles[z][i, j] = new Tile(x, y, gid);
-                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        for (int i = 0; i < TileUtility.ChunkX; i++)
+                        {
+                            for (int j = 0; j < TileUtility.ChunkY; j++)
+                            {
+                                int gid = binaryReader.ReadInt32();
+                                int x = binaryReader.ReadInt32();
+                                int y = binaryReader.ReadInt32();
+                                AllTiles[z][i, j] = new Tile(x, y, gid);
+                                TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                            }
+                        }
                     }
-                }
-            }
 
 
-            this.StoreableItems = new Dictionary<string, IStorableItem>();
-            int storableItemCount = binaryReader.ReadInt32();
-            for (int c = 0; c < storableItemCount; c++)
-            {
-                string storageKey = binaryReader.ReadString();
-                int storableItemType = binaryReader.ReadInt32();
-                StorableItemType itemType = (StorableItemType)storableItemType;
-                int inventorySize = binaryReader.ReadInt32();
-                float locationX = binaryReader.ReadSingle();
-                float locationY = binaryReader.ReadSingle();
-   
-                switch (itemType)
-                {
-                    case StorableItemType.Chest:
-                        Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
-                        for (int i = 0; i < inventorySize; i++)
+                    this.StoreableItems = new Dictionary<string, IStorableItem>();
+                    int storableItemCount = binaryReader.ReadInt32();
+                    for (int c = 0; c < storableItemCount; c++)
+                    {
+                        string storageKey = binaryReader.ReadString();
+                        int storableItemType = binaryReader.ReadInt32();
+                        StorableItemType itemType = (StorableItemType)storableItemType;
+                        int inventorySize = binaryReader.ReadInt32();
+                        float locationX = binaryReader.ReadSingle();
+                        float locationY = binaryReader.ReadSingle();
+
+                        switch (itemType)
                         {
-                            int numberOfItemsInSlot = binaryReader.ReadInt32();
-                            int itemID = binaryReader.ReadInt32();
+                            case StorableItemType.Chest:
+                                Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+                                for (int i = 0; i < inventorySize; i++)
+                                {
+                                    int numberOfItemsInSlot = binaryReader.ReadInt32();
+                                    int itemID = binaryReader.ReadInt32();
 
-                            for (int j = 0; j < numberOfItemsInSlot; j++)
-                            {
-                                storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-                            }
+                                    for (int j = 0; j < numberOfItemsInSlot; j++)
+                                    {
+                                        storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                                    }
+                                }
+
+                                this.StoreableItems.Add(storageKey, storeageItemToAdd);
+                                break;
+
+                            case StorableItemType.Cauldron:
+                                Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+                                for (int i = 0; i < inventorySize; i++)
+                                {
+                                    int numberOfItemsInSlot = binaryReader.ReadInt32();
+                                    int itemID = binaryReader.ReadInt32();
+
+                                    for (int j = 0; j < numberOfItemsInSlot; j++)
+                                    {
+                                        cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                                    }
+                                }
+
+                                this.StoreableItems.Add(storageKey, cauldronToAdd);
+                                break;
+                        }
+                    }
+
+                    int cropCount = binaryReader.ReadInt32();
+                    for (int c = 0; c < cropCount; c++)
+                    {
+                        string cropKey = binaryReader.ReadString();
+                        int itemID = binaryReader.ReadInt32();
+                        string name = binaryReader.ReadString();
+                        int gid = binaryReader.ReadInt32();
+                        int daysToGrow = binaryReader.ReadInt32();
+                        int currentGrow = binaryReader.ReadInt32();
+                        bool harvestable = binaryReader.ReadBoolean();
+                        int dayPlanted = binaryReader.ReadInt32();
+                        Crop crop = new Crop()
+                        {
+                            ItemID = itemID,
+                            Name = name,
+                            GID = gid,
+                            DaysToGrow = daysToGrow,
+                            CurrentGrowth = currentGrow,
+                            Harvestable = harvestable,
+                            DayPlanted = dayPlanted
+                        };
+                        this.Crops.Add(cropKey, crop);
+                    }
+
+                    int tuftListCount = binaryReader.ReadInt32();
+
+                    for (int i = 0; i < tuftListCount; i++)
+                    {
+                        string key = binaryReader.ReadString();
+                        int smallListCount = binaryReader.ReadInt32();
+                        List<GrassTuft> tufts = new List<GrassTuft>();
+                        for (int j = 0; j < smallListCount; j++)
+                        {
+                            GrassTuft tuft = new GrassTuft(GraphicsDevice, binaryReader.ReadInt32(),
+                                new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
+                            tuft.TuftsIsPartOf = tufts;
+                            tufts.Add(tuft);
+                        }
+                        Tufts.Add(key, tufts);
+                    }
+
+
+                    if (this.X != 0 && this.Y != 0)
+                    {
+                        if (Game1.Utility.RGenerator.Next(0, 10) < 2)
+                        {
+                            Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
+                            Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
                         }
 
-                        this.StoreableItems.Add(storageKey, storeageItemToAdd);
-                        break;
+                    }
 
-                    case StorableItemType.Cauldron:
-                        Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
-                        for (int i = 0; i < inventorySize; i++)
-                        {
-                            int numberOfItemsInSlot = binaryReader.ReadInt32();
-                            int itemID = binaryReader.ReadInt32();
+                    this.IsLoaded = true;
+                    binaryReader.Close();
 
-                            for (int j = 0; j < numberOfItemsInSlot; j++)
-                            {
-                                cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-                            }
-                        }
-
-                        this.StoreableItems.Add(storageKey, cauldronToAdd);
-                        break;
-                } 
-            }
-
-            int cropCount = binaryReader.ReadInt32();
-            for (int c = 0; c < cropCount; c++)
-            {
-                string cropKey = binaryReader.ReadString();
-                int itemID = binaryReader.ReadInt32();
-                string name = binaryReader.ReadString();
-                int gid = binaryReader.ReadInt32();
-                int daysToGrow = binaryReader.ReadInt32();
-                int currentGrow = binaryReader.ReadInt32();
-                bool harvestable = binaryReader.ReadBoolean();
-                int dayPlanted = binaryReader.ReadInt32();
-                Crop crop = new Crop()
-                {
-                    ItemID = itemID,
-                    Name = name,
-                    GID = gid,
-                    DaysToGrow = daysToGrow,
-                    CurrentGrowth = currentGrow,
-                    Harvestable = harvestable,
-                    DayPlanted = dayPlanted
-                };
-                this.Crops.Add(cropKey, crop);
-            }
-
-            int tuftListCount = binaryReader.ReadInt32();
-
-            for(int i =0; i < tuftListCount;i++)
-            {
-                string key = binaryReader.ReadString();
-                int smallListCount = binaryReader.ReadInt32();
-                List<GrassTuft> tufts = new List<GrassTuft>();
-                for(int j = 0; j < smallListCount; j++)
-                {
-                    GrassTuft tuft = new GrassTuft(GraphicsDevice, binaryReader.ReadInt32(),
-                        new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
-                    tuft.TuftsIsPartOf = tufts;
-                    tufts.Add(tuft);
+                    //Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
                 }
-                Tufts.Add(key, tufts);
             }
-
-
-            if (this.X != 0 && this.Y != 0)
-            {
-                if(Game1.Utility.RGenerator.Next(0, 10) < 2)
-                {
-                    Game1.World.Enemies.Add(new Enemy("crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                    Game1.World.Enemies.Add(new Enemy("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                }
-                
-            }
-            
-            this.IsLoaded = true;
-            binaryReader.Close();
-
-            //Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
-
         }
        
 
