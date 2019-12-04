@@ -589,12 +589,16 @@ namespace SecretProject.Class.TileStuff
 
         public Point GetChunkPositionFromCamera(float x, float y)
         {
+            if(y < 0)
+            {
+                return new Point((int)(x / 16 / 16), (int)(y / 16 / 16) - 1);
+            }
             return new Point((int)(x / 16 / 16), (int)(y / 16 / 16));
         }
         Point[] ChunkPositions = new Point[9];
-        public void GetProperArrayData(Camera2D cam)
+        public void GetProperArrayData()
         {
-            Point rootPosition = GetChunkPositionFromCamera(cam.Pos.X, cam.Pos.Y);
+            Point rootPosition = GetChunkPositionFromCamera(Game1.Player.position.X, Game1.Player.position.Y);
             int i = 0;
 
 
@@ -609,7 +613,7 @@ namespace SecretProject.Class.TileStuff
         }
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            GetProperArrayData(Game1.cam);
+            GetProperArrayData();
 
             ChunkPointUnderPlayer = ChunkPositions[4];
 
