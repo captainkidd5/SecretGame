@@ -224,9 +224,9 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
-            for (int i = 0; i < AllTiles.ActiveChunks.GetLength(0); i++)
+            for (int i = WorldTileManager.RenderDistance /2 - 1 ; i < WorldTileManager.RenderDistance / 2 + 2; i++)
             {
-                for (int j = 0; j < AllTiles.ActiveChunks.GetLength(1); j++)
+                for (int j = WorldTileManager.RenderDistance /2 - 1; j < WorldTileManager.RenderDistance / 2 + 2; j++)
                 {
                     if (AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
@@ -382,9 +382,9 @@ namespace SecretProject.Class.StageFolder
                     graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    for (int i = 0; i < AllTiles.ActiveChunks.GetLength(0); i++)
+                    for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 1; i++)
                     {
-                        for (int j = 0; j < AllTiles.ActiveChunks.GetLength(1); j++)
+                        for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 1; j++)
                         {
                             if (AllTiles.ActiveChunks[i, j].IsLoaded)
                             {
