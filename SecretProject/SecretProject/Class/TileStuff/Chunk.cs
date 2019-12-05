@@ -464,7 +464,7 @@ namespace SecretProject.Class.TileStuff
                             break;
 
                         case 929:
-                            this.GeneratableTiles = Game1.Utility.StoneGeneratableTiles;
+                            this.GeneratableTiles = Game1.Utility.StandardGeneratableDirtTiles;
                             this.TilingDictionary = TileUtility.StoneTiling;
                             this.MainGid = 930;
                             break;
@@ -497,41 +497,41 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                TileUtility.GenerateTiles(1, 979, "grass", 50, 0, this); //tree
-                TileUtility.GenerateTiles(1, 979, "dirt", 50, 0, this); //tree
-                TileUtility.GenerateTiles(1, 2264, "grass", 5, 0, this); //THUNDERBIRCH
-                TileUtility.GenerateTiles(1, 1079, "dirt", 50, 0, this); //GRASSTUFT
-                TileUtility.GenerateTiles(1, 1079, "grass", 50, 0, this); //GRASSTUFT
-                TileUtility.GenerateTiles(1, 1586, "dirt", 5, 0, this); //CLUEFRUIT
-                TileUtility.GenerateTiles(1, 1664, "grass", 5, 0, this); //OAKTREE
-                TileUtility.GenerateTiles(1, 1294, "grass", 5, 0, this); //SPROUTERA
-                TileUtility.GenerateTiles(1, 1164, "grass", 1, 0, this); //WILLOW
-                TileUtility.GenerateTiles(1, 1002, "stone", 5, 0, this); //FISSURE
-                TileUtility.GenerateTiles(3, 1476, "grass", 6, 0, this); //FallenOak
-                TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(3, 1277, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(3, 1276, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(3, 1275, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(3, 1274, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(3, 1278, "stone", 5, 0, this); //Steel Vein
-                TileUtility.GenerateTiles(1, 1581, "dirt", 15, 0, this); //ROCK
-                TileUtility.GenerateTiles(1, 1581, "grass", 15, 0, this); //ROCK
-                TileUtility.GenerateTiles(1, 1580, "dirt", 15, 0, this); //stick
-                TileUtility.GenerateTiles(1, 1580, "grass", 15, 0, this); //stick
-                TileUtility.GenerateTiles(1, 1582, "grass", 5, 0, this); //RED MUSHROOM
-                TileUtility.GenerateTiles(1, 1583, "grass", 5, 0, this); //BLUE MUSHROOM
+                TileUtility.GenerateTiles(1, 979, Game1.Utility.GrassGeneratableTiles, 50, 0, this); //tree
+                TileUtility.GenerateTiles(1, 979, Game1.Utility.DirtGeneratableTiles, 50, 0, this); //tree
+                TileUtility.GenerateTiles(1, 2264, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //THUNDERBIRCH
+                TileUtility.GenerateTiles(1, 1079, Game1.Utility.DirtGeneratableTiles, 50, 0, this); //GRASSTUFT
+                TileUtility.GenerateTiles(1, 1079, Game1.Utility.GrassGeneratableTiles, 50, 0, this); //GRASSTUFT
+                TileUtility.GenerateTiles(1, 1586, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //CLUEFRUIT
+                TileUtility.GenerateTiles(1, 1664, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //OAKTREE
+                TileUtility.GenerateTiles(1, 1294, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //SPROUTERA
+                TileUtility.GenerateTiles(1, 1164, Game1.Utility.GrassGeneratableTiles, 1, 0, this); //WILLOW
+                TileUtility.GenerateTiles(1, 1002, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //FISSURE
+                TileUtility.GenerateTiles(3, 1476, Game1.Utility.GrassGeneratableTiles, 6, 0, this); //FallenOak
+                TileUtility.GenerateTiles(3, 1278, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(3, 1277, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(3, 1276, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(3, 1275, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(3, 1274, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(3, 1278, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein
+                TileUtility.GenerateTiles(1, 1581, Game1.Utility.DirtGeneratableTiles, 15, 0, this); //ROCK
+                TileUtility.GenerateTiles(1, 1581, Game1.Utility.DirtGeneratableTiles, 15, 0, this); //ROCK
+                TileUtility.GenerateTiles(1, 1580, Game1.Utility.DirtGeneratableTiles, 15, 0, this); //stick
+                TileUtility.GenerateTiles(1, 1580, Game1.Utility.DirtGeneratableTiles, 15, 0, this); //stick
+                TileUtility.GenerateTiles(1, 1582, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //RED MUSHROOM
+                TileUtility.GenerateTiles(1, 1583, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //BLUE MUSHROOM
 
-                TileUtility.GenerateTiles(1, 1573, "sand", 10, 0, this); //Reeds
+                TileUtility.GenerateTiles(1, 1573, Game1.Utility.SandGeneratableTiles, 10, 0, this); //Reeds
 
-                // TileUtility.GenerateTiles(1, 2964, "grass", 5, 0, this); //PINE
-                TileUtility.GenerateTiles(1, 1286, "sand", 10, 0, this); //THORN
-                TileUtility.GenerateTiles(1, 664, "sand", 10, 0, this);
-                TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-                TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
-                TileUtility.GenerateTiles(1, 2964, "grass", 25, 0, this); //oak2
-                TileUtility.GenerateTiles(1, 3664, "grass", 25, 0, this); //oak3
-                TileUtility.GenerateTiles(1, 2964, "dirt", 25, 0, this); //oak2
-                TileUtility.GenerateTiles(1, 3664, "dirt", 25, 0, this); //oak3
+                // TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE
+                TileUtility.GenerateTiles(1, 1286, Game1.Utility.SandGeneratableTiles, 10, 0, this); //THORN
+                TileUtility.GenerateTiles(1, 664, Game1.Utility.SandGeneratableTiles, 10, 0, this);
+               // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+                TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles, 25, 0, this); //oak2
+                TileUtility.GenerateTiles(1, 3664, Game1.Utility.GrassGeneratableTiles, 25, 0, this); //oak3
+                TileUtility.GenerateTiles(1, 2964, Game1.Utility.DirtGeneratableTiles, 25, 0, this); //oak2
+                TileUtility.GenerateTiles(1, 3664, Game1.Utility.DirtGeneratableTiles, 25, 0, this); //oak3
 
 
             }

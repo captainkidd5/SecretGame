@@ -1145,33 +1145,9 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region GENERATION
-        public static void GenerateTiles(int layerToPlace, int gid, string placementKey, int frequency, int layerToCheckIfEmpty, IInformationContainer container)
+        public static void GenerateTiles(int layerToPlace, int gid, List<int> acceptableGenerationTiles, int frequency, int layerToCheckIfEmpty, IInformationContainer container)
         {
-            List<int> acceptableGenerationTiles;
-            switch (placementKey)
-            {
-                case "dirt":
-                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
 
-                    break;
-                case "sand":
-                    acceptableGenerationTiles = Game1.Utility.SandGeneratableTiles;
-
-                    break;
-                case "water":
-                    acceptableGenerationTiles = Game1.Utility.WaterGeneratableTiles;
-                    break;
-                case "grass":
-                    acceptableGenerationTiles = Game1.Utility.GrassGeneratableTiles;
-                    break;
-                case "stone":
-                    acceptableGenerationTiles = Game1.Utility.StoneGeneratableTiles;
-                    break;
-                default:
-                    acceptableGenerationTiles = Game1.Utility.DirtGeneratableTiles;
-
-                    break;
-            }
 
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
 
@@ -1280,8 +1256,6 @@ namespace SecretProject.Class.TileStuff
             TileUtility.ReplaceTilePermanent(3, x, y, crop.GID, stage, container);
 
         }
-
-
 
 
         public static void ReplaceTilePermanent(int layer, int oldX, int oldY, int gid, ILocation stage, IInformationContainer container)
