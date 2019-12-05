@@ -527,6 +527,12 @@ namespace SecretProject.Class.TileStuff
                 TileUtility.GenerateTiles(1, 1582, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //RED MUSHROOM
                 TileUtility.GenerateTiles(1, 1583, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //BLUE MUSHROOM
 
+                //SANDRUINS
+                TileUtility.GenerateTiles(3, 1853, Game1.Utility.SandRuinGeneratableTiles, 5, 0, this); //Chest
+                TileUtility.GenerateTiles(3, 2548, Game1.Utility.SandRuinGeneratableTiles, 5, 0, this); //ancient pillar (tall)
+                TileUtility.GenerateTiles(3, 2549, Game1.Utility.SandRuinGeneratableTiles, 5, 0, this); //ancient pillar (short)
+
+
                 TileUtility.GenerateTiles(1, 1573, Game1.Utility.SandGeneratableTiles, 10, 0, this); //Reeds
 
                 // TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE

@@ -2253,6 +2253,18 @@
    <property name="newSource" value="-16,-48,32,48"/>
   </properties>
  </tile>
+ <tile id="2547">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-48,16,64"/>
+  </properties>
+ </tile>
+ <tile id="2548">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+ </tile>
  <tile id="2619">
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="0" width="9" height="16"/>
