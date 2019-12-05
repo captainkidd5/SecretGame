@@ -159,8 +159,8 @@ namespace SecretProject.Class.Playable
 
             CurrentAction = Mining;
 
-            BigHitBoxRectangleTexture = SetRectangleTexture(graphics, ClickRangeRectangle);
-            LittleHitBoxRectangleTexture = SetRectangleTexture(graphics, ColliderRectangle);
+            BigHitBoxRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, ClickRangeRectangle.Width, ClickRangeRectangle.Height, Color.White);
+            LittleHitBoxRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, ColliderRectangle.Width, ColliderRectangle.Height, Color.White);
 
             LockBounds = true;
 
@@ -297,9 +297,10 @@ namespace SecretProject.Class.Playable
             if (Activate)
             {
                 CurrentSpeed = Speed1;
-                // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
-
-
+                PrimaryVelocity = Vector2.Zero;
+                SecondaryVelocity = Vector2.Zero;
+                TotalVelocity = Vector2.Zero;
+                IsMoving = controls.IsMoving;
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
@@ -317,7 +318,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (controls.IsMoving && !IsPerformingAction)
+                if (IsMoving && !IsPerformingAction)
                 {
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {
@@ -351,7 +352,7 @@ namespace SecretProject.Class.Playable
 
                 }
 
-                else if (!CurrentAction[0, 0].IsAnimated && !controls.IsMoving)
+                else if (!CurrentAction[0, 0].IsAnimated && !IsMoving)
                 {
                     for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
@@ -361,14 +362,14 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                IsMoving = false;
+               
 
                 if (!CurrentAction[0, 0].IsAnimated)
                 {
                     controls.Update();
                 }
 
-
+                MoveFromKeys();
                 
                 MainCollider.Rectangle = this.ColliderRectangle;
                 MainCollider.Velocity = this.PrimaryVelocity;
@@ -376,144 +377,9 @@ namespace SecretProject.Class.Playable
                 BigCollider.Rectangle = this.ClickRangeRectangle;
                 BigCollider.Velocity = this.PrimaryVelocity;
 
-                List<ICollidable> returnObjects = new List<ICollidable>();
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
-                for (int i = 0; i < returnObjects.Count; i++)
-                {
-
-                    if (returnObjects[i].ColliderType == ColliderType.Item)
-                    {
-
-                        if (BigCollider.IsIntersecting(returnObjects[i]))
-                        {
-                            returnObjects[i].Entity.PlayerCollisionInteraction();
-                        }
-                    }
-                    else if (returnObjects[i].ColliderType == ColliderType.grass)
-                    {
-                        if (MainCollider.IsIntersecting(returnObjects[i]))
-                        {
-                            returnObjects[i].IsUpdating = true;
-                            returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                            if (Game1.EnablePlayerCollisions)
-                            {
-                                CurrentSpeed = Speed1 / 2;
-                            }
-                        }
-                        #region SWORD INTERACTIONS
-                        if (CurrentTool != null)
-                        {
-                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                            {
-                             returnObjects[i].SelfDestruct();
-                            }
-                        }
-                        #endregion
-                    }
-                    else if(returnObjects[i].ColliderType == ColliderType.Enemy)
-                    {
-                        if (CurrentTool != null)
-                        {
-                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                            {
-                                returnObjects[i].Entity.PlayerCollisionInteraction();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (IsMoving)
-                        {
-                            if (returnObjects[i].Entity != this)
-                            {
-         
-                                if (MainCollider.DidCollide(returnObjects[i], position))
-                                {
-                                    if(Game1.EnablePlayerCollisions)
-                                    {
-                                        CollideOccured = true;
-                                    }
-                                   
-                                    //returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                                }
-
-                            }
+                CheckAndHandleCollisions();
 
 
-                        }
-
-                    }
-
-                }
-                if (controls.IsMoving && !IsPerformingAction)
-                {
-                    IsMoving = true;
-                    switch (controls.Direction)
-                    {
-                        case Dir.Right:
-                            PrimaryVelocity.X = CurrentSpeed;
-                            break;
-
-                        case Dir.Left:
-                            PrimaryVelocity.X = -CurrentSpeed;
-                            break;
-
-                        case Dir.Down:
-                            PrimaryVelocity.Y = CurrentSpeed;
-                            break;
-
-                        case Dir.Up:
-                            PrimaryVelocity.Y = -CurrentSpeed;
-                            break;
-
-                        default:
-                            break;
-
-                    }
-
-
-                    switch (controls.SecondaryDirection)
-                    {
-                        case SecondaryDir.Right:
-                            SecondaryVelocity.X = SecondarySpeed;
-                            for (int i = 0; i < animations.GetLength(1); i++)
-                            {
-                                PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
-                            }
-                            break;
-                        case SecondaryDir.Left:
-                            SecondaryVelocity.X = -SecondarySpeed;
-                            for (int i = 0; i < animations.GetLength(1); i++)
-                            {
-                                PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
-                            }
-
-                            break;
-                        case SecondaryDir.Down:
-                            SecondaryVelocity.Y = SecondarySpeed;
-                            for (int i = 0; i < animations.GetLength(1); i++)
-                            {
-                                PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
-                            }
-
-
-                            break;
-                        case SecondaryDir.Up:
-                            SecondaryVelocity.Y = -SecondarySpeed;
-                            for (int i = 0; i < animations.GetLength(1); i++)
-                            {
-                                PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
-                            }
-
-
-                            break;
-
-                        default:
-                            break;
-
-                    }
-
-                }
                 if (controls.IsMoving && !IsPerformingAction)
                 {
 
@@ -534,14 +400,150 @@ namespace SecretProject.Class.Playable
                         TotalVelocity = TotalVelocity * 15f;
                     }
                     Position += TotalVelocity * dt;
-                    PrimaryVelocity = Vector2.Zero;
-                    SecondaryVelocity = Vector2.Zero;
-                    TotalVelocity = Vector2.Zero;
+                    
                     if (LockBounds)
                     {
                         CheckOutOfBounds(this.Position);
                     }
 
+
+                }
+
+            }
+        }
+
+        private void MoveFromKeys()
+        {
+            if (IsMoving && !IsPerformingAction)
+            {
+                switch (controls.Direction)
+                {
+                    case Dir.Right:
+                        PrimaryVelocity.X = CurrentSpeed;
+                        break;
+
+                    case Dir.Left:
+                        PrimaryVelocity.X = -CurrentSpeed;
+                        break;
+
+                    case Dir.Down:
+                        PrimaryVelocity.Y = CurrentSpeed;
+                        break;
+
+                    case Dir.Up:
+                        PrimaryVelocity.Y = -CurrentSpeed;
+                        break;
+
+                    default:
+                        break;
+
+                }
+
+                switch (controls.SecondaryDirection)
+                {
+                    case SecondaryDir.Right:
+                        SecondaryVelocity.X = SecondarySpeed;
+                        for (int i = 0; i < animations.GetLength(1); i++)
+                        {
+                            PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
+                        }
+                        break;
+                    case SecondaryDir.Left:
+                        SecondaryVelocity.X = -SecondarySpeed;
+                        for (int i = 0; i < animations.GetLength(1); i++)
+                        {
+                            PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
+                        }
+
+                        break;
+                    case SecondaryDir.Down:
+                        SecondaryVelocity.Y = SecondarySpeed;
+                        for (int i = 0; i < animations.GetLength(1); i++)
+                        {
+                            PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
+                        }
+
+                        break;
+                    case SecondaryDir.Up:
+                        SecondaryVelocity.Y = -SecondarySpeed;
+                        for (int i = 0; i < animations.GetLength(1); i++)
+                        {
+                            PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
+                        }
+                        break;
+
+                    default:
+                        break;
+
+                }
+            }
+        }
+
+        private void CheckAndHandleCollisions()
+        {
+            List<ICollidable> returnObjects = new List<ICollidable>();
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+            for (int i = 0; i < returnObjects.Count; i++)
+            {
+
+                if (returnObjects[i].ColliderType == ColliderType.Item)
+                {
+
+                    if (BigCollider.IsIntersecting(returnObjects[i]))
+                    {
+                        returnObjects[i].Entity.PlayerCollisionInteraction();
+                    }
+                }
+                else if (returnObjects[i].ColliderType == ColliderType.grass)
+                {
+                    if (MainCollider.IsIntersecting(returnObjects[i]))
+                    {
+                        returnObjects[i].IsUpdating = true;
+                        returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                        if (Game1.EnablePlayerCollisions)
+                        {
+                            CurrentSpeed = Speed1 / 2;
+                        }
+                    }
+                    #region SWORD INTERACTIONS
+                    if (CurrentTool != null)
+                    {
+                        if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        {
+                            returnObjects[i].SelfDestruct();
+                        }
+                    }
+                    #endregion
+                }
+                else if (returnObjects[i].ColliderType == ColliderType.Enemy)
+                {
+                    if (CurrentTool != null)
+                    {
+                        if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        {
+                            returnObjects[i].Entity.PlayerCollisionInteraction();
+                        }
+                    }
+                }
+                else
+                {
+                    if (IsMoving)
+                    {
+                        if (returnObjects[i].Entity != this)
+                        {
+
+                            if (MainCollider.DidCollide(returnObjects[i], position))
+                            {
+                                if (Game1.EnablePlayerCollisions)
+                                {
+                                    CollideOccured = true;
+                                }
+                            }
+
+                        }
+
+
+                    }
 
                 }
 
@@ -644,33 +646,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        private Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
-        {
-            var Colors = new List<Color>();
-            for (int y = 0; y < rectangleToDraw.Height; y++)
-            {
-                for (int x = 0; x < rectangleToDraw.Width; x++)
-                {
-                    if (x == 0 || //left side
-                        y == 0 || //top side
-                        x == rectangleToDraw.Width - 1 || //right side
-                        y == rectangleToDraw.Height - 1) //bottom side
-                    {
-                        Colors.Add(new Color(255, 255, 255, 255));
-                    }
-                    else
-                    {
-                        Colors.Add(new Color(0, 0, 0, 0));
-
-                    }
-
-                }
-            }
-            Texture2D textureToReturn;
-            textureToReturn = new Texture2D(graphicsDevice, rectangleToDraw.Width, rectangleToDraw.Height);
-            textureToReturn.SetData<Color>(Colors.ToArray());
-            return textureToReturn;
-        }
+ 
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(ClickRangeRectangle.X, ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
