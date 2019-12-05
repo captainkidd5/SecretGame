@@ -49,17 +49,15 @@ namespace SecretProject.Class.TileStuff
             {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1106}
         };
 
-        public static Dictionary<int, int> SandTiling = new Dictionary<int, int>()
-        {
-            {0, 1024},{1,1125}, {2, 1224 },  {3, 1423}, {4, 1124}, {5, 1420},{6,1026},{7, 1422}, {8, 1225}, {9, 1025}, {10, 1123}, {11, 1223}, {12,1120}, {13,1220}, {14,1122}, {15, 1222}
-        };
+        public static Dictionary<int, int> SandTiling; 
+       
 
         public static Dictionary<int, int> WaterTiling = new Dictionary<int, int>()
         {
             {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
-        public static Dictionary<int, int> StoneTiling = FillTilingDictionary(929);
+        public static Dictionary<int, int> StoneTiling;
        
         public static Dictionary<int, int> SandRuinTiling = FillTilingDictionary(1621);
 
@@ -1127,9 +1125,13 @@ namespace SecretProject.Class.TileStuff
 
             //newGID = 930; //STONE
 
-            else if (perlinValue >= -1f && perlinValue < -.09f)
+            else if (perlinValue >= -.15f && perlinValue < -.09f)
             {
-                newGID = 1222;//SAND
+                newGID = 1322;//SAND
+            }
+            else if (perlinValue >= -1f && perlinValue < -.15f)
+            {
+                newGID = 1622;//SANDRUIN
             }
             //else if (perlinValue >= -1f && perlinValue < -.1f)
             //{

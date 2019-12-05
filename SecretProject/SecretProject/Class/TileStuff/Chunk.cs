@@ -452,10 +452,15 @@ namespace SecretProject.Class.TileStuff
                             this.TilingDictionary = TileUtility.DirtTiling;
                             this.MainGid = 1115;
                             break;
-                        case 1221:
+                        case 1321:
                             this.GeneratableTiles = Game1.Utility.SandGeneratableTiles;
                             this.TilingDictionary = TileUtility.SandTiling;
-                            this.MainGid = 1222;
+                            this.MainGid = 1322;
+                            break;
+                        case 1621:
+                            this.GeneratableTiles = Game1.Utility.SandRuinGeneratableTiles;
+                            this.TilingDictionary = TileUtility.SandRuinTiling;
+                            this.MainGid = 1622;
                             break;
                         case 426:
                             this.GeneratableTiles = Game1.Utility.WaterGeneratableTiles;
@@ -464,7 +469,7 @@ namespace SecretProject.Class.TileStuff
                             break;
 
                         case 929:
-                            this.GeneratableTiles = Game1.Utility.StandardGeneratableDirtTiles;
+                            this.GeneratableTiles = Game1.Utility.StoneGeneratableTiles;
                             this.TilingDictionary = TileUtility.StoneTiling;
                             this.MainGid = 930;
                             break;

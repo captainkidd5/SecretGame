@@ -1016,21 +1016,6 @@
    <property name="step" value="1"/>
   </properties>
  </tile>
- <tile id="1024">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1025">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1026">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
  <tile id="1028">
   <properties>
    <property name="generate" value="stone"/>
@@ -1202,36 +1187,6 @@
    <property name="action" value="diggable"/>
    <property name="generate" value="grassBasic"/>
    <property name="step" value="1"/>
-  </properties>
- </tile>
- <tile id="1120">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1121">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1122">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1123">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1124">
-  <properties>
-   <property name="generate" value="sand"/>
-  </properties>
- </tile>
- <tile id="1125">
-  <properties>
-   <property name="generate" value="sand"/>
   </properties>
  </tile>
  <tile id="1149">
@@ -1639,6 +1594,11 @@
    <property name="generate" value="sand"/>
   </properties>
  </tile>
+ <tile id="1324">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
  <tile id="1349">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -1826,6 +1786,11 @@
   </properties>
  </tile>
  <tile id="1423">
+  <properties>
+   <property name="generate" value="sand"/>
+  </properties>
+ </tile>
+ <tile id="1424">
   <properties>
    <property name="generate" value="sand"/>
   </properties>

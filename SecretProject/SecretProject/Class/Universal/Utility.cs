@@ -34,6 +34,7 @@ namespace SecretProject.Class.Universal
         //random tile information
         public List<int> DirtGeneratableTiles;
         public List<int> SandGeneratableTiles;
+        public List<int> SandRuinGeneratableTiles;
         public List<int> GrassGeneratableTiles;
         public List<int> WaterGeneratableTiles;
         public List<int> StoneGeneratableTiles { get; set; }
@@ -59,6 +60,7 @@ namespace SecretProject.Class.Universal
             centerScreen = new Vector2(CenterScreenX, CenterScreenY);
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
+            SandRuinGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
             WaterGeneratableTiles = new List<int>();
             StoneGeneratableTiles = new List<int>();
