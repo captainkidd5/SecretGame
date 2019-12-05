@@ -395,7 +395,10 @@ namespace SecretProject.Class.Playable
                         {
                             returnObjects[i].IsUpdating = true;
                             returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                            CurrentSpeed = Speed1 / 2;
+                            if (Game1.EnablePlayerCollisions)
+                            {
+                                CurrentSpeed = Speed1 / 2;
+                            }
                         }
                         #region SWORD INTERACTIONS
                         if (CurrentTool != null)
@@ -426,7 +429,11 @@ namespace SecretProject.Class.Playable
          
                                 if (MainCollider.DidCollide(returnObjects[i], position))
                                 {
-                                    CollideOccured = true;
+                                    if(Game1.EnablePlayerCollisions)
+                                    {
+                                        CollideOccured = true;
+                                    }
+                                   
                                     //returnObjects[i].InitialShuffDirection = this.controls.Direction;
                                 }
 

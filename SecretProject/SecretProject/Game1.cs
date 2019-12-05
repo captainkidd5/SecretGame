@@ -89,6 +89,8 @@ namespace SecretProject
     {
         #region FIELDS
 
+        public static bool EnablePlayerCollisions = false;
+
         public static bool IsFirstTimeStartup;
 
         //ContentManagers

@@ -413,7 +413,7 @@ namespace SecretProject.Class.StageFolder
 
                 ParticleEngine.Draw(spriteBatch);
 
-                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
+                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
 
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {

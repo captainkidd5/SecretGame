@@ -46,7 +46,7 @@ namespace SecretProject.Class.SpriteFolder
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
             this.StartShuff = false;
-            this.YOffSet = Game1.Utility.RFloat(.00000001f, .0000001f);
+            this.YOffSet = Game1.Utility.RFloat(.00000001f, Game1.Utility.ForeGroundMultiplier);
             this.ShuffDirection = Dir.Left;
             this.ShuffDirectionPicked = false;
 
@@ -89,7 +89,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
             spriteBatch.Draw(Game1.AllTextures.TallGrass, DestinationRectangle, SourceRectangle,
-                Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y) * .0000001f + YOffSet);
+                Color.White, Rotation, new Vector2(8, 24), SpriteEffects.None, .5f + (DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + YOffSet);
 
         }
 
@@ -99,7 +99,7 @@ namespace SecretProject.Class.SpriteFolder
             Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
             Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
-            Game1.GetCurrentStage().ParticleEngine.LayerDepth = .5f + (DestinationRectangle.Y) * .0000001f + YOffSet;
+            Game1.GetCurrentStage().ParticleEngine.LayerDepth = .5f + (DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + YOffSet;
             TuftsIsPartOf.Remove(this);
         }
 
