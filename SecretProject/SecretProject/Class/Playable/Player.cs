@@ -313,7 +313,7 @@ namespace SecretProject.Class.Playable
 
                 if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null && UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 25)
                 {
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1, Game1.SoundManager.GameVolume);
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
                     DoPlayerAnimation(gameTime, AnimationType.Swiping);
                 }
 
@@ -587,7 +587,7 @@ namespace SecretProject.Class.Playable
                     {
                         if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
                         {
-                            Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect, Game1.SoundManager.GameVolume);
+                            Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
                         }
                     }
                     

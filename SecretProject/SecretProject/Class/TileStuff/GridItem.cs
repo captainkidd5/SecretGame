@@ -161,11 +161,11 @@ namespace SecretProject.Class.TileStuff
                                 switch (soundRandom)
                                 {
                                     case 0:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, Game1.SoundManager.GameVolume);
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
 
                                         break;
                                     case 1:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2, Game1.SoundManager.GameVolume);
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
                                         break;
                                 }
 
@@ -382,11 +382,11 @@ namespace SecretProject.Class.TileStuff
                                 switch (soundRandom)
                                 {
                                     case 0:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, Game1.SoundManager.GameVolume);
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
 
                                         break;
                                     case 1:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2, Game1.SoundManager.GameVolume);
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
                                         break;
                                 }
                                 if (this.PlaceID == 2157)

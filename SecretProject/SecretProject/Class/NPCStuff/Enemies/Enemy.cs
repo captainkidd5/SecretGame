@@ -269,7 +269,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (SoundTimer <= 0)
             {
-                Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID, Game1.SoundManager.GameVolume);
+                Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID);
                 SoundTimer = Game1.Utility.RFloat(45f, 100f);
 
                 RollDrop(this.Position);

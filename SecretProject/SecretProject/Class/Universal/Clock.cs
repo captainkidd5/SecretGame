@@ -86,7 +86,7 @@ namespace SecretProject.Class.Universal
                 roll = Game1.Utility.RGenerator.Next(NightTimeSoundEffectStart, NightTimeSoundEffectEnd);
             }
             
-            Game1.SoundManager.PlaySoundEffectFromInt(1, roll, Game1.SoundManager.GameVolume);
+            Game1.SoundManager.PlaySoundEffectFromInt(1, roll);
         }
         public void IncrementDay()
         {
@@ -121,7 +121,7 @@ namespace SecretProject.Class.Universal
                 if(TotalHours < 2 || TotalHours > 21)
                 {
                     PlayRandomInstance(2);
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, 12, Game1.SoundManager.GameVolume);
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, 12);
                     IsNight = true;
                 }
 

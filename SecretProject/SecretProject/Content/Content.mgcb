@@ -1342,3 +1342,9 @@
 /processor:PassThroughProcessor
 /build:Item/Cooking/CookingGuide.xml
 
+#begin SoundEffects/pumpkinSquash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pumpkinSquash.wav
+

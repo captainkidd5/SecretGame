@@ -95,7 +95,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void SelfDestruct()
         {
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BushCut, Game1.SoundManager.GameVolume / 4);
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BushCut);
             Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
             Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);

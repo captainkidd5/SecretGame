@@ -94,9 +94,24 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="258">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="259">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="260">
   <properties>
-   <property name="action" value="smelt"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="261">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="288">
@@ -309,6 +324,26 @@
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
    <property name="generate" value="fence"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="458">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="459">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="460">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="461">
+  <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -1648,6 +1683,24 @@
   <objectgroup draworder="index">
    <object id="1" x="8.22727" y="0.363627" width="7.72727" height="15.8182"/>
   </objectgroup>
+ </tile>
+ <tile id="1380">
+  <properties>
+   <property name="destructable" value="22,0,6,17"/>
+   <property name="idleStart" value=""/>
+   <property name="loot" value="1001:100:1"/>
+   <property name="tileSelectorAllowed" value="2"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="4" width="11" height="9"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="1381" duration="100"/>
+   <frame tileid="1382" duration="100"/>
+   <frame tileid="1383" duration="100"/>
+   <frame tileid="1384" duration="100"/>
+   <frame tileid="1385" duration="100"/>
+  </animation>
  </tile>
  <tile id="1402">
   <properties>

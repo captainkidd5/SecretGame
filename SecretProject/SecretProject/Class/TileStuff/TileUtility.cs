@@ -537,15 +537,15 @@ namespace SecretProject.Class.TileStuff
                                     switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["generate"])
                                     {
                                         case "dirt":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             break;
                                         case "dirtBasic":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             break;
                                         case "grassBasic":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
                                             PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
                                             ReassignGroupOfTiles(z, i, j, 1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, container);
@@ -580,7 +580,7 @@ namespace SecretProject.Class.TileStuff
                                 if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)))
                                 {
 
-                                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt, Game1.SoundManager.GameVolume);
+                                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                     Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
                                     tempCrop.GID++;
@@ -797,7 +797,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.TileHitPoints[tile.GetTileKeyStringNew(layer, container)] > 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt, Game1.SoundManager.GameVolume);
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt);
                     Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
                     Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
                     Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
@@ -807,7 +807,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (container.TileHitPoints[tile.GetTileKeyStringNew(layer, container)] < 1)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt, Game1.SoundManager.GameVolume);
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt);
                     container.TileHitPoints.Remove(tile.GetTileKeyStringNew(layer, container));
                     if (hasSpawnTiles)
                     {
@@ -1001,7 +1001,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     TileUtility.ReplaceTilePermanent(3, oldX, oldY - 1, 0, world, container);
                 }
-                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]), Game1.SoundManager.GameVolume);
+                Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["destructable"]));
             }
 
 

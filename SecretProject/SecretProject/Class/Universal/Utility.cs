@@ -192,6 +192,8 @@ namespace SecretProject.Class.Universal
                     return Color.Blue;
                 case 5:
                     return Color.SaddleBrown;
+                case 6:
+                    return Color.Orange;
                 default:
                     return Color.White;
             }

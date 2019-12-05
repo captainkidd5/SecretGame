@@ -186,7 +186,7 @@ namespace SecretProject.Class.UI
                 Game1.Player.Inventory.Money += item.Price;
             }
             
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1, Game1.SoundManager.GameVolume);
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1);
             
         }
 
@@ -234,7 +234,7 @@ namespace SecretProject.Class.UI
                         {
                             Stock--;
                             Game1.Player.Inventory.Money -= item.Price;
-                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1, Game1.SoundManager.GameVolume);
+                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1);
                         }
                         
                         //Game1.SoundManager.Sell1.Play();
