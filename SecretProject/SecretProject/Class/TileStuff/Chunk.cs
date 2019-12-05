@@ -402,11 +402,11 @@ namespace SecretProject.Class.TileStuff
                             int newGID = TileUtility.GetTileFromNoise(noise[i, j]);
 
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, newGID);
-                            if (newGID == 1115)
+                            if (Game1.Utility.GrassGeneratableTiles.Contains(newGID))
                             {
-                                if (Game1.Utility.RGenerator.Next(0, 10) < 10)
+                                if (Game1.Utility.RGenerator.Next(0, 10) < 2)
                                 {
-                                    int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                                    int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 12);
                                     List<GrassTuft> tufts = new List<GrassTuft>();
                                     for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                                     {

@@ -46,7 +46,7 @@ namespace SecretProject.Class.SpriteFolder
             this.RotationCap = .25f;
             this.ShuffSpeed = 2f;
             this.StartShuff = false;
-            this.YOffSet = Game1.Utility.RFloat(.0000001f, .000001f);
+            this.YOffSet = Game1.Utility.RFloat(.00000001f, .0000001f);
             this.ShuffDirection = Dir.Left;
             this.ShuffDirectionPicked = false;
 

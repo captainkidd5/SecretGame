@@ -66,8 +66,8 @@ namespace SecretProject.Class.CameraStuff
         public void Follow(Vector2 amount, Rectangle rectangle)
         {
 
-            pos.X = (int)amount.X;
-            pos.Y = (int)amount.Y;
+            pos.X = amount.X;
+            pos.Y = amount.Y;
             ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
               (int)(Game1.GetCurrentStage().MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
                 (int)(Game1.GetCurrentStage().MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),

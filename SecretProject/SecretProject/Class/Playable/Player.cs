@@ -78,8 +78,9 @@ namespace SecretProject.Class.Playable
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
-        public float Speed1 { get; set; } = 1f;
-        public float SecondarySpeed { get; set; } = 1f;
+        public const float Speed1 = 50f;
+        public float CurrentSpeed { get; set; }
+        public float SecondarySpeed { get; set; } = 50f;
         public Sprite[] PlayerMovementAnimations { get; set; }
         public Sprite[] PlayerActionAnimations { get; set; }
 
@@ -295,6 +296,7 @@ namespace SecretProject.Class.Playable
         {
             if (Activate)
             {
+                CurrentSpeed = Speed1;
                 // this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
 
 
@@ -367,25 +369,94 @@ namespace SecretProject.Class.Playable
                 }
 
 
+                
+                MainCollider.Rectangle = this.ColliderRectangle;
+                MainCollider.Velocity = this.PrimaryVelocity;
+
+                BigCollider.Rectangle = this.ClickRangeRectangle;
+                BigCollider.Velocity = this.PrimaryVelocity;
+
+                List<ICollidable> returnObjects = new List<ICollidable>();
+                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+                for (int i = 0; i < returnObjects.Count; i++)
+                {
+
+                    if (returnObjects[i].ColliderType == ColliderType.Item)
+                    {
+
+                        if (BigCollider.IsIntersecting(returnObjects[i]))
+                        {
+                            returnObjects[i].Entity.PlayerCollisionInteraction();
+                        }
+                    }
+                    else if (returnObjects[i].ColliderType == ColliderType.grass)
+                    {
+                        if (MainCollider.IsIntersecting(returnObjects[i]))
+                        {
+                            returnObjects[i].IsUpdating = true;
+                            returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                            CurrentSpeed = Speed1 / 2;
+                        }
+                        #region SWORD INTERACTIONS
+                        if (CurrentTool != null)
+                        {
+                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                            {
+                             returnObjects[i].SelfDestruct();
+                            }
+                        }
+                        #endregion
+                    }
+                    else if(returnObjects[i].ColliderType == ColliderType.Enemy)
+                    {
+                        if (CurrentTool != null)
+                        {
+                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                            {
+                                returnObjects[i].Entity.PlayerCollisionInteraction();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (IsMoving)
+                        {
+                            if (returnObjects[i].Entity != this)
+                            {
+         
+                                if (MainCollider.DidCollide(returnObjects[i], position))
+                                {
+                                    CollideOccured = true;
+                                    //returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                                }
+
+                            }
+
+
+                        }
+
+                    }
+
+                }
                 if (controls.IsMoving && !IsPerformingAction)
                 {
                     IsMoving = true;
                     switch (controls.Direction)
                     {
                         case Dir.Right:
-                            PrimaryVelocity.X = Speed1;
+                            PrimaryVelocity.X = CurrentSpeed;
                             break;
 
                         case Dir.Left:
-                            PrimaryVelocity.X = -Speed1;
+                            PrimaryVelocity.X = -CurrentSpeed;
                             break;
 
                         case Dir.Down:
-                            PrimaryVelocity.Y = Speed1;
+                            PrimaryVelocity.Y = CurrentSpeed;
                             break;
 
                         case Dir.Up:
-                            PrimaryVelocity.Y = -Speed1;
+                            PrimaryVelocity.Y = -CurrentSpeed;
                             break;
 
                         default:
@@ -436,74 +507,6 @@ namespace SecretProject.Class.Playable
                     }
 
                 }
-                MainCollider.Rectangle = this.ColliderRectangle;
-                MainCollider.Velocity = this.PrimaryVelocity;
-
-                BigCollider.Rectangle = this.ClickRangeRectangle;
-                BigCollider.Velocity = this.PrimaryVelocity;
-
-                List<ICollidable> returnObjects = new List<ICollidable>();
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
-                for (int i = 0; i < returnObjects.Count; i++)
-                {
-
-                    if (returnObjects[i].ColliderType == ColliderType.Item)
-                    {
-
-                        if (BigCollider.IsIntersecting(returnObjects[i]))
-                        {
-                            returnObjects[i].Entity.PlayerCollisionInteraction();
-                        }
-                    }
-                    else if (returnObjects[i].ColliderType == ColliderType.grass)
-                    {
-                        if (MainCollider.IsIntersecting(returnObjects[i]))
-                        {
-                            returnObjects[i].IsUpdating = true;
-                            returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                        }
-                        #region SWORD INTERACTIONS
-                        if (CurrentTool != null)
-                        {
-                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                            {
-                               Console.WriteLine("Intersected grass");
-                             returnObjects[i].SelfDestruct();
-                            }
-                        }
-                        #endregion
-                    }
-                    else if(returnObjects[i].ColliderType == ColliderType.Enemy)
-                    {
-                        if (CurrentTool != null)
-                        {
-                            if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
-                            {
-                                returnObjects[i].Entity.PlayerCollisionInteraction();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (IsMoving)
-                        {
-                            if (returnObjects[i].Entity != this)
-                            {
-         
-                                if (MainCollider.DidCollide(returnObjects[i], position))
-                                {
-                                    CollideOccured = true;
-                                    //returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                                }
-
-                            }
-
-
-                        }
-
-                    }
-
-                }
                 if (controls.IsMoving && !IsPerformingAction)
                 {
 
@@ -523,7 +526,7 @@ namespace SecretProject.Class.Playable
                     {
                         TotalVelocity = TotalVelocity * 15f;
                     }
-                    Position += TotalVelocity;
+                    Position += TotalVelocity * dt;
                     PrimaryVelocity = Vector2.Zero;
                     SecondaryVelocity = Vector2.Zero;
                     TotalVelocity = Vector2.Zero;
