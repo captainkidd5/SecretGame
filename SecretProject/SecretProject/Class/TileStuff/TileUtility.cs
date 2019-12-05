@@ -59,10 +59,19 @@ namespace SecretProject.Class.TileStuff
             {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
         };
 
-        public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
+        public static Dictionary<int, int> StoneTiling = FillTilingDictionary(929);
+       
+        public static Dictionary<int, int> SandRuinTiling = FillTilingDictionary(1621);
+
+        public static Dictionary<int,int> FillTilingDictionary(int centralGID)
         {
-            {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
-        };
+            return new Dictionary<int, int>()
+            {
+                {0, centralGID -98},{1, centralGID + 3}, {2,  centralGID + 102 },  {3, centralGID + 101}, {4, centralGID + 2}, {5, centralGID + 99},{6,centralGID - 96},
+                { 7, centralGID + 100}, {8, centralGID + 103}, {9, centralGID - 97}, {10, centralGID - 99}, {11, centralGID + 1},
+                { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
+            };
+        }
 
         public static void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)

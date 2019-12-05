@@ -505,8 +505,8 @@ namespace SecretProject.Class.TileStuff
                 TileUtility.GenerateTiles(1, 1586, Game1.Utility.DirtGeneratableTiles, 5, 0, this); //CLUEFRUIT
                 TileUtility.GenerateTiles(1, 1664, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //OAKTREE
                 TileUtility.GenerateTiles(1, 1294, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //SPROUTERA
-                TileUtility.GenerateTiles(1, 1381, Game1.Utility.GrassGeneratableTiles, 5, 0, this); //pumpkin
-                TileUtility.GenerateTiles(1, 1164, Game1.Utility.GrassGeneratableTiles, 1, 0, this); //WILLOW
+                TileUtility.GenerateTiles(1, 1381, Game1.Utility.GrassGeneratableTiles, 2, 0, this); //pumpkin
+                TileUtility.GenerateTiles(1, 1164, Game1.Utility.GrassGeneratableTiles, 2, 0, this); //WILLOW
                 TileUtility.GenerateTiles(1, 1002, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //FISSURE
                 TileUtility.GenerateTiles(3, 1476, Game1.Utility.GrassGeneratableTiles, 6, 0, this); //FallenOak
                 TileUtility.GenerateTiles(3, 1278, Game1.Utility.StoneGeneratableTiles, 5, 0, this); //Steel Vein

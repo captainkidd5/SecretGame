@@ -902,7 +902,7 @@
  <tile id="1001">
   <properties>
    <property name="destructable" value="1,0,0,8"/>
-   <property name="loot" value="221:100:1,220:15:1"/>
+   <property name="loot" value="644:100:1"/>
    <property name="spawnWith" value="1002"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
@@ -1688,7 +1688,7 @@
   <properties>
    <property name="destructable" value="22,0,6,17"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="1001:100:1"/>
+   <property name="loot" value="1097:3:100"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -1913,6 +1913,41 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1520">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1521">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1522">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1523">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1524">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1525">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1526">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
  <tile id="1550">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -2021,6 +2056,31 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1620">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1621">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1622">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1623">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1624">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
  <tile id="1663">
   <properties>
    <property name="destructable" value="21,4,5,3"/>
@@ -2061,6 +2121,31 @@
  <tile id="1705">
   <properties>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1720">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1721">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1722">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1723">
+  <properties>
+   <property name="generate" value="sandRuin"/>
+  </properties>
+ </tile>
+ <tile id="1724">
+  <properties>
+   <property name="generate" value="sandRuin"/>
   </properties>
  </tile>
  <tile id="1752">
