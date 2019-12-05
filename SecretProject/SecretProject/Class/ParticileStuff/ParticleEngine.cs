@@ -17,12 +17,14 @@ namespace SecretProject.Class.ParticileStuff
         public float ActivationTime { get; set; } = 0f;
         public Color Color { get; set; } = Color.White;
         public float AddNewParticleTimer { get; set; } = .01f;
+        public float LayerDepth { get; set; }
 
         public ParticleEngine(List<Texture2D> textures, Vector2 location)
         {
             this.EmitterLocation = location;
             this.textures = textures;
             this.particles = new List<Particle>();
+            this.LayerDepth = 1f;
 
         }
 
@@ -39,7 +41,7 @@ namespace SecretProject.Class.ParticileStuff
             float size = 1f;
             int ttl = 100 + Game1.Utility.RGenerator.Next(40);
 
-            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl);
+            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
         }
 
 
@@ -80,14 +82,14 @@ namespace SecretProject.Class.ParticileStuff
         }
 
 
-        public void Draw(SpriteBatch spriteBatch, float layerDepth)
+        public void Draw(SpriteBatch spriteBatch)
         {
             
                 if(particles.Count > 0)
                 {
                     for (int index = 0; index < particles.Count; index++)
                     {
-                        particles[index].Draw(spriteBatch, layerDepth);
+                        particles[index].Draw(spriteBatch);
                     }
                 }
                 

@@ -277,7 +277,7 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
 
-                ParticleEngine.Draw(spriteBatch, 1f);
+                ParticleEngine.Draw(spriteBatch);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * .0000001f);
                 for (int i = 0; i < this.AllRisingText.Count; i++)

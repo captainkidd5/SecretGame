@@ -228,9 +228,9 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
+            GetProperArrayData();
             ChunkUnderPlayer = ActiveChunks[1, 1];
-            ChunkPointUnderPlayer = new Point((int)(Game1.Player.Position.X / 16 / TileUtility.ChunkX), (int)(Game1.Player.Position.Y / 16 / TileUtility.ChunkY));
+            ChunkPointUnderPlayer = ChunkPositions[4];
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
         }
 
@@ -267,182 +267,12 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public void UpdateGrid(Dir directionPlayerMoved)
-        {
-            int currentChunkX = ActiveChunks[1, 1].X;
-            int currentChunkY = ActiveChunks[1, 1].Y;
-            switch (directionPlayerMoved)
-            {
-                case Dir.Down:
-
-
-                    //ActiveChunks[0, 0] = ActiveChunks[0, 1];
-                    CycleChunk(0, 0, 0, 1);
-
-                    // ActiveChunks[1, 0] = ActiveChunks[1, 1];
-                    CycleChunk(1, 0, 1, 1);
-
-                    //ActiveChunks[2, 0] = ActiveChunks[2, 1];
-                    CycleChunk(2, 0, 2, 1);
-
-                    //ActiveChunks[0, 1] = ActiveChunks[0, 2];
-                    CycleChunk(0, 1, 0, 2);
-
-                    // ActiveChunks[1, 1] = ActiveChunks[1, 2];
-                    CycleChunk(1, 1, 1, 2);
-
-                    //ActiveChunks[2, 1] = ActiveChunks[2, 2];
-                    CycleChunk(2, 1, 2, 2);
-                    lock (locker)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            int index = i;
-
-                            ActiveChunks[i, 2] = new Chunk(this, currentChunkX - 1 + i, currentChunkY + 2, i, 2);
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 2]));
-
-
-                        }
-                    }
-                    break;
-                //correct
-                case Dir.Up:
-
-                    //  ActiveChunks[0, 2] = ActiveChunks[0, 1];
-                    CycleChunk(0, 2, 0, 1);
-
-                    //   ActiveChunks[1, 2] = ActiveChunks[1, 1];
-                    CycleChunk(1, 2, 1, 1);
-
-                    //  ActiveChunks[2, 2] = ActiveChunks[2, 1];
-                    CycleChunk(2, 2, 2, 1);
-
-                    // ActiveChunks[0, 1] = ActiveChunks[0, 0];
-
-                    CycleChunk(0, 1, 0, 0);
-
-                    //ActiveChunks[1, 1] = ActiveChunks[1, 0];
-                    CycleChunk(1, 1, 1, 0);
-
-
-                    //ActiveChunks[2, 1] = ActiveChunks[2, 0];
-                    CycleChunk(2, 1, 2, 0);
-
-                    lock (locker)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-
-                            int index = i;
-
-                            ActiveChunks[i, 0] = new Chunk(this, currentChunkX - 1 + i, currentChunkY - 2, i, 0);
-
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[index, 0]));
-                        }
-                    }
-
-
-                    break;
-
-                case Dir.Left:
-
-                    //  ActiveChunks[2, 0] = ActiveChunks[1, 0];
-                    CycleChunk(2, 0, 1, 0);
-
-                    //  ActiveChunks[2, 1] = ActiveChunks[1, 1];
-                    CycleChunk(2, 1, 1, 1);
-
-                    //ActiveChunks[2, 2] = ActiveChunks[1, 2];
-                    CycleChunk(2, 2, 1, 2);
-
-                    // ActiveChunks[1, 0] = ActiveChunks[0, 0];
-                    CycleChunk(1, 0, 0, 0);
-
-                    // ActiveChunks[1, 1] = ActiveChunks[0, 1];
-                    CycleChunk(1, 1, 0, 1);
-
-                    //ActiveChunks[1, 2] = ActiveChunks[0, 2];
-                    CycleChunk(1, 2, 0, 2);
-                    lock (locker)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            int index = i;
-
-                            ActiveChunks[0, i] = new Chunk(this, currentChunkX - 2, currentChunkY - 1 + i, 0, i);
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[0, index]));
-
-                        }
-                    }
-
-                    break;
-
-                case Dir.Right:
-
-                    // ActiveChunks[0, 0] = ActiveChunks[1, 0];
-
-                    CycleChunk(0, 0, 1, 0);
-
-
-                    //  ActiveChunks[0, 1] = ActiveChunks[1, 1];
-                    CycleChunk(0, 1, 1, 1);
-
-                    //ActiveChunks[0, 2] = ActiveChunks[1, 2];
-                    CycleChunk(0, 2, 1, 2);
-
-                    // ActiveChunks[1, 0] = ActiveChunks[2, 0];
-                    CycleChunk(1, 0, 2, 0);
-
-                    //  ActiveChunks[1, 1] = ActiveChunks[2, 1];
-                    CycleChunk(1, 1, 2, 1);
-
-
-                    // ActiveChunks[1, 2] = ActiveChunks[2, 2];
-                    CycleChunk(1, 2, 2, 2);
-
-                    lock (locker)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-
-
-                            int index = i;
-                            // Chunk chunkToSave = ActiveChunks[2, index];
-                            // Task.Run(() => chunkToSave.Save());
-                            ActiveChunks[2, i] = new Chunk(this, currentChunkX + 2, currentChunkY - 1 + i, 2, i);
-                            Task.Run(() => ChunkCheck(ref ActiveChunks[2, index]));
-
-                        }
-                    }
-
-
-                    break;
-            }
-            ChunkUnderPlayer = ActiveChunks[1, 1];
-
-        }
+        
 
 
 
-        public void CycleChunk(int oldX, int oldY, int newX, int newY)
-        {
-
-            Chunk tempChunkNew = ActiveChunks[newX, newY];
-            Chunk tempChunkOld = ActiveChunks[oldX, oldY];
-
-
-            Task.Run(() => tempChunkOld.Save());
-
-
-            ActiveChunks[oldX, oldY] = tempChunkNew;
-            ActiveChunks[oldX, oldY].ArrayI = oldX;
-            ActiveChunks[oldX, oldY].ArrayJ = oldY;
-
-
-
-        }
-
+       
+      //  Task.Run(() => tempChunkOld.Save());
         public void MoveChunks(Dir direction)
         {
 
@@ -465,7 +295,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 ActiveChunks[i, j] = ActiveChunks[i, j + 1];
-
+                                ReassignArrayIAndJ(ActiveChunks[i, j], i, j);
 
                             }
                         }
@@ -487,7 +317,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 ActiveChunks[i, j] = ActiveChunks[i, j - 1];
-
+                                ReassignArrayIAndJ(ActiveChunks[i, j], i, j);
 
                             }
                         }
@@ -524,7 +354,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 ActiveChunks[i, j] = ActiveChunks[i - 1, j];
-
+                                ReassignArrayIAndJ(ActiveChunks[i, j], i, j);
 
                             }
                         }
@@ -562,7 +392,7 @@ namespace SecretProject.Class.TileStuff
                             {
 
                                 ActiveChunks[i, j] = ActiveChunks[i + 1, j];
-
+                                ReassignArrayIAndJ(ActiveChunks[i, j], i, j);
 
                             }
                         }
@@ -572,7 +402,11 @@ namespace SecretProject.Class.TileStuff
 
 
         }
-
+        public void ReassignArrayIAndJ(Chunk chunk, int i, int j)
+        {
+            chunk.ArrayI = i;
+            chunk.ArrayJ = j;
+        }
         public void ChunkCheck(ref Chunk chunk)
         {
             if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))

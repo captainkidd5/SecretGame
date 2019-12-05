@@ -22,8 +22,10 @@ namespace SecretProject.Class.ParticileStuff
         public int TTL { get; set; }
         public float VelocityReductionTimer { get; set; }
 
+        public float LayerDepth { get; set; }
 
-        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl)
+
+        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f)
         {
             this.ParticleTexture = particleTexture;
             this.Position = position;
@@ -36,6 +38,7 @@ namespace SecretProject.Class.ParticileStuff
             this.Size = Game1.Utility.RGenerator.Next(1, 3);
             this.TTL = ttl;
             this.VelocityReductionTimer = Game1.Utility.RFloat(.25f, .5f);
+            this.LayerDepth = layerDepth;
         }
 
         public void Update(GameTime gameTime)
@@ -57,13 +60,13 @@ namespace SecretProject.Class.ParticileStuff
                 Angle += AngularVelocity;
         }
 
-        public void Draw(SpriteBatch spriteBatch, float layerDepth)
+        public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, this.ParticleTexture.Width, this.ParticleTexture.Height);
             Vector2 origin = new Vector2(this.ParticleTexture.Width / 2, this.ParticleTexture.Height / 2);
 
             spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color * ColorMultiplier,
-                Angle, origin, Size, SpriteEffects.None, layerDepth);
+                Angle, origin, Size, SpriteEffects.None, LayerDepth);
         }
     }
 }

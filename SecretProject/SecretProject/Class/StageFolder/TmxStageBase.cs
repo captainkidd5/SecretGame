@@ -429,7 +429,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
                 }
-                ParticleEngine.Draw(spriteBatch, 1f);
+                ParticleEngine.Draw(spriteBatch);
 
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Bottom) * .00000001f);
                 for (int i = 0; i < this.AllRisingText.Count; i++)

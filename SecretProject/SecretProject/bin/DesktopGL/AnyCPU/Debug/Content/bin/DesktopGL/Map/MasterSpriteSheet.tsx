@@ -101,31 +101,31 @@
  </tile>
  <tile id="288">
   <properties>
-   <property name="AssociatedTiles" value="189"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="289">
   <properties>
-   <property name="AssociatedTiles" value="190"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="290">
   <properties>
-   <property name="AssociatedTiles" value="191"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="750:100:1,751:20:3"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="295">
   <properties>
-   <property name="AssociatedTiles" value="196"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="296">
   <properties>
-   <property name="AssociatedTiles" value="197"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="755:100:1,754:20:3"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="325">
@@ -372,31 +372,36 @@
  </tile>
  <tile id="488">
   <properties>
-   <property name="AssociatedTiles" value="389"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="489">
   <properties>
-   <property name="AssociatedTiles" value="390"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="490">
   <properties>
-   <property name="AssociatedTiles" value="391"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="749:100:1,748:20:2"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="494">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="495">
   <properties>
-   <property name="AssociatedTiles" value="396"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="496">
   <properties>
-   <property name="AssociatedTiles" value="397"/>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="757:100:1,756:20:3"/>
+   <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="525">

@@ -709,46 +709,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.GlobalClock.TotalHours = 6;
                     }
                     break;
-                case "sanctuaryAdd":
-                    if (mouse.IsClicked)
-                    {
-                        if (Game1.Player.Inventory.FindNumberOfItemInInventory(int.Parse(information[1])) > 0)
-                        {
-                            int newGID;
-                            int relationX;
-                            int relationY;
-                            int layer;
-                            int tileToReplaceGID;
-
-                            if (Game1.SanctuaryCheckList.TryFillRequirement(container.AllTiles[z][i, j].GID))
-                            {
-                                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties.ContainsKey("spawnWith"))
-                                {
-                                    newGID = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["spawnWith"]);
-                                    relationX = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[newGID].Properties["relationX"]);
-                                    relationY = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[newGID].Properties["relationY"]);
-                                    layer = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[newGID].Properties["layer"]);
-                                    tileToReplaceGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[newGID].AnimationFrames[0].Id + 1;
-                                    TileUtility.ReplaceTile(layer, i + relationX, j + relationY, tileToReplaceGID, container);
-                                }
-                                Game1.GetCurrentStage().AddTextToAllStrings(Game1.SanctuaryCheckList.AllRequirements.Find(x => x.GID == container.AllTiles[z][i, j].GID).Name,
-                                    new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 10),
-                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X, TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 100, 2f, 3f);
-
-
-                                TileUtility.ReplaceTile(z, i, j, container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].AnimationFrames[0].Id + 1, container);
-
-                                Game1.Player.Inventory.RemoveItem(int.Parse(information[1]));
-                                Game1.GetCurrentStage().ParticleEngine.Color = Color.LightGoldenrodYellow;
-                                Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).X + 10,
-                                    TileUtility.GetDestinationRectangle(container.AllTiles[z][i, j]).Y - 10);
-
-                                Game1.SoundManager.SanctuaryAdd.Play();
-                            }
-                        }
-                    }
-                    break;
+                
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
@@ -775,12 +736,7 @@ namespace SecretProject.Class.TileStuff
                     }
 
                     break;
-                case "readSanctuary":
-                    if (mouse.IsClicked)
-                    {
-                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.SanctuaryCheckList;
-                    }
-                    break;
+
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
@@ -947,6 +903,7 @@ namespace SecretProject.Class.TileStuff
                     Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
                     Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
                     Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
+                    Game1.GetCurrentStage().ParticleEngine.LayerDepth = tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet;
                     return;
                 }
 
@@ -977,6 +934,8 @@ namespace SecretProject.Class.TileStuff
                 Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
                 Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
                 Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X, destinationRectangle.Y);
+                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
+                Game1.GetCurrentStage().ParticleEngine.LayerDepth = tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet;
             }
         }
 
@@ -1318,14 +1277,8 @@ namespace SecretProject.Class.TileStuff
             int x = crop.X;
             int y = crop.Y;
 
-            TileUtility.ReplaceTilePermanent(1, x, y, crop.GID, stage, container);
-            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(crop.GID - 1))
-            {
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[crop.GID - 1].Properties.ContainsKey("AssociatedTiles"))
-                {
-                    TileUtility.ReplaceTilePermanent(3, x, y - 1, int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[crop.GID - 1].Properties["AssociatedTiles"]), stage, container);
-                }
-            }
+            TileUtility.ReplaceTilePermanent(3, x, y, crop.GID, stage, container);
+
         }
 
 

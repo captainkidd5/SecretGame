@@ -99,6 +99,7 @@ namespace SecretProject.Class.SpriteFolder
             Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
             Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
             Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
+            Game1.GetCurrentStage().ParticleEngine.LayerDepth = .5f + (DestinationRectangle.Y) * .0000001f + YOffSet;
             TuftsIsPartOf.Remove(this);
         }
 
