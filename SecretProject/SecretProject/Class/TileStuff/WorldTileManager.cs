@@ -234,7 +234,7 @@ namespace SecretProject.Class.TileStuff
                             ActiveChunks[i, j].Generate(0);
 
                         }
-                        ActiveChunks[i, j].Save();
+                        //ActiveChunks[i, j].Save();
                     }
                 }
             }
@@ -299,7 +299,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ChunkPositions.Length - 3 + i].X,
                                     ChunkPositions[ChunkPositions.Length - 3 + i].Y, i, j);
-                                ChunkCheck(ref ActiveChunks[i, j]);
+                                ChunkCheck( ActiveChunks[i, j]);
                             }
                             else
                             {
@@ -321,7 +321,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i].X,
                                     ChunkPositions[i].Y, i, j);
-                                ChunkCheck(ref ActiveChunks[i, j]);
+                                ChunkCheck( ActiveChunks[i, j]);
                             }
                             else
                             {
@@ -357,7 +357,7 @@ namespace SecretProject.Class.TileStuff
                                     ChunkPositions[6].Y, i, j);
                                 }
 
-                                ChunkCheck(ref ActiveChunks[i, j]);
+                                ChunkCheck( ActiveChunks[i, j]);
                             }
 
                             else
@@ -395,7 +395,7 @@ namespace SecretProject.Class.TileStuff
                                     ChunkPositions[8].Y, i, j);
                                 }
 
-                                ChunkCheck(ref ActiveChunks[i, j]);
+                                ChunkCheck(ActiveChunks[i, j]);
                             }
 
                             else
@@ -417,16 +417,17 @@ namespace SecretProject.Class.TileStuff
             chunk.ArrayI = i;
             chunk.ArrayJ = j;
         }
-        public void ChunkCheck(ref Chunk chunk)
+        public void ChunkCheck( Chunk chunk)
         {
             if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
             {
-                chunk.Load();
+                Task.Run(()=>chunk.Load());
+               // chunk.Load();
             }
             else
             {
-                chunk.Generate(0);
-                chunk.Save();
+                Task.Run(()=>chunk.Generate(0));
+               
             }
         }
         static readonly object locker = new object();

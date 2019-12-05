@@ -587,6 +587,7 @@ namespace SecretProject.Class.TileStuff
 
 
             this.IsLoaded = true;
+            Save();
         }
 
         public void Unload()
