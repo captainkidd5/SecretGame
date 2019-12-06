@@ -169,6 +169,15 @@ namespace SecretProject.Class.UI
             switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
+
+                    if((Game1.OldKeyBoardState.IsKeyDown(Keys.F6)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F6)))
+                    {
+                        Game1.cam.Zoom++;
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F5)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F5)))
+                    {
+                        Game1.cam.Zoom--;
+                    }
                     if (!TextBuilder.FreezeStage)
                     {
                         Game1.freeze = false;
