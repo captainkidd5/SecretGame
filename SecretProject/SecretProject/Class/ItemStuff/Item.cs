@@ -107,7 +107,7 @@ namespace SecretProject.Class.ItemStuff
                 switch (TilingSet)
                 {
                     case "FenceTiling":
-                        this.TilingDictionary = Game1.Utility.FenceTiling;
+                        this.TilingDictionary = Game1.Procedural.FenceTiling;
                         break;
                 }
                 

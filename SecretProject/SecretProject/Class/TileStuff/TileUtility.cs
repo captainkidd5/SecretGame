@@ -36,145 +36,22 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public static Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
-        {
-            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1106}
-        };
-
-        public static Dictionary<int, int> SandTiling; 
+        
        
-
-        public static Dictionary<int, int> WaterTiling = new Dictionary<int, int>()
-        {
-            {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
-        };
-
-        public static Dictionary<int, int> StoneTiling;
-
-        public static Dictionary<int, int> SandRuinTiling;
-
-        public static Dictionary<int, int> DirtCliffTiling;
-
-        public static Dictionary<int,int> FillTilingDictionary(int centralGID)
-        {
-            return new Dictionary<int, int>()
-            {
-                {0, centralGID -98},{1, centralGID + 3}, {2,  centralGID + 102 },  {3, centralGID + 101}, {4, centralGID + 2}, {5, centralGID + 99},{6,centralGID - 96},
-                { 7, centralGID + 100}, {8, centralGID + 103}, {9, centralGID - 97}, {10, centralGID - 99}, {11, centralGID + 1},
-                { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
-            };
-        }
        
-        public static void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-            int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
-        {
-            List<int> secondaryTiles;
-            if (generatableTiles == Game1.Utility.DirtGeneratableTiles)
-            {
-                secondaryTiles = Game1.Utility.StandardGeneratableDirtTiles;
-            }
-            else if (generatableTiles == Game1.Utility.GrassGeneratableTiles)
-            {
-                secondaryTiles = Game1.Utility.StandardGeneratableGrassTiles;
-            }
-
-            else
-            {
-                secondaryTiles = new List<int>();
-            }
-
-
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
-            {
-                return;
-            }
-            int keyToCheck = 0;
-            if (y > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
-                {
-                    keyToCheck += 1;
-                }
-            }
-            //if top tile is 0 we look at the chunk above it
-
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][x]) || secondaryTiles.Contains(adjacentChunkInfo[0][x])))
-            {
-                keyToCheck += 1;
-            }
-
-
-
-            if (y < worldHeight - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
-                {
-                    keyToCheck += 8;
-                }
-            }
-
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][x]) || secondaryTiles.Contains(adjacentChunkInfo[1][x])))
-            {
-                keyToCheck += 8;
-            }
-
-            //looking at rightmost tile
-            if (x < worldWidth - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
-                {
-                    keyToCheck += 4;
-                }
-            }
-
-
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][y]) || secondaryTiles.Contains(adjacentChunkInfo[3][y])))
-            {
-                keyToCheck += 4;
-            }
-
-
-            if (x > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
-                {
-                    keyToCheck += 2;
-                }
-            }
-
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][y]) || secondaryTiles.Contains(adjacentChunkInfo[2][y])))
-            {
-                keyToCheck += 2;
-            }
-
-            if (keyToCheck >= 15)
-            {
-
-            }
-            else
-            {
-                ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-                if(tilingDictionary == DirtCliffTiling)
-                {
-                    ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
-                }
-            }
-
-
-        }
       
 
         public static void PlayerInvokedReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
             int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
         {
             List<int> secondaryTiles;
-            if (generatableTiles == Game1.Utility.DirtGeneratableTiles)
+            if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
             {
-                secondaryTiles = Game1.Utility.StandardGeneratableDirtTiles;
+                secondaryTiles = Game1.Procedural.StandardGeneratableDirtTiles;
             }
-            else if (generatableTiles == Game1.Utility.GrassGeneratableTiles)
+            else if (generatableTiles == Game1.Procedural.GrassGeneratableTiles)
             {
-                secondaryTiles = Game1.Utility.StandardGeneratableGrassTiles;
+                secondaryTiles = Game1.Procedural.StandardGeneratableGrassTiles;
             }
 
             else
@@ -633,8 +510,8 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            PlayerInvokedReassignForTiling(1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
-                                            ReassignGroupOfTiles(z, i, j, 1006, Game1.Utility.DirtGeneratableTiles, DirtTiling, container);
+                                            PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
+                                            ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
 
 
                                             break;
@@ -1016,86 +893,9 @@ namespace SecretProject.Class.TileStuff
             }
         }
         #region NOISE
-        public static void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
-        {
-            if (chance == 100)
-            {
-                if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-               acceptableGenerationTiles, container, comparisonLayer))
-                {
-                    container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
-                }
-            }
+        
 
-            else
-            {
-                if (Game1.Utility.RGenerator.Next(0, 101) < chance)
-                {
-                    if (!TileUtility.CheckIfTileAlreadyExists(x, y, layerToPlace, container) && TileUtility.CheckIfTileMatchesGID(x, y, layerToPlace,
-               acceptableGenerationTiles, container, comparisonLayer))
-                    {
-                        container.AllTiles[layerToPlace][x, y] = new Tile(x, y, gid);
-                    }
-                }
-
-            }
-
-        }
-
-        public static int GetTileFromNoise(float perlinValue)
-        {
-            int newGID = 0;
-            if (perlinValue >= .2f && perlinValue <= 1f)
-            {
-                //newGID = 1106;
-                newGID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
-            }
-            else if (perlinValue >= .12f && perlinValue <= .2f)
-            {
-                newGID = Game1.Utility.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
-                //newGID = 1106;
-            }
-            else if (perlinValue >= .1f && perlinValue <= .12f)
-            {
-                newGID = 930;//Stone
-            }
-            else if (perlinValue >= .07f && perlinValue <= .1f)
-            {
-
-                newGID = 2935; //dirt cliff
-
-            }
-            else if (perlinValue >= .02f && perlinValue <= .07f)
-            {
-
-                newGID = Game1.Utility.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
-
-            }
-
-            else if (perlinValue >= -.09f && perlinValue < .02f)
-            {
-                newGID = Game1.Utility.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
-
-                //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
-                // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
-            }
-
-            //newGID = 930; //STONE
-
-            else if (perlinValue >= -.15f && perlinValue < -.09f)
-            {
-                newGID = 1322;//SAND
-            }
-            else if (perlinValue >= -1f && perlinValue < -.15f)
-            {
-                newGID = 1622;//SANDRUIN
-            }
-            //else if (perlinValue >= -1f && perlinValue < -.1f)
-            //{
-            //    newGID = 427;//WATER
-            //}
-            return newGID;
-        }
+        
         #endregion
 
         public static void GenerateRandomTiles(int layer, int id, List<int> acceptableTiles, IInformationContainer container,

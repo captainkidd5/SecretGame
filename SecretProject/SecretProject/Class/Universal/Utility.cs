@@ -22,7 +22,7 @@ namespace SecretProject.Class.Universal
         public float ForeGroundMultiplier { get; set; } = .0000001f;
         public Vector2 centerScreen;
         public Random RGenerator;
-        public FastNoise FastNoise;
+  
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
         public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
@@ -31,58 +31,13 @@ namespace SecretProject.Class.Universal
         public float StandardButtonDepth { get; set; } = .7f;
         public float StandardTextDepth { get; set; } = .72f;
 
-        //random tile information
-        public List<int> DirtGeneratableTiles;
-        public List<int> SandGeneratableTiles;
-        public List<int> SandRuinGeneratableTiles;
-        public List<int> GrassGeneratableTiles;
-        public List<int> WaterGeneratableTiles;
-        public List<int> StoneGeneratableTiles { get; set; }
-        public List<int> StandardGeneratableDirtTiles;
-        public List<int> StandardGeneratableGrassTiles { get; set; }
-        public List<int> FenceGeneratableTiles { get; set; }
-
-        public List<int> DirtCliffGeneratableTiles { get; set; }
-
-        public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
-        {
-            {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 254}
-        };
-        //public static Dictionary<int, int> StoneTiling = new Dictionary<int, int>()
-        //{
-        //    {0, 831},{1,932}, {2, 1031 },  {3, 1030}, {4, 931}, {5, 1028},{6,833},{7, 1029}, {8, 1032}, {9, 832}, {10, 830}, {11, 930}, {12,828}, {13,928}, {14,829}, {15, 929}
-        //};
-
-
-        // public static Color = new Color(100, 100, 100, 100);
+        
 
         public Utility(int seed)
         {
             RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(CenterScreenX, CenterScreenY);
-            DirtGeneratableTiles = new List<int>();
-            SandGeneratableTiles = new List<int>();
-            SandRuinGeneratableTiles = new List<int>();
-            GrassGeneratableTiles = new List<int>();
-            WaterGeneratableTiles = new List<int>();
-            StoneGeneratableTiles = new List<int>();
-            StandardGeneratableDirtTiles = new List<int>();
-            StandardGeneratableGrassTiles = new List<int>();
-            FenceGeneratableTiles = new List<int>();
 
-            DirtCliffGeneratableTiles = new List<int>();
-
-         FastNoise = new FastNoise(45);
-            FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
-            FastNoise.SetFractalOctaves(5);
-            FastNoise.SetFractalLacunarity(3f);
-
-            //Smaller the smooth the biomes
-            FastNoise.SetFractalGain(.5f);
-
-            //larger the smaller the biomes
-            FastNoise.SetFrequency(.001f);
-           // FastNoise.SetFractalType(FastNoise.FractalType.Billow)
 
         }
 

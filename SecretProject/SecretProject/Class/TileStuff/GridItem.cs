@@ -407,13 +407,13 @@ namespace SecretProject.Class.TileStuff
                                 if (item.TilingDictionary != null)
                                 {
 
-                                    ReassignTileForTiling(this.PlaceID, Game1.Utility.FenceGeneratableTiles,
+                                    ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
                                         item.TilingDictionary, 3,
                                         Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                         TileUtility.ChunkX, TileUtility.ChunkY, container);
                                     int i = Game1.Player.UserInterface.TileSelector.IndexX;
                                     int j = Game1.Player.UserInterface.TileSelector.IndexY;
-                                    TileUtility.ReassignGroupOfTiles(3, i, j, this.PlaceID, Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, container);
+                                    TileUtility.ReassignGroupOfTiles(3, i, j, this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, container);
                                     //for (int t = -1; t < 2; t++)
                                     //{
                                     //    for (int q = -1; q < 2; q++)

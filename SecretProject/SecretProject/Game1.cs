@@ -33,6 +33,7 @@ using SecretProject.Class.PathFinding;
 using static SecretProject.Class.UI.CheckList;
 using SecretProject.Class.EventStuff;
 using Microsoft.Xna.Framework.Audio;
+using SecretProject.Class.TileStuff;
 
 
 
@@ -162,6 +163,7 @@ namespace SecretProject
         //TOOLS
 
         public static Utility Utility;
+        public static Procedural Procedural;
         public static float FrameRate = 0f;
         public static List<ActionTimer> AllActions;
 
@@ -452,7 +454,7 @@ namespace SecretProject
 
 
             AllItems = Content.Load<ItemHolder>("Item/ItemHolder");
-
+            Procedural = new Procedural();
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
             SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
