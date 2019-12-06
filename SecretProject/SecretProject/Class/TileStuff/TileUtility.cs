@@ -58,8 +58,10 @@ namespace SecretProject.Class.TileStuff
         };
 
         public static Dictionary<int, int> StoneTiling;
-       
-        public static Dictionary<int, int> SandRuinTiling = FillTilingDictionary(1621);
+
+        public static Dictionary<int, int> SandRuinTiling;
+
+        public static Dictionary<int, int> DirtCliffTiling;
 
         public static Dictionary<int,int> FillTilingDictionary(int centralGID)
         {
@@ -160,6 +162,10 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+                if(tilingDictionary == DirtCliffTiling)
+                {
+                    ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
+                }
             }
 
 
@@ -1105,13 +1111,16 @@ namespace SecretProject.Class.TileStuff
             {
                 newGID = 930;//Stone
             }
-            else if (perlinValue >= .02f && perlinValue <= .1f)
+            else if (perlinValue >= .07f && perlinValue <= .1f)
+            {
+
+                newGID = 2935; //dirt cliff
+
+            }
+            else if (perlinValue >= .02f && perlinValue <= .07f)
             {
 
                 newGID = Game1.Utility.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Utility.StandardGeneratableDirtTiles.Count)] + 1;
-
-
-
 
             }
 

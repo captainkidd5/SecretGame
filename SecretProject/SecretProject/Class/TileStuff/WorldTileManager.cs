@@ -211,6 +211,13 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Utility.FenceGeneratableTiles.Add(i);
                                 }
                                 break;
+
+                            case "dirtCliff":
+                                if (!Game1.Utility.DirtCliffGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Utility.DirtCliffGeneratableTiles.Add(i);
+                                }
+                                break;
                         }
 
 
@@ -221,6 +228,7 @@ namespace SecretProject.Class.TileStuff
             TileUtility.SandTiling = TileUtility.FillTilingDictionary(1321);
             TileUtility.StoneTiling = TileUtility.FillTilingDictionary(929);
             TileUtility.SandRuinTiling = TileUtility.FillTilingDictionary(1621);
+            TileUtility.DirtCliffTiling = TileUtility.FillTilingDictionary(2934);
         }
 
         public void LoadInitialChunks()

@@ -42,6 +42,8 @@ namespace SecretProject.Class.Universal
         public List<int> StandardGeneratableGrassTiles { get; set; }
         public List<int> FenceGeneratableTiles { get; set; }
 
+        public List<int> DirtCliffGeneratableTiles { get; set; }
+
         public Dictionary<int, int> FenceTiling { get; set; } = new Dictionary<int, int>()
         {
             {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 254}
@@ -68,7 +70,9 @@ namespace SecretProject.Class.Universal
             StandardGeneratableGrassTiles = new List<int>();
             FenceGeneratableTiles = new List<int>();
 
-            FastNoise = new FastNoise(45);
+            DirtCliffGeneratableTiles = new List<int>();
+
+         FastNoise = new FastNoise(45);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);

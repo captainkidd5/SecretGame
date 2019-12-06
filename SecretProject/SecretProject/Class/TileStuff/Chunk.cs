@@ -474,6 +474,12 @@ namespace SecretProject.Class.TileStuff
                             this.MainGid = 930;
                             break;
 
+                        case 2934:
+                            this.GeneratableTiles = Game1.Utility.DirtCliffGeneratableTiles;
+                            this.TilingDictionary = TileUtility.DirtCliffTiling;
+                            this.MainGid = 2935;
+                            break;
+
 
                         default:
                             this.GeneratableTiles = Game1.Utility.DirtGeneratableTiles;
