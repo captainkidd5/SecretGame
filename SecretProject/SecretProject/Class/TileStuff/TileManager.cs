@@ -594,7 +594,7 @@ namespace SecretProject.Class.TileStuff
 
                 Crops.ElementAt(x).Value.UpdateGrowthCycle();
 
-                TileUtility.UpdateCropTile(Crops.ElementAt(x).Value, Game1.GetCurrentStage(), this);
+                TileUtility.ReplaceTile(3, Crops.ElementAt(x).Value.X, Crops.ElementAt(x).Value.Y, Crops.ElementAt(x).Value.GID,  this);
             }
 
         }

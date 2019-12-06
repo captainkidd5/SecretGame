@@ -169,8 +169,8 @@ namespace SecretProject.Class.TileStuff
                                         break;
                                 }
 
-                                TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, Game1.GetCurrentStage(), container);
+                                TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    this.PlaceID + 1,  container);
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
 
                                 return;
@@ -402,8 +402,8 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                                 Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                                TileUtility.ReplaceTilePermanent(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, Game1.GetCurrentStage(), container);
+                                TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    this.PlaceID + 1, container);
                                 if (item.TilingDictionary != null)
                                 {
 

@@ -628,5 +628,19 @@ namespace SecretProject.Class.TileStuff
             RectangleTexture = new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
             RectangleTexture.SetData<Color>(Colors.ToArray());
         }
+
+        #region STATIC METHODS
+        public static bool CheckIfChunkExistsInMemory(int idX, int idY)
+        {
+            if (File.Exists(@"Content/SaveFiles/Chunks/Chunk" + idX + idY + ".dat"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

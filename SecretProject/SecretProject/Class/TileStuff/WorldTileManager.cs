@@ -243,7 +243,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (!ActiveChunks[i, j].IsLoaded)
                     {
-                        if (TileUtility.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
+                        if (Chunk.CheckIfChunkExistsInMemory(ActiveChunks[i, j].X, ActiveChunks[i, j].Y))
                         {
                             ActiveChunks[i, j].Load();
                         }
@@ -458,7 +458,7 @@ namespace SecretProject.Class.TileStuff
         }
         public void ChunkCheck( Chunk chunk)
         {
-            if (TileUtility.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+            if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
             {
                 Task.Run(()=>chunk.Load());
                // chunk.Load();
@@ -843,7 +843,7 @@ namespace SecretProject.Class.TileStuff
 
                         ActiveChunks[i, j].Crops.ElementAt(x).Value.UpdateGrowthCycle();
 
-                        TileUtility.UpdateCropTile(ActiveChunks[i, j].Crops.ElementAt(x).Value, Game1.GetCurrentStage(), ActiveChunks[i, j]);
+                        TileUtility.ReplaceTile(3, ActiveChunks[i, j].Crops.ElementAt(x).Value.X, ActiveChunks[i, j].Crops.ElementAt(x).Value.Y, ActiveChunks[i, j].Crops.ElementAt(x).Value.GID, ActiveChunks[i, j]);
                     }
                 }
 
