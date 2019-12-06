@@ -268,6 +268,7 @@ namespace SecretProject.Class.TileStuff
                 {
 
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                   // frames.Add(new EditableAnimationFrame(new AnimationFrameHolder();
                     for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                     {
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
@@ -834,7 +835,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].AnimationFrames[i]));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID);
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, container.AllTiles[layer][x, y].GID, true);
                     container.AnimationFrames.Add(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container), frameHolder);
                 }
                 else
@@ -1211,6 +1212,13 @@ namespace SecretProject.Class.TileStuff
             this.ID = frame.Id;
 
         }
+
+        public EditableAnimationFrame(float duration, float anchorDuration, int GID)
+        {
+            this.CurrentDuration = duration;
+            this.AnchorDuration = anchorDuration;
+            this.ID = GID;
+        }
     }
 
     public class EditableAnimationFrameHolder
@@ -1223,8 +1231,9 @@ namespace SecretProject.Class.TileStuff
         public int Layer { get; set; }
         public int OriginalTileID { get; set; }
         public bool Repeats { get; set; }
+        public bool SelfDestruct { get; set; }
 
-        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID)
+        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID, bool selfDestruct = false)
         {
             this.Frames = frames;
             this.Counter = 0;
@@ -1233,6 +1242,7 @@ namespace SecretProject.Class.TileStuff
             this.OldY = oldY;
             this.Layer = layer;
             this.OriginalTileID = originalTileID;
+            this.SelfDestruct = selfDestruct;
         }
     }
 }

@@ -1980,12 +1980,18 @@
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="710:100:1"/>
   </properties>
+  <animation>
+   <frame tileid="1681" duration="100"/>
+  </animation>
  </tile>
  <tile id="1582">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="711:100:1"/>
   </properties>
+  <animation>
+   <frame tileid="1682" duration="100"/>
+  </animation>
  </tile>
  <tile id="1583">
   <properties>

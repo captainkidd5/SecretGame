@@ -577,14 +577,14 @@ namespace SecretProject.Class.TileStuff
                                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                                         {
 
-                                            if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
+                                            if (frameholder.SelfDestruct || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
                                             {
 
                                                 //needs to refer to first tile ?
                                                 int frameolDX = frameholder.OldX;
                                                 TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b], false);
                                                 AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, ActiveChunks[a, b]));
-                                                if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                                if (frameholder.SelfDestruct)
                                                 {
                                                     // Rectangle testDestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a,b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]);
                                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), ActiveChunks[a, b]);
