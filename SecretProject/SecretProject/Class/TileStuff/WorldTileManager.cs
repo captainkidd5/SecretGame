@@ -249,7 +249,6 @@ namespace SecretProject.Class.TileStuff
                             ActiveChunks[i, j].Generate(0);
 
                         }
-                        //ActiveChunks[i, j].Save();
                     }
                 }
             }
@@ -292,12 +291,6 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        
-
-
-
-       
-      //  Task.Run(() => tempChunkOld.Save());
         public void MoveChunks(Dir direction)
         {
 
@@ -458,7 +451,6 @@ namespace SecretProject.Class.TileStuff
             if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
             {
                 Task.Run(()=>chunk.Load());
-               // chunk.Load();
             }
             else
             {
@@ -579,12 +571,12 @@ namespace SecretProject.Class.TileStuff
 
                                                 //needs to refer to first tile ?
                                                 int frameolDX = frameholder.OldX;
-                                                TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b], false);
+                                                TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b]);
                                                 AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, ActiveChunks[a, b]));
                                                 if (frameholder.SelfDestruct)
                                                 {
                                                     // Rectangle testDestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a,b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]);
-                                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), Game1.GetCurrentStage(), ActiveChunks[a, b]);
+                                                    TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), ActiveChunks[a, b]);
                                                 }
 
                                             }
@@ -692,7 +684,7 @@ namespace SecretProject.Class.TileStuff
 
                                                         if (mouse.IsClicked)
                                                         {
-                                                            TileUtility.InteractWithBuilding(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle, Game1.GetCurrentStage(), ChunkUnderMouse);
+                                                            TileUtility.InteractWithBuilding(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle,ChunkUnderMouse);
 
                                                         }
 

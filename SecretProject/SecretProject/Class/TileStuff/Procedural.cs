@@ -7,6 +7,17 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff
 {
+    public enum GenerationType
+    {
+        Grass = 1116,
+        Dirt = 1114,
+        Sand = 1321,
+        SandRuin = 1621,
+        Water = 426,
+        Stone = 929,
+        DirtCliff = 2934,
+
+    };
     public class Procedural
     {
         public FastNoise FastNoise;
@@ -94,6 +105,80 @@ namespace SecretProject.Class.TileStuff
             StoneTiling = FillTilingDictionary(929);
             SandRuinTiling = FillTilingDictionary(1621);
             DirtCliffTiling = FillTilingDictionary(2934);
+        }
+
+        public List<int> GetGeneratableTilesFromGenerationType(GenerationType type)
+        {
+            switch (type)
+            {
+
+                case GenerationType.Grass:
+                    return GrassGeneratableTiles;
+
+                case GenerationType.Dirt:
+                    return Game1.Procedural.DirtGeneratableTiles;
+
+                case GenerationType.Sand:
+                    return Game1.Procedural.SandGeneratableTiles;
+
+
+                case GenerationType.SandRuin:
+                    return Game1.Procedural.SandRuinGeneratableTiles;
+
+
+                case GenerationType.Water:
+                    return Game1.Procedural.WaterGeneratableTiles;
+
+
+
+                case GenerationType.Stone:
+                    return Game1.Procedural.StoneGeneratableTiles;
+
+
+                case GenerationType.DirtCliff:
+                    return Game1.Procedural.DirtCliffGeneratableTiles;
+
+                default:
+                    return DirtGeneratableTiles;
+            }
+
+        }
+
+        public Dictionary<int,int> GetTilingDictionaryFromGenerationType(GenerationType type)
+        {
+            switch (type)
+            {
+
+                case GenerationType.Grass:
+                    return DirtTiling;
+
+                case GenerationType.Dirt:
+                    return DirtTiling;
+
+                case GenerationType.Sand:
+                    return SandTiling;
+
+
+                case GenerationType.SandRuin:
+                    return SandRuinTiling;
+
+
+                case GenerationType.Water:
+                    return WaterTiling;
+
+
+
+                case GenerationType.Stone:
+                    return StoneTiling;
+
+
+                case GenerationType.DirtCliff:
+                    return DirtCliffTiling;
+
+                default:
+                    return DirtTiling;
+            }
+
         }
 
         public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
