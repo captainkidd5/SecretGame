@@ -22,6 +22,7 @@ namespace SecretProject.Class.TileStuff
         public int X { get; set; }
         public float LayerToDrawAt { get; set; } = 0f;
         public float LayerToDrawAtZOffSet { get; set; } = 0f;
+        public float ColorMultiplier { get; set; } = 1f;
 
         public Rectangle SourceRectangle { get; set; }
         public Rectangle DestinationRectangle { get; set; }

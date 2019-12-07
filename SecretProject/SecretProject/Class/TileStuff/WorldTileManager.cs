@@ -77,14 +77,14 @@ namespace SecretProject.Class.TileStuff
 
         // List<ICollidable> ITileManager.Objects { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public PathFinder PathFinder { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        
+
         //Number of chunks loaded from disk at once
         public static int RenderDistance { get; set; }
 
         //Number of Chunks fully active 
         public static int FullyActiveChunks { get; set; }
 
-        Point[] ChunkPositions; 
+        Point[] ChunkPositions;
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -225,7 +225,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            
+
         }
 
         public void LoadInitialChunks()
@@ -253,7 +253,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             GetProperArrayData();
-            ChunkUnderPlayer = ActiveChunks[RenderDistance/2, RenderDistance / 2];
+            ChunkUnderPlayer = ActiveChunks[RenderDistance / 2, RenderDistance / 2];
             ChunkPointUnderPlayer = ChunkPositions[ChunkPositions.Length / 2 + 1];
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
         }
@@ -266,7 +266,7 @@ namespace SecretProject.Class.TileStuff
             int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkHeight);
 
             Chunk[,] ChunksToReturn = new Chunk[RenderDistance, RenderDistance];
-            int x = (RenderDistance/2) * -1;
+            int x = (RenderDistance / 2) * -1;
             int y = (RenderDistance / 2) * -1;
             for (int i = 0; i < RenderDistance; i++)
             {
@@ -275,7 +275,7 @@ namespace SecretProject.Class.TileStuff
                     ChunksToReturn[i, j] = new Chunk(this, currentChunkX + x, currentChunkY + y, i, j);
                     y++;
                 }
-                y = (RenderDistance / 2) * -1 ;
+                y = (RenderDistance / 2) * -1;
                 x++;
             }
             return ChunksToReturn;
@@ -307,7 +307,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 ActiveChunks[i, j] = new Chunk(this, ChunkPositions[ChunkPositions.Length - RenderDistance + i].X - 1,
                                     ChunkPositions[ChunkPositions.Length - RenderDistance + i].Y - 1, i, j);
-                                ChunkCheck( ActiveChunks[i, j]);
+                                ChunkCheck(ActiveChunks[i, j]);
                             }
                             else
                             {
@@ -329,7 +329,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 ActiveChunks[i, j] = new Chunk(this, ChunkPositions[i].X - 1,
                                     ChunkPositions[i].Y - 1, i, j);
-                                ChunkCheck( ActiveChunks[i, j]);
+                                ChunkCheck(ActiveChunks[i, j]);
                             }
                             else
                             {
@@ -351,7 +351,7 @@ namespace SecretProject.Class.TileStuff
                                 if (j == 0)
                                 {
                                     ActiveChunks[i, j] = new Chunk(this, ChunkPositions[0].X - 1,
-                                    ChunkPositions[0].Y -1, i, j);
+                                    ChunkPositions[0].Y - 1, i, j);
                                 }
                                 else if (j == 1)
                                 {
@@ -376,7 +376,7 @@ namespace SecretProject.Class.TileStuff
                                     ChunkPositions[20].Y - 1, i, j);
                                 }
 
-                                ChunkCheck( ActiveChunks[i, j]);
+                                ChunkCheck(ActiveChunks[i, j]);
                             }
 
                             else
@@ -446,16 +446,16 @@ namespace SecretProject.Class.TileStuff
             chunk.ArrayI = i;
             chunk.ArrayJ = j;
         }
-        public void ChunkCheck( Chunk chunk)
+        public void ChunkCheck(Chunk chunk)
         {
             if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
             {
-                Task.Run(()=>chunk.Load());
+                Task.Run(() => chunk.Load());
             }
             else
             {
-                Task.Run(()=>chunk.Generate());
-               
+                Task.Run(() => chunk.Generate());
+
             }
         }
         static readonly object locker = new object();
@@ -464,18 +464,18 @@ namespace SecretProject.Class.TileStuff
         {
             int returnX = (int)(x / 16 / 16);
             int returnY = (int)(y / 16 / 16);
-            if(x < 0)
+            if (x < 0)
             {
                 returnX--;
             }
-            if(y < 0)
+            if (y < 0)
             {
                 returnY--;
             }
 
             return new Point(returnX, returnY);
         }
-        
+
         public void GetProperArrayData()
         {
             Point rootPosition = GetChunkPositionFromCamera(Game1.Player.position.X, Game1.Player.position.Y);
@@ -495,7 +495,7 @@ namespace SecretProject.Class.TileStuff
         {
             GetProperArrayData();
 
-            ChunkPointUnderPlayer = ChunkPositions[ChunkPositions.Length/2 + 1];
+            ChunkPointUnderPlayer = ChunkPositions[ChunkPositions.Length / 2 + 1];
 
             if (ChunkPointUnderPlayerLastFrame != ChunkPointUnderPlayer)
             {
@@ -526,7 +526,7 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            ChunkUnderPlayer = ActiveChunks[RenderDistance/2, RenderDistance / 2];
+            ChunkUnderPlayer = ActiveChunks[RenderDistance / 2, RenderDistance / 2];
             this.StoreableItems = ChunkUnderPlayer.StoreableItems;
             ChunkPointUnderPlayerLastFrame = ChunkPointUnderPlayer;
 
@@ -660,10 +660,10 @@ namespace SecretProject.Class.TileStuff
 
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
-                                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;                                           
+                                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
                                                 Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
                                                 Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
-                                                
+
 
                                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
                                                 {
@@ -682,7 +682,7 @@ namespace SecretProject.Class.TileStuff
 
                                                         if (mouse.IsClicked)
                                                         {
-                                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle,ChunkUnderMouse);
+                                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle, ChunkUnderMouse);
 
                                                         }
 
@@ -701,7 +701,7 @@ namespace SecretProject.Class.TileStuff
 
                                                 }
 
-                                          }
+                                            }
                                             else
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = false;
@@ -716,11 +716,17 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
 
-                        
+
 
                     }
                 }
             }
+            Tile tile = TileUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, ActiveChunks);
+            if (tile != null)
+            {
+                tile.ColorMultiplier = .25f;
+            }
+
 
             if (GridItem != null)
             {
@@ -765,7 +771,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (z == 3)
                                             {
-                                                spriteBatch.Draw(TileSet, new Vector2(ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White,
+                                                spriteBatch.Draw(TileSet, new Vector2(ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White * ActiveChunks[a, b].AllTiles[z][i, j].ColorMultiplier,
                                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                                             }
@@ -792,7 +798,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
 
-                           
+
 
 
 
