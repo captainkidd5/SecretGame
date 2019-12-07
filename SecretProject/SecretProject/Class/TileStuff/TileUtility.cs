@@ -179,7 +179,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (layer == 3)
                 {
-                    float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, .000001f);
+                    float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, .0000001f);
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y + 16) * Game1.Utility.ForeGroundMultiplier + randomOffSet;
 
                     tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
@@ -305,9 +305,6 @@ namespace SecretProject.Class.TileStuff
 
                                            WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.DirtGeneratableTiles,
                                        Game1.Procedural.DirtTiling, 0, Game1.GetCurrentStage().AllTiles);
-                                            //WangManager.PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
-                                            //WangManager.ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
-
 
                                             break;
                                     }
@@ -462,9 +459,18 @@ namespace SecretProject.Class.TileStuff
             {
                 localX = 15;
             }
+            else if (localX < 0)
+            {
+                localX = 0;
+            }
+
             if (localY > 15)
             {
                 localY = 15;
+            }       
+            else if (localY < 0)
+            {
+                localY = 0;
             }
             // = tile;
             return (chunk.AllTiles[layer][localX, localY]);
@@ -474,10 +480,10 @@ namespace SecretProject.Class.TileStuff
         public static int GetLocalChunkCoord(int globalCoord)
         {
             int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
-            int localCoord = (int)Math.Floor((float)(globalCoord / 16 - chunkCoord * 16));
-            if (localCoord > 15)
+            int localCoord = (int)Math.Ceiling((float)(globalCoord / 16 - chunkCoord * 16));
+            if (chunkCoord < 0)
             {
-                localCoord = 15;
+                localCoord--;
             }
             return localCoord;
         }

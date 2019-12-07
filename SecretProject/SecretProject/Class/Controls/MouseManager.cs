@@ -287,7 +287,7 @@ namespace SecretProject.Class.Controls
 
         public bool IsHoveringTile(Rectangle rectangle)
         {
-            Rectangle offSetRectange = new Rectangle((int)WorldMousePosition.X + 8,(int)WorldMousePosition.Y + 8, 1, 1);
+            Rectangle offSetRectange = new Rectangle((int)WorldMousePosition.X,(int)WorldMousePosition.Y, 1, 1);
             if (offSetRectange.Intersects(rectangle))
             {
                 return true;

@@ -88,10 +88,6 @@ namespace SecretProject.Class.TileStuff
                                    SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
 
         }
-        //public void SetChunkTile(Tile tile, int layer, Chunk[,] ActiveChunks)
-        //{
-        //    GetChunkTile(tile, layer, ActiveChunks)
-        //}
         
 
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
@@ -113,9 +109,6 @@ namespace SecretProject.Class.TileStuff
 
                     for (int i = this.NegativeX; i < this.PositiveX; i++)
                     {
-
-
-
                         for (int j = this.NegativeY; j < 1; j++)
                         {
                             this.CanPlace = true;
@@ -123,6 +116,14 @@ namespace SecretProject.Class.TileStuff
 
                             subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
                             subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
+                            if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                            {
+                                subX-= 16;
+                            }
+                            if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                            {
+                                subY-= 16;
+                            }
                             Tile tile = TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks);
                             if (tile != null)
                             {
@@ -154,7 +155,6 @@ namespace SecretProject.Class.TileStuff
                             {
 
 
-
                                 int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
                                 switch (soundRandom)
                                 {
@@ -169,7 +169,7 @@ namespace SecretProject.Class.TileStuff
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, 0, 50, true);
-                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX / 16 / 16, subY / 16 /16].DestinationRectangle;
+                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 /16].DestinationRectangle;
                                     // tempPortal.
                                     Game1.World.AllPortals.Add(tempPortal);
 
@@ -183,15 +183,9 @@ namespace SecretProject.Class.TileStuff
                                     this.PlaceID + 1, container);
                                 if (item.TilingDictionary != null)
                                 {
-
-                                    int i = (int)Game1.myMouseManager.WorldMousePosition.X;
-                                    int j = (int)Game1.myMouseManager.WorldMousePosition.Y;
-  
-                                         
-                                            WangManager.GroupReassignForTiling(i,j,this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
+       
+                                            WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X,(int)Game1.myMouseManager.WorldMousePosition.Y,this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
                                         item.TilingDictionary, 3,tileManager);
-
-          
 
                                 }
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -221,16 +215,11 @@ namespace SecretProject.Class.TileStuff
             if (this.IsDrawn)
             {
 
-
-                int activeChunkX = container.ArrayI;
-                int activeChunkY = container.ArrayJ;
-
                 int subX = 0;
                 int subY = 0;
 
                 for (int i = this.NegativeX; i < this.PositiveX; i++)
                 {
-
                     for (int j = this.NegativeY; j < 1; j++)
                     {
                         bool canPlace = true;
@@ -238,6 +227,14 @@ namespace SecretProject.Class.TileStuff
                         subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
                         subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
 
+                        if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                        {
+                            subX -= 16;
+                        }
+                        if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                        {
+                            subY -= 16;
+                        }
                         Tile tile = TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks);
                         if (tile != null)
                         {
@@ -257,8 +254,6 @@ namespace SecretProject.Class.TileStuff
                             CanPlace = false;
                             return;
                         }
-
-
 
                         int newGID = PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
@@ -281,8 +276,6 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-
-
 
             }
         }

@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n Mouse I  "  +
                    (int)(Game1.myMouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.World.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n cameraY: "
                     + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
-                    Game1.myMouseManager.WorldMousePosition.Y  + "\n\n Kaya position y " + Game1.Kaya.Position.Y, position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                    Game1.myMouseManager.WorldMousePosition.Y + "\n\n tile selector worldX " + Game1.Player.UserInterface.TileSelector.WorldX.ToString(), position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
                 //for(int i =0; i< 100; i++)
                 //{

@@ -605,7 +605,7 @@ namespace SecretProject.Class.TileStuff
                                 ChunkUnderMouse = ActiveChunks[a, b];
                             }
 
-                            int mouseI = (int)(Game1.myMouseManager.WorldMousePosition.X / 16 - (ChunkUnderMouse.X * 16));
+                            int mouseI = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
                             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16 - (ChunkUnderMouse.Y * 16));
                             int playerI = (int)(Game1.Player.position.X / 16 - (ChunkUnderPlayer.X * 16));
                             int playerJ = (int)(Game1.Player.position.Y / 16 - (ChunkUnderPlayer.Y * 16));
@@ -638,7 +638,10 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                                 {
-
+                                    if (mouse.IsClicked)
+                                    {
+                                        Console.WriteLine("debug");
+                                    }
 
                                     if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ] != null)
                                     {
@@ -657,10 +660,10 @@ namespace SecretProject.Class.TileStuff
 
                                                 Game1.Player.UserInterface.DrawTileSelector = true;
                                                 Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
-                                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
+                                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;                                           
                                                 Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
                                                 Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
-
+                                                
 
                                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
                                                 {
@@ -698,7 +701,7 @@ namespace SecretProject.Class.TileStuff
 
                                                 }
 
-                                            }
+                                          }
                                             else
                                             {
                                                 Game1.Player.UserInterface.DrawTileSelector = false;
