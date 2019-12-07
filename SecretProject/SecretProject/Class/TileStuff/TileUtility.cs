@@ -437,6 +437,52 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
+        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
+        {
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
+
+            Chunk chunk = GetChunk(chunkX, chunkY, ActiveChunks);
+            if(chunk == null)
+            {
+                throw new Exception("Chunk isn't in array");
+            }
+
+            int localX = (int)Math.Floor((float)(tileX / 16 - chunkX * 16));
+            int localY = (int)Math.Floor((float)(tileY / 16 - chunkY * 16));
+
+            if (localX > 15)
+            {
+                localX = 15;
+            }
+            if (localY > 15)
+            {
+                localY = 15;
+            }
+            // = tile;
+            return (chunk.AllTiles[layer][localX, localY]);
+
+        }
+
+        public static Chunk GetChunk(int chunkX, int chunkY, Chunk[,] ActiveChunks)
+        {
+
+            for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
+                {
+                    if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
+                    {
+                        return ActiveChunks[i, j];
+                    }
+
+
+                }
+            }
+            return null;
+        }
+
         #region TILEREPLACEMENT AND INTERACTIONS
         public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
         {

@@ -88,38 +88,11 @@ namespace SecretProject.Class.TileStuff
                                    SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
 
         }
-
-        public void SetChunkTile(Tile tile, int layer, Chunk[,] ActiveChunks)
-        {
-           int chunkX = (int)(tile.X / 16);
-            int chunkY = (int)(tile.Y / 16);
-
-            Chunk chunk = GetChunk(chunkX, chunkY, ActiveChunks);
-
-            int localX = tile.X - chunkX * 16;
-            int localY = tile.Y - chunkY * 16;
-
-            chunk.AllTiles[layer][localX, localY] = tile;
-
-        }
-
-        public Chunk GetChunk(int chunkX, int chunkY, Chunk[,] ActiveChunks)
-        {
-
-            for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
-            {
-                for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
-                {
-                    if(i == chunkX && j == chunkY)
-                    {
-                        return ActiveChunks[i, j];
-                    }
-                    
-
-                }
-            }
-            return null;
-        }
+        //public void SetChunkTile(Tile tile, int layer, Chunk[,] ActiveChunks)
+        //{
+        //    GetChunkTile(tile, layer, ActiveChunks)
+        //}
+        
 
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
@@ -148,76 +121,27 @@ namespace SecretProject.Class.TileStuff
                             this.CanPlace = true;
 
 
-                            subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
-                            subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
-                            activeChunkX = container.ArrayI;
-                            activeChunkY = container.ArrayJ;
-
-
-                            //check if index is out of bounds of current chunk
-                            if (subX > 15)
+                            subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
+                            subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
+                            Tile tile = TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks);
+                            if (tile != null)
                             {
-                                subX = subX - 16;
-
-
-                                if (activeChunkX < 2)
+                                if (TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks).GID == -1)
                                 {
-                                    activeChunkX++;
-                                }
 
-                            }
-                            else if (subX < 0)
-                            {
-                                subX = 16 + subX;
-                                if (activeChunkX > 0)
-                                {
-                                    activeChunkX--;
-                                }
-
-                            }
-
-                            if (subY > 15)
-                            {
-                                subY = subY - 16;
-                                if (activeChunkY < 2)
-                                {
-                                    activeChunkY++;
-                                }
-
-                            }
-                            else if (subY < 0)
-                            {
-                                subY = subY + 16;
-                                if (activeChunkY > 0)
-                                {
-                                    activeChunkY--;
-                                }
-
-                            }
-                            for (int z = 1; z < container.AllTiles.Count; z++)
-                            {
-                                int gid = 0;
-                                if (tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
-                                {
-                                    gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
                                 }
                                 else
                                 {
-                                    return;
-                                }
-
-                                if (gid == -1)
-                                {
-                                }
-                                else
-                                {
-                                    this.CanPlace = false;
+                                    CanPlace = false;
                                     canPlaceTotal = false;
-
                                 }
                             }
-
-
+                           
+                            else
+                            {
+                                CanPlace = false;
+                                canPlaceTotal = false;
+                            }
                         }
 
                     }
@@ -334,100 +258,53 @@ namespace SecretProject.Class.TileStuff
                 int subX = 0;
                 int subY = 0;
 
-
-
                 for (int i = this.NegativeX; i < this.PositiveX; i++)
                 {
-
-                    //assumes newsource is always at bottom tiles, left or right doesn't matter though
 
                     for (int j = this.NegativeY; j < 1; j++)
                     {
                         bool canPlace = true;
 
-                        subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
-                        subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
-                        activeChunkX = container.ArrayI;
-                        activeChunkY = container.ArrayJ;
+                        subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
+                        subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
 
-
-                        //check if index is out of bounds of current chunk
-                        if (subX > 15)
+                        Tile tile = TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks);
+                        if (tile != null)
                         {
-                            subX = subX - 16;
-
-
-                            if (activeChunkX < 2)
+                            if (TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks).GID == -1)
                             {
-                                activeChunkX++;
-                            }
 
-                        }
-                        else if (subX < 0)
-                        {
-                            subX = 16 + subX;
-                            if (activeChunkX > 0)
+                            }
+                            else
                             {
-                                activeChunkX--;
-                            }
+                                CanPlace = false;
 
+                            }
                         }
 
-                        if (subY > 15)
+                        else
                         {
-                            subY = subY - 16;
-                            if (activeChunkY < 2)
-                            {
-                                activeChunkY++;
-                            }
-
+                            CanPlace = false;
+                            return;
                         }
-                        else if (subY < 0)
-                        {
-                            subY = subY + 16;
-                            if (activeChunkY > 0)
-                            {
-                                activeChunkY--;
-                            }
 
-                        }
+
 
                         int newGID = PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
-                        for (int z = 1; z < container.AllTiles.Count; z++)
-                        {
-                            int gid = 0;
-                            if (tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY] != null)
-                            {
-                                gid = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[z][subX, subY].GID;
-                            }
-                            else
-                            {
-                                return;
-                            }
-
-                            if (gid == -1)
-                            {
-                            }
-                            else
-                            {
-                                canPlace = false;
-
-                            }
-                        }
 
                         if (canPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).X,
-                                TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).Y),
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).X,
+                                TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).X,
-                                TileUtility.GetDestinationRectangle(tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY]).Y),
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).X,
+                                TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.Red * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
