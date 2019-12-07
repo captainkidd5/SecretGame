@@ -20,213 +20,14 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-    public enum TileSimulationType
-    {
-        dirt = 1,
-        sand = 2,
-        water = 3
-    }
+
     public static class TileUtility
     {
-        public static int ChunkX = 16;
-        public static int ChunkY = 16;
-        #region TileReassignment
+        public static int ChunkWidth = 16;
+        public static int ChunkHeight = 16;
 
         public static int GrassSpawnRate = 10;
 
-
-
-        
-       
-       
-      
-
-        public static void PlayerInvokedReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-            int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
-        {
-            List<int> secondaryTiles;
-            if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
-            {
-                secondaryTiles = Game1.Procedural.StandardGeneratableDirtTiles;
-            }
-            else if (generatableTiles == Game1.Procedural.GrassGeneratableTiles)
-            {
-                secondaryTiles = Game1.Procedural.StandardGeneratableGrassTiles;
-            }
-
-            else
-            {
-                secondaryTiles = new List<int>();
-            }
-
-
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
-            {
-                return;
-            }
-            int keyToCheck = 0;
-            if (y > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
-                {
-                    keyToCheck += 1;
-                }
-            }
-            //if top tile is 0 we look at the chunk above it
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID) ||
-                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
-            {
-                keyToCheck += 1;
-            }
-
-            //now look at chunk below 
-            if (y < worldHeight - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID) || secondaryTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
-                {
-                    keyToCheck += 8;
-                }
-            }
-
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID) ||
-                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
-            {
-                keyToCheck += 8;
-            }
-
-            //looking at rightmost tile
-            if (x < worldWidth - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
-                {
-                    keyToCheck += 4;
-                }
-            }
-
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID) ||
-                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID))
-            {
-                keyToCheck += 4;
-            }
-
-
-            //left
-            if (x > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID) || secondaryTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
-                {
-                    keyToCheck += 2;
-                }
-            }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID) ||
-                secondaryTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID))
-            {
-                keyToCheck += 2;
-            }
-
-            if (keyToCheck >= 15)
-            {
-
-                ReplaceTile(layer, x, y, mainGid, container);
-
-
-            }
-            else
-            {
-                ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-            }
-
-
-        }
-
-        public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, IInformationContainer container)
-        {
-            for (int t = -1; t < 2; t++)
-            {
-                for (int q = -1; q < 2; q++)
-                {
-                    //tile isnt touching any borders
-                    if (i > 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j + q, container.MapWidth, container.MapHeight, container);
-                    }
-                    //tile is touching top
-                    else if (i > 0 && j <= 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-                    //tile is touching left
-                    else if (i <= 0 && j > 0 && i < ChunkX - 1 && j < ChunkY - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                    }
-                    //tile is touching right
-                    else if (i >= ChunkX - 1 && j < ChunkY - 1 && j > 0)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                    }
-                    //tile is touching bottom
-                    else if (i < ChunkX - 1 && i > 0 && j >= ChunkY - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
-                    //bottom right corner
-                    else if (i == ChunkX - 1 && j == ChunkY - 1)
-                    {
-
-                        //immediate right
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                        //right one, down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                        //down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
-
-                    //bottom left corner
-                    else if (i == 0 && j == ChunkY - 1)
-                    {
-                        //immediate left
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                        //left one down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                        //down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
-                    //top right corner
-                    else if (i == ChunkX - 1 && j == 0)
-                    {
-
-                        //immediate right
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                        //right one, up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                        //up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-                    //top left corner
-                    else if (i == 0 && j == 0)
-                    {
-
-                        //immediate left
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                        //left one, up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                        //up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-
-                }
-            }
-        }
-
-        #endregion
-
-
-       
 
 
         #region GETRECTANGLES
@@ -473,22 +274,15 @@ namespace SecretProject.Class.TileStuff
         {
             //new Gid should be one larger, per usual
             string[] information = Game1.Utility.GetActionHelperInfo(action);
-
-
             switch (information[0])
             {
                 //including animation frame id to replace!
-
                 case "diggable":
 
                     if (container.AllTiles[1][i, j].GID == -1)
                     {
-
                         if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                         {
-
-
-
                             if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 23)
                             {
                                 Game1.Player.UserInterface.DrawTileSelector = true;
@@ -510,26 +304,19 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
-                                            ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
+                                            WangManager.PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
+                                            WangManager.ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
 
 
                                             break;
                                     }
-
-
-
                                 }
                             }
                         }
                     }
-                    // }
                     break;
 
                 case "plantable":
-                    //  if (container.Owned)
-                    //   {
-
                     Game1.Player.UserInterface.DrawTileSelector = true;
                     mouse.ChangeMouseTexture(CursorType.Planting);
 
@@ -552,8 +339,6 @@ namespace SecretProject.Class.TileStuff
                                     TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
                                     container.Crops[container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)] = tempCrop;
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-
-
                                 }
                             }
                         }
@@ -676,10 +461,7 @@ namespace SecretProject.Class.TileStuff
                 if (container.TileHitPoints[keyString] > 0)
                 {
                     Game1.SoundManager.PlaySoundEffectFromInt(1, setSoundInt);
-                    Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
-                    Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
-                    Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
-                    Game1.GetCurrentStage().ParticleEngine.LayerDepth = tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet;
+                    Game1.GetCurrentStage().ParticleEngine.Activate(.25f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
                     return;
                 }
 
@@ -707,11 +489,7 @@ namespace SecretProject.Class.TileStuff
                     FinalizeTile(layer, gameTime, x, y, destinationRectangle, container);
                 }
 
-                Game1.GetCurrentStage().ParticleEngine.Color = particleColor;
-                Game1.GetCurrentStage().ParticleEngine.ActivationTime = 1f;
-                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X, destinationRectangle.Y);
-                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20);
-                Game1.GetCurrentStage().ParticleEngine.LayerDepth = tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet;
+                Game1.GetCurrentStage().ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
             }
         }
 
@@ -814,7 +592,10 @@ namespace SecretProject.Class.TileStuff
             }
             //mostly for crops
 
-            GetDrop(layer, oldX, oldY, destinationRectangle, container);
+            //GetDrop(layer, oldX, oldY, destinationRectangle, container);
+           // int gid = container.AllTiles[layer][x, y].GID;
+            List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][oldX, oldY].GID].Properties["loot"]);
+            Loot.GetDrop(tempLoot, container.AllTiles[layer][oldX, oldY].DestinationRectangle);
             if (container.Crops.ContainsKey(container.AllTiles[1][oldX, oldY].GetTileKeyStringNew(layer, container)))
             {
                 container.Crops.Remove(container.AllTiles[1][oldX, oldY].GetTileKeyStringNew(layer, container));
@@ -829,29 +610,7 @@ namespace SecretProject.Class.TileStuff
         }
         #endregion
 
-        public static void GetDrop(int layer, int x, int y, Rectangle destinationRectangle, IInformationContainer container)
-        {
-            int gid = container.AllTiles[layer][x, y].GID;
-            List<Loot> tempLoot = Game1.Utility.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
 
-            if (tempLoot != null)
-            {
-
-
-                for (int l = 0; l < tempLoot.Count; l++)
-                {
-                    int lootCount = Game1.Utility.DetermineLootDrop(tempLoot[l]);
-                    for (int d = 0; d < lootCount; d++)
-                    {
-                        Item item = Game1.ItemVault.GenerateNewItem(tempLoot[l].ID, new Vector2(destinationRectangle.X, destinationRectangle.Y), true);
-                        Game1.GetCurrentStage().AllItems.Add(item);
-                    }
-                }
-            }
-
-        }
-
-    
         public static bool CheckIfTileAlreadyExists(int tileX, int tileY, int layer, IInformationContainer container)
         {
             if (container.AllTiles[layer][tileX, tileY].GID != -1)

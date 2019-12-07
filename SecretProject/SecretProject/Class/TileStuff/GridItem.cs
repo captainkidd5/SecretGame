@@ -410,10 +410,10 @@ namespace SecretProject.Class.TileStuff
                                     ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
                                         item.TilingDictionary, 3,
                                         Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                        TileUtility.ChunkX, TileUtility.ChunkY, container);
+                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, container);
                                     int i = Game1.Player.UserInterface.TileSelector.IndexX;
                                     int j = Game1.Player.UserInterface.TileSelector.IndexY;
-                                    TileUtility.ReassignGroupOfTiles(3, i, j, this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, container);
+                                    WangManager.ReassignGroupOfTiles(3, i, j, this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, container);
                                     //for (int t = -1; t < 2; t++)
                                     //{
                                     //    for (int q = -1; q < 2; q++)

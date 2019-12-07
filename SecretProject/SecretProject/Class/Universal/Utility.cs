@@ -19,7 +19,7 @@ namespace SecretProject.Class.Universal
         public int CenterScreenX { get { return Game1.ScreenWidth / 2; } }
         public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
         public float GlobalButtonScale { get; set; } = 2f;
-        public float ForeGroundMultiplier { get; set; } = .0000001f;
+        public float ForeGroundMultiplier { get; set; } = .00000001f;
         public Vector2 centerScreen;
         public Random RGenerator;
   
@@ -75,39 +75,9 @@ namespace SecretProject.Class.Universal
             return arrayToReturn;
         }
 
-        //For use with the loot property of the tilesheet. Loot objects are separated by commas. The number before the colon is the item id and the number after is the probability of being dropped.
-        public List<Loot> Parselootkey(string lootstring)
-        {
-            string[] commaPairs = lootstring.Split(',');
-            int[] Ids = new int[commaPairs.Length];
-            int[] probabilitys = new int[commaPairs.Length];
-            int[] numberToSpawn = new int[commaPairs.Length];
-            List<Loot> lootToReturn = new List<Loot>();
-            for (int i = 0; i < commaPairs.Length; i++)
-            {
+        
 
-
-                Ids[i] = int.Parse(commaPairs[i].Split(':')[0]);
-                probabilitys[i] = int.Parse(commaPairs[i].Split(':')[1]);
-                for(int j = 0; j < int.Parse(commaPairs[i].Split(':')[2]); j++)
-                {
-                    lootToReturn.Add(new Loot() { ID = Ids[i], Probability = probabilitys[i] });
-                }
-                
-            }
-            return lootToReturn;
-        }
-
-        public int DetermineLootDrop(Loot loot)
-        {
-            int amountToReturn = 0;
-            int chance = RGenerator.Next(0, 100);
-            if (chance <= loot.Probability)
-            {
-                amountToReturn++;
-            }
-            return amountToReturn;
-        }
+        
 
         public AnimationType GetRequiredTileTool(string info)
         {

@@ -44,6 +44,14 @@ namespace SecretProject.Class.ParticileStuff
             return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
         }
 
+        public void Activate(float activationTime, Vector2 emitterLocation, Color color, float layerDepth)
+        {
+            this.ActivationTime = activationTime;
+            this.EmitterLocation = emitterLocation;
+            this.Color = color;
+            this.LayerDepth = layerDepth;
+        }
+
 
         public void Update(GameTime gameTime)
         {

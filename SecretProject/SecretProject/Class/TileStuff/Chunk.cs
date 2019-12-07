@@ -52,15 +52,11 @@ namespace SecretProject.Class.TileStuff
         public int ArrayJ { get; set; }
 
         //GENERATION
-        public TileSimulationType SimulationType { get; set; }
         public List<int> GeneratableTiles { get; set; }
         public Dictionary<int, int> TilingDictionary { get; set; }
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
-
-
-
 
         //NPCS
         public List<Enemy> Enemies { get; set; }
@@ -81,8 +77,8 @@ namespace SecretProject.Class.TileStuff
             this.MapName = tileManager.MapName;
             this.TileSetDimension = tileManager.tilesetTilesWide;
             this.TileSetNumber = tileManager.TileSetNumber;
-            this.MapWidth = TileUtility.ChunkX;
-            this.MapHeight = TileUtility.ChunkY;
+            this.MapWidth = TileUtility.ChunkWidth;
+            this.MapHeight = TileUtility.ChunkHeight;
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
@@ -101,7 +97,7 @@ namespace SecretProject.Class.TileStuff
             Tufts = new Dictionary<string, List<GrassTuft>>();
             for (int i = 0; i < 4; i++)
             {
-                AllTiles.Add(new Tile[TileUtility.ChunkX, TileUtility.ChunkX]);
+                AllTiles.Add(new Tile[TileUtility.ChunkWidth, TileUtility.ChunkWidth]);
             }
 
             Enemies = new List<Enemy>();
@@ -113,7 +109,7 @@ namespace SecretProject.Class.TileStuff
 
         public Rectangle GetChunkRectangle()
         {
-            Rectangle RectangleToReturn = new Rectangle(this.X * TileUtility.ChunkX * TileUtility.ChunkX, this.Y * TileUtility.ChunkY * TileUtility.ChunkY, TileUtility.ChunkX * 16, TileUtility.ChunkY * 16);
+            Rectangle RectangleToReturn = new Rectangle(this.X * TileUtility.ChunkWidth * TileUtility.ChunkWidth, this.Y * TileUtility.ChunkHeight * TileUtility.ChunkHeight, TileUtility.ChunkWidth * 16, TileUtility.ChunkHeight * 16);
             return RectangleToReturn;
         }
 
@@ -131,9 +127,9 @@ namespace SecretProject.Class.TileStuff
 
                     for (int z = 0; z < 4; z++)
                     {
-                        for (int i = 0; i < TileUtility.ChunkX; i++)
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
                         {
-                            for (int j = 0; j < TileUtility.ChunkY; j++)
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
                                 binaryWriter.Write(AllTiles[z][i, j].GID + 1);
                                 binaryWriter.Write(AllTiles[z][i, j].X);
@@ -219,9 +215,9 @@ namespace SecretProject.Class.TileStuff
                     PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
                     for (int z = 0; z < 4; z++)
                     {
-                        for (int i = 0; i < TileUtility.ChunkX; i++)
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
                         {
-                            for (int j = 0; j < TileUtility.ChunkY; j++)
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
                                 int gid = binaryReader.ReadInt32();
                                 int x = binaryReader.ReadInt32();
@@ -341,16 +337,9 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public void Generate(TileSimulationType seed)
+        public void Generate()
         {
-            if (seed == 0)
-            {
-                this.SimulationType = TileSimulationType.dirt;
-            }
-            else
-            {
-                this.SimulationType = seed;
-            }
+
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             float[,] noise = new float[16, 16];
 
@@ -389,9 +378,9 @@ namespace SecretProject.Class.TileStuff
 
             for (int z = 0; z < 4; z++)
             {
-                for (int i = 0; i < TileUtility.ChunkX; i++)
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
                 {
-                    for (int j = 0; j < TileUtility.ChunkY; j++)
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
                         if (z > 0)
                         {
@@ -401,7 +390,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j]);
 
-                            AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkX + i, this.Y * TileUtility.ChunkY + j, newGID);
+                            AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkWidth + i, this.Y * TileUtility.ChunkHeight + j, newGID);
                             if (Game1.Procedural.GrassGeneratableTiles.Contains(newGID))
                             {
                                 if (Game1.Utility.RGenerator.Next(0, 10) < 2)
@@ -439,15 +428,15 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            for (int i = 0; i < TileUtility.ChunkX; i++)
+            for (int i = 0; i < TileUtility.ChunkWidth; i++)
             {
-                for (int j = 0; j < TileUtility.ChunkY; j++)
+                for (int j = 0; j < TileUtility.ChunkHeight; j++)
                 {
                     this.GeneratableTiles = Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[0][i, j].GID);
                     this.TilingDictionary = Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[0][i, j].GID);
             
                     this.MainGid = AllTiles[0][i, j].GID + 1;
-                    Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, 0, i, j, TileUtility.ChunkX, TileUtility.ChunkY, this, this.AdjacentNoise);
+                    Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, 0, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
 
                 }
             }
@@ -517,9 +506,9 @@ namespace SecretProject.Class.TileStuff
 
             for (int z = 0; z < 4; z++)
             {
-                for (int i = 0; i < TileUtility.ChunkX; i++)
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
                 {
-                    for (int j = 0; j < TileUtility.ChunkY; j++)
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
                         //if (i > 1 && j > 1)
                         //{
@@ -536,8 +525,8 @@ namespace SecretProject.Class.TileStuff
 
                         if (z > 0)
                         {
-                            AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkX * this.X;
-                            AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkY * this.Y;
+                            AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                            AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
                         }
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);

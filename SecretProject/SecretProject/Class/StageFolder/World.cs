@@ -296,7 +296,7 @@ namespace SecretProject.Class.StageFolder
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
             {
 
-                player.Position = new Vector2(400, 400);
+                player.Position = new Vector2(0, 0);
                 Game1.GlobalClock.TotalHours = 22;
             }
 

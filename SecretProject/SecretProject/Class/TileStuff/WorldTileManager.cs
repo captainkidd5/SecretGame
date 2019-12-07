@@ -246,7 +246,7 @@ namespace SecretProject.Class.TileStuff
                         }
                         else
                         {
-                            ActiveChunks[i, j].Generate(0);
+                            ActiveChunks[i, j].Generate();
 
                         }
                     }
@@ -262,8 +262,8 @@ namespace SecretProject.Class.TileStuff
         public Chunk[,] GetActiveChunkCoord(Vector2 playerPos)
         {
 
-            int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkX);
-            int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkY);
+            int currentChunkX = (int)(playerPos.X / 16 / TileUtility.ChunkWidth);
+            int currentChunkY = (int)(playerPos.Y / 16 / TileUtility.ChunkHeight);
 
             Chunk[,] ChunksToReturn = new Chunk[RenderDistance, RenderDistance];
             int x = (RenderDistance/2) * -1;
@@ -285,7 +285,7 @@ namespace SecretProject.Class.TileStuff
 
         public Chunk GetChunkFromPosition(Vector2 entityPosition)
         {
-            Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkX), (int)(entityPosition.Y / 16 / TileUtility.ChunkY));
+            Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkWidth), (int)(entityPosition.Y / 16 / TileUtility.ChunkHeight));
             return ActiveChunks[ChunkUnderEntity.X, ChunkUnderEntity.Y];
 
 
@@ -454,7 +454,7 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                Task.Run(()=>chunk.Generate(0));
+                Task.Run(()=>chunk.Generate());
                
             }
         }
@@ -762,9 +762,9 @@ namespace SecretProject.Class.TileStuff
                             }
                             for (int z = 0; z < 4; z++)
                             {
-                                for (int i = 0; i < TileUtility.ChunkX; i++)
+                                for (int i = 0; i < TileUtility.ChunkWidth; i++)
                                 {
-                                    for (int j = 0; j < TileUtility.ChunkY; j++)
+                                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
                                     {
                                         if (ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
                                         {
