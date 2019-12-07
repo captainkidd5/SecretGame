@@ -716,16 +716,16 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
 
-                        if (GridItem != null)
-                        {
-                            GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
-                        }
+                        
 
                     }
                 }
             }
 
-
+            if (GridItem != null)
+            {
+                GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
+            }
 
         }
 
@@ -792,11 +792,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
 
-                            if (GridItem != null)
-                            {
-                                GridItem.ChunkDraw(spriteBatch, this, ChunkUnderMouse);
-
-                            }
+                           
 
 
 
@@ -804,7 +800,11 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
+            if (GridItem != null)
+            {
+                GridItem.ChunkDraw(spriteBatch, this, ChunkUnderMouse);
 
+            }
         }
 
         public void LoadInitialTileObjects(ILocation location)

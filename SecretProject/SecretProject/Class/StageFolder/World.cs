@@ -188,7 +188,6 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom =4f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
@@ -224,9 +223,9 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
-            for (int i = WorldTileManager.RenderDistance /2 - 1 ; i < WorldTileManager.RenderDistance / 2 + 2; i++)
+            for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 2; i++)
             {
-                for (int j = WorldTileManager.RenderDistance /2 - 1; j < WorldTileManager.RenderDistance / 2 + 2; j++)
+                for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 2; j++)
                 {
                     if (AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
@@ -239,25 +238,25 @@ namespace SecretProject.Class.StageFolder
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
                                 {
-   
+
                                     QuadTree.Insert(obj.Value[z]);
                                 }
                             }
 
                             foreach (KeyValuePair<string, List<GrassTuft>> grass in AllTiles.ActiveChunks[i, j].Tufts)
                             {
-                                for(int g =0; g < grass.Value.Count; g++)
+                                for (int g = 0; g < grass.Value.Count; g++)
                                 {
-                                    if(grass.Value[g].IsUpdating)
+                                    if (grass.Value[g].IsUpdating)
                                     {
                                         grass.Value[g].Update(gameTime);
                                     }
-                                    
+
                                     QuadTree.Insert(grass.Value[g]);
                                 }
                             }
 
-                                for (int e = 0; e < Enemies.Count; e++)
+                            for (int e = 0; e < Enemies.Count; e++)
                             {
                                 if (Enemies[e] != null)
                                 {
@@ -297,28 +296,19 @@ namespace SecretProject.Class.StageFolder
             {
 
                 player.Position = new Vector2(0, 0);
-                Game1.GlobalClock.TotalHours = 22;
             }
 
-
-
-
-            // TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
             TextBuilder.Update(gameTime);
 
-            //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
             {
                 Game1.GlobalClock.Update(gameTime);
-                //--------------------------------------
-                //Update players
+
                 Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
 
 
-                //--------------------------------------
-                //Update sprites
                 foreach (Sprite spr in AllSprites)
                 {
                     if (spr.IsBeingDragged == true)
@@ -375,10 +365,8 @@ namespace SecretProject.Class.StageFolder
             {
                 if (this.IsDark)
                 {
-
-
                     graphics.SetRenderTarget(lightsTarget);
-                    //graphics.Clear(Color.White);
+
                     graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
@@ -396,7 +384,7 @@ namespace SecretProject.Class.StageFolder
                             }
                         }
                     }
-                                
+
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
                         spriteBatch.Draw(Game1.AllTextures.lightMask, new Vector2(mouse.WorldMousePosition.X - Game1.AllTextures.lightMask.Width / 2, mouse.WorldMousePosition.Y - Game1.AllTextures.lightMask.Height / 2), Color.White);
@@ -426,25 +414,20 @@ namespace SecretProject.Class.StageFolder
                 if (ShowBorders)
                 {
                     player.DrawDebug(spriteBatch, .4f);
-                    //ElixerNPC.DrawDebug(spriteBatch, .4f);
-                    //Game1.Dobbin.DrawDebug(spriteBatch, .4f);
-                    // Game1.Elixer.DrawDebug(spriteBatch, .4f);
+
                 }
 
                 AllTiles.DrawTiles(spriteBatch);
-                //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
                     Game1.Player.UserInterface.TileSelector.Draw(spriteBatch);
                 }
 
-                //--------------------------------------
-                //Draw sprite list
+
 
                 foreach (var sprite in AllSprites)
                 {
-                    //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
                 for (int i = 0; i < Enemies.Count; i++)
@@ -461,11 +444,11 @@ namespace SecretProject.Class.StageFolder
                     AllItems[i].Draw(spriteBatch);
                 }
 
-
-                foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.ChunkUnderPlayer.Objects)
+                if (ShowBorders)
                 {
-                    if (ShowBorders)
+                    foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.ChunkUnderPlayer.Objects)
                     {
+
                         for (int j = 0; j < obj.Value.Count; j++)
                         {
                             obj.Value[j].Draw(spriteBatch, .4f);
@@ -473,20 +456,12 @@ namespace SecretProject.Class.StageFolder
 
                     }
                 }
-                //for (int i = 0; i < AllTiles.ChunkUnderPlayer.Objects.Count; i++)
-                //{
-                //    if (ShowBorders)
-                //    {
-                //        AllTiles.ChunkUnderPlayer.Objects[i].Draw(spriteBatch, .4f);
-                //    }
-                //}
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
 
                 graphics.SetRenderTarget(null);
-                // graphics.Clear(Color.Black);
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -497,13 +472,11 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
-                //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);
 
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
 
-            //  Graphics.SetRenderTarget(null);
 
         }
 

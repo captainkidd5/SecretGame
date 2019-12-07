@@ -25,10 +25,15 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public int NegativeX { get; set; }
-        public int NegativeY { get; set; }
-        public int PositiveX { get; set; }
-        public int PositiveY { get; set; }
+        public int NegativeXTest { get; set; }
+        public int NegativeYTest { get; set; }
+        public int PositiveXTest { get; set; }
+        public int PositiveYTest { get; set; }
+
+        public int NegativeXDraw { get; set; }
+        public int NegativeYDraw { get; set; }
+        public int PositiveXDraw { get; set; }
+        public int PositiveYDraw { get; set; }
 
         public GridItem(ITileManager tileManager, int placeID)
         {
@@ -63,18 +68,23 @@ namespace SecretProject.Class.TileStuff
                 {
                     int[] newRectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["checkTile"]);
 
-                    this.NegativeX = newRectangleCoordinates[0] / 16;
-                    this.NegativeY = newRectangleCoordinates[1] / 16;
-                    this.PositiveX = newRectangleCoordinates[2] / 16;
-                    this.PositiveY = newRectangleCoordinates[3] / 16;
+                    this.NegativeXTest = newRectangleCoordinates[0] / 16;
+                    this.NegativeYTest = newRectangleCoordinates[1] / 16;
+                    this.PositiveXTest = newRectangleCoordinates[2] / 16;
+                    this.PositiveYTest = newRectangleCoordinates[3] / 16;
                 }
                 else
                 {
-                    this.NegativeX = RectangleCoordinates[0] / 16;
-                    this.NegativeY = RectangleCoordinates[1] / 16;
-                    this.PositiveX = RectangleCoordinates[2] / 16;
-                    this.PositiveY = RectangleCoordinates[3] / 16;
+                    this.NegativeXTest = RectangleCoordinates[0] / 16;
+                    this.NegativeYTest = RectangleCoordinates[1] / 16;
+                    this.PositiveXTest = RectangleCoordinates[2] / 16;
+                    this.PositiveYTest = RectangleCoordinates[3] / 16;
                 }
+
+                this.NegativeXDraw = RectangleCoordinates[0] / 16;
+                this.NegativeYDraw = RectangleCoordinates[1] / 16;
+                this.PositiveXDraw = RectangleCoordinates[2] / 16;
+                this.PositiveYDraw = RectangleCoordinates[3] / 16;
             }
             else
             {
@@ -107,9 +117,9 @@ namespace SecretProject.Class.TileStuff
 
                     bool canPlaceTotal = true;
 
-                    for (int i = this.NegativeX; i < this.PositiveX; i++)
+                    for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                     {
-                        for (int j = this.NegativeY; j < 1; j++)
+                        for (int j = this.NegativeYTest; j < 1; j++)
                         {
                             this.CanPlace = true;
 
@@ -124,24 +134,27 @@ namespace SecretProject.Class.TileStuff
                             {
                                 subY-= 16;
                             }
-                            Tile tile = TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks);
-                            if (tile != null)
+                            for (int z = 1; z < 4; z++)
                             {
-                                if (TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks).GID == -1)
-                                {
 
+
+                                Tile tile = TileUtility.GetChunkTile(subX, subY, z, tileManager.ActiveChunks);
+                                if (tile != null)
+                                {
+                                    if (TileUtility.GetChunkTile(subX, subY, z, tileManager.ActiveChunks).GID == -1)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        canPlaceTotal = false;
+                                    }
                                 }
+
                                 else
                                 {
-                                    CanPlace = false;
                                     canPlaceTotal = false;
                                 }
-                            }
-                           
-                            else
-                            {
-                                CanPlace = false;
-                                canPlaceTotal = false;
                             }
                         }
 
@@ -168,9 +181,8 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 if (this.PlaceID == 2157)
                                 {
-                                    Portal tempPortal = new Portal(3, 5, 0, 50, true);
+                                    Portal tempPortal = new Portal(3, 5, 0, 5, true);
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 /16].DestinationRectangle;
-                                    // tempPortal.
                                     Game1.World.AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
@@ -218,9 +230,9 @@ namespace SecretProject.Class.TileStuff
                 int subX = 0;
                 int subY = 0;
 
-                for (int i = this.NegativeX; i < this.PositiveX; i++)
+                for (int i = this.NegativeXDraw; i < this.PositiveXDraw; i++)
                 {
-                    for (int j = this.NegativeY; j < 1; j++)
+                    for (int j = this.NegativeYDraw; j < 1; j++)
                     {
                         bool canPlace = true;
 
@@ -252,7 +264,7 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             CanPlace = false;
-                            return;
+                           return;
                         }
 
                         int newGID = PlaceID + i + (j * 100);
@@ -263,14 +275,14 @@ namespace SecretProject.Class.TileStuff
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).Y),
-                                newSourceRectangle, Color.White * .25f,
+                                newSourceRectangle, Color.White * 1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(subX, subY, 3, tileManager.ActiveChunks)).Y),
-                                newSourceRectangle, Color.Red * .25f,
+                                newSourceRectangle, Color.Red * .1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }
@@ -296,12 +308,12 @@ namespace SecretProject.Class.TileStuff
 
                     bool canPlaceTotal = true;
 
-                    for (int i = this.NegativeX; i < this.PositiveX; i++)
+                    for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                     {
 
 
 
-                        for (int j = this.NegativeY; j < 1; j++)
+                        for (int j = this.NegativeYTest; j < 1; j++)
                         {
                             this.CanPlace = true;
 
@@ -395,12 +407,12 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                for (int i = this.NegativeX; i < this.PositiveX; i++)
+                for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                 {
 
                     //assumes newsource is always at bottom tiles, left or right doesn't matter though
 
-                    for (int j = this.NegativeY; j < 1; j++)
+                    for (int j = this.NegativeYTest; j < 1; j++)
                     {
                         bool canPlace = true;
 

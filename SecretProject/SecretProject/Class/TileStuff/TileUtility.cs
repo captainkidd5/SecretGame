@@ -65,6 +65,75 @@ namespace SecretProject.Class.TileStuff
 
             return numsToReturn;
         }
+
+        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
+        {
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
+
+            Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
+            if (chunk == null)
+            {
+                return null;
+            }
+
+            int localX = (int)Math.Floor((float)(tileX / 16 - chunkX * 16));
+            int localY = (int)Math.Floor((float)(tileY / 16 - chunkY * 16));
+
+            if (localX > 15)
+            {
+                localX = 15;
+            }
+            else if (localX < 0)
+            {
+                localX = 0;
+            }
+
+            if (localY > 15)
+            {
+                localY = 15;
+            }
+            else if (localY < 0)
+            {
+                localY = 0;
+            }
+            // = tile;
+            return (chunk.AllTiles[layer][localX, localY]);
+
+        }
+
+        public static int GetLocalChunkCoord(int globalCoord)
+        {
+            int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
+            int localCoord = (int)Math.Ceiling((float)(globalCoord / 16 - chunkCoord * 16));
+            if (chunkCoord < 0)
+            {
+                localCoord--;
+            }
+            return localCoord;
+        }
+
+
+        public static Chunk GetChunk(int tileX, int tileY, Chunk[,] ActiveChunks)
+        {
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
+            for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
+                {
+                    if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
+                    {
+                        return ActiveChunks[i, j];
+                    }
+
+
+                }
+            }
+            return null;
+        }
         #endregion
         public static void AssignProperties(Tile tileToAssign, int layer, int x, int oldY, IInformationContainer container)
         {
@@ -316,7 +385,7 @@ namespace SecretProject.Class.TileStuff
 
                 case "plantable":
                     Game1.Player.UserInterface.DrawTileSelector = true;
-                    mouse.ChangeMouseTexture(CursorType.Planting);
+                  
 
                     if (mouse.IsClicked)
                     {
@@ -325,6 +394,7 @@ namespace SecretProject.Class.TileStuff
                             Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                             if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
                             {
+                                mouse.ChangeMouseTexture(CursorType.Planting);
                                 if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)))
                                 {
 
@@ -440,74 +510,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
-        {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
-
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
-
-            Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
-            if(chunk == null)
-            {
-                throw new Exception("Chunk isn't in array");
-            }
-
-            int localX = (int)Math.Floor((float)(tileX / 16 - chunkX * 16));
-            int localY = (int)Math.Floor((float)(tileY / 16 - chunkY * 16));
-
-            if (localX > 15)
-            {
-                localX = 15;
-            }
-            else if (localX < 0)
-            {
-                localX = 0;
-            }
-
-            if (localY > 15)
-            {
-                localY = 15;
-            }       
-            else if (localY < 0)
-            {
-                localY = 0;
-            }
-            // = tile;
-            return (chunk.AllTiles[layer][localX, localY]);
-
-        }
-
-        public static int GetLocalChunkCoord(int globalCoord)
-        {
-            int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
-            int localCoord = (int)Math.Ceiling((float)(globalCoord / 16 - chunkCoord * 16));
-            if (chunkCoord < 0)
-            {
-                localCoord--;
-            }
-            return localCoord;
-        }
-
-
-        public static Chunk GetChunk(int tileX, int tileY, Chunk[,] ActiveChunks)
-        {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
-
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
-            for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
-            {
-                for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
-                {
-                    if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
-                    {
-                        return ActiveChunks[i, j];
-                    }
-
-
-                }
-            }
-            return null;
-        }
+       
 
         #region TILEREPLACEMENT AND INTERACTIONS
         public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)

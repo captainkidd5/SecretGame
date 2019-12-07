@@ -86,7 +86,7 @@ namespace SecretProject.Class.StageFolder
 
         public List<TmxLayer> AllLayers { get; set; }
 
-  
+
 
 
         public bool TilesLoaded { get; set; } = false;
@@ -154,7 +154,7 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
             AllRisingText = new List<RisingText>();
-            
+
         }
 
         public virtual void LoadPreliminaryContent()
@@ -181,7 +181,7 @@ namespace SecretProject.Class.StageFolder
 
             //AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
-            
+
 
 
             AllDepths = new List<float>()
@@ -203,7 +203,7 @@ namespace SecretProject.Class.StageFolder
                 Buildings,
                 MidGround,
                 foreGround
-    
+
             };
             AllPortals = new List<Portal>();
             AllTiles = new TileManager(TileSet, Map, AllLayers, Graphics, Content, TileSetNumber, AllDepths, this);
@@ -235,18 +235,17 @@ namespace SecretProject.Class.StageFolder
 
 
             this.Cam = camera;
-            Cam.Zoom = 3f;
             Cam.pos.X = Game1.Player.position.X;
             Cam.pos.Y = Game1.Player.position.Y;
 
 
-           // Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue("", Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite;
+            // Game1.Player.UserInterface.TextBuilder.StringToWrite = Game1.DialogueLibrary.RetrieveDialogue("", Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours).TextToWrite;
 
             TextBuilder = new TextBuilder("", .1f, 5f);
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
 
             this.AllTextToWrite = new List<StringWrapper>();
-            
+
             this.IsLoaded = true;
 
         }
@@ -285,14 +284,14 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
-            foreach(KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects )
+            foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
             {
                 for (int z = 0; z < obj.Value.Count; z++)
                 {
                     QuadTree.Insert(obj.Value[z]);
                 }
             }
-            
+
             for (int i = 0; i < AllItems.Count; i++)
             {
                 QuadTree.Insert(AllItems[i].ItemSprite);
@@ -472,25 +471,19 @@ namespace SecretProject.Class.StageFolder
                 {
                     AllItems[i].Draw(spriteBatch);
                 }
-
-                foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
+                if (ShowBorders)
                 {
-                    if (ShowBorders)
+                    foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
                     {
-                        for(int j = 0; j < obj.Value.Count; j++)
+
+                        for (int j = 0; j < obj.Value.Count; j++)
                         {
                             obj.Value[j].Draw(spriteBatch, .4f);
                         }
-                      
+
                     }
                 }
-                //for (int i = 0; i < AllTiles.Objects.Count; i++)
-                //{
-                //    if (ShowBorders)
-                //    {
-                //        AllTiles.Objects[i].Draw(spriteBatch, .4f);
-                //    }
-                //}
+
 
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
