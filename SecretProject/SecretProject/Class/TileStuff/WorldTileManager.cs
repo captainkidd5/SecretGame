@@ -565,17 +565,14 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                                         {
-
                                             if (frameholder.SelfDestruct || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
                                             {
-
                                                 //needs to refer to first tile ?
                                                 int frameolDX = frameholder.OldX;
                                                 TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, ActiveChunks[a, b]);
                                                 AnimationFrameKeysToRemove.Add(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, ActiveChunks[a, b]));
                                                 if (frameholder.SelfDestruct)
                                                 {
-                                                    // Rectangle testDestinationRectangle = TileUtility.GetDestinationRectangle(ActiveChunks[a,b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]);
                                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, TileUtility.GetDestinationRectangle(ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY]), ActiveChunks[a, b]);
                                                 }
 
@@ -639,7 +636,6 @@ namespace SecretProject.Class.TileStuff
 
                                     }
                                 }
-                                // ActiveChunks[a, b].AllTiles[z][mouseI, mouseJ]
                                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                                 {
 
@@ -651,7 +647,7 @@ namespace SecretProject.Class.TileStuff
                                         if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
                                         {
 
-                                            int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
+                                            //int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
 
 
 
@@ -664,8 +660,7 @@ namespace SecretProject.Class.TileStuff
                                                 Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
                                                 Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
                                                 Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
-                                                //CurrentIndexX = i;
-                                                //CurrentIndexY = j;
+
 
                                                 if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
                                                 {
@@ -684,7 +679,7 @@ namespace SecretProject.Class.TileStuff
 
                                                         if (mouse.IsClicked)
                                                         {
-                                                            TileUtility.InteractWithBuilding(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle,ChunkUnderMouse);
+                                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle,ChunkUnderMouse);
 
                                                         }
 
@@ -723,10 +718,6 @@ namespace SecretProject.Class.TileStuff
                             GridItem.ChunkUpdate(gameTime, this, ChunkUnderMouse);
                         }
 
-                        //foreach (Enemy enemy in ActiveChunks[a, b].Enemies)
-                        //{
-                        //    enemy.Update(gameTime, mouse);
-                        //}
                     }
                 }
             }

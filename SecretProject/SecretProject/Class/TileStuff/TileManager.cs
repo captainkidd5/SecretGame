@@ -445,7 +445,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (mouse.IsClicked)
                                             {
-                                                TileUtility.InteractWithBuilding(z, gameTime, mouseI, mouseJ, AllTiles[z][mouseI, mouseJ].DestinationRectangle,  this);
+                                                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, AllTiles[z][mouseI, mouseJ].DestinationRectangle,  this);
 
                                             }
 
