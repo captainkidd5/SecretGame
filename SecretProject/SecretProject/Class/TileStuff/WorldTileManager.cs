@@ -605,121 +605,123 @@ namespace SecretProject.Class.TileStuff
                                 ChunkUnderMouse = ActiveChunks[a, b];
                             }
 
-                            int mouseI = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
-                            int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16 - (ChunkUnderMouse.Y * 16));
-                            int playerI = (int)(Game1.Player.position.X / 16 - (ChunkUnderPlayer.X * 16));
-                            int playerJ = (int)(Game1.Player.position.Y / 16 - (ChunkUnderPlayer.Y * 16));
-
-                            for (int z = 0; z < 4; z++)
-                            {
-                                if (Game1.Player.IsMoving)
-                                {
-                                    if (z == 0)
-                                    {
-                                        if (playerI < ChunkUnderPlayer.AllTiles[z].GetLength(0) &&
-                                            playerJ < ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
-                                            playerI >= 0 &&
-                                            playerJ >= 0 &&
-                                             ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
-                                        {
-
-
-                                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID))
-                                            {
-                                                if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
-                                                {
-
-                                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties["step"]);
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
-                                if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
-                                {
-                                    if (mouse.IsClicked)
-                                    {
-                                        Console.WriteLine("debug");
-                                    }
-
-                                    if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ] != null)
-                                    {
-
-
-                                        if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
-                                        {
-
-                                            //int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
-
-
-
-                                            if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
-                                            {
-
-
-                                                Game1.Player.UserInterface.DrawTileSelector = true;
-                                                Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
-                                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
-                                                Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
-                                                Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
-
-
-                                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
-                                                {
-
-
-
-                                                    if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
-                                                    {
-
-                                                        Game1.isMyMouseVisible = false;
-
-
-                                                        mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
-
-                                                        Game1.myMouseManager.ToggleGeneralInteraction = true;
-
-                                                        if (mouse.IsClicked)
-                                                        {
-                                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle, ChunkUnderMouse);
-
-                                                        }
-
-                                                    }
-
-
-                                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
-                                                    {
-                                                        if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
-                                                        {
-
-                                                            TileUtility.ActionHelper(z, mouseI, mouseJ, MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, ChunkUnderMouse);
-
-                                                        }
-                                                    }
-
-                                                }
-
-                                            }
-                                            else
-                                            {
-                                                Game1.Player.UserInterface.DrawTileSelector = false;
-                                            }
-                                        }
-                                    }
-
-                                }
-
-
-
-                            }
+                           
                         }
 
 
 
                     }
                 }
+            }
+
+            int mouseI = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
+            int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16 - (ChunkUnderMouse.Y * 16));
+            int playerI = (int)(Game1.Player.position.X / 16 - (ChunkUnderPlayer.X * 16));
+            int playerJ = (int)(Game1.Player.position.Y / 16 - (ChunkUnderPlayer.Y * 16));
+
+            for (int z = 0; z < 4; z++)
+            {
+                if (Game1.Player.IsMoving)
+                {
+                    if (z == 0)
+                    {
+                        if (playerI < ChunkUnderPlayer.AllTiles[z].GetLength(0) &&
+                            playerJ < ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
+                            playerI >= 0 &&
+                            playerJ >= 0 &&
+                             ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
+                        {
+
+
+                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID))
+                            {
+                                if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                {
+
+                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
+                {
+                    if (mouse.IsClicked)
+                    {
+                        Console.WriteLine("debug");
+                    }
+
+                    if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ] != null)
+                    {
+
+
+                        if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID != -1)
+                        {
+
+                            //int TileKey = ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, ChunkUnderMouse);
+
+
+
+                            if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                            {
+
+
+                                Game1.Player.UserInterface.DrawTileSelector = true;
+                                Game1.Player.UserInterface.TileSelector.IndexX = mouseI;
+                                Game1.Player.UserInterface.TileSelector.IndexY = mouseJ;
+                                Game1.Player.UserInterface.TileSelector.WorldX = ChunkUnderMouse.X * 16 * 16 + mouseI * 16;
+                                Game1.Player.UserInterface.TileSelector.WorldY = ChunkUnderMouse.Y * 16 * 16 + mouseJ * 16;
+
+
+                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
+                                {
+
+
+
+                                    if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
+                                    {
+
+                                        Game1.isMyMouseVisible = false;
+
+
+                                        mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+
+                                        Game1.myMouseManager.ToggleGeneralInteraction = true;
+
+                                        if (mouse.IsClicked)
+                                        {
+                                            TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].DestinationRectangle, ChunkUnderMouse);
+
+                                        }
+
+                                    }
+
+
+                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID))
+                                    {
+                                        if (MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
+                                        {
+
+                                            TileUtility.ActionHelper(z, mouseI, mouseJ, MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, ChunkUnderMouse);
+
+                                        }
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                Game1.Player.UserInterface.DrawTileSelector = false;
+                            }
+                        }
+                    }
+
+                }
+
+
+
             }
             Tile tile = TileUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, ActiveChunks);
             if (tile != null)

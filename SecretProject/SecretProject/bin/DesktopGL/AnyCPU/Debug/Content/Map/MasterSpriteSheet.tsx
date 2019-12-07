@@ -69,19 +69,25 @@
  </tile>
  <tile id="253">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="254">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="255">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
@@ -90,7 +96,9 @@
  </tile>
  <tile id="256">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -301,19 +309,25 @@
  </tile>
  <tile id="453">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="454">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="455">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
@@ -323,7 +337,9 @@
  <tile id="456">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="fence"/>
+   <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>

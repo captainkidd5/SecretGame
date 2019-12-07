@@ -66,11 +66,16 @@ namespace SecretProject.Class.TileStuff
             return numsToReturn;
         }
 
+        public static int GetSquareTileCoord(int worldPos)
+        {
+            return worldPos / 16;
+        }
+
         public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
         {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f);
 
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f);
 
             Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
             if (chunk == null)
@@ -78,8 +83,8 @@ namespace SecretProject.Class.TileStuff
                 return null;
             }
 
-            int localX = (int)Math.Floor((float)(tileX / 16 - chunkX * 16));
-            int localY = (int)Math.Floor((float)(tileY / 16 - chunkY * 16));
+            int localX = (int)Math.Floor((float)(tileX  - chunkX * 16));
+            int localY = (int)Math.Floor((float)(tileY - chunkY * 16));
 
             if (localX > 15)
             {
@@ -117,9 +122,9 @@ namespace SecretProject.Class.TileStuff
 
         public static Chunk GetChunk(int tileX, int tileY, Chunk[,] ActiveChunks)
         {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f);
 
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f);
             for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
             {
                 for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
