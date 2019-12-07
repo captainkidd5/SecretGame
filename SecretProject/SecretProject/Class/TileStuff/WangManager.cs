@@ -10,86 +10,11 @@ namespace SecretProject.Class.TileStuff
     {
         public static void ReassignGroupOfTiles(int z, int i, int j, int mainGID, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, IInformationContainer container)
         {
-            for (int t = -1; t < 2; t++)
-            {
-                for (int q = -1; q < 2; q++)
-                {
-                    //tile isnt touching any borders
-                    if (i > 0 && j > 0 && i < TileUtility.ChunkWidth - 1 && j < TileUtility.ChunkHeight - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j + q, container.MapWidth, container.MapHeight, container);
-                    }
-                    //tile is touching top
-                    else if (i > 0 && j <= 0 && i < TileUtility.ChunkWidth - 1 && j < TileUtility.ChunkHeight - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-                    //tile is touching left
-                    else if (i <= 0 && j > 0 && i < TileUtility.ChunkWidth - 1 && j < TileUtility.ChunkHeight - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                    }
-                    //tile is touching right
-                    else if (i >= TileUtility.ChunkWidth - 1 && j < TileUtility.ChunkHeight - 1 && j > 0)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, j + q, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j + q, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                    }
-                    //tile is touching bottom
-                    else if (i < TileUtility.ChunkWidth - 1 && i > 0 && j >= TileUtility.ChunkHeight - 1)
-                    {
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, j, container.MapWidth, container.MapHeight, container);
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i + t, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
-                    //bottom right corner
-                    else if (i == TileUtility.ChunkWidth - 1 && j == TileUtility.ChunkHeight - 1)
-                    {
+            
+           PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i , j , container.MapWidth, container.MapHeight, container);
+                   
 
-                        //immediate right
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                        //right one, down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                        //down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
 
-                    //bottom left corner
-                    else if (i == 0 && j == TileUtility.ChunkHeight - 1)
-                    {
-                        //immediate left
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                        //left one down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                        //down one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1]);
-                    }
-                    //top right corner
-                    else if (i == TileUtility.ChunkWidth - 1 && j == 0)
-                    {
-
-                        //immediate right
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ]);
-                        //right one, up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 0, 0, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ + 1]);
-                        //up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-                    //top left corner
-                    else if (i == 0 && j == 0)
-                    {
-
-                        //immediate left
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, j, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ]);
-                        //left one, up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, 15, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ - 1]);
-                        //up one
-                        PlayerInvokedReassignForTiling(mainGID, generatableTiles, tilingDictionary, z, i, 15, container.MapWidth, container.MapHeight, container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1]);
-                    }
-
-                }
-            }
         }
 
         public static void PlayerInvokedReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,

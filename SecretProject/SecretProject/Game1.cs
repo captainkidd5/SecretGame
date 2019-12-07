@@ -243,8 +243,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;
@@ -535,7 +535,7 @@ namespace SecretProject
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(120, null));
            
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 99; i++)
             {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
             }

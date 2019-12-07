@@ -169,7 +169,7 @@ namespace SecretProject.Class.TileStuff
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, 0, 50, true);
-                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX, subY].DestinationRectangle;
+                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][subX / 16 / 16, subY / 16 /16].DestinationRectangle;
                                     // tempPortal.
                                     Game1.World.AllPortals.Add(tempPortal);
 
@@ -184,44 +184,24 @@ namespace SecretProject.Class.TileStuff
                                 if (item.TilingDictionary != null)
                                 {
 
-                                    ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
+                                   // ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
+                                    //    item.TilingDictionary, 3,
+                                    //    Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                       // TileUtility.ChunkWidth, TileUtility.ChunkHeight, container);
+                                    int i = (int)Game1.myMouseManager.WorldMousePosition.X;
+                                    int j = (int)Game1.myMouseManager.WorldMousePosition.Y;
+                                    for (int t = -1; t < 2; t++)
+                                    {
+                                        for (int q = -1; q < 2; q++)
+                                        {
+                                          //  WangManager.ReassignGroupOfTiles(3, TileUtility.GetLocalChunkCoord(i + t) , TileUtility.GetLocalChunkCoord(j + q) , this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, TileUtility.GetChunk(i  + t, j + q, tileManager.ActiveChunks));
+                                            ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
                                         item.TilingDictionary, 3,
-                                        Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, container);
-                                    int i = Game1.Player.UserInterface.TileSelector.IndexX;
-                                    int j = Game1.Player.UserInterface.TileSelector.IndexY;
-                                    WangManager.ReassignGroupOfTiles(3, i, j, this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, container);
-                                    //for (int t = -1; t < 2; t++)
-                                    //{
-                                    //    for (int q = -1; q < 2; q++)
-                                    //    {
-                                    //        if (i > 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
-                                    //        {
-                                    //            ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j + q, container.MapWidth, container.MapHeight, container);
-                                    //        }
-                                    //        else if (i > 0 && j <= 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
-                                    //        {
-                                    //            ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
-                                    //        }
-                                    //        else if (i <= 0 && j > 0 && i < TileUtility.ChunkX - 1 && j < TileUtility.ChunkY - 1)
-                                    //        {
-                                    //            ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
-                                    //        }
-                                    //        else if (i >= TileUtility.ChunkX && j < TileUtility.ChunkY - 1)
-                                    //        {
-                                    //            ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j + q, container.MapWidth, container.MapHeight, container);
-                                    //        }
-                                    //        else if (i < TileUtility.ChunkX - 1 && j >= TileUtility.ChunkY)
-                                    //        {
-                                    //            ReassignTileForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i + t, j, container.MapWidth, container.MapHeight, container);
-                                    //        }
-                                    //        else if (i == TileUtility.ChunkX && j == TileUtility.ChunkY)
-                                    //        {
-                                    //            TileUtility.GenerationReassignForTiling(this.PlaceID , Game1.Utility.FenceGeneratableTiles, item.TilingDictionary, 3, i, j, container.MapWidth, container.MapHeight, container);
-                                    //        }
-
-                                    //    }
-                                    //}
+                                        TileUtility.GetLocalChunkCoord(i + t* 16), TileUtility.GetLocalChunkCoord(j + q * 16),
+                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, TileUtility.GetChunk(i + t * 16, j + q * 16, tileManager.ActiveChunks));
+                                        }
+                                    }
+                                   
 
                                 }
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());

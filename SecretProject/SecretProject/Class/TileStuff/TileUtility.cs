@@ -443,7 +443,7 @@ namespace SecretProject.Class.TileStuff
 
             int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
 
-            Chunk chunk = GetChunk(chunkX, chunkY, ActiveChunks);
+            Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
             if(chunk == null)
             {
                 throw new Exception("Chunk isn't in array");
@@ -465,9 +465,23 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public static Chunk GetChunk(int chunkX, int chunkY, Chunk[,] ActiveChunks)
+        public static int GetLocalChunkCoord(int globalCoord)
         {
+            int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
+            int localCoord = (int)Math.Floor((float)(globalCoord / 16 - chunkCoord * 16));
+            if (localCoord > 15)
+            {
+                localCoord = 15;
+            }
+            return localCoord;
+        }
 
+
+        public static Chunk GetChunk(int tileX, int tileY, Chunk[,] ActiveChunks)
+        {
+            int chunkX = (int)Math.Floor((float)tileX / 16.0f / 16.0f);
+
+            int chunkY = (int)Math.Floor((float)tileY / 16.0f / 16.0f);
             for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
             {
                 for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
