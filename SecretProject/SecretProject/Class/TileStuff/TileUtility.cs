@@ -299,8 +299,14 @@ namespace SecretProject.Class.TileStuff
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
-                                            WangManager.PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
-                                            WangManager.ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
+                                            int cx = (int)Game1.myMouseManager.WorldMousePosition.X;
+                                            int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
+
+
+                                           WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.DirtGeneratableTiles,
+                                       Game1.Procedural.DirtTiling, 0, Game1.GetCurrentStage().AllTiles);
+                                            //WangManager.PlayerInvokedReassignForTiling(1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, z, i, j, container.MapWidth, container.MapHeight, container);
+                                            //WangManager.ReassignGroupOfTiles(z, i, j, 1006, Game1.Procedural.DirtGeneratableTiles, Game1.Procedural.DirtTiling, container);
 
 
                                             break;

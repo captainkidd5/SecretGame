@@ -184,24 +184,14 @@ namespace SecretProject.Class.TileStuff
                                 if (item.TilingDictionary != null)
                                 {
 
-                                   // ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
-                                    //    item.TilingDictionary, 3,
-                                    //    Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                       // TileUtility.ChunkWidth, TileUtility.ChunkHeight, container);
                                     int i = (int)Game1.myMouseManager.WorldMousePosition.X;
                                     int j = (int)Game1.myMouseManager.WorldMousePosition.Y;
-                                    for (int t = -1; t < 2; t++)
-                                    {
-                                        for (int q = -1; q < 2; q++)
-                                        {
-                                          //  WangManager.ReassignGroupOfTiles(3, TileUtility.GetLocalChunkCoord(i + t) , TileUtility.GetLocalChunkCoord(j + q) , this.PlaceID, Game1.Procedural.FenceGeneratableTiles, item.TilingDictionary, TileUtility.GetChunk(i  + t, j + q, tileManager.ActiveChunks));
-                                            ReassignTileForTiling(this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
-                                        item.TilingDictionary, 3,
-                                        TileUtility.GetLocalChunkCoord(i + t* 16), TileUtility.GetLocalChunkCoord(j + q * 16),
-                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, TileUtility.GetChunk(i + t * 16, j + q * 16, tileManager.ActiveChunks));
-                                        }
-                                    }
-                                   
+  
+                                         
+                                            WangManager.GroupReassignForTiling(i,j,this.PlaceID, Game1.Procedural.FenceGeneratableTiles,
+                                        item.TilingDictionary, 3,tileManager);
+
+          
 
                                 }
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
@@ -297,78 +287,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void ReassignTileForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-            int x, int y, int worldWidth, int worldHeight, IInformationContainer container)
-        {
 
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID))
-            {
-                return;
-            }
-            int keyToCheck = 0;
-            if (y > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y - 1].GID))
-                {
-                    keyToCheck += 1;
-                }
-            }
-            //if top tile is 0 we look at the chunk above it
-
-
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ - 1].AllTiles[layer][x, 15].GID))
-            {
-                keyToCheck += 1;
-            }
-
-
-            if (y < worldHeight - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x, y + 1].GID))
-                {
-                    keyToCheck += 8;
-                }
-            }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI, container.ArrayJ + 1].AllTiles[layer][x, 0].GID))
-            {
-                keyToCheck += 8;
-            }
-
-
-            //looking at rightmost tile
-            if (x < worldWidth - 1)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x + 1, y].GID))
-                {
-                    keyToCheck += 4;
-                }
-            }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI + 1, container.ArrayJ].AllTiles[layer][0, y].GID) )
-            {
-                keyToCheck += 4;
-            }
-
-
-
-
-            if (x > 0)
-            {
-                if (generatableTiles.Contains(container.AllTiles[layer][x - 1, y].GID))
-                {
-                    keyToCheck += 2;
-                }
-            }
-            else if (generatableTiles.Contains(container.TileManager.ActiveChunks[container.ArrayI - 1, container.ArrayJ].AllTiles[layer][15, y].GID) )
-            {
-                keyToCheck += 2;
-            }
-
-
-            TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-            
-
-
-        }
         public void NormalUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
