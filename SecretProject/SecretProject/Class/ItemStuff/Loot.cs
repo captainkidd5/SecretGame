@@ -35,11 +35,12 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public static void GetDrop(List<Loot> possibleLoot, Rectangle tileDestinationRectangle)
+        public static Item GetDrop(List<Loot> possibleLoot, Rectangle tileDestinationRectangle)
         {
+            Item firstItemToReturn = null;
             if (possibleLoot != null)
             {
-
+                firstItemToReturn = Game1.ItemVault.GenerateNewItem(possibleLoot[0].ID, null);
 
                 for (int l = 0; l < possibleLoot.Count; l++)
                 {
@@ -51,6 +52,7 @@ namespace SecretProject.Class.ItemStuff
                     }
                 }
             }
+            return firstItemToReturn;
         }
 
         //For use with the loot property of the tilesheet. Loot objects are separated by commas. The number before the colon is the item id and the number after is the probability of being dropped.

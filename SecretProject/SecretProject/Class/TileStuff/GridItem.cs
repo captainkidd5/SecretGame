@@ -98,7 +98,7 @@ namespace SecretProject.Class.TileStuff
                                    SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
 
         }
-        
+
 
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
@@ -128,11 +128,11 @@ namespace SecretProject.Class.TileStuff
                             subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
                             if (Game1.myMouseManager.WorldMousePosition.X < 0)
                             {
-                                subX-= 16;
+                                subX -= 16;
                             }
                             if (Game1.myMouseManager.WorldMousePosition.Y < 0)
                             {
-                                subY-= 16;
+                                subY -= 16;
                             }
                             for (int z = 1; z < 4; z++)
                             {
@@ -182,7 +182,7 @@ namespace SecretProject.Class.TileStuff
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, 0, 5, true);
-                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 /16].DestinationRectangle;
+                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 / 16].DestinationRectangle;
                                     Game1.World.AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
@@ -193,13 +193,11 @@ namespace SecretProject.Class.TileStuff
                                 Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                                 TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, container);
-                                if (item.GenerationType != null)
-                                {
-       
-                                            WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X,(int)Game1.myMouseManager.WorldMousePosition.Y,this.PlaceID, Game1.Procedural.GetGeneratableTilesFromGenerationType(item.GenerationType),
-                                        Game1.Procedural.GetTilingDictionaryFromGenerationType(item.GenerationType), 3,tileManager);
 
-                                }
+                                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, Game1.Procedural.GetGeneratableTilesFromGenerationType(item.GenerationType),
+                            Game1.Procedural.GetTilingDictionaryFromGenerationType(item.GenerationType), 3, tileManager);
+
+
                                 Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
 
 
@@ -264,7 +262,7 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             CanPlace = false;
-                           return;
+                            return;
                         }
 
                         int newGID = PlaceID + i + (j * 100);
@@ -273,14 +271,14 @@ namespace SecretProject.Class.TileStuff
 
                         if (canPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord( subY), 3, tileManager.ActiveChunks)).X,
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.White * 1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord( subY), 3, tileManager.ActiveChunks)).X,
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.Red * .1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);

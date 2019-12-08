@@ -75,9 +75,6 @@ namespace SecretProject.Class.ItemStuff
 
         public GenerationType GenerationType { get; set; }
 
-
-
-
         public Item(ItemData itemData)
         {
             this.Name = itemData.Name;

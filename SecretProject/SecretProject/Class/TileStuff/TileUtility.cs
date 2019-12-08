@@ -658,11 +658,11 @@ namespace SecretProject.Class.TileStuff
 
                 DestroySpawnWithTiles(container.AllTiles[layer][x, y], x, y, container);
             }
-
+            Item itemToCheckForReassasignTiling = null;
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("loot"))
             {
                 List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
-                Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
+                itemToCheckForReassasignTiling = Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
             
             if (container.Crops.ContainsKey(container.AllTiles[1][x, y].GetTileKeyStringNew(layer, container)))
@@ -674,8 +674,13 @@ namespace SecretProject.Class.TileStuff
 
 
             TileUtility.ReplaceTile(layer, x, y, 0, container);
-            WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.FenceGeneratableTiles, Game1.Procedural.FenceTiling,
-                3, Game1.GetCurrentStage().AllTiles);
+            if(itemToCheckForReassasignTiling != null)
+            {
+                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.GetGeneratableTilesFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
+                    Game1.Procedural.GetTilingDictionaryFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
+               3, Game1.GetCurrentStage().AllTiles);
+            }
+           
 
 
         }

@@ -479,6 +479,48 @@
    <object id="1" x="0.272727" y="6" width="15.4545" height="5.27273"/>
   </objectgroup>
  </tile>
+ <tile id="531">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="532">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="533">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="534">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="535">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="536">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
  <tile id="546">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="1" width="6" height="14"/>
@@ -522,6 +564,41 @@
    <frame tileid="583" duration="100"/>
    <frame tileid="584" duration="100"/>
   </animation>
+ </tile>
+ <tile id="631">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="632">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="633">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="634">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="635">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
  </tile>
  <tile id="646">
   <objectgroup draworder="index" id="2">
@@ -677,6 +754,41 @@
  <tile id="712">
   <properties>
    <property name="generate" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="731">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="732">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="733">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="734">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="735">
+  <properties>
+   <property name="destructable" value="21,0,5,3"/>
+   <property name="generate" value="oakFloor"/>
+   <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="778">

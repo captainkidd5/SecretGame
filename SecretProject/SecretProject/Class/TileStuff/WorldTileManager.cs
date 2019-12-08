@@ -218,6 +218,13 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Procedural.DirtCliffGeneratableTiles.Add(i);
                                 }
                                 break;
+
+                            case "oakFloor":
+                                if (!Game1.Procedural.OakFloorGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Procedural.OakFloorGeneratableTiles.Add(i);
+                                }
+                                break;
                         }
 
 
