@@ -144,21 +144,6 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
         }
-
-
-        //public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
-        //{
-        //    int index = GetIndex(objectBody);
-        //    if (index != -1 && nodes[0] != null)
-        //    {
-        //        nodes[index].Retrieve(returnObjects, objectBody);
-        //    }
-
-        //    returnObjects.AddRange(Objects);
-
-        //    return returnObjects;
-        //}
-
         public void Retrieve(List<ICollidable> returnedObjs, ICollidable obj)
         {
             if (nodes[0] != null)
@@ -179,21 +164,6 @@ namespace SecretProject.Class.CollisionDetection
             returnedObjs.AddRange(Objects);
         }
 
-        //private List<SquareOne> Retrieve(List<SquareOne> fSpriteList, Rect pRect)
-        //{
-        //    List<int> indexes = GetIndexes(pRect);
-        //    for (int ii = 0; ii < indexes.Count; ii++)
-        //    {
-        //        int index = indexes[ii];
-        //        if (index != -1 && nodes[0] != null)
-        //        {
-        //            nodes[index].Retrieve(fSpriteList, pRect);
-        //        }
 
-        //        fSpriteList.AddRange(objects);
-        //    }
-
-        //    return fSpriteList;
-        //}
     }
 }
