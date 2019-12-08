@@ -69,6 +69,7 @@ namespace SecretProject.Class.ItemStuff
         public int Durability { get; set; }
         public int PlaceID { get; set; }
         public string TilingSet { get; set; }
+        public int TilingLayer { get; set; }
         public int StaminaRestored { get; set; }
         public int Type { get; set; }
         public int AnimationColumn { get; set; }
@@ -103,7 +104,12 @@ namespace SecretProject.Class.ItemStuff
             if(this.TilingSet != null)
             {
                 this.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), TilingSet);
+                this.TilingLayer = itemData.TilingLayer;
                 
+            }
+            else
+            {
+                this.TilingLayer = 3;
             }
         }
         public void Load()

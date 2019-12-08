@@ -237,6 +237,7 @@
 <Price>1</Price>
 <PlaceID>632</PlaceID>
 <TilingSet>OakFloorTiling</TilingSet>
+<TilingLayer>1</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -900,6 +901,7 @@
 <Price>5</Price>
 <PlaceID>456</PlaceID>
 <TilingSet>FenceTiling</TilingSet>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

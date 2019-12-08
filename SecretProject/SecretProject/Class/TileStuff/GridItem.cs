@@ -104,109 +104,111 @@ namespace SecretProject.Class.TileStuff
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
             {
-                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
+                Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                if (item != null)
                 {
-                    this.IsDrawn = true;
+
+                        this.IsDrawn = true;
 
 
-                    int activeChunkX = container.ArrayI;
-                    int activeChunkY = container.ArrayJ;
+                        int activeChunkX = container.ArrayI;
+                        int activeChunkY = container.ArrayJ;
 
-                    int subX = 0;
-                    int subY = 0;
+                        int subX = 0;
+                        int subY = 0;
 
-                    bool canPlaceTotal = true;
+                        bool canPlaceTotal = true;
 
-                    for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
-                    {
-                        for (int j = this.NegativeYTest; j < 1; j++)
+                        for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                         {
-                            this.CanPlace = true;
-
-
-                            subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
-                            subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
-                            if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                            for (int j = this.NegativeYTest; j < 1; j++)
                             {
-                                subX -= 16;
-                            }
-                            if (Game1.myMouseManager.WorldMousePosition.Y < 0)
-                            {
-                                subY -= 16;
-                            }
-                            for (int z = 1; z < 4; z++)
-                            {
+                                this.CanPlace = true;
 
 
-                                Tile tile = TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks);
-                                if (tile != null)
+                                subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
+                                subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
+                                if (Game1.myMouseManager.WorldMousePosition.X < 0)
                                 {
-                                    if (TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks).GID == -1)
-                                    {
+                                    subX -= 16;
+                                }
+                                if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                                {
+                                    subY -= 16;
+                                }
+                                for (int z = item.TilingLayer; z < 4; z++)
+                                {
 
+
+                                    Tile tile = TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks);
+                                    if (tile != null)
+                                    {
+                                        if (TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks).GID == -1)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            canPlaceTotal = false;
+                                        }
                                     }
+
                                     else
                                     {
                                         canPlaceTotal = false;
                                     }
                                 }
-
-                                else
-                                {
-                                    canPlaceTotal = false;
-                                }
                             }
+
                         }
 
-                    }
-
-                    if (canPlaceTotal)
-                    {
-                        if (Game1.myMouseManager.IsClicked)
+                        if (canPlaceTotal)
                         {
-                            if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
+                            if (Game1.myMouseManager.IsClicked)
                             {
-
-
-                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
-                                switch (soundRandom)
+                                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem != UI.ExclusiveInterfaceItem.ShopMenu)
                                 {
-                                    case 0:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
 
-                                        break;
-                                    case 1:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
-                                        break;
-                                }
-                                if (this.PlaceID == 2157)
-                                {
-                                    Portal tempPortal = new Portal(3, 5, 0, 5, true);
-                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 / 16].DestinationRectangle;
-                                    Game1.World.AllPortals.Add(tempPortal);
 
-                                    if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
+                                    int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+                                    switch (soundRandom)
                                     {
-                                        Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
+                                        case 0:
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
+
+                                            break;
+                                        case 1:
+                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
+                                            break;
                                     }
+                                    if (this.PlaceID == 2157)
+                                    {
+                                        Portal tempPortal = new Portal(3, 5, 0, 5, true);
+                                        tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY) / 16 / 16].DestinationRectangle;
+                                        Game1.World.AllPortals.Add(tempPortal);
+
+                                        if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
+                                        {
+                                            Game1.PortalGraph.AddEdge(tempPortal.From, tempPortal.To);
+                                        }
+                                    }
+                                    TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                        this.PlaceID + 1, container);
+
+                                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, Game1.Procedural.GetGeneratableTilesFromGenerationType(item.GenerationType),
+                                Game1.Procedural.GetTilingDictionaryFromGenerationType(item.GenerationType), item.TilingLayer, tileManager);
+
+
+                                    Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
+
+
+                                    return;
                                 }
-                                Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                                TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
-                                    this.PlaceID + 1, container);
 
-                                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, Game1.Procedural.GetGeneratableTilesFromGenerationType(item.GenerationType),
-                            Game1.Procedural.GetTilingDictionaryFromGenerationType(item.GenerationType), 3, tileManager);
-
-
-                                Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
-
-
-                                return;
                             }
 
                         }
-
-                    }
+                    
                 }
                 else
                 {

@@ -678,7 +678,7 @@ namespace SecretProject.Class.TileStuff
             {
                 WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.GetGeneratableTilesFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
                     Game1.Procedural.GetTilingDictionaryFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
-               3, Game1.GetCurrentStage().AllTiles);
+               itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
             }
            
 

@@ -2276,6 +2276,7 @@
  </tile>
  <tile id="1845">
   <properties>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="lightSource" value="1,0,-48"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
@@ -2312,6 +2313,7 @@
  </tile>
  <tile id="2051">
   <properties>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -2327,12 +2329,14 @@
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="2142">
   <properties>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -2340,6 +2344,7 @@
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
+   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>

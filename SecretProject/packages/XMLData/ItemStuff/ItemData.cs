@@ -33,6 +33,10 @@ namespace XMLData.ItemStuff
         [ContentSerializer(Optional = true)]
         public string TilingSet { get; set; }
 
+
+        [ContentSerializer(Optional = true)]
+        public int TilingLayer { get; set; }
+
         [ContentSerializer(Optional = true)]
         public int StaminaRestored { get; set; }
 
