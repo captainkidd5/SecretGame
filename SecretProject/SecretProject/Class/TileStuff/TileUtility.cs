@@ -20,7 +20,7 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-
+    
     public static class TileUtility
     {
         public static int ChunkWidth = 16;

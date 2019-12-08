@@ -16,6 +16,8 @@ namespace SecretProject.Class.TileStuff
         Water = 426,
         Stone = 929,
         DirtCliff = 2934,
+        FenceTiling = 456,
+        OakFloorTiling = 632,
 
     };
     public class Procedural
@@ -33,6 +35,9 @@ namespace SecretProject.Class.TileStuff
         public List<int> FenceGeneratableTiles;
 
         public List<int> DirtCliffGeneratableTiles;
+
+        //MIDGROUND TILES
+        public List<int> OakFloorGeneratableTiles;
 
         public Dictionary<int, int> FenceTiling;
 
@@ -56,6 +61,9 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<int, int> SandRuinTiling;
 
         public Dictionary<int, int> DirtCliffTiling;
+
+        //MIDGROUNDDICTIONARIES
+        public Dictionary<int, int> OakFloorTiling;
 
         public Dictionary<int, int> FillTilingDictionary(int centralGID)
         {
@@ -83,7 +91,7 @@ namespace SecretProject.Class.TileStuff
             //larger the smaller the biomes
             FastNoise.SetFrequency(.001f);
 
-            //DICTIONARIES
+            //Lists
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             SandRuinGeneratableTiles = new List<int>();
@@ -93,7 +101,7 @@ namespace SecretProject.Class.TileStuff
             StandardGeneratableDirtTiles = new List<int>();
             StandardGeneratableGrassTiles = new List<int>();
             FenceGeneratableTiles = new List<int>();
-
+            OakFloorGeneratableTiles = new List<int>();
             DirtCliffGeneratableTiles = new List<int>();
 
             FenceTiling = new Dictionary<int, int>()
@@ -105,6 +113,9 @@ namespace SecretProject.Class.TileStuff
             StoneTiling = FillTilingDictionary(929);
             SandRuinTiling = FillTilingDictionary(1621);
             DirtCliffTiling = FillTilingDictionary(2934);
+
+            //MIDGROUDNTILING
+            OakFloorTiling = FillTilingDictionary(632);
         }
 
         public List<int> GetGeneratableTilesFromGenerationType(GenerationType type)
@@ -137,6 +148,12 @@ namespace SecretProject.Class.TileStuff
 
                 case GenerationType.DirtCliff:
                     return Game1.Procedural.DirtCliffGeneratableTiles;
+
+                case GenerationType.FenceTiling:
+                    return Game1.Procedural.FenceGeneratableTiles;
+
+                case GenerationType.OakFloorTiling:
+                    return Game1.Procedural.OakFloorGeneratableTiles;
 
                 default:
                     return DirtGeneratableTiles;
@@ -174,6 +191,12 @@ namespace SecretProject.Class.TileStuff
 
                 case GenerationType.DirtCliff:
                     return DirtCliffTiling;
+
+                case GenerationType.FenceTiling:
+                    return FenceTiling;
+
+                case GenerationType.OakFloorTiling:
+                    return OakFloorTiling;
 
                 default:
                     return DirtTiling;

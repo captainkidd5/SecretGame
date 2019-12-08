@@ -228,6 +228,18 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Oak Floor</Name>
+<ID>480</ID>
+<Description>Oak floorboards.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>12</TextureColumn>
+<TextureRow>0</TextureRow>
+<Price>1</Price>
+<PlaceID>632</PlaceID>
+<TilingSet>OakFloorTiling</TilingSet>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Log</Name>
 <ID>520</ID>
 <Description>Wood from an oak tree.</Description>

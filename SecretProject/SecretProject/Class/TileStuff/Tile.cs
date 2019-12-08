@@ -13,6 +13,14 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
+    public enum MapLayer
+    {
+        BackGround = 0,
+        MidGround = 1,
+        Buildings = 2,
+        ForeGround = 3
+    }
+
     public class Tile
     {
 

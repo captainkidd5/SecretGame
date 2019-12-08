@@ -5,6 +5,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff.BuildingItems;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +73,7 @@ namespace SecretProject.Class.ItemStuff
         public int Type { get; set; }
         public int AnimationColumn { get; set; }
 
-        public Dictionary<int, int> TilingDictionary { get; set; }
+        public GenerationType GenerationType { get; set; }
 
 
 
@@ -104,12 +105,7 @@ namespace SecretProject.Class.ItemStuff
             this.TilingSet = itemData.TilingSet;
             if(this.TilingSet != null)
             {
-                switch (TilingSet)
-                {
-                    case "FenceTiling":
-                        this.TilingDictionary = Game1.Procedural.FenceTiling;
-                        break;
-                }
+                this.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), TilingSet);
                 
             }
         }
