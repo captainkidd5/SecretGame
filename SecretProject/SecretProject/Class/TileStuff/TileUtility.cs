@@ -674,6 +674,8 @@ namespace SecretProject.Class.TileStuff
 
 
             TileUtility.ReplaceTile(layer, x, y, 0, container);
+            WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.FenceGeneratableTiles, Game1.Procedural.FenceTiling,
+                3, Game1.GetCurrentStage().AllTiles);
 
 
         }
