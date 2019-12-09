@@ -12,38 +12,25 @@ namespace SecretProject.Class.CollisionDetection
 {
     public class QuadTree
     {
-        public int TotalObjects { get; set; }
-        private int MAX_OBJECTS = 10;
+
+        private int MAX_OBJECTS = 20;
         private int MAX_LEVELS =15;
 
         private int level;
         private List<ICollidable> Objects;
         private Rectangle bounds;
         private QuadTree[] nodes;
-
+        public int Count;
 
         public QuadTree(int pLevel, Rectangle pBounds)
         {
-            TotalObjects = 0;
             level = pLevel;
             Objects = new List<ICollidable>();
             bounds = pBounds;
             nodes = new QuadTree[4];
         }
 
-        public void Clear()
-        {
-            Objects.Clear();
 
-            for (int i = 0; i < nodes.Length; i++)
-            {
-                if (nodes[i] != null)
-                {
-                    nodes[i].Clear();
-                    nodes[i] = null;
-                }
-            }
-        }
 
         private void Split()
         {
@@ -106,6 +93,7 @@ namespace SecretProject.Class.CollisionDetection
 
         public void Insert(ICollidable objectBody)
         {
+
             if (nodes[0] != null)
             {
                 int index = GetIndex(objectBody);
@@ -119,7 +107,6 @@ namespace SecretProject.Class.CollisionDetection
             }
 
             Objects.Add(objectBody);
-            this.TotalObjects++;
 
             if (Objects.Count > MAX_OBJECTS && level < MAX_LEVELS)
             {
@@ -144,8 +131,11 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
         }
+       
+
         public void Retrieve(List<ICollidable> returnedObjs, ICollidable obj)
         {
+
             if (nodes[0] != null)
             {
                 var index = GetIndex(obj);
@@ -161,6 +151,7 @@ namespace SecretProject.Class.CollisionDetection
                     }
                 }
             }
+            
             returnedObjs.AddRange(Objects);
         }
 

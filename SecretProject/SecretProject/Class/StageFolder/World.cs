@@ -221,7 +221,7 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
+            QuadTree = new QuadTree(0, new Rectangle(Cam.CameraScreenRectangle.X - 800, Cam.CameraScreenRectangle.Y - 800, Cam.CameraScreenRectangle.Width + 1600, Cam.CameraScreenRectangle.Height + 1600));
 
             for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 2; i++)
             {
@@ -240,6 +240,7 @@ namespace SecretProject.Class.StageFolder
                                 {
 
                                     QuadTree.Insert(obj.Value[z]);
+                                    QuadTree.Count++;
                                 }
                             }
 
@@ -253,6 +254,7 @@ namespace SecretProject.Class.StageFolder
                                     }
 
                                     QuadTree.Insert(grass.Value[g]);
+                                    QuadTree.Count++;
                                 }
                             }
 
@@ -261,6 +263,7 @@ namespace SecretProject.Class.StageFolder
                                 if (Enemies[e] != null)
                                 {
                                     QuadTree.Insert(Enemies[e].Collider);
+                                    QuadTree.Count++;
                                 }
 
                             }
@@ -272,10 +275,13 @@ namespace SecretProject.Class.StageFolder
             for (int i = 0; i < AllItems.Count; i++)
             {
                 QuadTree.Insert(AllItems[i].ItemSprite);
+                QuadTree.Count++;
             }
 
             QuadTree.Insert(player.MainCollider);
+            QuadTree.Count++;
             QuadTree.Insert(player.BigCollider);
+            QuadTree.Count++;
 
 
             this.IsDark = Game1.GlobalClock.IsNight;
@@ -296,6 +302,11 @@ namespace SecretProject.Class.StageFolder
             {
 
                 player.Position = new Vector2(0, 0);
+            }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
+            {
+
+                Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
             }
 
             TextBuilder.Update(gameTime);
