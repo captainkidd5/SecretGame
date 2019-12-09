@@ -59,17 +59,6 @@ namespace SecretProject.Class.Playable
             set { position = value; }
         }
 
-
-        public void SetX(float newX)
-        {
-            position.X = newX;
-        }
-
-        public void SetY(float newY)
-        {
-            position.Y = newY;
-        }
-
         public int Health { get; set; }
         public int Stamina { get; set; }
 
@@ -159,12 +148,10 @@ namespace SecretProject.Class.Playable
 
             CurrentAction = Mining;
 
-            BigHitBoxRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, ClickRangeRectangle.Width, ClickRangeRectangle.Height, Color.White);
-            LittleHitBoxRectangleTexture = Game1.Utility.GetColoredRectangle(graphics, ColliderRectangle.Width, ColliderRectangle.Height, Color.White);
+            BigHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, ClickRangeRectangle.Width, ClickRangeRectangle.Height, Color.White);
+            LittleHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, ColliderRectangle.Width, ColliderRectangle.Height, Color.White);
 
             LockBounds = true;
-
-            // this.CurrentTool = new Sprite(graphics, Game1.AllTextures.ItemSpriteSheet, Game1.ItemVault.GenerateNewItem(5, null).SourceTextureRectangle, Position, 16, 16);
 
         }
 

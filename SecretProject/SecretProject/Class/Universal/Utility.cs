@@ -191,6 +191,33 @@ namespace SecretProject.Class.Universal
             texture.SetData(0, new Rectangle(0, 0, width, height), dataColors, 0, width * height);
             return texture;
         }
+
+        public Texture2D GetBorderOnlyRectangleTexture(GraphicsDevice graphicsDevice, int width, int height, Color desiredColor)
+        {
+            var Colors = new List<Color>();
+            for (int y = 0; y < width; y++)
+            {
+                for (int x = 0; x < height; x++)
+                {
+                    if (x == 0 || //left side
+                        y == 0 || //top side
+                        x == width - 1 || //right side
+                        y == height - 1) //bottom side
+                    {
+                        Colors.Add(desiredColor);
+                    }
+                    else
+                    {
+                        Colors.Add(new Color(0, 0, 0, 0));
+
+                    }
+
+                }
+            }
+            Texture2D texture = new Texture2D(graphicsDevice,width, height);
+            texture.SetData<Color>(Colors.ToArray());
+            return texture;
+        }
         #region SPEECHUTILITY
         public void PerformSpeechAction(string action, int speakerID, string name)
         {
