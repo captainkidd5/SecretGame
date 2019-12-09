@@ -746,6 +746,8 @@
 <TextureColumn>25</TextureColumn>
 <TextureRow>2</TextureRow>
 <Price>1</Price>
+<TilingSet>Grass</TilingSet>
+<TilingLayer>1</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -878,6 +880,7 @@
 <TextureRow>0</TextureRow>
 <Price>50</Price>
 <PlaceID>2051</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -889,6 +892,7 @@
 <TextureRow>1</TextureRow>
 <Price>2</Price>
 <PlaceID>2050</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -913,6 +917,7 @@
 <TextureRow>3</TextureRow>
 <Price>5</Price>
 <PlaceID>1589</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -924,6 +929,7 @@
 <TextureRow>0</TextureRow>
 <Price>100</Price>
 <PlaceID>2142</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -935,6 +941,7 @@
 <TextureRow>1</TextureRow>
 <Price>100</Price>
 <PlaceID>2144</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -946,6 +953,7 @@
 <TextureRow>2</TextureRow>
 <Price>100</Price>
 <PlaceID>2143</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -957,6 +965,7 @@
 <TextureRow>3</TextureRow>
 <Price>500</Price>
 <PlaceID>1557</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -968,6 +977,7 @@
 <TextureRow>4</TextureRow>
 <Price>500</Price>
 <PlaceID>1845</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -979,6 +989,7 @@
 <TextureRow>0</TextureRow>
 <Price>20</Price>
 <PlaceID>1852</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -1000,6 +1011,7 @@
 <TextureRow>1</TextureRow>
 <Price>20</Price>
 <PlaceID>2157</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

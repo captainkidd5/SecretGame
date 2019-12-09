@@ -104,13 +104,13 @@ namespace SecretProject.Class.ItemStuff
             if(this.TilingSet != null)
             {
                 this.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), TilingSet);
-                this.TilingLayer = itemData.TilingLayer;
+                
                 
             }
-            else
-            {
-                this.TilingLayer = 3;
-            }
+            
+            
+                this.TilingLayer = itemData.TilingLayer;
+            
         }
         public void Load()
         {

@@ -388,10 +388,15 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+               
                 if (tilingDictionary == DirtCliffTiling)
                 {
                     TileUtility.ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
+                    TileUtility.ReplaceTile(layer, x, y, 930, container);
+                }
+                else
+                {
+                     TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
                 }
             }
 

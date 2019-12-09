@@ -65,12 +65,23 @@ namespace SecretProject.Class.TileStuff
 
             return numsToReturn;
         }
-
+        /// <summary>
+        /// Gets tiles world pos / 16.
+        /// </summary>
+        /// <param name="worldPos"></param>
+        /// <returns></returns>
         public static int GetSquareTileCoord(int worldPos)
         {
             return worldPos / 16;
         }
-
+        /// <summary>
+        /// Finds and indexes into a chunk, returning the proper tile.
+        /// </summary>
+        /// <param name="tileX">The tile's SQUARE (meaning worldPos /16 ) X Coord!</param>
+        /// <param name="tileY">The tile's SQUARE (meaning worldPos /16 ) X Coord!</param>
+        /// <param name="layer"></param>
+        /// <param name="ActiveChunks"></param>
+        /// <returns></returns>
         public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
         {
             int chunkX = (int)Math.Floor((float)tileX / 16.0f);
@@ -107,7 +118,11 @@ namespace SecretProject.Class.TileStuff
             return (chunk.AllTiles[layer][localX, localY]);
 
         }
-
+        /// <summary>
+        /// Given a world position, returns the index of the x or y coordinate within a found chunk.
+        /// </summary>
+        /// <param name="globalCoord"></param>
+        /// <returns></returns>
         public static int GetLocalChunkCoord(int globalCoord)
         {
             int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
@@ -140,6 +155,15 @@ namespace SecretProject.Class.TileStuff
             return null;
         }
         #endregion
+
+        /// <summary>
+        /// All new tiles should be "wrung through" this method. Makes sure all dictionaries etc will be aware of this new tile. 
+        /// </summary>
+        /// <param name="tileToAssign"></param>
+        /// <param name="layer"></param>
+        /// <param name="x"></param>
+        /// <param name="oldY"></param>
+        /// <param name="container"></param>
         public static void AssignProperties(Tile tileToAssign, int layer, int x, int oldY, IInformationContainer container)
         {
 
@@ -339,6 +363,15 @@ namespace SecretProject.Class.TileStuff
 
         }
        
+        /// <summary>
+        /// For use with the "action" tile property. Does a number of various things depending on what the property is. May change the cursor texture.
+        /// </summary>
+        /// <param name="z"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <param name="action"></param>
+        /// <param name="mouse"></param>
+        /// <param name="container"></param>
         public static void ActionHelper(int z, int i, int j, string action, MouseManager mouse, IInformationContainer container)
         {
             //new Gid should be one larger, per usual
@@ -561,7 +594,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 else
                 {
-                    FinalizeTile(layer, gameTime, x, y, destinationRectangle, container);
+                    FinalizeTile(layer, gameTime, x, y, container);
                 }
 
                 Game1.GetCurrentStage().ParticleEngine.Activate(1f, new Vector2(destinationRectangle.X + 5, destinationRectangle.Y - 20), particleColor, tile.LayerToDrawAt + tile.LayerToDrawAtZOffSet);
@@ -600,7 +633,15 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        //for destructable keyword
+            /// <summary>
+            /// For use with the destructable tile property. May trigger player animation and/or reduce tile hitpoints.
+            /// </summary>
+            /// <param name="layer"></param>
+            /// <param name="gameTime"></param>
+            /// <param name="x"></param>
+            /// <param name="y"></param>
+            /// <param name="destinationRectangle"></param>
+            /// <param name="container"></param>
         public static void InteractWithDestructableTile(int layer, GameTime gameTime, int x, int y, Rectangle destinationRectangle, IInformationContainer container)
         {
 
@@ -610,7 +651,7 @@ namespace SecretProject.Class.TileStuff
                
                 if (actionType == AnimationType.HandsPicking)  //this is out here because any equipped item should be able to pick it up no matter what
                 {
-                    FinalizeTile(layer, gameTime, x, y, destinationRectangle, container, delayTimer: .25f);
+                    FinalizeTile(layer, gameTime, x, y, container, delayTimer: .25f);
                     if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))
                     {
                         container.TileHitPoints[container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)]--;
@@ -640,7 +681,16 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
-        public static void FinalizeTile(int layer, GameTime gameTime, int x, int y, Rectangle destinationRectangle, IInformationContainer container, float delayTimer = 0f)
+        /// <summary>
+        /// Replaces tile with default and possibly removes associated: objects, hitpoints, spawnwith, crops, as well as reassigning adjacent tiles
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="gameTime"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="container"></param>
+        /// <param name="delayTimer"></param>
+        public static void FinalizeTile(int layer, GameTime gameTime, int x, int y, IInformationContainer container, float delayTimer = 0f)
         {
            
 
@@ -674,6 +724,8 @@ namespace SecretProject.Class.TileStuff
 
 
             TileUtility.ReplaceTile(layer, x, y, 0, container);
+
+           // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
             if(itemToCheckForReassasignTiling != null)
             {
                 WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.GetGeneratableTilesFromGenerationType(itemToCheckForReassasignTiling.GenerationType),

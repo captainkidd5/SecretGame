@@ -860,42 +860,49 @@
  </tile>
  <tile id="913">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="914">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="915">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="916">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="917">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="918">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1023,35 +1030,41 @@
  </tile>
  <tile id="1013">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1014">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1015">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1016">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1017">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -1167,35 +1180,41 @@
  </tile>
  <tile id="1113">
   <properties>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1114">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1115">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grass"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1116">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1117">
   <properties>
-   <property name="action" value="diggable"/>
+   <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="grassBasic"/>
+   <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
@@ -2094,6 +2113,8 @@
   <properties>
    <property name="action" value="smelt"/>
    <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1202:100:1"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
@@ -2107,6 +2128,7 @@
  <tile id="2157">
   <properties>
    <property name="action" value="enterPlayerHouse"/>
+   <property name="checkTile" value="-32,-16,64,32"/>
    <property name="newHitBox" value="-32,-16,64,32"/>
    <property name="newSource" value="-32,-48,64,64"/>
   </properties>
