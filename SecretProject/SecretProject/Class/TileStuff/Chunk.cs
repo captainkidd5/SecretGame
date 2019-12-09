@@ -65,7 +65,7 @@ namespace SecretProject.Class.TileStuff
         public ObstacleGrid PathGrid { get; set; }
 
         public WorldTileManager TileManager { get; set; }
-        public List<int[]> AdjacentNoise { get; set; }
+        public List<int[,]> AdjacentNoise { get; set; }
 
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
@@ -351,25 +351,28 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //get row of tiles on all sides of current chunk
-            int[] topRowNoise = new int[16];
-            int[] bottomRowNoise = new int[16];
-            int[] leftColumnNoise = new int[16];
-            int[] rightColumnNoise = new int[16];
+            //get row of tiles on all sides of current chunk, for each layer
+            int[,] topRowNoise = new int[4,16];
+            int[,] bottomRowNoise = new int[4,16];
+            int[,] leftColumnNoise = new int[4,16];
+            int[,] rightColumnNoise = new int[4,16];
 
 
-
-            for (int i = 0; i < 16; i++)
+            for(int z =0; z < 4; z++)
             {
-                topRowNoise[i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15));
-                bottomRowNoise[i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16));
+                for (int i = 0; i < 16; i++)
+                {
+                    topRowNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15), z);
+                    bottomRowNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16), z);
 
-                leftColumnNoise[i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i));
+                    leftColumnNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i), z);
 
-                rightColumnNoise[i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i));
+                    rightColumnNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i), z);
+                }
             }
+            
 
-            AdjacentNoise = new List<int[]>()
+            AdjacentNoise = new List<int[,]>()
             { topRowNoise,
             bottomRowNoise,
             leftColumnNoise,
@@ -382,13 +385,14 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
-                        if (z > 0)
+                        if (z > 1)
                         {
                             AllTiles[z][i, j] = new Tile(i, j, 0);
                         }
                         else
                         {
-                            int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j]);
+     
+                            int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
 
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkWidth + i, this.Y * TileUtility.ChunkHeight + j, newGID);
                             if (Game1.Procedural.GrassGeneratableTiles.Contains(newGID))
@@ -427,17 +431,21 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
-            for (int i = 0; i < TileUtility.ChunkWidth; i++)
+            for (int z = 0; z < 2; z++)
             {
-                for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                {
-                    this.GeneratableTiles = Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[0][i, j].GID);
-                    this.TilingDictionary = Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[0][i, j].GID);
-            
-                    this.MainGid = AllTiles[0][i, j].GID + 1;
-                    Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, 0, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
 
+
+                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                {
+                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    {
+                        this.GeneratableTiles = Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[z][i, j].GID);
+                        this.TilingDictionary = Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[z][i, j].GID);
+
+                        this.MainGid = AllTiles[z][i, j].GID + 1;
+                        Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
+
+                    }
                 }
             }
             // TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
@@ -482,7 +490,7 @@ namespace SecretProject.Class.TileStuff
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1583, GenerationType.Grass, 5, 0, this); //BLUE MUSHROOM
 
                 //SANDRUINS
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1853,GenerationType.SandRuin, 5, 0, this); //Chest
+                TileUtility.GenerateRandomlyDistributedTiles(3, 1853, GenerationType.SandRuin, 5, 0, this); //Chest
                 TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 0, this); //ancient pillar (tall)
                 TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 0, this); //ancient pillar (short)
 
@@ -492,7 +500,7 @@ namespace SecretProject.Class.TileStuff
                 // TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this); //THORN
                 TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this);
-               // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+                // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
                 //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
                 TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Grass, 25, 0, this); //oak2
                 TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Grass, 25, 0, this); //oak3
@@ -523,7 +531,7 @@ namespace SecretProject.Class.TileStuff
                         //    }
                         //}
 
-                        if (z > 0)
+                        if (z > 1)
                         {
                             AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                             AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;

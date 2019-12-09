@@ -41,7 +41,7 @@ namespace SecretProject.Class.TileStuff
         int ArrayI { get; set; }
         int ArrayJ { get; set; }
         Rectangle GetChunkRectangle();
-        List<int[]> AdjacentNoise { get; set; }
+        List<int[,]> AdjacentNoise { get; set; }
         WorldTileManager TileManager { get; set; }
     }
 }

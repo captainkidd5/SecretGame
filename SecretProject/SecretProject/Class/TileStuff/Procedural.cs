@@ -9,7 +9,7 @@ namespace SecretProject.Class.TileStuff
 {
     public enum GenerationType
     {
-        Grass = 1116,
+        Grass = 1014,
         Dirt = 1114,
         Sand = 1321,
         SandRuin = 1621,
@@ -43,10 +43,9 @@ namespace SecretProject.Class.TileStuff
 
 
 
-        public Dictionary<int, int> DirtTiling = new Dictionary<int, int>()
-        {
-            {0, 705},{1,1210}, {2, 1309 },  {3, 1413}, {4, 1209}, {5, 1408},{6,707},{7, 1411}, {8, 1310}, {9, 706}, {10, 913}, {11, 1113}, {12,908}, {13,1308}, {14,911}, {15, 1106}
-        };
+        public Dictionary<int, int> DirtTiling;
+
+        public Dictionary<int, int> GrassTiling;
 
         public Dictionary<int, int> SandTiling;
 
@@ -108,7 +107,8 @@ namespace SecretProject.Class.TileStuff
         {
             {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 254}
         };
-
+            DirtTiling = FillTilingDictionary(1005);
+            GrassTiling = FillTilingDictionary(1014);
             SandTiling = FillTilingDictionary(1321);
             StoneTiling = FillTilingDictionary(929);
             SandRuinTiling = FillTilingDictionary(1621);
@@ -167,7 +167,7 @@ namespace SecretProject.Class.TileStuff
             {
 
                 case GenerationType.Grass:
-                    return DirtTiling;
+                    return GrassTiling;
 
                 case GenerationType.Dirt:
                     return DirtTiling;
@@ -230,84 +230,99 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public int GetTileFromNoise(float perlinValue)
+        public int GetTileFromNoise(float perlinValue, float layer)
         {
             int newGID = 0;
-            if (perlinValue >= .2f && perlinValue <= 1f)
-            {
-                //newGID = 1106;
-                newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
-            }
-            else if (perlinValue >= .12f && perlinValue <= .2f)
-            {
-                newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
-                //newGID = 1106;
-            }
-            else if (perlinValue >= .1f && perlinValue <= .12f)
-            {
-                newGID = 930;//Stone
-            }
-            else if (perlinValue >= .07f && perlinValue <= .1f)
+            if (layer == 0)
             {
 
-                newGID = 2935; //dirt cliff
+
+                if (perlinValue >= .2f && perlinValue <= 1f)
+                {
+                    newGID = 1006;
+                   // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                }
+                else if (perlinValue >= .12f && perlinValue <= .2f)
+                {
+                   // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                    newGID = 1006;
+                }
+                else if (perlinValue >= .1f && perlinValue <= .12f)
+                {
+                    newGID = 930;//Stone
+                }
+                else if (perlinValue >= .07f && perlinValue <= .1f)
+                {
+
+                    newGID = 2935; //dirt cliff
+
+                }
+                else if (perlinValue >= .02f && perlinValue <= .07f)
+                {
+
+                    //   newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                    newGID = 1006;
+                }
+
+                else if (perlinValue >= -.09f && perlinValue < .02f)
+                {
+                    // newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                    newGID = 1006;
+                    //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
+                    // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
+                }
+
+                //newGID = 930; //STONE
+
+                else if (perlinValue >= -.15f && perlinValue < -.09f)
+                {
+                    newGID = 1322;//SAND
+                }
+                else if (perlinValue >= -1f && perlinValue < -.15f)
+                {
+                    newGID = 1622;//SANDRUIN
+                }
+                //else if (perlinValue >= -1f && perlinValue < -.1f)
+                //{
+                //    newGID = 427;//WATER
+                //}
 
             }
-            else if (perlinValue >= .02f && perlinValue <= .07f)
+            else if (layer == 1)
             {
-
-                newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
-
+                if (perlinValue >= .02f && perlinValue <= .07f)
+                { 
+                    newGID = 1015;
+                }
             }
-
-            else if (perlinValue >= -.09f && perlinValue < .02f)
-            {
-                newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
-
-                //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
-                // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
-            }
-
-            //newGID = 930; //STONE
-
-            else if (perlinValue >= -.15f && perlinValue < -.09f)
-            {
-                newGID = 1322;//SAND
-            }
-            else if (perlinValue >= -1f && perlinValue < -.15f)
-            {
-                newGID = 1622;//SANDRUIN
-            }
-            //else if (perlinValue >= -1f && perlinValue < -.1f)
-            //{
-            //    newGID = 427;//WATER
-            //}
             return newGID;
         }
 
         public void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-           int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[]> adjacentChunkInfo = null)
+           int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[,]> adjacentChunkInfo = null)
         {
-            List<int> secondaryTiles;
-            if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
-            {
-                secondaryTiles = Game1.Procedural.StandardGeneratableDirtTiles;
-            }
-            else if (generatableTiles == Game1.Procedural.GrassGeneratableTiles)
-            {
-                secondaryTiles = Game1.Procedural.StandardGeneratableGrassTiles;
-            }
+            List<int> secondaryTiles = new List<int>();
+            //if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
+            //{
+            //    secondaryTiles = Game1.Procedural.StandardGeneratableDirtTiles;
+            //}
+            //else if (generatableTiles == Game1.Procedural.GrassGeneratableTiles)
+            //{
+            //    secondaryTiles = Game1.Procedural.StandardGeneratableGrassTiles;
+            //}
 
-            else
-            {
-                secondaryTiles = new List<int>();
-            }
+            //else
+            //{
+            //    secondaryTiles = new List<int>();
+            //}
 
 
-            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
-            {
-                return;
-            }
+                if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
+                {
+
+                    return;
+                }
+            
             int keyToCheck = 0;
             if (y > 0)
             {
@@ -318,7 +333,7 @@ namespace SecretProject.Class.TileStuff
             }
             //if top tile is 0 we look at the chunk above it
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][x]) || secondaryTiles.Contains(adjacentChunkInfo[0][x])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][layer,x]) || secondaryTiles.Contains(adjacentChunkInfo[0][layer,x])))
             {
                 keyToCheck += 1;
             }
@@ -333,7 +348,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][x]) || secondaryTiles.Contains(adjacentChunkInfo[1][x])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][layer,x]) || secondaryTiles.Contains(adjacentChunkInfo[1][layer,x])))
             {
                 keyToCheck += 8;
             }
@@ -348,7 +363,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][y]) || secondaryTiles.Contains(adjacentChunkInfo[3][y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][layer,y]) || secondaryTiles.Contains(adjacentChunkInfo[3][layer,y])))
             {
                 keyToCheck += 4;
             }
@@ -362,7 +377,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][y]) || secondaryTiles.Contains(adjacentChunkInfo[2][y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][layer,y]) || secondaryTiles.Contains(adjacentChunkInfo[2][layer,y])))
             {
                 keyToCheck += 2;
             }
