@@ -17,6 +17,7 @@ namespace SecretProject.Class.TileStuff
         Stone = 929,
         DirtCliff = 2934,
         FenceTiling = 456,
+        StoneWallTiling = 452,
         OakFloorTiling = 632,
 
     };
@@ -33,6 +34,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> StandardGeneratableDirtTiles;
         public List<int> StandardGeneratableGrassTiles;
         public List<int> FenceGeneratableTiles;
+        public List<int> StoneWallGeneratableTiles;
 
         public List<int> DirtCliffGeneratableTiles;
 
@@ -40,7 +42,7 @@ namespace SecretProject.Class.TileStuff
         public List<int> OakFloorGeneratableTiles;
 
         public Dictionary<int, int> FenceTiling;
-
+        public Dictionary<int, int> StoneWallTiling;
 
 
         public Dictionary<int, int> DirtTiling;
@@ -74,9 +76,17 @@ namespace SecretProject.Class.TileStuff
             };
         }
 
+        public Dictionary<int, int> FillFenceTilingDictionary(int centralGID)
+        {
+            return new Dictionary<int, int>()
+            {
+                {0, centralGID},{1, centralGID - 200}, {2,  centralGID -1 },  {3, centralGID -201}, {4, centralGID -3}, {5, centralGID -203},{6,centralGID - 2},
+                { 7, centralGID -202}, {8, centralGID }, {9, centralGID - 200}, {10, centralGID - 1}, {11, centralGID -201},
+                { 12,centralGID - 3}, {13,centralGID - 203}, {14,centralGID - 2}, {15, centralGID -202}
+            };
+        }
 
-
-        public Procedural()
+    public Procedural()
         {
             //FASTNOISE
             FastNoise = new FastNoise(45);
@@ -100,13 +110,13 @@ namespace SecretProject.Class.TileStuff
             StandardGeneratableDirtTiles = new List<int>();
             StandardGeneratableGrassTiles = new List<int>();
             FenceGeneratableTiles = new List<int>();
+            StoneWallGeneratableTiles = new List<int>();
             OakFloorGeneratableTiles = new List<int>();
             DirtCliffGeneratableTiles = new List<int>();
 
-            FenceTiling = new Dictionary<int, int>()
-        {
-            {0, 456},{1,256}, {2, 455 },  {3, 255}, {4, 453}, {5, 253},{6,454},{7, 254}, {8, 456}, {9, 256}, {10, 455}, {11, 255}, {12,453}, {13,253}, {14,454}, {15, 254}
-        };
+            FenceTiling = FillFenceTilingDictionary(456);
+            StoneWallTiling = FillFenceTilingDictionary(452);
+        
             DirtTiling = FillTilingDictionary(1005);
             GrassTiling = FillTilingDictionary(1014);
             SandTiling = FillTilingDictionary(1321);
@@ -151,6 +161,8 @@ namespace SecretProject.Class.TileStuff
 
                 case GenerationType.FenceTiling:
                     return Game1.Procedural.FenceGeneratableTiles;
+                case GenerationType.StoneWallTiling:
+                    return StoneWallGeneratableTiles;
 
                 case GenerationType.OakFloorTiling:
                     return Game1.Procedural.OakFloorGeneratableTiles;
@@ -194,6 +206,9 @@ namespace SecretProject.Class.TileStuff
 
                 case GenerationType.FenceTiling:
                     return FenceTiling;
+
+                case GenerationType.StoneWallTiling:
+                    return StoneWallTiling;
 
                 case GenerationType.OakFloorTiling:
                     return OakFloorTiling;
@@ -280,7 +295,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 else if (perlinValue >= -1f && perlinValue < -.15f)
                 {
-                    newGID = 1622;//SANDRUIN
+                    newGID = 1322;//SAND
                 }
                 //else if (perlinValue >= -1f && perlinValue < -.1f)
                 //{
@@ -293,6 +308,10 @@ namespace SecretProject.Class.TileStuff
                 if (perlinValue >= .02f && perlinValue <= .07f)
                 { 
                     newGID = 1015;
+                }
+                else if (perlinValue >= -1f && perlinValue < -.15f)
+                {
+                    newGID = 1622;//SANDRUIN
                 }
             }
             return newGID;

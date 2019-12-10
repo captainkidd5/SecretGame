@@ -81,8 +81,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public SimpleTimer PulseTimer { get; set; }
         public Effect CurrentEffect { get; set; }
 
-        public int HitPoints { get; private set; }
-        public Color DamageColor { get; private set; }
+        public int HitPoints { get; protected set; }
+        public Color DamageColor { get; protected set; }
 
         public List<Loot> PossibleLoot { get; set; }
 
@@ -233,7 +233,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         Wander(gameTime);
                         break;
                     case CurrentBehaviour.Chase:
-                        MoveTowardsPoint(Game1.Player.position, gameTime);
+                        MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
                         break;
                     case CurrentBehaviour.Hurt:
                         this.CurrentEffect = Game1.AllTextures.Pulse;
@@ -323,8 +323,13 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
+            else if(WanderTimer >= 0)
+            {
+                IsMoving = false;
+            }
             else if (WanderTimer <= 0)
             {
+                
                 int currentTileX = (int)(this.Position.X / 16 - (CurrentChunkX * 16));
                 int currentTileY = (int)(this.Position.Y / 16 - (CurrentChunkY * 16));
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);

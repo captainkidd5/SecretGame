@@ -194,14 +194,14 @@ namespace SecretProject.Class.StageFolder
 
             this.Map = new TmxMap(this.TmxMapPath);
             Background = Map.Layers["background"];
-            Buildings = Map.Layers["buildings"];
             MidGround = Map.Layers["midGround"];
+            Buildings = Map.Layers["buildings"];
             foreGround = Map.Layers["foreGround"];
             AllLayers = new List<TmxLayer>()
             {
                 Background,
-                Buildings,
                 MidGround,
+                Buildings,
                 foreGround
 
             };

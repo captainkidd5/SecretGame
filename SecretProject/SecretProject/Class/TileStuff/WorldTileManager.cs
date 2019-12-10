@@ -211,6 +211,12 @@ namespace SecretProject.Class.TileStuff
                                     Game1.Procedural.FenceGeneratableTiles.Add(i);
                                 }
                                 break;
+                            case "stoneWall":
+                                if (!Game1.Procedural.StoneWallGeneratableTiles.Contains(i))
+                                {
+                                    Game1.Procedural.StoneWallGeneratableTiles.Add(i);
+                                }
+                                break;
 
                             case "dirtCliff":
                                 if (!Game1.Procedural.DirtCliffGeneratableTiles.Contains(i))

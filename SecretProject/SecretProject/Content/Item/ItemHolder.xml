@@ -241,6 +241,19 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Stone Floor</Name>
+<ID>482</ID>
+<Description>Smooth and sturdy.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>12</TextureColumn>
+<TextureRow>2</TextureRow>
+<Price>1</Price>
+<PlaceID>1621</PlaceID>
+<TilingSet>SandRuin</TilingSet>
+<TilingLayer>1</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Log</Name>
 <ID>520</ID>
 <Description>Wood from an oak tree.</Description>
@@ -917,6 +930,19 @@
 <TextureRow>3</TextureRow>
 <Price>5</Price>
 <PlaceID>1589</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Stone Wall</Name>
+<ID>1164</ID>
+<Description>Keeps weeds and other things out.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>29</TextureColumn>
+<TextureRow>4</TextureRow>
+<Price>5</Price>
+<PlaceID>452</PlaceID>
+<TilingSet>StoneWallTiling</TilingSet>
 <TilingLayer>3</TilingLayer>
 </Item>
 

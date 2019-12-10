@@ -469,7 +469,7 @@ namespace SecretProject.Class.Playable
         private void CheckAndHandleCollisions()
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, ColliderRectangle);
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
 

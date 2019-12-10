@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.2" tiledversion="1.3.0" name="MasterSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/MasterSpriteSheet.png" width="1600" height="1600"/>
- <terraintypes>
-  <terrain name="dirt" tile="904"/>
- </terraintypes>
  <tile id="85">
   <properties>
    <property name="action" value="plantable"/>
+  </properties>
+ </tile>
+ <tile id="149">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
+ </tile>
+ <tile id="150">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
+ </tile>
+ <tile id="151">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
+ </tile>
+ <tile id="152">
+  <properties>
+   <property name="generate" value="stoneWall"/>
   </properties>
  </tile>
  <tile id="153">
@@ -46,6 +63,9 @@
  </tile>
  <tile id="249">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
@@ -54,16 +74,25 @@
  </tile>
  <tile id="250">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="251">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="252">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -196,9 +225,27 @@
   </objectgroup>
  </tile>
  <tile id="349">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
   </objectgroup>
+ </tile>
+ <tile id="350">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
+ </tile>
+ <tile id="351">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
+ </tile>
+ <tile id="352">
+  <properties>
+   <property name="generate" value="stoneWall"/>
+  </properties>
  </tile>
  <tile id="353">
   <properties>
@@ -286,11 +333,17 @@
  </tile>
  <tile id="449">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="450">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -299,11 +352,18 @@
  </tile>
  <tile id="451">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="452">
   <properties>
+   <property name="checkTile" value="0,0,16,16"/>
+   <property name="destructable" value="22,0,5,3"/>
+   <property name="generate" value="stoneWall"/>
+   <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -1428,7 +1488,8 @@
   <properties>
    <property name="destructable" value="2,0,3,6"/>
    <property name="loot" value="712:25:2"/>
-   <property name="spawnWith" value="1185,1186,1286"/>
+   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1286">
@@ -1776,32 +1837,44 @@
  </tile>
  <tile id="1520">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1521">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1522">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1523">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1524">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1525">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1526">
@@ -1919,27 +1992,37 @@
  </tile>
  <tile id="1620">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1621">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1622">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1623">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1624">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1663">
@@ -1986,27 +2069,37 @@
  </tile>
  <tile id="1720">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1721">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1722">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1723">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1724">
   <properties>
+   <property name="destructable" value="22,0,5,3"/>
    <property name="generate" value="sandRuin"/>
+   <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1752">

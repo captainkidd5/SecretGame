@@ -256,7 +256,12 @@ namespace SecretProject.Class.TileStuff
 
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
-
+                        if(Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[z][i, j].GID + 1))
+                        {
+                            Game1.Procedural.GenerationReassignForTiling(AllTiles[z][i, j].GID + 1, Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[z][i, j].GID),
+                                Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[z][i, j].GID), z, i, j, MapWidth, MapHeight, this, null);
+                        }
+                        
 
                     }
                 }
