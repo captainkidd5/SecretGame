@@ -195,8 +195,9 @@ namespace SecretProject.Class.TileStuff
                                     TileUtility.ReplaceTile(item.TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                         this.PlaceID + 1, container);
 
-                                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, Game1.Procedural.GetGeneratableTilesFromGenerationType(item.GenerationType),
-                                Game1.Procedural.GetTilingDictionaryFromGenerationType(item.GenerationType), item.TilingLayer, tileManager);
+                                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(item.GenerationType);
+                                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, this.PlaceID, tilingContainer.GeneratableTiles,
+                                tilingContainer.TilingDictionary, item.TilingLayer, tileManager);
 
 
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());

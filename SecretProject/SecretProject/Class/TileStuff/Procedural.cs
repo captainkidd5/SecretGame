@@ -21,51 +21,26 @@ namespace SecretProject.Class.TileStuff
         OakFloorTiling = 632,
 
     };
+
+    public enum GenerationIndex
+    {
+        Grass = 0,
+        Dirt = 1,
+        Sand = 2,
+        SandRuin = 3,
+        Water = 4,
+        Stone = 5,
+        DirtCliff = 6,
+        FenceTiling = 7,
+        StoneWallTiling = 8,
+        OakFloorTiling = 9,
+    }
     public class Procedural
     {
         public FastNoise FastNoise;
 
-        public List<int> DirtGeneratableTiles;
-        public List<int> SandGeneratableTiles;
-        public List<int> SandRuinGeneratableTiles;
-        public List<int> GrassGeneratableTiles;
-        public List<int> WaterGeneratableTiles;
-        public List<int> StoneGeneratableTiles;
-        public List<int> StandardGeneratableDirtTiles;
-        public List<int> StandardGeneratableGrassTiles;
-        public List<int> FenceGeneratableTiles;
-        public List<int> StoneWallGeneratableTiles;
 
-        public List<int> DirtCliffGeneratableTiles;
-
-        //MIDGROUND TILES
-        public List<int> OakFloorGeneratableTiles;
-
-        public Dictionary<int, int> FenceTiling;
-        public Dictionary<int, int> StoneWallTiling;
-
-
-        public Dictionary<int, int> DirtTiling;
-
-        public Dictionary<int, int> GrassTiling;
-
-        public Dictionary<int, int> SandTiling;
-
-
-        public Dictionary<int, int> WaterTiling = new Dictionary<int, int>()
-        {
-            {0, 226},{1,329}, {2, 428 },  {3, 527}, {4, 328}, {5, 525},{6,228},{7, 526}, {8, 429}, {9, 227}, {10, 327}, {11, 427}, {12,325}, {13,425}, {14,326}, {15, 427}
-        };
-
-        public Dictionary<int, int> StoneTiling;
-
-        public Dictionary<int, int> SandRuinTiling;
-
-        public Dictionary<int, int> DirtCliffTiling;
-
-        //MIDGROUNDDICTIONARIES
-        public Dictionary<int, int> OakFloorTiling;
-
+       
         public Dictionary<int, int> FillTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
@@ -88,7 +63,22 @@ namespace SecretProject.Class.TileStuff
 
         public List<List<int>> AllGeneratableTiles;
 
-    public Procedural()
+        public TilingContainer Grass;
+        public TilingContainer Dirt;
+        public TilingContainer Sand;
+        public TilingContainer SandRuin;
+        public TilingContainer Water;
+        public TilingContainer Stone;
+        public TilingContainer DirtCliff;
+        public TilingContainer OakFence;
+        public TilingContainer StoneWall;
+        public TilingContainer OakFloor;
+
+        public List<TilingContainer> AllTilingContainers;
+
+
+
+        public Procedural()
         {
             //FASTNOISE
             FastNoise = new FastNoise(45);
@@ -102,50 +92,62 @@ namespace SecretProject.Class.TileStuff
             //larger the smaller the biomes
             FastNoise.SetFrequency(.001f);
 
-            //Lists
-            DirtGeneratableTiles = new List<int>();
-            SandGeneratableTiles = new List<int>();
-            SandRuinGeneratableTiles = new List<int>();
-            GrassGeneratableTiles = new List<int>();
-            WaterGeneratableTiles = new List<int>();
-            StoneGeneratableTiles = new List<int>();
-            StandardGeneratableDirtTiles = new List<int>();
-            StandardGeneratableGrassTiles = new List<int>();
-            FenceGeneratableTiles = new List<int>();
-            StoneWallGeneratableTiles = new List<int>();
-            OakFloorGeneratableTiles = new List<int>();
-            DirtCliffGeneratableTiles = new List<int>();
 
-            AllGeneratableTiles = new List<List<int>>()
+            
+
+         //   Grass = new TilingContainer(GenerationType.Grass, FillTilingDictionary(1014), new List<int>());
+         //Dirt = new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>());
+         //   Sand = new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>());
+         //   SandRuin = new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>());
+         //   Water = new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>());
+         //   Stone = new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>());
+         //   DirtCliff = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>());
+         //   OakFence = new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>());
+         //   StoneWall = new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>());
+         //   OakFloor = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>());
+
+            //MUST ADD IN THE SAME ORDER AS ENUM
+            AllTilingContainers = new List<TilingContainer>()
             {
-                DirtGeneratableTiles  ,
-            SandGeneratableTiles  ,
-            SandRuinGeneratableTiles  ,
-            GrassGeneratableTiles  ,
-            WaterGeneratableTiles  ,
-            StoneGeneratableTiles  ,
-            StandardGeneratableDirtTiles  ,
-            StandardGeneratableGrassTiles  ,
-            FenceGeneratableTiles  ,
-            StoneWallGeneratableTiles  ,
-            OakFloorGeneratableTiles  ,
-            DirtCliffGeneratableTiles  ,
-        };
-
-            FenceTiling = FillFenceTilingDictionary(456);
-            StoneWallTiling = FillFenceTilingDictionary(452);
-        
-            DirtTiling = FillTilingDictionary(1005);
-            GrassTiling = FillTilingDictionary(1014);
-            SandTiling = FillTilingDictionary(1321);
-            StoneTiling = FillTilingDictionary(929);
-            SandRuinTiling = FillTilingDictionary(1621);
-            DirtCliffTiling = FillTilingDictionary(2934);
-
-            //MIDGROUDNTILING
-            OakFloorTiling = FillTilingDictionary(632);
+                new TilingContainer(GenerationType.Grass, FillTilingDictionary(1014), new List<int>()),
+                new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>()),
+                new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>()),
+                new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>()),
+                new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>()),
+                new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>()),
+                new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>()),
+                new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>()),
+                new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>()),
+                new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
+            };
         }
 
+        public TilingContainer GetTilingContainerFromGenerationType(GenerationType generationType)
+        {
+            for(int i =0; i < AllTilingContainers.Count; i++)
+            {
+                if(AllTilingContainers[i].GenerationType == generationType)
+                {
+                    return AllTilingContainers[i];
+                }
+            }
+            return null;
+        }
+
+        public TilingContainer GetTilingContainerFromGID(int gid)
+        {
+            for (int i = 0; i < AllTilingContainers.Count; i++)
+            {
+                for(int j = 0; j < AllTilingContainers[i].GeneratableTiles.Count; j++)
+                {
+                    if(gid == AllTilingContainers[i].GeneratableTiles[j])
+                    {
+                        return AllTilingContainers[i];
+                    }
+                }
+            }
+            return null;
+        }
         //public GenerationType GetGenerationTypeFromGID(int gid)
         //{
         //    for(int i =0; i < AllGeneratableTiles.Count; i++)
@@ -154,96 +156,7 @@ namespace SecretProject.Class.TileStuff
         //    }
         //}
 
-        public List<int> GetGeneratableTilesFromGenerationType(GenerationType type)
-        {
-            switch (type)
-            {
 
-                case GenerationType.Grass:
-                    return GrassGeneratableTiles;
-
-                case GenerationType.Dirt:
-                    return Game1.Procedural.DirtGeneratableTiles;
-
-                case GenerationType.Sand:
-                    return Game1.Procedural.SandGeneratableTiles;
-
-
-                case GenerationType.SandRuin:
-                    return Game1.Procedural.SandRuinGeneratableTiles;
-
-
-                case GenerationType.Water:
-                    return Game1.Procedural.WaterGeneratableTiles;
-
-
-
-                case GenerationType.Stone:
-                    return Game1.Procedural.StoneGeneratableTiles;
-
-
-                case GenerationType.DirtCliff:
-                    return Game1.Procedural.DirtCliffGeneratableTiles;
-
-                case GenerationType.FenceTiling:
-                    return Game1.Procedural.FenceGeneratableTiles;
-                case GenerationType.StoneWallTiling:
-                    return StoneWallGeneratableTiles;
-
-                case GenerationType.OakFloorTiling:
-                    return Game1.Procedural.OakFloorGeneratableTiles;
-
-                default:
-                    return DirtGeneratableTiles;
-            }
-
-        }
-
-        public Dictionary<int,int> GetTilingDictionaryFromGenerationType(GenerationType type)
-        {
-            switch (type)
-            {
-
-                case GenerationType.Grass:
-                    return GrassTiling;
-
-                case GenerationType.Dirt:
-                    return DirtTiling;
-
-                case GenerationType.Sand:
-                    return SandTiling;
-
-
-                case GenerationType.SandRuin:
-                    return SandRuinTiling;
-
-
-                case GenerationType.Water:
-                    return WaterTiling;
-
-
-
-                case GenerationType.Stone:
-                    return StoneTiling;
-
-
-                case GenerationType.DirtCliff:
-                    return DirtCliffTiling;
-
-                case GenerationType.FenceTiling:
-                    return FenceTiling;
-
-                case GenerationType.StoneWallTiling:
-                    return StoneWallTiling;
-
-                case GenerationType.OakFloorTiling:
-                    return OakFloorTiling;
-
-                default:
-                    return DirtTiling;
-            }
-
-        }
 
         public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
         {
@@ -434,7 +347,7 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-                if (tilingDictionary == DirtCliffTiling)
+                if (tilingDictionary ==  Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].TilingDictionary)
                 {
                     TileUtility.ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
 
@@ -447,13 +360,13 @@ namespace SecretProject.Class.TileStuff
         
     }
 
-    public class TilingSet
+    public class TilingContainer
     {
         public GenerationType GenerationType { get; set; }
         public Dictionary<int,int> TilingDictionary{ get; set; }
         public List<int> GeneratableTiles { get; set; }
 
-        public TilingSet(GenerationType generationType, Dictionary<int,int> tilingDictionary, List<int> generatableTiles)
+        public TilingContainer(GenerationType generationType, Dictionary<int,int> tilingDictionary, List<int> generatableTiles)
         {
             GenerationType = generationType;
             TilingDictionary = tilingDictionary;

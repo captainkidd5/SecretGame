@@ -157,24 +157,24 @@ namespace SecretProject.Class.TileStuff
                             {
 
 
-                                case "dirt":
-                                    if (!Game1.Procedural.DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                    {
-                                        Game1.Procedural.DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                    }
-                                    break;
-                                case "sand":
-                                    if (!Game1.Procedural.SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                    {
-                                        Game1.Procedural.SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                    }
-                                    break;
-                                case "grass":
-                                    if (!Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                    {
-                                        Game1.Procedural.GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                    }
-                                    break;
+                                //case "dirt":
+                                //    if (!Game1.Procedural.DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                //    {
+                                //        Game1.Procedural.DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                //    }
+                                //    break;
+                                //case "sand":
+                                //    if (!Game1.Procedural.SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                //    {
+                                //        Game1.Procedural.SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                //    }
+                                //    break;
+                                //case "grass":
+                                //    if (!Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
+                                //    {
+                                //        Game1.Procedural.GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
+                                //    }
+                                //    break;
                             }
 
 
@@ -259,7 +259,7 @@ namespace SecretProject.Class.TileStuff
                         //if(Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[z][i, j].GID + 1))
                         //{
                         //    Game1.Procedural.GenerationReassignForTiling(AllTiles[z][i, j].GID + 1, Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[z][i, j].GID),
-                        //        Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[z][i, j].GID), z, i, j, MapWidth, MapHeight, this, null);
+                        //        Game1.Procedural.GetTilingContainerFromGenerationType((GenerationType)AllTiles[z][i, j].GID), z, i, j, MapWidth, MapHeight, this, null);
                         //}
                         
 

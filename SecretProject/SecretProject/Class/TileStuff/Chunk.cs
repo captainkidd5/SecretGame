@@ -325,7 +325,7 @@ namespace SecretProject.Class.TileStuff
                             Tile tile = SearchForEmptyTile(3);
                             if(tile != null)
                             {
-                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(GenerationType.Sand, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
+                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
                             }
                         
 
@@ -416,7 +416,7 @@ namespace SecretProject.Class.TileStuff
                             int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
 
                             AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkWidth + i, this.Y * TileUtility.ChunkHeight + j, newGID);
-                            if (Game1.Procedural.GrassGeneratableTiles.Contains(newGID))
+                            if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(newGID))
                             {
                                 if (Game1.Utility.RGenerator.Next(0, 10) < 2)
                                 {
@@ -460,11 +460,17 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
-                        this.GeneratableTiles = Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[z][i, j].GID);
-                        this.TilingDictionary = Game1.Procedural.GetTilingDictionaryFromGenerationType((GenerationType)AllTiles[z][i, j].GID);
 
-                        this.MainGid = AllTiles[z][i, j].GID + 1;
-                        Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
+                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(AllTiles[z][i, j].GID);
+                        if(container != null)
+                        {
+                            this.GeneratableTiles = container.GeneratableTiles;
+                            this.TilingDictionary = container.TilingDictionary;
+
+                            this.MainGid = AllTiles[z][i, j].GID + 1;
+                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
+                        }
+                        
 
                     }
                 }

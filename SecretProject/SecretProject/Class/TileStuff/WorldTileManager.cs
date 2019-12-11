@@ -149,86 +149,86 @@ namespace SecretProject.Class.TileStuff
 
 
                             case "dirt":
-                                if (!Game1.Procedural.DirtGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.DirtGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "sand":
-                                if (!Game1.Procedural.SandGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Sand].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.SandGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Sand].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "grass":
-                                if (!Game1.Procedural.GrassGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Grass].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.GrassGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Grass].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "grassBasic":
-                                if (!Game1.Procedural.GrassGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.GrassGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Add(i);
                                 }
-                                if (!Game1.Procedural.StandardGeneratableGrassTiles.Contains(i))
-                                {
-                                    Game1.Procedural.StandardGeneratableGrassTiles.Add(i);
-                                }
+                                //if (!Game1.Procedural.StandardGeneratableGrassTiles.Contains(i))
+                                //{
+                                //    Game1.Procedural.StandardGeneratableGrassTiles.Add(i);
+                                //}
                                 break;
                             case "water":
-                                if (!Game1.Procedural.WaterGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Water].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.WaterGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Water].GeneratableTiles.Add(i);
                                 }
                                 break;
 
                             case "stone":
-                                if (!Game1.Procedural.StoneGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Stone].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.StoneGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Stone].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "dirtBasic":
-                                if (!Game1.Procedural.DirtGeneratableTiles.Contains(i))
-                                {
-                                    Game1.Procedural.DirtGeneratableTiles.Add(i);
-                                }
-                                if (!Game1.Procedural.StandardGeneratableDirtTiles.Contains(i))
-                                {
-                                    Game1.Procedural.StandardGeneratableDirtTiles.Add(i);
-                                }
+                                //if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Contains(i))
+                                //{
+                                //    Game1.Procedural.DirtGeneratableTiles.Add(i);
+                                //}
+                                //if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.Dirt].GeneratableTiles.Contains(i))
+                                //{
+                                //    Game1.Procedural.StandardGeneratableDirtTiles.Add(i);
+                                //}
                                 break;
                             case "sandRuin":
-                                if (!Game1.Procedural.SandRuinGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.SandRuin].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.SandRuinGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.SandRuin].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "fence":
-                                if (!Game1.Procedural.FenceGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.FenceTiling].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.FenceGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.FenceTiling].GeneratableTiles.Add(i);
                                 }
                                 break;
                             case "stoneWall":
-                                if (!Game1.Procedural.StoneWallGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.StoneWallTiling].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.StoneWallGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.StoneWallTiling].GeneratableTiles.Add(i);
                                 }
                                 break;
 
                             case "dirtCliff":
-                                if (!Game1.Procedural.DirtCliffGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.DirtCliffGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].GeneratableTiles.Add(i);
                                 }
                                 break;
 
                             case "oakFloor":
-                                if (!Game1.Procedural.OakFloorGeneratableTiles.Contains(i))
+                                if (!Game1.Procedural.AllTilingContainers[(int)GenerationIndex.OakFloorTiling].GeneratableTiles.Contains(i))
                                 {
-                                    Game1.Procedural.OakFloorGeneratableTiles.Add(i);
+                                    Game1.Procedural.AllTilingContainers[(int)GenerationIndex.OakFloorTiling].GeneratableTiles.Add(i);
                                 }
                                 break;
                         }

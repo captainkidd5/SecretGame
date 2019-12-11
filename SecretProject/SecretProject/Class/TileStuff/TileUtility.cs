@@ -410,8 +410,8 @@ namespace SecretProject.Class.TileStuff
                                             int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
 
 
-                                           WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.DirtGeneratableTiles,
-                                       Game1.Procedural.DirtTiling, 0, Game1.GetCurrentStage().AllTiles);
+                                           WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[1].GeneratableTiles,
+                                       Game1.Procedural.AllTilingContainers[1].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
 
                                             break;
                                     }
@@ -728,8 +728,9 @@ namespace SecretProject.Class.TileStuff
            // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
             if(itemToCheckForReassasignTiling != null)
             {
-                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, Game1.Procedural.GetGeneratableTilesFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
-                    Game1.Procedural.GetTilingDictionaryFromGenerationType(itemToCheckForReassasignTiling.GenerationType),
+                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
+                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
+                    tilingContainer.TilingDictionary,
                itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
             }
            
@@ -770,7 +771,7 @@ namespace SecretProject.Class.TileStuff
 
             for (int g = 0; g < cap; g++)
             {
-                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetGeneratableTilesFromGenerationType(type), container, layerToCheckIfEmpty);
+                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty);
             }
         }
         public static void RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
