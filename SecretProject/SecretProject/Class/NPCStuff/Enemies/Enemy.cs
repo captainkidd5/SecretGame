@@ -26,6 +26,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
     }
     public class Enemy : INPC
     {
+
+
         public string Name { get; set; }
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
