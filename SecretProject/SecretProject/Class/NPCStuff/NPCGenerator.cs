@@ -41,7 +41,7 @@ namespace SecretProject.Class.NPCStuff
             packValue -= .1f;
         }
 
-        public List<Enemy> SpawnNpcPack(GenerationType tileType)
+        public List<Enemy> SpawnNpcPack(GenerationType tileType, Vector2 position)
         {
             List<Enemy> NPCPack = new List<Enemy>();
             NPCSpawnData spawnData = new NPCSpawnData();
@@ -60,16 +60,17 @@ namespace SecretProject.Class.NPCStuff
             }
             else
             {
+                float spawnFrequency = spawnData.SpawnFrequency;
                 if (DetermineWhetherAtLeastOneSpawns(spawnData.SpawnFrequency))
                 {
 
 
                     int numberInPack = 0;
-                    float spawnFrequency = spawnData.SpawnFrequency;
+                    
                     bool flag = true;
                     while(flag)
                     {
-                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, numberInPack);
+                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, numberInPack, position);
                     }
                 }
                 return NPCPack;
@@ -80,7 +81,7 @@ namespace SecretProject.Class.NPCStuff
 
         public bool DetermineWhetherAtLeastOneSpawns(float chance)
         {
-            if(Game1.Utility.RFloat(0, 100) < chance)
+            if(Game1.Utility.RFloat(0, 1) < chance)
             {
                 return true;
             }
@@ -90,12 +91,12 @@ namespace SecretProject.Class.NPCStuff
             }
         }
 
-        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info,float packFrequency, int numberAlreadyInPack)
+        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info,float packFrequency, int numberAlreadyInPack, Vector2 positionToSpawn)
         {
-            if(Game1.Utility.RFloat(0,100) < info.PackFrequency)
+            if(Game1.Utility.RFloat(0,1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);
-                enemyList.Add(info.GetNewEnemy(Graphics, new Vector2(Container.AllTiles[2][8,8].DestinationRectangle.X, Container.AllTiles[2][8, 8].DestinationRectangle.Y), Container));
+                enemyList.Add(info.GetNewEnemy(Graphics, positionToSpawn, Container));
                 return true;
             }
             else

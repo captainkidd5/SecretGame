@@ -60,6 +60,7 @@ namespace SecretProject.Class.TileStuff
 
         //NPCS
         public List<Enemy> Enemies { get; set; }
+        public NPCGenerator NPCGenerator { get; set; }
 
         //PATHFINDING
         public ObstacleGrid PathGrid { get; set; }
@@ -101,6 +102,7 @@ namespace SecretProject.Class.TileStuff
             }
 
             Enemies = new List<Enemy>();
+            NPCGenerator = new NPCGenerator(this, GraphicsDevice);
 
             SetRectangleTexture(this.GraphicsDevice);
 
@@ -320,23 +322,37 @@ namespace SecretProject.Class.TileStuff
 
                     if (this.X != 0 && this.Y != 0)
                     {
-                        if (Game1.Utility.RGenerator.Next(0, 10) < 2)
-                        {
-                            Game1.World.Enemies.Add(new Rabbit("Rabbit", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                            Game1.World.Enemies.Add(new Boar("boar", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                            Game1.World.Enemies.Add(new Crab("Crab", new Vector2(AllTiles[0][5, 5].DestinationRectangle.X, AllTiles[0][5, 5].DestinationRectangle.Y), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet, this));
-                        }
+                            Tile tile = SearchForEmptyTile(3);
+                            if(tile != null)
+                            {
+                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(GenerationType.Dirt, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
+                            }
+                        
 
                     }
 
                     this.IsLoaded = true;
                     binaryReader.Close();
 
-                    //Game1.World.Boars.Add(new Boar("Boar", new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X, TileUtility.GetDestinationRectangle(AllTiles[0][10, 10], this.X, this.Y).X), this.GraphicsDevice, Game1.AllTextures.EnemySpriteSheet));
                 }
             }
         }
 
+        public Tile SearchForEmptyTile(int timesToSearch)
+        {
+            for(int i = 0; i < timesToSearch;i++)
+            {
+                int randomSpawnX = Game1.Utility.RNumber(2, 14);
+                int randomSpawnY = Game1.Utility.RNumber(2, 14);
+                if (PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
+                {
+                    return AllTiles[0][randomSpawnX, randomSpawnY];
+                }
+            }
+
+               return null;
+            
+        }
 
         public void Generate()
         {
