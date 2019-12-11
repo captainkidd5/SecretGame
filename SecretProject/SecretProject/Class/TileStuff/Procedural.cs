@@ -32,8 +32,9 @@ namespace SecretProject.Class.TileStuff
         Stone = 5,
         DirtCliff = 6,
         FenceTiling = 7,
-        StoneWallTiling = 8,
-        OakFloorTiling = 9,
+        OakFloorTiling = 8,
+        StoneWallTiling = 9,
+       
     }
     public class Procedural
     {
@@ -116,7 +117,8 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>()),
                 new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>()),
                 new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>()),
-                new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>()),
+                new TilingContainer(GenerationType.FenceTiling, FillFenceTilingDictionary(456), new List<int>()),
+                new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary(632), new List<int>()),
                 new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>()),
                 new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
             };
@@ -244,8 +246,12 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 1)
             {
-                if (perlinValue >= .02f && perlinValue <= .07f)
+                if (perlinValue >= -.1f && perlinValue <= .0f)
                 { 
+                    newGID = 1015;
+                }
+                else if (perlinValue >= .15f && perlinValue <= .3f)
+                {
                     newGID = 1015;
                 }
                 else if (perlinValue >= -1f && perlinValue < -.15f)

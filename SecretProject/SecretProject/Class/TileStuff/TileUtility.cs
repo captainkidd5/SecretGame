@@ -728,10 +728,14 @@ namespace SecretProject.Class.TileStuff
            // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
             if(itemToCheckForReassasignTiling != null)
             {
-                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
-                WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
-                    tilingContainer.TilingDictionary,
-               itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
+                if(itemToCheckForReassasignTiling.GenerationType != 0)
+                {
+                    TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
+                    WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
+                        tilingContainer.TilingDictionary,
+                   itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
+                }
+                
             }
            
 
