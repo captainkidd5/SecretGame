@@ -6,18 +6,26 @@
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
       <TimeToStart>6</TimeToStart>
-      <TimeToFinish>12</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>58</EndX>
-      <EndY>70</EndY>
+      <TimeToFinish>15</TimeToFinish>
+       <EndStage>ElixirHouse</EndStage>
+      <EndX>32</EndX>
+      <EndY>33</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
-      <TimeToStart>13</TimeToStart>
-      <TimeToFinish>18</TimeToFinish>
+      <TimeToStart>16</TimeToStart>
+      <TimeToFinish>21</TimeToFinish>
        <EndStage>Cafe</EndStage>
       <EndX>40</EndX>
       <EndY>27</EndY>
+    </Item>
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>2</ID>
+      <TimeToStart>22</TimeToStart>
+      <TimeToFinish>2</TimeToFinish>
+       <EndStage>ElixirShop</EndStage>
+      <EndX>33</EndX>
+      <EndY>22</EndY>
     </Item>
     </Routes>
   </Asset>

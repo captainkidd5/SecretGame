@@ -67,7 +67,11 @@ namespace SecretProject.Class.CameraStuff
         {
 
             pos.X = amount.X;
+
             pos.Y = amount.Y;
+
+            //pos.X = MathHelper.Lerp(pos.X, amount.X, .08f);
+           // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);
             ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
               (int)(Game1.GetCurrentStage().MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
                 (int)(Game1.GetCurrentStage().MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),

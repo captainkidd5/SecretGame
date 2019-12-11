@@ -325,7 +325,7 @@ namespace SecretProject.Class.TileStuff
                             Tile tile = SearchForEmptyTile(3);
                             if(tile != null)
                             {
-                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(GenerationType.Dirt, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
+                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(GenerationType.Sand, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
                             }
                         
 
@@ -337,7 +337,11 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-
+        /// <summary>
+        /// Tries X times at random to find a tile which doesn't contain an obstacle
+        /// </summary>
+        /// <param name="timesToSearch">number of attempts</param>
+        /// <returns></returns>
         public Tile SearchForEmptyTile(int timesToSearch)
         {
             for(int i = 0; i < timesToSearch;i++)

@@ -309,7 +309,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
             }
 
-            TextBuilder.Update(gameTime);
+            TextBuilder.Update(gameTime); 
 
             ParticleEngine.Update(gameTime);
 

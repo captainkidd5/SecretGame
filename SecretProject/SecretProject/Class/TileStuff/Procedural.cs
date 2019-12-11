@@ -86,6 +86,8 @@ namespace SecretProject.Class.TileStuff
             };
         }
 
+        public List<List<int>> AllGeneratableTiles;
+
     public Procedural()
         {
             //FASTNOISE
@@ -114,6 +116,22 @@ namespace SecretProject.Class.TileStuff
             OakFloorGeneratableTiles = new List<int>();
             DirtCliffGeneratableTiles = new List<int>();
 
+            AllGeneratableTiles = new List<List<int>>()
+            {
+                DirtGeneratableTiles  ,
+            SandGeneratableTiles  ,
+            SandRuinGeneratableTiles  ,
+            GrassGeneratableTiles  ,
+            WaterGeneratableTiles  ,
+            StoneGeneratableTiles  ,
+            StandardGeneratableDirtTiles  ,
+            StandardGeneratableGrassTiles  ,
+            FenceGeneratableTiles  ,
+            StoneWallGeneratableTiles  ,
+            OakFloorGeneratableTiles  ,
+            DirtCliffGeneratableTiles  ,
+        };
+
             FenceTiling = FillFenceTilingDictionary(456);
             StoneWallTiling = FillFenceTilingDictionary(452);
         
@@ -127,6 +145,14 @@ namespace SecretProject.Class.TileStuff
             //MIDGROUDNTILING
             OakFloorTiling = FillTilingDictionary(632);
         }
+
+        //public GenerationType GetGenerationTypeFromGID(int gid)
+        //{
+        //    for(int i =0; i < AllGeneratableTiles.Count; i++)
+        //    {
+        //        if(AllGeneratableTiles[i].Contains(gid))
+        //    }
+        //}
 
         public List<int> GetGeneratableTilesFromGenerationType(GenerationType type)
         {
@@ -418,5 +444,20 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        
+    }
+
+    public class TilingSet
+    {
+        public GenerationType GenerationType { get; set; }
+        public Dictionary<int,int> TilingDictionary{ get; set; }
+        public List<int> GeneratableTiles { get; set; }
+
+        public TilingSet(GenerationType generationType, Dictionary<int,int> tilingDictionary, List<int> generatableTiles)
+        {
+            GenerationType = generationType;
+            TilingDictionary = tilingDictionary;
+            GeneratableTiles = generatableTiles;
+        }
     }
 }

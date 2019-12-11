@@ -214,7 +214,7 @@ namespace SecretProject
         public static List<IEvent> AllEvents;
 
         //NPCS
-        public static Elixir Elixer;
+        public static Elixir Elixir;
         public static Dobbin Dobbin;
         public static Kaya Kaya;
 
@@ -549,10 +549,10 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixer = new Elixir("Elixer", new Vector2(300, 115), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(150, 200), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(490, 275), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
-            Snaw = new Character("Snaw", new Vector2(1450, 800), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+            Elixir = new Elixir("Elixer", new Vector2(35, 23), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(26, 28), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(26, 18), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
+            Snaw = new Character("Snaw", new Vector2(60, 40), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
@@ -563,11 +563,11 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(448, 368), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
-            Sarah = new Sarah("Sarah", new Vector2(500, 500), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], AllTextures.SarahPortrait) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(28, 22), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
+            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], AllTextures.SarahPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
-                Elixer,
+                Elixir,
                 Dobbin,
                 Kaya,
                 Snaw,
@@ -576,7 +576,7 @@ namespace SecretProject
             };
 
             ProgressBook JulianProgressBook = new ProgressBook(Julian,Content, graphics.GraphicsDevice, 1);
-            ProgressBook ElixirProgressBook = new ProgressBook(Elixer,Content, graphics.GraphicsDevice, 2);
+            ProgressBook ElixirProgressBook = new ProgressBook(Elixir,Content, graphics.GraphicsDevice, 2);
             AllProgressBooks = new List<ProgressBook>()
             {
                 JulianProgressBook,

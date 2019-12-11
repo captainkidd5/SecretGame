@@ -188,7 +188,7 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            TextBuilder.PositionToWriteTo = Game1.Elixer.Position;
+            TextBuilder.PositionToWriteTo = Game1.Elixir.Position;
             TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
@@ -200,8 +200,9 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
+                
                 player.Update(gameTime, AllItems, mouse);
+                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     AllRisingText[i].Update(gameTime, AllRisingText);

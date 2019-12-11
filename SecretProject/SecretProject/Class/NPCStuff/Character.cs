@@ -100,7 +100,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
-            this.Position = position;
+            this.Position = new Vector2(position.X * 16, position.Y * 16);
             this.Texture = spriteSheet;
             NPCAnimatedSprite = new Sprite[4];
             this.IsInEvent = false;
@@ -134,7 +134,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
         {
             this.Name = name;
-            this.Position = position;
+            this.Position = new Vector2(position.X * 16, position.Y * 16);
             this.Texture = spriteSheet;
             NPCAnimatedSprite = new Sprite[animationFrames];
 
