@@ -1,15 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.NPCStuff;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.NPCStuff;
 
 namespace SecretProject.Class.EventStuff
 {
-    public class IntroduceJulianShop : IEvent
+    class IntroScene : IEvent
     {
         public List<Character> CharactersInvolved { get; set; }
         public bool FreezePlayerControls { get; set; }
@@ -18,31 +18,31 @@ namespace SecretProject.Class.EventStuff
         public bool IsCompleted { get; set; }
         public bool IsActive { get; set; }
         public int CurrentStep { get; set; }
-        public IntroduceJulianShop()
-        {
 
+        public IntroScene()
+        {
             this.CharactersInvolved = new List<Character>()
             {
-                Game1.Julian
+                Game1.Dobbin
             };
             FreezePlayerControls = false;
             this.DayToTrigger = 0;
-            this.StageToTrigger = (int)Stages.JulianHouse;
+            this.StageToTrigger = (int)Stages.World;
             this.IsCompleted = false;
-            CurrentStep = 0;
+            this.CurrentStep = 0;
 
         }
         public void Start()
         {
-            if(!Game1.GetCurrentStage().CharactersPresent.Contains(Game1.Julian))
+            if (!Game1.GetCurrentStage().CharactersPresent.Contains(Game1.Dobbin))
             {
-                Game1.GetCurrentStage().CharactersPresent.Add(Game1.Julian);
+                Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
             }
-            
-            Game1.Julian.CurrentStageLocation = Stages.JulianHouse;
-            Game1.Julian.IsInEvent = true;
-            Game1.Julian.Position = new Vector2(340, 580);
-          //  Game1.Julian.ResetPathFinding();
+
+            Game1.Dobbin.CurrentStageLocation = Stages.World;
+            Game1.Dobbin.IsInEvent = true;
+            Game1.Dobbin.Position = new Vector2(0, 0);
+            //  Game1.Julian.ResetPathFinding();
             this.FreezePlayerControls = true;
             this.IsActive = true;
         }
@@ -56,17 +56,12 @@ namespace SecretProject.Class.EventStuff
                 Game1.Julian.EventUpdate(gameTime);
             }
 
-            if (Game1.Player.UserInterface.IsTransitioning)
-            {
-                Game1.Player.UserInterface.BeginTransitionCycle(gameTime);
-            }
-
             Game1.Player.UserInterface.TextBuilder.Update(gameTime);
             switch (CurrentStep)
             {
                 case 0:
-                    Game1.Julian.EventMoveToTile(gameTime, new Point(26, 36));
-                    if (Game1.Julian.CurrentPath.Count <= 0)
+                    Game1.Julian.EventMoveToTile(gameTime, new Point(4, 21));
+                    if (Game1.Julian.IsAtTile(new Point(4, 21)))
                     {
                         Game1.freeze = true;
                         Game1.Julian.UpdateDirectionVector(Game1.Player.position);
@@ -79,8 +74,8 @@ namespace SecretProject.Class.EventStuff
                     {
 
 
-                        Game1.Julian.EventMoveToTile(gameTime, new Point(41, 35));
-                        if (Game1.Julian.CurrentPath.Count <= 0)
+                        Game1.Julian.EventMoveToTile(gameTime, new Point(25, 21));
+                        if (Game1.Julian.IsAtTile(new Point(25, 21)))
                         {
                             Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Julian.Position.X, Game1.Julian.Position.Y - 10));
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
@@ -90,8 +85,8 @@ namespace SecretProject.Class.EventStuff
                     }
                     break;
                 case 2:
-                    Game1.Julian.EventMoveToTile(gameTime, new Point(21, 36));
-                    if (Game1.Julian.CurrentPath.Count <= 0)
+                    Game1.Julian.EventMoveToTile(gameTime, new Point(4, 21));
+                    if (Game1.Julian.IsAtTile(new Point(4, 21)))
                     {
                         Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
@@ -99,7 +94,7 @@ namespace SecretProject.Class.EventStuff
                         CurrentStep = 3;
                     }
 
-                        break;
+                    break;
                 case 3:
                     Console.WriteLine("Event has ended");
                     Game1.IsEventActive = false;
@@ -107,9 +102,7 @@ namespace SecretProject.Class.EventStuff
                     this.IsCompleted = true;
                     Game1.Julian.IsInEvent = false;
                     break;
-
             }
-
         }
     }
 }

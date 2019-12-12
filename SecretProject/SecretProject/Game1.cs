@@ -601,7 +601,7 @@ namespace SecretProject
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
-               // new IntroduceJulianShop()
+                new IntroduceJulianShop()
             };
             IsEventActive = false;
 

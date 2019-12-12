@@ -112,6 +112,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D Gondola;
         public Texture2D TallGrass;
         public Texture2D Gears;
+        public Texture2D PlayerSilouhette;
 
 
         //BackDrops
@@ -207,6 +208,7 @@ namespace SecretProject.Class.TextureStuff
             Gondola = content.Load<Texture2D>("WorldProps/Gondola");
             TallGrass = content.Load<Texture2D>("WorldProps/tallGrass");
             Gears = content.Load<Texture2D>("WorldProps/Gears");
+            PlayerSilouhette = content.Load<Texture2D>("WorldProps/introplayersillohoutte");
 
 
             //backdrops

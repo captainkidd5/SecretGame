@@ -564,21 +564,24 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 {
                     CurrentPath.RemoveAt(CurrentPath.Count - 1);
                 }
-                else if (this.Position != new Vector2(CurrentPath[0].X * 16, CurrentPath[0].Y * 16))
-                {
-                    PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
 
+                
+
+            }
+            else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
+            {
+                PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
 
                     Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
                      ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
-                    Point end = endPoint;
+                    Point end = new Point(endPoint.X, endPoint.Y);
                     CurrentPath = finder.FindPath(start, end);
                     if (CurrentPath == null)
                     {
                         throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                     }
+                
 
-                }
             }
             else
             {

@@ -16,6 +16,7 @@ namespace SecretProject.Class.EventStuff
          int StageToTrigger { get; set; }
          bool IsCompleted { get; set; }
          bool IsActive { get; set; }
+        int CurrentStep { get; set; }
 
         void Start();
         void Update(GameTime gameTime);
