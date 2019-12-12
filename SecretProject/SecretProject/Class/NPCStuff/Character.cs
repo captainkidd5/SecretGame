@@ -556,13 +556,14 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         }
         #endregion
         //forEvents
+        public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
         public void EventMoveToTile(GameTime gameTime, Point endPoint)
         {
-            if (CurrentPath.Count > 0)
+            if (EventCurrentPath.Count > 0)
             {
-                if (MoveTowardsPoint(new Vector2(CurrentPath[CurrentPath.Count - 1].X * 16, CurrentPath[CurrentPath.Count - 1].Y * 16), gameTime))
+                if (MoveTowardsPoint(new Vector2(EventCurrentPath[EventCurrentPath.Count - 1].X * 16, EventCurrentPath[EventCurrentPath.Count - 1].Y * 16), gameTime))
                 {
-                    CurrentPath.RemoveAt(CurrentPath.Count - 1);
+                    EventCurrentPath.RemoveAt(EventCurrentPath.Count - 1);
                 }
 
                 
@@ -570,13 +571,22 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             }
             else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
             {
-                PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
+                PathFinderFast finder = null;
+                if (Game1.GetCurrentStageInt() == Stages.World)
+                {
+                     finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
+                }
+                else
+                {
+                     finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
+                }
+                
 
                     Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
                      ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
                     Point end = new Point(endPoint.X, endPoint.Y);
-                    CurrentPath = finder.FindPath(start, end);
-                    if (CurrentPath == null)
+                EventCurrentPath = finder.FindPath(start, end);
+                    if (EventCurrentPath == null)
                     {
                         throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                     }

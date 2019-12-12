@@ -34,6 +34,7 @@ using static SecretProject.Class.UI.CheckList;
 using SecretProject.Class.EventStuff;
 using Microsoft.Xna.Framework.Audio;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Weather;
 
 
 
@@ -84,6 +85,12 @@ namespace SecretProject
         
 
     }
+    
+    public enum Weather
+    {
+        Sunny = 1,
+        Rainy = 2
+    }
 
 
     public class Game1 : Game
@@ -91,6 +98,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
+        public static bool EnableCutScenes = true;
 
         public static bool IsFirstTimeStartup;
 
@@ -226,6 +234,9 @@ namespace SecretProject
         //PORTALS
         public static Graph PortalGraph;
 
+        //WEATHER
+        public static Weather CurrentWeather;
+        public static List<IWeather> AllWeather;
 
         public static bool IsEventActive;
 
@@ -601,7 +612,8 @@ namespace SecretProject
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
-                new IntroduceJulianShop()
+                new IntroduceJulianShop(),
+                new IntroScene()
             };
             IsEventActive = false;
 
@@ -690,26 +702,27 @@ namespace SecretProject
                 graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
-
-            foreach (IEvent e in AllEvents)
+            if (EnableCutScenes)
             {
-                if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
+                foreach (IEvent e in AllEvents)
                 {
-                    int num = (int)GetCurrentStageInt();
-                    if (!e.IsActive)
+                    if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
                     {
-                        e.Start();
-                    }
-                    else
-                    {
-                        IsEventActive = true;
-                        e.Update(gameTime);
+                        int num = (int)GetCurrentStageInt();
+                        if (!e.IsActive)
+                        {
+                            e.Start();
+                        }
+                        else
+                        {
+                            IsEventActive = true;
+                            e.Update(gameTime);
+
+                        }
 
                     }
-
                 }
             }
-
             if (!IsEventActive)
             {
 

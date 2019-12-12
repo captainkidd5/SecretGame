@@ -41,8 +41,8 @@ namespace SecretProject.Class.EventStuff
 
             Game1.Dobbin.CurrentStageLocation = Stages.World;
             Game1.Dobbin.IsInEvent = true;
-            Game1.Dobbin.Position = new Vector2(0, 0);
-            //  Game1.Julian.ResetPathFinding();
+            Game1.Dobbin.Position = new Vector2(128, 128);
+            //  Game1.Dobbin.ResetPathFinding();
             this.FreezePlayerControls = true;
             this.IsActive = true;
         }
@@ -53,19 +53,24 @@ namespace SecretProject.Class.EventStuff
             {
                 Game1.cam.Follow(new Vector2(Game1.Player.Position.X + 8, Game1.Player.Position.Y + 16), Game1.GetCurrentStage().MapRectangle);
                 Game1.Player.Update(gameTime, Game1.GetCurrentStage().AllItems, Game1.myMouseManager);
-                Game1.Julian.EventUpdate(gameTime);
+                Game1.Dobbin.EventUpdate(gameTime);
+            }
+
+            if (Game1.Player.UserInterface.IsTransitioning)
+            {
+                Game1.Player.UserInterface.BeginTransitionCycle(gameTime);
             }
 
             Game1.Player.UserInterface.TextBuilder.Update(gameTime);
             switch (CurrentStep)
             {
                 case 0:
-                    Game1.Julian.EventMoveToTile(gameTime, new Point(4, 21));
-                    if (Game1.Julian.IsAtTile(new Point(4, 21)))
+                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 8));
+                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
                         Game1.freeze = true;
-                        Game1.Julian.UpdateDirectionVector(Game1.Player.position);
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " + "This is my shop. I sell all sorts of tools and can even repair your gadgets! ", 2f, null, null);
+                        Game1.Dobbin.UpdateDirectionVector(Game1.Player.position);
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "Hmm... Where did I leave my seeds again?", 2f, null, null);
                         CurrentStep = 1;
                     }
                     break;
@@ -74,23 +79,23 @@ namespace SecretProject.Class.EventStuff
                     {
 
 
-                        Game1.Julian.EventMoveToTile(gameTime, new Point(25, 21));
-                        if (Game1.Julian.IsAtTile(new Point(25, 21)))
+                        Game1.Dobbin.EventMoveToTile(gameTime, new Point(1,1));
+                        if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                         {
-                            Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Julian.Position.X, Game1.Julian.Position.Y - 10));
-                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                                "This bookshelf contains all sorts of useful information. If you find any of the pages let me know and we might be able to learn a thing or two.", 2f, null, null);
+                            Game1.Dobbin.UpdateDirectionVector(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y - 10));
+                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                                "Hey, are you okay!?", 2f, null, null);
                             CurrentStep = 2;
                         }
                     }
                     break;
                 case 2:
-                    Game1.Julian.EventMoveToTile(gameTime, new Point(4, 21));
-                    if (Game1.Julian.IsAtTile(new Point(4, 21)))
+                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(5, 5));
+                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
-                        Game1.Julian.UpdateDirectionVector(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                            "Anyway, it was nice to meet you!", 2f, null, null);
+                        Game1.Dobbin.UpdateDirectionVector(new Vector2(Game1.Player.Position.X, Game1.Player.Position.Y));
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                            "Here, you better come with me", 2f, null, null);
                         CurrentStep = 3;
                     }
 
@@ -100,8 +105,9 @@ namespace SecretProject.Class.EventStuff
                     Game1.IsEventActive = false;
                     this.IsActive = false;
                     this.IsCompleted = true;
-                    Game1.Julian.IsInEvent = false;
+                    Game1.Dobbin.IsInEvent = false;
                     break;
+
             }
         }
     }

@@ -303,15 +303,15 @@ namespace SecretProject.Class.StageFolder
 
                 player.Position = new Vector2(0, 0);
             }
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
-            {
-
-                Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
-            }
+            
 
             TextBuilder.Update(gameTime); 
 
             ParticleEngine.Update(gameTime);
+            foreach (Character character in Game1.AllCharacters)
+            {
+                character.Update(gameTime, mouse);
+            }
 
             if (!Game1.freeze)
             {
@@ -411,7 +411,10 @@ namespace SecretProject.Class.StageFolder
 
 
                 ParticleEngine.Draw(spriteBatch);
-
+                foreach (Character character in CharactersPresent)
+                {
+                    character.Draw(spriteBatch);
+                }
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
 
                 for (int i = 0; i < this.AllRisingText.Count; i++)

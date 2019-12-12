@@ -159,12 +159,17 @@ namespace SecretProject.Class.UI
                     this.IsAnyStorageItemOpen = true;
                 }
             }
+            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
+            {
 
+                Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
+            }
             if (BottomBar.IsActive)
             {
                 InfoBox.Update(gameTime);
                 BottomBar.Update(gameTime, inventory, mouse);
             }
+
 
             switch (CurrentOpenInterfaceItem)
             {
