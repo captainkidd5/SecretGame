@@ -7,23 +7,38 @@
     <SpeechID>1</SpeechID>
     <Day>0</Day>
     <TimeStart>0</TimeStart>
-    <TimeEnd>10</TimeEnd>
-   <TextToWrite>Looking to buy something? `</TextToWrite>
-   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+    <TimeEnd>6</TimeEnd>
+   <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
     </Item>
-    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+       <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Day>0</Day>
-    <TimeStart>11</TimeStart>
-    <TimeEnd>20</TimeEnd>
-   <TextToWrite>Elixir creeps me out</TextToWrite>
+    <TimeStart>7</TimeStart>
+    <TimeEnd>8</TimeEnd>
+   <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Day>0</Day>
+    <TimeStart>8</TimeStart>
+    <TimeEnd>16</TimeEnd>
+   <TextToWrite>Looking to buy something? `</TextToWrite>
+   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+    </Item>
+  
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>4</SpeechID>
+    <Day>0</Day>
+    <TimeStart>17</TimeStart>
+    <TimeEnd>20</TimeEnd>
+   <TextToWrite>I'm starved.</TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>5</SpeechID>
+    <Day>0</Day>
     <TimeStart>21</TimeStart>
     <TimeEnd>24</TimeEnd>
-   <TextToWrite>Been a while since I've had a good shave</TextToWrite>
+   <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
     </Item>
   </AllDialogue>
   </Asset>

@@ -58,7 +58,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         private bool mReopenCloseNodes = true;
         private bool mTieBreaker = false;
         private bool mHeavyDiagonals = false;
-        private int mSearchLimit = 2000;
+        private int mSearchLimit = 3000;
         private double mCompletedTime = 0;
         private bool mDebugProgress = false;
         private bool mDebugFoundPath = false;

@@ -7,16 +7,23 @@
     <SpeechID>1</SpeechID>
     <Day>0</Day>
     <TimeStart>6</TimeStart>
-    <TimeEnd>12</TimeEnd>
+    <TimeEnd>15</TimeEnd>
    <TextToWrite>Can I offer you my services? `</TextToWrite>
      <SelectableOptions>yes~OpenElixirShop,no~ExitDialogue</SelectableOptions>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Day>0</Day>
+    <TimeStart>16</TimeStart>
+    <TimeEnd>20</TimeEnd>
+   <TextToWrite>I like my drinks dark.</TextToWrite>
+    </Item>
+     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>3</SpeechID>
+    <Day>0</Day>
     <TimeStart>21</TimeStart>
-    <TimeEnd>2</TimeEnd>
-   <TextToWrite>Potion or poison?</TextToWrite>
+    <TimeEnd>24</TimeEnd>
+   <TextToWrite>I function best at night.</TextToWrite>
     </Item>
   </AllDialogue>
   </Asset>

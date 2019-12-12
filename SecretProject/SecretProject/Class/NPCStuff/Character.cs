@@ -18,6 +18,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.Universal;
 using XMLData.DialogueStuff;
 using XMLData.RouteStuff;
 
@@ -37,7 +38,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
         public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Height); } }
 
-
+        const float BaseSpeed = .65f;
         public float Speed { get; set; } = .65f; //.65
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
@@ -151,6 +152,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         {
             this.IsMoving = true;
             CollideOccured = false;
+            this.Speed = BaseSpeed * Clock.ClockMultiplier;
             if (this.IsBasicNPC)
             {
                 UpdateBasicNPC(gameTime, mouse);

@@ -7,7 +7,7 @@
     <SpeechID>1</SpeechID>
     <Day>0</Day>
     <TimeStart>6</TimeStart>
-    <TimeEnd>12</TimeEnd>
+    <TimeEnd>15</TimeEnd>
    <TextToWrite>Hey! Anything I can do for you? `
    </TextToWrite>
    <SelectableOptions>Id like to access the houseing shop~OpenKayaShop,no~Load.11</SelectableOptions>
@@ -23,17 +23,17 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Day>0</Day>
-    <TimeStart>13</TimeStart>
-    <TimeEnd>18</TimeEnd>
-   <TextToWrite>Check out the billboard to see what else the sanctuary needs!
+    <TimeStart>16</TimeStart>
+    <TimeEnd>19</TimeEnd>
+   <TextToWrite>I'm glad the Cafe has vegetarian options.
    </TextToWrite>
     </Item>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Day>0</Day>
     <TimeStart>21</TimeStart>
-    <TimeEnd>8</TimeEnd>
-   <TextToWrite>We could always use more help collecting specimens!</TextToWrite>
+    <TimeEnd>4</TimeEnd>
+   <TextToWrite>See you tomorrow!</TextToWrite>
     </Item>
   </AllDialogue>
   </Asset>

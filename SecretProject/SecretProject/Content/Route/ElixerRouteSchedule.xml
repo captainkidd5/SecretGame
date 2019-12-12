@@ -23,7 +23,7 @@
       <ID>2</ID>
       <TimeToStart>22</TimeToStart>
       <TimeToFinish>2</TimeToFinish>
-       <EndStage>ElixirShop</EndStage>
+       <EndStage>ElixirHouse</EndStage>
       <EndX>33</EndX>
       <EndY>22</EndY>
     </Item>

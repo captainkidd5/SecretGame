@@ -33,7 +33,7 @@ namespace SecretProject.Class.Universal
         //public TimeSpan UnpausedTime;
         public TimeSpan LocalTime;
 
-        public int TotalHours { get; set; } = 8;
+        public int TotalHours { get; set; } = 5;
         public int TotalDays { get; set; } = 0;
 
 
@@ -45,6 +45,8 @@ namespace SecretProject.Class.Universal
         public int NightTimeSoundEffectStart { get; set; } = 12;
         public int NightTimeSoundEffectEnd { get; set; } = 14;
         public bool IsNight { get; set; }
+        public static float ClockMultiplier = 1f;
+        const float BaseClockSpeed = 30f;
         public float ClockSpeed { get; set; }
         TextBox ClockDisplay;
 
@@ -60,7 +62,7 @@ namespace SecretProject.Class.Universal
             WeekDay = DayOfWeek.Monday;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
-            ClockSpeed = 15f;
+            ClockSpeed = 30f / ClockMultiplier;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
             //IsNight = true;
 
@@ -101,8 +103,10 @@ namespace SecretProject.Class.Universal
             }
             OnDayChanged(this, EventArgs.Empty);
         }
+
         public void Update(GameTime gameTime)
         {
+            ClockSpeed = BaseClockSpeed / ClockMultiplier;
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 

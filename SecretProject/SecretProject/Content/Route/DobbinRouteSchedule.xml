@@ -5,30 +5,48 @@
     <Routes>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
-      <TimeToStart>6</TimeToStart>
-      <TimeToFinish>9</TimeToFinish>
+      <TimeToStart>5</TimeToStart>
+      <TimeToFinish>6</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>51</EndX>
-      <EndY>43</EndY>
+      <EndX>54</EndX>
+      <EndY>84</EndY>
     </Item>
 
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
-      <TimeToStart>10</TimeToStart>
-      <TimeToFinish>13</TimeToFinish>
-       <EndStage>GeneralStore</EndStage>
-      <EndX>30</EndX>
-      <EndY>33</EndY>
+      <TimeToStart>7</TimeToStart>
+      <TimeToFinish>8</TimeToFinish>
+       <EndStage>Cafe</EndStage>
+      <EndX>27</EndX>
+      <EndY>29</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>
-      <TimeToStart>14</TimeToStart>
-      <TimeToFinish>17</TimeToFinish>
+      <TimeToStart>9</TimeToStart>
+      <TimeToFinish>11</TimeToFinish>
+       <EndStage>DobbinHouse</EndStage>
+      <EndX>40</EndX>
+      <EndY>36</EndY>
+    </Item>
+
+     <Item Type="XMLData.RouteStuff.Route">
+      <ID>4</ID>
+      <TimeToStart>17</TimeToStart>
+      <TimeToFinish>20</TimeToFinish>
        <EndStage>Cafe</EndStage>
-      <EndX>30</EndX>
-      <EndY>33</EndY>
+      <EndX>27</EndX>
+      <EndY>29</EndY>
     </Item>
     
+      <Item Type="XMLData.RouteStuff.Route">
+      <ID>5</ID>
+      <TimeToStart>21</TimeToStart>
+      <TimeToFinish>24</TimeToFinish>
+       <EndStage>DobbinHouse</EndStage>
+      <EndX>28</EndX>
+      <EndY>26</EndY>
+    </Item>
+
     </Routes>
   </Asset>
 </XnaContent>

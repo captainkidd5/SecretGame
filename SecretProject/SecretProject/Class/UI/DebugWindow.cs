@@ -12,6 +12,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
@@ -21,10 +22,14 @@ namespace SecretProject.Class.UI
         public double ElapsedMS { get; set; }
 
         public Button DebugButton1 { get; set; }
+        public Button SpeedClockUp { get; set; }
+        public Button SlowClockDown { get; set; }
         public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont,textBoxLocation,  textToWrite,  backDrop)
         {
             ElapsedMS = 0d;
             DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(this.position.X, this.position.Y - 200), CursorType.Normal);
+            SpeedClockUp = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
+            SlowClockDown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 32, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
         }
 
         public void Update(GameTime gameTime)
@@ -44,6 +49,16 @@ namespace SecretProject.Class.UI
                 Game1.GlobalClock.IncrementDay();
 
 
+            }
+            SpeedClockUp.Update(Game1.myMouseManager);
+            SlowClockDown.Update(Game1.myMouseManager);
+            if(SpeedClockUp.isClicked)
+            {
+                Clock.ClockMultiplier++;
+            }
+            if(SlowClockDown.isClicked)
+            {
+                Clock.ClockMultiplier--;
             }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
@@ -70,6 +85,9 @@ namespace SecretProject.Class.UI
                 //    }
                 //}
                 DebugButton1.Draw(spriteBatch);
+                SpeedClockUp.Draw(spriteBatch);
+                SlowClockDown.Draw(spriteBatch);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, Clock.ClockMultiplier.ToString(), new Vector2(SpeedClockUp.Position.X, SpeedClockUp.Position.Y - 32), Color.White);
             }
             spriteBatch.End();
         }
