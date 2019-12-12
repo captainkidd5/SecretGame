@@ -94,7 +94,9 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D ItemSpriteSheet;
 
+        //PARTICLES
         public Texture2D RockParticle;
+        public Texture2D RainDrop;
 
 
 
@@ -187,7 +189,9 @@ namespace SecretProject.Class.TextureStuff
 
             ItemSpriteSheet = content.Load<Texture2D>("Item/ItemSpriteSheet");
 
+            //PARTICLES
             RockParticle = content.Load<Texture2D>("Particles/rockparticle");
+            RainDrop = content.Load<Texture2D>("Particles/raindrop");
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
 

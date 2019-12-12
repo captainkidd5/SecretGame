@@ -29,19 +29,22 @@ namespace SecretProject.Class.ParticileStuff
         {
             this.ParticleTexture = particleTexture;
             this.Position = position;
-            this.BaseY = Game1.Utility.RFloat(position.Y - 5, position.Y + 20);
             this.Velocity = velocity;
             this.Angle = angle;
             this.AngularVelocity = angularVelocity;
             this.Color = color;
             this.ColorMultiplier = 1f;
-            this.Size = Game1.Utility.RGenerator.Next(1, 3);
             this.TTL = ttl;
-            this.VelocityReductionTimer = Game1.Utility.RFloat(.25f, .5f);
             this.LayerDepth = layerDepth;
+
+            this.BaseY = Game1.Utility.RFloat(position.Y - 5, position.Y + 20);
+            this.Size = Game1.Utility.RGenerator.Next(1, 3);
+            this.VelocityReductionTimer = Game1.Utility.RFloat(.25f, .5f);
+
         }
 
-        public void Update(GameTime gameTime)
+
+        public virtual void Update(GameTime gameTime)
         {
             VelocityReductionTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(VelocityReductionTimer < 0)

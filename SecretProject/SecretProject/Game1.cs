@@ -86,8 +86,9 @@ namespace SecretProject
 
     }
     
-    public enum Weather
+    public enum WeatherType
     {
+        None = 0,
         Sunny = 1,
         Rainy = 2
     }
@@ -98,7 +99,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = true;
+        public static bool EnableCutScenes = false;
 
         public static bool IsFirstTimeStartup;
 
@@ -235,8 +236,8 @@ namespace SecretProject
         public static Graph PortalGraph;
 
         //WEATHER
-        public static Weather CurrentWeather;
-        public static List<IWeather> AllWeather;
+        public static WeatherType CurrentWeather;
+        public static Dictionary<WeatherType, IWeather> AllWeather;
 
         public static bool IsEventActive;
 
@@ -619,6 +620,14 @@ namespace SecretProject
 
             RectangleOutlineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             RectangleOutlineTexture.SetData(new Color[] { Color.Red });
+
+            AllWeather = new Dictionary<WeatherType, IWeather>()
+            {
+                {WeatherType.Sunny, new Sunny() },
+                {WeatherType.Rainy, new Rainy(GraphicsDevice) }
+            };
+
+            CurrentWeather = WeatherType.Sunny;
 
            
         }

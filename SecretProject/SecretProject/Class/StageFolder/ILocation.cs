@@ -29,6 +29,7 @@ namespace SecretProject.Class.StageFolder
 {
     public interface ILocation
     {
+        WeatherType CurrentWeather { get; set; }
         int StageIdentifier { get; set; }
         string StageName { get; set; }
         int TileWidth { get; set; }

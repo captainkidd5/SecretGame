@@ -24,12 +24,24 @@ namespace SecretProject.Class.UI
         public Button DebugButton1 { get; set; }
         public Button SpeedClockUp { get; set; }
         public Button SlowClockDown { get; set; }
+
+        public Button WeatherNone { get; set; }
+        public Button WeatherRain { get; set; }
+        public Button WeatherSunny { get; set; }
+        public List<Button> WeatherButtons{ get; set; }
         public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont,textBoxLocation,  textToWrite,  backDrop)
         {
             ElapsedMS = 0d;
             DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(this.position.X, this.position.Y - 200), CursorType.Normal);
             SpeedClockUp = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
             SlowClockDown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 32, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
+
+            WeatherNone = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth / 2, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
+            WeatherRain = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth *.6f, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
+            WeatherSunny = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth * .7f, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
+            WeatherButtons = new List<Button>() { WeatherNone, WeatherRain, WeatherSunny };
+
+
         }
 
         public void Update(GameTime gameTime)
@@ -60,6 +72,26 @@ namespace SecretProject.Class.UI
             {
                 Clock.ClockMultiplier--;
             }
+
+            for(int i =0; i < WeatherButtons.Count; i++)
+            {
+                WeatherButtons[i].Update(Game1.myMouseManager);
+            }
+            if(WeatherNone.isClicked)
+            {
+                Game1.GetCurrentStage().CurrentWeather = WeatherType.None;
+                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+            }
+            if (WeatherSunny.isClicked)
+            {
+                Game1.GetCurrentStage().CurrentWeather = WeatherType.Sunny;
+                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+            }
+            if (WeatherRain.isClicked)
+            {
+                Game1.GetCurrentStage().CurrentWeather = WeatherType.Rainy;
+                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+            }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
         public void Draw(SpriteBatch spriteBatch)
@@ -87,6 +119,10 @@ namespace SecretProject.Class.UI
                 DebugButton1.Draw(spriteBatch);
                 SpeedClockUp.Draw(spriteBatch);
                 SlowClockDown.Draw(spriteBatch);
+                for(int i =0; i < WeatherButtons.Count; i++)
+                {
+                    WeatherButtons[i].Draw(spriteBatch);
+                }
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, Clock.ClockMultiplier.ToString(), new Vector2(SpeedClockUp.Position.X, SpeedClockUp.Position.Y - 32), Color.White);
             }
             spriteBatch.End();

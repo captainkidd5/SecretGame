@@ -80,6 +80,7 @@ namespace SecretProject.Class.StageFolder
 
         public QuadTree QuadTree { get; set; }
         public List<RisingText> AllRisingText { get; set; }
+        public WeatherType CurrentWeather { get; set; }
 
         public Effect CurrentEffect;
 
@@ -101,6 +102,8 @@ namespace SecretProject.Class.StageFolder
             CharactersPresent = new List<Character>();
 
             this.OnScreenNPCS = new List<INPC>();
+
+            this.CurrentWeather = WeatherType.None;
 
         }
 
@@ -305,8 +308,11 @@ namespace SecretProject.Class.StageFolder
             }
             
 
-            TextBuilder.Update(gameTime); 
-
+            TextBuilder.Update(gameTime);
+            if (CurrentWeather != WeatherType.None)
+            {
+                Game1.AllWeather[CurrentWeather].Update(gameTime);
+            }
             ParticleEngine.Update(gameTime);
             foreach (Character character in Game1.AllCharacters)
             {
@@ -408,8 +414,10 @@ namespace SecretProject.Class.StageFolder
                 graphics.Clear(Color.Transparent);
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
-
-
+                if (CurrentWeather != WeatherType.None)
+                {
+                    Game1.AllWeather[CurrentWeather].Draw(spriteBatch);
+                }
                 ParticleEngine.Draw(spriteBatch);
                 foreach (Character character in CharactersPresent)
                 {

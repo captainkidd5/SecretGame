@@ -127,6 +127,9 @@ namespace SecretProject.Class.StageFolder
         public List<RisingText> AllRisingText { get; set; }
 
 
+        public WeatherType CurrentWeather { get; set; }
+
+
 
 
         #endregion
@@ -154,7 +157,7 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
             AllRisingText = new List<RisingText>();
-
+            CurrentWeather = WeatherType.None;
         }
 
         public virtual void LoadPreliminaryContent()
@@ -330,7 +333,10 @@ namespace SecretProject.Class.StageFolder
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
-
+            if (CurrentWeather != WeatherType.None)
+            {
+                Game1.AllWeather[CurrentWeather].Update(gameTime);
+            }
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
@@ -424,6 +430,10 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                if (CurrentWeather != WeatherType.None)
+                {
+                    Game1.AllWeather[CurrentWeather].Draw(spriteBatch);
+                }
                 if (this.BackDropNumber == 1)
                 {
                     spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
