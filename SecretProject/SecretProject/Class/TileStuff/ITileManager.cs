@@ -34,7 +34,7 @@ namespace SecretProject.Class.TileStuff
         Dictionary<string, List<ICollidable>> Objects { get; set; }
         Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         Dictionary<string, int> TileHitPoints { get; set; }
-        Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         List<LightSource> Lights { get; set; }
         Dictionary<string, Crop> Crops { get; set; }
         GraphicsDevice GraphicsDevice { get; set; }

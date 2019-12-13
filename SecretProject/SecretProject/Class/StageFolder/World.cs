@@ -242,7 +242,7 @@ namespace SecretProject.Class.StageFolder
                                 {
 
                                     QuadTree.Insert(obj.Value[z]);
-                                    QuadTree.Count++;
+
                                 }
                             }
 
@@ -256,7 +256,7 @@ namespace SecretProject.Class.StageFolder
                                     }
 
                                     QuadTree.Insert(grass.Value[g]);
-                                    QuadTree.Count++;
+
                                 }
                             }
 
@@ -265,7 +265,7 @@ namespace SecretProject.Class.StageFolder
                                 if (Enemies[e] != null)
                                 {
                                     QuadTree.Insert(Enemies[e].Collider);
-                                    QuadTree.Count++;
+  
                                 }
 
                             }
@@ -277,13 +277,13 @@ namespace SecretProject.Class.StageFolder
             for (int i = 0; i < AllItems.Count; i++)
             {
                 QuadTree.Insert(AllItems[i].ItemSprite);
-                QuadTree.Count++;
+
             }
 
             QuadTree.Insert(player.MainCollider);
-            QuadTree.Count++;
+
             QuadTree.Insert(player.BigCollider);
-            QuadTree.Count++;
+
 
 
             this.IsDark = Game1.GlobalClock.IsNight;

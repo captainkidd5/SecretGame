@@ -12,25 +12,38 @@ namespace SecretProject.Class.CollisionDetection
 {
     public class QuadTree
     {
-
-        private int MAX_OBJECTS = 20;
-        private int MAX_LEVELS =15;
+        public int TotalObjects { get; set; }
+        private int MAX_OBJECTS = 10;
+        private int MAX_LEVELS = 15;
 
         private int level;
         private List<ICollidable> Objects;
         private Rectangle bounds;
         private QuadTree[] nodes;
-        public int Count;
+
 
         public QuadTree(int pLevel, Rectangle pBounds)
         {
+            TotalObjects = 0;
             level = pLevel;
             Objects = new List<ICollidable>();
             bounds = pBounds;
             nodes = new QuadTree[4];
         }
 
+        public void Clear()
+        {
+            Objects.Clear();
 
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                if (nodes[i] != null)
+                {
+                    nodes[i].Clear();
+                    nodes[i] = null;
+                }
+            }
+        }
 
         private void Split()
         {
@@ -87,13 +100,12 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
 
-            
+
             return index;
         }
 
         public void Insert(ICollidable objectBody)
         {
-
             if (nodes[0] != null)
             {
                 int index = GetIndex(objectBody);
@@ -107,6 +119,7 @@ namespace SecretProject.Class.CollisionDetection
             }
 
             Objects.Add(objectBody);
+            this.TotalObjects++;
 
             if (Objects.Count > MAX_OBJECTS && level < MAX_LEVELS)
             {
@@ -131,11 +144,23 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
         }
-       
+
+
+        //public List<ICollidable> Retrieve(List<ICollidable> returnObjects, ICollidable objectBody)
+        //{
+        //    int index = GetIndex(objectBody);
+        //    if (index != -1 && nodes[0] != null)
+        //    {
+        //        nodes[index].Retrieve(returnObjects, objectBody);
+        //    }
+
+        //    returnObjects.AddRange(Objects);
+
+        //    return returnObjects;
+        //}
 
         public void Retrieve(List<ICollidable> returnedObjs, ICollidable obj)
         {
-
             if (nodes[0] != null)
             {
                 var index = GetIndex(obj);
@@ -151,10 +176,24 @@ namespace SecretProject.Class.CollisionDetection
                     }
                 }
             }
-            
             returnedObjs.AddRange(Objects);
         }
 
+        //private List<SquareOne> Retrieve(List<SquareOne> fSpriteList, Rect pRect)
+        //{
+        //    List<int> indexes = GetIndexes(pRect);
+        //    for (int ii = 0; ii < indexes.Count; ii++)
+        //    {
+        //        int index = indexes[ii];
+        //        if (index != -1 && nodes[0] != null)
+        //        {
+        //            nodes[index].Retrieve(fSpriteList, pRect);
+        //        }
 
+        //        fSpriteList.AddRange(objects);
+        //    }
+
+        //    return fSpriteList;
+        //}
     }
 }

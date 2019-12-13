@@ -657,6 +657,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         #endregion
 
 
+
         #region DEBUG
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {

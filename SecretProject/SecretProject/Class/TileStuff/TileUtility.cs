@@ -262,6 +262,16 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
+                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "smelt")
+                    {
+
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.GetTileKeyStringNew(layer, container)))
+                        {
+                            container.StoreableItems.Add(tileToAssign.GetTileKeyStringNew(layer, container), new Furnace(tileToAssign.GetTileKeyStringNew(layer, container), 3,
+                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice));
+                        }
+
+                    }
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
@@ -470,24 +480,24 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
-                case "smelt":
-                    if (mouse.IsClicked)
-                    {
-                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
-                        {
+                //case "smelt":
+                //    if (mouse.IsClicked)
+                //    {
+                //        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
+                //        {
 
 
-                            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool(), null);
-                            if (tempItem.SmeltedItem != 0)
-                            {
-                                Game1.Player.Inventory.RemoveItem(tempItem.ID);
-                                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(tempItem.SmeltedItem, null));
-                                Game1.SoundManager.FurnaceLight.Play();
-                            }
-                        }
-                    }
+                //            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool(), null);
+                //            if (tempItem.SmeltedItem != 0)
+                //            {
+                //                Game1.Player.Inventory.RemoveItem(tempItem.ID);
+                //                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(tempItem.SmeltedItem, null));
+                //                Game1.SoundManager.FurnaceLight.Play();
+                //            }
+                //        }
+                //    }
 
-                    break;
+                //    break;
 
                 case "triggerLift":
                     if (mouse.IsClicked)
@@ -531,6 +541,16 @@ namespace SecretProject.Class.TileStuff
                         Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
                        
+
+                    }
+                    break;
+                case "smelt":
+                    mouse.ChangeMouseTexture(CursorType.Normal);
+                    if (mouse.IsClicked)
+                    {
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+
 
                     }
                     break;

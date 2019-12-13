@@ -69,7 +69,7 @@ namespace SecretProject.Class.EventStuff
                     if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
                         Game1.freeze = true;
-                        Game1.Dobbin.UpdateDirectionVector(Game1.Player.position);
+                       // Game1.Dobbin.UpdateDirectionVector(Game1.Player.position);
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "Hmm... Where did I leave my seeds again?", 2f, null, null);
                         CurrentStep = 1;
                     }
@@ -82,7 +82,7 @@ namespace SecretProject.Class.EventStuff
                         Game1.Dobbin.EventMoveToTile(gameTime, new Point(1,1));
                         if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                         {
-                            Game1.Dobbin.UpdateDirectionVector(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y - 10));
+                          //  Game1.Dobbin.UpdateDirectionVector(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y - 10));
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                                 "Hey, are you okay!?", 2f, null, null);
                             CurrentStep = 2;

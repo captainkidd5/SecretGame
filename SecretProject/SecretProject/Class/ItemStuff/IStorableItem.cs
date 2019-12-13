@@ -11,16 +11,24 @@ namespace SecretProject.Class.ItemStuff
     public enum StorableItemType
     {
         Chest = 1,
-        Cauldron = 2
+        Cauldron = 2,
+        Furnace = 3
     }
-    public interface IStorableItem
+    public interface IStorableItemBuilding
     {
+        string ID { get; set; }
         StorableItemType StorableItemType { get; set; }
         Inventory Inventory { get; set; }
+        GraphicsDevice GraphicsDevice { get; set; }
+        List<ItemStorageSlot> ItemSlots { get; set; }
         bool IsInventoryHovered { get; set; }
         bool IsUpdating { get; set; }
-         int Size { get; set; }
+        bool FreezesGame { get; set; }
+        int Size { get; set; }
         Vector2 Location { get; set; }
+         Rectangle BackDropSourceRectangle { get; set; }
+         Vector2 BackDropPosition { get; set; }
+         float BackDropScale { get; set; }
 
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);

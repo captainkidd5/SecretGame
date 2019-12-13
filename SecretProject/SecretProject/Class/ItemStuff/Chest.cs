@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
-    public class Chest : IStorableItem
+    public class Chest : IStorableItemBuilding
     {
         public StorableItemType StorableItemType { get; set; }
         public string ID { get; set; }
@@ -20,6 +20,16 @@ namespace SecretProject.Class.ItemStuff
         public bool IsUpdating { get; set; }
         public bool IsRandomlyGenerated { get; set; }
         public bool IsInventoryHovered { get; set; }
+
+
+
+        public GraphicsDevice GraphicsDevice { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<ItemStorageSlot> ItemSlots { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle BackDropSourceRectangle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Vector2 BackDropPosition { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public float BackDropScale { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         List<Button> AllButtons;
         Button RedEsc;
         public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)

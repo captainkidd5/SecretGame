@@ -41,7 +41,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
@@ -89,7 +89,7 @@ namespace SecretProject.Class.TileStuff
             Objects = new Dictionary<string, List<ICollidable>>();
             AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             TileHitPoints = new Dictionary<string, int>();
-            StoreableItems = new Dictionary<string, IStorableItem>();
+            StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             AllTiles = new List<Tile[,]>();
             Lights = new List<LightSource>();
@@ -143,7 +143,7 @@ namespace SecretProject.Class.TileStuff
 
 
                     binaryWriter.Write(StoreableItems.Count);
-                    foreach (KeyValuePair<string, IStorableItem> storeableItem in this.StoreableItems)
+                    foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
                     {
 
                         binaryWriter.Write(storeableItem.Key);
@@ -231,7 +231,7 @@ namespace SecretProject.Class.TileStuff
                     }
 
 
-                    this.StoreableItems = new Dictionary<string, IStorableItem>();
+                    this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
                     int storableItemCount = binaryReader.ReadInt32();
                     for (int c = 0; c < storableItemCount; c++)
                     {

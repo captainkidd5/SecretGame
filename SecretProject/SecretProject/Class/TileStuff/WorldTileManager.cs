@@ -58,7 +58,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<string, ICollidable> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
@@ -121,7 +121,7 @@ namespace SecretProject.Class.TileStuff
             TileHitPoints = new Dictionary<string, int>();
             CurrentObjects = new Dictionary<string, ICollidable>();
 
-            StoreableItems = new Dictionary<string, IStorableItem>();
+            StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             Lights = new List<LightSource>();
 
             CurrentObjects = new Dictionary<string, ICollidable>();

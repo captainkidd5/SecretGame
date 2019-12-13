@@ -812,6 +812,7 @@
 <TextureRow>15</TextureRow>
 <Price>80</Price>
 <PlaceID>2139</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

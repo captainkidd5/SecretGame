@@ -69,7 +69,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, int> TileHitPoints { get; set; }
        // public List<ICollidable> Objects { get; set; }
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
-        public Dictionary<string, IStorableItem> StoreableItems { get; set; }
+        public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
@@ -128,7 +128,7 @@ namespace SecretProject.Class.TileStuff
             Tufts = new Dictionary<string, List<GrassTuft>>();
             TileHitPoints = new Dictionary<string, int>();
             Lights = new List<LightSource>();
-            StoreableItems = new Dictionary<string, IStorableItem>();
+            StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             Crops = new Dictionary<string, Crop>();
             ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += this.HandleClockChange;

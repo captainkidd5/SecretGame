@@ -87,7 +87,7 @@ namespace SecretProject.Class.UI
         public bool IsAnyStorageItemOpen { get; set; }
 
 
-        public IStorableItem CurrentAccessedStorableItem { get; set; }
+        public IStorableItemBuilding CurrentAccessedStorableItem { get; set; }
 
         public HealthBar PlayerHealthBar { get; set; }
         public StaminaBar PlayerStaminaBar { get; set; }
