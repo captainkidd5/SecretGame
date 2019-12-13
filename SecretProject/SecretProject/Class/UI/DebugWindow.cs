@@ -25,6 +25,9 @@ namespace SecretProject.Class.UI
         public Button SpeedClockUp { get; set; }
         public Button SlowClockDown { get; set; }
 
+        public Button IncrementDay { get; set; }
+        
+
         public Button WeatherNone { get; set; }
         public Button WeatherRain { get; set; }
         public Button WeatherSunny { get; set; }
@@ -35,6 +38,7 @@ namespace SecretProject.Class.UI
             DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(this.position.X, this.position.Y - 200), CursorType.Normal);
             SpeedClockUp = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
             SlowClockDown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 32, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
+            IncrementDay = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(384, 528, 32, 16), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f + 64, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
 
             WeatherNone = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth / 2, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
             WeatherRain = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth *.6f, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
@@ -64,6 +68,11 @@ namespace SecretProject.Class.UI
             }
             SpeedClockUp.Update(Game1.myMouseManager);
             SlowClockDown.Update(Game1.myMouseManager);
+            IncrementDay.Update(Game1.myMouseManager);
+            if(IncrementDay.isClicked)
+            {
+                Game1.GlobalClock.IncrementDay();
+            }
             if(SpeedClockUp.isClicked)
             {
                 Clock.ClockMultiplier++;
@@ -79,18 +88,18 @@ namespace SecretProject.Class.UI
             }
             if(WeatherNone.isClicked)
             {
-                Game1.GetCurrentStage().CurrentWeather = WeatherType.None;
-                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+                Game1.CurrentWeather = WeatherType.None;
+                Console.WriteLine(Game1.CurrentWeather.ToString());
             }
             if (WeatherSunny.isClicked)
             {
-                Game1.GetCurrentStage().CurrentWeather = WeatherType.Sunny;
-                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+                Game1.CurrentWeather = WeatherType.Sunny;
+                Console.WriteLine(Game1.CurrentWeather.ToString());
             }
             if (WeatherRain.isClicked)
             {
-                Game1.GetCurrentStage().CurrentWeather = WeatherType.Rainy;
-                Console.WriteLine(Game1.GetCurrentStage().CurrentWeather.ToString());
+                Game1.CurrentWeather = WeatherType.Rainy;
+                Console.WriteLine(Game1.CurrentWeather.ToString());
             }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
@@ -119,6 +128,7 @@ namespace SecretProject.Class.UI
                 DebugButton1.Draw(spriteBatch);
                 SpeedClockUp.Draw(spriteBatch);
                 SlowClockDown.Draw(spriteBatch);
+                IncrementDay.Draw(spriteBatch);
                 for(int i =0; i < WeatherButtons.Count; i++)
                 {
                     WeatherButtons[i].Draw(spriteBatch);

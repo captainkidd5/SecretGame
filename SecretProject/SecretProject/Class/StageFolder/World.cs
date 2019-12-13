@@ -31,7 +31,7 @@ namespace SecretProject.Class.StageFolder
 {
     public class World : ILocation
     {
-
+        public LocationType LocationType { get; set; }
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
@@ -80,12 +80,11 @@ namespace SecretProject.Class.StageFolder
 
         public QuadTree QuadTree { get; set; }
         public List<RisingText> AllRisingText { get; set; }
-        public WeatherType CurrentWeather { get; set; }
 
         public Effect CurrentEffect;
 
 
-        public World(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public World(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
             this.TileHeight = 16;
@@ -93,6 +92,7 @@ namespace SecretProject.Class.StageFolder
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
 
             this.StageName = name;
+            this.LocationType = locationType;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
@@ -103,7 +103,6 @@ namespace SecretProject.Class.StageFolder
 
             this.OnScreenNPCS = new List<INPC>();
 
-            this.CurrentWeather = WeatherType.None;
 
         }
 
@@ -309,9 +308,9 @@ namespace SecretProject.Class.StageFolder
             
 
             TextBuilder.Update(gameTime);
-            if (CurrentWeather != WeatherType.None)
+            if (Game1.CurrentWeather != WeatherType.None)
             {
-                Game1.AllWeather[CurrentWeather].Update(gameTime);
+                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime);
             }
             ParticleEngine.Update(gameTime);
             foreach (Character character in Game1.AllCharacters)
@@ -414,9 +413,9 @@ namespace SecretProject.Class.StageFolder
                 graphics.Clear(Color.Transparent);
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
-                if (CurrentWeather != WeatherType.None)
+                if (Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[CurrentWeather].Draw(spriteBatch);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch);
                 }
                 ParticleEngine.Draw(spriteBatch);
                 foreach (Character character in CharactersPresent)

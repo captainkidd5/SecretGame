@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.UI;
+using SecretProject.Class.Weather;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.Universal
@@ -102,7 +103,25 @@ namespace SecretProject.Class.Universal
                 WeekDay = DayOfWeek.Monday;
             }
             OnDayChanged(this, EventArgs.Empty);
+            PickWeather();
         }
+
+        public void PickWeather()
+        {
+            
+            float totalSum = Game1.AllWeather.Sum(x => x.Value.ChanceToOccur);
+            float selection = Game1.Utility.RFloat(0, totalSum);
+            float sum = 0;
+            foreach(KeyValuePair<WeatherType, IWeather> value in Game1.AllWeather)
+            {
+                if(selection <= (sum = sum + value.Value.ChanceToOccur))
+                {
+                    Game1.CurrentWeather = value.Value.WeatherType;
+                    return;
+                }
+            }
+        }
+        
 
         public void Update(GameTime gameTime)
         {

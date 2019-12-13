@@ -27,9 +27,14 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
 {
+    public enum LocationType
+    {
+        Exterior = 1,
+        Interior = 2
+    }
     public interface ILocation
     {
-        WeatherType CurrentWeather { get; set; }
+        LocationType LocationType { get; set; }
         int StageIdentifier { get; set; }
         string StageName { get; set; }
         int TileWidth { get; set; }

@@ -28,7 +28,7 @@ namespace SecretProject.Class.ParticileStuff
             Position += Velocity;
             if (Position.Y > BaseY + Game1.Utility.RGenerator.Next(100, 400))
             {
-                //Position = new Vector2(Position.X, Position.Y - Velocity.Y);
+                Position = new Vector2(Position.X, Position.Y - Velocity.Y);
             }
             //Position = new Vector2(Position.X, Position.Y )
            // Angle += AngularVelocity;

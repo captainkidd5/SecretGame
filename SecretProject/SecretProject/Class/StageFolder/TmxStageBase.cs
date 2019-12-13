@@ -39,6 +39,7 @@ namespace SecretProject.Class.StageFolder
     {
 
         #region FIELDS
+        public LocationType LocationType { get; set; }
         public int StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
@@ -127,20 +128,16 @@ namespace SecretProject.Class.StageFolder
         public List<RisingText> AllRisingText { get; set; }
 
 
-        public WeatherType CurrentWeather { get; set; }
-
-
-
-
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
+            this.LocationType = locationType;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
@@ -157,7 +154,6 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
             AllRisingText = new List<RisingText>();
-            CurrentWeather = WeatherType.None;
         }
 
         public virtual void LoadPreliminaryContent()
@@ -333,10 +329,14 @@ namespace SecretProject.Class.StageFolder
             }
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
-            if (CurrentWeather != WeatherType.None)
+            if(this.LocationType == LocationType.Exterior)
             {
-                Game1.AllWeather[CurrentWeather].Update(gameTime);
+                if (Game1.CurrentWeather != WeatherType.None)
+                {
+                    Game1.AllWeather[Game1.CurrentWeather].Update(gameTime);
+                }
             }
+           
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
@@ -430,9 +430,9 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                if (CurrentWeather != WeatherType.None)
+                if (Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[CurrentWeather].Draw(spriteBatch);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch);
                 }
                 if (this.BackDropNumber == 1)
                 {

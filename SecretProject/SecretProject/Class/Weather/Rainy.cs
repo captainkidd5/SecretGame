@@ -11,14 +11,18 @@ namespace SecretProject.Class.Weather
 {
     public class Rainy : IWeather
     {
+        public WeatherType WeatherType { get; set; }
         public ParticleEngine ParticleEngine { get; set; }
         public List<Texture2D> ParticleTextures { get; set; }
         public Color WeatherTint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Texture2D RainyMask;
         public Vector2 RainyMaskPosition;
 
+        public float ChanceToOccur { get; set; }
+
         public Rainy(GraphicsDevice graphics)
         {
+            WeatherType = WeatherType.Rainy;
             ParticleTextures = new List<Texture2D>()
            {
                Game1.AllTextures.RainDrop,
@@ -26,6 +30,7 @@ namespace SecretProject.Class.Weather
 
             ParticleEngine = new ParticleEngine(ParticleTextures, new Vector2(Game1.Player.Position.X - Game1.ScreenWidth, Game1.Player.Position.Y - 100)) { AddNewParticleTimer = .0001f } ;
             RainyMask = Game1.Utility.GetColoredRectangle(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Teal);
+            this.ChanceToOccur = .7f;
         }
 
 

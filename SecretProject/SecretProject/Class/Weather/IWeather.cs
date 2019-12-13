@@ -11,10 +11,11 @@ namespace SecretProject.Class.Weather
 {
     public interface IWeather
     {
+        WeatherType WeatherType { get; set; }
         ParticleEngine ParticleEngine { get; set; }
         List<Texture2D> ParticleTextures { get; set; }
         Color WeatherTint { get; set; }
-
+        float ChanceToOccur { get; set; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
     }

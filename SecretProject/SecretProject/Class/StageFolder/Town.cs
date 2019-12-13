@@ -47,8 +47,9 @@ namespace SecretProject.Class.StageFolder
         #region CONSTRUCTOR
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
+        
 
-        public Town(string name, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
+        public Town(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name,locationType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
             this.Graphics = graphics;
             this.Content = content;
@@ -193,9 +194,9 @@ namespace SecretProject.Class.StageFolder
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
-            if (CurrentWeather != WeatherType.None)
+            if (Game1.CurrentWeather != WeatherType.None)
             {
-                Game1.AllWeather[CurrentWeather].Update(gameTime);
+                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime);
             }
             ParticleEngine.Update(gameTime);
 
@@ -280,9 +281,9 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                if(CurrentWeather != WeatherType.None)
+                if(Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[CurrentWeather].Draw(spriteBatch);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch);
                 }
                 
                 ParticleEngine.Draw(spriteBatch);
