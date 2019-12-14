@@ -225,16 +225,15 @@ namespace SecretProject.Class.StageFolder
             player.CollideOccured = false;
             QuadTree = new QuadTree(0, new Rectangle(Cam.CameraScreenRectangle.X - 800, Cam.CameraScreenRectangle.Y - 800, Cam.CameraScreenRectangle.Width + 1600, Cam.CameraScreenRectangle.Height + 1600));
 
-            for (int i = WorldTileManager.RenderDistance / 2 - 1; i < WorldTileManager.RenderDistance / 2 + 2; i++)
+            for (int i = 0; i < WorldTileManager.RenderDistance; i++)
             {
-                for (int j = WorldTileManager.RenderDistance / 2 - 1; j < WorldTileManager.RenderDistance / 2 + 2; j++)
+                for (int j = 0; j < WorldTileManager.RenderDistance ; j++)
                 {
                     if (AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
 
 
-                        if (AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(Cam.CameraScreenRectangle))
-                        {
+                        
 
                             foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.ActiveChunks[i, j].Objects)
                             {
@@ -270,7 +269,7 @@ namespace SecretProject.Class.StageFolder
 
                             }
                         }
-                    }
+                    
 
                 }
             }

@@ -15,7 +15,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Boar : Enemy
     {
-        public Boar(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container) : base(name, position, graphics, spriteSheet, container)
+        public Boar(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             NPCAnimatedSprite = new Sprite[4];
 

@@ -22,7 +22,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
     {
         Wander = 1,
         Chase = 2,
-        Hurt = 3
+        Hurt = 3,
+        Flee = 4
     }
     public class Enemy : INPC
     {
@@ -77,6 +78,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public List<PathFinderNode> CurrentPath { get; set; }
 
         public CurrentBehaviour CurrentBehaviour { get; set; }
+        public CurrentBehaviour PrimaryPlayerInterationBehavior { get; set; }
 
 
         //DAMAGE RELATED THINGS
@@ -94,7 +96,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public ObstacleGrid ObstacleGrid { get; set; }
         public float TimeInUnloadedChunk { get; set; }
 
-        public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container)
+        public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
             this.Name = name;
             this.Position = position;
@@ -108,7 +110,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.DebugColor = Color.Red;
             this.CurrentPath = new List<PathFinderNode>();
             this.CurrentBehaviour = CurrentBehaviour.Wander;
-
+            this.PrimaryPlayerInterationBehavior = primaryPlayerInteractionBehavior;
             switch (name)
             {
                 case "boar":
@@ -192,7 +194,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     CollideOccured = true;
                     if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                     {
-                        this.CurrentBehaviour = CurrentBehaviour.Chase;
+                        this.CurrentBehaviour = PrimaryPlayerInterationBehavior;
                     }
                     else if (returnObjects[i].ColliderType == ColliderType.grass)
                     {
@@ -245,6 +247,10 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                             CurrentBehaviour = CurrentBehaviour.Chase;
                         }
 
+                        break;
+
+                    case CurrentBehaviour.Flee:
+                        MoveAwayFromPoint(Game1.Player.Position, gameTime);
                         break;
                 }
 
@@ -311,6 +317,18 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
             // Return whether we've reached the goal or not
             return Position == goal;
+        }
+        public void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
+        {
+
+            this.IsMoving = true;
+
+
+            Vector2 direction = Vector2.Normalize(positionToMoveAwayFrom - Position);
+            this.DirectionVector = new Vector2(direction.X * -1, direction.Y * -1);
+
+            Position -= direction * Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
         }
         public void MoveToTile(GameTime gameTime)
         {

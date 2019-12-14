@@ -167,14 +167,14 @@ namespace SecretProject.Class.NPCStuff
             {
                 case NPCType.Boar:
                     
-                    return new Boar("boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container);
+                    return new Boar("boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
                    
 
                 case NPCType.Crab:
-                    return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container);
+                    return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
   
                 case NPCType.Rabbit:
-                    return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container);
+                    return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
 
                 default:
                     return null;
