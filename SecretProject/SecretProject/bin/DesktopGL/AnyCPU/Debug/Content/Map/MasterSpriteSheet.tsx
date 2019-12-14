@@ -104,6 +104,9 @@
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="253">
   <properties>
@@ -153,21 +156,33 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="259">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="3" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="260">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="2" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="261">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="3" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="288">
   <properties>
@@ -391,7 +406,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="10" width="6" height="4"/>
+   <object id="3" x="3" y="0" width="11" height="16"/>
   </objectgroup>
  </tile>
  <tile id="453">
@@ -443,21 +458,33 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="12" width="11" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="459">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="12" width="11" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="460">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="12" width="11" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="461">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="12" width="11" height="4"/>
+  </objectgroup>
  </tile>
  <tile id="478">
   <properties>
@@ -718,19 +745,25 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="651">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.181818" y="7.90909" width="16" height="6.36364"/>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="2" y="0" width="11" height="16"/>
   </objectgroup>
  </tile>
  <tile id="652">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="11" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="653">
   <objectgroup draworder="index">
@@ -2015,6 +2048,21 @@
   <objectgroup draworder="index">
    <object id="1" x="3" y="0.272727" width="7.72727" height="4"/>
   </objectgroup>
+ </tile>
+ <tile id="1590">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1592">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1595">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="1604">
   <properties>

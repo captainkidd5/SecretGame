@@ -704,7 +704,7 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
-            //SoundManager.PlaySong();
+           // SoundManager.PlaySong();
           //  SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
             //KEYBOARD
 

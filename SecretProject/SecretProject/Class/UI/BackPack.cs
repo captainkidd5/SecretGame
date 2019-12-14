@@ -71,19 +71,19 @@ namespace SecretProject.Class.UI
             int index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y ), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y ), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 32 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 32 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 64, 64), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 64 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1 });
+                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 64 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             TextBuilder = new TextBuilder("", .01f, 5);
@@ -394,7 +394,7 @@ namespace SecretProject.Class.UI
             {
                 if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsInventoryHovered)
                 {
-                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
+                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
                     {
                         Inventory.currentInventory[index].RemoveItemFromSlot();
                         AllSlots[index].ItemCounter--;

@@ -30,6 +30,8 @@ namespace SecretProject.Class.ItemStuff
          Vector2 BackDropPosition { get; set; }
          float BackDropScale { get; set; }
 
+        ItemStorageSlot CurrentHoveredSlot { get; set; }
+
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
     }

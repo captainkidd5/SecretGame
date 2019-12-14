@@ -66,9 +66,9 @@ namespace SecretProject.Class.CameraStuff
         public void Follow(Vector2 amount, Rectangle rectangle)
         {
 
-            pos.X = amount.X;
+            pos.X = (int)amount.X;
 
-            pos.Y = amount.Y;
+            pos.Y = (int)amount.Y;
 
             //pos.X = MathHelper.Lerp(pos.X, amount.X, .08f);
            // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);

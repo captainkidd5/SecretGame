@@ -24,6 +24,7 @@ namespace XMLData.ItemStuff
             newItem.Price = oldItem.Price;
             newItem.Plantable = oldItem.Plantable;
             newItem.SmeltedItem = oldItem.SmeltedItem;
+            newItem.FuelValue = oldItem.FuelValue;
             newItem.Durability = oldItem.Durability;
             newItem.PlaceID = oldItem.PlaceID;
             newItem.TilingSet = oldItem.TilingSet;

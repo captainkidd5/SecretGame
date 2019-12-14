@@ -66,6 +66,7 @@ namespace SecretProject.Class.ItemStuff
         int directionY = Game1.Utility.RGenerator.Next(-2, 2);
 
         public int SmeltedItem { get; set; }
+        public int FuelValue { get; set; }
         public int Durability { get; set; }
         public int PlaceID { get; set; }
         public string TilingSet { get; set; }
@@ -87,6 +88,7 @@ namespace SecretProject.Class.ItemStuff
             this.TextureRow = itemData.TextureRow;
             this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
             this.SmeltedItem = itemData.SmeltedItem;
+            this.FuelValue = itemData.FuelValue;
             this.Durability = itemData.Durability;
 
             if (itemData.Plantable)

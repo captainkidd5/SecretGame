@@ -18,8 +18,12 @@ namespace XMLData.ItemStuff
         public int TextureRow { get; set; }
         public int Price { get; set; }
 
+
         [ContentSerializer(Optional = true)]
         public int SmeltedItem { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public int FuelValue { get; set; }
 
         [ContentSerializer(Optional = true)]
         public bool Plantable { get; set; }

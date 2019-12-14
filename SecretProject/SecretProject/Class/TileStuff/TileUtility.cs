@@ -480,25 +480,6 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
-                //case "smelt":
-                //    if (mouse.IsClicked)
-                //    {
-                //        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() != -50)
-                //        {
-
-
-                //            Item tempItem = Game1.ItemVault.GenerateNewItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool(), null);
-                //            if (tempItem.SmeltedItem != 0)
-                //            {
-                //                Game1.Player.Inventory.RemoveItem(tempItem.ID);
-                //                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(tempItem.SmeltedItem, null));
-                //                Game1.SoundManager.FurnaceLight.Play();
-                //            }
-                //        }
-                //    }
-
-                //    break;
-
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
@@ -540,7 +521,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
-                       
+
 
                     }
                     break;

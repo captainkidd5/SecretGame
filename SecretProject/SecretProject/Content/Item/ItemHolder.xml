@@ -261,6 +261,7 @@
 <TextureColumn>13</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>1</Price>
+<FuelValue>1</FuelValue>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Thunderbirch Log</Name>

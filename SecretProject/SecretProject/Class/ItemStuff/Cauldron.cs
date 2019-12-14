@@ -28,6 +28,7 @@ namespace SecretProject.Class.ItemStuff
         public Inventory Inventory { get; set; }
         public Vector2 Location { get; set; }
         public List<ItemStorageSlot> ItemSlots { get; set; }
+        public ItemStorageSlot CurrentHoveredSlot { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private Button redEsc;
 
@@ -50,7 +51,7 @@ namespace SecretProject.Class.ItemStuff
             ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 3; i++)
             {
-                ItemSlots.Add(new ItemStorageSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), BackDropScale));
+                ItemSlots.Add(new ItemStorageSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), new Rectangle(208, 80, 32, 32), BackDropScale, true));
                 
             }
         }

@@ -67,9 +67,9 @@ namespace SecretProject.Class.Playable
         public SecondaryDir SecondDirection { get; set; } = SecondaryDir.Down;
         public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
-        public const float Speed1 = 50f;
+        public const float Speed1 = 1f;
         public float CurrentSpeed { get; set; }
-        public float SecondarySpeed { get; set; } = 50f;
+        public float SecondarySpeed { get; set; } = 1f;
         public Sprite[] PlayerMovementAnimations { get; set; }
         public Sprite[] PlayerActionAnimations { get; set; }
 
@@ -386,7 +386,7 @@ namespace SecretProject.Class.Playable
                     {
                         TotalVelocity = TotalVelocity * 15f;
                     }
-                    Position += TotalVelocity * dt;
+                    Position += TotalVelocity;// * dt;
                     
                     if (LockBounds)
                     {
