@@ -16,6 +16,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using TiledSharp;
@@ -660,10 +661,6 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (mouseI < 16 && mouseJ < 16 && mouseI >= 0 && mouseJ >= 0)
                 {
-                    if (mouse.IsClicked)
-                    {
-                        Console.WriteLine("debug");
-                    }
 
                     if (ChunkUnderMouse.AllTiles[z][mouseI, mouseJ] != null)
                     {
@@ -697,8 +694,11 @@ namespace SecretProject.Class.TileStuff
 
                                         Game1.isMyMouseVisible = false;
 
-
-                                        mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+                                        if((AnimationType)Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
+                                        {
+                                            mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+                                        }
+                                       
 
                                         Game1.myMouseManager.ToggleGeneralInteraction = true;
 

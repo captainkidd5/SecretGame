@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/chirp2.wav</SourceFile>
   <SourceTime>2019-12-08T10:09:52.8826594-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/chirp2.xnb</DestFile>
-  <DestTime>2019-12-08T10:19:57.7441129-08:00</DestTime>
+  <DestTime>2019-12-14T10:28:42.2118021-08:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

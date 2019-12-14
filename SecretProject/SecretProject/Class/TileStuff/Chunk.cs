@@ -499,7 +499,7 @@ namespace SecretProject.Class.TileStuff
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1586, GenerationType.Dirt, 5, 0, this); //CLUEFRUIT
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1664, GenerationType.Grass, 5, 0, this); //OAKTREE
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Grass, 5, 0, this); //SPROUTERA
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Grass, 2, 0, this); //pumpkin
+                TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Grass, 10, 0, this); //pumpkin
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 0, this); //WILLOW
                 TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 0, this); //FISSURE
                 TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak

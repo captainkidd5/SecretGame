@@ -1372,3 +1372,9 @@
 /processorParam:TextureFormat=Color
 /build:Particles/raindrop.png
 
+#begin SoundEffects/rainSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/rainSound.wav
+

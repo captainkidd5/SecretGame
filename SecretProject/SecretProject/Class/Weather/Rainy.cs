@@ -38,6 +38,7 @@ namespace SecretProject.Class.Weather
         {
             ParticleEngine.UpdateWeather(gameTime);
             RainyMaskPosition = new Vector2(Game1.cam.Pos.X - Game1.ScreenWidth/2, Game1.cam.Pos.Y - Game1.ScreenHeight/2);
+            Game1.SoundManager.PlaySoundEffectOnce(Game1.SoundManager.LightRainInstance);
         }
 
         public void Draw(SpriteBatch spriteBatch)

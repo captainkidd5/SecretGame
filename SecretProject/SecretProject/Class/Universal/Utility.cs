@@ -96,6 +96,7 @@ namespace SecretProject.Class.Universal
                 default: return AnimationType.Mining;
             }
         }
+
         public int GetTileHitpoints(string info)
         {
             int pointsToReturn = int.Parse(info.Split(',')[1]);

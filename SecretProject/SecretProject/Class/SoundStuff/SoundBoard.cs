@@ -13,7 +13,7 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } = 0f;
+        public float GameVolume { get; set; } = 1f;
         //Sound Effects are WAV
         //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
@@ -50,11 +50,13 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect Chirp3;
 
-
+        //AMBIENT
         public SoundEffect Crickets1;
 
 
         public SoundEffect OwlHoot1;
+        public SoundEffect LightRain;
+        public SoundEffectInstance LightRainInstance;
 
 
         public SoundEffect PigGrunt;
@@ -143,8 +145,8 @@ namespace SecretProject.Class.SoundStuff
 
 
             Crickets1 = content.Load<SoundEffect>("SoundEffects/crickets1");
-
-
+            LightRain = content.Load<SoundEffect>("SoundEffects/rainSound");
+            LightRainInstance = LightRain.CreateInstance();
             OwlHoot1 = content.Load<SoundEffect>("SoundEffects/owlHoot1");
 
 
@@ -225,6 +227,14 @@ namespace SecretProject.Class.SoundStuff
             //instance.Play();
             //instance.Dispose();
             soundEffect.Play(GameVolume, 0f, 1f);
+        }
+
+        public void PlaySoundEffectOnce(SoundEffectInstance soundEffect)
+        {
+            if(soundEffect.State == SoundState.Stopped)
+            {
+                soundEffect.Play();
+            }
         }
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey)
