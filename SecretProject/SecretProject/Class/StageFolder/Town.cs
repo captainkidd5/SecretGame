@@ -196,7 +196,7 @@ namespace SecretProject.Class.StageFolder
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
             if (Game1.CurrentWeather != WeatherType.None)
             {
-                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime);
+                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, LocationType);
             }
             ParticleEngine.Update(gameTime);
 
@@ -283,7 +283,7 @@ namespace SecretProject.Class.StageFolder
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                 if(Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, LocationType);
                 }
                 
                 ParticleEngine.Draw(spriteBatch);

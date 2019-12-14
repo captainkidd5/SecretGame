@@ -310,7 +310,7 @@ namespace SecretProject.Class.StageFolder
             TextBuilder.Update(gameTime);
             if (Game1.CurrentWeather != WeatherType.None)
             {
-                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime);
+                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, LocationType);
             }
             ParticleEngine.Update(gameTime);
             foreach (Character character in Game1.AllCharacters)
@@ -415,7 +415,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics), effect: currentEffect);
                 if (Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, LocationType);
                 }
                 ParticleEngine.Draw(spriteBatch);
                 foreach (Character character in CharactersPresent)

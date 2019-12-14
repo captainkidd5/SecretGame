@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,12 @@ namespace SecretProject.Class.Weather
             this.WeatherType = WeatherType.Sunny;
             this.ChanceToOccur = .3f;
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, LocationType locationType)
         {
-
+            Game1.SoundManager.PlaySoundEffectOnce(Game1.SoundManager.SunnySoundsInstance, LocationType.Exterior);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, LocationType locationType)
         {
 
         }

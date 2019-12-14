@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.SoundStuff
 {
@@ -57,6 +58,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect OwlHoot1;
         public SoundEffect LightRain;
         public SoundEffectInstance LightRainInstance;
+
+        public SoundEffect SunnySounds;
+        public SoundEffectInstance SunnySoundsInstance;
 
 
         public SoundEffect PigGrunt;
@@ -147,6 +151,10 @@ namespace SecretProject.Class.SoundStuff
             Crickets1 = content.Load<SoundEffect>("SoundEffects/crickets1");
             LightRain = content.Load<SoundEffect>("SoundEffects/rainSound");
             LightRainInstance = LightRain.CreateInstance();
+            SunnySounds = content.Load<SoundEffect>("SoundEffects/DayTimeAmbience");
+            SunnySoundsInstance = SunnySounds.CreateInstance();
+
+
             OwlHoot1 = content.Load<SoundEffect>("SoundEffects/owlHoot1");
 
 
@@ -229,11 +237,23 @@ namespace SecretProject.Class.SoundStuff
             soundEffect.Play(GameVolume, 0f, 1f);
         }
 
-        public void PlaySoundEffectOnce(SoundEffectInstance soundEffect)
+        public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
         {
-            if(soundEffect.State == SoundState.Stopped)
+            if (Game1.GetCurrentStage() != null)
             {
-                soundEffect.Play();
+
+
+                if (Game1.GetCurrentStage().LocationType == locationType)
+                {
+                    if (soundEffect.State == SoundState.Stopped)
+                    {
+                        soundEffect.Play();
+                    }
+                }
+                else
+                {
+                    soundEffect.Stop();
+                }
             }
         }
 

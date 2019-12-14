@@ -1378,3 +1378,9 @@
 /processorParam:Quality=Best
 /build:SoundEffects/rainSound.wav
 
+#begin SoundEffects/DayTimeAmbience.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/DayTimeAmbience.wav
+

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace SecretProject.Class.Weather
         List<Texture2D> ParticleTextures { get; set; }
         Color WeatherTint { get; set; }
         float ChanceToOccur { get; set; }
-        void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch);
+        void Update(GameTime gameTime, LocationType locationType);
+        void Draw(SpriteBatch spriteBatch, LocationType locationType);
     }
 }

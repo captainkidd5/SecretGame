@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ParticileStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,17 +35,23 @@ namespace SecretProject.Class.Weather
         }
 
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, LocationType locationType)
         {
+            
             ParticleEngine.UpdateWeather(gameTime);
             RainyMaskPosition = new Vector2(Game1.cam.Pos.X - Game1.ScreenWidth/2, Game1.cam.Pos.Y - Game1.ScreenHeight/2);
-            Game1.SoundManager.PlaySoundEffectOnce(Game1.SoundManager.LightRainInstance);
+            Game1.SoundManager.PlaySoundEffectOnce(Game1.SoundManager.LightRainInstance, LocationType.Exterior);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch,LocationType locationType)
         {
-            ParticleEngine.Draw(spriteBatch);
-            spriteBatch.Draw(this.RainyMask, RainyMaskPosition, null, Color.White * .5f, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f); ;
+            if (locationType == LocationType.Exterior)
+            {
+
+
+                ParticleEngine.Draw(spriteBatch);
+                spriteBatch.Draw(this.RainyMask, RainyMaskPosition, null, Color.White * .5f, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+            }
         }
 
         
