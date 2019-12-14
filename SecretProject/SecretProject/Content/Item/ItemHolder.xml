@@ -340,6 +340,7 @@
 <TextureColumn>16</TextureColumn>
 <TextureRow>0</TextureRow>
 <Price>10</Price>
+<SmeltedItem>680</SmeltedItem>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

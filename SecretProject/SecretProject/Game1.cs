@@ -556,8 +556,9 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
             }
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(520, null));
 
-              
 
 
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
