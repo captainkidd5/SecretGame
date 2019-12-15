@@ -196,21 +196,21 @@ namespace SecretProject.Class.TileStuff
                 if (perlinValue >= .2f && perlinValue <= 1f)
                 {
                     newGID = 1006;
-                   // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                    // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
                 }
                 else if (perlinValue >= .12f && perlinValue <= .2f)
                 {
-                   // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
+                    // newGID = Game1.Procedural.StandardGeneratableDirtTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
                     newGID = 1006;
                 }
                 else if (perlinValue >= .1f && perlinValue <= .12f)
                 {
-                    newGID = 930;//Stone
+                    newGID = 1006;//Dirt
                 }
                 else if (perlinValue >= .07f && perlinValue <= .1f)
                 {
 
-                    newGID = 2935; //dirt cliff
+                    newGID = 1006;//Dirt
 
                 }
                 else if (perlinValue >= .02f && perlinValue <= .07f)
@@ -247,19 +247,39 @@ namespace SecretProject.Class.TileStuff
             else if (layer == 1)
             {
                 if (perlinValue >= -.1f && perlinValue <= .0f)
-                { 
-                    newGID = 1015;
+                {
+                    newGID = 1015;//GRASS
+                }
+                else if (perlinValue >= .1f && perlinValue <= .12f)
+                {
+                    newGID = 930;//Stone
+                }
+                else if (perlinValue >= .07f && perlinValue <= .1f)
+                {
+
+                    newGID = 930;//Stone
+
                 }
                 else if (perlinValue >= .15f && perlinValue <= .3f)
                 {
-                    newGID = 1015;
+                    newGID = 1015; //GRASS
                 }
+
                 else if (perlinValue >= -1f && perlinValue < -.15f)
                 {
                     newGID = 1622;//SANDRUIN
                 }
             }
-            return newGID;
+            else if (layer == 2)
+            {
+                if (perlinValue >= .07f && perlinValue <= .1f)
+                {
+
+                    newGID = 2935; //dirt cliff
+
+                }
+            }
+                return newGID;
         }
 
         public void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
@@ -352,12 +372,14 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-                if (tilingDictionary ==  Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].TilingDictionary)
-                {
-                    TileUtility.ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
+                container.AllTiles[layer][x, y].GID = tilingDictionary[keyToCheck] + 1;
+               // TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
+                //if (tilingDictionary ==  Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].TilingDictionary)
+                //{
+                //    TileUtility.ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
 
-                }
+
+                //}
             }
 
 

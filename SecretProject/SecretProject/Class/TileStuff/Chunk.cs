@@ -406,53 +406,18 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
-                        if (z > 1)
-                        {
-                            AllTiles[z][i, j] = new Tile(i, j, 0);
-                        }
-                        else
-                        {
+
      
                             int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
-
-                            AllTiles[z][i, j] = new Tile(this.X * TileUtility.ChunkWidth + i, this.Y * TileUtility.ChunkHeight + j, newGID);
-                            if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(newGID))
-                            {
-                                if (Game1.Utility.RGenerator.Next(0, 10) < 2)
-                                {
-                                    int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
-                                    List<GrassTuft> tufts = new List<GrassTuft>();
-                                    for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
-                                    {
-                                        int grassType = Game1.Utility.RGenerator.Next(1, 5);
-                                        GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).X
-                                            + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(AllTiles[0][i, j]).Y + Game1.Utility.RGenerator.Next(-8, 8)));
-                                        grassTuft.TuftsIsPartOf = tufts;
-                                        tufts.Add(grassTuft);
-                                        if (Tufts.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)) || Objects.ContainsKey(AllTiles[0][i, j].GetTileKeyStringNew(0, this)))
-                                        {
-
-                                        }
-                                        else
-                                        {
-                                            Tufts.Add(AllTiles[0][i, j].GetTileKeyStringNew(0, this), tufts);
-
-                                        }
-
-
-
-                                    }
-                                }
-
-                            }
-
-                        }
+                            AllTiles[z][i, j] = new Tile( i,  j, newGID);
+                            
+                        
 
                     }
                 }
             }
 
-            for (int z = 0; z < 2; z++)
+            for (int z = 0; z < 4; z++)
             {
 
 
@@ -558,13 +523,18 @@ namespace SecretProject.Class.TileStuff
                         //    }
                         //}
 
-                        if (z > 1)
-                        {
-                            AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
-                            AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
-                        }
+                        //if (z > 1)
+                        //{
+                        AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                        AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                        //}
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        if(z == 1)
+                        {
+                            AddGrassTufts(AllTiles[z][i, j]);
+                        }
+                        
                     }
                 }
             }
@@ -590,6 +560,46 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
         }
 
+
+        public void AddGrassTufts(Tile tile)
+        {
+            if (tile.GID != -1)
+            {
+
+
+
+
+                if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(tile.GID))
+                {
+                    if (Game1.Utility.RGenerator.Next(0, 10) < 2)
+                    {
+                        int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                        List<GrassTuft> tufts = new List<GrassTuft>();
+                        for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                        {
+                            int grassType = Game1.Utility.RGenerator.Next(1, 5);
+                            GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
+                                + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + Game1.Utility.RGenerator.Next(-8, 8)));
+                            grassTuft.TuftsIsPartOf = tufts;
+                            tufts.Add(grassTuft);
+                            if (Tufts.ContainsKey(tile.GetTileKeyStringNew(0, this)) || Objects.ContainsKey(tile.GetTileKeyStringNew(0, this)))
+                            {
+
+                            }
+                            else
+                            {
+                                Tufts.Add(tile.GetTileKeyStringNew(0, this), tufts);
+
+                            }
+
+
+
+                        }
+                    }
+
+                }
+            }
+        }
         //DEBUG
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {
