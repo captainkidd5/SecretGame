@@ -14,19 +14,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;   
+using System.Threading.Tasks;
 using TiledSharp;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
-    
+
     public static class TileUtility
     {
         public static int ChunkWidth = 16;
         public static int ChunkHeight = 16;
 
-       
+
 
         #region GETRECTANGLES
         public static Rectangle GetDestinationRectangle(Tile tile)
@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="layer"></param>
         /// <param name="ActiveChunks"></param>
         /// <returns></returns>
-        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
+        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks, bool allowChunkLoading = false)
         {
             int chunkX = (int)Math.Floor((float)tileX / 16.0f);
 
@@ -91,10 +91,20 @@ namespace SecretProject.Class.TileStuff
             Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
             if (chunk == null)
             {
-                return null;
+                if (allowChunkLoading)
+                {
+                    //if(Chunk.CheckIfChunkExistsInMemory(chunkX, chunkY))
+                    //{
+                    //    chunk = new Chunk()
+                    //}
+                    return null;
+                }
+                else
+                { return null; }
+
             }
 
-            int localX = (int)Math.Floor((float)(tileX  - chunkX * 16));
+            int localX = (int)Math.Floor((float)(tileX - chunkX * 16));
             int localY = (int)Math.Floor((float)(tileY - chunkY * 16));
 
             if (localX > 15)
@@ -162,9 +172,9 @@ namespace SecretProject.Class.TileStuff
         /// <param name="tileToAssign"></param>
         /// <param name="layer"></param>
         /// <param name="x"></param>
-        /// <param name="oldY"></param>
+        /// <param name="y"></param>
         /// <param name="container"></param>
-        public static void AssignProperties(Tile tileToAssign, int layer, int x, int oldY, IInformationContainer container)
+        public static void AssignProperties(Tile tileToAssign, int layer, int x, int y, IInformationContainer container)
         {
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
@@ -194,7 +204,7 @@ namespace SecretProject.Class.TileStuff
                         int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[index]].Id;
                         //basically, if any tile in the associated tiles already contains a tile in the same layer we'll just stop
 
-                        intermediateNewTiles.Add(new Tile(x + intGidX, oldY + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
+                        intermediateNewTiles.Add(new Tile(x + intGidX, y + intGidY, totalGID + 1) { LayerToDrawAt = intTilePropertyLayer });
                     }
 
                     if (x != 79)
@@ -212,12 +222,12 @@ namespace SecretProject.Class.TileStuff
                 {
 
                     List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                   // frames.Add(new EditableAnimationFrame(new AnimationFrameHolder();
+                    // frames.Add(new EditableAnimationFrame(new AnimationFrameHolder();
                     for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                     {
                         frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, oldY, layer, tileToAssign.GID);
+                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID);
                     container.AnimationFrames.Add(tileToAssign.GetTileKeyStringNew(layer, container), frameHolder);
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
@@ -316,7 +326,7 @@ namespace SecretProject.Class.TileStuff
                     container.Objects[key].Add(tempObjectBody);
 
 
-                   // reassignGrid = false;
+                    // reassignGrid = false;
                     if (container.Type == 0)
                     {
                         int startI = rectangleCoords[0] / 16;
@@ -330,16 +340,33 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = startJ; j < endJ; j++)
                             {
-                                container.PathGrid.UpdateGrid(x + i, oldY + j, 0);
+                                container.PathGrid.UpdateGrid(x + i, y + j, 0);
                             }
                         }
                     }
+                }
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("cliffBlock"))
+                {
+                    int numberToBlock = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["cliffBlock"]);
+                    for (int blockLayer = 0; blockLayer < 3; blockLayer++)
+                    {
+                        for (int b = 0; b < numberToBlock; b++)
+                        {
+                            Tile oldCliffTile = GetChunkTile(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + b, blockLayer, Game1.GetCurrentStage().AllTiles.ActiveChunks, true);
+                            if(oldCliffTile != null)
+                            {
+                                oldCliffTile = new Tile(oldCliffTile.X, oldCliffTile.Y, 0);
+                            }
+                            
+                        }
+                    }
+
                 }
 
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
 
-                    container.PathGrid.UpdateGrid(x, oldY, 0);
+                    container.PathGrid.UpdateGrid(x, y, 0);
 
                     string key = tileToAssign.GetTileKeyStringNew(layer, container);
                     if (container.Objects.ContainsKey(key))
@@ -372,7 +399,7 @@ namespace SecretProject.Class.TileStuff
             }
 
         }
-       
+
         /// <summary>
         /// For use with the "action" tile property. Does a number of various things depending on what the property is. May change the cursor texture.
         /// </summary>
@@ -420,8 +447,8 @@ namespace SecretProject.Class.TileStuff
                                             int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
 
 
-                                           WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[1].GeneratableTiles,
-                                       Game1.Procedural.AllTilingContainers[1].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
+                                            WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[1].GeneratableTiles,
+                                        Game1.Procedural.AllTilingContainers[1].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
 
                                             break;
                                     }
@@ -433,7 +460,7 @@ namespace SecretProject.Class.TileStuff
 
                 case "plantable":
                     Game1.Player.UserInterface.DrawTileSelector = true;
-                  
+
 
                     if (mouse.IsClicked)
                     {
@@ -471,7 +498,7 @@ namespace SecretProject.Class.TileStuff
                         Game1.GlobalClock.TotalHours = 6;
                     }
                     break;
-                
+
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
@@ -549,14 +576,14 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-       
+
 
         #region TILEREPLACEMENT AND INTERACTIONS
         public static void ReplaceTile(int layer, int tileToReplaceX, int tileToReplaceY, int newTileGID, IInformationContainer container)
         {
             Tile ReplaceMenttile = new Tile(container.AllTiles[layer][tileToReplaceX, tileToReplaceY].X, container.AllTiles[layer][tileToReplaceX, tileToReplaceY].Y, newTileGID);
             AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
-           
+
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
         }
 
@@ -602,7 +629,7 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public static void DestroySpawnWithTiles(Tile baseTile, int xCoord, int yCoord,IInformationContainer container)
+        public static void DestroySpawnWithTiles(Tile baseTile, int xCoord, int yCoord, IInformationContainer container)
         {
             List<Tile> tilesToReturn = new List<Tile>();
             string value = "";
@@ -624,7 +651,7 @@ namespace SecretProject.Class.TileStuff
                     int intTilePropertyLayer = int.Parse(tilePropertyLayer);
 
                     int totalGID = container.MapName.Tilesets[container.TileSetNumber].Tiles[spawnsWith[i]].Id;
-                    if(container.Objects.ContainsKey(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyStringNew(intTilePropertyLayer, container)))
+                    if (container.Objects.ContainsKey(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyStringNew(intTilePropertyLayer, container)))
                     {
                         container.Objects.Remove(container.AllTiles[intTilePropertyLayer][xCoord + intGidX, yCoord + intGidY].GetTileKeyStringNew(intTilePropertyLayer, container));
                     }
@@ -634,22 +661,22 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-            /// <summary>
-            /// For use with the destructable tile property. May trigger player animation and/or reduce tile hitpoints.
-            /// </summary>
-            /// <param name="layer"></param>
-            /// <param name="gameTime"></param>
-            /// <param name="x"></param>
-            /// <param name="y"></param>
-            /// <param name="destinationRectangle"></param>
-            /// <param name="container"></param>
+        /// <summary>
+        /// For use with the destructable tile property. May trigger player animation and/or reduce tile hitpoints.
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="gameTime"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="destinationRectangle"></param>
+        /// <param name="container"></param>
         public static void InteractWithDestructableTile(int layer, GameTime gameTime, int x, int y, Rectangle destinationRectangle, IInformationContainer container)
         {
 
             if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)) && !Game1.Player.IsPerformingAction)
             {
                 AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]);
-               
+
                 if (actionType == AnimationType.HandsPicking)  //this is out here because any equipped item should be able to pick it up no matter what
                 {
                     FinalizeTile(layer, gameTime, x, y, container, delayTimer: .25f);
@@ -693,7 +720,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="delayTimer"></param>
         public static void FinalizeTile(int layer, GameTime gameTime, int x, int y, IInformationContainer container, float delayTimer = 0f)
         {
-           
+
 
             if (container.Objects.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))
             {
@@ -715,7 +742,7 @@ namespace SecretProject.Class.TileStuff
                 List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
                 itemToCheckForReassasignTiling = Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
-            
+
             if (container.Crops.ContainsKey(container.AllTiles[1][x, y].GetTileKeyStringNew(layer, container)))
             {
                 container.Crops.Remove(container.AllTiles[1][x, y].GetTileKeyStringNew(layer, container));
@@ -726,19 +753,19 @@ namespace SecretProject.Class.TileStuff
 
             TileUtility.ReplaceTile(layer, x, y, 0, container);
 
-           // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
-            if(itemToCheckForReassasignTiling != null)
+            // this is used to see if that tile should tell other tiles around it to check their tiling, as this one may affect it.
+            if (itemToCheckForReassasignTiling != null)
             {
-                if(itemToCheckForReassasignTiling.GenerationType != 0)
+                if (itemToCheckForReassasignTiling.GenerationType != 0)
                 {
                     TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGenerationType(itemToCheckForReassasignTiling.GenerationType);
                     WangManager.GroupReassignForTiling((int)Game1.myMouseManager.WorldMousePosition.X, (int)Game1.myMouseManager.WorldMousePosition.Y, -1, tilingContainer.GeneratableTiles,
                         tilingContainer.TilingDictionary,
                    itemToCheckForReassasignTiling.TilingLayer, Game1.GetCurrentStage().AllTiles);
                 }
-                
+
             }
-           
+
 
 
         }
@@ -755,7 +782,7 @@ namespace SecretProject.Class.TileStuff
             {
                 return false;
             }
-        } 
+        }
 
         public static bool CheckIfTileMatchesGID(int tileX, int tileY, int layer, List<int> acceptablTiles, IInformationContainer container, int comparisonLayer = 0)
         {
@@ -770,24 +797,30 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region GENERATION
-        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container)
+        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false)
         {
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
 
             for (int g = 0; g < cap; g++)
             {
-                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty);
+                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero);
             }
         }
         public static void RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
-            int comparisonLayer = 0)
+            int comparisonLayer = 0, bool zeroLayerOnly = false)
         {
             int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
                 acceptableTiles, container, comparisonLayer))
             {
-
+                if(zeroLayerOnly)
+                {
+                    if(TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, 1, container))
+                    {
+                        return;
+                    }
+                }
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
 
             }

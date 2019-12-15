@@ -2631,18 +2631,21 @@
  </tile>
  <tile id="3033">
   <properties>
+   <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
    <property name="newSource" value="0,0,16,96"/>
   </properties>
  </tile>
  <tile id="3034">
   <properties>
+   <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
    <property name="newSource" value="0,0,16,96"/>
   </properties>
  </tile>
  <tile id="3035">
   <properties>
+   <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
    <property name="newSource" value="0,0,16,96"/>
   </properties>

@@ -270,7 +270,7 @@ namespace SecretProject.Class.TileStuff
                     newGID = 1622;//SANDRUIN
                 }
             }
-            else if (layer == 2)
+            else if (layer == 3)
             {
                 if (perlinValue >= .07f && perlinValue <= .1f)
                 {
