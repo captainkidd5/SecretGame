@@ -282,8 +282,18 @@ namespace SecretProject.Class.TileStuff
                 return newGID;
         }
 
+        public enum RelativeChunkPosition
+        {
+            ChunkAbove = 0,
+            ChunkBelow = 1,
+            ChunkLeft = 2,
+            ChunkRight = 3
+
+        }
+
+
         public void GenerationReassignForTiling(int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,
-           int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[,]> adjacentChunkInfo = null)
+           int x, int y, int worldWidth, int worldHeight, IInformationContainer container, List<int[,,]> adjacentChunkInfo = null)
         {
             List<int> secondaryTiles = new List<int>();
             //if (generatableTiles == Game1.Procedural.DirtGeneratableTiles)
@@ -317,7 +327,7 @@ namespace SecretProject.Class.TileStuff
             }
             //if top tile is 0 we look at the chunk above it
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[0][layer,x]) || secondaryTiles.Contains(adjacentChunkInfo[0][layer,x])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer,x, 15]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer,x, 15])))
             {
                 keyToCheck += 1;
             }
@@ -332,7 +342,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[1][layer,x]) || secondaryTiles.Contains(adjacentChunkInfo[1][layer,x])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer,x, 0]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer,x, 0])))
             {
                 keyToCheck += 8;
             }
@@ -347,7 +357,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[3][layer,y]) || secondaryTiles.Contains(adjacentChunkInfo[3][layer,y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer,0, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer,0, y])))
             {
                 keyToCheck += 4;
             }
@@ -361,7 +371,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[2][layer,y]) || secondaryTiles.Contains(adjacentChunkInfo[2][layer,y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer,15, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer,15, y])))
             {
                 keyToCheck += 2;
             }

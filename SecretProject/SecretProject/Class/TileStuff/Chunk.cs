@@ -322,12 +322,12 @@ namespace SecretProject.Class.TileStuff
 
                     if (this.X != 0 && this.Y != 0)
                     {
-                            Tile tile = SearchForEmptyTile(3);
-                            if(tile != null)
-                            {
-                                Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y )));
-                            }
-                        
+                        Tile tile = SearchForEmptyTile(3);
+                        if (tile != null)
+                        {
+                            Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                        }
+
 
                     }
 
@@ -344,7 +344,7 @@ namespace SecretProject.Class.TileStuff
         /// <returns></returns>
         public Tile SearchForEmptyTile(int timesToSearch)
         {
-            for(int i = 0; i < timesToSearch;i++)
+            for (int i = 0; i < timesToSearch; i++)
             {
                 int randomSpawnX = Game1.Utility.RNumber(2, 14);
                 int randomSpawnY = Game1.Utility.RNumber(2, 14);
@@ -354,8 +354,10 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-               return null;           
+            return null;
         }
+
+
 
         public void Generate()
         {
@@ -372,32 +374,65 @@ namespace SecretProject.Class.TileStuff
             }
 
             //get row of tiles on all sides of current chunk, for each layer
-            int[,] topRowNoise = new int[4,16];
-            int[,] bottomRowNoise = new int[4,16];
-            int[,] leftColumnNoise = new int[4,16];
-            int[,] rightColumnNoise = new int[4,16];
+            //int[,] topRowNoise = new int[4, 16];
+            //int[,] bottomRowNoise = new int[4, 16];
+            //int[,] leftColumnNoise = new int[4, 16];
+            //int[,] rightColumnNoise = new int[4, 16];
 
 
-            for(int z =0; z < 4; z++)
+            //for (int z = 0; z < 4; z++)
+            //{
+            //    for (int i = 0; i < 16; i++)
+            //    {
+            //        topRowNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15), z);
+            //        bottomRowNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16), z);
+
+            //        leftColumnNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i), z);
+
+            //        rightColumnNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i), z);
+            //    }
+            //}
+
+
+            //AdjacentNoise = new List<int[,]>() //contains the rows and columns directly adjacent to the chunk edges, used for proper tiling.
+            //{ topRowNoise,
+            //bottomRowNoise,
+            //leftColumnNoise,
+            //rightColumnNoise
+            //};
+
+            #region KeepShitInHere
+
+            //Four chunks, four layers, 16 rows, 16 columns, phew!
+            int[,,] chunkAboveNoise = new int[4, 16, 16];
+            int[,,] ChunkBelowNoise = new int[4, 16, 16];
+            int[,,] ChunkLeftNoise = new int[4, 16, 16];
+            int[,,] ChunkRightNoise = new int[4, 16, 16];
+
+            for (int z = 0; z < 4; z++)
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    topRowNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15), z);
-                    bottomRowNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16), z);
-
-                    leftColumnNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i), z);
-
-                    rightColumnNoise[z,i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i), z);
+                    for (int j = 0; j < 16; j++)
+                    {
+                        chunkAboveNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                        ChunkBelowNoise[z,i,j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                        ChunkLeftNoise[z,i,j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                        ChunkRightNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                    }
                 }
             }
-            
 
-            AdjacentNoise = new List<int[,]>() //contains the rows and columns directly adjacent to the chunk edges, used for proper tiling.
-            { topRowNoise,
-            bottomRowNoise,
-            leftColumnNoise,
-            rightColumnNoise
+            List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
+            {
+                chunkAboveNoise,
+                ChunkBelowNoise,
+                ChunkLeftNoise,
+                ChunkRightNoise
             };
+
+            #endregion
+
 
             for (int z = 0; z < 4; z++)
             {
@@ -406,11 +441,11 @@ namespace SecretProject.Class.TileStuff
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
 
-     
-                            int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
-                            AllTiles[z][i, j] = new Tile( i,  j, newGID);
-                            
-                        
+
+                        int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
+                        AllTiles[z][i, j] = new Tile(i, j, newGID);
+
+
 
                     }
                 }
@@ -424,15 +459,15 @@ namespace SecretProject.Class.TileStuff
                     {
 
                         TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(AllTiles[z][i, j].GID);
-                        if(container != null)
+                        if (container != null)
                         {
                             this.GeneratableTiles = container.GeneratableTiles;
                             this.TilingDictionary = container.TilingDictionary;
 
                             this.MainGid = AllTiles[z][i, j].GID + 1;
-                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, this.AdjacentNoise);
+                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this,AllAdjacentChunkNoise);
                         }
-                        
+
 
                     }
                 }
@@ -484,11 +519,11 @@ namespace SecretProject.Class.TileStuff
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
-                        if(z == 1)
+                        if (z == 1)
                         {
                             AddGrassTufts(AllTiles[z][i, j]);
                         }
-                        
+
                     }
                 }
             }
