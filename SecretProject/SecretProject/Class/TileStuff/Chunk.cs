@@ -373,35 +373,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //get row of tiles on all sides of current chunk, for each layer
-            //int[,] topRowNoise = new int[4, 16];
-            //int[,] bottomRowNoise = new int[4, 16];
-            //int[,] leftColumnNoise = new int[4, 16];
-            //int[,] rightColumnNoise = new int[4, 16];
-
-
-            //for (int z = 0; z < 4; z++)
-            //{
-            //    for (int i = 0; i < 16; i++)
-            //    {
-            //        topRowNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + 15), z);
-            //        bottomRowNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16), z);
-
-            //        leftColumnNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + 15, this.Y * 16 + i), z);
-
-            //        rightColumnNoise[z, i] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16, this.Y * 16 + i), z);
-            //    }
-            //}
-
-
-            //AdjacentNoise = new List<int[,]>() //contains the rows and columns directly adjacent to the chunk edges, used for proper tiling.
-            //{ topRowNoise,
-            //bottomRowNoise,
-            //leftColumnNoise,
-            //rightColumnNoise
-            //};
-
-            #region KeepShitInHere
+            #region AdjacentNoise
 
             //Four chunks, four layers, 16 rows, 16 columns, phew!
             int[,,] chunkAboveNoise = new int[4, 16, 16];
@@ -487,7 +459,10 @@ namespace SecretProject.Class.TileStuff
                 GenerateLandscape();
             }
 
-
+            List<int> CliffBottomTiles = new List<int>()
+        {
+            3033, 3034, 3035
+        };
 
             for (int z = 0; z < 4; z++)
             {
@@ -514,6 +489,34 @@ namespace SecretProject.Class.TileStuff
                         //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
                         //    }
                         //}
+                        if(z == 2)
+                        {
+                            if (CliffBottomTiles.Contains(AllTiles[3][i, j].GID))
+                            {
+   
+                                int counter = 1;
+
+                                for (int c = j; c < j + 5; c++)
+                                {
+                                    if (j + counter < 16)
+                                    {
+
+
+                                        AllTiles[2][i, j + counter].GID = AllTiles[3][i, j].GID + 1 + 100 * counter;
+                                        
+                                        AllTiles[3][i, j + counter].GID = 0;
+                                        if(c < j + 4)
+                                        {
+                                            AllTiles[0][i, j + counter].GID = 0;
+                                        }
+                                        
+                                        counter++;
+                                    }
+                                }
+
+                            }
+                        }
+                        
 
                         AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
@@ -528,16 +531,16 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            if (this.X != 0 && this.Y != 0)
-            {
-                Tile tile = SearchForEmptyTile(3);
-                if (tile != null)
-                {
-                    Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
-                }
+            //if (this.X != 0 && this.Y != 0)
+            //{
+            //    Tile tile = SearchForEmptyTile(3);
+            //    if (tile != null)
+            //    {
+            //        Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+            //    }
 
 
-            }
+            //}
             this.IsLoaded = true;
             Save();
         }

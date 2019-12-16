@@ -384,9 +384,29 @@ namespace SecretProject.Class.TileStuff
             {
                 container.AllTiles[layer][x, y].GID = tilingDictionary[keyToCheck] + 1;
             }
-        }  
+        }
 
 
+        List<int> CliffBottomTiles = new List<int>()
+        {
+            3033, 3034, 3035
+        };
+        //because cliffs are 6 tiles tall, we need to check at most 5 tiles into the top of the above chunk to see whats up
+        public void SweepTopForCliffs(IInformationContainer container, List<int[,,]> adjacentChunkInfo)
+        {
+
+            for(int i = 0; i < 16; i++)
+            {
+             //   if(DirtCliff.Gener container.AllTiles[2][i,0].GID)
+            }
+            for(int i =0; i < 16; i++)
+            {
+                for(int j = 11; j < 16; j++)
+                {
+
+                }
+            }
+        }
     }
 
     public class TilingContainer

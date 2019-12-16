@@ -2633,21 +2633,18 @@
   <properties>
    <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
-   <property name="newSource" value="0,0,16,96"/>
   </properties>
  </tile>
  <tile id="3034">
   <properties>
    <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
-   <property name="newSource" value="0,0,16,96"/>
   </properties>
  </tile>
  <tile id="3035">
   <properties>
    <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
-   <property name="newSource" value="0,0,16,96"/>
   </properties>
  </tile>
  <tile id="3036">
@@ -2858,6 +2855,21 @@
  <tile id="3532">
   <objectgroup draworder="index">
    <object id="1" x="9" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3533">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="3534">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="3535">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="3563">
