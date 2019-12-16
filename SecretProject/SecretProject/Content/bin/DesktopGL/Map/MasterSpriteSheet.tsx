@@ -1108,21 +1108,6 @@
    <frame tileid="983" duration="100"/>
   </animation>
  </tile>
- <tile id="1001">
-  <properties>
-   <property name="destructable" value="1,0,0,8"/>
-   <property name="loot" value="644:100:1"/>
-   <property name="spawnWith" value="1002"/>
-   <property name="tileSelectorAllowed" value="2"/>
-  </properties>
- </tile>
- <tile id="1002">
-  <properties>
-   <property name="layer" value="1"/>
-   <property name="relationX" value="1"/>
-   <property name="relationY" value="0"/>
-  </properties>
- </tile>
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>
@@ -2480,16 +2465,25 @@
   <properties>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="13" width="16" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="2834">
   <properties>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="13" width="16" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="2835">
   <properties>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="13" width="16" height="3"/>
+  </objectgroup>
  </tile>
  <tile id="2836">
   <properties>
@@ -2558,6 +2552,9 @@
   <properties>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2934">
   <properties>
@@ -2568,6 +2565,9 @@
   <properties>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2936">
   <properties>
@@ -2634,6 +2634,9 @@
    <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3034">
   <properties>
@@ -2646,6 +2649,9 @@
    <property name="cliffBlock" value="4"/>
    <property name="generate" value="dirtCliff"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3036">
   <properties>
@@ -2695,6 +2701,16 @@
  <tile id="3132">
   <objectgroup draworder="index">
    <object id="1" x="9" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3133">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3135">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3219">
@@ -2752,6 +2768,16 @@
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3233">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3235">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3320">
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="0" width="8" height="16"/>
@@ -2807,6 +2833,16 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3333">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3335">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3419">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="0" width="8" height="16"/>
@@ -2830,6 +2866,16 @@
  <tile id="3432">
   <objectgroup draworder="index">
    <object id="1" x="10" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3433">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3435">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3518">

@@ -457,6 +457,41 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
+                for (int i = 0; i < 16; i++)
+                {
+                    for (int j = 15; j > 10; j--)
+                    {
+                        if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
+                        {
+                            int newJIndex = j;
+
+                            int newCliffGID = 3035;
+                            for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
+                            {
+                                newCliffGID += 100;
+                            }
+
+                            for (int newY = 0; newCliffGID != 3535; newY++)
+                            {
+
+                                newCliffGID += 100;
+                                AllTiles[2][i, newY].GID = newCliffGID;
+                                if (newCliffGID != 3535)
+                                {
+                                    AllTiles[0][i, newY].GID = 0;
+
+                                    AllTiles[1][i, newY].GID = 0;
+
+                                }
+
+
+                            }
+                            break;
+
+
+                        }
+                    }
+                }
                 GenerateLandscape();
             }
 
@@ -465,38 +500,7 @@ namespace SecretProject.Class.TileStuff
             3033, 3034, 3035
         };
 
-            for (int i = 0; i < 16; i++)
-            {
-                for (int j = 15; j > 10; j--)
-                {
-                    if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
-                    {
-                        int newJIndex = j;
-                        int newCliffGID = 3035;
-                        for(int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
-                        {
-                            newCliffGID += 100;
-                        }
-
-                        for (int newY = 0; newCliffGID != 3535; newY++)
-                        {
-
-                            newCliffGID += 100;
-                            AllTiles[2][i, newY].GID = newCliffGID;
-                            if(newCliffGID != 3535)
-                            {
-                                AllTiles[0][i, newY].GID = 0;
-                                AllTiles[1][i, newY].GID = 0;
-                            }
-                            
-                            
-                        }
-                        break;
-                        
-
-                    }
-                }
-            }
+           
 
             for (int z = 0; z < 4; z++)
             {
@@ -598,7 +602,7 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Dirt, 5, 0, this, true); //SPROUTERA
             TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Dirt, 10, 0, this, true); //pumpkin
             TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
-            TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
+            //TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
             TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak
             TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
             TileUtility.GenerateRandomlyDistributedTiles(3, 1277, GenerationType.Stone, 5, 1, this); //Steel Vein
