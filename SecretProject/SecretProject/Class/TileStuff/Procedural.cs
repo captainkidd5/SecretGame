@@ -19,6 +19,7 @@ namespace SecretProject.Class.TileStuff
         FenceTiling = 456,
         StoneWallTiling = 452,
         OakFloorTiling = 632,
+        DirtCliffBottom = 3534
 
     };
 
@@ -34,6 +35,7 @@ namespace SecretProject.Class.TileStuff
         FenceTiling = 7,
         OakFloorTiling = 8,
         StoneWallTiling = 9,
+        DirtCliffBottom = 10
        
     }
     public class Procedural
@@ -74,6 +76,7 @@ namespace SecretProject.Class.TileStuff
         public TilingContainer OakFence;
         public TilingContainer StoneWall;
         public TilingContainer OakFloor;
+        public TilingContainer DirtCliffBottom;
 
         public List<TilingContainer> AllTilingContainers;
 
@@ -94,18 +97,18 @@ namespace SecretProject.Class.TileStuff
             FastNoise.SetFrequency(.001f);
 
 
-            
 
-         //   Grass = new TilingContainer(GenerationType.Grass, FillTilingDictionary(1014), new List<int>());
-         //Dirt = new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>());
-         //   Sand = new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>());
-         //   SandRuin = new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>());
-         //   Water = new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>());
-         //   Stone = new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>());
-         //   DirtCliff = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>());
-         //   OakFence = new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>());
-         //   StoneWall = new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>());
-         //   OakFloor = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>());
+
+            //   Grass = new TilingContainer(GenerationType.Grass, FillTilingDictionary(1014), new List<int>());
+            //Dirt = new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>());
+            //   Sand = new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>());
+            //   SandRuin = new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>());
+            //   Water = new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>());
+            //   Stone = new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>());
+            //   DirtCliff = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>());
+            //   OakFence = new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>());
+            //   StoneWall = new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>());
+            //   OakFloor = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>());
 
             //MUST ADD IN THE SAME ORDER AS ENUM
             AllTilingContainers = new List<TilingContainer>()
@@ -121,6 +124,10 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary(632), new List<int>()),
                 new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>()),
                 new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
+                new TilingContainer(GenerationType.DirtCliffBottom, null, new List<int>()
+                {
+                    3533,3534,3535
+                }),
             };
         }
 
@@ -392,22 +399,7 @@ namespace SecretProject.Class.TileStuff
         {
             3033, 3034, 3035
         };
-        //because cliffs are 6 tiles tall, we need to check at most 5 tiles into the top of the above chunk to see whats up
-        public void SweepTopForCliffs(IInformationContainer container, List<int[,,]> adjacentChunkInfo)
-        {
-
-            for(int i = 0; i < 16; i++)
-            {
-             //   if(DirtCliff.Gener container.AllTiles[2][i,0].GID)
-            }
-            for(int i =0; i < 16; i++)
-            {
-                for(int j = 11; j < 16; j++)
-                {
-
-                }
-            }
-        }
+        
     }
 
     public class TilingContainer

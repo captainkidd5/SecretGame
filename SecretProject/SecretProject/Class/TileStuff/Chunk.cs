@@ -522,11 +522,6 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
 
-                        if(AllTiles[z][i, j].GID == 3437 || AllTiles[z][i, j].GID == 3438)
-                        {
-                            Console.WriteLine("hi");
-                        }
-
                         AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
 
@@ -540,16 +535,22 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            //if (this.X != 0 && this.Y != 0)
-            //{
-            //    Tile tile = SearchForEmptyTile(3);
-            //    if (tile != null)
-            //    {
-            //        Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
-            //    }
+            if (this.X != 0 && this.Y != 0)
+            {
+                Tile tile = SearchForEmptyTile(3);
+                if (tile != null)
+                {
+                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                    if(container != null)
+                    {
+                        Game1.World.Enemies.AddRange(NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                    }
+
+                  
+                }
 
 
-            //}
+            }
             this.IsLoaded = true;
             Save();
         }
@@ -594,7 +595,7 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
 
             //CLIFFWALL
-            TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliff, 100, 2, this); //Mine Shaft
+            TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliffBottom, 100, 2, this); //Mine Shaft
 
             TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
 

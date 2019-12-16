@@ -795,22 +795,19 @@ namespace SecretProject.Class.TileStuff
         /// <param name="layerToCheckIfEmpty">layer which the tileset youre looking at is empty</param>
         /// <param name="container"></param>
         /// <param name="onlyLayerZero">set to true if you want to disallow spawning if path layer is occupied</param>
-        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false)
+        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false, List<int> restrictedTiles = null)
         {
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
 
+
             for (int g = 0; g < cap; g++)
             {
-                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero);
+                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero, restrictedTiles);
             }
         }
         public static void RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
-            int comparisonLayer = 0, bool zeroLayerOnly = false)
+            int comparisonLayer = 0, bool zeroLayerOnly = false, List<int> restrictedTiles = null)
         {
-            if (id == 3438 || id == 3439)
-            {
-                Console.WriteLine("hi");
-            }
             int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
@@ -828,6 +825,7 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+
         #endregion
 
 
