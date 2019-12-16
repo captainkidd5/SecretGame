@@ -457,41 +457,7 @@ namespace SecretProject.Class.TileStuff
             }
             else
             {
-                for (int i = 0; i < 16; i++)
-                {
-                    for (int j = 15; j > 10; j--)
-                    {
-                        if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
-                        {
-                            int newJIndex = j;
-
-                            int newCliffGID = 3035;
-                            for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
-                            {
-                                newCliffGID += 100;
-                            }
-
-                            for (int newY = 0; newCliffGID != 3535; newY++)
-                            {
-
-                                newCliffGID += 100;
-                                AllTiles[2][i, newY].GID = newCliffGID;
-                                if (newCliffGID != 3535)
-                                {
-                                    AllTiles[0][i, newY].GID = 0;
-
-                                    AllTiles[1][i, newY].GID = 0;
-
-                                }
-
-
-                            }
-                            break;
-
-
-                        }
-                    }
-                }
+                HandleCliffEdgeCases(AllAdjacentChunkNoise);
                 GenerateLandscape();
             }
 
@@ -556,6 +522,10 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
 
+                        if(AllTiles[z][i, j].GID == 3437 || AllTiles[z][i, j].GID == 3438)
+                        {
+                            Console.WriteLine("hi");
+                        }
 
                         AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
@@ -591,6 +561,7 @@ namespace SecretProject.Class.TileStuff
 
         public void GenerateLandscape()
         {
+            //Specify GID + 1
 
             TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Grass, 50, 1, this); //tree
             TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Dirt, 50, 0, this, true); //tree
@@ -622,6 +593,8 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)
             TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
 
+            //CLIFFWALL
+            TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliff, 100, 2, this); //Mine Shaft
 
             TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
 
@@ -635,6 +608,45 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
             TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
 
+        }
+
+        public void HandleCliffEdgeCases(List<int[,,]> AllAdjacentChunkNoise)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 15; j > 10; j--)
+                {
+                    if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
+                    {
+                        int newJIndex = j;
+
+                        int newCliffGID = 3035;
+                        for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
+                        {
+                            newCliffGID += 100;
+                        }
+
+                        for (int newY = 0; newCliffGID != 3535; newY++)
+                        {
+
+                            newCliffGID += 100;
+                            AllTiles[2][i, newY].GID = newCliffGID;
+                            if (newCliffGID != 3535)
+                            {
+                                AllTiles[0][i, newY].GID = 0;
+
+                                AllTiles[1][i, newY].GID = 0;
+
+                            }
+
+
+                        }
+                        break;
+
+
+                    }
+                }
+            }
         }
 
         public void AddGrassTufts(Tile tile)

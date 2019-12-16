@@ -807,6 +807,10 @@ namespace SecretProject.Class.TileStuff
         public static void RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
             int comparisonLayer = 0, bool zeroLayerOnly = false)
         {
+            if (id == 3438 || id == 3439)
+            {
+                Console.WriteLine("hi");
+            }
             int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
@@ -819,6 +823,7 @@ namespace SecretProject.Class.TileStuff
                         return;
                     }
                 }
+               
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
 
             }
