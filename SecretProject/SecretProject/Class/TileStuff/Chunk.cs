@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using TiledSharp;
 using XMLData.ItemStuff;
+using static SecretProject.Class.TileStuff.Procedural;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -388,8 +389,8 @@ namespace SecretProject.Class.TileStuff
                     for (int j = 0; j < 16; j++)
                     {
                         chunkAboveNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                        ChunkBelowNoise[z,i,j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                        ChunkLeftNoise[z,i,j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                        ChunkBelowNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                        ChunkLeftNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
                         ChunkRightNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                     }
                 }
@@ -437,7 +438,7 @@ namespace SecretProject.Class.TileStuff
                             this.TilingDictionary = container.TilingDictionary;
 
                             this.MainGid = AllTiles[z][i, j].GID + 1;
-                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this,AllAdjacentChunkNoise);
+                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
                         }
 
 
@@ -459,10 +460,43 @@ namespace SecretProject.Class.TileStuff
                 GenerateLandscape();
             }
 
-            List<int> CliffBottomTiles = new List<int>()
+        List<int> CliffBottomTiles = new List<int>()
         {
             3033, 3034, 3035
         };
+
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 15; j > 10; j--)
+                {
+                    if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
+                    {
+                        int newJIndex = j;
+                        int newCliffGID = 3035;
+                        for(int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
+                        {
+                            newCliffGID += 100;
+                        }
+
+                        for (int newY = 0; newCliffGID != 3535; newY++)
+                        {
+
+                            newCliffGID += 100;
+                            AllTiles[2][i, newY].GID = newCliffGID;
+                            if(newCliffGID != 3535)
+                            {
+                                AllTiles[0][i, newY].GID = 0;
+                                AllTiles[1][i, newY].GID = 0;
+                            }
+                            
+                            
+                        }
+                        break;
+                        
+
+                    }
+                }
+            }
 
             for (int z = 0; z < 4; z++)
             {
@@ -484,16 +518,17 @@ namespace SecretProject.Class.TileStuff
                         //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
                         //    }
 
+
                         //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
                         //    {
                         //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
                         //    }
                         //}
-                        if(z == 2)
+                        if (z == 2)
                         {
                             if (CliffBottomTiles.Contains(AllTiles[3][i, j].GID))
                             {
-   
+
                                 int counter = 1;
 
                                 for (int c = j; c < j + 5; c++)
@@ -503,20 +538,20 @@ namespace SecretProject.Class.TileStuff
 
 
                                         AllTiles[2][i, j + counter].GID = AllTiles[3][i, j].GID + 1 + 100 * counter;
-                                        
+
                                         AllTiles[3][i, j + counter].GID = 0;
-                                        if(c < j + 4)
+                                        if (c < j + 4)
                                         {
                                             AllTiles[0][i, j + counter].GID = 0;
                                         }
-                                        
+
                                         counter++;
                                     }
                                 }
 
                             }
                         }
-                        
+
 
                         AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
