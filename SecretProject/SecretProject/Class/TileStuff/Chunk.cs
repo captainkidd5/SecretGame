@@ -354,8 +354,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-               return null;
-            
+               return null;           
         }
 
         public void Generate()
@@ -393,7 +392,7 @@ namespace SecretProject.Class.TileStuff
             }
             
 
-            AdjacentNoise = new List<int[,]>()
+            AdjacentNoise = new List<int[,]>() //contains the rows and columns directly adjacent to the chunk edges, used for proper tiling.
             { topRowNoise,
             bottomRowNoise,
             leftColumnNoise,
@@ -417,10 +416,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            for (int z = 0; z < 4; z++)
+            for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
             {
-
-
                 for (int i = 0; i < TileUtility.ChunkWidth; i++)
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
@@ -450,56 +447,9 @@ namespace SecretProject.Class.TileStuff
                 AllTiles[1][8, 5] = new Tile(8, 4, 9625);
 
             }
-
             else
             {
-
-
-
-                TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Grass, 50, 1, this); //tree
-                TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Dirt, 50, 0, this, true); //tree
-                TileUtility.GenerateRandomlyDistributedTiles(2, 2264, GenerationType.Dirt, 5, 0, this, true); //THUNDERBIRCH
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Dirt, 50, 0, this, true); //GRASSTUFT
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Grass, 50, 1, this); //GRASSTUFT
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1586, GenerationType.Dirt, 5, 0, this, true); //CLUEFRUIT
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1664, GenerationType.Dirt, 5, 0, this, true); //OAKTREE
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Dirt, 5, 0, this, true); //SPROUTERA
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Dirt, 10, 0, this, true); //pumpkin
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1277, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1276, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1275, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1274, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1582, GenerationType.Dirt, 5, 0, this, true); //RED MUSHROOM
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1583, GenerationType.Dirt, 5, 0, this, true); //BLUE MUSHROOM
-
-                //SANDRUINS
-                TileUtility.GenerateRandomlyDistributedTiles(3, 1853, GenerationType.SandRuin, 5, 1, this); //Chest
-                TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)
-                TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
-
-
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
-
-                // TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE
-                TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
-                TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
-                // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
-                //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
-                TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Grass, 25, 1, this); //oak2
-                TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Grass, 25, 1, this); //oak3
-                TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
-                TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
-
-
+                GenerateLandscape();
             }
 
 
@@ -510,6 +460,13 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
+                        //if(j <= 0)
+                        //{
+
+                        //    if(AdjacentNoise[0][z,X] == )
+                        //}
+                        //if(AllTiles[z][i, j - 1].GID == )
+
                         //if (i > 1 && j > 1)
                         //{
                         //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
@@ -523,11 +480,8 @@ namespace SecretProject.Class.TileStuff
                         //    }
                         //}
 
-                        //if (z > 1)
-                        //{
                         AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
                         AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
-                        //}
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
                         if(z == 1)
@@ -549,8 +503,6 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-
-
             this.IsLoaded = true;
             Save();
         }
@@ -560,14 +512,58 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
         }
 
+        public void GenerateLandscape()
+        {
+
+            TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Grass, 50, 1, this); //tree
+            TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Dirt, 50, 0, this, true); //tree
+            TileUtility.GenerateRandomlyDistributedTiles(2, 2264, GenerationType.Dirt, 5, 0, this, true); //THUNDERBIRCH
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Dirt, 50, 0, this, true); //GRASSTUFT
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Grass, 50, 1, this); //GRASSTUFT
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1586, GenerationType.Dirt, 5, 0, this, true); //CLUEFRUIT
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1664, GenerationType.Dirt, 5, 0, this, true); //OAKTREE
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Dirt, 5, 0, this, true); //SPROUTERA
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Dirt, 10, 0, this, true); //pumpkin
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1277, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1276, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1275, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1274, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1278, GenerationType.Stone, 5, 1, this); //Steel Vein
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1582, GenerationType.Dirt, 5, 0, this, true); //RED MUSHROOM
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1583, GenerationType.Dirt, 5, 0, this, true); //BLUE MUSHROOM
+
+            //SANDRUINS
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1853, GenerationType.SandRuin, 5, 1, this); //Chest
+            TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)
+            TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
+
+
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
+
+            // TileUtility.GenerateTiles(1, 2964, Game1.Utility.GrassGeneratableTiles,, 5, 0, this); //PINE
+            TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
+            TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
+            // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
+            //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
+            TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Grass, 25, 1, this); //oak2
+            TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Grass, 25, 1, this); //oak3
+            TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
+            TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
+
+        }
 
         public void AddGrassTufts(Tile tile)
         {
             if (tile.GID != -1)
             {
-
-
-
 
                 if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(tile.GID))
                 {
@@ -591,9 +587,6 @@ namespace SecretProject.Class.TileStuff
                                 Tufts.Add(tile.GetTileKeyStringNew(0, this), tufts);
 
                             }
-
-
-
                         }
                     }
 

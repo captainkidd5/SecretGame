@@ -373,19 +373,10 @@ namespace SecretProject.Class.TileStuff
             else
             {
                 container.AllTiles[layer][x, y].GID = tilingDictionary[keyToCheck] + 1;
-               // TileUtility.ReplaceTile(layer, x, y, tilingDictionary[keyToCheck] + 1, container);
-                //if (tilingDictionary ==  Game1.Procedural.AllTilingContainers[(int)GenerationIndex.DirtCliff].TilingDictionary)
-                //{
-                //    TileUtility.ReplaceTile(3, x, y, tilingDictionary[keyToCheck] + 1, container);
-
-
-                //}
             }
+        }  
 
 
-        }
-
-        
     }
 
     public class TilingContainer

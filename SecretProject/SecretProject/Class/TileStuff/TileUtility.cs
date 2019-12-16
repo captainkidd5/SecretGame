@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="layer"></param>
         /// <param name="ActiveChunks"></param>
         /// <returns></returns>
-        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks, bool allowChunkLoading = false)
+        public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
         {
             int chunkX = (int)Math.Floor((float)tileX / 16.0f);
 
@@ -91,16 +91,7 @@ namespace SecretProject.Class.TileStuff
             Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
             if (chunk == null)
             {
-                if (allowChunkLoading)
-                {
-                    //if(Chunk.CheckIfChunkExistsInMemory(chunkX, chunkY))
-                    //{
-                    //    chunk = new Chunk()
-                    //}
-                    return null;
-                }
-                else
-                { return null; }
+                return null;
 
             }
 
@@ -352,7 +343,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         for (int b = 0; b < numberToBlock; b++)
                         {
-                            Tile oldCliffTile = GetChunkTile(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + b, blockLayer, Game1.GetCurrentStage().AllTiles.ActiveChunks, true);
+                            Tile oldCliffTile = GetChunkTile(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + b, blockLayer, Game1.GetCurrentStage().AllTiles.ActiveChunks);
                             if(oldCliffTile != null)
                             {
                                 oldCliffTile = new Tile(oldCliffTile.X, oldCliffTile.Y, 0);
@@ -765,9 +756,6 @@ namespace SecretProject.Class.TileStuff
                 }
 
             }
-
-
-
         }
         #endregion
 
@@ -797,6 +785,16 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region GENERATION
+        /// <summary>
+        /// Generates desired tiles at a certain frequency, and can be restricted to certain tiles and layers
+        /// </summary>
+        /// <param name="layerToPlace">Layer which tile will try to generate</param>
+        /// <param name="gid"></param>
+        /// <param name="type">tileset to check which you want to spawn on</param>
+        /// <param name="frequency">will try at most this many times to spawn</param>
+        /// <param name="layerToCheckIfEmpty">layer which the tileset youre looking at is empty</param>
+        /// <param name="container"></param>
+        /// <param name="onlyLayerZero">set to true if you want to disallow spawning if path layer is occupied</param>
         public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false)
         {
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
