@@ -595,7 +595,7 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
 
             //CLIFFWALL
-            TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliffBottom, 100, 2, this); //Mine Shaft
+            TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliffBottom, 100, 2, this, false, true, 1); //Mine Shaft
 
             TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
 

@@ -126,7 +126,7 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
                 new TilingContainer(GenerationType.DirtCliffBottom, null, new List<int>()
                 {
-                    3533,3534,3535
+                    3534
                 }),
             };
         }

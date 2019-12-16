@@ -795,18 +795,38 @@ namespace SecretProject.Class.TileStuff
         /// <param name="layerToCheckIfEmpty">layer which the tileset youre looking at is empty</param>
         /// <param name="container"></param>
         /// <param name="onlyLayerZero">set to true if you want to disallow spawning if path layer is occupied</param>
-        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false, List<int> restrictedTiles = null)
+        /// <param name="assertLeftAndRight">if true, the tiles to the left and right of the found tile must also be in the allowable tiles</param>
+        /// <param name="limit">Maximum number of this type of tile we can spawn in a chunk</param>
+        public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false, bool assertLeftAndRight = false, int limit = 0)
         {
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
 
-
+            int limitCounter = 0;
+            
             for (int g = 0; g < cap; g++)
             {
-                RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero, restrictedTiles);
+                if(RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero, assertLeftAndRight))
+                {
+                    limitCounter++;
+                }
+                if(limit > 0 && limitCounter >= limit)
+                {
+                    return;
+                }
             }
         }
-        public static void RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
-            int comparisonLayer = 0, bool zeroLayerOnly = false, List<int> restrictedTiles = null)
+        /// <summary>
+        /// Randomly chooses a location within the bounds of the chunk. If it meets the criteria then it will reassign that tile. 
+        /// </summary>
+        /// <param name="layer"></param>
+        /// <param name="id"></param>
+        /// <param name="acceptableTiles">Tiles which may be considered to spawn on</param>
+        /// <param name="container"></param>
+        /// <param name="comparisonLayer"></param>
+        /// <param name="zeroLayerOnly">Will only spawn on layer zero when path layer is not occupied</param>
+        /// <param name="assertLeftAndRight">will only be considered if tiles to the right and left are also in the acceptable tiles list</param>
+        public static bool RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
+            int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
         {
             int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
             int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
@@ -817,12 +837,26 @@ namespace SecretProject.Class.TileStuff
                 {
                     if(TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, 1, container))
                     {
-                        return;
+                        return false;
+                    }
+                }
+                if(assertLeftAndRight)
+                {
+                    
+                    if(!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1,newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
+                    {
+                        return false;
                     }
                 }
                
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                return true;
 
+            }
+            else
+
+            {
+                return false;
             }
         }
 
