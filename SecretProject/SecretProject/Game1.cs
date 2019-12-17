@@ -80,7 +80,7 @@ namespace SecretProject
         GeneralStore = 6,
         KayaHouse = 7,
         Cafe = 8,
-        
+        CaveWorld = 9,
         MainMenu = 50,
         Exit = 55,
         
@@ -100,7 +100,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
+        public static bool EnableCutScenes = true;
 
         public static bool IsFirstTimeStartup;
 
@@ -122,6 +122,7 @@ namespace SecretProject
         public static TmxStageBase GeneralStore;
         public static TmxStageBase KayaHouse;
         public static TmxStageBase Cafe;
+        public static World CaveWorld;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -322,6 +323,8 @@ namespace SecretProject
                     return KayaHouse;
                 case Stages.Cafe:
                     return Cafe;
+                case Stages.CaveWorld:
+                    return CaveWorld;
 
                 default:
                     return null;
@@ -360,6 +363,8 @@ namespace SecretProject
                     return KayaHouse;
                 case Stages.Cafe:
                     return Cafe;
+                case Stages.CaveWorld:
+                    return CaveWorld;
                 default:
                     return null;
 
@@ -372,7 +377,7 @@ namespace SecretProject
             switch (gameStages)
             {
                 case Stages.Town:
-                    return (int)Stages.Town;
+                    return Stages.Town;
 
 
                 case Stages.OverWorld:
@@ -395,6 +400,8 @@ namespace SecretProject
                     return Stages.KayaHouse;
                 case Stages.Cafe:
                     return Stages.Cafe;
+                case Stages.CaveWorld:
+                    return Stages.CaveWorld;
 
                 default:
                     return Stages.Town;
@@ -495,6 +502,9 @@ namespace SecretProject
             GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
             KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
+            CaveWorld = new World("CaveWorld", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.CaveWorld };
+
+
             GlobalClock = new Clock();
 
 
@@ -652,6 +662,8 @@ namespace SecretProject
         {
             Game1.Player.UserInterface.IsTransitioning = true;
 
+            Game1.Player.UserInterface.TransitionSpeed = .05f;
+            Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
             if(gameStages == Stages.OverWorld)

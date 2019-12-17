@@ -106,9 +106,10 @@ namespace SecretProject.Class.UI
         //transition
         public Texture2D BlackTransitionTexture { get; set; }
         public bool IsTransitioning { get; set; }
-        SimpleTimer TransitionTimer { get; set; }
+        public SimpleTimer TransitionTimer { get; set; }
         public float BlackTransitionColorMultiplier { get; set; }
 
+        public float TransitionSpeed { get; set; }
 
         private UserInterface()
         {
@@ -142,6 +143,7 @@ namespace SecretProject.Class.UI
 
             this.BlackTransitionTexture = Game1.Utility.GetColoredRectangle(GraphicsDevice, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
             BlackTransitionColorMultiplier = 1f;
+            TransitionSpeed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);
 
         }
@@ -348,11 +350,11 @@ namespace SecretProject.Class.UI
         {
             if (TransitionTimer.Time <= TransitionTimer.TargetTime)
             {
-                this.BlackTransitionColorMultiplier -= .05f;
+                this.BlackTransitionColorMultiplier -= TransitionSpeed;
             }
             else
             {
-                this.BlackTransitionColorMultiplier += .05f;
+                this.BlackTransitionColorMultiplier += TransitionSpeed;
             }
             if (!TransitionTimer.Run(gameTime))
             {

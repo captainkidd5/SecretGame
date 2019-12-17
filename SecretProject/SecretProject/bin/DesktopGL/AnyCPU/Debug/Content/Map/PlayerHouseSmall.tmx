@@ -77,7 +77,7 @@
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="-50"/>
     <property name="standardFrom" value="PlayerHouse"/>
-    <property name="standardTo" value="World"/>
+    <property name="standardTo" value="OverWorld"/>
    </properties>
   </object>
  </objectgroup>
