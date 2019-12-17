@@ -36,7 +36,7 @@ namespace SecretProject.Class.NPCStuff
         public Rectangle NPCHitBoxRectangle { get { return new Rectangle((int)Position.X + NPCRectangleXOffSet, (int)Position.Y + NPCRectangleYOffSet, NPCRectangleWidthOffSet, NPCRectangleHeightOffSet); } }
         public Rectangle NPCDialogueRectangle { get { return new Rectangle((int)Position.X, (int)Position.Y, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Width, NPCAnimatedSprite[(int)CurrentDirection].SourceRectangle.Height); } }
 
-        const float BaseSpeed = .65f;
+        public float BaseSpeed { get; private set; } = .65f;
         public float Speed { get; set; } = .65f; //.65
         public Vector2 PrimaryVelocity { get; set; }
         public Vector2 TotalVelocity { get; set; }
@@ -142,6 +142,11 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.CurrentDirection = 0;
 
+        }
+
+        public void ResetSpeed()
+        {
+            this.Speed = this.BaseSpeed;
         }
 
         //for normal, moving NPCS
@@ -581,8 +586,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 }
                 
 
-                    Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                     ((int)this.NPCPathFindRectangle.Y - NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Height) / 16);
+                    Point start = new Point((int)(this.Position.X /16),
+                     (int)(this.Position.Y / 16));
                     Point end = new Point(endPoint.X, endPoint.Y);
                 EventCurrentPath = finder.FindPath(start, end);
                     if (EventCurrentPath == null)

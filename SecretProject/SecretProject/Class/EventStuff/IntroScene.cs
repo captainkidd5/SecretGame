@@ -67,7 +67,8 @@ namespace SecretProject.Class.EventStuff
         {
             if (!Game1.freeze)
             {
-                Game1.cam.Follow(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y), Game1.GetCurrentStage().MapRectangle);
+                Game1.cam.Pos = new Vector2(128, 128);
+              //  Game1.cam.Follow(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y), Game1.GetCurrentStage().MapRectangle);
                 Game1.Player.Update(gameTime, Game1.GetCurrentStage().AllItems, Game1.myMouseManager);
                 Game1.Dobbin.EventUpdate(gameTime);
             }
@@ -87,12 +88,12 @@ namespace SecretProject.Class.EventStuff
                     Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 3));
                     if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
-                        if(!StepsCompleted[0])
+                        if(!StepsCompleted[CurrentStep])
                         {
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "Hmm... Where did I leave my dibber again?", 2f, null, null);
-                            StepsCompleted[0] = true;
+                            StepsCompleted[CurrentStep] = true;
                         }
-                        if (SimpleTimer.Run(gameTime))
+                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive )
                         {
                             CurrentStep ++;
                         }
@@ -101,18 +102,18 @@ namespace SecretProject.Class.EventStuff
                    
                     break;
                 case 1:
-
-                        Game1.Dobbin.EventMoveToTile(gameTime, new Point(8,6));
+                    Game1.Dobbin.Speed = 1f;
+                        Game1.Dobbin.EventMoveToTile(gameTime, new Point(8,10));
                         if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                         {
-                        if (!StepsCompleted[1])
+                        if (!StepsCompleted[CurrentStep])
                         {
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                                 "Hey, are you okay!?", 2f, null, null);
-                            StepsCompleted[1] = true;
+                            StepsCompleted[CurrentStep] = true;
                         }
                         
-                            if(SimpleTimer.Run(gameTime))
+                            if(StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive )
                             {
                                 CurrentStep  ++;
                             }
@@ -120,17 +121,18 @@ namespace SecretProject.Class.EventStuff
                     
                     break;
                 case 2:
+                    Game1.Dobbin.ResetSpeed();
                     Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 1));
                     if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
-                        if (!StepsCompleted[2])
+                        if (!StepsCompleted[CurrentStep])
                         {
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                            "Here, you better come with me", 2f, null, null);
-                            StepsCompleted[2] = true;
+                            StepsCompleted[CurrentStep] = true;
                         }
                        
-                        if (SimpleTimer.Run(gameTime))
+                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
                         {
                             CurrentStep = 3;
                         }
@@ -153,7 +155,9 @@ namespace SecretProject.Class.EventStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.PlayerSilouhette, new Vector2(128, 128), null,Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, 1f);
+            spriteBatch.Begin();
+            spriteBatch.Draw(Game1.AllTextures.PlayerSilouhette, new Vector2(580,512),null,  Color.White,0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+            spriteBatch.End();
         }
     }
 }

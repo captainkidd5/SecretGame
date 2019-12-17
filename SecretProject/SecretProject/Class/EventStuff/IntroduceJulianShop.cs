@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.NPCStuff;
 using System;
@@ -112,6 +113,11 @@ namespace SecretProject.Class.EventStuff
 
             }
 
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
         }
     }
 }

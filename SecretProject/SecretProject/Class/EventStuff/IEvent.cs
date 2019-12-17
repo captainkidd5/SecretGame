@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,6 @@ namespace SecretProject.Class.EventStuff
         int TotalSteps { get; set; }
         void Start();
         void Update(GameTime gameTime);
+        void Draw(SpriteBatch spriteBatch);
     }
 }

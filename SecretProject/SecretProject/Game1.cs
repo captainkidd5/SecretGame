@@ -816,7 +816,7 @@ namespace SecretProject
         protected override void Draw(GameTime gameTime)
         {
 
-
+            
 
             switch (gameStages)
             {
@@ -867,7 +867,10 @@ namespace SecretProject
                     break;
 
             }
-
+            if (CurrentEvent != null)
+            {
+                CurrentEvent.Draw(spriteBatch);
+            }
             Game1.DebugWindow.Draw(spriteBatch);
 
             base.Draw(gameTime);
