@@ -187,9 +187,9 @@ namespace SecretProject.Class.StageFolder
                         UnloadContent();
                         foreach (ILocation stage in Game1.AllStages)
                         {
-                            if (stage == Game1.World)
+                            if (stage == Game1.OverWorld)
                             {
-                                Game1.World.LoadPreliminaryContent(1);
+                                Game1.OverWorld.LoadPreliminaryContent(1);
 
                             }
                             else
@@ -199,7 +199,7 @@ namespace SecretProject.Class.StageFolder
 
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                        Game1.ItemVault.LoadInteriorContent(Game1.World.AllTiles);
+                        Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                         this.menuState = MenuState.primary;
                         Game1.SwitchStage(0, Stages.Town);
                     }
@@ -208,9 +208,9 @@ namespace SecretProject.Class.StageFolder
                         UnloadContent();
                         foreach (ILocation stage in Game1.AllStages)
                         {
-                            if (stage == Game1.World)
+                            if (stage == Game1.OverWorld)
                             {
-                                Game1.World.LoadPreliminaryContent(1);
+                                Game1.OverWorld.LoadPreliminaryContent(1);
                             }
                             else
                             {
@@ -219,9 +219,9 @@ namespace SecretProject.Class.StageFolder
 
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
-                        Game1.ItemVault.LoadInteriorContent(Game1.World.AllTiles);
+                        Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                         this.menuState = MenuState.primary;
-                        Game1.SwitchStage(0, Stages.World);
+                        Game1.SwitchStage(0, Stages.OverWorld);
                     }
                     
 

@@ -483,13 +483,13 @@ namespace SecretProject.Class.TileStuff
                 case "triggerLift":
                     if (mouse.IsClicked)
                     {
-                        if (Game1.GetCurrentStageInt() == Stages.World)
+                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                         {
                             Game1.Player.UserInterface.WarpGate.To = Stages.Town;
                         }
                         else if (Game1.GetCurrentStageInt() == Stages.Town)
                         {
-                            Game1.Player.UserInterface.WarpGate.To = Stages.World;
+                            Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
                         }
 
                         Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;

@@ -27,7 +27,7 @@ namespace SecretProject.Class.EventStuff
             };
             FreezePlayerControls = false;
             this.DayToTrigger = 0;
-            this.StageToTrigger = (int)Stages.World;
+            this.StageToTrigger = (int)Stages.OverWorld;
             this.IsCompleted = false;
             this.CurrentStep = 0;
 
@@ -39,7 +39,7 @@ namespace SecretProject.Class.EventStuff
                 Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
             }
 
-            Game1.Dobbin.CurrentStageLocation = Stages.World;
+            Game1.Dobbin.CurrentStageLocation = Stages.OverWorld;
             Game1.Dobbin.IsInEvent = true;
             Game1.Dobbin.Position = new Vector2(128, 128);
             //  Game1.Dobbin.ResetPathFinding();

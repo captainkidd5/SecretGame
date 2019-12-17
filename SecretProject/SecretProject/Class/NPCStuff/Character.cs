@@ -570,7 +570,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
             {
                 PathFinderFast finder = null;
-                if (Game1.GetCurrentStageInt() == Stages.World)
+                if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                 {
                      finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
                 }

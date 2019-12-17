@@ -185,7 +185,7 @@ namespace SecretProject.Class.TileStuff
                                     {
                                         Portal tempPortal = new Portal(3, 5, -56, 5, true);
                                         tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
-                                        Game1.World.AllPortals.Add(tempPortal);
+                                        Game1.OverWorld.AllPortals.Add(tempPortal);
 
                                         if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
                                         {

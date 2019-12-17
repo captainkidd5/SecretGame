@@ -51,7 +51,7 @@ namespace SecretProject.Class.Transportation
 
         public void Transport(Stages to)
         {
-            if (Game1.GetCurrentStageInt() == Stages.World)
+            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 for (int i = 0; i < Game1.GetCurrentStage().AllTiles.ActiveChunks.GetLength(0); i++)
                 {
@@ -67,7 +67,7 @@ namespace SecretProject.Class.Transportation
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
                 Game1.Player.Position = new Vector2(80, 80);
-                Game1.World.AllTiles.LoadInitialChunks();
+                Game1.OverWorld.AllTiles.LoadInitialChunks();
             }
             
             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;

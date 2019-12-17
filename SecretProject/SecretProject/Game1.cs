@@ -74,12 +74,13 @@ namespace SecretProject
         Town = 0,
         ElixirHouse = 1,
         JulianHouse = 2,
-        World = 3,
+        OverWorld = 3,
         DobbinHouse = 4,
         PlayerHouse = 5,
         GeneralStore = 6,
         KayaHouse = 7,
         Cafe = 8,
+        
         MainMenu = 50,
         Exit = 55,
         
@@ -116,7 +117,7 @@ namespace SecretProject
 
         public static TmxStageBase JulianHouse;
         public static TmxStageBase DobbinHouse;
-        public static World World;
+        public static World OverWorld;
         public static TmxStageBase PlayerHouse;
         public static TmxStageBase GeneralStore;
         public static TmxStageBase KayaHouse;
@@ -299,8 +300,8 @@ namespace SecretProject
             switch (gameStages)
             {
 
-                case Stages.World:
-                    return World;
+                case Stages.OverWorld:
+                    return OverWorld;
 
 
                 case Stages.Town:
@@ -342,8 +343,8 @@ namespace SecretProject
                 case Stages.Town:
                     return Town;
  
-                case Stages.World:
-                    return World;
+                case Stages.OverWorld:
+                    return OverWorld;
 
                 case Stages.ElixirHouse:
                     return ElixirHouse;
@@ -374,8 +375,8 @@ namespace SecretProject
                     return (int)Stages.Town;
 
 
-                case Stages.World:
-                    return Stages.World;
+                case Stages.OverWorld:
+                    return Stages.OverWorld;
 
 
 
@@ -483,7 +484,7 @@ namespace SecretProject
             Town = new Town("Town", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
             { StageIdentifier = (int)Stages.Town};
 
-            World = new World("World", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.World };
+            OverWorld = new World("OverWorld", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
 
 
 
@@ -498,7 +499,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() {  Town,  World, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe };
+            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -653,7 +654,7 @@ namespace SecretProject
 
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            if(gameStages == Stages.World)
+            if(gameStages == Stages.OverWorld)
             {
                 Game1.Player.LockBounds = false;
             }
@@ -745,9 +746,9 @@ namespace SecretProject
                         mainMenu.Update(gameTime, myMouseManager, this);
                         break;
 
-                    case Stages.World:
+                    case Stages.OverWorld:
 
-                        World.Update(gameTime, myMouseManager, Player);
+                        OverWorld.Update(gameTime, myMouseManager, Player);
                         break;
 
 
@@ -809,9 +810,9 @@ namespace SecretProject
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
-                case Stages.World:
+                case Stages.OverWorld:
                     GraphicsDevice.Clear(Color.Black);
-                    World.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.Town:

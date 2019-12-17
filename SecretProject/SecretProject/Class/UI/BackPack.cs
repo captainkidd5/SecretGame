@@ -500,7 +500,7 @@ namespace SecretProject.Class.UI
         {
             if (Game1.ItemVault.ExteriorGridItems != null && Game1.ItemVault.InteriorGridItems != null)
             {
-                if (Game1.GetCurrentStageInt() == Stages.World)
+                if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                 {
                     if (Game1.ItemVault.ExteriorGridItems.ContainsKey(GetCurrentEquippedTool()))
                     {
