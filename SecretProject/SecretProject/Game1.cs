@@ -258,8 +258,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;
@@ -628,8 +628,8 @@ namespace SecretProject
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
-                new IntroduceJulianShop(),
-                new IntroScene()
+                new IntroduceJulianShop(GraphicsDevice),
+                new IntroScene(GraphicsDevice)
             };
             IsEventActive = false;
 

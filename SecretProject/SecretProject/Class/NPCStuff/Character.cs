@@ -230,16 +230,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public void EventUpdate(GameTime gameTime)
         {
             this.PrimaryVelocity = new Vector2(1, 1);
+            UpdateDirection();
             for (int i = 0; i < 4; i++)
             {
                 NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
             }
-
+           
             if (IsMoving)
-            {
-
-
-                UpdateDirection();
+            { 
+                
                 this.PrimaryVelocity = Collider.Velocity;
             }
             else
@@ -600,7 +599,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             else
             {
                 this.IsMoving = false;
-                this.CurrentDirection = 0;
+                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
+               // this.CurrentDirection = 0;
             }
 
         }

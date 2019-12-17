@@ -11,7 +11,8 @@ namespace SecretProject.Class.EventStuff
 {
     public interface IEvent
     {
-         List<Character> CharactersInvolved { get; set; }
+         GraphicsDevice Graphics { get; set; }
+        List<Character> CharactersInvolved { get; set; }
          bool FreezePlayerControls { get; set; }
          int DayToTrigger { get; set; }
          int StageToTrigger { get; set; }

@@ -55,7 +55,7 @@ namespace SecretProject.Class.UI
     {
         ContentManager content;
 
-
+        public bool CinematicMode { get; set; } = false;
         public bool DrawTileSelector { get; set; } = true;
 
         public GraphicsDevice GraphicsDevice { get; set; }
@@ -402,54 +402,58 @@ namespace SecretProject.Class.UI
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
             Game1.GlobalClock.Draw(spriteBatch);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
-            switch (CurrentOpenInterfaceItem)
+            if (!CinematicMode)
             {
-                case ExclusiveInterfaceItem.None:
-                    Game1.freeze = false;
-                    Esc.isTextChanged = false;
-                    PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
-                    PlayerStaminaBar.Draw(spriteBatch);
-                    break;
-                case ExclusiveInterfaceItem.EscMenu:
-                    Esc.Draw(spriteBatch);
-                    break;
-                case ExclusiveInterfaceItem.ShopMenu:
-                    CurrentShop.Draw(spriteBatch);
-                    break;
-                case ExclusiveInterfaceItem.CraftingMenu:
-                    CraftingMenu.Draw(spriteBatch);
-                    break;
-                case ExclusiveInterfaceItem.SanctuaryCheckList:
-                    Game1.SanctuaryCheckList.Draw(spriteBatch);
-                    break;
 
-                case ExclusiveInterfaceItem.ProgressBook:
-                    for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
-                    {
-                        if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
+
+                switch (CurrentOpenInterfaceItem)
+                {
+                    case ExclusiveInterfaceItem.None:
+                        Game1.freeze = false;
+                        Esc.isTextChanged = false;
+                        PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
+                        PlayerStaminaBar.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.EscMenu:
+                        Esc.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.ShopMenu:
+                        CurrentShop.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.CraftingMenu:
+                        CraftingMenu.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.SanctuaryCheckList:
+                        Game1.SanctuaryCheckList.Draw(spriteBatch);
+                        break;
+
+                    case ExclusiveInterfaceItem.ProgressBook:
+                        for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
                         {
-                            Game1.AllProgressBooks[i].Draw(spriteBatch);
+                            if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
+                            {
+                                Game1.AllProgressBooks[i].Draw(spriteBatch);
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                case ExclusiveInterfaceItem.WarpGate:
-                    WarpGate.Draw(spriteBatch);
-                    break;
+                    case ExclusiveInterfaceItem.WarpGate:
+                        WarpGate.Draw(spriteBatch);
+                        break;
 
-                    //case ExclusiveInterfaceItem.CookingMenu:
-                    //    CookingMenu.Draw(spriteBatch);
-                    //    break;
+                        //case ExclusiveInterfaceItem.CookingMenu:
+                        //    CookingMenu.Draw(spriteBatch);
+                        //    break;
+                }
+
+                if (BottomBar.IsActive)
+                {
+                    BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
+                    InfoBox.Draw(spriteBatch);
+                }
+
+                BackPack.Draw(spriteBatch);
             }
-
-            if (BottomBar.IsActive)
-            {
-                BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
-                InfoBox.Draw(spriteBatch);
-            }
-
-            BackPack.Draw(spriteBatch);
-
             TextBuilder.Draw(spriteBatch, .71f);
 
           

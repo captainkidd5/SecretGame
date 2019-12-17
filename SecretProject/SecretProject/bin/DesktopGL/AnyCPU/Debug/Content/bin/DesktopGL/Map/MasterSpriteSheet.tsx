@@ -2061,6 +2061,12 @@
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
+ <tile id="1650">
+  <properties>
+   <property name="newHitBox" value="0,0,32,16"/>
+   <property name="newSource" value="0,0,32,16"/>
+  </properties>
+ </tile>
  <tile id="1663">
   <properties>
    <property name="destructable" value="21,4,5,3"/>

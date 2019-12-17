@@ -12,6 +12,7 @@ namespace SecretProject.Class.EventStuff
 {
     public class IntroduceJulianShop : IEvent
     {
+        public GraphicsDevice Graphics { get; set; }
         public List<Character> CharactersInvolved { get; set; }
         public bool FreezePlayerControls { get; set; }
         public int DayToTrigger { get; set; }
@@ -21,9 +22,9 @@ namespace SecretProject.Class.EventStuff
         public int CurrentStep { get; set; }
         public int TotalSteps { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public IntroduceJulianShop()
+        public IntroduceJulianShop(GraphicsDevice graphics)
         {
-
+            this.Graphics = graphics;
             this.CharactersInvolved = new List<Character>()
             {
                 Game1.Julian

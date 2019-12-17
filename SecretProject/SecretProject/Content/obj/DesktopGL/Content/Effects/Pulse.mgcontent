@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/Pulse.fx</SourceFile>
-  <SourceTime>2019-11-21T14:26:22.555259-08:00</SourceTime>
+  <SourceTime>2019-12-17T13:33:09.6273433-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Effects/Pulse.xnb</DestFile>
-  <DestTime>2019-11-21T15:22:07.4162617-08:00</DestTime>
+  <DestTime>2019-12-17T13:39:07.0424801-08:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
