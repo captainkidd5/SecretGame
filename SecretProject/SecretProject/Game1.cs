@@ -223,6 +223,7 @@ namespace SecretProject
         //event handlers
         //Events
         public static List<IEvent> AllEvents;
+        public static IEvent CurrentEvent;
 
         //NPCS
         public static Elixir Elixir;
@@ -707,7 +708,7 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
-            IsEventActive = false;
+           // IsEventActive = false;
             OldKeyBoardState = NewKeyBoardState;
             NewKeyBoardState = Keyboard.GetState();
             FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -727,27 +728,7 @@ namespace SecretProject
                 graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
-            if (EnableCutScenes)
-            {
-                foreach (IEvent e in AllEvents)
-                {
-                    if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
-                    {
-                        int num = (int)GetCurrentStageInt();
-                        if (!e.IsActive)
-                        {
-                            e.Start();
-                        }
-                        else
-                        {
-                            IsEventActive = true;
-                            e.Update(gameTime);
-
-                        }
-
-                    }
-                }
-            }
+           
             if (!IsEventActive)
             {
 
@@ -795,6 +776,29 @@ namespace SecretProject
                 }
 
 
+            }
+            if (EnableCutScenes && !IsEventActive)
+            {
+                foreach (IEvent e in AllEvents)
+                {
+                    if (e.DayToTrigger == GlobalClock.TotalDays && e.StageToTrigger == (int)GetCurrentStageInt() && !e.IsCompleted)
+                    {
+                        int num = (int)GetCurrentStageInt();
+                        if (!e.IsActive)
+                        {
+                            //e.Start();
+                            IsEventActive = true;
+                            CurrentEvent = e;
+                            CurrentEvent.Start();
+                        }
+
+
+                    }
+                }
+            }
+            if (CurrentEvent != null)
+            {
+                CurrentEvent.Update(gameTime);
             }
 
 

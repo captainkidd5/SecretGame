@@ -185,7 +185,11 @@ namespace SecretProject.Class.UI
                     {
                         Game1.cam.Zoom--;
                     }
-                    if (!TextBuilder.FreezeStage)
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
+                    {
+                        Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
+                    }
+                        if (!TextBuilder.FreezeStage)
                     {
                         Game1.freeze = false;
                     }

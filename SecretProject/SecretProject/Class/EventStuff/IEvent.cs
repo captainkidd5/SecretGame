@@ -17,7 +17,7 @@ namespace SecretProject.Class.EventStuff
          bool IsCompleted { get; set; }
          bool IsActive { get; set; }
         int CurrentStep { get; set; }
-
+        int TotalSteps { get; set; }
         void Start();
         void Update(GameTime gameTime);
     }

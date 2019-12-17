@@ -50,65 +50,71 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime)
         {
-            base.Update(gameTime, Keys.F1);
-            ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
-            DebugButton1.Update(Game1.myMouseManager);
-            if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
-            {
-                Game1.GlobalClock.IncrementDay();
-                
-            }
-            if (DebugButton1.isClicked)
+            if (IsActivated)
             {
 
-                Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White);
-                Game1.GlobalClock.IncrementDay();
+
+                base.Update(gameTime, Keys.F1);
+                ElapsedMS = gameTime.ElapsedGameTime.TotalMilliseconds;
+                DebugButton1.Update(Game1.myMouseManager);
+                if ((Game1.OldKeyBoardState.IsKeyDown(Keys.G)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.G)))
+                {
+                    Game1.GlobalClock.IncrementDay();
+
+                }
+                if (DebugButton1.isClicked)
+                {
+
+                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White);
+                    Game1.GlobalClock.IncrementDay();
 
 
-            }
-            SpeedClockUp.Update(Game1.myMouseManager);
-            SlowClockDown.Update(Game1.myMouseManager);
-            IncrementDay.Update(Game1.myMouseManager);
-            if(IncrementDay.isClicked)
-            {
-                Game1.GlobalClock.IncrementDay();
-            }
-            if(SpeedClockUp.isClicked)
-            {
-                Clock.ClockMultiplier++;
-            }
-            if(SlowClockDown.isClicked)
-            {
-                Clock.ClockMultiplier--;
-            }
+                }
+                SpeedClockUp.Update(Game1.myMouseManager);
+                SlowClockDown.Update(Game1.myMouseManager);
+                IncrementDay.Update(Game1.myMouseManager);
+                if (IncrementDay.isClicked)
+                {
+                    Game1.GlobalClock.IncrementDay();
+                }
+                if (SpeedClockUp.isClicked)
+                {
+                    Clock.ClockMultiplier++;
+                }
+                if (SlowClockDown.isClicked)
+                {
+                    Clock.ClockMultiplier--;
+                }
 
-            for(int i =0; i < WeatherButtons.Count; i++)
-            {
-                WeatherButtons[i].Update(Game1.myMouseManager);
-            }
-            if(WeatherNone.isClicked)
-            {
-                Game1.CurrentWeather = WeatherType.None;
-                Console.WriteLine(Game1.CurrentWeather.ToString());
-            }
-            if (WeatherSunny.isClicked)
-            {
-                Game1.CurrentWeather = WeatherType.Sunny;
-                Console.WriteLine(Game1.CurrentWeather.ToString());
-            }
-            if (WeatherRain.isClicked)
-            {
-                Game1.CurrentWeather = WeatherType.Rainy;
-                Console.WriteLine(Game1.CurrentWeather.ToString());
+                for (int i = 0; i < WeatherButtons.Count; i++)
+                {
+                    WeatherButtons[i].Update(Game1.myMouseManager);
+                }
+                if (WeatherNone.isClicked)
+                {
+                    Game1.CurrentWeather = WeatherType.None;
+                    Console.WriteLine(Game1.CurrentWeather.ToString());
+                }
+                if (WeatherSunny.isClicked)
+                {
+                    Game1.CurrentWeather = WeatherType.Sunny;
+                    Console.WriteLine(Game1.CurrentWeather.ToString());
+                }
+                if (WeatherRain.isClicked)
+                {
+                    Game1.CurrentWeather = WeatherType.Rainy;
+                    Console.WriteLine(Game1.CurrentWeather.ToString());
+                }
             }
         }
         //"\n\n TileGID " + Game1.myMouseManager.GetMouseOverTile(Game1.GetCurrentStage().AllTiles).ToString()
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
 
             if (IsActivated)
             {
+                spriteBatch.Begin();
                 //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)position.X, (int)position.Y, 256,224), new Rectangle(1024, 64, 256, 224),
                 //     Game1.Utility.Origin, 0f, 3f, Color.White, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, new Rectangle(1024, 64, 256, 224), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
@@ -134,8 +140,8 @@ namespace SecretProject.Class.UI
                     WeatherButtons[i].Draw(spriteBatch);
                 }
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, Clock.ClockMultiplier.ToString(), new Vector2(SpeedClockUp.Position.X, SpeedClockUp.Position.Y - 32), Color.White);
-            }
             spriteBatch.End();
+            }
         }
     }//+ Game1.GetCurrentStage().AllTiles.DebugTile.DestinationRectangle
 }

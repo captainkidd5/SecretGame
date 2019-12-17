@@ -561,6 +561,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             {
                 if (MoveTowardsPoint(new Vector2(EventCurrentPath[EventCurrentPath.Count - 1].X * 16, EventCurrentPath[EventCurrentPath.Count - 1].Y * 16), gameTime))
                 {
+                    IsMoving = true;
                     EventCurrentPath.RemoveAt(EventCurrentPath.Count - 1);
                 }
 

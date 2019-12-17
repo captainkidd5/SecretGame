@@ -18,6 +18,8 @@ namespace SecretProject.Class.EventStuff
         public bool IsCompleted { get; set; }
         public bool IsActive { get; set; }
         public int CurrentStep { get; set; }
+        public int TotalSteps { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public IntroduceJulianShop()
         {
 
