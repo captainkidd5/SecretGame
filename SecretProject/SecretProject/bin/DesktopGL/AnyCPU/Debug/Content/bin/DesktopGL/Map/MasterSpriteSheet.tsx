@@ -13,22 +13,22 @@
  </tile>
  <tile id="149">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="150">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="151">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="152">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="0" width="6" height="9"/>
@@ -36,43 +36,43 @@
  </tile>
  <tile id="153">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="154">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="155">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="156">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="226">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="227">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="228">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="249">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -83,7 +83,7 @@
  <tile id="250">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -94,7 +94,7 @@
  <tile id="251">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -105,7 +105,7 @@
  <tile id="252">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -116,7 +116,7 @@
  <tile id="253">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -127,7 +127,7 @@
  <tile id="254">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -138,7 +138,7 @@
  <tile id="255">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -149,7 +149,7 @@
  <tile id="256">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -220,7 +220,7 @@
  </tile>
  <tile id="325">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="2" width="14.9091" height="2.54545"/>
@@ -228,7 +228,7 @@
  </tile>
  <tile id="326">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="0.0909091" width="15.3636" height="2.36364"/>
@@ -236,7 +236,7 @@
  </tile>
  <tile id="327">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="7.36364" y="0" width="7.27273" height="15.9091"/>
@@ -244,12 +244,12 @@
  </tile>
  <tile id="328">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="329">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="346">
@@ -264,7 +264,7 @@
  </tile>
  <tile id="349">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
@@ -272,32 +272,32 @@
  </tile>
  <tile id="350">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="351">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="352">
   <properties>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
   </properties>
  </tile>
  <tile id="353">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="354">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="355">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.136365" y="0.363627" width="7.72727" height="15.8182"/>
@@ -305,7 +305,7 @@
  </tile>
  <tile id="356">
   <properties>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
  <tile id="360">
@@ -325,7 +325,7 @@
  </tile>
  <tile id="425">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.3125" y="0.0625" width="3.25" height="15.75"/>
@@ -333,12 +333,12 @@
  </tile>
  <tile id="426">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="427">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="11.2727" y="0.272727" width="4.09091" height="15.3636"/>
@@ -346,12 +346,12 @@
  </tile>
  <tile id="428">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="429">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="446">
@@ -372,7 +372,7 @@
  <tile id="449">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -383,7 +383,7 @@
  <tile id="450">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -394,7 +394,7 @@
  <tile id="451">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -406,7 +406,7 @@
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="stoneWall"/>
+   <property name="generate" value="StoneWallTiling"/>
    <property name="loot" value="1164:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -417,7 +417,7 @@
  <tile id="453">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -428,7 +428,7 @@
  <tile id="454">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -439,7 +439,7 @@
  <tile id="455">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -451,7 +451,7 @@
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="fence"/>
+   <property name="generate" value="FenceTiling"/>
    <property name="loot" value="1162:100:1"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -585,7 +585,7 @@
  </tile>
  <tile id="525">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="8.54545" width="14.9091" height="3.45455"/>
@@ -593,7 +593,7 @@
  </tile>
  <tile id="526">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.181818" y="13.7273" width="15.2727" height="1.81818"/>
@@ -601,7 +601,7 @@
  </tile>
  <tile id="527">
   <properties>
-   <property name="generate" value="water"/>
+   <property name="generate" value="Water"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="6" width="15.4545" height="5.27273"/>
@@ -610,42 +610,42 @@
  <tile id="531">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="532">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="533">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="534">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="535">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="536">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
@@ -696,35 +696,35 @@
  <tile id="631">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="632">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="633">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="634">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="635">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
@@ -858,35 +858,35 @@
  <tile id="731">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="732">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="733">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="734">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
  <tile id="735">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="oakFloor"/>
+   <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
@@ -913,32 +913,32 @@
  </tile>
  <tile id="828">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="829">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="830">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="831">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="832">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="833">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="854">
@@ -955,47 +955,47 @@
  <tile id="904">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="905">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="906">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="907">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="908">
   <properties>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="909">
   <properties>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="913">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
@@ -1003,7 +1003,7 @@
  <tile id="914">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1011,7 +1011,7 @@
  <tile id="915">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1019,7 +1019,7 @@
  <tile id="916">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1027,7 +1027,7 @@
  <tile id="917">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1035,34 +1035,34 @@
  <tile id="918">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="928">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="929">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="930">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="931">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="932">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="949">
@@ -1111,34 +1111,34 @@
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1005">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1006">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1007">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1008">
   <properties>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -1150,7 +1150,7 @@
  <tile id="1013">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
@@ -1158,7 +1158,7 @@
  <tile id="1014">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1166,7 +1166,7 @@
  <tile id="1015">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1174,7 +1174,7 @@
  <tile id="1016">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1182,34 +1182,34 @@
  <tile id="1017">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
  </tile>
  <tile id="1028">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="1029">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="1030">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="1031">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="1032">
   <properties>
-   <property name="generate" value="stone"/>
+   <property name="generate" value="Stone"/>
   </properties>
  </tile>
  <tile id="1049">
@@ -1261,34 +1261,34 @@
  <tile id="1104">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1105">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1106">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1107">
   <properties>
    <property name="action" value="diggable"/>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1108">
   <properties>
-   <property name="generate" value="dirt"/>
+   <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
@@ -1300,7 +1300,7 @@
  <tile id="1113">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="4"/>
   </properties>
@@ -1308,7 +1308,7 @@
  <tile id="1114">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1316,7 +1316,7 @@
  <tile id="1115">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grass"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1324,7 +1324,7 @@
  <tile id="1116">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1332,7 +1332,7 @@
  <tile id="1117">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
-   <property name="generate" value="grassBasic"/>
+   <property name="generate" value="Grass"/>
    <property name="loot" value="1002:100:1"/>
    <property name="step" value="1"/>
   </properties>
@@ -1448,32 +1448,32 @@
  </tile>
  <tile id="1220">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1221">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1222">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1223">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1224">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1225">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1249">
@@ -1622,27 +1622,27 @@
  </tile>
  <tile id="1320">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1321">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1322">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1323">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1324">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1349">
@@ -1738,42 +1738,6 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
- <tile id="1408">
-  <properties>
-   <property name="generate" value="dirt"/>
-   <property name="step" value="4"/>
-  </properties>
- </tile>
- <tile id="1409">
-  <properties>
-   <property name="generate" value="dirt"/>
-   <property name="step" value="4"/>
-  </properties>
- </tile>
- <tile id="1414">
-  <properties>
-   <property name="action" value="diggable"/>
-   <property name="step" value="1"/>
-  </properties>
- </tile>
- <tile id="1415">
-  <properties>
-   <property name="action" value="diggable"/>
-   <property name="step" value="1"/>
-  </properties>
- </tile>
- <tile id="1416">
-  <properties>
-   <property name="action" value="diggable"/>
-   <property name="step" value="1"/>
-  </properties>
- </tile>
- <tile id="1417">
-  <properties>
-   <property name="action" value="diggable"/>
-   <property name="step" value="1"/>
-  </properties>
- </tile>
  <tile id="1418">
   <properties>
    <property name="action" value="diggable"/>
@@ -1788,27 +1752,27 @@
  </tile>
  <tile id="1420">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1421">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1422">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1423">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1424">
   <properties>
-   <property name="generate" value="sand"/>
+   <property name="generate" value="Sand"/>
   </properties>
  </tile>
  <tile id="1457">
@@ -1897,48 +1861,43 @@
  <tile id="1520">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1521">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1522">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1523">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1524">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1525">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
-  </properties>
- </tile>
- <tile id="1526">
-  <properties>
-   <property name="generate" value="sandRuin"/>
   </properties>
  </tile>
  <tile id="1550">
@@ -2067,35 +2026,35 @@
  <tile id="1620">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1621">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1622">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1623">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1624">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
@@ -2144,35 +2103,35 @@
  <tile id="1720">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1721">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1722">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1723">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
  <tile id="1724">
   <properties>
    <property name="destructable" value="22,0,5,3"/>
-   <property name="generate" value="sandRuin"/>
+   <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
@@ -2463,7 +2422,7 @@
  </tile>
  <tile id="2833">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
@@ -2471,7 +2430,7 @@
  </tile>
  <tile id="2834">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
@@ -2479,7 +2438,7 @@
  </tile>
  <tile id="2835">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
@@ -2487,17 +2446,17 @@
  </tile>
  <tile id="2836">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2837">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2838">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2863">
@@ -2550,7 +2509,7 @@
  </tile>
  <tile id="2933">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2558,12 +2517,12 @@
  </tile>
  <tile id="2934">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2935">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2571,12 +2530,12 @@
  </tile>
  <tile id="2936">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2937">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="2963">
@@ -2632,7 +2591,7 @@
  <tile id="3033">
   <properties>
    <property name="cliffBlock" value="4"/>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2641,13 +2600,13 @@
  <tile id="3034">
   <properties>
    <property name="cliffBlock" value="4"/>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3035">
   <properties>
    <property name="cliffBlock" value="4"/>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2655,12 +2614,12 @@
  </tile>
  <tile id="3036">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3037">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3119">
@@ -2705,7 +2664,7 @@
  </tile>
  <tile id="3133">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2713,12 +2672,12 @@
  </tile>
  <tile id="3134">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3135">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2781,7 +2740,7 @@
  </tile>
  <tile id="3233">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2789,12 +2748,12 @@
  </tile>
  <tile id="3234">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3235">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2857,7 +2816,7 @@
  </tile>
  <tile id="3333">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2865,12 +2824,12 @@
  </tile>
  <tile id="3334">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3335">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2903,7 +2862,7 @@
  </tile>
  <tile id="3433">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2911,12 +2870,12 @@
  </tile>
  <tile id="3434">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="3435">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
@@ -2954,7 +2913,7 @@
  </tile>
  <tile id="3533">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>
@@ -2962,7 +2921,7 @@
  </tile>
  <tile id="3534">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>
@@ -2970,7 +2929,7 @@
  </tile>
  <tile id="3535">
   <properties>
-   <property name="generate" value="dirtCliff"/>
+   <property name="generate" value="DirtCliff"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>

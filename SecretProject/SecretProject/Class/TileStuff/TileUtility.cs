@@ -336,24 +336,6 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                 }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("cliffBlock"))
-                {
-                    int numberToBlock = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["cliffBlock"]);
-                    for (int blockLayer = 0; blockLayer < 3; blockLayer++)
-                    {
-                        for (int b = 0; b < numberToBlock; b++)
-                        {
-                            Tile oldCliffTile = GetChunkTile(tileToAssign.DestinationRectangle.X, tileToAssign.DestinationRectangle.Y + b, blockLayer, Game1.GetCurrentStage().AllTiles.ActiveChunks);
-                            if(oldCliffTile != null)
-                            {
-                                oldCliffTile = new Tile(oldCliffTile.X, oldCliffTile.Y, 0);
-                            }
-                            
-                        }
-                    }
-
-                }
-
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
 
