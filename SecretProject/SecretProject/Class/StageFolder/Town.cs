@@ -47,7 +47,8 @@ namespace SecretProject.Class.StageFolder
         #region CONSTRUCTOR
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
-        
+
+        Dog Nelja;
 
         public Town(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name,locationType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
@@ -60,6 +61,7 @@ namespace SecretProject.Class.StageFolder
             {
                 this.BackDropPosition = new Vector2(0, 200);
             }
+            
         }
 
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
@@ -87,6 +89,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
             this.QuadTree = new QuadTree(5, Cam.ViewPortRectangle);
+            Nelja = new Dog("Nelja", new Vector2(450, 450), Graphics, Game1.AllTextures.Nelja, (IInformationContainer)AllTiles, CurrentBehaviour.Wander);
             this.IsLoaded = true;
         }
 
@@ -143,6 +146,7 @@ namespace SecretProject.Class.StageFolder
             Game1.isMyMouseVisible = true;
             //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
+            Nelja.Update(gameTime, Game1.myMouseManager);
             for (int p = 0; p < AllPortals.Count; p++)
             {
                 if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
@@ -288,6 +292,7 @@ namespace SecretProject.Class.StageFolder
                 
                 ParticleEngine.Draw(spriteBatch);
 
+                Nelja.Draw(spriteBatch, Graphics);
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {

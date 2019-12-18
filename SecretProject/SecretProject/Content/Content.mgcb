@@ -223,6 +223,11 @@
 /processorParam:TextureFormat=Color
 /build:Item/Barrel.png
 
+#begin Item/Cooking/CookingGuide.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/Cooking/CookingGuide.xml
+
 #begin Item/Crafting/CraftingGuide.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -413,6 +418,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Enemy/EnemySpriteSheet.png
 
+#begin NPC/Enemy/nelga.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Enemy/nelga.png
+
 #begin NPC/Julian/Julian.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -484,6 +501,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Snaw/Snaw.png
+
+#begin Particles/raindrop.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Particles/raindrop.png
 
 #begin Particles/rockparticle.png
 /importer:TextureImporter
@@ -1162,6 +1191,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/crickets1.wav
 
+#begin SoundEffects/DayTimeAmbience.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/DayTimeAmbience.wav
+
 #begin SoundEffects/diggingDirt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1215,6 +1250,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/placeItem2.wav
+
+#begin SoundEffects/pumpkinSquash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pumpkinSquash.wav
+
+#begin SoundEffects/rainSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/rainSound.wav
 
 #begin SoundEffects/ropePop.wav
 /importer:WavImporter
@@ -1325,29 +1372,6 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/Gondola.png
 
-#begin WorldProps/tallGrass.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:WorldProps/tallGrass.png
-
-#begin Item/Cooking/CookingGuide.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Item/Cooking/CookingGuide.xml
-
-#begin SoundEffects/pumpkinSquash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/pumpkinSquash.wav
-
 #begin WorldProps/IntroPlayerSillohoutte.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1360,7 +1384,7 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/IntroPlayerSillohoutte.png
 
-#begin Particles/raindrop.png
+#begin WorldProps/tallGrass.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1370,17 +1394,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Particles/raindrop.png
-
-#begin SoundEffects/rainSound.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/rainSound.wav
-
-#begin SoundEffects/DayTimeAmbience.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/DayTimeAmbience.wav
+/build:WorldProps/tallGrass.png
 

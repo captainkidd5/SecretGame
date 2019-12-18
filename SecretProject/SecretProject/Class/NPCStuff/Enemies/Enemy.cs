@@ -165,7 +165,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentEffect = null;
         }
 
-        public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies)
+        public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
              this.CurrentEffect = null;
             if (this.TimeInUnloadedChunk > 100)
@@ -354,8 +354,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int currentTileY = (int)(this.Position.Y / 16 - (CurrentChunkY * 16));
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
-                if (currentTileX + newX < TileUtility.ChunkWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 2 && currentTileY + newY > 0)
-                {
+                //if (currentTileX + newX < TileUtility.ChunkWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 2 && currentTileY + newY > 0)
+                //{
                     if (ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
                     {
                         Point end = new Point(currentTileX + newX, currentTileY + newY);
@@ -377,39 +377,39 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                         }
                         WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
                     }
-                }
+                //}
                 // point npc tried to go to is not in current chunk
-                else
-                {
-                    if ((currentTileX + newX) < 0)
-                    {
-                        //left 1
-                        if ((currentTileY + newY) > 0)
-                        {
+                //else
+                //{
+                //    if ((currentTileX + newX) < 0)
+                //    {
+                //        //left 1
+                //        if ((currentTileY + newY) > 0)
+                //        {
 
-                        }
-                        //left 1 down 1
-                        else if ((currentTileY + newY) < 0)
-                        {
+                //        }
+                //        //left 1 down 1
+                //        else if ((currentTileY + newY) < 0)
+                //        {
 
-                        }
+                //        }
 
-                    }
-                    else if ((currentTileX + newX) > 0)
-                    {
-                        //right 1
-                        if ((currentTileY + newY) > 0)
-                        {
+                //    }
+                //    else if ((currentTileX + newX) > 0)
+                //    {
+                //        //right 1
+                //        if ((currentTileY + newY) > 0)
+                //        {
 
-                        }
-                        //right 1 down 1
-                        else if ((currentTileY + newY) < 0)
-                        {
+                //        }
+                //        //right 1 down 1
+                //        else if ((currentTileY + newY) < 0)
+                //        {
 
-                        }
+                //        }
 
-                    }
-                }
+                //    }
+                //}
 
 
             }
@@ -517,7 +517,26 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     break;
             }
         }
-        public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
+        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        {
+            switch (CurrentDirection)
+            {
+                //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
+                case Dir.Down:
+                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)));
+                    break;
+                case Dir.Left:
+                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y)));
+                    break;
+                case Dir.Right:
+                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y)));
+                    break;
+                case Dir.Up:
+                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y)));
+                    break;
+            }
+        }
+            public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {
             var Colors = new List<Color>();
             for (int y = 0; y < rectangleToDraw.Height; y++)
