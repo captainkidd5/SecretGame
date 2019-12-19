@@ -96,6 +96,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         public ObstacleGrid ObstacleGrid { get; set; }
         public float TimeInUnloadedChunk { get; set; }
 
+        public bool IsWorldNPC { get; set; }
+
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
             this.Name = name;
@@ -111,51 +113,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentPath = new List<PathFinderNode>();
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.PrimaryPlayerInterationBehavior = primaryPlayerInteractionBehavior;
-            switch (name)
-            {
-                case "boar":
-                    NPCAnimatedSprite = new Sprite[4];
 
-                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
-                    NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
-                    NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
-                    NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 432, 0, 48, 32, 3, .15f, this.Position);
-
-                    this.NPCRectangleXOffSet = 15;
-                    this.NPCRectangleYOffSet = 15;
-                    this.NPCRectangleHeightOffSet = 4;
-                    this.NPCRectangleWidthOffSet = 4;
-                    this.Speed = .05f;
-                    this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-                    this.SoundID = 14;
-                    this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
-                    this.CurrentBehaviour = CurrentBehaviour.Wander;
-                    this.HitPoints = 2;
-                    this.DamageColor = Color.Black;
-                    this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
-                    break;
-                case "crab":
-                    NPCAnimatedSprite = new Sprite[4];
-
-                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 32, 48, 32, 1, .15f, this.Position);
-                    NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
-                    NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
-                    NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 48, 32, 48, 32, 2, .15f, this.Position);
-
-                    this.NPCRectangleXOffSet = 15;
-                    this.NPCRectangleYOffSet = 15;
-                    this.NPCRectangleHeightOffSet = 4;
-                    this.NPCRectangleWidthOffSet = 4;
-                    this.Speed = .05f;
-                    this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-                    this.SoundID = 14;
-                    this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
-                    this.HitPoints = 1;
-                    this.DamageColor = Color.Red;
-                    this.PossibleLoot = new List<Loot>() { new Loot(14, 75) };
-
-                    break;
-            }
             this.PulseTimer = new SimpleTimer(.25f);
             TimeInUnloadedChunk = 0f;
             this.CurrentChunkX = container.X;
@@ -163,6 +121,9 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.ObstacleGrid = container.PathGrid;
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.CurrentEffect = null;
+
+
+            IsWorldNPC = true;
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
@@ -330,6 +291,92 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             Position -= direction * Speed * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
         }
+
+        public void MoveToTileChunk(GameTime gameTime)
+        {
+
+            if (CurrentPath.Count > 0)
+            {
+                if (MoveTowardsPoint(new Vector2(CurrentPath[CurrentPath.Count - 1].X * 16 + CurrentChunkX * 16 * 16 + 8, CurrentPath[CurrentPath.Count - 1].Y * 16 + CurrentChunkY * 16 * 16 + 8), gameTime))
+                {
+                    CurrentPath.RemoveAt(CurrentPath.Count - 1);
+                }
+
+
+
+            }
+            else if (WanderTimer >= 0)
+            {
+                IsMoving = false;
+            }
+            else if (WanderTimer <= 0)
+            {
+
+                int currentTileX = (int)(this.Position.X / 16 - (CurrentChunkX * 16));
+                int currentTileY = (int)(this.Position.Y / 16 - (CurrentChunkY * 16));
+                int newX = Game1.Utility.RGenerator.Next(-10, 10);
+                int newY = Game1.Utility.RGenerator.Next(-10, 10);
+                if (currentTileX + newX < TileUtility.ChunkWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 2 && currentTileY + newY > 0)
+                {
+                    if (ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
+                    {
+                        Point end = new Point(currentTileX + newX, currentTileY + newY);
+
+
+
+                        PathFinderFast finder = new PathFinderFast(ObstacleGrid.Weight);
+
+
+                        Point start = new Point(Math.Abs((int)this.Position.X / 16 - CurrentChunkX * 16),
+                         (Math.Abs((int)this.Position.Y / 16 - CurrentChunkY * 16)));
+
+                        CurrentPath = finder.FindPath(start, end);
+                        if (CurrentPath == null)
+                        {
+                            CurrentPath = new List<PathFinderNode>();
+                            return;
+                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                        }
+                        WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
+                    }
+                }
+               // point npc tried to go to is not in current chunk
+                else
+                {
+                    if ((currentTileX + newX) < 0)
+                    {
+                        //left 1
+                        if ((currentTileY + newY) > 0)
+                        {
+
+                        }
+                        //left 1 down 1
+                        else if ((currentTileY + newY) < 0)
+                        {
+
+                        }
+
+                    }
+                    else if ((currentTileX + newX) > 0)
+                    {
+                        //right 1
+                        if ((currentTileY + newY) > 0)
+                        {
+
+                        }
+                        //right 1 down 1
+                        else if ((currentTileY + newY) < 0)
+                        {
+
+                        }
+
+                    }
+                }
+
+
+            }
+        }
+
         public void MoveToTile(GameTime gameTime)
         {
 
@@ -422,7 +469,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
         {
 
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            MoveToTile(gameTime);
+            if(IsWorldNPC)
+            {
+                MoveToTileChunk(gameTime);
+            }
+            else
+            {
+                MoveToTile(gameTime);
+            }
+            
         }
         public void UpdateDirection()
         {

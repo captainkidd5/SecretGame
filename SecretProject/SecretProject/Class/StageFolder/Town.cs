@@ -50,6 +50,7 @@ namespace SecretProject.Class.StageFolder
 
         Dog Nelja;
 
+
         public Town(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name,locationType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
             this.Graphics = graphics;
@@ -89,7 +90,7 @@ namespace SecretProject.Class.StageFolder
             this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
             this.QuadTree = new QuadTree(5, Cam.ViewPortRectangle);
-            Nelja = new Dog("Nelja", new Vector2(450, 450), Graphics, Game1.AllTextures.Nelja, (IInformationContainer)AllTiles, CurrentBehaviour.Wander);
+            Nelja = new Dog("Nelja", new Vector2(1200, 1300), Graphics, Game1.AllTextures.Nelja, (IInformationContainer)AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
             this.IsLoaded = true;
         }
 

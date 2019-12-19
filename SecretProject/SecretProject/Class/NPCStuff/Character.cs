@@ -231,20 +231,25 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         {
             this.PrimaryVelocity = new Vector2(1, 1);
             UpdateDirection();
-            for (int i = 0; i < 4; i++)
-            {
-                NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-            }
-           
+
+
             if (IsMoving)
-            { 
-                
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+                }
                 this.PrimaryVelocity = Collider.Velocity;
             }
             else
             {
-                this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    this.NPCAnimatedSprite[i].SetFrame(0);
+                }
             }
+
         }
 
         //meant for non-moving, non-Primary NPCS
@@ -305,14 +310,14 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                             }
                         }
                         CurrentResearch.Claimed = true;
-                         Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White);
+                        Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White);
                     }
                     else
                     {
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     }
-                     
-                    if(skeleton != null)
+
+                    if (skeleton != null)
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                         Game1.Player.UserInterface.TextBuilder.SpeakerName = this.Name;
@@ -325,7 +330,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                         UpdateDirectionVector(Game1.Player.position);
                         this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(frameToSet);
                     }
-                    
+
 
 
                 }
@@ -361,9 +366,9 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
         public void OnDayIncreased(object sender, EventArgs e)
         {
-            if(this.HasActiveResearch)
+            if (this.HasActiveResearch)
             {
-                if(CurrentResearch.ContinueResearch())
+                if (CurrentResearch.ContinueResearch())
                 {
                     this.HasActiveResearch = false;
                 }
@@ -438,7 +443,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
                 Portal portal = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo);
-                return new Point((portal.PortalStart.X + portal.SafteyOffSetX )/ 16 , (portal.PortalStart.Y + portal.SafteyOffSetY) / 16 );
+                return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16, (portal.PortalStart.Y + portal.SafteyOffSetY) / 16);
             }
             else
             {
@@ -569,7 +574,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                     EventCurrentPath.RemoveAt(EventCurrentPath.Count - 1);
                 }
 
-                
+
 
             }
             else if (this.Position != new Vector2(endPoint.X * 16, endPoint.Y * 16))
@@ -577,30 +582,30 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 PathFinderFast finder = null;
                 if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                 {
-                     finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
+                    finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.ChunkUnderPlayer.PathGrid.Weight);
                 }
                 else
                 {
-                     finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
+                    finder = new PathFinderFast(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.PathGrid.Weight);
                 }
-                
 
-                    Point start = new Point((int)(this.Position.X /16),
-                     (int)(this.Position.Y / 16));
-                    Point end = new Point(endPoint.X, endPoint.Y);
+
+                Point start = new Point((int)(this.Position.X / 16),
+                 (int)(this.Position.Y / 16));
+                Point end = new Point(endPoint.X, endPoint.Y);
                 EventCurrentPath = finder.FindPath(start, end);
-                    if (EventCurrentPath == null)
-                    {
-                        throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                    }
-                
+                if (EventCurrentPath == null)
+                {
+                    throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                }
+
 
             }
             else
             {
                 this.IsMoving = false;
                 this.NPCAnimatedSprite[(int)CurrentDirection].SetFrame(0);
-               // this.CurrentDirection = 0;
+                // this.CurrentDirection = 0;
             }
 
         }

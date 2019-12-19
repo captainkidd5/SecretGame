@@ -326,7 +326,12 @@ namespace SecretProject.Class.TileStuff
                         Tile tile = SearchForEmptyTile(3);
                         if (tile != null)
                         {
-                            Game1.OverWorld.Enemies.AddRange(NPCGenerator.SpawnNpcPack(Game1.Procedural.GetTilingContainerFromGID(tile.GID).GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                            if(tilingContainer != null)
+                            {
+                                Game1.OverWorld.Enemies.AddRange(NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                            }
+                           
                         }
 
 

@@ -561,42 +561,48 @@ namespace SecretProject.Class.Playable
         int oldSoundFrame1 = 0;
         public int WalkSoundEffect { get; set; }
 
+        public bool IsDrawn { get; set; }
+
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-
-            if (!IsPerformingAction)
+            if (IsDrawn)
             {
 
-                for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+
+                if (!IsPerformingAction)
                 {
-                    PlayerMovementAnimations[i].DrawAnimation(spriteBatch, PlayerMovementAnimations[i].destinationVector, PlayerMovementAnimations[i].LayerDepth + layerDepth);
-                    if(IsMoving)
+
+                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, PlayerMovementAnimations[i].destinationVector, PlayerMovementAnimations[i].LayerDepth + layerDepth);
+                        if (IsMoving)
                         {
-                            Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
+                            if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                            {
+                                Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
+                            }
                         }
+
+                        oldSoundFrame1 = PlayerMovementAnimations[i].CurrentFrame;
                     }
-                    
-                    oldSoundFrame1 = PlayerMovementAnimations[i].CurrentFrame;
+
                 }
 
-            }
-
-            //????
-            if (IsPerformingAction)
-            {
-                DrawCollectiveActions(spriteBatch, layerDepth);
-            }
-
-            if (this.CurrentTool != null)
-            {
-                CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
-                if(Game1.GetCurrentStage().ShowBorders)
+                //????
+                if (IsPerformingAction)
                 {
-                    ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, CurrentTool.Rotation + 4);
+                    DrawCollectiveActions(spriteBatch, layerDepth);
                 }
-                
+
+                if (this.CurrentTool != null)
+                {
+                    CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
+                    if (Game1.GetCurrentStage().ShowBorders)
+                    {
+                        ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, CurrentTool.Rotation + 4);
+                    }
+
+                }
             }
 
         }

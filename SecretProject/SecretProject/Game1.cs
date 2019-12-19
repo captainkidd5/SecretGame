@@ -100,7 +100,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
+        public static bool EnableCutScenes = true;
 
         public static bool IsFirstTimeStartup;
 
@@ -879,7 +879,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("joe", new Vector2(800, 800), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true };
+            Player = new Player("joe", new Vector2(800, 800), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
