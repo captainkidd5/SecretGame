@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.2" tiledversion="1.3.0" name="InteriorSpriteSheet" tilewidth="16" tileheight="16" tilecount="10000" columns="100">
  <image source="../../../Map/InteriorSpriteSheet1.png" width="1600" height="1600"/>
+ <tile id="143">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <animation>
+   <frame tileid="143" duration="100"/>
+   <frame tileid="144" duration="100"/>
+   <frame tileid="145" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="144">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="145">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="150">
   <objectgroup draworder="index">
    <object id="1" x="0" y="6" width="16" height="10"/>
@@ -70,6 +90,16 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="1" width="16" height="8"/>
   </objectgroup>
+ </tile>
+ <tile id="344">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="346">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="350">
   <objectgroup draworder="index">
@@ -165,6 +195,16 @@
   <objectgroup draworder="index">
    <object id="1" x="1" y="4" width="8" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="545">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="546">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="549">
   <objectgroup draworder="index">
@@ -309,6 +349,21 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="2" width="8" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="744">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="745">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="746">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="756">
   <objectgroup draworder="index">

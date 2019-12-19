@@ -212,14 +212,21 @@ namespace SecretProject.Class.TileStuff
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
 
-                    List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
-                    // frames.Add(new EditableAnimationFrame(new AnimationFrameHolder();
-                    for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
+                    if (!container.AnimationFrames.ContainsKey(tileToAssign.GetTileKeyStringNew(layer, container)))
                     {
-                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
+
+
+                        List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+
+                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
+                        for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
+                        {
+                            frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
+                        }
+                        EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID);
+                        container.AnimationFrames.Add(tileToAssign.GetTileKeyStringNew(layer, container), frameHolder);
                     }
-                    EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID);
-                    container.AnimationFrames.Add(tileToAssign.GetTileKeyStringNew(layer, container), frameHolder);
+
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
@@ -787,14 +794,14 @@ namespace SecretProject.Class.TileStuff
             int cap = Game1.Utility.RGenerator.Next(0, frequency);
 
             int limitCounter = 0;
-            
+
             for (int g = 0; g < cap; g++)
             {
-                if(RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero, assertLeftAndRight))
+                if (RetrieveRandomlyDistributedTile(layerToPlace, gid, Game1.Procedural.GetTilingContainerFromGenerationType(type).GeneratableTiles, container, layerToCheckIfEmpty, onlyLayerZero, assertLeftAndRight))
                 {
                     limitCounter++;
                 }
-                if(limit > 0 && limitCounter >= limit)
+                if (limit > 0 && limitCounter >= limit)
                 {
                     return;
                 }
@@ -818,22 +825,22 @@ namespace SecretProject.Class.TileStuff
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
                 acceptableTiles, container, comparisonLayer))
             {
-                if(zeroLayerOnly)
+                if (zeroLayerOnly)
                 {
-                    if(TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, 1, container))
+                    if (TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, 1, container))
                     {
                         return false;
                     }
                 }
-                if(assertLeftAndRight)
+                if (assertLeftAndRight)
                 {
-                    
-                    if(!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1,newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
+
+                    if (!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
                     {
                         return false;
                     }
                 }
-               
+
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 return true;
 
