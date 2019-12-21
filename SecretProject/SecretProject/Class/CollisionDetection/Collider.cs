@@ -84,7 +84,7 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public void HandleMove(Vector2 callPosition, Vector2 moveAmount, ICollidable objectBody)
+        public void HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
             Vector2 newMove = Vector2.Zero;
             if (moveAmount.X != 0f)

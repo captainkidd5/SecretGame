@@ -502,7 +502,7 @@ namespace SecretProject.Class.Playable
                         if (returnObjects[i].Entity != this)
                         {
 
-                            MainCollider.HandleMove(Position, PrimaryVelocity, returnObjects[i]);
+                            MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
                           
 
                         }
