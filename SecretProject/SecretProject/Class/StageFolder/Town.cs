@@ -313,6 +313,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
+                    Nelja.DrawDebug(spriteBatch, 1f);
 
                     foreach (Character character in CharactersPresent)
                     {

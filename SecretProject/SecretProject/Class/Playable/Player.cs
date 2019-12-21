@@ -367,9 +367,15 @@ namespace SecretProject.Class.Playable
 
                 if (controls.IsMoving && !IsPerformingAction)
                 {
-
-
-                    Position += PrimaryVelocity;
+                    if(controls.IsSprinting)
+                    {
+                        Position += PrimaryVelocity * 10;
+                    }
+                    else
+                    {
+                        Position += PrimaryVelocity;
+                    }
+                    
                     
                     if (LockBounds)
                     {
@@ -501,9 +507,12 @@ namespace SecretProject.Class.Playable
                     {
                         if (returnObjects[i].Entity != this)
                         {
+                            if(!Game1.EnablePlayerCollisions)
+                            {
+                                MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
 
-                            MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
-                          
+                            }
+
 
                         }
 

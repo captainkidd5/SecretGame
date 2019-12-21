@@ -199,7 +199,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         {
             lock (this)
             {
-                HighResolutionTime.Start();
+               // HighResolutionTime.Start();
 
                 // Is faster if we don't clear the matrix, just assign different values for open and close and ignore the rest
                 // I could have user Array.Clear() but using unsafe code is faster, no much but it is.
@@ -261,7 +261,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
                     if (mCloseNodeCounter > mSearchLimit)
                     {
                         mStopped = true;
-                        mCompletedTime = HighResolutionTime.GetTime();
+                       // mCompletedTime = HighResolutionTime.GetTime();
                         return null;
                     }
 
@@ -384,7 +384,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 #endif
                 }
 
-                mCompletedTime = HighResolutionTime.GetTime();
+               // mCompletedTime = HighResolutionTime.GetTime();
                 if (mFound)
                 {
                     mClose.Clear();

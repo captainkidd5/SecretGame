@@ -22,8 +22,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
 
-            this.NPCRectangleXOffSet = 15;
-            this.NPCRectangleYOffSet = 15;
+            this.NPCRectangleXOffSet = 0;
+            this.NPCRectangleYOffSet = -8;
             this.NPCRectangleHeightOffSet = 4;
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
