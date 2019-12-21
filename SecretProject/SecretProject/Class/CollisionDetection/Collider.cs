@@ -20,11 +20,9 @@ namespace SecretProject.Class.CollisionDetection
 
         public bool ShowRectangle { get; set; }
         //0 doesnt check for collisions with other objects, 1 does (player, npcs, moving stuff etc)
-
-        private Vector2 velocity;
         private Rectangle rectangle;
 
-        public Vector2 Velocity { get { return velocity; } set { velocity = value; } }
+
 
         public Rectangle Rectangle { get { return rectangle; } set { rectangle = value; } }
 
@@ -40,9 +38,8 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public Collider(GraphicsDevice graphicsDevice, Vector2 velocity, Rectangle rectangle, IEntity entity, ColliderType colliderType = ColliderType.inert)
+        public Collider(GraphicsDevice graphicsDevice, Rectangle rectangle, IEntity entity, ColliderType colliderType = ColliderType.inert)
         {
-            this.velocity = velocity;
             this.rectangle = rectangle;
             this.ColliderType = colliderType;
 
@@ -68,87 +65,56 @@ namespace SecretProject.Class.CollisionDetection
                 return false;
             }
         }
-        public bool DidCollide(ICollidable objectBody, Vector2 position)
+        public bool DidCollide(Vector2 velocity, ICollidable objectBody)
         {
+            Rectangle rect = Rectangle;
 
+            rect.X += (int)velocity.X;
+            rect.Y += (int)velocity.Y;
 
-            if (this.Rectangle.Intersects(objectBody.Rectangle))
+            if (rect.Intersects(objectBody.Rectangle))
             {
-                if (velocity.X > 0 && IsTouchingLeft(rectangle, objectBody, velocity))
-                {
-                    velocity.X -= velocity.X; //+ (float).25;
-
-                    return true;
-                }
-
-
-
-                if (velocity.X < 0 && IsTouchingRight(rectangle, objectBody, velocity))
-                {
-                    velocity.X -= velocity.X; //- (float).25;
-                                              //   position.X = objectBody.DestinationRectangle.Right;
-                    return true;
-                }
-
-
-                if (velocity.Y > 0 && IsTouchingTop(rectangle, objectBody, velocity))
-                {
-                    velocity.Y -= velocity.Y; //+ (float).25;
-                                              //  position.Y = objectBody.DestinationRectangle.Top;
-                    return true;
-                }
-
-                if (velocity.Y < 0 && IsTouchingBottom(rectangle, objectBody, velocity))
-                {
-                    velocity.Y -= velocity.Y;// - (float).25;
-                                             // position.Y = objectBody.DestinationRectangle.Bottom;
-                    return true;
-                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
 
-
-            return false;
-
         }
 
- 
-
-
-
-
-        public bool IsTouchingLeft(Rectangle rectangle, ICollidable obj, Vector2 velocity)
+        public void HandleMove(Vector2 callPosition, Vector2 moveAmount, ICollidable objectBody)
         {
-            return rectangle.Right + velocity.X > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Left &&
-                rectangle.Bottom > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Bottom;
-        }
-        public bool IsTouchingRight(Rectangle rectangle, ICollidable obj, Vector2 velocity)
-        {
-            return rectangle.Left + velocity.X < obj.Rectangle.Right &&
-                rectangle.Right > obj.Rectangle.Right &&
-                rectangle.Bottom > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Bottom;
-        }
-        public bool IsTouchingTop(Rectangle rectangle, ICollidable obj, Vector2 velocity)
-        {
-            return rectangle.Bottom + velocity.Y > obj.Rectangle.Top &&
-                rectangle.Top < obj.Rectangle.Top &&
-                rectangle.Right > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Right;
-        }
-        public bool IsTouchingBottom(Rectangle rectangle, ICollidable obj, Vector2 velocity)
-        {
-            return rectangle.Top + velocity.Y < obj.Rectangle.Bottom &&
-                rectangle.Bottom > obj.Rectangle.Bottom &&
-                rectangle.Right > obj.Rectangle.Left &&
-                rectangle.Left < obj.Rectangle.Right;
+            Vector2 newMove = Vector2.Zero;
+            if (moveAmount.X != 0f)
+            {
+                newMove.Y = 0;
+                newMove.X = moveAmount.X;
+
+                bool collided = DidCollide(newMove, objectBody);
+                if (collided)
+                {
+                    moveAmount = new Vector2(0, moveAmount.Y);
+                }
+            }
+
+            if (moveAmount.Y != 0f)
+            {
+                newMove.Y = moveAmount.Y;
+                newMove.X = 0;
+
+                bool collided = DidCollide(newMove, objectBody);
+                if (collided)
+                {
+                    moveAmount = new Vector2(moveAmount.X, 0);
+                }
+            }
         }
 
-        //Sprite part
 
-        
+
+
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {
             var Colors = new List<Color>();

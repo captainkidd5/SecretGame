@@ -307,7 +307,7 @@ namespace SecretProject.Class.TileStuff
                     int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newHitBox"]);
                     string key = tileToAssign.GetTileKeyStringNew(layer, container);
 
-                    Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
+                    Collider tempObjectBody = new Collider(container.GraphicsDevice, 
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
                             rectangleCoords[3]), null, ColliderType.inert)
@@ -363,8 +363,7 @@ namespace SecretProject.Class.TileStuff
                         TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
-                        Collider tempObjectBody = new Collider(container.GraphicsDevice, new Vector2(0, 0),
-                            new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
+                        Collider tempObjectBody = new Collider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
                             GetDestinationRectangle(tileToAssign).Y + (int)Math.Ceiling(tempObj.Y) - 5, (int)Math.Ceiling(tempObj.Width),
                             (int)Math.Ceiling(tempObj.Height) + 5), null, ColliderType.inert)
                         { LocationKey = key };

@@ -103,7 +103,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.Name = name;
             this.Position = position;
             this.Texture = spriteSheet;
-            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
+            Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
@@ -144,14 +144,12 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.IsMoving = true;
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = new Rectangle((int)(this.Position.X + NPCRectangleXOffSet / 2), (int)(this.Position.Y + NPCRectangleYOffSet / 2), (int)(NPCRectangleWidthOffSet * 2), (int)(NPCRectangleHeightOffSet * 2));
-            Collider.Velocity = this.PrimaryVelocity;
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
                 //if obj collided with item in list stop it from moving boom badda bing
-                if (Collider.DidCollide(returnObjects[i], Position))
-                {
+
                     CollideOccured = true;
                     if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                     {
@@ -168,7 +166,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
                     // IsMoving = false;
-                }
+                
 
 
             }
@@ -186,10 +184,6 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
             }
 
-            if (CollideOccured)
-            {
-                this.PrimaryVelocity = Collider.Velocity;
-            }
             if (IsMoving)
             {
                 switch (CurrentBehaviour)

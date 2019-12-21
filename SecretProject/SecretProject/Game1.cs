@@ -620,15 +620,13 @@ namespace SecretProject
                     }
                 }
 
-
-
             }
 
             
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
-                new IntroduceJulianShop(GraphicsDevice),
+               // new IntroduceJulianShop(GraphicsDevice),
                 new IntroScene(GraphicsDevice)
             };
             IsEventActive = false;

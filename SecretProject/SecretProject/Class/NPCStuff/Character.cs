@@ -106,7 +106,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
 
 
-            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this);
+            Collider = new Collider(graphics, this.NPCHitBoxRectangle, this);
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
@@ -139,7 +139,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
 
 
-            Collider = new Collider(graphics, this.PrimaryVelocity, this.NPCHitBoxRectangle, this, ColliderType.NPC);
+            Collider = new Collider(graphics,  this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.CurrentDirection = 0;
 
         }
@@ -171,7 +171,6 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             }
             this.PrimaryVelocity = new Vector2(1, 1);
             Collider.Rectangle = this.NPCHitBoxRectangle;
-            Collider.Velocity = this.PrimaryVelocity;
             List<ICollidable> returnObjects = new List<ICollidable>();
             //Game1.GetStageFromInt(CurrentStageLocation).QuadTree.Retrieve(returnObjects, Collider);
             //for (int i = 0; i < returnObjects.Count; i++)
@@ -196,10 +195,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             }
 
             UpdateDirection();
-            if (CollideOccured)
-            {
-                this.PrimaryVelocity = Collider.Velocity;
-            }
+
 
 
 
@@ -239,7 +235,6 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 {
                     NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
                 }
-                this.PrimaryVelocity = Collider.Velocity;
             }
             else
             {

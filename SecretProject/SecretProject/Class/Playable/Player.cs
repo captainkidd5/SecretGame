@@ -39,8 +39,8 @@ namespace SecretProject.Class.Playable
 
         public Vector2 position;
         public Vector2 PrimaryVelocity;
-        public Vector2 SecondaryVelocity;
-        public Vector2 TotalVelocity;
+
+ 
         public bool Activate { get; set; }
 
         public Sprite[,] animations;
@@ -68,8 +68,7 @@ namespace SecretProject.Class.Playable
         public Dir AnimationDirection { get; set; }
         public bool IsMoving { get; set; } = false;
         public const float Speed1 = 1f;
-        public float CurrentSpeed { get; set; }
-        public float SecondarySpeed { get; set; } = 1f;
+
         public Sprite[] PlayerMovementAnimations { get; set; }
         public Sprite[] PlayerActionAnimations { get; set; }
 
@@ -138,8 +137,8 @@ namespace SecretProject.Class.Playable
             Mining = new Sprite[4, 6];
             Swiping = new Sprite[4, 5];
 
-            MainCollider = new Collider(graphics, PrimaryVelocity, ColliderRectangle, this, ColliderType.inert);
-            BigCollider = new Collider(graphics, PrimaryVelocity, ClickRangeRectangle, this, ColliderType.PlayerBigBox);
+            MainCollider = new Collider(graphics, ColliderRectangle, this, ColliderType.inert);
+            BigCollider = new Collider(graphics, ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             Inventory = new Inventory(30) { Money = 10000 };
 
             controls = new PlayerControls(0);
@@ -283,10 +282,9 @@ namespace SecretProject.Class.Playable
         {
             if (Activate)
             {
-                CurrentSpeed = Speed1;
+
                 PrimaryVelocity = Vector2.Zero;
-                SecondaryVelocity = Vector2.Zero;
-                TotalVelocity = Vector2.Zero;
+
                 IsMoving = controls.IsMoving;
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -359,10 +357,10 @@ namespace SecretProject.Class.Playable
                 MoveFromKeys();
                 
                 MainCollider.Rectangle = this.ColliderRectangle;
-                MainCollider.Velocity = this.PrimaryVelocity;
+
 
                 BigCollider.Rectangle = this.ClickRangeRectangle;
-                BigCollider.Velocity = this.PrimaryVelocity;
+
 
                 CheckAndHandleCollisions();
 
@@ -370,23 +368,8 @@ namespace SecretProject.Class.Playable
                 if (controls.IsMoving && !IsPerformingAction)
                 {
 
-                    if (this.CollideOccured) //if collision occurred we don't want to take diagonal movement into account
-                    {
-                        this.PrimaryVelocity = MainCollider.Velocity;
-                        TotalVelocity = PrimaryVelocity;
-                        // SecondaryVelocity = Vector2.Zero;
-                    }
-                    else
-                    {
-                        TotalVelocity = PrimaryVelocity + SecondaryVelocity;
-                    }
 
-
-                    if (controls.IsSprinting)
-                    {
-                        TotalVelocity = TotalVelocity * 15f;
-                    }
-                    Position += TotalVelocity;// * dt;
+                    Position += PrimaryVelocity;
                     
                     if (LockBounds)
                     {
@@ -406,19 +389,19 @@ namespace SecretProject.Class.Playable
                 switch (controls.Direction)
                 {
                     case Dir.Right:
-                        PrimaryVelocity.X = CurrentSpeed;
+                        PrimaryVelocity.X = Speed1;
                         break;
 
                     case Dir.Left:
-                        PrimaryVelocity.X = -CurrentSpeed;
+                        PrimaryVelocity.X = -Speed1;
                         break;
 
                     case Dir.Down:
-                        PrimaryVelocity.Y = CurrentSpeed;
+                        PrimaryVelocity.Y = Speed1;
                         break;
 
                     case Dir.Up:
-                        PrimaryVelocity.Y = -CurrentSpeed;
+                        PrimaryVelocity.Y = -Speed1;
                         break;
 
                     default:
@@ -429,14 +412,14 @@ namespace SecretProject.Class.Playable
                 switch (controls.SecondaryDirection)
                 {
                     case SecondaryDir.Right:
-                        SecondaryVelocity.X = SecondarySpeed;
+                        PrimaryVelocity.X = Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
                             PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
                         }
                         break;
                     case SecondaryDir.Left:
-                        SecondaryVelocity.X = -SecondarySpeed;
+                        PrimaryVelocity.X = -Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
                             PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
@@ -444,7 +427,7 @@ namespace SecretProject.Class.Playable
 
                         break;
                     case SecondaryDir.Down:
-                        SecondaryVelocity.Y = SecondarySpeed;
+                        PrimaryVelocity.Y = Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
                             PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
@@ -452,7 +435,7 @@ namespace SecretProject.Class.Playable
 
                         break;
                     case SecondaryDir.Up:
-                        SecondaryVelocity.Y = -SecondarySpeed;
+                        PrimaryVelocity.Y = -Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
                             PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
@@ -487,10 +470,10 @@ namespace SecretProject.Class.Playable
                     {
                         returnObjects[i].IsUpdating = true;
                         returnObjects[i].InitialShuffDirection = this.controls.Direction;
-                        if (Game1.EnablePlayerCollisions)
-                        {
-                            CurrentSpeed = Speed1 / 2;
-                        }
+                        //if (Game1.EnablePlayerCollisions)
+                        //{
+                        //    CurrentSpeed = Speed1 / 2;
+                        //}
                     }
                     #region SWORD INTERACTIONS
                     if (CurrentTool != null)
@@ -519,13 +502,8 @@ namespace SecretProject.Class.Playable
                         if (returnObjects[i].Entity != this)
                         {
 
-                            if (MainCollider.DidCollide(returnObjects[i], position))
-                            {
-                                if (Game1.EnablePlayerCollisions)
-                                {
-                                    CollideOccured = true;
-                                }
-                            }
+                            MainCollider.HandleMove(Position, PrimaryVelocity, returnObjects[i]);
+                          
 
                         }
 
