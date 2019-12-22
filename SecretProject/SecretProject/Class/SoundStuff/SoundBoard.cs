@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.SoundStuff
@@ -255,6 +256,17 @@ namespace SecretProject.Class.SoundStuff
                     soundEffect.Stop();
                 }
             }
+        }
+
+        public void PlayEmoticonSound(EmoticonType emoticonType)
+        {
+            switch (emoticonType)
+            {
+                case EmoticonType.Exclamation:
+                    PlaySoundEffectInstance(PigGrunt);
+                    break;
+            }
+
         }
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey)

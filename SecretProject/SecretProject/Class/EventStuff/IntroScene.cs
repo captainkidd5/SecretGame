@@ -61,7 +61,7 @@ namespace SecretProject.Class.EventStuff
 
             Game1.Dobbin.CurrentStageLocation = Stages.OverWorld;
             Game1.Dobbin.IsInEvent = true;
-            Game1.Dobbin.Position = new Vector2(128, 0);
+            
             //  Game1.Dobbin.ResetPathFinding();
             this.FreezePlayerControls = true;
             this.IsActive = true;
@@ -91,13 +91,14 @@ namespace SecretProject.Class.EventStuff
             Game1.OverWorld.AllTiles.Update(gameTime, Game1.myMouseManager);
             Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, StageFolder.LocationType.Exterior);
             Game1.Player.UserInterface.CinematicMode = true;
+           
             switch (CurrentStep)
             {
                 case 0:
                     if (Game1.cam.pos.Y > 180)
                     {
-                        Game1.cam.pos = new Vector2(Game1.cam.pos.X, Game1.cam.pos.Y - 1);
-                        //  Game1.cam.pos.Y--;
+                        Game1.cam.pos = new Vector2(Game1.cam.pos.X, Game1.cam.pos.Y - .5f);
+
                     }
                     else
                     {
@@ -105,6 +106,7 @@ namespace SecretProject.Class.EventStuff
                         {
                             StepsCompleted[CurrentStep] = true;
                             CurrentStep++;
+                            Game1.Dobbin.Position = new Vector2(128, 0);
                         }
                     }
 
@@ -160,7 +162,8 @@ namespace SecretProject.Class.EventStuff
                         if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
                         {
                             CurrentStep++;
-                            Game1.Dobbin.CurrentDirection = Dir.Down;
+                            
+                            
                         }
 
                     }
@@ -169,12 +172,14 @@ namespace SecretProject.Class.EventStuff
                     Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 6));
                     if (Game1.Dobbin.EventCurrentPath.Count <= 0)
                     {
+                        Game1.Dobbin.CurrentDirection = Dir.Down;
                         if (SimpleTimer.Run(gameTime))
                         {
-
+                            
 
                             if (!StepsCompleted[CurrentStep])
                             {
+                                Game1.Dobbin.ActivateEmoticon(EmoticonType.Exclamation);
                                 Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                                     "Hey, are you okay!?", 2f, null, null);
                                 StepsCompleted[CurrentStep] = true;
@@ -183,6 +188,7 @@ namespace SecretProject.Class.EventStuff
                         if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                         {
                             CurrentStep++;
+                            Game1.Dobbin.CurrentEmoticon = EmoticonType.None;
                         }
 
                     }
@@ -306,7 +312,7 @@ namespace SecretProject.Class.EventStuff
                     }
                     break;
                 case 10:
-                    Game1.Player.position = new Vector2(580, 500);
+                    Game1.Player.position = new Vector2(570, 500);
                     Console.WriteLine("Event has ended");
                     Game1.IsEventActive = false;
                     this.IsActive = false;

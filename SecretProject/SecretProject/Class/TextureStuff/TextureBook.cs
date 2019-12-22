@@ -11,6 +11,11 @@ using TiledSharp;
 
 namespace SecretProject.Class.TextureStuff
 {
+    public enum EmoticonType
+    {
+        ExclamationPoint = 1
+    }
+
     public class TextureBook
     {
         //Player

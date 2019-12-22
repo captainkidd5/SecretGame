@@ -96,6 +96,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         public ResearchAssignment CurrentResearch { get; set; }
         public bool HasActiveResearch { get; set; }
 
+        public EmoticonType CurrentEmoticon { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
@@ -409,6 +411,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 CurrentDirection = Dir.Down;
             }
         }
+
         #endregion
 
         #region SCHEDULE AND PATHFINDING
@@ -559,6 +562,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
         #endregion
         //forEvents
         public List<PathFinderNode> EventCurrentPath { get; set; } = new List<PathFinderNode>();
+        
+
         public void EventMoveToTile(GameTime gameTime, Point endPoint)
         {
             if (EventCurrentPath.Count > 0)
@@ -659,9 +664,20 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 }
             }
 
+            if(CurrentEmoticon != EmoticonType.None)
+            {
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Position.X, Position.Y - 24), new Rectangle(0, 48, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+            }
+
         }
         #endregion
 
+
+        public void ActivateEmoticon(EmoticonType emoticonType)
+        {
+            this.CurrentEmoticon = emoticonType;
+            Game1.SoundManager.PlayEmoticonSound(emoticonType);
+        }
 
 
         #region DEBUG

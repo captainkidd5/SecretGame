@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.NPCStuff
 {
+    public enum EmoticonType
+    {
+        None = 0,
+        Exclamation = 1
+    }
+
     public interface INPC : IEntity
     {
         string Name { get; set; }
@@ -31,7 +37,7 @@ namespace SecretProject.Class.NPCStuff
          int FrameNumber { get; set; }
          Collider Collider { get; set; }
          bool CollideOccured { get; set; }
-
+        EmoticonType CurrentEmoticon { get; set; }
 
     }
 }
