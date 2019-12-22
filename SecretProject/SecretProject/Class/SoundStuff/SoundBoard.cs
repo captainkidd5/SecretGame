@@ -15,7 +15,7 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } =0f;
+        public float GameVolume { get; set; } =1f;
         //Sound Effects are WAV
         //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
@@ -99,10 +99,16 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Slash1;
         public SoundEffect BushCut;
 
+        public SoundEffect Thunder1;
+
         //songs
         public SoundEffect DustStorm;
         public SoundEffect Lakescape;
         public SoundEffect Title;
+
+        //Event songs
+        //Intro Scene
+        public SoundEffect Downpour;
 
         public SoundEffect CurrentSong { get; set; }
         public SoundEffectInstance CurrentSongInstance { get; set; }
@@ -184,6 +190,7 @@ namespace SecretProject.Class.SoundStuff
             FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
 
             UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
+            Thunder1 = content.Load<SoundEffect>("SoundEffects/Thunder1");
 
             //COMBAT
             Slash1 = content.Load<SoundEffect>("SoundEffects/Slash1");
@@ -194,6 +201,8 @@ namespace SecretProject.Class.SoundStuff
 
             Title = content.Load<SoundEffect>("Songs/Title");
             Lakescape = content.Load<SoundEffect>("Songs/Lakescape");
+
+            Downpour = content.Load<SoundEffect>("Songs/Downpour");
 
             this.CurrentSong = Title;
             this.CurrentSongInstance = CurrentSong.CreateInstance();

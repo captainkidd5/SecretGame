@@ -267,13 +267,14 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void UpdateMovementAnimationsOnce(GameTime gameTime)
+        public void UpdateMovementAnimationsOnce()
         {
             for (int i = 0; i < animations.GetLength(0); i++)
             {
                 for (int j = 0; j < animations.GetLength(1); j++)
                 {
-                    animations[i, j].UpdateAnimations(gameTime, this.position);
+                    animations[i, j].SetFrame(0);
+                    animations[i, j].UpdateAnimationPosition(this.Position);
                 }
             }
         }

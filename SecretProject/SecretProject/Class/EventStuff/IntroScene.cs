@@ -68,6 +68,8 @@ namespace SecretProject.Class.EventStuff
             Game1.Player.IsDrawn = false;
             Game1.CurrentWeather = WeatherType.Rainy;
             Game1.cam.Pos = new Vector2(128, 500);
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Thunder1);
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Downpour);
         }
         
 
@@ -91,6 +93,7 @@ namespace SecretProject.Class.EventStuff
             Game1.OverWorld.AllTiles.Update(gameTime, Game1.myMouseManager);
             Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, StageFolder.LocationType.Exterior);
             Game1.Player.UserInterface.CinematicMode = true;
+            
            
             switch (CurrentStep)
             {
@@ -312,7 +315,7 @@ namespace SecretProject.Class.EventStuff
                     }
                     break;
                 case 10:
-                    Game1.Player.position = new Vector2(570, 500);
+                    Game1.Player.position = new Vector2(560, 500);
                     Console.WriteLine("Event has ended");
                     Game1.IsEventActive = false;
                     this.IsActive = false;

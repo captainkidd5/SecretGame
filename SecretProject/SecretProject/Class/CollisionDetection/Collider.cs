@@ -87,6 +87,7 @@ namespace SecretProject.Class.CollisionDetection
         public void HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
             Vector2 newMove = Vector2.Zero;
+            //Check collision in X direction
             if (moveAmount.X != 0f)
             {
                 newMove.Y = 0;
@@ -99,6 +100,7 @@ namespace SecretProject.Class.CollisionDetection
                 }
             }
 
+            //Check collision in Y direction
             if (moveAmount.Y != 0f)
             {
                 newMove.Y = moveAmount.Y;
