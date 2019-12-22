@@ -65,7 +65,7 @@ namespace SecretProject.Class.UI
                 if (DebugButton1.isClicked)
                 {
 
-                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White);
+                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     Game1.GlobalClock.IncrementDay();
 
 

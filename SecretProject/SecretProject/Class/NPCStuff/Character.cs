@@ -305,7 +305,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                             }
                         }
                         CurrentResearch.Claimed = true;
-                        Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White);
+                        Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White, true, .5f);
                     }
                     else
                     {

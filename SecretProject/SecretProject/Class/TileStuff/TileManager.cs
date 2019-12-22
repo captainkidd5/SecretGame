@@ -22,6 +22,7 @@ using XMLData.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -148,40 +149,6 @@ namespace SecretProject.Class.TileStuff
 
                     AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
-                    if (mapName.Tilesets[tileSetNumber].Tiles.ContainsKey(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                    {
-
-                        if (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[i][layerNameTile.X, layerNameTile.Y].GID].Properties.ContainsKey("generate"))
-                        {
-                            switch (mapName.Tilesets[tileSetNumber].Tiles[AllTiles[i][layerNameTile.X, layerNameTile.Y].GID].Properties["generate"])
-                            {
-
-
-                                //case "dirt":
-                                //    if (!Game1.Procedural.DirtGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                //    {
-                                //        Game1.Procedural.DirtGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                //    }
-                                //    break;
-                                //case "sand":
-                                //    if (!Game1.Procedural.SandGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                //    {
-                                //        Game1.Procedural.SandGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                //    }
-                                //    break;
-                                //case "grass":
-                                //    if (!Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID))
-                                //    {
-                                //        Game1.Procedural.GrassGeneratableTiles.Add(AllTiles[i][layerNameTile.X, layerNameTile.Y].GID);
-                                //    }
-                                //    break;
-                            }
-
-
-                        }
-                    }
-
-
                 }
             }
             #region PORTALS
@@ -219,33 +186,6 @@ namespace SecretProject.Class.TileStuff
             }
             #endregion
 
-            #region RANDOMGENERATETILES
-            //specify GID which is 1 larger than one on tileset, idk why
-            //brown tall grass
-            // GenerateTiles(3, 6394, "dirt", 2000, 0);
-            //green tall grass
-            // GenerateTiles(3, 6393, "dirt", 2000, 0);
-            //    //stone
-            //    GenerateTiles(1, 979, "dirt", 50, 0, currentStage);
-            ////    //grass
-            // TileUtility.GenerateTiles(1, 1079, "dirt", 5000, 0, this);
-            ////    //redrunestone
-            //GenerateTiles(1, 579, "dirt", 50, 0, currentStage);
-            //////bluerunestone
-            // GenerateTiles(1, 779, "dirt", 100, 0, currentStage);
-            //////thunderbirch
-            //TileUtility.GenerateTiles(1, 2264, "dirt", 500, 0,this);
-            //////crown of swords
-            //GenerateTiles(1, 6388, "sand", 50, 0);
-            //////dandelion
-            //GenerateTiles(1, 6687, "sand", 100, 0);
-            ////juicyfruit
-            //GenerateTiles(1, 1586, "dirt", 500, 0);
-            ////orchardTree
-            //   GenerateTiles(1, 1664, "dirt", 200, 0, currentStage);
-            //bubblegum
-            // GenerateTiles(1, 6191, "dirt", 200, 0);
-            #endregion
 
             for (int z = 0; z < AllTiles.Count; z++)
             {
@@ -256,11 +196,7 @@ namespace SecretProject.Class.TileStuff
 
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
-                        //if(Game1.Procedural.GrassGeneratableTiles.Contains(AllTiles[z][i, j].GID + 1))
-                        //{
-                        //    Game1.Procedural.GenerationReassignForTiling(AllTiles[z][i, j].GID + 1, Game1.Procedural.GetGeneratableTilesFromGenerationType((GenerationType)AllTiles[z][i, j].GID),
-                        //        Game1.Procedural.GetTilingContainerFromGenerationType((GenerationType)AllTiles[z][i, j].GID), z, i, j, MapWidth, MapHeight, this, null);
-                        //}
+
                         
 
                     }
@@ -401,26 +337,6 @@ namespace SecretProject.Class.TileStuff
                             int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z,this);
 
 
-
-
-                            if (z == 0)
-                            {
-                                if (Game1.Player.IsMoving)
-                                {
-
-
-                                    //    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][mouseI, mouseJ].GID))
-                                    //    {
-                                    //        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("step") && Game1.Player.IsMoving && Game1.Player.Rectangle.Intersects(AllTiles[z][mouseI, mouseJ].DestinationRectangle))
-                                    //        {
-                                    //            Game1.SoundManager.PlaySoundEffectFromInt(false, 1, (int)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["step"]), .75f);
-                                    //        }
-                                    //    }
-                                }
-
-
-                            }
-
                             if (AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
 
@@ -438,15 +354,16 @@ namespace SecretProject.Class.TileStuff
 
                                         if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
                                         {
-                                            Game1.Player.UserInterface.DrawTileSelector = true;
                                             Game1.isMyMouseVisible = false;
-
-                                            // Game1.Player.UserInterface.TileSelector. = destinationRectangle.X;
-                                            //Game1.Player.UserInterface.TileSelectorY = destinationRectangle.Y;
-
-                                            mouse.ChangeMouseTexture((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]));
-
-                                            Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                                            {
+                                                if ((AnimationType)Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
+                                                {
+                                                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
+                                                }
+                                            }
+                                            
 
                                             if (mouse.IsClicked)
                                             {

@@ -104,7 +104,7 @@ namespace SecretProject.Class.StageFolder
         void UnloadContent();
         void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
         void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration);
-        void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color);
+        void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale);
 
 
 

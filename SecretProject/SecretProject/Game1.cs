@@ -80,7 +80,9 @@ namespace SecretProject
         GeneralStore = 6,
         KayaHouse = 7,
         Cafe = 8,
-        CaveWorld = 9,
+        
+        DobbinHouseUpper = 9,
+        CaveWorld = 10,
         MainMenu = 50,
         Exit = 55,
         
@@ -100,7 +102,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
+        public static bool EnableCutScenes = true;
 
         public static bool IsFirstTimeStartup;
 
@@ -123,6 +125,7 @@ namespace SecretProject
         public static TmxStageBase KayaHouse;
         public static TmxStageBase Cafe;
         public static World CaveWorld;
+        public static TmxStageBase DobbinHouseUpper;
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -258,8 +261,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;
@@ -326,6 +329,8 @@ namespace SecretProject
                     return Cafe;
                 case Stages.CaveWorld:
                     return CaveWorld;
+                case Stages.DobbinHouseUpper:
+                    return DobbinHouseUpper;
 
                 default:
                     return null;
@@ -333,15 +338,9 @@ namespace SecretProject
             }
         }
 
-        ////Town = 0,
-        //Pass = 1,
-        //Center = 2,
-        //World = 3,
-        //Sanctuary = 4,
-        //ElixirShop = 5,
-        //julianshop = 6
         public static ILocation GetStageFromInt(Stages stage)
         {
+
             switch (stage)
             {
                 case Stages.Town:
@@ -366,6 +365,8 @@ namespace SecretProject
                     return Cafe;
                 case Stages.CaveWorld:
                     return CaveWorld;
+                case Stages.DobbinHouseUpper:
+                    return DobbinHouseUpper;
                 default:
                     return null;
 
@@ -375,40 +376,7 @@ namespace SecretProject
 
         public static Stages GetCurrentStageInt()
         {
-            switch (gameStages)
-            {
-                case Stages.Town:
-                    return Stages.Town;
-
-
-                case Stages.OverWorld:
-                    return Stages.OverWorld;
-
-
-
-                case Stages.ElixirHouse:
-                    return Stages.ElixirHouse;
-                case Stages.JulianHouse:
-                    return Stages.JulianHouse;
-                case Stages.DobbinHouse:
-                    return Stages.DobbinHouse;
-
-                case Stages.PlayerHouse:
-                    return Stages.PlayerHouse;
-                case Stages.GeneralStore:
-                    return Stages.GeneralStore;
-                case Stages.KayaHouse:
-                    return Stages.KayaHouse;
-                case Stages.Cafe:
-                    return Stages.Cafe;
-                case Stages.CaveWorld:
-                    return Stages.CaveWorld;
-
-                default:
-                    return Stages.Town;
-
-            }
-
+            return gameStages;
         }
 
         
@@ -504,13 +472,14 @@ namespace SecretProject
             KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
             CaveWorld = new World("CaveWorld", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.CaveWorld };
+            DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
 
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe };
+            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -770,6 +739,9 @@ namespace SecretProject
                     case Stages.Cafe:
                         Cafe.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.DobbinHouseUpper:
+                        DobbinHouseUpper.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -862,6 +834,10 @@ namespace SecretProject
                 case Stages.Cafe:
                     GraphicsDevice.Clear(Color.Black);
                     Cafe.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.DobbinHouseUpper:
+                    GraphicsDevice.Clear(Color.Black);
+                    DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

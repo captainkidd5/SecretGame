@@ -392,16 +392,10 @@ namespace SecretProject.Class.DialogueStuff
 
         public void PlayTextNoise()
         {
-            int noiseRand = Game1.Utility.RGenerator.Next(1, 3);
-            if (noiseRand == 1)
-            {
+            float noiseRand = Game1.Utility.RFloat(0, 1);
 
-                Game1.SoundManager.TextNoise.Play(.1f, 0f, 0f);
-            }
-            else
-            {
-                Game1.SoundManager.TextNoise2.Play(.1f, 0f, 0f);
-            }
+                Game1.SoundManager.TextNoise.Play(.1f, noiseRand, 0f);
+
         }
 
     }

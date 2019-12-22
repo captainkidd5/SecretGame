@@ -507,7 +507,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (returnObjects[i].Entity != this)
                         {
-                            if(!Game1.EnablePlayerCollisions)
+                            if(Game1.EnablePlayerCollisions)
                             {
                                 MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
 

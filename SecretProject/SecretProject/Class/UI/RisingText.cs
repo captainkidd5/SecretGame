@@ -20,9 +20,10 @@ namespace SecretProject.Class.UI
         public float Speed { get; set; }
         public Color Color { get; set; }
         public bool Fade { get; set; }
+        public float Scale { get; set; }
 
 
-        public RisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade = true)
+        public RisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade = true, float scale = .5f)
         {
 
             this.YStart = yStart;
@@ -31,6 +32,7 @@ namespace SecretProject.Class.UI
             this.Speed = speed;
             this.Color = color;
             this.Fade = fade;
+            this.Scale = scale;
         }
 
         public void Update(GameTime gameTime, List<RisingText> allRisingText)
@@ -50,7 +52,7 @@ namespace SecretProject.Class.UI
 
         public bool UpdateRisingText(GameTime gameTime)
         {
-            if (this.YStart > this.YEnd)
+             if (this.YStart > this.YEnd)
             {
                 YStart -= (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
 
@@ -70,7 +72,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, Color, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         }
 
 

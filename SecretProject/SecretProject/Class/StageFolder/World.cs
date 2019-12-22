@@ -510,9 +510,9 @@ namespace SecretProject.Class.StageFolder
             throw new NotImplementedException();
         }
 
-        public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color)
+        public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale)
         {
-            AllRisingText.Add(new RisingText(yStart, yEnd, stringToWrite, speed, color));
+            AllRisingText.Add(new RisingText(yStart, yEnd, stringToWrite, speed, color, fade, scale));
         }
     }
 }
