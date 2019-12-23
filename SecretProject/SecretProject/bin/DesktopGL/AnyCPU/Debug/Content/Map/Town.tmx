@@ -531,7 +531,7 @@
 </data>
  </layer>
  <objectgroup id="5" name="Portal">
-  <object id="30" x="1632" y="910" width="19" height="31.6667">
+  <object id="30" x="1636" y="945" width="19" height="31.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
@@ -540,7 +540,7 @@
     <property name="standardTo" value="ElixirHouse"/>
    </properties>
   </object>
-  <object id="33" x="1480.12" y="1366.33" width="19" height="36.6667">
+  <object id="33" x="1477" y="1409" width="19" height="36.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
@@ -567,7 +567,7 @@
     <property name="standardTo" value="GeneralStore"/>
    </properties>
   </object>
-  <object id="41" x="750" y="1165" width="19" height="36.6667">
+  <object id="41" x="751" y="1205" width="19" height="36.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>

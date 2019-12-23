@@ -16,7 +16,6 @@ namespace SecretProject.Class.PathFinding
 
         public byte[,] Weight;
 
-        //0 means no object, 1 means object
 
 
         public ObstacleGrid(int mapWidth, int mapHeight)

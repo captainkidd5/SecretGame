@@ -315,6 +315,14 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
+            else if(NeedsToMoveToNewChunk)
+            {
+                UpdateCurrentChunk(NewChunk);
+                this.Position = new Vector2(NewStartX * 16 + CurrentChunkX * 16 * 16 + 8, NewStartY * 16 + CurrentChunkY * 16 * 16 + 8);
+                TryFindNewPath(OutOfChunkDestinationX, OutOfChunkDestinationY);
+
+                NeedsToMoveToNewChunk = false;
+            }
             else if (WanderTimer >= 0)
             {
                 IsMoving = false;
@@ -326,7 +334,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int currentTileY = (int)(this.Position.Y / 16 - (CurrentChunkY * 16));
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
-                if (currentTileX + newX < TileUtility.ChunkWidth - 1 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 1 && currentTileY + newY > 0)
+                if (currentTileX + newX < TileUtility.ChunkWidth  && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight && currentTileY + newY > 0)
                 {
                     TryFindNewPath(currentTileX + newX, currentTileY + newY);
 
@@ -335,30 +343,53 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 else
                 {
                     //basically makes sure tile found is in adjacent and NOT diagonal chunk
-                    if(!((currentTileX + newX > 15) && (currentTileX + newY > 15)) && !((currentTileX + newX < 0) && (currentTileX + newY < 0)))
+                    if(!((currentTileX + newX > 15) && (currentTileX + newY > 15)) && !((currentTileX + newX < 0) && (currentTileY + newY < 0)))
                     {
-
-                        if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
+                        Chunk chunk = TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks);
+                        if (chunk != null)
                         {
                             int startX = currentTileX + newX;
                             int startY = currentTileY + newY;
+                            NewStartX = startX;
+                            NewStartY = startY;
+                            OutOfChunkDestinationX = startX;
+                            OutOfChunkDestinationY = startY;
                             if(startX > 15)
                             {
                                 startX = 15;
+                                OutOfChunkDestinationX = currentTileX + newX - 16;
+                                NewStartX = 0;
                             }
                             if (startX < 0)
                             {
                                 startX = 0;
+                                OutOfChunkDestinationX = 16 - Math.Abs(currentTileX + newX);
+                                NewStartX = 15;
                             }
                             if (startY > 15)
                             {
                                 startY = 15;
+                                OutOfChunkDestinationY = currentTileY + newY - 16;
+                                NewStartY = 0;
                             }
                             if (startY < 0)
                             {
                                 startY = 0;
+                                OutOfChunkDestinationY = 16 - Math.Abs(currentTileY + newY);
+                                NewStartY = 15;
                             }
-                            TryFindNewPath(startX, startY);
+                            if(chunk.PathGrid.Weight[NewStartX, NewStartY] == 1)
+                            {
+                                if(TryFindNewPath(startX, startY))
+                                {
+                                    NewChunk = chunk;
+                                    NeedsToMoveToNewChunk = true;
+                                }
+                                
+                            }
+
+
+                            
                             //UpdateCurrentChunk(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks));
                             Console.WriteLine("hi");
                             
@@ -367,61 +398,25 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                     }
 
-                    //if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
-                    //{
 
-                    //}
-
-
-                    //    if ((currentTileX + newX) < 0)
-                    //{
-                    //    //left 1
-                    //    if ((currentTileY + newY) > 0)
-                    //    {
-                    //        if(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
-                    //        {
-                    //            Console.WriteLine("hi");
-                    //        }
-                    //    }
-
-                    //    //EXCLUDE
-                    //    //left 1 down 1
-                    //    else if ((currentTileY + newY) < 0)
-                    //    {
-
-                    //    }
-
-                    //}
-                    //else if ((currentTileX + newX) > 0)
-                    //{
-                    //    //right 1
-                    //    if ((currentTileY + newY) > 0)
-                    //    {
-                    //        if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
-                    //        {
-                    //            Console.WriteLine("hi");
-                    //            TryFindNewPath(currentTileX, 15 - currentTileX, currentTileY, newY);
-                    //        }
-                    //    }
-                    //    //EXCLUDE
-                    //    //right 1 down 1
-                    //    else if ((currentTileY + newY) < 0)
-                    //    {
-
-                    //    }
-
-                    //}
                 }
 
 
             }
         }
+        public int NewStartX { get; set; } = -1;
+        public int NewStartY { get; set; } = -1;
+        public int OutOfChunkDestinationX { get; set; } = -1;
+        public int OutOfChunkDestinationY { get; set; } = -1;
+        public bool NeedsToMoveToNewChunk { get; set; }
+        public IInformationContainer NewChunk { get; set; }
 
-        public bool TryFindNewPath(int startX, int startY)
+
+        public bool TryFindNewPath(int endX, int endY)
         {
-            if (ObstacleGrid.Weight[startX, startY] != 0)
+            if (ObstacleGrid.Weight[endX, endY] != 0)
             {
-                Point end = new Point(startX, startY);
+                Point end = new Point(endX, endY);
 
 
 
@@ -430,7 +425,14 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
                 Point start = new Point(Math.Abs((int)this.Position.X / 16 - CurrentChunkX * 16),
                  (Math.Abs((int)this.Position.Y / 16 - CurrentChunkY * 16)));
-
+                if(start.X > 15)
+                {
+                    start.X = 15;
+                }
+                if(start.Y > 15)
+                {
+                    start.Y = 15;
+                }
                 CurrentPath = finder.FindPath(start, end);
                 if (CurrentPath == null)
                 {
