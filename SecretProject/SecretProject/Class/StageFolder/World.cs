@@ -347,7 +347,7 @@ namespace SecretProject.Class.StageFolder
                 for (int i = 0; i < Enemies.Count; i++)
                 {
 
-                    if (Cam.ViewPortRectangle.Intersects(Enemies[i].NPCHitBoxRectangle))
+                    if (Cam.CameraScreenRectangle.Intersects(Enemies[i].NPCHitBoxRectangle))
                     {
                         Enemies[i].TimeInUnloadedChunk = 0f;
                     }

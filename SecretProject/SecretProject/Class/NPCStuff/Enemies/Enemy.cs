@@ -319,7 +319,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int currentTileY = (int)(this.Position.Y / 16 - (CurrentChunkY * 16));
                 int newX = Game1.Utility.RGenerator.Next(-10, 10);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
-                if (currentTileX + newX < TileUtility.ChunkWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 2 && currentTileY + newY > 0)
+                if (currentTileX + newX < TileUtility.ChunkWidth - 1 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 1 && currentTileY + newY > 0)
                 {
                     TryFindNewPath(currentTileX, newX, currentTileY, newY);
 
