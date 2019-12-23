@@ -128,6 +128,13 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             IsWorldNPC = true;
         }
 
+        public void UpdateCurrentChunk(IInformationContainer container)
+        {
+            this.CurrentChunkX = container.X;
+            this.CurrentChunkY = container.Y;
+            this.ObstacleGrid = container.PathGrid;
+        }
+
         public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
             this.CurrentEffect = null;
@@ -321,12 +328,44 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
                 if (currentTileX + newX < TileUtility.ChunkWidth - 1 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 1 && currentTileY + newY > 0)
                 {
-                    TryFindNewPath(currentTileX, newX, currentTileY, newY);
+                    TryFindNewPath(currentTileX + newX, currentTileY + newY);
 
                 }
                 // point npc tried to go to is not in current chunk
                 else
                 {
+                    //basically makes sure tile found is in adjacent and NOT diagonal chunk
+                    if(!((currentTileX + newX > 15) && (currentTileX + newY > 15)) && !((currentTileX + newX < 0) && (currentTileX + newY < 0)))
+                    {
+
+                        if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
+                        {
+                            int startX = currentTileX + newX;
+                            int startY = currentTileY + newY;
+                            if(startX > 15)
+                            {
+                                startX = 15;
+                            }
+                            if (startX < 0)
+                            {
+                                startX = 0;
+                            }
+                            if (startY > 15)
+                            {
+                                startY = 15;
+                            }
+                            if (startY < 0)
+                            {
+                                startY = 0;
+                            }
+                            TryFindNewPath(startX, startY);
+                            //UpdateCurrentChunk(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks));
+                            Console.WriteLine("hi");
+                            
+                        }
+
+
+                    }
 
                     //if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
                     //{
@@ -378,11 +417,11 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void TryFindNewPath(int currentTileX, int newX, int currentTileY, int newY)
+        public bool TryFindNewPath(int startX, int startY)
         {
-            if (ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
+            if (ObstacleGrid.Weight[startX, startY] != 0)
             {
-                Point end = new Point(currentTileX + newX, currentTileY + newY);
+                Point end = new Point(startX, startY);
 
 
 
@@ -396,11 +435,13 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 if (CurrentPath == null)
                 {
                     CurrentPath = new List<PathFinderNode>();
-                    return;
+                    return false;
                     throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                 }
                 WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
+                return true;
             }
+            return false;
         }
 
         public void MoveToTile(GameTime gameTime)

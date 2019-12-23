@@ -31,7 +31,7 @@ namespace SecretProject.Class.CameraStuff
         {
             get
             {
-                return new Rectangle((int)(pos.X - (int)(Game1.ScreenWidth / Zoom /2)), (int)(pos.Y - (int)(Game1.ScreenHeight / Zoom/2)), (int)(Game1.ScreenWidth / Zoom /2 ), (int)(Game1.ScreenHeight / Zoom / 2));
+                return new Rectangle((int)(pos.X - (int)(Game1.ScreenWidth / Zoom /2)), (int)(pos.Y - (int)(Game1.ScreenHeight / Zoom/2)), (int)(Game1.ScreenWidth / Zoom ), (int)(Game1.ScreenHeight / Zoom ));
             }
         }
 

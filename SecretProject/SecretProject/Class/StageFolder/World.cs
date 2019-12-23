@@ -223,7 +223,7 @@ namespace SecretProject.Class.StageFolder
         public void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(0, new Rectangle(Cam.CameraScreenRectangle.X - 800, Cam.CameraScreenRectangle.Y - 800, Cam.CameraScreenRectangle.Width + 1600, Cam.CameraScreenRectangle.Height + 1600));
+            QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
 
             for (int i = 0; i < WorldTileManager.RenderDistance; i++)
             {

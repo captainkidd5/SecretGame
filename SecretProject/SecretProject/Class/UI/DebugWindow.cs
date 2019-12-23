@@ -121,16 +121,9 @@ namespace SecretProject.Class.UI
                 spriteBatch.DrawString(textFont, "     Debug Window \n \n FrameRate: " + Game1.FrameRate + "\n\n MS: " + ElapsedMS + " \n \n Mouse I  "  +
                    (int)(Game1.myMouseManager.WorldMousePosition.X / 16 / (Math.Abs(Game1.OverWorld.AllTiles.ChunkUnderPlayer.X) + 1)) + " \n \n PlayerPositionX: " + Game1.Player.position.X  + " \n \n cameraY: "
                     + Game1.cam.Pos.Y + " \n \n MousePositionX: " + Game1.myMouseManager.WorldMousePosition.X + " \n \n MousePositionY: " +
-                    Game1.myMouseManager.WorldMousePosition.Y + "\n\n tile selector worldX " + Game1.Player.UserInterface.TileSelector.WorldX.ToString(), position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+                    Game1.myMouseManager.WorldMousePosition.Y + "\n\n Camera Screen Rectangle " + Game1.cam.CameraScreenRectangle, position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
 
-                //for(int i =0; i< 100; i++)
-                //{
-                //    for(int j =0; j < 100; j++)
-                //    {
-                //        //spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() + "  ", new Vector2(position.X + (i * 5), position.Y + (j* 5)), Color.White);
-                //        spriteBatch.DrawString(Game1.AllTextures.MenuText, Game1.GetCurrentStage().AllTiles.AllTiles[1][i, j].AStarTileValue.ToString() +"  ", new Vector2(position.X + (i * 20), position.Y - 500 + (j * 20)), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None,1f);
-                //    }
-                //}
+
                 DebugButton1.Draw(spriteBatch);
                 SpeedClockUp.Draw(spriteBatch);
                 SlowClockDown.Draw(spriteBatch);
