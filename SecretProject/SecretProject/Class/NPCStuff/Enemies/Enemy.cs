@@ -321,62 +321,85 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 int newY = Game1.Utility.RGenerator.Next(-10, 10);
                 if (currentTileX + newX < TileUtility.ChunkWidth - 2 && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight - 2 && currentTileY + newY > 0)
                 {
-                    if (ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
-                    {
-                        Point end = new Point(currentTileX + newX, currentTileY + newY);
+                    TryFindNewPath(currentTileX, newX, currentTileY, newY);
 
-
-
-                        PathFinderFast finder = new PathFinderFast(ObstacleGrid.Weight);
-
-
-                        Point start = new Point(Math.Abs((int)this.Position.X / 16 - CurrentChunkX * 16),
-                         (Math.Abs((int)this.Position.Y / 16 - CurrentChunkY * 16)));
-
-                        CurrentPath = finder.FindPath(start, end);
-                        if (CurrentPath == null)
-                        {
-                            CurrentPath = new List<PathFinderNode>();
-                            return;
-                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                        }
-                        WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
-                    }
                 }
                 // point npc tried to go to is not in current chunk
                 else
                 {
-                    if ((currentTileX + newX) < 0)
-                    {
-                        //left 1
-                        if ((currentTileY + newY) > 0)
-                        {
 
-                        }
-                        //left 1 down 1
-                        else if ((currentTileY + newY) < 0)
-                        {
+                    //if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
+                    //{
 
-                        }
+                    //}
 
-                    }
-                    else if ((currentTileX + newX) > 0)
-                    {
-                        //right 1
-                        if ((currentTileY + newY) > 0)
-                        {
 
-                        }
-                        //right 1 down 1
-                        else if ((currentTileY + newY) < 0)
-                        {
+                    //    if ((currentTileX + newX) < 0)
+                    //{
+                    //    //left 1
+                    //    if ((currentTileY + newY) > 0)
+                    //    {
+                    //        if(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
+                    //        {
+                    //            Console.WriteLine("hi");
+                    //        }
+                    //    }
 
-                        }
+                    //    //EXCLUDE
+                    //    //left 1 down 1
+                    //    else if ((currentTileY + newY) < 0)
+                    //    {
 
-                    }
+                    //    }
+
+                    //}
+                    //else if ((currentTileX + newX) > 0)
+                    //{
+                    //    //right 1
+                    //    if ((currentTileY + newY) > 0)
+                    //    {
+                    //        if (TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks) != null)
+                    //        {
+                    //            Console.WriteLine("hi");
+                    //            TryFindNewPath(currentTileX, 15 - currentTileX, currentTileY, newY);
+                    //        }
+                    //    }
+                    //    //EXCLUDE
+                    //    //right 1 down 1
+                    //    else if ((currentTileY + newY) < 0)
+                    //    {
+
+                    //    }
+
+                    //}
                 }
 
 
+            }
+        }
+
+        public void TryFindNewPath(int currentTileX, int newX, int currentTileY, int newY)
+        {
+            if (ObstacleGrid.Weight[currentTileX + newX, currentTileY + newY] != 0)
+            {
+                Point end = new Point(currentTileX + newX, currentTileY + newY);
+
+
+
+                PathFinderFast finder = new PathFinderFast(ObstacleGrid.Weight);
+
+
+                Point start = new Point(Math.Abs((int)this.Position.X / 16 - CurrentChunkX * 16),
+                 (Math.Abs((int)this.Position.Y / 16 - CurrentChunkY * 16)));
+
+                CurrentPath = finder.FindPath(start, end);
+                if (CurrentPath == null)
+                {
+                    CurrentPath = new List<PathFinderNode>();
+                    return;
+                    throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                }
+                WanderTimer = Game1.Utility.RGenerator.Next(3, 5);
             }
         }
 

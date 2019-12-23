@@ -69,6 +69,8 @@ namespace SecretProject.Class.TileStuff
         public WorldTileManager TileManager { get; set; }
         public List<int[,]> AdjacentNoise { get; set; }
 
+        public List<ObstacleGrid> AdjacentObstacleGrids{ get; set; }
+
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -106,7 +108,7 @@ namespace SecretProject.Class.TileStuff
             NPCGenerator = new NPCGenerator(this, GraphicsDevice);
 
             SetRectangleTexture(this.GraphicsDevice);
-
+            AdjacentObstacleGrids = new List<ObstacleGrid>();
 
         }
 

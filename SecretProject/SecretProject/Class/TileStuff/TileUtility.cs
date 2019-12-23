@@ -411,7 +411,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["generate"])
                                     {
-                                        case "dirt":
+                                        case "Dirt":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             break;
