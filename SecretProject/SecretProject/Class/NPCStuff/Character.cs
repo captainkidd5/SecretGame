@@ -441,15 +441,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 //+32 Y offset to end at bottom of tile!
                 nodeToEndAt = stageTo;
                 Portal portal = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == stageTo);
-                return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16, (portal.PortalStart.Y + portal.SafteyOffSetY) / 16);
+                return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16, (portal.PortalStart.Y) / 16);
             }
             else
             {
                 int node = PortalTraverser.GetNextNodeInPath(stageFrom, stageTo);
                 nodeToEndAt = node;
                 Portal portal = Game1.GetStageFromInt(CurrentStageLocation).AllPortals.Find(x => x.To == node);
-                return new Point((portal.PortalStart.X + portal.SafteyOffSetX) / 16,
-                            (portal.PortalStart.Y + portal.SafteyOffSetY) / 16);
+                return new Point((portal.PortalStart.X) / 16,
+                            (portal.PortalStart.Y) / 16);
                 //throw new Exception(Game1.GetStageFromInt(stageFrom).StageName + " and " + Game1.GetStageFromInt(stageTo).StageName + " are not directly connected!");
             }
         }

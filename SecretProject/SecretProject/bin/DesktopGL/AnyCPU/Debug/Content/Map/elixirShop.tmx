@@ -71,7 +71,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Portal">
-  <object id="31" x="567" y="609" width="19" height="16">
+  <object id="31" x="567" y="666" width="19" height="5">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
