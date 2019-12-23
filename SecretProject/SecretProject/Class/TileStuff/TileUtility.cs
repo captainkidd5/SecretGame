@@ -375,6 +375,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
 
+
             }
 
         }
@@ -707,6 +708,18 @@ namespace SecretProject.Class.TileStuff
             if (container.Objects.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))
             {
                 container.Objects.Remove(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container));
+                bool atLeastOneObjectExists = false;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (container.Objects.ContainsKey(container.AllTiles[i][x, y].GetTileKeyStringNew(i, container)))
+                    {
+                        atLeastOneObjectExists = true;
+                    }
+                }
+                if (!atLeastOneObjectExists)
+                {
+                    container.PathGrid.UpdateGrid(x, y, 1);
+                }
             }
 
             if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))

@@ -243,10 +243,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 {
                     this.NPCAnimatedSprite[i].SetFrame(0);
                 }
-                //for (int i = 0; i < 4; i++)
-                //{
-                //    NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-                //}
+
 
             }
             SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
