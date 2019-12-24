@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
@@ -31,6 +32,9 @@ namespace SecretProject.Class.UI
         public Button WeatherNone { get; set; }
         public Button WeatherRain { get; set; }
         public Button WeatherSunny { get; set; }
+
+        public Button SpawnAnimalPack { get; set; }
+
         public List<Button> WeatherButtons{ get; set; }
         public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont,textBoxLocation,  textToWrite,  backDrop)
         {
@@ -45,7 +49,7 @@ namespace SecretProject.Class.UI
             WeatherSunny = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(Game1.ScreenWidth * .7f, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
             WeatherButtons = new List<Button>() { WeatherNone, WeatherRain, WeatherSunny };
 
-
+            SpawnAnimalPack = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphicsDevice, new Vector2(100, Game1.ScreenHeight * .2f), CursorType.Normal, 2f);
         }
 
         public void Update(GameTime gameTime)
@@ -69,6 +73,11 @@ namespace SecretProject.Class.UI
                     Game1.GlobalClock.IncrementDay();
 
 
+                }
+                SpawnAnimalPack.Update(Game1.myMouseManager);
+                if(SpawnAnimalPack.isClicked)
+                {
+                    Game1.OverWorld.Enemies.AddRange(Game1.OverWorld.AllTiles.ChunkUnderPlayer.NPCGenerator.SpawnNpcPack(GenerationType.Dirt, Game1.Player.position));
                 }
                 SpeedClockUp.Update(Game1.myMouseManager);
                 SlowClockDown.Update(Game1.myMouseManager);
@@ -132,6 +141,7 @@ namespace SecretProject.Class.UI
                 {
                     WeatherButtons[i].Draw(spriteBatch);
                 }
+                SpawnAnimalPack.Draw(spriteBatch, Game1.AllTextures.MenuText, "SpawnAnimalPack", SpawnAnimalPack.Position, Color.White, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardButtonDepth + .01f, 2f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, Clock.ClockMultiplier.ToString(), new Vector2(SpeedClockUp.Position.X, SpeedClockUp.Position.Y - 32), Color.White);
             spriteBatch.End();
             }
