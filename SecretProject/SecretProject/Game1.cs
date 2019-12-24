@@ -197,6 +197,7 @@ namespace SecretProject
         public DialogueHolder KayaDialogue;
         public DialogueHolder JulianDialogue;
         public DialogueHolder SarahDialogue;
+        public DialogueHolder BusinessSnailDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
@@ -234,6 +235,7 @@ namespace SecretProject
         public static Kaya Kaya;
 
         public static Character Snaw;
+        public static Character BusinessSnail;
         public static Julian Julian;
         public static Sarah Sarah;
         public static List<Character> AllCharacters;
@@ -395,6 +397,7 @@ namespace SecretProject
             KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
             JulianDialogue = Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
             SarahDialogue = Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
+            BusinessSnailDialogue = Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
 
             DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
@@ -411,7 +414,7 @@ namespace SecretProject
             }
             AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue,SarahDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue,SarahDialogue, BusinessSnailDialogue };
             foreach(DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
@@ -516,13 +519,18 @@ namespace SecretProject
             {
                 KayaShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
             }
+            Shop BuisnessSnailShop = new Shop(graphics.GraphicsDevice, 6, "BusinessSnailShop", new ShopMenu("BusinessSnailShopInventory", graphics.GraphicsDevice, 10));
+
+            BuisnessSnailShop.ShopMenu.TryAddStock(601, 5);
+            
             AllShops = new List<IShop>()
             {
                 ToolShop,
                 DobbinShop,
                 JulianShop,
                 ElixirShop,
-                KayaShop
+                KayaShop,
+                BuisnessSnailShop
             };
            
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(120, null));
@@ -561,6 +569,17 @@ namespace SecretProject
             };
             Julian = new Julian("Julian", new Vector2(28, 22), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
             Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], AllTextures.SarahPortrait) { FrameToSet = 0 };
+            BusinessSnail = new Character("BusinessSnail", new Vector2(34, 80), graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
+                1, AllTextures.BusinessSnailPortrait)
+            {
+                NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
+                0, 0, 32, 32, 1, 1f, new Vector2(1280, 600)) { IsAnimated = true,  } },
+                CurrentDirection = 0,
+                SpeakerID = 7,
+                CurrentStageLocation = Stages.Town,
+                FrameToSet = 0,
+                IsBasicNPC = true
+            };
             AllCharacters = new List<Character>()
             {
                 Elixir,
@@ -568,7 +587,8 @@ namespace SecretProject
                 Kaya,
                 Snaw,
                 Julian, 
-                Sarah
+                Sarah,
+                BusinessSnail
             };
 
             ProgressBook JulianProgressBook = new ProgressBook(Julian,Content, graphics.GraphicsDevice, 1);

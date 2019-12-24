@@ -198,7 +198,7 @@ namespace SecretProject.Class.MenuStuff
 
         public void DrawSelectableTextBoxOption(SpriteBatch spriteBatch, string text)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, text, new Vector2(this.SelectableTextRectangle.X, this.SelectableTextRectangle.Y), this.Color, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, layerDepth: .73f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, text, new Vector2(this.SelectableTextRectangle.X, this.SelectableTextRectangle.Y), this.Color, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, layerDepth: .8f);
         }
 
 

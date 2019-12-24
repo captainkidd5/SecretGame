@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.DialogueStuff.DialogueHolder">
+  <SpeakerID>7</SpeakerID>
+   <AllDialogue>
+  <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Day>0</Day>
+    <TimeStart>0</TimeStart>
+    <TimeEnd>24</TimeEnd>
+   <TextToWrite>Hmm.. Would you like to see my EsCargo? `
+   </TextToWrite>
+   <SelectableOptions>Yes~OpenBusinessSnailShop,no~ExitDialogue</SelectableOptions>
+    </Item>
+  </AllDialogue>
+  </Asset>
+</XnaContent>

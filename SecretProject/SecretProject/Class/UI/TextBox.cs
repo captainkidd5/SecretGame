@@ -54,10 +54,10 @@ namespace SecretProject.Class.UI
         public virtual void Draw(SpriteBatch spriteBatch,bool useString, float scale = 1f)
         {
             
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
             if(useString)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
             }
             
         }

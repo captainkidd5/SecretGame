@@ -66,6 +66,9 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D SarahSpriteSheet;
         public Texture2D SarahPortrait;
 
+        public Texture2D BusinessSnail;
+        public Texture2D BusinessSnailPortrait;
+
         //playeractions
 
 
@@ -183,6 +186,9 @@ namespace SecretProject.Class.TextureStuff
 
             SarahSpriteSheet = content.Load<Texture2D>("NPC/Sarah/Sarah");
             SarahPortrait = content.Load<Texture2D>("NPC/Sarah/SarahPortrait");
+
+            BusinessSnail = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnail");
+            BusinessSnailPortrait = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnailPortrait");
 
             CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
             CursorPlant = content.Load<Texture2D>("Button/PlantCursor");

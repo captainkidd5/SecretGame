@@ -132,7 +132,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             Game1.GlobalClock.DayChanged += this.OnDayIncreased;
         }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames)
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
@@ -143,7 +143,11 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
 
             Collider = new Collider(graphics,  this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.CurrentDirection = 0;
-
+            if (characterPortraitTexture != null)
+            {
+                this.CharacterPortraitTexture = characterPortraitTexture;
+            }
+            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
         }
 
         public void ResetSpeed()
@@ -345,7 +349,11 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
                 {
-
+                    if (this.CharacterPortraitTexture != null)
+                    {
+                        Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
+                        Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
+                    }
                     DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
                     Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
                     if (skeleton.SelectableOptions != null)

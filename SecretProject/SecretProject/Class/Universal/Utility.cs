@@ -256,6 +256,11 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
 
+                case "OpenBusinessSnailShop":
+                    Game1.Player.UserInterface.ActivateShop(OpenShop.BusinessSnailShop);
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+                    break;
+
                 case "CheckCurrentProject":
 
                 case "ExitDialogue":

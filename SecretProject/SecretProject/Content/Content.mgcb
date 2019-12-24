@@ -139,6 +139,11 @@
 /processorParam:TextureFormat=Color
 /build:Debug/solidred.png
 
+#begin Dialogue/BusinessSnailDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/BusinessSnailDialogue.xml
+
 #begin Dialogue/DobbinDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -345,6 +350,30 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/walkGrass1.mp3
+
+#begin NPC/BusinessSnail/BusinessSnail.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/BusinessSnail/BusinessSnail.png
+
+#begin NPC/BusinessSnail/BusinessSnailPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/BusinessSnail/BusinessSnailPortrait.png
 
 #begin NPC/Dobbin/dobbinPortrait.png
 /importer:TextureImporter
@@ -1137,6 +1166,12 @@
 /processor:PassThroughProcessor
 /build:Route/SarahRouteSchedule.xml
 
+#begin Songs/Downpour.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/Downpour.wav
+
 #begin Songs/DustStorm.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1317,6 +1352,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/textNoise2.wav
 
+#begin SoundEffects/Thunder1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Thunder1.wav
+
 #begin SoundEffects/toolBreak.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1395,16 +1436,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin SoundEffects/Thunder1.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/Thunder1.wav
-
-#begin Songs/Downpour.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/Downpour.wav
 
