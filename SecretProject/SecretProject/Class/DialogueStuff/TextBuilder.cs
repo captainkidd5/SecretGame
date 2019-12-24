@@ -235,6 +235,16 @@ namespace SecretProject.Class.DialogueStuff
 
                             }
 
+                            if (parsedText[(int)typedTextLength + 1] == '%')
+                            {
+                                parsedText.Remove((int)typedTextLength, 1);
+                                //typedTextLength--;
+                                string speed = parsedText[(int)typedTextLength + 2].ToString() + parsedText[(int)typedTextLength + 3].ToString() + parsedText[(int)typedTextLength + 4].ToString();
+                                WriteSpeed = int.Parse(speed) ;
+                                parsedText = parsedText.Remove((int)typedTextLength, 5);
+
+                            }
+
 
                             SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / WriteSpeed);
                             if (SpeedAnchor > 2f)

@@ -8,7 +8,7 @@
     <Day>0</Day>
     <TimeStart>0</TimeStart>
     <TimeEnd>24</TimeEnd>
-   <TextToWrite>Hmm.. Would you like to see my EsCargo? `
+   <TextToWrite>Hmm %200 ...  %005Would you like to see my EsCargo? `
    </TextToWrite>
    <SelectableOptions>Yes~OpenBusinessSnailShop,no~ExitDialogue</SelectableOptions>
     </Item>

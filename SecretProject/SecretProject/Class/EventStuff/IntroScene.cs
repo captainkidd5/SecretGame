@@ -205,7 +205,7 @@ namespace SecretProject.Class.EventStuff
                         if (!StepsCompleted[CurrentStep])
                         {
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                "You'd better come with me!", 2f, null, null);
+                                "%300 . . . %005 You'd better come with me!", 2f, null, null);
                             StepsCompleted[CurrentStep] = true;
                         }
                         
@@ -281,7 +281,7 @@ namespace SecretProject.Class.EventStuff
                     if (!StepsCompleted[CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                            "I'll be back to check up on you. You're free to stay here as long as you like. Come downstairs when you're feeling better" +
+                            "I'll be back to check up on you.# You're free to stay here as long as you like. # Come downstairs when you're feeling better" +
                             " and we can try to figure out what's going on.", 2f, null, null);
                         StepsCompleted[CurrentStep] = true;
                     }
