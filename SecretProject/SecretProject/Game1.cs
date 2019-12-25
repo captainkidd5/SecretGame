@@ -82,7 +82,9 @@ namespace SecretProject
         Cafe = 8,
         
         DobbinHouseUpper = 9,
-        CaveWorld = 10,
+        SanctuaryHub = 10,
+        Forest = 11,
+        CaveWorld = 12,
         MainMenu = 50,
         Exit = 55,
         
@@ -126,6 +128,9 @@ namespace SecretProject
         public static TmxStageBase Cafe;
         public static World CaveWorld;
         public static TmxStageBase DobbinHouseUpper;
+        public static TmxStageBase SanctuaryHub;
+        public static TmxStageBase Forest;
+
         public static List<ILocation> AllStages;
         public static int CurrentStage;
         public static int PreviousStage = 0;
@@ -333,6 +338,10 @@ namespace SecretProject
                     return CaveWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
+                case Stages.SanctuaryHub:
+                    return SanctuaryHub;
+                case Stages.Forest:
+                    return Forest;
 
                 default:
                     return null;
@@ -369,6 +378,10 @@ namespace SecretProject
                     return CaveWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
+                case Stages.SanctuaryHub:
+                    return SanctuaryHub;
+                case Stages.Forest:
+                    return Forest;
                 default:
                     return null;
 
@@ -476,13 +489,15 @@ namespace SecretProject
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
             CaveWorld = new World("CaveWorld", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.CaveWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
+            SanctuaryHub = new TmxStageBase("SanctuaryHub", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/SanctuaryHub.tmx", 1, 0) { StageIdentifier = (int)Stages.SanctuaryHub };
+            Forest = new TmxStageBase("Forest", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
 
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper };
+            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper, SanctuaryHub,Forest };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -556,7 +571,7 @@ namespace SecretProject
             Elixir = new Elixir("Elixer", new Vector2(35, 23), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(26, 28), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(26, 18), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
-            Snaw = new Character("Snaw", new Vector2(60, 40), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+            Snaw = new Character("Snaw", new Vector2(60, 43), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3, AllTextures.SnawPortrait)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
@@ -763,6 +778,12 @@ namespace SecretProject
                     case Stages.DobbinHouseUpper:
                         DobbinHouseUpper.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.SanctuaryHub:
+                        SanctuaryHub.Update(gameTime, myMouseManager, Player);
+                        break;
+                    case Stages.Forest:
+                        Forest.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -859,6 +880,14 @@ namespace SecretProject
                 case Stages.DobbinHouseUpper:
                     GraphicsDevice.Clear(Color.Black);
                     DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.SanctuaryHub:
+                    GraphicsDevice.Clear(Color.Black);
+                    SanctuaryHub.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.Forest:
+                    GraphicsDevice.Clear(Color.Black);
+                    Forest.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }
