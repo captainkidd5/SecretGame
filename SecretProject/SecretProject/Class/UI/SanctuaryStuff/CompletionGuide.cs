@@ -22,6 +22,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public List<CompletionCategory> CategoryTabs { get; set; }
         public SanctuaryHolder SanctuaryHolder { get; set; }
+        public CompletionCategory ActiveTab { get; set; }
 
         public CompletionGuide(GraphicsDevice graphicsDevice,SanctuaryHolder sanctuaryHolder)
         {
@@ -55,6 +56,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     }
                 }
             }
+            ActiveTab = CategoryTabs[0];
 
 
         }
@@ -62,10 +64,16 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Update(GameTime gameTime)
         {
 
-            for(int page = 0; page < CategoryTabs.Count; page++)
+            for(int tab = 0; tab < CategoryTabs.Count; tab++)
             {
-                CategoryTabs[page].Update(gameTime);
+                CategoryTabs[tab].Button.Update(Game1.myMouseManager);
+                if(CategoryTabs[tab].Button.isClicked)
+                {
+                    ActiveTab = CategoryTabs[tab];
+                }
             }
+
+            ActiveTab.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -74,9 +82,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 BackGroundPosition.Y - (BackGroundSourceRectangle.Height * BackGroundScale) / 2);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, drawPosition, this.BackGroundSourceRectangle,
                    Color.White, 0f, Game1.Utility.Origin, BackGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            for (int page = 0; page < CategoryTabs.Count; page++)
+            ActiveTab.Draw(spriteBatch, new Vector2(drawPosition.X + 16 * BackGroundScale, drawPosition.Y + 16 * BackGroundScale), BackGroundScale);
+            for (int tab = 0; tab < CategoryTabs.Count; tab++)
             {
-                CategoryTabs[page].Draw(spriteBatch, drawPosition, BackGroundScale);
+                CategoryTabs[tab].Button.DrawNormal(spriteBatch, new Vector2(drawPosition.X + 64 * tab * BackGroundScale, drawPosition.Y - 32 * BackGroundScale), CategoryTabs[tab].Button.BackGroundSourceRectangle, Color.White * CategoryTabs[tab].ButtonColorMultiplier, 0f, Game1.Utility.Origin, CategoryTabs[tab].Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
         }
     }

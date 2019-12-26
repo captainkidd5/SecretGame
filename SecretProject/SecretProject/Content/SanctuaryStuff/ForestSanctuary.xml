@@ -3,16 +3,30 @@
 <Asset Type ="XMLData.SanctuaryStuff.SanctuaryHolder">
 <ID>1</ID>
   <AllRequirements>
+
+
+  <!-- Stick -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
     <ItemID>1005</ItemID>
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
-    
     <X>1264</X>
     <Y>240</Y>
     <Width>16</Width>
     <Height>16</Height>
+    </Item>
+
+    <!-- Oak -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>0</Tab>
+    <ItemID>520</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>5</NumberRequired>
+    <X>992</X>
+    <Y>192</Y>
+    <Width>48</Width>
+    <Height>80</Height>
     </Item>
 
 

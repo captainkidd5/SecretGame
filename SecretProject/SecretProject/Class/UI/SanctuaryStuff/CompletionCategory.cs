@@ -37,12 +37,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Update(GameTime gameTime)
         {
-
+            Button.Update(Game1.myMouseManager);
             Pages[ActivePage].Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch,  Rectangle backDropSourceRectangle, float backDropScale, bool drawString = true)
         {
+            
             if (drawString)
             {
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
@@ -56,6 +57,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Draw(SpriteBatch spriteBatch, Vector2 backGroundPosition, float scale)
         {
+            
+
             this.Pages[ActivePage].Draw(spriteBatch, backGroundPosition, scale);
         }
     }
