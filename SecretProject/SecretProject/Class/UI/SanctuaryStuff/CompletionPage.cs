@@ -11,11 +11,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 {
     public class CompletionPage : IPage
     {
-        public List<SanctuaryRequirement> SanctuaryRequirements { get; set; }
+        public List<CompletionRequirement> SanctuaryRequirements { get; set; }
+
+
 
         public CompletionPage()
         {
-            this.SanctuaryRequirements = new List<SanctuaryRequirement>();
+            this.SanctuaryRequirements = new List<CompletionRequirement>();
         }
         public void Update(GameTime gameTime)
         {
@@ -25,8 +27,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             for(int i =0; i < SanctuaryRequirements.Count; i++)
             {
-                spriteBatch.Draw(Game1.AllTextures.MasterTileSet, position,
-                SanctuaryRequirements[i].Rectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].String, position, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Vector2(position.X + SanctuaryRequirements[i].ImageLocation.X * scale, position.Y),
+                SanctuaryRequirements[i].SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             }
         }
 

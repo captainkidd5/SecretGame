@@ -11,6 +11,7 @@ namespace XMLData.SanctuaryStuff
     public class SanctuaryRequirement
     {
         public int Tab { get; set; }
+        public int ItemID { get; set; }
         public int GIDRequired { get; set; }
         public int NumberRequired { get; set; }
 

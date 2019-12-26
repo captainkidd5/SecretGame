@@ -5,6 +5,7 @@
   <AllRequirements>
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
+    <ItemID>1005</ItemID>
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
     
