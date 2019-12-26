@@ -54,6 +54,10 @@ namespace SecretProject.Class.UI
 
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            this.Pages[ActivePage].Draw(spriteBatch);
+        }
 
     }
 }

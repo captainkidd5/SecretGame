@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.SanctuaryStuff.SanctuaryHolder">
+<ID>1</ID>
+  <AllRequirements>
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>0</Tab>
+    <GIDRequired>1579</GIDRequired>
+    <NumberRequired>2</NumberRequired>
+    
+    <X>1264</X>
+    <Y>240</Y>
+    <Width>16</Width>
+    <Height>16</Height>
+    </Item>
+
+
+  </AllRequirements>
+  </Asset>
+</XnaContent>

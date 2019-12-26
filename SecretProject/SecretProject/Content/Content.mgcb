@@ -1449,3 +1449,8 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin SanctuaryStuff/ForestSanctuary.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:SanctuaryStuff/ForestSanctuary.xml
+
