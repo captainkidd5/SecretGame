@@ -21,7 +21,8 @@ namespace XMLData.SanctuaryStuff
         public int Height { get; set; }
 
         [ContentSerializer(Optional = true)]
-        public Rectangle Rectangle { get; set; }
+        public Rectangle Rectangle { get
+            { return new Rectangle(X, Y, Width, Height); }  }
 
         public SanctuaryRequirement()
         {

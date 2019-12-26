@@ -15,6 +15,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
+using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.Universal;
 using static SecretProject.Class.UI.CheckList;
 
@@ -50,6 +51,7 @@ namespace SecretProject.Class.UI
         SanctuaryCheckList = 4,
         WarpGate = 5,
         ProgressBook = 6,
+        CompletionHub = 7
 
     }
     public class UserInterface
@@ -95,6 +97,7 @@ namespace SecretProject.Class.UI
         public WarpGate WarpGate { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
+        public CompletionHub CompletionHub;
 
 
         //keyboard
@@ -139,6 +142,7 @@ namespace SecretProject.Class.UI
 
             InfoBox = new InfoPopUp("Text Not Assigned");
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
+            CompletionHub = new CompletionHub(graphicsDevice, content);
             this.AllRisingText = new List<RisingText>();
 
 
@@ -238,6 +242,11 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ProgressBook;
                     }
+                    
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
+                    }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
                     Esc.Update(gameTime, mouse);
@@ -322,6 +331,16 @@ namespace SecretProject.Class.UI
 
                     }
                     break;
+
+                case ExclusiveInterfaceItem.CompletionHub:
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
+                    CompletionHub.Update(gameTime);
+                    break;
+
+
 
                     //case ExclusiveInterfaceItem.CookingMenu:
                     //    //Game1.freeze = true;
@@ -440,6 +459,9 @@ namespace SecretProject.Class.UI
 
                     case ExclusiveInterfaceItem.WarpGate:
                         WarpGate.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.CompletionHub:
+                        CompletionHub.Draw(spriteBatch);
                         break;
 
                         //case ExclusiveInterfaceItem.CookingMenu:
