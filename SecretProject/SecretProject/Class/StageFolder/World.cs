@@ -32,6 +32,7 @@ namespace SecretProject.Class.StageFolder
     public class World : ILocation
     {
         public LocationType LocationType { get; set; }
+        public StageType StageType { get; set; }
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
 
@@ -84,7 +85,8 @@ namespace SecretProject.Class.StageFolder
         public Effect CurrentEffect;
 
 
-        public World(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+
+        public World(string name, LocationType locationType, StageType stageType,GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.TileWidth = 16;
             this.TileHeight = 16;
@@ -93,6 +95,7 @@ namespace SecretProject.Class.StageFolder
 
             this.StageName = name;
             this.LocationType = locationType;
+            this.StageType = stageType;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;

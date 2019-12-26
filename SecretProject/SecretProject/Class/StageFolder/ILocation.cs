@@ -32,9 +32,16 @@ namespace SecretProject.Class.StageFolder
         Exterior = 1,
         Interior = 2
     }
+    public enum StageType
+    {
+        Standard = 1,
+        Procedural = 2,
+        Sanctuary = 3
+    }
     public interface ILocation
     {
         LocationType LocationType { get; set; }
+        StageType StageType { get; set; }
         int StageIdentifier { get; set; }
         string StageName { get; set; }
         int TileWidth { get; set; }

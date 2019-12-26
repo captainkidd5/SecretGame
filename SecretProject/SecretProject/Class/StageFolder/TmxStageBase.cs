@@ -34,12 +34,14 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace SecretProject.Class.StageFolder
 {
+    
 
     public class TmxStageBase : ILocation
     {
 
         #region FIELDS
         public LocationType LocationType { get; set; }
+        public StageType StageType { get; set; }
         public int StageIdentifier { get; set; }
         public bool ShowBorders { get; set; }
 
@@ -127,17 +129,18 @@ namespace SecretProject.Class.StageFolder
         public List<float> MyProperty { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<RisingText> AllRisingText { get; set; }
 
-
+        public SanctuaryTracker SanctuaryTracker { get; set; }
         #endregion
 
         #region CONSTRUCTOR
 
 
 
-        public TmxStageBase(string name, LocationType locationType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
+        public TmxStageBase(string name, LocationType locationType,StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
             this.StageName = name;
             this.LocationType = locationType;
+            this.StageType = stageType;
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
@@ -154,6 +157,8 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
             this.TileSet = tileSet;
             AllRisingText = new List<RisingText>();
+
+
         }
 
         public virtual void LoadPreliminaryContent()

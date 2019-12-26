@@ -28,5 +28,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.String = "Gather " + CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(ItemID, null).Name;
             ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
         }
+
+        public void Increment()
+        {
+            CurrentCount++;
+        }
     }
 }

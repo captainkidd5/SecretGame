@@ -87,6 +87,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             ActiveTab.Update(gameTime);
         }
 
+
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, DrawPosition, this.BackGroundSourceRectangle,

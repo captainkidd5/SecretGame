@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SanctuaryStuff/ForestSanctuary.xml</SourceFile>
-  <SourceTime>2019-12-26T10:31:16.5882148-08:00</SourceTime>
+  <SourceTime>2019-12-26T15:19:07.8530262-08:00</SourceTime>
   <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SanctuaryStuff/ForestSanctuary.xnb</DestFile>
-  <DestTime>2019-12-26T10:31:25.9672292-08:00</DestTime>
+  <DestTime>2019-12-26T15:19:22.2997738-08:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

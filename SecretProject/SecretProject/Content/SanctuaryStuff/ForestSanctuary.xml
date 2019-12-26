@@ -29,6 +29,18 @@
     <Height>80</Height>
     </Item>
 
+    <!-- Fence -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>0</Tab>
+    <ItemID>1162</ItemID>
+    <GIDRequired>456</GIDRequired>
+    <NumberRequired>2</NumberRequired>
+    <X>896</X>
+    <Y>46</Y>
+    <Width>16</Width>
+    <Height>32</Height>
+    </Item>
+
 
   </AllRequirements>
   </Asset>
