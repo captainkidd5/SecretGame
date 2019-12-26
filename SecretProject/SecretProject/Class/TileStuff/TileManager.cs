@@ -403,7 +403,7 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllLights = this.Lights;
             }
-            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && GridItem != null)
+            if (GridItem != null)
             {
                 GridItem.NormalUpdate(gameTime, this, this);
             }
