@@ -567,7 +567,7 @@
     <property name="standardTo" value="GeneralStore"/>
    </properties>
   </object>
-  <object id="41" x="751" y="1205" width="19" height="36.6667">
+  <object id="41" x="752" y="1212" width="19" height="36.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>

@@ -84,7 +84,8 @@ namespace SecretProject
         DobbinHouseUpper = 9,
         SanctuaryHub = 10,
         Forest = 11,
-        CaveWorld = 12,
+        ResearchStation = 12,
+        CaveWorld = 13,
         MainMenu = 50,
         Exit = 55,
         
@@ -130,6 +131,7 @@ namespace SecretProject
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase SanctuaryHub;
         public static TmxStageBase Forest;
+        public static TmxStageBase ResearchStation;
 
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -342,6 +344,8 @@ namespace SecretProject
                     return SanctuaryHub;
                 case Stages.Forest:
                     return Forest;
+                case Stages.ResearchStation:
+                    return ResearchStation;
 
                 default:
                     return null;
@@ -382,6 +386,8 @@ namespace SecretProject
                     return SanctuaryHub;
                 case Stages.Forest:
                     return Forest;
+                case Stages.ResearchStation:
+                    return ResearchStation;
                 default:
                     return null;
 
@@ -491,13 +497,14 @@ namespace SecretProject
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             SanctuaryHub = new TmxStageBase("SanctuaryHub", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/SanctuaryHub.tmx", 1, 0) { StageIdentifier = (int)Stages.SanctuaryHub };
             Forest = new TmxStageBase("Forest", LocationType.Exterior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
+            ResearchStation = new TmxStageBase("ResearchStation", LocationType.Interior, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/ResearchStation.tmx", 1, 0) { StageIdentifier = (int)Stages.ResearchStation };
 
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper, SanctuaryHub,Forest };
+            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper, SanctuaryHub,Forest,ResearchStation };
             PortalGraph = new Graph(AllStages.Count);
 
             
@@ -784,6 +791,9 @@ namespace SecretProject
                     case Stages.Forest:
                         Forest.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.ResearchStation:
+                        ResearchStation.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -888,6 +898,10 @@ namespace SecretProject
                 case Stages.Forest:
                     GraphicsDevice.Clear(Color.Black);
                     Forest.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.ResearchStation:
+                    GraphicsDevice.Clear(Color.Black);
+                    ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

@@ -7,7 +7,7 @@
       <ID>1</ID>
       <TimeToStart>5</TimeToStart>
       <TimeToFinish>7</TimeToFinish>
-       <EndStage>KayaHouse</EndStage>
+       <EndStage>Forest</EndStage>
       <EndX>34</EndX>
       <EndY>34</EndY>
     </Item>
@@ -23,7 +23,7 @@
       <ID>3</ID>
       <TimeToStart>20</TimeToStart>
       <TimeToFinish>22</TimeToFinish>
-       <EndStage>KayaHouse</EndStage>
+       <EndStage>Forest</EndStage>
       <EndX>26</EndX>
       <EndY>18</EndY>
     </Item>

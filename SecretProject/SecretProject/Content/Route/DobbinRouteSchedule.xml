@@ -8,8 +8,8 @@
       <TimeToStart>5</TimeToStart>
       <TimeToFinish>6</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>54</EndX>
-      <EndY>84</EndY>
+      <EndX>67</EndX>
+      <EndY>85</EndY>
     </Item>
 
     <Item Type="XMLData.RouteStuff.Route">
