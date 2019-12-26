@@ -241,7 +241,7 @@ namespace SecretProject.Class.DialogueStuff
                                 //typedTextLength--;
                                 string speed = parsedText[(int)typedTextLength + 2].ToString() + parsedText[(int)typedTextLength + 3].ToString() + parsedText[(int)typedTextLength + 4].ToString();
                                 WriteSpeed = int.Parse(speed) ;
-                                parsedText = parsedText.Remove((int)typedTextLength, 5);
+                                parsedText = parsedText.Remove((int)typedTextLength + 1, 4);
 
                             }
 
