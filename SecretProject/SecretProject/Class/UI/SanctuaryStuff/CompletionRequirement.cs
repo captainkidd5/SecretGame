@@ -31,7 +31,14 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Increment()
         {
+            
             CurrentCount++;
+            if(CurrentCount >= CountRequired)
+            {
+                Satisfied = true;
+                this.String = "Completed! ";
+                ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
+            }
         }
     }
 }

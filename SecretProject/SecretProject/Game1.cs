@@ -105,7 +105,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
+        public static bool EnableCutScenes = true;
 
         public static bool IsFirstTimeStartup;
 
@@ -274,8 +274,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720 ;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080 ;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             IsFixedTimeStep = false;

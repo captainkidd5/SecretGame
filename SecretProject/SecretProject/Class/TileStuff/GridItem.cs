@@ -365,17 +365,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
-                                switch (soundRandom)
-                                {
-                                    case 0:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
-
-                                        break;
-                                    case 1:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
-                                        break;
-                                }
+                                
 
                                 if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
                                 {
@@ -386,7 +376,7 @@ namespace SecretProject.Class.TileStuff
                                     this.PlaceID + 1, container);
 
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
-
+                                        PlayPlacementSound();
                                     }
                                     else
                                     {
@@ -399,7 +389,7 @@ namespace SecretProject.Class.TileStuff
                                     this.PlaceID + 1, container);
 
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
-
+                                    PlayPlacementSound();
                                     return;
                                 }
 
@@ -420,6 +410,21 @@ namespace SecretProject.Class.TileStuff
                 this.IsDrawn = false;
             }
 
+        }
+
+        public void PlayPlacementSound()
+        {
+            int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
+            switch (soundRandom)
+            {
+                case 0:
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
+
+                    break;
+                case 1:
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
+                    break;
+            }
         }
 
         public void NormalDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)

@@ -73,7 +73,7 @@ namespace SecretProject.Class.ParticileStuff
         public void UpdateWeather(GameTime gameTime)
         {
 
-            EmitterLocation = new Vector2(Game1.Player.Position.X - Game1.ScreenWidth/ 4 , Game1.cam.pos.Y / Game1.cam.Zoom);
+            EmitterLocation = new Vector2(Game1.cam.CameraScreenRectangle.X, Game1.cam.CameraScreenRectangle.Y);
                 int total = 1;
                 AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -83,7 +83,7 @@ namespace SecretProject.Class.ParticileStuff
                     {
                         particles.Add(GenerateNewWeatherParticle());
                     }
-                    AddNewParticleTimer = Game1.Utility.RFloat(.01f, .2f);
+                    AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
                 }
 
 
