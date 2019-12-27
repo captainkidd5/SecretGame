@@ -411,6 +411,7 @@
 <TextureColumn>16</TextureColumn>
 <TextureRow>28</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

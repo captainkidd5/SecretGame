@@ -761,11 +761,16 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int x = 0; x < ActiveChunks[i, j].Crops.Count; x++)
                     {
-                        ActiveChunks[i, j].Crops.ElementAt(x).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - ActiveChunks[i, j].Crops.ElementAt(x).Value.DayPlanted;
+                        Crop crop = ActiveChunks[i, j].Crops.ElementAt(x).Value;
+                        crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
+                        if(crop.CurrentGrowth < MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
+                        {
+                            int newGid = MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
+                            crop.UpdateGrowthCycle(newGid);
 
-                        ActiveChunks[i, j].Crops.ElementAt(x).Value.UpdateGrowthCycle();
-
-                        TileUtility.ReplaceTile(3, ActiveChunks[i, j].Crops.ElementAt(x).Value.X, ActiveChunks[i, j].Crops.ElementAt(x).Value.Y, ActiveChunks[i, j].Crops.ElementAt(x).Value.GID, ActiveChunks[i, j]);
+                            TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, ActiveChunks[i, j]);
+                        }
+                        
                     }
                 }
 

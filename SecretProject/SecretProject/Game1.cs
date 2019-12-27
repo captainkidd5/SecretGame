@@ -105,7 +105,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = true;
+        public static bool EnableCutScenes = false;
 
         public static bool IsFirstTimeStartup;
 

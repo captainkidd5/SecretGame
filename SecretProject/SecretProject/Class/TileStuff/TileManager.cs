@@ -513,8 +513,9 @@ namespace SecretProject.Class.TileStuff
             for (int x = 0; x < Crops.Count; x++)
             {
                 Crops.ElementAt(x).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - Crops.ElementAt(x).Value.DayPlanted;
-
-                Crops.ElementAt(x).Value.UpdateGrowthCycle();
+                int newGid = MapName.Tilesets[TileSetNumber].Tiles[Crops.ElementAt(x).Value.BaseGID].AnimationFrames[Crops.ElementAt(x).Value.CurrentGrowth].Id;
+                Crops.ElementAt(x).Value.UpdateGrowthCycle(newGid);
+                //Crops.ElementAt(x).Value.UpdateGrowthCycle();
 
                 TileUtility.ReplaceTile(3, Crops.ElementAt(x).Value.X, Crops.ElementAt(x).Value.Y, Crops.ElementAt(x).Value.GID,  this);
             }

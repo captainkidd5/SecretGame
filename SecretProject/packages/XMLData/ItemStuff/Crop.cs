@@ -26,12 +26,12 @@ namespace XMLData.ItemStuff
         public int Y { get; set; }
 
 
-        public void UpdateGrowthCycle()
+        public void UpdateGrowthCycle(int gid)
         {
             if (CurrentGrowth < DaysToGrow)
             {
 
-                this.GID = this.BaseGID + CurrentGrowth + 1;
+                this.GID = gid;
                 
 
             }

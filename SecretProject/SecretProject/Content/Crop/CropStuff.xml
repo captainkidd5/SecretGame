@@ -50,6 +50,17 @@
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>
                   </Item>
+
+                  <!-- Trees -->
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>668</ItemID>
+                  <Name>Oak Seed</Name>
+                  <GID>1670</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+
                   
     </AllCrops>
   </Asset>

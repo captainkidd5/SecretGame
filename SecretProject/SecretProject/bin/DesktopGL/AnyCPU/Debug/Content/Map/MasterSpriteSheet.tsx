@@ -845,6 +845,17 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="686">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="687" duration="100"/>
+   <frame tileid="688" duration="100"/>
+   <frame tileid="689" duration="100"/>
+   <frame tileid="690" duration="100"/>
+  </animation>
+ </tile>
  <tile id="690">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
@@ -2077,6 +2088,17 @@
    <object id="2" x="3" y="0.375" width="10" height="11.625"/>
   </objectgroup>
  </tile>
+ <tile id="1670">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="1669" duration="100"/>
+   <frame tileid="1668" duration="100"/>
+   <frame tileid="1666" duration="100"/>
+   <frame tileid="1663" duration="100"/>
+  </animation>
+ </tile>
  <tile id="1690">
   <properties>
    <property name="idleStart" value=""/>
@@ -2998,6 +3020,11 @@
    <object id="1" x="10" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3820">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="10" height="9"/>
+  </objectgroup>
+ </tile>
  <tile id="3822">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="6"/>
@@ -3028,9 +3055,19 @@
    <object id="1" x="0" y="0" width="16" height="6"/>
   </objectgroup>
  </tile>
+ <tile id="3829">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="10" height="9"/>
+  </objectgroup>
+ </tile>
  <tile id="3832">
   <objectgroup draworder="index">
    <object id="1" x="8" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3919">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
  <tile id="3925">
@@ -3059,8 +3096,28 @@
   </objectgroup>
  </tile>
  <tile id="3930">
-  <objectgroup draworder="index">
+  <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="4018">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="10" height="9"/>
+  </objectgroup>
+ </tile>
+ <tile id="4031">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="10" height="9"/>
+  </objectgroup>
+ </tile>
+ <tile id="4117">
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="0" y="0" width="10" height="9"/>
+  </objectgroup>
+ </tile>
+ <tile id="4132">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
  <tile id="4180">
@@ -3227,6 +3284,9 @@
   </properties>
  </tile>
  <tile id="9702">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="13" width="16" height="2"/>
+  </objectgroup>
   <animation>
    <frame tileid="9602" duration="100"/>
    <frame tileid="9502" duration="100"/>
@@ -3248,6 +3308,9 @@
   </animation>
  </tile>
  <tile id="9703">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="11" width="16" height="2"/>
+  </objectgroup>
   <animation>
    <frame tileid="9603" duration="100"/>
    <frame tileid="9503" duration="100"/>
@@ -3269,6 +3332,9 @@
   </animation>
  </tile>
  <tile id="9704">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="16" height="2"/>
+  </objectgroup>
   <animation>
    <frame tileid="9604" duration="100"/>
    <frame tileid="9504" duration="100"/>
@@ -3290,6 +3356,9 @@
   </animation>
  </tile>
  <tile id="9705">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="13" width="16" height="2"/>
+  </objectgroup>
   <animation>
    <frame tileid="9605" duration="100"/>
    <frame tileid="9505" duration="100"/>
