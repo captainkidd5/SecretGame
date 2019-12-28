@@ -257,6 +257,8 @@ namespace SecretProject.Class.SoundStuff
                 {
                     if (soundEffect.State == SoundState.Stopped)
                     {
+                        soundEffect.Volume = GameVolume;
+
                         soundEffect.Play();
                     }
                 }

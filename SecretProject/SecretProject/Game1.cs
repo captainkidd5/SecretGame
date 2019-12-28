@@ -106,6 +106,7 @@ namespace SecretProject
 
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
+        public static bool EnableMusic = false;
 
         public static bool IsFirstTimeStartup;
 
@@ -748,8 +749,12 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
-           // SoundManager.PlaySong();
-          //  SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
+            if(EnableMusic)
+            {
+                SoundManager.PlaySong();
+                SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
+            }
+
             //KEYBOARD
 
             if (ToggleFullScreen)

@@ -307,24 +307,40 @@ namespace SecretProject.Class.TileStuff
             {
                 if (Game1.Player.IsMoving)
                 {
-                    if (z == 0)
-                    {
+
                         if (playerI < AllTiles[z].GetLength(0) &&
                             playerJ < AllTiles[z].GetLength(1) &&
                             AllTiles[z][playerI, playerJ] != null)
                         {
-
-                            if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][playerI, playerJ].GID))
+                        //Prioritize midground layer for step sound effects
+                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[1][playerI, playerJ].GID))
+                        {
+                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
-                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+
+                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][playerI, playerJ].GID].Properties["step"]);
+                            }
+                            else if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[0][playerI, playerJ].GID))
+                            {
+                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
                                 {
 
-                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties["step"]);
                                 }
                             }
                         }
+                        else if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[0][playerI, playerJ].GID))
+                        {
+                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            {
 
-                    }
+                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties["step"]);
+                            }
+                        }
+                            
+                        }
+
+                    
                 }
                 if (mouseI < AllTiles[z].GetLength(0) && mouseJ < AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
                 {

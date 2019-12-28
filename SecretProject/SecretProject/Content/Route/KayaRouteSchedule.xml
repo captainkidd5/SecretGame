@@ -7,9 +7,9 @@
       <ID>1</ID>
       <TimeToStart>5</TimeToStart>
       <TimeToFinish>7</TimeToFinish>
-       <EndStage>Forest</EndStage>
-      <EndX>34</EndX>
-      <EndY>34</EndY>
+       <EndStage>Town</EndStage>
+      <EndX>50</EndX>
+      <EndY>45</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
@@ -24,8 +24,8 @@
       <TimeToStart>20</TimeToStart>
       <TimeToFinish>22</TimeToFinish>
        <EndStage>Town</EndStage>
-      <EndX>26</EndX>
-      <EndY>18</EndY>
+      <EndX>50</EndX>
+      <EndY>45</EndY>
     </Item>
     </Routes>
   </Asset>

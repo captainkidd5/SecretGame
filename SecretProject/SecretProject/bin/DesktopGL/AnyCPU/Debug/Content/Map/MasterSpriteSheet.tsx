@@ -1419,6 +1419,26 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1200">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1201">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1202">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1203">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
  <tile id="1213">
   <properties>
    <property name="step" value="4"/>
@@ -1596,6 +1616,21 @@
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
    <property name="loot" value="192:100:1"/>
+  </properties>
+ </tile>
+ <tile id="1300">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1301">
+  <properties>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1302">
+  <properties>
+   <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="1314">
@@ -2086,7 +2121,7 @@
  <tile id="1663">
   <properties>
    <property name="destructable" value="21,4,5,3"/>
-   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="loot" value="520:100:5,668:10:2"/>
    <property name="spawnWith" value="1563"/>
   </properties>
   <objectgroup draworder="index">
@@ -2321,7 +2356,7 @@
  <tile id="2263">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="521:25:5,1003:5:2"/>
+   <property name="loot" value="521:25:5,669:5:2"/>
    <property name="spawnWith" value="2163"/>
   </properties>
   <objectgroup draworder="index">
@@ -2683,7 +2718,7 @@
  <tile id="2963">
   <properties>
    <property name="destructable" value="21,4,5,3"/>
-   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="loot" value="520:100:5,668:10:2"/>
    <property name="spawnWith" value="2863"/>
   </properties>
   <objectgroup draworder="index">
