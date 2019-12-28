@@ -50,5 +50,8 @@ namespace XMLData.ItemStuff
         [ContentSerializer(Optional = true)]
         public int AnimationColumn { get; set; }
 
+        [ContentSerializer(Optional = true)]
+        public int CrateType { get; set; }
+
     }
 }

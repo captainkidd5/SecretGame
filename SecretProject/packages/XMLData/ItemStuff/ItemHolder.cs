@@ -33,6 +33,7 @@ namespace XMLData.ItemStuff
                 newItem.StaminaRestored = oldItem.StaminaRestored;
             newItem.Type = oldItem.Type;
             newItem.AnimationColumn = oldItem.AnimationColumn;
+            newItem.CrateType = oldItem.CrateType;
         
 
 

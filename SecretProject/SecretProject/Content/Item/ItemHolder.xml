@@ -235,6 +235,7 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>14</TextureRow>
 <Price>1</Price>
+<CrateType>1</CrateType>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -245,6 +246,8 @@
 <TextureColumn>8</TextureColumn>
 <TextureRow>13</TextureRow>
 <Price>1</Price>
+<PlaceID>1575</PlaceID>
+<TilingLayer>3</TilingLayer>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

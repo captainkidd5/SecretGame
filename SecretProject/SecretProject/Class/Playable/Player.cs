@@ -21,6 +21,8 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.CaptureCrateStuff;
+using SecretProject.Class.NPCStuff.Enemies;
 
 namespace SecretProject.Class.Playable
 {
@@ -96,6 +98,8 @@ namespace SecretProject.Class.Playable
         public Texture2D BigHitBoxRectangleTexture;
         public Texture2D LittleHitBoxRectangleTexture;
         public bool LockBounds { get; set; }
+
+        public GraphicsDevice Graphics { get; set; }
         public Rectangle Rectangle
         {
             get
@@ -131,6 +135,7 @@ namespace SecretProject.Class.Playable
             this.Health = 3;
             this.Stamina = 100;
             Position = position;
+            this.Graphics = graphics;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
@@ -297,10 +302,20 @@ namespace SecretProject.Class.Playable
                     PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null && UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 25)
+                if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
-                    DoPlayerAnimation(gameTime, AnimationType.Swiping);
+                    Item item = UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                    if (item.Type == 25)
+                    {
+                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
+                        DoPlayerAnimation(gameTime, AnimationType.Swiping);
+                    }
+                    if(item.CrateType != 0)
+                    {
+                        CaptureCrate.Release((EnemyType)item.CrateType, Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
+                        UserInterface.BackPack.Inventory.RemoveItem(item);
+                    }
+                    
                 }
 
 

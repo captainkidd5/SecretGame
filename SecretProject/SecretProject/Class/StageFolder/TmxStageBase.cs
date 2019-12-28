@@ -31,6 +31,7 @@ using XMLData.RouteStuff;
 using XMLData.ItemStuff;
 using SecretProject.Class.CollisionDetection;
 using Microsoft.Xna.Framework.Audio;
+using SecretProject.Class.NPCStuff.Enemies;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -130,6 +131,8 @@ namespace SecretProject.Class.StageFolder
         public List<RisingText> AllRisingText { get; set; }
 
         public SanctuaryTracker SanctuaryTracker { get; set; }
+
+        public List<Enemy> Enemies { get; set; }
         #endregion
 
         #region CONSTRUCTOR
@@ -158,7 +161,7 @@ namespace SecretProject.Class.StageFolder
             this.TileSet = tileSet;
             AllRisingText = new List<RisingText>();
 
-
+            this.Enemies = new List<Enemy>();
         }
 
         public virtual void LoadPreliminaryContent()

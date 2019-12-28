@@ -74,6 +74,7 @@ namespace SecretProject.Class.ItemStuff
         public int StaminaRestored { get; set; }
         public int Type { get; set; }
         public int AnimationColumn { get; set; }
+        public int CrateType { get; set; }
 
         public GenerationType GenerationType { get; set; }
 
@@ -112,6 +113,7 @@ namespace SecretProject.Class.ItemStuff
             
             
                 this.TilingLayer = itemData.TilingLayer;
+            this.CrateType = itemData.CrateType;
             
         }
         public void Load()

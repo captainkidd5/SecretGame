@@ -9,7 +9,7 @@ using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.NPCStuff;
-
+using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
@@ -82,6 +82,7 @@ namespace SecretProject.Class.StageFolder
         List<Character> CharactersPresent { get; set; }
         List<StringWrapper> AllTextToWrite { get; set; }
         List<INPC> OnScreenNPCS { get; set; }
+        List<Enemy> Enemies { get; set; }
 
         List<float> AllDepths { get; set; }
 

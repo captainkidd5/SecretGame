@@ -17,6 +17,12 @@ using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
+    public enum EnemyType
+    {
+        Boar = 1,
+        Crab = 2,
+        Rabbit = 3
+    }
 
     public enum CurrentBehaviour
     {
@@ -25,6 +31,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
         Hurt = 3,
         Flee = 4
     }
+
+  
+
     public class Enemy : INPC
     {
 
@@ -126,6 +135,25 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
             IsWorldNPC = true;
+        }
+
+        public static Enemy GetEnemyFromType(EnemyType enemyType, Vector2 position, GraphicsDevice graphics, IInformationContainer container)
+        {
+            switch (enemyType)
+            {
+                case EnemyType.Boar:
+                    return new Boar("Boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander);
+
+                case EnemyType.Crab:
+                    return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander);
+
+                case EnemyType.Rabbit:
+                    return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander);
+
+                default:
+                    return null;
+            }
+
         }
 
         public void UpdateCurrentChunk(IInformationContainer container)
