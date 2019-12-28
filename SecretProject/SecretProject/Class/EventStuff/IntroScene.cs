@@ -70,6 +70,9 @@ namespace SecretProject.Class.EventStuff
             Game1.cam.Pos = new Vector2(128, 500);
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Thunder1);
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Downpour);
+            Game1.EnableMusic = false;
+            Game1.SoundManager.CurrentSongInstance.Stop();
+            Game1.Player.UserInterface.IsTransitioning = true;
         }
         
 
@@ -78,8 +81,7 @@ namespace SecretProject.Class.EventStuff
             if (!Game1.freeze)
             {
                 
-              //  Game1.cam.Follow(new Vector2(Game1.Dobbin.Position.X, Game1.Dobbin.Position.Y), Game1.GetCurrentStage().MapRectangle);
-               // Game1.Player.Update(gameTime, Game1.GetCurrentStage().AllItems, Game1.myMouseManager);
+              
                 Game1.Dobbin.EventUpdate(gameTime);
             }
 

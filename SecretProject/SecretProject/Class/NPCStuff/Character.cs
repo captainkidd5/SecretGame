@@ -150,6 +150,15 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + NPCAnimatedSpr
             this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
         }
 
+        public void ResetAnimations()
+        {
+            for(int i =0; i < NPCAnimatedSprite.Length; i++)
+            {
+                this.NPCAnimatedSprite[i].SetFrame(0);
+            }
+            
+        }
+
         public void ResetSpeed()
         {
             this.Speed = this.BaseSpeed;

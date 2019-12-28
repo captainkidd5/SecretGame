@@ -105,7 +105,7 @@ namespace SecretProject
         #region FIELDS
 
         public static bool EnablePlayerCollisions = true;
-        public static bool EnableCutScenes = false;
+        public static bool EnableCutScenes = true;
         public static bool EnableMusic = false;
 
         public static bool IsFirstTimeStartup;
@@ -643,7 +643,8 @@ namespace SecretProject
             {
                // new IntroduceSanctuary(),
                // new IntroduceJulianShop(GraphicsDevice),
-                new IntroScene(GraphicsDevice)
+                new IntroScene(GraphicsDevice),
+                new MeetJulian(GraphicsDevice)
             };
             IsEventActive = false;
 
