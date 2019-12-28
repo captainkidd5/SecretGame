@@ -20,12 +20,24 @@
     <!-- Oak -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
-    <ItemID>520</ItemID>
+    <ItemID>668</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <X>992</X>
     <Y>192</Y>
     <Width>48</Width>
+    <Height>80</Height>
+    </Item>
+
+     <!-- Thunder Birch -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>0</Tab>
+    <ItemID>669</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>5</NumberRequired>
+    <X>976</X>
+    <Y>288</Y>
+    <Width>80</Width>
     <Height>80</Height>
     </Item>
 

@@ -228,6 +228,26 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Capture Crate (Boar)</Name>
+<ID>334</ID>
+<Description>It looks annoyed...</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>14</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Capture Crate</Name>
+<ID>333</ID>
+<Description>Used to safely capture wildlife.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>13</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Floor</Name>
 <ID>480</ID>
 <Description>Oak floorboards.</Description>
@@ -415,13 +435,14 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Thunderbird Seed</Name>
+<Name>Thunderbirch Seed</Name>
 <ID>669</ID>
 <Description>Grows into a Thunderbirch tree when planted.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>16</TextureColumn>
 <TextureRow>29</TextureRow>
 <Price>1</Price>
+<Plantable>true</Plantable>
 </Item>
 
 

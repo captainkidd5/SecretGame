@@ -68,7 +68,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
-       // public List<ICollidable> Objects { get; set; }
+        // public List<ICollidable> Objects { get; set; }
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> Lights { get; set; }
@@ -197,7 +197,7 @@ namespace SecretProject.Class.TileStuff
 
                         TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
 
-                        
+
 
                     }
                 }
@@ -212,7 +212,7 @@ namespace SecretProject.Class.TileStuff
         public void LoadInitialTileObjects(ILocation stage)
         {
 
-            
+
 
         }
 
@@ -334,7 +334,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z,this);
+                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
 
 
                             if (AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
@@ -363,11 +363,11 @@ namespace SecretProject.Class.TileStuff
                                                     Game1.myMouseManager.ToggleGeneralInteraction = true;
                                                 }
                                             }
-                                            
+
 
                                             if (mouse.IsClicked)
                                             {
-                                                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, AllTiles[z][mouseI, mouseJ].DestinationRectangle,  this);
+                                                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, AllTiles[z][mouseI, mouseJ].DestinationRectangle, this);
 
                                             }
 
@@ -451,11 +451,11 @@ namespace SecretProject.Class.TileStuff
                         if (AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyStringNew(z,this)))
+                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyStringNew(z, this)))
                             {
-                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z,this)].Count; t++)
+                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z, this)].Count; t++)
                                 {
-                                    Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z,this)][t].Draw(spriteBatch);
+                                    Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z, this)][t].Draw(spriteBatch);
                                 }
                             }
 
@@ -512,13 +512,18 @@ namespace SecretProject.Class.TileStuff
 
             for (int x = 0; x < Crops.Count; x++)
             {
-                Crops.ElementAt(x).Value.CurrentGrowth = Game1.GlobalClock.TotalDays - Crops.ElementAt(x).Value.DayPlanted;
-                int newGid = MapName.Tilesets[TileSetNumber].Tiles[Crops.ElementAt(x).Value.BaseGID].AnimationFrames[Crops.ElementAt(x).Value.CurrentGrowth].Id;
-                Crops.ElementAt(x).Value.UpdateGrowthCycle(newGid);
-                //Crops.ElementAt(x).Value.UpdateGrowthCycle();
+                Crop crop = Crops.ElementAt(x).Value;
+                crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
+                if (crop.CurrentGrowth < MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
+                {
+                    int newGid = MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
+                    crop.UpdateGrowthCycle(newGid);
 
-                TileUtility.ReplaceTile(3, Crops.ElementAt(x).Value.X, Crops.ElementAt(x).Value.Y, Crops.ElementAt(x).Value.GID,  this);
+                    TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
+                }
+
             }
+
 
         }
 

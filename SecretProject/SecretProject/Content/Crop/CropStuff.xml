@@ -52,10 +52,20 @@
                   </Item>
 
                   <!-- Trees -->
+
                   <Item Type="XMLData.ItemStuff.Crop">
                   <ItemID>668</ItemID>
                   <Name>Oak Seed</Name>
                   <GID>1670</GID>
+                  <DaysToGrow>5</DaysToGrow>
+                  <CurrentGrowth>0</CurrentGrowth>
+                  <Harvestable>false</Harvestable>
+                  </Item>
+
+                  <Item Type="XMLData.ItemStuff.Crop">
+                  <ItemID>669</ItemID>
+                  <Name>Thunder Birch Seed</Name>
+                  <GID>2271</GID>
                   <DaysToGrow>5</DaysToGrow>
                   <CurrentGrowth>0</CurrentGrowth>
                   <Harvestable>false</Harvestable>

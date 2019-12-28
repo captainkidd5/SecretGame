@@ -2088,6 +2088,16 @@
    <object id="2" x="3" y="0.375" width="10" height="11.625"/>
   </objectgroup>
  </tile>
+ <tile id="1666">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="1668">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1670">
   <properties>
    <property name="idleStart" value=""/>
@@ -2307,6 +2317,27 @@
   <objectgroup draworder="index">
    <object id="1" x="6" y="0.375" width="6" height="10.625"/>
   </objectgroup>
+ </tile>
+ <tile id="2267">
+  <properties>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
+ <tile id="2269">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="2271">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="2270" duration="100"/>
+   <frame tileid="2269" duration="100"/>
+   <frame tileid="2267" duration="100"/>
+   <frame tileid="2263" duration="100"/>
+  </animation>
  </tile>
  <tile id="2304">
   <properties>
