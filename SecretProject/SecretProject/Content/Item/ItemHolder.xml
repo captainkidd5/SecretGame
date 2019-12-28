@@ -227,6 +227,20 @@
 <Price>1</Price>
 </Item>
 
+
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Capture Crate</Name>
+<ID>333</ID>
+<Description>Used to safely capture wildlife.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>8</TextureColumn>
+<TextureRow>13</TextureRow>
+<Price>1</Price>
+<PlaceID>1575</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Capture Crate (Boar)</Name>
 <ID>334</ID>
@@ -239,15 +253,14 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Capture Crate</Name>
-<ID>333</ID>
-<Description>Used to safely capture wildlife.</Description>
+<Name>Capture Crate (Rabbit)</Name>
+<ID>335</ID>
+<Description>A fluffy rabbit.</Description>
 <InvMaximum>99</InvMaximum>
 <TextureColumn>8</TextureColumn>
-<TextureRow>13</TextureRow>
+<TextureRow>15</TextureRow>
 <Price>1</Price>
-<PlaceID>1575</PlaceID>
-<TilingLayer>3</TilingLayer>
+<CrateType>3</CrateType>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

@@ -51,7 +51,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     if (sanctuaryHolder.AllRequirements[i].Tab == j)
                     {
 
-                        CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(sanctuaryHolder.AllRequirements[i].ItemID, sanctuaryHolder.AllRequirements[i].GIDRequired, sanctuaryHolder.AllRequirements[i].NumberRequired,
+                        CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(sanctuaryHolder.AllRequirements[i].ItemID, sanctuaryHolder.AllRequirements[i].GIDRequired, sanctuaryHolder.AllRequirements[i].NumberRequired, sanctuaryHolder.AllRequirements[i].Description,
                             sanctuaryHolder.AllRequirements[i].Rectangle));
                     }
                 }

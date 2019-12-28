@@ -15,6 +15,7 @@ namespace XMLData.SanctuaryStuff
         public int GIDRequired { get; set; }
         public int NumberRequired { get; set; }
 
+        public string Description { get; set; }
         //Source Rectangle
         public int X { get; set; }
         public int Y { get; set; }

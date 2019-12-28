@@ -19,13 +19,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public string String { get; set; }
         public Vector2 ImageLocation { get; set; }
 
-        public CompletionRequirement(int itemID, int gid, int countRequired, Rectangle sourceRectangle)
+        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle)
         {
             this.ItemID = itemID;
             this.GID = gid;
             this.CountRequired = countRequired;
             this.SourceRectangle = sourceRectangle;
-            this.String = "Gather " + CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(ItemID, null).Name;
+            this.String = description + CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(ItemID, null).Name;
             ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
         }
 
