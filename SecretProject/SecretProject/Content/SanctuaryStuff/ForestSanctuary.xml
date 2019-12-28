@@ -41,16 +41,16 @@
     <Height>80</Height>
     </Item>
 
-    <!-- Fence -->
+    <!-- Boar Crate -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>0</Tab>
-    <ItemID>1162</ItemID>
-    <GIDRequired>456</GIDRequired>
-    <NumberRequired>2</NumberRequired>
-    <X>896</X>
-    <Y>46</Y>
+    <Tab>2</Tab>
+    <ItemID>334</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>5</NumberRequired>
+    <X>1200</X>
+    <Y>256</Y>
     <Width>16</Width>
-    <Height>32</Height>
+    <Height>16</Height>
     </Item>
 
 

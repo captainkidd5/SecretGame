@@ -289,6 +289,10 @@ namespace SecretProject.Class.StageFolder
         public virtual void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
+            for(int i =0; i < Enemies.Count; i++)
+            {
+                Enemies[i].Update(gameTime, mouse);
+            }
             QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
 
             foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
@@ -446,8 +450,11 @@ namespace SecretProject.Class.StageFolder
                     spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, this.BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
                 }
                 ParticleEngine.Draw(spriteBatch);
-
-                player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Bottom) * .00000001f);
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    Enemies[i].Draw(spriteBatch, Graphics);
+                }
+                    player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Bottom) * .00000001f);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     AllRisingText[i].Draw(spriteBatch);

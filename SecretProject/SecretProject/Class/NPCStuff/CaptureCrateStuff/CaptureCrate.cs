@@ -21,9 +21,16 @@ namespace SecretProject.Class.NPCStuff.CaptureCrateStuff
             this.Container = container;
         }
 
-        public static void Release(EnemyType enemyType, GraphicsDevice graphics, IInformationContainer container)
+        public static void Release(EnemyType enemyType, GraphicsDevice graphics, IInformationContainer container = null)
         {
-            Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, Game1.myMouseManager.WorldMousePosition, graphics, container));
+            if(container != null)
+            {
+                Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, Game1.myMouseManager.WorldMousePosition, graphics, container));
+            }
+            else
+            {
+                Game1.GetCurrentStage().Enemies.Add(Enemy.GetEnemyFromType(enemyType, Game1.myMouseManager.WorldMousePosition, graphics, (IInformationContainer)Game1.GetCurrentStage().AllTiles));
+            }
         }
 
 

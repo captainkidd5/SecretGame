@@ -23,6 +23,7 @@ using SecretProject.Class.Universal;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.StageFolder;
 
 namespace SecretProject.Class.Playable
 {
@@ -42,7 +43,7 @@ namespace SecretProject.Class.Playable
         public Vector2 position;
         public Vector2 PrimaryVelocity;
 
- 
+
         public bool Activate { get; set; }
 
         public Sprite[,] animations;
@@ -310,12 +311,27 @@ namespace SecretProject.Class.Playable
                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
                         DoPlayerAnimation(gameTime, AnimationType.Swiping);
                     }
-                    if(item.CrateType != 0)
+                    if (item.CrateType != 0)
                     {
-                        CaptureCrate.Release((EnemyType)item.CrateType, Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
-                        UserInterface.BackPack.Inventory.RemoveItem(item);
+                        if (Game1.GetCurrentStage().StageType == StageType.Procedural)
+                        {
+
+
+                            CaptureCrate.Release((EnemyType)item.CrateType, Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
+                            UserInterface.BackPack.Inventory.RemoveItem(item);
+                        }
+                        else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
+                        {
+                            SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
+                            if (tracker.UpdateCompletionGuide(item.ID))
+                            {
+                                CaptureCrate.Release((EnemyType)item.CrateType, Graphics);
+                                UserInterface.BackPack.Inventory.RemoveItem(item);
+                            }
+                        }
+
                     }
-                    
+
                 }
 
 
@@ -327,9 +343,9 @@ namespace SecretProject.Class.Playable
                         {
                             animations[i, j].UpdateAnimationPosition(this.Position);
                             animations[i, j].UpdateAnimations(gameTime, this.position);
-                            
+
                         }
-                        
+
                     }
 
                 }
@@ -363,7 +379,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-               
+
 
                 if (!CurrentAction[0, 0].IsAnimated)
                 {
@@ -371,7 +387,7 @@ namespace SecretProject.Class.Playable
                 }
 
                 MoveFromKeys();
-                
+
                 MainCollider.Rectangle = this.ColliderRectangle;
 
 
@@ -383,7 +399,7 @@ namespace SecretProject.Class.Playable
 
                 if (controls.IsMoving && !IsPerformingAction)
                 {
-                    if(controls.IsSprinting)
+                    if (controls.IsSprinting)
                     {
                         Position += PrimaryVelocity * 10;
                     }
@@ -391,8 +407,8 @@ namespace SecretProject.Class.Playable
                     {
                         Position += PrimaryVelocity;
                     }
-                    
-                    
+
+
                     if (LockBounds)
                     {
                         CheckOutOfBounds(this.Position);
@@ -523,7 +539,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (returnObjects[i].Entity != this)
                         {
-                            if(Game1.EnablePlayerCollisions)
+                            if (Game1.EnablePlayerCollisions)
                             {
                                 MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
 
@@ -642,7 +658,7 @@ namespace SecretProject.Class.Playable
 
         }
 
- 
+
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
             spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(ClickRangeRectangle.X, ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
