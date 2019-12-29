@@ -207,17 +207,17 @@ namespace SecretProject.Class.SpriteFolder
                     color: Color.White * ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(TextureScaleX, TextureScaleY));
         }
 
-        public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth)
+        public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth, float rotation = 0f)
         {
            if(this.Flip)
             {
                 spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
-                    color: this.Color * ColorMultiplier,effects: SpriteEffects.FlipHorizontally, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+                    color: this.Color * ColorMultiplier,effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
             }
             else
             {
                 spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
-                    color: this.Color * ColorMultiplier, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+                    color: this.Color * ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
             }
             
         }

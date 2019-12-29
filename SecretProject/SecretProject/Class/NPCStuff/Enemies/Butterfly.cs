@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
@@ -13,10 +14,14 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Butterfly : Enemy
     {
+        public float Rotation { get; set; }
+        public float Angle { get; set; }
+        public Vector2 FlutterOffset { get; set; }
+
         public Butterfly(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             NPCAnimatedSprite = new Sprite[1];
-
+            
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 48, 16, 16, 2, .15f, this.Position);
             
 
@@ -31,6 +36,25 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
+
+            this.Rotation = 0f;
+            this.FlutterOffset = new Vector2(0, 0);
+        }
+
+        public void Flutter(GameTime gameTime)
+        {
+            Angle += (float)gameTime.ElapsedGameTime.TotalSeconds * 2f;
+        }
+
+        public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
+        {
+            Flutter(gameTime);
+        }
+
+        public override void  Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        {
+            FlutterOffset = new Vector2((float)(10 * Math.Sin(Angle)), (float)(10 * Math.Cos(Angle)));
+            NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8 + FlutterOffset.X, Position.Y - NPCRectangleYOffSet - 8 + FlutterOffset.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)), Rotation);
         }
     }
 }

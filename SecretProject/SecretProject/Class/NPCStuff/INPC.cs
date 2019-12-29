@@ -16,6 +16,8 @@ namespace SecretProject.Class.NPCStuff
         Exclamation = 1
     }
 
+    
+
     public interface INPC : IEntity
     {
         string Name { get; set; }

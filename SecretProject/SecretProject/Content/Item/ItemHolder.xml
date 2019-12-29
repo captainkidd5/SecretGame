@@ -264,6 +264,27 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Specimin Jar</Name>
+<ID>373</ID>
+<Description>Used to safely capture wildlife.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>13</TextureRow>
+<Price>1</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Specimin Jar (Monarch Butterfly)</Name>
+<ID>374</ID>
+<Description>A beautiful orange butterfly.</Description>
+<InvMaximum>99</InvMaximum>
+<TextureColumn>9</TextureColumn>
+<TextureRow>14</TextureRow>
+<Price>1</Price>
+<CrateType>4</CrateType>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Floor</Name>
 <ID>480</ID>
 <Description>Oak floorboards.</Description>

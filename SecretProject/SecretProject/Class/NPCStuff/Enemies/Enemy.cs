@@ -152,7 +152,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                     return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Butterfly:
-                    return new Rabbit("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
                 default:
                     return null;
             }
@@ -166,7 +166,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             this.ObstacleGrid = container.PathGrid;
         }
 
-        public void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
+        public virtual void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
             this.CurrentEffect = null;
             if (this.TimeInUnloadedChunk > 100)
@@ -607,7 +607,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
         {
             if (CurrentBehaviour == CurrentBehaviour.Hurt)
             {
@@ -627,24 +627,9 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Game1.GetCurrentStage().Cam.getTransformation(graphics), effect: this.CurrentEffect, depthStencilState: DepthStencilState.Default);
 
             }
+            NPCAnimatedSprite[(int)CurrentDirection].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y)));
 
 
-            switch (CurrentDirection)
-            {
-                //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
-                case Dir.Down:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)));
-                    break;
-                case Dir.Left:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y)));
-                    break;
-                case Dir.Right:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y)));
-                    break;
-                case Dir.Up:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y)));
-                    break;
-            }
         }
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {

@@ -14,7 +14,8 @@ namespace SecretProject.Class.NPCStuff
     {
         Boar = 1,
         Crab = 2,
-        Rabbit = 3
+        Rabbit = 3,
+        Butterfly = 4
     }
 
     public class NPCGenerator
@@ -22,7 +23,9 @@ namespace SecretProject.Class.NPCStuff
         public static List<NPCSpawnData> DirtCreatures = new List<NPCSpawnData>()
         {
             new NPCSpawnData(NPCType.Boar, GenerationType.Dirt, 0f, .2f, .75f),
-             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .11f, .3f, .75f),
+            new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .75f),
+             new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
+             
         };
 
         public static List<NPCSpawnData> SandCreatures = new List<NPCSpawnData>()
@@ -175,6 +178,9 @@ namespace SecretProject.Class.NPCStuff
   
                 case NPCType.Rabbit:
                     return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+
+                case NPCType.Butterfly:
+                    return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
 
                 default:
                     return null;

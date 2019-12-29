@@ -18,8 +18,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             NPCAnimatedSprite = new Sprite[4];
 
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 144, 48, 16, 16, 3, .15f, this.Position);
-            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 192, 48, 16, 16, 3, .15f, this.Position) { Flip = true };
-            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 192, 48, 16, 16, 3, .15f, this.Position) ;
+            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 192, 48, 16, 16, 3, .15f, this.Position);
+            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 240, 48, 16, 16, 3, .15f, this.Position) { Flip = true };
             NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 240, 48, 16, 16, 3, .15f, this.Position);
 
             this.NPCRectangleXOffSet = 8;
