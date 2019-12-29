@@ -4,6 +4,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,16 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public float Angle { get; set; }
         public Vector2 FlutterOffset { get; set; }
 
+        public SimpleTimer FlutterTimer { get; set; }
+
+        public int FlutterDirection { get; set; }
+
         public Butterfly(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             NPCAnimatedSprite = new Sprite[1];
-            
+
             NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 48, 16, 16, 2, .15f, this.Position);
-            
+
 
             this.NPCRectangleXOffSet = 8;
             this.NPCRectangleYOffSet = 8;
@@ -39,19 +44,52 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.Rotation = 0f;
             this.FlutterOffset = new Vector2(0, 0);
+            FlutterTimer = new SimpleTimer(.5f);
+            FlutterDirection = 1;
         }
 
         public void Flutter(GameTime gameTime)
         {
-            Angle += (float)gameTime.ElapsedGameTime.TotalSeconds * 2f;
+            SwitchDirections(gameTime);
+            Angle += (float)gameTime.ElapsedGameTime.TotalSeconds  * 4 * FlutterDirection;
+            Rotation += Angle * .1f;
+            if (Rotation > .5f)
+            {
+                Rotation = .5f;
+            }
+            if (Rotation < -.5f)
+            {
+                Rotation = -.5f;
+            }
+
+        }
+
+        public void SwitchDirections(GameTime gameTime)
+        {
+            if(FlutterTimer.Run(gameTime))
+            {
+                FlutterDirection = FlutterDirection * -1;
+                FlutterTimer.TargetTime = Game1.Utility.RFloat(.5f, 1f);
+            }
         }
 
         public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
+            base.Update(gameTime, mouse, enemies);
             Flutter(gameTime);
+
+            //if(!IsMoving)
+            //{
+            //    for (int i = 0; i < NPCAnimatedSprite.Length; i++)
+            //    {
+            //        NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
+            //    }
+            //}
+            
+
         }
 
-        public override void  Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
         {
             FlutterOffset = new Vector2((float)(10 * Math.Sin(Angle)), (float)(10 * Math.Cos(Angle)));
             NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8 + FlutterOffset.X, Position.Y - NPCRectangleYOffSet - 8 + FlutterOffset.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)), Rotation);
