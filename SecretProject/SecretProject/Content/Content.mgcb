@@ -1454,3 +1454,9 @@
 /processor:PassThroughProcessor
 /build:SanctuaryStuff/ForestSanctuary.xml
 
+#begin SoundEffects/exclamation.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/exclamation.wav
+

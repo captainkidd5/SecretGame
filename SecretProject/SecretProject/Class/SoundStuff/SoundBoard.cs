@@ -113,6 +113,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect CurrentSong { get; set; }
         public SoundEffectInstance CurrentSongInstance { get; set; }
 
+        //Emoticons
+        public SoundEffect Exclamation { get; set; }
+
 
         public SoundBoard(Game1 game, ContentManager content)
         {
@@ -207,6 +210,9 @@ namespace SecretProject.Class.SoundStuff
             this.CurrentSong = Title;
             this.CurrentSongInstance = CurrentSong.CreateInstance();
 
+            //Emoticons
+            Exclamation = content.Load<SoundEffect>("SoundEffects/exclamation");
+
         }
         public void PlaySong()
         {
@@ -238,13 +244,18 @@ namespace SecretProject.Class.SoundStuff
         }
 
 
-        public void PlaySoundEffectInstance(SoundEffect soundEffect)
+        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false)
         {
             //SoundEffectInstance instance = soundEffect.CreateInstance();
             //instance.Volume = volume;
             //instance.Play();
             //instance.Dispose();
-            soundEffect.Play(GameVolume, 0f, 1f);
+            float pitch = 0f;
+            if(randomizePitch)
+            {
+                pitch = Game1.Utility.RFloat(0, 1);
+            }
+            soundEffect.Play(GameVolume, pitch, 1f);
         }
 
         public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
@@ -274,7 +285,7 @@ namespace SecretProject.Class.SoundStuff
             switch (emoticonType)
             {
                 case EmoticonType.Exclamation:
-                    PlaySoundEffectInstance(PigGrunt);
+                    PlaySoundEffectInstance(Exclamation, true);
                     break;
             }
 

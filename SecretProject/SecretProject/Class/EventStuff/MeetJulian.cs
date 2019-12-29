@@ -102,8 +102,8 @@ namespace SecretProject.Class.EventStuff
             {
 
 
-               // Game1.Dobbin.EventUpdate(gameTime);
-               // Game1.Julian.EventUpdate(gameTime);
+                // Game1.Dobbin.EventUpdate(gameTime);
+                // Game1.Julian.EventUpdate(gameTime);
             }
 
             if (Game1.Player.UserInterface.IsTransitioning)
@@ -114,20 +114,22 @@ namespace SecretProject.Class.EventStuff
             Game1.DobbinHouse.AllTiles.Update(gameTime, Game1.myMouseManager);
             Game1.Player.UserInterface.CinematicMode = true;
             Game1.cam.pos = new Vector2(500, 430);
+            Game1.Player.Direction = Dir.Right;
+            Game1.Player.UpdateMovementAnimationsOnce();
 
             switch (CurrentStep)
             {
                 case 0:
-                    
 
 
-                        if (SimpleTimer.Run(gameTime))
-                        {
-                            StepsCompleted[CurrentStep] = true;
-                            CurrentStep++;
 
-                        }
-                    
+                    if (SimpleTimer.Run(gameTime))
+                    {
+                        StepsCompleted[CurrentStep] = true;
+                        CurrentStep++;
+
+                    }
+
 
 
                     break;
@@ -171,63 +173,66 @@ namespace SecretProject.Class.EventStuff
                     if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
                         CurrentStep++;
+                        Game1.Dobbin.ActivateEmoticon(EmoticonType.Exclamation);
+                        Game1.Julian.ActivateEmoticon(EmoticonType.Exclamation);
                     }
                     break;
                 case 4:
-                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 6));
-                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
+
+                    
+                    Game1.Dobbin.CurrentDirection = Dir.Left;
+                    Game1.Julian.CurrentDirection = Dir.Left;
+
+                    if (!StepsCompleted[CurrentStep])
                     {
-                        Game1.Dobbin.CurrentDirection = Dir.Down;
-                        if (SimpleTimer.Run(gameTime))
-                        {
 
-
-                            if (!StepsCompleted[CurrentStep])
-                            {
-                                Game1.Dobbin.ActivateEmoticon(EmoticonType.Exclamation);
-                                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                    "Hey, are you okay!?", 2f, null, null);
-                                StepsCompleted[CurrentStep] = true;
-                            }
-                        }
-                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
-                        {
-                            CurrentStep++;
-                            Game1.Dobbin.CurrentEmoticon = EmoticonType.None;
-                        }
-
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
+                            "Oh you're up!", 2f, null, null);
+                        StepsCompleted[CurrentStep] = true;
                     }
+
+                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    {
+                        CurrentStep++;
+                        Game1.Dobbin.CurrentEmoticon = EmoticonType.None;
+                        Game1.Julian.CurrentEmoticon = EmoticonType.None;
+                        Game1.Dobbin.IsMoving = true;
+                        Game1.Julian.IsMoving = true;
+                    }
+
+
                     break;
                 case 5:
 
                     Game1.Dobbin.Speed = 1f;
-                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 10));
-                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
+                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(34, 25));
+                    Game1.Julian.EventMoveToTile(gameTime, new Point(34, 27));
+                    if (Game1.Dobbin.EventCurrentPath.Count <= 0 && Game1.Julian.EventCurrentPath.Count <= 0)
                     {
                         if (!StepsCompleted[CurrentStep])
                         {
+                            Game1.Dobbin.ResetAnimations();
+                            Game1.Julian.ResetAnimations();
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                "%300 . . . %005 You'd better come with me!", 2f, null, null);
+                                "This is Julian, he runs the workshop down the street.", 2f, null, null);
                             StepsCompleted[CurrentStep] = true;
-                        }
-
-                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
-                        {
-                            CurrentStep++;
                         }
                     }
 
-                    break;
-                case 6:
-                    Game1.Dobbin.ResetSpeed();
-                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(8, 1));
-                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
+                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
+                        CurrentStep++;
+                    }
+                    break;
+
+                case 6:
+
                         if (!StepsCompleted[CurrentStep])
                         {
-                            Game1.Dobbin.NPCAnimatedSprite[(int)Game1.Dobbin.CurrentDirection].SetFrame(0);
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
+                            "Dobbin told me what happened %400 %005 I'm glad you're not hurt. ", 2f, null, null);
 
-                            StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[CurrentStep] = true;
                         }
 
                         if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
@@ -236,46 +241,24 @@ namespace SecretProject.Class.EventStuff
                         }
 
 
-                    }
+                    
 
                     break;
 
                 case 7:
-                    if (Game1.GetCurrentStageInt() != Stages.DobbinHouseUpper)
+                    if (!StepsCompleted[CurrentStep])
                     {
-                        Game1.OverWorld.CharactersPresent.Clear();
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
+                            "%200... %005 You must be very confused. ", 2f, null, null);
 
-                        Game1.SwitchStage(Stages.OverWorld, Stages.DobbinHouseUpper);
-                        Game1.GetCurrentStage().CharactersPresent.Add(Game1.Dobbin);
-                        //Game1.cam.pos = new Vector2(800, 480);
-                        Game1.Player.position = Game1.Dobbin.Position;
-                        Game1.Dobbin.Position = new Vector2(550, 500);
-                        //Game1.cam.Follow(Game1.Dobbin.Position, Game1.GetCurrentStage().MapRectangle);
-
-                        Game1.Dobbin.CurrentStageLocation = Stages.DobbinHouseUpper;
-                    }
-                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(35, 31));
-
-                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
-                    {
-                        if (!StepsCompleted[CurrentStep])
-                        {
-                            Game1.Dobbin.NPCAnimatedSprite[(int)Game1.Dobbin.CurrentDirection].SetFrame(0);
-                            Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                                "Here you go.", 2f, null, null);
-                            StepsCompleted[CurrentStep] = true;
-                        }
-
-                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
-                        {
-
-                            CurrentStep++;
-                        }
-
-
+                        StepsCompleted[CurrentStep] = true;
                     }
 
-                    Game1.cam.pos = new Vector2(580, 500);
+                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
+                    {
+                        CurrentStep++;
+                    }
+
                     break;
                 case 8:
                     Game1.cam.pos = new Vector2(580, 500);
