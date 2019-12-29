@@ -560,20 +560,20 @@ namespace SecretProject
                 BuisnessSnailShop
             };
            
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(120, null));
+            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(120, null));
            
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
-            for (int i = 0; i < 99; i++)
-            {
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(480, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1164, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
-            }
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(520, null));
+            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
+            //for (int i = 0; i < 99; i++)
+            //{
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1401, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(480, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1164, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
+            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+            //}
+            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
+            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(520, null));
 
 
 

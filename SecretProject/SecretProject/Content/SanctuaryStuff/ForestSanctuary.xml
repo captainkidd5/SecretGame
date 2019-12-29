@@ -70,6 +70,19 @@
     <Height>16</Height>
     </Item>
 
+      <!-- Monarch Jar -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>2</Tab>
+    <ItemID>374</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>5</NumberRequired>
+    <Description>Release </Description>
+    <X>1216</X>
+    <Y>240</Y>
+    <Width>16</Width>
+    <Height>16</Height>
+    </Item>
+
 
   </AllRequirements>
   </Asset>

@@ -176,7 +176,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             }
             if (this.HitPoints <= 0)
             {
-                RollDrop(this.Position);
+                RollPeriodicDrop(this.Position);
                 enemies.Remove(this);
                 return;
             }
@@ -277,19 +277,23 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
-            SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (SoundTimer <= 0)
+            if(SoundID != 0)
             {
-                Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID);
-                SoundTimer = Game1.Utility.RFloat(45f, 100f);
+                SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (SoundTimer <= 0)
+                {
+                    Game1.SoundManager.PlaySoundEffectFromInt(1, SoundID);
+                    SoundTimer = Game1.Utility.RFloat(45f, 100f);
 
-                RollDrop(this.Position);
+                    RollPeriodicDrop(this.Position);
+                }
             }
+           
 
 
         }
 
-        public void RollDrop(Vector2 positionToDrop)
+        public void RollPeriodicDrop(Vector2 positionToDrop)
         {
             for (int i = 0; i < this.PossibleLoot.Count; i++)
             {
@@ -631,24 +635,9 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
         }
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
-            switch (CurrentDirection)
-            {
-                //double num = (NPCAnimatedSprite[0].DestinationRectangle.Bottom + NPCAnimatedSprite[0].DestinationRectangle.Height)/ 1600;
-                case Dir.Down:
-                    NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)));
-                    break;
-                case Dir.Left:
-                    NPCAnimatedSprite[1].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[1].DestinationRectangle.Y)));
-                    break;
-                case Dir.Right:
-                    NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[2].DestinationRectangle.Y)));
-                    break;
-                case Dir.Up:
-                    NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[3].DestinationRectangle.Y)));
-                    break;
-            }
+            NPCAnimatedSprite[(int)CurrentDirection].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8, Position.Y - NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y)));
         }
         public Texture2D SetRectangleTexture(GraphicsDevice graphicsDevice, Rectangle rectangleToDraw)
         {

@@ -36,7 +36,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.SoundID = 14;
+            this.SoundID = 0;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
@@ -90,6 +90,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
         }
 
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        {
+            FlutterOffset = new Vector2((float)(10 * Math.Sin(Angle)), (float)(10 * Math.Cos(Angle)));
+            NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8 + FlutterOffset.X, Position.Y - NPCRectangleYOffSet - 8 + FlutterOffset.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)), Rotation);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
             FlutterOffset = new Vector2((float)(10 * Math.Sin(Angle)), (float)(10 * Math.Cos(Angle)));
             NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(Position.X - NPCRectangleXOffSet - 8 + FlutterOffset.X, Position.Y - NPCRectangleYOffSet - 8 + FlutterOffset.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)NPCAnimatedSprite[0].DestinationRectangle.Y)), Rotation);
