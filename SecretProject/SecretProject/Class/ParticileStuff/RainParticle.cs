@@ -18,12 +18,7 @@ namespace SecretProject.Class.ParticileStuff
 
         public override void Update(GameTime gameTime)
         {
-            //VelocityReductionTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //if (VelocityReductionTimer < 0)
-            //{
 
-            //    Velocity = new Vector2(Velocity.X, Velocity.Y + .1f);
-            //}
             TTL--;
 
             Position += Velocity;
@@ -32,8 +27,7 @@ namespace SecretProject.Class.ParticileStuff
                 Position = new Vector2(Position.X, Position.Y - Velocity.Y);
                 TTL = 40;
             }
-            //Position = new Vector2(Position.X, Position.Y )
-            // Angle += AngularVelocity;
+
         }
     }
 }

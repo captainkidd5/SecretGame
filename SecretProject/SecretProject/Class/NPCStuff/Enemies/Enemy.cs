@@ -21,7 +21,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
     {
         Boar = 1,
         Crab = 2,
-        Rabbit = 3
+        Rabbit = 3,
+        Butterfly = 4
     }
 
     public enum CurrentBehaviour
@@ -150,6 +151,8 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
                 case EnemyType.Rabbit:
                     return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
+                case EnemyType.Butterfly:
+                    return new Rabbit("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
                 default:
                     return null;
             }
@@ -211,7 +214,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < NPCAnimatedSprite.Length; i++)
             {
                 NPCAnimatedSprite[i].UpdateAnimationPosition(Position);
             }
@@ -257,7 +260,7 @@ NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
             if (IsMoving)
             {
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < NPCAnimatedSprite.Length; i++)
                 {
                     NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
                 }
