@@ -160,5 +160,10 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SanctuaryStuff/ForestSanctuary.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/exclamation.wav</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Butterflys.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png</File>
   </SourceFiles>
 </SourceFileCollection>

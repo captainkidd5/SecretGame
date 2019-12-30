@@ -89,6 +89,7 @@ namespace SecretProject.Class.Playable
 
         public Sprite[,] Mining { get; set; }
         public Sprite[,] Swiping { get; set; }
+        public Sprite[,] PickUpItem { get; set; }
         public Line ToolLine { get; set; }
 
         public Sprite CurrentTool { get; set; }
@@ -142,6 +143,7 @@ namespace SecretProject.Class.Playable
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
             Mining = new Sprite[4, 6];
             Swiping = new Sprite[4, 5];
+            PickUpItem = new Sprite[4, 5];
 
             MainCollider = new Collider(graphics, ColliderRectangle, this, ColliderType.inert);
             BigCollider = new Collider(graphics, ClickRangeRectangle, this, ColliderType.PlayerBigBox);
@@ -167,6 +169,16 @@ namespace SecretProject.Class.Playable
 
             switch (action)
             {
+                case AnimationType.HandsPicking:
+                    IsPerformingAction = true;
+                    CurrentAction = PickUpItem;
+                    AnimationDirection = controls.Direction;
+                    //for (int i = 0; i < 4; i++)
+                    //{
+                    //    this.PickUpItem[i, 0].FirstFrameY = textureColumn;
+                    //}
+                    break;
+
                 case AnimationType.Mining:
                     IsPerformingAction = true;
                     CurrentAction = Mining;

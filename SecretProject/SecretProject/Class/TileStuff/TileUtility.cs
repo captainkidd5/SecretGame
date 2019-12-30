@@ -701,6 +701,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (actionType == AnimationType.HandsPicking)  //this is out here because any equipped item should be able to pick it up no matter what
                 {
+                    Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking, .25f);
                     FinalizeTile(layer, gameTime, x, y, container, delayTimer: .25f);
                     if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))
                     {
@@ -871,8 +872,8 @@ namespace SecretProject.Class.TileStuff
         public static bool RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
             int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
         {
-            int newTileX = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
-            int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) - 1);
+            int newTileX = Game1.Utility.RNumber(0, container.AllTiles[0].GetLength(0) + 1);
+            int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) + 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
                 acceptableTiles, container, comparisonLayer))
             {

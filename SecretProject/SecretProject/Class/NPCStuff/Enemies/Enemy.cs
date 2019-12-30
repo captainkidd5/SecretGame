@@ -52,8 +52,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             get
             {
-                return new Rectangle(NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.X + 16,
-NPCAnimatedSprite[(int)CurrentDirection].DestinationRectangle.Y + 20, 8, 8);
+                return new Rectangle(NPCAnimatedSprite[0].DestinationRectangle.X + 16,
+NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
             set { }
         }

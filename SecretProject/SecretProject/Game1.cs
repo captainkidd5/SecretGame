@@ -1042,6 +1042,34 @@ namespace SecretProject
 
             Player.PlayerActionAnimations = new Sprite[6];
 
+            
+
+            //PickUp..Down
+            Player.PickUpItem[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0,0) { LayerDepth = .00000012f };
+            Player.PickUpItem[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PickUpItem[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PickUpItem[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+
+            //PickUp..Up
+            Player.PickUpItem[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PickUpItem[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PickUpItem[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PickUpItem[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+            //PickUp..Left
+            Player.PickUpItem[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f,Flip = true };
+            Player.PickUpItem[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f, Flip = true };
+            Player.PickUpItem[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f, Flip = true };
+            Player.PickUpItem[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f, Flip = true };
+            Player.PickUpItem[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f, Flip = true };
+            //PickUp..Right
+            Player.PickUpItem[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PickUpItem[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f};
+            Player.PickUpItem[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f};
+            Player.PickUpItem[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+
             for (int i = 0; i < Player.Mining.GetLength(1); i++)
             {
                 Player.PlayerActionAnimations[i] = Player.Mining[0, i];

@@ -43,6 +43,12 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D SwipingPlayerShoes;
         public Texture2D SwipingTestTool;
 
+        public Texture2D PickUpItemBase;
+        public Texture2D PickUpItemBlondeHair;
+        public Texture2D PickUpItemBluePants;
+        public Texture2D PickUpItemRedShirt;
+        public Texture2D PickUpItemBrownShoes;
+
         //NPCS
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -167,6 +173,11 @@ namespace SecretProject.Class.TextureStuff
             SwipingPlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Swiping/Shoes/swipingBrownShoes");
             SwipingTestTool = content.Load<Texture2D>("Player/PlayerParts/Swiping/Tools/testSword");
 
+            PickUpItemBase = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Base/PickUpItemBase");
+            PickUpItemBlondeHair = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair");
+            PickUpItemBluePants = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants");
+            PickUpItemRedShirt = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt");
+            PickUpItemBrownShoes = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes");
             //NPC
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");
