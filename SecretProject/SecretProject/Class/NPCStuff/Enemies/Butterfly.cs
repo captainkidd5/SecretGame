@@ -26,8 +26,24 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public Butterfly(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             NPCAnimatedSprite = new Sprite[1];
+            int butterflyColor = Game1.Utility.RGenerator.Next(0, 4);
+            switch (butterflyColor)
+            {
+                case 0:
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 48, 16, 16, 2, .15f, this.Position);
+                    break;
+                case 1:
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 320, 48, 16, 16, 2, .15f, this.Position);
+                    break;
+                case 2:
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 352, 48, 16, 16, 2, .15f, this.Position);
+                    break;
+                case 3:
+                    NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 384, 48, 16, 16, 2, .15f, this.Position);
+                    break;
+            }
 
-            NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 48, 16, 16, 2, .15f, this.Position);
+            
 
 
             this.NPCRectangleXOffSet = 8;
@@ -78,14 +94,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
             base.Update(gameTime, mouse, enemies);
             Flutter(gameTime);
 
-            //if(!IsMoving)
-            //{
-            //    for (int i = 0; i < NPCAnimatedSprite.Length; i++)
-            //    {
-            //        NPCAnimatedSprite[i].UpdateAnimations(gameTime, Position);
-            //    }
-            //}
-            
 
         }
 
