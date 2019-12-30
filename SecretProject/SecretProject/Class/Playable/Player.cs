@@ -318,7 +318,7 @@ namespace SecretProject.Class.Playable
                 if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
                     Item item = UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                    if (item.Type == 25)
+                    if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
                     {
                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
                         DoPlayerAnimation(gameTime, AnimationType.Swiping);

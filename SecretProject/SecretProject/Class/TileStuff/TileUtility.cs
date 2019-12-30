@@ -400,9 +400,10 @@ namespace SecretProject.Class.TileStuff
 
                     if (container.AllTiles[1][i, j].GID == -1)
                     {
-                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                        Item item = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                        if (item != null)
                         {
-                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == 23)
+                            if (item.ItemType == ItemType.Shovel)
                             {
                                 Game1.Player.UserInterface.DrawTileSelector = true;
 
@@ -431,6 +432,26 @@ namespace SecretProject.Class.TileStuff
                                         Game1.Procedural.AllTilingContainers[1].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
 
                                             break;
+                                    }
+                                }
+                            }
+                            else if(item.ItemType == ItemType.Tree)
+                            {
+                                mouse.ChangeMouseTexture(CursorType.Planting);
+                                if (mouse.IsClicked)
+                                {
+                                    if (!container.Crops.ContainsKey(container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)))
+                                    {
+
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
+                                        tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
+                                        tempCrop.GID++;
+                                        tempCrop.X = i;
+                                        tempCrop.Y = j;
+                                        TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
+                                        container.Crops[container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)] = tempCrop;
+                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     }
                                 }
                             }
@@ -711,7 +732,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 else if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == (int)actionType)
+                    if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType == (ItemType)actionType)
                     {
 
 

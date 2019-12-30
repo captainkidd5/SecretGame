@@ -230,7 +230,7 @@ namespace SecretProject.Class.EventStuff
                         if (!StepsCompleted[CurrentStep])
                         {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                            "Dobbin told me what happened %400 %005 I'm glad you're not hurt. ", 2f, null, null);
+                            "You must be very confused.. ", 2f, null, null);
 
                         StepsCompleted[CurrentStep] = true;
                         }
@@ -249,7 +249,7 @@ namespace SecretProject.Class.EventStuff
                     if (!StepsCompleted[CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
-                            "%200... %005 You must be very confused. ", 2f, null, null);
+                            "You're in [TOWNNAME], many of us in town are interested with what lies beyond the portal where you were found.", 2f, null, null);
 
                         StepsCompleted[CurrentStep] = true;
                     }
@@ -261,53 +261,43 @@ namespace SecretProject.Class.EventStuff
 
                     break;
                 case 8:
-                    Game1.cam.pos = new Vector2(580, 500);
                     if (!StepsCompleted[CurrentStep])
                     {
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
-                            "I'll be back to check up on you.# You're free to stay here as long as you like. # Come downstairs when you're feeling better" +
-                            " and we can try to figure out what's going on.", 2f, null, null);
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
+                            "Many people in town would be happy to help gear you up to explore the wilderness if you gather resources for them.", 2f, null, null);
+
                         StepsCompleted[CurrentStep] = true;
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
                     {
-
                         CurrentStep++;
                     }
                     break;
                 case 9:
-                    Game1.cam.pos = new Vector2(580, 500);
-                    Game1.Dobbin.EventMoveToTile(gameTime, new Point(33, 40));
-                    if (Game1.Dobbin.EventCurrentPath.Count <= 0)
+                    if (!StepsCompleted[CurrentStep])
                     {
-                        if (!StepsCompleted[CurrentStep])
-                        {
-                            StepsCompleted[CurrentStep] = true;
-                            Game1.Dobbin.NPCAnimatedSprite[(int)Game1.Dobbin.CurrentDirection].SetFrame(0);
-                        }
+                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
+                            "Anyway, feel free to stop by my workshop any time. I'm just across the town square to the East.", 2f, null, null);
 
-                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
-                        {
-                            CurrentStep++;
-                            Game1.Player.UserInterface.TransitionSpeed = .005f;
-                            Game1.Player.UserInterface.TransitionTimer.TargetTime = 6f;
-                            Game1.Player.UserInterface.IsTransitioning = true;
-                        }
+                        StepsCompleted[CurrentStep] = true;
+                    }
 
-
+                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
+                    {
+                        CurrentStep++;
                     }
                     break;
                 case 10:
-                    Game1.Player.position = new Vector2(560, 500);
+
                     Console.WriteLine("Event has ended");
                     Game1.IsEventActive = false;
                     this.IsActive = false;
                     this.IsCompleted = true;
                     Game1.Dobbin.IsInEvent = false;
+                    Game1.Julian.IsInEvent = false;
                     Game1.CurrentEvent = null;
                     Game1.Player.UserInterface.CinematicMode = false;
-                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 500, Game1.GlobalClock.WeekDay.ToString(), .015f, Color.White, true, 3f);
 
                     Game1.Player.IsDrawn = true;
                     Game1.Player.UpdateMovementAnimationsOnce();

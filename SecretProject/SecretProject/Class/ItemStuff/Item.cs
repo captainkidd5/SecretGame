@@ -72,7 +72,7 @@ namespace SecretProject.Class.ItemStuff
         public string TilingSet { get; set; }
         public int TilingLayer { get; set; }
         public int StaminaRestored { get; set; }
-        public int Type { get; set; }
+        public ItemType ItemType { get; set; }
         public int AnimationColumn { get; set; }
         public int CrateType { get; set; }
 
@@ -100,7 +100,7 @@ namespace SecretProject.Class.ItemStuff
             this.PlaceID = itemData.PlaceID;
             
             this.StaminaRestored = itemData.StaminaRestored;
-            this.Type = itemData.Type;
+            this.ItemType = itemData.Type;
             this.AnimationColumn = itemData.AnimationColumn;
 
             this.TilingSet = itemData.TilingSet;

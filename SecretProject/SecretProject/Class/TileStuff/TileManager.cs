@@ -373,7 +373,7 @@ namespace SecretProject.Class.TileStuff
                                             Game1.isMyMouseVisible = false;
                                             if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                                             {
-                                                if ((AnimationType)Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().Type == Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
+                                                if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
                                                 {
                                                     mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
                                                     Game1.myMouseManager.ToggleGeneralInteraction = true;

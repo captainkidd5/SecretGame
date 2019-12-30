@@ -11,7 +11,7 @@
 <TextureRow>0</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>21</Type>
+<Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -23,7 +23,7 @@
 <TextureRow>1</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>21</Type>
+<Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -35,7 +35,7 @@
 <TextureRow>3</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>21</Type>
+<Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -46,7 +46,7 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>14</TextureRow>
 <Price>25</Price>
-<Type>21</Type>
+<Type>Axe</Type>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFish</Name>
@@ -56,7 +56,7 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>15</TextureRow>
 <Price>25</Price>
-<Type>21</Type>
+<Type>Axe</Type>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Empty Flask</Name>
@@ -66,7 +66,6 @@
 <TextureColumn>0</TextureColumn>
 <TextureRow>28</TextureRow>
 <Price>25</Price>
-<Type>21</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -78,7 +77,7 @@
 <TextureRow>0</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>22</Type>
+<Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -90,7 +89,7 @@
 <TextureRow>1</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>22</Type>
+<Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -102,7 +101,7 @@
 <TextureRow>2</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>22</Type>
+<Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -114,7 +113,6 @@
 <TextureRow>28</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>22</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
 
@@ -138,7 +136,7 @@
 <TextureRow>0</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>23</Type>
+<Type>Shovel</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -150,7 +148,7 @@
 <TextureRow>1</TextureRow>
 <Price>25</Price>
 <Durability>25</Durability>
-<Type>23</Type>
+<Type>Shovel</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -172,7 +170,7 @@
 <TextureRow>0</TextureRow>
 <Price>50</Price>
 <Durability>25</Durability>
-<Type>25</Type>
+<Type>Sword</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -184,7 +182,7 @@
 <TextureRow>2</TextureRow>
 <Price>50</Price>
 <Durability>25</Durability>
-<Type>25</Type>
+<Type>Sword</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -469,6 +467,7 @@
 <TextureRow>28</TextureRow>
 <Price>1</Price>
 <Plantable>true</Plantable>
+<Type>Tree</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -480,6 +479,7 @@
 <TextureRow>29</TextureRow>
 <Price>1</Price>
 <Plantable>true</Plantable>
+<Type>Tree</Type>
 </Item>
 
 
