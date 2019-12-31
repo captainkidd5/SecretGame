@@ -56,44 +56,45 @@ namespace SecretProject.Class.ItemStuff
 
         public bool TryAddItem(Item item)
         {
-            bool itemFilled = false;
             bool slotsAvailable = false;
             foreach (InventorySlot s in currentInventory)
             {
                 if (s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum)
                 {
                     s.AddItemToSlot(item);
-                    itemFilled = true;
-                    break;
+                    return true;
                 }
                 if (s.SlotItems.Count == 0)
                 {
                     slotsAvailable = true;
                 }
             }
-            if (itemFilled == false && slotsAvailable == true)
+            if (slotsAvailable)
             {
-                foreach (InventorySlot s in currentInventory)
+
+                if (AddToFirstEmptySlotOnly(item))
                 {
-                    if (itemFilled == true)
-                    {
-                        break;
-                    }
-                    if (s.SlotItems.Count == 0)
-                    {
-                        s.AddItemToSlot(item);
-                        itemFilled = true;
-                    }
+                    return true;
                 }
             }
-            if (itemFilled)
+
+            return false;
+
+        }
+
+        public bool AddToFirstEmptySlotOnly(Item item)
+        {
+            foreach (InventorySlot s in currentInventory)
             {
-                return true;
+
+                if (s.SlotItems.Count == 0)
+                {
+                    s.AddItemToSlot(item);
+                    return true;
+                }
+
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public bool IsPossibleToAddItem(Item item)
@@ -107,7 +108,7 @@ namespace SecretProject.Class.ItemStuff
                 }
             }
             return false;
-            
+
         }
 
         public void RemoveItem(Item item)

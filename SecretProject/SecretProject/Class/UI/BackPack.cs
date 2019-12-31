@@ -198,19 +198,41 @@ namespace SecretProject.Class.UI
                                     if (item != null)
                                     {
 
-
-                                        for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem != null)
                                         {
-                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+
+                                            for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                             {
-                                                Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+                                                if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+                                                {
+                                                    Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+
+                                                }
+                                                else
+                                                {
+                                                    break;
+                                                }
 
                                             }
-                                            else
+                                        }
+                                        else
+                                        {
+                                            if (Game1.Player.Inventory.AddToFirstEmptySlotOnly(item))
                                             {
-                                                break;
-                                            }
+                                                for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                                {
+                                                    if (Game1.Player.Inventory.TryAddItem(item))
+                                                    {
+                                                        Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
 
+                                                    }
+                                                    else
+                                                    {
+                                                        break;
+                                                    }
+
+                                                }
+                                            }
                                         }
                                     }
                                 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using System;
@@ -52,10 +53,28 @@ namespace SecretProject.Class.ItemStuff
                     {
                         if(Retrievable)
                         {
-                            if (Game1.Player.Inventory.TryAddItem(Inventory.currentInventory[Index].SlotItems[0]))
+
+                            if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                             {
-                                Inventory.RemoveItem(Inventory.currentInventory[Index].SlotItems[0].ID);
-                                Count--;
+                                Item item = Inventory.currentInventory[Index].GetItem();
+                                if (item != null)
+                                {
+
+
+                                    for (int shiftItem = Inventory.currentInventory[Index].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                    {
+                                        if (Game1.Player.Inventory.TryAddItem(item))
+                                        {
+                                            Inventory.currentInventory[Index].SlotItems.RemoveAt(shiftItem);
+                                            Count--;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+
+                                    }
+                                }
                             }
                         }
                         
