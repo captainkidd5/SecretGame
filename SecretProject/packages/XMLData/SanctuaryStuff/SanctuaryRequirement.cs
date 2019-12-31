@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace XMLData.SanctuaryStuff
 {
+
     public class SanctuaryRequirement
     {
         public int Tab { get; set; }
@@ -16,6 +17,9 @@ namespace XMLData.SanctuaryStuff
         public int NumberRequired { get; set; }
 
         public string Description { get; set; }
+
+        public SanctuaryReward SanctuaryReward { get; set; }
+
         //Source Rectangle
         public int X { get; set; }
         public int Y { get; set; }

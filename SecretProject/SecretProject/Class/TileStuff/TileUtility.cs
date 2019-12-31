@@ -567,23 +567,7 @@ namespace SecretProject.Class.TileStuff
                     }
                     break;
 
-                case "openProgressBook":
-                    mouse.ChangeMouseTexture(CursorType.Normal);
-                    if (mouse.IsClicked)
-                    {
-                        switch (Game1.GetCurrentStageInt())
-                        {
-                            case Stages.JulianHouse:
-                                Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Julian);
-                                break;
-                            case Stages.ElixirHouse:
-                                Game1.Player.UserInterface.ActivateProgressBook(UI.CurrentOpenProgressBook.Elixir);
-                                break;
-                        }
 
-                    }
-
-                    break;
 
                 case "cook":
                     mouse.ChangeMouseTexture(CursorType.Normal);

@@ -223,7 +223,6 @@ namespace SecretProject
 
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
-        public static List<ProgressBook> AllProgressBooks { get; set; }
 
         //RENDERTARGETS
         public RenderTarget2D MainTarget;
@@ -624,13 +623,6 @@ namespace SecretProject
                 BusinessSnail
             };
 
-            ProgressBook JulianProgressBook = new ProgressBook(Julian,Content, graphics.GraphicsDevice, 1);
-            ProgressBook ElixirProgressBook = new ProgressBook(Elixir,Content, graphics.GraphicsDevice, 2);
-            AllProgressBooks = new List<ProgressBook>()
-            {
-                JulianProgressBook,
-                ElixirProgressBook
-            };
 
             foreach (ILocation stage in AllStages)
             {

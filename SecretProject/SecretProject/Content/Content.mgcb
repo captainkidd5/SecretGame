@@ -1143,16 +1143,6 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
-#begin ProgressBook/ElixirProgressBook.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:ProgressBook/ElixirProgressBook.xml
-
-#begin ProgressBook/JulianProgressBook.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:ProgressBook/JulianProgressBook.xml
-
 #begin Route/DobbinRouteSchedule.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

@@ -12,6 +12,7 @@
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
      <Description>Place </Description>
+      <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1264</X>
     <Y>240</Y>
     <Width>16</Width>
@@ -25,6 +26,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant </Description>
+    <SanctuaryReward>SawTable</SanctuaryReward>
     <X>992</X>
     <Y>192</Y>
     <Width>48</Width>
@@ -38,6 +40,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant </Description>
+     <SanctuaryReward>GrindStone</SanctuaryReward>
     <X>976</X>
     <Y>288</Y>
     <Width>80</Width>
@@ -51,6 +54,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release </Description>
+     <SanctuaryReward>Furnace</SanctuaryReward>
     <X>1200</X>
     <Y>256</Y>
     <Width>16</Width>
@@ -64,6 +68,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release </Description>
+     <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1200</X>
     <Y>272</Y>
     <Width>16</Width>
@@ -77,6 +82,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release </Description>
+     <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1216</X>
     <Y>240</Y>
     <Width>16</Width>

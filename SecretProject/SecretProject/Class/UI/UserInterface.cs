@@ -50,7 +50,6 @@ namespace SecretProject.Class.UI
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
         WarpGate = 5,
-        ProgressBook = 6,
         CompletionHub = 7
 
     }
@@ -238,11 +237,7 @@ namespace SecretProject.Class.UI
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ProgressBook;
-                    }
-                    
+
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
@@ -300,26 +295,7 @@ namespace SecretProject.Class.UI
                     }
                     break;
 
-                case ExclusiveInterfaceItem.ProgressBook:
-                    Game1.freeze = true;
-                    for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
-                    {
-                        if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
-                        {
-                            Game1.AllProgressBooks[i].Update(gameTime);
-                        }
-                    }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
-                    }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
-                    {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-                    }
-                    //BottomBar.IsActive = false;
-                    break;
 
 
                 case ExclusiveInterfaceItem.WarpGate:
@@ -396,11 +372,7 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f); ;
         }
-        public void ActivateProgressBook(CurrentOpenProgressBook progressBookID)
-        {
-            this.CurrentOpenProgressBook = progressBookID;
-            this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ProgressBook;
-        }
+
 
         public void ActivateShop(OpenShop shopID)
         {
@@ -447,15 +419,7 @@ namespace SecretProject.Class.UI
                         Game1.SanctuaryCheckList.Draw(spriteBatch);
                         break;
 
-                    case ExclusiveInterfaceItem.ProgressBook:
-                        for (int i = 0; i < Game1.AllProgressBooks.Count; i++)
-                        {
-                            if (Game1.AllProgressBooks[i].ID == (int)CurrentOpenProgressBook)
-                            {
-                                Game1.AllProgressBooks[i].Draw(spriteBatch);
-                            }
-                        }
-                        break;
+
 
                     case ExclusiveInterfaceItem.WarpGate:
                         WarpGate.Draw(spriteBatch);

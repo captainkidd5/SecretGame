@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.SanctuaryStuff;
 
 namespace SecretProject.Class.UI.SanctuaryStuff
 {
@@ -19,7 +20,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public string String { get; set; }
         public Vector2 ImageLocation { get; set; }
 
-        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle)
+        public SanctuaryReward SanctuaryReward { get; set; }
+
+        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, SanctuaryReward sanctuaryReward)
         {
             this.ItemID = itemID;
             this.GID = gid;
@@ -27,6 +30,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.SourceRectangle = sourceRectangle;
             this.String = description + CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(ItemID, null).Name;
             ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
+            this.SanctuaryReward = sanctuaryReward;
         }
 
         public void Increment()
@@ -38,6 +42,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 Satisfied = true;
                 this.String = "Completed! ";
                 ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)SanctuaryReward, null));
             }
         }
     }
