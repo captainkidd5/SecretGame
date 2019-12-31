@@ -88,6 +88,24 @@ namespace SecretProject.Class.ItemStuff
                 return false;
             }
         }
+
+        public Item DetermineMeal()
+        {
+            byte meatValue = 0;
+            byte vegetableValue = 0;
+            byte fruitValue = 0;
+            for(int i =0; i < ItemSlots.Count; i++)
+            {
+                meatValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].MeatValue;
+                vegetableValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].VegetableValue;
+                fruitValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].FruitValue;
+            }
+            Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin < meatValue) &&
+            (x.VegetableValueMax > vegetableValue) && (x.VegetableValueMin < vegetableValue) &&
+            (x.FruitValueMax > fruitValue) && (x.FruitValueMin < fruitValue))).ItemID, null);
+
+            return cookedItem;
+        }
         public void Update(GameTime gameTime)
         {
             redEsc.Update(Game1.myMouseManager);
@@ -104,6 +122,10 @@ namespace SecretProject.Class.ItemStuff
                 Deactivate();
             }
 
+            if(CookButton.isClicked)
+            {
+
+            }
 
             for (int i = 0; i < ItemSlots.Count; i++)
             {
