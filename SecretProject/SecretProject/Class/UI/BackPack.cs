@@ -190,6 +190,31 @@ namespace SecretProject.Class.UI
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
                                     break;
                             }
+                            if (Game1.myMouseManager.IsClicked)
+                            {
+                                if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                                {
+                                    Item item = Inventory.currentInventory[i].GetItem();
+                                    if (item != null)
+                                    {
+
+
+                                        for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                        {
+                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+                                            {
+                                                Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+
+                                            }
+                                            else
+                                            {
+                                                break;
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                     }

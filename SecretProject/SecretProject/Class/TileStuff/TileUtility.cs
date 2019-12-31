@@ -891,11 +891,14 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (assertLeftAndRight)
                 {
-
-                    if (!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
+                    if(newTileX < 15 && newTileY < 15)
                     {
-                        return false;
+                        if (!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
+                        {
+                            return false;
+                        }
                     }
+                   
                 }
 
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
