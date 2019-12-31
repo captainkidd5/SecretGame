@@ -884,6 +884,8 @@
 <TextureColumn>27</TextureColumn>
 <TextureRow>15</TextureRow>
 <Price>2</Price>
+<Food>true</Food>
+<MeatValue>2</MeatValue>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

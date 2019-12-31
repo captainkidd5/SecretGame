@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
-using SecretProject.Class.ItemStuff.BuildingItems;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
@@ -46,7 +45,6 @@ namespace SecretProject.Class.ItemStuff
         public ContentManager Content { get; set; }
         public bool IsPlantable { get; set; }
 
-        public PlaceableBuilding Building { get; set; }
 
         public string id { get; set; }
 
@@ -77,6 +75,10 @@ namespace SecretProject.Class.ItemStuff
         public int CrateType { get; set; }
 
         public GenerationType GenerationType { get; set; }
+        public bool Food { get; set; }
+        public byte MeatValue { get; set; }
+        public byte VegetableValue { get; set; }
+        public byte FruitValue { get; set; }
 
         public Item(ItemData itemData)
         {
@@ -114,6 +116,11 @@ namespace SecretProject.Class.ItemStuff
             
                 this.TilingLayer = itemData.TilingLayer;
             this.CrateType = itemData.CrateType;
+
+            this.Food = itemData.Food;
+            this.MeatValue = itemData.MeatValue;
+            this.VegetableValue = itemData.VegetableValue;
+            this.FruitValue = itemData.FruitValue;
             
         }
         public void Load()

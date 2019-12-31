@@ -76,6 +76,18 @@ namespace SecretProject.Class.ItemStuff
             TileUtility.GetTileRectangleFromProperty(Tile,false, null, 2139);
 
         }
+
+        public bool IsItemAllowedToBeStored(Item item)
+        {
+            if(item.Food == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void Update(GameTime gameTime)
         {
             redEsc.Update(Game1.myMouseManager);

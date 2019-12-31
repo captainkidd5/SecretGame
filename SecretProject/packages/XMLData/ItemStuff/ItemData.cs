@@ -51,7 +51,19 @@ namespace XMLData.ItemStuff
         public int AnimationColumn { get; set; }
 
         [ContentSerializer(Optional = true)]
+        public bool Food { get; set; }
+
+        [ContentSerializer(Optional = true)]
         public int CrateType { get; set; }
+       
+        [ContentSerializer(Optional = true)]
+        public byte MeatValue { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public byte VegetableValue { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public byte FruitValue { get; set; }
 
     }
 }

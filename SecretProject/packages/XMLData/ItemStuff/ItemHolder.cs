@@ -43,7 +43,10 @@ namespace XMLData.ItemStuff
             newItem.Type = oldItem.Type;
             newItem.AnimationColumn = oldItem.AnimationColumn;
             newItem.CrateType = oldItem.CrateType;
-        
+            newItem.Food = oldItem.Food;
+            newItem.MeatValue = oldItem.MeatValue;
+            newItem.VegetableValue = oldItem.VegetableValue;
+            newItem.FruitValue = oldItem.FruitValue;
 
 
             return newItem;

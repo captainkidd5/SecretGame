@@ -34,7 +34,7 @@ namespace SecretProject.Class.ItemStuff
         ItemStorageSlot CurrentHoveredSlot { get; set; }
 
          Tile Tile { get; set; }
-
+        bool IsItemAllowedToBeStored(Item item);
         void Update(GameTime gameTime);
         void Activate(Tile tile);
         void Deactivate();

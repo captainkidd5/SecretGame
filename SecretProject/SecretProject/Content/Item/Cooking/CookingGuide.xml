@@ -7,7 +7,7 @@
 <ItemID>1096</ItemID>
 <MeatValueMin>1</MeatValueMin>
 <MeatValueMax>5</MeatValueMax>
-<VegetableValueMin>1</VegetableValueMin>
+<VegetableValueMin>0</VegetableValueMin>
 <VegetableValueMax>5</VegetableValueMax>
 <FruitValueMin>0</FruitValueMin>
 <FruitValueMax>1</FruitValueMax>

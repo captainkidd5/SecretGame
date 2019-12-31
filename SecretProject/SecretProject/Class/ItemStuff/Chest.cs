@@ -73,7 +73,12 @@ namespace SecretProject.Class.ItemStuff
             this.IsUpdating = false;
             Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1852, 100);
         }
-            public void Update(GameTime gameTime)
+
+        public bool IsItemAllowedToBeStored(Item item)
+        {
+            return true;
+        }
+        public void Update(GameTime gameTime)
         {
             redEsc.Update(Game1.myMouseManager);
 

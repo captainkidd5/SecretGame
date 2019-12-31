@@ -77,6 +77,11 @@ namespace SecretProject.Class.ItemStuff
         {
 
         }
+
+        public bool IsItemAllowedToBeStored(Item item)
+        {
+            return true;
+        }
         public void Update(GameTime gameTime)
         {
             IsInventoryHovered = false;

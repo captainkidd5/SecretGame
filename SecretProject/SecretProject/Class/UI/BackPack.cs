@@ -200,19 +200,20 @@ namespace SecretProject.Class.UI
 
                                         if (Game1.Player.UserInterface.CurrentAccessedStorableItem != null)
                                         {
-
-                                            for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(Inventory.currentInventory[i].GetItem()))
                                             {
-                                                if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+                                                for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                                 {
-                                                    Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+                                                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
+                                                    {
+                                                        Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
 
+                                                    }
+                                                    else
+                                                    {
+                                                        break;
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    break;
-                                                }
-
                                             }
                                         }
                                         else
@@ -428,11 +429,15 @@ namespace SecretProject.Class.UI
             {
                 if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsInventoryHovered)
                 {
-                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
+                    if(Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(Inventory.currentInventory[index].GetItem()))
                     {
-                        Inventory.currentInventory[index].RemoveItemFromSlot();
-                        AllSlots[index].ItemCounter--;
+                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
+                        {
+                            Inventory.currentInventory[index].RemoveItemFromSlot();
+                            AllSlots[index].ItemCounter--;
+                        }
                     }
+                    
                 }
                 return true;
             }
