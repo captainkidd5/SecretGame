@@ -29,10 +29,12 @@ namespace SecretProject.Class.ItemStuff
         public Inventory Inventory { get; set; }
         public Vector2 Location { get; set; }
         public List<ItemStorageSlot> ItemSlots { get; set; }
-        public ItemStorageSlot CurrentHoveredSlot { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ItemStorageSlot CurrentHoveredSlot { get; set; }
 
         private Button redEsc;
         public Tile Tile { get; set; }
+
+        public Button CookButton { get; set; }
 
 
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
@@ -43,8 +45,8 @@ namespace SecretProject.Class.ItemStuff
             this.Inventory = new Inventory(Size);
             this.Location = location;
             this.GraphicsDevice = graphics;
-            this.BackDropSourceRectangle = new Rectangle(320, 0, 96, 80);
-            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
+            this.BackDropSourceRectangle = new Rectangle(512, 368, 96, 96);
+            this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, Game1.ScreenHeight / 4);
             this.BackDropScale = 3f;
 
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
@@ -53,9 +55,12 @@ namespace SecretProject.Class.ItemStuff
             ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 3; i++)
             {
-                ItemSlots.Add(new ItemStorageSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), new Rectangle(208, 80, 32, 32), BackDropScale, true));
+                ItemSlots.Add(new ItemStorageSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y  + BackDropSourceRectangle.Height * BackDropScale), new Rectangle(208, 80, 32, 32), BackDropScale, true));
                 
             }
+
+            this.CookButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /2 * BackDropScale, BackDropPosition.Y), CursorType.Normal, 3f);
         }
         public void Activate(Tile tile)
         {
@@ -88,9 +93,16 @@ namespace SecretProject.Class.ItemStuff
             }
 
 
-            for(int i =0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < ItemSlots.Count; i++)
             {
                 ItemSlots[i].Update(gameTime);
+                if (ItemSlots[i].Button.IsHovered)
+                {
+
+                    IsInventoryHovered = true;
+                    CurrentHoveredSlot = ItemSlots[i];
+
+                }
             }
         }
 
@@ -99,7 +111,7 @@ namespace SecretProject.Class.ItemStuff
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
                 Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             redEsc.Draw(spriteBatch);
-
+            CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", CookButton.Position, Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
             for (int i = 0; i < ItemSlots.Count; i++)
             {
                 ItemSlots[i].Draw(spriteBatch);
