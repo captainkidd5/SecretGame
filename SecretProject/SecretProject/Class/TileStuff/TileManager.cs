@@ -255,9 +255,9 @@ namespace SecretProject.Class.TileStuff
                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
-                    //AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY,
-                    //  frameholder.Frames[frameholder.Counter].ID + 1);
+                    AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
+
                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                     {
                         if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
