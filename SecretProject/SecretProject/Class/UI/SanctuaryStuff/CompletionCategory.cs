@@ -34,11 +34,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.ActivePage = 0;
             this.Pages = new List<CompletionPage>();
         }
-
-        public void Update(GameTime gameTime)
+        
+        public void Update(GameTime gameTime, Vector2 backGroundPosition, float scale)
         {
             Button.Update(Game1.myMouseManager);
-            Pages[ActivePage].Update(gameTime);
+            Pages[ActivePage].Update(gameTime, backGroundPosition, scale);
         }
 
         public void Draw(SpriteBatch spriteBatch,  Rectangle backDropSourceRectangle, float backDropScale, bool drawString = true)
@@ -55,11 +55,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 backGroundPosition, float scale)
+        public void Draw(SpriteBatch spriteBatch, Vector2 backGroundPosition)
         {
             
 
-            this.Pages[ActivePage].Draw(spriteBatch, backGroundPosition, scale);
+            this.Pages[ActivePage].Draw(spriteBatch, backGroundPosition);
         }
     }
 }

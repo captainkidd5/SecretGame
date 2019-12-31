@@ -41,7 +41,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             };
             for (int i = 0; i < CategoryTabs.Count; i++)
             {
-                CategoryTabs[i].Pages.Add(new CompletionPage());
+                CategoryTabs[i].Pages.Add(new CompletionPage(graphicsDevice));
+                
             }
 
             for (int i = 0; i < sanctuaryHolder.AllRequirements.Count; i++)
@@ -56,7 +57,14 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     }
                 }
             }
-            ActiveTab = CategoryTabs[0];
+            for (int i = 0; i < CategoryTabs.Count; i++)
+            {
+                for(int j = 0; j < CategoryTabs[i].Pages.Count; j++)
+                {
+                    CategoryTabs[i].Pages[j].Load();
+                }
+            }
+                ActiveTab = CategoryTabs[0];
 
 
         }
@@ -84,7 +92,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 }
             }
 
-            ActiveTab.Update(gameTime);
+            ActiveTab.Update(gameTime, new Vector2(DrawPosition.X + 16 * BackGroundScale, DrawPosition.Y + 16 * BackGroundScale), BackGroundScale);
         }
 
 
@@ -93,7 +101,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, DrawPosition, this.BackGroundSourceRectangle,
                    Color.White, 0f, Game1.Utility.Origin, BackGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            ActiveTab.Draw(spriteBatch, new Vector2(DrawPosition.X + 16 * BackGroundScale, DrawPosition.Y + 16 * BackGroundScale), BackGroundScale);
+            ActiveTab.Draw(spriteBatch, new Vector2(DrawPosition.X + 16 * BackGroundScale, DrawPosition.Y + 16 * BackGroundScale));
             for (int tab = 0; tab < CategoryTabs.Count; tab++)
             {
                 CategoryTabs[tab].Button.DrawNormal(spriteBatch, CategoryTabs[tab].Button.Position, CategoryTabs[tab].Button.BackGroundSourceRectangle, Color.White * CategoryTabs[tab].ButtonColorMultiplier, 0f, Game1.Utility.Origin, CategoryTabs[tab].Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
