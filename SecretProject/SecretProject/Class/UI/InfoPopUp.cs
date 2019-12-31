@@ -17,11 +17,14 @@ namespace SecretProject.Class.UI
 
         public bool TextFitted { get; set; }
 
-        public InfoPopUp(string stringToWrite)
+        public Color Color { get; set; }
+
+        public InfoPopUp(string stringToWrite, Rectangle sourceRectangle)
         {
-            this.SourceRectangle = new Rectangle(1024, 64, 112, 48);
+            this.SourceRectangle = sourceRectangle;
             this.StringToWrite = stringToWrite;
             this.TextFitted = false;
+            this.Color = Color.White;
         }
 
         public void Update(GameTime gameTime)
@@ -42,7 +45,7 @@ namespace SecretProject.Class.UI
             if(this.IsActive)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .9f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .91f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 16), Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .91f);
             }
             
         }

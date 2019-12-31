@@ -102,6 +102,7 @@ namespace SecretProject.Class.UI
         //keyboard
 
         public InfoPopUp InfoBox { get; set; }
+        public InfoPopUp Notes { get; set; }
 
         public List<RisingText> AllRisingText { get; set; }
 
@@ -139,7 +140,9 @@ namespace SecretProject.Class.UI
             WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
-            InfoBox = new InfoPopUp("Text Not Assigned");
+            InfoBox = new InfoPopUp("Text Not Assigned", new Rectangle(1024, 64, 112, 48));
+            Notes = new InfoPopUp("Text Not Assigned", new Rectangle(624, 272, 160, 224)) { Color = Color.Black };
+            
             this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
             this.AllRisingText = new List<RisingText>();
@@ -156,6 +159,7 @@ namespace SecretProject.Class.UI
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             InfoBox.IsActive = false;
+          //  Notes.IsActive = false;
             IsAnyStorageItemOpen = false;
             if (CurrentAccessedStorableItem != null)
             {
@@ -231,6 +235,16 @@ namespace SecretProject.Class.UI
                     {
                         TextBuilder.IsActive = !TextBuilder.IsActive;
                         TextBuilder.UseTextBox = true;
+                    }
+
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
+                    {
+                        if(!Notes.IsActive)
+                        {
+                            Notes.FitText("This is a sample text to see how long the message can get before getting absolutely booled on", 1);
+                        }
+                        Notes.IsActive = !Notes.IsActive;
+                        Notes.WindowPosition = Game1.Utility.centerScreen;
                     }
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
@@ -437,6 +451,7 @@ namespace SecretProject.Class.UI
                 {
                     BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
                     InfoBox.Draw(spriteBatch);
+                    Notes.Draw(spriteBatch);
                 }
 
                 BackPack.Draw(spriteBatch);

@@ -28,7 +28,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.GID = gid;
             this.CountRequired = countRequired;
             this.SourceRectangle = sourceRectangle;
-            this.String = description + CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(ItemID, null).Name;
+            this.String = description;
             ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
             this.SanctuaryReward = sanctuaryReward;
         }

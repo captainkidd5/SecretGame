@@ -11,7 +11,7 @@
     <ItemID>1005</ItemID>
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
-     <Description>Place </Description>
+     <Description>Place 2 sticks.</Description>
       <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1264</X>
     <Y>240</Y>
@@ -25,7 +25,7 @@
     <ItemID>668</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Plant </Description>
+    <Description>Plant 5 Oak trees. </Description>
     <SanctuaryReward>SawTable</SanctuaryReward>
     <X>992</X>
     <Y>192</Y>
@@ -39,7 +39,7 @@
     <ItemID>669</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Plant </Description>
+    <Description>Plant 5 Thunder Birch trees. </Description>
      <SanctuaryReward>GrindStone</SanctuaryReward>
     <X>976</X>
     <Y>288</Y>
@@ -53,7 +53,7 @@
     <ItemID>334</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Release </Description>
+    <Description>Release 5 Boars.</Description>
      <SanctuaryReward>Furnace</SanctuaryReward>
     <X>1200</X>
     <Y>256</Y>
@@ -67,7 +67,7 @@
     <ItemID>335</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Release </Description>
+    <Description>Release 5 Rabbits.</Description>
      <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1200</X>
     <Y>272</Y>
@@ -81,7 +81,7 @@
     <ItemID>374</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Release </Description>
+    <Description>Release 5 butteflys.</Description>
      <SanctuaryReward>SawTable</SanctuaryReward>
     <X>1216</X>
     <Y>240</Y>

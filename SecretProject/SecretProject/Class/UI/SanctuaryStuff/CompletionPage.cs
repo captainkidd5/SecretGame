@@ -31,7 +31,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             for (int i = 0; i < SanctuaryRequirements.Count; i++)
             {
                 RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(720, 128, 32, 32),
-                     Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 1f)
+                     Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f)
                 { 
                 ItemSourceRectangleToDraw = Game1.ItemVault.GenerateNewItem((int)SanctuaryRequirements[i].SanctuaryReward, null).SourceTextureRectangle
                 });
@@ -54,8 +54,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 {
                     Item item = Game1.ItemVault.GenerateNewItem((int)SanctuaryRequirements[i].SanctuaryReward, null);
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    Game1.Player.UserInterface.InfoBox.FitText(item.Name + ":  " + item.Description, 1f);
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = Game1.myMouseManager.Position;
+                    Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + item.Name, 1f);
+                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48) ;
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 SanctuaryRequirements[i].SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].CurrentCount.ToString() + "/" + SanctuaryRequirements[i].CountRequired.ToString(), new Vector2(position.X + SanctuaryRequirements[i].ImageLocation.X * (Scale - 1) + 32 * Scale, position.Y + (32 * i * Scale)),
                     Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                RewardIcons[i].Draw(spriteBatch, RewardIcons[i].ItemSourceRectangleToDraw, RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", RewardIcons[i].Position, Color.White, 2, 2);
+                RewardIcons[i].Draw(spriteBatch, RewardIcons[i].ItemSourceRectangleToDraw, RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", RewardIcons[i].Position, Color.White, 2, 2, Game1.Utility.StandardButtonDepth + .03f);
             }
         }
 
