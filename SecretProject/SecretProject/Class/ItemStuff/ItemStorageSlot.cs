@@ -89,7 +89,7 @@ namespace SecretProject.Class.ItemStuff
                 else
                 {
                     Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    Button.ItemSourceRectangleToDraw = new Rectangle(0, 0, 1, 1);
+                    Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
                 }
 
             }

@@ -2286,6 +2286,11 @@
    <object id="1" x="1" y="5" width="14" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="1939">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="2050">
   <properties>
    <property name="newHitBox" value="0, -10, 16, 16"/>

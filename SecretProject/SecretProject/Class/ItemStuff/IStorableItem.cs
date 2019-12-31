@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,11 @@ namespace SecretProject.Class.ItemStuff
 
         ItemStorageSlot CurrentHoveredSlot { get; set; }
 
+         Tile Tile { get; set; }
+
         void Update(GameTime gameTime);
+        void Activate(Tile tile);
+        void Deactivate();
         void Draw(SpriteBatch spriteBatch);
     }
 }

@@ -32,6 +32,7 @@ namespace SecretProject.Class.TileStuff
         public int MapHeight { get; set; }
 
         public bool IsLoaded { get; set; }
+        public bool AreReadersAndWritersDone { get; set; }
         public Point WorldPosition { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
@@ -121,6 +122,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Save()
         {
+            AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenWrite(path))
             {
@@ -202,12 +204,14 @@ namespace SecretProject.Class.TileStuff
                     binaryWriter.Close();
                 }
             }
+            AreReadersAndWritersDone = true;
         }
 
 
 
         public void Load()
         {
+            AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenRead(path))
             {
@@ -344,6 +348,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            AreReadersAndWritersDone = true;
         }
         /// <summary>
         /// Tries X times at random to find a tile which doesn't contain an obstacle

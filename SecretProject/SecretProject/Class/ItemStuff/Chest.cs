@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,13 @@ namespace SecretProject.Class.ItemStuff
         public Rectangle BackDropSourceRectangle { get; set; }
         public Vector2 BackDropPosition { get; set; }
         public float BackDropScale { get; set; }
-
+        public Tile Tile { get; set; }
 
 
 
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
+
+        private Button redEsc;
         public Chest(string iD, int size, Vector2 location, GraphicsDevice graphics, bool isRandomlyGenerated)
         {
             this.StorableItemType = StorableItemType.Cauldron;
@@ -42,8 +45,8 @@ namespace SecretProject.Class.ItemStuff
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
 
-            //this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
-            //    new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
+                new Vector2(this.BackDropPosition.X + 6 * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), CursorType.Normal);
 
             ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i <6; i++)
@@ -58,12 +61,32 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Activate(Tile tile)
         {
+            IsUpdating = true;
+            Tile = tile;
+            Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
+
+        }
+        public void Deactivate()
+        {
+            this.IsUpdating = false;
+            Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1852, 100);
+        }
+            public void Update(GameTime gameTime)
+        {
+            redEsc.Update(Game1.myMouseManager);
+
+
+            if (redEsc.isClicked)
+            {
+
+                Deactivate();
+            }
             IsInventoryHovered = false;
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
-                this.IsUpdating = false;
+                Deactivate();
             }
 
 
@@ -84,9 +107,8 @@ namespace SecretProject.Class.ItemStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-              //  Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .02f);
 
+            redEsc.Draw(spriteBatch);
             for (int i = 0; i < ItemSlots.Count; i++)
             {
                 ItemSlots[i].Draw(spriteBatch);

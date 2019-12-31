@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.ItemStuff
@@ -33,6 +34,7 @@ namespace SecretProject.Class.ItemStuff
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
 
         public Vector2 TimerStringLocation { get; set; }
+        public Tile Tile { get; set; }
 
         private Button redEsc;
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
@@ -63,7 +65,18 @@ namespace SecretProject.Class.ItemStuff
             this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
                new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
         }
+        public void Activate(Tile tile)
+        {
+            IsUpdating = true;
+            Tile = tile;
+            //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
 
+        }
+
+        public void Deactivate()
+        {
+
+        }
         public void Update(GameTime gameTime)
         {
             IsInventoryHovered = false;
@@ -136,6 +149,5 @@ namespace SecretProject.Class.ItemStuff
             redEsc.Draw(spriteBatch);
         }
 
-        
     }
 }

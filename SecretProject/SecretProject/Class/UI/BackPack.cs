@@ -294,8 +294,7 @@ namespace SecretProject.Class.UI
                         }
                         else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                         {
-                            if (Game1.Player.controls.pressedKeys.Contains(Keys.LeftShift))
-                            {
+
                                 Item tempItem = Inventory.currentInventory[i].GetItem();
                                 int currentItemCount = AllSlots[i].ItemCounter;
                                 for (int j = 0; j < currentItemCount; j++)
@@ -308,19 +307,7 @@ namespace SecretProject.Class.UI
                                     Game1.GetCurrentStage().AllItems.Add(newWorldItem);
 
                                 }
-                            }
-                            else
-                            {
-                                Item tempItem = Inventory.currentInventory[i].GetItem();
-                                Inventory.currentInventory[i].RemoveItemFromSlot();
-                                AllSlots[i].ItemCounter--;
 
-                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
-                                newWorldItem.IsTossable = true;
-                                Game1.GetCurrentStage().AllItems.Add(newWorldItem);
-
-
-                            }
 
                         }
                     }

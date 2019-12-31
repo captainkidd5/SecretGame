@@ -155,12 +155,22 @@ namespace SecretProject.Class.UI
 
         }
 
+        public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
+        {
+            if (CurrentAccessedStorableItem != null)
+            {
+                CurrentAccessedStorableItem.Deactivate();
+            }
+
+            CurrentAccessedStorableItem = building;
+        }
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
             InfoBox.IsActive = false;
           //  Notes.IsActive = false;
             IsAnyStorageItemOpen = false;
+            BottomBar.IsActive = true;
             if (CurrentAccessedStorableItem != null)
             {
                 if (CurrentAccessedStorableItem.IsUpdating)

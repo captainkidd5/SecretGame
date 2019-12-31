@@ -65,6 +65,34 @@ namespace SecretProject.Class.TileStuff
 
             return numsToReturn;
         }
+
+        public static void GetTileRectangleFromProperty(Tile tile, bool adjustDestinationRectangle, IInformationContainer container = null, int gid = 0)
+        {
+            int newGID = gid;
+            TmxTileset tileSet = null;
+            if(container == null)
+            {
+                tileSet = Game1.Town.AllTiles.MapName.Tilesets[Game1.Town.AllTiles.TileSetNumber];
+            }
+            else
+            {
+                
+                tileSet = container.MapName.Tilesets[container.TileSetNumber];
+            }
+            int[] rectangleCoords = GetNewTileSourceRectangle(tileSet.Tiles[newGID].Properties["newSource"]);
+
+            Rectangle originalRectangle = GetSourceRectangleWithoutTile(gid, 100);
+
+            tile.SourceRectangle = new Rectangle(originalRectangle.X + rectangleCoords[0], originalRectangle.Y + rectangleCoords[1],
+                rectangleCoords[2], rectangleCoords[3]);
+
+            if(adjustDestinationRectangle)
+            {
+                tile.DestinationRectangle = new Rectangle(tile.DestinationRectangle.X + rectangleCoords[0], tile.DestinationRectangle.Y + rectangleCoords[1],
+               rectangleCoords[2], rectangleCoords[3]);
+            }
+            
+        }
         /// <summary>
         /// Gets tiles world pos / 16.
         /// </summary>
@@ -283,15 +311,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
-                    int[] rectangleCoords = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
-
-
-                    tileToAssign.SourceRectangle = new Rectangle(tileToAssign.SourceRectangle.X + rectangleCoords[0], tileToAssign.SourceRectangle.Y + rectangleCoords[1],
-                        rectangleCoords[2], rectangleCoords[3]);
-
-
-                    tileToAssign.DestinationRectangle = new Rectangle(tileToAssign.DestinationRectangle.X + rectangleCoords[0], tileToAssign.DestinationRectangle.Y + rectangleCoords[1],
-                       rectangleCoords[2], rectangleCoords[3]);
+                    GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
                 }
                 if (layer == 3)
                 {
@@ -545,8 +565,9 @@ namespace SecretProject.Class.TileStuff
                 case "chestLoot":
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+                        //Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
+                        Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)]);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
                     }
                     break;
 
@@ -555,6 +576,13 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                         {
+                            foreach(Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
+                            {
+                                if(!chunk.AreReadersAndWritersDone)
+                                {
+                                    return;
+                                }
+                            }
                             Game1.Player.UserInterface.WarpGate.To = Stages.Town;
                         }
                         else if (Game1.GetCurrentStageInt() == Stages.Town)
@@ -573,8 +601,8 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+                        Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)]);
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
 
 
                     }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace SecretProject.Class.ItemStuff
         public ItemStorageSlot CurrentHoveredSlot { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private Button redEsc;
+        public Tile Tile { get; set; }
 
 
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
@@ -55,7 +57,20 @@ namespace SecretProject.Class.ItemStuff
                 
             }
         }
+        public void Activate(Tile tile)
+        {
+            IsUpdating = true;
+            Tile = tile;
+            TileUtility.GetTileRectangleFromProperty(Tile, false, null, 1939);
 
+        }
+        public void Deactivate()
+        {
+            IsUpdating = false;
+           // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
+            TileUtility.GetTileRectangleFromProperty(Tile,false, null, 2139);
+
+        }
         public void Update(GameTime gameTime)
         {
             redEsc.Update(Game1.myMouseManager);
@@ -63,13 +78,13 @@ namespace SecretProject.Class.ItemStuff
 
             if (redEsc.isClicked)
             {
-                this.IsUpdating = false;
-               
+                Deactivate();
+
             }
 
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
-                this.IsUpdating = false;
+                Deactivate();
             }
 
 
