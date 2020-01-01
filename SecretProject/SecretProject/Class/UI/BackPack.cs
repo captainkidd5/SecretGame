@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.Universal;
 using System;
@@ -202,10 +203,12 @@ namespace SecretProject.Class.UI
                                         {
                                             if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(Inventory.currentInventory[i].GetItem()))
                                             {
+                                                bool playAnimation = false;
                                                 for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                                 {
                                                     if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
                                                     {
+                                                        playAnimation = true;
                                                         Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
 
                                                     }
@@ -213,6 +216,10 @@ namespace SecretProject.Class.UI
                                                     {
                                                         break;
                                                     }
+                                                }
+                                                if(playAnimation)
+                                                {
+                                                    Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking, .25f);
                                                 }
                                             }
                                         }
@@ -289,7 +296,7 @@ namespace SecretProject.Class.UI
                                 }
                             }
                         }
-                        else if (InteractWithStorageItem(i))
+                        else if (InteractWithStorageItem(gameTime, i))
                         {
 
                         }
@@ -423,7 +430,7 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public bool InteractWithStorageItem(int index)
+        public bool InteractWithStorageItem(GameTime gameTime, int index)
         {
             if (Game1.Player.UserInterface.IsAnyStorageItemOpen)
             {
@@ -433,6 +440,7 @@ namespace SecretProject.Class.UI
                     {
                         if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
                         {
+                            Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
                             Inventory.currentInventory[index].RemoveItemFromSlot();
                             AllSlots[index].ItemCounter--;
                         }

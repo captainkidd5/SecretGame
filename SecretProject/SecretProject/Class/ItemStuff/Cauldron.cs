@@ -183,9 +183,9 @@ namespace SecretProject.Class.ItemStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
             redEsc.Draw(spriteBatch);
-            CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", CookButton.Position, Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
+            CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", new Vector2(CookButton.Position.X + CookButton.BackGroundSourceRectangle.Width / 2, CookButton.Position.Y), Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
             for (int i = 0; i < ItemSlots.Count; i++)
             {
                 ItemSlots[i].Draw(spriteBatch);

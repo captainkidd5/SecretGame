@@ -558,19 +558,18 @@ namespace SecretProject
                 KayaShop,
                 BuisnessSnailShop
             };
-           for(int i =0; i < 100; i++)
+           for(int i =0; i < 99; i++)
             {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(374, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(335, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
-            }
-            for (int i = 0; i < 300; i++)
-            {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1095, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
             }
+
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
-            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+            
 
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
             //for (int i = 0; i < 99; i++)
