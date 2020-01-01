@@ -29,6 +29,7 @@ namespace SecretProject.Class.ItemStuff
         public Inventory Inventory { get; set; }
         public Vector2 Location { get; set; }
         public List<ItemStorageSlot> ItemSlots { get; set; }
+        ItemStorageSlot CookedItemSlot { get; set; }
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
 
         private Button redEsc;
@@ -42,7 +43,7 @@ namespace SecretProject.Class.ItemStuff
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
-            this.Inventory = new Inventory(Size);
+            this.Inventory = new Inventory(Size, 1);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(512, 368, 96, 96);
@@ -59,8 +60,10 @@ namespace SecretProject.Class.ItemStuff
                 
             }
 
+            CookedItemSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width / 2 * BackDropScale - 32 * BackDropScale, BackDropPosition.Y - 64), new Rectangle(208, 80, 32, 32), BackDropScale, true);
+
             this.CookButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /2 * BackDropScale, BackDropPosition.Y), CursorType.Normal, 3f);
+                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /4 * BackDropScale, BackDropPosition.Y + BackDropSourceRectangle.Height * BackDropScale / 2), CursorType.Normal, 3f);
         }
         public void Activate(Tile tile)
         {
@@ -89,6 +92,19 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
+        public bool IsEverySlotFilled()
+        {
+            for(int i =0; i < ItemSlots.Count;i++)
+            {
+                if(ItemSlots[i].Inventory.currentInventory[0].SlotItems.Count <= 0)
+                {
+                    return false;
+                }
+                
+            }
+            return true;
+        }
+
         public Item DetermineMeal()
         {
             byte meatValue = 0;
@@ -100,10 +116,17 @@ namespace SecretProject.Class.ItemStuff
                 vegetableValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].VegetableValue;
                 fruitValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].FruitValue;
             }
-            Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin < meatValue) &&
-            (x.VegetableValueMax > vegetableValue) && (x.VegetableValueMin < vegetableValue) &&
-            (x.FruitValueMax > fruitValue) && (x.FruitValueMin < fruitValue))).ItemID, null);
+            Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin <= meatValue) &&
+            (x.VegetableValueMax >= vegetableValue) && (x.VegetableValueMin <= vegetableValue) &&
+            (x.FruitValueMax >= fruitValue) && (x.FruitValueMin <= fruitValue))).ItemID, null);
 
+            if (cookedItem != null)
+            {
+                for (int i = 0; i < ItemSlots.Count; i++)
+                {
+                    Inventory.currentInventory[i].SlotItems.RemoveAt(Inventory.currentInventory[i].SlotItems.Count - 1);
+                }
+            }
             return cookedItem;
         }
         public void Update(GameTime gameTime)
@@ -121,12 +144,29 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
-
+            CookButton.Update(Game1.myMouseManager);
+            CookedItemSlot.Update(gameTime);
+           
             if(CookButton.isClicked)
             {
-
+                if(IsEverySlotFilled())
+                {
+                   // CookedItemSlot.ItemSourceRectangleToDraw = DetermineMeal().SourceTextureRectangle;
+                    CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
+                }
             }
+            if (CookedItemSlot.Button.isClicked)
+            {
+                if (CookedItemSlot.Inventory.currentInventory[0].SlotItems.Count > 0)
+                {
 
+
+                    if (Game1.Player.Inventory.TryAddItem(CookedItemSlot.Inventory.currentInventory[0].SlotItems[0]))
+                    {
+                        CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
+                    }
+                }
+            }
             for (int i = 0; i < ItemSlots.Count; i++)
             {
                 ItemSlots[i].Update(gameTime);
@@ -150,6 +190,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 ItemSlots[i].Draw(spriteBatch);
             }
+            CookedItemSlot.Draw(spriteBatch);
         }
         
     }

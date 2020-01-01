@@ -37,14 +37,22 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public Inventory(int capacity)
+        public Inventory(int capacity, int slotCapacity = 0)
         {
             ItemCount = 0;
             this.Capacity = capacity;
             currentInventory = new List<InventorySlot>(Capacity - 1);
             for (int i = 0; i < Capacity; i++)
             {
-                currentInventory.Add(new InventorySlot());
+                if(slotCapacity == 0)
+                {
+                    currentInventory.Add(new InventorySlot());
+                }
+                else
+                {
+                    currentInventory.Add(new InventorySlot(slotCapacity));
+                }
+                
             }
 
         }
@@ -61,8 +69,11 @@ namespace SecretProject.Class.ItemStuff
             {
                 if (s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum)
                 {
-                    s.AddItemToSlot(item);
-                    return true;
+                    if (s.SlotItems.Count < s.Capacity)
+                    {
+                        s.AddItemToSlot(item);
+                        return true;
+                    }
                 }
                 if (s.SlotItems.Count == 0)
                 {
@@ -145,7 +156,6 @@ namespace SecretProject.Class.ItemStuff
 
         public int FindNumberOfItemInInventory(int id)
         {
-            int newID = id;
             int counter = 0;
             foreach (InventorySlot s in currentInventory)
             {
@@ -166,7 +176,7 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
-
+        public int Capacity { get; set; }
         public List<Item> SlotItems { get; set; }
 
 
@@ -181,9 +191,18 @@ namespace SecretProject.Class.ItemStuff
             this.Item = item;
         }
 
+
+
         public InventorySlot()
         {
             SlotItems = new List<Item>(1);
+            Capacity = 999;
+        }
+
+        public InventorySlot(int capacity)
+        {
+            SlotItems = new List<Item>(1);
+            this.Capacity = capacity;
         }
 
         public Item GetItem()
