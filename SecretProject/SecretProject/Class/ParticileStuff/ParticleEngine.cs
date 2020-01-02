@@ -67,11 +67,11 @@ namespace SecretProject.Class.ParticileStuff
             Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-5, 5), EmitterLocation.Y);
             Vector2 velocity = new Vector2(
                 0f,
-                3f);
+                .5f);
             float angle = 0f;
             float angularVelocity = 0f;
             Color color = Color;
-            float size = 1f;
+            float size = .5f;
             int ttl = 200 + Game1.Utility.RGenerator.Next(40);
 
             return new SmokeParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
@@ -83,6 +83,11 @@ namespace SecretProject.Class.ParticileStuff
             this.EmitterLocation = emitterLocation;
             this.Color = color;
             this.LayerDepth = layerDepth;
+        }
+
+        public void ClearParticles()
+        {
+            particles.Clear();
         }
 
 
@@ -118,9 +123,8 @@ namespace SecretProject.Class.ParticileStuff
             }
         }
 
-        public void UpdateSmoke(GameTime gameTime, Vector2 position)
+        public void UpdateSmoke(GameTime gameTime)
         {
-            EmitterLocation = position;
             int total = 1;
             AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -130,16 +134,16 @@ namespace SecretProject.Class.ParticileStuff
                 {
                     particles.Add(GenerateNewSmokeParticle());
                 }
-                AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
+                AddNewParticleTimer = Game1.Utility.RFloat(.1f, .5f);
             }
 
 
             for (int particle = 0; particle < particles.Count; particle++)
             {
                 particles[particle].Update(gameTime);
-                if (particles[particle].TTL <= 40)
+                if (particles[particle].TTL <= 100)
                 {
-                    particles[particle].ColorMultiplier -= .1f;
+                    particles[particle].ColorMultiplier -= .025f;
                 }
                 if (particles[particle].TTL <= 0)
                 {
@@ -182,14 +186,14 @@ namespace SecretProject.Class.ParticileStuff
                 }
             }
         }
-        public void Draw(SpriteBatch spriteBatch, bool transform = false)
+        public void Draw(SpriteBatch spriteBatch)
         {
 
             if (particles.Count > 0)
             {
                 for (int index = 0; index < particles.Count; index++)
                 {
-                    particles[index].Draw(spriteBatch, transform);
+                    particles[index].Draw(spriteBatch);
                 }
             }
 

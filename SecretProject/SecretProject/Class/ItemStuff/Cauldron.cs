@@ -73,7 +73,7 @@ namespace SecretProject.Class.ItemStuff
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /4 * BackDropScale, BackDropPosition.Y + BackDropSourceRectangle.Height * BackDropScale / 2), CursorType.Normal, 3f);
 
             CookTimer = new SimpleTimer(4f);
-            ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, Location);
+            ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(Location.X + 8, Location.Y));
         }
         public void Activate(Tile tile)
         {
@@ -95,6 +95,7 @@ namespace SecretProject.Class.ItemStuff
                 // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
                 TileUtility.GetTileRectangleFromProperty(Tile, false, null, 2139);
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidClose, true);
+                ParticleEngine.ClearParticles();
             }
         }
 
@@ -171,16 +172,19 @@ namespace SecretProject.Class.ItemStuff
                 if(IsEverySlotFilled())
                 {
                     IsCooking = true;
-                  
+                    Game1.GetCurrentStage().ParticleEngines.Add(ParticleEngine);
                 }
             }
             if(IsCooking)
             {
-                ParticleEngine.UpdateSmoke(gameTime, ParticleEngine.EmitterLocation);
+                
+                ParticleEngine.UpdateSmoke(gameTime);
                 if (CookTimer.Run(gameTime))
                 {
                     CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
                     IsCooking = false;
+                    Game1.GetCurrentStage().ParticleEngines.Remove(ParticleEngine);
+                    ParticleEngine.ClearParticles();
                 }
             }
             if (CookedItemSlot.Button.isClicked)
@@ -222,7 +226,6 @@ namespace SecretProject.Class.ItemStuff
 
             if(IsCooking)
             {
-                ParticleEngine.Draw(spriteBatch, true);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, CookTimer.Time.ToString(), CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             }
         }

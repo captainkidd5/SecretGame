@@ -133,6 +133,7 @@ namespace SecretProject.Class.StageFolder
         public SanctuaryTracker SanctuaryTracker { get; set; }
 
         public List<Enemy> Enemies { get; set; }
+        public List<ParticleEngine> ParticleEngines { get; set; }
         #endregion
 
         #region CONSTRUCTOR

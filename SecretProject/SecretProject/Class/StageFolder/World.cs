@@ -81,6 +81,7 @@ namespace SecretProject.Class.StageFolder
 
         public QuadTree QuadTree { get; set; }
         public List<RisingText> AllRisingText { get; set; }
+        public List<ParticleEngine> ParticleEngines{ get; set; }
 
         public Effect CurrentEffect;
 
@@ -106,6 +107,7 @@ namespace SecretProject.Class.StageFolder
 
             this.OnScreenNPCS = new List<INPC>();
 
+            ParticleEngines = new List<ParticleEngine>();
 
         }
 
@@ -291,7 +293,10 @@ namespace SecretProject.Class.StageFolder
             this.IsDark = Game1.GlobalClock.IsNight;
 
 
-
+            //for(int p = 0; p < ParticleEngines.Count; p++)
+            //{
+            //    ParticleEngines[p].Update(gameTime);
+            //}
 
             Game1.myMouseManager.ToggleGeneralInteraction = false;
             Game1.isMyMouseVisible = true;
@@ -420,6 +425,10 @@ namespace SecretProject.Class.StageFolder
                     Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, LocationType);
                 }
                 ParticleEngine.Draw(spriteBatch);
+                for (int p = 0; p < ParticleEngines.Count; p++)
+                {
+                    ParticleEngines[p].Draw(spriteBatch);
+                }
                 foreach (Character character in CharactersPresent)
                 {
                     character.Draw(spriteBatch);

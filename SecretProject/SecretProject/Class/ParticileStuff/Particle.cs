@@ -25,7 +25,7 @@ namespace SecretProject.Class.ParticileStuff
         public float LayerDepth { get; set; }
 
 
-        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f)
+        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f, float sizeMin = .25f, float sizeMax = 1.5f)
         {
             this.ParticleTexture = particleTexture;
             this.Position = position;
@@ -38,7 +38,10 @@ namespace SecretProject.Class.ParticileStuff
             this.LayerDepth = layerDepth;
 
             this.BaseY = Game1.Utility.RFloat(position.Y - 5, position.Y + 20);
-            this.Size = Game1.Utility.RGenerator.Next(1, 3);
+
+                this.Size = Game1.Utility.RFloat(sizeMin, sizeMax);
+            
+
             this.VelocityReductionTimer = Game1.Utility.RFloat(.25f, .5f);
 
         }
@@ -63,21 +66,15 @@ namespace SecretProject.Class.ParticileStuff
                 Angle += AngularVelocity;
         }
 
-        public void Draw(SpriteBatch spriteBatch, bool worldTransform = false)
+        public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, this.ParticleTexture.Width, this.ParticleTexture.Height);
             Vector2 origin = new Vector2(this.ParticleTexture.Width / 2, this.ParticleTexture.Height / 2);
 
-            if(worldTransform)
-            {
-                spriteBatch.Draw(this.ParticleTexture, Vector2.Transform(Position, Matrix.Invert(Game1.cam.GetViewMatrix(Vector2.One))), sourceRectangle, Color * ColorMultiplier,
-                Angle, origin, Size, SpriteEffects.None, LayerDepth);
-            }
-            else
-            {
+
                 spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color * ColorMultiplier,
                                 Angle, origin, Size, SpriteEffects.None, LayerDepth);
-            }
+            
             
         }
     }
