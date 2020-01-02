@@ -67,7 +67,7 @@ namespace SecretProject.Class.ParticileStuff
             Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-5, 5), EmitterLocation.Y);
             Vector2 velocity = new Vector2(
                 0f,
-                .5f);
+                .25f);
             float angle = 0f;
             float angularVelocity = 0f;
             Color color = Color;
@@ -75,6 +75,22 @@ namespace SecretProject.Class.ParticileStuff
             int ttl = 200 + Game1.Utility.RGenerator.Next(40);
 
             return new SmokeParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+        }
+
+        private Particle GenerateNewFireParticle()
+        {
+            Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
+            Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-2, 2), EmitterLocation.Y);
+            Vector2 velocity = new Vector2(
+                0f,
+                .25f);
+            float angle = 0f;
+            float angularVelocity = 0f;
+            Color color = Color;
+            float size = .5f;
+            int ttl = 200 + Game1.Utility.RGenerator.Next(40);
+
+            return new FireParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
         }
 
         public void Activate(float activationTime, Vector2 emitterLocation, Color color, float layerDepth)
@@ -114,6 +130,36 @@ namespace SecretProject.Class.ParticileStuff
                 if (particles[particle].TTL <= 40)
                 {
                     particles[particle].ColorMultiplier -= .1f;
+                }
+                if (particles[particle].TTL <= 0)
+                {
+                    particles.RemoveAt(particle);
+                    particle--;
+                }
+            }
+        }
+
+        public void UpdateFire(GameTime gameTime)
+        {
+            int total = 1;
+            AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (AddNewParticleTimer <= 0)
+            {
+                for (int i = 0; i < total; i++)
+                {
+                    particles.Add(GenerateNewFireParticle());
+                }
+                AddNewParticleTimer = Game1.Utility.RFloat(.05f, .1f);
+            }
+
+
+            for (int particle = 0; particle < particles.Count; particle++)
+            {
+                particles[particle].Update(gameTime);
+                if (particles[particle].TTL <= 100)
+                {
+                    particles[particle].ColorMultiplier -= .025f;
                 }
                 if (particles[particle].TTL <= 0)
                 {

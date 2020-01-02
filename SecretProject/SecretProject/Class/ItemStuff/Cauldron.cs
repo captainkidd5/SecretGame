@@ -43,7 +43,9 @@ namespace SecretProject.Class.ItemStuff
         public bool IsCooking { get; set; }
 
 
-        public ParticleEngine ParticleEngine { get; set; }
+        public ParticleEngine SmokeParticleEngine { get; set; }
+        public ParticleEngine FireParticleEngine { get; set; }
+
 
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
@@ -73,7 +75,8 @@ namespace SecretProject.Class.ItemStuff
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /4 * BackDropScale, BackDropPosition.Y + BackDropSourceRectangle.Height * BackDropScale / 2), CursorType.Normal, 3f);
 
             CookTimer = new SimpleTimer(4f);
-            ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(Location.X + 8, Location.Y));
+            SmokeParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(Location.X + 8, Location.Y));
+            FireParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.Fire }, new Vector2(Location.X + 10, Location.Y + 10));
         }
         public void Activate(Tile tile)
         {
@@ -95,7 +98,8 @@ namespace SecretProject.Class.ItemStuff
                 // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
                 TileUtility.GetTileRectangleFromProperty(Tile, false, null, 2139);
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidClose, true);
-                ParticleEngine.ClearParticles();
+                SmokeParticleEngine.ClearParticles();
+                FireParticleEngine.ClearParticles();
             }
         }
 
@@ -172,19 +176,23 @@ namespace SecretProject.Class.ItemStuff
                 if(IsEverySlotFilled())
                 {
                     IsCooking = true;
-                    Game1.GetCurrentStage().ParticleEngines.Add(ParticleEngine);
+                    Game1.GetCurrentStage().ParticleEngines.Add(SmokeParticleEngine);
+                    Game1.GetCurrentStage().ParticleEngines.Add(FireParticleEngine);
                 }
             }
             if(IsCooking)
             {
                 
-                ParticleEngine.UpdateSmoke(gameTime);
+                SmokeParticleEngine.UpdateSmoke(gameTime);
+                FireParticleEngine.UpdateFire(gameTime);
                 if (CookTimer.Run(gameTime))
                 {
                     CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
                     IsCooking = false;
-                    Game1.GetCurrentStage().ParticleEngines.Remove(ParticleEngine);
-                    ParticleEngine.ClearParticles();
+                    Game1.GetCurrentStage().ParticleEngines.Remove(SmokeParticleEngine);
+                    Game1.GetCurrentStage().ParticleEngines.Remove(FireParticleEngine);
+                    SmokeParticleEngine.ClearParticles();
+                    FireParticleEngine.ClearParticles();
                 }
             }
             if (CookedItemSlot.Button.isClicked)

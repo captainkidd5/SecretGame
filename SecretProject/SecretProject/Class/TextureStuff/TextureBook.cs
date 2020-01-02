@@ -117,6 +117,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D RainDrop;
         public Texture2D SmokeParticle;
 
+        //prop
+        public Texture2D Fire;
 
 
         //Effects
@@ -222,6 +224,7 @@ namespace SecretProject.Class.TextureStuff
             RockParticle = content.Load<Texture2D>("Particles/rockparticle");
             RainDrop = content.Load<Texture2D>("Particles/raindrop");
             SmokeParticle = content.Load<Texture2D>("Particles/smokeParticle");
+            Fire = content.Load<Texture2D>("Particles/fire1");
 
             UserInterfaceTileSet = content.Load<Texture2D>("Button/userinterfaceTileSet");
 

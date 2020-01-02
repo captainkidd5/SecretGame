@@ -25,7 +25,7 @@ namespace SecretProject.Class.ParticileStuff
         public float LayerDepth { get; set; }
 
 
-        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f, float sizeMin = .25f, float sizeMax = 1.5f)
+        public Particle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f, float sizeMin = .25f, float sizeMax = 1f)
         {
             this.ParticleTexture = particleTexture;
             this.Position = position;
