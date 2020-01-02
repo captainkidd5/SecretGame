@@ -52,6 +52,10 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect Chirp3;
 
+        //GADGETS
+        public SoundEffect PotLidOpen;
+        public SoundEffect PotLidClose;
+
         //AMBIENT
         public SoundEffect Crickets1;
 
@@ -157,6 +161,9 @@ namespace SecretProject.Class.SoundStuff
 
             Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
 
+            //GADGETS
+            PotLidClose = content.Load<SoundEffect>("SoundEffects/PotLidClose");
+            PotLidOpen = content.Load<SoundEffect>("SoundEffects/PotLidOpen");
 
             Crickets1 = content.Load<SoundEffect>("SoundEffects/crickets1");
             LightRain = content.Load<SoundEffect>("SoundEffects/rainSound");

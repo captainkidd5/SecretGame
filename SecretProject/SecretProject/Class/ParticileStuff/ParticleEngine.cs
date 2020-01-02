@@ -61,6 +61,22 @@ namespace SecretProject.Class.ParticileStuff
             return new RainParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
         }
 
+        private Particle GenerateNewSmokeParticle()
+        {
+            Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
+            Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-5, 5), EmitterLocation.Y);
+            Vector2 velocity = new Vector2(
+                0f,
+                3f);
+            float angle = 0f;
+            float angularVelocity = 0f;
+            Color color = Color;
+            float size = 1f;
+            int ttl = 200 + Game1.Utility.RGenerator.Next(40);
+
+            return new SmokeParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+        }
+
         public void Activate(float activationTime, Vector2 emitterLocation, Color color, float layerDepth)
         {
             this.ActivationTime = activationTime;
@@ -85,6 +101,37 @@ namespace SecretProject.Class.ParticileStuff
                     }
                     AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
                 }
+
+
+            for (int particle = 0; particle < particles.Count; particle++)
+            {
+                particles[particle].Update(gameTime);
+                if (particles[particle].TTL <= 40)
+                {
+                    particles[particle].ColorMultiplier -= .1f;
+                }
+                if (particles[particle].TTL <= 0)
+                {
+                    particles.RemoveAt(particle);
+                    particle--;
+                }
+            }
+        }
+
+        public void UpdateSmoke(GameTime gameTime, Vector2 position)
+        {
+            EmitterLocation = position;
+            int total = 1;
+            AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (AddNewParticleTimer <= 0)
+            {
+                for (int i = 0; i < total; i++)
+                {
+                    particles.Add(GenerateNewSmokeParticle());
+                }
+                AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
+            }
 
 
             for (int particle = 0; particle < particles.Count; particle++)
@@ -135,14 +182,14 @@ namespace SecretProject.Class.ParticileStuff
                 }
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, bool transform = false)
         {
 
             if (particles.Count > 0)
             {
                 for (int index = 0; index < particles.Count; index++)
                 {
-                    particles[index].Draw(spriteBatch);
+                    particles[index].Draw(spriteBatch, transform);
                 }
             }
 

@@ -63,13 +63,22 @@ namespace SecretProject.Class.ParticileStuff
                 Angle += AngularVelocity;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, bool worldTransform = false)
         {
             Rectangle sourceRectangle = new Rectangle(0, 0, this.ParticleTexture.Width, this.ParticleTexture.Height);
             Vector2 origin = new Vector2(this.ParticleTexture.Width / 2, this.ParticleTexture.Height / 2);
 
-            spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color * ColorMultiplier,
+            if(worldTransform)
+            {
+                spriteBatch.Draw(this.ParticleTexture, Vector2.Transform(Position, Matrix.Invert(Game1.cam.GetViewMatrix(Vector2.One))), sourceRectangle, Color * ColorMultiplier,
                 Angle, origin, Size, SpriteEffects.None, LayerDepth);
+            }
+            else
+            {
+                spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color * ColorMultiplier,
+                                Angle, origin, Size, SpriteEffects.None, LayerDepth);
+            }
+            
         }
     }
 }

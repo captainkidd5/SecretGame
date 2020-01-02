@@ -163,5 +163,8 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/PotLidClose.wav</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/PotLidOpen.wav</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/smokeParticle.png</File>
   </SourceFiles>
 </SourceFileCollection>

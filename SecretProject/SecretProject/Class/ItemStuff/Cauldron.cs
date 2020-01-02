@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +37,13 @@ namespace SecretProject.Class.ItemStuff
         private Button redEsc;
         public Tile Tile { get; set; }
 
-        public Button CookButton { get; set; }
+        public SimpleTimer CookTimer { get; set; }
 
+        public Button CookButton { get; set; }
+        public bool IsCooking { get; set; }
+
+
+        public ParticleEngine ParticleEngine { get; set; }
 
         public Cauldron(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
@@ -64,20 +71,31 @@ namespace SecretProject.Class.ItemStuff
 
             this.CookButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
                 new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /4 * BackDropScale, BackDropPosition.Y + BackDropSourceRectangle.Height * BackDropScale / 2), CursorType.Normal, 3f);
+
+            CookTimer = new SimpleTimer(4f);
+            ParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, Location);
         }
         public void Activate(Tile tile)
         {
-            IsUpdating = true;
-            Tile = tile;
-            TileUtility.GetTileRectangleFromProperty(Tile, false, null, 1939);
+            if(!IsUpdating)
+            {
+                IsUpdating = true;
+                Tile = tile;
+                TileUtility.GetTileRectangleFromProperty(Tile, false, null, 1939);
+                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidOpen, true);
+            }
+            
 
         }
         public void Deactivate()
         {
-            IsUpdating = false;
-           // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
-            TileUtility.GetTileRectangleFromProperty(Tile,false, null, 2139);
-
+            if (!IsCooking)
+            {
+                IsUpdating = false;
+                // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
+                TileUtility.GetTileRectangleFromProperty(Tile, false, null, 2139);
+                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidClose, true);
+            }
         }
 
         public bool IsItemAllowedToBeStored(Item item)
@@ -131,6 +149,7 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Update(GameTime gameTime)
         {
+
             redEsc.Update(Game1.myMouseManager);
 
 
@@ -151,8 +170,17 @@ namespace SecretProject.Class.ItemStuff
             {
                 if(IsEverySlotFilled())
                 {
-                   // CookedItemSlot.ItemSourceRectangleToDraw = DetermineMeal().SourceTextureRectangle;
+                    IsCooking = true;
+                  
+                }
+            }
+            if(IsCooking)
+            {
+                ParticleEngine.UpdateSmoke(gameTime, ParticleEngine.EmitterLocation);
+                if (CookTimer.Run(gameTime))
+                {
                     CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
+                    IsCooking = false;
                 }
             }
             if (CookedItemSlot.Button.isClicked)
@@ -191,6 +219,12 @@ namespace SecretProject.Class.ItemStuff
                 ItemSlots[i].Draw(spriteBatch);
             }
             CookedItemSlot.Draw(spriteBatch);
+
+            if(IsCooking)
+            {
+                ParticleEngine.Draw(spriteBatch, true);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, CookTimer.Time.ToString(), CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+            }
         }
         
     }

@@ -331,6 +331,7 @@ namespace SecretProject.Class.Playable
 
                             CaptureCrate.Release((EnemyType)item.CrateType, Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
                             UserInterface.BackPack.Inventory.RemoveItem(item);
+                            DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
                         }
                         else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
                         {
@@ -339,6 +340,7 @@ namespace SecretProject.Class.Playable
                             {
                                 CaptureCrate.Release((EnemyType)item.CrateType, Graphics);
                                 UserInterface.BackPack.Inventory.RemoveItem(item);
+                                DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
                             }
                         }
 

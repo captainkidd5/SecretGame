@@ -1522,3 +1522,27 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
 
+#begin SoundEffects/PotLidClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotLidClose.wav
+
+#begin SoundEffects/PotLidOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotLidOpen.wav
+
+#begin Particles/smokeParticle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Particles/smokeParticle.png
+
