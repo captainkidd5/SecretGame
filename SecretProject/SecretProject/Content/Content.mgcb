@@ -1558,3 +1558,9 @@
 /processorParam:TextureFormat=Color
 /build:Particles/fire1.png
 
+#begin SoundEffects/UIClick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/UIClick.wav
+

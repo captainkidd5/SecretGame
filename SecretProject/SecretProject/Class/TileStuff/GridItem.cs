@@ -170,17 +170,11 @@ namespace SecretProject.Class.TileStuff
                             {
 
 
-                                int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
-                                switch (soundRandom)
-                                {
-                                    case 0:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
+    
+                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
 
-                                        break;
-                                    case 1:
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
-                                        break;
-                                }
+              
+                                
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, -56, 5, true);
@@ -414,17 +408,11 @@ namespace SecretProject.Class.TileStuff
 
         public void PlayPlacementSound()
         {
-            int soundRandom = Game1.Utility.RGenerator.Next(0, 2);
-            switch (soundRandom)
-            {
-                case 0:
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1);
+  
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
 
-                    break;
-                case 1:
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem2);
-                    break;
-            }
+
+
         }
 
         public void NormalDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)

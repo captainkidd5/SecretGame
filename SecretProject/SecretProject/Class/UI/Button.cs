@@ -116,6 +116,7 @@ namespace SecretProject.Class.MenuStuff
                 if (mouse.IsClicked)
                 {
                     isClicked = true;
+                //    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.UIClick, true);
                 }
 
 
@@ -203,11 +204,19 @@ namespace SecretProject.Class.MenuStuff
 
 
         //for toolbar
-        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f)
+        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f, bool centerImage = false)
         {
 
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-            spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            if(centerImage)
+            {
+                spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X, HitBoxRectangle.Y ), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            }
+            else
+            {
+                spriteBatch.Draw(this.Texture, new Vector2(HitBoxRectangle.X + HitBoxRectangle.Width / 4, HitBoxRectangle.Y + HitBoxRectangle.Height / 4), sourceRectangle, tint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            }
+            
 
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
             spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: Game1.Utility.StandardButtonDepth + .02f);

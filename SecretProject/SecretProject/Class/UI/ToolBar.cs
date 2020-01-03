@@ -130,10 +130,12 @@ namespace SecretProject.Class.UI
                 
                 if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                 {
+                    Game1.SoundManager.PlayOpenUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
                 }
                 else
                 {
+                    Game1.SoundManager.PlayCloseUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
             }
@@ -141,10 +143,12 @@ namespace SecretProject.Class.UI
             {
                 if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                 {
+                    Game1.SoundManager.PlayOpenUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                 }
                 else
                 {
+                    Game1.SoundManager.PlayCloseUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
             }
@@ -152,10 +156,12 @@ namespace SecretProject.Class.UI
             {
                 if(Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                 {
+                    Game1.SoundManager.PlayOpenUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
                 }
                 else
                 {
+                    Game1.SoundManager.PlayCloseUI();
                     Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 }
             }
@@ -172,14 +178,14 @@ namespace SecretProject.Class.UI
 
 
                 InGameMenu.Draw(spriteBatch, InGameMenu.ItemSourceRectangleToDraw, InGameMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", InGameMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f);
+                    "", InGameMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f,true);
 
                 OpenCraftingMenu.Draw(spriteBatch, OpenCraftingMenu.ItemSourceRectangleToDraw, OpenCraftingMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", OpenCraftingMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f);
+                    "", OpenCraftingMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
 
 
                 OpenSanctuaryMenu.Draw(spriteBatch, OpenSanctuaryMenu.ItemSourceRectangleToDraw, OpenSanctuaryMenu.BackGroundSourceRectangle, Game1.AllTextures.MenuText,
-                    "", OpenSanctuaryMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f);
+                    "", OpenSanctuaryMenu.Position, Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth + .01f, true);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, GoldIconPosition, GoldIconBackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(GoldIconPosition.X + 112, GoldIconPosition.Y), GoldIcon, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
                 spriteBatch.DrawString(Game1.AllTextures.MenuText, goldAmt.ToString(), new Vector2(GoldIconPosition.X + 16, GoldIconPosition.Y + 16), Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);

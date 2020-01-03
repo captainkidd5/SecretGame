@@ -48,7 +48,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.Scale = scale;
             for (int i = 0; i < RewardIcons.Count; i++)
             {
-                RewardIcons[i].Position = new Vector2(position.X + SanctuaryRequirements[i].ImageLocation.X * (scale - 1) + 32 * scale + 32 * scale, position.Y + (32 * i * scale));
+                RewardIcons[i].Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width * scale - RewardIcons[i].BackGroundSourceRectangle.Width * scale * 2, position.Y + (32 * i * scale));
                 RewardIcons[i].Update(Game1.myMouseManager);
                 if(RewardIcons[i].IsHovered)
                 {

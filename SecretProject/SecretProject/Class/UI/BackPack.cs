@@ -118,6 +118,14 @@ namespace SecretProject.Class.UI
                 if (ExpandButton.isClicked)
                 {
                     Expanded = !Expanded;
+                    if(Expanded)
+                    {
+                        Game1.SoundManager.PlayOpenUI();
+                    }
+                    else
+                    {
+                        Game1.SoundManager.PlayCloseUI();
+                    }
                 }
                 UpdateScrollWheel(Game1.myMouseManager);
                 DragSprite = null;

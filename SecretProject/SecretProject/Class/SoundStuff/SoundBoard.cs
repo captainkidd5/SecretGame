@@ -90,7 +90,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect GearSpin;
 
         public SoundEffect PlaceItem1;
-        public SoundEffect PlaceItem2;
+
 
         public SoundEffect FurnaceLight;
 
@@ -120,7 +120,8 @@ namespace SecretProject.Class.SoundStuff
         //Emoticons
         public SoundEffect Exclamation { get; set; }
 
-
+        //UI
+        public SoundEffect UIClick;
         public SoundBoard(Game1 game, ContentManager content)
         {
             PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -195,7 +196,7 @@ namespace SecretProject.Class.SoundStuff
             GearSpin = content.Load<SoundEffect>("SoundEffects/gearspin");
 
             PlaceItem1 = content.Load<SoundEffect>("SoundEffects/placeItem1");
-            PlaceItem2 = content.Load<SoundEffect>("SoundEffects/placeItem2");
+
 
             FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
 
@@ -219,6 +220,9 @@ namespace SecretProject.Class.SoundStuff
 
             //Emoticons
             Exclamation = content.Load<SoundEffect>("SoundEffects/exclamation");
+
+            //UI
+            UIClick = content.Load<SoundEffect>("SoundEffects/UIClick");
 
         }
         public void PlaySong()
@@ -251,7 +255,18 @@ namespace SecretProject.Class.SoundStuff
         }
 
 
-        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false)
+        public void PlayOpenUI()
+        {
+
+            UIClick.Play(GameVolume, 1f, 1f);
+        }
+        public void PlayCloseUI()
+        {
+
+            UIClick.Play(GameVolume, .5f, 1f);
+        }
+
+        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false, float pitchCap = 1f)
         {
             //SoundEffectInstance instance = soundEffect.CreateInstance();
             //instance.Volume = volume;
@@ -260,7 +275,7 @@ namespace SecretProject.Class.SoundStuff
             float pitch = 0f;
             if(randomizePitch)
             {
-                pitch = Game1.Utility.RFloat(0, 1);
+                pitch = Game1.Utility.RFloat(0, pitchCap);
             }
             soundEffect.Play(GameVolume, pitch, 1f);
         }
