@@ -14,6 +14,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
     public class CompletionPage : IPage
     {
         public GraphicsDevice Graphics { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public List<CompletionRequirement> SanctuaryRequirements { get; set; }
 
         public List<Button> RewardIcons { get; set; }
@@ -48,7 +50,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.Scale = scale;
             for (int i = 0; i < RewardIcons.Count; i++)
             {
-                RewardIcons[i].Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width * scale - RewardIcons[i].BackGroundSourceRectangle.Width * scale * 2, position.Y + (32 * i * scale));
+                RewardIcons[i].Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width * scale - RewardIcons[i].BackGroundSourceRectangle.Width * scale * 2, position.Y + 64 + (32 * i * scale));
                 RewardIcons[i].Update(Game1.myMouseManager);
                 if(RewardIcons[i].IsHovered)
                 {
@@ -61,12 +63,16 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Name, new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width / 2, position.Y),
+                    Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Description, new Vector2(position.X , position.Y + 32),
+                    Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             for (int i = 0; i < SanctuaryRequirements.Count; i++)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].String, new Vector2(position.X, position.Y + (32 * i * Scale)), Color.Black, 0f, Game1.Utility.Origin, Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + SanctuaryRequirements[i].ImageLocation.X * (Scale - 1)), (int)(position.Y + (32 * i * Scale)), 48, 48),
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].String, new Vector2(position.X, position.Y + 64 + (32 * i * Scale)), Color.Black, 0f, Game1.Utility.Origin, Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + SanctuaryRequirements[i].ImageLocation.X * (Scale - 1)), (int)(position.Y + 64 + (32 * i * Scale)), 48, 48),
                 SanctuaryRequirements[i].SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].CurrentCount.ToString() + "/" + SanctuaryRequirements[i].CountRequired.ToString(), new Vector2(position.X + SanctuaryRequirements[i].ImageLocation.X * (Scale - 1) + 32 * Scale, position.Y + (32 * i * Scale)),
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, SanctuaryRequirements[i].CurrentCount.ToString() + "/" + SanctuaryRequirements[i].CountRequired.ToString(), new Vector2(position.X + SanctuaryRequirements[i].ImageLocation.X * (Scale - 1) + 32 * Scale, position.Y + 64 + (32 * i * Scale)),
                     Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
                 RewardIcons[i].Draw(spriteBatch, RewardIcons[i].ItemSourceRectangleToDraw, RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", RewardIcons[i].Position, Color.White, 2, 2, Game1.Utility.StandardButtonDepth + .03f);
             }
