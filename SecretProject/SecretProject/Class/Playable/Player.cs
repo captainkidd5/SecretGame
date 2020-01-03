@@ -325,6 +325,7 @@ namespace SecretProject.Class.Playable
                     }
                     if (item.CrateType != 0)
                     {
+
                         if (Game1.GetCurrentStage().StageType == StageType.Procedural)
                         {
 

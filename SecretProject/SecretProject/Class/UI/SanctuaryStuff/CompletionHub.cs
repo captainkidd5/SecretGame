@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public List<CompletionGuide> AllGuides { get; set; }
         public bool IsActive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool FreezesGame { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        private Button redEsc;
         public List<Button> HubButtons { get; set; }
         CompletionGuide ActiveGuide;
 
@@ -31,17 +32,25 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                new CompletionGuide(Graphics, ForestHolder),
             };
             ActiveGuide = AllGuides[0];
+            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), Graphics,
+                new Vector2(AllGuides[0].BackGroundPosition.X + AllGuides[0].BackGroundSourceRectangle.Width  - 32, AllGuides[0].BackGroundPosition.Y - AllGuides[0].BackGroundSourceRectangle.Height), CursorType.Normal);
 
         }
 
         public void Update(GameTime gameTime)
         {
+            redEsc.Update(Game1.myMouseManager);
+            if (redEsc.isClicked)
+            {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+            }
             ActiveGuide.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             ActiveGuide.Draw(spriteBatch);
+            redEsc.Draw(spriteBatch);
         }
     }
 }
