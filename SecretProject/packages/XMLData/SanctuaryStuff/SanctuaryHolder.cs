@@ -8,6 +8,7 @@ namespace XMLData.SanctuaryStuff
 {
     public enum SanctuaryReward
     {
+        Gold = 1,
         GrindStone = 1202,
         SawTable = 1201,
         Furnace = 1202,
@@ -16,6 +17,6 @@ namespace XMLData.SanctuaryStuff
     public class SanctuaryHolder
     {
         public int ID { get; set; }
-        public List<SanctuaryRequirement> AllRequirements{ get; set; }
+        public List<SanctuaryPageHolder> AllPages{ get; set; }
     }
 }

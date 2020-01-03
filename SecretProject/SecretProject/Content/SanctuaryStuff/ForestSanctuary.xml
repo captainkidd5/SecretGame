@@ -2,9 +2,13 @@
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
 <Asset Type ="XMLData.SanctuaryStuff.SanctuaryHolder">
 <ID>1</ID>
-  <AllRequirements>
+  <AllPages>
 
-
+<Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
+<Name>Basic Plants</Name>
+<Tab>0</Tab>
+<Description>We need to enrich the sanctuary soil by gathering these plants</Description>
+<AllRequirements>
   <!-- Stick -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
@@ -12,7 +16,7 @@
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
      <Description>Place 2 sticks.</Description>
-      <SanctuaryReward>SawTable</SanctuaryReward>
+     <SanctuaryReward>Gold</SanctuaryReward>
     <X>1264</X>
     <Y>240</Y>
     <Width>16</Width>
@@ -26,7 +30,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Oak trees. </Description>
-    <SanctuaryReward>SawTable</SanctuaryReward>
+    <SanctuaryReward>Gold</SanctuaryReward>
     <X>992</X>
     <Y>192</Y>
     <Width>48</Width>
@@ -40,12 +44,23 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Thunder Birch trees. </Description>
-     <SanctuaryReward>GrindStone</SanctuaryReward>
+    <SanctuaryReward>Gold</SanctuaryReward>
     <X>976</X>
     <Y>288</Y>
     <Width>80</Width>
     <Height>80</Height>
     </Item>
+
+  </AllRequirements>
+  <FinalReward>SawTable</FinalReward>
+  </Item>
+  <Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
+
+
+<Name>Basic Fauna</Name>
+<Tab>1</Tab>
+<Description>Ummmm</Description>
+<AllRequirements>
 
     <!-- Boar Crate -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
@@ -54,7 +69,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Boars.</Description>
-     <SanctuaryReward>Furnace</SanctuaryReward>
+    <SanctuaryReward>Gold</SanctuaryReward>
     <X>1200</X>
     <Y>256</Y>
     <Width>16</Width>
@@ -68,7 +83,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Rabbits.</Description>
-     <SanctuaryReward>SawTable</SanctuaryReward>
+    <SanctuaryReward>Gold</SanctuaryReward>
     <X>1200</X>
     <Y>272</Y>
     <Width>16</Width>
@@ -81,8 +96,8 @@
     <ItemID>374</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Release 5 butteflys.</Description>
-     <SanctuaryReward>SawTable</SanctuaryReward>
+    <Description>Release 5 butterflys.</Description>
+    <SanctuaryReward>Gold</SanctuaryReward>
     <X>1216</X>
     <Y>240</Y>
     <Width>16</Width>
@@ -91,5 +106,9 @@
 
 
   </AllRequirements>
+  <FinalReward>GrindStone</FinalReward>
+</Item>
+     
+  </AllPages>
   </Asset>
 </XnaContent>

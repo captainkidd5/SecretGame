@@ -45,15 +45,20 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 
             }
 
-            for (int i = 0; i < sanctuaryHolder.AllRequirements.Count; i++)
+            for (int i = 0; i < sanctuaryHolder.AllPages.Count; i++)
             {
                 for (int j = 0; j < CategoryTabs.Count; j++)
                 {
-                    if (sanctuaryHolder.AllRequirements[i].Tab == j)
+                    if (sanctuaryHolder.AllPages[i].Tab == j)
                     {
+                        for(int p = 0; p < sanctuaryHolder.AllPages[i].AllRequirements.Count; p++)
+                        {
+                            CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(sanctuaryHolder.AllPages[i].AllRequirements[p].ItemID, sanctuaryHolder.AllPages[i].AllRequirements[p].GIDRequired,
+                                sanctuaryHolder.AllPages[i].AllRequirements[p].NumberRequired, sanctuaryHolder.AllPages[i].AllRequirements[p].Description,
+                            sanctuaryHolder.AllPages[i].AllRequirements[p].Rectangle, sanctuaryHolder.AllPages[i].AllRequirements[p].SanctuaryReward));
+                        }
 
-                        CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(sanctuaryHolder.AllRequirements[i].ItemID, sanctuaryHolder.AllRequirements[i].GIDRequired, sanctuaryHolder.AllRequirements[i].NumberRequired, sanctuaryHolder.AllRequirements[i].Description,
-                            sanctuaryHolder.AllRequirements[i].Rectangle, sanctuaryHolder.AllRequirements[i].SanctuaryReward));
+                        
                     }
                 }
             }

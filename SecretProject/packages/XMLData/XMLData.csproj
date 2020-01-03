@@ -48,6 +48,7 @@
     <Compile Include="RouteStuff\Route.cs" />
     <Compile Include="RouteStuff\RouteSchedule.cs" />
     <Compile Include="SanctuaryStuff\SanctuaryHolder.cs" />
+    <Compile Include="SanctuaryStuff\SanctuaryPageHolder.cs" />
     <Compile Include="SanctuaryStuff\SanctuaryRequirement.cs" />
   </ItemGroup>
   <ItemGroup>
