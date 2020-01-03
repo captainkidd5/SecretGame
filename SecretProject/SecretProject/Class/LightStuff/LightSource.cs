@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.LightStuff
 {
@@ -16,9 +11,9 @@ namespace SecretProject.Class.LightStuff
 
         public LightSource(int id, Vector2 position)
         {
-            
+
             this.LightTexture = GetTextureFromID(id);
-            this.Position = new Vector2(position.X + 8 - this.LightTexture.Width / 2, position.Y - this.LightTexture.Height / 2);
+            Position = new Vector2(position.X + 8 - this.LightTexture.Width / 2, position.Y - this.LightTexture.Height / 2);
         }
 
         private Texture2D GetTextureFromID(int id)
@@ -35,7 +30,7 @@ namespace SecretProject.Class.LightStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(LightTexture, Position, Color.White);
+            spriteBatch.Draw(this.LightTexture, Position, Color.White);
         }
 
         public static int ParseLightType(string data)
@@ -46,7 +41,7 @@ namespace SecretProject.Class.LightStuff
         {
             int x = int.Parse(data.Split(',')[1]);
             int y = int.Parse(data.Split(',')[2]);
-            return new Vector2(x,y);
+            return new Vector2(x, y);
         }
     }
 }

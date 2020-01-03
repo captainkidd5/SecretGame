@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using TiledSharp;
 
@@ -61,7 +56,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D EnemySpriteSheet;
 
         public Texture2D Nelja;
-        
+
 
         public Texture2D KayaSpriteSheet;
 
@@ -149,7 +144,7 @@ namespace SecretProject.Class.TextureStuff
         {
             //Player
             PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
-          PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/blondeSpikyHair");
+            PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/blondeSpikyHair");
             PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Pants/bluePants");
             PlayerPants = content.Load<Texture2D>("Player/PlayerParts/Shirts/redShirt");
             PlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Shoes/brownShoes");
@@ -239,14 +234,14 @@ namespace SecretProject.Class.TextureStuff
 
             //MINING FOLDER
 
-            
+
 
             //props
             Gondola = content.Load<Texture2D>("WorldProps/Gondola");
             TallGrass = content.Load<Texture2D>("WorldProps/tallGrass");
             Gears = content.Load<Texture2D>("WorldProps/Gears");
             PlayerSilouhette = content.Load<Texture2D>("WorldProps/introplayersillohoutte");
-            ButterFlys = content.Load<Texture2D>("WorldProps/Butterflys");
+            this.ButterFlys = content.Load<Texture2D>("WorldProps/Butterflys");
 
 
             //backdrops

@@ -1,11 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using SecretProject.Class.CollisionDetection;
-using SecretProject.Class.TileStuff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.PathFinding
 {
@@ -22,14 +15,14 @@ namespace SecretProject.Class.PathFinding
         {
             Size = new Rectangle(0, 0, mapWidth, mapHeight);
             Weight = new byte[mapWidth, mapHeight];
-            for(int i =0; i < mapWidth; i++)
+            for (int i = 0; i < mapWidth; i++)
             {
-                for(int j =0; j < mapHeight; j++)
+                for (int j = 0; j < mapHeight; j++)
                 {
                     Weight[i, j] = 1;
                 }
             }
-           
+
         }
 
         //1 empty, 0 obstructed
@@ -38,7 +31,7 @@ namespace SecretProject.Class.PathFinding
             Weight[indexI, indexJ] = (byte)newValue;
         }
 
-        
+
 
     }
 }

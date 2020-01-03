@@ -10,13 +10,10 @@
 //  Copyright (C) 2006 Franco, Gustavo 
 //
 //#define DEBUGON
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 
 namespace SecretProject.Class.PathFinding.PathFinder
 {
@@ -199,7 +196,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
         {
             lock (this)
             {
-               // HighResolutionTime.Start();
+                // HighResolutionTime.Start();
 
                 // Is faster if we don't clear the matrix, just assign different values for open and close and ignore the rest
                 // I could have user Array.Clear() but using unsafe code is faster, no much but it is.
@@ -224,7 +221,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 
                 mLocation = (start.Y << mGridYLog2) + start.X;
                 mEndLocation = (end.Y << mGridYLog2) + end.X;
-                if(mLocation > mCalcGrid.Length)
+                if (mLocation > mCalcGrid.Length)
                 {
                     mLocation = mCalcGrid.Length;
                 }
@@ -261,7 +258,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
                     if (mCloseNodeCounter > mSearchLimit)
                     {
                         mStopped = true;
-                       // mCompletedTime = HighResolutionTime.GetTime();
+                        // mCompletedTime = HighResolutionTime.GetTime();
                         return null;
                     }
 
@@ -384,7 +381,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 #endif
                 }
 
-               // mCompletedTime = HighResolutionTime.GetTime();
+                // mCompletedTime = HighResolutionTime.GetTime();
                 if (mFound)
                 {
                     mClose.Clear();

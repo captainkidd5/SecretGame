@@ -1,13 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.Universal
 {
@@ -27,23 +19,23 @@ namespace SecretProject.Class.Universal
         {
             this.TimeUntilAction = timeUntilAction;
             Game1.AllActions.Add(this);
-            this.Signature = signature;
+            Signature = signature;
         }
 
         public void Update(GameTime gameTime, List<ActionTimer> actionTimers)
         {
-            if(TimeUntilAction <= 0)
+            if (this.TimeUntilAction <= 0)
             {
-                if(ActionComplete)
+                if (this.ActionComplete)
                 {
                     actionTimers.Remove(this);
                 }
-                ActionComplete = true;
-               
+                this.ActionComplete = true;
+
             }
-            TimeUntilAction -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.TimeUntilAction -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
-    
+
     }
 }

@@ -1,10 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
-using SecretProject.Class.NPCStuff;
-using System;
+﻿using SecretProject.Class.NPCStuff;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.DialogueStuff
@@ -18,23 +13,23 @@ namespace SecretProject.Class.DialogueStuff
             this.Dialogue = dialogue;
         }
 
-        public DialogueSkeleton RetrieveDialogue(Character character,int day, int time)
+        public DialogueSkeleton RetrieveDialogue(Character character, int day, int time)
         {
-            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
-            
+            DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
+
 
             DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd >= time && x.Day == day);
-            if(skeleton == null)
+            if (skeleton == null)
             {
                 skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd <= x.TimeStart && x.Day == day);
             }
-            if(skeleton == null)
+            if (skeleton == null)
             {
                 return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
             }
-            if(skeleton.HasOccurredAtleastOnce)
+            if (skeleton.HasOccurredAtleastOnce)
             {
-                if(skeleton.Once)
+                if (skeleton.Once)
                 {
                     skeleton = null;
                     return skeleton;
@@ -44,13 +39,13 @@ namespace SecretProject.Class.DialogueStuff
             {
                 skeleton.HasOccurredAtleastOnce = true;
             }
-            
+
             return skeleton;
         }
 
-        public DialogueSkeleton RetrieveDialogueNoTime(int speaker,int id)
+        public DialogueSkeleton RetrieveDialogueNoTime(int speaker, int id)
         {
-            DialogueHolder holder = Dialogue.Find(x => x.SpeakerID == speaker);
+            DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == speaker);
 
 
             DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.SpeechID == id);

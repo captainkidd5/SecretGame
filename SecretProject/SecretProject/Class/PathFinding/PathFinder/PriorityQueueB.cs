@@ -9,11 +9,7 @@
 //
 //  Copyright (C) 2006 Franco, Gustavo 
 //
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.PathFinding.PathFinder
 {

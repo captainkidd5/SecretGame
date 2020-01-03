@@ -10,12 +10,9 @@
 //  Copyright (C) 2006 Franco, Gustavo 
 //
 
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 
 namespace SecretProject.Class.PathFinding.PathFinder
 {
@@ -188,7 +185,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 
         public List<PathFinderNode> FindPath(Point start, Point end)
         {
-           // HighResolutionTime.Start();
+            // HighResolutionTime.Start();
 
             PathFinderNode parentNode;
             bool found = false;
@@ -373,7 +370,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 #endif
             }
 
-           // mCompletedTime = HighResolutionTime.GetTime();
+            // mCompletedTime = HighResolutionTime.GetTime();
             if (found)
             {
                 PathFinderNode fNode = mClose[mClose.Count - 1];

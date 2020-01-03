@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI.SanctuaryStuff
 {
@@ -29,37 +25,37 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             this.PositionToDraw = positionToDraw;
             this.SourceRectangle = sourceRectangle;
-            this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, SourceRectangle, graphics, PositionToDraw, CursorType.Normal, scale);
+            this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, this.SourceRectangle, graphics, this.PositionToDraw, CursorType.Normal, scale);
             this.ButtonColorMultiplier = 1f;
             this.ActivePage = 0;
             this.Pages = new List<CompletionPage>();
         }
-        
+
         public void Update(GameTime gameTime, Vector2 backGroundPosition, float scale)
         {
-            Button.Update(Game1.myMouseManager);
-            Pages[ActivePage].Update(gameTime, backGroundPosition, scale);
+            this.Button.Update(Game1.myMouseManager);
+            this.Pages[this.ActivePage].Update(gameTime, backGroundPosition, scale);
         }
 
-        public void Draw(SpriteBatch spriteBatch,  Rectangle backDropSourceRectangle, float backDropScale, bool drawString = true)
+        public void Draw(SpriteBatch spriteBatch, Rectangle backDropSourceRectangle, float backDropScale, bool drawString = true)
         {
-            
+
             if (drawString)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, ActivePage.ToString(), PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(PositionToDraw.X + backDropSourceRectangle.Width / 8 * backDropScale, PositionToDraw.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActivePage.ToString(), this.PositionToDraw, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(this.PositionToDraw.X + backDropSourceRectangle.Width / 8 * backDropScale, this.PositionToDraw.Y + 32), Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             }
 
-            this.Pages[ActivePage].Draw(spriteBatch);
+            this.Pages[this.ActivePage].Draw(spriteBatch);
 
 
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 backGroundPosition)
         {
-            
 
-            this.Pages[ActivePage].Draw(spriteBatch, backGroundPosition);
+
+            this.Pages[this.ActivePage].Draw(spriteBatch, backGroundPosition);
         }
     }
 }

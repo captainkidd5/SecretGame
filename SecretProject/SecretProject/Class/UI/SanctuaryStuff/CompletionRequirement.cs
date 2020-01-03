@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XMLData.SanctuaryStuff;
 
 namespace SecretProject.Class.UI.SanctuaryStuff
@@ -29,20 +24,20 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.CountRequired = countRequired;
             this.SourceRectangle = sourceRectangle;
             this.String = description;
-            ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
+            this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
             this.SanctuaryReward = sanctuaryReward;
         }
 
         public void Increment()
         {
-            
-            CurrentCount++;
-            if(CurrentCount >= CountRequired)
+
+            this.CurrentCount++;
+            if (this.CurrentCount >= this.CountRequired)
             {
-                Satisfied = true;
+                this.Satisfied = true;
                 this.String = "Completed! ";
-                ImageLocation = Game1.AllTextures.MenuText.MeasureString(String);
-                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)SanctuaryReward, null));
+                this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryReward, null));
             }
         }
     }

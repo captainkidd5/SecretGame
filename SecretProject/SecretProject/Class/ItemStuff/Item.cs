@@ -6,11 +6,6 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
@@ -89,7 +84,7 @@ namespace SecretProject.Class.ItemStuff
             this.Price = itemData.Price;
             this.TextureColumn = itemData.TextureColumn;
             this.TextureRow = itemData.TextureRow;
-            this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(TextureRow, TextureColumn);
+            this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(this.TextureRow, this.TextureColumn);
             this.SmeltedItem = itemData.SmeltedItem;
             this.FuelValue = itemData.FuelValue;
             this.Durability = itemData.Durability;
@@ -100,59 +95,59 @@ namespace SecretProject.Class.ItemStuff
             }
 
             this.PlaceID = itemData.PlaceID;
-            
+
             this.StaminaRestored = itemData.StaminaRestored;
             this.ItemType = itemData.Type;
             this.AnimationColumn = itemData.AnimationColumn;
 
             this.TilingSet = itemData.TilingSet;
-            if(this.TilingSet != null)
+            if (this.TilingSet != null)
             {
-                this.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), TilingSet);
-                
-                
+                this.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), this.TilingSet);
+
+
             }
-            
-            
-                this.TilingLayer = itemData.TilingLayer;
+
+
+            this.TilingLayer = itemData.TilingLayer;
             this.CrateType = itemData.CrateType;
 
             this.Food = itemData.Food;
             this.MeatValue = itemData.MeatValue;
             this.VegetableValue = itemData.VegetableValue;
             this.FruitValue = itemData.FruitValue;
-            
+
         }
         public void Load()
         {
-            if (IsWorldItem)
+            if (this.IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Game1.AllTextures.ItemSpriteSheet, SourceTextureRectangle,
-                    this.WorldPosition, 16, 16)
+                this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle,
+                    WorldPosition, 16, 16)
                 { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item, Entity = this };
                 this.Ignored = true;
             }
-            if (!IsWorldItem)
+            if (!this.IsWorldItem)
             {
-                this.ItemSprite = new Sprite(Graphics, Game1.AllTextures.ItemSpriteSheet, SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
+                this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            if (IsWorldItem)
+            if (this.IsWorldItem)
             {
-                ItemSprite.Update(gameTime);
+                this.ItemSprite.Update(gameTime);
 
 
-                if (IsTossable == true)
+                if (this.IsTossable == true)
                 {
-                    ItemSprite.Toss(gameTime, 1f, 1f);
-                    if(ItemSprite.IsTossed)
+                    this.ItemSprite.Toss(gameTime, 1f, 1f);
+                    if (this.ItemSprite.IsTossed)
                     {
                         this.Ignored = false;
-                        IsTossable = false;
-                        ItemSprite.IsTossed = false;
+                        this.IsTossable = false;
+                        this.ItemSprite.IsTossed = false;
                     }
                 }
                 else
@@ -164,7 +159,7 @@ namespace SecretProject.Class.ItemStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (IsWorldItem)
+            if (this.IsWorldItem)
             {
                 this.ItemSprite.Draw(spriteBatch, .4f);
             }
@@ -173,34 +168,34 @@ namespace SecretProject.Class.ItemStuff
 
         public void PlayerCollisionInteraction()
         {
-            if(!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
+            if (!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
             {
                 Magnetize(Game1.Player.position);
             }
-            
+
         }
 
         public void Magnetize(Vector2 playerpos)
         {
-            if (IsWorldItem)
+            if (this.IsWorldItem)
             {
 
-                if (Game1.Player.MainCollider.IsIntersecting(ItemSprite))
+                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
                 {
 
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PickUpItem);
-                        Game1.GetCurrentStage().AllItems.Remove(this);
+                    Game1.GetCurrentStage().AllItems.Remove(this);
 
-                    
+
                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
                     Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
 
                 }
-                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - ItemSprite.Position;
+                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
                 dir.Normalize();
-                ItemSprite.Position += dir;
+                this.ItemSprite.Position += dir;
                 //ItemSprite.Position.X -= playerpos.X ;
                 //ItemSprite.Position.Y -= playerpos.Y;
 
@@ -211,7 +206,7 @@ namespace SecretProject.Class.ItemStuff
         public void AlterDurability(int amountToSubtract)
         {
             this.Durability -= amountToSubtract;
-            if(this.Durability <= 0)
+            if (this.Durability <= 0)
             {
                 Game1.Player.Inventory.RemoveItem(this);
                 Game1.SoundManager.ToolBreak.Play();

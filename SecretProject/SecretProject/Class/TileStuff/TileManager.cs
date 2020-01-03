@@ -1,28 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.LightStuff;
+using SecretProject.Class.PathFinding;
+using SecretProject.Class.Playable;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiledSharp;
-
-using System.Xml.Serialization;
-
-
-using SecretProject.Class.Controls;
-
-using Microsoft.Xna.Framework.Content;
-using SecretProject.Class.Universal;
-using SecretProject.Class.ItemStuff;
-using SecretProject.Class.LightStuff;
-using SecretProject.Class.PathFinding;
 using XMLData.ItemStuff;
-using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.CollisionDetection;
-using SecretProject.Class.PathFinding.PathFinder;
-using SecretProject.Class.Playable;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -105,13 +96,13 @@ namespace SecretProject.Class.TileStuff
             this.TileSet = tileSet;
             this.MapName = mapName;
 
-            TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
-            TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
+            this.TileWidth = mapName.Tilesets[tileSetNumber].TileWidth;
+            this.TileHeight = mapName.Tilesets[tileSetNumber].TileHeight;
 
-            TileSetDimension = tileSet.Width / TileWidth;
+            this.TileSetDimension = tileSet.Width / this.TileWidth;
 
-            MapWidth = mapName.Width;
-            MapHeight = mapName.Height;
+            this.MapWidth = mapName.Width;
+            this.MapHeight = mapName.Height;
 
             this.tileCounter = 0;
 
@@ -119,35 +110,35 @@ namespace SecretProject.Class.TileStuff
             this.Content = content;
 
             this.AllDepths = allDepths;
-            this.AllLayers = allLayers;
-            AllTiles = new List<Tile[,]>();
+            AllLayers = allLayers;
+            this.AllTiles = new List<Tile[,]>();
             this.TileSetNumber = tileSetNumber;
             DirtGeneratableTiles = new List<int>();
             SandGeneratableTiles = new List<int>();
             GrassGeneratableTiles = new List<int>();
-            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            Tufts = new Dictionary<string, List<GrassTuft>>();
-            TileHitPoints = new Dictionary<string, int>();
-            Lights = new List<LightSource>();
-            StoreableItems = new Dictionary<string, IStorableItemBuilding>();
-            Crops = new Dictionary<string, Crop>();
-            ForeGroundOffSetDictionary = new Dictionary<float, string>();
-            Game1.GlobalClock.DayChanged += this.HandleClockChange;
+            this.AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            this.Tufts = new Dictionary<string, List<GrassTuft>>();
+            this.TileHitPoints = new Dictionary<string, int>();
+            this.Lights = new List<LightSource>();
+            this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+            this.Crops = new Dictionary<string, Crop>();
+            this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
+            Game1.GlobalClock.DayChanged += HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)
             {
-                AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
+                this.AllTiles.Add(new Tile[mapName.Width, mapName.Height]);
 
             }
-            Objects = new Dictionary<string, List<ICollidable>>();
+            this.Objects = new Dictionary<string, List<ICollidable>>();
 
-            PathGrid = new ObstacleGrid(MapWidth, MapHeight);
-            for (int i = 0; i < AllTiles.Count; i++)
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+            for (int i = 0; i < this.AllTiles.Count; i++)
             {
                 foreach (TmxLayerTile layerNameTile in AllLayers[i].Tiles)
                 {
                     Tile tempTile = new Tile(layerNameTile.X, layerNameTile.Y, layerNameTile.Gid) { LayerToDrawAt = i };
 
-                    AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
+                    this.AllTiles[i][layerNameTile.X, layerNameTile.Y] = tempTile;
 
                 }
             }
@@ -187,7 +178,7 @@ namespace SecretProject.Class.TileStuff
             #endregion
 
 
-            for (int z = 0; z < AllTiles.Count; z++)
+            for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 for (int i = 0; i < this.MapWidth; i++)
                 {
@@ -195,7 +186,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
 
 
 
@@ -225,7 +216,7 @@ namespace SecretProject.Class.TileStuff
         public void Update(GameTime gameTime, MouseManager mouse)
         {
             int oldLightCount = this.Lights.Count;
-            AbleToDrawTileSelector = false;
+            this.AbleToDrawTileSelector = false;
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
             List<string> AnimationFrameKeysToRemove = new List<string>();
@@ -249,28 +240,28 @@ namespace SecretProject.Class.TileStuff
             {
                 endj = this.MapWidth;
             }
-            foreach (EditableAnimationFrameHolder frameholder in AnimationFrames.Values)
+            foreach (EditableAnimationFrameHolder frameholder in this.AnimationFrames.Values)
             {
                 frameholder.Frames[frameholder.Counter].CurrentDuration -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                    AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                    this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
                     //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
 
                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                     {
-                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
+                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                         {
 
-                            if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable") || this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
                             {
 
                                 //needs to refer to first tile ?
                                 int frameolDX = frameholder.OldX;
-                                AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                AnimationFrameKeysToRemove.Add(AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
-                                if (MapName.Tilesets[TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
+                                this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                                AnimationFrameKeysToRemove.Add(this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this));
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                 {
                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this);
                                 }
@@ -294,7 +285,7 @@ namespace SecretProject.Class.TileStuff
 
             foreach (string key in AnimationFrameKeysToRemove)
             {
-                AnimationFrames.Remove(key);
+                this.AnimationFrames.Remove(key);
             }
 
 
@@ -303,57 +294,57 @@ namespace SecretProject.Class.TileStuff
             int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16);
             int playerI = (int)((Game1.Player.Position.X + 16) / 16);
             int playerJ = (int)((Game1.Player.Position.Y + 16) / 16);
-            for (int z = 0; z < AllTiles.Count; z++)
+            for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 if (Game1.Player.IsMoving)
                 {
 
-                        if (playerI < AllTiles[z].GetLength(0) &&
-                            playerJ < AllTiles[z].GetLength(1) &&
-                            AllTiles[z][playerI, playerJ] != null)
-                        {
+                    if (playerI < this.AllTiles[z].GetLength(0) &&
+                        playerJ < this.AllTiles[z].GetLength(1) &&
+                        this.AllTiles[z][playerI, playerJ] != null)
+                    {
                         //Prioritize midground layer for step sound effects
-                        if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[1][playerI, playerJ].GID))
+                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[1][playerI, playerJ].GID))
                         {
-                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[1][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
 
-                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[1][playerI, playerJ].GID].Properties["step"]);
+                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[1][playerI, playerJ].GID].Properties["step"]);
                             }
-                            else if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[0][playerI, playerJ].GID))
+                            else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[0][playerI, playerJ].GID))
                             {
-                                if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
                                 {
 
-                                    Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties["step"]);
+                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties["step"]);
                                 }
                             }
                         }
-                        else if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[0][playerI, playerJ].GID))
+                        else if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[0][playerI, playerJ].GID))
                         {
-                            if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties.ContainsKey("step"))
                             {
 
-                                Game1.Player.WalkSoundEffect = int.Parse(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[0][playerI, playerJ].GID].Properties["step"]);
+                                Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[0][playerI, playerJ].GID].Properties["step"]);
                             }
                         }
-                            
-                        }
 
-                    
+                    }
+
+
                 }
-                if (mouseI < AllTiles[z].GetLength(0) && mouseJ < AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
+                if (mouseI < this.AllTiles[z].GetLength(0) && mouseJ < this.AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)
                 {
 
 
-                    if (AllTiles[z][mouseI, mouseJ] != null)
+                    if (this.AllTiles[z][mouseI, mouseJ] != null)
                     {
-                        if (AllTiles[z][mouseI, mouseJ].GID != -1)
+                        if (this.AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                            int TileKey = AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
+                            int TileKey = this.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
 
 
-                            if (AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
+                            if (this.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))
                             {
 
                                 Game1.Player.UserInterface.DrawTileSelector = true;
@@ -362,20 +353,20 @@ namespace SecretProject.Class.TileStuff
                                 Game1.Player.UserInterface.TileSelector.WorldX = mouseI * 16;
                                 Game1.Player.UserInterface.TileSelector.WorldY = mouseJ * 16;
 
-                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][mouseI, mouseJ].GID))
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mouseI, mouseJ].GID))
                                 {
 
                                     if (z == 1)
                                     {
 
-                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
+                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("destructable"))
                                         {
                                             Game1.isMyMouseVisible = false;
                                             if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                                             {
-                                                if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
+                                                if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"]))
                                                 {
-                                                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
+                                                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["destructable"])));
                                                     Game1.myMouseManager.ToggleGeneralInteraction = true;
                                                 }
                                             }
@@ -383,7 +374,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (mouse.IsClicked)
                                             {
-                                                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, AllTiles[z][mouseI, mouseJ].DestinationRectangle, this);
+                                                TileUtility.InteractWithDestructableTile(z, gameTime, mouseI, mouseJ, this.AllTiles[z][mouseI, mouseJ].DestinationRectangle, this);
 
                                             }
 
@@ -391,12 +382,12 @@ namespace SecretProject.Class.TileStuff
                                         //return;
 
                                     }
-                                    if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][mouseI, mouseJ].GID))
+                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mouseI, mouseJ].GID))
                                     {
-                                        if (MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
+                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties.ContainsKey("action"))
                                         {
 
-                                            TileUtility.ActionHelper(z, mouseI, mouseJ, MapName.Tilesets[TileSetNumber].Tiles[AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, this);
+                                            TileUtility.ActionHelper(z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, this);
 
                                         }
                                     }
@@ -419,9 +410,9 @@ namespace SecretProject.Class.TileStuff
             {
                 Game1.GetCurrentStage().AllLights = this.Lights;
             }
-            if (GridItem != null)
+            if (this.GridItem != null)
             {
-                GridItem.NormalUpdate(gameTime, this, this);
+                this.GridItem.NormalUpdate(gameTime, this, this);
             }
 
         }
@@ -454,43 +445,43 @@ namespace SecretProject.Class.TileStuff
             {
                 endj = this.MapWidth;
             }
-            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > MapWidth || endj > MapHeight)
+            if (startj < 0 || endj < 0 || starti < 0 || endi < 0 || endi > this.MapWidth || endj > this.MapHeight)
             {
                 return;
             }
-            for (int z = 0; z < AllTiles.Count; z++)
+            for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 for (var i = starti; i < endi; i++)
                 {
                     for (var j = startj; j < endj; j++)
                     {
-                        if (AllTiles[z][i, j].GID != -1)
+                        if (this.AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (Tufts.ContainsKey(AllTiles[z][i, j].GetTileKeyStringNew(z, this)))
+                            if (this.Tufts.ContainsKey(this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)))
                             {
-                                for (int t = 0; t < Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z, this)].Count; t++)
+                                for (int t = 0; t < this.Tufts[this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)].Count; t++)
                                 {
-                                    Tufts[AllTiles[z][i, j].GetTileKeyStringNew(z, this)][t].Draw(spriteBatch);
+                                    this.Tufts[this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)][t].Draw(spriteBatch);
                                 }
                             }
 
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(TileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Color.White,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z] + AllTiles[z][i, j].LayerToDrawAtZOffSet);
+                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                             }
                             else
                             {
-                                spriteBatch.Draw(TileSet, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), AllTiles[z][i, j].SourceRectangle, Color.White,
-                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, AllDepths[z]);
+                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White,
+                                0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z]);
                             }
 
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
-                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(AllTiles[z][i, j].DestinationRectangle.X, AllTiles[z][i, j].DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
+                                spriteBatch.DrawString(Game1.AllTextures.MenuText, i + "," + j, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), Color.White, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, 1f);
                                 //spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, layerDepth: .73f);
                             }
 
@@ -499,9 +490,9 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && GridItem != null)
+            if (Game1.GetCurrentStageInt() == Stages.PlayerHouse && this.GridItem != null)
             {
-                GridItem.NormalDraw(spriteBatch, this, this);
+                this.GridItem.NormalDraw(spriteBatch, this, this);
             }
 
 
@@ -526,13 +517,13 @@ namespace SecretProject.Class.TileStuff
         public void UpdateCropTile()
         {
 
-            for (int x = 0; x < Crops.Count; x++)
+            for (int x = 0; x < this.Crops.Count; x++)
             {
-                Crop crop = Crops.ElementAt(x).Value;
+                Crop crop = this.Crops.ElementAt(x).Value;
                 crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
-                if (crop.CurrentGrowth < MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
+                if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
                 {
-                    int newGid = MapName.Tilesets[TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
+                    int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;
                     crop.UpdateGrowthCycle(newGid);
 
                     TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);

@@ -4,9 +4,6 @@ using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.NPCStuff
 {
@@ -25,7 +22,7 @@ namespace SecretProject.Class.NPCStuff
             new NPCSpawnData(NPCType.Boar, GenerationType.Dirt, 0f, .2f, .75f),
             new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .75f),
              new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
-             
+
         };
 
         public static List<NPCSpawnData> SandCreatures = new List<NPCSpawnData>()
@@ -38,7 +35,7 @@ namespace SecretProject.Class.NPCStuff
             SandCreatures
         };
 
-        
+
 
         public IInformationContainer Container { get; set; }
         GraphicsDevice Graphics;
@@ -46,7 +43,7 @@ namespace SecretProject.Class.NPCStuff
         public NPCGenerator(IInformationContainer container, GraphicsDevice graphics)
         {
             this.Container = container;
-            this.Graphics = graphics;
+            Graphics = graphics;
         }
 
         public void DecrementPackValue(float packValue)
@@ -60,11 +57,11 @@ namespace SecretProject.Class.NPCStuff
             NPCSpawnData spawnData = new NPCSpawnData();
             for (int i = 0; i < NPCInfo.Count; i++)
             {
-                
-                if(NPCInfo[i][0].BiomeGenerationType == tileType)
+
+                if (NPCInfo[i][0].BiomeGenerationType == tileType)
                 {
                     float testFrequency = Game1.Utility.RFloat(0, 1f);
-                    for(int j =0; j < NPCInfo[i].Count; j++)
+                    for (int j = 0; j < NPCInfo[i].Count; j++)
                     {
                         if (testFrequency >= NPCInfo[i][j].LowerSpawnFrequency && testFrequency <= NPCInfo[i][j].UpperSpawnFrequency)
                         {
@@ -76,13 +73,13 @@ namespace SecretProject.Class.NPCStuff
                             break;
                         }
 
-                        
+
                     }
-                   
+
                 }
             }
 
-            if(spawnData == null)
+            if (spawnData == null)
             {
                 return null;
             }
@@ -94,9 +91,9 @@ namespace SecretProject.Class.NPCStuff
 
 
                     int numberInPack = 0;
-                    
+
                     bool flag = true;
-                    while(flag)
+                    while (flag)
                     {
                         flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, numberInPack, position);
                     }
@@ -109,7 +106,7 @@ namespace SecretProject.Class.NPCStuff
 
         public bool DetermineWhetherAtLeastOneSpawns(float chance)
         {
-            if(Game1.Utility.RFloat(0, 1) < chance)
+            if (Game1.Utility.RFloat(0, 1) < chance)
             {
                 return true;
             }
@@ -119,12 +116,12 @@ namespace SecretProject.Class.NPCStuff
             }
         }
 
-        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info,float packFrequency, int numberAlreadyInPack, Vector2 positionToSpawn)
+        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, int numberAlreadyInPack, Vector2 positionToSpawn)
         {
-            if(Game1.Utility.RFloat(0,1) < info.PackFrequency)
+            if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);
-                enemyList.Add(info.GetNewEnemy(Graphics, positionToSpawn, Container));
+                enemyList.Add(info.GetNewEnemy(Graphics, positionToSpawn, this.Container));
                 return true;
             }
             else
@@ -155,7 +152,7 @@ namespace SecretProject.Class.NPCStuff
         /// <param name="biomeGenerationType">NPC will be allowed to spawn on this tile type</param>
         /// <param name="spawnFrequency">chance of spawning </param>
         /// <param name="packFrequency">chance that at least one more mob will spawn</param>
-        public NPCSpawnData(NPCType type, GenerationType biomeGenerationType, float lowerSpawnFrequency,float upperSpawnFrequency, float packFrequency)
+        public NPCSpawnData(NPCType type, GenerationType biomeGenerationType, float lowerSpawnFrequency, float upperSpawnFrequency, float packFrequency)
         {
             this.Type = type;
             this.BiomeGenerationType = biomeGenerationType;
@@ -166,16 +163,16 @@ namespace SecretProject.Class.NPCStuff
 
         public Enemy GetNewEnemy(GraphicsDevice graphics, Vector2 position, IInformationContainer container)
         {
-            switch (Type)
+            switch (this.Type)
             {
                 case NPCType.Boar:
-                    
+
                     return new Boar("boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
-                   
+
 
                 case NPCType.Crab:
                     return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
-  
+
                 case NPCType.Rabbit:
                     return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
 

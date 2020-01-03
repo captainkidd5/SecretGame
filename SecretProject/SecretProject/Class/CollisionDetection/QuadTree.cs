@@ -2,11 +2,8 @@
 //Steven Lambert
 
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -24,7 +21,7 @@ namespace SecretProject.Class.CollisionDetection
 
         public QuadTree(int pLevel, Rectangle pBounds)
         {
-            TotalObjects = 0;
+            this.TotalObjects = 0;
             level = pLevel;
             Objects = new List<ICollidable>();
             bounds = pBounds;

@@ -3,11 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
@@ -15,12 +11,12 @@ namespace SecretProject.Class.NPCStuff.Enemies
     {
         public Dog(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
-            NPCAnimatedSprite = new Sprite[4];
+            this.NPCAnimatedSprite = new Sprite[4];
 
-            NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
-            NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
-            NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
-            NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
+            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
+            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
+            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
+            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
 
             this.NPCRectangleXOffSet = 0;
             this.NPCRectangleYOffSet = -8;

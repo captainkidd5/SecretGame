@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
     public class Loot
     {
-        
+
         public int ID { get; set; }
         public int Probability { get; set; }
 
@@ -25,7 +21,7 @@ namespace SecretProject.Class.ItemStuff
 
         public bool DidReceive(int increasedLikelihood = 0)
         {
-            if(Game1.Utility.RGenerator.Next(0 , 101 - increasedLikelihood) < this.Probability)
+            if (Game1.Utility.RGenerator.Next(0, 101 - increasedLikelihood) < this.Probability)
             {
                 return true;
             }

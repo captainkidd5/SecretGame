@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.PathFinding
 {
@@ -13,10 +10,10 @@ namespace SecretProject.Class.PathFinding
         public GraphTraverser(Graph graph)
         {
             this.Graph = graph;
-             visited = new bool[this.Graph.Size];
+            visited = new bool[this.Graph.Size];
         }
 
-       
+
         public void TraverseDFS(int v)
 
         {
@@ -29,7 +26,7 @@ namespace SecretProject.Class.PathFinding
 
                 visited[v] = true;
 
-                foreach (int child in Graph.GetSuccessors(v))
+                foreach (int child in this.Graph.GetSuccessors(v))
 
                 {
 
@@ -45,7 +42,7 @@ namespace SecretProject.Class.PathFinding
         public int GetNextNodeInPath(int nodeStart, int nodeEnd)
         {
             nodeToReturn = 100;
-            bool[] isVisited = new bool[Graph.Size];
+            bool[] isVisited = new bool[this.Graph.Size];
             List<int> pathList = new List<int>();
 
             // add source to path[]  
@@ -83,7 +80,7 @@ namespace SecretProject.Class.PathFinding
 
             // Recur for all the vertices  
             // adjacent to current vertex  
-            foreach (int i in Graph.childNodes[nodeStart])
+            foreach (int i in this.Graph.childNodes[nodeStart])
             {
                 if (!isVisited[i])
                 {

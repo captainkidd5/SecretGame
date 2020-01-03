@@ -1,36 +1,21 @@
 ﻿
-using System.Collections.Generic;
-
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Xml.Serialization;
-
-using TiledSharp;
-
+using SecretProject.Class.CameraStuff;
+using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.Controls;
+using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.UI;
-
-using System;
-using SecretProject.Class.CameraStuff;
 using SecretProject.Class.TileStuff;
-using Microsoft.Xna.Framework.Media;
-using SecretProject.Class.Controls;
-using System.Runtime.Serialization;
-using SecretProject.Class.ItemStuff;
-using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
-using SecretProject.Class.ParticileStuff;
-using XMLData.DialogueStuff;
-using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.LightStuff;
+using System.Collections.Generic;
 using XMLData.RouteStuff;
-using SecretProject.Class.NPCStuff.Enemies;
-using XMLData.ItemStuff;
-using SecretProject.Class.CollisionDetection;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -51,7 +36,7 @@ namespace SecretProject.Class.StageFolder
         Dog Nelja;
 
 
-        public Town(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name,locationType,stageType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
+        public Town(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
         {
             this.Graphics = graphics;
             this.Content = content;
@@ -60,37 +45,37 @@ namespace SecretProject.Class.StageFolder
             mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
             if (this.BackDropNumber == 1)
             {
-                this.BackDropPosition = new Vector2(0, 200);
+                BackDropPosition = new Vector2(0, 200);
             }
-            
+
         }
 
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
             RenderTarget2D lightsTarget;
             RenderTarget2D mainTarget;
-            var pp = Graphics.PresentationParameters;
-            lightsTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
-            mainTarget = new RenderTarget2D(Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+            var pp = this.Graphics.PresentationParameters;
+            lightsTarget = new RenderTarget2D(this.Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+            mainTarget = new RenderTarget2D(this.Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
-            ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
+            this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
 
 
 
 
 
             this.Cam = camera;
-            Cam.pos.X = Game1.Player.position.X;
-            Cam.pos.Y = Game1.Player.position.Y;
+            this.Cam.pos.X = Game1.Player.position.X;
+            this.Cam.pos.Y = Game1.Player.position.Y;
 
 
 
-            TextBuilder = new TextBuilder("", .1f, 5f);
-            this.SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
+            this.TextBuilder = new TextBuilder("", .1f, 5f);
+            SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
-            this.QuadTree = new QuadTree(5, Cam.ViewPortRectangle);
-            Nelja = new Dog("Nelja", new Vector2(1200, 1300), Graphics, Game1.AllTextures.Nelja, (IInformationContainer)AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
+            this.QuadTree = new QuadTree(5, this.Cam.ViewPortRectangle);
+            Nelja = new Dog("Nelja", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.Nelja, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
             this.IsLoaded = true;
         }
 
@@ -118,28 +103,28 @@ namespace SecretProject.Class.StageFolder
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
             player.CollideOccured = false;
-            QuadTree = new QuadTree(0, Cam.ViewPortRectangle);
+            this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
 
-            foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
+            foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
             {
                 for (int z = 0; z < obj.Value.Count; z++)
                 {
-                    QuadTree.Insert(obj.Value[z]);
+                    this.QuadTree.Insert(obj.Value[z]);
                 }
             }
-            for (int i =0; i < AllItems.Count; i++)
+            for (int i = 0; i < this.AllItems.Count; i++)
             {
-                QuadTree.Insert(AllItems[i].ItemSprite);
+                this.QuadTree.Insert(this.AllItems[i].ItemSprite);
             }
 
-            QuadTree.Insert(player.BigCollider);
+            this.QuadTree.Insert(player.BigCollider);
 
-           QuadTree.Insert(player.MainCollider);
+            this.QuadTree.Insert(player.MainCollider);
 
 
-            foreach (Character character in CharactersPresent)
+            foreach (Character character in this.CharactersPresent)
             {
-                QuadTree.Insert(character.Collider);
+                this.QuadTree.Insert(character.Collider);
             }
             float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
@@ -148,11 +133,11 @@ namespace SecretProject.Class.StageFolder
             //Game1.Player.UserInterface.TextBuilder.PositionToWriteTo = ElixerNPC.Position;
             //keyboard
             Nelja.Update(gameTime, Game1.myMouseManager);
-            for (int p = 0; p < AllPortals.Count; p++)
+            for (int p = 0; p < this.AllPortals.Count; p++)
             {
-                if (player.ClickRangeRectangle.Intersects(AllPortals[p].PortalStart) && AllPortals[p].MustBeClicked)
+                if (player.ClickRangeRectangle.Intersects(this.AllPortals[p].PortalStart) && this.AllPortals[p].MustBeClicked)
                 {
-                    if (mouse.WorldMouseRectangle.Intersects(AllPortals[p].PortalStart))
+                    if (mouse.WorldMouseRectangle.Intersects(this.AllPortals[p].PortalStart))
                     {
                         Game1.isMyMouseVisible = false;
                         Game1.myMouseManager.ToggleGeneralInteraction = true;
@@ -160,20 +145,20 @@ namespace SecretProject.Class.StageFolder
                         if (mouse.IsClicked)
                         {
                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DoorOpen);
-                            Game1.SwitchStage((Stages)AllPortals[p].From, (Stages)AllPortals[p].To, AllPortals[p]);
+                            Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
                             OnSceneChanged();
-                            this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                            SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                             return;
                         }
                     }
 
 
                 }
-                else if (player.Rectangle.Intersects(AllPortals[p].PortalStart) && !AllPortals[p].MustBeClicked)
+                else if (player.Rectangle.Intersects(this.AllPortals[p].PortalStart) && !this.AllPortals[p].MustBeClicked)
                 {
-                    Game1.SwitchStage((Stages)AllPortals[p].From, (Stages)AllPortals[p].To, AllPortals[p]);
+                    Game1.SwitchStage((Stages)this.AllPortals[p].From, (Stages)this.AllPortals[p].To, this.AllPortals[p]);
                     OnSceneChanged();
-                    this.SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
+                    SceneChanged -= Game1.Player.UserInterface.HandleSceneChanged;
                     return;
                 }
             }
@@ -183,7 +168,7 @@ namespace SecretProject.Class.StageFolder
 
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
-                ShowBorders = !ShowBorders;
+                this.ShowBorders = !this.ShowBorders;
 
             }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F2)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F2)))
@@ -194,32 +179,32 @@ namespace SecretProject.Class.StageFolder
             }
 
 
-            TextBuilder.PositionToWriteTo = Game1.Elixir.Position;
-            TextBuilder.Update(gameTime);
+            this.TextBuilder.PositionToWriteTo = Game1.Elixir.Position;
+            this.TextBuilder.Update(gameTime);
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
             if (Game1.CurrentWeather != WeatherType.None)
             {
-                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, LocationType);
+                Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, this.LocationType);
             }
-            ParticleEngine.Update(gameTime);
+            this.ParticleEngine.Update(gameTime);
 
             if (!Game1.freeze)
             {
                 Game1.GlobalClock.Update(gameTime);
                 //--------------------------------------
                 //Update players
-                
-                player.Update(gameTime, AllItems, mouse);
-                Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), MapRectangle);
+
+                player.Update(gameTime, this.AllItems, mouse);
+                this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
-                    AllRisingText[i].Update(gameTime, AllRisingText);
+                    this.AllRisingText[i].Update(gameTime, this.AllRisingText);
                 }
                 //--------------------------------------
                 //Update sprites
-                foreach (Sprite spr in AllSprites)
+                foreach (Sprite spr in this.AllSprites)
                 {
                     if (spr.IsBeingDragged == true)
                     {
@@ -227,15 +212,15 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                AllTiles.Update(gameTime, mouse);
-                for (int s = 0; s < AllTextToWrite.Count; s++)
+                this.AllTiles.Update(gameTime, mouse);
+                for (int s = 0; s < this.AllTextToWrite.Count; s++)
                 {
-                    AllTextToWrite[s].Update(gameTime, AllTextToWrite);
+                    this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                for (int i = 0; i < AllItems.Count; i++)
+                for (int i = 0; i < this.AllItems.Count; i++)
                 {
-                    AllItems[i].Update(gameTime);
+                    this.AllItems[i].Update(gameTime);
                 }
 
                 foreach (Character character in Game1.AllCharacters)
@@ -267,11 +252,11 @@ namespace SecretProject.Class.StageFolder
                     graphics.SetRenderTarget(lightsTarget);
                     //graphics.Clear(Color.White);
                     graphics.Clear(new Color(50, 50, 50, 256));
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: Cam.getTransformation(graphics));
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
                     for (int l = 0; l < this.AllLights.Count; l++)
                     {
-                        AllLights[l].Draw(spriteBatch);
+                        this.AllLights[l].Draw(spriteBatch);
                     }
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
@@ -283,21 +268,21 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Cam.getTransformation(graphics));
+                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics));
 
                 graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                if(Game1.CurrentWeather != WeatherType.None)
+                if (Game1.CurrentWeather != WeatherType.None)
                 {
-                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, LocationType);
+                    Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType);
                 }
-                
-                ParticleEngine.Draw(spriteBatch);
 
-                Nelja.Draw(spriteBatch, Graphics);
+                this.ParticleEngine.Draw(spriteBatch);
+
+                Nelja.Draw(spriteBatch, this.Graphics);
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
-                    AllRisingText[i].Draw(spriteBatch);
+                    this.AllRisingText[i].Draw(spriteBatch);
                 }
 
 
@@ -307,21 +292,21 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                TextBuilder.Draw(spriteBatch, .71f);
+                this.TextBuilder.Draw(spriteBatch, .71f);
 
-                if (ShowBorders)
+                if (this.ShowBorders)
                 {
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
                     Nelja.DrawDebug(spriteBatch, 1f);
 
-                    foreach (Character character in CharactersPresent)
+                    foreach (Character character in this.CharactersPresent)
                     {
                         character.DrawDebug(spriteBatch, .4f);
                     }
                 }
 
-                AllTiles.DrawTiles(spriteBatch);
+                this.AllTiles.DrawTiles(spriteBatch);
 
                 // mouse.Draw(spriteBatch, 1);
                 //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
@@ -335,20 +320,20 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Draw sprite list
 
-                foreach (var sprite in AllSprites)
+                foreach (var sprite in this.AllSprites)
                 {
                     //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
 
-                for (int i = 0; i < AllItems.Count; i++)
+                for (int i = 0; i < this.AllItems.Count; i++)
                 {
-                    AllItems[i].Draw(spriteBatch);
+                    this.AllItems[i].Draw(spriteBatch);
                 }
 
-                foreach (KeyValuePair<string, List<ICollidable>> obj in AllTiles.Objects)
+                foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
                 {
-                    if (ShowBorders)
+                    if (this.ShowBorders)
                     {
                         for (int j = 0; j < obj.Value.Count; j++)
                         {
@@ -370,7 +355,7 @@ namespace SecretProject.Class.StageFolder
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                if (IsDark)
+                if (this.IsDark)
                 {
                     Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
                     Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
@@ -382,7 +367,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.End();
             }
             Game1.Player.DrawUserInterface(spriteBatch);
- 
+
             //  Graphics.SetRenderTarget(null);
         }
         #endregion

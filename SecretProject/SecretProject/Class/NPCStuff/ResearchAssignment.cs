@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecretProject.Class.NPCStuff
+﻿namespace SecretProject.Class.NPCStuff
 {
     public class ResearchAssignment
     {
@@ -21,8 +15,8 @@ namespace SecretProject.Class.NPCStuff
 
         public bool ContinueResearch()
         {
-            DaysUntilCompletion--;
-            if(DaysUntilCompletion <= 0)
+            this.DaysUntilCompletion--;
+            if (this.DaysUntilCompletion <= 0)
             {
                 this.Complete = true;
                 return true;

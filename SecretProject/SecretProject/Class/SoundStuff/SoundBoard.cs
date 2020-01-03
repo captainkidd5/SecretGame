@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 
@@ -15,7 +8,7 @@ namespace SecretProject.Class.SoundStuff
     public class SoundBoard
     {
         //Change this to enable sound
-        public float GameVolume { get; set; } =1f;
+        public float GameVolume { get; set; } = 1f;
         //Sound Effects are WAV
         //Songs are MP3
         public SoundEffect PickUpItem { get; set; }
@@ -124,7 +117,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect UIClick;
         public SoundBoard(Game1 game, ContentManager content)
         {
-            PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
+            this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
 
 
             GrassBreak = content.Load<SoundEffect>("SoundEffects/grassBreakWav");
@@ -216,10 +209,10 @@ namespace SecretProject.Class.SoundStuff
             Downpour = content.Load<SoundEffect>("Songs/Downpour");
 
             this.CurrentSong = Title;
-            this.CurrentSongInstance = CurrentSong.CreateInstance();
+            this.CurrentSongInstance = this.CurrentSong.CreateInstance();
 
             //Emoticons
-            Exclamation = content.Load<SoundEffect>("SoundEffects/exclamation");
+            this.Exclamation = content.Load<SoundEffect>("SoundEffects/exclamation");
 
             //UI
             UIClick = content.Load<SoundEffect>("SoundEffects/UIClick");
@@ -229,8 +222,8 @@ namespace SecretProject.Class.SoundStuff
         {
             if (this.CurrentSongInstance.State == SoundState.Stopped)
             {
-                this.CurrentSongInstance = FetchNewSong().CreateInstance() ;
-                this.CurrentSongInstance.Volume = GameVolume * .4f;
+                this.CurrentSongInstance = FetchNewSong().CreateInstance();
+                this.CurrentSongInstance.Volume = this.GameVolume * .4f;
                 this.CurrentSongInstance.Play();
             }
 
@@ -243,7 +236,7 @@ namespace SecretProject.Class.SoundStuff
                 case Stages.MainMenu:
                     return Title;
                 case Stages.OverWorld:
-                
+
                     return DustStorm;
                 case Stages.Town:
                     return Lakescape;
@@ -258,12 +251,12 @@ namespace SecretProject.Class.SoundStuff
         public void PlayOpenUI()
         {
 
-            UIClick.Play(GameVolume, 1f, 1f);
+            UIClick.Play(this.GameVolume, 1f, 1f);
         }
         public void PlayCloseUI()
         {
 
-            UIClick.Play(GameVolume, .5f, 1f);
+            UIClick.Play(this.GameVolume, .5f, 1f);
         }
 
         public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false, float pitchCap = 1f)
@@ -273,11 +266,11 @@ namespace SecretProject.Class.SoundStuff
             //instance.Play();
             //instance.Dispose();
             float pitch = 0f;
-            if(randomizePitch)
+            if (randomizePitch)
             {
                 pitch = Game1.Utility.RFloat(0, pitchCap);
             }
-            soundEffect.Play(GameVolume, pitch, 1f);
+            soundEffect.Play(this.GameVolume, pitch, 1f);
         }
 
         public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
@@ -290,7 +283,7 @@ namespace SecretProject.Class.SoundStuff
                 {
                     if (soundEffect.State == SoundState.Stopped)
                     {
-                        soundEffect.Volume = GameVolume;
+                        soundEffect.Volume = this.GameVolume;
 
                         soundEffect.Play();
                     }
@@ -307,7 +300,7 @@ namespace SecretProject.Class.SoundStuff
             switch (emoticonType)
             {
                 case EmoticonType.Exclamation:
-                    PlaySoundEffectInstance(Exclamation, true);
+                    PlaySoundEffectInstance(this.Exclamation, true);
                     break;
             }
 
@@ -340,18 +333,18 @@ namespace SecretProject.Class.SoundStuff
                         break;
                     case 5:
 
-                        PlaySoundEffectInstance(PickUpItem);
+                        PlaySoundEffectInstance(this.PickUpItem);
                         break;
                     case 6:
-                       
+
                         PlaySoundEffectInstance(GrassBreak);
                         break;
                     case 7:
-                       
+
                         PlaySoundEffectInstance(DigDirt);
                         break;
                     case 8:
-                        
+
                         PlaySoundEffectInstance(StoneSmash);
                         break;
                     //day time sound effects

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
@@ -48,7 +43,7 @@ namespace SecretProject.Class.Controls
         public float RelativeMouseX { get; set; }
         public float RelativeMouseY { get; set; }
 
-        
+
 
         public int XTileOffSet { get; set; } = Game1.Utility.CenterScreenX;
         public int YTileOffSet { get; set; } = Game1.Utility.CenterScreenY;
@@ -98,9 +93,9 @@ namespace SecretProject.Class.Controls
 
         }
 
-        public MouseManager( Camera2D camera, GraphicsDevice graphicsDevice)
+        public MouseManager(Camera2D camera, GraphicsDevice graphicsDevice)
         {
-            IsClicked = false;
+            this.IsClicked = false;
             this.Camera1 = camera;
             this.graphicsDevice = graphicsDevice;
             this.NormalInteractionSourceRectangle = new Rectangle(48, 256, 32, 32);
@@ -117,66 +112,66 @@ namespace SecretProject.Class.Controls
 
 
             //HELD
-            this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
+            this.HeldCursorSourceRectangle = this.NormalInteractionPressedSourceRectangle;
             this.RequiredHoldTime = .15f;
 
-            OldMouseInterfacePosition = Vector2.Zero;
+            this.OldMouseInterfacePosition = Vector2.Zero;
         }
 
         public void Update(GameTime gameTime)
         {
             //ChangeMouseTexture(-50);
-            IsClicked = false;
-            IsRightClicked = false;
-            IsDown = false;
-            
+            this.IsClicked = false;
+            this.IsRightClicked = false;
+            this.IsDown = false;
+
             HasScrollWheelValueIncreased = false;
             HasScrollWheelValueDecreased = false;
 
-            OldMouseInterfacePosition = UIPosition;
-            MouseState oldMouse = MyMouse;
-            MyMouse = Mouse.GetState();
+            this.OldMouseInterfacePosition = this.UIPosition;
+            MouseState oldMouse = this.MyMouse;
+            this.MyMouse = Mouse.GetState();
             ///
             OldScrollWheelValue = oldMouse.ScrollWheelValue;
-            NewScrollWheelValue = MyMouse.ScrollWheelValue;
+            NewScrollWheelValue = this.MyMouse.ScrollWheelValue;
 
-            if(NewScrollWheelValue > OldScrollWheelValue)
+            if (NewScrollWheelValue > OldScrollWheelValue)
             {
                 HasScrollWheelValueIncreased = true;
             }
-            else if(NewScrollWheelValue < OldScrollWheelValue)
+            else if (NewScrollWheelValue < OldScrollWheelValue)
             {
                 HasScrollWheelValueDecreased = true;
             }
             ///
-            worldPosition = Vector2.Transform(Position, Matrix.Invert(Camera1.GetViewMatrix(Vector2.One)));
+            worldPosition = Vector2.Transform(this.Position, Matrix.Invert(this.Camera1.GetViewMatrix(Vector2.One)));
 
 
-            Position = new Vector2(MyMouse.Position.X, MyMouse.Position.Y);
+            this.Position = new Vector2(this.MyMouse.Position.X, this.MyMouse.Position.Y);
 
-            UIPosition = new Vector2(MyMouse.Position.X - 20, MyMouse.Position.Y - 20);
-
-            
-
-                WorldMousePosition = new Vector2((int)worldPosition.X - XTileOffSet, (int)worldPosition.Y - YTileOffSet);
+            this.UIPosition = new Vector2(this.MyMouse.Position.X - 20, this.MyMouse.Position.Y - 20);
 
 
-            MouseRectangle = new Rectangle(MyMouse.X, MyMouse.Y, 1, 1);
-            SquarePosition = GetMouseSquarePosition(WorldMousePosition);
-            MouseSquareCoordinateRectangle = new Rectangle((int)SquarePosition.X, (int)SquarePosition.Y, 16, 16);
-           
+
+            this.WorldMousePosition = new Vector2((int)worldPosition.X - this.XTileOffSet, (int)worldPosition.Y - this.YTileOffSet);
 
 
-            
+            this.MouseRectangle = new Rectangle(this.MyMouse.X, this.MyMouse.Y, 1, 1);
+            this.SquarePosition = GetMouseSquarePosition(this.WorldMousePosition);
+            this.MouseSquareCoordinateRectangle = new Rectangle((int)this.SquarePosition.X, (int)this.SquarePosition.Y, 16, 16);
 
-            WorldMouseRectangle = new Rectangle((int)WorldMousePosition.X, (int)WorldMousePosition.Y, 1, 1);
 
-            if (MyMouse.LeftButton == ButtonState.Pressed)
+
+
+
+            this.WorldMouseRectangle = new Rectangle((int)this.WorldMousePosition.X, (int)this.WorldMousePosition.Y, 1, 1);
+
+            if (this.MyMouse.LeftButton == ButtonState.Pressed)
             {
-                IsDown = true;
-                HoldTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.IsDown = true;
+                this.HoldTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (HoldTimer > RequiredHoldTime)
+            if (this.HoldTimer > this.RequiredHoldTime)
             {
 
                 this.IsClickedAndHeld = true;
@@ -184,26 +179,26 @@ namespace SecretProject.Class.Controls
                 Game1.isMyMouseVisible = false;
                 this.ToggleGeneralInteraction = true;
             }
-            if(MyMouse.LeftButton == ButtonState.Released)
+            if (this.MyMouse.LeftButton == ButtonState.Released)
             {
-                if(IsClickedAndHeld)
+                if (this.IsClickedAndHeld)
                 {
-                    
-                    IsClickedAndHeld = false;
+
+                    this.IsClickedAndHeld = false;
 
                 }
-                else if(oldMouse.LeftButton == ButtonState.Pressed)
+                else if (oldMouse.LeftButton == ButtonState.Pressed)
                 {
-                    IsClicked = true;
+                    this.IsClicked = true;
                 }
-                HoldTimer = 0f;
+                this.HoldTimer = 0f;
             }
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch, float depth)
-        {      
-            if(ToggleGeneralInteraction)
+        {
+            if (this.ToggleGeneralInteraction)
             {
                 Game1.isMyMouseVisible = false;
                 if (this.IsClickedAndHeld)
@@ -214,9 +209,9 @@ namespace SecretProject.Class.Controls
                 {
                     spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.CursorSourceRectangle, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 1f);
                 }
-                
+
             }
-            
+
 
         }
 
@@ -227,35 +222,35 @@ namespace SecretProject.Class.Controls
             switch (type)
             {
                 case CursorType.Normal:
-                    this.CursorSourceRectangle = NormalInteractionSourceRectangle;
-                    this.HeldCursorSourceRectangle = NormalInteractionPressedSourceRectangle;
+                    this.CursorSourceRectangle = this.NormalInteractionSourceRectangle;
+                    this.HeldCursorSourceRectangle = this.NormalInteractionPressedSourceRectangle;
                     break;
                 case CursorType.Chopping:
-                    this.CursorSourceRectangle = ChoppingInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.ChoppingInteractionSourceRectangle;
                     break;
                 case CursorType.Mining:
-                    this.CursorSourceRectangle = MiningInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.MiningInteractionSourceRectangle;
                     break;
                 case CursorType.Planting:
-                    this.CursorSourceRectangle = PlantInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.PlantInteractionSourceRectangle;
                     break;
                 case CursorType.Digging:
-                    this.CursorSourceRectangle = DiggingInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.DiggingInteractionSourceRectangle;
                     break;
                 case CursorType.Chat:
-                    this.CursorSourceRectangle = ChatInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.ChatInteractionSourceRectangle;
                     break;
                 case CursorType.Door:
-                    this.CursorSourceRectangle = DoorInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.DoorInteractionSourceRectangle;
                     break;
                 case CursorType.Currency:
-                    this.CursorSourceRectangle = CurrencyInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.CurrencyInteractionSourceRectangle;
                     break;
                 case CursorType.NextChatWindow:
-                    this.CursorSourceRectangle = NextChatWindowInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.NextChatWindowInteractionSourceRectangle;
                     break;
                 default:
-                    this.CursorSourceRectangle = NormalInteractionSourceRectangle;
+                    this.CursorSourceRectangle = this.NormalInteractionSourceRectangle;
                     break;
 
 
@@ -268,13 +263,13 @@ namespace SecretProject.Class.Controls
             return new Vector2((int)(mousePosition.X / 16), (int)(mousePosition.Y / 16));
         }
 
-        
+
 
 
         public bool IsHovering(Rectangle rectangle)
         {
 
-            if (MouseRectangle.Intersects(rectangle))
+            if (this.MouseRectangle.Intersects(rectangle))
             {
                 return true;
             }
@@ -287,7 +282,7 @@ namespace SecretProject.Class.Controls
 
         public bool IsHoveringTile(Rectangle rectangle)
         {
-            Rectangle offSetRectange = new Rectangle((int)WorldMousePosition.X,(int)WorldMousePosition.Y, 1, 1);
+            Rectangle offSetRectange = new Rectangle((int)this.WorldMousePosition.X, (int)this.WorldMousePosition.Y, 1, 1);
             if (offSetRectange.Intersects(rectangle))
             {
                 return true;
@@ -303,7 +298,7 @@ namespace SecretProject.Class.Controls
             if (this.SquarePosition.X > 0 && this.SquarePosition.Y > 0)
             {
 
-                return container.AllTiles[0][(int)SquarePosition.X / (container.X + 1), (int)SquarePosition.Y / (container.Y + 1)];
+                return container.AllTiles[0][(int)this.SquarePosition.X / (container.X + 1), (int)this.SquarePosition.Y / (container.Y + 1)];
 
             }
             else
@@ -320,11 +315,11 @@ namespace SecretProject.Class.Controls
             {
                 for (int i = 0; i < container.AllTiles.Count; i++)
                 {
-                    tilesToReturn[i] = container.AllTiles[i][(int)SquarePosition.X / (container.X + 1), (int)SquarePosition.Y / (container.Y + 1)];
+                    tilesToReturn[i] = container.AllTiles[i][(int)this.SquarePosition.X / (container.X + 1), (int)this.SquarePosition.Y / (container.Y + 1)];
                 }
             }
             return tilesToReturn;
         }
     }
-        
+
 }

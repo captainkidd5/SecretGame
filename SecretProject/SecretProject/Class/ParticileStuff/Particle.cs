@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ParticileStuff
 {
@@ -39,8 +34,8 @@ namespace SecretProject.Class.ParticileStuff
 
             this.BaseY = Game1.Utility.RFloat(position.Y - 5, position.Y + 20);
 
-                this.Size = Game1.Utility.RFloat(sizeMin, sizeMax);
-            
+            this.Size = Game1.Utility.RFloat(sizeMin, sizeMax);
+
 
             this.VelocityReductionTimer = Game1.Utility.RFloat(.25f, .5f);
 
@@ -49,21 +44,21 @@ namespace SecretProject.Class.ParticileStuff
 
         public virtual void Update(GameTime gameTime)
         {
-            VelocityReductionTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(VelocityReductionTimer < 0)
+            this.VelocityReductionTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (this.VelocityReductionTimer < 0)
             {
-                
-                Velocity = new Vector2(Velocity.X, Velocity.Y + .1f);
+
+                this.Velocity = new Vector2(this.Velocity.X, this.Velocity.Y + .1f);
             }
-            TTL--;
-           
-            Position += Velocity;
-            if (Position.Y > BaseY + 10)
+            this.TTL--;
+
+            this.Position += this.Velocity;
+            if (this.Position.Y > this.BaseY + 10)
             {
-                Position = new Vector2(Position.X, Position.Y - Velocity.Y);
+                this.Position = new Vector2(this.Position.X, this.Position.Y - this.Velocity.Y);
             }
-                //Position = new Vector2(Position.X, Position.Y )
-                Angle += AngularVelocity;
+            //Position = new Vector2(Position.X, Position.Y )
+            this.Angle += this.AngularVelocity;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -72,10 +67,10 @@ namespace SecretProject.Class.ParticileStuff
             Vector2 origin = new Vector2(this.ParticleTexture.Width / 2, this.ParticleTexture.Height / 2);
 
 
-                spriteBatch.Draw(this.ParticleTexture, Position, sourceRectangle, Color * ColorMultiplier,
-                                Angle, origin, Size, SpriteEffects.None, LayerDepth);
-            
-            
+            spriteBatch.Draw(this.ParticleTexture, this.Position, sourceRectangle, this.Color * this.ColorMultiplier,
+                            this.Angle, origin, this.Size, SpriteEffects.None, this.LayerDepth);
+
+
         }
     }
 }

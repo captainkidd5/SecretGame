@@ -7,14 +7,10 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.Transportation;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using TiledSharp;
 using XMLData.ItemStuff;
-using static SecretProject.Class.TileStuff.Procedural;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -70,7 +66,7 @@ namespace SecretProject.Class.TileStuff
         public WorldTileManager TileManager { get; set; }
         public List<int[,]> AdjacentNoise { get; set; }
 
-        public List<ObstacleGrid> AdjacentObstacleGrids{ get; set; }
+        public List<ObstacleGrid> AdjacentObstacleGrids { get; set; }
 
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
@@ -87,29 +83,29 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
             this.X = x;
             this.Y = y;
-            this.ChunkPosition = new Point(X, Y);
+            this.ChunkPosition = new Point(this.X, this.Y);
             this.ArrayI = arrayI;
             this.ArrayJ = arrayJ;
-            Objects = new Dictionary<string, List<ICollidable>>();
-            AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
-            TileHitPoints = new Dictionary<string, int>();
-            StoreableItems = new Dictionary<string, IStorableItemBuilding>();
-            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-            AllTiles = new List<Tile[,]>();
-            Lights = new List<LightSource>();
-            Crops = new Dictionary<string, Crop>();
-            ForeGroundOffSetDictionary = new Dictionary<float, string>();
-            Tufts = new Dictionary<string, List<GrassTuft>>();
+            this.Objects = new Dictionary<string, List<ICollidable>>();
+            this.AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
+            this.TileHitPoints = new Dictionary<string, int>();
+            this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+            this.AllTiles = new List<Tile[,]>();
+            this.Lights = new List<LightSource>();
+            this.Crops = new Dictionary<string, Crop>();
+            this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
+            this.Tufts = new Dictionary<string, List<GrassTuft>>();
             for (int i = 0; i < 4; i++)
             {
-                AllTiles.Add(new Tile[TileUtility.ChunkWidth, TileUtility.ChunkWidth]);
+                this.AllTiles.Add(new Tile[TileUtility.ChunkWidth, TileUtility.ChunkWidth]);
             }
 
-            Enemies = new List<Enemy>();
-            NPCGenerator = new NPCGenerator(this, GraphicsDevice);
+            this.Enemies = new List<Enemy>();
+            this.NPCGenerator = new NPCGenerator(this, this.GraphicsDevice);
 
             SetRectangleTexture(this.GraphicsDevice);
-            AdjacentObstacleGrids = new List<ObstacleGrid>();
+            this.AdjacentObstacleGrids = new List<ObstacleGrid>();
 
         }
 
@@ -122,7 +118,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Save()
         {
-            AreReadersAndWritersDone = false;
+            this.AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenWrite(path))
             {
@@ -138,16 +134,16 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
-                                binaryWriter.Write(AllTiles[z][i, j].GID + 1);
-                                binaryWriter.Write(AllTiles[z][i, j].X);
-                                binaryWriter.Write(AllTiles[z][i, j].Y);
+                                binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
+                                binaryWriter.Write(this.AllTiles[z][i, j].X);
+                                binaryWriter.Write(this.AllTiles[z][i, j].Y);
 
                             }
                         }
                     }
 
 
-                    binaryWriter.Write(StoreableItems.Count);
+                    binaryWriter.Write(this.StoreableItems.Count);
                     foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
                     {
 
@@ -172,7 +168,7 @@ namespace SecretProject.Class.TileStuff
 
                     }
 
-                    binaryWriter.Write(Crops.Count);
+                    binaryWriter.Write(this.Crops.Count);
                     foreach (KeyValuePair<string, Crop> crop in this.Crops)
                     {
                         binaryWriter.Write(crop.Key);
@@ -186,7 +182,7 @@ namespace SecretProject.Class.TileStuff
 
                     }
 
-                    binaryWriter.Write(Tufts.Count);
+                    binaryWriter.Write(this.Tufts.Count);
                     foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
                     {
                         binaryWriter.Write(tuft.Key);
@@ -204,14 +200,14 @@ namespace SecretProject.Class.TileStuff
                     binaryWriter.Close();
                 }
             }
-            AreReadersAndWritersDone = true;
+            this.AreReadersAndWritersDone = true;
         }
 
 
 
         public void Load()
         {
-            AreReadersAndWritersDone = false;
+            this.AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenRead(path))
             {
@@ -221,7 +217,7 @@ namespace SecretProject.Class.TileStuff
                 {
 
 
-                    PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+                    this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
                     for (int z = 0; z < 4; z++)
                     {
                         for (int i = 0; i < TileUtility.ChunkWidth; i++)
@@ -231,8 +227,8 @@ namespace SecretProject.Class.TileStuff
                                 int gid = binaryReader.ReadInt32();
                                 int x = binaryReader.ReadInt32();
                                 int y = binaryReader.ReadInt32();
-                                AllTiles[z][i, j] = new Tile(x, y, gid);
-                                TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                                this.AllTiles[z][i, j] = new Tile(x, y, gid);
+                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
                             }
                         }
                     }
@@ -318,12 +314,12 @@ namespace SecretProject.Class.TileStuff
                         List<GrassTuft> tufts = new List<GrassTuft>();
                         for (int j = 0; j < smallListCount; j++)
                         {
-                            GrassTuft tuft = new GrassTuft(GraphicsDevice, binaryReader.ReadInt32(),
+                            GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
                                 new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
                             tuft.TuftsIsPartOf = tufts;
                             tufts.Add(tuft);
                         }
-                        Tufts.Add(key, tufts);
+                        this.Tufts.Add(key, tufts);
                     }
 
 
@@ -333,11 +329,11 @@ namespace SecretProject.Class.TileStuff
                         if (tile != null)
                         {
                             TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                            if(tilingContainer != null)
+                            if (tilingContainer != null)
                             {
-                                Game1.OverWorld.Enemies.AddRange(NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                             }
-                           
+
                         }
 
 
@@ -348,7 +344,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            AreReadersAndWritersDone = true;
+            this.AreReadersAndWritersDone = true;
         }
         /// <summary>
         /// Tries X times at random to find a tile which doesn't contain an obstacle
@@ -361,9 +357,9 @@ namespace SecretProject.Class.TileStuff
             {
                 int randomSpawnX = Game1.Utility.RNumber(2, 14);
                 int randomSpawnY = Game1.Utility.RNumber(2, 14);
-                if (PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
+                if (this.PathGrid.Weight[randomSpawnX, randomSpawnY] == 1)
                 {
-                    return AllTiles[0][randomSpawnX, randomSpawnY];
+                    return this.AllTiles[0][randomSpawnX, randomSpawnY];
                 }
             }
 
@@ -375,7 +371,7 @@ namespace SecretProject.Class.TileStuff
         public void Generate()
         {
 
-            PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             float[,] noise = new float[16, 16];
 
             for (int i = 0; i < 16; i++)
@@ -428,7 +424,7 @@ namespace SecretProject.Class.TileStuff
 
 
                         int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
-                        AllTiles[z][i, j] = new Tile(i, j, newGID);
+                        this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
 
@@ -443,13 +439,13 @@ namespace SecretProject.Class.TileStuff
                     for (int j = 0; j < TileUtility.ChunkHeight; j++)
                     {
 
-                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(AllTiles[z][i, j].GID);
+                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GID);
                         if (container != null)
                         {
                             this.GeneratableTiles = container.GeneratableTiles;
                             this.TilingDictionary = container.TilingDictionary;
 
-                            this.MainGid = AllTiles[z][i, j].GID + 1;
+                            this.MainGid = this.AllTiles[z][i, j].GID + 1;
                             Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
                         }
 
@@ -463,8 +459,8 @@ namespace SecretProject.Class.TileStuff
             {
                 //STARTING CHUNK
 
-                AllTiles[3][8, 5] = new Tile(8, 5, 9025);
-                AllTiles[1][8, 5] = new Tile(8, 4, 9625);
+                this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
+                this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
 
             }
             else
@@ -473,12 +469,12 @@ namespace SecretProject.Class.TileStuff
                 GenerateLandscape();
             }
 
-        List<int> CliffBottomTiles = new List<int>()
+            List<int> CliffBottomTiles = new List<int>()
         {
             3033, 3034, 3035
         };
 
-           
+
 
             for (int z = 0; z < 4; z++)
             {
@@ -508,7 +504,7 @@ namespace SecretProject.Class.TileStuff
                         //}
                         if (z == 2)
                         {
-                            if (CliffBottomTiles.Contains(AllTiles[3][i, j].GID))
+                            if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
                             {
 
                                 int counter = 1;
@@ -519,12 +515,12 @@ namespace SecretProject.Class.TileStuff
                                     {
 
 
-                                        AllTiles[2][i, j + counter].GID = AllTiles[3][i, j].GID + 1 + 100 * counter;
+                                        this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
 
-                                        AllTiles[3][i, j + counter].GID = 0;
+                                        this.AllTiles[3][i, j + counter].GID = 0;
                                         if (c < j + 4)
                                         {
-                                            AllTiles[0][i, j + counter].GID = 0;
+                                            this.AllTiles[0][i, j + counter].GID = 0;
                                         }
 
                                         counter++;
@@ -534,13 +530,13 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
 
-                        AllTiles[z][i, j].X = AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
-                        AllTiles[z][i, j].Y = AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+                        this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                        this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
 
-                        TileUtility.AssignProperties(AllTiles[z][i, j], z, i, j, this);
+                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
                         if (z == 1)
                         {
-                            AddGrassTufts(AllTiles[z][i, j]);
+                            AddGrassTufts(this.AllTiles[z][i, j]);
                         }
 
                     }
@@ -553,12 +549,12 @@ namespace SecretProject.Class.TileStuff
                 if (tile != null)
                 {
                     TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                    if(container != null)
+                    if (container != null)
                     {
-                        Game1.OverWorld.Enemies.AddRange(NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                        Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                     }
 
-                  
+
                 }
 
 
@@ -643,12 +639,12 @@ namespace SecretProject.Class.TileStuff
                         {
 
                             newCliffGID += 100;
-                            AllTiles[2][i, newY].GID = newCliffGID;
+                            this.AllTiles[2][i, newY].GID = newCliffGID;
                             if (newCliffGID != 3535)
                             {
-                                AllTiles[0][i, newY].GID = 0;
+                                this.AllTiles[0][i, newY].GID = 0;
 
-                                AllTiles[1][i, newY].GID = 0;
+                                this.AllTiles[1][i, newY].GID = 0;
 
                             }
 
@@ -680,13 +676,13 @@ namespace SecretProject.Class.TileStuff
                                 + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + Game1.Utility.RGenerator.Next(-8, 8)));
                             grassTuft.TuftsIsPartOf = tufts;
                             tufts.Add(grassTuft);
-                            if (Tufts.ContainsKey(tile.GetTileKeyStringNew(0, this)) || Objects.ContainsKey(tile.GetTileKeyStringNew(0, this)))
+                            if (this.Tufts.ContainsKey(tile.GetTileKeyStringNew(0, this)) || this.Objects.ContainsKey(tile.GetTileKeyStringNew(0, this)))
                             {
 
                             }
                             else
                             {
-                                Tufts.Add(tile.GetTileKeyStringNew(0, this), tufts);
+                                this.Tufts.Add(tile.GetTileKeyStringNew(0, this), tufts);
 
                             }
                         }
@@ -719,8 +715,8 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-            RectangleTexture = new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
-            RectangleTexture.SetData<Color>(Colors.ToArray());
+            this.RectangleTexture = new Texture2D(graphicsDevice, chunkRectangle.Width, chunkRectangle.Height);
+            this.RectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
         #region STATIC METHODS

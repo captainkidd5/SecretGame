@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -52,14 +48,14 @@ namespace SecretProject.Class.UI
 
         public bool UpdateRisingText(GameTime gameTime)
         {
-             if (this.YStart > this.YEnd)
+            if (this.YStart > this.YEnd)
             {
-                YStart -= (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
+                this.YStart -= (float)gameTime.ElapsedGameTime.TotalSeconds * this.Speed;
 
-                this.RisingTextPosition = new Vector2(Game1.Player.position.X, YStart);
-                if(this.Fade)
+                this.RisingTextPosition = new Vector2(Game1.Player.position.X, this.YStart);
+                if (this.Fade)
                 {
-                    Color = this.Color * .98f;
+                    this.Color = this.Color * .98f;
                 }
                 return true;
             }
@@ -72,7 +68,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.RisingTextString, this.RisingTextPosition, this.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         }
 
 

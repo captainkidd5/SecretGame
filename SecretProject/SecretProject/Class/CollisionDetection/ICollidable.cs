@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -16,7 +11,7 @@ namespace SecretProject.Class.CollisionDetection
         NPC = 2,
         Enemy = 3,
         Item = 4,
-        Undetectable = 5, 
+        Undetectable = 5,
         PlayerBigBox = 6
     }
     public interface ICollidable

@@ -11,8 +11,6 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -63,36 +61,36 @@ namespace SecretProject.Class.UI
             this.SmallBackgroundSourceRectangle = new Rectangle(208, 688, 336, 32);
             this.Scale = 2f;
             this.SmallPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth / 4, Game1.PresentationParameters.BackBufferHeight * .9f);
-            this.BigPosition = new Vector2(SmallPosition.X, SmallPosition.Y - LargeBackgroundSourceRectangle.Height * Scale + 32 * Scale);
-            
-           
-            
+            this.BigPosition = new Vector2(this.SmallPosition.X, this.SmallPosition.Y - this.LargeBackgroundSourceRectangle.Height * this.Scale + 32 * this.Scale);
 
-            AllSlots = new List<Button>();
+
+
+
+            this.AllSlots = new List<Button>();
             int index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y ), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
+                this.AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), this.Graphics, new Vector2(this.BigPosition.X + 32 * index * this.Scale + 16, this.SmallPosition.Y), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 32 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
+                this.AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), this.Graphics, new Vector2(this.BigPosition.X + 32 * index * this.Scale + 16, this.SmallPosition.Y - 32 * this.Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             index = 0;
             for (int i = 0; i < 10; i++)
             {
-                AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), Graphics, new Vector2(BigPosition.X + 32 * index * Scale + 16, SmallPosition.Y - 64 * Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
+                this.AllSlots.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(208, 80, 32, 32), this.Graphics, new Vector2(this.BigPosition.X + 32 * index * this.Scale + 16, this.SmallPosition.Y - 64 * this.Scale - 16), CursorType.Normal) { ItemCounter = 0, Index = i + 1, HitBoxScale = 2f });
                 index++;
             }
             TextBuilder = new TextBuilder("", .01f, 5);
 
-           ExpandedButtonRectangle = new Rectangle(544, 656, 16, 48);
-            RetractedButtonRectangle = new Rectangle(560, 656, 16, 48);
-            ExpandButton = new Button(Game1.AllTextures.UserInterfaceTileSet, ExpandedButtonRectangle, graphics, new Vector2(SmallPosition.X + SmallBackgroundSourceRectangle.Width * Scale, SmallPosition.Y), CursorType.Normal, Scale);
-           
+            this.ExpandedButtonRectangle = new Rectangle(544, 656, 16, 48);
+            this.RetractedButtonRectangle = new Rectangle(560, 656, 16, 48);
+            ExpandButton = new Button(Game1.AllTextures.UserInterfaceTileSet, this.ExpandedButtonRectangle, graphics, new Vector2(this.SmallPosition.X + this.SmallBackgroundSourceRectangle.Width * this.Scale, this.SmallPosition.Y), CursorType.Normal, this.Scale);
+
             AllActions = new List<ActionTimer>();
         }
 
@@ -102,23 +100,23 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                if (Expanded)
+                if (this.Expanded)
                 {
-                    NumberOfSlotsToUpdate = 30;
-                    ExpandButton.BackGroundSourceRectangle = RetractedButtonRectangle;
-                    
+                    this.NumberOfSlotsToUpdate = 30;
+                    ExpandButton.BackGroundSourceRectangle = this.RetractedButtonRectangle;
+
                 }
                 else
                 {
-                    NumberOfSlotsToUpdate = 10;
-                    ExpandButton.BackGroundSourceRectangle = ExpandedButtonRectangle;
-                   
+                    this.NumberOfSlotsToUpdate = 10;
+                    ExpandButton.BackGroundSourceRectangle = this.ExpandedButtonRectangle;
+
                 }
                 ExpandButton.Update(Game1.myMouseManager);
                 if (ExpandButton.isClicked)
                 {
-                    Expanded = !Expanded;
-                    if(Expanded)
+                    this.Expanded = !this.Expanded;
+                    if (this.Expanded)
                     {
                         Game1.SoundManager.PlayOpenUI();
                     }
@@ -128,20 +126,20 @@ namespace SecretProject.Class.UI
                     }
                 }
                 UpdateScrollWheel(Game1.myMouseManager);
-                DragSprite = null;
-                MouseIntersectsBackDrop = false;
-                if (WasSliderUpdated && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+                this.DragSprite = null;
+                this.MouseIntersectsBackDrop = false;
+                if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
                 {
 
-                    ItemSwitchSourceRectangle = GetCurrentItemTexture();
+                    this.ItemSwitchSourceRectangle = GetCurrentItemTexture();
                 }
-                else if (WasSliderUpdated && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count <= 0)
+                else if (WasSliderUpdated && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count <= 0)
                 {
-                    ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
+                    this.ItemSwitchSourceRectangle = new Rectangle(80, 0, 1, 1);
                 }
 
 
-                if (this.WasSliderUpdated && GetCurrentEquippedTool() != 666)
+                if (WasSliderUpdated && GetCurrentEquippedTool() != 666)
                 {
                     //this might be broken
                     CheckGridItem();
@@ -156,68 +154,68 @@ namespace SecretProject.Class.UI
 
                 if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Q)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Q)))
                 {
-                    if (Inventory.currentInventory[currentSliderPosition - 1].SlotItems.Count > 0)
+                    if (this.Inventory.currentInventory[currentSliderPosition - 1].SlotItems.Count > 0)
                     {
                         EjectItem();
                     }
                 }
 
-                MouseIntersectsBackDrop = DoesMouseIntersectBackDrop();
-                
+                this.MouseIntersectsBackDrop = DoesMouseIntersectBackDrop();
+
 
                 TextBuilder.Update(gameTime);
-                IsAnySlotHovered = false;
+                this.IsAnySlotHovered = false;
 
 
-                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
+                for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
-                    UpdateInventorySlotTexture(Inventory, i);
-                    AllSlots[i].Update(Game1.myMouseManager);
-                    if (AllSlots[i].IsHovered)
+                    UpdateInventorySlotTexture(this.Inventory, i);
+                    this.AllSlots[i].Update(Game1.myMouseManager);
+                    if (this.AllSlots[i].IsHovered)
                     {
-                        IsAnySlotHovered = true;
-                        if (AllSlots[i].ItemCounter > 0)
+                        this.IsAnySlotHovered = true;
+                        if (this.AllSlots[i].ItemCounter > 0)
                         {
-                            TextBuilder.Activate(false, TextBoxType.normal, false, Inventory.currentInventory[i].GetItem().Name, 1f,
-                      new Vector2(AllSlots[i].Position.X, AllSlots[i].Position.Y - 32), 200f);
+                            TextBuilder.Activate(false, TextBoxType.normal, false, this.Inventory.currentInventory[i].GetItem().Name, 1f,
+                      new Vector2(this.AllSlots[i].Position.X, this.AllSlots[i].Position.Y - 32), 200f);
                             Game1.Player.UserInterface.InfoBox.IsActive = true;
                             switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
                             {
                                 case ExclusiveInterfaceItem.ShopMenu:
-                                    Game1.Player.UserInterface.InfoBox.FitText(Inventory.currentInventory[i].GetItem().Name + ":  " + "Shop will buy for " + Inventory.currentInventory[i].GetItem().Price + ".", 1f);
-                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
-                                    if(AllSlots[i].isClicked)
+                                    Game1.Player.UserInterface.InfoBox.FitText(this.Inventory.currentInventory[i].GetItem().Name + ":  " + "Shop will buy for " + this.Inventory.currentInventory[i].GetItem().Price + ".", 1f);
+                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
+                                    if (this.AllSlots[i].isClicked)
                                     {
-                                        
-                                        Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(Inventory.currentInventory[i].GetItem(), 1);
-                                        Inventory.currentInventory[i].RemoveItemFromSlot();
+
+                                        Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(this.Inventory.currentInventory[i].GetItem(), 1);
+                                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
                                     }
                                     break;
 
                                 default:
-                                    Game1.Player.UserInterface.InfoBox.FitText(Inventory.currentInventory[i].GetItem().Name + ":  " + Inventory.currentInventory[i].GetItem().Description, 1f);
-                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, AllSlots[i].Position.Y - 150);
+                                    Game1.Player.UserInterface.InfoBox.FitText(this.Inventory.currentInventory[i].GetItem().Name + ":  " + this.Inventory.currentInventory[i].GetItem().Description, 1f);
+                                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     break;
                             }
                             if (Game1.myMouseManager.IsClicked)
                             {
                                 if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                                 {
-                                    Item item = Inventory.currentInventory[i].GetItem();
+                                    Item item = this.Inventory.currentInventory[i].GetItem();
                                     if (item != null)
                                     {
 
                                         if (Game1.Player.UserInterface.CurrentAccessedStorableItem != null)
                                         {
-                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(Inventory.currentInventory[i].GetItem()))
+                                            if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[i].GetItem()))
                                             {
                                                 bool playAnimation = false;
-                                                for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                                for (int shiftItem = this.Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                                 {
                                                     if (Game1.Player.UserInterface.CurrentAccessedStorableItem.Inventory.TryAddItem(item))
                                                     {
                                                         playAnimation = true;
-                                                        Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+                                                        this.Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
 
                                                     }
                                                     else
@@ -225,7 +223,7 @@ namespace SecretProject.Class.UI
                                                         break;
                                                     }
                                                 }
-                                                if(playAnimation)
+                                                if (playAnimation)
                                                 {
                                                     Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking, .25f);
                                                 }
@@ -235,11 +233,11 @@ namespace SecretProject.Class.UI
                                         {
                                             if (Game1.Player.Inventory.AddToFirstEmptySlotOnly(item))
                                             {
-                                                for (int shiftItem = Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                                for (int shiftItem = this.Inventory.currentInventory[i].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                                 {
                                                     if (Game1.Player.Inventory.TryAddItem(item))
                                                     {
-                                                        Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
+                                                        this.Inventory.currentInventory[i].SlotItems.RemoveAt(shiftItem);
 
                                                     }
                                                     else
@@ -256,15 +254,15 @@ namespace SecretProject.Class.UI
                         }
 
                     }
-                    if (AllSlots[i].isClickedAndHeld && AllSlots[i].ItemCounter != 0)
+                    if (this.AllSlots[i].isClickedAndHeld && this.AllSlots[i].ItemCounter != 0)
                     {
-                        Item tempItem = Inventory.currentInventory[i].GetItem();
+                        Item tempItem = this.Inventory.currentInventory[i].GetItem();
 
-                        Sprite tempSprite = new Sprite(Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,
+                        Sprite tempSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, Game1.Player.Inventory.currentInventory.ElementAt(i).SlotItems[0].SourceTextureRectangle,
                             Game1.myMouseManager.WorldMousePosition, 16, 16)
                         { IsBeingDragged = true, TextureScaleX = 5f, TextureScaleY = 5f };
-                        DragSprite = tempSprite;
-                        DragSprite.Update(gameTime, new Vector2(Game1.myMouseManager.Position.X - 16, Game1.myMouseManager.Position.Y - 16));
+                        this.DragSprite = tempSprite;
+                        this.DragSprite.Update(gameTime, new Vector2(Game1.myMouseManager.Position.X - 16, Game1.myMouseManager.Position.Y - 16));
                         Game1.myMouseManager.ChangeMouseTexture(CursorType.Normal);
 
 
@@ -272,31 +270,31 @@ namespace SecretProject.Class.UI
                 }
 
 
-                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
+                for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
                     //INTERACTIONS WITH RELEASE ITEM 
-                    if (AllSlots[i].wasJustReleased && AllSlots[i].ItemCounter > 0)
+                    if (this.AllSlots[i].wasJustReleased && this.AllSlots[i].ItemCounter > 0)
                     {
-                        if (MouseIntersectsBackDrop)
+                        if (this.MouseIntersectsBackDrop)
                         {
 
 
                             this.WasSlotJustReleased = true;
 
-                            Item tempItem = Inventory.currentInventory[i].GetItem();
+                            Item tempItem = this.Inventory.currentInventory[i].GetItem();
                             this.ItemJustReleased = tempItem;
 
-                            if (IsAnySlotHovered)
+                            if (this.IsAnySlotHovered)
                             {
                                 int index = 0;
-                                for (int m = 0; m < AllSlots.Count; m++)
+                                for (int m = 0; m < this.AllSlots.Count; m++)
                                 {
                                     index = m;
-                                    if (AllSlots[m].IsHovered)
+                                    if (this.AllSlots[m].IsHovered)
                                     {
-                                        InventorySlot currentItems = Inventory.currentInventory[i];
-                                        Inventory.currentInventory[i] = Inventory.currentInventory[m];
-                                        Inventory.currentInventory[m] = currentItems;
+                                        InventorySlot currentItems = this.Inventory.currentInventory[i];
+                                        this.Inventory.currentInventory[i] = this.Inventory.currentInventory[m];
+                                        this.Inventory.currentInventory[m] = currentItems;
 
                                         return;
                                     }
@@ -311,18 +309,18 @@ namespace SecretProject.Class.UI
                         else if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
                         {
 
-                                Item tempItem = Inventory.currentInventory[i].GetItem();
-                                int currentItemCount = AllSlots[i].ItemCounter;
-                                for (int j = 0; j < currentItemCount; j++)
-                                {
-                                    Inventory.currentInventory[i].RemoveItemFromSlot();
-                                    AllSlots[i].ItemCounter--;
+                            Item tempItem = this.Inventory.currentInventory[i].GetItem();
+                            int currentItemCount = this.AllSlots[i].ItemCounter;
+                            for (int j = 0; j < currentItemCount; j++)
+                            {
+                                this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                                this.AllSlots[i].ItemCounter--;
 
-                                    Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
-                                    newWorldItem.IsTossable = true;
-                                    Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+                                Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+                                newWorldItem.IsTossable = true;
+                                Game1.GetCurrentStage().AllItems.Add(newWorldItem);
 
-                                }
+                            }
 
 
                         }
@@ -334,9 +332,9 @@ namespace SecretProject.Class.UI
 
         private bool DoesMouseIntersectBackDrop()
         {
-            if(Expanded)
+            if (this.Expanded)
             {
-                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)BigPosition.X, (int)BigPosition.Y, (int)(LargeBackgroundSourceRectangle.Width * Scale), (int)(LargeBackgroundSourceRectangle.Height * Scale))))
+                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)this.BigPosition.X, (int)this.BigPosition.Y, (int)(this.LargeBackgroundSourceRectangle.Width * this.Scale), (int)(this.LargeBackgroundSourceRectangle.Height * this.Scale))))
                 {
                     return true;
 
@@ -348,7 +346,7 @@ namespace SecretProject.Class.UI
             }
             else
             {
-                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)SmallPosition.X, (int)SmallPosition.Y, (int)(SmallBackgroundSourceRectangle.Width * Scale), (int)(SmallBackgroundSourceRectangle.Height * Scale))))
+                if (Game1.myMouseManager.MouseRectangle.Intersects(new Rectangle((int)this.SmallPosition.X, (int)this.SmallPosition.Y, (int)(this.SmallBackgroundSourceRectangle.Width * this.Scale), (int)(this.SmallBackgroundSourceRectangle.Height * this.Scale))))
                 {
                     return true;
 
@@ -358,7 +356,7 @@ namespace SecretProject.Class.UI
                     return false;
                 }
             }
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -367,37 +365,37 @@ namespace SecretProject.Class.UI
             {
 
                 ExpandButton.Draw(spriteBatch);
-                
+
                 TextBuilder.Draw(spriteBatch, .75f);
-                if(Expanded)
+                if (this.Expanded)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, BigPosition, this.LargeBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BigPosition, this.LargeBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
                 }
                 else
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, SmallPosition, this.SmallBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.SmallPosition, this.SmallBackgroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .1f);
                 }
-              
-                for (int i = 0; i < NumberOfSlotsToUpdate; i++)
+
+                for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
-                    if (AllSlots[i].IsHovered)
+                    if (this.AllSlots[i].IsHovered)
                     {
-                        AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White * .5f, 2f, 2f, Game1.Utility.StandardButtonDepth);
+                        this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White * .5f, 2f, 2f, Game1.Utility.StandardButtonDepth);
                     }
                     else
                     {
-                        AllSlots[i].Draw(spriteBatch, AllSlots[i].ItemSourceRectangleToDraw, AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, AllSlots[i].ItemCounter.ToString(), new Vector2(AllSlots[i].Position.X + 5, AllSlots[i].Position.Y + 5), Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth);
+                        this.AllSlots[i].Draw(spriteBatch, this.AllSlots[i].ItemSourceRectangleToDraw, this.AllSlots[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.AllSlots[i].ItemCounter.ToString(), new Vector2(this.AllSlots[i].Position.X + 5, this.AllSlots[i].Position.Y + 5), Color.White, 2f, 2f, Game1.Utility.StandardButtonDepth);
                     }
 
                 }
-                if (DragSprite != null)
+                if (this.DragSprite != null)
                 {
 
 
-                    DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
+                    this.DragSprite.DrawFromUIToWorld(spriteBatch, .72f);
                 }
 
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)AllSlots[currentSliderPosition - 1].Position.X, (int)AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle((int)this.AllSlots[currentSliderPosition - 1].Position.X, (int)this.AllSlots[currentSliderPosition - 1].Position.Y, 68, 67), new Rectangle(80, 0, 68, 67),
                     Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .71f);
             }
 
@@ -406,11 +404,11 @@ namespace SecretProject.Class.UI
         public void EjectItem()
         {
 
-            Item newWorldItem = Game1.ItemVault.GenerateNewItem(Inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
+            Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
             newWorldItem.IsTossable = true;
             Game1.GetCurrentStage().AllItems.Add(newWorldItem);
-            Inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
-            AllSlots[currentSliderPosition - 1].ItemCounter--;
+            this.Inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
+            this.AllSlots[currentSliderPosition - 1].ItemCounter--;
 
         }
 
@@ -418,23 +416,23 @@ namespace SecretProject.Class.UI
         {
             if (Inventory.currentInventory.ElementAt(index) == null)
             {
-                AllSlots[index].ItemCounter = 0;
+                this.AllSlots[index].ItemCounter = 0;
 
             }
             else
             {
-                AllSlots[index].ItemCounter = Inventory.currentInventory.ElementAt(index).SlotItems.Count;
+                this.AllSlots[index].ItemCounter = Inventory.currentInventory.ElementAt(index).SlotItems.Count;
             }
 
-            if (AllSlots[index].ItemCounter > 0)
+            if (this.AllSlots[index].ItemCounter > 0)
             {
-                AllSlots[index].Texture = Inventory.currentInventory.ElementAt(index).SlotItems[0].ItemSprite.AtlasTexture;
-                AllSlots[index].ItemSourceRectangleToDraw = Inventory.currentInventory.ElementAt(index).SlotItems[0].SourceTextureRectangle;
+                this.AllSlots[index].Texture = Inventory.currentInventory.ElementAt(index).SlotItems[0].ItemSprite.AtlasTexture;
+                this.AllSlots[index].ItemSourceRectangleToDraw = Inventory.currentInventory.ElementAt(index).SlotItems[0].SourceTextureRectangle;
             }
             else
             {
-                AllSlots[index].Texture = Game1.AllTextures.UserInterfaceTileSet;
-                AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(1568, 0, 32, 32);
+                this.AllSlots[index].Texture = Game1.AllTextures.UserInterfaceTileSet;
+                this.AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(1568, 0, 32, 32);
             }
         }
 
@@ -444,16 +442,16 @@ namespace SecretProject.Class.UI
             {
                 if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsInventoryHovered)
                 {
-                    if(Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(Inventory.currentInventory[index].GetItem()))
+                    if (Game1.Player.UserInterface.CurrentAccessedStorableItem.IsItemAllowedToBeStored(this.Inventory.currentInventory[index].GetItem()))
                     {
-                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(Inventory.currentInventory[index].GetItem()))
+                        if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(this.Inventory.currentInventory[index].GetItem()))
                         {
                             Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
-                            Inventory.currentInventory[index].RemoveItemFromSlot();
-                            AllSlots[index].ItemCounter--;
+                            this.Inventory.currentInventory[index].RemoveItemFromSlot();
+                            this.AllSlots[index].ItemCounter--;
                         }
                     }
-                    
+
                 }
                 return true;
             }
@@ -529,9 +527,9 @@ namespace SecretProject.Class.UI
         #endregion
         public int GetCurrentEquippedTool()
         {
-            if (Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            if (this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
-                return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().ID;
+                return this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().ID;
             }
             else
             {
@@ -541,9 +539,9 @@ namespace SecretProject.Class.UI
 
         public Item GetCurrentEquippedToolAsItem()
         {
-            if (Inventory != null && Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
+            if (this.Inventory != null && this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).SlotItems.Count > 0)
             {
-                return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
+                return this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem();
             }
             else
             {
@@ -606,7 +604,7 @@ namespace SecretProject.Class.UI
 
         public Rectangle GetCurrentItemTexture()
         {
-            return Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
+            return this.Inventory.currentInventory.ElementAt(currentSliderPosition - 1).GetItem().SourceTextureRectangle;
         }
 
         public void DrawToStageMatrix(SpriteBatch spriteBatch)

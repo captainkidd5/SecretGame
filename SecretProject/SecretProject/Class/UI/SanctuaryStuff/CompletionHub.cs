@@ -5,14 +5,11 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XMLData.SanctuaryStuff;
 
 namespace SecretProject.Class.UI.SanctuaryStuff
 {
-    public class CompletionHub :IExclusiveInterfaceComponent
+    public class CompletionHub : IExclusiveInterfaceComponent
     {
         public GraphicsDevice Graphics { get; set; }
         public List<CompletionGuide> AllGuides { get; set; }
@@ -27,13 +24,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             SanctuaryHolder ForestHolder = content.Load<SanctuaryHolder>("SanctuarySTuff/ForestSanctuary");
             this.Graphics = graphicsDevice;
-            AllGuides = new List<CompletionGuide>()
+            this.AllGuides = new List<CompletionGuide>()
             {
-               new CompletionGuide(Graphics, ForestHolder),
+               new CompletionGuide(this.Graphics, ForestHolder),
             };
-            ActiveGuide = AllGuides[0];
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), Graphics,
-                new Vector2(AllGuides[0].BackGroundPosition.X + AllGuides[0].BackGroundSourceRectangle.Width  - 32, AllGuides[0].BackGroundPosition.Y - AllGuides[0].BackGroundSourceRectangle.Height), CursorType.Normal);
+            ActiveGuide = this.AllGuides[0];
+            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.Graphics,
+                new Vector2(this.AllGuides[0].BackGroundPosition.X + this.AllGuides[0].BackGroundSourceRectangle.Width - 32, this.AllGuides[0].BackGroundPosition.Y - this.AllGuides[0].BackGroundSourceRectangle.Height), CursorType.Normal);
 
         }
 

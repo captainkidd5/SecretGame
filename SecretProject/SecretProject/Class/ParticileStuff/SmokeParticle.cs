@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ParticileStuff
 {
@@ -18,50 +14,50 @@ namespace SecretProject.Class.ParticileStuff
 
         public SmokeParticle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f) : base(particleTexture, position, velocity, angle, angularVelocity, color, size, ttl, layerDepth = 1f)
         {
-            GroundLevel = Game1.Utility.RGenerator.Next(45, 65);
-            SinMultiplier = 0;
-            One = 1;
+            this.GroundLevel = Game1.Utility.RGenerator.Next(45, 65);
+            this.SinMultiplier = 0;
+            this.One = 1;
 
 
 
-            Direction = Game1.Utility.RGenerator.Next(0, 2);
+            this.Direction = Game1.Utility.RGenerator.Next(0, 2);
 
         }
 
         public override void Update(GameTime gameTime)
         {
 
-            TTL--;
+            this.TTL--;
 
-            Position -= Velocity;
-            if(Direction == 0)
+            this.Position -= this.Velocity;
+            if (this.Direction == 0)
             {
-                SinMultiplier += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.SinMultiplier += (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
-                SinMultiplier -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            
-
-            if(SinMultiplier >= .5f)
-            {
-                One = One * -1;
-            }
-            if (SinMultiplier <= -.5f)
-            {
-                One = One * -1;
+                this.SinMultiplier -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
-            SinMultiplier = SinMultiplier * One;
 
-
-            Position = new Vector2(Position.X + (float)Math.Sin(SinMultiplier), Position.Y);
-           // Position.X += Math.Sin(SinMultiplier);
-            if (Position.Y < BaseY - GroundLevel)
+            if (this.SinMultiplier >= .5f)
             {
-                Position = new Vector2(Position.X, Position.Y + Velocity.Y);
-                TTL = 40;
+                this.One = this.One * -1;
+            }
+            if (this.SinMultiplier <= -.5f)
+            {
+                this.One = this.One * -1;
+            }
+
+            this.SinMultiplier = this.SinMultiplier * this.One;
+
+
+            this.Position = new Vector2(this.Position.X + (float)Math.Sin(this.SinMultiplier), this.Position.Y);
+            // Position.X += Math.Sin(SinMultiplier);
+            if (this.Position.Y < this.BaseY - this.GroundLevel)
+            {
+                this.Position = new Vector2(this.Position.X, this.Position.Y + this.Velocity.Y);
+                this.TTL = 40;
             }
 
         }

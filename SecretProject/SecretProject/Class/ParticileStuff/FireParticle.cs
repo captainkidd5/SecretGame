@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ParticileStuff
 {
@@ -15,15 +10,15 @@ namespace SecretProject.Class.ParticileStuff
 
         public FireParticle(Texture2D particleTexture, Vector2 position, Vector2 velocity, float angle, float angularVelocity, Color color, float size, int ttl, float layerDepth = 1f) : base(particleTexture, position, velocity, angle, angularVelocity, color, size, ttl, layerDepth = 1f)
         {
-            GroundLevel = Game1.Utility.RFloat(.25f, .5f);
+            this.GroundLevel = Game1.Utility.RFloat(.25f, .5f);
 
-            if(Game1.Utility.RGenerator.Next(0, 2) == 0)
+            if (Game1.Utility.RGenerator.Next(0, 2) == 0)
             {
-                LayerDepth = layerDepth + -.5f;
+                this.LayerDepth = layerDepth + -.5f;
             }
             else
             {
-                LayerDepth = layerDepth;
+                this.LayerDepth = layerDepth;
             }
             this.BaseY = position.Y;
         }
@@ -31,19 +26,19 @@ namespace SecretProject.Class.ParticileStuff
         public override void Update(GameTime gameTime)
         {
 
-            TTL--;
+            this.TTL--;
 
-            Position -= Velocity;
+            this.Position -= this.Velocity;
 
-            
+
 
 
 
             // Position.X += Math.Sin(SinMultiplier);
-            if (Position.Y < BaseY - GroundLevel)
+            if (this.Position.Y < this.BaseY - this.GroundLevel)
             {
-                Position = new Vector2(Position.X, Position.Y + Velocity.Y);
-                TTL = 20;
+                this.Position = new Vector2(this.Position.X, this.Position.Y + this.Velocity.Y);
+                this.TTL = 20;
             }
 
         }

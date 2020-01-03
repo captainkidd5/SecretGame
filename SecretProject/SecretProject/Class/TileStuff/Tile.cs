@@ -1,15 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.ItemStuff;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using TiledSharp;
-using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -45,35 +34,35 @@ namespace SecretProject.Class.TileStuff
             this.Y = y;
 
             this.GID = gID;
-            
-            
+
+
 
         }
 
         public string GetTileKeyStringNew(int layer, IInformationContainer container)
         {
-            return "" + X + "," + Y + "," + layer;
+            return "" + this.X + "," + this.Y + "," + layer;
         }
 
         public string GetTileKey(int layer)
         {
-            string XString = X.ToString();
-            if(XString.Length < 4)
+            string XString = this.X.ToString();
+            if (XString.Length < 4)
             {
-               XString = XString.PadLeft(4, '0');
+                XString = XString.PadLeft(4, '0');
             }
-            string YString = Y.ToString();
+            string YString = this.Y.ToString();
             if (YString.Length < 4)
             {
-               YString = YString.PadLeft(4, '0');
+                YString = YString.PadLeft(4, '0');
             }
             return layer.ToString() + XString + YString;
-            
+
         }
 
         public int GetTileKeyAsInt(int layer, IInformationContainer container)
         {
-            return (X << 16) | (Y << 9) | layer;
+            return (this.X << 16) | (this.Y << 9) | layer;
         }
 
 

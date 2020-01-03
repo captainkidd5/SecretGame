@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecretProject.Class.CollisionDetection
+﻿namespace SecretProject.Class.CollisionDetection
 {
+    using Microsoft.Xna.Framework;
     using System.Collections;
     using System.Collections.Generic;
-    using Microsoft.Xna.Framework;
 
     namespace SecretProject.Class.CollisionDetection
     {
@@ -53,7 +47,7 @@ namespace SecretProject.Class.CollisionDetection
             /// <param name="data">The data value to wrap</param>
             public QuadTreeObject(T data)
             {
-                Data = data;
+                this.Data = data;
             }
         }
 
@@ -292,7 +286,7 @@ namespace SecretProject.Class.CollisionDetection
             ///<filterpriority>2</filterpriority>
             IEnumerator IEnumerable.GetEnumerator()
             {
-                return this.GetEnumerator();
+                return GetEnumerator();
             }
 
             #endregion
@@ -407,7 +401,7 @@ namespace SecretProject.Class.CollisionDetection
             /// </summary>
             public bool IsEmptyLeaf
             {
-                get { return Count == 0 && childTL == null; }
+                get { return this.Count == 0 && childTL == null; }
             }
 
             #endregion
@@ -573,7 +567,7 @@ namespace SecretProject.Class.CollisionDetection
             private void Relocate(QuadTreeObject<T> item)
             {
                 // Are we still inside our parent?
-                if (QuadRect.Contains(item.Data.Rect))
+                if (this.QuadRect.Contains(item.Data.Rect))
                 {
                     // Good, have we moved inside any of our children?
                     if (childTL != null)
@@ -618,7 +612,7 @@ namespace SecretProject.Class.CollisionDetection
                         childBL = null;
                         childBR = null;
 
-                        if (parent != null && Count == 0)
+                        if (parent != null && this.Count == 0)
                         {
                             parent.CleanUpwards();
                         }
@@ -627,7 +621,7 @@ namespace SecretProject.Class.CollisionDetection
                 else
                 {
                     // I could be one of 4 empty leaves, tell my parent to clean up
-                    if (parent != null && Count == 0)
+                    if (parent != null && this.Count == 0)
                     {
                         parent.CleanUpwards();
                     }
@@ -764,12 +758,12 @@ namespace SecretProject.Class.CollisionDetection
                 // We can't do anything if the results list doesn't exist
                 if (results != null)
                 {
-                    if (searchRect.Contains(this.rect))
+                    if (searchRect.Contains(rect))
                     {
                         // If the search area completely contains this quad, just get every object this quad and all it's children have
                         GetAllObjects(ref results);
                     }
-                    else if (searchRect.Intersects(this.rect))
+                    else if (searchRect.Intersects(rect))
                     {
                         // Otherwise, if the quad isn't fully contained, only add objects that intersect with the search rectangle
                         if (objects != null)

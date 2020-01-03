@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Xml.Serialization;
-using SecretProject.Class.Playable;
-using Microsoft.Xna.Framework;
-using SecretProject.Class.ItemStuff;
-using SecretProject.Class.Universal;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -21,13 +13,13 @@ namespace SecretProject.Class.SavingStuff
         public SaveLoadManager()
         {
             //mySave = new SaveData();
-            
+
         }
 
         public void Save()
         {
 
-            
+
             //ORDER REALLY MATTERS
             FileStream fileStream = File.OpenWrite(@"Content/SaveFiles/BinarySave.dat");
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
@@ -46,7 +38,7 @@ namespace SecretProject.Class.SavingStuff
             FileStream fileStream = File.OpenRead(@"Content/SaveFiles/BinarySave.dat");
             BinaryReader binaryReader = new BinaryReader(fileStream);
             GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
-           // GameSerializer.ReadWorld(Game1.World, graphics, binaryReader, 1);
+            // GameSerializer.ReadWorld(Game1.World, graphics, binaryReader, 1);
             GameSerializer.ReadClock(Game1.GlobalClock, binaryReader, 1);
 
             binaryReader.Close();
@@ -54,7 +46,7 @@ namespace SecretProject.Class.SavingStuff
 
         }
 
-        
+
 
 
 
@@ -66,17 +58,17 @@ namespace SecretProject.Class.SavingStuff
 
     }
 }
-        
-        
-                
-                
-            
-            
-            
-            
-        
-        
 
-        
-    
+
+
+
+
+
+
+
+
+
+
+
+
 

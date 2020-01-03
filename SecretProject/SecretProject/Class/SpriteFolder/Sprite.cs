@@ -3,10 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.SpriteFolder
 {
@@ -90,14 +86,14 @@ namespace SecretProject.Class.SpriteFolder
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
             this.SourceRectangle = sourceRectangle;
-            this.Position = position;
+            Position = position;
             this.Velocity = Vector2.Zero;
             this.Width = width;
             this.Height = height;
             this.Rotation = 0f;
             this.RotationAnchor = 0f;
             this.Origin = Game1.Utility.Origin;
-            
+
         }
 
         //for animated sprites
@@ -112,26 +108,26 @@ namespace SecretProject.Class.SpriteFolder
             this.FrameHeight = frameHeight;
             this.TotalFrames = totalFrames;
             this.AnimationSpeed = animationSpeed;
-            this.Position = positionToDrawTo;
+            Position = positionToDrawTo;
             this.OffSetX = offSetX;
             this.OffSetY = offSetY;
             this.Color = Color.White;
             this.Rotation = 0f;
             this.RotationAnchor = 0f;
-            
+
         }
 
 
 
         public void Update(GameTime gameTime)
         {
-            if(IsAnimated)
+            if (this.IsAnimated)
             {
-                UpdateAnimations(gameTime,Position);
+                UpdateAnimations(gameTime, Position);
             }
             // this.Rectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
-            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
-            this.Rectangle = DestinationRectangle;
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
+            this.Rectangle = this.DestinationRectangle;
         }
 
 
@@ -139,115 +135,115 @@ namespace SecretProject.Class.SpriteFolder
         {
 
 
-            if(this.IsSpinning)
+            if (this.IsSpinning)
             {
                 Spin(gameTime, this.SpinAmount, this.SpinSpeed);
             }
-                this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
-            this.Rectangle = DestinationRectangle;
-            this.Position = position;
-            
+            this.DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
+            this.Rectangle = this.DestinationRectangle;
+            Position = position;
+
         }
 
         public void UpdateAnimations(GameTime gameTime, Vector2 position)
         {
-            this.Position = position;
-            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(AnimationTimer <= 0)
+            Position = position;
+            this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (this.AnimationTimer <= 0)
             {
-                CurrentFrame++;
-                AnimationTimer = AnimationSpeed;
+                this.CurrentFrame++;
+                this.AnimationTimer = this.AnimationSpeed;
             }
-            if(CurrentFrame == TotalFrames)
+            if (this.CurrentFrame == this.TotalFrames)
             {
-                CurrentFrame = 0;
+                this.CurrentFrame = 0;
             }
-            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
-            
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+
         }
 
         public void UpdateAnimationPosition(Vector2 position)
         {
-            destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
-            DestinationRectangle = new Rectangle((int)position.X + OffSetX, (int)position.Y + OffSetY, FrameWidth, FrameHeight);
-            this.Rectangle = DestinationRectangle;
+            destinationVector = new Vector2(position.X + this.OffSetX, position.Y + this.OffSetY);
+            this.DestinationRectangle = new Rectangle((int)position.X + this.OffSetX, (int)position.Y + this.OffSetY, this.FrameWidth, this.FrameHeight);
+            this.Rectangle = this.DestinationRectangle;
         }
 
         public void UpdatePlayerPartAnimations(GameTime gameTime, Vector2 position)
         {
-            this.Position = position;
-            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (AnimationTimer <= 0)
+            Position = position;
+            this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (this.AnimationTimer <= 0)
             {
-                CurrentFrame++;
-                AnimationTimer = AnimationSpeed;
+                this.CurrentFrame++;
+                this.AnimationTimer = this.AnimationSpeed;
             }
-            if (CurrentFrame == TotalFrames)
+            if (this.CurrentFrame == this.TotalFrames)
             {
-                CurrentFrame = 0;
+                this.CurrentFrame = 0;
             }
-            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
         }
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            DestinationRectangle = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
 
-            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier,rotation: this.Rotation,origin: this.Origin, layerDepth: layerDepth, scale:new Vector2(TextureScaleX, TextureScaleY));
+            spriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
+                    color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
 
-            
+
         }
 
         public void DrawFromUIToWorld(SpriteBatch spriteBatch, float layerDepth)
         {
-            DestinationRectangle = new Rectangle((int)this.Position.X , (int)this.Position.Y , (int)(Width * TextureScaleX), (int)(Height * TextureScaleY));
+            this.DestinationRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.Width * this.TextureScaleX), (int)(this.Height * this.TextureScaleY));
 
-            spriteBatch.Draw(AtlasTexture, sourceRectangle: SourceRectangle, destinationRectangle: DestinationRectangle,
-                    color: Color.White * ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(TextureScaleX, TextureScaleY));
+            spriteBatch.Draw(this.AtlasTexture, sourceRectangle: this.SourceRectangle, destinationRectangle: this.DestinationRectangle,
+                    color: Color.White * this.ColorMultiplier, rotation: this.Rotation, origin: this.Origin, layerDepth: 1f, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
         }
 
         public void DrawAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth, float rotation = 0f)
         {
-           if(this.Flip)
+            if (this.Flip)
             {
-                spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
-                    color: this.Color * ColorMultiplier,effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+                    color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
             }
             else
             {
-                spriteBatch.Draw(AtlasTexture, currentPosition, sourceRectangle: SourceRectangle,
-                    color: this.Color * ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(TextureScaleX, TextureScaleY));
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+                    color: this.Color * this.ColorMultiplier, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(this.TextureScaleX, this.TextureScaleY));
             }
-            
+
         }
 
         //for ship sprites
-        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position,float rotation, Vector2 origin, float layerDepth)
+        public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float rotation, Vector2 origin, float layerDepth)
         {
 
-            spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f,SpriteEffects.None, layerDepth );
+            spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f, SpriteEffects.None, layerDepth);
         }
 
         public void Bobber(GameTime gameTime)
         {
 
 
-            if (IsBobbing)
+            if (this.IsBobbing)
             {
-                BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (BobberTimer > 3)
+                this.BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (this.BobberTimer > 3)
                 {
-                    BobberTimer = 0f;
+                    this.BobberTimer = 0f;
                 }
-                if (BobberTimer < 1.5f)
+                if (this.BobberTimer < 1.5f)
                 {
-                    this.Position.Y += .05f;
+                    Position.Y += .05f;
                 }
 
-                if (BobberTimer >= 1.5f && BobberTimer < 3f)
+                if (this.BobberTimer >= 1.5f && this.BobberTimer < 3f)
                 {
-                    this.Position.Y -= .05f;
+                    Position.Y -= .05f;
                 }
 
             }
@@ -255,49 +251,49 @@ namespace SecretProject.Class.SpriteFolder
 
         public void Toss(GameTime gameTime, float x, float y)
         {
-            if (IsTossed == false)
+            if (this.IsTossed == false)
             {
 
 
 
-                TossTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.TossTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (TossTimer < 1)
+                if (this.TossTimer < 1)
                 {
                     switch (Game1.Player.controls.Direction)
                     {
                         case Dir.Right:
-                            this.Position.X += x * 1f * Game1.Utility.RGenerator.Next(1,2);
-                            this.Position.Y += y * .1f;
+                            Position.X += x * 1f * Game1.Utility.RGenerator.Next(1, 2);
+                            Position.Y += y * .1f;
                             break;
                         case Dir.Left:
-                            this.Position.X -= x * 1f * Game1.Utility.RGenerator.Next(1, 2);
-                            this.Position.Y += y * .1f;
+                            Position.X -= x * 1f * Game1.Utility.RGenerator.Next(1, 2);
+                            Position.Y += y * .1f;
                             break;
                         case Dir.Up:
-                            this.Position.X += x * .1f;
-                            this.Position.Y -= y * 1f * Game1.Utility.RGenerator.Next(1, 2);
+                            Position.X += x * .1f;
+                            Position.Y -= y * 1f * Game1.Utility.RGenerator.Next(1, 2);
                             break;
                         case Dir.Down:
-                            this.Position.X += x * .1f;
-                            this.Position.Y += y * 1.25f * Game1.Utility.RGenerator.Next(1, 2);
+                            Position.X += x * .1f;
+                            Position.Y += y * 1.25f * Game1.Utility.RGenerator.Next(1, 2);
                             this.LayerDepth = 1f;
                             break;
                     }
 
-                    
+
 
                 }
-                if (TossTimer >= 1)
+                if (this.TossTimer >= 1)
                 {
-                    IsTossed = true;
+                    this.IsTossed = true;
                 }
             }
         }
 
         public void Spin(GameTime gameTime, float amount, float speed)
         {
-            if(amount >  0)
+            if (amount > 0)
             {
                 if (this.RotationAnchor < amount)
                 {
@@ -312,9 +308,9 @@ namespace SecretProject.Class.SpriteFolder
                 }
 
             }
-            
 
-            if(amount < 0)
+
+            if (amount < 0)
             {
                 if (this.RotationAnchor > amount)
                 {
@@ -326,46 +322,46 @@ namespace SecretProject.Class.SpriteFolder
                     return;
                 }
             }
-            
+
         }
 
         public void Eject(GameTime gameTime)
         {
-            
+
         }
 
         public void PlayOnce(GameTime gameTime, Vector2 position)
         {
-            this.Position = position;
-            this.destinationVector = new Vector2(position.X + OffSetX, position.Y + OffSetY);
+            Position = position;
+            destinationVector = new Vector2(position.X + this.OffSetX, position.Y + this.OffSetY);
 
-            AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (AnimationTimer <= 0)
+            if (this.AnimationTimer <= 0)
             {
-                CurrentFrame++;
-                AnimationTimer = AnimationSpeed;
+                this.CurrentFrame++;
+                this.AnimationTimer = this.AnimationSpeed;
             }
-            if (CurrentFrame == TotalFrames)
+            if (this.CurrentFrame == this.TotalFrames)
             {
-                CurrentFrame = 0;
-                IsAnimated = false;
+                this.CurrentFrame = 0;
+                this.IsAnimated = false;
             }
-            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
 
         }
         public void SetFrame(int newFrame)
         {
-            CurrentFrame = newFrame;
-            SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+            this.CurrentFrame = newFrame;
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
             //DestinationRectangle = new Rectangle((int)this.Position.X + OffSetX, (int)this.Position.Y + OffSetY, FrameWidth, FrameHeight);
         }
 
-       public void Flash(GameTime gameTime, float duration, Color color)
+        public void Flash(GameTime gameTime, float duration, Color color)
         {
             duration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if(duration >= 0)
+            if (duration >= 0)
             {
                 this.Color = color;
             }
@@ -381,7 +377,7 @@ namespace SecretProject.Class.SpriteFolder
             throw new NotImplementedException();
         }
 
-        public void UpdateAnimationTool(GameTime gameTime,float amount, float speed)
+        public void UpdateAnimationTool(GameTime gameTime, float amount, float speed)
         {
             Spin(gameTime, amount, speed);
         }

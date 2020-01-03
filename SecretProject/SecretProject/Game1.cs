@@ -1,40 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.Controls;
+using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.EventStuff;
+using SecretProject.Class.ItemStuff;
+using SecretProject.Class.NPCStuff;
+using SecretProject.Class.PathFinding;
+using SecretProject.Class.Playable;
+using SecretProject.Class.ShopStuff;
+using SecretProject.Class.SoundStuff;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TextureStuff;
+using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
-using System;
-
-using TiledSharp;
+using SecretProject.Class.Universal;
+using SecretProject.Class.Weather;
 //using XMLDataLib;
 
 using System.Collections.Generic;
-
-using System.Runtime.Serialization;
-using SecretProject.Class.Playable;
-using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.Universal;
-using SecretProject.Class.SoundStuff;
-using SecretProject.Class.TextureStuff;
-using SecretProject.Class.ItemStuff;
-using SecretProject.Class.SavingStuff;
-using Microsoft.Xna.Framework.Content;
-
 using XMLData.DialogueStuff;
-using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.ShopStuff;
-using XMLData.RouteStuff;
 using XMLData.ItemStuff;
-using SecretProject.Class.NPCStuff;
-using SecretProject.Class.PathFinding;
+using XMLData.RouteStuff;
 using static SecretProject.Class.UI.CheckList;
-using SecretProject.Class.EventStuff;
-using Microsoft.Xna.Framework.Audio;
-using SecretProject.Class.TileStuff;
-using SecretProject.Class.Weather;
 
 
 
@@ -80,7 +72,7 @@ namespace SecretProject
         GeneralStore = 6,
         KayaHouse = 7,
         Cafe = 8,
-        
+
         DobbinHouseUpper = 9,
         SanctuaryHub = 10,
         Forest = 11,
@@ -88,10 +80,10 @@ namespace SecretProject
         CaveWorld = 13,
         MainMenu = 50,
         Exit = 55,
-        
+
 
     }
-    
+
     public enum WeatherType
     {
         None = 0,
@@ -267,18 +259,18 @@ namespace SecretProject
         {
             graphics = new GraphicsDeviceManager(this);
 
-            HomeContentManager = new ContentManager(Content.ServiceProvider);
-            MainMenuContentManager = new ContentManager(Content.ServiceProvider);
-            Content.RootDirectory = "Content";
+            HomeContentManager = new ContentManager(this.Content.ServiceProvider);
+            MainMenuContentManager = new ContentManager(this.Content.ServiceProvider);
+            this.Content.RootDirectory = "Content";
             HomeContentManager.RootDirectory = "Content";
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1920;
-            graphics.PreferredBackBufferHeight = 1080 ;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
-            IsFixedTimeStep = false;
+            this.IsFixedTimeStep = false;
 
         }
         #endregion
@@ -291,15 +283,15 @@ namespace SecretProject
             //seed parameter
             Utility = new Utility(1);
             //CAMERA
-            cam = new Camera2D(GraphicsDevice.Viewport);
+            cam = new Camera2D(this.GraphicsDevice.Viewport);
             //MOUSE
 
             this.IsMouseVisible = isMyMouseVisible;
             myMouseManager = new MouseManager(cam, graphics.GraphicsDevice);
 
-            
 
-            
+
+
 
 
             //SCREEN
@@ -334,7 +326,7 @@ namespace SecretProject
                     return DobbinHouse;
                 case Stages.PlayerHouse:
                     return PlayerHouse;
-               case Stages.GeneralStore:
+                case Stages.GeneralStore:
                     return GeneralStore;
                 case Stages.KayaHouse:
                     return KayaHouse;
@@ -364,7 +356,7 @@ namespace SecretProject
             {
                 case Stages.Town:
                     return Town;
- 
+
                 case Stages.OverWorld:
                     return OverWorld;
 
@@ -404,56 +396,56 @@ namespace SecretProject
             return gameStages;
         }
 
-        
+
 
         #region LOADCONTENT
         protected override void LoadContent()
         {
-            PresentationParameters = GraphicsDevice.PresentationParameters;
-            MainTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            LightsTarget = new RenderTarget2D(GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            
-            //ORDER MATTERS!!!
-            ElixirDialogue = Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
-            DobbinDialogue = Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
-            SnawDialogue = Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
-            KayaDialogue = Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
-            JulianDialogue = Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
-            SarahDialogue = Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
-            BusinessSnailDialogue = Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
+            PresentationParameters = this.GraphicsDevice.PresentationParameters;
+            MainTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
+            LightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
-            DobbinRouteSchedule = Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
-            ElixirRouteSchedule = Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
-            KayaRouteSchedule = Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
-            JulianRouteSchedule = Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
-            SarahRouteSchedule = Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
+            //ORDER MATTERS!!!
+            ElixirDialogue = this.Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
+            DobbinDialogue = this.Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
+            SnawDialogue = this.Content.Load<DialogueHolder>("Dialogue/SnawDialogue");
+            KayaDialogue = this.Content.Load<DialogueHolder>("Dialogue/KayaDialogue");
+            JulianDialogue = this.Content.Load<DialogueHolder>("Dialogue/JulianDialogue");
+            SarahDialogue = this.Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
+            BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
+
+            DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
+            ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
+            KayaRouteSchedule = this.Content.Load<RouteSchedule>("Route/KayaRouteSchedule");
+            JulianRouteSchedule = this.Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
+            SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
             AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule };
-            for(int i =0; i < AllSchedules.Count; i++)
+            for (int i = 0; i < AllSchedules.Count; i++)
             {
-                foreach(Route route in AllSchedules[i].Routes)
+                foreach (Route route in AllSchedules[i].Routes)
                 {
                     route.ProcessStageToEndAt();
                 }
             }
-            AllCrops = Content.Load<CropHolder>("Crop/CropStuff");
+            AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue,SarahDialogue, BusinessSnailDialogue };
-            foreach(DialogueHolder holder in tempListHolder)
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue };
+            foreach (DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
             }
             DialogueLibrary = new DialogueLibrary(tempListHolder);
-            AllCookingRecipes = Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
+            AllCookingRecipes = this.Content.Load<CookingGuide>("Item/Cooking/CookingGuide");
             //TEXTURES
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            AllTextures = new TextureBook(Content, spriteBatch);
+            spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            AllTextures = new TextureBook(this.Content, spriteBatch);
 
 
 
             //  testItem = Content.Load&lt;XMLDataLib.Item&gt;("Level1");
 
             //SOUND
-            SoundManager = new SoundBoard(this, Content);
+            SoundManager = new SoundBoard(this, this.Content);
 
 
             //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
@@ -462,16 +454,16 @@ namespace SecretProject
             LoadPlayer();
             //UI
 
-            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, GraphicsDevice);
+            DebugWindow = new DebugWindow(AllTextures.MenuText, new Vector2(25, 400), "Debug Window \n \n FrameRate: \n \n PlayerLocation: \n \n PlayerWorldPosition: ", AllTextures.UserInterfaceTileSet, this.GraphicsDevice);
 
             //ITEMS
             ItemVault = new ItemBank();
 
 
-            AllItems = Content.Load<ItemHolder>("Item/ItemHolder");
+            AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
             Procedural = new Procedural();
 
-            Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, Content, cam) { graphics = graphics.GraphicsDevice };
+            Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content, cam) { graphics = graphics.GraphicsDevice };
             SanctuaryCheckList = new CheckList(graphics.GraphicsDevice, new Vector2(200, 50),
                 new List<CheckListRequirement>()
                 {new CheckListRequirement("Potted ThunderBirch",1790, 1, "plant", false),
@@ -484,13 +476,13 @@ namespace SecretProject
             //STAGES
             mainMenu = new MainMenu(this, graphics.GraphicsDevice, MainMenuContentManager, myMouseManager, Player.UserInterface);
             Town = new Town("Town", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 1)
-            { StageIdentifier = (int)Stages.Town};
+            { StageIdentifier = (int)Stages.Town };
 
-            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural,graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
+            OverWorld = new World("OverWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.OverWorld };
 
 
 
-            ElixirHouse = new TmxStageBase("ElixirHouse",LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
+            ElixirHouse = new TmxStageBase("ElixirHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/elixirShop.tmx", 1, 0) { StageIdentifier = (int)Stages.ElixirHouse };
             JulianHouse = new TmxStageBase("JulianHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/JulianShop.tmx", 1, 0) { StageIdentifier = (int)Stages.JulianHouse };
             DobbinHouse = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             PlayerHouse = new TmxStageBase("PlayerHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/PlayerHouseSmall.tmx", 1, 0) { StageIdentifier = (int)Stages.PlayerHouse };
@@ -508,18 +500,18 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() {  Town,  OverWorld, ElixirHouse, JulianHouse,DobbinHouse, PlayerHouse, GeneralStore,KayaHouse,Cafe, DobbinHouseUpper, SanctuaryHub,Forest,ResearchStation };
+            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, SanctuaryHub, Forest, ResearchStation };
             PortalGraph = new Graph(AllStages.Count);
 
-            
+
 
 
             Shop ToolShop = new Shop(graphics.GraphicsDevice, 1, "ToolShop", new ShopMenu("ToolShopInventory", graphics.GraphicsDevice, 25));
-            for(int i =0; i < AllItems.AllItems.Count; i++)
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
             {
                 ToolShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
             }
-            
+
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
             for (int i = 0; i < AllItems.AllItems.Count; i++)
@@ -548,7 +540,7 @@ namespace SecretProject
             Shop BuisnessSnailShop = new Shop(graphics.GraphicsDevice, 6, "BusinessSnailShop", new ShopMenu("BusinessSnailShopInventory", graphics.GraphicsDevice, 10));
 
             BuisnessSnailShop.ShopMenu.TryAddStock(601, 5);
-            
+
             AllShops = new List<IShop>()
             {
                 ToolShop,
@@ -558,7 +550,7 @@ namespace SecretProject
                 KayaShop,
                 BuisnessSnailShop
             };
-           for(int i =0; i < 99; i++)
+            for (int i = 0; i < 99; i++)
             {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(374, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(335, null));
@@ -568,8 +560,8 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
             }
 
-                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
-            
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));
+
 
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(160, null));
             //for (int i = 0; i < 99; i++)
@@ -622,7 +614,7 @@ namespace SecretProject
                 Dobbin,
                 Kaya,
                 Snaw,
-                Julian, 
+                Julian,
                 Sarah,
                 BusinessSnail
             };
@@ -640,13 +632,13 @@ namespace SecretProject
 
             }
 
-            
+
             AllEvents = new List<IEvent>()
             {
                // new IntroduceSanctuary(),
                // new IntroduceJulianShop(GraphicsDevice),
-                new IntroScene(GraphicsDevice),
-                new MeetJulian(GraphicsDevice)
+                new IntroScene(this.GraphicsDevice),
+                new MeetJulian(this.GraphicsDevice)
             };
             IsEventActive = false;
 
@@ -656,13 +648,13 @@ namespace SecretProject
             AllWeather = new Dictionary<WeatherType, IWeather>()
             {
                 {WeatherType.Sunny, new Sunny() },
-                {WeatherType.Rainy, new Rainy(GraphicsDevice) }
+                {WeatherType.Rainy, new Rainy(this.GraphicsDevice) }
             };
 
             CurrentWeather = WeatherType.Sunny;
 
             ForestTracker = new SanctuaryTracker(Player.UserInterface.CompletionHub.AllGuides[0]);
-           
+
         }
         #endregion
 
@@ -699,7 +691,7 @@ namespace SecretProject
             Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            if(gameStages == Stages.OverWorld)
+            if (gameStages == Stages.OverWorld)
             {
                 Game1.Player.LockBounds = false;
             }
@@ -713,11 +705,11 @@ namespace SecretProject
                 GetStageFromInt(stageToSwitchTo).LoadContent(cam, AllSchedules);
             }
 
-             // List<Portal> testPortal = GetCurrentStage().AllPortals;
+            // List<Portal> testPortal = GetCurrentStage().AllPortals;
             if (portal != null)
             {
-              //  ILocation location = GetCurrentStage();
-               // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
+                //  ILocation location = GetCurrentStage();
+                // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
                 float x = tempPortal.PortalStart.X;
                 float width = tempPortal.PortalStart.Width / 2;
@@ -741,7 +733,7 @@ namespace SecretProject
         #region UPDATE
         protected override void Update(GameTime gameTime)
         {
-           // IsEventActive = false;
+            // IsEventActive = false;
             OldKeyBoardState = NewKeyBoardState;
             NewKeyBoardState = Keyboard.GetState();
             FrameRate = 1 / (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -752,7 +744,7 @@ namespace SecretProject
 
             //SOUND
             MediaPlayer.IsRepeating = true;
-            if(EnableMusic)
+            if (EnableMusic)
             {
                 SoundManager.PlaySong();
                 SoundManager.CurrentSongInstance.Volume = SoundManager.GameVolume;
@@ -765,7 +757,7 @@ namespace SecretProject
                 graphics.ToggleFullScreen();
                 ToggleFullScreen = false;
             }
-           
+
             if (!IsEventActive)
             {
 
@@ -865,69 +857,69 @@ namespace SecretProject
         protected override void Draw(GameTime gameTime)
         {
 
-            
+
 
             switch (gameStages)
             {
                 case Stages.MainMenu:
                     //GraphicsDevice.Clear(Color.Black);
-                    GraphicsDevice.Clear(Color.DeepSkyBlue);
+                    this.GraphicsDevice.Clear(Color.DeepSkyBlue);
                     mainMenu.Draw(graphics.GraphicsDevice, gameTime, spriteBatch, myMouseManager);
                     break;
 
                 case Stages.OverWorld:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     OverWorld.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.Town:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     Town.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.ElixirHouse:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.JulianHouse:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.DobbinHouse:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.PlayerHouse:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.GeneralStore:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     GeneralStore.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.KayaHouse:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     KayaHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.Cafe:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     Cafe.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.DobbinHouseUpper:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.SanctuaryHub:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     SanctuaryHub.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.Forest:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     Forest.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.ResearchStation:
-                    GraphicsDevice.Clear(Color.Black);
+                    this.GraphicsDevice.Clear(Color.Black);
                     ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
@@ -944,133 +936,133 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("joe", new Vector2(1200, 1400), AllTextures.PlayerBase, 4, 5, Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, IsDrawn = true };
+            Player = new Player("joe", new Vector2(1200, 1400), AllTextures.PlayerBase, 4, 5, this.Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:
-            Player.animations[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };//, Color = Color.Black };
-            Player.animations[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+            Player.animations[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };//, Color = Color.Black };
+            Player.animations[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShirt, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerPants, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShoes, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[0, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerBase, 0, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
 
 
             //up
-            Player.animations[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
-            Player.animations[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+            Player.animations[1, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerHair, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.animations[1, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShirt, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[1, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerPants, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[1, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShoes, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[1, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerBase, 192, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
 
             //Left
-            Player.animations[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f, Flip = true };
-            Player.animations[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f, Flip = true };
-            Player.animations[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f, Flip = true };
-            Player.animations[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f, Flip = true };
-            Player.animations[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f, Flip = true };
+            Player.animations[2, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f, Flip = true };
+            Player.animations[2, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f, Flip = true };
+            Player.animations[2, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f, Flip = true };
+            Player.animations[2, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f, Flip = true };
+            Player.animations[2, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f, Flip = true };
 
             //Right
-            Player.animations[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
-            Player.animations[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
-            Player.animations[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
-            Player.animations[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
-            Player.animations[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
+            Player.animations[3, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerHair, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000011f };
+            Player.animations[3, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShirt, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000010f };
+            Player.animations[3, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerPants, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000009f };
+            Player.animations[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerShoes, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .00000008f };
+            Player.animations[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PlayerBase, 96, 0, 16, 34, 6, .1f, Game1.Player.position) { LayerDepth = .000000007f };
 
             //MiningDown
-            Player.Mining[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000012f };
-            Player.Mining[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000011f };
-            Player.Mining[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000010f };
-            Player.Mining[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000009f };
-            Player.Mining[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000008f };
-            Player.Mining[0, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .000000007f };
+            Player.Mining[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000012f };
+            Player.Mining[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000011f };
+            Player.Mining[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000010f };
+            Player.Mining[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000009f };
+            Player.Mining[0, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000008f };
+            Player.Mining[0, 5] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 0, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .000000007f };
 
             //MiningUP
-            Player.Mining[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000012f };
-            Player.Mining[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000011f };
-            Player.Mining[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000010f };
-            Player.Mining[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000009f };
-            Player.Mining[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000008f };
-            Player.Mining[1, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .000000007f };
+            Player.Mining[1, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000012f };
+            Player.Mining[1, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000011f };
+            Player.Mining[1, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000010f };
+            Player.Mining[1, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000009f };
+            Player.Mining[1, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .00000008f };
+            Player.Mining[1, 5] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 480, 0, 48, 48, 5, .1f, Game1.Player.position, -16, -16) { LayerDepth = .000000007f };
 
             //MiningLeft
-            Player.Mining[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 256, 0, 48, 48, 5, .1f, Game1.Player.position, - 32,-16) { LayerDepth = .00000012f, Flip = true };
-            Player.Mining[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000011f, Flip = true };
-            Player.Mining[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000010f, Flip = true };
-            Player.Mining[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000009f, Flip = true };
-            Player.Mining[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000008f, Flip = true };
-            Player.Mining[2, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .000000007f, Flip = true };
+            Player.Mining[2, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000012f, Flip = true };
+            Player.Mining[2, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000011f, Flip = true };
+            Player.Mining[2, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000010f, Flip = true };
+            Player.Mining[2, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000009f, Flip = true };
+            Player.Mining[2, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .00000008f, Flip = true };
+            Player.Mining[2, 5] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position, -32, -16) { LayerDepth = .000000007f, Flip = true };
 
             //MiningRight
-            Player.Mining[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 256, 0, 48, 48, 5, .1f, Game1.Player.position,0, -16) { LayerDepth = .00000012f };
-            Player.Mining[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000011f };
-            Player.Mining[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000010f };
-            Player.Mining[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000009f };
-            Player.Mining[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000008f };
-            Player.Mining[3, 5] = new Sprite(GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .000000007f };
+            Player.Mining[3, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingToolAtlas, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000012f };
+            Player.Mining[3, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerHair, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000011f };
+            Player.Mining[3, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShirt, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000010f };
+            Player.Mining[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerPants, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000009f };
+            Player.Mining[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerShoes, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .00000008f };
+            Player.Mining[3, 5] = new Sprite(this.GraphicsDevice, Game1.AllTextures.ChoppingPlayerBase, 256, 0, 48, 48, 5, .1f, Game1.Player.position, 0, -16) { LayerDepth = .000000007f };
 
 
             //SwipingDown
-           // Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+            // Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[0, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
 
             //SwipingUp
-           // Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+            // Player.Swiping[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[1, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[1, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[1, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[1, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[1, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 800, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
             //SwipingLeft
-           // Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f, Flip = true };
-            Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f, Flip = true };
-            Player.Swiping[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f, Flip = true };
-            Player.Swiping[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f, Flip = true };
-            Player.Swiping[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f, Flip = true };
-            Player.Swiping[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f, Flip = true };
+            // Player.Swiping[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f, Flip = true };
+            Player.Swiping[2, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f, Flip = true };
+            Player.Swiping[2, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f, Flip = true };
+            Player.Swiping[2, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f, Flip = true };
+            Player.Swiping[2, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f, Flip = true };
+            Player.Swiping[2, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f, Flip = true };
 
             //SwipingRight
-          //  Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
-            Player.Swiping[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
-            Player.Swiping[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
-            Player.Swiping[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
-            Player.Swiping[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
+            //  Player.Swiping[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
+            Player.Swiping[3, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[3, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
+            Player.Swiping[3, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
+            Player.Swiping[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };
+            Player.Swiping[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerBase, 400, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .000000007f };
 
             Player.PlayerActionAnimations = new Sprite[6];
 
-            
+
 
             //PickUp..Down
-            Player.PickUpItem[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0,0) { LayerDepth = .00000012f };
-            Player.PickUpItem[0, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
-            Player.PickUpItem[0, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
-            Player.PickUpItem[0, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
-            Player.PickUpItem[0, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+            Player.PickUpItem[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PickUpItem[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PickUpItem[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PickUpItem[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[0, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBase, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
 
             //PickUp..Up
-            Player.PickUpItem[1, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
-            Player.PickUpItem[1, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
-            Player.PickUpItem[1, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
-            Player.PickUpItem[1, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
-            Player.PickUpItem[1, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+            Player.PickUpItem[1, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PickUpItem[1, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PickUpItem[1, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PickUpItem[1, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[1, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBase, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
             //PickUp..Left
-            Player.PickUpItem[2, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f,Flip = true };
-            Player.PickUpItem[2, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f, Flip = true };
-            Player.PickUpItem[2, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f, Flip = true };
-            Player.PickUpItem[2, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f, Flip = true };
-            Player.PickUpItem[2, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f, Flip = true };
+            Player.PickUpItem[2, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f, Flip = true };
+            Player.PickUpItem[2, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f, Flip = true };
+            Player.PickUpItem[2, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f, Flip = true };
+            Player.PickUpItem[2, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f, Flip = true };
+            Player.PickUpItem[2, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f, Flip = true };
             //PickUp..Right
-            Player.PickUpItem[3, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
-            Player.PickUpItem[3, 1] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f};
-            Player.PickUpItem[3, 2] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f};
-            Player.PickUpItem[3, 3] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
-            Player.PickUpItem[3, 4] = new Sprite(GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+            Player.PickUpItem[3, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBlondeHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PickUpItem[3, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemRedShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PickUpItem[3, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBluePants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PickUpItem[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PickUpItem[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
 
             for (int i = 0; i < Player.Mining.GetLength(1); i++)
             {
@@ -1092,7 +1084,7 @@ namespace SecretProject
 
             }
         }
-        
+
     }
 
 }

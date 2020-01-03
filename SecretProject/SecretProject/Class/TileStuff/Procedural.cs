@@ -1,9 +1,5 @@
 ﻿using SecretProject.Class.Universal;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -36,14 +32,14 @@ namespace SecretProject.Class.TileStuff
         OakFloorTiling = 8,
         StoneWallTiling = 9,
         DirtCliffBottom = 10
-       
+
     }
     public class Procedural
     {
         public FastNoise FastNoise;
 
 
-       
+
         public Dictionary<int, int> FillTilingDictionary(int centralGID)
         {
             return new Dictionary<int, int>()
@@ -133,9 +129,9 @@ namespace SecretProject.Class.TileStuff
 
         public TilingContainer GetTilingContainerFromGenerationType(GenerationType generationType)
         {
-            for(int i =0; i < AllTilingContainers.Count; i++)
+            for (int i = 0; i < AllTilingContainers.Count; i++)
             {
-                if(AllTilingContainers[i].GenerationType == generationType)
+                if (AllTilingContainers[i].GenerationType == generationType)
                 {
 
                     return AllTilingContainers[i];
@@ -148,9 +144,9 @@ namespace SecretProject.Class.TileStuff
         {
             for (int i = 0; i < AllTilingContainers.Count; i++)
             {
-                for(int j = 0; j < AllTilingContainers[i].GeneratableTiles.Count; j++)
+                for (int j = 0; j < AllTilingContainers[i].GeneratableTiles.Count; j++)
                 {
-                    if(gid == AllTilingContainers[i].GeneratableTiles[j])
+                    if (gid == AllTilingContainers[i].GeneratableTiles[j])
                     {
                         return AllTilingContainers[i];
                     }
@@ -287,7 +283,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
-                return newGID;
+            return newGID;
         }
 
         public enum RelativeChunkPosition
@@ -319,12 +315,12 @@ namespace SecretProject.Class.TileStuff
             //}
 
 
-                if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
-                {
+            if (!generatableTiles.Contains(container.AllTiles[layer][x, y].GID) && !secondaryTiles.Contains(container.AllTiles[layer][x, y].GID))
+            {
 
-                    return;
-                }
-            
+                return;
+            }
+
             int keyToCheck = 0;
             if (y > 0)
             {
@@ -335,7 +331,7 @@ namespace SecretProject.Class.TileStuff
             }
             //if top tile is 0 we look at the chunk above it
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer,x, 15]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer,x, 15])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer, x, 15]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkAbove][layer, x, 15])))
             {
                 keyToCheck += 1;
             }
@@ -350,7 +346,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer,x, 0]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer,x, 0])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer, x, 0]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkBelow][layer, x, 0])))
             {
                 keyToCheck += 8;
             }
@@ -365,7 +361,7 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer,0, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer,0, y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer, 0, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkRight][layer, 0, y])))
             {
                 keyToCheck += 4;
             }
@@ -379,7 +375,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer,15, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer,15, y])))
+            else if (adjacentChunkInfo != null && (generatableTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer, 15, y]) || secondaryTiles.Contains(adjacentChunkInfo[(int)RelativeChunkPosition.ChunkLeft][layer, 15, y])))
             {
                 keyToCheck += 2;
             }
@@ -399,20 +395,20 @@ namespace SecretProject.Class.TileStuff
         {
             3033, 3034, 3035
         };
-        
+
     }
 
     public class TilingContainer
     {
         public GenerationType GenerationType { get; set; }
-        public Dictionary<int,int> TilingDictionary{ get; set; }
+        public Dictionary<int, int> TilingDictionary { get; set; }
         public List<int> GeneratableTiles { get; set; }
 
-        public TilingContainer(GenerationType generationType, Dictionary<int,int> tilingDictionary, List<int> generatableTiles)
+        public TilingContainer(GenerationType generationType, Dictionary<int, int> tilingDictionary, List<int> generatableTiles)
         {
-            GenerationType = generationType;
-            TilingDictionary = tilingDictionary;
-            GeneratableTiles = generatableTiles;
+            this.GenerationType = generationType;
+            this.TilingDictionary = tilingDictionary;
+            this.GeneratableTiles = generatableTiles;
         }
     }
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecretProject.Class.NPCStuff
+﻿namespace SecretProject.Class.NPCStuff
 {
     public interface IEntity
     {
-        
+
         void PlayerCollisionInteraction();
     }
 }

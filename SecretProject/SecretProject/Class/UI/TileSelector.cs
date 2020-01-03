@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -18,10 +13,10 @@ namespace SecretProject.Class.UI
         public Rectangle SourceRectangle { get; set; }
         public TileSelector()
         {
-            IndexX = 0;
-            IndexY = 0;
-            WorldX = 0;
-            WorldY = 0;
+            this.IndexX = 0;
+            this.IndexY = 0;
+            this.WorldX = 0;
+            this.WorldY = 0;
 
             this.SourceRectangle = new Rectangle(48, 0, 16, 16);
         }
@@ -29,11 +24,11 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
 
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(WorldX, WorldY, 16, 16),
-                        SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(this.WorldX, this.WorldY, 16, 16),
+                    this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
 
 
-            
+
         }
     }
 }

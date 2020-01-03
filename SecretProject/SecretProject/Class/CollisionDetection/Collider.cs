@@ -1,14 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.ItemStuff;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
+using System;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.CollisionDetection
 {
@@ -45,7 +39,7 @@ namespace SecretProject.Class.CollisionDetection
 
             SetRectangleTexture(graphicsDevice);
 
-            ShowRectangle = true;
+            this.ShowRectangle = true;
             this.Entity = entity;
             this.IsUpdating = false;
         }
@@ -67,7 +61,7 @@ namespace SecretProject.Class.CollisionDetection
         }
         public bool DidCollide(Vector2 velocity, ICollidable objectBody)
         {
-            Rectangle rect = Rectangle;
+            Rectangle rect = this.Rectangle;
 
             rect.X += (int)velocity.X;
             rect.Y += (int)velocity.Y;
@@ -120,14 +114,14 @@ namespace SecretProject.Class.CollisionDetection
         private void SetRectangleTexture(GraphicsDevice graphicsDevice)
         {
             var Colors = new List<Color>();
-            for (int y = 0; y < Rectangle.Height; y++)
+            for (int y = 0; y < this.Rectangle.Height; y++)
             {
-                for (int x = 0; x < Rectangle.Width; x++)
+                for (int x = 0; x < this.Rectangle.Width; x++)
                 {
                     if (x == 0 || //left side
                         y == 0 || //top side
-                        x == Rectangle.Width - 1 || //right side
-                        y == Rectangle.Height - 1) //bottom side
+                        x == this.Rectangle.Width - 1 || //right side
+                        y == this.Rectangle.Height - 1) //bottom side
                     {
                         Colors.Add(new Color(255, 255, 255, 255));
                     }
@@ -139,13 +133,13 @@ namespace SecretProject.Class.CollisionDetection
 
                 }
             }
-            rectangleTexture = new Texture2D(graphicsDevice, Rectangle.Width, Rectangle.Height);
+            rectangleTexture = new Texture2D(graphicsDevice, this.Rectangle.Width, this.Rectangle.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), Color.White);
+            spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), Color.White);
 
 
 
@@ -154,7 +148,7 @@ namespace SecretProject.Class.CollisionDetection
         public virtual void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
 
-            spriteBatch.Draw(rectangleTexture, new Vector2(Rectangle.X, Rectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(rectangleTexture, new Vector2(this.Rectangle.X, this.Rectangle.Y), color: Color.White, layerDepth: layerDepth);
 
         }
 

@@ -2,11 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -21,7 +18,7 @@ namespace SecretProject.Class.UI
         public CheckList(GraphicsDevice graphics, Vector2 position, List<CheckListRequirement> allRequirements)
         {
             this.Position = position;
-            RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(this.Position.X + 900, this.Position.Y), CursorType.Normal);
+            this.RedEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics, new Vector2(this.Position.X + 900, this.Position.Y), CursorType.Normal);
             this.IsActive = false;
             this.AllRequirements = allRequirements;
             this.FreezesGame = true;
@@ -30,9 +27,9 @@ namespace SecretProject.Class.UI
 
         public bool TryFillRequirement(int gid)
         {
-            if(AllRequirements.Any(x => x.GID == gid && !x.Completed))
+            if (this.AllRequirements.Any(x => x.GID == gid && !x.Completed))
             {
-                AllRequirements.Find(x => x.GID == gid && !x.Completed).Completed = true;
+                this.AllRequirements.Find(x => x.GID == gid && !x.Completed).Completed = true;
                 return true;
             }
             else
@@ -41,48 +38,48 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void Update(GameTime gameTime,MouseManager mouse)
+        public void Update(GameTime gameTime, MouseManager mouse)
         {
 
-                Game1.isMyMouseVisible = true;
-                Game1.freeze = true;
-                RedEsc.Update(mouse);
-                if (RedEsc.isClicked)
-                {
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-                }
-            
-            
+            Game1.isMyMouseVisible = true;
+            Game1.freeze = true;
+            this.RedEsc.Update(mouse);
+            if (this.RedEsc.isClicked)
+            {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+            }
+
+
 
         }
         public void Draw(SpriteBatch spriteBatch)
         {
 
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                RedEsc.Draw(spriteBatch);
-                for(int i =0; i < AllRequirements.Count; i++)
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            this.RedEsc.Draw(spriteBatch);
+            for (int i = 0; i < this.AllRequirements.Count; i++)
+            {
+                switch (this.AllRequirements[i].Type)
                 {
-                    switch(AllRequirements[i].Type)
-                    {
-                        case "plant":
-                            spriteBatch.DrawString(Game1.AllTextures.MenuText, AllRequirements[i].Name, new Vector2(Position.X + 50, Position.Y + 100 + 100 *i), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-                            if(AllRequirements[i].Completed)
-                            {
-                                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Position.X + 600, Position.Y + 100 + 100 * i), new Rectangle(208, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-                            }
-                            else
-                            {
-                                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Position.X + 600, Position.Y + 100 + 100 * i), new Rectangle(16, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-                            }
-                            
-                            break;
-                    }
+                    case "plant":
+                        spriteBatch.DrawString(Game1.AllTextures.MenuText, this.AllRequirements[i].Name, new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * i), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                        if (this.AllRequirements[i].Completed)
+                        {
+                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(208, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                        }
+                        else
+                        {
+                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(16, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                        }
+
+                        break;
                 }
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Reward: ", new Vector2(Position.X + 50, Position.Y + 100 + 100 * AllRequirements.Count), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(Position.X + 200, Position.Y + 100 + 100 * AllRequirements.Count),
-                new Rectangle(1328, 1472, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
-            
-            
+            }
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Reward: ", new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * this.AllRequirements.Count), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 200, this.Position.Y + 100 + 100 * this.AllRequirements.Count),
+            new Rectangle(1328, 1472, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+
+
         }
 
         public class CheckListRequirement

@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.Universal;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ParticileStuff
 {
@@ -23,7 +18,7 @@ namespace SecretProject.Class.ParticileStuff
         {
             this.EmitterLocation = location;
             this.textures = textures;
-            this.particles = new List<Particle>();
+            particles = new List<Particle>();
             this.LayerDepth = 1f;
             this.AddNewParticleTimer = .01f;
 
@@ -32,65 +27,65 @@ namespace SecretProject.Class.ParticileStuff
         private Particle GenerateNewParticle()
         {
             Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
-            Vector2 position = EmitterLocation;
+            Vector2 position = this.EmitterLocation;
             Vector2 velocity = new Vector2(
                 1.25f * Game1.Utility.RFloat(-1, 1),
                 -1);
             float angle = -1f;
             float angularVelocity = .25f;
-            Color color = Color;
+            Color color = this.Color;
             float size = 1f;
             int ttl = 100 + Game1.Utility.RGenerator.Next(40);
 
-            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+            return new Particle(texture, position, velocity, angle, angularVelocity, color, size, ttl, this.LayerDepth);
         }
 
         private Particle GenerateNewWeatherParticle()
         {
             Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
-            Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-(int)(Game1.ScreenWidth/2 / Game1.cam.Zoom), (int)(Game1.ScreenWidth  * 1.5f/ Game1.cam.Zoom)), EmitterLocation.Y);
+            Vector2 position = new Vector2(this.EmitterLocation.X + Game1.Utility.RGenerator.Next(-(int)(Game1.ScreenWidth / 2 / Game1.cam.Zoom), (int)(Game1.ScreenWidth * 1.5f / Game1.cam.Zoom)), this.EmitterLocation.Y);
             Vector2 velocity = new Vector2(
                 0f,
                 3f);
             float angle = 0f;
             float angularVelocity = 0f;
-            Color color = Color;
+            Color color = this.Color;
             float size = 1f;
             int ttl = 200 + Game1.Utility.RGenerator.Next(40);
 
-            return new RainParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+            return new RainParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, this.LayerDepth);
         }
 
         private Particle GenerateNewSmokeParticle()
         {
             Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
-            Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-5, 5), EmitterLocation.Y);
+            Vector2 position = new Vector2(this.EmitterLocation.X + Game1.Utility.RGenerator.Next(-5, 5), this.EmitterLocation.Y);
             Vector2 velocity = new Vector2(
                 0f,
                 .25f);
             float angle = 0f;
             float angularVelocity = 0f;
-            Color color = Color;
+            Color color = this.Color;
             float size = .5f;
             int ttl = 200 + Game1.Utility.RGenerator.Next(40);
 
-            return new SmokeParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+            return new SmokeParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, this.LayerDepth);
         }
 
         private Particle GenerateNewFireParticle()
         {
             Texture2D texture = textures[Game1.Utility.RGenerator.Next(textures.Count)];
-            Vector2 position = new Vector2(EmitterLocation.X + Game1.Utility.RGenerator.Next(-2, 2), EmitterLocation.Y);
+            Vector2 position = new Vector2(this.EmitterLocation.X + Game1.Utility.RGenerator.Next(-2, 2), this.EmitterLocation.Y);
             Vector2 velocity = new Vector2(
                 0f,
                 .25f);
             float angle = 0f;
             float angularVelocity = 0f;
-            Color color = Color;
+            Color color = this.Color;
             float size = .5f;
             int ttl = 200 + Game1.Utility.RGenerator.Next(40);
 
-            return new FireParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, LayerDepth);
+            return new FireParticle(texture, position, velocity, angle, angularVelocity, color, size, ttl, this.LayerDepth);
         }
 
         public void Activate(float activationTime, Vector2 emitterLocation, Color color, float layerDepth)
@@ -110,18 +105,18 @@ namespace SecretProject.Class.ParticileStuff
         public void UpdateWeather(GameTime gameTime)
         {
 
-            EmitterLocation = new Vector2(Game1.cam.CameraScreenRectangle.X, Game1.cam.CameraScreenRectangle.Y);
-                int total = 1;
-                AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.EmitterLocation = new Vector2(Game1.cam.CameraScreenRectangle.X, Game1.cam.CameraScreenRectangle.Y);
+            int total = 1;
+            this.AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (AddNewParticleTimer <= 0)
+            if (this.AddNewParticleTimer <= 0)
+            {
+                for (int i = 0; i < total; i++)
                 {
-                    for (int i = 0; i < total; i++)
-                    {
-                        particles.Add(GenerateNewWeatherParticle());
-                    }
-                    AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
+                    particles.Add(GenerateNewWeatherParticle());
                 }
+                this.AddNewParticleTimer = Game1.Utility.RFloat(.005f, .01f);
+            }
 
 
             for (int particle = 0; particle < particles.Count; particle++)
@@ -142,15 +137,15 @@ namespace SecretProject.Class.ParticileStuff
         public void UpdateFire(GameTime gameTime)
         {
             int total = 1;
-            AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (AddNewParticleTimer <= 0)
+            if (this.AddNewParticleTimer <= 0)
             {
                 for (int i = 0; i < total; i++)
                 {
                     particles.Add(GenerateNewFireParticle());
                 }
-                AddNewParticleTimer = Game1.Utility.RFloat(.05f, .1f);
+                this.AddNewParticleTimer = Game1.Utility.RFloat(.05f, .1f);
             }
 
 
@@ -172,15 +167,15 @@ namespace SecretProject.Class.ParticileStuff
         public void UpdateSmoke(GameTime gameTime)
         {
             int total = 1;
-            AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (AddNewParticleTimer <= 0)
+            if (this.AddNewParticleTimer <= 0)
             {
                 for (int i = 0; i < total; i++)
                 {
                     particles.Add(GenerateNewSmokeParticle());
                 }
-                AddNewParticleTimer = Game1.Utility.RFloat(.1f, .5f);
+                this.AddNewParticleTimer = Game1.Utility.RFloat(.1f, .5f);
             }
 
 
@@ -201,21 +196,21 @@ namespace SecretProject.Class.ParticileStuff
 
         public void Update(GameTime gameTime)
         {
-            if (ActivationTime > 0)
+            if (this.ActivationTime > 0)
             {
 
                 int total = 1;
-                AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.AddNewParticleTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (AddNewParticleTimer <= 0)
+                if (this.AddNewParticleTimer <= 0)
                 {
                     for (int i = 0; i < total; i++)
                     {
                         particles.Add(GenerateNewParticle());
                     }
-                    AddNewParticleTimer = Game1.Utility.RFloat(.01f, .2f);
+                    this.AddNewParticleTimer = Game1.Utility.RFloat(.01f, .2f);
                 }
-                ActivationTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.ActivationTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
 
             for (int particle = 0; particle < particles.Count; particle++)

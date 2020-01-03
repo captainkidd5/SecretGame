@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using SecretProject.Class.UI;
 using SecretProject.Class.Weather;
-using XMLData.ItemStuff;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SecretProject.Class.Universal
 {
     public enum DayOfWeek
     {
         Monday = 1,
-        Tuesday = 2, 
+        Tuesday = 2,
         Wednesday = 3,
         Thursday = 4,
         Friday = 5,
@@ -28,7 +21,7 @@ namespace SecretProject.Class.Universal
     }
     public class Clock
     {
-        public int GlobalTime { get;  set; } = 0;
+        public int GlobalTime { get; set; } = 0;
         public Vector2 ClockPosition;
 
         //public TimeSpan UnpausedTime;
@@ -58,16 +51,16 @@ namespace SecretProject.Class.Universal
         public Clock()
         {
             ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
-           // UnpausedTime = TimeSpan.Zero;
+            // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
-            WeekDay = DayOfWeek.Monday;
-            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, GlobalTime.ToString() + "\n" + WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
+            this.WeekDay = DayOfWeek.Monday;
+            ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, this.GlobalTime.ToString() + "\n" + this.WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
-            ClockSpeed = 30f / ClockMultiplier;
+            this.ClockSpeed = 30f / ClockMultiplier;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
             //IsNight = true;
 
-            
+
 
         }
         public virtual void OnDayChanged(Object sender, EventArgs e)
@@ -80,27 +73,27 @@ namespace SecretProject.Class.Universal
         {
             //picks a sound effect based on the switch statement in soundboard
             int roll = 0;
-            if(timeOfDay == 1)
+            if (timeOfDay == 1)
             {
-                roll = Game1.Utility.RGenerator.Next(DayTimeSoundEffectStart, DayTimeSoundEffectEnd);
+                roll = Game1.Utility.RGenerator.Next(this.DayTimeSoundEffectStart, this.DayTimeSoundEffectEnd);
             }
-            if(timeOfDay == 2)
+            if (timeOfDay == 2)
             {
-                roll = Game1.Utility.RGenerator.Next(NightTimeSoundEffectStart, NightTimeSoundEffectEnd);
+                roll = Game1.Utility.RGenerator.Next(this.NightTimeSoundEffectStart, this.NightTimeSoundEffectEnd);
             }
-            
+
             Game1.SoundManager.PlaySoundEffectFromInt(1, roll);
         }
         public void IncrementDay()
         {
             this.TotalDays++;
-            if (WeekDay < DayOfWeek.Sunday)
+            if (this.WeekDay < DayOfWeek.Sunday)
             {
-                WeekDay++;
+                this.WeekDay++;
             }
             else
             {
-                WeekDay = DayOfWeek.Monday;
+                this.WeekDay = DayOfWeek.Monday;
             }
             OnDayChanged(this, EventArgs.Empty);
             PickWeather();
@@ -108,82 +101,82 @@ namespace SecretProject.Class.Universal
 
         public void PickWeather()
         {
-            
+
             float totalSum = Game1.AllWeather.Sum(x => x.Value.ChanceToOccur);
             float selection = Game1.Utility.RFloat(0, totalSum);
             float sum = 0;
-            foreach(KeyValuePair<WeatherType, IWeather> value in Game1.AllWeather)
+            foreach (KeyValuePair<WeatherType, IWeather> value in Game1.AllWeather)
             {
-                if(selection <= (sum = sum + value.Value.ChanceToOccur))
+                if (selection <= (sum = sum + value.Value.ChanceToOccur))
                 {
                     Game1.CurrentWeather = value.Value.WeatherType;
                     return;
                 }
             }
         }
-        
+
 
         public void Update(GameTime gameTime)
         {
-            ClockSpeed = BaseClockSpeed / ClockMultiplier;
+            this.ClockSpeed = BaseClockSpeed / ClockMultiplier;
             //UnpausedTime += gameTime.ElapsedGameTime;
             LocalTime += gameTime.ElapsedGameTime;
 
-            if(LocalTime.TotalSeconds > ClockSpeed)
+            if (LocalTime.TotalSeconds > this.ClockSpeed)
             {
                 LocalTime = TimeSpan.Zero;
-                TotalHours++;
+                this.TotalHours++;
 
-                
 
-                if(TotalHours > 2 && TotalHours < 18)
+
+                if (this.TotalHours > 2 && this.TotalHours < 18)
                 {
                     PlayRandomInstance(1);
-                    IsNight = false;
+                    this.IsNight = false;
                 }
-                if(TotalHours < 2 || TotalHours > 21)
+                if (this.TotalHours < 2 || this.TotalHours > 21)
                 {
                     PlayRandomInstance(2);
                     Game1.SoundManager.PlaySoundEffectFromInt(1, 12);
-                    IsNight = true;
+                    this.IsNight = true;
                 }
 
             }
-            if(TotalHours > 23)
+            if (this.TotalHours > 23)
             {
                 IncrementDay();
-                
-                
-                TotalHours = 0;
-  
+
+
+                this.TotalHours = 0;
+
             }
 
             string displayString = "";
-            if (TotalHours > 11)
+            if (this.TotalHours > 11)
             {
-                displayString = (TotalHours - 12).ToString() + ":00 PM";
+                displayString = (this.TotalHours - 12).ToString() + ":00 PM";
             }
-            else if(TotalHours ==0)
+            else if (this.TotalHours == 0)
             {
                 displayString = "12:00 AM";
             }
             else
             {
-                displayString = TotalHours.ToString() + ":00 AM";
+                displayString = this.TotalHours.ToString() + ":00 AM";
             }
-            ClockDisplay.TextToWrite = "      " + displayString + " \n Days: " + TotalDays.ToString() + "\n" + WeekDay.ToString();
+            ClockDisplay.TextToWrite = "      " + displayString + " \n Days: " + this.TotalDays.ToString() + "\n" + this.WeekDay.ToString();
             ClockDisplay.Update(gameTime, true);
-            
 
-            
 
-            
+
+
+
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            ClockDisplay.Draw(spriteBatch,true, 2f);
+            ClockDisplay.Draw(spriteBatch, true, 2f);
             //ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition, ClockDisplay.SourceRectangle,2f);
         }
     }

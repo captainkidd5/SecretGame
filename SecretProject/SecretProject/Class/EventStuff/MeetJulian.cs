@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Universal;
+using System;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.EventStuff
 {
@@ -36,19 +33,19 @@ namespace SecretProject.Class.EventStuff
                 Game1.Dobbin,
                 Game1.Julian
             };
-            FreezePlayerControls = false;
+            this.FreezePlayerControls = false;
             this.DayToTrigger = 0;
             this.StageToTrigger = (int)Stages.DobbinHouse;
             this.IsCompleted = false;
             this.CurrentStep = 0;
             this.TotalSteps = 11;
             StepsCompleted = new Dictionary<int, bool>();
-            for (int i = 0; i < TotalSteps; i++)
+            for (int i = 0; i < this.TotalSteps; i++)
             {
                 StepsCompleted.Add(i, false);
             }
 
-            SimpleTimer = new SimpleTimer(2f);
+            this.SimpleTimer = new SimpleTimer(2f);
 
 
         }
@@ -117,16 +114,16 @@ namespace SecretProject.Class.EventStuff
             Game1.Player.Direction = Dir.Right;
             Game1.Player.UpdateMovementAnimationsOnce();
 
-            switch (CurrentStep)
+            switch (this.CurrentStep)
             {
                 case 0:
 
 
 
-                    if (SimpleTimer.Run(gameTime))
+                    if (this.SimpleTimer.Run(gameTime))
                     {
-                        StepsCompleted[CurrentStep] = true;
-                        CurrentStep++;
+                        StepsCompleted[this.CurrentStep] = true;
+                        this.CurrentStep++;
 
                     }
 
@@ -135,14 +132,14 @@ namespace SecretProject.Class.EventStuff
                     break;
 
                 case 1:
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "He said he doesn't remember anything..", 2f, null, null);
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
 
 
@@ -151,49 +148,49 @@ namespace SecretProject.Class.EventStuff
 
                 case 2:
 
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " + "How strange. Just lying face down in the dirt?", 2f, null, null);
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
 
 
                     break;
 
                 case 3:
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " + "He's lucky I was there to bring him in.", 2f, null, null);
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                         Game1.Dobbin.ActivateEmoticon(EmoticonType.Exclamation);
                         Game1.Julian.ActivateEmoticon(EmoticonType.Exclamation);
                     }
                     break;
                 case 4:
 
-                    
+
                     Game1.Dobbin.CurrentDirection = Dir.Left;
                     Game1.Julian.CurrentDirection = Dir.Left;
 
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
 
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                             "Oh you're up!", 2f, null, null);
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                         Game1.Dobbin.CurrentEmoticon = EmoticonType.None;
                         Game1.Julian.CurrentEmoticon = EmoticonType.None;
                         Game1.Dobbin.IsMoving = true;
@@ -209,83 +206,83 @@ namespace SecretProject.Class.EventStuff
                     Game1.Julian.EventMoveToTile(gameTime, new Point(34, 27));
                     if (Game1.Dobbin.EventCurrentPath.Count <= 0 && Game1.Julian.EventCurrentPath.Count <= 0)
                     {
-                        if (!StepsCompleted[CurrentStep])
+                        if (!StepsCompleted[this.CurrentStep])
                         {
                             Game1.Dobbin.ResetAnimations();
                             Game1.Julian.ResetAnimations();
                             Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Dobbin.Name + ": " +
                                 "This is Julian, he runs the workshop down the street.", 2f, null, null);
-                            StepsCompleted[CurrentStep] = true;
+                            StepsCompleted[this.CurrentStep] = true;
                         }
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
                     break;
 
                 case 6:
 
-                        if (!StepsCompleted[CurrentStep])
-                        {
+                    if (!StepsCompleted[this.CurrentStep])
+                    {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
                             "You must be very confused.. ", 2f, null, null);
 
-                        StepsCompleted[CurrentStep] = true;
-                        }
+                        StepsCompleted[this.CurrentStep] = true;
+                    }
 
-                        if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
-                        {
-                            CurrentStep++;
-                        }
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && this.SimpleTimer.Run(gameTime))
+                    {
+                        this.CurrentStep++;
+                    }
 
 
-                    
+
 
                     break;
 
                 case 7:
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
                             "You're in [TOWNNAME], many of us in town are interested with what lies beyond the portal where you were found.", 2f, null, null);
 
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && this.SimpleTimer.Run(gameTime))
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
 
                     break;
                 case 8:
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
                             "Many people in town would be happy to help gear you up to explore the wilderness if you gather resources for them.", 2f, null, null);
 
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && this.SimpleTimer.Run(gameTime))
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
                     break;
                 case 9:
-                    if (!StepsCompleted[CurrentStep])
+                    if (!StepsCompleted[this.CurrentStep])
                     {
                         Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, Game1.Julian.Name + ": " +
                             "Anyway, feel free to stop by my workshop any time. I'm just across the town square to the East.", 2f, null, null);
 
-                        StepsCompleted[CurrentStep] = true;
+                        StepsCompleted[this.CurrentStep] = true;
                     }
 
-                    if (StepsCompleted[CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && SimpleTimer.Run(gameTime))
+                    if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive && this.SimpleTimer.Run(gameTime))
                     {
-                        CurrentStep++;
+                        this.CurrentStep++;
                     }
                     break;
                 case 10:
@@ -308,7 +305,7 @@ namespace SecretProject.Class.EventStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(transformMatrix: Game1.cam.getTransformation(Graphics));
+            spriteBatch.Begin(transformMatrix: Game1.cam.getTransformation(this.Graphics));
 
             spriteBatch.End();
         }

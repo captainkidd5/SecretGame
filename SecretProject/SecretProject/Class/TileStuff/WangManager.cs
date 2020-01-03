@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SecretProject.Class.TileStuff
 {
     public static class WangManager
     {
 
-        public static void GroupReassignForTiling(int mouseWorldX, int mouseWorldY,int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer,  ITileManager tileManager)
+        public static void GroupReassignForTiling(int mouseWorldX, int mouseWorldY, int mainGid, List<int> generatableTiles, Dictionary<int, int> tilingDictionary, int layer, ITileManager tileManager)
         {
             for (int t = -1; t < 2; t++)
             {

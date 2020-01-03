@@ -4,9 +4,6 @@ using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.Weather
 {
@@ -23,13 +20,13 @@ namespace SecretProject.Class.Weather
 
         public Rainy(GraphicsDevice graphics)
         {
-            WeatherType = WeatherType.Rainy;
-            ParticleTextures = new List<Texture2D>()
+            this.WeatherType = WeatherType.Rainy;
+            this.ParticleTextures = new List<Texture2D>()
            {
                Game1.AllTextures.RainDrop,
            };
 
-            ParticleEngine = new ParticleEngine(ParticleTextures, new Vector2(Game1.Player.Position.X - Game1.ScreenWidth, Game1.Player.Position.Y - 100)) { AddNewParticleTimer = .0001f } ;
+            this.ParticleEngine = new ParticleEngine(this.ParticleTextures, new Vector2(Game1.Player.Position.X - Game1.ScreenWidth, Game1.Player.Position.Y - 100)) { AddNewParticleTimer = .0001f };
             RainyMask = Game1.Utility.GetColoredRectangle(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Teal);
             this.ChanceToOccur = .7f;
         }
@@ -37,23 +34,23 @@ namespace SecretProject.Class.Weather
 
         public void Update(GameTime gameTime, LocationType locationType)
         {
-            
-            ParticleEngine.UpdateWeather(gameTime);
+
+            this.ParticleEngine.UpdateWeather(gameTime);
             RainyMaskPosition = new Vector2(Game1.cam.CameraScreenRectangle.X, Game1.cam.CameraScreenRectangle.Y);
             Game1.SoundManager.PlaySoundEffectOnce(Game1.SoundManager.LightRainInstance, LocationType.Exterior);
         }
 
-        public void Draw(SpriteBatch spriteBatch,LocationType locationType)
+        public void Draw(SpriteBatch spriteBatch, LocationType locationType)
         {
             if (locationType == LocationType.Exterior)
             {
 
 
-                ParticleEngine.Draw(spriteBatch);
-                spriteBatch.Draw(this.RainyMask, RainyMaskPosition, null, Color.White * .5f, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+                this.ParticleEngine.Draw(spriteBatch);
+                spriteBatch.Draw(RainyMask, RainyMaskPosition, null, Color.White * .5f, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
             }
         }
 
-        
+
     }
 }

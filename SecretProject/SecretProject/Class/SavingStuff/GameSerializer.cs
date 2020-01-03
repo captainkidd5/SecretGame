@@ -1,17 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.Playable;
-using Microsoft.Xna.Framework;
-using SecretProject.Class.ItemStuff;
-using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
-
-using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Universal;
+using System.IO;
 
 namespace SecretProject.Class.SavingStuff
 {
@@ -42,7 +33,7 @@ namespace SecretProject.Class.SavingStuff
             writer.Write(Game1.Player.Name);
             AppendOutputMessage(OutputMessage, Game1.Player.Name);
 
-          //  WriteInventory(Game1.Player.Inventory, writer, OutputMessage, version);
+            //  WriteInventory(Game1.Player.Inventory, writer, OutputMessage, version);
 
         }
 
@@ -50,8 +41,8 @@ namespace SecretProject.Class.SavingStuff
         {
             player.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
             player.Name = reader.ReadString();
-           // player.Inventory = ReadInventory(player.Inventory, reader, version);
-            
+            // player.Inventory = ReadInventory(player.Inventory, reader, version);
+
         }
 
         //public static void WriteInventory(Inventory inventory, BinaryWriter writer, string OutputMessage, float version)
@@ -93,7 +84,7 @@ namespace SecretProject.Class.SavingStuff
         //        }     
         //    }
 
-            
+
         //    return newInventory;
         //}
 
@@ -111,21 +102,21 @@ namespace SecretProject.Class.SavingStuff
         //    writer.Write(item.Price);
         //}
 
-       // public static Item ReadInventoryItem( BinaryReader reader, float version)
-       // {
-            //Item item = new Item();
-            //item.Name = reader.ReadString();
-            //item.ID = reader.ReadInt32();
-            //item.Count = reader.ReadInt32();
-            //item.InvMaximum = reader.ReadInt32();
-            //item.WorldMaximum = reader.ReadInt32();
-            //item.Ignored = reader.ReadBoolean();
-            //item.IsDropped = reader.ReadBoolean();
-            //item.IsPlaceable = reader.ReadBoolean();
-            //item.Price = reader.ReadInt32();
+        // public static Item ReadInventoryItem( BinaryReader reader, float version)
+        // {
+        //Item item = new Item();
+        //item.Name = reader.ReadString();
+        //item.ID = reader.ReadInt32();
+        //item.Count = reader.ReadInt32();
+        //item.InvMaximum = reader.ReadInt32();
+        //item.WorldMaximum = reader.ReadInt32();
+        //item.Ignored = reader.ReadBoolean();
+        //item.IsDropped = reader.ReadBoolean();
+        //item.IsPlaceable = reader.ReadBoolean();
+        //item.Price = reader.ReadInt32();
 
-            //return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
-       // }
+        //return Game1.ItemVault.GenerateNewItem(item.ID, null, false);
+        // }
 
 
 
@@ -182,7 +173,7 @@ namespace SecretProject.Class.SavingStuff
         public static void WriteTile(Tile tile, BinaryWriter writer, float version)
         {
             writer.Write(tile.GID + 1);
-           
+
             writer.Write(tile.Y);
             writer.Write(tile.X);
 
@@ -200,14 +191,14 @@ namespace SecretProject.Class.SavingStuff
         //   // float Y = reader.ReadSingle();
         //    float layer = reader.ReadSingle();
         //    float layerOffSet = reader.ReadSingle();
-            
-            
+
+
 
         //    //newTile = new Tile(X, Y, gid) { LayerToDrawAt = layer, LayerToDrawAtZOffSet = layerOffSet };
 
 
         //    return newTile;
-            
+
         //}
 
         public static void WriteClock(Clock clock, BinaryWriter writer, float version)

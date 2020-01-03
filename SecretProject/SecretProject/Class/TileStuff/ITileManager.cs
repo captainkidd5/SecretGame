@@ -7,14 +7,10 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 
 using SecretProject.Class.PathFinding;
-using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiledSharp;
 using XMLData.ItemStuff;
 
@@ -27,9 +23,9 @@ namespace SecretProject.Class.TileStuff
         List<Tile[,]> AllTiles { get; set; }
         ObstacleGrid PathGrid { get; set; }
 
-         int TileWidth { get; set; }
-         int TileHeight { get; set; }
-         int TileSetNumber { get; set; }
+        int TileWidth { get; set; }
+        int TileHeight { get; set; }
+        int TileSetNumber { get; set; }
         Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         Dictionary<string, List<ICollidable>> Objects { get; set; }
         Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
@@ -55,6 +51,6 @@ namespace SecretProject.Class.TileStuff
         void UpdateCropTile();
         void HandleClockChange(object sender, EventArgs eventArgs);
         Chunk[,] ActiveChunks { get; set; }
-        
+
     }
 }

@@ -3,11 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.TileStuff;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -38,20 +34,20 @@ namespace SecretProject.Class.ItemStuff
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
-            this.Inventory = new Inventory(Size);
+            this.Inventory = new Inventory(this.Size);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(224, 128, 48, 96);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 6, Game1.ScreenHeight / 6);
             this.BackDropScale = 3f;
 
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
-                new Vector2(this.BackDropPosition.X + 6 * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), CursorType.Normal);
+            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.GraphicsDevice,
+                new Vector2(this.BackDropPosition.X + 6 * 32 * this.BackDropScale, this.BackDropPosition.Y * this.BackDropScale), CursorType.Normal);
 
-            ItemSlots = new List<ItemStorageSlot>();
-            for (int i = 0; i <6; i++)
+            this.ItemSlots = new List<ItemStorageSlot>();
+            for (int i = 0; i < 6; i++)
             {
-                ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y * BackDropScale), new Rectangle(208, 80, 32, 32), BackDropScale, true));
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
 
@@ -63,15 +59,15 @@ namespace SecretProject.Class.ItemStuff
 
         public void Activate(Tile tile)
         {
-            IsUpdating = true;
-            Tile = tile;
-            Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
+            this.IsUpdating = true;
+            this.Tile = tile;
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
 
         }
         public void Deactivate()
         {
             this.IsUpdating = false;
-            Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1852, 100);
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1852, 100);
         }
 
         public bool IsItemAllowedToBeStored(Item item)
@@ -88,21 +84,21 @@ namespace SecretProject.Class.ItemStuff
 
                 Deactivate();
             }
-            IsInventoryHovered = false;
+            this.IsInventoryHovered = false;
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 Deactivate();
             }
 
 
-            for (int i = 0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Update(gameTime);
-                if (ItemSlots[i].Button.IsHovered)
+                this.ItemSlots[i].Update(gameTime);
+                if (this.ItemSlots[i].Button.IsHovered)
                 {
 
-                    IsInventoryHovered = true;
-                    CurrentHoveredSlot = ItemSlots[i];
+                    this.IsInventoryHovered = true;
+                    this.CurrentHoveredSlot = this.ItemSlots[i];
 
                 }
             }
@@ -114,9 +110,9 @@ namespace SecretProject.Class.ItemStuff
         {
 
             redEsc.Draw(spriteBatch);
-            for (int i = 0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Draw(spriteBatch);
+                this.ItemSlots[i].Draw(spriteBatch);
             }
 
 

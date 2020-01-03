@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SecretProject.Class.PathFinding
 {
     public class Graph
     {
         public List<int>[] childNodes;
-        public int Size { get { return this.childNodes.Length; } }
+        public int Size { get { return childNodes.Length; } }
         public Graph(int size)
         {
-            this.childNodes = new List<int>[size];
-            for(int i =0; i < size; i++)
+            childNodes = new List<int>[size];
+            for (int i = 0; i < size; i++)
             {
-                this.childNodes[i] = new List<int>();
+                childNodes[i] = new List<int>();
             }
         }
 

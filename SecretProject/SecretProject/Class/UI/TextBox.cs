@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.UI
 {
     public class TextBox
     {
-       public bool IsActivated { get; set; } = false;
+        public bool IsActivated { get; set; } = false;
         protected SpriteFont textFont;
         public Vector2 position;
         public string TextToWrite { get; set; }
@@ -29,7 +23,7 @@ namespace SecretProject.Class.UI
             this.textFont = Game1.AllTextures.MenuText;
             this.position = position;
             this.TextToWrite = textToWrite;
-            this.Texture = texture;
+            Texture = texture;
 
         }
 
@@ -51,28 +45,28 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch,bool useString, float scale = 1f)
+        public virtual void Draw(SpriteBatch spriteBatch, bool useString, float scale = 1f)
         {
-            
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
-            if(useString)
+
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
+            if (useString)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, this.position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
             }
-            
+
         }
         public virtual void Update(GameTime gameTime, Keys activationKey)
         {
 
-            if(Game1.OldKeyBoardState.IsKeyDown(activationKey) && !Game1.NewKeyBoardState.IsKeyDown(activationKey))
+            if (Game1.OldKeyBoardState.IsKeyDown(activationKey) && !Game1.NewKeyBoardState.IsKeyDown(activationKey))
             {
-                IsActivated = !IsActivated;
+                this.IsActivated = !this.IsActivated;
             }
         }
 
         public virtual void Update(GameTime gameTime, bool stayActivated)
         {
-            IsActivated = stayActivated;
+            this.IsActivated = stayActivated;
         }
 
         //public virtual void Draw(SpriteBatch spriteBatch, Vector2 textBoxLocation, Vector2 textStartLocation, Rectangle sourceRectangle, float scale)
@@ -85,11 +79,11 @@ namespace SecretProject.Class.UI
         //        {
         //            Game1.Player.UserInterface.BottomBar.IsActive = false;
         //        }
-                
+
         //        spriteBatch.Draw(this.Texture, textBoxLocation, sourceRectangle, Color.White, 0f,
         //            Game1.Utility.Origin, scale,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
         //        spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White);
-              
+
         //    }
 
         //    spriteBatch.End();

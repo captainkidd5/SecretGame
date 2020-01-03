@@ -3,11 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -42,31 +37,31 @@ namespace SecretProject.Class.ItemStuff
 
         public void Update(GameTime gameTime)
         {
-            Button.Update(Game1.myMouseManager);
-            if (Inventory.currentInventory.Count > 0)
+            this.Button.Update(Game1.myMouseManager);
+            if (this.Inventory.currentInventory.Count > 0)
             {
-                this.Count = Inventory.currentInventory[Index].SlotItems.Count;
-                if (Inventory.currentInventory[Index].SlotItems.Count > 0)
+                this.Count = this.Inventory.currentInventory[this.Index].SlotItems.Count;
+                if (this.Inventory.currentInventory[this.Index].SlotItems.Count > 0)
                 {
-                    Button.ItemSourceRectangleToDraw = Inventory.currentInventory[Index].SlotItems[0].SourceTextureRectangle;
+                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].SlotItems[0].SourceTextureRectangle;
                     if (this.Button.isClicked)
                     {
-                        if(Retrievable)
+                        if (this.Retrievable)
                         {
 
                             if (Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
                             {
-                                Item item = Inventory.currentInventory[Index].GetItem();
+                                Item item = this.Inventory.currentInventory[this.Index].GetItem();
                                 if (item != null)
                                 {
 
 
-                                    for (int shiftItem = Inventory.currentInventory[Index].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                    for (int shiftItem = this.Inventory.currentInventory[this.Index].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
                                     {
                                         if (Game1.Player.Inventory.TryAddItem(item))
                                         {
-                                            Inventory.currentInventory[Index].SlotItems.RemoveAt(shiftItem);
-                                            Count--;
+                                            this.Inventory.currentInventory[this.Index].SlotItems.RemoveAt(shiftItem);
+                                            this.Count--;
                                         }
                                         else
                                         {
@@ -77,19 +72,19 @@ namespace SecretProject.Class.ItemStuff
                                 }
                             }
                         }
-                        
+
                     }
                 }
 
-                if (Count != 0)
+                if (this.Count != 0)
                 {
-                    Button.Texture = Inventory.currentInventory[Index].SlotItems[0].ItemSprite.AtlasTexture;
-                    Button.ItemSourceRectangleToDraw = Inventory.currentInventory[Index].SlotItems[0].SourceTextureRectangle;
+                    this.Button.Texture = this.Inventory.currentInventory[this.Index].SlotItems[0].ItemSprite.AtlasTexture;
+                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].SlotItems[0].SourceTextureRectangle;
                 }
                 else
                 {
-                    Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
-                    Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
+                    this.Button.Texture = Game1.AllTextures.UserInterfaceTileSet;
+                    this.Button.ItemSourceRectangleToDraw = new Rectangle(32, 0, 1, 1);
                 }
 
             }
@@ -98,8 +93,8 @@ namespace SecretProject.Class.ItemStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Button.Draw(spriteBatch, Button.ItemSourceRectangleToDraw, Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
-                Button.Position, Color.White, this.Scale, this.Scale);
+            this.Button.Draw(spriteBatch, this.Button.ItemSourceRectangleToDraw, this.Button.BackGroundSourceRectangle, Game1.AllTextures.MenuText, this.Count.ToString(),
+                this.Button.Position, Color.White, this.Scale, this.Scale);
 
             //Button.Draw(spriteBatch, ItemSourceRectangleToDraw, BackGroundSourceRectangle, Game1.AllTextures.MenuText, ItemCounter.ToString(),
             //      Position, Color.White, Scale, Scale);

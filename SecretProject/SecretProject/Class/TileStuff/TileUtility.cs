@@ -1,20 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.Playable;
-using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiledSharp;
 using XMLData.ItemStuff;
 
@@ -70,13 +64,13 @@ namespace SecretProject.Class.TileStuff
         {
             int newGID = gid;
             TmxTileset tileSet = null;
-            if(container == null)
+            if (container == null)
             {
                 tileSet = Game1.Town.AllTiles.MapName.Tilesets[Game1.Town.AllTiles.TileSetNumber];
             }
             else
             {
-                
+
                 tileSet = container.MapName.Tilesets[container.TileSetNumber];
             }
             int[] rectangleCoords = GetNewTileSourceRectangle(tileSet.Tiles[newGID].Properties["newSource"]);
@@ -86,12 +80,12 @@ namespace SecretProject.Class.TileStuff
             tile.SourceRectangle = new Rectangle(originalRectangle.X + rectangleCoords[0], originalRectangle.Y + rectangleCoords[1],
                 rectangleCoords[2], rectangleCoords[3]);
 
-            if(adjustDestinationRectangle)
+            if (adjustDestinationRectangle)
             {
                 tile.DestinationRectangle = new Rectangle(tile.DestinationRectangle.X + rectangleCoords[0], tile.DestinationRectangle.Y + rectangleCoords[1],
                rectangleCoords[2], rectangleCoords[3]);
             }
-            
+
         }
         /// <summary>
         /// Gets tiles world pos / 16.
@@ -455,7 +449,7 @@ namespace SecretProject.Class.TileStuff
                                     }
                                 }
                             }
-                            else if(item.ItemType == ItemType.Tree)
+                            else if (item.ItemType == ItemType.Tree)
                             {
                                 mouse.ChangeMouseTexture(CursorType.Planting);
                                 if (mouse.IsClicked)
@@ -519,7 +513,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
                             Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                            if(testItem != null)
+                            if (testItem != null)
                             {
                                 if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
                                 {
@@ -543,7 +537,7 @@ namespace SecretProject.Class.TileStuff
 
                                 }
                             }
-                            
+
                         }
 
                     }
@@ -576,9 +570,9 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                         {
-                            foreach(Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
+                            foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
                             {
-                                if(!chunk.AreReadersAndWritersDone)
+                                if (!chunk.AreReadersAndWritersDone)
                                 {
                                     return;
                                 }
@@ -919,14 +913,14 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (assertLeftAndRight)
                 {
-                    if(newTileX < 15 && newTileY < 15)
+                    if (newTileX < 15 && newTileY < 15)
                     {
                         if (!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
                         {
                             return false;
                         }
                     }
-                   
+
                 }
 
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
@@ -983,7 +977,7 @@ namespace SecretProject.Class.TileStuff
         {
             this.Frames = frames;
             this.Counter = 0;
-            this.Timer = frames[Counter].AnchorDuration;
+            this.Timer = frames[this.Counter].AnchorDuration;
             this.OldX = oldX;
             this.OldY = oldY;
             this.Layer = layer;

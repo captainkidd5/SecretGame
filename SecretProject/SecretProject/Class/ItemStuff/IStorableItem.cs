@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.TileStuff;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -27,13 +23,13 @@ namespace SecretProject.Class.ItemStuff
         bool FreezesGame { get; set; }
         int Size { get; set; }
         Vector2 Location { get; set; }
-         Rectangle BackDropSourceRectangle { get; set; }
-         Vector2 BackDropPosition { get; set; }
-         float BackDropScale { get; set; }
+        Rectangle BackDropSourceRectangle { get; set; }
+        Vector2 BackDropPosition { get; set; }
+        float BackDropScale { get; set; }
 
         ItemStorageSlot CurrentHoveredSlot { get; set; }
 
-         Tile Tile { get; set; }
+        Tile Tile { get; set; }
         bool IsItemAllowedToBeStored(Item item);
         void Update(GameTime gameTime);
         void Activate(Tile tile);

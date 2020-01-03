@@ -1,29 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using System.IO;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
-
-
-using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.CollisionDetection;
-using SecretProject.Class.ItemStuff;
-using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.Controls;
-using SecretProject.Class.UI;
-using SecretProject.Class.Universal;
+using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.UI;
+using SecretProject.Class.Universal;
+using System;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.Playable
 {
@@ -133,32 +123,32 @@ namespace SecretProject.Class.Playable
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;
-            Name = name;
+            this.Name = name;
             this.Health = 3;
             this.Stamina = 100;
-            Position = position;
+            this.Position = position;
             this.Graphics = graphics;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
             animations = new Sprite[numberOfFrames, numberOfBodyParts];
-            Mining = new Sprite[4, 6];
-            Swiping = new Sprite[4, 5];
-            PickUpItem = new Sprite[4, 5];
+            this.Mining = new Sprite[4, 6];
+            this.Swiping = new Sprite[4, 5];
+            this.PickUpItem = new Sprite[4, 5];
 
-            MainCollider = new Collider(graphics, ColliderRectangle, this, ColliderType.inert);
-            BigCollider = new Collider(graphics, ClickRangeRectangle, this, ColliderType.PlayerBigBox);
-            Inventory = new Inventory(30) { Money = 10000 };
+            this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.inert);
+            this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
+            this.Inventory = new Inventory(30) { Money = 10000 };
 
             controls = new PlayerControls(0);
 
 
 
-            CurrentAction = Mining;
+            CurrentAction = this.Mining;
 
-            BigHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, ClickRangeRectangle.Width, ClickRangeRectangle.Height, Color.White);
-            LittleHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, ColliderRectangle.Width, ColliderRectangle.Height, Color.White);
+            BigHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, this.ClickRangeRectangle.Width, this.ClickRangeRectangle.Height, Color.White);
+            LittleHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, this.ColliderRectangle.Width, this.ColliderRectangle.Height, Color.White);
 
-            LockBounds = true;
+            this.LockBounds = true;
 
         }
 
@@ -171,8 +161,8 @@ namespace SecretProject.Class.Playable
             {
                 case AnimationType.HandsPicking:
                     IsPerformingAction = true;
-                    CurrentAction = PickUpItem;
-                    AnimationDirection = controls.Direction;
+                    CurrentAction = this.PickUpItem;
+                    this.AnimationDirection = controls.Direction;
                     //for (int i = 0; i < 4; i++)
                     //{
                     //    this.PickUpItem[i, 0].FirstFrameY = textureColumn;
@@ -181,8 +171,8 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Mining:
                     IsPerformingAction = true;
-                    CurrentAction = Mining;
-                    AnimationDirection = controls.Direction;
+                    CurrentAction = this.Mining;
+                    this.AnimationDirection = controls.Direction;
                     for (int i = 0; i < 4; i++)
                     {
                         this.Mining[i, 0].FirstFrameY = textureColumn;
@@ -192,8 +182,8 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Chopping:
                     IsPerformingAction = true;
-                    CurrentAction = Mining;
-                    AnimationDirection = controls.Direction;
+                    CurrentAction = this.Mining;
+                    this.AnimationDirection = controls.Direction;
                     for (int i = 0; i < 4; i++)
                     {
                         this.Mining[i, 0].FirstFrameY = textureColumn;
@@ -202,12 +192,12 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
-                    CurrentAction = Swiping;
-                    AnimationDirection = controls.Direction;
-                    this.CurrentTool = UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
-                    this.CurrentTool.Origin = new Vector2(CurrentTool.SourceRectangle.Width, CurrentTool.SourceRectangle.Height);
+                    CurrentAction = this.Swiping;
+                    this.AnimationDirection = controls.Direction;
+                    this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
+                    this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
-                    this.ToolLine = new Line(CurrentTool.Position, new Vector2(1, 1));
+                    this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
                     //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
                     for (int i = 0; i < 4; i++)
                     {
@@ -225,7 +215,7 @@ namespace SecretProject.Class.Playable
             switch (direction)
             {
                 case Dir.Up:
-                    sprite.Position = new Vector2(this.position.X + 12, this.position.Y + 14);
+                    sprite.Position = new Vector2(position.X + 12, position.Y + 14);
                     sprite.Rotation = 0f;
                     sprite.SpinAmount = 3f;
                     sprite.LayerDepth = .000000006f;
@@ -233,7 +223,7 @@ namespace SecretProject.Class.Playable
                     break;
 
                 case Dir.Down:
-                    sprite.Position = new Vector2(this.position.X + 12, this.position.Y + 22);
+                    sprite.Position = new Vector2(position.X + 12, position.Y + 22);
                     sprite.Rotation = 5f;
                     sprite.SpinAmount = -4f;
                     sprite.LayerDepth = .00000012f;
@@ -241,7 +231,7 @@ namespace SecretProject.Class.Playable
                     break;
 
                 case Dir.Right:
-                    sprite.Position = new Vector2(this.position.X + 14, this.position.Y + 18);
+                    sprite.Position = new Vector2(position.X + 14, position.Y + 18);
                     sprite.Rotation = 1f;
                     sprite.SpinAmount = 6f;
                     sprite.LayerDepth = .00000012f;
@@ -249,14 +239,14 @@ namespace SecretProject.Class.Playable
                     break;
 
                 case Dir.Left:
-                    sprite.Position = new Vector2(this.position.X + 4, this.position.Y + 18);
+                    sprite.Position = new Vector2(position.X + 4, position.Y + 18);
                     sprite.Rotation = 6f;
                     sprite.SpinAmount = -6f;
                     sprite.LayerDepth = .00000012f;
                     sprite.SpinSpeed = 6f;
                     break;
                 default:
-                    sprite.Position = new Vector2(this.position.X + 16, this.position.Y + 16);
+                    sprite.Position = new Vector2(position.X + 16, position.Y + 16);
                     sprite.Rotation = 0f;
                     sprite.SpinAmount = 2f;
                     break;
@@ -270,9 +260,9 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < CurrentAction.GetLength(1); i++)
             {
-                PlayerActionAnimations[i] = CurrentAction[(int)AnimationDirection, i];
-                PlayerActionAnimations[i].IsAnimated = true;
-                PlayerActionAnimations[i].PlayOnce(gameTime, Position);
+                this.PlayerActionAnimations[i] = CurrentAction[(int)this.AnimationDirection, i];
+                this.PlayerActionAnimations[i].IsAnimated = true;
+                this.PlayerActionAnimations[i].PlayOnce(gameTime, this.Position);
             }
 
         }
@@ -280,7 +270,7 @@ namespace SecretProject.Class.Playable
         {
             for (int i = 0; i < CurrentAction.GetLength(1); i++)
             {
-                PlayerActionAnimations[i].DrawAnimation(spriteBatch, PlayerActionAnimations[i].destinationVector, layerDepth + PlayerActionAnimations[i].LayerDepth);
+                this.PlayerActionAnimations[i].DrawAnimation(spriteBatch, this.PlayerActionAnimations[i].destinationVector, layerDepth + this.PlayerActionAnimations[i].LayerDepth);
             }
 
         }
@@ -299,12 +289,12 @@ namespace SecretProject.Class.Playable
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
         {
-            if (Activate)
+            if (this.Activate)
             {
 
                 PrimaryVelocity = Vector2.Zero;
 
-                IsMoving = controls.IsMoving;
+                this.IsMoving = controls.IsMoving;
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
@@ -312,12 +302,12 @@ namespace SecretProject.Class.Playable
 
                 for (int i = 0; i < animations.GetLength(1); i++)
                 {
-                    PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
+                    this.PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
                 }
 
-                if (mouse.IsClicked && UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                 {
-                    Item item = UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                    Item item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                     if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
                     {
                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
@@ -330,8 +320,8 @@ namespace SecretProject.Class.Playable
                         {
 
 
-                            CaptureCrate.Release((EnemyType)item.CrateType, Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
-                            UserInterface.BackPack.Inventory.RemoveItem(item);
+                            CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
+                            this.UserInterface.BackPack.Inventory.RemoveItem(item);
                             DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
                         }
                         else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
@@ -339,8 +329,8 @@ namespace SecretProject.Class.Playable
                             SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
                             if (tracker.UpdateCompletionGuide(item.ID))
                             {
-                                CaptureCrate.Release((EnemyType)item.CrateType, Graphics);
-                                UserInterface.BackPack.Inventory.RemoveItem(item);
+                                CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics);
+                                this.UserInterface.BackPack.Inventory.RemoveItem(item);
                                 DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
                             }
                         }
@@ -350,45 +340,45 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (IsMoving && !IsPerformingAction)
+                if (this.IsMoving && !IsPerformingAction)
                 {
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {
                         for (int j = 0; j < animations.GetLength(1); j++)
                         {
                             animations[i, j].UpdateAnimationPosition(this.Position);
-                            animations[i, j].UpdateAnimations(gameTime, this.position);
+                            animations[i, j].UpdateAnimations(gameTime, position);
 
                         }
 
                     }
 
                 }
-                else if (this.IsPerformingAction)
+                else if (IsPerformingAction)
                 {
                     PlayCollectiveActions(gameTime);
-                    this.IsPerformingAction = PlayerActionAnimations[0].IsAnimated;
-                    if (CurrentTool != null)
+                    IsPerformingAction = this.PlayerActionAnimations[0].IsAnimated;
+                    if (this.CurrentTool != null)
                     {
-                        CurrentTool.UpdateAnimationTool(gameTime, CurrentTool.SpinAmount, CurrentTool.SpinSpeed);
-                        ToolLine.Point2 = new Vector2(CurrentTool.Position.X + 20, CurrentTool.Position.Y + 20);
-                        ToolLine.Rotation = CurrentTool.Rotation + (float)3.5;
+                        this.CurrentTool.UpdateAnimationTool(gameTime, this.CurrentTool.SpinAmount, this.CurrentTool.SpinSpeed);
+                        this.ToolLine.Point2 = new Vector2(this.CurrentTool.Position.X + 20, this.CurrentTool.Position.Y + 20);
+                        this.ToolLine.Rotation = this.CurrentTool.Rotation + (float)3.5;
 
 
                     }
 
-                    if (this.IsPerformingAction == false)
+                    if (IsPerformingAction == false)
                     {
                         this.CurrentTool = null;
                     }
 
                 }
 
-                else if (!CurrentAction[0, 0].IsAnimated && !IsMoving)
+                else if (!CurrentAction[0, 0].IsAnimated && !this.IsMoving)
                 {
-                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                    for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i].SetFrame(0);
+                        this.PlayerMovementAnimations[i].SetFrame(0);
                     }
 
                 }
@@ -403,10 +393,10 @@ namespace SecretProject.Class.Playable
 
                 MoveFromKeys();
 
-                MainCollider.Rectangle = this.ColliderRectangle;
+                this.MainCollider.Rectangle = this.ColliderRectangle;
 
 
-                BigCollider.Rectangle = this.ClickRangeRectangle;
+                this.BigCollider.Rectangle = this.ClickRangeRectangle;
 
 
                 CheckAndHandleCollisions();
@@ -416,15 +406,15 @@ namespace SecretProject.Class.Playable
                 {
                     if (controls.IsSprinting)
                     {
-                        Position += PrimaryVelocity * 10;
+                        this.Position += PrimaryVelocity * 10;
                     }
                     else
                     {
-                        Position += PrimaryVelocity;
+                        this.Position += PrimaryVelocity;
                     }
 
 
-                    if (LockBounds)
+                    if (this.LockBounds)
                     {
                         CheckOutOfBounds(this.Position);
                     }
@@ -437,7 +427,7 @@ namespace SecretProject.Class.Playable
 
         private void MoveFromKeys()
         {
-            if (IsMoving && !IsPerformingAction)
+            if (this.IsMoving && !IsPerformingAction)
             {
                 switch (controls.Direction)
                 {
@@ -468,14 +458,14 @@ namespace SecretProject.Class.Playable
                         PrimaryVelocity.X = Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
-                            PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
+                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
                         }
                         break;
                     case SecondaryDir.Left:
                         PrimaryVelocity.X = -Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
-                            PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
+                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
                         }
 
                         break;
@@ -483,7 +473,7 @@ namespace SecretProject.Class.Playable
                         PrimaryVelocity.Y = Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
-                            PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
+                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
                         }
 
                         break;
@@ -491,7 +481,7 @@ namespace SecretProject.Class.Playable
                         PrimaryVelocity.Y = -Speed1;
                         for (int i = 0; i < animations.GetLength(1); i++)
                         {
-                            PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
+                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
                         }
                         break;
 
@@ -505,33 +495,33 @@ namespace SecretProject.Class.Playable
         private void CheckAndHandleCollisions()
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, BigCollider);
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.BigCollider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
 
                 if (returnObjects[i].ColliderType == ColliderType.Item)
                 {
 
-                    if (BigCollider.IsIntersecting(returnObjects[i]))
+                    if (this.BigCollider.IsIntersecting(returnObjects[i]))
                     {
                         returnObjects[i].Entity.PlayerCollisionInteraction();
                     }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
                 {
-                    if (MainCollider.IsIntersecting(returnObjects[i]))
+                    if (this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
                         returnObjects[i].IsUpdating = true;
-                        returnObjects[i].InitialShuffDirection = this.controls.Direction;
+                        returnObjects[i].InitialShuffDirection = controls.Direction;
                         //if (Game1.EnablePlayerCollisions)
                         //{
                         //    CurrentSpeed = Speed1 / 2;
                         //}
                     }
                     #region SWORD INTERACTIONS
-                    if (CurrentTool != null)
+                    if (this.CurrentTool != null)
                     {
-                        if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
                             returnObjects[i].SelfDestruct();
                         }
@@ -540,9 +530,9 @@ namespace SecretProject.Class.Playable
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
-                    if (CurrentTool != null)
+                    if (this.CurrentTool != null)
                     {
-                        if (ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
+                        if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
                             returnObjects[i].Entity.PlayerCollisionInteraction();
                         }
@@ -550,13 +540,13 @@ namespace SecretProject.Class.Playable
                 }
                 else
                 {
-                    if (IsMoving)
+                    if (this.IsMoving)
                     {
                         if (returnObjects[i].Entity != this)
                         {
                             if (Game1.EnablePlayerCollisions)
                             {
-                                MainCollider.HandleMove(Position, ref PrimaryVelocity, returnObjects[i]);
+                                this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, returnObjects[i]);
 
                             }
 
@@ -599,25 +589,25 @@ namespace SecretProject.Class.Playable
 
         public void Draw(SpriteBatch spriteBatch, float layerDepth)
         {
-            if (IsDrawn)
+            if (this.IsDrawn)
             {
 
 
                 if (!IsPerformingAction)
                 {
 
-                    for (int i = 0; i < PlayerMovementAnimations.GetLength(0); i++)
+                    for (int i = 0; i < this.PlayerMovementAnimations.GetLength(0); i++)
                     {
-                        PlayerMovementAnimations[i].DrawAnimation(spriteBatch, PlayerMovementAnimations[i].destinationVector, PlayerMovementAnimations[i].LayerDepth + layerDepth);
-                        if (IsMoving)
+                        this.PlayerMovementAnimations[i].DrawAnimation(spriteBatch, this.PlayerMovementAnimations[i].destinationVector, this.PlayerMovementAnimations[i].LayerDepth + layerDepth);
+                        if (this.IsMoving)
                         {
-                            if ((PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
+                            if ((this.PlayerMovementAnimations[i].CurrentFrame == 3 && oldSoundFrame1 != 3) || (this.PlayerMovementAnimations[i].CurrentFrame == 0 && oldSoundFrame1 != 0))
                             {
                                 Game1.SoundManager.PlaySoundEffectFromInt(1, this.WalkSoundEffect);
                             }
                         }
 
-                        oldSoundFrame1 = PlayerMovementAnimations[i].CurrentFrame;
+                        oldSoundFrame1 = this.PlayerMovementAnimations[i].CurrentFrame;
                     }
 
                 }
@@ -630,10 +620,10 @@ namespace SecretProject.Class.Playable
 
                 if (this.CurrentTool != null)
                 {
-                    CurrentTool.DrawRotationalSprite(spriteBatch, CurrentTool.Position, CurrentTool.Rotation, CurrentTool.Origin, layerDepth + CurrentTool.LayerDepth);
+                    this.CurrentTool.DrawRotationalSprite(spriteBatch, this.CurrentTool.Position, this.CurrentTool.Rotation, this.CurrentTool.Origin, layerDepth + this.CurrentTool.LayerDepth);
                     if (Game1.GetCurrentStage().ShowBorders)
                     {
-                        ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, CurrentTool.Rotation + 4);
+                        this.ToolLine.DrawLine(Game1.AllTextures.redPixel, spriteBatch, Color.Red, this.CurrentTool.Rotation + 4);
                     }
 
                 }
@@ -643,7 +633,7 @@ namespace SecretProject.Class.Playable
 
         public void DoPlayerAnimation(GameTime gameTime, AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
-            if (Position.Y < Game1.myMouseManager.WorldMousePosition.Y - 30)
+            if (this.Position.Y < Game1.myMouseManager.WorldMousePosition.Y - 30)
             {
                 controls.Direction = Dir.Down;
 
@@ -654,17 +644,17 @@ namespace SecretProject.Class.Playable
                 controls.Direction = Dir.Up;
             }
 
-            else if (Position.X < Game1.myMouseManager.WorldMousePosition.X)
+            else if (this.Position.X < Game1.myMouseManager.WorldMousePosition.X)
             {
                 controls.Direction = Dir.Right;
             }
-            else if (Position.X > Game1.myMouseManager.WorldMousePosition.X)
+            else if (this.Position.X > Game1.myMouseManager.WorldMousePosition.X)
             {
                 controls.Direction = Dir.Left;
             }
             if (item != null)
             {
-                PlayAnimation(gameTime, animationType, UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
+                PlayAnimation(gameTime, animationType, this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
             }
             else
             {
@@ -676,8 +666,8 @@ namespace SecretProject.Class.Playable
 
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(ClickRangeRectangle.X, ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
-            spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(ColliderRectangle.X, ColliderRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(BigHitBoxRectangleTexture, new Vector2(this.ClickRangeRectangle.X, this.ClickRangeRectangle.Y), color: Color.White, layerDepth: layerDepth);
+            spriteBatch.Draw(LittleHitBoxRectangleTexture, new Vector2(this.ColliderRectangle.X, this.ColliderRectangle.Y), color: Color.White, layerDepth: layerDepth);
         }
 
 

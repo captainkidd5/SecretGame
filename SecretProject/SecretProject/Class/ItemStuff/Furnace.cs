@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -29,7 +25,7 @@ namespace SecretProject.Class.ItemStuff
         public float BackDropScale { get; set; }
 
         public SimpleTimer SimpleTimer { get; set; }
-        public ItemStorageSlot SmeltSlot{ get; set; }
+        public ItemStorageSlot SmeltSlot { get; set; }
 
         public ItemStorageSlot CurrentHoveredSlot { get; set; }
 
@@ -42,7 +38,7 @@ namespace SecretProject.Class.ItemStuff
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
-            this.Inventory = new Inventory(Size);
+            this.Inventory = new Inventory(this.Size);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(224, 128, 48, 96);
@@ -52,23 +48,23 @@ namespace SecretProject.Class.ItemStuff
             //this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
             //    new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
 
-            ItemSlots = new List<ItemStorageSlot>();
+            this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 1; i++)
             {
-                ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y + BackDropSourceRectangle.Height + 32 * BackDropScale), new Rectangle(208,80, 32,32), BackDropScale, true));
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
-            SimpleTimer = new SimpleTimer(5f);
-            SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y ), new Rectangle(208, 80, 32, 32), BackDropScale, true);
-            TimerStringLocation = new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width, this.BackDropPosition.Y + BackDropSourceRectangle.Height);
+            this.SimpleTimer = new SimpleTimer(5f);
+            this.SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
+            this.TimerStringLocation = new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height);
 
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
-               new Vector2(this.BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
+            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
+               new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
         }
         public void Activate(Tile tile)
         {
-            IsUpdating = true;
-            Tile = tile;
+            this.IsUpdating = true;
+            this.Tile = tile;
             //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
 
         }
@@ -84,47 +80,47 @@ namespace SecretProject.Class.ItemStuff
         }
         public void Update(GameTime gameTime)
         {
-            IsInventoryHovered = false;
+            this.IsInventoryHovered = false;
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 this.IsUpdating = false;
             }
 
 
-            for (int i = 0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Update(gameTime);
-                if(ItemSlots[i].Button.IsHovered)
+                this.ItemSlots[i].Update(gameTime);
+                if (this.ItemSlots[i].Button.IsHovered)
                 {
 
-                        IsInventoryHovered = true;
-                    CurrentHoveredSlot = ItemSlots[i];
-                    
+                    this.IsInventoryHovered = true;
+                    this.CurrentHoveredSlot = this.ItemSlots[i];
+
                 }
             }
 
-            SmeltSlot.Update(gameTime);
-            if (SmeltSlot.Button.IsHovered)
+            this.SmeltSlot.Update(gameTime);
+            if (this.SmeltSlot.Button.IsHovered)
             {
-                CurrentHoveredSlot = SmeltSlot;
-                IsInventoryHovered = true;
+                this.CurrentHoveredSlot = this.SmeltSlot;
+                this.IsInventoryHovered = true;
 
             }
-            if(SmeltSlot.Inventory.currentInventory[0].SlotItems.Count > 0 && ItemSlots[0].Inventory.currentInventory[0].SlotItems.Count > 0)
+            if (this.SmeltSlot.Inventory.currentInventory[0].SlotItems.Count > 0 && this.ItemSlots[0].Inventory.currentInventory[0].SlotItems.Count > 0)
             {
-                if (SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem != 0 && ItemSlots[0].Inventory.currentInventory[0].SlotItems[0].FuelValue > 0)
+                if (this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem != 0 && this.ItemSlots[0].Inventory.currentInventory[0].SlotItems[0].FuelValue > 0)
                 {
-                    if (SimpleTimer.Run(gameTime))
+                    if (this.SimpleTimer.Run(gameTime))
                     {
-                        SmeltSlot.Inventory.currentInventory[0].SlotItems[0] = Game1.ItemVault.GenerateNewItem(SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem, null);
-                        ItemSlots[0].Inventory.RemoveItem(ItemSlots[0].Inventory.currentInventory[0].SlotItems[0]);
+                        this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0] = Game1.ItemVault.GenerateNewItem(this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem, null);
+                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].SlotItems[0]);
                     }
                 }
             }
             else
 
             {
-                SimpleTimer.Time = 0;
+                this.SimpleTimer.Time = 0;
             }
 
             redEsc.Update(Game1.myMouseManager);
@@ -140,16 +136,16 @@ namespace SecretProject.Class.ItemStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .02f);
+                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .02f);
 
-            for (int i = 0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Draw(spriteBatch);
+                this.ItemSlots[i].Draw(spriteBatch);
             }
 
-            SmeltSlot.Draw(spriteBatch);
+            this.SmeltSlot.Draw(spriteBatch);
 
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, SimpleTimer.Time.ToString(), TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.SimpleTimer.Time.ToString(), this.TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
 
             redEsc.Draw(spriteBatch);
         }

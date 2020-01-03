@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.Universal
 {
@@ -14,8 +9,8 @@ namespace SecretProject.Class.Universal
 
         public SimpleTimer(float targetTime)
         {
-            this.Time = 0f;
-            this.TargetTime = targetTime;
+            Time = 0f;
+            TargetTime = targetTime;
             ResetToZero();
         }
 
@@ -27,7 +22,7 @@ namespace SecretProject.Class.Universal
         }
         public bool Test()
         {
-            if(this.Time >= TargetTime)
+            if (Time >= TargetTime)
             {
                 ResetToZero();
                 return true;
@@ -40,9 +35,9 @@ namespace SecretProject.Class.Universal
 
         public void ResetToZero()
         {
-            this.Time = 0f;
+            Time = 0f;
         }
 
-        
+
     }
 }

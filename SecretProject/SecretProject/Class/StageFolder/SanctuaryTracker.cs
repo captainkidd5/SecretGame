@@ -1,10 +1,4 @@
 ﻿using SecretProject.Class.UI.SanctuaryStuff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XMLData.SanctuaryStuff;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -17,14 +11,14 @@ namespace SecretProject.Class.StageFolder
         }
         public bool UpdateCompletionGuide(int itemID)
         {
-            for(int i =0; i < CompletionGuide.CategoryTabs.Count; i++)
+            for (int i = 0; i < this.CompletionGuide.CategoryTabs.Count; i++)
             {
-                for(int j = 0; j < CompletionGuide.CategoryTabs[i].Pages.Count; j++)
+                for (int j = 0; j < this.CompletionGuide.CategoryTabs[i].Pages.Count; j++)
                 {
-                    CompletionRequirement requirement = CompletionGuide.CategoryTabs[i].Pages[j].SanctuaryRequirements.Find(x => x.ItemID == itemID);
+                    CompletionRequirement requirement = this.CompletionGuide.CategoryTabs[i].Pages[j].SanctuaryRequirements.Find(x => x.ItemID == itemID);
                     if (requirement != null)
                     {
-                        if(requirement.CurrentCount < requirement.CountRequired)
+                        if (requirement.CurrentCount < requirement.CountRequired)
                         {
                             requirement.Increment();
                             return true;

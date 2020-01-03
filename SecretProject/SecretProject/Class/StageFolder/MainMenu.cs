@@ -1,7 +1,5 @@
 ﻿
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
@@ -9,6 +7,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.StageFolder
 {
@@ -63,7 +62,7 @@ namespace SecretProject.Class.StageFolder
         {
             //--------------------------------------
             //Load button textures
-            this.graphics = graphicsDevice;
+            graphics = graphicsDevice;
             this.content = content;
 
             //--------------------------------------
@@ -72,12 +71,12 @@ namespace SecretProject.Class.StageFolder
             Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
             Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 300), CursorType.Normal);
             FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
-            primaryButtons = new List<Button>() { play, Load, Exit,  FullScreen };
+            primaryButtons = new List<Button>() { play, Load, Exit, FullScreen };
 
             StartGameInTown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 100), CursorType.Normal);
             StartGameInWilderness = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
 
-            chooseWorldSizeButtons = new List<Button>() { StartGameInTown, StartGameInWilderness};
+            chooseWorldSizeButtons = new List<Button>() { StartGameInTown, StartGameInWilderness };
             //--------------------------------------
             //Load spritefonts
             font = Game1.AllTextures.MenuText;
@@ -133,7 +132,7 @@ namespace SecretProject.Class.StageFolder
                 clouds[i].Position.X += (float)(clouds[i].Speed * gameTime.ElapsedGameTime.TotalSeconds);
 
             }
-            switch (this.menuState)
+            switch (menuState)
             {
                 case MenuState.primary:
                     foreach (Button button in primaryButtons)
@@ -145,7 +144,7 @@ namespace SecretProject.Class.StageFolder
                     //Check Conditions
                     if (play.isClicked)
                     {
-                        this.menuState = MenuState.play;
+                        menuState = MenuState.play;
                         return;
                     }
                     if (Load.isClicked)
@@ -200,7 +199,7 @@ namespace SecretProject.Class.StageFolder
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                        this.menuState = MenuState.primary;
+                        menuState = MenuState.primary;
                         Game1.SwitchStage(0, Stages.Town);
                     }
                     else if (StartGameInWilderness.isClicked)
@@ -220,10 +219,10 @@ namespace SecretProject.Class.StageFolder
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                        this.menuState = MenuState.primary;
+                        menuState = MenuState.primary;
                         Game1.SwitchStage(0, Stages.OverWorld);
                     }
-                    
+
 
                     break;
             }
@@ -244,12 +243,12 @@ namespace SecretProject.Class.StageFolder
             }
             //--------------------------------------
             //Draw Buttons
-            switch (this.menuState)
+            switch (menuState)
             {
                 case MenuState.primary:
 
                     play.Draw(spriteBatch, font, "Play", play.FontLocation, play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                  
+
                     Load.Draw(spriteBatch, font, "This does nothing", Load.FontLocation, Load.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
@@ -258,7 +257,7 @@ namespace SecretProject.Class.StageFolder
                 case MenuState.play:
                     StartGameInTown.Draw(spriteBatch, font, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     StartGameInWilderness.Draw(spriteBatch, font, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                  
+
                     break;
             }
 

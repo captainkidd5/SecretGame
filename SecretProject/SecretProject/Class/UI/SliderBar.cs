@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.MenuStuff;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
@@ -20,50 +16,50 @@ namespace SecretProject.Class.UI
         public int DisplayValue { get; set; }
         public SliderBar(GraphicsDevice graphics, Vector2 position, float scale)
         {
-            Scale = scale;
-            SliderBackground = new Rectangle(48, 160, 112, 16);
-            SliderBackgroundPosition = position;
-            MinSliderX = (int)position.X;
-            MaxSliderX = (int)position.X + 100 * (int)Scale;
-            SliderButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(64,144,16,16), graphics, new Vector2(MaxSliderX, position.Y), Controls.CursorType.Normal, scale);
-            
-            DisplayValue = 100;
+            this.Scale = scale;
+            this.SliderBackground = new Rectangle(48, 160, 112, 16);
+            this.SliderBackgroundPosition = position;
+            this.MinSliderX = (int)position.X;
+            this.MaxSliderX = (int)position.X + 100 * (int)this.Scale;
+            this.SliderButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(64, 144, 16, 16), graphics, new Vector2(this.MaxSliderX, position.Y), Controls.CursorType.Normal, scale);
+
+            this.DisplayValue = 100;
         }
 
-        public float Update( float valueToAffect)
+        public float Update(float valueToAffect)
         {
-            SliderButton.Update(Game1.myMouseManager);
-            if(SliderButton.isClickedAndHeld)
+            this.SliderButton.Update(Game1.myMouseManager);
+            if (this.SliderButton.isClickedAndHeld)
             {
-                if(Game1.myMouseManager.UIPosition.X > Game1.myMouseManager.OldMouseInterfacePosition.X)
+                if (Game1.myMouseManager.UIPosition.X > Game1.myMouseManager.OldMouseInterfacePosition.X)
                 {
-                    SliderButton.Position = new Vector2(SliderButton.Position.X + Game1.myMouseManager.UIPosition.X - Game1.myMouseManager.OldMouseInterfacePosition.X, SliderButton.Position.Y);
+                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X + Game1.myMouseManager.UIPosition.X - Game1.myMouseManager.OldMouseInterfacePosition.X, this.SliderButton.Position.Y);
                 }
-                else if(Game1.myMouseManager.UIPosition.X < Game1.myMouseManager.OldMouseInterfacePosition.X)
+                else if (Game1.myMouseManager.UIPosition.X < Game1.myMouseManager.OldMouseInterfacePosition.X)
                 {
-                    SliderButton.Position = new Vector2(SliderButton.Position.X - Math.Abs(Game1.myMouseManager.OldMouseInterfacePosition.X- Game1.myMouseManager.UIPosition.X), SliderButton.Position.Y);
+                    this.SliderButton.Position = new Vector2(this.SliderButton.Position.X - Math.Abs(Game1.myMouseManager.OldMouseInterfacePosition.X - Game1.myMouseManager.UIPosition.X), this.SliderButton.Position.Y);
                 }
             }
 
-            if (SliderButton.Position.X > MaxSliderX)
+            if (this.SliderButton.Position.X > this.MaxSliderX)
             {
-                SliderButton.Position.X = MaxSliderX;
+                this.SliderButton.Position.X = this.MaxSliderX;
             }
-            if (SliderButton.Position.X < MinSliderX)
+            if (this.SliderButton.Position.X < this.MinSliderX)
             {
-                SliderButton.Position.X = MinSliderX;
+                this.SliderButton.Position.X = this.MinSliderX;
             }
 
-            DisplayValue = (int)(((int)SliderButton.Position.X - MinSliderX)/Scale);
-            float floatDisplayValue = (float)DisplayValue;
+            this.DisplayValue = (int)(((int)this.SliderButton.Position.X - this.MinSliderX) / this.Scale);
+            float floatDisplayValue = (float)this.DisplayValue;
             return floatDisplayValue / 100;
         }
 
         public void Draw(SpriteBatch spriteBatch, string textToIdentifyNumber)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, SliderBackgroundPosition, SliderBackground, Color.White, 0f, Game1.Utility.Origin, Scale,   SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-            SliderButton.DrawNormal(spriteBatch, SliderButton.Position, SliderButton.BackGroundSourceRectangle, SliderButton.Color, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, textToIdentifyNumber + DisplayValue.ToString(), new Vector2(SliderBackgroundPosition.X, SliderBackgroundPosition.Y - 100), Color.Black, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.SliderBackgroundPosition, this.SliderBackground, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            this.SliderButton.DrawNormal(spriteBatch, this.SliderButton.Position, this.SliderButton.BackGroundSourceRectangle, this.SliderButton.Color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .02f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, textToIdentifyNumber + this.DisplayValue.ToString(), new Vector2(this.SliderBackgroundPosition.X, this.SliderBackgroundPosition.Y - 100), Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
         }
     }
 }

@@ -1,17 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.Controls;
 using SecretProject.Class.SpriteFolder;
-using SecretProject.Class.StageFolder;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Xml.Serialization;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -39,12 +29,12 @@ namespace SecretProject.Class.ItemStuff
 
         public Inventory(int capacity, int slotCapacity = 0)
         {
-            ItemCount = 0;
+            this.ItemCount = 0;
             this.Capacity = capacity;
-            currentInventory = new List<InventorySlot>(Capacity - 1);
-            for (int i = 0; i < Capacity; i++)
+            currentInventory = new List<InventorySlot>(this.Capacity - 1);
+            for (int i = 0; i < this.Capacity; i++)
             {
-                if(slotCapacity == 0)
+                if (slotCapacity == 0)
                 {
                     currentInventory.Add(new InventorySlot());
                 }
@@ -52,7 +42,7 @@ namespace SecretProject.Class.ItemStuff
                 {
                     currentInventory.Add(new InventorySlot(slotCapacity));
                 }
-                
+
             }
 
         }
@@ -186,8 +176,8 @@ namespace SecretProject.Class.ItemStuff
 
         public InventorySlot(Item item)
         {
-            SlotItems = new List<Item>(1);
-            SlotItems.Add(item);
+            this.SlotItems = new List<Item>(1);
+            this.SlotItems.Add(item);
             this.Item = item;
         }
 
@@ -195,29 +185,29 @@ namespace SecretProject.Class.ItemStuff
 
         public InventorySlot()
         {
-            SlotItems = new List<Item>(1);
-            Capacity = 999;
+            this.SlotItems = new List<Item>(1);
+            this.Capacity = 999;
         }
 
         public InventorySlot(int capacity)
         {
-            SlotItems = new List<Item>(1);
+            this.SlotItems = new List<Item>(1);
             this.Capacity = capacity;
         }
 
         public Item GetItem()
         {
-            return SlotItems[0];
+            return this.SlotItems[0];
         }
 
         public void RemoveItemFromSlot()
         {
-            SlotItems.RemoveAt(SlotItems.Count - 1);
+            this.SlotItems.RemoveAt(this.SlotItems.Count - 1);
         }
 
         public void AddItemToSlot(Item item)
         {
-            SlotItems.Add(item);
+            this.SlotItems.Add(item);
         }
 
     }

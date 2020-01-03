@@ -1,14 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -42,18 +37,18 @@ namespace SecretProject.Class.TileStuff
             this.CanPlace = true;
 
             this.PlaceID = placeID;
-            this.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(PlaceID, 100);
+            this.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(this.PlaceID, 100);
             LoadNewItem(tileManager);
 
         }
         //negative ID means indoors only
         public void LoadNewItem(ITileManager tileManager)
         {
-            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(PlaceID))
+            if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles.ContainsKey(this.PlaceID))
             {
-                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("newSource"))
+                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties.ContainsKey("newSource"))
                 {
-                    this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["newSource"]);
+                    this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["newSource"]);
 
 
                 }
@@ -64,9 +59,9 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 //we use this so only the hitbox section of the tile to place is checking to see if tiles underneath are empty. 
-                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties.ContainsKey("checkTile"))
+                if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties.ContainsKey("checkTile"))
                 {
-                    int[] newRectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[PlaceID].Properties["checkTile"]);
+                    int[] newRectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["checkTile"]);
 
                     this.NegativeXTest = newRectangleCoordinates[0] / 16;
                     this.NegativeYTest = newRectangleCoordinates[1] / 16;
@@ -75,16 +70,16 @@ namespace SecretProject.Class.TileStuff
                 }
                 else
                 {
-                    this.NegativeXTest = RectangleCoordinates[0] / 16;
-                    this.NegativeYTest = RectangleCoordinates[1] / 16;
-                    this.PositiveXTest = RectangleCoordinates[2] / 16;
-                    this.PositiveYTest = RectangleCoordinates[3] / 16;
+                    this.NegativeXTest = this.RectangleCoordinates[0] / 16;
+                    this.NegativeYTest = this.RectangleCoordinates[1] / 16;
+                    this.PositiveXTest = this.RectangleCoordinates[2] / 16;
+                    this.PositiveYTest = this.RectangleCoordinates[3] / 16;
                 }
 
-                this.NegativeXDraw = RectangleCoordinates[0] / 16;
-                this.NegativeYDraw = RectangleCoordinates[1] / 16;
-                this.PositiveXDraw = RectangleCoordinates[2] / 16;
-                this.PositiveYDraw = RectangleCoordinates[3] / 16;
+                this.NegativeXDraw = this.RectangleCoordinates[0] / 16;
+                this.NegativeYDraw = this.RectangleCoordinates[1] / 16;
+                this.PositiveXDraw = this.RectangleCoordinates[2] / 16;
+                this.PositiveYDraw = this.RectangleCoordinates[3] / 16;
             }
             else
             {
@@ -94,8 +89,8 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            SourceRectangle = new Rectangle(SourceRectangle.X + RectangleCoordinates[0], SourceRectangle.Y + RectangleCoordinates[1],
-                                   SourceRectangle.Width + RectangleCoordinates[2], SourceRectangle.Height + RectangleCoordinates[3]);
+            this.SourceRectangle = new Rectangle(this.SourceRectangle.X + this.RectangleCoordinates[0], this.SourceRectangle.Y + this.RectangleCoordinates[1],
+                                   this.SourceRectangle.Width + this.RectangleCoordinates[2], this.SourceRectangle.Height + this.RectangleCoordinates[3]);
 
         }
 
@@ -170,11 +165,11 @@ namespace SecretProject.Class.TileStuff
                             {
 
 
-    
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
 
-              
-                                
+                                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
+
+
+
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, -56, 5, true);
@@ -254,18 +249,18 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                CanPlace = false;
+                                this.CanPlace = false;
 
                             }
                         }
 
                         else
                         {
-                            CanPlace = false;
+                            this.CanPlace = false;
                             return;
                         }
 
-                        int newGID = PlaceID + i + (j * 100);
+                        int newGID = this.PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
 
@@ -359,7 +354,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                
+
 
                                 if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
                                 {
@@ -387,7 +382,7 @@ namespace SecretProject.Class.TileStuff
                                     return;
                                 }
 
-                                
+
                             }
 
                         }
@@ -408,8 +403,8 @@ namespace SecretProject.Class.TileStuff
 
         public void PlayPlacementSound()
         {
-  
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
+
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
 
 
 
@@ -443,7 +438,7 @@ namespace SecretProject.Class.TileStuff
                         //check if index is out of bounds of current chunk
 
 
-                        int newGID = PlaceID + i + (j * 100);
+                        int newGID = this.PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
                         for (int z = 1; z < container.AllTiles.Count; z++)

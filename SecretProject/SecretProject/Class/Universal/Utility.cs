@@ -1,15 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
-using SecretProject.Class.ItemStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using XMLData.DialogueStuff;
 
 namespace SecretProject.Class.Universal
@@ -22,7 +18,7 @@ namespace SecretProject.Class.Universal
         public float ForeGroundMultiplier { get; set; } = .000001f;
         public Vector2 centerScreen;
         public Random RGenerator;
-  
+
         public Vector2 Origin { get; set; } = new Vector2(0, 0);
         public Vector2 DialogueTextLocation { get; set; } = new Vector2(Game1.ScreenWidth / 5, (float)(Game1.ScreenHeight - Game1.ScreenHeight / 2.5));
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
@@ -31,17 +27,17 @@ namespace SecretProject.Class.Universal
         public float StandardButtonDepth { get; set; } = .7f;
         public float StandardTextDepth { get; set; } = .72f;
 
-        
+
 
         public Utility(int seed)
         {
             RGenerator = new Random(Seed: seed);
-            centerScreen = new Vector2(CenterScreenX, CenterScreenY);
+            centerScreen = new Vector2(this.CenterScreenX, this.CenterScreenY);
 
 
         }
 
-        
+
 
         public bool HasProperty(object obj, string propertyName)
         {
@@ -75,14 +71,14 @@ namespace SecretProject.Class.Universal
             return arrayToReturn;
         }
 
-        
 
-        
+
+
 
         public AnimationType GetRequiredTileTool(string info)
         {
             int toolToReturn = int.Parse(info.Split(',')[0]);
-            switch(toolToReturn)
+            switch (toolToReturn)
             {
                 case -50:
                     return AnimationType.HandsPicking;
@@ -137,13 +133,13 @@ namespace SecretProject.Class.Universal
             return soundToReturn;
         }
 
-        
+
 
         public string[] GetActionHelperInfo(string info)
         {
             string[] stringSize = info.Split(',');
             string[] infoToReturn = new string[stringSize.Length];
-            for(int i =0; i < stringSize.Length;i++)
+            for (int i = 0; i < stringSize.Length; i++)
             {
                 infoToReturn[i] = info.Split(',')[i];
             }
@@ -175,7 +171,7 @@ namespace SecretProject.Class.Universal
 
         }
 
-        public Vector2 RotateVector2(Vector2 pointToRotate,Vector2 origin, float angle)
+        public Vector2 RotateVector2(Vector2 pointToRotate, Vector2 origin, float angle)
         {
             Matrix rotationMatrix = Matrix.CreateRotationZ(angle);
             return Vector2.Transform(pointToRotate - origin, rotationMatrix);
@@ -184,7 +180,7 @@ namespace SecretProject.Class.Universal
         public Texture2D GetColoredRectangle(GraphicsDevice graphics, int width, int height, Color desiredColor)
         {
             Color[] dataColors = new Color[width * height];
-            for(int i =0; i < dataColors.Length; i++)
+            for (int i = 0; i < dataColors.Length; i++)
             {
                 dataColors[i] = desiredColor;
             }
@@ -215,14 +211,14 @@ namespace SecretProject.Class.Universal
 
                 }
             }
-            Texture2D texture = new Texture2D(graphicsDevice,width, height);
+            Texture2D texture = new Texture2D(graphicsDevice, width, height);
             texture.SetData<Color>(Colors.ToArray());
             return texture;
         }
         #region SPEECHUTILITY
         public void PerformSpeechAction(string action, int speakerID, string name)
         {
-            if(action.Contains('.'))
+            if (action.Contains('.'))
             {
                 int newID = int.Parse(action.Split('.')[1]);
                 Game1.Player.UserInterface.TextBuilder.Reset(unfreeze: false);
@@ -230,11 +226,11 @@ namespace SecretProject.Class.Universal
                 Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
                 Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
                 Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + skeleton.TextToWrite, 2f, null, null);
-                
-             //   Game1.freeze = true;
+
+                //   Game1.freeze = true;
                 return;
             }
-            switch(action)
+            switch (action)
             {
                 case "OpenJulianShop":
                     Game1.freeze = true;

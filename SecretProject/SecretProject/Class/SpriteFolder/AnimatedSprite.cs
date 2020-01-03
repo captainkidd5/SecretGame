@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SecretProject.Class.SpriteFolder
@@ -39,15 +34,15 @@ namespace SecretProject.Class.SpriteFolder
 
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames)
         {
-            Texture = texture;
-            Rows = rows;
-            Columns = columns;
+            this.Texture = texture;
+            this.Rows = rows;
+            this.Columns = columns;
             currentFrame = 0;
-            totalFrames = Rows * Columns;
+            totalFrames = this.Rows * this.Columns;
             speed = 0.15D;
             timer = speed;
             this.HitBoxFrames = hitBoxFrames;
-            this.rectangleTexture = texture;
+            rectangleTexture = texture;
             SetRectangleTexture(graphicsDevice, texture);
 
 
@@ -56,9 +51,9 @@ namespace SecretProject.Class.SpriteFolder
         //constructor for more complicated sprite atlases
         public AnimatedSprite(GraphicsDevice graphicsDevice, Texture2D texture, int rows, int columns, int hitBoxFrames, int desiredColumnStart, int desiredRowStart, int desiredColumnFinish)
         {
-            Texture = texture;
-            Rows = rows;
-            Columns = columns;
+            this.Texture = texture;
+            this.Rows = rows;
+            this.Columns = columns;
             currentFrame = 0;
             //totalFrames = Rows * Columns;
             totalFrames = desiredColumnFinish - desiredColumnStart * rows;
@@ -66,7 +61,7 @@ namespace SecretProject.Class.SpriteFolder
             timer = speed;
             this.DesiredColumnStart = desiredColumnStart;
             this.HitBoxFrames = hitBoxFrames;
-            this.rectangleTexture = texture;
+            rectangleTexture = texture;
             SetRectangleTexture(graphicsDevice, texture);
 
 
@@ -81,15 +76,15 @@ namespace SecretProject.Class.SpriteFolder
 
         private void SetRectangleTexture(GraphicsDevice graphicsDevice, Texture2D texture)
         {
-            
+
             var Colors = new List<Color>();
             for (int y = 0; y < texture.Height; y++)
             {
-                for (int x = 0; x < (texture.Width / HitBoxFrames); x++)
+                for (int x = 0; x < (texture.Width / this.HitBoxFrames); x++)
                 {
                     if (x == 0 || //left side
                         y == 0 || //top side
-                        x == texture.Width / HitBoxFrames - 1 || //right side
+                        x == texture.Width / this.HitBoxFrames - 1 || //right side
                         y == texture.Height - 1) //bottom side
                     {
                         Colors.Add(new Color(255, 255, 255, 255));
@@ -102,9 +97,9 @@ namespace SecretProject.Class.SpriteFolder
 
                 }
             }
-            rectangleTexture = new Texture2D(graphicsDevice, texture.Width / HitBoxFrames, texture.Height);
+            rectangleTexture = new Texture2D(graphicsDevice, texture.Width / this.HitBoxFrames, texture.Height);
             rectangleTexture.SetData<Color>(Colors.ToArray());
-            
+
         }
 
         public void Update(GameTime gameTime)
@@ -124,7 +119,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void PlayOnce(GameTime gameTime)
         {
-            
+
 
             timer -= gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -136,29 +131,29 @@ namespace SecretProject.Class.SpriteFolder
             if (currentFrame == totalFrames)
             {
                 currentFrame = 0;
-                IsAnimating = false;
+                this.IsAnimating = false;
             }
-                
+
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, float layerDepth)
         {
             this.MyDepth = layerDepth;
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
-            int row = (int)((float)currentFrame / (float)Columns);
-            int column = (currentFrame % Columns) + DesiredColumnStart;
+            int width = this.Texture.Width / this.Columns;
+            int height = this.Texture.Height / this.Rows;
+            int row = (int)((float)currentFrame / (float)this.Columns);
+            int column = (currentFrame % this.Columns) + this.DesiredColumnStart;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)location.X + AdjustedLocationX, (int)location.Y + AdjustedLocationY, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)location.X + this.AdjustedLocationX, (int)location.Y + this.AdjustedLocationY, width, height);
 
 
-            spriteBatch.Draw(Texture, destinationRectangle: destinationRectangle, sourceRectangle: sourceRectangle, color: Color.White, layerDepth: MyDepth);
-            if (ShowRectangle)
+            spriteBatch.Draw(this.Texture, destinationRectangle: destinationRectangle, sourceRectangle: sourceRectangle, color: Color.White, layerDepth: this.MyDepth);
+            if (this.ShowRectangle)
             {
                 if (rectangleTexture != null)
                 {
-                    spriteBatch.Draw(rectangleTexture, location, color: Color.White, layerDepth: MyDepth);
+                    spriteBatch.Draw(rectangleTexture, location, color: Color.White, layerDepth: this.MyDepth);
                 }
 
 

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CameraStuff;
@@ -18,11 +17,7 @@ using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiledSharp;
-using XMLData.ItemStuff;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.StageFolder
@@ -54,7 +49,7 @@ namespace SecretProject.Class.StageFolder
         Camera2D Cam { get; set; }
 
         int TileSetNumber { get; set; }
-        
+
 
 
         List<Sprite> AllSprites { get; set; }
@@ -67,7 +62,7 @@ namespace SecretProject.Class.StageFolder
 
         List<Portal> AllPortals { get; set; }
 
-        
+
         UserInterface MainUserInterface { get; set; }
 
         ContentManager Content { get; set; }
@@ -86,21 +81,21 @@ namespace SecretProject.Class.StageFolder
 
         List<float> AllDepths { get; set; }
 
-         TmxLayer Buildings { get; set; }
+        TmxLayer Buildings { get; set; }
 
-         TmxLayer Background { get; set; }
+        TmxLayer Background { get; set; }
 
-         TmxLayer Background1 { get; set; }
+        TmxLayer Background1 { get; set; }
 
-         TmxLayer MidGround { get; set; }
+        TmxLayer MidGround { get; set; }
 
-         TmxLayer foreGround { get; set; }
+        TmxLayer foreGround { get; set; }
 
         List<TmxLayer> AllLayers { get; set; }
 
-         TmxMap Map { get; set; }
+        TmxMap Map { get; set; }
         event EventHandler SceneChanged;
-         string TmxMapPath { get; set; }
+        string TmxMapPath { get; set; }
 
         QuadTree QuadTree { get; set; }
 

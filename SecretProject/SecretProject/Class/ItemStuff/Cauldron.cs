@@ -1,16 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
-using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using SecretProject.Class.ParticileStuff;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -52,60 +47,60 @@ namespace SecretProject.Class.ItemStuff
             this.StorableItemType = StorableItemType.Cauldron;
             this.ID = iD;
             this.Size = size;
-            this.Inventory = new Inventory(Size, 1);
+            this.Inventory = new Inventory(this.Size, 1);
             this.Location = location;
             this.GraphicsDevice = graphics;
             this.BackDropSourceRectangle = new Rectangle(512, 368, 96, 96);
             this.BackDropPosition = new Vector2(Game1.ScreenWidth / 4, Game1.ScreenHeight / 4);
             this.BackDropScale = 3f;
 
-            this.redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), GraphicsDevice,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width * BackDropScale - 50, BackDropPosition.Y), CursorType.Normal);
+            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.GraphicsDevice,
+                new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale - 50, this.BackDropPosition.Y), CursorType.Normal);
 
-            ItemSlots = new List<ItemStorageSlot>();
+            this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 3; i++)
             {
-                ItemSlots.Add(new ItemStorageSlot(graphics,this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * BackDropScale, this.BackDropPosition.Y  + BackDropSourceRectangle.Height * BackDropScale), new Rectangle(208, 80, 32, 32), BackDropScale, true));
-                
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + i * 32 * this.BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
+
             }
 
-            CookedItemSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width / 2 * BackDropScale - 32 * BackDropScale, BackDropPosition.Y - 64), new Rectangle(208, 80, 32, 32), BackDropScale, true);
+            this.CookedItemSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2 * this.BackDropScale - 32 * this.BackDropScale, this.BackDropPosition.Y - 64), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
 
             this.CookButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(441, 496, 62, 22), graphics,
-                new Vector2(BackDropPosition.X + BackDropSourceRectangle.Width /4 * BackDropScale, BackDropPosition.Y + BackDropSourceRectangle.Height * BackDropScale / 2), CursorType.Normal, 3f);
+                new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 4 * this.BackDropScale, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * this.BackDropScale / 2), CursorType.Normal, 3f);
 
-            CookTimer = new SimpleTimer(4f);
-            SmokeParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(Location.X + 8, Location.Y));
-            FireParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.Fire }, new Vector2(Location.X + 10, Location.Y + 10));
+            this.CookTimer = new SimpleTimer(4f);
+            this.SmokeParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.SmokeParticle }, new Vector2(this.Location.X + 8, this.Location.Y));
+            this.FireParticleEngine = new ParticleEngine(new List<Texture2D>() { Game1.AllTextures.Fire }, new Vector2(this.Location.X + 10, this.Location.Y + 10));
         }
         public void Activate(Tile tile)
         {
-            if(!IsUpdating)
+            if (!this.IsUpdating)
             {
-                IsUpdating = true;
-                Tile = tile;
-                TileUtility.GetTileRectangleFromProperty(Tile, false, null, 1939);
+                this.IsUpdating = true;
+                this.Tile = tile;
+                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidOpen, true);
             }
-            
+
 
         }
         public void Deactivate()
         {
-            if (!IsCooking)
+            if (!this.IsCooking)
             {
-                IsUpdating = false;
+                this.IsUpdating = false;
                 // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
-                TileUtility.GetTileRectangleFromProperty(Tile, false, null, 2139);
+                TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 2139);
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidClose, true);
-                SmokeParticleEngine.ClearParticles();
-                FireParticleEngine.ClearParticles();
+                this.SmokeParticleEngine.ClearParticles();
+                this.FireParticleEngine.ClearParticles();
             }
         }
 
         public bool IsItemAllowedToBeStored(Item item)
         {
-            if(item.Food == true)
+            if (item.Food == true)
             {
                 return true;
             }
@@ -117,13 +112,13 @@ namespace SecretProject.Class.ItemStuff
 
         public bool IsEverySlotFilled()
         {
-            for(int i =0; i < ItemSlots.Count;i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                if(ItemSlots[i].Inventory.currentInventory[0].SlotItems.Count <= 0)
+                if (this.ItemSlots[i].Inventory.currentInventory[0].SlotItems.Count <= 0)
                 {
                     return false;
                 }
-                
+
             }
             return true;
         }
@@ -133,11 +128,11 @@ namespace SecretProject.Class.ItemStuff
             byte meatValue = 0;
             byte vegetableValue = 0;
             byte fruitValue = 0;
-            for(int i =0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                meatValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].MeatValue;
-                vegetableValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].VegetableValue;
-                fruitValue += ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].FruitValue;
+                meatValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].MeatValue;
+                vegetableValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].VegetableValue;
+                fruitValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].FruitValue;
             }
             Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin <= meatValue) &&
             (x.VegetableValueMax >= vegetableValue) && (x.VegetableValueMin <= vegetableValue) &&
@@ -145,9 +140,9 @@ namespace SecretProject.Class.ItemStuff
 
             if (cookedItem != null)
             {
-                for (int i = 0; i < ItemSlots.Count; i++)
+                for (int i = 0; i < this.ItemSlots.Count; i++)
                 {
-                    Inventory.currentInventory[i].SlotItems.RemoveAt(Inventory.currentInventory[i].SlotItems.Count - 1);
+                    this.Inventory.currentInventory[i].SlotItems.RemoveAt(this.Inventory.currentInventory[i].SlotItems.Count - 1);
                 }
             }
             return cookedItem;
@@ -168,53 +163,53 @@ namespace SecretProject.Class.ItemStuff
             {
                 Deactivate();
             }
-            CookButton.Update(Game1.myMouseManager);
-            CookedItemSlot.Update(gameTime);
-           
-            if(CookButton.isClicked)
+            this.CookButton.Update(Game1.myMouseManager);
+            this.CookedItemSlot.Update(gameTime);
+
+            if (this.CookButton.isClicked)
             {
-                if(IsEverySlotFilled())
+                if (IsEverySlotFilled())
                 {
-                    IsCooking = true;
-                    Game1.GetCurrentStage().ParticleEngines.Add(SmokeParticleEngine);
-                    Game1.GetCurrentStage().ParticleEngines.Add(FireParticleEngine);
+                    this.IsCooking = true;
+                    Game1.GetCurrentStage().ParticleEngines.Add(this.SmokeParticleEngine);
+                    Game1.GetCurrentStage().ParticleEngines.Add(this.FireParticleEngine);
                 }
             }
-            if(IsCooking)
+            if (this.IsCooking)
             {
-                
-                SmokeParticleEngine.UpdateSmoke(gameTime);
-                FireParticleEngine.UpdateFire(gameTime);
-                if (CookTimer.Run(gameTime))
+
+                this.SmokeParticleEngine.UpdateSmoke(gameTime);
+                this.FireParticleEngine.UpdateFire(gameTime);
+                if (this.CookTimer.Run(gameTime))
                 {
-                    CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
-                    IsCooking = false;
-                    Game1.GetCurrentStage().ParticleEngines.Remove(SmokeParticleEngine);
-                    Game1.GetCurrentStage().ParticleEngines.Remove(FireParticleEngine);
-                    SmokeParticleEngine.ClearParticles();
-                    FireParticleEngine.ClearParticles();
+                    this.CookedItemSlot.Inventory.TryAddItem(DetermineMeal());
+                    this.IsCooking = false;
+                    Game1.GetCurrentStage().ParticleEngines.Remove(this.SmokeParticleEngine);
+                    Game1.GetCurrentStage().ParticleEngines.Remove(this.FireParticleEngine);
+                    this.SmokeParticleEngine.ClearParticles();
+                    this.FireParticleEngine.ClearParticles();
                 }
             }
-            if (CookedItemSlot.Button.isClicked)
+            if (this.CookedItemSlot.Button.isClicked)
             {
-                if (CookedItemSlot.Inventory.currentInventory[0].SlotItems.Count > 0)
+                if (this.CookedItemSlot.Inventory.currentInventory[0].SlotItems.Count > 0)
                 {
 
 
-                    if (Game1.Player.Inventory.TryAddItem(CookedItemSlot.Inventory.currentInventory[0].SlotItems[0]))
+                    if (Game1.Player.Inventory.TryAddItem(this.CookedItemSlot.Inventory.currentInventory[0].SlotItems[0]))
                     {
-                        CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
+                        this.CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
                     }
                 }
             }
-            for (int i = 0; i < ItemSlots.Count; i++)
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Update(gameTime);
-                if (ItemSlots[i].Button.IsHovered)
+                this.ItemSlots[i].Update(gameTime);
+                if (this.ItemSlots[i].Button.IsHovered)
                 {
 
-                    IsInventoryHovered = true;
-                    CurrentHoveredSlot = ItemSlots[i];
+                    this.IsInventoryHovered = true;
+                    this.CurrentHoveredSlot = this.ItemSlots[i];
 
                 }
             }
@@ -223,20 +218,20 @@ namespace SecretProject.Class.ItemStuff
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
+                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
             redEsc.Draw(spriteBatch);
-            CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", new Vector2(CookButton.Position.X + CookButton.BackGroundSourceRectangle.Width / 2, CookButton.Position.Y), Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
-            for (int i = 0; i < ItemSlots.Count; i++)
+            this.CookButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Cook", new Vector2(this.CookButton.Position.X + this.CookButton.BackGroundSourceRectangle.Width / 2, this.CookButton.Position.Y), Color.White, Game1.Utility.StandardButtonDepth + .02f, Game1.Utility.StandardButtonDepth + .03f, 2f);
+            for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                ItemSlots[i].Draw(spriteBatch);
+                this.ItemSlots[i].Draw(spriteBatch);
             }
-            CookedItemSlot.Draw(spriteBatch);
+            this.CookedItemSlot.Draw(spriteBatch);
 
-            if(IsCooking)
+            if (this.IsCooking)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, CookTimer.Time.ToString(), CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CookTimer.Time.ToString(), this.CookButton.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             }
         }
-        
+
     }
 }

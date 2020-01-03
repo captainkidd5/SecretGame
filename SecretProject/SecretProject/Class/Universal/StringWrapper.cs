@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.Universal
 {
@@ -18,10 +14,10 @@ namespace SecretProject.Class.Universal
         public float Duration { get; set; }
         public float ColorOpacity { get; set; }
 
-        public StringWrapper(string message, Vector2 position, float endAtX, float endAtY, float rate,float duration)
+        public StringWrapper(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
         {
             this.Message = message;
-            this.Position = position;
+            Position = position;
             this.EndAtX = endAtX;
             this.EndAtY = endAtY;
             this.Rate = rate;
@@ -32,35 +28,35 @@ namespace SecretProject.Class.Universal
 
         public void Update(GameTime gameTime, List<StringWrapper> strings)
         {
-            Duration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            ColorOpacity -= .01f;
-            if(Duration<= 0)
+            this.Duration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.ColorOpacity -= .01f;
+            if (this.Duration <= 0)
             {
                 strings.Remove(this);
             }
-            if(this.Position.X < EndAtX)
+            if (Position.X < this.EndAtX)
             {
-                this.Position.X += (float)(gameTime.ElapsedGameTime.TotalSeconds * Rate);
+                Position.X += (float)(gameTime.ElapsedGameTime.TotalSeconds * this.Rate);
             }
-            else if(this.Position.X > EndAtX)
+            else if (Position.X > this.EndAtX)
             {
-                this.Position.X -= (float)(gameTime.ElapsedGameTime.TotalSeconds * Rate);
+                Position.X -= (float)(gameTime.ElapsedGameTime.TotalSeconds * this.Rate);
             }
 
-            if (this.Position.Y < EndAtY)
+            if (Position.Y < this.EndAtY)
             {
-                this.Position.Y += (float)(gameTime.ElapsedGameTime.TotalSeconds * Rate);
+                Position.Y += (float)(gameTime.ElapsedGameTime.TotalSeconds * this.Rate);
             }
-            else if (this.Position.Y > EndAtY)
+            else if (Position.Y > this.EndAtY)
             {
-                this.Position.Y -= (float)(gameTime.ElapsedGameTime.TotalSeconds * Rate);
+                Position.Y -= (float)(gameTime.ElapsedGameTime.TotalSeconds * this.Rate);
             }
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, Message, this.Position, Color.White * this.ColorOpacity, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Message, Position, Color.White * this.ColorOpacity, 0f, Game1.Utility.Origin, .25f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
         }
     }
 }

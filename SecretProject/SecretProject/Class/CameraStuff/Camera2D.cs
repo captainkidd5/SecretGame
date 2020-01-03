@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace SecretProject.Class.CameraStuff
 {
@@ -31,7 +24,7 @@ namespace SecretProject.Class.CameraStuff
         {
             get
             {
-                return new Rectangle((int)(pos.X - (int)(Game1.ScreenWidth / Zoom /2)), (int)(pos.Y - (int)(Game1.ScreenHeight / Zoom/2)), (int)(Game1.ScreenWidth / Zoom ), (int)(Game1.ScreenHeight / Zoom ));
+                return new Rectangle((int)(pos.X - (int)(Game1.ScreenWidth / this.Zoom / 2)), (int)(pos.Y - (int)(Game1.ScreenHeight / this.Zoom / 2)), (int)(Game1.ScreenWidth / this.Zoom), (int)(Game1.ScreenHeight / this.Zoom));
             }
         }
 
@@ -49,7 +42,7 @@ namespace SecretProject.Class.CameraStuff
 
             Origin = new Vector2(viewport.Width / 2.0f, viewport.Height / 2.0f);
 
-            MyViewPort = viewport;
+            this.MyViewPort = viewport;
 
 
         }
@@ -71,33 +64,33 @@ namespace SecretProject.Class.CameraStuff
             pos.Y = (int)amount.Y;
 
             //pos.X = MathHelper.Lerp(pos.X, amount.X, .08f);
-           // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);
-            ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
+            // pos.Y = MathHelper.Lerp(pos.Y, amount.Y, .08f);
+            this.ViewPortRectangle = new Rectangle((int)(Game1.GetCurrentStage().MapRectangle.X + Game1.ScreenWidth / 2 / zoom),
               (int)(Game1.GetCurrentStage().MapRectangle.Y + Game1.ScreenHeight / 2 / zoom),
                 (int)(Game1.GetCurrentStage().MapRectangle.Width - Game1.ScreenWidth / 2 / zoom),
                 (int)(Game1.GetCurrentStage().MapRectangle.Height - Game1.ScreenHeight / 2 / zoom));
 
 
-            if(Game1.Player.LockBounds)
+            if (Game1.Player.LockBounds)
             {
-                if (pos.X < ViewPortRectangle.X)
+                if (pos.X < this.ViewPortRectangle.X)
                 {
-                    pos.X = ViewPortRectangle.X;
+                    pos.X = this.ViewPortRectangle.X;
                 }
-                if (pos.X > ViewPortRectangle.Width)
+                if (pos.X > this.ViewPortRectangle.Width)
                 {
-                    pos.X = ViewPortRectangle.Width;
+                    pos.X = this.ViewPortRectangle.Width;
                 }
-                if (pos.Y < ViewPortRectangle.Y)
+                if (pos.Y < this.ViewPortRectangle.Y)
                 {
-                    pos.Y = ViewPortRectangle.Y;
+                    pos.Y = this.ViewPortRectangle.Y;
                 }
-                if (pos.Y > ViewPortRectangle.Height)
+                if (pos.Y > this.ViewPortRectangle.Height)
                 {
-                    pos.Y = ViewPortRectangle.Height;
+                    pos.Y = this.ViewPortRectangle.Height;
                 }
             }
-            
+
 
 
 
@@ -105,20 +98,20 @@ namespace SecretProject.Class.CameraStuff
 
         public Matrix getTransformation(GraphicsDevice graphicsDevice)
         {
-            
-                transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) * Matrix.CreateRotationZ(Rotation)
-                * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width * 0.5f,
-                graphicsDevice.Viewport.Height * 0.5f, 0));
+
+            transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) * Matrix.CreateRotationZ(this.Rotation)
+            * Matrix.CreateScale(new Vector3(this.Zoom, this.Zoom, 1)) * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width * 0.5f,
+            graphicsDevice.Viewport.Height * 0.5f, 0));
             return transform;
         }
 
         public Matrix GetViewMatrix(Vector2 parallax)
         {
             // To add parallax, simply multiply it by the position
-            return Matrix.CreateTranslation(new Vector3(-Pos * parallax, 0.0f)) *
+            return Matrix.CreateTranslation(new Vector3(-this.Pos * parallax, 0.0f)) *
                 Matrix.CreateTranslation(new Vector3(-Origin, 0.0f)) *
-                Matrix.CreateRotationZ(Rotation) *
-                Matrix.CreateScale(Zoom, Zoom, 1) *
+                Matrix.CreateRotationZ(this.Rotation) *
+                Matrix.CreateScale(this.Zoom, this.Zoom, 1) *
                 Matrix.CreateTranslation(new Vector3(Origin, 0.0f));
         }
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,7 +12,8 @@ using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.Universal;
-using static SecretProject.Class.UI.CheckList;
+using System;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.UI
 {
@@ -78,7 +74,7 @@ namespace SecretProject.Class.UI
         public Player Player { get; set; }
 
         public OpenShop CurrentOpenShop { get; set; } = OpenShop.None;
-        public IShop CurrentShop{ get; set; }
+        public IShop CurrentShop { get; set; }
 
         public CraftingMenu CraftingMenu { get; set; }
 
@@ -123,59 +119,59 @@ namespace SecretProject.Class.UI
         {
             this.GraphicsDevice = graphicsDevice;
             this.content = content;
-            BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
-            BottomBar = new ToolBar(graphicsDevice, BackPack, content);
-            Esc = new EscMenu(graphicsDevice, content);
+            this.BackPack = new BackPack(graphicsDevice, Game1.Player.Inventory);
+            this.BottomBar = new ToolBar(graphicsDevice, this.BackPack, content);
+            this.Esc = new EscMenu(graphicsDevice, content);
             this.cam = cam;
-            TextBuilder = new TextBuilder("", .5f, 10f);
+            this.TextBuilder = new TextBuilder("", .5f, 10f);
             this.Player = player;
-            CraftingMenu = new CraftingMenu(content, graphicsDevice);
+            this.CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
 
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-            PlayerHealthBar = new HealthBar();
+            this.PlayerHealthBar = new HealthBar();
             this.PlayerStaminaBar = new StaminaBar(graphicsDevice, Game1.Player.Stamina, .2f);
-            WarpGate = new WarpGate(graphicsDevice);
+            this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
-            InfoBox = new InfoPopUp("Text Not Assigned", new Rectangle(1024, 64, 112, 48));
-            Notes = new InfoPopUp("Text Not Assigned", new Rectangle(624, 272, 160, 224)) { Color = Color.Black };
-            
-            this.CurrentOpenProgressBook = CurrentOpenProgressBook.None;
+            this.InfoBox = new InfoPopUp("Text Not Assigned", new Rectangle(1024, 64, 112, 48));
+            this.Notes = new InfoPopUp("Text Not Assigned", new Rectangle(624, 272, 160, 224)) { Color = Color.Black };
+
+            CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
             this.AllRisingText = new List<RisingText>();
 
 
-            this.BlackTransitionTexture = Game1.Utility.GetColoredRectangle(GraphicsDevice, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
-            BlackTransitionColorMultiplier = 1f;
-            TransitionSpeed = .05f;
+            this.BlackTransitionTexture = Game1.Utility.GetColoredRectangle(this.GraphicsDevice, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight, Color.Black);
+            this.BlackTransitionColorMultiplier = 1f;
+            this.TransitionSpeed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);
 
         }
 
         public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
         {
-            if (CurrentAccessedStorableItem != null)
+            if (this.CurrentAccessedStorableItem != null)
             {
-                CurrentAccessedStorableItem.Deactivate();
+                this.CurrentAccessedStorableItem.Deactivate();
             }
 
-            CurrentAccessedStorableItem = building;
+            this.CurrentAccessedStorableItem = building;
         }
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
         {
-            InfoBox.IsActive = false;
-          //  Notes.IsActive = false;
-            IsAnyStorageItemOpen = false;
-            BottomBar.IsActive = true;
-            if (CurrentAccessedStorableItem != null)
+            this.InfoBox.IsActive = false;
+            //  Notes.IsActive = false;
+            this.IsAnyStorageItemOpen = false;
+            this.BottomBar.IsActive = true;
+            if (this.CurrentAccessedStorableItem != null)
             {
-                if (CurrentAccessedStorableItem.IsUpdating)
+                if (this.CurrentAccessedStorableItem.IsUpdating)
                 {
-                    CurrentAccessedStorableItem.Update(gameTime);
+                    this.CurrentAccessedStorableItem.Update(gameTime);
                     this.IsAnyStorageItemOpen = true;
                 }
             }
@@ -184,10 +180,10 @@ namespace SecretProject.Class.UI
 
                 Game1.EnablePlayerCollisions = !Game1.EnablePlayerCollisions;
             }
-            if (BottomBar.IsActive)
+            if (this.BottomBar.IsActive)
             {
-                InfoBox.Update(gameTime);
-                BottomBar.Update(gameTime, inventory, mouse);
+                this.InfoBox.Update(gameTime);
+                this.BottomBar.Update(gameTime, inventory, mouse);
             }
 
 
@@ -195,7 +191,7 @@ namespace SecretProject.Class.UI
             {
                 case ExclusiveInterfaceItem.None:
 
-                    if((Game1.OldKeyBoardState.IsKeyDown(Keys.F6)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F6)))
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F6)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F6)))
                     {
                         Game1.cam.Zoom++;
                     }
@@ -207,114 +203,114 @@ namespace SecretProject.Class.UI
                     {
                         Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
                     }
-                        if (!TextBuilder.FreezeStage)
+                    if (!this.TextBuilder.FreezeStage)
                     {
                         Game1.freeze = false;
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        if (BackPack.Expanded)
+                        if (this.BackPack.Expanded)
                         {
-                            BackPack.Expanded = false;
+                            this.BackPack.Expanded = false;
                         }
                         else
                         {
-                            BackPack.Expanded = true;
+                            this.BackPack.Expanded = true;
 
                         }
 
                     }
 
 
-                    Esc.isTextChanged = false;
-                    PlayerStaminaBar.Update(gameTime);
+                    this.Esc.isTextChanged = false;
+                    this.PlayerStaminaBar.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
 
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
 
                         ActivateShop(OpenShop.ToolShop);
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
 
                     }
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)))
                     {
-                        TextBuilder.IsActive = !TextBuilder.IsActive;
-                        TextBuilder.UseTextBox = true;
+                        this.TextBuilder.IsActive = !this.TextBuilder.IsActive;
+                        this.TextBuilder.UseTextBox = true;
                     }
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
                     {
-                        if(!Notes.IsActive)
+                        if (!this.Notes.IsActive)
                         {
-                            Notes.FitText("This is a sample text to see how long the message can get before getting absolutely booled on", 1);
+                            this.Notes.FitText("This is a sample text to see how long the message can get before getting absolutely booled on", 1);
                         }
-                        Notes.IsActive = !Notes.IsActive;
-                        Notes.WindowPosition = Game1.Utility.centerScreen;
+                        this.Notes.IsActive = !this.Notes.IsActive;
+                        this.Notes.WindowPosition = Game1.Utility.centerScreen;
                     }
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
                     }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
-                    Esc.Update(gameTime, mouse);
+                    this.Esc.Update(gameTime, mouse);
 
                     Game1.freeze = true;
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     break;
                 case ExclusiveInterfaceItem.ShopMenu:
 
-                            Game1.isMyMouseVisible = true;
-                            Game1.freeze = true;
-                            CurrentShop.Update(gameTime, mouse);
-                 
+                    Game1.isMyMouseVisible = true;
+                    Game1.freeze = true;
+                    this.CurrentShop.Update(gameTime, mouse);
+
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
-  
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     break;
                 case ExclusiveInterfaceItem.CraftingMenu:
-                    CraftingMenu.Update(gameTime);
+                    this.CraftingMenu.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
                     {
-                        BackPack.Expanded = !BackPack.Expanded;
+                        this.BackPack.Expanded = !this.BackPack.Expanded;
                     }
                     break;
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Update(gameTime, mouse);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     break;
@@ -324,10 +320,10 @@ namespace SecretProject.Class.UI
 
                 case ExclusiveInterfaceItem.WarpGate:
                     Game1.freeze = true;
-                    WarpGate.Update(gameTime);
+                    this.WarpGate.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     break;
@@ -335,7 +331,7 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.CompletionHub:
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
-                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     CompletionHub.Update(gameTime);
                     break;
@@ -354,13 +350,13 @@ namespace SecretProject.Class.UI
 
             }
 
-            BackPack.Update(gameTime);
+            this.BackPack.Update(gameTime);
             for (int i = 0; i < this.AllRisingText.Count; i++)
             {
-                AllRisingText[i].Update(gameTime, AllRisingText);
+                this.AllRisingText[i].Update(gameTime, this.AllRisingText);
             }
 
-            TextBuilder.Update(gameTime);
+            this.TextBuilder.Update(gameTime);
 
             if (this.IsTransitioning)
             {
@@ -372,22 +368,22 @@ namespace SecretProject.Class.UI
 
         public void BeginTransitionCycle(GameTime gameTime)
         {
-            if (TransitionTimer.Time <= TransitionTimer.TargetTime)
+            if (this.TransitionTimer.Time <= this.TransitionTimer.TargetTime)
             {
-                this.BlackTransitionColorMultiplier -= TransitionSpeed;
+                this.BlackTransitionColorMultiplier -= this.TransitionSpeed;
             }
             else
             {
-                this.BlackTransitionColorMultiplier += TransitionSpeed;
+                this.BlackTransitionColorMultiplier += this.TransitionSpeed;
             }
-            if (!TransitionTimer.Run(gameTime))
+            if (!this.TransitionTimer.Run(gameTime))
             {
                 this.IsTransitioning = true;
 
             }
             else
             {
-                BlackTransitionColorMultiplier = 1f;
+                this.BlackTransitionColorMultiplier = 1f;
                 this.IsTransitioning = false;
             }
         }
@@ -405,9 +401,9 @@ namespace SecretProject.Class.UI
             {
                 Game1.AllShops[i].IsActive = false;
             }
-            CurrentShop = Game1.AllShops.Find(x => x.ID == (int)shopID);
-            CurrentShop.IsActive = true;
-            Player.UserInterface.CurrentOpenShop = shopID;
+            this.CurrentShop = Game1.AllShops.Find(x => x.ID == (int)shopID);
+            this.CurrentShop.IsActive = true;
+            this.Player.UserInterface.CurrentOpenShop = shopID;
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
 
         }
@@ -418,7 +414,7 @@ namespace SecretProject.Class.UI
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
             Game1.GlobalClock.Draw(spriteBatch);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
-            if (!CinematicMode)
+            if (!this.CinematicMode)
             {
 
 
@@ -426,18 +422,18 @@ namespace SecretProject.Class.UI
                 {
                     case ExclusiveInterfaceItem.None:
                         Game1.freeze = false;
-                        Esc.isTextChanged = false;
-                        PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
-                        PlayerStaminaBar.Draw(spriteBatch);
+                        this.Esc.isTextChanged = false;
+                        this.PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
+                        this.PlayerStaminaBar.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.EscMenu:
-                        Esc.Draw(spriteBatch);
+                        this.Esc.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.ShopMenu:
-                        CurrentShop.Draw(spriteBatch);
+                        this.CurrentShop.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.CraftingMenu:
-                        CraftingMenu.Draw(spriteBatch);
+                        this.CraftingMenu.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.SanctuaryCheckList:
                         Game1.SanctuaryCheckList.Draw(spriteBatch);
@@ -446,7 +442,7 @@ namespace SecretProject.Class.UI
 
 
                     case ExclusiveInterfaceItem.WarpGate:
-                        WarpGate.Draw(spriteBatch);
+                        this.WarpGate.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.CompletionHub:
                         CompletionHub.Draw(spriteBatch);
@@ -457,24 +453,24 @@ namespace SecretProject.Class.UI
                         //    break;
                 }
 
-                if (BottomBar.IsActive)
+                if (this.BottomBar.IsActive)
                 {
-                    BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
-                    InfoBox.Draw(spriteBatch);
-                    Notes.Draw(spriteBatch);
+                    this.BottomBar.Draw(spriteBatch, Game1.Player.Inventory.Money);
+                    this.InfoBox.Draw(spriteBatch);
+                    this.Notes.Draw(spriteBatch);
                 }
 
-                BackPack.Draw(spriteBatch);
+                this.BackPack.Draw(spriteBatch);
             }
-            TextBuilder.Draw(spriteBatch, .71f);
+            this.TextBuilder.Draw(spriteBatch, .71f);
 
-          
 
-            if (CurrentAccessedStorableItem != null)
+
+            if (this.CurrentAccessedStorableItem != null)
             {
-                if (CurrentAccessedStorableItem.IsUpdating)
+                if (this.CurrentAccessedStorableItem.IsUpdating)
                 {
-                    CurrentAccessedStorableItem.Draw(spriteBatch);
+                    this.CurrentAccessedStorableItem.Draw(spriteBatch);
                 }
             }
 
@@ -482,7 +478,7 @@ namespace SecretProject.Class.UI
 
 
 
-            if (IsTransitioning)
+            if (this.IsTransitioning)
             {
                 DrawTransitionTexture(spriteBatch);
             }

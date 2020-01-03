@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
-using SecretProject.Class.Universal;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.MenuStuff
 {
@@ -33,25 +28,25 @@ namespace SecretProject.Class.MenuStuff
 
 
 
-            Scale = 2f;
-            
+            this.Scale = 2f;
+
             BackGroundSourceRectangle = new Rectangle(64, 416, 128, 224);
-            Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height);
+            this.Position = new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height);
 
 
             this.IsActive = false;
             this.FreezesGame = true;
             this.Tabs = new List<CategoryTab>()
             {
-                new CategoryTab("Esc", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * Scale),
+                new CategoryTab("Esc", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.Scale),
                 new Rectangle(64,392, 32,25),2f),
-                new CategoryTab("Settings", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width + 64, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * Scale),
+                new CategoryTab("Settings", graphicsDevice,new Vector2(Game1.PresentationParameters.BackBufferWidth / 2 - BackGroundSourceRectangle.Width + 64, Game1.PresentationParameters.BackBufferHeight / 2 - BackGroundSourceRectangle.Height - 25 * this.Scale),
                 new Rectangle(64,392, 32,25),2f),
 
             };
 
-            Tabs[0].Pages.Add(new MainEscPage(graphicsDevice,BackGroundSourceRectangle, Position));
-            Tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle,Scale));
+            this.Tabs[0].Pages.Add(new MainEscPage(graphicsDevice, BackGroundSourceRectangle, this.Position));
+            this.Tabs[1].Pages.Add(new SettingsPage(graphicsDevice, BackGroundSourceRectangle, this.Scale));
 
         }
 
@@ -59,43 +54,43 @@ namespace SecretProject.Class.MenuStuff
         {
             Game1.isMyMouseVisible = true;
 
-            for (int i = 0; i < Tabs.Count; i++)
+            for (int i = 0; i < this.Tabs.Count; i++)
             {
-                Tabs[i].Button.Update(Game1.myMouseManager);
-                if (Tabs[i].Button.isClicked)
+                this.Tabs[i].Button.Update(Game1.myMouseManager);
+                if (this.Tabs[i].Button.isClicked)
                 {
                     this.ActiveTab = i;
 
                 }
-                if (ActiveTab == i)
+                if (this.ActiveTab == i)
                 {
-                    Tabs[i].IsActive = true;
-                    Tabs[i].ButtonColorMultiplier = 1f;
+                    this.Tabs[i].IsActive = true;
+                    this.Tabs[i].ButtonColorMultiplier = 1f;
                 }
                 else
                 {
-                    Tabs[i].IsActive = false;
-                    Tabs[i].ButtonColorMultiplier = .5f;
+                    this.Tabs[i].IsActive = false;
+                    this.Tabs[i].ButtonColorMultiplier = .5f;
                 }
             }
-            Tabs[ActiveTab].Update(gameTime);
- 
+            this.Tabs[this.ActiveTab].Update(gameTime);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Utility.CenterScreenX -200, Game1.Utility.CenterScreenY -200 , 224,304),
             //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, Position,
-                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position,
+                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
 
-            for (int i = 0; i < Tabs.Count; i++)
+            for (int i = 0; i < this.Tabs.Count; i++)
             {
-                
-                Tabs[i].Button.DrawNormal(spriteBatch, Tabs[i].Button.Position, Tabs[i].Button.BackGroundSourceRectangle, Color.White * Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+
+                this.Tabs[i].Button.DrawNormal(spriteBatch, this.Tabs[i].Button.Position, this.Tabs[i].Button.BackGroundSourceRectangle, Color.White * this.Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
             }
 
-            Tabs[ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, Scale, false);
+            this.Tabs[this.ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, this.Scale, false);
 
 
         }
@@ -121,47 +116,47 @@ namespace SecretProject.Class.MenuStuff
 
         public MainEscPage(GraphicsDevice graphicsDevice, Rectangle backgroundSourceRectangle, Vector2 Position)
         {
-            ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width /3, Position.Y + 16 * 2), CursorType.Normal, 2f);
+            this.ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 16 * 2), CursorType.Normal, 2f);
 
-            SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 64 * 2), CursorType.Normal,2f);
+            this.SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 64 * 2), CursorType.Normal, 2f);
 
-            MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 112 * 2), CursorType.Normal,2f);
-            ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 160 * 2), CursorType.Normal,2f);
+            this.MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 112 * 2), CursorType.Normal, 2f);
+            this.ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 160 * 2), CursorType.Normal, 2f);
 
-            MenuText = "Exit Game";
-            SettingsText = "Save Game";
-            ReturnText = "Return";
+            this.MenuText = "Exit Game";
+            this.SettingsText = "Save Game";
+            this.ReturnText = "Return";
             ToggleFullScreenButtonText = "FullScreen Mode";
 
 
 
-            Buttons = new List<Button>() { MenuButton, SettingsButton, ReturnButton, ToggleFullScreenButton };
+            this.Buttons = new List<Button>() { this.MenuButton, this.SettingsButton, this.ReturnButton, this.ToggleFullScreenButton };
         }
         public void Update(GameTime gameTime)
         {
-            for (int i = 0; i < Buttons.Count; i++)
+            for (int i = 0; i < this.Buttons.Count; i++)
             {
-                Buttons[i].Update(Game1.myMouseManager);
+                this.Buttons[i].Update(Game1.myMouseManager);
             }
-            if (MenuButton.isClicked)
+            if (this.MenuButton.isClicked)
             {
                 Game1.mainMenu.LoadBackGround();
                 Game1.gameStages = Stages.MainMenu;
             }
 
-            if (ReturnButton.isClicked)
+            if (this.ReturnButton.isClicked)
             {
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
-               // isTextChanged = false;
+                // isTextChanged = false;
             }
 
-            if (SettingsButton.isClicked)
+            if (this.SettingsButton.isClicked)
             {
-              //  mySave.Save();
-               // isTextChanged = true;
+                //  mySave.Save();
+                // isTextChanged = true;
             }
 
-            if (ToggleFullScreenButton.isClicked)
+            if (this.ToggleFullScreenButton.isClicked)
             {
                 Game1.FullScreenToggle();
             }
@@ -169,10 +164,10 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, MenuText, MenuButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ReturnText, ReturnButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, SettingsText, SettingsButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, ToggleFullScreenButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            this.MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.MenuText, this.MenuButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            this.ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.ReturnText, this.ReturnButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            this.SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.SettingsText, this.SettingsButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            this.ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, this.ToggleFullScreenButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
 
         }
 
@@ -182,22 +177,22 @@ namespace SecretProject.Class.MenuStuff
     class SettingsPage : IPage
     {
         public SliderBar VolumeSetting { get; set; }
-        public SettingsPage(GraphicsDevice graphics,Rectangle backgroundSourceRectangle, float scale)
+        public SettingsPage(GraphicsDevice graphics, Rectangle backgroundSourceRectangle, float scale)
         {
-            VolumeSetting = new SliderBar(graphics, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2 - 48, Game1.Utility.CenterScreenY - backgroundSourceRectangle.Height/4), scale);
+            this.VolumeSetting = new SliderBar(graphics, new Vector2(Game1.Utility.centerScreen.X - backgroundSourceRectangle.Width / 2 - 48, Game1.Utility.CenterScreenY - backgroundSourceRectangle.Height / 4), scale);
         }
 
         public void Update(GameTime gameTime)
         {
-           Game1.SoundManager.GameVolume = VolumeSetting.Update(Game1.SoundManager.GameVolume);
+            Game1.SoundManager.GameVolume = this.VolumeSetting.Update(Game1.SoundManager.GameVolume);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Volume",new Vector2( VolumeSetting.SliderBackgroundPosition.X + 16 * VolumeSetting.Scale, VolumeSetting.SliderBackgroundPosition.Y - 80 * VolumeSetting.Scale), Color.Black, 0f, Game1.Utility.Origin, VolumeSetting.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
-            VolumeSetting.Draw(spriteBatch, "Music: ");
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Volume", new Vector2(this.VolumeSetting.SliderBackgroundPosition.X + 16 * this.VolumeSetting.Scale, this.VolumeSetting.SliderBackgroundPosition.Y - 80 * this.VolumeSetting.Scale), Color.Black, 0f, Game1.Utility.Origin, this.VolumeSetting.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            this.VolumeSetting.Draw(spriteBatch, "Music: ");
         }
 
-        
+
     }
 }

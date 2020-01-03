@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecretProject.Class.Controls
 {
@@ -47,13 +43,13 @@ namespace SecretProject.Class.Controls
             switch (type)
             {
                 case 0:
-                    controls = ControlType.Keyboard;
+                    this.controls = ControlType.Keyboard;
                     break;
                 case 1:
-                    controls = ControlType.JoyStick;
+                    this.controls = ControlType.JoyStick;
                     break;
                 default:
-                    controls = ControlType.Keyboard;
+                    this.controls = ControlType.Keyboard;
                     break;
             }
         }
@@ -61,7 +57,7 @@ namespace SecretProject.Class.Controls
 
         public void UpdateKeys()
         {
-            switch (controls)
+            switch (this.controls)
             {
                 case ControlType.Keyboard:
                     KeyboardState currentKeys = Keyboard.GetState();
@@ -71,10 +67,10 @@ namespace SecretProject.Class.Controls
         }
         public void Update()
         {
-            switch (controls)
+            switch (this.controls)
             {
                 case ControlType.Keyboard:
-                   KeyboardState currentKeys = Keyboard.GetState();
+                    KeyboardState currentKeys = Keyboard.GetState();
 
                     pressedKeys = currentKeys.GetPressedKeys();
 
@@ -83,31 +79,31 @@ namespace SecretProject.Class.Controls
                     {
 
                         MovementKeys.Add(Keys.D);
-                        
+
                     }
 
 
                     if (currentKeys.IsKeyDown(Keys.A) && !MovementKeys.Contains(Keys.A))
                     {
                         MovementKeys.Add(Keys.A);
-                        
+
                     }
 
                     if (currentKeys.IsKeyDown(Keys.W) && !MovementKeys.Contains(Keys.W))
                     {
                         MovementKeys.Add(Keys.W);
-                        
+
                     }
 
                     if (currentKeys.IsKeyDown(Keys.S) && !MovementKeys.Contains(Keys.S))
                     {
                         MovementKeys.Add(Keys.S);
-                        
+
                     }
 
                     //Now for the removal
 
-                    if(!currentKeys.IsKeyDown(Keys.D) && oldKeys.IsKeyDown(Keys.D))
+                    if (!currentKeys.IsKeyDown(Keys.D) && oldKeys.IsKeyDown(Keys.D))
                     {
                         MovementKeys.Remove(Keys.D);
                     }
@@ -128,80 +124,80 @@ namespace SecretProject.Class.Controls
 
                     //active movement key is the one at the front of the list
 
-                    MovementKey = MovementKeys[MovementKeys.Count - 1];
-                    if((MovementKeys.Count -2) >= 0)
+                    this.MovementKey = MovementKeys[MovementKeys.Count - 1];
+                    if ((MovementKeys.Count - 2) >= 0)
                     {
-                        SecondMovementKey = MovementKeys[MovementKeys.Count - 2];
+                        this.SecondMovementKey = MovementKeys[MovementKeys.Count - 2];
                     }
                     else
                     {
-                        SecondMovementKey = Keys.None;
+                        this.SecondMovementKey = Keys.None;
                     }
-                    
+
 
                     oldKeys = currentKeys;
 
 
                     ////////
                     ///
-                    
 
-                    switch (MovementKey)
+
+                    switch (this.MovementKey)
                     {
                         case Keys.D:
-                            Direction = Dir.Right;
-                            IsMoving = true;
+                            this.Direction = Dir.Right;
+                            this.IsMoving = true;
                             break;
 
                         case Keys.A:
-                            Direction = Dir.Left;
-                            IsMoving = true;
+                            this.Direction = Dir.Left;
+                            this.IsMoving = true;
                             break;
 
                         case Keys.W:
-                            Direction = Dir.Up;
-                            IsMoving = true;
+                            this.Direction = Dir.Up;
+                            this.IsMoving = true;
                             break;
 
                         case Keys.S:
-                            Direction = Dir.Down;
-                            IsMoving = true;
+                            this.Direction = Dir.Down;
+                            this.IsMoving = true;
                             break;
 
                         case Keys.None:
-                            IsMoving = false;
+                            this.IsMoving = false;
                             break;
                     }
 
-                    switch(SecondMovementKey)
+                    switch (this.SecondMovementKey)
                     {
                         case Keys.D:
-                            SecondaryDirection = SecondaryDir.Right;
-                            
+                            this.SecondaryDirection = SecondaryDir.Right;
+
                             break;
 
                         case Keys.A:
-                            SecondaryDirection = SecondaryDir.Left;
-                            
+                            this.SecondaryDirection = SecondaryDir.Left;
+
                             break;
 
                         case Keys.W:
-                            SecondaryDirection = SecondaryDir.Up;
-                            
+                            this.SecondaryDirection = SecondaryDir.Up;
+
                             break;
 
                         case Keys.S:
-                            SecondaryDirection = SecondaryDir.Down;
-                          
+                            this.SecondaryDirection = SecondaryDir.Down;
+
                             break;
 
                         case Keys.None:
-                            SecondaryDirection = SecondaryDir.None;
-                            
+                            this.SecondaryDirection = SecondaryDir.None;
+
                             break;
 
                     }
-                    if(oldKeys.IsKeyDown(Keys.LeftShift))
+                    if (oldKeys.IsKeyDown(Keys.LeftShift))
                     {
                         this.IsSprinting = true;
                     }
@@ -214,8 +210,8 @@ namespace SecretProject.Class.Controls
                     break;
             }
         }
-        
- 
+
+
     }
 }
 
