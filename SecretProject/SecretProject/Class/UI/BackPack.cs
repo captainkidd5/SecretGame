@@ -426,7 +426,7 @@ namespace SecretProject.Class.UI
             else
             {
                 AllSlots[index].Texture = Game1.AllTextures.UserInterfaceTileSet;
-                AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(0, 80, 32, 32);
+                AllSlots[index].ItemSourceRectangleToDraw = new Rectangle(1568, 0, 32, 32);
             }
         }
 
