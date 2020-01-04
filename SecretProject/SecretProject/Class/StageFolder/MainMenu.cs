@@ -7,6 +7,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
+using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
 namespace SecretProject.Class.StageFolder
@@ -247,16 +248,16 @@ namespace SecretProject.Class.StageFolder
             {
                 case MenuState.primary:
 
-                    play.Draw(spriteBatch, font, "Play", play.FontLocation, play.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    play.Draw(spriteBatch, font, "Play", play.FontLocation, play.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
-                    Load.Draw(spriteBatch, font, "This does nothing", Load.FontLocation, Load.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Exit.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Load.Draw(spriteBatch, font, "This does nothing", Load.FontLocation, Load.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Exit.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     break;
 
                 case MenuState.play:
-                    StartGameInTown.Draw(spriteBatch, font, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    StartGameInWilderness.Draw(spriteBatch, font, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Game1.Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    StartGameInTown.Draw(spriteBatch, font, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    StartGameInWilderness.Draw(spriteBatch, font, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
                     break;
             }

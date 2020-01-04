@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using XMLData.ItemStuff;
@@ -140,7 +141,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
-                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth - .01f);
+                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth - .01f);
 
             for (int i = 0; i < this.Tabs.Length; i++)
             {
@@ -150,23 +151,23 @@ namespace SecretProject.Class.UI
             if (this.Tabs[this.ActiveTab].ActivePage >= this.Tabs[this.ActiveTab].Pages.Count - 1)
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White * .5f,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
             else
             {
                 this.FowardButton.DrawNormal(spriteBatch, this.FowardButton.Position, this.FowardButton.BackGroundSourceRectangle, Color.White,
-                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
             if (this.Tabs[this.ActiveTab].ActivePage <= 0)
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White * .5f,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
 
             }
             else
             {
                 this.BackButton.DrawNormal(spriteBatch, this.BackButton.Position, this.BackButton.BackGroundSourceRectangle, Color.White,
-               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+               0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
 
             }
 
@@ -327,28 +328,28 @@ namespace SecretProject.Class.UI
             if (!this.Locked && this.CraftingMenu.ActiveToolTip != null)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition,
-                this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
                 this.ItemToCraftButton.Draw(spriteBatch, this.ItemToCraftSourceRectangle, this.ItemToCraftButton.BackGroundSourceRectangle,
-               Game1.AllTextures.MenuText, "", this.ItemToCraftButton.Position, this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Game1.Utility.StandardButtonDepth + .01f);
+               Game1.AllTextures.MenuText, "", this.ItemToCraftButton.Position, this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Utility.StandardButtonDepth + .01f);
                 for (int i = 0; i < this.Ingredients.Count; i++)
                 {
                     this.Ingredients[i].Draw(spriteBatch, this.Color, new Vector2(this.BackDropPosition.X + 32 + i * 64, this.BackDropPosition.Y + this.BackGroundSourceRectangle.Height), 1f);
                 }
 
-                this.CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", new Vector2(this.CraftButton.Position.X + this.CraftButton.BackGroundSourceRectangle.Width / 2 + 16, this.CraftButton.Position.Y + 16), this.CraftButtonColor * this.ColorMultiplier, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .1f, 2f);
+                this.CraftButton.Draw(spriteBatch, Game1.AllTextures.MenuText, "Craft", new Vector2(this.CraftButton.Position.X + this.CraftButton.BackGroundSourceRectangle.Width / 2 + 16, this.CraftButton.Position.Y + 16), this.CraftButtonColor * this.ColorMultiplier, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .1f, 2f);
             }
             else if (this.CraftingMenu.ActiveToolTip == null)
             {
                 this.ItemToCraftButton.Draw(spriteBatch, this.ItemToCraftSourceRectangle, this.ItemToCraftButton.BackGroundSourceRectangle,
-               Game1.AllTextures.MenuText, "", new Vector2(this.ItemToCraftButton.Position.X - 400, this.ItemToCraftButton.Position.Y + 200), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Game1.Utility.StandardButtonDepth + .01f);
+               Game1.AllTextures.MenuText, "", new Vector2(this.ItemToCraftButton.Position.X - 400, this.ItemToCraftButton.Position.Y + 200), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale + 2, Utility.StandardButtonDepth + .01f);
             }
             else if (this.Locked)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition,
-                this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth);
                 this.ItemToCraftButton.Draw(spriteBatch, this.ItemToCraftSourceRectangle, this.ItemToCraftButton.BackGroundSourceRectangle,
-               Game1.AllTextures.MenuText, TextBuilder.ParseText("This item needs to be prototyped before it can be crafted.", this.BackGroundSourceRectangle.Width * this.BackDropScale - 32, 1f), new Vector2(this.BackDropPosition.X + 28, this.ItemToCraftButton.Position.Y + 96), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Game1.Utility.StandardButtonDepth + .01f);
-                //spriteBatch.DrawString(Game1.AllTextures.MenuText, "LOCKED", ItemToCraftButton.Position, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+               Game1.AllTextures.MenuText, TextBuilder.ParseText("This item needs to be prototyped before it can be crafted.", this.BackGroundSourceRectangle.Width * this.BackDropScale - 32, 1f), new Vector2(this.BackDropPosition.X + 28, this.ItemToCraftButton.Position.Y + 96), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Utility.StandardButtonDepth + .01f);
+                //spriteBatch.DrawString(Game1.AllTextures.MenuText, "LOCKED", ItemToCraftButton.Position, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
             }
 
         }
@@ -399,9 +400,9 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch, Color color, Vector2 position, float stringScale)
         {
-            this.Button.DrawNormal(spriteBatch, position, this.Button.BackGroundSourceRectangle, color * this.ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
+            this.Button.DrawNormal(spriteBatch, position, this.Button.BackGroundSourceRectangle, color * this.ColorMultiplier, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Utility.StandardButtonDepth + .05f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.CurrentCount.ToString() + "/" + this.CountRequired.ToString(),
-                new Vector2(position.X, position.Y + 25), Color.White, 0f, Game1.Utility.Origin, stringScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+                new Vector2(position.X, position.Y + 25), Color.White, 0f, Game1.Utility.Origin, stringScale, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
         }
     }
 
@@ -445,10 +446,10 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.DrawNormal(spriteBatch, this.Button.Position, this.Button.BackGroundSourceRectangle, Color.White * this.ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Button.HitBoxScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            this.Button.DrawNormal(spriteBatch, this.Button.Position, this.Button.BackGroundSourceRectangle, Color.White * this.ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Button.HitBoxScale, SpriteEffects.None, Utility.StandardButtonDepth);
             if (this.IsActive)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActivePage.ToString(), this.CraftingMenu.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.ActivePage.ToString(), this.CraftingMenu.BackDropPosition, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
                 this.Pages[this.ActivePage].Draw(spriteBatch);
             }
 

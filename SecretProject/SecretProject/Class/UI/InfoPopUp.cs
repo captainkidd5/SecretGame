@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI
 {
@@ -40,8 +41,8 @@ namespace SecretProject.Class.UI
         {
             if (this.IsActive)
             {
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, .9f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 16), this.Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .91f);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.WindowPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .05f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.StringToWrite, new Vector2(this.WindowPosition.X + 16, this.WindowPosition.Y + 16), this.Color, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
             }
 
         }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Universal;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -55,29 +56,29 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, new Rectangle(80, 400, 1024, 672), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
             this.RedEsc.Draw(spriteBatch);
             for (int i = 0; i < this.AllRequirements.Count; i++)
             {
                 switch (this.AllRequirements[i].Type)
                 {
                     case "plant":
-                        spriteBatch.DrawString(Game1.AllTextures.MenuText, this.AllRequirements[i].Name, new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * i), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                        spriteBatch.DrawString(Game1.AllTextures.MenuText, this.AllRequirements[i].Name, new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * i), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
                         if (this.AllRequirements[i].Completed)
                         {
-                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(208, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(208, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
                         }
                         else
                         {
-                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(16, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+                            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 600, this.Position.Y + 100 + 100 * i), new Rectangle(16, 256, 32, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
                         }
 
                         break;
                 }
             }
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Reward: ", new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * this.AllRequirements.Count), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Reward: ", new Vector2(this.Position.X + 50, this.Position.Y + 100 + 100 * this.AllRequirements.Count), Color.Black, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.Position.X + 200, this.Position.Y + 100 + 100 * this.AllRequirements.Count),
-            new Rectangle(1328, 1472, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .0001f);
+            new Rectangle(1328, 1472, 16, 32), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .0001f);
 
 
         }

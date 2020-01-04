@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
+using SecretProject.Class.Universal;
 using System.Collections.Generic;
 
 namespace SecretProject.Class.MenuStuff
@@ -82,12 +83,12 @@ namespace SecretProject.Class.MenuStuff
             //spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(Game1.Utility.CenterScreenX -200, Game1.Utility.CenterScreenY -200 , 224,304),
             //  new Rectangle(576, 48, 224, 304),Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .69f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position,
-                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
 
             for (int i = 0; i < this.Tabs.Count; i++)
             {
 
-                this.Tabs[i].Button.DrawNormal(spriteBatch, this.Tabs[i].Button.Position, this.Tabs[i].Button.BackGroundSourceRectangle, Color.White * this.Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                this.Tabs[i].Button.DrawNormal(spriteBatch, this.Tabs[i].Button.Position, this.Tabs[i].Button.BackGroundSourceRectangle, Color.White * this.Tabs[i].ButtonColorMultiplier, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
 
             this.Tabs[this.ActiveTab].Draw(spriteBatch, BackGroundSourceRectangle, this.Scale, false);
@@ -164,10 +165,10 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.MenuText, this.MenuButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            this.ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.ReturnText, this.ReturnButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            this.SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.SettingsText, this.SettingsButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
-            this.ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, this.ToggleFullScreenButton.FontLocation, Color.White, Game1.Utility.StandardButtonDepth + .01f, Game1.Utility.StandardButtonDepth + .02f, 2f);
+            this.MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.MenuText, this.MenuButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
+            this.ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.ReturnText, this.ReturnButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
+            this.SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.SettingsText, this.SettingsButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
+            this.ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, this.ToggleFullScreenButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
 
         }
 
@@ -189,7 +190,7 @@ namespace SecretProject.Class.MenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Volume", new Vector2(this.VolumeSetting.SliderBackgroundPosition.X + 16 * this.VolumeSetting.Scale, this.VolumeSetting.SliderBackgroundPosition.Y - 80 * this.VolumeSetting.Scale), Color.Black, 0f, Game1.Utility.Origin, this.VolumeSetting.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, "Volume", new Vector2(this.VolumeSetting.SliderBackgroundPosition.X + 16 * this.VolumeSetting.Scale, this.VolumeSetting.SliderBackgroundPosition.Y - 80 * this.VolumeSetting.Scale), Color.Black, 0f, Game1.Utility.Origin, this.VolumeSetting.Scale, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
             this.VolumeSetting.Draw(spriteBatch, "Music: ");
         }
 

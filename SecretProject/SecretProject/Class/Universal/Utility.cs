@@ -24,7 +24,7 @@ namespace SecretProject.Class.Universal
         public Rectangle ItemSourceNullRectangle { get; set; } = new Rectangle(320, 320, 16, 16);
 
 
-        public float StandardButtonDepth { get; set; } = .7f;
+         public const float StandardButtonDepth = .7f;
         public float StandardTextDepth { get; set; } = .72f;
 
 

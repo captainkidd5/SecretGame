@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI
 {
@@ -48,10 +49,10 @@ namespace SecretProject.Class.UI
         public virtual void Draw(SpriteBatch spriteBatch, bool useString, float scale = 1f)
         {
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .05f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, position, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, Utility.StandardButtonDepth + .05f);
             if (useString)
             {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .06f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.TextToWrite, position, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
             }
 
         }
@@ -81,7 +82,7 @@ namespace SecretProject.Class.UI
         //        }
 
         //        spriteBatch.Draw(this.Texture, textBoxLocation, sourceRectangle, Color.White, 0f,
-        //            Game1.Utility.Origin, scale,SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+        //            Game1.Utility.Origin, scale,SpriteEffects.None, Utility.StandardButtonDepth);
         //        spriteBatch.DrawString(this.textFont, this.TextToWrite, this.position, Color.White);
 
         //    }

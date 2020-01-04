@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.UI
 {
@@ -117,9 +118,9 @@ namespace SecretProject.Class.UI
             if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.PositionToDraw, new Rectangle(32, 320, 32, 496), Color.White, 0f,
-                    Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.Draw(this.ColoredRectangle, this.ColoredRectanglePosition, null, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Stamina.ToString(), this.PositionToDraw, Color.Black, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
+                    Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.Draw(this.ColoredRectangle, this.ColoredRectanglePosition, null, Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Stamina.ToString(), this.PositionToDraw, Color.Black, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Utility.StandardButtonDepth);
             }
         }
     }
