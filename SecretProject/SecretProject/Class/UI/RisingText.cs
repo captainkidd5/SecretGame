@@ -11,7 +11,7 @@ namespace SecretProject.Class.UI
 
         public bool RisingTextActive { get; set; }
         public Vector2 RisingTextPosition { get; set; }
-        public float YStart { get; set; }
+        public Vector2 Start { get; set; }
         public float YEnd { get; set; }
         public string RisingTextString { get; set; }
         public float Speed { get; set; }
@@ -20,10 +20,10 @@ namespace SecretProject.Class.UI
         public float Scale { get; set; }
 
 
-        public RisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade = true, float scale = .5f)
+        public RisingText(Vector2 start, float yEnd, string stringToWrite, float speed, Color color, bool fade = true, float scale = .5f)
         {
 
-            this.YStart = yStart;
+            this.Start = start;
             this.YEnd = yEnd;
             this.RisingTextString = stringToWrite;
             this.Speed = speed;
@@ -49,11 +49,12 @@ namespace SecretProject.Class.UI
 
         public bool UpdateRisingText(GameTime gameTime)
         {
-            if (this.YStart > this.YEnd)
+            if (this.Start.Y > this.YEnd)
             {
-                this.YStart -= (float)gameTime.ElapsedGameTime.TotalSeconds * this.Speed;
+                this.Start = new Vector2(Start.X, Start.Y - (float)gameTime.ElapsedGameTime.TotalSeconds * this.Speed);
+                //this.YStart -= (float)gameTime.ElapsedGameTime.TotalSeconds * this.Speed;
 
-                this.RisingTextPosition = new Vector2(Game1.Player.position.X, this.YStart);
+                this.RisingTextPosition = this.Start;
                 if (this.Fade)
                 {
                     this.Color = this.Color * .98f;

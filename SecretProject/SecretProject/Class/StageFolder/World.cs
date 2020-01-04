@@ -519,7 +519,7 @@ namespace SecretProject.Class.StageFolder
 
         public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale)
         {
-            this.AllRisingText.Add(new RisingText(yStart, yEnd, stringToWrite, speed, color, fade, scale));
+            this.AllRisingText.Add(new RisingText(Game1.Player.Position, yEnd, stringToWrite, speed, color, fade, scale));
         }
     }
 }

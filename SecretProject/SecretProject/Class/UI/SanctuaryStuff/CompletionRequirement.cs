@@ -38,6 +38,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
 
             this.CurrentCount++;
+            
             if (this.CurrentCount >= this.CountRequired)
             {
                 this.Satisfied = true;
@@ -53,7 +54,23 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
                 }
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.MiniReward, true, .25f);
-                this.CompletionPage.CheckFinalReward();
+                if(CompletionPage.CheckFinalReward())
+                {
+                    Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
+               Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CompletionPage.Name + " Completed!", 25f, Color.Blue, true, 2f));
+                }
+                else
+                {
+                    Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
+                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CountRequired.ToString() + "/" + this.CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(this.ItemID, null).Name + " Completed!", 50f, Color.Blue, true, 1f));
+                }
+                
+
+            }
+            else
+            {
+                Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
+                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, "+ 1 " + Game1.ItemVault.GenerateNewItem(this.ItemID, null).Name + "!", 100f, Color.White, true, 1f));
             }
         }
     }

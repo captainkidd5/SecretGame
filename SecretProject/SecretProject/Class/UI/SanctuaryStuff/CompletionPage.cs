@@ -47,7 +47,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 //    requirementIndex++;
                 //}
             }
-            FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
+            FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(128, 688, 80, 32),
                       this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null));
 
             this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
@@ -66,7 +66,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 ReqRacks[i].Update(gameTime, position, scale);
             }
 
-            FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 128, position.Y - 16);
+            FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 104, position.Y - 16);
             FinalRewardButton.Update(Game1.myMouseManager);
             if (FinalRewardButton.IsHovered)
             {
@@ -75,12 +75,14 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
             }
         }
-        public void CheckFinalReward()
+        public bool CheckFinalReward()
         {
             if(CanClaimFinalReward())
             {
                 System.Console.WriteLine("Can claim reward!");
+                return true;
             }
+            return false;
         }
         public bool CanClaimFinalReward()
         {
@@ -105,7 +107,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             {
                 ReqRacks[i].Draw(spriteBatch, position, this.LineSeparationSourceRectangle);
             }
-            this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 3, 3, Utility.StandardButtonDepth + .03f);
+            this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 3, Utility.StandardButtonDepth + .03f);
         }
 
         public void Draw(SpriteBatch spriteBatch)

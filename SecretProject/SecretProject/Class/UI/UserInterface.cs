@@ -464,7 +464,10 @@ namespace SecretProject.Class.UI
             }
             this.TextBuilder.Draw(spriteBatch, .71f);
 
-
+            for (int i = 0; i < this.AllRisingText.Count; i++)
+            {
+                this.AllRisingText[i].Draw(spriteBatch);
+            }
 
             if (this.CurrentAccessedStorableItem != null)
             {

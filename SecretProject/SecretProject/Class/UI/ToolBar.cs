@@ -117,8 +117,8 @@ namespace SecretProject.Class.UI
             if (InGameMenu.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
-                //Game1.Player.UserInterface.InfoBox.FitText("Settings (esc)", 2f);
-                //Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(InGameMenu.Position.X, InGameMenu.Position.Y - 128);
+                Game1.Player.UserInterface.InfoBox.FitText("Settings (esc)", 2f);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(InGameMenu.Position.X, InGameMenu.Position.Y - 128);
 
                 if (this.InGameMenu.isClicked)
                 {
