@@ -17,7 +17,12 @@
     <NumberRequired>2</NumberRequired>
      <Description>Place 2 sticks.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-     <SanctuaryReward>Gold</SanctuaryReward>
+     <Rewards>
+    <Item>GrindStone
+    </Item>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>1264</X>
     <Y>240</Y>
     <Width>16</Width>
@@ -32,7 +37,10 @@
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Oak trees. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-    <SanctuaryReward>Gold</SanctuaryReward>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>992</X>
     <Y>192</Y>
     <Width>48</Width>
@@ -47,7 +55,10 @@
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Thunder Birch trees. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-    <SanctuaryReward>Gold</SanctuaryReward>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>976</X>
     <Y>288</Y>
     <Width>80</Width>
@@ -73,7 +84,10 @@
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Boars.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-    <SanctuaryReward>Gold</SanctuaryReward>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>1200</X>
     <Y>256</Y>
     <Width>16</Width>
@@ -88,7 +102,10 @@
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Rabbits.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-    <SanctuaryReward>Gold</SanctuaryReward>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>1200</X>
     <Y>272</Y>
     <Width>16</Width>
@@ -103,7 +120,10 @@
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 butterflys.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
-    <SanctuaryReward>Gold</SanctuaryReward>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
     <X>1216</X>
     <Y>240</Y>
     <Width>16</Width>

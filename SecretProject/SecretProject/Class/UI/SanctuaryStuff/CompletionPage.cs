@@ -34,11 +34,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             for (int i = 0; i < this.SanctuaryRequirements.Count; i++)
             {
-                this.RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(720, 128, 32, 32),
-                     this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f)
+                for(int j = 0; j < this.SanctuaryRequirements[i].SanctuaryRewards.Count; j++)
                 {
-                    ItemSourceRectangleToDraw = Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRequirements[i].SanctuaryReward, null).SourceTextureRectangle
-                });
+                    this.RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
+                     this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRequirements[i].SanctuaryRewards[j], null)));
+
+                }
+                
 
             }
             FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(720, 128, 32, 32),
@@ -60,9 +62,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 this.RewardIcons[i].Update(Game1.myMouseManager);
                 if (this.RewardIcons[i].IsHovered)
                 {
-                    Item item = Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRequirements[i].SanctuaryReward, null);
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + item.Name, 1f);
+                    Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + this.RewardIcons[i].Item.Name, 1f);
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
                 }
             }

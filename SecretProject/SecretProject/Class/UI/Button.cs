@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.ItemStuff;
 
 namespace SecretProject.Class.MenuStuff
 {
@@ -41,12 +42,14 @@ namespace SecretProject.Class.MenuStuff
 
         public CursorType CursorType { get; set; }
 
+        public Item Item { get; set; }
+
         public Button()
         {
 
         }
 
-        public Button(Texture2D newtexture, Rectangle sourceRectangle, GraphicsDevice graphicsDevice, Vector2 position, CursorType cursorType, float scale = 1f)
+        public Button(Texture2D newtexture, Rectangle sourceRectangle, GraphicsDevice graphicsDevice, Vector2 position, CursorType cursorType, float scale = 1f, Item item = null)
         {
             this.Texture = newtexture;
             Position = position;
@@ -69,7 +72,11 @@ namespace SecretProject.Class.MenuStuff
             //this.ItemSourceRectangleToDraw = sou
             this.CursorType = cursorType;
             //this.Color = Color.White;
-
+            if(item != null)
+            {
+                this.Item = item;
+                this.ItemSourceRectangleToDraw = this.Item.SourceTextureRectangle;
+            }
         }
 
         public void UpdateHitBoxRectanlge(Rectangle newSourceRectangle)

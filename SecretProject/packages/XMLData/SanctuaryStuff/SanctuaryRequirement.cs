@@ -20,7 +20,8 @@ namespace XMLData.SanctuaryStuff
 
         [ContentSerializer(Optional = true)]
         public int GoldAwardAmount { get; set; }
-        public SanctuaryReward SanctuaryReward { get; set; }
+
+        public List<SanctuaryReward> Rewards { get; set; }
 
         //Source Rectangle
         public int X { get; set; }

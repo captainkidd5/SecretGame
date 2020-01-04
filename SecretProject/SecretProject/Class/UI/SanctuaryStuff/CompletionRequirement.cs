@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using XMLData.SanctuaryStuff;
 
 namespace SecretProject.Class.UI.SanctuaryStuff
@@ -15,11 +16,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public string String { get; set; }
         public Vector2 ImageLocation { get; set; }
 
-        public SanctuaryReward SanctuaryReward { get; set; }
+        public List<SanctuaryReward> SanctuaryRewards { get; set; }
 
         public int GoldAmount { get; set; }
 
-        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, SanctuaryReward sanctuaryReward, int goldAmount)
+        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
         {
 
             this.ItemID = itemID;
@@ -28,7 +29,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.SourceRectangle = sourceRectangle;
             this.String = description;
             this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
-            this.SanctuaryReward = sanctuaryReward;
+            this.SanctuaryRewards = sanctuaryRewards;
             this.GoldAmount = goldAmount;
         }
 
@@ -41,7 +42,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 this.Satisfied = true;
                 this.String = "Completed! ";
                 this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
-                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryReward, null));
+                for(int i =0; i < SanctuaryRewards.Count; i++)
+                {
+                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[i], null));
+                }
+                
             }
         }
     }

@@ -23,7 +23,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             this.Graphics = graphicsDevice;
             this.SanctuaryHolder = sanctuaryHolder;
-            this.BackGroundSourceRectangle = new Rectangle(448, 112, 272, 208);
+            this.BackGroundSourceRectangle = new Rectangle(448, 112, 336, 208);
             this.BackGroundPosition = new Vector2(Game1.Utility.CenterScreenX, Game1.Utility.CenterScreenY);
             this.BackGroundScale = 2f;
             this.CategoryTabs = new List<CompletionCategory>()
@@ -51,10 +51,18 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                         this.CategoryTabs[j].Pages[0].Description = sanctuaryHolder.AllPages[i].Description;
                         for (int p = 0; p < sanctuaryHolder.AllPages[i].AllRequirements.Count; p++)
                         {
+                            
+                            
                             SanctuaryRequirement requirement = sanctuaryHolder.AllPages[i].AllRequirements[p];
+
+                            List<SanctuaryReward> rewards = new List<SanctuaryReward>();
+                            for(int r = 0; r < requirement.Rewards.Count; r++)
+                            {
+                                rewards.Add(requirement.Rewards[r]);
+                            }
                             this.CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(requirement.ItemID, requirement.GIDRequired,
                                 requirement.NumberRequired, requirement.Description,
-                            requirement.Rectangle, requirement.SanctuaryReward, requirement.GoldAwardAmount));
+                            requirement.Rectangle, rewards, requirement.GoldAwardAmount));
                         }
 
 
