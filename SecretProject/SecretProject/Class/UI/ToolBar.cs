@@ -113,45 +113,65 @@ namespace SecretProject.Class.UI
             {
                 this.AllNonInventoryButtons[i].Update(mouse);
             }
-
-            if (this.InGameMenu.isClicked)
+            if (InGameMenu.IsHovered)
             {
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.FitText("Settings (esc)", 2f);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(InGameMenu.Position.X, InGameMenu.Position.Y - 128);
 
-                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                if (this.InGameMenu.isClicked)
                 {
-                    Game1.SoundManager.PlayOpenUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
-                }
-                else
-                {
-                    Game1.SoundManager.PlayCloseUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                    {
+                        Game1.SoundManager.PlayOpenUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
+                    }
+                    else
+                    {
+                        Game1.SoundManager.PlayCloseUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
                 }
             }
-            if (this.OpenCraftingMenu.isClicked)
+            if (this.OpenCraftingMenu.IsHovered)
             {
-                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.FitText("Crafting Menu (b)", 2f);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(OpenCraftingMenu.Position.X, OpenCraftingMenu.Position.Y - 128);
+
+                if (this.OpenCraftingMenu.isClicked)
                 {
-                    Game1.SoundManager.PlayOpenUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
-                }
-                else
-                {
-                    Game1.SoundManager.PlayCloseUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                    {
+                        Game1.SoundManager.PlayOpenUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
+                    }
+                    else
+                    {
+                        Game1.SoundManager.PlayCloseUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
                 }
             }
-            if (this.OpenSanctuaryMenu.isClicked)
+            if (this.OpenSanctuaryMenu.IsHovered)
             {
-                if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                Game1.Player.UserInterface.InfoBox.IsActive = true;
+                Game1.Player.UserInterface.InfoBox.FitText("Sanctuary Log (z)", 2f);
+                Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(OpenSanctuaryMenu.Position.X, OpenSanctuaryMenu.Position.Y - 128);
+
+                if (this.OpenSanctuaryMenu.isClicked)
                 {
-                    Game1.SoundManager.PlayOpenUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
-                }
-                else
-                {
-                    Game1.SoundManager.PlayCloseUI();
-                    Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    if (Game1.Player.UserInterface.CurrentOpenInterfaceItem == ExclusiveInterfaceItem.None)
+                    {
+                        Game1.SoundManager.PlayOpenUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
+                    }
+                    else
+                    {
+                        Game1.SoundManager.PlayCloseUI();
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
                 }
             }
 

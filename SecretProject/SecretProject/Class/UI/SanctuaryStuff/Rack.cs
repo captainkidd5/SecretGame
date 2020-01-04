@@ -82,7 +82,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Rectangle lineSeparationRectangle)
         {
             float baseY = position.Y + 128 + (32 * this.Index * this.Scale);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, baseY), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, baseY + 16), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
 
             //Item Image
             spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + Requirement.ImageLocation.X * (this.Scale - 1)), (int)baseY, 48, 48),

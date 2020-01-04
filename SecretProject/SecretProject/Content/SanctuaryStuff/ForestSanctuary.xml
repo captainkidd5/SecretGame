@@ -5,9 +5,9 @@
   <AllPages>
 
 <Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
-<Name>Basic Plants</Name>
+<Name>Basic Flora</Name>
 <Tab>0</Tab>
-<Description>We need to enrich the sanctuary soil by gathering these plants</Description>
+<Description>Find these basic forest plants and cultivate them anywhere in the Forest Sanctuary.</Description>
 <AllRequirements>
   <!-- Stick -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
@@ -18,10 +18,6 @@
      <Description>Place 2 sticks.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
      <Rewards>
-    <Item>GrindStone
-    </Item>
-    <Item>GrindStone
-    </Item>
     </Rewards>
     <X>1264</X>
     <Y>240</Y>
@@ -38,8 +34,6 @@
     <Description>Plant 5 Oak trees. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
     <Rewards>
-    <Item>GrindStone
-    </Item>
     </Rewards>
     <X>992</X>
     <Y>192</Y>
@@ -73,7 +67,7 @@
 
 <Name>Basic Fauna</Name>
 <Tab>1</Tab>
-<Description>Ummmm</Description>
+<Description>Catch these basic forest animals and release them anywhere in the Forest Sanctuary.</Description>
 <AllRequirements>
 
     <!-- Boar Crate -->

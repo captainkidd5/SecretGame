@@ -46,7 +46,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 //    requirementIndex++;
                 //}
             }
-            FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(720, 128, 32, 32),
+            FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
                       this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null));
 
             this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
@@ -70,7 +70,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             if (FinalRewardButton.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + FinalRewardButton.Item.Name, 1f);
+                Game1.Player.UserInterface.InfoBox.FitText("Complete the page to unlock the " + FinalRewardButton.Item.Name, 1f);
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
             }
         }
@@ -94,7 +94,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width / 2, position.Y - 16),
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Name, new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width / 2 - 64, position.Y - 16),
                     Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Rewards", new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 64 * Scale, position.Y + 64),
                    Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
