@@ -14,38 +14,39 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public string Description { get; set; }
         public List<CompletionRequirement> SanctuaryRequirements { get; set; }
 
-        public List<Button> RewardIcons { get; set; }
         public Button FinalRewardButton { get; set; }
 
         public SanctuaryReward FinalReward { get; set; }
 
         public Rectangle LineSeparationSourceRectangle { get; set; }
 
+        public List<Rack> ReqRacks { get; set; }
+
         public CompletionPage(GraphicsDevice graphics)
         {
             this.SanctuaryRequirements = new List<CompletionRequirement>();
-            this.RewardIcons = new List<Button>();
             this.Graphics = graphics;
             this.Name = "";
             this.Description = "";
             this.LineSeparationSourceRectangle = new Rectangle(453, 147, 262, 2);
+            this.ReqRacks = new List<Rack>();
         }
         public void Load()
         {
+    
             for (int i = 0; i < this.SanctuaryRequirements.Count; i++)
             {
-                for(int j = 0; j < this.SanctuaryRequirements[i].SanctuaryRewards.Count; j++)
-                {
-                    this.RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
-                     this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRequirements[i].SanctuaryRewards[j], null)));
+                this.ReqRacks.Add(new Rack(i, this.Graphics, Vector2.One, this.SanctuaryRequirements[i]));
 
-                }
-                
-
+                //if(this.SanctuaryRequirements[i].GoldAmount > 0)
+                //{
+                //    this.ReqRacks[i].RewardIcons
+                //    this.ReqRacks.Add(new Rack(requirementIndex, this.Graphics, Vector2.One, this.SanctuaryRequirements[i], this.SanctuaryRequirements[i].GoldAmount));
+                //    requirementIndex++;
+                //}
             }
             FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(720, 128, 32, 32),
-                      this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f)
-            { ItemSourceRectangleToDraw = Game1.ItemVault.GenerateNewItem((int)FinalReward, null).SourceTextureRectangle};
+                      this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null));
 
         }
         public void Update(GameTime gameTime)
@@ -56,24 +57,17 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Update(GameTime gameTime, Vector2 position, float scale)
         {
             this.Scale = scale;
-            for (int i = 0; i < this.RewardIcons.Count; i++)
+            for(int i =0; i < ReqRacks.Count; i++)
             {
-                this.RewardIcons[i].Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width * scale - this.RewardIcons[i].BackGroundSourceRectangle.Width * scale * 2, position.Y + 64 + (32 * i * scale));
-                this.RewardIcons[i].Update(Game1.myMouseManager);
-                if (this.RewardIcons[i].IsHovered)
-                {
-                    Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + this.RewardIcons[i].Item.Name, 1f);
-                    Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
-                }
+                ReqRacks[i].Update(gameTime, position, scale);
             }
+
             FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width /2, position.Y + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Height * scale /2);
             FinalRewardButton.Update(Game1.myMouseManager);
             if (FinalRewardButton.IsHovered)
             {
-                Item item = Game1.ItemVault.GenerateNewItem((int)this.FinalReward, null);
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + item.Name, 1f);
+                Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + FinalRewardButton.Item.Name, 1f);
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
             }
         }
@@ -83,20 +77,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(position.X, position.Y + 24),
                     Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-            for (int i = 0; i < this.SanctuaryRequirements.Count; i++)
+            for (int i = 0; i < this.ReqRacks.Count; i++)
             {
-                CompletionRequirement requirement = this.SanctuaryRequirements[i];
-
-
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, requirement.String, new Vector2(position.X, position.Y + 64 + (32 * i * this.Scale)), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + requirement.ImageLocation.X * (this.Scale - 1)), (int)(position.Y + 64 + (32 * i * this.Scale)), 48, 48),
-                requirement.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-
-                //separation line
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(position.X, position.Y + 124 + (32 * i * this.Scale)), this.LineSeparationSourceRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, requirement.CurrentCount.ToString() + "/" + requirement.CountRequired.ToString(), new Vector2(position.X + requirement.ImageLocation.X * (this.Scale - 1) + 32 * this.Scale, position.Y + 64 + (32 * i * this.Scale)),
-                    Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-                this.RewardIcons[i].Draw(spriteBatch, this.RewardIcons[i].ItemSourceRectangleToDraw, this.RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", this.RewardIcons[i].Position, Color.White, 2, 2, Game1.Utility.StandardButtonDepth + .03f);
+                ReqRacks[i].Draw(spriteBatch, position, this.LineSeparationSourceRectangle);
             }
             this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 2, Game1.Utility.StandardButtonDepth + .03f);
         }

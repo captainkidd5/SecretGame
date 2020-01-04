@@ -92,6 +92,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect PumpkinSmash;
 
 
+        public SoundEffect CoinGet;
+        public SoundEffect MiniReward;
+
         //COMBAT
         public SoundEffect Slash1;
         public SoundEffect BushCut;
@@ -195,6 +198,9 @@ namespace SecretProject.Class.SoundStuff
 
             UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
             Thunder1 = content.Load<SoundEffect>("SoundEffects/Thunder1");
+
+            CoinGet = content.Load<SoundEffect>("SoundEffects/CoinGet");
+            MiniReward = content.Load<SoundEffect>("SoundEffects/MiniReward");
 
             //COMBAT
             Slash1 = content.Load<SoundEffect>("SoundEffects/Slash1");

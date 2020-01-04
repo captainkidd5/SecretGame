@@ -168,5 +168,7 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/smokeParticle.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Particles/fire1.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/UIClick.wav</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/CoinGet.wav</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/MiniReward.wav</File>
   </SourceFiles>
 </SourceFileCollection>

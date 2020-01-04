@@ -1564,3 +1564,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/UIClick.wav
 
+#begin SoundEffects/CoinGet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/CoinGet.wav
+
+#begin SoundEffects/MiniReward.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/MiniReward.wav
+

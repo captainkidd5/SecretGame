@@ -46,7 +46,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 {
                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[i], null));
                 }
-                
+                if(this.GoldAmount > 0)
+                {
+                    Game1.Player.Inventory.Money += this.GoldAmount;
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
+                }
+                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.MiniReward, true, .25f);
+
             }
         }
     }
