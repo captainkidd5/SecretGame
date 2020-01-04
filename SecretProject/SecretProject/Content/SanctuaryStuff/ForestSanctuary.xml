@@ -16,6 +16,7 @@
     <GIDRequired>1579</GIDRequired>
     <NumberRequired>2</NumberRequired>
      <Description>Place 2 sticks.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
      <SanctuaryReward>Gold</SanctuaryReward>
     <X>1264</X>
     <Y>240</Y>
@@ -30,6 +31,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Oak trees. </Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
     <SanctuaryReward>Gold</SanctuaryReward>
     <X>992</X>
     <Y>192</Y>
@@ -44,6 +46,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Plant 5 Thunder Birch trees. </Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
     <SanctuaryReward>Gold</SanctuaryReward>
     <X>976</X>
     <Y>288</Y>
@@ -69,6 +72,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Boars.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
     <SanctuaryReward>Gold</SanctuaryReward>
     <X>1200</X>
     <Y>256</Y>
@@ -83,6 +87,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 Rabbits.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
     <SanctuaryReward>Gold</SanctuaryReward>
     <X>1200</X>
     <Y>272</Y>
@@ -97,6 +102,7 @@
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
     <Description>Release 5 butterflys.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
     <SanctuaryReward>Gold</SanctuaryReward>
     <X>1216</X>
     <Y>240</Y>

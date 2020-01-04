@@ -51,9 +51,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                         this.CategoryTabs[j].Pages[0].Description = sanctuaryHolder.AllPages[i].Description;
                         for (int p = 0; p < sanctuaryHolder.AllPages[i].AllRequirements.Count; p++)
                         {
-                            this.CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(sanctuaryHolder.AllPages[i].AllRequirements[p].ItemID, sanctuaryHolder.AllPages[i].AllRequirements[p].GIDRequired,
-                                sanctuaryHolder.AllPages[i].AllRequirements[p].NumberRequired, sanctuaryHolder.AllPages[i].AllRequirements[p].Description,
-                            sanctuaryHolder.AllPages[i].AllRequirements[p].Rectangle, sanctuaryHolder.AllPages[i].AllRequirements[p].SanctuaryReward));
+                            SanctuaryRequirement requirement = sanctuaryHolder.AllPages[i].AllRequirements[p];
+                            this.CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(requirement.ItemID, requirement.GIDRequired,
+                                requirement.NumberRequired, requirement.Description,
+                            requirement.Rectangle, requirement.SanctuaryReward, requirement.GoldAwardAmount));
                         }
 
 

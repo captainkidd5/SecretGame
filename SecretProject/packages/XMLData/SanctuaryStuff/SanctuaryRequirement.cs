@@ -18,6 +18,8 @@ namespace XMLData.SanctuaryStuff
 
         public string Description { get; set; }
 
+        [ContentSerializer(Optional = true)]
+        public int GoldAwardAmount { get; set; }
         public SanctuaryReward SanctuaryReward { get; set; }
 
         //Source Rectangle

@@ -17,8 +17,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public SanctuaryReward SanctuaryReward { get; set; }
 
-        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, SanctuaryReward sanctuaryReward)
+        public int GoldAmount { get; set; }
+
+        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, SanctuaryReward sanctuaryReward, int goldAmount)
         {
+
             this.ItemID = itemID;
             this.GID = gid;
             this.CountRequired = countRequired;
@@ -26,6 +29,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.String = description;
             this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
             this.SanctuaryReward = sanctuaryReward;
+            this.GoldAmount = goldAmount;
         }
 
         public void Increment()
