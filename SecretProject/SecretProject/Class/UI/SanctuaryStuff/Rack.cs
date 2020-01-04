@@ -23,6 +23,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public int GoldAmount { get; set; }
 
+        
+
         public Rack(int index, GraphicsDevice graphics, Vector2 rackPosition, CompletionRequirement requirement)
         {
             this.Index = index;
@@ -58,7 +60,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             for (int i = 0; i < this.RewardIcons.Count; i++)
             {
-                this.RewardIcons[i].Position = new Vector2(position.X + 64 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 64 + (32 * Index * scale));
+                this.RewardIcons[i].Position = new Vector2(position.X + 48 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 128 + (32 * Index * scale));
                 this.RewardIcons[i].Update(Game1.myMouseManager);
                 if (this.RewardIcons[i].IsHovered)
                 {
@@ -79,14 +81,16 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Rectangle lineSeparationRectangle)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, position.Y + 64 + (32 * this.Index * this.Scale)), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+            float baseY = position.Y + 128 + (32 * this.Index * this.Scale);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, baseY), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
 
-            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + Requirement.ImageLocation.X * (this.Scale - 1)), (int)(position.Y + 64 + (32 * this.Index * this.Scale)), 48, 48),
+            //Item Image
+            spriteBatch.Draw(Game1.AllTextures.MasterTileSet, new Rectangle((int)(position.X + Requirement.ImageLocation.X * (this.Scale - 1)), (int)baseY, 48, 48),
                 Requirement.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
 
             //separation line
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(position.X, position.Y + 124 + (32 * this.Index * this.Scale)), lineSeparationRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.CurrentCount.ToString() + "/" + Requirement.CountRequired.ToString(), new Vector2(position.X + Requirement.ImageLocation.X * (this.Scale - 1) + 32 * this.Scale, position.Y + 64 + (32 * this.Index * this.Scale)),
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(position.X, baseY + 64), lineSeparationRectangle, Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.CurrentCount.ToString() + "/" + Requirement.CountRequired.ToString(), new Vector2(position.X + Requirement.ImageLocation.X * (this.Scale - 1) + 32 * this.Scale, baseY),
                 Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .03f);
 
             for (int i = 0; i < RewardIcons.Count; i++)

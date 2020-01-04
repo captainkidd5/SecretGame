@@ -3549,23 +3549,23 @@
    <object id="1" x="0" y="13" width="16" height="2"/>
   </objectgroup>
   <animation>
-   <frame tileid="9602" duration="100"/>
-   <frame tileid="9502" duration="100"/>
-   <frame tileid="9402" duration="100"/>
-   <frame tileid="9302" duration="100"/>
-   <frame tileid="9202" duration="100"/>
-   <frame tileid="9102" duration="100"/>
-   <frame tileid="9002" duration="100"/>
-   <frame tileid="8902" duration="100"/>
-   <frame tileid="8802" duration="100"/>
-   <frame tileid="8702" duration="100"/>
-   <frame tileid="8602" duration="100"/>
-   <frame tileid="8502" duration="100"/>
-   <frame tileid="8402" duration="100"/>
-   <frame tileid="8302" duration="100"/>
-   <frame tileid="8202" duration="100"/>
-   <frame tileid="8102" duration="100"/>
-   <frame tileid="8002" duration="100"/>
+   <frame tileid="9602" duration="500"/>
+   <frame tileid="9502" duration="500"/>
+   <frame tileid="9402" duration="500"/>
+   <frame tileid="9302" duration="500"/>
+   <frame tileid="9202" duration="500"/>
+   <frame tileid="9102" duration="500"/>
+   <frame tileid="9002" duration="500"/>
+   <frame tileid="8902" duration="500"/>
+   <frame tileid="8802" duration="500"/>
+   <frame tileid="8702" duration="500"/>
+   <frame tileid="8602" duration="500"/>
+   <frame tileid="8502" duration="500"/>
+   <frame tileid="8402" duration="500"/>
+   <frame tileid="8302" duration="500"/>
+   <frame tileid="8202" duration="500"/>
+   <frame tileid="8102" duration="500"/>
+   <frame tileid="8002" duration="500"/>
   </animation>
  </tile>
  <tile id="9703">
@@ -3573,23 +3573,23 @@
    <object id="1" x="0" y="11" width="16" height="2"/>
   </objectgroup>
   <animation>
-   <frame tileid="9603" duration="100"/>
-   <frame tileid="9503" duration="100"/>
-   <frame tileid="9403" duration="100"/>
-   <frame tileid="9303" duration="100"/>
-   <frame tileid="9203" duration="100"/>
-   <frame tileid="9103" duration="100"/>
-   <frame tileid="9003" duration="100"/>
-   <frame tileid="8903" duration="100"/>
-   <frame tileid="8803" duration="100"/>
-   <frame tileid="8703" duration="100"/>
-   <frame tileid="8603" duration="100"/>
-   <frame tileid="8503" duration="100"/>
-   <frame tileid="8403" duration="100"/>
-   <frame tileid="8303" duration="100"/>
-   <frame tileid="8203" duration="100"/>
-   <frame tileid="8103" duration="100"/>
-   <frame tileid="8003" duration="100"/>
+   <frame tileid="9603" duration="500"/>
+   <frame tileid="9503" duration="500"/>
+   <frame tileid="9403" duration="500"/>
+   <frame tileid="9303" duration="500"/>
+   <frame tileid="9203" duration="500"/>
+   <frame tileid="9103" duration="500"/>
+   <frame tileid="9003" duration="500"/>
+   <frame tileid="8903" duration="500"/>
+   <frame tileid="8803" duration="500"/>
+   <frame tileid="8703" duration="500"/>
+   <frame tileid="8603" duration="500"/>
+   <frame tileid="8503" duration="500"/>
+   <frame tileid="8403" duration="500"/>
+   <frame tileid="8303" duration="500"/>
+   <frame tileid="8203" duration="500"/>
+   <frame tileid="8103" duration="500"/>
+   <frame tileid="8003" duration="500"/>
   </animation>
  </tile>
  <tile id="9704">
@@ -3597,23 +3597,23 @@
    <object id="1" x="0" y="12" width="16" height="2"/>
   </objectgroup>
   <animation>
-   <frame tileid="9604" duration="100"/>
-   <frame tileid="9504" duration="100"/>
-   <frame tileid="9404" duration="100"/>
-   <frame tileid="9304" duration="100"/>
-   <frame tileid="9204" duration="100"/>
-   <frame tileid="9104" duration="100"/>
-   <frame tileid="9004" duration="100"/>
-   <frame tileid="8904" duration="100"/>
-   <frame tileid="8804" duration="100"/>
-   <frame tileid="8704" duration="100"/>
-   <frame tileid="8604" duration="100"/>
-   <frame tileid="8504" duration="100"/>
-   <frame tileid="8404" duration="100"/>
-   <frame tileid="8304" duration="100"/>
-   <frame tileid="8204" duration="100"/>
-   <frame tileid="8104" duration="100"/>
-   <frame tileid="8004" duration="100"/>
+   <frame tileid="9604" duration="500"/>
+   <frame tileid="9504" duration="500"/>
+   <frame tileid="9404" duration="500"/>
+   <frame tileid="9304" duration="500"/>
+   <frame tileid="9204" duration="500"/>
+   <frame tileid="9104" duration="500"/>
+   <frame tileid="9004" duration="500"/>
+   <frame tileid="8904" duration="500"/>
+   <frame tileid="8804" duration="500"/>
+   <frame tileid="8704" duration="500"/>
+   <frame tileid="8604" duration="500"/>
+   <frame tileid="8504" duration="500"/>
+   <frame tileid="8404" duration="500"/>
+   <frame tileid="8304" duration="500"/>
+   <frame tileid="8204" duration="500"/>
+   <frame tileid="8104" duration="500"/>
+   <frame tileid="8004" duration="500"/>
   </animation>
  </tile>
  <tile id="9705">
@@ -3621,23 +3621,23 @@
    <object id="1" x="0" y="13" width="16" height="2"/>
   </objectgroup>
   <animation>
-   <frame tileid="9605" duration="100"/>
-   <frame tileid="9505" duration="100"/>
-   <frame tileid="9405" duration="100"/>
-   <frame tileid="9305" duration="100"/>
-   <frame tileid="9205" duration="100"/>
-   <frame tileid="9105" duration="100"/>
-   <frame tileid="9005" duration="100"/>
-   <frame tileid="8905" duration="100"/>
-   <frame tileid="8805" duration="100"/>
-   <frame tileid="8705" duration="100"/>
-   <frame tileid="8605" duration="100"/>
-   <frame tileid="8505" duration="100"/>
-   <frame tileid="8405" duration="100"/>
-   <frame tileid="8305" duration="100"/>
-   <frame tileid="8205" duration="100"/>
-   <frame tileid="8105" duration="100"/>
-   <frame tileid="8005" duration="100"/>
+   <frame tileid="9605" duration="500"/>
+   <frame tileid="9505" duration="500"/>
+   <frame tileid="9405" duration="500"/>
+   <frame tileid="9305" duration="500"/>
+   <frame tileid="9205" duration="500"/>
+   <frame tileid="9105" duration="500"/>
+   <frame tileid="9005" duration="500"/>
+   <frame tileid="8905" duration="500"/>
+   <frame tileid="8805" duration="500"/>
+   <frame tileid="8705" duration="500"/>
+   <frame tileid="8605" duration="500"/>
+   <frame tileid="8505" duration="500"/>
+   <frame tileid="8405" duration="500"/>
+   <frame tileid="8305" duration="500"/>
+   <frame tileid="8205" duration="500"/>
+   <frame tileid="8105" duration="500"/>
+   <frame tileid="8005" duration="500"/>
   </animation>
  </tile>
  <tile id="9707">

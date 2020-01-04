@@ -6,6 +6,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 {
     public class CompletionRequirement
     {
+        public CompletionPage CompletionPage { get; set; }
         public int ItemID { get; set; }
         public int GID { get; set; }
         public int CountRequired { get; set; }
@@ -20,9 +21,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public int GoldAmount { get; set; }
 
-        public CompletionRequirement(int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
+        public CompletionRequirement(CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
         {
-
+            this.CompletionPage = completionPage;
             this.ItemID = itemID;
             this.GID = gid;
             this.CountRequired = countRequired;
@@ -52,7 +53,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
                 }
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.MiniReward, true, .25f);
-
+                this.CompletionPage.CheckFinalReward();
             }
         }
     }

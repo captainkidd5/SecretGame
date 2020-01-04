@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.DialogueStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -32,7 +33,7 @@ namespace SecretProject.Class.UI
 
         public void FitText(string text, float scale)
         {
-            this.StringToWrite = Game1.Player.UserInterface.TextBuilder.ParseText(text, this.SourceRectangle.Width * 2.5f, 1.5f);
+            this.StringToWrite = TextBuilder.ParseText(text, this.SourceRectangle.Width * 2.5f, 1.5f);
         }
 
         public void Draw(SpriteBatch spriteBatch)

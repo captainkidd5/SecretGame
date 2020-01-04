@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
+using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.MenuStuff;
 using System;
@@ -346,7 +347,7 @@ namespace SecretProject.Class.UI
                 spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition,
                 this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Game1.Utility.StandardButtonDepth);
                 this.ItemToCraftButton.Draw(spriteBatch, this.ItemToCraftSourceRectangle, this.ItemToCraftButton.BackGroundSourceRectangle,
-               Game1.AllTextures.MenuText, Game1.Player.UserInterface.TextBuilder.ParseText("This item needs to be prototyped before it can be crafted.", this.BackGroundSourceRectangle.Width * this.BackDropScale - 32, 1f), new Vector2(this.BackDropPosition.X + 28, this.ItemToCraftButton.Position.Y + 96), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Game1.Utility.StandardButtonDepth + .01f);
+               Game1.AllTextures.MenuText, TextBuilder.ParseText("This item needs to be prototyped before it can be crafted.", this.BackGroundSourceRectangle.Width * this.BackDropScale - 32, 1f), new Vector2(this.BackDropPosition.X + 28, this.ItemToCraftButton.Position.Y + 96), this.Color * this.ColorMultiplier, this.BackDropScale, this.BackDropScale, Game1.Utility.StandardButtonDepth + .01f);
                 //spriteBatch.DrawString(Game1.AllTextures.MenuText, "LOCKED", ItemToCraftButton.Position, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardButtonDepth + .01f);
             }
 

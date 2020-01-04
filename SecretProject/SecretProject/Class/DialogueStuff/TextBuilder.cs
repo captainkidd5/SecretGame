@@ -259,7 +259,7 @@ namespace SecretProject.Class.DialogueStuff
             }
         }
 
-        public String ParseText(String text, float lineLimit, float scale)
+        public static String ParseText(String text, float lineLimit, float scale)
         {
             String line = String.Empty;
             String returnString = String.Empty;

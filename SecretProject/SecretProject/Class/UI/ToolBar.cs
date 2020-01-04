@@ -65,11 +65,11 @@ namespace SecretProject.Class.UI
             //Initialize Textur
 
 
-            this.InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(720, 128, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
+            this.InGameMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
             { ItemSourceRectangleToDraw = new Rectangle(16, 128, 32, 32) };
-            this.OpenCraftingMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(720, 128, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 64, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
+            this.OpenCraftingMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 64, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
             { ItemSourceRectangleToDraw = new Rectangle(20, 96, 32, 32) };
-            this.OpenSanctuaryMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(720, 128, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 128, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
+            this.OpenSanctuaryMenu = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphicsDevice, new Vector2(Game1.PresentationParameters.BackBufferWidth * .2f - 128, Game1.PresentationParameters.BackBufferHeight * .9f), CursorType.Normal, 2f)
             {
                 ItemSourceRectangleToDraw = new Rectangle(48, 96, 32, 32)
             };
