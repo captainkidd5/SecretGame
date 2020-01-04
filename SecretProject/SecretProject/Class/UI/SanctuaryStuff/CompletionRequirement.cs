@@ -20,6 +20,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public List<SanctuaryReward> SanctuaryRewards { get; set; }
 
         public int GoldAmount { get; set; }
+        public bool[] IndividualRewards { get; set; }
+        public bool AllRewardsClaimed { get; set; }
 
         public CompletionRequirement(CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
         {
@@ -32,29 +34,30 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
             this.SanctuaryRewards = sanctuaryRewards;
             this.GoldAmount = goldAmount;
+
+            int boolCount = 0;
+            if (GoldAmount > 0)
+            {
+                boolCount++;
+            }
+            boolCount += this.SanctuaryRewards.Count;
+
+            IndividualRewards = new bool[boolCount];
         }
 
         public void Increment()
         {
 
             this.CurrentCount++;
-            
+
             if (this.CurrentCount >= this.CountRequired)
             {
                 this.Satisfied = true;
                 this.String = "Completed! ";
                 this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
-                for(int i =0; i < SanctuaryRewards.Count; i++)
-                {
-                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[i], null));
-                }
-                if(this.GoldAmount > 0)
-                {
-                    Game1.Player.Inventory.Money += this.GoldAmount;
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
-                }
+
                 Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.MiniReward, true, .25f);
-                if(CompletionPage.CheckFinalReward())
+                if (CompletionPage.CheckFinalReward())
                 {
                     Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
                Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CompletionPage.Name + " Completed!", 25f, Color.Blue, true, 2f));
@@ -64,7 +67,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
                 Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, this.CountRequired.ToString() + "/" + this.CountRequired.ToString() + " " + Game1.ItemVault.GenerateNewItem(this.ItemID, null).Name + " Completed!", 50f, Color.Blue, true, 1f));
                 }
-                
+
 
             }
             else
@@ -72,6 +75,24 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,
                 Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position.Y - 200, "+ 1 " + Game1.ItemVault.GenerateNewItem(this.ItemID, null).Name + "!", 100f, Color.White, true, 1f));
             }
+        }
+
+        public void ClaimReward(int index)
+        {
+            if (index < SanctuaryRewards.Count)
+            {
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[index], null));
+                return;
+            }
+
+            if (this.GoldAmount > 0)
+            {
+                Game1.Player.Inventory.Money += this.GoldAmount;
+                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
+            }
+            IndividualRewards[index] = true;
+
+            this.AllRewardsClaimed = true;
         }
     }
 }

@@ -24,7 +24,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public int GoldAmount { get; set; }
 
-        
+        public float[] ColorMultiplier { get; set; }
+
 
         public Rack(int index, GraphicsDevice graphics, Vector2 rackPosition, CompletionRequirement requirement)
         {
@@ -41,6 +42,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
                  this.Graphics, new Vector2(RackPosition.X + 64 * buttonIdex, RackPosition.Y), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.Requirement.SanctuaryRewards[i], null)));
                 buttonIdex++;
+                
 
 
             }
@@ -52,6 +54,12 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     ItemSourceRectangleToDraw = new Rectangle(16, 288, 32, 32),
                     
                 }); ;
+                buttonIdex++;
+            }
+            this.ColorMultiplier = new float[buttonIdex];
+            for(int i =0; i < this.ColorMultiplier.Length; i++)
+            {
+                this.ColorMultiplier[i] = 1f;
             }
         }
 
@@ -76,6 +84,15 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     }
 
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
+
+                    if(this.Requirement.Satisfied && !this.Requirement.IndividualRewards[i])
+                    {
+                        if(RewardIcons[i].isClicked)
+                        {
+                            this.Requirement.ClaimReward(i);
+                            this.ColorMultiplier[i] = .25f;
+                        }
+                    }
                 }
             }
         }
@@ -100,13 +117,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 {
                     this.RewardIcons[i].Draw(spriteBatch, this.RewardIcons[i].ItemSourceRectangleToDraw,
                     this.RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", this.RewardIcons[i].Position,
-                    Color.White, 2, 2, Utility.StandardButtonDepth + .03f);
+                    Color.White * this.ColorMultiplier[i], 2, 2, Utility.StandardButtonDepth + .03f);
                 }
                 else
                 {
                     this.RewardIcons[i].Draw(spriteBatch, this.RewardIcons[i].ItemSourceRectangleToDraw,
                     this.RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", this.RewardIcons[i].Position,
-                    Color.White, 2, 1, Utility.StandardButtonDepth + .03f);
+                    Color.White * this.ColorMultiplier[i], 2, 1, Utility.StandardButtonDepth + .03f);
                     this.RewardIcons[i].HitBoxScale = 2f;
                 }
                 
