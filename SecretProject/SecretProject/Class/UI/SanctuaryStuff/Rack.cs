@@ -26,6 +26,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public float[] ColorMultiplier { get; set; }
 
+        public Rectangle LockedSourceRectangle { get; set; }
 
         public Rack(int index, GraphicsDevice graphics, Vector2 rackPosition, CompletionRequirement requirement)
         {
@@ -61,6 +62,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             {
                 this.ColorMultiplier[i] = 1f;
             }
+            this.LockedSourceRectangle = new Rectangle(768, 32, 32, 32);
         }
 
         public void Update(GameTime gameTime, Vector2 position, float scale)
@@ -113,6 +115,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             for (int i = 0; i < RewardIcons.Count; i++)
             {
+                if(!this.Requirement.Satisfied)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.RewardIcons[i].Position, this.LockedSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2, SpriteEffects.None, Utility.StandardButtonDepth + .04f);
+                }
                 if(RewardIcons[i].Item != null)
                 {
                     this.RewardIcons[i].Draw(spriteBatch, this.RewardIcons[i].ItemSourceRectangleToDraw,
