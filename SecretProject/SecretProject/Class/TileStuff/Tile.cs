@@ -25,8 +25,6 @@ namespace SecretProject.Class.TileStuff
         public Rectangle DestinationRectangle { get; set; }
 
 
-
-
         public Tile(int x, int y, int gID)
         {
 
@@ -37,6 +35,11 @@ namespace SecretProject.Class.TileStuff
 
 
 
+        }
+
+        public Vector2 GetPosition(IInformationContainer container)
+        {
+            return new Vector2(this.DestinationRectangle.X + container.X, this.DestinationRectangle.Y + container.Y);
         }
 
         public string GetTileKeyStringNew(int layer, IInformationContainer container)
