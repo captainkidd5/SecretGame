@@ -5,6 +5,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.Transportation
 {
@@ -17,6 +18,9 @@ namespace SecretProject.Class.Transportation
         public Button No { get; set; }
         public TextBox TextBox { get; set; }
         public Stages To { get; set; }
+
+
+
         public WarpGate(GraphicsDevice graphics)
         {
             this.Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 50, 81, 28), graphics, new Vector2(Game1.Utility.CenterScreenX - 200, Game1.Utility.CenterScreenY), CursorType.Normal, Game1.Utility.GlobalButtonScale);

@@ -9,54 +9,54 @@
 <Tab>0</Tab>
 <Description>Find these basic forest plants and cultivate them anywhere in the Forest Sanctuary.</Description>
 <AllRequirements>
-  <!-- Stick -->
+  <!-- BloomBerry -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
-    <ItemID>1005</ItemID>
+    <ItemID>748</ItemID>
     <GIDRequired>1579</GIDRequired>
-    <NumberRequired>2</NumberRequired>
-     <Description>Place 2 sticks.</Description>
+    <NumberRequired>5</NumberRequired>
+     <Description>Plant 5 BloomBerry.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
      <Rewards>
     </Rewards>
-    <X>1264</X>
-    <Y>240</Y>
+    <X>1440</X>
+    <Y>48</Y>
     <Width>16</Width>
-    <Height>16</Height>
+    <Height>32</Height>
     </Item>
 
-    <!-- Oak -->
+    <!-- Brine Bulb -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
-    <ItemID>668</ItemID>
+    <ItemID>752</ItemID>
     <GIDRequired>1663</GIDRequired>
     <NumberRequired>5</NumberRequired>
-    <Description>Plant 5 Oak trees. </Description>
+    <Description>Plant 5 BrineBulbs. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
     <Rewards>
     </Rewards>
-    <X>992</X>
-    <Y>192</Y>
-    <Width>48</Width>
-    <Height>80</Height>
+    <X>1440</X>
+    <Y>96</Y>
+    <Width>16</Width>
+    <Height>32</Height>
     </Item>
 
-     <!-- Thunder Birch -->
+     <!-- Yallon -->
     <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
     <Tab>0</Tab>
-    <ItemID>669</ItemID>
+    <ItemID>756</ItemID>
     <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Plant 5 Thunder Birch trees. </Description>
+    <NumberRequired>3</NumberRequired>
+    <Description>Plant 3 Yallon Flowers. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
     <Rewards>
     <Item>GrindStone
     </Item>
     </Rewards>
-    <X>976</X>
-    <Y>288</Y>
-    <Width>80</Width>
-    <Height>80</Height>
+    <X>1537</X>
+    <Y>48</Y>
+    <Width>16</Width>
+    <Height>32</Height>
     </Item>
 
   </AllRequirements>
@@ -66,7 +66,7 @@
 
 
 <Name>Basic Fauna</Name>
-<Tab>1</Tab>
+<Tab>2</Tab>
 <Description>Catch these basic forest animals and release them anywhere in the Forest Sanctuary.</Description>
 <AllRequirements>
 

@@ -189,6 +189,17 @@
    <object id="2" x="3" y="0" width="11" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="286">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="287" duration="500"/>
+   <frame tileid="288" duration="500"/>
+   <frame tileid="289" duration="500"/>
+   <frame tileid="290" duration="500"/>
+  </animation>
+ </tile>
  <tile id="288">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -205,6 +216,17 @@
    <property name="loot" value="750:100:1,751:20:3"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+ </tile>
+ <tile id="292">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="293" duration="500"/>
+   <frame tileid="294" duration="500"/>
+   <frame tileid="295" duration="500"/>
+   <frame tileid="296" duration="500"/>
+  </animation>
  </tile>
  <tile id="295">
   <properties>
@@ -549,6 +571,17 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="486">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="487" duration="500"/>
+   <frame tileid="488" duration="500"/>
+   <frame tileid="489" duration="500"/>
+   <frame tileid="490" duration="500"/>
+  </animation>
+ </tile>
  <tile id="488">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -565,6 +598,17 @@
    <property name="loot" value="749:100:1,748:20:2"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+ </tile>
+ <tile id="492">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="493" duration="500"/>
+   <frame tileid="494" duration="500"/>
+   <frame tileid="495" duration="500"/>
+   <frame tileid="496" duration="500"/>
+  </animation>
  </tile>
  <tile id="494">
   <properties>
@@ -861,6 +905,17 @@
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="753:100:2,752:20:2"/>
   </properties>
+ </tile>
+ <tile id="692">
+  <properties>
+   <property name="idleStart" value=""/>
+  </properties>
+  <animation>
+   <frame tileid="693" duration="500"/>
+   <frame tileid="694" duration="500"/>
+   <frame tileid="695" duration="500"/>
+   <frame tileid="696" duration="500"/>
+  </animation>
  </tile>
  <tile id="696">
   <properties>
