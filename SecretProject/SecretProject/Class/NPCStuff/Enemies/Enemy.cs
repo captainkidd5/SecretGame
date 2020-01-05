@@ -425,10 +425,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
                             }
 
-
-
                             //UpdateCurrentChunk(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks));
-                            Console.WriteLine("hi");
+
 
                         }
 

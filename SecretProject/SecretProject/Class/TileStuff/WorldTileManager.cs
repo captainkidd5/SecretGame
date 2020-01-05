@@ -371,14 +371,22 @@ namespace SecretProject.Class.TileStuff
         }
         public void ChunkCheck(Chunk chunk)
         {
-            if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+            if (!chunk.IsGenerating && !chunk.IsLoading && !chunk.IsSaving)
             {
-                Task.Run(() => chunk.Load());
-            }
-            else
-            {
-                Task.Run(() => chunk.Generate());
 
+                if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+                {
+
+                    Task.Run(() => chunk.Load());
+
+
+                }
+                else
+                {
+
+                    Task.Run(() => chunk.Generate());
+
+                }
             }
         }
         static readonly object locker = new object();
@@ -533,6 +541,10 @@ namespace SecretProject.Class.TileStuff
 
 
 
+                    }
+                    else
+                    {
+                        ChunkCheck(this.ActiveChunks[a, b]);
                     }
                 }
             }

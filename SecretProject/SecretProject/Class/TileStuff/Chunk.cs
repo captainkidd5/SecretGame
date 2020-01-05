@@ -68,6 +68,10 @@ namespace SecretProject.Class.TileStuff
 
         public List<ObstacleGrid> AdjacentObstacleGrids { get; set; }
 
+        public bool IsSaving { get; set; }
+        public bool IsLoading { get; set; }
+        public bool IsGenerating { get; set; }
+
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -118,6 +122,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Save()
         {
+            this.IsSaving = true;
             this.AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenWrite(path))
@@ -201,12 +206,14 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             this.AreReadersAndWritersDone = true;
+            this.IsSaving = false;
         }
 
 
 
         public void Load()
         {
+            this.IsLoading = true;
             this.AreReadersAndWritersDone = false;
             string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
             using (FileStream fileStream = File.OpenRead(path))
@@ -344,6 +351,7 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+            this.IsLoading = false;
             this.AreReadersAndWritersDone = true;
         }
         /// <summary>
@@ -370,7 +378,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Generate()
         {
-
+            this.IsGenerating = true;
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             float[,] noise = new float[16, 16];
 
@@ -560,6 +568,7 @@ namespace SecretProject.Class.TileStuff
 
             }
             this.IsLoaded = true;
+            this.IsGenerating = false;
             Save();
         }
 

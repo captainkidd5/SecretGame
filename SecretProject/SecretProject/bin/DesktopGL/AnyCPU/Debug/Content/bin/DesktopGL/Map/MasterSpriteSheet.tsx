@@ -2201,6 +2201,7 @@
  </tile>
  <tile id="1670">
   <properties>
+   <property name="crop" value="668"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -2441,6 +2442,7 @@
  </tile>
  <tile id="2271">
   <properties>
+   <property name="crop" value="669"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
