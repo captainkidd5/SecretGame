@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using XMLData.SanctuaryStuff;
 
@@ -6,6 +7,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 {
     public class CompletionRequirement
     {
+        public GraphicsDevice Graphics { get; set; }
         public CompletionPage CompletionPage { get; set; }
         public int ItemID { get; set; }
         public int GID { get; set; }
@@ -24,8 +26,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public bool AllRewardsClaimed { get; set; }
         public bool ChainsTransitionCompleted { get; set; }
 
-        public CompletionRequirement(CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
+        public CompletionRequirement(GraphicsDevice graphics,CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
         {
+            this.Graphics = graphics;
             this.CompletionPage = completionPage;
             this.ItemID = itemID;
             this.GID = gid;
@@ -78,7 +81,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
         }
 
-        public void ClaimReward(int index)
+        public void ClaimReward(int index, Vector2 rewardPosition)
         {
             if (index < SanctuaryRewards.Count)
             {
@@ -89,8 +92,12 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             if (this.GoldAmount > 0)
             {
-                Game1.Player.Inventory.Money += this.GoldAmount;
-                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.CoinGet, false, 1f);
+                for(int i =0; i < GoldAmount; i++)
+                {
+                    Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, this.Graphics, rewardPosition, Game1.Player.UserInterface.BottomBar.GoldIconPosition, Game1.Player.UserInterface.AllUISprites));
+                }
+                //Game1.Player.Inventory.Money += this.GoldAmount;
+                
             }
             IndividualRewards[index] = true;
 

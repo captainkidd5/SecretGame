@@ -111,6 +111,8 @@ namespace SecretProject.Class.UI
 
         public float TransitionSpeed { get; set; }
 
+        public List<UISprite> AllUISprites { get; set; }
+
         private UserInterface()
         {
 
@@ -148,7 +150,7 @@ namespace SecretProject.Class.UI
             this.BlackTransitionColorMultiplier = 1f;
             this.TransitionSpeed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);
-
+            this.AllUISprites = new List<UISprite>();
         }
 
         public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
@@ -186,7 +188,10 @@ namespace SecretProject.Class.UI
                 this.BottomBar.Update(gameTime, inventory, mouse);
             }
 
-
+            for(int i =0; i < AllUISprites.Count; i++)
+            {
+                AllUISprites[i].Update(gameTime);
+            }
             switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
@@ -414,6 +419,10 @@ namespace SecretProject.Class.UI
             spriteBatch.Begin(SpriteSortMode.FrontToBack, samplerState: SamplerState.PointClamp);
             Game1.GlobalClock.Draw(spriteBatch);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
+            for (int i = 0; i < AllUISprites.Count; i++)
+            {
+                AllUISprites[i].Draw(spriteBatch);
+            }
             if (!this.CinematicMode)
             {
 

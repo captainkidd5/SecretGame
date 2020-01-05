@@ -61,7 +61,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                             {
                                 rewards.Add(requirement.Rewards[r]);
                             }
-                            this.CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(this.CategoryTabs[j].Pages[0],requirement.ItemID, requirement.GIDRequired,
+                            this.CategoryTabs[j].Pages[0].SanctuaryRequirements.Add(new CompletionRequirement(Graphics, this.CategoryTabs[j].Pages[0],requirement.ItemID, requirement.GIDRequired,
                                 requirement.NumberRequired, requirement.Description,
                             requirement.Rectangle, rewards, requirement.GoldAwardAmount));
                         }

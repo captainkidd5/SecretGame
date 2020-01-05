@@ -113,7 +113,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     {
                         if (RewardIcons[i].isClicked && this.Requirement.ChainsTransitionCompleted)
                         {
-                            this.Requirement.ClaimReward(i);
+                            this.Requirement.ClaimReward(i, RewardIcons[i].Position);
                             this.ColorMultiplier[i] = .25f;
                         }
                     }
