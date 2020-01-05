@@ -250,6 +250,16 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("crop"))
+                {
+                    int cropID = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["crop"]);
+                    Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
+                    tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
+                    tempCrop.GID++;
+                    tempCrop.X = x;
+                    tempCrop.Y = y;
+                    container.Crops[tileToAssign.GetTileKeyStringNew(1, container)] = tempCrop;
+                }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
                     int lightType = LightSource.ParseLightType(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
@@ -461,12 +471,9 @@ namespace SecretProject.Class.TileStuff
 
                                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-                                        tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                                        tempCrop.GID++;
-                                        tempCrop.X = i;
-                                        tempCrop.Y = j;
+
                                         TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                        container.Crops[container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)] = tempCrop;
+
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     }
                                 }
@@ -527,12 +534,9 @@ namespace SecretProject.Class.TileStuff
                                         {
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-                                            tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                                            tempCrop.GID++;
-                                            tempCrop.X = i;
-                                            tempCrop.Y = j;
+    
                                             TileUtility.ReplaceTile(1, i, j, tempCrop.GID, container);
-                                            container.Crops[container.AllTiles[1][i, j].GetTileKeyStringNew(1, container)] = tempCrop;
+       
                                             Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                         }
                                     }
@@ -807,11 +811,13 @@ namespace SecretProject.Class.TileStuff
                 itemToCheckForReassasignTiling = Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
 
-            if (container.Crops.ContainsKey(container.AllTiles[1][x, y].GetTileKeyStringNew(layer, container)))
+            if (container.Crops.ContainsKey(container.AllTiles[1][x, y].GetTileKeyStringNew(1, container)))
             {
-                container.Crops.Remove(container.AllTiles[1][x, y].GetTileKeyStringNew(layer, container));
+                container.Crops.Remove(container.AllTiles[1][x, y].GetTileKeyStringNew(1, container));
 
                 Game1.SoundManager.PlaySoundEffectFromInt(1, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]));
+                TileUtility.ReplaceTile(1, x, y, 86, container);
+                TileUtility.ReplaceTile(2, x, y, 0, container);
             }
 
 

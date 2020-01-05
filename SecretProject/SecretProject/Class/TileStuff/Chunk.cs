@@ -597,6 +597,8 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(2, 1582, GenerationType.Dirt, 5, 0, this, true); //RED MUSHROOM
             TileUtility.GenerateRandomlyDistributedTiles(2, 1583, GenerationType.Dirt, 5, 0, this, true); //BLUE MUSHROOM
 
+            TileUtility.GenerateRandomlyDistributedTiles(2, 293, GenerationType.Dirt, 100, 0, this, true); //ZodFern
+
             //SANDRUINS
             TileUtility.GenerateRandomlyDistributedTiles(3, 1853, GenerationType.SandRuin, 5, 1, this); //Chest
             TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)

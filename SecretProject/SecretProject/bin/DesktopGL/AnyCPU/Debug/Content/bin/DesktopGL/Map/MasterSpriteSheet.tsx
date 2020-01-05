@@ -191,6 +191,7 @@
  </tile>
  <tile id="286">
   <properties>
+   <property name="crop" value="750"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -219,6 +220,7 @@
  </tile>
  <tile id="292">
   <properties>
+   <property name="crop" value="754"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -573,6 +575,7 @@
  </tile>
  <tile id="486">
   <properties>
+   <property name="crop" value="748"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -601,6 +604,7 @@
  </tile>
  <tile id="492">
   <properties>
+   <property name="crop" value="756"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -891,6 +895,7 @@
  </tile>
  <tile id="686">
   <properties>
+   <property name="crop" value="752"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
@@ -908,6 +913,7 @@
  </tile>
  <tile id="692">
   <properties>
+   <property name="crop" value="758"/>
    <property name="idleStart" value=""/>
   </properties>
   <animation>
