@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using System;
 using TiledSharp;
 
 namespace SecretProject.Class.TextureStuff
@@ -256,6 +256,15 @@ namespace SecretProject.Class.TextureStuff
 
             return new Rectangle((int)column * width, (int)row * height, width, height);
         }
+
+        public Rectangle GetItemTexture(int id, int tileSetDimension)
+        {
+            int Row = id % tileSetDimension;
+            int Column = (int)Math.Floor((double)id / (double)tileSetDimension);
+
+            return new Rectangle(16 * Column, 16 * Row, 16, 16);
+        }
+        
 
     }
 }

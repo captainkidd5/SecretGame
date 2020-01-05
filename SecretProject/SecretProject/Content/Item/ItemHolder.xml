@@ -2,116 +2,95 @@
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
 <Asset Type ="XMLData.ItemStuff.ItemHolder">
 <AllItems>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Stone Axe</Name>
 <ID>0</ID>
 <Description>A basic tool for chopping trees. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Axe</Name>
 <ID>1</ID>
 <Description>A basic tool for chopping trees. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Turquoise Axe</Name>
 <ID>3</ID>
 <Description>A beautiful blue axe. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Axe</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Fish Bones</Name>
 <ID>14</ID>
 <Description>All that's left of a fish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>14</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 <Type>Axe</Type>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>SwordFish</Name>
 <ID>15</ID>
 <Description>A fierce, pointy fish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>15</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 <Type>Axe</Type>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Empty Flask</Name>
 <ID>28</ID>
 <Description>Made of glass.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>0</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Stone Hammer</Name>
 <ID>40</ID>
 <Description>A basic tool for smashing rocks. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>1</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Hammer</Name>
 <ID>41</ID>
 <Description>A strong tool for smashing rocks.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>1</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dark Hammer</Name>
 <ID>42</ID>
 <Description>A cold, dark hammer.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>1</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Hammer</Type>
 <AnimationColumn>0</AnimationColumn>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Ghostly Flask</Name>
 <ID>68</ID>
 <Description>A ghostly, swirling mist dances within the bottle.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>1</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <AnimationColumn>0</AnimationColumn>
 </Item>
@@ -121,20 +100,14 @@
 <Name>Life Flask</Name>
 <ID>108</ID>
 <Description>A drink to restore health.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>2</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Rock Shovel</Name>
 <ID>120</ID>
 <Description>A basic tool for digging into the ground. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Shovel</Type>
 </Item>
@@ -143,10 +116,7 @@
 <Name>Steel Shovel</Name>
 <ID>121</ID>
 <Description>A strong tool for digging into the ground. </Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>25</Price>
+<InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
 <Type>Shovel</Type>
 </Item>
@@ -155,20 +125,14 @@
 <Name>Energizer Flask</Name>
 <ID>148</ID>
 <Description>Just looking at it gives you the jitters.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>3</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Rock Sword</Name>
 <ID>160</ID>
 <Description>A weak sword.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>4</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>50</Price>
+<InvMaximum>1</InvMaximum><Price>50</Price>
 <Durability>25</Durability>
 <Type>Sword</Type>
 </Item>
@@ -177,10 +141,7 @@
 <Name>Dark Sword</Name>
 <ID>162</ID>
 <Description>A blade of shadows.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>4</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>50</Price>
+<InvMaximum>1</InvMaximum><Price>50</Price>
 <Durability>25</Durability>
 <Type>Sword</Type>
 </Item>
@@ -189,40 +150,28 @@
 <Name>Rotund Flask</Name>
 <ID>188</ID>
 <Description>A thick drink.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>4</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>FlashLight</Name>
 <ID>200</ID>
 <Description>Lights up the night.</Description>
-<InvMaximum>1</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>50</Price>
+<InvMaximum>1</InvMaximum><Price>50</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>LifeGiver Flask</Name>
 <ID>228</ID>
 <Description>Nature in a bottle.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>5</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Boar Droppings</Name>
 <ID>294</ID>
 <Description>The plants love it.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>7</TextureColumn>
-<TextureRow>14</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 
@@ -231,10 +180,7 @@
 <Name>Capture Crate</Name>
 <ID>333</ID>
 <Description>Used to safely capture wildlife.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>13</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <PlaceID>1575</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -243,10 +189,7 @@
 <Name>Capture Crate (Boar)</Name>
 <ID>334</ID>
 <Description>It looks annoyed...</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>14</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <CrateType>1</CrateType>
 </Item>
 
@@ -254,10 +197,7 @@
 <Name>Capture Crate (Rabbit)</Name>
 <ID>335</ID>
 <Description>A fluffy rabbit.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>8</TextureColumn>
-<TextureRow>15</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <CrateType>3</CrateType>
 </Item>
 
@@ -265,20 +205,14 @@
 <Name>Specimin Jar</Name>
 <ID>373</ID>
 <Description>Used to safely capture wildlife.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>13</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Specimin Jar (Monarch Butterfly)</Name>
 <ID>374</ID>
 <Description>A beautiful orange butterfly.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>9</TextureColumn>
-<TextureRow>14</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <CrateType>4</CrateType>
 </Item>
 
@@ -286,10 +220,7 @@
 <Name>Oak Floor</Name>
 <ID>480</ID>
 <Description>Oak floorboards.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>12</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <PlaceID>632</PlaceID>
 <TilingSet>OakFloorTiling</TilingSet>
 <TilingLayer>1</TilingLayer>
@@ -299,10 +230,7 @@
 <Name>Stone Floor</Name>
 <ID>482</ID>
 <Description>Smooth and sturdy.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>12</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <PlaceID>1621</PlaceID>
 <TilingSet>SandRuin</TilingSet>
 <TilingLayer>1</TilingLayer>
@@ -312,89 +240,63 @@
 <Name>Oak Log</Name>
 <ID>520</ID>
 <Description>Wood from an oak tree.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <FuelValue>1</FuelValue>
 </Item>
+
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Thunderbirch Log</Name>
 <ID>521</ID>
 <Description>Wood from a Thunderbirch tree.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>13</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Plank</Name>
 <ID>560</ID>
 <Description>A processed Oak log.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Thunderbirch Plank</Name>
 <ID>561</ID>
 <Description>A processed Thunderbirch log.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>14</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Turquoise</Name>
 <ID>600</ID>
 <Description>A bright blue gem.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>15</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>100</Price>
+<InvMaximum>99</InvMaximum><Price>100</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Gold Nugget</Name>
 <ID>601</ID>
 <Description>Gold!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>15</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>75</Price>
+<InvMaximum>99</InvMaximum><Price>75</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Moons</Name>
 <ID>602</ID>
 <Description>A crescent-shaped rune.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>15</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Suns</Name>
 <ID>603</ID>
 <Description>An orb-shaped rune.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>15</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Ore</Name>
 <ID>640</ID>
 <Description>Unrefined steel.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 <SmeltedItem>680</SmeltedItem>
 </Item>
 
@@ -402,70 +304,49 @@
 <Name>Copper Ore</Name>
 <ID>641</ID>
 <Description>Unrefined copper.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Monazite Ore</Name>
 <ID>642</ID>
 <Description>Unrefined Monazite.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Blunate Ore</Name>
 <ID>643</ID>
 <Description>Unrefined Blunite Ore.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Santalite Ore</Name>
 <ID>644</ID>
 <Description>Unrefined Santalite Ore.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dark Ore</Name>
 <ID>645</ID>
 <Description>An ominous Ore.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Zaittaane Ore</Name>
 <ID>646</ID>
 <Description>Unrefined Zaittaane.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>6</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Seed</Name>
 <ID>668</ID>
 <Description>Grows into an Oak tree when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 <Type>Tree</Type>
 </Item>
@@ -474,10 +355,7 @@
 <Name>Thunderbirch Seed</Name>
 <ID>669</ID>
 <Description>Grows into a Thunderbirch tree when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>16</TextureColumn>
-<TextureRow>29</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 <Type>Tree</Type>
 </Item>
@@ -487,171 +365,120 @@
 <Name>Steel Ingot</Name>
 <ID>680</ID>
 <Description>A bar of steel.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Copper Ingot</Name>
 <ID>681</ID>
 <Description>Conductive!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Monazite Ingot</Name>
 <ID>682</ID>
 <Description>A refined chunk of Monazite.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Blunate Ingot</Name>
 <ID>683</ID>
 <Description>A pretty blue ingot.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Santalite Ingot</Name>
 <ID>684</ID>
 <Description>A crimson red bar.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dark Ingot</Name>
 <ID>685</ID>
 <Description>An ominous metal bar.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Zaittaane Ingot</Name>
 <ID>686</ID>
 <Description>Is this safe to hold?</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>6</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Plump Fruit</Name>
 <ID>708</ID>
 <Description>A rather plump-looking fruit.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Gum Fruit</Name>
 <ID>709</ID>
 <Description>Looks like bubble-gum.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>29</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Red Mushroom</Name>
 <ID>710</ID>
 <Description>A bright red fungus.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>30</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Blue Mushroom</Name>
 <ID>711</ID>
 <Description>A bright blue fungus.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>31</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Thorn</Name>
 <ID>712</ID>
 <Description>Ow!</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>32</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Dandelion</Name>
 <ID>713</ID>
 <Description>A pretty, yellow flower.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>17</TextureColumn>
-<TextureRow>33</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Spring</Name>
 <ID>720</ID>
 <Description>A bouncy metal part.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Bloomberry Seeds</Name>
-<ID>748</ID>
+<ID>747</ID>
 <Description>Grows into a Bloomberry bush when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Bloomberry</Name>
-<ID>749</ID>
+<ID>748</ID>
 <Description>A bright, blue berry.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>29</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Bloodcorn Seeds</Name>
 <ID>750</ID>
 <Description>Grows into a Bloodcorn crop when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>30</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -659,20 +486,14 @@
 <Name>Bloodcorn</Name>
 <ID>751</ID>
 <Description>A bushel of bright red corn.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>31</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Brinebulb Seeds</Name>
 <ID>752</ID>
 <Description>Grows into a Brinebulb vine when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>32</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -680,20 +501,14 @@
 <Name>Brinebulb</Name>
 <ID>753</ID>
 <Description>A pre-pickled plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>33</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Zodfern Seeds</Name>
 <ID>754</ID>
 <Description>Grows into a Zodfern when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>34</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -701,20 +516,14 @@
 <Name>Zodfern</Name>
 <ID>755</ID>
 <Description>A whip-like plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>35</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Yallon Seeds</Name>
 <ID>756</ID>
 <Description>Grows into a Yallon flower when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>36</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -722,20 +531,14 @@
 <Name>Yallon</Name>
 <ID>757</ID>
 <Description>Dandelion's big sister.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>37</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Desmodus Seeds</Name>
 <ID>758</ID>
 <Description>Grows into a Desmodus bloom when planted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>38</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -743,30 +546,21 @@
 <Name>Desmodus Bloom</Name>
 <ID>759</ID>
 <Description>A large, stinky plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>18</TextureColumn>
-<TextureRow>39</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Small)</Name>
 <ID>760</ID>
 <Description>Julian thinks it's cute.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>19</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>10</Price>
+<InvMaximum>99</InvMaximum><Price>10</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Sproutera Seeds</Name>
 <ID>788</ID>
 <Description>Grows into a Sproutera plant.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>19</TextureColumn>
-<TextureRow>28</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <Plantable>true</Plantable>
 </Item>
 
@@ -774,20 +568,14 @@
 <Name>Sproutera</Name>
 <ID>789</ID>
 <Description>Leafy.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>19</TextureColumn>
-<TextureRow>29</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Steel Cog (Large)</Name>
 <ID>800</ID>
 <Description>Part of something bigger than itself.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>20</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
 
 
@@ -796,30 +584,21 @@
 <Name>Small Rock</Name>
 <ID>1000</ID>
 <Description>Can be used to make basic tools.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Stone</Name>
 <ID>1001</ID>
 <Description>Surprisingly round.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Grass Tuft</Name>
 <ID>1002</ID>
 <Description>Remnants of grass.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 <TilingSet>Grass</TilingSet>
 <TilingLayer>1</TilingLayer>
 </Item>
@@ -828,60 +607,42 @@
 <Name>Bird Nest</Name>
 <ID>1003</ID>
 <Description>Long since deserted.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Stick</Name>
 <ID>1005</ID>
 <Description>A basic crafting ingredient.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>5</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Soil</Name>
 <ID>1006</ID>
 <Description>Very dirty.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>25</TextureColumn>
-<TextureRow>6</TextureRow>
-<Price>1</Price>
+<InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Canvas</Name>
 <ID>1040</ID>
 <Description>A fabric made from plants.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>26</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>15</Price>
+<InvMaximum>99</InvMaximum><Price>15</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Rope</Name>
 <ID>1041</ID>
 <Description>A length of rope.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>26</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>5</Price>
+<InvMaximum>99</InvMaximum><Price>5</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Cauldron</Name>
 <ID>1055</ID>
 <Description>Can be used to cook recipes.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>26</TextureColumn>
-<TextureRow>15</TextureRow>
-<Price>80</Price>
+<InvMaximum>99</InvMaximum><Price>80</Price>
 <PlaceID>2139</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -890,10 +651,7 @@
 <Name>Egg</Name>
 <ID>1095</ID>
 <Description>An unfertilized egg.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>27</TextureColumn>
-<TextureRow>15</TextureRow>
-<Price>2</Price>
+<InvMaximum>99</InvMaximum><Price>2</Price>
 <Food>true</Food>
 <MeatValue>1</MeatValue>
 </Item>
@@ -902,70 +660,49 @@
 <Name>Egg Salad</Name>
 <ID>1096</ID>
 <Description>Leafy greens mixed with some eggs.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>27</TextureColumn>
-<TextureRow>16</TextureRow>
-<Price>2</Price>
+<InvMaximum>99</InvMaximum><Price>2</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Pumpkin Slice</Name>
 <ID>1097</ID>
 <Description>Bits of smashed pumpkin.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>27</TextureColumn>
-<TextureRow>17</TextureRow>
-<Price>2</Price>
+<InvMaximum>99</InvMaximum><Price>2</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Pie Dish</Name>
 <ID>1135</ID>
 <Description>The starting point of any good pie.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>28</TextureColumn>
-<TextureRow>15</TextureRow>
-<Price>25</Price>
+<InvMaximum>99</InvMaximum><Price>25</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Pumpkin Pie</Name>
 <ID>1136</ID>
 <Description>A delicious, festive pie.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>28</TextureColumn>
-<TextureRow>16</TextureRow>
-<Price>12</Price>
+<InvMaximum>99</InvMaximum><Price>12</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Fish Pie</Name>
 <ID>1137</ID>
 <Description>A pie made from fish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>28</TextureColumn>
-<TextureRow>17</TextureRow>
-<Price>12</Price>
+<InvMaximum>99</InvMaximum><Price>12</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Darkberry Pie</Name>
 <ID>1138</ID>
 <Description>A spooky-looking desert.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>28</TextureColumn>
-<TextureRow>18</TextureRow>
-<Price>12</Price>
+<InvMaximum>99</InvMaximum><Price>12</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Barrel</Name>
 <ID>1160</ID>
 <Description>A round, wooden storage unit.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>29</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>50</Price>
+<InvMaximum>99</InvMaximum><Price>50</Price>
 <PlaceID>2051</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -974,10 +711,7 @@
 <Name>Wooden Bowl</Name>
 <ID>1161</ID>
 <Description>A hollowed out dish.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>29</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>2</Price>
+<InvMaximum>99</InvMaximum><Price>2</Price>
 <PlaceID>2050</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -986,10 +720,7 @@
 <Name>Wooden Fence</Name>
 <ID>1162</ID>
 <Description>Keeps weeds and other things out.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>29</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>5</Price>
+<InvMaximum>99</InvMaximum><Price>5</Price>
 <PlaceID>456</PlaceID>
 <TilingSet>FenceTiling</TilingSet>
 <TilingLayer>3</TilingLayer>
@@ -999,10 +730,7 @@
 <Name>Plant Pot</Name>
 <ID>1163</ID>
 <Description>Can host life.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>29</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>5</Price>
+<InvMaximum>99</InvMaximum><Price>5</Price>
 <PlaceID>1589</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1011,10 +739,7 @@
 <Name>Stone Wall</Name>
 <ID>1164</ID>
 <Description>Keeps weeds and other things out.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>29</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>5</Price>
+<InvMaximum>99</InvMaximum><Price>5</Price>
 <PlaceID>452</PlaceID>
 <TilingSet>StoneWallTiling</TilingSet>
 <TilingLayer>3</TilingLayer>
@@ -1024,10 +749,7 @@
 <Name>Grind Stone</Name>
 <ID>1200</ID>
 <Description>A large whetstone used to sharpen tools.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>30</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>100</Price>
+<InvMaximum>99</InvMaximum><Price>100</Price>
 <PlaceID>2142</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1036,10 +758,7 @@
 <Name>Saw Table</Name>
 <ID>1201</ID>
 <Description>A machine for turning logs into planks.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>30</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>100</Price>
+<InvMaximum>99</InvMaximum><Price>100</Price>
 <PlaceID>2144</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1048,10 +767,7 @@
 <Name>Furnace</Name>
 <ID>1202</ID>
 <Description>Used to refine ores into Ingots.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>30</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>100</Price>
+<InvMaximum>99</InvMaximum><Price>100</Price>
 <PlaceID>2143</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1060,10 +776,7 @@
 <Name>Teleporter</Name>
 <ID>1203</ID>
 <Description>Can be used to go back to town.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>30</TextureColumn>
-<TextureRow>3</TextureRow>
-<Price>500</Price>
+<InvMaximum>99</InvMaximum><Price>500</Price>
 <PlaceID>1557</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1072,10 +785,7 @@
 <Name>Street Lamp</Name>
 <ID>1204</ID>
 <Description>An industrial light.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>30</TextureColumn>
-<TextureRow>4</TextureRow>
-<Price>500</Price>
+<InvMaximum>99</InvMaximum><Price>500</Price>
 <PlaceID>1845</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1084,10 +794,7 @@
 <Name>Basic Chest</Name>
 <ID>1240</ID>
 <Description>Stores items.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>31</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 <PlaceID>1852</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1096,20 +803,14 @@
 <Name>Gold Pan</Name>
 <ID>1400</ID>
 <Description>A tool for sifting through mud and sand.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>35</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Housing Token</Name>
 <ID>1401</ID>
 <Description>Who knows.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>35</TextureColumn>
-<TextureRow>1</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 <PlaceID>2157</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
@@ -1118,20 +819,14 @@
 <Name>Gold Key</Name>
 <ID>1402</ID>
 <Description>Where does this go?</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>35</TextureColumn>
-<TextureRow>2</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Dresser</Name>
 <ID>1440</ID>
 <Description>Can store clothing.</Description>
-<InvMaximum>99</InvMaximum>
-<TextureColumn>36</TextureColumn>
-<TextureRow>0</TextureRow>
-<Price>20</Price>
+<InvMaximum>99</InvMaximum><Price>20</Price>
 <PlaceID>-1540</PlaceID>
 </Item>
 

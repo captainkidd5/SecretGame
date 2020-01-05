@@ -43,8 +43,6 @@ namespace SecretProject.Class.ItemStuff
 
         public string id { get; set; }
 
-        public int TextureColumn { get; set; }
-        public int TextureRow { get; set; }
         public Rectangle SourceTextureRectangle { get; set; }
         public Rectangle DestinationTextureRectangle { get; set; }
 
@@ -82,9 +80,8 @@ namespace SecretProject.Class.ItemStuff
             this.InvMaximum = itemData.InvMaximum;
             this.ID = itemData.ID;
             this.Price = itemData.Price;
-            this.TextureColumn = itemData.TextureColumn;
-            this.TextureRow = itemData.TextureRow;
-            this.SourceTextureRectangle = Game1.AllTextures.GetItemTextureFromAtlas(this.TextureRow, this.TextureColumn);
+
+            this.SourceTextureRectangle = Game1.AllTextures.GetItemTexture(this.ID, 40);
             this.SmeltedItem = itemData.SmeltedItem;
             this.FuelValue = itemData.FuelValue;
             this.Durability = itemData.Durability;

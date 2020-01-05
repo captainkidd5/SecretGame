@@ -28,8 +28,6 @@ namespace XMLData.ItemStuff
             newItem.Description = oldItem.Description;
             newItem.ID = oldItem.ID;
             newItem.InvMaximum = oldItem.InvMaximum;
-            newItem.TextureColumn = oldItem.TextureColumn;
-            newItem.TextureRow = oldItem.TextureRow;
             newItem.Price = oldItem.Price;
             newItem.Plantable = oldItem.Plantable;
             newItem.SmeltedItem = oldItem.SmeltedItem;
