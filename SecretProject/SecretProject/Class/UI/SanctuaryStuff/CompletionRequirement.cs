@@ -22,6 +22,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public int GoldAmount { get; set; }
         public bool[] IndividualRewards { get; set; }
         public bool AllRewardsClaimed { get; set; }
+        public bool ChainsTransitionCompleted { get; set; }
 
         public CompletionRequirement(CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
         {
@@ -82,6 +83,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             if (index < SanctuaryRewards.Count)
             {
                 Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[index], null));
+                IndividualRewards[index] = true;
                 return;
             }
 

@@ -28,6 +28,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public Rectangle LockedSourceRectangle { get; set; }
 
+        public SimpleTimer ChainsFadeTimer { get; set; }
+        public float ChainsColorMultiplier { get; set; }
+
         public Rack(int index, GraphicsDevice graphics, Vector2 rackPosition, CompletionRequirement requirement)
         {
             this.Index = index;
@@ -36,33 +39,36 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.Requirement = requirement;
             RewardIcons = new List<Button>();
             this.GoldAmount = requirement.GoldAmount;
-            int buttonIdex = 0;
+            int buttonIndex = 0;
             for (int i = 0; i < Requirement.SanctuaryRewards.Count; i++)
             {
 
                 RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
-                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIdex, RackPosition.Y), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.Requirement.SanctuaryRewards[i], null)));
-                buttonIdex++;
-                
+                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.Requirement.SanctuaryRewards[i], null)));
+                buttonIndex++;
+
 
 
             }
             if (GoldAmount > 0)
             {
                 RewardIcons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32),
-                    this.Graphics, new Vector2(RackPosition.X + 64 * buttonIdex, RackPosition.Y), Controls.CursorType.Normal)
+                    this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal)
                 {
                     ItemSourceRectangleToDraw = new Rectangle(16, 288, 32, 32),
-                    
+
                 }); ;
-                buttonIdex++;
+                buttonIndex++;
             }
-            this.ColorMultiplier = new float[buttonIdex];
-            for(int i =0; i < this.ColorMultiplier.Length; i++)
+            this.ColorMultiplier = new float[buttonIndex];
+            this.ChainsColorMultiplier = 1f;
+            for (int i = 0; i < this.ColorMultiplier.Length; i++)
             {
                 this.ColorMultiplier[i] = 1f;
             }
             this.LockedSourceRectangle = new Rectangle(768, 32, 32, 32);
+
+            ChainsFadeTimer = new SimpleTimer(2f);
         }
 
         public void Update(GameTime gameTime, Vector2 position, float scale)
@@ -78,22 +84,46 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
                     if (RewardIcons[i].Item != null)
                     {
-                        Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + this.RewardIcons[i].Item.Name, 1f);
+                        if(!this.Requirement.IndividualRewards[i])
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + this.RewardIcons[i].Item.Name, 1f);
+                        }
+                        else
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText(this.RewardIcons[i].Item.Name + " (Claimed)", 1f);
+                        }
+                        
                     }
                     else
                     {
-                        Game1.Player.UserInterface.InfoBox.FitText(this.GoldAmount.ToString() + " Coins", 1f);
+                        if(!this.Requirement.IndividualRewards[i])
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText(this.GoldAmount.ToString() + " Coins", 1f);
+                        }
+                        else
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText(this.GoldAmount.ToString() + " Coins (Claimed)", 1f);
+                        }
+                        
                     }
 
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
 
-                    if(this.Requirement.Satisfied && !this.Requirement.IndividualRewards[i])
+                    if (this.Requirement.Satisfied && !this.Requirement.IndividualRewards[i])
                     {
-                        if(RewardIcons[i].isClicked)
+                        if (RewardIcons[i].isClicked && this.Requirement.ChainsTransitionCompleted)
                         {
                             this.Requirement.ClaimReward(i);
                             this.ColorMultiplier[i] = .25f;
                         }
+                    }
+                }
+                if(this.Requirement.Satisfied && !this.Requirement.ChainsTransitionCompleted)
+                {
+                    ChainsColorMultiplier-= .01f;
+                    if(ChainsFadeTimer.Run(gameTime))
+                    {
+                        this.Requirement.ChainsTransitionCompleted = true;
                     }
                 }
             }
@@ -115,11 +145,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             for (int i = 0; i < RewardIcons.Count; i++)
             {
-                if(!this.Requirement.Satisfied)
+                if (!this.Requirement.ChainsTransitionCompleted)
                 {
-                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.RewardIcons[i].Position, this.LockedSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 2, SpriteEffects.None, Utility.StandardButtonDepth + .04f);
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.RewardIcons[i].Position, this.LockedSourceRectangle, Color.White * ChainsColorMultiplier, 0f, Game1.Utility.Origin, 2, SpriteEffects.None, Utility.StandardButtonDepth + .04f);
                 }
-                if(RewardIcons[i].Item != null)
+                if (RewardIcons[i].Item != null)
                 {
                     this.RewardIcons[i].Draw(spriteBatch, this.RewardIcons[i].ItemSourceRectangleToDraw,
                     this.RewardIcons[i].BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", this.RewardIcons[i].Position,
@@ -132,7 +162,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     Color.White * this.ColorMultiplier[i], 2, 1, Utility.StandardButtonDepth + .03f);
                     this.RewardIcons[i].HitBoxScale = 2f;
                 }
-                
+
             }
 
         }
