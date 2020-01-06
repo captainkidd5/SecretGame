@@ -83,6 +83,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             {
                 Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item);
                 FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
+                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Player.position, "You have earend a new reward!");
                 return true;
             }
             return false;

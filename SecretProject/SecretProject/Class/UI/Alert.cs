@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI
             }
 
             this.Position = position;
-            this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 1f);
+            this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 2f);
 
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.Graphics,
                 new Vector2(this.Position.X + this.NineSliceRectangle.Width , this.Position.Y + 32), CursorType.Normal);
@@ -70,6 +70,7 @@ namespace SecretProject.Class.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            redEsc.Draw(spriteBatch);
             this.NineSliceRectangle.Draw(spriteBatch);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, new Vector2(this.Position.X + 16, this.Position.Y + 16), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
         }

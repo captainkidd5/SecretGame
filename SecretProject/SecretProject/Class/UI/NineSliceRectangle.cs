@@ -22,12 +22,14 @@ namespace SecretProject.Class.UI
 
         public int Width { get;private set; }
         public int Height { get; private set; }
+
+        public float Scale { get; set; }
         public NineSliceRectangle(Vector2 position, Rectangle leftSideRectangle, Rectangle midSliceRectangle, Rectangle rightSideRectangle, RectangleSize size)
         {
             CombinedRectangle = new List<Rectangle>();
             int width = 0;
-            float height = 0;
             CombinedRectangle.Add(leftSideRectangle);
+            this.Scale = 2f;
             width += leftSideRectangle.Width;
             
             for(int i =0; i < (int)size; i++)
@@ -38,15 +40,15 @@ namespace SecretProject.Class.UI
             CombinedRectangle.Add(rightSideRectangle);
             width += rightSideRectangle.Width;
 
-            this.Width = width;
+            this.Width = width * (int)Scale;
             this.Height = leftSideRectangle.Height;
 
             RectanglePositions = new List<Vector2>();
             RectanglePositions.Add(position);
             for(int i =0; i < (int)size; i++)
             {
-                //RectanglePositions.Add(new Vector2(leftSideRectangle.X + leftSideRectangle.Width + midSliceRectangle.Width * i));
-                RectanglePositions.Add(new Vector2(RectanglePositions[i].X + midSliceRectangle.Width, position.Y));
+
+                RectanglePositions.Add(new Vector2(RectanglePositions[i].X + midSliceRectangle.Width * Scale, position.Y));
             }
             RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X, position.Y));
         }
@@ -56,7 +58,7 @@ namespace SecretProject.Class.UI
             for(int i =0; i< CombinedRectangle.Count; i++)
             {
 
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
         }
     }
