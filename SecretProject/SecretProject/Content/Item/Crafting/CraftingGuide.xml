@@ -14,7 +14,7 @@
     <Count>3</Count>
     </Item>
     </AllItemsRequired>
-    <Unlocked>false</Unlocked>
+    <Locked>false</Locked>
     </Item>
 
 
@@ -103,7 +103,7 @@
     <Count>5</Count>
     </Item>
     </AllItemsRequired>
-    <Unlocked>true</Unlocked>
+    <Locked>true</Locked>
     </Item>
 
      <!--Furnace -->
@@ -115,7 +115,7 @@
     <Count>20</Count>
     </Item>
     </AllItemsRequired>
-    <Unlocked>true</Unlocked>
+    <Locked>true</Locked>
     </Item>
 
 

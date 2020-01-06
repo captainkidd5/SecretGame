@@ -44,6 +44,7 @@ namespace SecretProject.Class.MenuStuff
         public CursorType CursorType { get; set; }
 
         public Item Item { get; set; }
+        public string Description { get; set; }
 
         public Button()
         {

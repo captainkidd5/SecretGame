@@ -12,7 +12,7 @@ namespace XMLData.ItemStuff
         public int ItemToCraftID { get; set; }
         public List<ItemsRequired> AllItemsRequired { get; set; }
         [ContentSerializer(Optional = true)]
-        public bool Unlocked { get; set; }
+        public bool Locked { get; set; }
 
     }
 

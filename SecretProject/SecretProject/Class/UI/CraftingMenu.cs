@@ -56,14 +56,14 @@ namespace SecretProject.Class.UI
             this.Tabs[0].AddNewCraftableItem(160, 5, this.BackDropPosition, graphics, this);
             //FOOD --> needs to be changed to stations
             //cauldron
-            this.Tabs[1].AddNewCraftableItem(1055, 5, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1055, 30, this.BackDropPosition, graphics, this);
             //saw table
-            this.Tabs[1].AddNewCraftableItem(1201, 5, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1201, 30, this.BackDropPosition, graphics, this);
             //furnace
-            this.Tabs[1].AddNewCraftableItem(1202, 5, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1202, 30, this.BackDropPosition, graphics, this);
 
             //CONSTRUCTION
-            this.Tabs[2].AddNewCraftableItem(1162, 5, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1162, 30, this.BackDropPosition, graphics, this);
 
 
             this.ActiveTab = 0;
@@ -77,6 +77,24 @@ namespace SecretProject.Class.UI
 
 
             this.CraftableRecipeBar = new CraftableRecipeBar(this, graphics, this.BackDropPosition, this.BackDropScale);
+        }
+
+        public bool UnlockRecipe(Item item)
+        {
+            for(int i =0; i < Tabs.Length; i++)
+            {
+                for(int j =0; j < Tabs[i].Pages.Count; j++)
+                {
+                    ToolTip toolTip = Tabs[i].Pages[j].ToolTips.Find(x => x.Item.ID == item.ID);
+                    if(toolTip != null)
+                    {
+                        toolTip.Locked = false;
+                        return true;
+                    }
+                    
+                }
+            }
+            return false;
         }
 
         public void Update(GameTime gameTime)
@@ -240,7 +258,7 @@ namespace SecretProject.Class.UI
         {
             this.Ingredients = new List<CraftableRecipeIngredient>();
             ItemRecipe recipe = this.CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == craftableItemID);
-            this.Locked = recipe.Unlocked;
+            this.Locked = recipe.Locked;
             for (int i = 0; i < recipe.AllItemsRequired.Count; i++)
             {
                 Item itemToReference = Game1.ItemVault.GenerateNewItem(recipe.AllItemsRequired[i].ItemID, null);
@@ -532,7 +550,7 @@ namespace SecretProject.Class.UI
             this.Item = Game1.ItemVault.GenerateNewItem(itemToCraftID, null);
             this.Button = new Button(Game1.AllTextures.ItemSpriteSheet, this.Item.SourceTextureRectangle, this.GraphicsDevice, this.Position, CursorType.Normal, 3f);
             this.CraftingMenu = craftingMenu;
-            this.Locked = this.CraftingMenu.CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == itemToCraftID).Unlocked;
+            this.Locked = this.CraftingMenu.CraftingGuide.CraftingRecipes.Find(x => x.ItemToCraftID == itemToCraftID).Locked;
             this.Color = Color.Black;
 
         }

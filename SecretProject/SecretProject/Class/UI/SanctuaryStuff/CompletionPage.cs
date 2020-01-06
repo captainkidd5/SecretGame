@@ -48,8 +48,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 //}
             }
             FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(128, 688, 80, 32),
-                      this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null));
-
+                      this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null))
+            { Description = TextBuilder.ParseText("Complete the page to unlock the " + Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name, 112 * 2.5f, 1.5f) } ;
+            
             this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
 
         }
@@ -71,7 +72,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             if (FinalRewardButton.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText("Complete the page to unlock the " + FinalRewardButton.Item.Name, 1f);
+                //Game1.Player.UserInterface.InfoBox.FitText("Complete the page to unlock the " + FinalRewardButton.Item.Name, 1f);
+                Game1.Player.UserInterface.InfoBox.StringToWrite = FinalRewardButton.Description;
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
             }
         }
@@ -79,7 +81,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             if(CanClaimFinalReward())
             {
-                System.Console.WriteLine("Can claim reward!");
+                Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item);
+                FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
                 return true;
             }
             return false;

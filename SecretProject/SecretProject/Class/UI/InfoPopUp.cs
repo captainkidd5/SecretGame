@@ -32,9 +32,10 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void FitText(string text, float scale)
+        public string FitText(string text, float scale)
         {
             this.StringToWrite = TextBuilder.ParseText(text, this.SourceRectangle.Width * 2.5f, 1.5f);
+            return StringToWrite;
         }
 
         public void Draw(SpriteBatch spriteBatch)
