@@ -20,15 +20,26 @@ namespace SecretProject.Class.UI
         public List<Rectangle> CombinedRectangle { get; set; }
         public List<Vector2> RectanglePositions { get; set; }
 
+        public int Width { get;private set; }
+        public int Height { get; private set; }
         public NineSliceRectangle(Vector2 position, Rectangle leftSideRectangle, Rectangle midSliceRectangle, Rectangle rightSideRectangle, RectangleSize size)
         {
             CombinedRectangle = new List<Rectangle>();
+            int width = 0;
+            float height = 0;
             CombinedRectangle.Add(leftSideRectangle);
+            width += leftSideRectangle.Width;
+            
             for(int i =0; i < (int)size; i++)
             {
                 CombinedRectangle.Add(midSliceRectangle);
+                width += midSliceRectangle.Width;
             }
             CombinedRectangle.Add(rightSideRectangle);
+            width += rightSideRectangle.Width;
+
+            this.Width = width;
+            this.Height = leftSideRectangle.Height;
 
             RectanglePositions = new List<Vector2>();
             RectanglePositions.Add(position);

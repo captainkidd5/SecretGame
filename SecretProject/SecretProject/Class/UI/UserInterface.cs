@@ -112,6 +112,7 @@ namespace SecretProject.Class.UI
         public float TransitionSpeed { get; set; }
 
         public List<UISprite> AllUISprites { get; set; }
+        public List<Alert> AllAlerts { get; set; }
 
         private UserInterface()
         {
@@ -151,6 +152,8 @@ namespace SecretProject.Class.UI
             this.TransitionSpeed = .05f;
             this.TransitionTimer = new SimpleTimer(2f);
             this.AllUISprites = new List<UISprite>();
+
+            this.AllAlerts = new List<Alert>();
         }
 
         public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
@@ -161,6 +164,11 @@ namespace SecretProject.Class.UI
             }
 
             this.CurrentAccessedStorableItem = building;
+        }
+
+        public void AddAlert(AlertSize size, Vector2 position, string text)
+        {
+            this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
         }
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)
@@ -188,10 +196,16 @@ namespace SecretProject.Class.UI
                 this.BottomBar.Update(gameTime, inventory, mouse);
             }
 
-            for(int i =0; i < AllUISprites.Count; i++)
+            for (int i = 0; i < AllUISprites.Count; i++)
             {
                 AllUISprites[i].Update(gameTime);
             }
+
+            for (int i = 0; i < AllAlerts.Count; i++)
+            {
+                AllAlerts[i].Update(gameTime, AllAlerts);
+            }
+
             switch (CurrentOpenInterfaceItem)
             {
                 case ExclusiveInterfaceItem.None:
@@ -422,6 +436,10 @@ namespace SecretProject.Class.UI
             for (int i = 0; i < AllUISprites.Count; i++)
             {
                 AllUISprites[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i < AllAlerts.Count; i++)
+            {
+                AllAlerts[i].Draw(spriteBatch);
             }
             if (!this.CinematicMode)
             {
