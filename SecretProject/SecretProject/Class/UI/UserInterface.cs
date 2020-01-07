@@ -146,7 +146,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
-            this.CommandConsole = new CommandConsole(Game1.Utility.centerScreen);
+            this.CommandConsole = new CommandConsole(new Vector2(Game1.Utility.CenterScreenX - 50, 50));
             this.AllRisingText = new List<RisingText>();
 
 
@@ -225,7 +225,7 @@ namespace SecretProject.Class.UI
                     {
                         Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.C)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.C)))
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Enter)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Enter)))
                     {
                         this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CommandConsole;
                     }

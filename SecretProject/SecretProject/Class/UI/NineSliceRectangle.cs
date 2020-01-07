@@ -13,7 +13,7 @@ namespace SecretProject.Class.UI
     {
         Small =1,
         Medium = 5,
-        Large =10
+        Large =20
     }
     public class NineSliceRectangle
     {
@@ -58,7 +58,7 @@ namespace SecretProject.Class.UI
             for(int i =0; i< CombinedRectangle.Count; i++)
             {
 
-                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, Scale, SpriteEffects.None, Utility.StandardButtonDepth);
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, RectanglePositions[i], CombinedRectangle[i], Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
         }
     }
