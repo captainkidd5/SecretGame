@@ -46,7 +46,8 @@ namespace SecretProject.Class.UI
         CraftingMenu = 3,
         SanctuaryCheckList = 4,
         WarpGate = 5,
-        CompletionHub = 7
+        CompletionHub = 7,
+        CommandConsole
 
     }
     public class UserInterface
@@ -93,6 +94,7 @@ namespace SecretProject.Class.UI
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
         public CompletionHub CompletionHub;
+        public CommandConsole CommandConsole { get; set; }
 
 
         //keyboard
@@ -144,6 +146,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenProgressBook = CurrentOpenProgressBook.None;
             CompletionHub = new CompletionHub(graphicsDevice, content);
+            this.CommandConsole = new CommandConsole(Game1.Utility.centerScreen);
             this.AllRisingText = new List<RisingText>();
 
 
@@ -221,6 +224,10 @@ namespace SecretProject.Class.UI
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F3)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F3)))
                     {
                         Game1.DebugWindow.IsActivated = !Game1.DebugWindow.IsActivated;
+                    }
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.C)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.C)))
+                    {
+                        this.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CommandConsole;
                     }
                     if (!this.TextBuilder.FreezeStage)
                     {
@@ -328,6 +335,14 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.SanctuaryCheckList:
                     Game1.SanctuaryCheckList.Update(gameTime, mouse);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
+                    {
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
+                    }
+                    break;
+                case ExclusiveInterfaceItem.CommandConsole:
+                    CommandConsole.Update(gameTime);
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Enter)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Enter)))
                     {
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
@@ -475,9 +490,13 @@ namespace SecretProject.Class.UI
                         CompletionHub.Draw(spriteBatch);
                         break;
 
-                        //case ExclusiveInterfaceItem.CookingMenu:
-                        //    CookingMenu.Draw(spriteBatch);
-                        //    break;
+                    //case ExclusiveInterfaceItem.CookingMenu:
+                    //    CookingMenu.Draw(spriteBatch);
+                    //    break;
+
+                    case ExclusiveInterfaceItem.CommandConsole:
+                        CommandConsole.Draw(spriteBatch);
+                        break;
                 }
 
                 if (this.BottomBar.IsActive)

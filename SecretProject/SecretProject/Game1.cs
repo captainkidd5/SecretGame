@@ -936,7 +936,7 @@ namespace SecretProject
 
         public void LoadPlayer()
         {
-            Player = new Player("joe", new Vector2(1200, 1400), AllTextures.PlayerBase, 4, 5, this.Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, IsDrawn = true };
+            Player = new Player("joe", new Vector2(700, 800), AllTextures.PlayerBase, 4, 5, this.Content, graphics.GraphicsDevice, myMouseManager) { Activate = true, IsDrawn = true };
             // = new AnimatedSprite(GraphicsDevice, MainCharacterTexture, 1, 6, 25);
 
             //meaning hair of direction forward:

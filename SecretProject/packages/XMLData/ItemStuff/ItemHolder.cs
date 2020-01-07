@@ -24,6 +24,10 @@ namespace XMLData.ItemStuff
             ItemData newItem = new ItemData();
             int debugID = iD;
             ItemData oldItem = AllItems.Find(x => x.ID == iD);
+            if(oldItem == null)
+            {
+                return null;
+            }
             newItem.Name = oldItem.Name;
             newItem.Description = oldItem.Description;
             newItem.ID = oldItem.ID;
