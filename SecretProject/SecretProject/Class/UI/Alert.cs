@@ -56,7 +56,7 @@ namespace SecretProject.Class.UI
             this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 2f);
 
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.Graphics,
-                new Vector2(this.Position.X + this.NineSliceRectangle.Width , this.Position.Y + 32), CursorType.Normal);
+                new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32), CursorType.Normal);
         }
 
         public void Update(GameTime gameTime, List<Alert> alerts)
