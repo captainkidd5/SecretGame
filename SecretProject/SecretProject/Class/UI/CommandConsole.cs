@@ -95,9 +95,35 @@ namespace SecretProject.Class.UI
                 case "getnine":
                     Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Utility.centerScreen, "this is a thicc test");
                     break;
-                case "show":
+                case "showitems":
                     for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
                         this.DisplayLog += Game1.AllItems.AllItems[i].Name + " : " + Game1.AllItems.AllItems[i].ID.ToString() + "\n";
+                    break;
+                case "help":
+                    string helpString = separatedString[1].ToLower();
+                    switch(helpString)
+                    {
+                        case "warp":
+                            for(int i =0; i < Game1.AllStages.Count; i++)
+                            {
+                                this.DisplayLog += Game1.AllStages[i].StageName + "\n";
+                            }
+                                break;
+                        case "commands":
+                            this.DisplayLog += "spawn \n getnine \n showitems \n warp \n clear";
+                            break;
+                    }
+
+                    break;
+                case "warp":
+                    string newString = separatedString[1].ToLower();
+
+                   newString = char.ToUpper(newString[0]) + newString.Substring(1);
+                    Stages newStage = (Stages)Enum.Parse(typeof(Stages), newString);
+                    Game1.SwitchStage(Game1.GetCurrentStageInt(), newStage);
+                    break;
+                case "clear":
+                    this.DisplayLog = string.Empty;
                     break;
             }
 
