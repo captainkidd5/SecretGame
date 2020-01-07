@@ -172,6 +172,7 @@ namespace SecretProject.Class.UI
         public void AddAlert(AlertSize size, Vector2 position, string text)
         {
             this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Alert1);
         }
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)

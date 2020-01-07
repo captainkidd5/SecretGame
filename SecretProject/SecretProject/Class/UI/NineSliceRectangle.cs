@@ -50,7 +50,7 @@ namespace SecretProject.Class.UI
 
                 RectanglePositions.Add(new Vector2(RectanglePositions[i].X + midSliceRectangle.Width * Scale, position.Y));
             }
-            RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X, position.Y));
+            RectanglePositions.Add(new Vector2(RectanglePositions[RectanglePositions.Count - 1].X + CombinedRectangle[RectanglePositions.Count - 1].Width * Scale, position.Y));
         }
 
         public void Draw(SpriteBatch spriteBatch)

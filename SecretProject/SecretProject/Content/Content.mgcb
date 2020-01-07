@@ -543,6 +543,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Snaw/SnawPortrait.png
 
+#begin Particles/fire1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Particles/fire1.png
+
 #begin Particles/raindrop.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -566,6 +578,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Particles/rockparticle.png
+
+#begin Particles/smokeParticle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Particles/smokeParticle.png
 
 #begin Player/Joe/joe.png
 /importer:TextureImporter
@@ -1035,6 +1059,66 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/Pants/bluePants.png
 
+#begin Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png
+
+#begin Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair.png
+
+#begin Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png
+
+#begin Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png
+
+#begin Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
+
 #begin Player/PlayerParts/Shirts/redShirt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1168,6 +1252,11 @@
 /processor:PassThroughProcessor
 /build:Route/SarahRouteSchedule.xml
 
+#begin SanctuaryStuff/ForestSanctuary.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:SanctuaryStuff/ForestSanctuary.xml
+
 #begin Songs/Downpour.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1191,6 +1280,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Songs/Title.wav
+
+#begin SoundEffects/Alert1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Alert1.wav
 
 #begin SoundEffects/bubble.WAV
 /importer:WavImporter
@@ -1222,6 +1317,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/chirp3.wav
 
+#begin SoundEffects/CoinGet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/CoinGet.wav
+
 #begin SoundEffects/crickets1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1240,6 +1341,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/diggingDirt.wav
 
+#begin SoundEffects/exclamation.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/exclamation.wav
+
 #begin SoundEffects/FurnaceLight.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1257,6 +1364,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/metalCraft.wav
+
+#begin SoundEffects/MiniReward.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/MiniReward.wav
 
 #begin SoundEffects/owlHoot1.wav
 /importer:WavImporter
@@ -1287,6 +1400,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/placeItem2.wav
+
+#begin SoundEffects/PotLidClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotLidClose.wav
+
+#begin SoundEffects/PotLidOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/PotLidOpen.wav
 
 #begin SoundEffects/pumpkinSquash.wav
 /importer:WavImporter
@@ -1366,6 +1491,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/toolBreak.wav
 
+#begin SoundEffects/UIClick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/UIClick.wav
+
 #begin SoundEffects/unlockitem.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1390,6 +1521,18 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:SpriteFont/MenuText.spritefont
+
+#begin WorldProps/Butterflys.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WorldProps/Butterflys.png
 
 #begin WorldProps/gears.png
 /importer:TextureImporter
@@ -1438,141 +1581,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin SanctuaryStuff/ForestSanctuary.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:SanctuaryStuff/ForestSanctuary.xml
-
-#begin SoundEffects/exclamation.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/exclamation.wav
-
-#begin WorldProps/Butterflys.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:WorldProps/Butterflys.png
-
-#begin Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/PickUpItem/Base/PickUpItemBase.png
-
-#begin Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair.png
-
-#begin Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants.png
-
-#begin Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt.png
-
-#begin Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
-
-#begin SoundEffects/PotLidClose.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/PotLidClose.wav
-
-#begin SoundEffects/PotLidOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/PotLidOpen.wav
-
-#begin Particles/smokeParticle.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Particles/smokeParticle.png
-
-#begin Particles/fire1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Particles/fire1.png
-
-#begin SoundEffects/UIClick.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/UIClick.wav
-
-#begin SoundEffects/CoinGet.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/CoinGet.wav
-
-#begin SoundEffects/MiniReward.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/MiniReward.wav
 

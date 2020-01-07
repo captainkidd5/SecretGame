@@ -61,6 +61,7 @@ namespace SecretProject.Class.UI
 
         public void Update(GameTime gameTime, List<Alert> alerts)
         {
+            Game1.freeze = true;
             redEsc.Update(Game1.myMouseManager);
             if(redEsc.isClicked)
             {
@@ -72,7 +73,7 @@ namespace SecretProject.Class.UI
         {
             redEsc.Draw(spriteBatch);
             this.NineSliceRectangle.Draw(spriteBatch);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, new Vector2(this.Position.X + 16, this.Position.Y + 16), Color.White, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, new Vector2(this.Position.X + 16, this.Position.Y + 16), Color.White, 0f, Game1.Utility.Origin,2f, SpriteEffects.None, Utility.StandardButtonDepth + .06f);
         }
     }
 }

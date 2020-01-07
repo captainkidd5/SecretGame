@@ -92,8 +92,8 @@ namespace SecretProject.Class.UI
                     }
                     
                     break;
-                case "getnine":
-                    Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Utility.centerScreen, "this is a thicc test");
+                case "alert":
+                    Game1.Player.UserInterface.AddAlert((AlertSize)int.Parse(separatedString[1]), Game1.Utility.centerScreen, separatedString[2]);
                     break;
                 case "showitems":
                     for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)
