@@ -27,8 +27,6 @@ namespace SecretProject.Class.Universal
          public const float StandardButtonDepth = .7f;
         public float StandardTextDepth { get; set; } = .72f;
 
-
-
         public Utility(int seed)
         {
             RGenerator = new Random(Seed: seed);
@@ -36,6 +34,8 @@ namespace SecretProject.Class.Universal
 
 
         }
+
+
 
 
 

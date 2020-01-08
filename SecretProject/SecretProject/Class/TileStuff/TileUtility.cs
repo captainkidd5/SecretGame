@@ -875,7 +875,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="limit">Maximum number of this type of tile we can spawn in a chunk</param>
         public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false, bool assertLeftAndRight = false, int limit = 0)
         {
-            int cap = Game1.Utility.RGenerator.Next(0, frequency);
+            int cap = container.Random.Next(0, frequency);
 
             int limitCounter = 0;
 
@@ -904,8 +904,8 @@ namespace SecretProject.Class.TileStuff
         public static bool RetrieveRandomlyDistributedTile(int layer, int id, List<int> acceptableTiles, IInformationContainer container,
             int comparisonLayer = 0, bool zeroLayerOnly = false, bool assertLeftAndRight = false)
         {
-            int newTileX = Game1.Utility.RNumber(0, container.AllTiles[0].GetLength(0) + 1);
-            int newTileY = Game1.Utility.RNumber(1, container.AllTiles[0].GetLength(0) + 1);
+            int newTileX = container.Random.Next(0, container.AllTiles[0].GetLength(0) + 1);
+            int newTileY = container.Random.Next(1, container.AllTiles[0].GetLength(0) + 1);
             if (!TileUtility.CheckIfTileAlreadyExists(newTileX, newTileY, layer, container) && TileUtility.CheckIfTileMatchesGID(newTileX, newTileY, layer,
                 acceptableTiles, container, comparisonLayer))
             {

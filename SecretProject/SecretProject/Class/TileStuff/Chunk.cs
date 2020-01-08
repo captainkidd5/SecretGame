@@ -7,6 +7,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using TiledSharp;
@@ -55,6 +56,8 @@ namespace SecretProject.Class.TileStuff
         public int MainGid { get; set; }
         public int SecondaryGid { get; set; }
         public float MainGIDSpawnChance { get; set; }
+
+        public Random Random { get; set; }
 
         //NPCS
         public List<Enemy> Enemies { get; set; }
@@ -110,6 +113,7 @@ namespace SecretProject.Class.TileStuff
 
             SetRectangleTexture(this.GraphicsDevice);
             this.AdjacentObstacleGrids = new List<ObstacleGrid>();
+            this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
 
         }
 
@@ -332,15 +336,20 @@ namespace SecretProject.Class.TileStuff
 
                     if (this.X != 0 && this.Y != 0)
                     {
-                        Tile tile = SearchForEmptyTile(3);
-                        if (tile != null)
+                        if (Game1.OverWorld.Enemies.Count < 50)
                         {
-                            TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                            if (tilingContainer != null)
-                            {
-                                Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
-                            }
 
+
+                            Tile tile = SearchForEmptyTile(3);
+                            if (tile != null)
+                            {
+                                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                                if (tilingContainer != null)
+                                {
+                                    Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                }
+
+                            }
                         }
 
 
@@ -553,16 +562,19 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
-                Tile tile = SearchForEmptyTile(3);
-                if (tile != null)
+                if (Game1.OverWorld.Enemies.Count < 50)
                 {
-                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                    if (container != null)
+                    Tile tile = SearchForEmptyTile(3);
+                    if (tile != null)
                     {
-                        Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                        if (container != null)
+                        {
+                            Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                        }
+
+
                     }
-
-
                 }
 
 
@@ -676,15 +688,15 @@ namespace SecretProject.Class.TileStuff
 
                 if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(tile.GID))
                 {
-                    if (Game1.Utility.RGenerator.Next(0, 10) < 2)
+                    if (this.Random.Next(0, 10) < 2)
                     {
-                        int numberOfGrassTuftsToSpawn = Game1.Utility.RGenerator.Next(1, 4);
+                        int numberOfGrassTuftsToSpawn = this.Random.Next(1, 4);
                         List<GrassTuft> tufts = new List<GrassTuft>();
                         for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                         {
-                            int grassType = Game1.Utility.RGenerator.Next(1, 5);
+                            int grassType = this.Random.Next(1, 5);
                             GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
-                                + Game1.Utility.RGenerator.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + Game1.Utility.RGenerator.Next(-8, 8)));
+                                + this.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + this.Random.Next(-8, 8)));
                             grassTuft.TuftsIsPartOf = tufts;
                             tufts.Add(grassTuft);
                             if (this.Tufts.ContainsKey(tile.GetTileKeyStringNew(0, this)) || this.Objects.ContainsKey(tile.GetTileKeyStringNew(0, this)))

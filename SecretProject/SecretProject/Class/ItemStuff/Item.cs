@@ -125,7 +125,7 @@ namespace SecretProject.Class.ItemStuff
                 { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item, Entity = this };
                 this.Ignored = true;
             }
-            if (!this.IsWorldItem)
+            else
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle, new Vector2(500, 635), 16, 16) { LayerDepth = .4f };
             }

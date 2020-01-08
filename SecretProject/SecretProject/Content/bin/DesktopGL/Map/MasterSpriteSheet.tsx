@@ -3601,6 +3601,54 @@
    <property name="newSource" value="-32,-96,96,112"/>
   </properties>
  </tile>
+ <tile id="9037">
+  <animation>
+   <frame tileid="8637" duration="200"/>
+   <frame tileid="8237" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9038">
+  <animation>
+   <frame tileid="8638" duration="200"/>
+   <frame tileid="8238" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9137">
+  <animation>
+   <frame tileid="8737" duration="200"/>
+   <frame tileid="8337" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9138">
+  <animation>
+   <frame tileid="8738" duration="200"/>
+   <frame tileid="8338" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9237">
+  <animation>
+   <frame tileid="8837" duration="200"/>
+   <frame tileid="8437" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9238">
+  <animation>
+   <frame tileid="8838" duration="200"/>
+   <frame tileid="8438" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9337">
+  <animation>
+   <frame tileid="8937" duration="200"/>
+   <frame tileid="8537" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9338">
+  <animation>
+   <frame tileid="8938" duration="200"/>
+   <frame tileid="8538" duration="200"/>
+  </animation>
+ </tile>
  <tile id="9624">
   <properties>
    <property name="action" value="triggerLift"/>

@@ -4,6 +4,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
+using System;
 using System.Collections.Generic;
 using TiledSharp;
 using XMLData.ItemStuff;
@@ -38,5 +39,6 @@ namespace SecretProject.Class.TileStuff
         Rectangle GetChunkRectangle();
         List<int[,]> AdjacentNoise { get; set; }
         WorldTileManager TileManager { get; set; }
+        Random Random { get; set; }
     }
 }
