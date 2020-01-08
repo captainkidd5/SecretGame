@@ -3649,11 +3649,53 @@
    <frame tileid="8538" duration="200"/>
   </animation>
  </tile>
+ <tile id="9442">
+  <animation>
+   <frame tileid="8842" duration="100"/>
+   <frame tileid="8242" duration="100"/>
+   <frame tileid="7642" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9443">
+  <animation>
+   <frame tileid="8843" duration="100"/>
+   <frame tileid="8243" duration="100"/>
+   <frame tileid="7643" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9542">
+  <animation>
+   <frame tileid="8942" duration="100"/>
+   <frame tileid="8342" duration="100"/>
+   <frame tileid="7742" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9543">
+  <animation>
+   <frame tileid="8943" duration="100"/>
+   <frame tileid="8343" duration="100"/>
+   <frame tileid="7743" duration="100"/>
+  </animation>
+ </tile>
  <tile id="9624">
   <properties>
    <property name="action" value="triggerLift"/>
    <property name="newSource" value="-32,-80,96,96"/>
   </properties>
+ </tile>
+ <tile id="9642">
+  <animation>
+   <frame tileid="9042" duration="100"/>
+   <frame tileid="8442" duration="100"/>
+   <frame tileid="7842" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9643">
+  <animation>
+   <frame tileid="9043" duration="100"/>
+   <frame tileid="8443" duration="100"/>
+   <frame tileid="7843" duration="100"/>
+  </animation>
  </tile>
  <tile id="9702">
   <objectgroup draworder="index" id="2">
@@ -3836,6 +3878,48 @@
    <frame tileid="8210" duration="100"/>
    <frame tileid="8110" duration="100"/>
    <frame tileid="8010" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9742">
+  <animation>
+   <frame tileid="9142" duration="100"/>
+   <frame tileid="8542" duration="100"/>
+   <frame tileid="7942" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9743">
+  <animation>
+   <frame tileid="9143" duration="100"/>
+   <frame tileid="8543" duration="100"/>
+   <frame tileid="7943" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9842">
+  <animation>
+   <frame tileid="9242" duration="100"/>
+   <frame tileid="8642" duration="100"/>
+   <frame tileid="8042" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9843">
+  <animation>
+   <frame tileid="9243" duration="100"/>
+   <frame tileid="8643" duration="100"/>
+   <frame tileid="8043" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9942">
+  <animation>
+   <frame tileid="9342" duration="100"/>
+   <frame tileid="8742" duration="100"/>
+   <frame tileid="8142" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="9943">
+  <animation>
+   <frame tileid="9343" duration="100"/>
+   <frame tileid="8743" duration="100"/>
+   <frame tileid="8143" duration="100"/>
   </animation>
  </tile>
 </tileset>
