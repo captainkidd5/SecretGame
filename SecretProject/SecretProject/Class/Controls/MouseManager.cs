@@ -193,6 +193,13 @@ namespace SecretProject.Class.Controls
                 }
                 this.HoldTimer = 0f;
             }
+            if(this.MyMouse.RightButton == ButtonState.Released)
+            {
+                if (oldMouse.RightButton == ButtonState.Pressed)
+                {
+                    this.IsRightClicked = true;
+                }
+            }
 
         }
 

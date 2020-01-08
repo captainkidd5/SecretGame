@@ -18,6 +18,7 @@ namespace SecretProject.Class.MenuStuff
         public Vector2 size;
 
         public bool isClicked;
+        public bool isRightClicked;
         public bool isClickedAndHeld;
         public bool wasJustReleased { get; set; }
 
@@ -97,6 +98,7 @@ namespace SecretProject.Class.MenuStuff
         public void Update(MouseManager mouse)
         {
             this.wasJustReleased = false;
+            this.isRightClicked = false;
             if (!mouse.IsClickedAndHeld)
             {
                 isClicked = false;
@@ -118,6 +120,10 @@ namespace SecretProject.Class.MenuStuff
                 {
                     isClicked = true;
                     //    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.UIClick, true);
+                }
+                else if(mouse.IsRightClicked)
+                {
+                    isRightClicked = true;
                 }
 
 

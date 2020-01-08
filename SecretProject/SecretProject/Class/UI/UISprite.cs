@@ -21,14 +21,14 @@ namespace SecretProject.Class.UI
         public float Speed { get; set; }
         public List<UISprite> AllUISprites { get; set; }
 
-        public UISprite(UISpriteType uiSpriteType, GraphicsDevice graphics, Vector2 position, Vector2 destination, List<UISprite> allUISprites)
+        public UISprite(UISpriteType uiSpriteType, GraphicsDevice graphics, Vector2 position, Vector2 destination, List<UISprite> allUISprites, int speedMin = 10, int speedMax = 30)
         {
             switch(uiSpriteType)
             {
                 case UISpriteType.Coin:
                     this.Sprite = new Sprite(graphics, Game1.AllTextures.UserInterfaceTileSet, new Rectangle(16, 320, 32, 32), position, 32, 32);
                     this.Destination = destination;
-                    this.Speed = Game1.Utility.RGenerator.Next(10, 30);
+                    this.Speed = Game1.Utility.RGenerator.Next(speedMin, speedMax);
                     break;
             }
             this.AllUISprites = allUISprites;

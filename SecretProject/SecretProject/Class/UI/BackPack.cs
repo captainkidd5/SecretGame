@@ -184,11 +184,19 @@ namespace SecretProject.Class.UI
                                 case ExclusiveInterfaceItem.ShopMenu:
                                     Game1.Player.UserInterface.InfoBox.FitText(this.Inventory.currentInventory[i].GetItem().Name + ":  " + "Shop will buy for " + this.Inventory.currentInventory[i].GetItem().Price + ".", 1f);
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
-                                    if (this.AllSlots[i].isClicked)
+                                    if (this.AllSlots[i].isRightClicked)
                                     {
-
-                                        Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(this.Inventory.currentInventory[i].GetItem(), 1);
-                                        this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                                        int numberToSell = 1;
+                                        if(Game1.OldKeyBoardState.IsKeyDown(Keys.LeftShift))
+                                        {
+                                            numberToSell = this.Inventory.currentInventory[i].SlotItems.Count;
+                                        }
+                                        for(int numSell =0; numSell < numberToSell; numSell++)
+                                        {
+                                            Game1.Player.UserInterface.CurrentShop.ShopMenu.TrySellToShop(this.Inventory.currentInventory[i].GetItem(), 1);
+                                            this.Inventory.currentInventory[i].RemoveItemFromSlot();
+                                        }
+                                       
                                     }
                                     break;
 
