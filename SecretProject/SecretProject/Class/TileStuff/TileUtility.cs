@@ -4,6 +4,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.Playable;
+using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 
 using SecretProject.Class.UI;
@@ -195,7 +196,18 @@ namespace SecretProject.Class.TileStuff
 
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
-
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("replace"))
+                {
+                    GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, 4, new Vector2(tileToAssign.DestinationRectangle.X + 8
+                                , tileToAssign.DestinationRectangle.Y + 8));
+                    List<GrassTuft> tufts = new List<GrassTuft>()
+                    {
+                        grassTuft,
+                    };
+                    container.Tufts.Add(tileToAssign.GetTileKeyStringNew(0, container), tufts);
+                    ReplaceTile(layer, x, y, 0, container);
+                    return;
+                }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("spawnWith"))
                 {
                     string value = "";

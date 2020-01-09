@@ -4,6 +4,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
+using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -30,6 +31,7 @@ namespace SecretProject.Class.TileStuff
         Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         ObstacleGrid PathGrid { get; set; }
+        Dictionary<string, List<GrassTuft>> Tufts { get; set; }
 
         //specific to chunks
         int X { get; set; }

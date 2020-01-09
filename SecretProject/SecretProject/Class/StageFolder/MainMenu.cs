@@ -201,7 +201,7 @@ namespace SecretProject.Class.StageFolder
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
                         menuState = MenuState.primary;
-                        Game1.SwitchStage(0, Stages.Forest);
+                        Game1.SwitchStage(0, Stages.Town);
                     }
                     else if (StartGameInWilderness.isClicked)
                     {

@@ -1182,6 +1182,11 @@
    <frame tileid="983" duration="100"/>
   </animation>
  </tile>
+ <tile id="986">
+  <properties>
+   <property name="replace" value=""/>
+  </properties>
+ </tile>
  <tile id="1004">
   <properties>
    <property name="action" value="diggable"/>

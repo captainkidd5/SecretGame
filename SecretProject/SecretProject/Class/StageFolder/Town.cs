@@ -121,6 +121,19 @@ namespace SecretProject.Class.StageFolder
 
             this.QuadTree.Insert(player.MainCollider);
 
+            foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
+            {
+                for (int g = 0; g < grass.Value.Count; g++)
+                {
+                    if (grass.Value[g].IsUpdating)
+                    {
+                        grass.Value[g].Update(gameTime);
+                    }
+
+                    this.QuadTree.Insert(grass.Value[g]);
+
+                }
+            }
 
             foreach (Character character in this.CharactersPresent)
             {

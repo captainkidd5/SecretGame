@@ -450,6 +450,15 @@ namespace SecretProject.Class.TileStuff
             {
                 return;
             }
+            foreach (KeyValuePair<string, List<GrassTuft>> entry in this.Tufts)
+            {
+                for (int grass = 0; grass < entry.Value.Count; grass++)
+                {
+
+                    entry.Value[grass].Draw(spriteBatch);
+
+                }
+            }
             for (int z = 0; z < this.AllTiles.Count; z++)
             {
                 for (var i = starti; i < endi; i++)
@@ -459,13 +468,8 @@ namespace SecretProject.Class.TileStuff
                         if (this.AllTiles[z][i, j].GID != -1)
                         {
 
-                            if (this.Tufts.ContainsKey(this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)))
-                            {
-                                for (int t = 0; t < this.Tufts[this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)].Count; t++)
-                                {
-                                    this.Tufts[this.AllTiles[z][i, j].GetTileKeyStringNew(z, this)][t].Draw(spriteBatch);
-                                }
-                            }
+
+                            
 
 
                             if (z == 3)
