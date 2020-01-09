@@ -336,7 +336,7 @@ namespace SecretProject.Class.TileStuff
 
                     if (this.X != 0 && this.Y != 0)
                     {
-                        if (Game1.OverWorld.Enemies.Count < 50)
+                        if (Game1.OverWorld.Enemies.Count < 10)
                         {
 
 
@@ -562,7 +562,7 @@ namespace SecretProject.Class.TileStuff
 
             if (this.X != 0 && this.Y != 0)
             {
-                if (Game1.OverWorld.Enemies.Count < 50)
+                if (Game1.OverWorld.Enemies.Count < 10)
                 {
                     Tile tile = SearchForEmptyTile(3);
                     if (tile != null)
@@ -593,13 +593,13 @@ namespace SecretProject.Class.TileStuff
         {
             //Specify GID + 1
 
-            TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Grass, 50, 1, this); //tree
-            TileUtility.GenerateRandomlyDistributedTiles(2, 979, GenerationType.Dirt, 50, 0, this, true); //tree
-            TileUtility.GenerateRandomlyDistributedTiles(2, 2264, GenerationType.Dirt, 5, 0, this, true); //THUNDERBIRCH
+            TileUtility.GenerateRandomlyDistributedTiles(3, 979, GenerationType.Grass, 50, 1, this); //tree
+            TileUtility.GenerateRandomlyDistributedTiles(3, 979, GenerationType.Dirt, 50, 0, this, true); //tree
+            TileUtility.GenerateRandomlyDistributedTiles(3, 2264, GenerationType.Dirt, 5, 0, this, true); //THUNDERBIRCH
             TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Dirt, 50, 0, this, true); //GRASSTUFT
             TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Grass, 50, 1, this); //GRASSTUFT
             TileUtility.GenerateRandomlyDistributedTiles(2, 1586, GenerationType.Dirt, 5, 0, this, true); //CLUEFRUIT
-            TileUtility.GenerateRandomlyDistributedTiles(2, 1664, GenerationType.Dirt, 5, 0, this, true); //OAKTREE
+            TileUtility.GenerateRandomlyDistributedTiles(3, 1664, GenerationType.Dirt, 5, 0, this, true); //OAKTREE
             TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Dirt, 5, 0, this, true); //SPROUTERA
             TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Dirt, 10, 0, this, true); //pumpkin
             TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
@@ -635,10 +635,10 @@ namespace SecretProject.Class.TileStuff
             TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
             // TileUtility.GenerateTiles(1, 4615, "water", 5, 0, this);
             //TileUtility.GenerateTiles(1, 4414, "water", 5, 0, this);
-            TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Grass, 25, 1, this); //oak2
-            TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Grass, 25, 1, this); //oak3
-            TileUtility.GenerateRandomlyDistributedTiles(2, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
-            TileUtility.GenerateRandomlyDistributedTiles(2, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
+            TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Grass, 25, 1, this); //oak2
+            TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Grass, 25, 1, this); //oak3
+            TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
+            TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
 
         }
 

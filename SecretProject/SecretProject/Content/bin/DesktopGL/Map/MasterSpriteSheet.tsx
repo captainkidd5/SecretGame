@@ -712,14 +712,6 @@
    <object id="1" x="5" y="2" width="6" height="14"/>
   </objectgroup>
  </tile>
- <tile id="563">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-64,48,80"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="578">
   <properties>
    <property name="AssociatedTiles" value="478"/>
@@ -829,7 +821,7 @@
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
-   <property name="spawnWith" value="563"/>
+   <property name="newSource" value="-16,-80,48,96"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="3.125" y="0.25" width="8.25" height="12.625"/>
@@ -1312,14 +1304,6 @@
    <object id="1" x="8.04546" y="0.454536" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
- <tile id="1063">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-32,-48,80,64"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1078">
   <properties>
    <property name="destructable" value="2,0,3,6"/>
@@ -1451,6 +1435,7 @@
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="newSource" value="-32,-64,80,80"/>
    <property name="spawnWith" value="1063"/>
   </properties>
   <objectgroup draworder="index">
@@ -2047,14 +2032,6 @@
    <object id="1" x="0.318183" y="7.99999" width="7.72727" height="5.36365"/>
   </objectgroup>
  </tile>
- <tile id="1563">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-48,48,64"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1572">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
@@ -2188,7 +2165,7 @@
   <properties>
    <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,668:10:2"/>
-   <property name="spawnWith" value="1563"/>
+   <property name="newSource" value="-16,-64,48,80"/>
   </properties>
   <objectgroup draworder="index">
    <object id="2" x="3" y="0.375" width="10" height="11.625"/>
@@ -2417,19 +2394,11 @@
    <property name="newSource" value="-32,-48,64,64"/>
   </properties>
  </tile>
- <tile id="2163">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-32,-48,80,64"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="2263">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="521:25:5,669:5:2"/>
-   <property name="spawnWith" value="2163"/>
+   <property name="newSource" value="-32,-64,80,80"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="6" y="0.375" width="6" height="10.625"/>
@@ -2699,14 +2668,6 @@
    <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
- <tile id="2863">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-64,48,80"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="2904">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -2792,10 +2753,10 @@
   <properties>
    <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,668:10:2"/>
-   <property name="spawnWith" value="2863"/>
+   <property name="newSource" value="-16,-80,48,96"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="3.125" y="0.375" width="11.25" height="10.5"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="3" y="4" width="11.25" height="10.5"/>
   </objectgroup>
  </tile>
  <tile id="3004">
@@ -3246,14 +3207,6 @@
    <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
  </tile>
- <tile id="3563">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="-16,-64,48,80"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="3604">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -3288,10 +3241,10 @@
   <properties>
    <property name="destructable" value="21,4,5,3"/>
    <property name="loot" value="520:100:5,1003:10:2"/>
-   <property name="spawnWith" value="3563"/>
+   <property name="newSource" value="-16,-80,48,96"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="1.125" y="0.3125" width="13.6875" height="2.3125"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="5" width="13.6875" height="2.3125"/>
   </objectgroup>
  </tile>
  <tile id="3704">

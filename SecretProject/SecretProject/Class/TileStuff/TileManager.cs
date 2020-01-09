@@ -349,11 +349,9 @@ namespace SecretProject.Class.TileStuff
                                 this.AllTiles[z][mi, mj].DestinationRectangle.Y,
                                 this.AllTiles[z][mi, mj].SourceRectangle.Width,
                                 this.AllTiles[z][mi, mj].SourceRectangle.Height);
-                        if(this.AllTiles[z][mi, mj].SourceRectangle.Width > 16)
-                        {
-                            Console.WriteLine("hi");
-                        }
-                            if (this.AllTiles[z][mi, mj].SourceRectangle.Width > 16 && Game1.myMouseManager.WorldMouseRectangle.Intersects(newIntersectionRectangle))
+    
+                        //trees new source layer isnt the same tile as destructable, need to fix
+                            if (Game1.myMouseManager.WorldMouseRectangle.Intersects(newIntersectionRectangle))
                             {
                                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mi, mj].GID))
                                 {
