@@ -193,9 +193,11 @@ namespace SecretProject.Class.TileStuff
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
+            tileToAssign.TileKey = tileToAssign.GetTileKeyStringNew(layer, container);
 
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
             {
+                //replaces tiles with wheat grass
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("replace"))
                 {
                     GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, 4, new Vector2(tileToAssign.DestinationRectangle.X + 8
