@@ -550,12 +550,24 @@ namespace SecretProject.Class.TileStuff
             }
 
             int mouseI = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
-            int mouseJ = (int)(Game1.myMouseManager.WorldMousePosition.Y / 16 - (this.ChunkUnderMouse.Y * 16));
+            int mouseJ = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
             int playerI = (int)(Game1.Player.position.X / 16 - (this.ChunkUnderPlayer.X * 16));
             int playerJ = (int)(Game1.Player.position.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
 
             for (int z = 0; z < 4; z++)
             {
+
+                //for (int mi = mouseI - 5; mi < mouseI + 5; mi++)
+                //{
+                //    for (int mj = mouseJ - 5; mj < mouseJ + 5; mj++)
+                //    {
+
+                //        Rectangle newIntersectionRectangle = new Rectangle(this.ChunkUnderPlayer.AllTiles[z][mi, mj].DestinationRectangle.X,
+                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].DestinationRectangle.Y,
+                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].SourceRectangle.Width,
+                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].SourceRectangle.Height);
+                //    }
+                //}
                 if (Game1.Player.IsMoving)
                 {
                     if (z == 0)

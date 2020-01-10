@@ -101,7 +101,7 @@ namespace SecretProject.Class.TileStuff
         /// Finds and indexes into a chunk, returning the proper tile.
         /// </summary>
         /// <param name="tileX">The tile's SQUARE (meaning worldPos /16 ) X Coord!</param>
-        /// <param name="tileY">The tile's SQUARE (meaning worldPos /16 ) X Coord!</param>
+        /// <param name="tileY">The tile's SQUARE (meaning worldPos /16 ) Y Coord!</param>
         /// <param name="layer"></param>
         /// <param name="ActiveChunks"></param>
         /// <returns></returns>
