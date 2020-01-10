@@ -571,7 +571,7 @@ namespace SecretProject.Class.TileStuff
             throw new NotImplementedException();
         }
 
-        public void LoadInitialChunks()
+        public void LoadInitialChunks(Vector2 position)
         {
             throw new NotImplementedException();
         }

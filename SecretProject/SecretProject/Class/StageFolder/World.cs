@@ -202,7 +202,7 @@ namespace SecretProject.Class.StageFolder
             Game1.Player.Position = new Vector2(0, 0);
 
 
-            this.AllTiles.LoadInitialChunks();
+            this.AllTiles.LoadInitialChunks(Vector2.Zero);
             Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue(1f);
             Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.White.ToVector4());
             Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();

@@ -151,10 +151,10 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void LoadInitialChunks()
+        public void LoadInitialChunks(Vector2 position)
         {
 
-            this.ActiveChunks = GetActiveChunkCoord(new Vector2(0, 0));
+            this.ActiveChunks = GetActiveChunkCoord(position);
 
 
             for (int i = 0; i < RenderDistance; i++)
@@ -364,6 +364,13 @@ namespace SecretProject.Class.TileStuff
 
 
         }
+        /// <summary>
+        /// Simply notifies chunk that its indices in the Active Chunk Array have changed.
+        /// Used when shifting chunks around in the array without having to generate or load new ones.
+        /// </summary>
+        /// <param name="chunk"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
         public void ReassignArrayIAndJ(Chunk chunk, int i, int j)
         {
             chunk.ArrayI = i;
@@ -389,7 +396,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
         }
-        static readonly object locker = new object();
 
         public Point GetChunkPositionFromCamera(float x, float y)
         {

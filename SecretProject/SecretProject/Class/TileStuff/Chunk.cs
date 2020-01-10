@@ -69,11 +69,15 @@ namespace SecretProject.Class.TileStuff
         public WorldTileManager TileManager { get; set; }
         public List<int[,]> AdjacentNoise { get; set; }
 
+        public readonly Object Locker;
+
         public List<ObstacleGrid> AdjacentObstacleGrids { get; set; }
 
         public bool IsSaving { get; set; }
         public bool IsLoading { get; set; }
         public bool IsGenerating { get; set; }
+        public bool IsDoneLoading { get; set; }
+
 
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
@@ -114,7 +118,7 @@ namespace SecretProject.Class.TileStuff
             SetRectangleTexture(this.GraphicsDevice);
             this.AdjacentObstacleGrids = new List<ObstacleGrid>();
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
-
+            this.Locker = new object();
         }
 
         public Rectangle GetChunkRectangle()
@@ -126,242 +130,263 @@ namespace SecretProject.Class.TileStuff
 
         public void Save()
         {
-            this.IsSaving = true;
-            this.AreReadersAndWritersDone = false;
-            string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
-            using (FileStream fileStream = File.OpenWrite(path))
+            if(!IsSaving)
+            {
+
+            
+            lock (Locker)
             {
 
 
-                using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+                this.IsSaving = true;
+                this.AreReadersAndWritersDone = false;
+                string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
+                using (FileStream fileStream = File.OpenWrite(path))
                 {
 
 
-                    for (int z = 0; z < 4; z++)
+                    using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                     {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                        {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                            {
-                                binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
-                                binaryWriter.Write(this.AllTiles[z][i, j].X);
-                                binaryWriter.Write(this.AllTiles[z][i, j].Y);
 
+
+                        for (int z = 0; z < 4; z++)
+                        {
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                            {
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                {
+                                    binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
+                                    binaryWriter.Write(this.AllTiles[z][i, j].X);
+                                    binaryWriter.Write(this.AllTiles[z][i, j].Y);
+
+                                }
                             }
                         }
-                    }
 
 
-                    binaryWriter.Write(this.StoreableItems.Count);
-                    foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
-                    {
-
-                        binaryWriter.Write(storeableItem.Key);
-                        binaryWriter.Write((int)storeableItem.Value.StorableItemType);
-                        binaryWriter.Write(storeableItem.Value.Size);
-                        binaryWriter.Write(storeableItem.Value.Location.X);
-                        binaryWriter.Write(storeableItem.Value.Location.Y);
-                        for (int s = 0; s < storeableItem.Value.Size; s++)
+                        binaryWriter.Write(this.StoreableItems.Count);
+                        foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
                         {
-                            binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
-                            if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+
+                            binaryWriter.Write(storeableItem.Key);
+                            binaryWriter.Write((int)storeableItem.Value.StorableItemType);
+                            binaryWriter.Write(storeableItem.Value.Size);
+                            binaryWriter.Write(storeableItem.Value.Location.X);
+                            binaryWriter.Write(storeableItem.Value.Location.Y);
+                            for (int s = 0; s < storeableItem.Value.Size; s++)
                             {
-                                binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
-                            }
-                            else
-                            {
-                                binaryWriter.Write(-1);
+                                binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
+                                if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                                {
+                                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                                }
+                                else
+                                {
+                                    binaryWriter.Write(-1);
+                                }
+
                             }
 
                         }
 
-                    }
-
-                    binaryWriter.Write(this.Crops.Count);
-                    foreach (KeyValuePair<string, Crop> crop in this.Crops)
-                    {
-                        binaryWriter.Write(crop.Key);
-                        binaryWriter.Write(crop.Value.ItemID);
-                        binaryWriter.Write(crop.Value.Name);
-                        binaryWriter.Write(crop.Value.GID);
-                        binaryWriter.Write(crop.Value.DaysToGrow);
-                        binaryWriter.Write(crop.Value.CurrentGrowth);
-                        binaryWriter.Write(crop.Value.Harvestable);
-                        binaryWriter.Write(crop.Value.DayPlanted);
-
-                    }
-
-                    binaryWriter.Write(this.Tufts.Count);
-                    foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
-                    {
-                        binaryWriter.Write(tuft.Key);
-                        binaryWriter.Write(tuft.Value.Count);
-
-                        for (int i = 0; i < tuft.Value.Count; i++)
+                        binaryWriter.Write(this.Crops.Count);
+                        foreach (KeyValuePair<string, Crop> crop in this.Crops)
                         {
-                            binaryWriter.Write(tuft.Value[i].GrassType);
-                            binaryWriter.Write(tuft.Value[i].Position.X);
-                            binaryWriter.Write(tuft.Value[i].Position.Y);
-                        }
-                    }
+                            binaryWriter.Write(crop.Key);
+                            binaryWriter.Write(crop.Value.ItemID);
+                            binaryWriter.Write(crop.Value.Name);
+                            binaryWriter.Write(crop.Value.GID);
+                            binaryWriter.Write(crop.Value.DaysToGrow);
+                            binaryWriter.Write(crop.Value.CurrentGrowth);
+                            binaryWriter.Write(crop.Value.Harvestable);
+                            binaryWriter.Write(crop.Value.DayPlanted);
 
-                    binaryWriter.Flush();
-                    binaryWriter.Close();
+                        }
+
+                        binaryWriter.Write(this.Tufts.Count);
+                        foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
+                        {
+                            binaryWriter.Write(tuft.Key);
+                            binaryWriter.Write(tuft.Value.Count);
+
+                            for (int i = 0; i < tuft.Value.Count; i++)
+                            {
+                                binaryWriter.Write(tuft.Value[i].GrassType);
+                                binaryWriter.Write(tuft.Value[i].Position.X);
+                                binaryWriter.Write(tuft.Value[i].Position.Y);
+                            }
+                        }
+
+                        binaryWriter.Flush();
+                        binaryWriter.Close();
+                    }
                 }
+                this.AreReadersAndWritersDone = true;
+                this.IsSaving = false;
             }
-            this.AreReadersAndWritersDone = true;
-            this.IsSaving = false;
+            }
         }
 
 
 
         public void Load()
         {
-            this.IsLoading = true;
-            this.AreReadersAndWritersDone = false;
-            string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
-            using (FileStream fileStream = File.OpenRead(path))
+            if (!IsDoneLoading)
             {
 
 
-                using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                lock (Locker)
                 {
 
 
-                    this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-                    for (int z = 0; z < 4; z++)
+                    this.IsLoading = true;
+                    this.AreReadersAndWritersDone = false;
+                    string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
+                    using (FileStream fileStream = File.OpenRead(path))
                     {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+
+
+                        using (BinaryReader binaryReader = new BinaryReader(fileStream))
                         {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+
+
+                            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+                            for (int z = 0; z < 4; z++)
                             {
+                                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                                {
+                                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                    {
+                                        int gid = binaryReader.ReadInt32();
+                                        int x = binaryReader.ReadInt32();
+                                        int y = binaryReader.ReadInt32();
+                                        this.AllTiles[z][i, j] = new Tile(x, y, gid);
+                                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+                                    }
+                                }
+                            }
+
+
+                            this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
+                            int storableItemCount = binaryReader.ReadInt32();
+                            for (int c = 0; c < storableItemCount; c++)
+                            {
+                                string storageKey = binaryReader.ReadString();
+                                int storableItemType = binaryReader.ReadInt32();
+                                StorableItemType itemType = (StorableItemType)storableItemType;
+                                int inventorySize = binaryReader.ReadInt32();
+                                float locationX = binaryReader.ReadSingle();
+                                float locationY = binaryReader.ReadSingle();
+
+                                switch (itemType)
+                                {
+                                    case StorableItemType.Chest:
+                                        Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
+                                        for (int i = 0; i < inventorySize; i++)
+                                        {
+                                            int numberOfItemsInSlot = binaryReader.ReadInt32();
+                                            int itemID = binaryReader.ReadInt32();
+
+                                            for (int j = 0; j < numberOfItemsInSlot; j++)
+                                            {
+                                                storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                                            }
+                                        }
+
+                                        this.StoreableItems.Add(storageKey, storeageItemToAdd);
+                                        break;
+
+                                    case StorableItemType.Cauldron:
+                                        Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
+                                        for (int i = 0; i < inventorySize; i++)
+                                        {
+                                            int numberOfItemsInSlot = binaryReader.ReadInt32();
+                                            int itemID = binaryReader.ReadInt32();
+
+                                            for (int j = 0; j < numberOfItemsInSlot; j++)
+                                            {
+                                                cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
+                                            }
+                                        }
+
+                                        this.StoreableItems.Add(storageKey, cauldronToAdd);
+                                        break;
+                                }
+                            }
+
+                            int cropCount = binaryReader.ReadInt32();
+                            for (int c = 0; c < cropCount; c++)
+                            {
+                                string cropKey = binaryReader.ReadString();
+                                int itemID = binaryReader.ReadInt32();
+                                string name = binaryReader.ReadString();
                                 int gid = binaryReader.ReadInt32();
-                                int x = binaryReader.ReadInt32();
-                                int y = binaryReader.ReadInt32();
-                                this.AllTiles[z][i, j] = new Tile(x, y, gid);
-                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+                                int daysToGrow = binaryReader.ReadInt32();
+                                int currentGrow = binaryReader.ReadInt32();
+                                bool harvestable = binaryReader.ReadBoolean();
+                                int dayPlanted = binaryReader.ReadInt32();
+                                Crop crop = new Crop()
+                                {
+                                    ItemID = itemID,
+                                    Name = name,
+                                    GID = gid,
+                                    DaysToGrow = daysToGrow,
+                                    CurrentGrowth = currentGrow,
+                                    Harvestable = harvestable,
+                                    DayPlanted = dayPlanted
+                                };
+                                this.Crops.Add(cropKey, crop);
                             }
-                        }
-                    }
 
+                            int tuftListCount = binaryReader.ReadInt32();
 
-                    this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
-                    int storableItemCount = binaryReader.ReadInt32();
-                    for (int c = 0; c < storableItemCount; c++)
-                    {
-                        string storageKey = binaryReader.ReadString();
-                        int storableItemType = binaryReader.ReadInt32();
-                        StorableItemType itemType = (StorableItemType)storableItemType;
-                        int inventorySize = binaryReader.ReadInt32();
-                        float locationX = binaryReader.ReadSingle();
-                        float locationY = binaryReader.ReadSingle();
-
-                        switch (itemType)
-                        {
-                            case StorableItemType.Chest:
-                                Chest storeageItemToAdd = new Chest(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice, false);
-                                for (int i = 0; i < inventorySize; i++)
-                                {
-                                    int numberOfItemsInSlot = binaryReader.ReadInt32();
-                                    int itemID = binaryReader.ReadInt32();
-
-                                    for (int j = 0; j < numberOfItemsInSlot; j++)
-                                    {
-                                        storeageItemToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-                                    }
-                                }
-
-                                this.StoreableItems.Add(storageKey, storeageItemToAdd);
-                                break;
-
-                            case StorableItemType.Cauldron:
-                                Cauldron cauldronToAdd = new Cauldron(storageKey, inventorySize, new Vector2(locationX, locationY), this.GraphicsDevice);
-                                for (int i = 0; i < inventorySize; i++)
-                                {
-                                    int numberOfItemsInSlot = binaryReader.ReadInt32();
-                                    int itemID = binaryReader.ReadInt32();
-
-                                    for (int j = 0; j < numberOfItemsInSlot; j++)
-                                    {
-                                        cauldronToAdd.Inventory.currentInventory[i].AddItemToSlot(Game1.ItemVault.GenerateNewItem(itemID, null, false));
-                                    }
-                                }
-
-                                this.StoreableItems.Add(storageKey, cauldronToAdd);
-                                break;
-                        }
-                    }
-
-                    int cropCount = binaryReader.ReadInt32();
-                    for (int c = 0; c < cropCount; c++)
-                    {
-                        string cropKey = binaryReader.ReadString();
-                        int itemID = binaryReader.ReadInt32();
-                        string name = binaryReader.ReadString();
-                        int gid = binaryReader.ReadInt32();
-                        int daysToGrow = binaryReader.ReadInt32();
-                        int currentGrow = binaryReader.ReadInt32();
-                        bool harvestable = binaryReader.ReadBoolean();
-                        int dayPlanted = binaryReader.ReadInt32();
-                        Crop crop = new Crop()
-                        {
-                            ItemID = itemID,
-                            Name = name,
-                            GID = gid,
-                            DaysToGrow = daysToGrow,
-                            CurrentGrowth = currentGrow,
-                            Harvestable = harvestable,
-                            DayPlanted = dayPlanted
-                        };
-                        this.Crops.Add(cropKey, crop);
-                    }
-
-                    int tuftListCount = binaryReader.ReadInt32();
-
-                    for (int i = 0; i < tuftListCount; i++)
-                    {
-                        string key = binaryReader.ReadString();
-                        int smallListCount = binaryReader.ReadInt32();
-                        List<GrassTuft> tufts = new List<GrassTuft>();
-                        for (int j = 0; j < smallListCount; j++)
-                        {
-                            GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
-                                new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
-                            tuft.TuftsIsPartOf = tufts;
-                            tufts.Add(tuft);
-                        }
-                        this.Tufts.Add(key, tufts);
-                    }
-
-
-                    if (this.X != 0 && this.Y != 0)
-                    {
-                        if (Game1.OverWorld.Enemies.Count < 10)
-                        {
-
-
-                            Tile tile = SearchForEmptyTile(3);
-                            if (tile != null)
+                            for (int i = 0; i < tuftListCount; i++)
                             {
-                                TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                                if (tilingContainer != null)
+                                string key = binaryReader.ReadString();
+                                int smallListCount = binaryReader.ReadInt32();
+                                List<GrassTuft> tufts = new List<GrassTuft>();
+                                for (int j = 0; j < smallListCount; j++)
                                 {
-                                    Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                    GrassTuft tuft = new GrassTuft(this.GraphicsDevice, binaryReader.ReadInt32(),
+                                        new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()));
+                                    tuft.TuftsIsPartOf = tufts;
+                                    tufts.Add(tuft);
+                                }
+                                this.Tufts.Add(key, tufts);
+                            }
+
+
+                            if (this.X != 0 && this.Y != 0)
+                            {
+                                if (Game1.OverWorld.Enemies.Count < 10)
+                                {
+
+
+                                    Tile tile = SearchForEmptyTile(3);
+                                    if (tile != null)
+                                    {
+                                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                                        if (tilingContainer != null)
+                                        {
+                                            Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                        }
+
+                                    }
                                 }
 
+
                             }
+
+                            this.IsLoaded = true;
+                            binaryReader.Close();
+
                         }
-
-
                     }
-
-                    this.IsLoaded = true;
-                    binaryReader.Close();
-
+                    IsDoneLoading = true;
+                    this.IsLoading = false;
+                    this.AreReadersAndWritersDone = true;
                 }
             }
-            this.IsLoading = false;
-            this.AreReadersAndWritersDone = true;
         }
         /// <summary>
         /// Tries X times at random to find a tile which doesn't contain an obstacle
@@ -387,41 +412,49 @@ namespace SecretProject.Class.TileStuff
 
         public void Generate()
         {
-            this.IsGenerating = true;
-            this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-            float[,] noise = new float[16, 16];
-
-            for (int i = 0; i < 16; i++)
+            if (!IsDoneLoading)
             {
-                for (int j = 0; j < 16; j++)
+
+
+                lock (Locker)
                 {
-                    noise[i, j] = Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
-                }
-            }
 
-            #region AdjacentNoise
 
-            //Four chunks, four layers, 16 rows, 16 columns, phew!
-            int[,,] chunkAboveNoise = new int[4, 16, 16];
-            int[,,] ChunkBelowNoise = new int[4, 16, 16];
-            int[,,] ChunkLeftNoise = new int[4, 16, 16];
-            int[,,] ChunkRightNoise = new int[4, 16, 16];
+                    this.IsGenerating = true;
+                    this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
+                    float[,] noise = new float[16, 16];
 
-            for (int z = 0; z < 4; z++)
-            {
-                for (int i = 0; i < 16; i++)
-                {
-                    for (int j = 0; j < 16; j++)
+                    for (int i = 0; i < 16; i++)
                     {
-                        chunkAboveNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                        ChunkBelowNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                        ChunkLeftNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                        ChunkRightNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                        for (int j = 0; j < 16; j++)
+                        {
+                            noise[i, j] = Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                        }
                     }
-                }
-            }
 
-            List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
+                    #region AdjacentNoise
+
+                    //Four chunks, four layers, 16 rows, 16 columns, phew!
+                    int[,,] chunkAboveNoise = new int[4, 16, 16];
+                    int[,,] ChunkBelowNoise = new int[4, 16, 16];
+                    int[,,] ChunkLeftNoise = new int[4, 16, 16];
+                    int[,,] ChunkRightNoise = new int[4, 16, 16];
+
+                    for (int z = 0; z < 4; z++)
+                    {
+                        for (int i = 0; i < 16; i++)
+                        {
+                            for (int j = 0; j < 16; j++)
+                            {
+                                chunkAboveNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                ChunkBelowNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                ChunkLeftNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                ChunkRightNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                            }
+                        }
+                    }
+
+                    List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
             {
                 chunkAboveNoise,
                 ChunkBelowNoise,
@@ -429,159 +462,162 @@ namespace SecretProject.Class.TileStuff
                 ChunkRightNoise
             };
 
-            #endregion
+                    #endregion
 
 
-            for (int z = 0; z < 4; z++)
-            {
-                for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                {
-                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    for (int z = 0; z < 4; z++)
                     {
-
-
-                        int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
-                        this.AllTiles[z][i, j] = new Tile(i, j, newGID);
-
-
-
-                    }
-                }
-            }
-
-            for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
-            {
-                for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                {
-                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                    {
-
-                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GID);
-                        if (container != null)
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
                         {
-                            this.GeneratableTiles = container.GeneratableTiles;
-                            this.TilingDictionary = container.TilingDictionary;
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            {
 
-                            this.MainGid = this.AllTiles[z][i, j].GID + 1;
-                            Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
+
+                                int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
+                                this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+
+
+
+                            }
                         }
+                    }
 
+                    for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
+                    {
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                        {
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            {
+
+                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GID);
+                                if (container != null)
+                                {
+                                    this.GeneratableTiles = container.GeneratableTiles;
+                                    this.TilingDictionary = container.TilingDictionary;
+
+                                    this.MainGid = this.AllTiles[z][i, j].GID + 1;
+                                    Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
+                                }
+
+
+                            }
+                        }
+                    }
+                    // TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
+
+                    if (this.X == 0 && this.Y == 0)
+                    {
+                        //STARTING CHUNK
+
+                        this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
+                        this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
 
                     }
-                }
-            }
-            // TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
+                    else
+                    {
+                        HandleCliffEdgeCases(AllAdjacentChunkNoise);
+                        GenerateLandscape();
+                    }
 
-            if (this.X == 0 && this.Y == 0)
-            {
-                //STARTING CHUNK
-
-                this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
-                this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
-
-            }
-            else
-            {
-                HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                GenerateLandscape();
-            }
-
-            List<int> CliffBottomTiles = new List<int>()
+                    List<int> CliffBottomTiles = new List<int>()
         {
             3033, 3034, 3035
         };
 
 
 
-            for (int z = 0; z < 4; z++)
-            {
-                for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                {
-                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                    for (int z = 0; z < 4; z++)
                     {
-                        //if(j <= 0)
-                        //{
-
-                        //    if(AdjacentNoise[0][z,X] == )
-                        //}
-                        //if(AllTiles[z][i, j - 1].GID == )
-
-                        //if (i > 1 && j > 1)
-                        //{
-                        //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
-                        //    {
-                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                        //    }
-
-
-                        //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
-                        //    {
-                        //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                        //    }
-                        //}
-                        if (z == 2)
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
                         {
-                            if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
+                                //if(j <= 0)
+                                //{
 
-                                int counter = 1;
+                                //    if(AdjacentNoise[0][z,X] == )
+                                //}
+                                //if(AllTiles[z][i, j - 1].GID == )
 
-                                for (int c = j; c < j + 5; c++)
+                                //if (i > 1 && j > 1)
+                                //{
+                                //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
+                                //    {
+                                //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                                //    }
+
+
+                                //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
+                                //    {
+                                //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
+                                //    }
+                                //}
+                                if (z == 2)
                                 {
-                                    if (j + counter < 16)
+                                    if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
                                     {
 
+                                        int counter = 1;
 
-                                        this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
-
-                                        this.AllTiles[3][i, j + counter].GID = 0;
-                                        if (c < j + 4)
+                                        for (int c = j; c < j + 5; c++)
                                         {
-                                            this.AllTiles[0][i, j + counter].GID = 0;
+                                            if (j + counter < 16)
+                                            {
+
+
+                                                this.AllTiles[2][i, j + counter].GID = this.AllTiles[3][i, j].GID + 1 + 100 * counter;
+
+                                                this.AllTiles[3][i, j + counter].GID = 0;
+                                                if (c < j + 4)
+                                                {
+                                                    this.AllTiles[0][i, j + counter].GID = 0;
+                                                }
+
+                                                counter++;
+                                            }
                                         }
 
-                                        counter++;
                                     }
+                                }
+
+                                this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
+                                this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
+
+                                TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
+                                if (z == 1)
+                                {
+                                    AddGrassTufts(this.AllTiles[z][i, j]);
                                 }
 
                             }
                         }
-
-                        this.AllTiles[z][i, j].X = this.AllTiles[z][i, j].X + TileUtility.ChunkWidth * this.X;
-                        this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
-
-                        TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
-                        if (z == 1)
-                        {
-                            AddGrassTufts(this.AllTiles[z][i, j]);
-                        }
-
                     }
-                }
-            }
 
-            if (this.X != 0 && this.Y != 0)
-            {
-                if (Game1.OverWorld.Enemies.Count < 10)
-                {
-                    Tile tile = SearchForEmptyTile(3);
-                    if (tile != null)
+                    if (this.X != 0 && this.Y != 0)
                     {
-                        TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
-                        if (container != null)
+                        if (Game1.OverWorld.Enemies.Count < 10)
                         {
-                            Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                            Tile tile = SearchForEmptyTile(3);
+                            if (tile != null)
+                            {
+                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                                if (container != null)
+                                {
+                                    Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                }
+
+
+                            }
                         }
 
 
                     }
+                    this.IsLoaded = true;
+                    this.IsGenerating = false;
+                    this.IsDoneLoading = true;
+                    Save();
                 }
-
-
             }
-            this.IsLoaded = true;
-            this.IsGenerating = false;
-            Save();
         }
 
         public void Unload()

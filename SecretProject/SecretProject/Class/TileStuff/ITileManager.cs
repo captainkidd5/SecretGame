@@ -45,7 +45,7 @@ namespace SecretProject.Class.TileStuff
         void LoadGeneratableTileLists();
 
         //worldtilemanager specific
-        void LoadInitialChunks();
+        void LoadInitialChunks(Vector2 position);
         Chunk ChunkUnderPlayer { get; set; }
         Chunk GetChunkFromPosition(Vector2 entityPosition);
         void UpdateCropTile();
