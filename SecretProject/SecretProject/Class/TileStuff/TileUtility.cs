@@ -865,7 +865,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (assertLeftAndRight)
                 {
-                    if (newTileX < 15 && newTileY < 15)
+                    if (newTileX < 15 && newTileY < 15 && newTileX > 0)
                     {
                         if (!acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX + 1, newTileY].GID) || !acceptableTiles.Contains(container.AllTiles[comparisonLayer][newTileX - 1, newTileY].GID))
                         {

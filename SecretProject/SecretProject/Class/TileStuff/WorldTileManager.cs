@@ -378,23 +378,38 @@ namespace SecretProject.Class.TileStuff
         }
         public void ChunkCheck(Chunk chunk)
         {
-            if (!chunk.IsGenerating && !chunk.IsLoading && !chunk.IsSaving)
-            {
 
+            if (!chunk.IsLoaded && !chunk.IsDoneLoading)
+            {
                 if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
                 {
-
                     Task.Run(() => chunk.Load());
-
-
                 }
                 else
                 {
-
                     Task.Run(() => chunk.Generate());
-
                 }
             }
+
+
+
+            //if (!chunk.IsGenerating && !chunk.IsLoading && !chunk.IsSaving)
+            //{
+
+            //    if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+            //    {
+
+            //        Task.Run(() => chunk.Load());
+
+
+            //    }
+            //    else
+            //    {
+
+            //        Task.Run(() => chunk.Generate());
+
+            //    }
+            //}
         }
 
         public Point GetChunkPositionFromCamera(float x, float y)
@@ -467,9 +482,16 @@ namespace SecretProject.Class.TileStuff
             this.StoreableItems = this.ChunkUnderPlayer.StoreableItems;
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
 
+            for (int a = WorldTileManager.RenderDistance / 2 - 1; a < WorldTileManager.RenderDistance / 2 + 2; a++)
+            {
+                for (int b = WorldTileManager.RenderDistance / 2 - 1; b < WorldTileManager.RenderDistance / 2 + 2; b++)
+                {
+                    ChunkCheck(this.ActiveChunks[a, b]);
+                }
+            }
 
 
-            int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
+                    int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 
             int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
 

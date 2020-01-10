@@ -15,7 +15,7 @@ namespace SecretProject.Class.Universal
         public int CenterScreenX { get { return Game1.ScreenWidth / 2; } }
         public int CenterScreenY { get { return Game1.ScreenHeight / 2; } }
         public float GlobalButtonScale { get; set; } = 2f;
-        public float ForeGroundMultiplier { get; set; } = .000001f;
+        public float ForeGroundMultiplier { get; set; } = .0000001f;
         public Vector2 centerScreen;
         public Random RGenerator;
 
