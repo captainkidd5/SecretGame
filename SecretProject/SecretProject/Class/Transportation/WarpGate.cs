@@ -68,7 +68,7 @@ namespace SecretProject.Class.Transportation
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
                 Game1.Player.Position = new Vector2(80, 80);
-                Game1.OverWorld.AllTiles.LoadInitialChunks(Vector2.Zero);
+            //    Game1.OverWorld.AllTiles.LoadInitialChunks(Vector2.Zero);
             }
 
             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;

@@ -237,7 +237,7 @@ namespace SecretProject.Class.TileStuff
 
                 lock (Locker)
                 {
-
+                    IsDoneLoading = true;
 
                     this.IsLoading = true;
                     this.AreReadersAndWritersDone = false;
@@ -382,7 +382,7 @@ namespace SecretProject.Class.TileStuff
 
                         }
                     }
-                    IsDoneLoading = true;
+
                     this.IsLoading = false;
                     this.AreReadersAndWritersDone = true;
                 }
@@ -419,7 +419,7 @@ namespace SecretProject.Class.TileStuff
                 lock (Locker)
                 {
 
-
+                    IsDoneLoading = true;
                     this.IsGenerating = true;
                     this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
                     float[,] noise = new float[16, 16];
@@ -614,7 +614,6 @@ namespace SecretProject.Class.TileStuff
                     }
                     this.IsLoaded = true;
                     this.IsGenerating = false;
-                    this.IsDoneLoading = true;
                     Save();
                 }
             }
