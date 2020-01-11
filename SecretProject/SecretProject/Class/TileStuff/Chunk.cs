@@ -711,27 +711,28 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (this.Random.Next(0, 10) < 2)
                     {
-                        int numberOfGrassTuftsToSpawn = this.Random.Next(1, 4);
-                        List<GrassTuft> tufts = new List<GrassTuft>();
-                        for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
+                        if ((this.Tufts.ContainsKey(tile.TileKey)))
                         {
-                            int grassType = this.Random.Next(1, 5);
-                            GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
-                                + this.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + this.Random.Next(-8, 8)));
-                            grassTuft.TuftsIsPartOf = tufts;
-                            tufts.Add(grassTuft);
-                            if ((this.Tufts.ContainsKey(tile.TileKey)) || this.Objects.ContainsKey(tile.TileKey))
-                            {
+                        }
+                        else
+                        {
 
-                            }
-                            else
+                            int numberOfGrassTuftsToSpawn = this.Random.Next(1, 4);
+                            List<GrassTuft> tufts = new List<GrassTuft>();
+                            for (int g = 0; g < numberOfGrassTuftsToSpawn; g++)
                             {
-                                this.Tufts.Add(tile.TileKey, tufts);
+                                int grassType = this.Random.Next(1, 5);
+                                GrassTuft grassTuft = new GrassTuft(this.GraphicsDevice, grassType, new Vector2(TileUtility.GetDestinationRectangle(tile).X
+                                    + this.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + this.Random.Next(-8, 8)));
+                                grassTuft.TuftsIsPartOf = tufts;
+                                tufts.Add(grassTuft);
 
+                              
                             }
+                            this.Tufts.Add(tile.TileKey, tufts);
+
                         }
                     }
-
                 }
             }
         }

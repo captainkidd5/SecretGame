@@ -413,7 +413,7 @@ namespace SecretProject.Class.StageFolder
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
-                graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
+                //graphics.DepthStencilState = new DepthStencilState() { DepthBufferFunction = CompareFunction.Less, DepthBufferEnable = true };
                 spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: this.Cam.getTransformation(graphics), effect: currentEffect);
                 if (Game1.CurrentWeather != WeatherType.None)
                 {

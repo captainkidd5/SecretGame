@@ -715,6 +715,8 @@ namespace SecretProject.Class.TileStuff
 
                         if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
                         {
+                            List<float> testAllOffsets = new List<float>();
+                            int totalRepeats = 0;
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
                                 spriteBatch.Draw(this.ActiveChunks[a, b].RectangleTexture, new Vector2(this.ActiveChunks[a, b].GetChunkRectangle().X, this.ActiveChunks[a, b].GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
@@ -732,6 +734,15 @@ namespace SecretProject.Class.TileStuff
 
                                             if (z == 3)
                                             {
+                                                float testOffset = this.ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet;
+                                                if (testAllOffsets.Contains(testOffset))
+                                                {
+                                                    totalRepeats++;
+                                                }
+                                                else
+                                                {
+                                                    testAllOffsets.Add(testOffset);
+                                                }
                                                 spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White * this.ActiveChunks[a, b].AllTiles[z][i, j].ColorMultiplier,
                                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
@@ -758,7 +769,11 @@ namespace SecretProject.Class.TileStuff
 
                                 }
                             }
-
+                            if (totalRepeats > 0)
+                            {
+                                Console.WriteLine(totalRepeats.ToString());
+                            }
+                            
 
 
 
