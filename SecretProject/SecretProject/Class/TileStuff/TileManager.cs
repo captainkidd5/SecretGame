@@ -337,49 +337,56 @@ namespace SecretProject.Class.TileStuff
 
 
                 }
+                if(mouseI - 5 < 0)
+                {
+                    
+                }
+                
                 for (int mi = mouseI - 5; mi < mouseI + 5; mi++)
                 {
                     for (int mj = mouseJ - 5; mj < mouseJ + 5; mj++)
                     {
-                       // if (mouseI - mi > 0 && mouseJ - mj > 0 && mouseI + mi < AllTiles[z].GetLength(0) && mouseJ + mj < AllTiles[z].GetLength(1))
-                       // {
+                        if (mi >= 0 && mi <= MapWidth && mj >= 0 && mj <= MapWidth)
+                        {
+
+
 
 
                             Rectangle newIntersectionRectangle = new Rectangle(this.AllTiles[z][mi, mj].DestinationRectangle.X,
                                 this.AllTiles[z][mi, mj].DestinationRectangle.Y,
                                 this.AllTiles[z][mi, mj].SourceRectangle.Width,
                                 this.AllTiles[z][mi, mj].SourceRectangle.Height);
-    
-                        //trees new source layer isnt the same tile as destructable, need to fix
+
+                            //trees new source layer isnt the same tile as destructable, need to fix
                             if (Game1.myMouseManager.WorldMouseRectangle.Intersects(newIntersectionRectangle))
                             {
                                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mi, mj].GID))
                                 {
 
-                                    
-                                        if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties.ContainsKey("destructable"))
+
+                                    if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties.ContainsKey("destructable"))
+                                    {
+                                        Game1.isMyMouseVisible = false;
+                                        if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                                         {
-                                            Game1.isMyMouseVisible = false;
-                                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
+                                            if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"]))
                                             {
-                                                if ((AnimationType)(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemType) == (AnimationType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"]))
-                                            {
-                                                    mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"])));
-                                                    Game1.myMouseManager.ToggleGeneralInteraction = true;
-                                                }
+                                                mouse.ChangeMouseTexture(((CursorType)Game1.Utility.GetRequiredTileTool(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties["destructable"])));
+                                                Game1.myMouseManager.ToggleGeneralInteraction = true;
                                             }
+                                        }
 
 
-                                            if (mouse.IsClicked)
-                                            {
-                                                TileUtility.InteractWithDestructableTile(z, gameTime, mi, mj, this.AllTiles[z][mi, mj].DestinationRectangle, this);
-
-                                            }
+                                        if (mouse.IsClicked)
+                                        {
+                                            TileUtility.InteractWithDestructableTile(z, gameTime, mi, mj, this.AllTiles[z][mi, mj].DestinationRectangle, this);
 
                                         }
-                                        //return;
 
-                                    
+                                    }
+                                    //return;
+
+
                                     if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.AllTiles[z][mi, mj].GID))
                                     {
                                         if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.AllTiles[z][mi, mj].GID].Properties.ContainsKey("action"))
@@ -392,7 +399,8 @@ namespace SecretProject.Class.TileStuff
 
                                 }
                             }
-                       // }
+                            
+                        }
                     }
                 }
                 if (mouseI < this.AllTiles[z].GetLength(0) && mouseJ < this.AllTiles[z].GetLength(1) && mouseI >= 0 && mouseJ >= 0)

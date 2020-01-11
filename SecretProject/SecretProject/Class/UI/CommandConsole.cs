@@ -70,6 +70,11 @@ namespace SecretProject.Class.UI
                         
                         this.EnteredString += keyValue;
                     }
+                    else if (key == Keys.Subtract)
+                    {
+                        keyValue = "-";
+                        this.EnteredString += keyValue;
+                    }
 
 
                 }

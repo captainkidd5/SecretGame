@@ -391,25 +391,6 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-
-
-            //if (!chunk.IsGenerating && !chunk.IsLoading && !chunk.IsSaving)
-            //{
-
-            //    if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
-            //    {
-
-            //        Task.Run(() => chunk.Load());
-
-
-            //    }
-            //    else
-            //    {
-
-            //        Task.Run(() => chunk.Generate());
-
-            //    }
-            //}
         }
 
         public Point GetChunkPositionFromCamera(float x, float y)
@@ -491,15 +472,15 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-                    int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
+            //        int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
 
-            int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
+            //int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
 
-            int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom);
+            //int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom);
 
-            int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom + 64);
+            //int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom + 64);
 
-            this.ScreenRectangle = new Rectangle(starti, startj, endi, endj);
+            //this.ScreenRectangle = new Rectangle(starti, startj, endi, endj);
 
             for (int a = WorldTileManager.RenderDistance / 2 - 1; a < WorldTileManager.RenderDistance / 2 + 2; a++)
             {
@@ -509,7 +490,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        if (this.ActiveChunks[a, b].GetChunkRectangle().Intersects(this.ScreenRectangle))
+                        if (this.ActiveChunks[a, b].GetChunkRectangle().Intersects(Game1.cam.CameraScreenRectangle))
                         {
 
                             List<string> AnimationFrameKeysToRemove = new List<string>();
@@ -732,7 +713,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        if (this.ScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
+                        if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
                         {
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
