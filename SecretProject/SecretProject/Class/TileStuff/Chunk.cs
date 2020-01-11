@@ -130,100 +130,100 @@ namespace SecretProject.Class.TileStuff
 
         public void Save()
         {
-            if(!IsSaving)
-            {
-
-            
-            lock (Locker)
+            if (!IsSaving)
             {
 
 
-                this.IsSaving = true;
-                this.AreReadersAndWritersDone = false;
-                string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
-                using (FileStream fileStream = File.OpenWrite(path))
+                lock (Locker)
                 {
 
 
-                    using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+                    this.IsSaving = true;
+                    this.AreReadersAndWritersDone = false;
+                    string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
+                    using (FileStream fileStream = File.OpenWrite(path))
                     {
 
 
-                        for (int z = 0; z < 4; z++)
+                        using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                         {
-                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                            {
-                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                                {
-                                    binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
-                                    binaryWriter.Write(this.AllTiles[z][i, j].X);
-                                    binaryWriter.Write(this.AllTiles[z][i, j].Y);
 
+
+                            for (int z = 0; z < 4; z++)
+                            {
+                                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                                {
+                                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                    {
+                                        binaryWriter.Write(this.AllTiles[z][i, j].GID + 1);
+                                        binaryWriter.Write(this.AllTiles[z][i, j].X);
+                                        binaryWriter.Write(this.AllTiles[z][i, j].Y);
+
+                                    }
                                 }
                             }
-                        }
 
 
-                        binaryWriter.Write(this.StoreableItems.Count);
-                        foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
-                        {
-
-                            binaryWriter.Write(storeableItem.Key);
-                            binaryWriter.Write((int)storeableItem.Value.StorableItemType);
-                            binaryWriter.Write(storeableItem.Value.Size);
-                            binaryWriter.Write(storeableItem.Value.Location.X);
-                            binaryWriter.Write(storeableItem.Value.Location.Y);
-                            for (int s = 0; s < storeableItem.Value.Size; s++)
+                            binaryWriter.Write(this.StoreableItems.Count);
+                            foreach (KeyValuePair<string, IStorableItemBuilding> storeableItem in this.StoreableItems)
                             {
-                                binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
-                                if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+
+                                binaryWriter.Write(storeableItem.Key);
+                                binaryWriter.Write((int)storeableItem.Value.StorableItemType);
+                                binaryWriter.Write(storeableItem.Value.Size);
+                                binaryWriter.Write(storeableItem.Value.Location.X);
+                                binaryWriter.Write(storeableItem.Value.Location.Y);
+                                for (int s = 0; s < storeableItem.Value.Size; s++)
                                 {
-                                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
-                                }
-                                else
-                                {
-                                    binaryWriter.Write(-1);
+                                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
+                                    if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                                    {
+                                        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                                    }
+                                    else
+                                    {
+                                        binaryWriter.Write(-1);
+                                    }
+
                                 }
 
                             }
 
-                        }
-
-                        binaryWriter.Write(this.Crops.Count);
-                        foreach (KeyValuePair<string, Crop> crop in this.Crops)
-                        {
-                            binaryWriter.Write(crop.Key);
-                            binaryWriter.Write(crop.Value.ItemID);
-                            binaryWriter.Write(crop.Value.Name);
-                            binaryWriter.Write(crop.Value.GID);
-                            binaryWriter.Write(crop.Value.DaysToGrow);
-                            binaryWriter.Write(crop.Value.CurrentGrowth);
-                            binaryWriter.Write(crop.Value.Harvestable);
-                            binaryWriter.Write(crop.Value.DayPlanted);
-
-                        }
-
-                        binaryWriter.Write(this.Tufts.Count);
-                        foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
-                        {
-                            binaryWriter.Write(tuft.Key);
-                            binaryWriter.Write(tuft.Value.Count);
-
-                            for (int i = 0; i < tuft.Value.Count; i++)
+                            binaryWriter.Write(this.Crops.Count);
+                            foreach (KeyValuePair<string, Crop> crop in this.Crops)
                             {
-                                binaryWriter.Write(tuft.Value[i].GrassType);
-                                binaryWriter.Write(tuft.Value[i].Position.X);
-                                binaryWriter.Write(tuft.Value[i].Position.Y);
-                            }
-                        }
+                                binaryWriter.Write(crop.Key);
+                                binaryWriter.Write(crop.Value.ItemID);
+                                binaryWriter.Write(crop.Value.Name);
+                                binaryWriter.Write(crop.Value.GID);
+                                binaryWriter.Write(crop.Value.DaysToGrow);
+                                binaryWriter.Write(crop.Value.CurrentGrowth);
+                                binaryWriter.Write(crop.Value.Harvestable);
+                                binaryWriter.Write(crop.Value.DayPlanted);
 
-                        binaryWriter.Flush();
-                        binaryWriter.Close();
+                            }
+
+                            binaryWriter.Write(this.Tufts.Count);
+                            foreach (KeyValuePair<string, List<GrassTuft>> tuft in this.Tufts)
+                            {
+                                binaryWriter.Write(tuft.Key);
+                                binaryWriter.Write(tuft.Value.Count);
+
+                                for (int i = 0; i < tuft.Value.Count; i++)
+                                {
+                                    binaryWriter.Write(tuft.Value[i].GrassType);
+                                    binaryWriter.Write(tuft.Value[i].Position.X);
+                                    binaryWriter.Write(tuft.Value[i].Position.Y);
+                                }
+                            }
+
+                            binaryWriter.Flush();
+                            binaryWriter.Close();
+                        }
                     }
+                    this.AreReadersAndWritersDone = true;
+                    this.IsSaving = false;
                 }
-                this.AreReadersAndWritersDone = true;
-                this.IsSaving = false;
-            }
             }
         }
 
@@ -365,7 +365,7 @@ namespace SecretProject.Class.TileStuff
                                     Tile tile = SearchForEmptyTile(3);
                                     if (tile != null)
                                     {
-                                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                                        TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                                         if (tilingContainer != null)
                                         {
                                             Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
@@ -488,22 +488,28 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
-
-                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GID);
-                                if (container != null)
+                                if (MapName.Tilesets[TileSetNumber].Tiles.ContainsKey(AllTiles[z][i, j].GID))
                                 {
-                                    this.GeneratableTiles = container.GeneratableTiles;
-                                    this.TilingDictionary = container.TilingDictionary;
+                                    if (MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties.ContainsKey("generate"))
+                                    {
+                                        this.AllTiles[z][i, j].GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), MapName.Tilesets[TileSetNumber].Tiles[this.AllTiles[z][i, j].GID].Properties["generate"]);
+                                        //grass = 1, stone = 2, wood = 3, sand = 4
+                                    }
 
-                                    this.MainGid = this.AllTiles[z][i, j].GID + 1;
-                                    Game1.Procedural.GenerationReassignForTiling(this.MainGid, this.GeneratableTiles, this.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
+                                    TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(this.AllTiles[z][i, j].GenerationType);
+                                    if (container != null)
+                                    {
+
+
+                                        this.MainGid = this.AllTiles[z][i, j].GID + 1;
+                                        Game1.Procedural.GenerationReassignForTiling(this.MainGid, container.GeneratableTiles, container.TilingDictionary, z, i, j, TileUtility.ChunkWidth, TileUtility.ChunkHeight, this, AllAdjacentChunkNoise);
+                                    }
                                 }
 
 
                             }
                         }
                     }
-                    // TileUtility.PlaceChests(this, this.GeneratableTiles, this.GraphicsDevice, this.X, this.Y);
 
                     if (this.X == 0 && this.Y == 0)
                     {
@@ -532,26 +538,6 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
-                                //if(j <= 0)
-                                //{
-
-                                //    if(AdjacentNoise[0][z,X] == )
-                                //}
-                                //if(AllTiles[z][i, j - 1].GID == )
-
-                                //if (i > 1 && j > 1)
-                                //{
-                                //    if ((noise[i, j] >= .1f && noise[i, j] <= .2f) || (noise[i, j] >= .02f && noise[i, j] <= .08f))
-                                //    {
-                                //        TileUtility.GeneratePerlinTiles(1, i, j, 2964, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                                //    }
-
-
-                                //    if ((noise[i, j] >= 0f && noise[i, j] <= .1f) || (noise[i, j] >= .32f && noise[i, j] <= .36f))
-                                //    {
-                                //        TileUtility.GeneratePerlinTiles(1, i, j, 2264, Game1.Utility.GrassGeneratableTiles, 1, this, 0, 2);
-                                //    }
-                                //}
                                 if (z == 2)
                                 {
                                     if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
@@ -584,9 +570,9 @@ namespace SecretProject.Class.TileStuff
                                 this.AllTiles[z][i, j].Y = this.AllTiles[z][i, j].Y + TileUtility.ChunkHeight * this.Y;
 
                                 TileUtility.AssignProperties(this.AllTiles[z][i, j], z, i, j, this);
-                                if (z == 1)
+                                if (z == 3)
                                 {
-                                    AddGrassTufts(this.AllTiles[z][i, j]);
+                                    AddGrassTufts(this.AllTiles[z][i, j], this.AllTiles[1][i, j]);
                                 }
 
                             }
@@ -600,7 +586,7 @@ namespace SecretProject.Class.TileStuff
                             Tile tile = SearchForEmptyTile(3);
                             if (tile != null)
                             {
-                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GID);
+                                TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                                 if (container != null)
                                 {
                                     Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
@@ -716,12 +702,12 @@ namespace SecretProject.Class.TileStuff
             }
         }
 
-        public void AddGrassTufts(Tile tile)
+        public void AddGrassTufts(Tile tile, Tile zeroTile)
         {
             if (tile.GID != -1)
             {
 
-                if (Game1.Procedural.AllTilingContainers[0].GeneratableTiles.Contains(tile.GID))
+                if (zeroTile.GenerationType == GenerationType.Grass)
                 {
                     if (this.Random.Next(0, 10) < 2)
                     {
@@ -734,13 +720,13 @@ namespace SecretProject.Class.TileStuff
                                 + this.Random.Next(-8, 8), TileUtility.GetDestinationRectangle(tile).Y + this.Random.Next(-8, 8)));
                             grassTuft.TuftsIsPartOf = tufts;
                             tufts.Add(grassTuft);
-                            if (this.Tufts.ContainsKey(tile.GetTileKeyStringNew(0, this)) || this.Objects.ContainsKey(tile.GetTileKeyStringNew(0, this)))
+                            if ((this.Tufts.ContainsKey(tile.TileKey)) || this.Objects.ContainsKey(tile.TileKey))
                             {
 
                             }
                             else
                             {
-                                this.Tufts.Add(tile.GetTileKeyStringNew(0, this), tufts);
+                                this.Tufts.Add(tile.TileKey, tufts);
 
                             }
                         }

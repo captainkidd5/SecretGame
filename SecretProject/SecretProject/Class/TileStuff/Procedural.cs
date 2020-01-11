@@ -5,6 +5,7 @@ namespace SecretProject.Class.TileStuff
 {
     public enum GenerationType
     {
+        None = 0,
         Grass = 1014,
         Dirt = 1114,
         Sand = 1321,
@@ -140,29 +141,11 @@ namespace SecretProject.Class.TileStuff
             return null;
         }
 
-        public TilingContainer GetTilingContainerFromGID(int gid)
+        public TilingContainer GetTilingContainerFromGID(GenerationType tileGeneratyionType)
         {
-            for (int i = 0; i < AllTilingContainers.Count; i++)
-            {
-                for (int j = 0; j < AllTilingContainers[i].GeneratableTiles.Count; j++)
-                {
-                    if (gid == AllTilingContainers[i].GeneratableTiles[j])
-                    {
-                        return AllTilingContainers[i];
-                    }
-                }
-            }
-            return null;
+            return (AllTilingContainers.Find(x => x.GenerationType == tileGeneratyionType));
+
         }
-        //public GenerationType GetGenerationTypeFromGID(int gid)
-        //{
-        //    for(int i =0; i < AllGeneratableTiles.Count; i++)
-        //    {
-        //        if(AllGeneratableTiles[i].Contains(gid))
-        //    }
-        //}
-
-
 
         public void GeneratePerlinTiles(int layerToPlace, int x, int y, int gid, List<int> acceptableGenerationTiles, int layerToCheckIfEmpty, IInformationContainer container, int comparisonLayer, int chance = 100)
         {

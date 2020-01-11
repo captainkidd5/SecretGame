@@ -260,6 +260,12 @@ namespace SecretProject.Class.TileStuff
                     //grass = 1, stone = 2, wood = 3, sand = 4
                 }
 
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("generate"))
+                {
+                    tileToAssign.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType),container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["generate"]);
+                    //grass = 1, stone = 2, wood = 3, sand = 4
+                }
+
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
                 {
                     if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
