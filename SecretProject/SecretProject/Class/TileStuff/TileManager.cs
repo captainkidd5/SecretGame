@@ -346,7 +346,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int mj = mouseJ - 5; mj < mouseJ + 5; mj++)
                     {
-                        if (mi >= 0 && mi <= MapWidth && mj >= 0 && mj <= MapWidth)
+                        if (mi >= 0 && mi < MapWidth && mj >= 0 && mj < MapWidth)
                         {
 
 

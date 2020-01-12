@@ -17,6 +17,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TextureStuff;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using SecretProject.Class.Weather;
@@ -212,6 +213,8 @@ namespace SecretProject
         public static DialogueLibrary DialogueLibrary;
 
         public static CookingGuide AllCookingRecipes;
+
+        public static SpawnHolder OverWorldSpawnHolder { get; set; }
 
         //SHOPS AND MENUS
         public static List<IShop> AllShops { get; set; }
@@ -654,6 +657,7 @@ namespace SecretProject
             CurrentWeather = WeatherType.Sunny;
 
             ForestTracker = new SanctuaryTracker(Player.UserInterface.CompletionHub.AllGuides[0]);
+            OverWorldSpawnHolder = new SpawnHolder();
 
         }
         #endregion
