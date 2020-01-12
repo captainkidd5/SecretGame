@@ -14,36 +14,26 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             this.OverWorldSpawnElements = new List<OverworldSpawnElement>()
             {
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass), //tree
+                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass, 50){Unlocked = true }, //tree
+                new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Dirt, 50){Unlocked = true }, //tree
+                new OverworldSpawnElement(2964, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass, 50){Unlocked = true }, //tree
+                new OverworldSpawnElement(3664, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass, 50){Unlocked = true }, //tree
+                new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Dirt, 5){Unlocked = true }, //ThunderBirch
+                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //GrassTuft
+                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 50){Unlocked = true }, //GrassTuft
+                new OverworldSpawnElement(1586, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
+                new OverworldSpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
+                new OverworldSpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Pumpkin
+                new OverworldSpawnElement(1278, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
+                new OverworldSpawnElement(1580, MapLayer.Buildings, MapLayer.Buildings, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
+                new OverworldSpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Red Mushroom
+                new OverworldSpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Blue Mushroom
+                new OverworldSpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
+                new OverworldSpawnElement(3439, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.DirtCliffBottom, 100,false, true){Unlocked = true }, //Pumpkin
 
-                new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass),
+                
 
             };
-
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 979, GenerationType.Dirt, 50, 0, this, true); //tree
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 2264, GenerationType.Dirt, 5, 0, this, true); //THUNDERBIRCH
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Dirt, 50, 0, this, true); //GRASSTUFT
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1079, GenerationType.Grass, 50, 1, this); //GRASSTUFT
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1586, GenerationType.Dirt, 5, 0, this, true); //CLUEFRUIT
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 1664, GenerationType.Dirt, 5, 0, this, true); //OAKTREE
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1294, GenerationType.Dirt, 5, 0, this, true); //SPROUTERA
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1381, GenerationType.Dirt, 10, 0, this, true); //pumpkin
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
             ////TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE
             //TileUtility.GenerateRandomlyDistributedTiles(3, 1476, GenerationType.Grass, 6, 0, this); //FallenOak
@@ -56,9 +46,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1581, GenerationType.Dirt, 15, 0, this, true); //ROCK
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1580, GenerationType.Dirt, 15, 0, this, true); //stick
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1582, GenerationType.Dirt, 5, 0, this, true); //RED MUSHROOM
-            //TileUtility.GenerateRandomlyDistributedTiles(2, 1583, GenerationType.Dirt, 5, 0, this, true); //BLUE MUSHROOM
 
             //TileUtility.GenerateRandomlyDistributedTiles(3, 293, GenerationType.Dirt, 100, 0, this, true); //ZodFern
 
@@ -67,8 +54,6 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //TileUtility.GenerateRandomlyDistributedTiles(3, 2548, GenerationType.SandRuin, 5, 1, this); //ancient pillar (tall)
             //TileUtility.GenerateRandomlyDistributedTiles(3, 2549, GenerationType.SandRuin, 5, 1, this); //ancient pillar (short)
 
-            ////CLIFFWALL
-            //TileUtility.GenerateRandomlyDistributedTiles(3, 3439, GenerationType.DirtCliffBottom, 100, 2, this, false, true, 1); //Mine Shaft
 
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1573, GenerationType.Sand, 10, 0, this, true); //Reeds
 
