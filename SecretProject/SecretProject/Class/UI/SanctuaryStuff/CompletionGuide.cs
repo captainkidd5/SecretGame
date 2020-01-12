@@ -51,6 +51,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                         this.CategoryTabs[j].Pages[0].Name = sanctuaryHolder.AllPages[i].Name;
                         this.CategoryTabs[j].Pages[0].Description = sanctuaryHolder.AllPages[i].Description;
                         this.CategoryTabs[j].Pages[0].GIDUnlock = (int)sanctuaryHolder.AllPages[i].GIDUnlock;
+                        this.CategoryTabs[j].Pages[0].GIDUnlockDescription = sanctuaryHolder.AllPages[i].GIDUnlockDescription;
                         for (int p = 0; p < sanctuaryHolder.AllPages[i].AllRequirements.Count; p++)
                         {
                             

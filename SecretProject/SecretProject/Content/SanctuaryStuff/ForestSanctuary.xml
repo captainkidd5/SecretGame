@@ -127,7 +127,8 @@
 
   </AllRequirements>
   <FinalReward>GrindStone</FinalReward>
-  <GIDUnlock>1079</GIDUnlock>
+  <GIDUnlock>1381</GIDUnlock>
+  <GIDUnlockDescription>Pumpkins will now begin spawning in the wilderness!</GIDUnlockDescription>
 </Item>
      
   </AllPages>

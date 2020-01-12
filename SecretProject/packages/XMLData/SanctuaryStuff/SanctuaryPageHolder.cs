@@ -18,5 +18,8 @@ namespace XMLData.SanctuaryStuff
 
         [ContentSerializer(Optional = true)]
         public GIDUnlock GIDUnlock { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public String GIDUnlockDescription { get; set; }
     }
 }

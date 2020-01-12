@@ -20,6 +20,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public SanctuaryReward FinalReward { get; set; }
         public int GIDUnlock { get; set; }
+        public string GIDUnlockDescription { get; set; }
 
         public Rectangle LineSeparationSourceRectangle { get; set; }
 
@@ -29,11 +30,12 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             this.SanctuaryRequirements = new List<CompletionRequirement>();
             this.Graphics = graphics;
-            this.Name = "";
-            this.Description = "";
+            this.Name = string.Empty;
+            this.Description = string.Empty;
             this.LineSeparationSourceRectangle = new Rectangle(464, 112, 262, 2);
             this.ReqRacks = new List<Rack>();
             this.GIDUnlock = 0;
+            this.GIDUnlockDescription = string.Empty;
         }
         public void Load()
         {
@@ -89,6 +91,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 if(this.GIDUnlock != 0)
                 {
                     Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
+                    Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
                 }
                 return true;
             }

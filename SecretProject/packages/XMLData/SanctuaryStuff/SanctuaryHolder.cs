@@ -17,7 +17,8 @@ namespace XMLData.SanctuaryStuff
 
     public enum GIDUnlock
     {
-        GrassTuft = 1079
+        GrassTuft = 1079,
+        Pumpkin = 1381,
     }
     public class SanctuaryHolder
     {

@@ -23,7 +23,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 50){Unlocked = false }, //GrassTuft
                 new OverworldSpawnElement(1586, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
                 new OverworldSpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
-                new OverworldSpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Pumpkin
+                new OverworldSpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = false }, //Pumpkin
                 new OverworldSpawnElement(1278, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
                 new OverworldSpawnElement(1580, MapLayer.Buildings, MapLayer.Buildings, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
                 new OverworldSpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Red Mushroom
