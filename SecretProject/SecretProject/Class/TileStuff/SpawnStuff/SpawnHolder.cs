@@ -19,8 +19,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new OverworldSpawnElement(2964, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass, 50){Unlocked = true }, //tree
                 new OverworldSpawnElement(3664, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Grass, 50){Unlocked = true }, //tree
                 new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.Dirt, 5){Unlocked = true }, //ThunderBirch
-                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //GrassTuft
-                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 50){Unlocked = true }, //GrassTuft
+                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = false }, //GrassTuft
+                new OverworldSpawnElement(1079, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 50){Unlocked = false }, //GrassTuft
                 new OverworldSpawnElement(1586, MapLayer.Buildings, MapLayer.BackGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
                 new OverworldSpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
                 new OverworldSpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Pumpkin
@@ -66,6 +66,17 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Grass, 25, 1, this); //oak3
             //TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
             //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
+        }
+
+        public void UnlockSpawnElement(int gid)
+        {
+            for(int i =0;  i < this.OverWorldSpawnElements.Count; i++)
+            {
+                if(gid == this.OverWorldSpawnElements[i].GID)
+                {
+                    this.OverWorldSpawnElements[i].Unlocked = true;
+                }
+            }
         }
     }
 }

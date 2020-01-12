@@ -14,6 +14,11 @@ namespace XMLData.SanctuaryStuff
         Furnace = 1202,
 
     }
+
+    public enum GIDUnlock
+    {
+        GrassTuft = 1079
+    }
     public class SanctuaryHolder
     {
         public int ID { get; set; }

@@ -19,6 +19,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public Button FinalRewardButton { get; set; }
 
         public SanctuaryReward FinalReward { get; set; }
+        public int GIDUnlock { get; set; }
 
         public Rectangle LineSeparationSourceRectangle { get; set; }
 
@@ -32,6 +33,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.Description = "";
             this.LineSeparationSourceRectangle = new Rectangle(464, 112, 262, 2);
             this.ReqRacks = new List<Rack>();
+            this.GIDUnlock = 0;
         }
         public void Load()
         {
@@ -84,6 +86,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item);
                 FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
                 Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
+                if(this.GIDUnlock != 0)
+                {
+                    Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
+                }
                 return true;
             }
             return false;

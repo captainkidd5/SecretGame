@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,8 @@ namespace XMLData.SanctuaryStuff
         public List<SanctuaryRequirement> AllRequirements { get; set; }
 
         public SanctuaryReward FinalReward { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public GIDUnlock GIDUnlock { get; set; }
     }
 }
