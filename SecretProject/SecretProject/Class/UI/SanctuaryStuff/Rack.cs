@@ -71,13 +71,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             ChainsFadeTimer = new SimpleTimer(2f);
         }
 
-        public void Update(GameTime gameTime, Vector2 position, float scale)
+        public void Update(GameTime gameTime, Vector2 position, float scale, int rackIndex)
         {
             this.Scale = scale;
 
             for (int i = 0; i < this.RewardIcons.Count; i++)
             {
-                this.RewardIcons[i].Position = new Vector2(position.X + 48 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 120 + (32 * Index * scale * (float)1.25f));
+                this.RewardIcons[i].Position = new Vector2(position.X + 48 * Scale + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + i * 32 * Scale, position.Y + 120 + (32 * rackIndex * scale * (float)1.25f));
                 this.RewardIcons[i].Update(Game1.myMouseManager);
                 if (this.RewardIcons[i].IsHovered)
                 {
@@ -129,9 +129,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, Rectangle lineSeparationRectangle)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, int rackIndex, Rectangle lineSeparationRectangle)
         {
-            float baseY = position.Y + 128 + (32 * this.Index * this.Scale * (float)1.25);
+            float baseY = position.Y + 128 + (32 * rackIndex * this.Scale * (float)1.25);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, Requirement.String, new Vector2(position.X, baseY + 16), Color.Black, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Utility.StandardButtonDepth + .03f);
 
             //Item Image

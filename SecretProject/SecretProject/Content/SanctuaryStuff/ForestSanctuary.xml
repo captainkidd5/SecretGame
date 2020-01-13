@@ -124,6 +124,42 @@
     <Height>16</Height>
     </Item>
 
+      <!-- Monarch Jar -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>2</Tab>
+    <ItemID>374</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>7</NumberRequired>
+    <Description>Release 7 butterflys.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
+    <X>1216</X>
+    <Y>240</Y>
+    <Width>16</Width>
+    <Height>16</Height>
+    </Item>
+
+       <!-- Rabbit Crate -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>2</Tab>
+    <ItemID>335</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>5</NumberRequired>
+    <Description>Release 5 Rabbits.</Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
+    <X>1200</X>
+    <Y>272</Y>
+    <Width>16</Width>
+    <Height>16</Height>
+    </Item>
+
 
   </AllRequirements>
   <FinalReward>GrindStone</FinalReward>

@@ -26,6 +26,12 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public List<Rack> ReqRacks { get; set; }
 
+        public int CurrentRackIndex { get; set; }
+        public int MaxRacksPerPage { get; set; }
+
+        public Button ScrollUpButton { get; set; }
+        public Button ScrollDownButton { get; set; }
+
         public CompletionPage(GraphicsDevice graphics)
         {
             this.SanctuaryRequirements = new List<CompletionRequirement>();
@@ -36,6 +42,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.ReqRacks = new List<Rack>();
             this.GIDUnlock = 0;
             this.GIDUnlockDescription = string.Empty;
+            this.CurrentRackIndex = 1;
+            this.MaxRacksPerPage = 3;
+            this.ScrollDownButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 655, 16, 32), this.Graphics, Game1.Utility.centerScreen, Controls.CursorType.Normal, 2f, null);
+            this.ScrollUpButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 655, 16, 32), this.Graphics, new Vector2(Game1.Utility.centerScreen.X -32, Game1.Utility.CenterScreenY), Controls.CursorType.Normal, 2f, null);
         }
         public void Load()
         {
@@ -66,9 +76,14 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public void Update(GameTime gameTime, Vector2 position, float scale)
         {
             this.Scale = scale;
-            for(int i =0; i < ReqRacks.Count; i++)
+            int updateIndex = 0;
+            for(int i =CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
             {
-                ReqRacks[i].Update(gameTime, position, scale);
+                if (CurrentRackIndex + this.MaxRacksPerPage <= ReqRacks.Count)
+                {
+                    ReqRacks[i].Update(gameTime, position, scale, updateIndex);
+                    updateIndex++;
+                }
             }
 
             FinalRewardButton.Position = new Vector2(position.X + Game1.Player.UserInterface.CompletionHub.AllGuides[0].BackGroundSourceRectangle.Width + 104, position.Y - 16);
@@ -79,6 +94,23 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 //Game1.Player.UserInterface.InfoBox.FitText("Complete the page to unlock the " + FinalRewardButton.Item.Name, 1f);
                 Game1.Player.UserInterface.InfoBox.StringToWrite = FinalRewardButton.Description;
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
+            }
+            ScrollUpButton.Update(Game1.myMouseManager);
+            ScrollDownButton.Update(Game1.myMouseManager);
+            if(ScrollUpButton.isClicked)
+            {
+                if(CurrentRackIndex > 0)
+                {
+                    CurrentRackIndex--;
+                }
+                
+            }
+            else if(ScrollDownButton.isClicked)
+            {
+                if (CurrentRackIndex < ReqRacks.Count - this.MaxRacksPerPage)
+                {
+                    CurrentRackIndex++;
+                }
             }
         }
         public bool CheckFinalReward()
@@ -116,11 +148,20 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                    Color.Black, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Utility.StandardButtonDepth + .03f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Description, new Vector2(position.X, position.Y + 24),
                     Color.Black, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Utility.StandardButtonDepth + .03f);
-            for (int i = 0; i < this.ReqRacks.Count; i++)
+            int drawIndex = 0;
+            for (int i = CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
             {
-                ReqRacks[i].Draw(spriteBatch, position, this.LineSeparationSourceRectangle);
+                if(CurrentRackIndex + this.MaxRacksPerPage <= ReqRacks.Count)
+                {
+                    ReqRacks[i].Draw(spriteBatch, position, drawIndex, this.LineSeparationSourceRectangle);
+                    drawIndex++;
+                }
+                
             }
             this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 3, Utility.StandardButtonDepth + .03f);
+
+            ScrollUpButton.Draw(spriteBatch);
+            ScrollDownButton.Draw(spriteBatch);
         }
 
         public void Draw(SpriteBatch spriteBatch)

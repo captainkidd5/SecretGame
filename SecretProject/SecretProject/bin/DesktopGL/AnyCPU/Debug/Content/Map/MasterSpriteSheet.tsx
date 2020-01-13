@@ -3552,12 +3552,96 @@
    <frame tileid="7515" duration="100"/>
   </animation>
  </tile>
+ <tile id="8828">
+  <animation>
+   <frame tileid="8428" duration="500"/>
+   <frame tileid="8028" duration="500"/>
+   <frame tileid="8428" duration="500"/>
+   <frame tileid="8828" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="8829">
+  <animation>
+   <frame tileid="8429" duration="200"/>
+   <frame tileid="8029" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="8830">
+  <animation>
+   <frame tileid="8430" duration="200"/>
+   <frame tileid="8030" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="8831">
+  <animation>
+   <frame tileid="8431" duration="500"/>
+   <frame tileid="8031" duration="500"/>
+   <frame tileid="8431" duration="500"/>
+   <frame tileid="8831" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="8928">
+  <animation>
+   <frame tileid="8528" duration="500"/>
+   <frame tileid="8128" duration="500"/>
+   <frame tileid="8528" duration="500"/>
+   <frame tileid="8928" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="8929">
+  <animation>
+   <frame tileid="8529" duration="200"/>
+   <frame tileid="8129" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="8930">
+  <animation>
+   <frame tileid="8530" duration="200"/>
+   <frame tileid="8130" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="8931">
+  <animation>
+   <frame tileid="8531" duration="500"/>
+   <frame tileid="8131" duration="500"/>
+   <frame tileid="8531" duration="500"/>
+   <frame tileid="8931" duration="500"/>
+  </animation>
+ </tile>
  <tile id="9024">
   <properties>
    <property name="action" value="triggerLift"/>
    <property name="newHitBox" value="-16,-16,64,32"/>
    <property name="newSource" value="-32,-96,96,112"/>
   </properties>
+ </tile>
+ <tile id="9028">
+  <animation>
+   <frame tileid="8628" duration="500"/>
+   <frame tileid="8228" duration="500"/>
+   <frame tileid="8628" duration="500"/>
+   <frame tileid="9028" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9029">
+  <animation>
+   <frame tileid="8629" duration="200"/>
+   <frame tileid="8229" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9030">
+  <animation>
+   <frame tileid="8630" duration="200"/>
+   <frame tileid="8230" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9031">
+  <animation>
+   <frame tileid="8631" duration="500"/>
+   <frame tileid="8231" duration="500"/>
+   <frame tileid="8631" duration="500"/>
+   <frame tileid="9031" duration="500"/>
+  </animation>
  </tile>
  <tile id="9037">
   <animation>
@@ -3569,6 +3653,34 @@
   <animation>
    <frame tileid="8638" duration="200"/>
    <frame tileid="8238" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9128">
+  <animation>
+   <frame tileid="8728" duration="500"/>
+   <frame tileid="8328" duration="500"/>
+   <frame tileid="8728" duration="500"/>
+   <frame tileid="9128" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9129">
+  <animation>
+   <frame tileid="8729" duration="200"/>
+   <frame tileid="8329" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9130">
+  <animation>
+   <frame tileid="8730" duration="200"/>
+   <frame tileid="8330" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9131">
+  <animation>
+   <frame tileid="8731" duration="500"/>
+   <frame tileid="8331" duration="500"/>
+   <frame tileid="8731" duration="500"/>
+   <frame tileid="9131" duration="500"/>
   </animation>
  </tile>
  <tile id="9137">
