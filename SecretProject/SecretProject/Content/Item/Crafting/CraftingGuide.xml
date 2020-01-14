@@ -165,6 +165,34 @@
     <Locked>true</Locked>
     </Item>
 
+     <!--Small Chest -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1240</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>520</ItemID>
+    <Count>8</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1040</ItemID>
+    <Count>2</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
+    <!--Capture Crate -->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>333</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>680</ItemID>
+    <Count>8</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
     <!--Small Cog -->
     <Item Type="XMLData.ItemStuff.ItemRecipe">
     <ItemToCraftID>760</ItemToCraftID>
@@ -196,6 +224,30 @@
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>680</ItemID>
     <Count>4</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
+    <!--Rope-->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1041</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1002</ItemID>
+    <Count>12</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
+     <!--Canvas-->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1040</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1002</ItemID>
+    <Count>18</Count>
     </Item>
     </AllItemsRequired>
     <Locked>true</Locked>
@@ -236,6 +288,22 @@
     <Item Type="XMLData.ItemStuff.ItemsRequired">
     <ItemID>680</ItemID>
     <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1002</ItemID>
+    <Count>2</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>true</Locked>
+    </Item>
+
+    <!--Oak Dresser-->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>1440</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>560</ItemID>
+    <Count>14</Count>
     </Item>
     </AllItemsRequired>
     <Locked>true</Locked>

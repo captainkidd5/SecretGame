@@ -74,6 +74,12 @@ namespace SecretProject.Class.UI
             //Steel Spring
             this.Tabs[1].AddNewCraftableItem(720, 2, 0, this.BackDropPosition, graphics, this);
 
+            //Rope
+            this.Tabs[1].AddNewCraftableItem(1041, 0, 1, this.BackDropPosition, graphics, this);
+
+            //Canvas
+            this.Tabs[1].AddNewCraftableItem(1040, 1, 1, this.BackDropPosition, graphics, this);
+
 
 
             //FOOD --> needs to be changed to stations
@@ -86,6 +92,12 @@ namespace SecretProject.Class.UI
 
             this.Tabs[2].AddNewCraftableItem(1162, 0,3, this.BackDropPosition, graphics, this);
 
+            //small chest
+            this.Tabs[2].AddNewCraftableItem(1240, 1, 0, this.BackDropPosition, graphics, this);
+
+            //capture crate
+            this.Tabs[2].AddNewCraftableItem(333, 2, 0, this.BackDropPosition, graphics, this);
+
             //DECORATIONS TAB 3
 
             //Oak Floor
@@ -94,6 +106,8 @@ namespace SecretProject.Class.UI
             this.Tabs[3].AddNewCraftableItem(482, 1, 0, this.BackDropPosition, graphics, this);
             //Barrel
             this.Tabs[3].AddNewCraftableItem(1160, 0, 1, this.BackDropPosition, graphics, this);
+            //Oak Dresser
+            this.Tabs[3].AddNewCraftableItem(1440, 0, 2, this.BackDropPosition, graphics, this);
 
 
             this.ActiveTab = 0;
