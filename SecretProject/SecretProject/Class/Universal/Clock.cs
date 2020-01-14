@@ -48,6 +48,8 @@ namespace SecretProject.Class.Universal
 
         public event EventHandler DayChanged;
 
+        public Calendar Calendar { get; set; }
+
         public Clock()
         {
             ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
@@ -59,7 +61,8 @@ namespace SecretProject.Class.Universal
             this.ClockSpeed = 30f / ClockMultiplier;
             //this.DayChanged += Game1.World.AllTiles.HandleClockChange;
             //IsNight = true;
-
+            this.Calendar = new Calendar();
+            AdjustClockText();
 
 
         }
@@ -97,6 +100,31 @@ namespace SecretProject.Class.Universal
             }
             OnDayChanged(this, EventArgs.Empty);
             PickWeather();
+            this.Calendar.IncrementCalendar();
+
+            AdjustClockText();
+            
+        }
+
+
+        public void AdjustClockText()
+        {
+            string displayString = "";
+            if (this.TotalHours > 11)
+            {
+                displayString = (this.TotalHours - 12).ToString() + ":00 PM";
+            }
+            else if (this.TotalHours == 0)
+            {
+                displayString = "12:00 AM";
+            }
+            else
+            {
+                displayString = this.TotalHours.ToString() + ":00 AM";
+            }
+            ClockDisplay.TextToWrite = "      " + displayString + " \n" + this.WeekDay.ToString() + 
+            "\n " + this.Calendar.CurrentMonth.ToString() + ", " + this.Calendar.CurrentDay.ToString() 
+            + "\n Year " + this.Calendar.CurrentYear.ToString();
         }
 
         public void PickWeather()
@@ -141,6 +169,8 @@ namespace SecretProject.Class.Universal
                     this.IsNight = true;
                 }
 
+                AdjustClockText();
+
             }
             if (this.TotalHours > 23)
             {
@@ -151,20 +181,7 @@ namespace SecretProject.Class.Universal
 
             }
 
-            string displayString = "";
-            if (this.TotalHours > 11)
-            {
-                displayString = (this.TotalHours - 12).ToString() + ":00 PM";
-            }
-            else if (this.TotalHours == 0)
-            {
-                displayString = "12:00 AM";
-            }
-            else
-            {
-                displayString = this.TotalHours.ToString() + ":00 AM";
-            }
-            ClockDisplay.TextToWrite = "      " + displayString + " \n Days: " + this.TotalDays.ToString() + "\n" + this.WeekDay.ToString();
+           
             ClockDisplay.Update(gameTime, true);
 
 
