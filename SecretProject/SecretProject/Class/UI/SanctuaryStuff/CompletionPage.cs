@@ -44,12 +44,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.GIDUnlockDescription = string.Empty;
             this.CurrentRackIndex = 1;
             this.MaxRacksPerPage = 3;
-            this.ScrollDownButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 655, 16, 32), this.Graphics, Game1.Utility.centerScreen, Controls.CursorType.Normal, 2f, null);
-            this.ScrollUpButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 655, 16, 32), this.Graphics, new Vector2(Game1.Utility.centerScreen.X -32, Game1.Utility.CenterScreenY), Controls.CursorType.Normal, 2f, null);
+            
         }
-        public void Load()
+        public void Load(Vector2 backgroundPosition, Rectangle backGroundSourceRectangle)
         {
-    
+
             for (int i = 0; i < this.SanctuaryRequirements.Count; i++)
             {
                 this.ReqRacks.Add(new Rack(i, this.Graphics, Vector2.One, this.SanctuaryRequirements[i]));
@@ -63,10 +62,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
             FinalRewardButton = new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(128, 688, 80, 32),
                       this.Graphics, new Vector2(1, 1), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)FinalReward, null))
-            { Description = TextBuilder.ParseText("Complete the page to unlock the " + Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name, 112 * 2.5f, 1.5f) } ;
-            
-            this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
+            { Description = TextBuilder.ParseText("Complete the page to unlock the " + Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name, 112 * 2.5f, 1.5f) };
 
+            this.Description = TextBuilder.ParseText(this.Description, 400, 1f);
+            this.ScrollDownButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(560, 655, 16, 32), this.Graphics, new Vector2(backgroundPosition.X + backGroundSourceRectangle.Width, backgroundPosition.Y + 64), Controls.CursorType.Normal, 2f, null);
+            this.ScrollUpButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 655, 16, 32), this.Graphics, new Vector2(backgroundPosition.X + backGroundSourceRectangle.Width, backgroundPosition.Y), Controls.CursorType.Normal, 2f, null);
         }
         public void Update(GameTime gameTime)
         {
@@ -77,7 +77,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         {
             this.Scale = scale;
             int updateIndex = 0;
-            for(int i =CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
+            for (int i = CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
             {
                 if (CurrentRackIndex + this.MaxRacksPerPage <= ReqRacks.Count)
                 {
@@ -97,30 +97,46 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
             ScrollUpButton.Update(Game1.myMouseManager);
             ScrollDownButton.Update(Game1.myMouseManager);
-            if(ScrollUpButton.isClicked)
+            if (ScrollUpButton.isClicked)
             {
-                if(CurrentRackIndex > 0)
-                {
+     
                     CurrentRackIndex--;
-                }
+                
+
+            }
+            else if (ScrollDownButton.isClicked)
+            {
+               
+                    CurrentRackIndex++;
                 
             }
-            else if(ScrollDownButton.isClicked)
+            if(Game1.myMouseManager.HasScrollWheelValueIncreased)
             {
-                if (CurrentRackIndex < ReqRacks.Count - this.MaxRacksPerPage)
-                {
-                    CurrentRackIndex++;
-                }
+                CurrentRackIndex--;
             }
+            else if(Game1.myMouseManager.HasScrollWheelValueDecreased)
+            {
+                CurrentRackIndex++;
+            }
+
+            if (CurrentRackIndex > ReqRacks.Count - this.MaxRacksPerPage)
+            {
+                CurrentRackIndex = ReqRacks.Count - this.MaxRacksPerPage;
+            }
+            if (CurrentRackIndex < 0)
+            {
+                CurrentRackIndex = 0;
+            }
+
         }
         public bool CheckFinalReward()
         {
-            if(CanClaimFinalReward())
+            if (CanClaimFinalReward())
             {
                 Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item);
                 FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GenerateNewItem((int)FinalReward, null).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
                 Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
-                if(this.GIDUnlock != 0)
+                if (this.GIDUnlock != 0)
                 {
                     Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
                     Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
@@ -131,9 +147,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         }
         public bool CanClaimFinalReward()
         {
-            for(int i =0; i < this.SanctuaryRequirements.Count; i++)
+            for (int i = 0; i < this.SanctuaryRequirements.Count; i++)
             {
-                if(!SanctuaryRequirements[i].Satisfied)
+                if (!SanctuaryRequirements[i].Satisfied)
                 {
                     return false;
                 }
@@ -151,12 +167,12 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             int drawIndex = 0;
             for (int i = CurrentRackIndex; i < CurrentRackIndex + this.MaxRacksPerPage; i++)
             {
-                if(CurrentRackIndex + this.MaxRacksPerPage <= ReqRacks.Count)
+                if (CurrentRackIndex + this.MaxRacksPerPage <= ReqRacks.Count)
                 {
                     ReqRacks[i].Draw(spriteBatch, position, drawIndex, this.LineSeparationSourceRectangle);
                     drawIndex++;
                 }
-                
+
             }
             this.FinalRewardButton.Draw(spriteBatch, FinalRewardButton.ItemSourceRectangleToDraw, FinalRewardButton.BackGroundSourceRectangle, Game1.AllTextures.MenuText, "", FinalRewardButton.Position, Color.White, 2, 3, Utility.StandardButtonDepth + .03f);
 

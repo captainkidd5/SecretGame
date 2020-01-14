@@ -49,21 +49,51 @@ namespace SecretProject.Class.UI
                 this.Tabs[i] = new Tab(this, this.GraphicsDevice, new Vector2(this.BackDropPosition.X - 32 * this.BackDropScale, this.BackDropPosition.Y + 64 + i * 32 * this.BackDropScale), new Rectangle(272, 384 + 32 * i, 32, 32), this.BackDropScale);
             }
 
-            //TOOLS
-            this.Tabs[0].AddNewCraftableItem(0, 5, this.BackDropPosition, graphics, this);
-            this.Tabs[0].AddNewCraftableItem(40, 5, this.BackDropPosition, graphics, this);
-            this.Tabs[0].AddNewCraftableItem(120, 5, this.BackDropPosition, graphics, this);
-            this.Tabs[0].AddNewCraftableItem(160, 5, this.BackDropPosition, graphics, this);
+            //TOOLS TAB 0
+            //stone axe
+            this.Tabs[0].AddNewCraftableItem(0, 0,0, this.BackDropPosition, graphics, this);
+            //steel axe
+            this.Tabs[0].AddNewCraftableItem(1,1,0, this.BackDropPosition, graphics, this);
+            //stone hammer
+            this.Tabs[0].AddNewCraftableItem(40,0,1, this.BackDropPosition, graphics, this);
+            //steel hammer
+            this.Tabs[0].AddNewCraftableItem(41,1,1, this.BackDropPosition, graphics, this);
+            //stone shovel
+            this.Tabs[0].AddNewCraftableItem(120,0,2, this.BackDropPosition, graphics, this);
+            //stone sword
+            this.Tabs[0].AddNewCraftableItem(160, 0,3, this.BackDropPosition, graphics, this);
+
+
+            //GIZMOS TAB 1
+            //small cog
+            this.Tabs[1].AddNewCraftableItem(760, 0, 0, this.BackDropPosition, graphics, this);
+
+            //Large cog
+            this.Tabs[1].AddNewCraftableItem(800, 1, 0, this.BackDropPosition, graphics, this);
+
+            //Steel Spring
+            this.Tabs[1].AddNewCraftableItem(720, 2, 0, this.BackDropPosition, graphics, this);
+
+
+
             //FOOD --> needs to be changed to stations
             //cauldron
-            this.Tabs[2].AddNewCraftableItem(1055, 30, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1055, 0,0, this.BackDropPosition, graphics, this);
             //saw table
-            this.Tabs[2].AddNewCraftableItem(1201, 30, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1201, 0,1, this.BackDropPosition, graphics, this);
             //furnace
-            this.Tabs[2].AddNewCraftableItem(1202, 30, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1202, 0,2, this.BackDropPosition, graphics, this);
 
-            //CONSTRUCTION
-            this.Tabs[2].AddNewCraftableItem(1162, 30, this.BackDropPosition, graphics, this);
+            this.Tabs[2].AddNewCraftableItem(1162, 0,3, this.BackDropPosition, graphics, this);
+
+            //DECORATIONS TAB 3
+
+            //Oak Floor
+            this.Tabs[3].AddNewCraftableItem(480, 0, 0, this.BackDropPosition, graphics, this);
+            //Stone Floor
+            this.Tabs[3].AddNewCraftableItem(482, 1, 0, this.BackDropPosition, graphics, this);
+            //Barrel
+            this.Tabs[3].AddNewCraftableItem(1160, 0, 1, this.BackDropPosition, graphics, this);
 
 
             this.ActiveTab = 0;
@@ -473,7 +503,7 @@ namespace SecretProject.Class.UI
 
         }
 
-        public void AddNewCraftableItem(int id, int maxRecipesPerPage, Vector2 backDropPosition, GraphicsDevice graphics, CraftingMenu craftingMenu)
+        public void AddNewCraftableItem(int id,  int rowIndex, int columnIndex,Vector2 backDropPosition, GraphicsDevice graphics, CraftingMenu craftingMenu)
         {
 
             for (int i = 0; i < this.Pages.Count - 2; i++)
@@ -489,9 +519,9 @@ namespace SecretProject.Class.UI
 
             for (int i = 0; i < this.Pages.Count; i++)
             {
-                if (this.Pages[i].ToolTips.Count < maxRecipesPerPage)
+                if (this.Pages[i].ToolTips.Count < 20)
                 {
-                    this.Pages[i].ToolTips.Add(new ToolTip(id, new Vector2(backDropPosition.X + 50 + this.Pages[i].ToolTips.Count * 48, backDropPosition.Y + 64 + i * 50), graphics, craftingMenu));
+                    this.Pages[i].ToolTips.Add(new ToolTip(id, new Vector2(backDropPosition.X + 50 + rowIndex * 48, backDropPosition.Y + 64 + columnIndex * 50), graphics, craftingMenu));
                     return;
                 }
             }

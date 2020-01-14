@@ -76,7 +76,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             {
                 for (int j = 0; j < this.CategoryTabs[i].Pages.Count; j++)
                 {
-                    this.CategoryTabs[i].Pages[j].Load();
+                    this.CategoryTabs[i].Pages[j].Load(BackGroundPosition, BackGroundSourceRectangle);
                 }
             }
             this.ActiveTab = this.CategoryTabs[0];

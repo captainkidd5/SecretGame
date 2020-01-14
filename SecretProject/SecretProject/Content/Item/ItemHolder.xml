@@ -104,7 +104,7 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Rock Shovel</Name>
+<Name>Stone Shovel</Name>
 <ID>120</ID>
 <Description>A basic tool for digging into the ground. </Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
@@ -129,7 +129,7 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
-<Name>Rock Sword</Name>
+<Name>Stone Sword</Name>
 <ID>160</ID>
 <Description>A weak sword.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
