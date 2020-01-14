@@ -54,10 +54,15 @@ namespace SecretProject.Class.UI
             this.Tabs[0].AddNewCraftableItem(0, 0,0, this.BackDropPosition, graphics, this);
             //steel axe
             this.Tabs[0].AddNewCraftableItem(1,1,0, this.BackDropPosition, graphics, this);
+
+            //turquoise axe
+            this.Tabs[0].AddNewCraftableItem(3, 3, 0, this.BackDropPosition, graphics, this);
             //stone hammer
             this.Tabs[0].AddNewCraftableItem(40,0,1, this.BackDropPosition, graphics, this);
             //steel hammer
             this.Tabs[0].AddNewCraftableItem(41,1,1, this.BackDropPosition, graphics, this);
+            //dark hammer
+            this.Tabs[0].AddNewCraftableItem(42, 2, 1, this.BackDropPosition, graphics, this);
             //stone shovel
             this.Tabs[0].AddNewCraftableItem(120,0,2, this.BackDropPosition, graphics, this);
             //stone sword

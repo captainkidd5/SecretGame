@@ -34,6 +34,24 @@
     <Locked>false</Locked>
     </Item>
 
+    <!-- Turquoise axe !-->
+<Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>3</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>600</ItemID>
+    <Count>3</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1005</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>false</Locked>
+    </Item>
+
+
+
 <!-- stone hammer !-->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
     <ItemToCraftID>40</ItemToCraftID>
@@ -64,6 +82,21 @@
     </AllItemsRequired>
     </Item>
 
+<!-- Dark Hammer !-->
+<Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>42</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>685</ItemID>
+    <Count>3</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1005</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    <Locked>false</Locked>
+    </Item>
 
 <!-- stone shovel !-->
    <Item Type="XMLData.ItemStuff.ItemRecipe">
@@ -178,7 +211,6 @@
     <Count>2</Count>
     </Item>
     </AllItemsRequired>
-    <Locked>true</Locked>
     </Item>
 
     <!--Capture Crate -->
