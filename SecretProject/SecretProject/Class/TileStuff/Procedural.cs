@@ -82,7 +82,7 @@ namespace SecretProject.Class.TileStuff
         public Procedural()
         {
             //FASTNOISE
-            FastNoise = new FastNoise(45);
+            FastNoise = new FastNoise(454);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);
