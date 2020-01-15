@@ -18,9 +18,22 @@ namespace SecretProject.Class.UI
         public string EnteredString { get; set; } = string.Empty;
         public string DisplayLog { get; set; } = string.Empty;
         public Vector2 DisplayLogPosition { get; set; } = Game1.Utility.Origin;
+
+
+        public List<CommandWindowCommand> AllCommands { get; set; }
         public CommandConsole(Vector2 position)
         {
             this.Position = position;
+            this.AllCommands = new List<CommandWindowCommand>()
+            {
+                new CommandWindowCommand("spawn", "spawn (int)[itemID], (int)[count]"),
+                new CommandWindowCommand("alert", "alert (int)[size], (string)[text]"),
+                new CommandWindowCommand("showitems", "shows all items and their ids"),
+                new CommandWindowCommand("warp", "warp (enum)[stagename]"),
+                new CommandWindowCommand("teleport", "teleport (int)[X Position], (int)[Y Position]"),
+                new CommandWindowCommand("clear", "clears console window"),
+                new CommandWindowCommand("settime", "settime (int)[time between 0 and 24]")
+            };
         }
 
         public void Update(GameTime gameTime)
@@ -105,18 +118,9 @@ namespace SecretProject.Class.UI
                         this.DisplayLog += Game1.AllItems.AllItems[i].Name + " : " + Game1.AllItems.AllItems[i].ID.ToString() + "\n";
                     break;
                 case "help":
-                    string helpString = separatedString[1].ToLower();
-                    switch(helpString)
+                    foreach(CommandWindowCommand command in AllCommands)
                     {
-                        case "warp":
-                            for(int i =0; i < Game1.AllStages.Count; i++)
-                            {
-                                this.DisplayLog += Game1.AllStages[i].StageName + "\n";
-                            }
-                                break;
-                        case "commands":
-                            this.DisplayLog += "spawn \n getnine \n showitems \n warp \n clear";
-                            break;
+                        this.DisplayLog += command.Name + ": " +command.Description + "\n";
                     }
 
                     break;
@@ -155,6 +159,18 @@ namespace SecretProject.Class.UI
         {
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.EnteredString, this.Position, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, 1f);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.DisplayLog, Game1.Utility.Origin, Color.White, 0f, this.DisplayLogPosition, 2f, SpriteEffects.None, 1f);
+        }
+    }
+
+    public class CommandWindowCommand
+    {
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+
+        public CommandWindowCommand(string name, string description)
+        {
+            this.Name = name;
+            this.Description = description;
         }
     }
 }
