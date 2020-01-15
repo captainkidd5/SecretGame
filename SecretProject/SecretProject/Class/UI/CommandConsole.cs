@@ -140,6 +140,13 @@ namespace SecretProject.Class.UI
                         Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.position);
                     }
                     break;
+
+                case "settime":
+                    int time = int.Parse(separatedString[1].ToLower());
+
+                    Game1.GlobalClock.TotalHours = time;
+                    Game1.GlobalClock.AdjustClockText();
+                    break;
             }
 
         }

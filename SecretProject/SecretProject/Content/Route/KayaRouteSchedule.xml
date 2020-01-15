@@ -23,9 +23,9 @@
       <ID>3</ID>
       <TimeToStart>20</TimeToStart>
       <TimeToFinish>22</TimeToFinish>
-       <EndStage>Town</EndStage>
-      <EndX>50</EndX>
-      <EndY>45</EndY>
+       <EndStage>KayaHouse</EndStage>
+      <EndX>26</EndX>
+      <EndY>18</EndY>
     </Item>
     </Routes>
   </Asset>
