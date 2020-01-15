@@ -55,7 +55,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
-        public List<LightSource> Lights { get; set; }
+        public List<LightSource> NightTimeLights { get; set; }
         public Dictionary<string, ICollidable> CurrentObjects { get; set; }
         public int TileSetNumber { get; set; }
         public bool AbleToDrawTileSelector { get; set; }
@@ -118,7 +118,7 @@ namespace SecretProject.Class.TileStuff
             this.CurrentObjects = new Dictionary<string, ICollidable>();
 
             this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
-            this.Lights = new List<LightSource>();
+            this.NightTimeLights = new List<LightSource>();
 
             this.CurrentObjects = new Dictionary<string, ICollidable>();
 

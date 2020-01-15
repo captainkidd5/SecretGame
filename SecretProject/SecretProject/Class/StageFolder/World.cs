@@ -62,7 +62,7 @@ namespace SecretProject.Class.StageFolder
         public List<Character> CharactersPresent { get; set; }
         public List<StringWrapper> AllTextToWrite { get; set; }
         public List<INPC> OnScreenNPCS { get; set; }
-        public List<LightSource> AllLights { get; set; }
+        public List<LightSource> AllNightLights { get; set; }
         public List<float> MyProperty { get; set; }
         public List<float> AllDepths { get; set; }
         public TmxLayer Buildings { get; set; }
@@ -111,7 +111,7 @@ namespace SecretProject.Class.StageFolder
         public void LoadPreliminaryContent(int worldSize)
         {
             this.WorldSize = worldSize;
-            this.AllLights = new List<LightSource>()
+            this.AllNightLights = new List<LightSource>()
             {
 
             };
@@ -376,7 +376,7 @@ namespace SecretProject.Class.StageFolder
                 SceneChanged(this, EventArgs.Empty);
             }
         }
-        public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             Effect currentEffect = null;
             if (player.Health > 0)
@@ -394,10 +394,10 @@ namespace SecretProject.Class.StageFolder
                         {
                             if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
                             {
-                                for (int l = 0; l < this.AllTiles.ActiveChunks[i, j].Lights.Count; l++)
+                                for (int l = 0; l < this.AllTiles.ActiveChunks[i, j].NightTimeLights.Count; l++)
                                 {
-                                    spriteBatch.Draw(this.AllTiles.ActiveChunks[i, j].Lights[l].LightTexture,
-                                        this.AllTiles.ActiveChunks[i, j].Lights[l].Position, Color.White);
+                                    spriteBatch.Draw(this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].LightTexture,
+                                        this.AllTiles.ActiveChunks[i, j].NightTimeLights[l].Position, Color.White);
                                 }
                             }
                         }

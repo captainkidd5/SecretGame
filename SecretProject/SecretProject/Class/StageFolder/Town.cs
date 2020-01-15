@@ -30,8 +30,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region CONSTRUCTOR
-        RenderTarget2D lightsTarget;
-        RenderTarget2D mainTarget;
+
 
         Dog Nelja;
 
@@ -41,8 +40,7 @@ namespace SecretProject.Class.StageFolder
             this.Graphics = graphics;
             this.Content = content;
             this.TileSetNumber = tileSetNumber;
-            lightsTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
-            mainTarget = new RenderTarget2D(graphics, Game1.PresentationParameters.BackBufferWidth, Game1.PresentationParameters.BackBufferHeight);
+
             if (this.BackDropNumber == 1)
             {
                 BackDropPosition = new Vector2(0, 200);
@@ -52,11 +50,9 @@ namespace SecretProject.Class.StageFolder
 
         public override void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules)
         {
-            RenderTarget2D lightsTarget;
-            RenderTarget2D mainTarget;
+
             var pp = this.Graphics.PresentationParameters;
-            lightsTarget = new RenderTarget2D(this.Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
-            mainTarget = new RenderTarget2D(this.Graphics, pp.BackBufferWidth, pp.BackBufferHeight);
+
             List<Texture2D> particleTextures = new List<Texture2D>();
             particleTextures.Add(Game1.AllTextures.RockParticle);
             this.ParticleEngine = new ParticleEngine(particleTextures, Game1.Utility.centerScreen);
@@ -253,7 +249,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public override void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
 
             if (player.Health > 0)
@@ -267,9 +263,9 @@ namespace SecretProject.Class.StageFolder
                     graphics.Clear(new Color(50, 50, 50, 256));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    for (int l = 0; l < this.AllLights.Count; l++)
+                    for (int l = 0; l < this.AllNightLights.Count; l++)
                     {
-                        this.AllLights[l].Draw(spriteBatch);
+                        this.AllNightLights[l].Draw(spriteBatch);
                     }
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
@@ -277,7 +273,20 @@ namespace SecretProject.Class.StageFolder
                     }
                     spriteBatch.End();
                 }
+                else
+                {
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
+                    graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                    graphics.SetRenderTarget(dayLightsTarget);
 
+                    for (int dl = 0; dl < this.AllDayTimeLights.Count; dl++)
+                    {
+                        this.AllDayTimeLights[dl].Draw(spriteBatch);
+                    }
+
+                    spriteBatch.End();
+                }
+               
 
                 graphics.SetRenderTarget(mainTarget);
                 graphics.Clear(Color.Transparent);
@@ -321,8 +330,6 @@ namespace SecretProject.Class.StageFolder
 
                 this.AllTiles.DrawTiles(spriteBatch);
 
-                // mouse.Draw(spriteBatch, 1);
-                //Game1.userInterface.BottomBar.DrawDraggableItems(spriteBatch, BuildingsTiles, ForeGroundTiles, mouse);
 
                 if (Game1.Player.UserInterface.DrawTileSelector)
                 {
@@ -330,12 +337,10 @@ namespace SecretProject.Class.StageFolder
                         new Rectangle(48, 0, 16, 16), Color.White, 0f, Game1.Utility.Origin, SpriteEffects.None, .15f);
                 }
 
-                //--------------------------------------
-                //Draw sprite list
+
 
                 foreach (var sprite in this.AllSprites)
                 {
-                    //sprite.ShowRectangle = ShowBorders;
                     sprite.Draw(spriteBatch, .7f);
                 }
 
@@ -357,14 +362,11 @@ namespace SecretProject.Class.StageFolder
                 }
 
 
-                //   Game1.Elixer.Draw(spriteBatch);
-
                 Game1.Player.UserInterface.BackPack.DrawToStageMatrix(spriteBatch);
 
                 spriteBatch.End();
 
                 graphics.SetRenderTarget(null);
-                // graphics.Clear(Color.Black);
 
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -373,6 +375,14 @@ namespace SecretProject.Class.StageFolder
                     Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
                     Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
                 }
+                else
+                {
+                    //Game1.AllTextures.whirlPoolGlow.Parameters["lightMask"].SetValue(dayLightsTarget);
+                    //Game1.AllTextures.whirlPoolGlow.CurrentTechnique.Passes[0].Apply();
+
+                }
+
+
 
                 spriteBatch.Draw(mainTarget, Game1.ScreenRectangle, Color.White);
                 //spriteBatch.Draw(lightsTarget, Game1.ScreenRectangle, Color.White);

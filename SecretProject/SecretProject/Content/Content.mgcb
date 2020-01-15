@@ -204,6 +204,12 @@
 /processorParam:DebugMode=Auto
 /build:Effects/Pulse.fx
 
+#begin Effects/whirlPoolGlow.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Effects/whirlPoolGlow.fx
+
 #begin Enemy/enemyship1.png
 /importer:TextureImporter
 /processor:TextureProcessor

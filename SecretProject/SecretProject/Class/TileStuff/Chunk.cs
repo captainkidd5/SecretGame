@@ -42,7 +42,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, EditableAnimationFrameHolder> AnimationFrames { get; set; }
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
-        public List<LightSource> Lights { get; set; }
+        public List<LightSource> NightTimeLights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
@@ -104,7 +104,7 @@ namespace SecretProject.Class.TileStuff
             this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             this.AllTiles = new List<Tile[,]>();
-            this.Lights = new List<LightSource>();
+            this.NightTimeLights = new List<LightSource>();
             this.Crops = new Dictionary<string, Crop>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
             this.Tufts = new Dictionary<string, List<GrassTuft>>();

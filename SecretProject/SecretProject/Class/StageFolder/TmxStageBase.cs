@@ -103,7 +103,8 @@ namespace SecretProject.Class.StageFolder
         public string TmxMapPath { get; set; }
         public int DialogueToRetrieve { get; set; }
         public bool IsDark { get; set; }
-        public List<LightSource> AllLights { get; set; }
+        public List<LightSource> AllNightLights { get; set; }
+        public List<LightSource> AllDayTimeLights { get; set; }
         public string StageName { get; set; }
         public event EventHandler SceneChanged;
 
@@ -158,10 +159,13 @@ namespace SecretProject.Class.StageFolder
 
         public virtual void LoadPreliminaryContent()
         {
-            this.AllLights = new List<LightSource>()
+            this.AllNightLights = new List<LightSource>()
             {
 
             };
+
+
+            this.AllDayTimeLights = new List<LightSource>();
 
             this.AllSprites = new List<Sprite>()
             {
@@ -403,7 +407,7 @@ namespace SecretProject.Class.StageFolder
         #endregion
 
         #region DRAW
-        public virtual void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
+        public virtual void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D nightLightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player)
         {
             if (player.Health > 0)
             {
@@ -411,14 +415,14 @@ namespace SecretProject.Class.StageFolder
                 {
 
 
-                    graphics.SetRenderTarget(lightsTarget);
+                    graphics.SetRenderTarget(nightLightsTarget);
                     //graphics.Clear(Color.White);
                     graphics.Clear(new Color(50, 50, 50, 220));
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    for (int l = 0; l < this.AllLights.Count; l++)
+                    for (int l = 0; l < this.AllNightLights.Count; l++)
                     {
-                        spriteBatch.Draw(this.AllLights[l].LightTexture, this.AllLights[l].Position, Color.White);
+                        spriteBatch.Draw(this.AllNightLights[l].LightTexture, this.AllNightLights[l].Position, Color.White);
                     }
                     if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool() == 4)
                     {
@@ -512,7 +516,7 @@ namespace SecretProject.Class.StageFolder
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 if (this.IsDark)
                 {
-                    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(lightsTarget);
+                    Game1.AllTextures.practiceLightMaskEffect.Parameters["lightMask"].SetValue(nightLightsTarget);
                     Game1.AllTextures.practiceLightMaskEffect.CurrentTechnique.Passes[0].Apply();
                 }
 

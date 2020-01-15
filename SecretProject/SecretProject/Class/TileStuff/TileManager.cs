@@ -62,7 +62,7 @@ namespace SecretProject.Class.TileStuff
         // public List<ICollidable> Objects { get; set; }
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
-        public List<LightSource> Lights { get; set; }
+        public List<LightSource> NightTimeLights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public bool AbleToDrawTileSelector { get; set; }
@@ -120,7 +120,7 @@ namespace SecretProject.Class.TileStuff
             this.AnimationFrames = new Dictionary<string, EditableAnimationFrameHolder>();
             this.Tufts = new Dictionary<string, List<GrassTuft>>();
             this.TileHitPoints = new Dictionary<string, int>();
-            this.Lights = new List<LightSource>();
+            this.NightTimeLights = new List<LightSource>();
             this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             this.Crops = new Dictionary<string, Crop>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
@@ -194,7 +194,7 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-            currentStage.AllLights = this.Lights;
+            currentStage.AllNightLights = this.NightTimeLights;
         }
 
 
@@ -216,7 +216,7 @@ namespace SecretProject.Class.TileStuff
 
         public void Update(GameTime gameTime, MouseManager mouse)
         {
-            int oldLightCount = this.Lights.Count;
+            int oldLightCount = this.NightTimeLights.Count;
             this.AbleToDrawTileSelector = false;
             //Game1.myMouseManager.TogglePlantInteraction = false;
             Game1.Player.UserInterface.DrawTileSelector = false;
@@ -476,9 +476,9 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            if (this.Lights.Count != oldLightCount)
+            if (this.NightTimeLights.Count != oldLightCount)
             {
-                Game1.GetCurrentStage().AllLights = this.Lights;
+                Game1.GetCurrentStage().AllNightLights = this.NightTimeLights;
             }
             if (this.GridItem != null)
             {

@@ -221,7 +221,8 @@ namespace SecretProject
 
         //RENDERTARGETS
         public RenderTarget2D MainTarget;
-        public RenderTarget2D LightsTarget;
+        public RenderTarget2D NightLightsTarget;
+        public RenderTarget2D DayLightsTarget;
 
 
         public static PresentationParameters PresentationParameters;
@@ -406,8 +407,8 @@ namespace SecretProject
         {
             PresentationParameters = this.GraphicsDevice.PresentationParameters;
             MainTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-            LightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-
+            NightLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
+            DayLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             //ORDER MATTERS!!!
             ElixirDialogue = this.Content.Load<DialogueHolder>("Dialogue/ElixirDialogue");
             DobbinDialogue = this.Content.Load<DialogueHolder>("Dialogue/DobbinDialogue");
@@ -873,58 +874,58 @@ namespace SecretProject
 
                 case Stages.OverWorld:
                     this.GraphicsDevice.Clear(Color.Black);
-                    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    OverWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.Town:
                     this.GraphicsDevice.Clear(Color.Black);
-                    Town.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    Town.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.ElixirHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    ElixirHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget,DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.JulianHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    JulianHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.DobbinHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    DobbinHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
                 case Stages.PlayerHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    PlayerHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.GeneralStore:
                     this.GraphicsDevice.Clear(Color.Black);
-                    GeneralStore.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    GeneralStore.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.KayaHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    KayaHouse.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    KayaHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.Cafe:
                     this.GraphicsDevice.Clear(Color.Black);
-                    Cafe.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    Cafe.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.DobbinHouseUpper:
                     this.GraphicsDevice.Clear(Color.Black);
-                    DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.SanctuaryHub:
                     this.GraphicsDevice.Clear(Color.Black);
-                    SanctuaryHub.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    SanctuaryHub.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.Forest:
                     this.GraphicsDevice.Clear(Color.Black);
-                    Forest.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    Forest.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.ResearchStation:
                     this.GraphicsDevice.Clear(Color.Black);
-                    ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, LightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

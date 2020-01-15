@@ -121,6 +121,7 @@ namespace SecretProject.Class.TextureStuff
         public Effect practiceLightMaskEffect;
         public Effect nightTint;
         public Effect Pulse;
+        public Effect whirlPoolGlow;
         public Texture2D lightMask;
 
         //Debug
@@ -229,6 +230,7 @@ namespace SecretProject.Class.TextureStuff
             practiceLightMaskEffect = content.Load<Effect>("Effects/practiceLighting1");
             nightTint = content.Load<Effect>("Effects/nightTint");
             Pulse = content.Load<Effect>("Effects/Pulse");
+            whirlPoolGlow = content.Load<Effect>("Effects/whirlPoolGlow");
 
             redPixel = content.Load<Texture2D>("Debug/solidRed");
 

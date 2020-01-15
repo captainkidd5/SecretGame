@@ -55,7 +55,7 @@ namespace SecretProject.Class.StageFolder
         List<Sprite> AllSprites { get; set; }
 
         List<Item> AllItems { get; set; }
-        List<LightSource> AllLights { get; set; }
+        List<LightSource> AllNightLights { get; set; }
 
 
         List<ActionTimer> AllActions { get; set; }
@@ -107,7 +107,7 @@ namespace SecretProject.Class.StageFolder
         void LoadPreliminaryContent();
         void LoadContent(Camera2D camera, List<RouteSchedule> routeSchedules);
         void UnloadContent();
-        void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
+        void Draw(GraphicsDevice graphics, RenderTarget2D mainTarget, RenderTarget2D lightsTarget, RenderTarget2D dayLightsTarget, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse, Player player);
         void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration);
         void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale);
 
