@@ -43,6 +43,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, int> TileHitPoints { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> NightTimeLights { get; set; }
+        public List<LightSource> DayTimeLights { get; set; }
         public Dictionary<string, Crop> Crops { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 

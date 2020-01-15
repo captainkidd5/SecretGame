@@ -77,33 +77,23 @@ namespace SecretProject.Class.TextureStuff
 
         //UiStuff
 
-        public Texture2D CursorWhiteHand;
-        public Texture2D CursorPlant;
 
 
         public Texture2D UserInterfaceTileSet;
 
-        public Texture2D ShopMenu;
-        public Texture2D ShopMenuItemButton;
-        public Texture2D RedEsc;
 
-        public Texture2D BasicButton;
 
         //Fonts
         public SpriteFont MenuText;
 
         //Maps
-        public TmxMap Iliad;
-        public TmxMap RoyalDocks;
 
-        public TmxMap LodgeInterior;
 
-        public TmxMap Sea;
 
         //TileSets
         public Texture2D MasterTileSet;
         public Texture2D InteriorTileSet1;
-        public Texture2D OrchardTileSet;
+
 
         public Texture2D ItemSpriteSheet;
 
@@ -128,7 +118,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D redPixel;
 
         //Props
-        public Texture2D Gondola;
+
         public Texture2D TallGrass;
         public Texture2D Gears;
         public Texture2D PlayerSilouhette;
@@ -136,7 +126,7 @@ namespace SecretProject.Class.TextureStuff
 
 
         //BackDrops
-        public Texture2D WildernessBackdrop;
+
 
 
 
@@ -203,8 +193,8 @@ namespace SecretProject.Class.TextureStuff
             BusinessSnail = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnail");
             BusinessSnailPortrait = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnailPortrait");
 
-            CursorWhiteHand = content.Load<Texture2D>("Button/Cursor1");
-            CursorPlant = content.Load<Texture2D>("Button/PlantCursor");
+
+
 
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
@@ -238,8 +228,7 @@ namespace SecretProject.Class.TextureStuff
 
 
 
-            //props
-            Gondola = content.Load<Texture2D>("WorldProps/Gondola");
+
             TallGrass = content.Load<Texture2D>("WorldProps/tallGrass");
             Gears = content.Load<Texture2D>("WorldProps/Gears");
             PlayerSilouhette = content.Load<Texture2D>("WorldProps/introplayersillohoutte");
@@ -247,7 +236,6 @@ namespace SecretProject.Class.TextureStuff
 
 
             //backdrops
-            WildernessBackdrop = content.Load<Texture2D>("BackDrops/wilderness");
         }
 
 

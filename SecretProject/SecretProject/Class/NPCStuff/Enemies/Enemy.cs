@@ -610,9 +610,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
             {
 
-                Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
-                Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
-                Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
+                //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
+                //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
+                //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
 
 
 
@@ -620,9 +620,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
             if (this.CurrentEffect != effect)
             {
-                spriteBatch.End();
-                effect = this.CurrentEffect;
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Game1.GetCurrentStage().Cam.getTransformation(graphics), effect: this.CurrentEffect, depthStencilState: DepthStencilState.Default);
+                //spriteBatch.End();
+                //effect = this.CurrentEffect;
+                //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Game1.GetCurrentStage().Cam.getTransformation(graphics), effect: this.CurrentEffect, depthStencilState: DepthStencilState.Default);
 
             }
             this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));

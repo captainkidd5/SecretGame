@@ -441,10 +441,7 @@ namespace SecretProject.Class.StageFolder
                 {
                     Game1.AllWeather[Game1.CurrentWeather].Draw(spriteBatch, this.LocationType);
                 }
-                if (this.BackDropNumber == 1)
-                {
-                    spriteBatch.Draw(Game1.AllTextures.WildernessBackdrop, BackDropPosition, null, Color.White, 0f, Game1.Utility.Origin, .5f, SpriteEffects.None, .0001f);
-                }
+
                 this.ParticleEngine.Draw(spriteBatch);
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {

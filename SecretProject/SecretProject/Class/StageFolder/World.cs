@@ -63,6 +63,7 @@ namespace SecretProject.Class.StageFolder
         public List<StringWrapper> AllTextToWrite { get; set; }
         public List<INPC> OnScreenNPCS { get; set; }
         public List<LightSource> AllNightLights { get; set; }
+        public List<LightSource> AllDayTimeLights { get; set; }
         public List<float> MyProperty { get; set; }
         public List<float> AllDepths { get; set; }
         public TmxLayer Buildings { get; set; }

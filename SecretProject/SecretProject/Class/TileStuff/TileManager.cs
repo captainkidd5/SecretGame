@@ -63,6 +63,7 @@ namespace SecretProject.Class.TileStuff
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
         public Dictionary<string, IStorableItemBuilding> StoreableItems { get; set; }
         public List<LightSource> NightTimeLights { get; set; }
+        public List<LightSource> DayTimeLights { get; set; }
         public Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
 
         public bool AbleToDrawTileSelector { get; set; }
@@ -121,6 +122,7 @@ namespace SecretProject.Class.TileStuff
             this.Tufts = new Dictionary<string, List<GrassTuft>>();
             this.TileHitPoints = new Dictionary<string, int>();
             this.NightTimeLights = new List<LightSource>();
+            this.DayTimeLights = new List<LightSource>();
             this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             this.Crops = new Dictionary<string, Crop>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
@@ -195,6 +197,7 @@ namespace SecretProject.Class.TileStuff
                 }
             }
             currentStage.AllNightLights = this.NightTimeLights;
+            currentStage.AllDayTimeLights = this.DayTimeLights;
         }
 
 

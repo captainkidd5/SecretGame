@@ -275,9 +275,11 @@ namespace SecretProject.Class.StageFolder
                 }
                 else
                 {
+                    graphics.SetRenderTarget(dayLightsTarget);
+                    graphics.Clear(Color.White);
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, transformMatrix: this.Cam.getTransformation(graphics));
                     graphics.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-                    graphics.SetRenderTarget(dayLightsTarget);
+                    
 
                     for (int dl = 0; dl < this.AllDayTimeLights.Count; dl++)
                     {
@@ -377,8 +379,8 @@ namespace SecretProject.Class.StageFolder
                 }
                 else
                 {
-                    //Game1.AllTextures.whirlPoolGlow.Parameters["lightMask"].SetValue(dayLightsTarget);
-                    //Game1.AllTextures.whirlPoolGlow.CurrentTechnique.Passes[0].Apply();
+                    Game1.AllTextures.whirlPoolGlow.Parameters["lightMask"].SetValue(dayLightsTarget);
+                    Game1.AllTextures.whirlPoolGlow.CurrentTechnique.Passes[0].Apply();
 
                 }
 

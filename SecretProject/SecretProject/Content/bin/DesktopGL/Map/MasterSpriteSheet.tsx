@@ -2301,7 +2301,7 @@
  <tile id="1845">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
-   <property name="lightSource" value="1,0,-48"/>
+   <property name="lightSource" value="1,0,-48,NightTime"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
   </properties>
@@ -3528,6 +3528,31 @@
    <frame tileid="7315" duration="100"/>
   </animation>
  </tile>
+ <tile id="7945">
+  <animation>
+   <frame tileid="8445" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="7946">
+  <animation>
+   <frame tileid="8446" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="7947">
+  <animation>
+   <frame tileid="8447" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="7948">
+  <animation>
+   <frame tileid="8448" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="7949">
+  <animation>
+   <frame tileid="8449" duration="100"/>
+  </animation>
+ </tile>
  <tile id="8014">
   <animation>
    <frame tileid="7714" duration="100"/>
@@ -3540,6 +3565,31 @@
    <frame tileid="7415" duration="100"/>
   </animation>
  </tile>
+ <tile id="8045">
+  <animation>
+   <frame tileid="8545" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8046">
+  <animation>
+   <frame tileid="8546" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8047">
+  <animation>
+   <frame tileid="8547" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8048">
+  <animation>
+   <frame tileid="8548" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8049">
+  <animation>
+   <frame tileid="8549" duration="100"/>
+  </animation>
+ </tile>
  <tile id="8114">
   <animation>
    <frame tileid="7814" duration="100"/>
@@ -3550,6 +3600,84 @@
   <animation>
    <frame tileid="7815" duration="100"/>
    <frame tileid="7515" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8145">
+  <animation>
+   <frame tileid="8645" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8146">
+  <animation>
+   <frame tileid="8646" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8147">
+  <animation>
+   <frame tileid="8647" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8148">
+  <animation>
+   <frame tileid="8648" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8149">
+  <animation>
+   <frame tileid="8649" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8245">
+  <animation>
+   <frame tileid="8745" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8246">
+  <properties>
+   <property name="lightSource" value="1,0,-48,DayTime"/>
+  </properties>
+  <animation>
+   <frame tileid="8746" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8247">
+  <animation>
+   <frame tileid="8747" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8248">
+  <animation>
+   <frame tileid="8748" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8249">
+  <animation>
+   <frame tileid="8749" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8345">
+  <animation>
+   <frame tileid="8845" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8346">
+  <animation>
+   <frame tileid="8846" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8347">
+  <animation>
+   <frame tileid="8847" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8348">
+  <animation>
+   <frame tileid="8848" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8349">
+  <animation>
+   <frame tileid="8849" duration="100"/>
   </animation>
  </tile>
  <tile id="8828">
@@ -3973,6 +4101,22 @@
    <frame tileid="8110" duration="100"/>
    <frame tileid="8010" duration="100"/>
   </animation>
+ </tile>
+ <tile id="9735">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="6" width="16" height="8"/>
+  </objectgroup>
+ </tile>
+ <tile id="9736">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="3" x="0" y="6" width="16" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="9742">
   <animation>

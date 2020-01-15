@@ -242,9 +242,25 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
-                    int lightType = LightSource.ParseLightType(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
                     Vector2 lightOffSet = LightSource.ParseLightData(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
-                    container.NightTimeLights.Add(new LightSource(lightType, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y)));
+                    LightSource newLight = new LightSource(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"], new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
+
+                    if(newLight.LightType == LightType.NightTime)
+                    {
+                        if(!container.NightTimeLights.Contains(newLight))
+                        {
+                            container.NightTimeLights.Add(newLight);
+                        }
+                        
+                    }
+                    else
+                    {
+                        if(!container.DayTimeLights.Contains(newLight))
+                        {
+                            container.DayTimeLights.Add(newLight);
+                        }
+                      
+                    }
                 }
 
 
