@@ -106,6 +106,7 @@ namespace SecretProject.Class.TileStuff
             this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
             this.AllTiles = new List<Tile[,]>();
             this.NightTimeLights = new List<LightSource>();
+            this.DayTimeLights = new List<LightSource>();
             this.Crops = new Dictionary<string, Crop>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
             this.Tufts = new Dictionary<string, List<GrassTuft>>();
@@ -517,8 +518,18 @@ namespace SecretProject.Class.TileStuff
                     {
                         //STARTING CHUNK
 
-                        this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
-                        this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
+                        //this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
+                      //  this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
+                        int columnCounter = 100;
+                        for(int sx =0; sx < 5; sx++)
+                        {
+                            for(int sy = 0; sy < 5; sy++)
+                            {
+                                int whirlPoolID = 7946 + sy * columnCounter + sx;
+                                this.AllTiles[2][4 + sx, 5 + sy] = new Tile(4 + sx, 5 + sy, whirlPoolID);
+                            }
+     
+                        }
 
                     }
                     else
