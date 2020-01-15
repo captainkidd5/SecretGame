@@ -517,6 +517,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 else if (this.Position != new Vector2(route.EndX * 16, route.EndY * 16))
                 {
                     PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
+                    finder.SearchLimit = 10000;
                     if (route.StageToEndAt == (int)this.CurrentStageLocation)
                     {
                         Point start = new Point((int)this.NPCPathFindRectangle.X / 16,

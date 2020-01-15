@@ -83,6 +83,8 @@ namespace SecretProject.Class.PathFinding.PathFinder
         #endregion
 
         #region Constructors
+
+
         public PathFinderFast(byte[,] grid)
         {
             if (grid == null)
