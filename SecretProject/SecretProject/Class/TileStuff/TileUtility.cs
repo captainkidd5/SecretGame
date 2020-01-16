@@ -61,7 +61,7 @@ namespace SecretProject.Class.TileStuff
             return numsToReturn;
         }
 
-        public static void GetTileRectangleFromProperty(Tile tile, bool adjustDestinationRectangle, IInformationContainer container = null, int gid = 0)
+        public static Rectangle GetTileRectangleFromProperty(Tile tile, bool adjustDestinationRectangle, IInformationContainer container = null, int gid = 0)
         {
             int newGID = gid;
             TmxTileset tileSet = null;
@@ -78,14 +78,16 @@ namespace SecretProject.Class.TileStuff
 
             Rectangle originalRectangle = GetSourceRectangleWithoutTile(gid, 100);
 
-            tile.SourceRectangle = new Rectangle(originalRectangle.X + rectangleCoords[0], originalRectangle.Y + rectangleCoords[1],
-                rectangleCoords[2], rectangleCoords[3]);
+            
 
             if (adjustDestinationRectangle)
             {
                 tile.DestinationRectangle = new Rectangle(tile.DestinationRectangle.X + rectangleCoords[0], tile.DestinationRectangle.Y + rectangleCoords[1],
                rectangleCoords[2], rectangleCoords[3]);
             }
+
+            return new Rectangle(originalRectangle.X + rectangleCoords[0], originalRectangle.Y + rectangleCoords[1],
+                rectangleCoords[2], rectangleCoords[3]);
 
         }
         /// <summary>
@@ -219,13 +221,34 @@ namespace SecretProject.Class.TileStuff
 
 
                         List<EditableAnimationFrame> frames = new List<EditableAnimationFrame>();
+                        
 
-                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
+
+                            frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
                         for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
                         {
                             frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
                         }
-                        EditableAnimationFrameHolder frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID);
+                        bool hasNewSource = false;
+                        EditableAnimationFrameHolder frameHolder;
+                        if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
+                        {
+                            hasNewSource = true;
+                            int[] nums = GetNewTileSourceRectangle(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
+
+                            frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID, hasNewSource: hasNewSource)
+                            {
+                                OriginalXOffSet = nums[0],
+                                OriginalYOffSet = nums[1],
+                                OriginalWidth = nums[2],
+                                OriginalHeight = nums[3]
+                            };
+                        }
+                        else
+                        {
+                            frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID, hasNewSource: hasNewSource);
+                        }
+                        
                         container.AnimationFrames.Add(tileToAssign.TileKey, frameHolder);
                     }
 
@@ -317,7 +340,7 @@ namespace SecretProject.Class.TileStuff
                 }
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
                 {
-                    GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
+                    tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
                 }
                 if (layer == 3)
                 {
@@ -947,7 +970,13 @@ namespace SecretProject.Class.TileStuff
         public bool Repeats { get; set; }
         public bool SelfDestruct { get; set; }
 
-        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID, bool selfDestruct = false)
+        public bool HasNewSource { get; set; }
+        public int OriginalXOffSet { get; set; }
+        public int OriginalYOffSet { get; set; }
+        public int OriginalWidth { get; set; }
+        public int OriginalHeight { get; set; }
+
+        public EditableAnimationFrameHolder(List<EditableAnimationFrame> frames, int oldX, int oldY, int layer, int originalTileID, bool selfDestruct = false, bool hasNewSource = false)
         {
             this.Frames = frames;
             this.Counter = 0;
@@ -957,6 +986,7 @@ namespace SecretProject.Class.TileStuff
             this.Layer = layer;
             this.OriginalTileID = originalTileID;
             this.SelfDestruct = selfDestruct;
+            this.HasNewSource = hasNewSource;
         }
     }
 }

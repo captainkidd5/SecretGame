@@ -13,10 +13,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
-            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
-            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
-            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
-            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position);
+            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 48, 32, 3, .15f, this.Position);
+            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 144, 0, 48, 32, 3, .15f, this.Position); 
+            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position) { Flip = true };
+            this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 288, 0, 48, 32, 3, .15f, this.Position);
 
             this.NPCRectangleXOffSet = 0;
             this.NPCRectangleYOffSet = -8;

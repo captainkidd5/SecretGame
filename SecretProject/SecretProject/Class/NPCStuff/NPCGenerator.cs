@@ -65,10 +65,10 @@ namespace SecretProject.Class.NPCStuff
                     {
                         if (testFrequency >= NPCInfo[i][j].LowerSpawnFrequency && testFrequency <= NPCInfo[i][j].UpperSpawnFrequency)
                         {
-                            if (testFrequency > .5f)
-                            {
-                                Console.WriteLine();
-                            }
+                            //if (testFrequency > .5f)
+                            //{
+                            //    Console.WriteLine();
+                            //}
                             spawnData = NPCInfo[i][j];
                             break;
                         }

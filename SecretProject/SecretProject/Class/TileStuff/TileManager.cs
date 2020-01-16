@@ -251,6 +251,14 @@ namespace SecretProject.Class.TileStuff
                 {
                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
                     this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                    if(frameholder.HasNewSource)
+                    {
+                        Rectangle newSourceRectangle = this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
+                       // Rectangle originalTileRectangle =
+                        this.AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
+                    }
+                    
+
                     //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
 
                     if (frameholder.Counter == frameholder.Frames.Count - 1)

@@ -37,7 +37,7 @@ namespace SecretProject.Class.UI
 
             if (UpdateRisingText(gameTime))
             {
-                Console.WriteLine("rising text active!");
+                //Console.WriteLine("rising text active!");
             }
             else
             {
