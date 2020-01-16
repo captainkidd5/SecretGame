@@ -88,10 +88,10 @@ namespace SecretProject.Class.TileStuff
             FastNoise.SetFractalLacunarity(3f);
 
             //Smaller the smooth the biomes
-            FastNoise.SetFractalGain(.5f);
+            FastNoise.SetFractalGain(.25f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.001f);
+            FastNoise.SetFrequency(.005f);
 
 
 

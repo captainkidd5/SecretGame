@@ -323,11 +323,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
                     float offSetDrawValue = (GetDestinationRectangle(tileToAssign).Y) * Game1.Utility.ForeGroundMultiplier + randomOffSet;
-                    //if (x > 0 && container.AllTiles[layer][x - 1,y].LayerToDrawAtZOffSet == offSetDrawValue)
-                    //{
-                    //    offSetDrawValue += Game1.Utility.ForeGroundMultiplier;
-                    //}
-                        tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
+                    if (x > 0 && container.AllTiles[layer][x - 1, y].LayerToDrawAtZOffSet == offSetDrawValue)
+                    {
+                        offSetDrawValue += Game1.Utility.ForeGroundMultiplier;
+                    }
+                    tileToAssign.LayerToDrawAtZOffSet = offSetDrawValue;
 
                     
                     
