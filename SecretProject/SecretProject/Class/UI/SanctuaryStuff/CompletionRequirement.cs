@@ -22,11 +22,13 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public List<SanctuaryReward> SanctuaryRewards { get; set; }
 
         public int GoldAmount { get; set; }
+        public int GIDUnlock { get; set; }
+        public string GIDUnlockDescription { get; set; }
         public bool[] IndividualRewards { get; set; }
         public bool AllRewardsClaimed { get; set; }
         public bool ChainsTransitionCompleted { get; set; }
 
-        public CompletionRequirement(GraphicsDevice graphics,CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount)
+        public CompletionRequirement(GraphicsDevice graphics,CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount, int gidUnlock, string gidUnlockDescription)
         {
             this.Graphics = graphics;
             this.CompletionPage = completionPage;
@@ -38,9 +40,14 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
             this.SanctuaryRewards = sanctuaryRewards;
             this.GoldAmount = goldAmount;
-
+            this.GIDUnlock = gidUnlock;
+            this.GIDUnlockDescription = gidUnlockDescription;
             int boolCount = 0;
             if (GoldAmount > 0)
+            {
+                boolCount++;
+            }
+            if(gidUnlock != 0)
             {
                 boolCount++;
             }

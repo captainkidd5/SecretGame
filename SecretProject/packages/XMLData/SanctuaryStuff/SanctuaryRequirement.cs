@@ -33,6 +33,12 @@ namespace XMLData.SanctuaryStuff
         public Rectangle Rectangle { get
             { return new Rectangle(X, Y, Width, Height); }  }
 
+        [ContentSerializer(Optional = true)]
+        public int GIDUnlock { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public string GIDUnlockDescription { get; set; }
+
         public SanctuaryRequirement()
         {
 

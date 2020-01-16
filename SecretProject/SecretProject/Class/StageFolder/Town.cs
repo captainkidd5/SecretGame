@@ -73,6 +73,11 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree = new QuadTree(5, this.Cam.ViewPortRectangle);
             Nelja = new Dog("Nelja", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.Nelja, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
             this.IsLoaded = true;
+            for(int b = 0; b < 5; b++)
+            {
+                this.Enemies.Add(new Butterfly("butterfly", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
+            }
+          
         }
 
         public override void UnloadContent()
@@ -100,7 +105,10 @@ namespace SecretProject.Class.StageFolder
         {
             player.CollideOccured = false;
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
-
+            for (int i = 0; i < this.Enemies.Count; i++)
+            {
+                this.Enemies[i].Update(gameTime, mouse);
+            }
             foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
             {
                 for (int z = 0; z < obj.Value.Count; z++)
@@ -222,6 +230,7 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.AllTiles.Update(gameTime, mouse);
+                
                 for (int s = 0; s < this.AllTextToWrite.Count; s++)
                 {
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
@@ -301,7 +310,10 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.ParticleEngine.Draw(spriteBatch);
-
+                for (int i = 0; i < this.Enemies.Count; i++)
+                {
+                    this.Enemies[i].Draw(spriteBatch, this.Graphics);
+                }
                 Nelja.Draw(spriteBatch, this.Graphics);
                 player.Draw(spriteBatch, .5f + (player.Rectangle.Y + player.Rectangle.Height) * Game1.Utility.ForeGroundMultiplier);
                 for (int i = 0; i < this.AllRisingText.Count; i++)

@@ -1743,38 +1743,6 @@
    <object id="1" x="4.25" y="7.625" width="7.875" height="5"/>
   </objectgroup>
  </tile>
- <tile id="1350">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="-0.125" y="9.5" width="16" height="5"/>
-  </objectgroup>
- </tile>
- <tile id="1351">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="-0.125" y="9" width="16" height="5"/>
-  </objectgroup>
- </tile>
- <tile id="1352">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0" y="9.25" width="12" height="5"/>
-  </objectgroup>
- </tile>
- <tile id="1353">
-  <properties>
-   <property name="newSource" value="0,-16,16,32"/>
-  </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="4.5" y="8.375" width="11.5" height="5"/>
-  </objectgroup>
- </tile>
  <tile id="1355">
   <objectgroup draworder="index" id="3">
    <object id="3" x="0" y="10" width="16" height="6"/>
@@ -1873,43 +1841,6 @@
  <tile id="1424">
   <properties>
    <property name="generate" value="Sand"/>
-  </properties>
- </tile>
- <tile id="1444">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
-  <animation>
-   <frame tileid="1445" duration="200"/>
-   <frame tileid="1446" duration="200"/>
-   <frame tileid="1447" duration="200"/>
-   <frame tileid="1448" duration="200"/>
-   <frame tileid="1449" duration="200"/>
-  </animation>
- </tile>
- <tile id="1445">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
- </tile>
- <tile id="1446">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
- </tile>
- <tile id="1447">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
- </tile>
- <tile id="1448">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
-  </properties>
- </tile>
- <tile id="1449">
-  <properties>
-   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="1457">
@@ -2890,6 +2821,18 @@
    <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
+ <tile id="3092">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+  <animation>
+   <frame tileid="3093" duration="200"/>
+   <frame tileid="3094" duration="200"/>
+   <frame tileid="3095" duration="200"/>
+   <frame tileid="3096" duration="200"/>
+   <frame tileid="3097" duration="200"/>
+  </animation>
+ </tile>
  <tile id="3104">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -3169,6 +3112,18 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="3392">
+  <properties>
+   <property name="newSource" value="0,-32,16,48"/>
+  </properties>
+  <animation>
+   <frame tileid="3393" duration="200"/>
+   <frame tileid="3394" duration="200"/>
+   <frame tileid="3395" duration="200"/>
+   <frame tileid="3396" duration="200"/>
+   <frame tileid="3397" duration="200"/>
+  </animation>
  </tile>
  <tile id="3404">
   <objectgroup draworder="index" id="2">

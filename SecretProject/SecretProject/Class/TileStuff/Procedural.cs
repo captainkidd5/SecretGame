@@ -82,13 +82,13 @@ namespace SecretProject.Class.TileStuff
         public Procedural()
         {
             //FASTNOISE
-            FastNoise = new FastNoise(454);
+            FastNoise = new FastNoise(456);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);
 
             //Smaller the smooth the biomes
-            FastNoise.SetFractalGain(.25f);
+            FastNoise.SetFractalGain(.35f);
 
             //larger the smaller the biomes
             FastNoise.SetFrequency(.005f);

@@ -104,6 +104,8 @@
     <Y>272</Y>
     <Width>16</Width>
     <Height>16</Height>
+    <GIDUnlock>1380</GIDUnlock>
+    <GIDUnlockDescription>Pumpkins will begin to spawn in the wilderness.</GIDUnlockDescription>
     </Item>
 
       <!-- Monarch Jar -->
