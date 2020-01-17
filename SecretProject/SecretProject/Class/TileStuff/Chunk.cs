@@ -518,7 +518,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         //STARTING CHUNK
 
-                        //this.AllTiles[3][8, 5] = new Tile(8, 5, 9025);
+                        this.AllTiles[3][2, 2] = new Tile(2, 2, 979);
                       //  this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
                         int columnCounter = 100;
                         for(int sx =0; sx < 5; sx++)
