@@ -5,6 +5,8 @@
     <Routes>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>1</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
       <TimeToStart>5</TimeToStart>
       <TimeToFinish>12</TimeToFinish>
        <EndStage>Town</EndStage>
@@ -13,6 +15,8 @@
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
       <TimeToStart>17</TimeToStart>
       <TimeToFinish>19</TimeToFinish>
        <EndStage>Cafe</EndStage>
@@ -21,6 +25,8 @@
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
       <TimeToStart>20</TimeToStart>
       <TimeToFinish>22</TimeToFinish>
        <EndStage>KayaHouse</EndStage>

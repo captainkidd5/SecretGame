@@ -8,6 +8,24 @@ using System.Threading.Tasks;
 
 namespace XMLData.RouteStuff
 {
+    public enum Month
+    {
+        Spring = 0,
+        Summer = 1,
+        Fall = 2,
+        Winter = 3
+    }
+    public enum WeekDay
+    {
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 3,
+        Thursday = 4,
+        Friday = 5,
+        Saturday = 6,
+        Sunday = 7
+
+    }
     public enum Stages
     {
         Town = 0,
@@ -41,42 +59,12 @@ namespace XMLData.RouteStuff
         public void ProcessStageToEndAt()
         {
             this.StageToEndAt = (int)Enum.Parse(typeof(Stages), this.EndStage);
-            //switch (this.EndStage)
-            //{
-            //    case ("Town"):
-            //        this.StageToEndAt = 0;
-            //        break;
-            //    case ("ElixirHouse"):
-            //        this.StageToEndAt = 1;
-            //        break;
-            //    case ("JulianHouse"):
-            //        this.StageToEndAt = 2;
-            //        break;
-            //    case ("World"):
-            //        this.StageToEndAt = 3;
-            //        break;
-            //    case ("DobbinHouse"):
-            //        this.StageToEndAt = 4;
-            //        break;
-            //    case ("PlayerHouse"):
-            //        this.StageToEndAt = 5;
-            //        break;
-            //    case ("GeneralStore"):
-            //        this.StageToEndAt = 6;
-            //        break;
-            //    case ("KayaHouse"):
-            //        this.StageToEndAt = 7;
-            //        break;
-            //    case ("Cafe"):
-            //        this.StageToEndAt = 8;
-            //        break;
 
-
-
-            //}
         }
-    
+        
         public int ID { get; set; }
+        public Month Month { get; set; }
+        public WeekDay WeekDay { get; set; }
         public int TimeToStart { get; set; }
         public int TimeToFinish { get; set; }
         public string EndStage { get; set; }

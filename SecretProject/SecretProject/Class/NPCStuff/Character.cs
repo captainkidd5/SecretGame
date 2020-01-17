@@ -91,6 +91,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public EmoticonType CurrentEmoticon { get; set; }
 
+        public Route CurrentRoute { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
             this.Name = name;
@@ -427,16 +429,26 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         #region SCHEDULE AND PATHFINDING
         public void FollowSchedule(GameTime gameTime, RouteSchedule routeSchedule)
         {
-            if (!this.CollideOccured)
+            if (CurrentRoute == null)
             {
-
-
-                for (int i = 0; i < routeSchedule.Routes.Count; i++)
+                if (!this.CollideOccured)
                 {
 
-                    MoveToTileRoute(gameTime, this.RouteSchedule.Routes[i]);
 
+                    for (int i = 0; i < routeSchedule.Routes.Count; i++)
+                    {
+                        if(TestRoute(this.RouteSchedule.Routes[i]))
+                        {
+                            this.CurrentRoute = this.RouteSchedule.Routes[i];
+                        }
+                        
+
+                    }
                 }
+            }
+            else
+            {
+                MoveToTileRoute(gameTime, this.CurrentRoute);
             }
 
         }
@@ -484,11 +496,20 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             // Return whether we've reached the goal or not
             return this.Position == goal;
         }
+        public bool TestRoute(Route route)
+        {
+            if (route.Month == Game1.GlobalClock.Calendar.CurrentMonth && route.WeekDay == (WeekDay)Game1.GlobalClock.Calendar.CurrentDay)
+            {
+                if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
+                    Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public void MoveToTileRoute(GameTime gameTime, Route route)
         {
-            if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
-                Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
-            {
 
                 if (this.CurrentPath.Count > 0)
                 {
@@ -546,8 +567,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 {
                     this.IsMoving = false;
                     this.CurrentDirection = 0;
+                this.CurrentRoute = null;
                 }
-            }
+            
         }
 
         #region COMBAT
