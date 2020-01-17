@@ -585,7 +585,7 @@
     <property name="standardTo" value="Cafe"/>
    </properties>
   </object>
-  <object id="44" x="1389" y="199" width="53.6667" height="14">
+  <object id="44" x="1394" y="198" width="48.6667" height="15">
    <properties>
     <property name="Click" value="false"/>
     <property name="SafteyOffSetX" value="0"/>
