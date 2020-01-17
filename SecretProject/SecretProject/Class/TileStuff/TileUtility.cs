@@ -770,7 +770,10 @@ namespace SecretProject.Class.TileStuff
         public static void FinalizeTile(int layer, GameTime gameTime, int x, int y, IInformationContainer container, float delayTimer = 0f)
         {
 
-
+            //if(container.AllTiles[layer][x, y].TileKey == null)
+            //{
+            //    container.AllTiles[layer][x, y].TileKey = container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container);
+            //}
             if (container.Objects.ContainsKey(container.AllTiles[layer][x, y].TileKey))
             {
                 container.Objects.Remove(container.AllTiles[layer][x, y].TileKey);

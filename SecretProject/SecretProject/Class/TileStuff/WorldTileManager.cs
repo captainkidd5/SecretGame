@@ -502,18 +502,29 @@ namespace SecretProject.Class.TileStuff
                                 if (frameholder.Frames[frameholder.Counter].CurrentDuration <= 0)
                                 {
                                     frameholder.Frames[frameholder.Counter].CurrentDuration = frameholder.Frames[frameholder.Counter].AnchorDuration;
-                                    TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this.ActiveChunks[a, b]);
+                                    this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(frameholder.Frames[frameholder.Counter].ID, 100);
+                                    if (frameholder.HasNewSource)
+                                    {
+                                        Rectangle newSourceRectangle = this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle;
+                                        // Rectangle originalTileRectangle =
+                                        this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].SourceRectangle = new Rectangle(newSourceRectangle.X + frameholder.OriginalXOffSet, newSourceRectangle.Y + frameholder.OriginalYOffSet, frameholder.OriginalWidth, frameholder.OriginalHeight);
+                                    }
+
+
+                                    //TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.Frames[frameholder.Counter].ID + 1, this);
+
                                     if (frameholder.Counter == frameholder.Frames.Count - 1)
                                     {
                                         if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(frameholder.OriginalTileID))
                                         {
-                                            if (frameholder.SelfDestruct || this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("relationX"))
+
+                                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                             {
+
                                                 //needs to refer to first tile ?
-                                                int frameolDX = frameholder.OldX;
-                                                TileUtility.ReplaceTile(frameholder.Layer, frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1, this.ActiveChunks[a, b]);
-                                                AnimationFrameKeysToRemove.Add(this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this.ActiveChunks[a, b]));
-                                                if (frameholder.SelfDestruct)
+                                                this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
+                                                AnimationFrameKeysToRemove.Add(this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey);
+                                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                                 {
                                                     TileUtility.FinalizeTile(frameholder.Layer, gameTime, frameholder.OldX, frameholder.OldY, this.ActiveChunks[a, b]);
                                                 }
