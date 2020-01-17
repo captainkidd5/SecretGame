@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.ItemStuff;
 using System.Collections.Generic;
 using XMLData.SanctuaryStuff;
 
@@ -88,26 +89,33 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
         }
 
-        public void ClaimReward(int index, Vector2 rewardPosition)
+        public void ClaimReward(int index, Vector2 rewardPosition, Item item = null, int gidUnlock = 0, bool gold = false)
         {
-            if (index < SanctuaryRewards.Count)
+            if (item != null)
             {
-                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem((int)this.SanctuaryRewards[index], null));
+                Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(item.ID, null));
                 IndividualRewards[index] = true;
                 return;
             }
 
-            if (this.GoldAmount > 0)
+            if (gold)
             {
                 for(int i =0; i < GoldAmount; i++)
                 {
                     Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, this.Graphics, rewardPosition, Game1.Player.UserInterface.BottomBar.GoldIconPosition, Game1.Player.UserInterface.AllUISprites));
                 }
                 //Game1.Player.Inventory.Money += this.GoldAmount;
-                
+                IndividualRewards[index] = true;
+                return;
             }
-            IndividualRewards[index] = true;
+            if (gidUnlock != 0)
+            {
+                Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
+                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
 
+            }
+
+            IndividualRewards[index] = true;
             this.AllRewardsClaimed = true;
         }
     }

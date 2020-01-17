@@ -47,6 +47,8 @@ namespace SecretProject.Class.MenuStuff
         public Item Item { get; set; }
         public string Description { get; set; }
 
+        public int GID { get; set; }
+
         public Button()
         {
 

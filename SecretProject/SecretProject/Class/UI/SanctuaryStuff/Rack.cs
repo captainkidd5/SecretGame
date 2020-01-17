@@ -27,6 +27,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public int GIDUnlock { get; set; }
         public string GIDUnlockDescription { get; set; }
 
+
         public float[] ColorMultiplier { get; set; }
 
         public Rectangle LockedSourceRectangle { get; set; }
@@ -71,6 +72,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal)
                 {
                     ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(this.GIDUnlock, 100),
+                    GID = this.GIDUnlock,
 
                 }); ;
                 buttonIndex++;
@@ -109,6 +111,17 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                         }
                         
                     }
+                    else if (RewardIcons[i].GID != 0)
+                    {
+                        if (!this.Requirement.IndividualRewards[i])
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription, 1f);
+                        }
+                        else
+                        {
+                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription + " (Claimed)", 1f);
+                        }
+                    }
                     else if(this.GoldAmount > 0)
                     {
                         if(!this.Requirement.IndividualRewards[i])
@@ -121,17 +134,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                         }
                         
                     }
-                    else
-                    {
-                        if (!this.Requirement.IndividualRewards[i])
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription, 1f);
-                        }
-                        else
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription + " (Claimed)", 1f);
-                        }
-                    }
+                    
 
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
 
@@ -139,8 +142,22 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     {
                         if (RewardIcons[i].isClicked && this.Requirement.ChainsTransitionCompleted)
                         {
-                            this.Requirement.ClaimReward(i, RewardIcons[i].Position);
-                            this.ColorMultiplier[i] = .25f;
+                            if(RewardIcons[i].Item != null)
+                            {
+                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, RewardIcons[i].Item);
+                                this.ColorMultiplier[i] = .25f;
+                            }
+                            else if(RewardIcons[i].GID != 0)
+                            {
+                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: RewardIcons[i].GID);
+                                this.ColorMultiplier[i] = .25f;
+                            }
+                            else
+                            {
+                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gold: true);
+                                this.ColorMultiplier[i] = .25f;
+                            }
+                            
                         }
                     }
                 }
