@@ -2123,6 +2123,12 @@
    <property name="loot" value="482:100:1"/>
   </properties>
  </tile>
+ <tile id="1648">
+  <properties>
+   <property name="newHitBox" value="-16, -10, 48, 26"/>
+   <property name="newSource" value="-16,-32,48,48"/>
+  </properties>
+ </tile>
  <tile id="1650">
   <properties>
    <property name="newHitBox" value="0,0,32,16"/>

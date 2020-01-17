@@ -823,6 +823,15 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Tent</Name>
+<ID>1403</ID>
+<Description>A small shelter.</Description>
+<InvMaximum>99</InvMaximum><Price>20</Price>
+<PlaceID>1648</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Oak Dresser</Name>
 <ID>1440</ID>
 <Description>Can store clothing.</Description>
