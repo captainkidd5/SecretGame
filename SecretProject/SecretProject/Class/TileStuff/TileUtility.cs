@@ -654,6 +654,12 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                     break;
+                case "enterPortal":
+                    if (mouse.IsClicked)
+                    {
+                        Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
+                    }
+                    break;
 
             }
         }
@@ -728,7 +734,7 @@ namespace SecretProject.Class.TileStuff
 
                 if (actionType == AnimationType.HandsPicking)  //this is out here because any equipped item should be able to pick it up no matter what
                 {
-                    Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking, .25f);
+                    Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking, .25f);
                     FinalizeTile(layer, gameTime, x, y, container, delayTimer: .25f);
                     if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].TileKey))
                     {
@@ -742,7 +748,7 @@ namespace SecretProject.Class.TileStuff
                     {
 
 
-                        Game1.Player.DoPlayerAnimation(gameTime, actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
+                        Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
                         ToolInteraction(container.AllTiles[layer][x, y], gameTime, layer, x, y, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]),
                             Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]), destinationRectangle, container);
                         Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);

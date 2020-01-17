@@ -164,6 +164,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/KayaDialogue.xml
 
+#begin Dialogue/MippinDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/MippinDialogue.xml
+
 #begin Dialogue/SarahDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -500,6 +505,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Kaya/KayaSpriteSheet.png
+
+#begin NPC/Mippin/mippin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Mippin/mippin.png
 
 #begin NPC/Sarah/Sarah.png
 /importer:TextureImporter
@@ -1125,6 +1142,66 @@
 /processorParam:TextureFormat=Color
 /build:Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes.png
 
+#begin Player/PlayerParts/PortalJump/Base/portalJumpBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PortalJump/Base/portalJumpBase.png
+
+#begin Player/PlayerParts/PortalJump/Hair/portalJumpHair.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PortalJump/Hair/portalJumpHair.png
+
+#begin Player/PlayerParts/PortalJump/Pants/portalJumpPants.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PortalJump/Pants/portalJumpPants.png
+
+#begin Player/PlayerParts/PortalJump/Shirts/portalJumpShirt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PortalJump/Shirts/portalJumpShirt.png
+
+#begin Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png
+
 #begin Player/PlayerParts/Shirts/redShirt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1252,6 +1329,11 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Route/KayaRouteSchedule.xml
+
+#begin Route/MippinRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/MippinRouteSchedule.xml
 
 #begin Route/SarahRouteSchedule.xml
 /importer:XmlImporter
@@ -1587,26 +1669,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin NPC/Mippin/mippin.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Mippin/mippin.png
-
-#begin Dialogue/MippinDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/MippinDialogue.xml
-
-#begin Route/MippinRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/MippinRouteSchedule.xml
 

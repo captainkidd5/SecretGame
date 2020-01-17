@@ -1077,6 +1077,32 @@ namespace SecretProject
             Player.PickUpItem[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBrownShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
             Player.PickUpItem[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.PickUpItemBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
 
+            //PortalJump Down
+            Player.PortalJump[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpHair, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PortalJump[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShirt, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PortalJump[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpPants, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PortalJump[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShoes, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PortalJump[0, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpBase, 0, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+
+            //PortalJump Up
+            Player.PortalJump[1, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpHair, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PortalJump[1, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShirt, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PortalJump[1, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpPants, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PortalJump[1, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShoes, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PortalJump[1, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpBase, 96, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+            //PortalJump Left
+            Player.PortalJump[2, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f, Flip = true };
+            Player.PortalJump[2, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f, Flip = true };
+            Player.PortalJump[2, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpPants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f, Flip = true };
+            Player.PortalJump[2, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f, Flip = true };
+            Player.PortalJump[2, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f, Flip = true };
+            //PortalJump Right
+            Player.PortalJump[3, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpHair, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000012f };
+            Player.PortalJump[3, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShirt, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000011f };
+            Player.PortalJump[3, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpPants, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000010f };
+            Player.PortalJump[3, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpShoes, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000009f };
+            Player.PortalJump[3, 4] = new Sprite(this.GraphicsDevice, Game1.AllTextures.portalJumpBase, 48, 0, 16, 32, 3, .1f, Game1.Player.position, 0, 0) { LayerDepth = .00000008f };
+
             for (int i = 0; i < Player.Mining.GetLength(1); i++)
             {
                 Player.PlayerActionAnimations[i] = Player.Mining[0, i];

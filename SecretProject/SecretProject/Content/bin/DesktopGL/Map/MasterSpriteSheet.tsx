@@ -3926,6 +3926,9 @@
   </animation>
  </tile>
  <tile id="8247">
+  <properties>
+   <property name="action" value="enterPortal"/>
+  </properties>
   <animation>
    <frame tileid="8747" duration="200"/>
   </animation>

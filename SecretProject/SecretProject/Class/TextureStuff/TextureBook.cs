@@ -44,6 +44,12 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D PickUpItemRedShirt;
         public Texture2D PickUpItemBrownShoes;
 
+        public Texture2D portalJumpBase;
+        public Texture2D portalJumpHair;
+        public Texture2D portalJumpPants;
+        public Texture2D portalJumpShirt;
+        public Texture2D portalJumpShoes;
+
         //NPCS
         public Texture2D Elixer;
         public Texture2D ElixirSpriteSheet;
@@ -169,6 +175,12 @@ namespace SecretProject.Class.TextureStuff
             PickUpItemBluePants = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Pants/PickUpItemBluePants");
             PickUpItemRedShirt = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Shirts/PickUpItemRedShirt");
             PickUpItemBrownShoes = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Shoes/PickUpItemBrownShoes");
+
+            portalJumpBase = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Base/portalJumpBase");
+            portalJumpHair = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Hair/portalJumpHair");
+            portalJumpPants = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Pants/portalJumpPants");
+            portalJumpShirt = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Shirts/portalJumpShirt");
+            portalJumpShoes = content.Load<Texture2D>("Player/PlayerParts/PortalJump/Shoes/portalJumpShoes");
             //NPC
             Elixer = content.Load<Texture2D>("NPC/ElixerTest");
             ElixirSpriteSheet = content.Load<Texture2D>("NPC/Elixir/ElixirSpriteSheet");

@@ -233,7 +233,7 @@ namespace SecretProject.Class.UI
                                                 }
                                                 if (playAnimation)
                                                 {
-                                                    Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking, .25f);
+                                                    Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking, .25f);
                                                 }
                                             }
                                         }
@@ -454,7 +454,7 @@ namespace SecretProject.Class.UI
                     {
                         if (Game1.Player.UserInterface.CurrentAccessedStorableItem.CurrentHoveredSlot.Inventory.TryAddItem(this.Inventory.currentInventory[index].GetItem()))
                         {
-                            Game1.Player.DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
+                            Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking);
                             this.Inventory.currentInventory[index].RemoveItemFromSlot();
                             this.AllSlots[index].ItemCounter--;
                         }

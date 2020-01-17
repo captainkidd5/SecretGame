@@ -24,6 +24,7 @@ namespace SecretProject.Class.Playable
         Mining = 22,
         Digging = 23,
         Swiping = 25,
+        PortalJump = 30
     }
 
 
@@ -80,6 +81,7 @@ namespace SecretProject.Class.Playable
         public Sprite[,] Mining { get; set; }
         public Sprite[,] Swiping { get; set; }
         public Sprite[,] PickUpItem { get; set; }
+        public Sprite[,] PortalJump { get; set; }
         public Line ToolLine { get; set; }
 
         public Sprite CurrentTool { get; set; }
@@ -134,6 +136,7 @@ namespace SecretProject.Class.Playable
             this.Mining = new Sprite[4, 6];
             this.Swiping = new Sprite[4, 5];
             this.PickUpItem = new Sprite[4, 5];
+            this.PortalJump = new Sprite[4, 5];
 
             this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.inert);
             this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
@@ -154,7 +157,7 @@ namespace SecretProject.Class.Playable
 
 
 
-        public void PlayAnimation(GameTime gameTime, AnimationType action, int textureColumn = 0)
+        public void PlayAnimation(AnimationType action, int textureColumn = 0)
         {
 
             switch (action)
@@ -163,10 +166,7 @@ namespace SecretProject.Class.Playable
                     IsPerformingAction = true;
                     CurrentAction = this.PickUpItem;
                     this.AnimationDirection = controls.Direction;
-                    //for (int i = 0; i < 4; i++)
-                    //{
-                    //    this.PickUpItem[i, 0].FirstFrameY = textureColumn;
-                    //}
+
                     break;
 
                 case AnimationType.Mining:
@@ -203,6 +203,13 @@ namespace SecretProject.Class.Playable
                     {
                         this.Swiping[i, 0].FirstFrameY = textureColumn;
                     }
+                    break;
+
+                case AnimationType.PortalJump:
+                    IsPerformingAction = true;
+                    CurrentAction = this.PortalJump;
+                    this.AnimationDirection = controls.Direction;
+
                     break;
             }
 
@@ -286,6 +293,8 @@ namespace SecretProject.Class.Playable
                 }
             }
         }
+
+
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
         {
@@ -311,7 +320,7 @@ namespace SecretProject.Class.Playable
                     if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
                     {
                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
-                        DoPlayerAnimation(gameTime, AnimationType.Swiping);
+                        DoPlayerAnimation(AnimationType.Swiping);
                     }
                     if (item.CrateType != 0)
                     {
@@ -322,7 +331,7 @@ namespace SecretProject.Class.Playable
 
                             CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer);
                             this.UserInterface.BackPack.Inventory.RemoveItem(item);
-                            DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
+                            DoPlayerAnimation(AnimationType.HandsPicking);
                         }
                         else if (Game1.GetCurrentStage().StageType == StageType.Sanctuary)
                         {
@@ -331,7 +340,7 @@ namespace SecretProject.Class.Playable
                             {
                                 CaptureCrate.Release((EnemyType)item.CrateType, this.Graphics);
                                 this.UserInterface.BackPack.Inventory.RemoveItem(item);
-                                DoPlayerAnimation(gameTime, AnimationType.HandsPicking);
+                                DoPlayerAnimation(AnimationType.HandsPicking);
                             }
                         }
 
@@ -631,7 +640,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void DoPlayerAnimation(GameTime gameTime, AnimationType animationType, float delayTimer = 0f, Item item = null)
+        public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
             if (this.Position.Y < Game1.myMouseManager.WorldMousePosition.Y - 30)
             {
@@ -654,11 +663,11 @@ namespace SecretProject.Class.Playable
             }
             if (item != null)
             {
-                PlayAnimation(gameTime, animationType, this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
+                PlayAnimation(animationType, this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AnimationColumn);
             }
             else
             {
-                PlayAnimation(gameTime, animationType);
+                PlayAnimation(animationType);
             }
 
         }
