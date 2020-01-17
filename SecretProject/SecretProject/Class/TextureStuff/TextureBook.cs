@@ -72,6 +72,8 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D BusinessSnail;
         public Texture2D BusinessSnailPortrait;
 
+        public Texture2D Mippin;
+
         //playeractions
 
 
@@ -193,7 +195,7 @@ namespace SecretProject.Class.TextureStuff
             BusinessSnail = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnail");
             BusinessSnailPortrait = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnailPortrait");
 
-
+            Mippin = content.Load<Texture2D>("NPC/Mippin/mippin");
 
 
 

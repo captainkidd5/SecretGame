@@ -73,7 +73,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         {
             for(int i =0;  i < this.OverWorldSpawnElements.Count; i++)
             {
-                if(gid == this.OverWorldSpawnElements[i].GID)
+                if(gid == this.OverWorldSpawnElements[i].GID - 1)
                 {
                     this.OverWorldSpawnElements[i].Unlocked = true;
                 }

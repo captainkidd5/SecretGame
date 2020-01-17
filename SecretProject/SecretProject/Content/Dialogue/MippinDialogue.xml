@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.DialogueStuff.DialogueHolder">
+  <SpeakerID>8</SpeakerID>
+  <AllDialogue>
+  <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>15</TimeEnd>
+   <TextToWrite>Hey! Anything I can do for you? `
+   </TextToWrite>
+   <SelectableOptions>Id like to access the houseing shop~OpenKayaShop,no~Load.11</SelectableOptions>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>11</SpeechID>
+    <Day>0</Day>
+    <TimeStart>6</TimeStart>
+    <TimeEnd>12</TimeEnd>
+   <TextToWrite>Great!
+   </TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>2</SpeechID>
+    <Day>0</Day>
+    <TimeStart>16</TimeStart>
+    <TimeEnd>19</TimeEnd>
+   <TextToWrite>I'm glad the Cafe has vegetarian options.
+   </TextToWrite>
+    </Item>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>3</SpeechID>
+    <Day>0</Day>
+    <TimeStart>21</TimeStart>
+    <TimeEnd>4</TimeEnd>
+   <TextToWrite>See you tomorrow!</TextToWrite>
+    </Item>
+  </AllDialogue>
+  </Asset>
+</XnaContent>
