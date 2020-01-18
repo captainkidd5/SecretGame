@@ -726,11 +726,11 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
                         {
-                            int startI = Game1.cam.CameraScreenRectangle.X / 16 - this.ActiveChunks[a, b].X * 16;
-                            int endI = Game1.cam.CameraScreenRectangle.X / 16 + Game1.cam.CameraScreenRectangle.Width / 16 - this.ActiveChunks[a, b].X * 16;
+                            int startI = (Game1.cam.CameraScreenRectangle.X - 48 )/ 16 - this.ActiveChunks[a, b].X * 16;
+                            int endI = Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16  - this.ActiveChunks[a, b].X * 16;
 
-                            int startY = Game1.cam.CameraScreenRectangle.Y / 16 - this.ActiveChunks[a, b].Y * 16;
-                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + Game1.cam.CameraScreenRectangle.Height / 16 - this.ActiveChunks[a, b].Y * 16;
+                            int startY = (Game1.cam.CameraScreenRectangle.Y - 48) / 16  - this.ActiveChunks[a, b].Y * 16;
+                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 48 )/ 16 - this.ActiveChunks[a, b].Y * 16;
 
 
                             if (startI < 0)
