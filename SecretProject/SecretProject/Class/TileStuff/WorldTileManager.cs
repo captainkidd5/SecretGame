@@ -522,7 +522,7 @@ namespace SecretProject.Class.TileStuff
                                             {
 
                                                 //this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY] = new Tile(frameholder.OldX, frameholder.OldY, frameholder.OriginalTileID + 1);
-                                               // this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey = this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this.ActiveChunks[a, b]);
+                                                // this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey = this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].GetTileKeyStringNew(frameholder.Layer, this.ActiveChunks[a, b]);
                                                 AnimationFrameKeysToRemove.Add(this.ActiveChunks[a, b].AllTiles[frameholder.Layer][frameholder.OldX, frameholder.OldY].TileKey);
                                                 if (this.MapName.Tilesets[this.TileSetNumber].Tiles[frameholder.OriginalTileID].Properties.ContainsKey("destructable"))
                                                 {
@@ -724,12 +724,53 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (this.ActiveChunks[a, b].IsLoaded)
                     {
-
-
                         if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
                         {
-                            List<float> testAllOffsets = new List<float>();
-                            int totalRepeats = 0;
+                            int startI = Game1.cam.CameraScreenRectangle.X / 16 - this.ActiveChunks[a, b].X * 16;
+                            int endI = Game1.cam.CameraScreenRectangle.X / 16 + Game1.cam.CameraScreenRectangle.Width / 16 - this.ActiveChunks[a, b].X * 16;
+
+                            int startY = Game1.cam.CameraScreenRectangle.Y / 16 - this.ActiveChunks[a, b].Y * 16;
+                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + Game1.cam.CameraScreenRectangle.Height / 16 - this.ActiveChunks[a, b].Y * 16;
+
+
+                            if (startI < 0)
+                            {
+                                startI = 0;
+                            }
+                            else if (startI > 15)
+                            {
+                                startI = 15;
+                            }
+                            if (endI < 0)
+                            {
+                                endI = 0;
+                            }
+                            else if (endI > 15)
+                            {
+                                endI = 15;
+                            }
+
+
+
+                            if (startY < 0)
+                            {
+                                startY = 0;
+                            }
+                            else if (startY > 15)
+                            {
+                                startY = 15;
+                            }
+                            if (endY < 0)
+                            {
+                                endY = 0;
+                            }
+                            else if (endY > 15)
+                            {
+                                endY = 15;
+                            }
+
+
+
                             if (Game1.GetCurrentStage().ShowBorders)
                             {
                                 spriteBatch.Draw(this.ActiveChunks[a, b].RectangleTexture, new Vector2(this.ActiveChunks[a, b].GetChunkRectangle().X, this.ActiveChunks[a, b].GetChunkRectangle().Y), color: Color.White, layerDepth: 1f);
@@ -738,9 +779,9 @@ namespace SecretProject.Class.TileStuff
                             }
                             for (int z = 0; z < 4; z++)
                             {
-                                for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                                for (int i = startI; i <= endI; i++)
                                 {
-                                    for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                    for (int j = startY; j <= endY; j++)
                                     {
                                         if (this.ActiveChunks[a, b].AllTiles[z][i, j].GID != -1)
                                         {
@@ -786,7 +827,7 @@ namespace SecretProject.Class.TileStuff
                             //{
                             //    Console.WriteLine(totalRepeats.ToString());
                             //}
-                            
+
 
 
 
