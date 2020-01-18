@@ -120,7 +120,8 @@ namespace SecretProject.Class.Playable
             }
         }
 
-
+        public Vector2 MoveToPosition { get; private set; }
+        public bool IsMovingTowardsPoint { get; private set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
@@ -215,6 +216,24 @@ namespace SecretProject.Class.Playable
 
 
         }
+        private bool MoveTowardsPoint(Vector2 goal,float speed, GameTime gameTime)
+        {
+            if (this.Position == goal) return true;
+
+            Vector2 direction = Vector2.Normalize(goal - this.Position);
+
+            this.Position += direction * speed;
+
+            if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
+                this.Position = goal;
+
+            return this.Position == goal;
+        }
+        public void MoveToPoint(Vector2 position)
+        {
+            this.MoveToPosition = position;
+            this.IsMovingTowardsPoint = true;
+        }
 
         //adjusts current equipped items position based on direction player is facing
         public void AdjustCurrentTool(Dir direction, Sprite sprite)
@@ -294,6 +313,18 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        public void UpdateAnimationPosition()
+        {
+            for (int i = 0; i < animations.GetLength(0); i++)
+            {
+                for (int j = 0; j < animations.GetLength(1); j++)
+                {
+                    animations[i, j].UpdateAnimationPosition(this.Position);
+
+                }
+
+            }
+        }
 
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
@@ -304,6 +335,16 @@ namespace SecretProject.Class.Playable
                 PrimaryVelocity = Vector2.Zero;
 
                 this.IsMoving = controls.IsMoving;
+
+                if(IsMovingTowardsPoint)
+                {
+                    UpdateAnimationPosition();   
+                    if(MoveTowardsPoint(this.MoveToPosition, .5f, gameTime))
+                    {
+                        this.IsMovingTowardsPoint = false;
+                    }
+                }
+
                 KeyboardState kState = Keyboard.GetState();
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
@@ -349,7 +390,7 @@ namespace SecretProject.Class.Playable
                 }
 
 
-                if (this.IsMoving && !IsPerformingAction)
+                if (this.IsMoving && !IsMovingTowardsPoint && !IsPerformingAction)
                 {
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {

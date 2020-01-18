@@ -658,6 +658,8 @@ namespace SecretProject.Class.TileStuff
                     if (mouse.IsClicked)
                     {
                         Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
+                        Vector2 moveToPosition = container.AllTiles[z][i, j].GetPosition(container);
+                        Game1.Player.MoveToPoint(new Vector2(moveToPosition.X, moveToPosition.Y - 48));
                     }
                     break;
 

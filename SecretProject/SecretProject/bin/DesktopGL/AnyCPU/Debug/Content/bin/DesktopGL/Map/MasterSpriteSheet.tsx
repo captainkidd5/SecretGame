@@ -3928,6 +3928,7 @@
  <tile id="8247">
   <properties>
    <property name="action" value="enterPortal"/>
+   <property name="newHitBox" value="-32,-16,64,32"/>
   </properties>
   <animation>
    <frame tileid="8747" duration="200"/>
