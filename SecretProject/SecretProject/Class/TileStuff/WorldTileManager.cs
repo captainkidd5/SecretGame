@@ -10,6 +10,7 @@ using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff.SanctuaryStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,6 +81,7 @@ namespace SecretProject.Class.TileStuff
 
         //Number of Chunks fully active 
         public static int FullyActiveChunks { get; set; }
+        public List<SPlot> AllPlots { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Point[] ChunkPositions;
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)

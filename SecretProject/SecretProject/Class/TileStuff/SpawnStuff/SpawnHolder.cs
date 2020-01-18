@@ -32,7 +32,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new OverworldSpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new OverworldSpawnElement(3439, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.DirtCliffBottom, 100,false, true){Unlocked = true }, //mineshaft
 
-                
+                //CROPS - goes by GID, not by item id
+                new OverworldSpawnElement(487, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloomberry
+
+                new OverworldSpawnElement(287, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloodcorn
 
             };
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW

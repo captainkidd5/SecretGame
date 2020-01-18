@@ -124,7 +124,7 @@ namespace SecretProject
         public static World CaveWorld;
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase SanctuaryHub;
-        public static TmxStageBase Forest;
+        public static SanctuaryBase Forest;
         public static TmxStageBase ResearchStation;
 
         public static List<ILocation> AllStages;
@@ -501,7 +501,7 @@ namespace SecretProject
             CaveWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.CaveWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             SanctuaryHub = new TmxStageBase("SanctuaryHub", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/SanctuaryHub.tmx", 1, 0) { StageIdentifier = (int)Stages.SanctuaryHub };
-            Forest = new TmxStageBase("Forest", LocationType.Exterior, StageType.Sanctuary, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
+            Forest = new SanctuaryBase("Forest", LocationType.Exterior, StageType.Sanctuary, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
             ResearchStation = new TmxStageBase("ResearchStation", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/ResearchStation.tmx", 1, 0) { StageIdentifier = (int)Stages.ResearchStation };
 
 
@@ -523,32 +523,48 @@ namespace SecretProject
 
 
             Shop DobbinShop = new Shop(graphics.GraphicsDevice, 2, "DobbinShop", new ShopMenu("DobbinShopInventory", graphics.GraphicsDevice, 5));
-            for (int i = 0; i < AllItems.AllItems.Count; i++)
-            {
-                DobbinShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
-            }
+
+            //bloomberry seeds
+            DobbinShop.ShopMenu.TryAddStock(748, 2);
+            //bloodcorn seeds
+            DobbinShop.ShopMenu.TryAddStock(750, 2);
+            //brine bulb seeds 
+            DobbinShop.ShopMenu.TryAddStock(752, 2);
+            //soil
+            DobbinShop.ShopMenu.TryAddStock(1006, 50);
+
 
 
             Shop JulianShop = new Shop(graphics.GraphicsDevice, 3, "JulianShop", new ShopMenu("JulianShopInventory", graphics.GraphicsDevice, 10));
-            for (int i = 0; i < AllItems.AllItems.Count; i++)
-            {
-                JulianShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
-            }
+
+            //steel axe
+            JulianShop.ShopMenu.TryAddStock(1, 5);
+            //steel hammer
+            JulianShop.ShopMenu.TryAddStock(41, 5);
+            //steel shovel
+            JulianShop.ShopMenu.TryAddStock(121, 5);
+            //stone sword
+            JulianShop.ShopMenu.TryAddStock(160, 5);
+            //steel ore
+            JulianShop.ShopMenu.TryAddStock(640, 1);
 
             Shop ElixirShop = new Shop(graphics.GraphicsDevice, 4, "ElixirShop", new ShopMenu("ElixirShopInventory", graphics.GraphicsDevice, 10));
-            for (int i = 0; i < AllItems.AllItems.Count; i++)
-            {
-                ElixirShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
-            }
+
+            //empty flask
+            ElixirShop.ShopMenu.TryAddStock(28, 5);
+
 
             Shop KayaShop = new Shop(graphics.GraphicsDevice, 5, "KayaShop", new ShopMenu("KayaShopInventory", graphics.GraphicsDevice, 10));
-            for (int i = 0; i < AllItems.AllItems.Count; i++)
-            {
-                KayaShop.ShopMenu.TryAddStock(AllItems.AllItems[i].ID, 5);
-            }
+            //capture crate
+            KayaShop.ShopMenu.TryAddStock(333, 5);
+            //specimin jar
+            KayaShop.ShopMenu.TryAddStock(373, 5);
+
+
             Shop BuisnessSnailShop = new Shop(graphics.GraphicsDevice, 6, "BusinessSnailShop", new ShopMenu("BusinessSnailShopInventory", graphics.GraphicsDevice, 10));
 
             BuisnessSnailShop.ShopMenu.TryAddStock(601, 5);
+            BuisnessSnailShop.ShopMenu.TryAddStock(1402, 1);
 
             AllShops = new List<IShop>()
             {
@@ -559,7 +575,7 @@ namespace SecretProject
                 KayaShop,
                 BuisnessSnailShop
             };
-            for (int i = 0; i < 99; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(374, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(335, null));
@@ -567,6 +583,7 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1095, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(748, null));
             }
 
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1240, null));

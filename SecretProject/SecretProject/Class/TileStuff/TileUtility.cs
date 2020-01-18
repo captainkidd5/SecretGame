@@ -547,29 +547,45 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (mouse.IsClicked)
                         {
-                            SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
-                            Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                            if (testItem != null)
+                            for(int sp = 0; sp < Game1.Forest.AllTiles.AllPlots.Count; sp++)
                             {
-                                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
+                                if(mouse.WorldMouseRectangle.Intersects(Game1.Forest.AllTiles.AllPlots[sp].Bounds))
                                 {
-
-                                    mouse.ChangeMouseTexture(CursorType.Planting);
-                                    if (!container.Crops.ContainsKey(container.AllTiles[2][i, j].GetTileKeyStringNew(2, container)))
+                                    if (Game1.Forest.AllTiles.AllPlots[sp].ItemIDAllowed == Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool())
                                     {
-                                        if (tracker.UpdateCompletionGuide(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()))
+                                        SanctuaryTracker tracker = Game1.GetSanctuaryTrackFromStage(Game1.GetCurrentStageInt());
+                                        Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
+                                        if (testItem != null)
                                         {
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
-                                            Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-    
-                                            TileUtility.ReplaceTile(3, i, j, tempCrop.GID, container);
-       
-                                            Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
-                                        }
-                                    }
+                                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
+                                            {
 
+                                                mouse.ChangeMouseTexture(CursorType.Planting);
+                                                if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(3, container)))
+                                                {
+                                                    if (tracker.UpdateCompletionGuide(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()))
+                                                    {
+                                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                                        Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
+
+                                                        TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
+
+                                                        Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
                                 }
+                                
                             }
+                            
 
                         }
 

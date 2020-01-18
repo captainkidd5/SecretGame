@@ -9,6 +9,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff.SanctuaryStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,13 +85,10 @@ namespace SecretProject.Class.TileStuff
         WorldTileManager IInformationContainer.TileManager { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<int[,]> AdjacentNoise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Random Random { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<SPlot> AllPlots { get; set; }
 
         #region CONSTRUCTORS
 
-        private TileManager()
-        {
-
-        }
 
         public TileManager(Texture2D tileSet, TmxMap mapName, List<TmxLayer> allLayers, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths, ILocation currentStage)
         {

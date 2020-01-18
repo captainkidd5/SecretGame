@@ -14,8 +14,8 @@
     <Tab>0</Tab>
     <ItemID>748</ItemID>
     <GIDRequired>1579</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-     <Description>Plant 5 BloomBerry.</Description>
+    <NumberRequired>9</NumberRequired>
+     <Description>Plant 9 BloomBerry.</Description>
      <GoldAwardAmount>25</GoldAwardAmount>
      <Rewards>
     </Rewards>
@@ -30,8 +30,8 @@
     <Tab>0</Tab>
     <ItemID>752</ItemID>
     <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Plant 5 BrineBulbs. </Description>
+    <NumberRequired>9</NumberRequired>
+    <Description>Plant 9 BrineBulbs. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
     <Rewards>
     </Rewards>
@@ -46,8 +46,8 @@
     <Tab>0</Tab>
     <ItemID>756</ItemID>
     <GIDRequired>1663</GIDRequired>
-    <NumberRequired>3</NumberRequired>
-    <Description>Plant 3 Yallon Flowers. </Description>
+    <NumberRequired>9</NumberRequired>
+    <Description>Plant 9 Yallon Flowers. </Description>
      <GoldAwardAmount>25</GoldAwardAmount>
     <Rewards>
     <Item>GrindStone
@@ -55,6 +55,24 @@
     </Rewards>
     <X>1537</X>
     <Y>48</Y>
+    <Width>16</Width>
+    <Height>32</Height>
+    </Item>
+
+     <!-- BloodCorn -->
+    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+    <Tab>0</Tab>
+    <ItemID>750</ItemID>
+    <GIDRequired>1663</GIDRequired>
+    <NumberRequired>9</NumberRequired>
+    <Description>Plant 9 Yallon Flowers. </Description>
+     <GoldAwardAmount>25</GoldAwardAmount>
+    <Rewards>
+    <Item>GrindStone
+    </Item>
+    </Rewards>
+    <X>1440</X>
+    <Y>16</Y>
     <Width>16</Width>
     <Height>32</Height>
     </Item>

@@ -9,6 +9,7 @@ using SecretProject.Class.LightStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff.SanctuaryStuff;
 using System;
 using System.Collections.Generic;
 using TiledSharp;
@@ -51,6 +52,9 @@ namespace SecretProject.Class.TileStuff
         void UpdateCropTile();
         void HandleClockChange(object sender, EventArgs eventArgs);
         Chunk[,] ActiveChunks { get; set; }
+
+        //SanctuarySpecific
+         List<SPlot> AllPlots { get; set; }
 
     }
 }
