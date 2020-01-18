@@ -657,9 +657,24 @@ namespace SecretProject.Class.TileStuff
                 case "enterPortal":
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
-                        Vector2 moveToPosition = container.AllTiles[z][i, j].GetPosition(container);
-                        Game1.Player.MoveToPoint(new Vector2(moveToPosition.X, moveToPosition.Y - 48));
+                        if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+                        {
+                            foreach (Chunk chunk in Game1.OverWorld.AllTiles.ActiveChunks)
+                            {
+                                if (!chunk.AreReadersAndWritersDone)
+                                {
+                                    return;
+                                }
+                            }
+                            Game1.Player.UserInterface.WarpGate.To = Stages.Town;
+                        }
+                        else if (Game1.GetCurrentStageInt() == Stages.Town)
+                        {
+                            Game1.Player.UserInterface.WarpGate.To = Stages.OverWorld;
+                        }
+
+                        Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.WarpGate;
+                        Game1.Player.UserInterface.WarpGate.CenterOfPortal = container.AllTiles[z][i, j].GetPosition(container);
                     }
                     break;
 

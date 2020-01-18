@@ -10,6 +10,7 @@ using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
@@ -122,6 +123,7 @@ namespace SecretProject.Class.Playable
 
         public Vector2 MoveToPosition { get; private set; }
         public bool IsMovingTowardsPoint { get; private set; }
+        public bool TransportAfterMove { get; set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
@@ -342,6 +344,12 @@ namespace SecretProject.Class.Playable
                     if(MoveTowardsPoint(this.MoveToPosition, .5f, gameTime))
                     {
                         this.IsMovingTowardsPoint = false;
+                        if(TransportAfterMove)
+                        {
+                            Game1.Player.UserInterface.WarpGate.Transport(Game1.Player.UserInterface.WarpGate.To);
+                            TransportAfterMove = false;
+                        }
+                        
                     }
                 }
 

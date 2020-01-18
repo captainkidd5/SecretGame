@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.Playable;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
@@ -19,7 +20,7 @@ namespace SecretProject.Class.Transportation
         public TextBox TextBox { get; set; }
         public Stages To { get; set; }
 
-
+        public Vector2 CenterOfPortal { get; set; }
 
         public WarpGate(GraphicsDevice graphics)
         {
@@ -34,7 +35,13 @@ namespace SecretProject.Class.Transportation
             this.No.Update(Game1.myMouseManager);
             if (this.Yes.isClicked)
             {
-                Transport(this.To);
+               
+                Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
+                Vector2 moveToPosition = CenterOfPortal;
+                Game1.Player.MoveToPoint(new Vector2(moveToPosition.X, moveToPosition.Y - 48));
+                Game1.Player.TransportAfterMove = true;
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+
             }
             else if (this.No.isClicked)
             {
@@ -62,13 +69,18 @@ namespace SecretProject.Class.Transportation
                     }
                 }
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.Player.Position = new Vector2(800, 800);
+                Game1.Player.position = new Vector2(1170, 730);
+                Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
+                Game1.Player.MoveToPoint(new Vector2(1170, 800));
+
             }
             else
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.Player.Position = new Vector2(80, 80);
-            //    Game1.OverWorld.AllTiles.LoadInitialChunks(Vector2.Zero);
+                Game1.Player.position = new Vector2(80, 120);
+                Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
+                Game1.Player.MoveToPoint(new Vector2(80, 200));
+
             }
 
             Game1.Player.UserInterface.CurrentOpenInterfaceItem = UI.ExclusiveInterfaceItem.None;
