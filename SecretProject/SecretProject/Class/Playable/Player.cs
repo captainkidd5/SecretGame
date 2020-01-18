@@ -341,7 +341,7 @@ namespace SecretProject.Class.Playable
                 if(IsMovingTowardsPoint)
                 {
                     UpdateAnimationPosition();   
-                    if(MoveTowardsPoint(this.MoveToPosition, .5f, gameTime))
+                    if(MoveTowardsPoint(this.MoveToPosition, 1f, gameTime))
                     {
                         this.IsMovingTowardsPoint = false;
                         if(TransportAfterMove)

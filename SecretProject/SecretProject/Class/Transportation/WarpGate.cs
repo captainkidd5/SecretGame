@@ -38,7 +38,7 @@ namespace SecretProject.Class.Transportation
                
                 Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
                 Vector2 moveToPosition = CenterOfPortal;
-                Game1.Player.MoveToPoint(new Vector2(moveToPosition.X, moveToPosition.Y - 48));
+                Game1.Player.MoveToPoint(new Vector2(moveToPosition.X, moveToPosition.Y - 24));
                 Game1.Player.TransportAfterMove = true;
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
@@ -69,17 +69,19 @@ namespace SecretProject.Class.Transportation
                     }
                 }
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.Player.position = new Vector2(1170, 730);
-                Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
-                Game1.Player.MoveToPoint(new Vector2(1170, 800));
+                Game1.Player.position = new Vector2(1170, 690);
+                Game1.Player.controls.Direction = Dir.Down;
+                Game1.Player.PlayAnimation(AnimationType.PortalJump);
+                Game1.Player.MoveToPoint(new Vector2(1170, 730));
 
             }
             else
             {
                 Game1.SwitchStage(Game1.GetCurrentStageInt(), to);
-                Game1.Player.position = new Vector2(80, 120);
-                Game1.Player.DoPlayerAnimation(AnimationType.PortalJump);
-                Game1.Player.MoveToPoint(new Vector2(80, 200));
+                Game1.Player.position = new Vector2(85, 100);
+                Game1.Player.controls.Direction = Dir.Down;
+                Game1.Player.PlayAnimation(AnimationType.PortalJump);
+                Game1.Player.MoveToPoint(new Vector2(85, 150));
 
             }
 
