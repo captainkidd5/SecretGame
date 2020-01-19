@@ -62,10 +62,10 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 }
                 else if(Requirement.SanctuaryRewards[i].GIDUnlock != 0)
                 {
-                    RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
+                    RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
                  this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
                         {
-                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100),
+                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock,100)
                     });
                 }
                 

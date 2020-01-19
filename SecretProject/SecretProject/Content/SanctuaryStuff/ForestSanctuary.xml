@@ -42,6 +42,11 @@
                 <GoldAmount>25</GoldAmount>
                 
               </Item>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Unlock harvesting of Brine Bulbs.</Description>
+                <GIDUnlock>690</GIDUnlock>
+                
+              </Item>
             </Rewards>
             <X>1440</X>
             <Y>96</Y>

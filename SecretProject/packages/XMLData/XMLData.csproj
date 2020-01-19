@@ -44,6 +44,8 @@
     <Compile Include="ItemStuff\ItemHolder.cs" />
     <Compile Include="ItemStuff\ItemRecipe.cs" />
     <Compile Include="ItemStuff\ItemsRequired.cs" />
+    <Compile Include="ItemStuff\LootData.cs" />
+    <Compile Include="ItemStuff\LootHolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RouteStuff\Route.cs" />
     <Compile Include="RouteStuff\RouteSchedule.cs" />
