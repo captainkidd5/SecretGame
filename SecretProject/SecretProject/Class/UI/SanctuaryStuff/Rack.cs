@@ -42,40 +42,37 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.RackPosition = rackPosition;
             this.Requirement = requirement;
             RewardIcons = new List<Button>();
-            this.GoldAmount = requirement.GoldAmount;
-            this.GIDUnlock = requirement.GIDUnlock;
-            this.GIDUnlockDescription = requirement.GIDUnlockDescription;
             int buttonIndex = 0;
             for (int i = 0; i < Requirement.SanctuaryRewards.Count; i++)
             {
-
-                RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
-                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.Requirement.SanctuaryRewards[i], null)));
-                buttonIndex++;
-
-
-
-            }
-            if (GoldAmount > 0)
-            {
-                RewardIcons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32),
-                    this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal)
+                if(Requirement.SanctuaryRewards[i].GoldAmount > 0)
                 {
-                    ItemSourceRectangleToDraw = new Rectangle(16, 288, 32, 32),
-
-                }); ;
-                buttonIndex++;
-            }
-            if(GIDUnlock != 0)
-            {
-                RewardIcons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32),
+                    RewardIcons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32),
                     this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal)
-                {
-                    ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(this.GIDUnlock, 100),
-                    GID = this.GIDUnlock,
+                    {
+                        ItemSourceRectangleToDraw = new Rectangle(16, 288, 32, 32),
 
-                }); ;
+                    }); ;
+                    
+                }
+                else if(Requirement.SanctuaryRewards[i].ItemUnlock != 0)
+                {
+                    RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
+                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f, Game1.ItemVault.GenerateNewItem((int)this.Requirement.SanctuaryRewards[i].ItemUnlock, null)));
+                }
+                else if(Requirement.SanctuaryRewards[i].GIDUnlock != 0)
+                {
+                    RewardIcons.Add(new Button(Game1.AllTextures.ItemSpriteSheet, new Rectangle(736, 32, 32, 32),
+                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
+                        {
+                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100),
+                    });
+                }
+                
                 buttonIndex++;
+
+
+
             }
             this.ColorMultiplier = new float[buttonIndex];
             this.ChainsColorMultiplier = 1f;
@@ -99,41 +96,18 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 if (this.RewardIcons[i].IsHovered)
                 {
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    if (RewardIcons[i].Item != null)
-                    {
+
                         if(!this.Requirement.IndividualRewards[i])
                         {
-                            Game1.Player.UserInterface.InfoBox.FitText("Unlocks: " + this.RewardIcons[i].Item.Name, 1f);
+                            Game1.Player.UserInterface.InfoBox.FitText(Requirement.SanctuaryRewards[i].Description, 1f);
                         }
                         else
                         {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.RewardIcons[i].Item.Name + " (Claimed)", 1f);
+                            Game1.Player.UserInterface.InfoBox.FitText(Requirement.SanctuaryRewards[i].Description + " (Claimed)", 1f);
                         }
                         
-                    }
-                    else if (RewardIcons[i].GID != 0)
-                    {
-                        if (!this.Requirement.IndividualRewards[i])
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription, 1f);
-                        }
-                        else
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GIDUnlockDescription + " (Claimed)", 1f);
-                        }
-                    }
-                    else if(this.GoldAmount > 0)
-                    {
-                        if(!this.Requirement.IndividualRewards[i])
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GoldAmount.ToString() + " Coins", 1f);
-                        }
-                        else
-                        {
-                            Game1.Player.UserInterface.InfoBox.FitText(this.GoldAmount.ToString() + " Coins (Claimed)", 1f);
-                        }
-                        
-                    }
+                    
+                    
                     
 
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X + 48, Game1.myMouseManager.Position.Y + 48);
@@ -142,19 +116,19 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                     {
                         if (RewardIcons[i].isClicked && this.Requirement.ChainsTransitionCompleted)
                         {
-                            if(RewardIcons[i].Item != null)
+                            if(Requirement.SanctuaryRewards[i].ItemUnlock != 0)
                             {
                                 this.Requirement.ClaimReward(i, RewardIcons[i].Position, RewardIcons[i].Item);
                                 this.ColorMultiplier[i] = .25f;
                             }
-                            else if(RewardIcons[i].GID != 0)
+                            else if(Requirement.SanctuaryRewards[i].GIDUnlock != 0)
                             {
-                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: RewardIcons[i].GID);
+                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: Requirement.SanctuaryRewards[i].GIDUnlock);
                                 this.ColorMultiplier[i] = .25f;
                             }
-                            else
+                            else if(Requirement.SanctuaryRewards[i].GoldAmount != 0)
                             {
-                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gold: true);
+                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gold: Requirement.SanctuaryRewards[i].GoldAmount);
                                 this.ColorMultiplier[i] = .25f;
                             }
                             

@@ -18,8 +18,7 @@ namespace XMLData.SanctuaryStuff
 
         public string Description { get; set; }
 
-        [ContentSerializer(Optional = true)]
-        public int GoldAwardAmount { get; set; }
+
 
         public List<SanctuaryReward> Rewards { get; set; }
 
@@ -32,9 +31,6 @@ namespace XMLData.SanctuaryStuff
         [ContentSerializer(Optional = true)]
         public Rectangle Rectangle { get
             { return new Rectangle(X, Y, Width, Height); }  }
-
-        [ContentSerializer(Optional = true)]
-        public int GIDUnlock { get; set; }
 
         [ContentSerializer(Optional = true)]
         public string GIDUnlockDescription { get; set; }

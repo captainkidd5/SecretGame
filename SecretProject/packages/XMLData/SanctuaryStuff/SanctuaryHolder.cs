@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace XMLData.SanctuaryStuff
 {
-    public enum SanctuaryReward
-    {
-        Gold = 1,
-        GrindStone = 1202,
-        SawTable = 1201,
-        Furnace = 1202,
-
-    }
+    
 
     public enum GIDUnlock
     {

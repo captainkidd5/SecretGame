@@ -1,192 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
-<Asset Type ="XMLData.SanctuaryStuff.SanctuaryHolder">
-<ID>1</ID>
-  <AllPages>
+  <Asset Type ="XMLData.SanctuaryStuff.SanctuaryHolder">
+    <ID>1</ID>
+    <AllPages>
 
-<Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
-<Name>Basic Flora</Name>
-<Tab>0</Tab>
-<Description>Find these basic forest plants and cultivate them anywhere in the Forest Sanctuary.</Description>
-<AllRequirements>
-  <!-- BloomBerry -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>0</Tab>
-    <ItemID>748</ItemID>
-    <GIDRequired>1579</GIDRequired>
-    <NumberRequired>9</NumberRequired>
-     <Description>Plant 9 BloomBerry.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-     <Rewards>
-    </Rewards>
-    <X>1440</X>
-    <Y>48</Y>
-    <Width>16</Width>
-    <Height>32</Height>
-    </Item>
+      <Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
+        <Name>Basic Flora</Name>
+        <Tab>0</Tab>
+        <Description>Find these basic forest plants and cultivate them anywhere in the Forest Sanctuary.</Description>
+        <AllRequirements>
+          <!-- BloomBerry -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>0</Tab>
+            <ItemID>748</ItemID>
+            <GIDRequired>1579</GIDRequired>
+            <NumberRequired>9</NumberRequired>
+            <Description>Plant 9 BloomBerry.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1440</X>
+            <Y>48</Y>
+            <Width>16</Width>
+            <Height>32</Height>
+          </Item>
 
-    <!-- Brine Bulb -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>0</Tab>
-    <ItemID>752</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>9</NumberRequired>
-    <Description>Plant 9 BrineBulbs. </Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    </Rewards>
-    <X>1440</X>
-    <Y>96</Y>
-    <Width>16</Width>
-    <Height>32</Height>
-    </Item>
+          <!-- Brine Bulb -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>0</Tab>
+            <ItemID>752</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>9</NumberRequired>
+            <Description>Plant 9 BrineBulbs. </Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1440</X>
+            <Y>96</Y>
+            <Width>16</Width>
+            <Height>32</Height>
+          </Item>
 
-     <!-- Yallon -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>0</Tab>
-    <ItemID>756</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>9</NumberRequired>
-    <Description>Plant 9 Yallon Flowers. </Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1537</X>
-    <Y>48</Y>
-    <Width>16</Width>
-    <Height>32</Height>
-    </Item>
+          <!-- Yallon -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>0</Tab>
+            <ItemID>756</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>9</NumberRequired>
+            <Description>Plant 9 Yallon Flowers. </Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>30 Gold</Description>
+                <GoldAmount>30</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1537</X>
+            <Y>48</Y>
+            <Width>16</Width>
+            <Height>32</Height>
+          </Item>
 
-     <!-- BloodCorn -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>0</Tab>
-    <ItemID>750</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>9</NumberRequired>
-    <Description>Plant 9 Yallon Flowers. </Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1440</X>
-    <Y>16</Y>
-    <Width>16</Width>
-    <Height>32</Height>
-    </Item>
+          <!-- BloodCorn -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>0</Tab>
+            <ItemID>750</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>9</NumberRequired>
+            <Description>Plant 9 Yallon Flowers. </Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>25 Gold</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>45</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1440</X>
+            <Y>16</Y>
+            <Width>16</Width>
+            <Height>32</Height>
+          </Item>
 
-  </AllRequirements>
-  <FinalReward>SawTable</FinalReward>
-  </Item>
-  <Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
+        </AllRequirements>
+        <FinalReward>
 
+          <Description>Test1</Description>
 
-<Name>Basic Fauna</Name>
-<Tab>2</Tab>
-<Description>Catch these basic forest animals and release them anywhere in the Forest Sanctuary.</Description>
-<AllRequirements>
-
-    <!-- Boar Crate -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>2</Tab>
-    <ItemID>334</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Release 5 Boars.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1200</X>
-    <Y>256</Y>
-    <Width>16</Width>
-    <Height>16</Height>
-    </Item>
-
-      <!-- Rabbit Crate -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>2</Tab>
-    <ItemID>335</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Release 5 Rabbits.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1200</X>
-    <Y>272</Y>
-    <Width>16</Width>
-    <Height>16</Height>
-    <GIDUnlock>1380</GIDUnlock>
-    <GIDUnlockDescription>Pumpkins will begin to spawn in the wilderness.</GIDUnlockDescription>
-    </Item>
-
-      <!-- Monarch Jar -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>2</Tab>
-    <ItemID>374</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Release 5 butterflys.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1216</X>
-    <Y>240</Y>
-    <Width>16</Width>
-    <Height>16</Height>
-    </Item>
-
-      <!-- Monarch Jar -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>2</Tab>
-    <ItemID>374</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>7</NumberRequired>
-    <Description>Release 7 butterflys.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1216</X>
-    <Y>240</Y>
-    <Width>16</Width>
-    <Height>16</Height>
-    </Item>
-
-       <!-- Rabbit Crate -->
-    <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
-    <Tab>2</Tab>
-    <ItemID>335</ItemID>
-    <GIDRequired>1663</GIDRequired>
-    <NumberRequired>5</NumberRequired>
-    <Description>Release 5 Rabbits.</Description>
-     <GoldAwardAmount>25</GoldAwardAmount>
-    <Rewards>
-    <Item>GrindStone
-    </Item>
-    </Rewards>
-    <X>1200</X>
-    <Y>272</Y>
-    <Width>16</Width>
-    <Height>16</Height>
-    </Item>
+        </FinalReward>
+      </Item>
 
 
-  </AllRequirements>
-  <FinalReward>GrindStone</FinalReward>
-  <GIDUnlock>1381</GIDUnlock>
-  <GIDUnlockDescription>Pumpkins will now begin spawning in the wilderness!</GIDUnlockDescription>
-</Item>
-     
-  </AllPages>
+      <Item Type="XMLData.SanctuaryStuff.SanctuaryPageHolder">
+        <Name>Basic Fauna</Name>
+        <Tab>2</Tab>
+        <Description>Catch these basic forest animals and release them anywhere in the Forest Sanctuary.</Description>
+        <AllRequirements>
+
+          <!-- Boar Crate -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>2</Tab>
+            <ItemID>334</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>5</NumberRequired>
+            <Description>Release 5 Boars.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1200</X>
+            <Y>256</Y>
+            <Width>16</Width>
+            <Height>16</Height>
+          </Item>
+
+          <!-- Rabbit Crate -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>2</Tab>
+            <ItemID>335</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>5</NumberRequired>
+            <Description>Release 5 Rabbits.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+               <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+               
+              </Item>
+            </Rewards>
+            <X>1200</X>
+            <Y>272</Y>
+            <Width>16</Width>
+            <Height>16</Height>
+          </Item>
+
+          <!-- Monarch Jar -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>2</Tab>
+            <ItemID>374</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>5</NumberRequired>
+            <Description>Release 5 butterflys.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1216</X>
+            <Y>240</Y>
+            <Width>16</Width>
+            <Height>16</Height>
+          </Item>
+
+          <!-- Monarch Jar -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>2</Tab>
+            <ItemID>374</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>7</NumberRequired>
+            <Description>Release 7 butterflys.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1216</X>
+            <Y>240</Y>
+            <Width>16</Width>
+            <Height>16</Height>
+          </Item>
+
+          <!-- Rabbit Crate -->
+          <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
+            <Tab>2</Tab>
+            <ItemID>335</ItemID>
+            <GIDRequired>1663</GIDRequired>
+            <NumberRequired>5</NumberRequired>
+            <Description>Release 5 Rabbits.</Description>
+            <Rewards>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
+                <GoldAmount>25</GoldAmount>
+                
+              </Item>
+            </Rewards>
+            <X>1200</X>
+            <Y>272</Y>
+            <Width>16</Width>
+            <Height>16</Height>
+          </Item>
+
+
+        </AllRequirements>
+        <FinalReward>
+
+        
+
+        <Description>Test</Description>
+
+        </FinalReward>
+      </Item>
+
+    </AllPages>
   </Asset>
 </XnaContent>

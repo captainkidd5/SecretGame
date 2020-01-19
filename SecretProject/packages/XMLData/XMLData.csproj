@@ -50,6 +50,7 @@
     <Compile Include="SanctuaryStuff\SanctuaryHolder.cs" />
     <Compile Include="SanctuaryStuff\SanctuaryPageHolder.cs" />
     <Compile Include="SanctuaryStuff\SanctuaryRequirement.cs" />
+    <Compile Include="SanctuaryStuff\SanctuaryReward.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

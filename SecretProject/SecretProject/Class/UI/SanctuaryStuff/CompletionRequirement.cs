@@ -22,9 +22,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
         public List<SanctuaryReward> SanctuaryRewards { get; set; }
 
-        public int GoldAmount { get; set; }
-        public int GIDUnlock { get; set; }
-        public string GIDUnlockDescription { get; set; }
+
         public bool[] IndividualRewards { get; set; }
         public bool AllRewardsClaimed { get; set; }
         public bool ChainsTransitionCompleted { get; set; }
@@ -40,21 +38,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             this.String = description;
             this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
             this.SanctuaryRewards = sanctuaryRewards;
-            this.GoldAmount = goldAmount;
-            this.GIDUnlock = gidUnlock;
-            this.GIDUnlockDescription = gidUnlockDescription;
-            int boolCount = 0;
-            if (GoldAmount > 0)
-            {
-                boolCount++;
-            }
-            if(gidUnlock != 0)
-            {
-                boolCount++;
-            }
-            boolCount += this.SanctuaryRewards.Count;
 
-            IndividualRewards = new bool[boolCount];
+            IndividualRewards = new bool[SanctuaryRewards.Count];
         }
 
         public void Increment()
@@ -89,7 +74,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
         }
 
-        public void ClaimReward(int index, Vector2 rewardPosition, Item item = null, int gidUnlock = 0, bool gold = false)
+        public void ClaimReward(int index, Vector2 rewardPosition, Item item = null, int gidUnlock = 0, int gold = 0)
         {
             if (item != null)
             {
@@ -98,9 +83,9 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 return;
             }
 
-            if (gold)
+            if (gold > 0)
             {
-                for(int i =0; i < GoldAmount; i++)
+                for(int i =0; i < gold; i++)
                 {
                     Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, this.Graphics, rewardPosition, Game1.Player.UserInterface.BottomBar.GoldIconPosition, Game1.Player.UserInterface.AllUISprites));
                 }
@@ -110,8 +95,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
             if (gidUnlock != 0)
             {
-                Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
-                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
+                Game1.OverWorldSpawnHolder.UnlockSpawnElement(gidUnlock);
+                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, "hi");
 
             }
 
