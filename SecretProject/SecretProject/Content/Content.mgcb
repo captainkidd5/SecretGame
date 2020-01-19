@@ -278,6 +278,11 @@
 /processorParam:TextureFormat=Color
 /build:Item/ItemSpriteSheet.png
 
+#begin Item/Loot/LootHolder.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Item/Loot/LootHolder.xml
+
 #begin MainMenu/cloud1.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -26,6 +26,7 @@ using SecretProject.Class.Weather;
 using System.Collections.Generic;
 using XMLData.DialogueStuff;
 using XMLData.ItemStuff;
+using XMLData.ItemStuff.LootStuff;
 using XMLData.RouteStuff;
 using static SecretProject.Class.UI.CheckList;
 
@@ -190,6 +191,8 @@ namespace SecretProject
         //ITEMS
         public static ItemBank ItemVault;
 
+        
+
         //XMLDATA
 
         public DialogueHolder ElixirDialogue;
@@ -209,7 +212,7 @@ namespace SecretProject
         public RouteSchedule MippinRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
-
+        public static LootBank LootBank;
         public static CropHolder AllCrops;
 
         public static DialogueLibrary DialogueLibrary;
@@ -467,6 +470,8 @@ namespace SecretProject
 
             //ITEMS
             ItemVault = new ItemBank();
+
+            LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
 
 
             AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");

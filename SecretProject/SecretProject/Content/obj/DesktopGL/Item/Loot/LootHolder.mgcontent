@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Item/Loot/LootHolder.xml</SourceFile>
+  <SourceTime>2020-01-19T14:20:36.03877-08:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Item/Loot/LootHolder.xnb</DestFile>
+  <DestTime>2020-01-19T14:22:14.7730438-08:00</DestTime>
+  <Importer>XmlImporter</Importer>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
+  <Processor>PassThroughProcessor</Processor>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

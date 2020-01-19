@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+    <Asset Type ="XMLData.ItemStuff.LootStuff.LootHolder">
+        <AllLoot>
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>1</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+        </AllLoot>
+    </Asset>
+</XnaContent>
