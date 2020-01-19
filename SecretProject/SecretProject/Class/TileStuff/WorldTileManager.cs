@@ -476,16 +476,6 @@ namespace SecretProject.Class.TileStuff
             }
 
 
-            //        int starti = (int)(Game1.cam.Pos.X) - (int)(Game1.ScreenWidth / Game1.cam.Zoom / 2) - 1;
-
-            //int startj = (int)(Game1.cam.Pos.Y) - (int)(Game1.ScreenHeight / Game1.cam.Zoom / 2) - 1;
-
-            //int endi = (int)(Game1.ScreenWidth / Game1.cam.Zoom);
-
-            //int endj = (int)(Game1.ScreenHeight / Game1.cam.Zoom + 64);
-
-            //this.ScreenRectangle = new Rectangle(starti, startj, endi, endj);
-
             for (int a = WorldTileManager.RenderDistance / 2 - 1; a < WorldTileManager.RenderDistance / 2 + 2; a++)
             {
                 for (int b = WorldTileManager.RenderDistance / 2 - 1; b < WorldTileManager.RenderDistance / 2 + 2; b++)

@@ -39,3 +39,8 @@ Z = Sound
 
 ## To Fix XML Content Load not found thing:
 Simply run the project in Debug mode first, then load content
+
+
+## Delete chunks on startup - paste this into pre build event command line:
+cd "Content\SaveFiles\Chunks"
+del *.* /q

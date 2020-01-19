@@ -253,16 +253,7 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("crop"))
-                {
-                    int cropID = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["crop"]);
-                    Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
-                    tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
-                    tempCrop.GID++;
-                    tempCrop.X = x;
-                    tempCrop.Y = y;
-                    container.Crops[tileToAssign.GetTileKeyStringNew(layer, container)] = tempCrop;
-                }
+
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
                 {
                     Vector2 lightOffSet = LightSource.ParseLightData(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
@@ -434,6 +425,34 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        public static void AddCropToTile(Tile tileToAssign, int x, int y, int layer, IInformationContainer container, bool randomize = false)
+        {
+            if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("crop"))
+            {
+                int cropID = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["crop"]);
+                Crop tempCrop = Game1.AllCrops.GetCropFromID(cropID);
+                
+                tempCrop.X = x;
+                tempCrop.Y = y;
+                if(randomize)
+                {
+                    int randomGrowth = Game1.Utility.RNumber(0, 3);
+                    tempCrop.DayPlanted = Game1.GlobalClock.TotalDays - randomGrowth;
+                    tempCrop.CurrentGrowth += randomGrowth;
+                    tempCrop.GID += randomGrowth;
+                    tileToAssign.GID += randomGrowth + 1;
+                }
+                else
+                {
+                    tempCrop.DayPlanted = Game1.GlobalClock.TotalDays;
+                    tempCrop.GID++;
+                }
+                
+
+                container.Crops[tileToAssign.GetTileKeyStringNew(layer, container)] = tempCrop;
+            }
+        }
+
         /// <summary>
         /// For use with the "action" tile property. Does a number of various things depending on what the property is. May change the cursor texture.
         /// </summary>
@@ -503,6 +522,7 @@ namespace SecretProject.Class.TileStuff
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
+                                        AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
 
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     }
@@ -535,7 +555,8 @@ namespace SecretProject.Class.TileStuff
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
-  
+                                        AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
+
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                     }
                                 }
@@ -569,7 +590,7 @@ namespace SecretProject.Class.TileStuff
                                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
-
+                                                        AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
                                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
                                                     }
                                                 }
@@ -963,6 +984,7 @@ namespace SecretProject.Class.TileStuff
                 }
 
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
+                AddCropToTile(container.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, container, true);
                 return true;
 
             }
