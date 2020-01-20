@@ -563,8 +563,8 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
-            int mouseI = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
-            int mouseJ = TileUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
+            int mouseI = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
+            int mouseJ = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
             int playerI = (int)(Game1.Player.position.X / 16 - (this.ChunkUnderPlayer.X * 16));
             int playerJ = (int)(Game1.Player.position.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
 
@@ -687,7 +687,7 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            Tile tile = TileUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, this.ActiveChunks);
+            Tile tile = ChunkUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, this.ActiveChunks);
             if (tile != null)
             {
                 tile.ColorMultiplier = .25f;

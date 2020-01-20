@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.PathFinding;
 using SecretProject.Class.StageFolder;
 using System;
 
@@ -80,6 +81,17 @@ namespace SecretProject.Class.TileStuff
                 this.NegativeYDraw = this.RectangleCoordinates[1] / 16;
                 this.PositiveXDraw = this.RectangleCoordinates[2] / 16;
                 this.PositiveYDraw = this.RectangleCoordinates[3] / 16;
+
+                if(this.NegativeYDraw < 0)
+                {
+                    this.PositiveYDraw = PositiveYDraw + NegativeYDraw;
+                    this.PositiveYTest = PositiveYTest + NegativeYTest;
+                }
+                if(NegativeXDraw < 0)
+                {
+                    this.PositiveXDraw = PositiveXDraw + NegativeXDraw;
+                    this.PositiveXTest = PositiveXTest + NegativeXTest;
+                }
             }
             else
             {
@@ -116,7 +128,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                     {
-                        for (int j = this.NegativeYTest; j < 1; j++)
+                        for (int j = this.NegativeYTest; j < this.PositiveYTest; j++)
                         {
                             this.CanPlace = true;
 
@@ -134,11 +146,14 @@ namespace SecretProject.Class.TileStuff
                             for (int z = item.TilingLayer; z < 4; z++)
                             {
 
+                                GridStatus gridStatus = GridStatus.Clear;
 
-                                Tile tile = TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks);
+                             //   int pathGridSpecification = TileUtility.GetLocalChunkCoord()
+                                Tile tile = ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks);
                                 if (tile != null)
                                 {
-                                    if (TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks).GID == -1)
+                                    //if()
+                                    if (ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks).GID == -1)
                                     {
 
                                     }
@@ -173,7 +188,7 @@ namespace SecretProject.Class.TileStuff
                                 if (this.PlaceID == 2157)
                                 {
                                     Portal tempPortal = new Portal(3, 5, -56, 5, true);
-                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][TileUtility.GetLocalChunkCoord(subX), TileUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
+                                    tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
                                     Game1.OverWorld.AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
@@ -222,7 +237,7 @@ namespace SecretProject.Class.TileStuff
 
                 int subX = 0;
                 int subY = 0;
-
+               
                 for (int i = this.NegativeXDraw; i < this.PositiveXDraw; i++)
                 {
                     for (int j = this.NegativeYDraw; j < 1; j++)
@@ -240,10 +255,10 @@ namespace SecretProject.Class.TileStuff
                         {
                             subY -= 16;
                         }
-                        Tile tile = TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks);
+                        Tile tile = ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks);
                         if (tile != null)
                         {
-                            if (TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks).GID == -1)
+                            if (ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks).GID == -1)
                             {
 
                             }
@@ -266,15 +281,15 @@ namespace SecretProject.Class.TileStuff
 
                         if (canPlace)
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
-                                TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
+                                TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.White * 1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
-                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
-                                TileUtility.GetDestinationRectangle(TileUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
+                            spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
+                                TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
                                 newSourceRectangle, Color.Red * .1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }

@@ -2018,31 +2018,31 @@
  <tile id="1579">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="1005:100:1"/>
+   <property name="loot" value="1005"/>
   </properties>
  </tile>
  <tile id="1580">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="1000:100:1"/>
+   <property name="loot" value="1000"/>
   </properties>
  </tile>
  <tile id="1581">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="710:100:1"/>
+   <property name="loot" value="710"/>
   </properties>
  </tile>
  <tile id="1582">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="711:100:1"/>
+   <property name="loot" value="711"/>
   </properties>
  </tile>
  <tile id="1583">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="709:100"/>
+   <property name="loot" value="709"/>
    <property name="spawnWith" value="1483"/>
   </properties>
  </tile>
@@ -2056,7 +2056,7 @@
  <tile id="1585">
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
-   <property name="loot" value="708:100:1"/>
+   <property name="loot" value="708"/>
    <property name="spawnWith" value="1485"/>
   </properties>
   <objectgroup draworder="index">

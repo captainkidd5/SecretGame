@@ -2,6 +2,13 @@
 
 namespace SecretProject.Class.PathFinding
 {
+    public enum GridStatus
+    {
+        Obstructed = 0,
+        Clear = 1
+    }
+
+
     public class ObstacleGrid
     {
 
@@ -19,14 +26,14 @@ namespace SecretProject.Class.PathFinding
             {
                 for (int j = 0; j < mapHeight; j++)
                 {
-                    Weight[i, j] = 1;
+                    Weight[i, j] = (int)GridStatus.Clear;
                 }
             }
 
         }
 
         //1 empty, 0 obstructed
-        public void UpdateGrid(int indexI, int indexJ, int newValue)
+        public void UpdateGrid(int indexI, int indexJ, GridStatus newValue)
         {
             Weight[indexI, indexJ] = (byte)newValue;
         }

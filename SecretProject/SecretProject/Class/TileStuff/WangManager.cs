@@ -14,8 +14,8 @@ namespace SecretProject.Class.TileStuff
 
                     ReassignTileForTiling(mainGid, generatableTiles,
                                         tilingDictionary, layer,
-                                        TileUtility.GetLocalChunkCoord(mouseWorldX + t * 16), TileUtility.GetLocalChunkCoord(mouseWorldY + q * 16),
-                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, TileUtility.GetChunk(TileUtility.GetSquareTileCoord(mouseWorldX + t * 16), TileUtility.GetSquareTileCoord(mouseWorldY + q * 16), tileManager.ActiveChunks));
+                                        ChunkUtility.GetLocalChunkCoord(mouseWorldX + t * 16), ChunkUtility.GetLocalChunkCoord(mouseWorldY + q * 16),
+                                        TileUtility.ChunkWidth, TileUtility.ChunkHeight, ChunkUtility.GetChunk(TileUtility.GetSquareTileCoord(mouseWorldX + t * 16), TileUtility.GetSquareTileCoord(mouseWorldY + q * 16), tileManager.ActiveChunks));
                 }
             }
         }
