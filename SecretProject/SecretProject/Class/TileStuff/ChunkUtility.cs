@@ -10,11 +10,11 @@ namespace SecretProject.Class.TileStuff
     {
         public static Tile GetChunkTile(int tileX, int tileY, int layer, Chunk[,] ActiveChunks)
         {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f);
+            int chunkX = GetChunkX(tileX);
 
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f);
+            int chunkY = GetChunkY(tileY);
 
-            Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
+            Chunk chunk = GetChunk(chunkX, chunkY, ActiveChunks);
             if (chunk == null)
             {
                 return null;
@@ -47,6 +47,16 @@ namespace SecretProject.Class.TileStuff
         }
 
 
+        public static int GetChunkX(int tileX)
+        {
+           return (int)Math.Floor((float)tileX / 16.0f);
+        }
+
+        public static int GetChunkY(int tileY)
+        {
+            return (int)Math.Floor((float)tileY / 16.0f);
+        }
+
 
         /// <summary>
         /// Returns local X or Y coordinate
@@ -58,11 +68,11 @@ namespace SecretProject.Class.TileStuff
         /// <returns></returns>
         public static int GetTileIndexWithinFoundChunk(int tileX, int tileY, Chunk[,] ActiveChunks, bool returnX)
         {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f);
+            int chunkX = GetChunkX(tileX);
 
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f);
+            int chunkY = GetChunkY(tileY);
 
-            Chunk chunk = GetChunk(tileX, tileY, ActiveChunks);
+            Chunk chunk = GetChunk(chunkX, chunkY, ActiveChunks);
             if (chunk == null)
             {
                 Console.WriteLine("chunk was null!");
@@ -115,11 +125,8 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public static Chunk GetChunk(int tileX, int tileY, Chunk[,] ActiveChunks)
+        public static Chunk GetChunk(int chunkX, int chunkY, Chunk[,] ActiveChunks)
         {
-            int chunkX = (int)Math.Floor((float)tileX / 16.0f);
-
-            int chunkY = (int)Math.Floor((float)tileY / 16.0f);
             for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
             {
                 for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)

@@ -329,7 +329,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = startJ; j < endJ; j++)
                             {
-                                Chunk newChunk = ChunkUtility.GetChunk(x + i, y + j, Game1.OverWorld.AllTiles.ActiveChunks);
+                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(x + i),ChunkUtility.GetChunkY( y + j), Game1.OverWorld.AllTiles.ActiveChunks);
                                 newChunk.PathGrid.UpdateGrid(ChunkUtility.GetLocalChunkCoord(x + i), ChunkUtility.GetLocalChunkCoord(y + j), 0);
                             }
                         }
