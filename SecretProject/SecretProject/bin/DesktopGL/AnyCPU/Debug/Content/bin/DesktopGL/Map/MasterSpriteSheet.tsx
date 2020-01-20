@@ -1160,7 +1160,7 @@
   <properties>
    <property name="destructable" value="22,0,0,8"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="1001:100:1"/>
+   <property name="loot" value="1001"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
   <objectgroup draworder="index">
@@ -3898,7 +3898,6 @@
  <tile id="8247">
   <properties>
    <property name="action" value="enterPortal"/>
-   <property name="newHitBox" value="-32,-48,72,72"/>
   </properties>
   <animation>
    <frame tileid="8747" duration="200"/>

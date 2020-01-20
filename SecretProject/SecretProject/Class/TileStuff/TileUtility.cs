@@ -321,16 +321,18 @@ namespace SecretProject.Class.TileStuff
                         int endI = rectangleCoords[2] / 16;
                         endI = endI + startI;
 
-                        int startJ = rectangleCoords[1] / 16;
-                        int endJ = rectangleCoords[3] / 16;
+                        int startJ = (int)Math.Ceiling(((float)rectangleCoords[1] / (float)16));
+
+
+                        int endJ = (int)Math.Ceiling(((float)rectangleCoords[3] / (float)16));
                         endJ = startJ + endJ;
 
                         for (int i = startI; i < endI; i++)
                         {
                             for (int j = startJ; j < endJ; j++)
                             {
-                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(x + i),ChunkUtility.GetChunkY( y + j), Game1.OverWorld.AllTiles.ActiveChunks);
-                                newChunk.PathGrid.UpdateGrid(ChunkUtility.GetLocalChunkCoord(x + i), ChunkUtility.GetLocalChunkCoord(y + j), 0);
+                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX( container.X * 16  + x   + i  )  ,ChunkUtility.GetChunkY(container.Y  * 16 +  y   + j  )  , Game1.OverWorld.AllTiles.ActiveChunks);
+                                newChunk.PathGrid.UpdateGrid(ChunkUtility.GetLocalChunkCoord(x * 16 + i * 16), ChunkUtility.GetLocalChunkCoord(y * 16 + j * 16), 0);
                             }
                         }
                     }

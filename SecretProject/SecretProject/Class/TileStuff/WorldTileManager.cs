@@ -800,10 +800,19 @@ namespace SecretProject.Class.TileStuff
                                             }
 
                                         }
+                                        if (Game1.GetCurrentStage().ShowBorders)
+                                        {
+                                            if(ActiveChunks[a,b].PathGrid.Weight[i,j] == (int)GridStatus.Obstructed)
+                                            {
+                                                spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.Red,
+                                            0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+                                            }
+                                        }
 
 
 
-                                    }
+
+                                        }
                                 }
                             }
                             foreach (KeyValuePair<string, List<GrassTuft>> entry in this.ActiveChunks[a, b].Tufts)
