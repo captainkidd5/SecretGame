@@ -2,12 +2,61 @@
 <XnaContent xmlns:ns="Microsoft.Xna.Framework">
     <Asset Type ="XMLData.ItemStuff.LootStuff.LootHolder">
         <AllLoot>
-            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
-                <GID>1</GID>
+        <!-- blood corn -->
+         <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>290</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
                         <Unlocked>true</Unlocked>
-                        <ItemToSpawnID>1</ItemToSpawnID>
+                        <ItemToSpawnID>750</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>751</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+            <!-- bloom berry -->
+         <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>490</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>748</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>749</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+        <!-- Oak -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1663</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>520</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>2963</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>520</ItemToSpawnID>
                         <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
                     </Item>

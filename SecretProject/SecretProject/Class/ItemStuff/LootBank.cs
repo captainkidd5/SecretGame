@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,28 @@ namespace SecretProject.Class.ItemStuff
                 LootInfo.Add(lootHolder.AllLoot[i].GID, lootHolder.AllLoot[i]);
 
             }
+        }
+
+        public Item GetLootFromXML(int gid, Vector2 position)
+        {
+            LootData data = LootInfo[gid];
+            for(int i =0; i < data.LootPieces.Count; i++)
+            {
+                if(data.LootPieces[i].Unlocked)
+                {
+                    Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true));
+                }
+               
+            }
+            return Game1.ItemVault.GenerateNewItem(data.LootPieces[0].ItemToSpawnID, null);
+           
+        }
+
+        public Item GetLootFromTileset(int gid, Vector2 position, string lootString)
+        {
+            int lootID = int.Parse(lootString);
+            Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(lootID, position, true));
+            return Game1.ItemVault.GenerateNewItem(lootID, null);
         }
     }
 }

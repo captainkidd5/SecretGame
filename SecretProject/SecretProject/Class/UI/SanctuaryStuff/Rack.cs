@@ -62,11 +62,23 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 }
                 else if(Requirement.SanctuaryRewards[i].GIDUnlock != 0)
                 {
-                    RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
+                    if(Requirement.SanctuaryRewards[i].LootIndexUnlock != 0)
+                    {
+                        RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
                  this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
                         {
-                        ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock,100)
-                    });
+                            ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
+                        });
+                    }
+                    else
+                    {
+                        RewardIcons.Add(new Button(Game1.AllTextures.MasterTileSet, new Rectangle(736, 32, 32, 32),
+                 this.Graphics, new Vector2(RackPosition.X + 64 * buttonIndex, RackPosition.Y), Controls.CursorType.Normal, 2f)
+                        {
+                            ItemSourceRectangleToDraw = TileUtility.GetSourceRectangleWithoutTile(Requirement.SanctuaryRewards[i].GIDUnlock, 100)
+                        });
+                    }
+                    
                 }
                 
                 buttonIndex++;
@@ -123,7 +135,15 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                             }
                             else if(Requirement.SanctuaryRewards[i].GIDUnlock != 0)
                             {
-                                this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: Requirement.SanctuaryRewards[i].GIDUnlock);
+                                if(Requirement.SanctuaryRewards[i].LootIndexUnlock != 0)
+                                {
+                                    this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: Requirement.SanctuaryRewards[i].GIDUnlock, lootUnlock: Requirement.SanctuaryRewards[i].LootIndexUnlock);
+                                }
+                                else
+                                {
+                                    this.Requirement.ClaimReward(i, RewardIcons[i].Position, gidUnlock: Requirement.SanctuaryRewards[i].GIDUnlock);
+                                }
+                                
                                 this.ColorMultiplier[i] = .25f;
                             }
                             else if(Requirement.SanctuaryRewards[i].GoldAmount != 0)
@@ -131,6 +151,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                                 this.Requirement.ClaimReward(i, RewardIcons[i].Position, gold: Requirement.SanctuaryRewards[i].GoldAmount);
                                 this.ColorMultiplier[i] = .25f;
                             }
+
                             
                         }
                     }

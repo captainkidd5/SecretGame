@@ -27,8 +27,11 @@ namespace XMLData.SanctuaryStuff
         [ContentSerializer(Optional = true)]
         public int ItemUnlock { get; set; }
 
+        [ContentSerializer(Optional = true)]
+        public int LootIndexUnlock { get; set; }
 
-        
+
+
 
 
 

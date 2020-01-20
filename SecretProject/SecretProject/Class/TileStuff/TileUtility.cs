@@ -855,12 +855,21 @@ namespace SecretProject.Class.TileStuff
             {
                 container.TileHitPoints.Remove(container.AllTiles[layer][x, y].TileKey);
             }
-
+            //if tileset has loot value, then use that. otherwise check the loot xml data.
             Item itemToCheckForReassasignTiling = null;
             if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties.ContainsKey("loot"))
             {
-                List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
-                itemToCheckForReassasignTiling = Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
+                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"] == string.Empty)
+                {
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container));
+                }
+                else
+                {
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromTileset(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container),container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
+                }
+               //// List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
+               // itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container));
+               //   //  Loot.GetDrop(tempLoot, container.AllTiles[layer][x, y].DestinationRectangle);
             }
 
             if (container.Crops.ContainsKey(container.AllTiles[layer][x, y].GetTileKeyStringNew(layer, container)))

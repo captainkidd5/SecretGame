@@ -27,7 +27,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
         public bool AllRewardsClaimed { get; set; }
         public bool ChainsTransitionCompleted { get; set; }
 
-        public CompletionRequirement(GraphicsDevice graphics,CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount, int gidUnlock, string gidUnlockDescription)
+        public CompletionRequirement(GraphicsDevice graphics, CompletionPage completionPage, int itemID, int gid, int countRequired, string description, Rectangle sourceRectangle, List<SanctuaryReward> sanctuaryRewards, int goldAmount, int gidUnlock, string gidUnlockDescription)
         {
             this.Graphics = graphics;
             this.CompletionPage = completionPage;
@@ -74,7 +74,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
         }
 
-        public void ClaimReward(int index, Vector2 rewardPosition, Item item = null, int gidUnlock = 0, int gold = 0)
+        public void ClaimReward(int index, Vector2 rewardPosition, Item item = null, int gidUnlock = 0, int gold = 0, int lootUnlock = 0)
         {
             if (item != null)
             {
@@ -85,7 +85,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
 
             if (gold > 0)
             {
-                for(int i =0; i < gold; i++)
+                for (int i = 0; i < gold; i++)
                 {
                     Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, this.Graphics, rewardPosition, Game1.Player.UserInterface.BottomBar.GoldIconPosition, Game1.Player.UserInterface.AllUISprites));
                 }
@@ -95,10 +95,28 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             }
             if (gidUnlock != 0)
             {
-                Game1.OverWorldSpawnHolder.UnlockSpawnElement(gidUnlock);
-                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, "hi");
+                if (lootUnlock != 0)
+                {
+                    Game1.LootBank.LootInfo[gidUnlock].LootPieces[lootUnlock].Unlocked = true;
+                }
+                else
+                {
+                    Game1.OverWorldSpawnHolder.UnlockSpawnElement(gidUnlock);
+                    Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, "hi");
+                }
+                
+                
 
+                IndividualRewards[index] = true;
+                return;
             }
+
+                if (lootUnlock != 0)
+                {
+                    Game1.LootBank.LootInfo[gidUnlock].LootPieces[lootUnlock].Unlocked = true;
+                }
+                IndividualRewards[index] = true;
+            
 
             IndividualRewards[index] = true;
             this.AllRewardsClaimed = true;

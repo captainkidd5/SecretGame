@@ -19,8 +19,15 @@
             <Rewards>
               <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
               <Description>Test1</Description>
+              <GIDUnlock>490</GIDUnlock>
+              </Item>
+              <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+              <Description>Test1</Description>
                 <GoldAmount>25</GoldAmount>
-                
+                </Item>
+                <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
+                <Description>Learn how to harvest BloomBerry.</Description>
+                <LootIndexUnlock>1</LootIndexUnlock>
               </Item>
             </Rewards>
             <X>1440</X>
