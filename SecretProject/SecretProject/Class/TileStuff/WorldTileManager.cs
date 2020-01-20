@@ -50,6 +50,7 @@ namespace SecretProject.Class.TileStuff
         public Point ChunkPointUnderPlayer { get; set; }
 
         public Chunk ChunkUnderPlayer { get; set; }
+        public Chunk ChunkUnderPlayerLastFrame { get; set; }
         public Chunk ChunkUnderMouse { get; set; }
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
         public Dictionary<string, List<ICollidable>> Objects { get; set; }
@@ -84,6 +85,12 @@ namespace SecretProject.Class.TileStuff
         public List<SPlot> AllPlots { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         Point[] ChunkPositions;
+
+        public int PlayerI { get; set; }
+        public int PlayerJ { get; set; }
+
+        int OldPlayerI;
+        int OldPlayerJ;
         public WorldTileManager(World world, Texture2D tileSet, List<TmxLayer> allLayers, TmxMap mapName, int numberOfLayers, int worldWidth, int worldHeight, GraphicsDevice graphicsDevice, ContentManager content, int tileSetNumber, List<float> allDepths)
         {
             this.MapName = mapName;
@@ -127,12 +134,19 @@ namespace SecretProject.Class.TileStuff
             this.CurrentObjects = new Dictionary<string, ICollidable>();
 
             this.ChunkUnderPlayer = new Chunk(this, 0, 0, 1, 1);
+            this.ChunkUnderPlayerLastFrame = this.ChunkUnderPlayer;
             this.ChunkUnderMouse = new Chunk(this, 0, 0, 1, 1);
 
             Game1.GlobalClock.DayChanged += HandleClockChange;
             RenderDistance = 5;
             FullyActiveChunks = 3;
             ChunkPositions = new Point[RenderDistance * RenderDistance];
+
+            this.PlayerI = 0;
+            this.PlayerJ = 0;
+            
+            this.OldPlayerI = 0;
+            this.OldPlayerJ = 0;
 
         }
 
@@ -463,6 +477,7 @@ namespace SecretProject.Class.TileStuff
 
 
             }
+            this.ChunkUnderPlayerLastFrame = this.ChunkUnderPlayer;
             this.ChunkUnderPlayer = this.ActiveChunks[RenderDistance / 2, RenderDistance / 2];
             this.StoreableItems = this.ChunkUnderPlayer.StoreableItems;
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
@@ -562,12 +577,22 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
             }
-
+            OldPlayerI = PlayerI;
+            OldPlayerJ = PlayerJ;
             int mouseI = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.X);
             int mouseJ = ChunkUtility.GetLocalChunkCoord((int)mouse.WorldMousePosition.Y);
-            int playerI = (int)(Game1.Player.position.X / 16 - (this.ChunkUnderPlayer.X * 16));
-            int playerJ = (int)(Game1.Player.position.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
+             PlayerI = (int)((Game1.Player.ColliderRectangle.X  + 8)/ 16  - (this.ChunkUnderPlayer.X * 16));
+             PlayerJ = (int)(Game1.Player.ColliderRectangle.Y / 16 - (this.ChunkUnderPlayer.Y * 16));
+            if(PlayerI > 15)
+            {
+                PlayerI = 15;
+            }
+            if(PlayerJ > 15)
+            {
+                PlayerJ = 15;
+            }
 
+            
             for (int z = 0; z < 4; z++)
             {
 
@@ -586,20 +611,23 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (z == 0)
                     {
-                        if (playerI < this.ChunkUnderPlayer.AllTiles[z].GetLength(0) &&
-                            playerJ < this.ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
-                            playerI >= 0 &&
-                            playerJ >= 0 &&
-                             this.ChunkUnderPlayer.AllTiles[z][playerI, playerJ] != null)
+                        if (PlayerI < this.ChunkUnderPlayer.AllTiles[z].GetLength(0) &&
+                            PlayerJ < this.ChunkUnderPlayer.AllTiles[z].GetLength(1) &&
+                            PlayerI >= 0 &&
+                            PlayerJ >= 0 &&
+
+                             this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ] != null)
                         {
+                            this.ChunkUnderPlayerLastFrame.PathGrid.UpdateGrid(OldPlayerI, OldPlayerJ, GridStatus.Clear);
+                            this.ChunkUnderPlayer.PathGrid.UpdateGrid(PlayerI, PlayerJ, GridStatus.Obstructed);
+                            
 
-
-                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID))
+                            if (this.MapName.Tilesets[this.TileSetNumber].Tiles.ContainsKey(this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID))
                             {
-                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties.ContainsKey("step"))
+                                if (this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties.ContainsKey("step"))
                                 {
 
-                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][playerI, playerJ].GID].Properties["step"]);
+                                    Game1.Player.WalkSoundEffect = int.Parse(this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderPlayer.AllTiles[z][PlayerI, PlayerJ].GID].Properties["step"]);
                                 }
                             }
                         }

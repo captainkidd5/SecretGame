@@ -82,12 +82,12 @@ namespace SecretProject.Class.TileStuff
                 this.PositiveXDraw = this.RectangleCoordinates[2] / 16;
                 this.PositiveYDraw = this.RectangleCoordinates[3] / 16;
 
-                if(this.NegativeYDraw < 0)
+                if (this.NegativeYDraw < 0)
                 {
                     this.PositiveYDraw = PositiveYDraw + NegativeYDraw;
                     this.PositiveYTest = PositiveYTest + NegativeYTest;
                 }
-                if(NegativeXDraw < 0)
+                if (NegativeXDraw < 0)
                 {
                     this.PositiveXDraw = PositiveXDraw + NegativeXDraw;
                     this.PositiveXTest = PositiveXTest + NegativeXTest;
@@ -135,39 +135,30 @@ namespace SecretProject.Class.TileStuff
 
                             subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
                             subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
-                            if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                            //if (Game1.myMouseManager.WorldMousePosition.X < 0)
+                            //{
+                            //    subX -= 16;
+                            //}
+                            //if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                            //{
+                            //    subY -= 16;
+                            //}
+
+                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subX / 16 / 16), ChunkUtility.GetChunkY(container.Y * 16 + subY / 16 / 16), Game1.OverWorld.AllTiles.ActiveChunks);
+
+
+
+
+                            if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
                             {
-                                subX -= 16;
+
                             }
-                            if (Game1.myMouseManager.WorldMousePosition.Y < 0)
+                            else
                             {
-                                subY -= 16;
+                                canPlaceTotal = false;
                             }
-                            for (int z = item.TilingLayer; z < 4; z++)
-                            {
 
-                                GridStatus gridStatus = GridStatus.Clear;
 
-                             //   int pathGridSpecification = TileUtility.GetLocalChunkCoord()
-                                Tile tile = ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks);
-                                if (tile != null)
-                                {
-                                    //if()
-                                    if (ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), z, tileManager.ActiveChunks).GID == -1)
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                        canPlaceTotal = false;
-                                    }
-                                }
-
-                                else
-                                {
-                                    canPlaceTotal = false;
-                                }
-                            }
                         }
 
                     }
@@ -216,6 +207,10 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
+                    else
+                    {
+                        this.IsDrawn = false;
+                    }
 
                 }
                 else
@@ -237,7 +232,7 @@ namespace SecretProject.Class.TileStuff
 
                 int subX = 0;
                 int subY = 0;
-               
+
                 for (int i = this.NegativeXDraw; i < this.PositiveXDraw; i++)
                 {
                     for (int j = this.NegativeYDraw; j < 1; j++)

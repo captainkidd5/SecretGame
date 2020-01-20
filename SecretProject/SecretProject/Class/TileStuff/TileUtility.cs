@@ -321,7 +321,7 @@ namespace SecretProject.Class.TileStuff
                         int endI = rectangleCoords[2] / 16;
                         endI = endI + startI;
 
-                        int startJ = (int)Math.Ceiling(((float)rectangleCoords[1] / (float)16));
+                        int startJ = (int)Math.Floor(((float)rectangleCoords[1] / (float)16));
 
 
                         int endJ = (int)Math.Ceiling(((float)rectangleCoords[3] / (float)16));
