@@ -598,7 +598,7 @@
  <tile id="490">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="749:100:1,748:20:2"/>
+   <property name="loot" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>

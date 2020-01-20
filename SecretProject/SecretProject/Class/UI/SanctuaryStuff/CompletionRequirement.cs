@@ -114,7 +114,8 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 if (lootUnlock != 0)
                 {
                     Game1.LootBank.LootInfo[gidUnlock].LootPieces[lootUnlock].Unlocked = true;
-                }
+                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, "You are now able to harvest " + Game1.ItemVault.GenerateNewItem(lootUnlock, null).Name);
+            }
                 IndividualRewards[index] = true;
             
 

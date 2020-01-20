@@ -13,7 +13,7 @@
           <Item Type="XMLData.SanctuaryStuff.SanctuaryRequirement">
             <Tab>0</Tab>
             <ItemID>748</ItemID>
-            <GIDRequired>1579</GIDRequired>
+            <GIDRequired>490</GIDRequired>
             <NumberRequired>9</NumberRequired>
             <Description>Plant 9 BloomBerry.</Description>
             <Rewards>
@@ -26,7 +26,7 @@
                 <GoldAmount>25</GoldAmount>
                 </Item>
                 <Item Type="XMLData.SanctuaryStuff.SanctuaryReward">
-                <Description>Learn how to harvest BloomBerry.</Description>
+                <Description>Learn how to harvest BloomBerry.</Description> 
                 <LootIndexUnlock>1</LootIndexUnlock>
               </Item>
             </Rewards>
