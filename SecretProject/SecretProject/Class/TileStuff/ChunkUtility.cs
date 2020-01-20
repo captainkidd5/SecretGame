@@ -118,6 +118,14 @@ namespace SecretProject.Class.TileStuff
             int chunkCoord = (int)Math.Floor((float)globalCoord / 16.0f / 16.0f);
             int localCoord = (int)Math.Floor((float)(globalCoord / 16 - chunkCoord * 16));
 
+            if(localCoord > 15)
+            {
+                localCoord = 15;
+            }
+            else if(localCoord < 0)
+            {
+                localCoord = 0;
+            }
             return localCoord;
         }
 

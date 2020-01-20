@@ -147,7 +147,8 @@ namespace SecretProject.Class.TileStuff
                             Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subX / 16 / 16), ChunkUtility.GetChunkY(container.Y * 16 + subY / 16 / 16), Game1.OverWorld.AllTiles.ActiveChunks);
 
 
-
+                            int testX = ChunkUtility.GetLocalChunkCoord(subX);
+                            int testY = ChunkUtility.GetLocalChunkCoord(subY);
 
                             if (newChunk.PathGrid.Weight[ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)] == (int)GridStatus.Clear)
                             {
