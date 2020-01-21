@@ -121,6 +121,7 @@ namespace SecretProject.Class.Controls
         public void Update(GameTime gameTime)
         {
             //ChangeMouseTexture(-50);
+            ChangeMouseTexture(CursorType.Normal);
             this.IsClicked = false;
             this.IsRightClicked = false;
             this.IsDown = false;

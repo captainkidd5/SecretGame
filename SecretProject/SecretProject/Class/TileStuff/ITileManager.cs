@@ -37,6 +37,7 @@ namespace SecretProject.Class.TileStuff
         GraphicsDevice GraphicsDevice { get; set; }
         ContentManager Content { get; set; }
         List<float> AllDepths { get; set; }
+        List<Item> AllItems { get; set; }
         bool AbleToDrawTileSelector { get; set; }
 
         GridItem GridItem { get; set; }

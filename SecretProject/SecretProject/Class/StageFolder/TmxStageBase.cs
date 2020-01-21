@@ -73,7 +73,6 @@ namespace SecretProject.Class.StageFolder
 
         public List<Sprite> AllSprites { get; set; }
 
-        public List<Item> AllItems { get; set; }
 
         public List<ActionTimer> AllActions { get; set; }
 
@@ -177,10 +176,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            this.AllItems = new List<Item>()
-            {
 
-            };
 
             //AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 
@@ -299,9 +295,9 @@ namespace SecretProject.Class.StageFolder
                 }
             }
 
-            for (int i = 0; i < this.AllItems.Count; i++)
+            for (int i = 0; i < this.AllTiles.AllItems.Count; i++)
             {
-                this.QuadTree.Insert(this.AllItems[i].ItemSprite);
+                this.QuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
             }
 
             // QuadTree.Insert(player.MainCollider);
@@ -366,7 +362,7 @@ namespace SecretProject.Class.StageFolder
                 Game1.GlobalClock.Update(gameTime);
 
                 this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
-                player.Update(gameTime, this.AllItems, mouse);
+                player.Update(gameTime, this.AllTiles.AllItems, mouse);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);
@@ -385,10 +381,7 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Update(gameTime);
-                }
+
                 foreach (Character character in Game1.AllCharacters)
                 {
                     character.Update(gameTime, mouse);
@@ -484,10 +477,7 @@ namespace SecretProject.Class.StageFolder
                     sprite.Draw(spriteBatch, .7f);
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Draw(spriteBatch);
-                }
+
                 if (this.ShowBorders)
                 {
                     foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)

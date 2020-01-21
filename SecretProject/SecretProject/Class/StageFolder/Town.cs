@@ -116,9 +116,9 @@ namespace SecretProject.Class.StageFolder
                     this.QuadTree.Insert(obj.Value[z]);
                 }
             }
-            for (int i = 0; i < this.AllItems.Count; i++)
+            for (int i = 0; i < this.AllTiles.AllItems.Count; i++)
             {
-                this.QuadTree.Insert(this.AllItems[i].ItemSprite);
+                this.QuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
             }
 
             this.QuadTree.Insert(player.BigCollider);
@@ -213,7 +213,7 @@ namespace SecretProject.Class.StageFolder
                 //--------------------------------------
                 //Update players
 
-                player.Update(gameTime, this.AllItems, mouse);
+                player.Update(gameTime, this.AllTiles.AllItems, mouse);
                 this.Cam.Follow(new Vector2(player.Position.X + 8, player.Position.Y + 16), this.MapRectangle);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
@@ -236,10 +236,7 @@ namespace SecretProject.Class.StageFolder
                     this.AllTextToWrite[s].Update(gameTime, this.AllTextToWrite);
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Update(gameTime);
-                }
+
 
                 foreach (Character character in Game1.AllCharacters)
                 {
@@ -358,10 +355,7 @@ namespace SecretProject.Class.StageFolder
                     sprite.Draw(spriteBatch, .7f);
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Draw(spriteBatch);
-                }
+
 
                 foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
                 {

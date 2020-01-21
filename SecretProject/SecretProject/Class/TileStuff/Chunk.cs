@@ -49,6 +49,8 @@ namespace SecretProject.Class.TileStuff
 
         public Dictionary<string, List<GrassTuft>> Tufts { get; set; }
 
+        public List<Item> AllItems { get; set; }
+
         public int ArrayI { get; set; }
         public int ArrayJ { get; set; }
 
@@ -110,6 +112,7 @@ namespace SecretProject.Class.TileStuff
             this.Crops = new Dictionary<string, Crop>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
             this.Tufts = new Dictionary<string, List<GrassTuft>>();
+            this.AllItems = new List<Item>();
             for (int i = 0; i < 4; i++)
             {
                 this.AllTiles.Add(new Tile[TileUtility.ChunkWidth, TileUtility.ChunkWidth]);

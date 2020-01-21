@@ -438,12 +438,12 @@ namespace SecretProject.Class.TileStuff
                                         case "Dirt":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
-                                            Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
+                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
                                             break;
                                         case "dirtBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
-                                            Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
+                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
                                             break;
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
@@ -810,11 +810,11 @@ namespace SecretProject.Class.TileStuff
             {
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"] == string.Empty)
                 {
-                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container));
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container), container);
                 }
                 else
                 {
-                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromTileset(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container),container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
+                    itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromTileset(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container),container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"], container);
                 }
                //// List<Loot> tempLoot = Loot.Parselootkey(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["loot"]);
                // itemToCheckForReassasignTiling = Game1.LootBank.GetLootFromXML(container.AllTiles[layer][x, y].GID, container.AllTiles[layer][x, y].GetPosition(container));

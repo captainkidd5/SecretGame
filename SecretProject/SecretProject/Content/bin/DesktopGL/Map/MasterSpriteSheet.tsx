@@ -218,6 +218,12 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="291">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="292">
   <properties>
    <property name="crop" value="754"/>
@@ -602,6 +608,12 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
+ <tile id="491">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="492">
   <properties>
    <property name="crop" value="756"/>
@@ -628,6 +640,12 @@
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
    <property name="loot" value="757:100:1,756:20:3"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="497">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -903,6 +921,12 @@
    <property name="loot" value="753:100:2,752:20:2"/>
   </properties>
  </tile>
+ <tile id="691">
+  <properties>
+   <property name="newHitBox" value="0, -10, 16, 16"/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="692">
   <properties>
    <property name="crop" value="758"/>
@@ -1154,6 +1178,17 @@
  <tile id="955">
   <objectgroup draworder="index">
    <object id="1" x="8.13637" y="0.181809" width="7.72727" height="15.8182"/>
+  </objectgroup>
+ </tile>
+ <tile id="975">
+  <properties>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="idleStart" value=""/>
+   <property name="loot" value="1001"/>
+   <property name="tileSelectorAllowed" value="2"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="1" width="14" height="14"/>
   </objectgroup>
  </tile>
  <tile id="978">

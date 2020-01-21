@@ -44,7 +44,7 @@ namespace SecretProject.Class.ItemStuff
                     for (int d = 0; d < lootCount; d++)
                     {
                         Item item = Game1.ItemVault.GenerateNewItem(possibleLoot[l].ID, new Vector2(tileDestinationRectangle.X, tileDestinationRectangle.Y), true);
-                        Game1.GetCurrentStage().AllItems.Add(item);
+                        Game1.GetCurrentStage().AllTiles.AllItems.Add(item);
                     }
                 }
             }

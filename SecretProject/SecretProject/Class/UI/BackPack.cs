@@ -326,7 +326,7 @@ namespace SecretProject.Class.UI
 
                                 Item newWorldItem = Game1.ItemVault.GenerateNewItem(tempItem.ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
                                 newWorldItem.IsTossable = true;
-                                Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+                                Game1.GetCurrentStage().AllTiles.AllItems.Add(newWorldItem);
 
                             }
 
@@ -414,7 +414,7 @@ namespace SecretProject.Class.UI
 
             Item newWorldItem = Game1.ItemVault.GenerateNewItem(this.Inventory.currentInventory[currentSliderPosition - 1].SlotItems[0].ID, new Vector2(Game1.Player.Rectangle.X, Game1.Player.Rectangle.Y), true);
             newWorldItem.IsTossable = true;
-            Game1.GetCurrentStage().AllItems.Add(newWorldItem);
+            Game1.GetCurrentStage().AllTiles.AllItems.Add(newWorldItem);
             this.Inventory.currentInventory[currentSliderPosition - 1].RemoveItemFromSlot();
             this.AllSlots[currentSliderPosition - 1].ItemCounter--;
 

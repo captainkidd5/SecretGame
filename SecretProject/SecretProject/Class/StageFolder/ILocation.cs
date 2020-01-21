@@ -53,8 +53,6 @@ namespace SecretProject.Class.StageFolder
 
 
         List<Sprite> AllSprites { get; set; }
-
-        List<Item> AllItems { get; set; }
         List<LightSource> AllNightLights { get; set; }
         List<LightSource> AllDayTimeLights {get;set;}
 

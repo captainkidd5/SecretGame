@@ -291,13 +291,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public void RollPeriodicDrop(Vector2 positionToDrop)
         {
-            for (int i = 0; i < this.PossibleLoot.Count; i++)
-            {
-                if (this.PossibleLoot[i].DidReceive())
-                {
-                    Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true));
-                }
-            }
+            //for (int i = 0; i < this.PossibleLoot.Count; i++)
+            //{
+            //    if (this.PossibleLoot[i].DidReceive())
+            //    {
+            //       // if(Game1.GetCurrentStage() == Game1.Ca)
+            //        Game1.GetCurrentStage().AllItems.Add(Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true));
+            //    }
+            //}
 
         }
 

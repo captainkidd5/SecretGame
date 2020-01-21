@@ -46,7 +46,7 @@ namespace SecretProject.Class.StageFolder
         public Camera2D Cam { get; set; }
         public int TileSetNumber { get; set; }
         public List<Sprite> AllSprites { get; set; }
-        public List<Item> AllItems { get; set; }
+
         public List<ActionTimer> AllActions { get; set; }
         public List<Portal> AllPortals { get; set; }
         public UserInterface MainUserInterface { get; set; }
@@ -122,11 +122,6 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-
-            this.AllItems = new List<Item>()
-            {
-
-            };
 
 
             this.AllDepths = new List<float>()
@@ -269,16 +264,18 @@ namespace SecretProject.Class.StageFolder
                             }
 
                         }
+
+                        for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
+                        {
+                            this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
+
+                        }
                     }
 
 
                 }
             }
-            for (int i = 0; i < this.AllItems.Count; i++)
-            {
-                this.QuadTree.Insert(this.AllItems[i].ItemSprite);
-
-            }
+            
 
             this.QuadTree.Insert(player.MainCollider);
 
@@ -337,16 +334,13 @@ namespace SecretProject.Class.StageFolder
                 }
 
                 this.AllTiles.Update(gameTime, mouse);
-                player.Update(gameTime, this.AllItems, mouse);
+                player.Update(gameTime, this.AllTiles.ChunkUnderPlayer.AllItems, mouse);
                 for (int i = 0; i < this.AllRisingText.Count; i++)
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Update(gameTime);
-                }
+
 
                 for (int i = 0; i < this.Enemies.Count; i++)
                 {
@@ -467,10 +461,6 @@ namespace SecretProject.Class.StageFolder
                     }
                 }
 
-                for (int i = 0; i < this.AllItems.Count; i++)
-                {
-                    this.AllItems[i].Draw(spriteBatch);
-                }
 
                 if (this.ShowBorders)
                 {

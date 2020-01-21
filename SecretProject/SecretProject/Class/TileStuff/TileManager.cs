@@ -73,6 +73,7 @@ namespace SecretProject.Class.TileStuff
         public int TileSetDimension { get; set; }
 
         public Dictionary<string, Crop> Crops { get; set; }
+        public List<Item> AllItems { get; set; }
 
         //not relevant:
         public int X { get; set; }
@@ -123,6 +124,7 @@ namespace SecretProject.Class.TileStuff
             this.DayTimeLights = new List<LightSource>();
             this.StoreableItems = new Dictionary<string, IStorableItemBuilding>();
             this.Crops = new Dictionary<string, Crop>();
+            this.AllItems = new List<Item>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
             Game1.GlobalClock.DayChanged += HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)
@@ -494,6 +496,11 @@ namespace SecretProject.Class.TileStuff
                 this.GridItem.NormalUpdate(gameTime, this, this);
             }
 
+            for(int item =0; item < this.AllItems.Count; item++)
+            {
+                this.AllItems[item].Update(gameTime);
+            }
+
         }
 
         #endregion
@@ -577,7 +584,10 @@ namespace SecretProject.Class.TileStuff
             {
                 this.GridItem.NormalDraw(spriteBatch, this, this);
             }
-
+            for (int item = 0; item < this.AllItems.Count; item++)
+            {
+                this.AllItems[item].Draw(spriteBatch);
+            }
 
 
 

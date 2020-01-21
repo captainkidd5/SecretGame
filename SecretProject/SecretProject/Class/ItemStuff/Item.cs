@@ -182,7 +182,7 @@ namespace SecretProject.Class.ItemStuff
                 {
 
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PickUpItem);
-                    Game1.GetCurrentStage().AllItems.Remove(this);
+                    Game1.GetCurrentStage().AllTiles.AllItems.Remove(this);
 
 
                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));

@@ -88,6 +88,7 @@ namespace SecretProject.Class.TileStuff
 
         public int PlayerI { get; set; }
         public int PlayerJ { get; set; }
+        public List<Item> AllItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         int OldPlayerI;
         int OldPlayerJ;
@@ -565,6 +566,10 @@ namespace SecretProject.Class.TileStuff
                                 this.ChunkUnderMouse = this.ActiveChunks[a, b];
                             }
 
+                            for(int item = 0; item < this.ActiveChunks[a, b].AllItems.Count; item++)
+                            {
+                                this.ActiveChunks[a, b].AllItems[item].Update(gameTime);
+                            }
 
                         }
 
@@ -851,6 +856,11 @@ namespace SecretProject.Class.TileStuff
                                     entry.Value[i].Draw(spriteBatch);
 
                                 }
+                            }
+
+                            for (int item = 0; item < this.ActiveChunks[a, b].AllItems.Count; item++)
+                            {
+                                this.ActiveChunks[a, b].AllItems[item].Draw(spriteBatch);
                             }
                             //if (totalRepeats > 0)
                             //{

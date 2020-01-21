@@ -45,10 +45,7 @@ namespace SecretProject.Class.StageFolder
 
             };
 
-            this.AllItems = new List<Item>()
-            {
 
-            };
 
             //AllItems.Add(Game1.ItemVault.GenerateNewItem(147, new Vector2(Game1.Player.Position.X + 50, Game1.Player.Position.Y + 100), true));
 

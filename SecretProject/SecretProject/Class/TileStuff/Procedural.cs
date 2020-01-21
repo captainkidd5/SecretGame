@@ -92,7 +92,7 @@ namespace SecretProject.Class.TileStuff
         public Procedural()
         {
             //FASTNOISE
-            FastNoise = new FastNoise(456);
+            FastNoise = new FastNoise(200);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);
@@ -101,7 +101,7 @@ namespace SecretProject.Class.TileStuff
             FastNoise.SetFractalGain(.35f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.005f);
+            FastNoise.SetFrequency(.0065f);
 
 
 
@@ -266,7 +266,7 @@ namespace SecretProject.Class.TileStuff
                     newGID = 1015; //GRASS
                 }
 
-                else if (perlinValue >= -1f && perlinValue < -.15f)
+                else if (perlinValue >= -1f && perlinValue < -.6f)
                 {
                     newGID = 1622;//SANDRUIN
                 }

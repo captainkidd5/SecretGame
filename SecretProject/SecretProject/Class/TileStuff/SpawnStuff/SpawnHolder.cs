@@ -37,6 +37,14 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
                 new OverworldSpawnElement(287, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloodcorn
 
+                //DESERT
+                new OverworldSpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
+                new OverworldSpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
+                new OverworldSpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
+
+
+                //TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
+            //TileUtility.GenerateRandomlyDistributedTiles(2, 664, GenerationType.Sand, 10, 0, this, true);
             };
             //TileUtility.GenerateRandomlyDistributedTiles(2, 1164, GenerationType.Grass, 2, 1, this); //WILLOW
             ////TileUtility.GenerateRandomlyDistributedTiles(2, 1002, GenerationType.Stone, 5, 1, this); //FISSURE

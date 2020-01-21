@@ -30,7 +30,7 @@ namespace SecretProject.Class.TileStuff
         List<LightSource> DayTimeLights { get; set; }
         Dictionary<string, Crop> Crops { get; set; }
         Dictionary<float, string> ForeGroundOffSetDictionary { get; set; }
-
+         List<Item> AllItems { get; set; }
         ObstacleGrid PathGrid { get; set; }
         Dictionary<string, List<GrassTuft>> Tufts { get; set; }
 
