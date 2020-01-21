@@ -820,7 +820,7 @@
  <tile id="663">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="loot" value="520"/>
    <property name="newSource" value="-16,-80,48,96"/>
   </properties>
   <objectgroup draworder="index">
@@ -1303,7 +1303,7 @@
   <properties>
    <property name="destructable" value="2,0,3,6"/>
    <property name="idleStart" value=""/>
-   <property name="loot" value="1002:100:1"/>
+   <property name="loot" value="1002"/>
    <property name="tileSelectorAllowed" value="3"/>
   </properties>
   <objectgroup draworder="index">
@@ -1569,49 +1569,49 @@
  <tile id="1271">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="646:100:1"/>
+   <property name="loot" value="646"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1272">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="645:100:1"/>
+   <property name="loot" value="645"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1273">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="644:100:1"/>
+   <property name="loot" value="644"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1274">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="643:100:1"/>
+   <property name="loot" value="643"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1275">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="642:100:1"/>
+   <property name="loot" value="642"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1276">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="641:100:1"/>
+   <property name="loot" value="641"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
  <tile id="1277">
   <properties>
    <property name="destructable" value="22,3,0,8"/>
-   <property name="loot" value="640:100:1"/>
+   <property name="loot" value="640"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index">
@@ -1621,7 +1621,7 @@
  <tile id="1285">
   <properties>
    <property name="destructable" value="2,0,3,6"/>
-   <property name="loot" value="712:25:2"/>
+   <property name="loot" value="712"/>
    <property name="newHitBox" value="0,8, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
@@ -2003,7 +2003,7 @@
  <tile id="1572">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="loot" value="520"/>
    <property name="spawnWith" value="1472"/>
   </properties>
   <objectgroup draworder="index" id="2">
@@ -3158,7 +3158,7 @@
  <tile id="3663">
   <properties>
    <property name="destructable" value="21,4,5,3"/>
-   <property name="loot" value="520:100:5,1003:10:2"/>
+   <property name="loot" value="520"/>
    <property name="newSource" value="-16,-80,48,96"/>
   </properties>
   <objectgroup draworder="index" id="2">
