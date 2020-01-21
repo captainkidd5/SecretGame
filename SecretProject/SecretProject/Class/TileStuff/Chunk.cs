@@ -194,6 +194,13 @@ namespace SecretProject.Class.TileStuff
                                 }
 
                             }
+                            binaryWriter.Write(this.AllItems.Count);
+                            for(int item =0; item < AllItems.Count; item ++)
+                            {
+                                binaryWriter.Write(AllItems[item].ID);
+                                binaryWriter.Write(AllItems[item].WorldPosition.X);
+                                binaryWriter.Write(AllItems[item].WorldPosition.Y);
+                            }
 
                             binaryWriter.Write(this.Crops.Count);
                             foreach (KeyValuePair<string, Crop> crop in this.Crops)
@@ -320,7 +327,11 @@ namespace SecretProject.Class.TileStuff
                                         break;
                                 }
                             }
-
+                            int itemCount = binaryReader.ReadInt32();
+                            for(int item = 0; item < itemCount; item++)
+                            {
+                                Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
+                            }
                             int cropCount = binaryReader.ReadInt32();
                             for (int c = 0; c < cropCount; c++)
                             {
