@@ -551,7 +551,7 @@ namespace SecretProject.Class.TileStuff
 
                     List<int> CliffBottomTiles = new List<int>()
         {
-            4222, 4223, 4224
+            4222, 4223, 4224,4021,4025,4026,4027,4028
         };
 
 
@@ -659,22 +659,22 @@ namespace SecretProject.Class.TileStuff
             {
                 for (int j = 15; j > 10; j--)
                 {
-                    if (AllAdjacentChunkNoise[0][3, i, j] == 2935)
+                    if (AllAdjacentChunkNoise[0][3, i, j] == 4124)
                     {
                         int newJIndex = j;
 
-                        int newCliffGID = 3035;
+                        int newCliffGID = 4224;
                         for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
                         {
                             newCliffGID += 100;
                         }
 
-                        for (int newY = 0; newCliffGID != 3535; newY++)
+                        for (int newY = 0; newCliffGID != 4724; newY++)
                         {
 
                             newCliffGID += 100;
                             this.AllTiles[2][i, newY].GID = newCliffGID;
-                            if (newCliffGID != 3535)
+                            if (newCliffGID != 4724)
                             {
                                 this.AllTiles[0][i, newY].GID = 0;
 

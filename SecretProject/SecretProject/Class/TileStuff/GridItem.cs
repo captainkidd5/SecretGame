@@ -106,7 +106,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-
+        public bool CanPlaceTotal { get; set; }
         public void ChunkUpdate(GameTime gameTime, ITileManager tileManager, IInformationContainer container)
         {
             if (Game1.Player.UserInterface.DrawTileSelector)
@@ -124,7 +124,7 @@ namespace SecretProject.Class.TileStuff
                     int subX = 0;
                     int subY = 0;
 
-                    bool canPlaceTotal = true;
+                     CanPlaceTotal = true;
 
                     for (int i = this.NegativeXTest; i < this.PositiveXTest; i++)
                     {
@@ -156,7 +156,7 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                canPlaceTotal = false;
+                                CanPlaceTotal = false;
                             }
 
 
@@ -164,7 +164,7 @@ namespace SecretProject.Class.TileStuff
 
                     }
 
-                    if (canPlaceTotal)
+                    if (CanPlaceTotal)
                     {
                         if (Game1.myMouseManager.IsClicked)
                         {
@@ -210,22 +210,22 @@ namespace SecretProject.Class.TileStuff
                     }
                     else
                     {
-                        this.IsDrawn = false;
+                        ///this.IsDrawn = false;
                     }
 
                 }
                 else
                 {
-                    this.IsDrawn = false;
+                  //  this.IsDrawn = false;
                 }
             }
             else
             {
-                this.IsDrawn = false;
+                //this.IsDrawn = false;
             }
 
         }
-
+        
         public void ChunkDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
             if (this.IsDrawn)
@@ -238,7 +238,6 @@ namespace SecretProject.Class.TileStuff
                 {
                     for (int j = this.NegativeYDraw; j < 1; j++)
                     {
-                        bool canPlace = true;
 
                         subX = (int)Game1.myMouseManager.WorldMousePosition.X + i * 16;
                         subY = (int)Game1.myMouseManager.WorldMousePosition.Y + j * 16;
@@ -268,25 +267,25 @@ namespace SecretProject.Class.TileStuff
                         else
                         {
                             this.CanPlace = false;
-                            return;
+                            //return;
                         }
 
                         int newGID = this.PlaceID + i + (j * 100);
                         Rectangle newSourceRectangle = TileUtility.GetSourceRectangleWithoutTile(newGID, 100);
 
 
-                        if (canPlace)
+                        if (CanPlaceTotal)
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
-                                newSourceRectangle, Color.White * 1f,
+                                newSourceRectangle, Color.White * .25f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                         else
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).X,
                                 TileUtility.GetDestinationRectangle(ChunkUtility.GetChunkTile(TileUtility.GetSquareTileCoord(subX), TileUtility.GetSquareTileCoord(subY), 3, tileManager.ActiveChunks)).Y),
-                                newSourceRectangle, Color.Red * .1f,
+                                newSourceRectangle, Color.Red * 1f,
                                         0f, Game1.Utility.Origin, 1f, SpriteEffects.None, tileManager.AllDepths[3]);
                         }
                     }
@@ -402,12 +401,12 @@ namespace SecretProject.Class.TileStuff
                 }
                 else
                 {
-                    this.IsDrawn = false;
+                    this.CanPlace = false;
                 }
             }
             else
             {
-                this.IsDrawn = false;
+                this.CanPlace = false;
             }
 
         }
@@ -423,8 +422,7 @@ namespace SecretProject.Class.TileStuff
 
         public void NormalDraw(SpriteBatch spriteBatch, ITileManager tileManager, IInformationContainer container)
         {
-            if (this.IsDrawn)
-            {
+
 
 
                 int subX = 0;
@@ -439,7 +437,7 @@ namespace SecretProject.Class.TileStuff
 
                     for (int j = this.NegativeYTest; j < 1; j++)
                     {
-                        bool canPlace = true;
+
 
                         subX = Game1.Player.UserInterface.TileSelector.IndexX + i;
                         subY = Game1.Player.UserInterface.TileSelector.IndexY + j;
@@ -469,12 +467,12 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-                                canPlace = false;
+                               // canPlace = false;
 
                             }
                         }
 
-                        if (canPlace)
+                        if (CanPlace)
                         {
                             spriteBatch.Draw(tileManager.TileSet, new Vector2(TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).X,
                                 TileUtility.GetDestinationRectangle(tileManager.AllTiles[3][subX, subY]).Y),
@@ -494,7 +492,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-            }
+            
         }
         public void PlayerCollisionInteraction()
         {
