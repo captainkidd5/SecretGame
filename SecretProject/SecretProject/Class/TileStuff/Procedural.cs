@@ -61,6 +61,16 @@ namespace SecretProject.Class.TileStuff
             };
         }
 
+        public Dictionary<int, int> FillCliffTilingDictionary(int centralGID)
+        {
+            return new Dictionary<int, int>()
+            {
+                {0, centralGID -96},{1, centralGID - 97}, {2,  centralGID -98 },  {3, centralGID + 101}, {4, centralGID -102}, {5, centralGID + 99},{6,centralGID - 95},
+                { 7, centralGID + 100}, {8, centralGID - 103}, {9, centralGID - 94}, {10, centralGID - 99}, {11, centralGID + 1},
+                { 12,centralGID - 101}, {13,centralGID - 1}, {14,centralGID - 100}, {15, centralGID}
+            };
+        }
+
         public List<List<int>> AllGeneratableTiles;
 
         public TilingContainer Grass;
@@ -116,11 +126,15 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>()),
                 new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>()),
                 new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>()),
-                new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>()),
+
+
+                new TilingContainer(GenerationType.DirtCliff, FillCliffTilingDictionary(4123), new List<int>()),
+
+
                 new TilingContainer(GenerationType.FenceTiling, FillFenceTilingDictionary(456), new List<int>()),
                 new TilingContainer(GenerationType.OakFloorTiling, FillTilingDictionary(632), new List<int>()),
                 new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>()),
-                new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
+               // new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>()),
                 new TilingContainer(GenerationType.DirtCliffBottom, null, new List<int>()
                 {
                     3534
@@ -262,7 +276,7 @@ namespace SecretProject.Class.TileStuff
                 if (perlinValue >= .07f && perlinValue <= .1f)
                 {
 
-                    newGID = 2935; //dirt cliff
+                    newGID = 4124; //dirt cliff
 
                 }
             }

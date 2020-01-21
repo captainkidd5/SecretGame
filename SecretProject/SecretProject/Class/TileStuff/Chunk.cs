@@ -331,7 +331,7 @@ namespace SecretProject.Class.TileStuff
                                 bool harvestable = binaryReader.ReadBoolean();
                                 int dayPlanted = binaryReader.ReadInt32();
                                 int newCurrentGrowth = Game1.GlobalClock.TotalDays - dayPlanted;
-                                if(newCurrentGrowth > daysToGrow)
+                                if (newCurrentGrowth > daysToGrow)
                                 {
                                     newCurrentGrowth = daysToGrow;
                                 }
@@ -339,7 +339,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     ItemID = itemID,
                                     Name = name,
-                                    
+
                                     BaseGID = baseGID,
                                     DaysToGrow = daysToGrow,
 
@@ -347,7 +347,7 @@ namespace SecretProject.Class.TileStuff
                                     DayPlanted = dayPlanted,
                                     CurrentGrowth = newCurrentGrowth,
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[newCurrentGrowth].Id + 1,
-                            };
+                                };
                                 this.Crops.Add(cropKey, crop);
                                 TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
                             }
@@ -551,7 +551,7 @@ namespace SecretProject.Class.TileStuff
 
                     List<int> CliffBottomTiles = new List<int>()
         {
-            3033, 3034, 3035, 2937, 3036, 2936
+            4222, 4223, 4224
         };
 
 

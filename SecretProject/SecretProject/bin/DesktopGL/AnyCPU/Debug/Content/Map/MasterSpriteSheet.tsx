@@ -2604,43 +2604,19 @@
   </objectgroup>
  </tile>
  <tile id="2833">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="2834">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="2835">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="13" width="16" height="3"/>
   </objectgroup>
- </tile>
- <tile id="2836">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
- <tile id="2837">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
- <tile id="2838">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
  </tile>
  <tile id="2904">
   <objectgroup draworder="index" id="2">
@@ -2698,35 +2674,14 @@
   </objectgroup>
  </tile>
  <tile id="2933">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="2934">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="2935">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
- </tile>
- <tile id="2936">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
- <tile id="2937">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
  </tile>
  <tile id="2963">
   <properties>
@@ -2794,38 +2749,14 @@
   </objectgroup>
  </tile>
  <tile id="3033">
-  <properties>
-   <property name="cliffBlock" value="4"/>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3034">
-  <properties>
-   <property name="cliffBlock" value="4"/>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="3035">
-  <properties>
-   <property name="cliffBlock" value="4"/>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
- </tile>
- <tile id="3036">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
- <tile id="3037">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
  </tile>
  <tile id="3092">
   <properties>
@@ -2895,22 +2826,11 @@
   </objectgroup>
  </tile>
  <tile id="3133">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3134">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="3135">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
@@ -2986,22 +2906,11 @@
   </objectgroup>
  </tile>
  <tile id="3233">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3234">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="3235">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
@@ -3099,22 +3008,11 @@
   </objectgroup>
  </tile>
  <tile id="3333">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3334">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="3335">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
@@ -3162,22 +3060,11 @@
   </objectgroup>
  </tile>
  <tile id="3433">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3434">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
- </tile>
  <tile id="3435">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
@@ -3224,25 +3111,16 @@
   </objectgroup>
  </tile>
  <tile id="3533">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="3534">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="3535">
-  <properties>
-   <property name="generate" value="DirtCliff"/>
-  </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
@@ -3427,6 +3305,56 @@
    <object id="1" x="0" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
+ <tile id="4020">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4021">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4022">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4023">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4024">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4025">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4026">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4027">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4028">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4029">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
  <tile id="4031">
   <objectgroup draworder="index" id="2">
    <object id="1" x="6" y="0" width="10" height="9"/>
@@ -3436,6 +3364,46 @@
   <objectgroup draworder="index" id="3">
    <object id="2" x="0" y="0" width="10" height="9"/>
   </objectgroup>
+ </tile>
+ <tile id="4121">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4122">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4123">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4124">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4125">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4126">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4127">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4128">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
  </tile>
  <tile id="4132">
   <objectgroup draworder="index" id="2">
@@ -3454,6 +3422,46 @@
    <property name="lightSource" value="1"/>
   </properties>
  </tile>
+ <tile id="4221">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4222">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4223">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4224">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4225">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4226">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4227">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4228">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
  <tile id="4280">
   <properties>
    <property name="action" value="triggerLift"/>
@@ -3467,6 +3475,46 @@
    <property name="action" value="triggerLift"/>
   </properties>
  </tile>
+ <tile id="4321">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4322">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4323">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4324">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4325">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4326">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4327">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4328">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
  <tile id="4380">
   <properties>
    <property name="AssociatedTiles" value="4280,4180"/>
@@ -3478,9 +3526,119 @@
    <property name="prop" value="prop"/>
   </properties>
  </tile>
+ <tile id="4421">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4422">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4423">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4424">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4425">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4426">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4427">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4428">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4521">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4522">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4523">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4524">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4525">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4526">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4527">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4528">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
  <tile id="4614">
   <properties>
    <property name="prop" value="prop"/>
+  </properties>
+ </tile>
+ <tile id="4622">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4623">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4624">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4722">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4723">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
+  </properties>
+ </tile>
+ <tile id="4724">
+  <properties>
+   <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
  <tile id="6067">
