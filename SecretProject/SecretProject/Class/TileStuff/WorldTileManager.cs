@@ -88,7 +88,7 @@ namespace SecretProject.Class.TileStuff
 
         public int PlayerI { get; set; }
         public int PlayerJ { get; set; }
-        public List<Item> AllItems { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Item> AllItems { get; set; }
 
         int OldPlayerI;
         int OldPlayerJ;
@@ -200,6 +200,15 @@ namespace SecretProject.Class.TileStuff
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
         }
 
+        public void AddItem(Item item, Vector2 position)
+        {
+            GetChunkFromPosition(position).AllItems.Add(item);
+        }
+
+        public List<Item> GetItems(Vector2 position)
+        {
+            return GetChunkFromPosition(position).AllItems;
+        }
 
         public Chunk[,] GetActiveChunkCoord(Vector2 playerPos)
         {

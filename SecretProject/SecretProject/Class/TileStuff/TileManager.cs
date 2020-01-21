@@ -201,7 +201,14 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-
+        public void AddItem(Item item, Vector2 position)
+        {
+            this.AllItems.Add(item);
+        }
+        public List<Item> GetItems(Vector2 position)
+        {
+            return AllItems;
+        }
 
         #region LOADTILESOBJECTS
         public void LoadInitialTileObjects(ILocation stage)

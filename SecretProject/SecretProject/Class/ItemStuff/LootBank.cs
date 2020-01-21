@@ -31,7 +31,7 @@ namespace SecretProject.Class.ItemStuff
                 if(data.LootPieces[i].Unlocked)
                 {
                     
-                 container.AllItems.Add(Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true));
+                 Game1.ItemVault.GenerateNewItem(data.LootPieces[i].ItemToSpawnID, position, true,container.AllItems);
                     
                    
                     
@@ -45,7 +45,8 @@ namespace SecretProject.Class.ItemStuff
         public Item GetLootFromTileset(int gid, Vector2 position, string lootString, IInformationContainer container)
         {
             int lootID = int.Parse(lootString);
-            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(lootID, position, true));
+            Game1.ItemVault.GenerateNewItem(lootID, position, true, container.AllItems);
+           // container.AllItems.Add(Game1.ItemVault.GenerateNewItem(lootID, position, true));
             return Game1.ItemVault.GenerateNewItem(lootID, null);
         }
     }

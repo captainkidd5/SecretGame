@@ -7,6 +7,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using System;
+using System.Collections.Generic;
 using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
@@ -74,8 +75,11 @@ namespace SecretProject.Class.ItemStuff
         public byte VegetableValue { get; set; }
         public byte FruitValue { get; set; }
 
-        public Item(ItemData itemData)
+        public List<Item> AllItems { get; set; }
+
+        public Item(ItemData itemData, List<Item> allItems)
         {
+            this.AllItems = allItems;
             this.Name = itemData.Name;
             this.Description = itemData.Description;
             this.InvMaximum = itemData.InvMaximum;
@@ -124,6 +128,7 @@ namespace SecretProject.Class.ItemStuff
                     WorldPosition, 16, 16)
                 { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item, Entity = this };
                 this.Ignored = true;
+                AllItems.Add(this);
             }
             else
             {
@@ -182,7 +187,8 @@ namespace SecretProject.Class.ItemStuff
                 {
 
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PickUpItem);
-                    Game1.GetCurrentStage().AllTiles.AllItems.Remove(this);
+                    this.AllItems.Remove(this);
+                   // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
 
 
                     Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));

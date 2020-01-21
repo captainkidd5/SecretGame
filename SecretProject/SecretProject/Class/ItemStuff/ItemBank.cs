@@ -48,9 +48,9 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
-        public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false)
+        public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false, List<Item> allItems = null)
         {
-            Item newItem = new Item(Game1.AllItems.GetItemFromID(id));
+            Item newItem = new Item(Game1.AllItems.GetItemFromID(id), allItems);
 
             if (!(location == null))
             {
