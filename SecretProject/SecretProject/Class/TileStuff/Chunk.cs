@@ -551,7 +551,7 @@ namespace SecretProject.Class.TileStuff
 
                     List<int> CliffBottomTiles = new List<int>()
         {
-            3033, 3034, 3035
+            3033, 3034, 3035, 2937, 3036, 2936
         };
 
 
@@ -654,6 +654,7 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleCliffEdgeCases(List<int[,,]> AllAdjacentChunkNoise)
         {
+            //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
                 for (int j = 15; j > 10; j--)
