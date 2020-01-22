@@ -105,7 +105,7 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-            this.CustomQuadTree = new CustomQuadTree(this.Graphics, this.Cam.CameraScreenRectangle);
+            this.CustomQuadTree = new CustomQuadTree(this.Graphics, this.MapRectangle);
             player.CollideOccured = false;
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
             for (int i = 0; i < this.Enemies.Count; i++)
