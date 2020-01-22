@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,55 @@ namespace SecretProject.Class.CollisionDetection
     {
         // 0 thru 3, clockwise
         public int Quadrant { get; private set; }
+        public int NodeLevel { get; set; }
         public List<CustomQuadTree> SubNodes { get; set; }
         public static int SplitLimit = 10;
+        public static int MaximumLevels = 4;
 
         public Rectangle Rectangle { get; set; }
 
 
         public List<ICollidable> Objects { get; private set; }
 
-        public CustomQuadTree(Rectangle rectangle)
+        public Texture2D ColoredRectangle { get; set; }
+        public GraphicsDevice Graphics { get; set; }
+
+
+
+        public CustomQuadTree(GraphicsDevice graphics, Rectangle rectangle)
         {
+            this.NodeLevel = 0;
             this.Rectangle = rectangle;
-            this.SubNodes = new List<CustomQuadTree>(4)
-            {
-                new CustomQuadTree(0, this.Rectangle, new List<ICollidable>()),
-                new CustomQuadTree(1, this.Rectangle, new List<ICollidable>()),
-                new CustomQuadTree(2, this.Rectangle, new List<ICollidable>()),
-                new CustomQuadTree(3, this.Rectangle, new List<ICollidable>()),
-            };
+            this.Objects = new List<ICollidable>();
+            this.SubNodes = new List<CustomQuadTree>(4);
+            this.Graphics = graphics;
+
         }
 
-        private CustomQuadTree(int quadrant, Rectangle rectangle, List<ICollidable> objects)
+        public void Draw(SpriteBatch spriteBatch)
         {
+
+                for(int i =0; i < this.Objects.Count; i++)
+                {
+                    spriteBatch.Draw(Game1.AllTextures.redPixel, new Vector2(this.Objects[i].Rectangle.X, this.Objects[i].Rectangle.Y), null, Color.White, 0f, Game1.Utility.Origin, 5f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.NodeLevel.ToString(), new Vector2(this.Objects[i].Rectangle.X, this.Objects[i].Rectangle.Y), Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+            }
+                
+            
+            
+            for(int i =0; i < this.SubNodes.Count; i++)
+            {
+                this.SubNodes[i].Draw(spriteBatch);
+            }
+        }
+
+        private CustomQuadTree(GraphicsDevice graphics, int nodeLevel, int quadrant, Rectangle rectangle, List<ICollidable> objects)
+        {
+            this.Graphics = graphics;
+
+            this.NodeLevel = nodeLevel;
             this.Quadrant = quadrant;
+            this.SubNodes = new List<CustomQuadTree>(4);
             switch (this.Quadrant)
             {
                 //top left
@@ -53,6 +80,7 @@ namespace SecretProject.Class.CollisionDetection
                     this.Rectangle = new Rectangle(rectangle.X + rectangle.Width / 2, rectangle.Y + rectangle.Height / 2, rectangle.Width / 2, rectangle.Height / 2);
                     break;
             }
+
             this.Objects = objects;
         }
 
@@ -65,9 +93,14 @@ namespace SecretProject.Class.CollisionDetection
         /// </summary>
         public void Split()
         {
-            this.SubNodes = new List<CustomQuadTree>(4);
 
-            List<List<ICollidable>> collideLists = new List<List<ICollidable>>();
+            List<List<ICollidable>> collideLists = new List<List<ICollidable>>
+            {
+                new List<ICollidable>(),
+                new List<ICollidable>(),
+                new List<ICollidable>(),
+                new List<ICollidable>(),
+            };
             for (int col = 0; col < this.Objects.Count; col++)
             {
                 int colliderIndex = GetIndex(this.Objects[col]);
@@ -83,9 +116,9 @@ namespace SecretProject.Class.CollisionDetection
 
             }
 
-            for (int i = 0; i < this.SubNodes.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
-                this.SubNodes.Add(new CustomQuadTree(i, this.Rectangle, collideLists[i]));
+                this.SubNodes.Add(new CustomQuadTree(this.Graphics, this.NodeLevel + 1, i, this.Rectangle, collideLists[i]));
             }
         }
         /// <summary>
@@ -100,21 +133,21 @@ namespace SecretProject.Class.CollisionDetection
             {
                 //top left
                 case 0:
-                    if (rectangle.X < this.Rectangle.Width / 2 && rectangle.Y < this.Rectangle.Height / 2)
+                    if (rectangle.X + rectangle.Width < this.Rectangle.Width / 2 && rectangle.Y + rectangle.Height < this.Rectangle.Height / 2)
                     {
                         return true;
                     }
                     break;
                 //top right
                 case 1:
-                    if (rectangle.X > this.Rectangle.Width / 2 && rectangle.Y < this.Rectangle.Height / 2)
+                    if (rectangle.X > this.Rectangle.Width / 2 && rectangle.Y + rectangle.Height< this.Rectangle.Height / 2)
                     {
                         return true;
                     }
                     break;
                 //bottom left
                 case 2:
-                    if (rectangle.X < this.Rectangle.Width / 2 && rectangle.Y > this.Rectangle.Height / 2)
+                    if (rectangle.X + rectangle.Width < this.Rectangle.Width / 2 && rectangle.Y > this.Rectangle.Height / 2)
                     {
                         return true;
                     }
@@ -156,9 +189,18 @@ namespace SecretProject.Class.CollisionDetection
             }
             else //only split if we've exceeded the max object limit
             {
-                if(this.SubNodes == null) //split hasn't occurred yet
+                if(this.SubNodes.Count == 0) //split hasn't occurred yet
                 {
-                    Split();
+                    if(this.NodeLevel < CustomQuadTree.MaximumLevels)
+                    {
+                        Split();
+                    }
+                    else
+                    {
+                        this.Objects.Add(collider); //if we get here it means the collider didn't fit completely into any of the subnodes and we just stick it into this (the parent node). 
+                        return;
+                    }
+                    
                 }
                 for (int i = 0; i < this.SubNodes.Count; i++)
                 {
@@ -173,25 +215,23 @@ namespace SecretProject.Class.CollisionDetection
             this.Objects.Add(collider); //if we get here it means the collider didn't fit completely into any of the subnodes and we just stick it into this (the parent node). 
         }
 
-        public List<ICollidable> RetrievePotentialCollisions(Collider colliderToTest)
+        public void RetrievePotentialCollisions(List<ICollidable> colliderList, Collider colliderToTest)
         {
-            List<ICollidable> possibleCollisions = new List<ICollidable>();
-
-
-            for(int i =0; i < this.SubNodes.Count; i++)
+            if (GetIndex(colliderToTest) == -1)
+            {
+                colliderList.AddRange(Objects);
+            }
+            for (int i =0; i < this.SubNodes.Count; i++)
             {
                 if(SubNodes[i].GetIndex(colliderToTest) == -1)
                 {
-                    possibleCollisions.AddRange(SubNodes[i].Objects);
+                    colliderList.AddRange(SubNodes[i].Objects);
                 }
                 else
                 {
-                    SubNodes[i].RetrievePotentialCollisions(colliderToTest);
+                    SubNodes[i].RetrievePotentialCollisions(colliderList, colliderToTest);
                 }
             }
-
-
-            return possibleCollisions;
 
         }
 
