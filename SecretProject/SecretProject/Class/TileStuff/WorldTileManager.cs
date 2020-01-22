@@ -262,7 +262,10 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-
+                                if(j == 0)
+                                {
+                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                }
                                 this.ActiveChunks[i, j] = this.ActiveChunks[i, j + 1];
                                 ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
@@ -284,7 +287,10 @@ namespace SecretProject.Class.TileStuff
                             }
                             else
                             {
-
+                                if(j == RenderDistance - 1)
+                                {
+                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                }
                                 this.ActiveChunks[i, j] = this.ActiveChunks[i, j - 1];
                                 ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
@@ -332,7 +338,10 @@ namespace SecretProject.Class.TileStuff
 
                             else
                             {
-
+                                if(i == RenderDistance - 1)
+                                {
+                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                }
                                 this.ActiveChunks[i, j] = this.ActiveChunks[i - 1, j];
                                 ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
@@ -380,7 +389,10 @@ namespace SecretProject.Class.TileStuff
 
                             else
                             {
-
+                                if(i == 0)
+                                {
+                                    SaveAndDiscardChunk(this.ActiveChunks[i, j]);
+                                }
                                 this.ActiveChunks[i, j] = this.ActiveChunks[i + 1, j];
                                 ReassignArrayIAndJ(this.ActiveChunks[i, j], i, j);
 
@@ -419,6 +431,15 @@ namespace SecretProject.Class.TileStuff
                 }
             }
 
+        }
+
+        public void SaveAndDiscardChunk(Chunk chunk)
+        {
+            if(chunk.IsDoneLoading && chunk.IsLoaded)
+            {
+                Chunk newChunk = chunk;
+                Task.Run(() => newChunk.Save());
+            }
         }
 
         public Point GetChunkPositionFromCamera(float x, float y)

@@ -87,6 +87,7 @@ namespace SecretProject.Class.TileStuff
         public List<int[,]> AdjacentNoise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Random Random { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<SPlot> AllPlots { get; set; }
+        public bool WasModifiedDuringInterval { get; set; }
 
         #region CONSTRUCTORS
 

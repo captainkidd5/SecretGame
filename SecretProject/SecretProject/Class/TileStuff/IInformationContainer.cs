@@ -43,5 +43,6 @@ namespace SecretProject.Class.TileStuff
         List<int[,]> AdjacentNoise { get; set; }
         WorldTileManager TileManager { get; set; }
         Random Random { get; set; }
+        bool WasModifiedDuringInterval { get; set; }
     }
 }

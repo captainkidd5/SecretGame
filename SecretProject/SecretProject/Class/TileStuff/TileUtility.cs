@@ -457,6 +457,7 @@ namespace SecretProject.Class.TileStuff
 
                                             break;
                                     }
+                                    container.WasModifiedDuringInterval = true;
                                 }
                             }
                             else if (item.ItemType == ItemType.Tree)
@@ -474,6 +475,7 @@ namespace SecretProject.Class.TileStuff
                                         AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
 
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
+                                        container.WasModifiedDuringInterval = true;
                                     }
                                 }
                             }
@@ -507,6 +509,7 @@ namespace SecretProject.Class.TileStuff
                                         AddCropToTile(container.AllTiles[3][i, j], i, j, 3, container);
 
                                         Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
+                                        container.WasModifiedDuringInterval = true;
                                     }
                                 }
                             }
@@ -581,6 +584,7 @@ namespace SecretProject.Class.TileStuff
                         //Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].GetTileKeyStringNew(z, container)];
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
+                        container.WasModifiedDuringInterval = true;
                     }
                     break;
 
@@ -616,7 +620,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
-
+                        container.WasModifiedDuringInterval = true;
 
                     }
                     break;
@@ -626,7 +630,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].TileKey];
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
-
+                        container.WasModifiedDuringInterval = true;
 
                     }
                     break;
@@ -676,6 +680,7 @@ namespace SecretProject.Class.TileStuff
             AssignProperties(ReplaceMenttile, layer, tileToReplaceX, tileToReplaceY, container);
 
             container.AllTiles[layer][tileToReplaceX, tileToReplaceY] = ReplaceMenttile;
+            container.WasModifiedDuringInterval = true;
         }
 
         public static void ToolInteraction(Tile tile, GameTime gameTime, int layer, int x, int y, int setSoundInt, Color particleColor, Rectangle destinationRectangle, IInformationContainer container)

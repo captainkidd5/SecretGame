@@ -295,7 +295,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
                 if (this.PossibleLoot[i].DidReceive())
                 {
-                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.GetCurrentStage().AllTiles.GetItems(positionToDrop));
+                   // Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.GetCurrentStage().AllTiles.GetItems(positionToDrop));
                 }
             }
 

@@ -82,6 +82,7 @@ namespace SecretProject.Class.TileStuff
         public bool IsGenerating { get; set; }
         public bool IsDoneLoading { get; set; }
 
+        public bool WasModifiedDuringInterval { get; set; }
 
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
