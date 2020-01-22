@@ -79,13 +79,14 @@ namespace SecretProject.Class.CollisionDetection
             for(int col = 0; col < this.Objects.Count; col++)
             {
                 int colliderIndex = GetIndex(this.Objects[col]);
-                if(colliderIndex == -1)
+                if(colliderIndex == -1) //didn't fit into any subnodes completely
                 {
                     continue;
                 }
                 else
                 {
                     collideLists[colliderIndex].Add(this.Objects[col]); //which list the object is inserted into is determined with the getindex() method
+                    this.Objects.Remove(this.Objects[col]); //if we insert it into a subnode, we want to remove it from the parent node
                 }
                 
             }
