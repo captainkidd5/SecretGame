@@ -78,6 +78,7 @@ namespace SecretProject.Class.StageFolder
             for(int b = 0; b < 5; b++)
             {
                 this.Enemies.Add(new Butterfly("butterfly", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
+                this.Enemies.Add(new Chicken("Chicken", new Vector2(236, 770), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
             }
           
         }
