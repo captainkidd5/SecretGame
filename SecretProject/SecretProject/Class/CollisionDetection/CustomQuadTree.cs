@@ -9,39 +9,29 @@ namespace SecretProject.Class.CollisionDetection
 {
    public class CustomQuadTree
     {
-        public List<Node> Nodes { get; set; }
-        public static int SplitLimit = 4;
+        // 0 thru 3, clockwise
+        public int Quadrant { get; private set; }
+        public List<CustomQuadTree> SubNodes { get; set; }
+        public static int SplitLimit = 10;
 
         public Rectangle Rectangle { get; set; }
+
+
+        public List<ICollidable> Objects { get; private set; }
 
         public CustomQuadTree(Rectangle rectangle)
         {
             this.Rectangle = rectangle;
-            this.Nodes = new List<Node>(SplitLimit)
+            this.SubNodes = new List<CustomQuadTree>(4)
             {
-                new Node(0, this.Rectangle, new List<ICollidable>()),
-                new Node(1, this.Rectangle, new List<ICollidable>()),
-                new Node(2, this.Rectangle, new List<ICollidable>()),
-                new Node(3, this.Rectangle, new List<ICollidable>()),
+                new CustomQuadTree(0, this.Rectangle, new List<ICollidable>()),
+                new CustomQuadTree(1, this.Rectangle, new List<ICollidable>()),
+                new CustomQuadTree(2, this.Rectangle, new List<ICollidable>()),
+                new CustomQuadTree(3, this.Rectangle, new List<ICollidable>()),
             };
         }
 
-        public void Insert()
-        {
-
-        }
-    }
-
-    public class Node
-    {
-        // 0 thru 3, clockwise
-        public int Quadrant { get; private set; }
-        public Rectangle Rectangle { get; private set; }
-
-        public List<ICollidable> Objects { get; private set; }
-
-        public List<Node> SubNodes { get; set; }
-        public Node(int quadrant, Rectangle rectangle, List<ICollidable> objects)
+        private CustomQuadTree(int quadrant, Rectangle rectangle, List<ICollidable> objects)
         {
             this.Quadrant = quadrant;
             switch (this.Quadrant)
@@ -50,22 +40,24 @@ namespace SecretProject.Class.CollisionDetection
                 case 0:
                     this.Rectangle = new Rectangle(rectangle.X, rectangle.Y, rectangle.Width / 2, rectangle.Height / 2);
                     break;
-                    //top right
+                //top right
                 case 1:
-                    this.Rectangle = new Rectangle(rectangle.X + rectangle.Width/2, rectangle.Y, rectangle.Width / 2, rectangle.Height / 2);
+                    this.Rectangle = new Rectangle(rectangle.X + rectangle.Width / 2, rectangle.Y, rectangle.Width / 2, rectangle.Height / 2);
                     break;
-                    //bottom left
+                //bottom left
                 case 2:
-                    this.Rectangle = new Rectangle(rectangle.X, rectangle.Y + rectangle.Height/2, rectangle.Width / 2, rectangle.Height / 2);
+                    this.Rectangle = new Rectangle(rectangle.X, rectangle.Y + rectangle.Height / 2, rectangle.Width / 2, rectangle.Height / 2);
                     break;
-                    //bottom right
+                //bottom right
                 case 3:
-                    this.Rectangle = new Rectangle(rectangle.X + rectangle.Width/2, rectangle.Y + rectangle.Height/2, rectangle.Width / 2, rectangle.Height / 2);
+                    this.Rectangle = new Rectangle(rectangle.X + rectangle.Width / 2, rectangle.Y + rectangle.Height / 2, rectangle.Width / 2, rectangle.Height / 2);
                     break;
             }
             this.Objects = objects;
-            
         }
+
+
+
 
         /// <summary>
         /// //Initializes four subnodes and, 
@@ -73,13 +65,13 @@ namespace SecretProject.Class.CollisionDetection
         /// </summary>
         public void Split()
         {
-            this.SubNodes = new List<Node>(CustomQuadTree.SplitLimit);
+            this.SubNodes = new List<CustomQuadTree>(4);
 
             List<List<ICollidable>> collideLists = new List<List<ICollidable>>();
-            for(int col = 0; col < this.Objects.Count; col++)
+            for (int col = 0; col < this.Objects.Count; col++)
             {
                 int colliderIndex = GetIndex(this.Objects[col]);
-                if(colliderIndex == -1) //didn't fit into any subnodes completely
+                if (colliderIndex == -1) //didn't fit into any subnodes completely
                 {
                     continue;
                 }
@@ -88,12 +80,12 @@ namespace SecretProject.Class.CollisionDetection
                     collideLists[colliderIndex].Add(this.Objects[col]); //which list the object is inserted into is determined with the getindex() method
                     this.Objects.Remove(this.Objects[col]); //if we insert it into a subnode, we want to remove it from the parent node
                 }
-                
+
             }
 
             for (int i = 0; i < this.SubNodes.Count; i++)
             {
-                this.SubNodes.Add(new Node(i, this.Rectangle,collideLists[i]));
+                this.SubNodes.Add(new CustomQuadTree(i, this.Rectangle, collideLists[i]));
             }
         }
         /// <summary>
@@ -104,30 +96,30 @@ namespace SecretProject.Class.CollisionDetection
         /// <returns></returns>
         public bool DoesFitIntoQuadrant(int quadrant, Rectangle rectangle)
         {
-            switch(quadrant)
+            switch (quadrant)
             {
                 //top left
                 case 0:
-                    if(rectangle.X < this.Rectangle.Width /2 && rectangle.Y < this.Rectangle.Height / 2)
+                    if (rectangle.X < this.Rectangle.Width / 2 && rectangle.Y < this.Rectangle.Height / 2)
                     {
                         return true;
                     }
                     break;
-                    //top right
+                //top right
                 case 1:
                     if (rectangle.X > this.Rectangle.Width / 2 && rectangle.Y < this.Rectangle.Height / 2)
                     {
                         return true;
                     }
                     break;
-                    //bottom left
+                //bottom left
                 case 2:
                     if (rectangle.X < this.Rectangle.Width / 2 && rectangle.Y > this.Rectangle.Height / 2)
                     {
                         return true;
                     }
                     break;
-                    //bottom right
+                //bottom right
                 case 3:
                     if (rectangle.X > this.Rectangle.Width / 2 && rectangle.Y > this.Rectangle.Height / 2)
                     {
@@ -146,9 +138,9 @@ namespace SecretProject.Class.CollisionDetection
         /// <returns></returns>
         public int GetIndex(ICollidable collider)
         {
-            for(int i =0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
-                if(DoesFitIntoQuadrant(i, collider.Rectangle))
+                if (DoesFitIntoQuadrant(i, collider.Rectangle))
                 {
                     return i;
                 }
@@ -158,7 +150,52 @@ namespace SecretProject.Class.CollisionDetection
 
         public void Insert(ICollidable collider)
         {
+            if (this.Objects.Count < CustomQuadTree.SplitLimit)
+            {
+
+            }
+            else //only split if we've exceeded the max object limit
+            {
+                if(this.SubNodes == null) //split hasn't occurred yet
+                {
+                    Split();
+                }
+                for (int i = 0; i < this.SubNodes.Count; i++)
+                {
+                    if (DoesFitIntoQuadrant(i, collider.Rectangle))
+                    {
+                        this.SubNodes[i].Insert(collider);
+                        return;
+                    }
+                }
+            }
+            
+            this.Objects.Add(collider); //if we get here it means the collider didn't fit completely into any of the subnodes and we just stick it into this (the parent node). 
+        }
+
+        public List<ICollidable> RetrievePotentialCollisions(Collider colliderToTest)
+        {
+            List<ICollidable> possibleCollisions = new List<ICollidable>();
+
+
+            for(int i =0; i < this.SubNodes.Count; i++)
+            {
+                if(SubNodes[i].GetIndex(colliderToTest) == -1)
+                {
+                    possibleCollisions.AddRange(SubNodes[i].Objects);
+                }
+                else
+                {
+                    SubNodes[i].RetrievePotentialCollisions(colliderToTest);
+                }
+            }
+
+
+            return possibleCollisions;
 
         }
+
     }
+
+    
 }
