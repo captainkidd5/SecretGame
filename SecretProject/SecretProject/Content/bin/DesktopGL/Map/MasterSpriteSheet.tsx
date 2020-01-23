@@ -4181,6 +4181,18 @@
    <frame tileid="7415" duration="100"/>
   </animation>
  </tile>
+ <tile id="8033">
+  <animation>
+   <frame tileid="8233" duration="400"/>
+   <frame tileid="8433" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="8034">
+  <animation>
+   <frame tileid="8234" duration="400"/>
+   <frame tileid="8434" duration="400"/>
+  </animation>
+ </tile>
  <tile id="8045">
   <animation>
    <frame tileid="8545" duration="200"/>
@@ -4216,6 +4228,18 @@
   <animation>
    <frame tileid="7815" duration="100"/>
    <frame tileid="7515" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="8133">
+  <animation>
+   <frame tileid="8333" duration="400"/>
+   <frame tileid="8533" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="8134">
+  <animation>
+   <frame tileid="8334" duration="400"/>
+   <frame tileid="8534" duration="400"/>
   </animation>
  </tile>
  <tile id="8145">

@@ -178,7 +178,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
-            this.PrimaryVelocity = new Vector2(1, 1);
+            this.PrimaryVelocity = new Vector2(.5f, .5f);
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
