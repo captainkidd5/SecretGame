@@ -12,16 +12,20 @@ namespace SecretProject.Class.NPCStuff
         Boar = 1,
         Crab = 2,
         Rabbit = 3,
-        Butterfly = 4
+        Butterfly = 4,
+        WarChicken =5
     }
 
     public class NPCGenerator
     {
         public static List<NPCSpawnData> DirtCreatures = new List<NPCSpawnData>()
         {
-            new NPCSpawnData(NPCType.Boar, GenerationType.Dirt, 0f, .2f, .75f),
+            new NPCSpawnData(NPCType.WarChicken, GenerationType.Dirt, 0f, .2f, .75f),
+            new NPCSpawnData(NPCType.WarChicken,GenerationType.Dirt, .11f, .3f, .75f),
             new NPCSpawnData(NPCType.Butterfly, GenerationType.Dirt, .11f, .3f, .75f),
+            
              new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
+             
 
         };
 
@@ -178,6 +182,8 @@ namespace SecretProject.Class.NPCStuff
 
                 case NPCType.Butterfly:
                     return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                case NPCType.WarChicken:
+                    return new WarChicken("WarChicken", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
 
                 default:
                     return null;
