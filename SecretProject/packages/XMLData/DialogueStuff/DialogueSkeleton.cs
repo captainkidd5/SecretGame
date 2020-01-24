@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.RouteStuff;
 
 namespace XMLData.DialogueStuff
 {
@@ -11,9 +12,7 @@ namespace XMLData.DialogueStuff
     {
         //who will be speaking?
         public int SpeechID { get; set; }
-        public int Day { get; set; }
-        public int TimeStart { get; set; }
-        public int TimeEnd { get; set; }
+        public string Time { get; set; }
         public string TextToWrite { get; set; }
 
 

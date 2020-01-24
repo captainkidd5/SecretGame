@@ -3,43 +3,48 @@
 <Asset Type ="XMLData.DialogueStuff.DialogueHolder">
   <SpeakerID>2</SpeakerID>
   <AllDialogue>
+
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
+    <Month>Spring</Month>
     <Day>0</Day>
-    <TimeStart>0</TimeStart>
-    <TimeEnd>6</TimeEnd>
+    <Time>4AM</Time>
    <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
     </Item>
+    
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Day>0</Day>
-    <TimeStart>7</TimeStart>
-    <TimeEnd>8</TimeEnd>
+     <Month>Spring</Month>
+    <Time>7AM</Time>
    <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
     </Item>
+
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Day>0</Day>
-    <TimeStart>8</TimeStart>
-    <TimeEnd>16</TimeEnd>
+     <Month>Spring</Month>
+    <Time>10AM</Time>
    <TextToWrite>Looking to buy something? `</TextToWrite>
    <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
     </Item>
   
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>4</SpeechID>
+     <Month>Spring</Month>
     <Day>0</Day>
-    <TimeStart>17</TimeStart>
-    <TimeEnd>20</TimeEnd>
+    <Time>5PM</Time>
    <TextToWrite>I'm starved.</TextToWrite>
     </Item>
+
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
+     <Month>Spring</Month>
     <Day>0</Day>
-    <TimeStart>21</TimeStart>
-    <TimeEnd>24</TimeEnd>
+    <Time>8PM</Time>
    <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
     </Item>
+
   </AllDialogue>
   </Asset>
 </XnaContent>

@@ -10,13 +10,19 @@ namespace XMLData.DialogueStuff
     public class DialogueHolder
     {
         public int SpeakerID { get; set; }
-        public List<DialogueSkeleton> AllDialogue { get; set; }
+        public List<DialogueDay> AllDialogue { get; set; }
+        
+        
 
         public void RemoveAllNewLines()
         {
-            foreach(DialogueSkeleton skeleton in AllDialogue)
+            foreach(DialogueDay day in AllDialogue)
             {
-                skeleton.TextToWrite = skeleton.TextToWrite.Replace("\r", "").Replace("\n", "");
+                foreach(DialogueSkeleton skeleton in day.DialogueSkeletons)
+                {
+                    skeleton.TextToWrite = skeleton.TextToWrite.Replace("\r", "").Replace("\n", "");
+                }
+                
             }
         }
     }

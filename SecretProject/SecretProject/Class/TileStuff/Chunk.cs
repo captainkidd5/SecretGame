@@ -547,15 +547,17 @@ namespace SecretProject.Class.TileStuff
                         this.AllTiles[3][2, 2] = new Tile(2, 2, 979);
                         //  this.AllTiles[1][8, 5] = new Tile(8, 4, 9625);
                         int columnCounter = 100;
-                        for (int sx = 0; sx < 5; sx++)
-                        {
-                            for (int sy = 0; sy < 5; sy++)
-                            {
-                                int whirlPoolID = 7946 + sy * columnCounter + sx;
-                                this.AllTiles[2][4 + sx, 5 + sy] = new Tile(4 + sx, 5 + sy, whirlPoolID);
-                            }
+                        //for (int sx = 0; sx < 5; sx++)
+                        //{
+                        //    for (int sy = 0; sy < 5; sy++)
+                        //    {
+                        //        int whirlPoolID = 7946 + sy * columnCounter + sx;
+                        //        this.AllTiles[2][4 + sx, 5 + sy] = new Tile(4 + sx, 5 + sy, whirlPoolID);
+                        //    }
 
-                        }
+                        //}
+                        //player house
+                        this.AllTiles[3][6, 6] = new Tile(8,8, 7127);
 
                     }
                     else

@@ -2870,6 +2870,16 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3154">
+  <properties>
+   <property name="newSource" value="-48,-96,128,112"/>
+  </properties>
+ </tile>
+ <tile id="3160">
+  <properties>
+   <property name="newSource" value="-16,-16,48,32"/>
+  </properties>
+ </tile>
  <tile id="3204">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>
@@ -3911,6 +3921,12 @@
   <properties>
    <property name="newHitBox" value="-16, -64, 80, 80"/>
    <property name="newSource" value="-16, -96, 80,112"/>
+  </properties>
+ </tile>
+ <tile id="7126">
+  <properties>
+   <property name="newHitBox" value="-32, -96, 80, 112"/>
+   <property name="newSource" value="-32, -96, 80, 112"/>
   </properties>
  </tile>
  <tile id="7146">

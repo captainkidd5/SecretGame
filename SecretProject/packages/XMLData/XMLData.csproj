@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DialogueStuff\DialogueDay.cs" />
     <Compile Include="DialogueStuff\DialogueHolder.cs" />
     <Compile Include="DialogueStuff\DialogueSkeleton.cs" />
     <Compile Include="ItemStuff\CookingRecipe.cs" />

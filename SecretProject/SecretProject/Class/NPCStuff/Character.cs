@@ -86,8 +86,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public List<PathFinderNode> CurrentPath { get; set; }
 
-        public ResearchAssignment CurrentResearch { get; set; }
-        public bool HasActiveResearch { get; set; }
 
         public EmoticonType CurrentEmoticon { get; set; }
 
@@ -296,31 +294,31 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
                     DialogueSkeleton skeleton;
-                    if (this.CurrentResearch != null && this.CurrentResearch.Complete && !this.CurrentResearch.Claimed)
-                    {
-                        string itemStringToWrite = "error!";
-                        skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(this.SpeakerID, 100);
-                        for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
-                        {
-                            for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
-                            {
-                                for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
-                                {
-                                    if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == this.CurrentResearch.ID)
-                                    {
-                                        Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
-                                        itemStringToWrite = Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.Name + " Unlocked!";
-                                    }
-                                }
-                            }
-                        }
-                        this.CurrentResearch.Claimed = true;
-                        Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White, true, .5f);
-                    }
-                    else
-                    {
+                    //if (this.CurrentResearch != null && this.CurrentResearch.Complete && !this.CurrentResearch.Claimed)
+                    //{
+                    //    string itemStringToWrite = "error!";
+                    //    skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(this.SpeakerID, 100);
+                    //    for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
+                    //    {
+                    //        for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
+                    //        {
+                    //            for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
+                    //            {
+                    //                if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == this.CurrentResearch.ID)
+                    //                {
+                    //                    Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
+                    //                    itemStringToWrite = Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.Name + " Unlocked!";
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //    this.CurrentResearch.Claimed = true;
+                    //    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White, true, .5f);
+                    //}
+                    //else
+                    //{
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.TotalDays, Game1.GlobalClock.TotalHours);
-                    }
+                    //}
 
                     if (skeleton != null)
                     {
@@ -375,14 +373,14 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void OnDayIncreased(object sender, EventArgs e)
         {
-            if (this.HasActiveResearch)
-            {
-                if (this.CurrentResearch.ContinueResearch())
-                {
-                    this.HasActiveResearch = false;
-                }
+            //if (this.HasActiveResearch)
+            //{
+            //    if (this.CurrentResearch.ContinueResearch())
+            //    {
+            //        this.HasActiveResearch = false;
+            //    }
 
-            }
+            //}
         }
         #endregion
 
