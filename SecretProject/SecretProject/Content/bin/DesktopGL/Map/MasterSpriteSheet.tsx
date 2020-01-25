@@ -4068,6 +4068,22 @@
    <property name="newSource" value="-32, -96, 128,112"/>
   </properties>
  </tile>
+ <tile id="7639">
+  <animation>
+   <frame tileid="7839" duration="400"/>
+   <frame tileid="8039" duration="400"/>
+   <frame tileid="8239" duration="400"/>
+   <frame tileid="8439" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="7640">
+  <animation>
+   <frame tileid="7840" duration="400"/>
+   <frame tileid="8040" duration="400"/>
+   <frame tileid="8240" duration="400"/>
+   <frame tileid="8440" duration="400"/>
+  </animation>
+ </tile>
  <tile id="7645">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="0" width="5" height="16"/>
@@ -4087,6 +4103,22 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="6" y="0" width="5" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="7739">
+  <animation>
+   <frame tileid="7939" duration="400"/>
+   <frame tileid="8139" duration="400"/>
+   <frame tileid="8339" duration="400"/>
+   <frame tileid="8539" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="7740">
+  <animation>
+   <frame tileid="7940" duration="400"/>
+   <frame tileid="8140" duration="400"/>
+   <frame tileid="8340" duration="400"/>
+   <frame tileid="8540" duration="400"/>
+  </animation>
  </tile>
  <tile id="7745">
   <objectgroup draworder="index" id="2">
