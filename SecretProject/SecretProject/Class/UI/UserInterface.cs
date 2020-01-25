@@ -11,6 +11,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.SanctuaryStuff;
+using SecretProject.Class.UI.StaminaStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -137,7 +138,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             this.PlayerHealthBar = new HealthBar();
-            this.PlayerStaminaBar = new StaminaBar(graphicsDevice, Game1.Player.Stamina, .2f);
+            this.PlayerStaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.Utility.CenterScreenX - Game1.ScreenWidth /2 + 32, 32), 5, 1);
             this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
@@ -250,7 +251,7 @@ namespace SecretProject.Class.UI
 
 
                     this.Esc.isTextChanged = false;
-                    this.PlayerStaminaBar.Update(gameTime);
+    
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
@@ -533,7 +534,7 @@ namespace SecretProject.Class.UI
                 DrawTransitionTexture(spriteBatch);
             }
 
-
+            this.PlayerStaminaBar.Draw(spriteBatch);
 
             spriteBatch.End();
 

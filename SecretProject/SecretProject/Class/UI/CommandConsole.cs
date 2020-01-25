@@ -32,7 +32,8 @@ namespace SecretProject.Class.UI
                 new CommandWindowCommand("warp", "warp (enum)[stagename]"),
                 new CommandWindowCommand("teleport", "teleport (int)[X Position], (int)[Y Position]"),
                 new CommandWindowCommand("clear", "clears console window"),
-                new CommandWindowCommand("settime", "settime (int)[time between 0 and 24]")
+                new CommandWindowCommand("settime", "settime (int)[time between 0 and 24]"),
+                new CommandWindowCommand("decreaseEnergy", "decreaseEnergy (int)[amount to decrease]")
             };
         }
 
@@ -150,6 +151,9 @@ namespace SecretProject.Class.UI
 
                     Game1.GlobalClock.TotalHours = time;
                     Game1.GlobalClock.AdjustClockText();
+                    break;
+                case "decreasee":
+                    Game1.Player.UserInterface.PlayerStaminaBar.DecreaseStamina(int.Parse(separatedString[1].ToLower()));
                     break;
             }
 

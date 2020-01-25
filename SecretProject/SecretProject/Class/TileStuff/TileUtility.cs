@@ -764,8 +764,9 @@ namespace SecretProject.Class.TileStuff
                         {
                             container.TileHitPoints[container.AllTiles[layer][x, y].TileKey]--;
 
-
+                            
                         }
+                        Game1.Player.UserInterface.PlayerStaminaBar.DecreaseStamina(1);
 
                     }
                 }
