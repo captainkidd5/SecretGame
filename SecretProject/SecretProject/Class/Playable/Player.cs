@@ -406,6 +406,17 @@ namespace SecretProject.Class.Playable
 
                 if (this.IsMoving && !IsMovingTowardsPoint && !IsPerformingAction)
                 {
+                    if(Game1.GetCurrentStage() == Game1.OverWorld)
+                    {
+                        if(!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
+                        {
+                            UserInterface.StaminaBar.IsDraining = true;
+                        }
+                        else
+                        {
+                            UserInterface.StaminaBar.IsDraining = false;
+                        }
+                    }
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {
                         for (int j = 0; j < animations.GetLength(1); j++)
@@ -468,6 +479,7 @@ namespace SecretProject.Class.Playable
 
                 if (controls.IsMoving && !IsPerformingAction)
                 {
+                    UpdateStaminaDrainFlag();
                     if (controls.IsSprinting)
                     {
                         this.Position += PrimaryVelocity * 10;
@@ -631,6 +643,21 @@ namespace SecretProject.Class.Playable
 
                 }
 
+            }
+        }
+
+        public void UpdateStaminaDrainFlag()
+        {
+            if (Game1.GetCurrentStage() == Game1.OverWorld)
+            {
+                if (!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
+                {
+                    UserInterface.StaminaBar.IsDraining = true;
+                }
+                else
+                {
+                    UserInterface.StaminaBar.IsDraining = false;
+                }
             }
         }
 

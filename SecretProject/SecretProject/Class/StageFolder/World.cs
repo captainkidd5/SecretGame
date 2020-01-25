@@ -108,7 +108,14 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-
+        public bool CheckIfWithinStaminaSafeZone(Vector2 position)
+        {
+            if(Math.Abs(position.X) > StaminaSafeDistance || Math.Abs(position.Y) > StaminaSafeDistance)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public void LoadPreliminaryContent(int worldSize)
         {

@@ -138,7 +138,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             this.PlayerHealthBar = new HealthBar();
-            this.StaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.Utility.CenterScreenX - Game1.ScreenWidth /2 + 32, 32), 5);
+            this.StaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.Utility.CenterScreenX - Game1.ScreenWidth /4 + 32, Game1.ScreenHeight - Game1.ScreenHeight/ 8 - 8), 7);
             this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 

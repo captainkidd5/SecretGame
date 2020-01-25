@@ -14,43 +14,48 @@ namespace SecretProject.Class.UI.StaminaStuff
         public bool IsStaminaDepleted { get; private set; }
         public Rectangle EnergyRectangle { get; private set; }
         public Vector2 EnergyPosition { get; set; }
-        
+
 
         public List<EnergyPoint> EnergyPoints { get; set; }
 
         public float StaminaDrainLimit { get; set; }
         public float StaminaDrainRate { get; set; }
         public SimpleTimer StaminaDrainTimer { get; set; }
-       
+
+        public Vector2 SimpleTimerDebugPosition { get; set; } = new Vector2(32, 200);
+        public Vector2 LastEnergyLeft { get; set; } = new Vector2(32, 264);
+
+        public Color StaminaEnergyColor { get; set; }
 
         public StaminaBar(GraphicsDevice graphics, Vector2 energyPosition, int maximumStamina)
         {
             this.Graphics = graphics;
             this.EnergyPosition = energyPosition;
-           this.MaximumStamina = maximumStamina;
+            this.MaximumStamina = maximumStamina;
             this.CurrentStamina = this.MaximumStamina;
             this.EnergyRectangle = new Rectangle(224, 320, 16, 32);
             this.EnergyPoints = new List<EnergyPoint>();
             this.StaminaDrainRate = 1f;
-            this.StaminaDrainLimit = 100f;
+            this.StaminaDrainLimit = 10f;
             this.StaminaDrainTimer = new SimpleTimer(this.StaminaDrainLimit);
-            
 
-            for(int i =0; i < this.MaximumStamina; i++)
+
+            for (int i = 0; i < this.MaximumStamina; i++)
             {
-                this.EnergyPoints.Add(new EnergyPoint(new Vector2(this.EnergyPosition.X + 16 * i, this.EnergyPosition.Y))); 
+                this.EnergyPoints.Add(new EnergyPoint(new Vector2(this.EnergyPosition.X + 16 * i, this.EnergyPosition.Y)));
             }
-           
+
+            this.StaminaEnergyColor = Color.White;
         }
 
         public void Update(GameTime gameTime)
         {
-            if(this.IsDraining)
+            if (this.IsDraining)
             {
-                if(StaminaDrainTimer.Run(gameTime, StaminaDrainRate))
+                if (StaminaDrainTimer.Run(gameTime, StaminaDrainRate))
                 {
                     DecreaseStamina(1);
-                    
+
                 }
 
             }
@@ -61,33 +66,72 @@ namespace SecretProject.Class.UI.StaminaStuff
             return Game1.Player.CalculateStaminaRateOfDrain();
         }
 
+        public void IncreaseStamina(int amount)
+        {
+            int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(amount);
+            if (spillOverStamina > 0)
+            {
+                if (this.CurrentStamina < this.MaximumStamina)
+                {
+                    this.CurrentStamina++;
+                    this.EnergyPoints[this.CurrentStamina].IncreaseStamina(spillOverStamina);
+                    CheckStaminaEnergyColor();
+                }
+
+            }
+        }
+
+        public void CheckStaminaEnergyColor()
+        {
+            if (CurrentStamina > 4)
+            {
+                this.StaminaEnergyColor = Color.Green;
+            }
+            else if (CurrentStamina > 2 && CurrentStamina < 5)
+            {
+                this.StaminaEnergyColor = Color.Orange;
+            }
+            else
+            {
+                this.StaminaEnergyColor = Color.Red;
+            }
+        }
+
         public void DecreaseStamina(int amount)
         {
             int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(amount);
             if (spillOverStamina > 0)
             {
                 this.CurrentStamina--;
-                if(this.CurrentStamina <= 0)
+                if (this.CurrentStamina <= 0)
                 {
                     this.IsStaminaDepleted = true;
 
                     return;
                 }
 
-                    this.EnergyPoints[this.CurrentStamina -1].DecreaseStamina(spillOverStamina);
-                
+                this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(spillOverStamina);
+                CheckStaminaEnergyColor();
+
             }
-         }
+        }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
-                for (int i = 0; i < this.EnergyPoints.Count; i++)
-                {
-                    this.EnergyPoints[i].Draw(spriteBatch);
-                }
-            
+            for (int i = 0; i < this.EnergyPoints.Count; i++)
+            {
+                this.EnergyPoints[i].Draw(spriteBatch,this.StaminaEnergyColor);
+            }
+            if (CurrentStamina > 0)
+            {
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Stamina drain timer " + this.StaminaDrainTimer.Time.ToString(), SimpleTimerDebugPosition, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Energy left " + this.EnergyPoints[CurrentStamina - 1].CurrentEnergy.ToString(), LastEnergyLeft, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+
+            }
+
+
         }
     }
 }

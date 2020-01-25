@@ -24,12 +24,27 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public EnergyPoint(Vector2 position)
         {
-            this.MaximumEnergy = 10;
-            this.CurrentEnergy = 10;
+            this.MaximumEnergy = 5;
+            this.CurrentEnergy = 5;
             this.ColorMultiplier = 1f;
             this.Position = position;
             this.EnergyRectangle = new Rectangle(224, 320, 16, 32);
 
+        }
+        public int IncreaseStamina(int amount)
+        {
+            this.CurrentEnergy += amount;
+            if(this.CurrentEnergy > 0)
+            {
+                this.IsDepleted = false;
+            }
+            if(this.CurrentEnergy > this.MaximumEnergy)
+            {
+                int amountToReturn = this.CurrentEnergy - this.MaximumEnergy;
+                this.CurrentEnergy = this.MaximumEnergy;
+                return amountToReturn;
+            }
+            return 0;
         }
 
         public int DecreaseStamina(int amount)
@@ -46,9 +61,17 @@ namespace SecretProject.Class.UI.StaminaStuff
             return 0; 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, Color.White * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            if (this.IsDepleted)
+            {
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, Color.White * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            }
+            else
+            {
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.EnergyRectangle, color * this.ColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            }
+            
         }
 
     }
