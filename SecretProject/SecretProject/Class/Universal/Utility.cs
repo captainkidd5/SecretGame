@@ -218,18 +218,18 @@ namespace SecretProject.Class.Universal
         #region SPEECHUTILITY
         public void PerformSpeechAction(string action, int speakerID, string name)
         {
-            if (action.Contains('.'))
-            {
-                int newID = int.Parse(action.Split('.')[1]);
-                Game1.Player.UserInterface.TextBuilder.Reset(unfreeze: false);
-                DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(speakerID, newID);
-                Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
-                Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
-                Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + skeleton.TextToWrite, 2f, null, null);
+            //if (action.Contains('.'))
+            //{
+            //    int newID = int.Parse(action.Split('.')[1]);
+            //    Game1.Player.UserInterface.TextBuilder.Reset(unfreeze: false);
+            //    DialogueSkeleton skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(speakerID, newID);
+            //    Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
+            //    Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
+            //    Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + skeleton.TextToWrite, 2f, null, null);
 
-                //   Game1.freeze = true;
-                return;
-            }
+            //    //   Game1.freeze = true;
+            //    return;
+            //}
             switch (action)
             {
                 case "OpenJulianShop":

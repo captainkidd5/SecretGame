@@ -3,28 +3,43 @@
 <Asset Type ="XMLData.DialogueStuff.DialogueHolder">
   <SpeakerID>1</SpeakerID>
   <AllDialogue>
+<Item Type="XMLData.DialogueStuff.DialogueDay">
+<Month>Spring</Month>
+<Day>0</Day>
+<DialogueSkeletons>
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
-    <Day>0</Day>
-    <TimeStart>6</TimeStart>
-    <TimeEnd>15</TimeEnd>
-   <TextToWrite>Can I offer you my services? `</TextToWrite>
-     <SelectableOptions>yes~OpenElixirShop,no~ExitDialogue</SelectableOptions>
+    <Time>4AM</Time>
+   <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
     </Item>
-    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    
+       <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
-    <Day>0</Day>
-    <TimeStart>16</TimeStart>
-    <TimeEnd>20</TimeEnd>
-   <TextToWrite>I like my drinks dark.</TextToWrite>
+    <Time>7AM</Time>
+   <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
     </Item>
-     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
-    <Day>0</Day>
-    <TimeStart>21</TimeStart>
-    <TimeEnd>24</TimeEnd>
-   <TextToWrite>I function best at night.</TextToWrite>
+    <Time>10AM</Time>
+   <TextToWrite>Looking to buy something? `</TextToWrite>
+   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
     </Item>
+  
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>4</SpeechID>
+    <Time>5PM</Time>
+   <TextToWrite>I'm starved.</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>5</SpeechID>
+    <Time>8PM</Time>
+   <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
+    </Item>
+</DialogueSkeletons>
+</Item>
   </AllDialogue>
   </Asset>
 </XnaContent>
+

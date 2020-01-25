@@ -9,34 +9,53 @@ namespace SecretProject.Class.DialogueStuff
     public class DialogueLibrary
     {
         public List<DialogueHolder> Dialogue { get; set; }
-
         public DialogueLibrary(List<DialogueHolder> dialogue)
         {
             this.Dialogue = dialogue;
 
-            
-            
+
+
         }
 
         public void SortSkeletonsByTime()
         {
-            foreach (DialogueHolder holder in this.Dialogue)
-            {
-                holder.AllDialogue = holder.AllDialogue.OrderBy(o => o.)
-                }
+            //foreach (DialogueHolder holder in this.Dialogue)
+            //{
+            //    foreach (DialogueDay day in holder.AllDialogue)
+            //    {
+            //        day.DialogueSkeletons = day.DialogueSkeletons.OrderBy(Game1.GlobalClock.GetTimeFromString())
+            //    }
+            //}
         }
 
-        public DialogueSkeleton RetrieveDialogue(Character character, Month month, int day, int time)
+        /// <summary>
+        /// Returns the dialogue skeleton which corresponds to the time. Skeleton will always default to the one which is greater or equal
+        /// to the time given, but less than the next time slot. Will give the maximum time slot if less than the minimum
+        /// </summary>
+        /// <param name="character"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public DialogueSkeleton RetrieveDialogue(Character character, Month month, int day, string time)
         {
             DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
             DialogueDay dialogueDay = holder.AllDialogue.Find(x => x.Month == month && x.Day == day);
-            DialogueSkeleton skeleton = dialogueDay.DialogueSkeletons.Find(x => x.Month == month &&
-            x.Day == day && Game1.GlobalClock.GetTimeFromString(x.Time) == time);
+            int skeletonIndex = dialogueDay.DialogueSkeletons.BinarySearch(new DialogueSkeleton { Time = time }, new TimeComparer());
 
-            //if (skeleton == null)
-            //{
-            //    skeleton = holder.AllDialogue.Find(x => x.TimeStart <= time && x.TimeEnd <= x.TimeStart && x.Day == day);
-            //}
+            if (skeletonIndex < 0)
+            {
+                skeletonIndex = ~skeletonIndex - 1;
+                if (skeletonIndex < 0)
+                {
+                    skeletonIndex = dialogueDay.DialogueSkeletons.Count - 1;
+                }
+            }
+
+
+
+            DialogueSkeleton skeleton = dialogueDay.DialogueSkeletons[skeletonIndex];
+
             if (skeleton == null)
             {
                 return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
@@ -57,25 +76,15 @@ namespace SecretProject.Class.DialogueStuff
             return skeleton;
         }
 
-        #region DATA STRUCTURE UTILITY
-        //public DialogueSkeleton GetIndexClosestToButGreaterThanValue(DialogueHolder holder, Month month, int time)
-        //{
 
-        //}
-        #endregion
 
-        public DialogueSkeleton RetrieveDialogueNoTime(int speaker, int id)
+    }
+
+    public class TimeComparer : IComparer<DialogueSkeleton>
+    {
+        public int Compare(DialogueSkeleton x, DialogueSkeleton y)
         {
-            DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == speaker);
-
-
-            DialogueSkeleton skeleton = holder.AllDialogue.Find(x => x.SpeechID == id);
-            if (skeleton == null)
-            {
-                return new DialogueSkeleton() { TextToWrite = "error, error, ERROR!" };
-            }
-            return skeleton;
+            return Game1.GlobalClock.GetTimeFromString(x.Time).CompareTo(Game1.GlobalClock.GetTimeFromString(y.Time));
         }
-
     }
 }
