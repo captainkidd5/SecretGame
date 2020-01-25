@@ -15,9 +15,9 @@ namespace SecretProject.Class.Universal
         }
 
 
-        public bool Run(GameTime gameTime)
+        public bool Run(GameTime gameTime, float multiplier = 1f)
         {
-            Time += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Time += (float)gameTime.ElapsedGameTime.TotalSeconds * multiplier;
             return Test();
         }
         public bool Test()

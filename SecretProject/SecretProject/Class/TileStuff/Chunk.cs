@@ -84,6 +84,7 @@ namespace SecretProject.Class.TileStuff
 
         public bool WasModifiedDuringInterval { get; set; }
 
+
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -126,6 +127,7 @@ namespace SecretProject.Class.TileStuff
             this.AdjacentObstacleGrids = new List<ObstacleGrid>();
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
+
         }
 
         public Rectangle GetChunkRectangle()

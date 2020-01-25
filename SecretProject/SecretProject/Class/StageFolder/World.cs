@@ -81,7 +81,7 @@ namespace SecretProject.Class.StageFolder
 
         public Effect CurrentEffect;
 
-
+        public float StaminaSafeDistance { get; set; }
 
         public World(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber)
         {
@@ -104,6 +104,7 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
 
             this.ParticleEngines = new List<ParticleEngine>();
+            this.StaminaSafeDistance = 16 * 8; 
 
         }
 

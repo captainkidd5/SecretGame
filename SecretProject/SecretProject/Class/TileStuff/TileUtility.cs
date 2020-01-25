@@ -766,7 +766,7 @@ namespace SecretProject.Class.TileStuff
 
                             
                         }
-                        Game1.Player.UserInterface.PlayerStaminaBar.DecreaseStamina(1);
+                        Game1.Player.UserInterface.StaminaBar.DecreaseStamina(1);
 
                     }
                 }

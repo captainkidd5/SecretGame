@@ -153,7 +153,7 @@ namespace SecretProject.Class.UI
                     Game1.GlobalClock.AdjustClockText();
                     break;
                 case "decreasee":
-                    Game1.Player.UserInterface.PlayerStaminaBar.DecreaseStamina(int.Parse(separatedString[1].ToLower()));
+                    Game1.Player.UserInterface.StaminaBar.DecreaseStamina(int.Parse(separatedString[1].ToLower()));
                     break;
             }
 

@@ -280,7 +280,16 @@ namespace SecretProject.Class.Playable
         }
 
 
+        public float CalculateStaminaRateOfDrain()
+        {
+            float staminaRateOfDrain = 0f;
+            if(Game1.GetCurrentStage() == Game1.OverWorld)
+            {
+                staminaRateOfDrain = Math.Abs(this.Position.X) + Math.Abs(this.Position.Y);
+            }
 
+            return staminaRateOfDrain;
+        }
 
         public void PlayCollectiveActions(GameTime gameTime)
         {
@@ -331,7 +340,6 @@ namespace SecretProject.Class.Playable
         {
             if (this.Activate)
             {
-
                 PrimaryVelocity = Vector2.Zero;
 
                 this.IsMoving = controls.IsMoving;

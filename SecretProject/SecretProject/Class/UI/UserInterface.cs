@@ -90,7 +90,7 @@ namespace SecretProject.Class.UI
         public IStorableItemBuilding CurrentAccessedStorableItem { get; set; }
 
         public HealthBar PlayerHealthBar { get; set; }
-        public StaminaBar PlayerStaminaBar { get; set; }
+        public StaminaBar StaminaBar { get; set; }
         public WarpGate WarpGate { get; set; }
         public ExclusiveInterfaceItem CurrentOpenInterfaceItem;
         public CurrentOpenProgressBook CurrentOpenProgressBook;
@@ -138,7 +138,7 @@ namespace SecretProject.Class.UI
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             this.PlayerHealthBar = new HealthBar();
-            this.PlayerStaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.Utility.CenterScreenX - Game1.ScreenWidth /2 + 32, 32), 5, 1);
+            this.StaminaBar = new StaminaBar(graphicsDevice, new Vector2(Game1.Utility.CenterScreenX - Game1.ScreenWidth /2 + 32, 32), 5);
             this.WarpGate = new WarpGate(graphicsDevice);
             TileSelector = new TileSelector();
 
@@ -399,6 +399,7 @@ namespace SecretProject.Class.UI
                 BeginTransitionCycle(gameTime);
             }
 
+            this.StaminaBar.Update(gameTime);
 
         }
 
@@ -468,7 +469,7 @@ namespace SecretProject.Class.UI
                         Game1.freeze = false;
                         this.Esc.isTextChanged = false;
                         this.PlayerHealthBar.Draw(spriteBatch, Game1.Player.Health);
-                        this.PlayerStaminaBar.Draw(spriteBatch);
+                        this.StaminaBar.Draw(spriteBatch);
                         break;
                     case ExclusiveInterfaceItem.EscMenu:
                         this.Esc.Draw(spriteBatch);
@@ -534,7 +535,7 @@ namespace SecretProject.Class.UI
                 DrawTransitionTexture(spriteBatch);
             }
 
-            this.PlayerStaminaBar.Draw(spriteBatch);
+            this.StaminaBar.Draw(spriteBatch);
 
             spriteBatch.End();
 
