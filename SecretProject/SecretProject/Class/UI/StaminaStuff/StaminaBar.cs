@@ -74,7 +74,7 @@ namespace SecretProject.Class.UI.StaminaStuff
                 if (this.CurrentStamina < this.MaximumStamina)
                 {
                     this.CurrentStamina++;
-                    this.EnergyPoints[this.CurrentStamina].IncreaseStamina(spillOverStamina);
+                    this.EnergyPoints[this.CurrentStamina - 1].IncreaseStamina(spillOverStamina);
                     CheckStaminaEnergyColor();
                 }
 

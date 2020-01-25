@@ -41,11 +41,12 @@ namespace XMLData.ItemStuff
             newItem.TilingSet = oldItem.TilingSet;
             newItem.TilingLayer = oldItem.TilingLayer;
 
-                newItem.StaminaRestored = oldItem.StaminaRestored;
+                newItem.StaminaRestoreAmount = oldItem.StaminaRestoreAmount;
             newItem.Type = oldItem.Type;
             newItem.AnimationColumn = oldItem.AnimationColumn;
             newItem.CrateType = oldItem.CrateType;
             newItem.Food = oldItem.Food;
+            newItem.StaminaRestoreAmount = oldItem.StaminaRestoreAmount;
             newItem.MeatValue = oldItem.MeatValue;
             newItem.VegetableValue = oldItem.VegetableValue;
             newItem.FruitValue = oldItem.FruitValue;

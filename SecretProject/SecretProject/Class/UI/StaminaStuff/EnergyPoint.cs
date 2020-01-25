@@ -38,12 +38,15 @@ namespace SecretProject.Class.UI.StaminaStuff
             {
                 this.IsDepleted = false;
             }
-            if(this.CurrentEnergy > this.MaximumEnergy)
+            if(this.CurrentEnergy >= this.MaximumEnergy)
             {
                 int amountToReturn = this.CurrentEnergy - this.MaximumEnergy;
                 this.CurrentEnergy = this.MaximumEnergy;
+                this.ColorMultiplier = this.CurrentEnergy * .1f;
+                this.EnergyRectangle = new Rectangle(224, 320, 16, 32);
                 return amountToReturn;
             }
+            this.ColorMultiplier = this.CurrentEnergy * .1f;
             return 0;
         }
 

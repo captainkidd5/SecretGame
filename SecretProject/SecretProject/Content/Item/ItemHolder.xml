@@ -653,6 +653,7 @@
 <Description>An unfertilized egg.</Description>
 <InvMaximum>99</InvMaximum><Price>2</Price>
 <Food>true</Food>
+<StaminaRestoreAmount>10</StaminaRestoreAmount>
 <MeatValue>1</MeatValue>
 </Item>
 
@@ -661,6 +662,8 @@
 <ID>1096</ID>
 <Description>Leafy greens mixed with some eggs.</Description>
 <InvMaximum>99</InvMaximum><Price>2</Price>
+<Food>true</Food>
+<StaminaRestoreAmount>10</StaminaRestoreAmount>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

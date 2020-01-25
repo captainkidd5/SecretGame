@@ -166,6 +166,18 @@ namespace SecretProject.Class.UI
                 TextBuilder.Update(gameTime);
                 this.IsAnySlotHovered = false;
 
+                if (Game1.myMouseManager.IsRightClicked)
+                {
+                    Item item = GetCurrentEquippedToolAsItem();
+                    if(item != null)
+                    {
+                        if (item.StaminaRestoredAmount > 0)
+                        {
+                            Game1.Player.UserInterface.StaminaBar.IncreaseStamina(item.StaminaRestoredAmount);
+                            this.Inventory.RemoveItem(item.ID);
+                        }
+                    }
+                }
 
                 for (int i = 0; i < this.NumberOfSlotsToUpdate; i++)
                 {
@@ -259,6 +271,7 @@ namespace SecretProject.Class.UI
                                     }
                                 }
                             }
+                            
                         }
 
                     }

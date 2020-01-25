@@ -40,9 +40,6 @@ namespace XMLData.ItemStuff
         public int TilingLayer { get; set; }
 
         [ContentSerializer(Optional = true)]
-        public int StaminaRestored { get; set; }
-
-        [ContentSerializer(Optional = true)]
         public ItemType Type { get; set; }
 
         [ContentSerializer(Optional = true)]
@@ -50,6 +47,9 @@ namespace XMLData.ItemStuff
 
         [ContentSerializer(Optional = true)]
         public bool Food { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public int StaminaRestoreAmount { get; set; }
 
         [ContentSerializer(Optional = true)]
         public int CrateType { get; set; }
