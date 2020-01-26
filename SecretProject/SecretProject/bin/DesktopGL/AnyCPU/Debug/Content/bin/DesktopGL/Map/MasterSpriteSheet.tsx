@@ -6,9 +6,64 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="23">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="25">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="26">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="27">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="28">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
  <tile id="85">
   <properties>
    <property name="action" value="plantable"/>
+  </properties>
+ </tile>
+ <tile id="123">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="124">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="125">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="126">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="127">
+  <properties>
+   <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="149">
@@ -54,17 +109,27 @@
    <property name="generate" value="FenceTiling"/>
   </properties>
  </tile>
+ <tile id="223">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="224">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
+ <tile id="225">
+  <properties>
+   <property name="generate" value="Water"/>
+  </properties>
+ </tile>
  <tile id="226">
   <properties>
    <property name="generate" value="Water"/>
   </properties>
  </tile>
  <tile id="227">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
- </tile>
- <tile id="228">
   <properties>
    <property name="generate" value="Water"/>
   </properties>
@@ -249,38 +314,19 @@
   </properties>
  </tile>
  <tile id="325">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="2" width="14.9091" height="2.54545"/>
   </objectgroup>
  </tile>
  <tile id="326">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="0.0909091" width="15.3636" height="2.36364"/>
   </objectgroup>
  </tile>
  <tile id="327">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="7.36364" y="0" width="7.27273" height="15.9091"/>
   </objectgroup>
- </tile>
- <tile id="328">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
- </tile>
- <tile id="329">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
  </tile>
  <tile id="346">
   <objectgroup draworder="index" id="2">
@@ -354,35 +400,14 @@
   </properties>
  </tile>
  <tile id="425">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.3125" y="0.0625" width="3.25" height="15.75"/>
   </objectgroup>
  </tile>
- <tile id="426">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
- </tile>
  <tile id="427">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="11.2727" y="0.272727" width="4.09091" height="15.3636"/>
   </objectgroup>
- </tile>
- <tile id="428">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
- </tile>
- <tile id="429">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
  </tile>
  <tile id="446">
   <objectgroup draworder="index" id="2">
@@ -650,25 +675,16 @@
   </properties>
  </tile>
  <tile id="525">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="8.54545" width="14.9091" height="3.45455"/>
   </objectgroup>
  </tile>
  <tile id="526">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.181818" y="13.7273" width="15.2727" height="1.81818"/>
   </objectgroup>
  </tile>
  <tile id="527">
-  <properties>
-   <property name="generate" value="Water"/>
-  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.272727" y="6" width="15.4545" height="5.27273"/>
   </objectgroup>
@@ -3927,6 +3943,11 @@
   <properties>
    <property name="newHitBox" value="-32, -96, 80, 112"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
+  </properties>
+ </tile>
+ <tile id="7127">
+  <properties>
+   <property name="action" value="enterPlayerHouse"/>
   </properties>
  </tile>
  <tile id="7146">

@@ -232,48 +232,51 @@ namespace SecretProject.Class.StageFolder
                     if (this.AllTiles.ActiveChunks[i, j].IsLoaded)
                     {
 
-
-
-
-                        foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.ActiveChunks[i, j].Objects)
-                        {
-                            for (int z = 0; z < obj.Value.Count; z++)
+                        if (this.AllTiles.ActiveChunks[i, j].GetChunkRectangle().Intersects(this.Cam.CameraScreenRectangle))
                             {
 
-                                this.QuadTree.Insert(obj.Value[z]);
-                                this.QuadTree.TotalObjects++;
 
-                            }
-                        }
 
-                        foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.ActiveChunks[i, j].Tufts)
-                        {
-                            for (int g = 0; g < grass.Value.Count; g++)
+                            foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.ActiveChunks[i, j].Objects)
                             {
-                                if (grass.Value[g].IsUpdating)
+                                for (int z = 0; z < obj.Value.Count; z++)
                                 {
-                                    grass.Value[g].Update(gameTime);
+
+                                    this.QuadTree.Insert(obj.Value[z]);
+                                    this.QuadTree.TotalObjects++;
+
+                                }
+                            }
+
+                            foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.ActiveChunks[i, j].Tufts)
+                            {
+                                for (int g = 0; g < grass.Value.Count; g++)
+                                {
+                                    if (grass.Value[g].IsUpdating)
+                                    {
+                                        grass.Value[g].Update(gameTime);
+                                    }
+
+                                    this.QuadTree.Insert(grass.Value[g]);
+                                    this.QuadTree.TotalObjects++;
+                                }
+                            }
+
+                            for (int e = 0; e < this.Enemies.Count; e++)
+                            {
+                                if (this.Enemies[e] != null)
+                                {
+                                    this.QuadTree.Insert(this.Enemies[e].Collider);
+                                    this.QuadTree.TotalObjects++;
                                 }
 
-                                this.QuadTree.Insert(grass.Value[g]);
-                                this.QuadTree.TotalObjects++;
                             }
-                        }
 
-                        for (int e = 0; e < this.Enemies.Count; e++)
-                        {
-                            if (this.Enemies[e] != null)
+                            for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
                             {
-                                this.QuadTree.Insert(this.Enemies[e].Collider);
+                                this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
                                 this.QuadTree.TotalObjects++;
                             }
-
-                        }
-
-                        for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
-                        {
-                            this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
-                            this.QuadTree.TotalObjects++;
                         }
                     }
 

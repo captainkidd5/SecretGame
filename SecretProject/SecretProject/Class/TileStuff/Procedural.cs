@@ -10,7 +10,7 @@ namespace SecretProject.Class.TileStuff
         Dirt = 1114,
         Sand = 1321,
         SandRuin = 1621,
-        Water = 426,
+        Water = 124,
         Stone = 929,
         DirtCliff = 2934,
         FenceTiling = 456,
@@ -92,7 +92,7 @@ namespace SecretProject.Class.TileStuff
         public Procedural()
         {
             //FASTNOISE
-            FastNoise = new FastNoise(200);
+            FastNoise = new FastNoise(500);
             FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
             FastNoise.SetFractalOctaves(5);
             FastNoise.SetFractalLacunarity(3f);
@@ -124,7 +124,7 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>()),
                 new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>()),
                 new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>()),
-                new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>()),
+                new TilingContainer(GenerationType.Water, FillTilingDictionary(124), new List<int>()),
                 new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>()),
 
 
@@ -214,24 +214,20 @@ namespace SecretProject.Class.TileStuff
                     newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
 
                 }
-                else if (perlinValue >= .02f && perlinValue <= .07f)
+                else if (perlinValue >= 0f && perlinValue <= .07f)
                 {
 
                     //   newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
                     newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
                 }
-
-                else if (perlinValue >= -.09f && perlinValue < .02f)
+                else if (perlinValue >= -.1f && perlinValue < 0f)
                 {
-                    // newGID = Game1.Procedural.StandardGeneratableGrassTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.StandardGeneratableDirtTiles.Count)] + 1;
-                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
-                    //  int randomGrass = Game1.Utility.RGenerator.Next(0, Game1.Utility.GrassGeneratableTiles.Count);
-                    // newGID = Game1.Utility.GrassGeneratableTiles[randomGrass];
+                    newGID = newGID = (int)GenerationType.Water + 1;
                 }
 
                 //newGID = 930; //STONE
 
-                else if (perlinValue >= -.15f && perlinValue < -.09f)
+                else if (perlinValue >= -.15f && perlinValue < -.1f)
                 {
                     newGID = 1322;//SAND
                 }
@@ -247,20 +243,19 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 1)
             {
-                if (perlinValue >= -.1f && perlinValue <= .0f)
+                if (perlinValue >= -.1f && perlinValue < .0f)
                 {
-                    newGID = 1015;//GRASS
+                    newGID = newGID = (int)GenerationType.Water + 1;
                 }
-                else if (perlinValue >= .1f && perlinValue <= .12f)
+                else if (perlinValue >= 0f && perlinValue < .12f)
+                {
+                    newGID = (int)GenerationType.Grass + 1;
+                }
+                else if (perlinValue >= .12f && perlinValue <= .14f)
                 {
                     newGID = 930;//Stone
                 }
-                else if (perlinValue >= .07f && perlinValue <= .1f)
-                {
 
-                    newGID = 930;//Stone
-
-                }
                 else if (perlinValue >= .15f && perlinValue <= .3f)
                 {
                     newGID = 1015; //GRASS
@@ -273,7 +268,7 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 3)
             {
-                if (perlinValue >= .07f && perlinValue <= .1f)
+                if (perlinValue >= .15f && perlinValue <= .2f)
                 {
 
                     newGID = 4124; //dirt cliff
