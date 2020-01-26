@@ -241,9 +241,12 @@ namespace SecretProject.Class.StageFolder
                             {
                                 for (int z = 0; z < obj.Value.Count; z++)
                                 {
-
+                                    if (obj.Value[z].ColliderType == ColliderType.TransperencyDetector)
+                                    {
+                                        obj.Value[z].Entity.Reset();
+                                    }
                                     this.QuadTree.Insert(obj.Value[z]);
-                                    this.QuadTree.TotalObjects++;
+                                   
 
                                 }
                             }
@@ -258,7 +261,7 @@ namespace SecretProject.Class.StageFolder
                                     }
 
                                     this.QuadTree.Insert(grass.Value[g]);
-                                    this.QuadTree.TotalObjects++;
+                                   
                                 }
                             }
 
@@ -267,7 +270,7 @@ namespace SecretProject.Class.StageFolder
                                 if (this.Enemies[e] != null)
                                 {
                                     this.QuadTree.Insert(this.Enemies[e].Collider);
-                                    this.QuadTree.TotalObjects++;
+                                    
                                 }
 
                             }
@@ -275,7 +278,7 @@ namespace SecretProject.Class.StageFolder
                             for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
                             {
                                 this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
-                                this.QuadTree.TotalObjects++;
+                                
                             }
                         }
                     }
@@ -286,9 +289,9 @@ namespace SecretProject.Class.StageFolder
 
 
             this.QuadTree.Insert(Game1.Player.MainCollider);
-            this.QuadTree.TotalObjects++;
+           
             this.QuadTree.Insert(Game1.Player.BigCollider);
-            this.QuadTree.TotalObjects++;
+            
         }
 
         public void Update(GameTime gameTime, MouseManager mouse, Player player)

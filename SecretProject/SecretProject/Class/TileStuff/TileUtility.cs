@@ -466,12 +466,12 @@ namespace SecretProject.Class.TileStuff
                                         case "Dirt":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
-                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
+                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true, container.AllItems));
                                             break;
                                         case "dirtBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
-                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true));
+                                            container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true, container.AllItems));
                                             break;
                                         case "grassBasic":
                                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
