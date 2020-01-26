@@ -27,6 +27,8 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public Color StaminaEnergyColor { get; set; }
 
+        public StaminaStatus StaminaStatus { get; set; }
+
         public StaminaBar(GraphicsDevice graphics, Vector2 energyPosition, int maximumStamina)
         {
             this.Graphics = graphics;
@@ -46,6 +48,7 @@ namespace SecretProject.Class.UI.StaminaStuff
             }
 
             this.StaminaEnergyColor = Color.White;
+            StaminaStatus = new StaminaStatus(new Vector2(this.EnergyPosition.X - 32, this.EnergyPosition.Y));
         }
 
         public void Update(GameTime gameTime)
@@ -119,7 +122,7 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            this.StaminaStatus.Draw(spriteBatch);
             for (int i = 0; i < this.EnergyPoints.Count; i++)
             {
                 this.EnergyPoints[i].Draw(spriteBatch,this.StaminaEnergyColor);

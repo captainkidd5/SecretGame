@@ -169,7 +169,6 @@ namespace SecretProject
         SpriteBatch spriteBatch;
         public static Player Player { get; set; }
         public Texture2D MainCharacterTexture { get; set; }
-        public static Texture2D ItemAtlas;
         public static TextureBook AllTextures;
 
         public static Texture2D LineTexture;

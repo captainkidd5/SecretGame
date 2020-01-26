@@ -34,7 +34,7 @@ namespace SecretProject.Class.UI.StaminaStuff
         public int IncreaseStamina(int amount)
         {
             this.CurrentEnergy += amount;
-            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.Position.X, this.Position.Y - 32), this.Position.Y - 100, "+" + amount.ToString(), 100f, Color.White, false, 2f));
+            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Utility.centerScreen, Game1.Utility.CenterScreenY - 100, "+" + amount.ToString(), 100f, Color.White, false, 2f));
             if (this.CurrentEnergy > 0)
             {
                 this.IsDepleted = false;
@@ -54,7 +54,7 @@ namespace SecretProject.Class.UI.StaminaStuff
         public int DecreaseStamina(int amount)
         {
             this.CurrentEnergy -= amount;
-            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.Position.X, this.Position.Y - 32), this.Position.Y - 100, "-" + amount.ToString(), 100f, Color.White, false, 2f));
+            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.StaminaBar.StaminaStatus.Position, Game1.Player.UserInterface.StaminaBar.StaminaStatus.Position.Y - 100, "-", 100f, Color.White, false, 2f));
             if (this.CurrentEnergy <= 0)
             {
                 this.IsDepleted = true;

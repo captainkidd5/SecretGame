@@ -411,10 +411,12 @@ namespace SecretProject.Class.Playable
                         if(!Game1.OverWorld.CheckIfWithinStaminaSafeZone(this.Position))
                         {
                             UserInterface.StaminaBar.IsDraining = true;
+                            UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(true);
                         }
                         else
                         {
                             UserInterface.StaminaBar.IsDraining = false;
+                            UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
                         }
                     }
                     for (int i = 0; i < animations.GetLength(0); i++)
