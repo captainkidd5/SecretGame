@@ -10,8 +10,8 @@ namespace SecretProject.Class.CollisionDetection
     public class QuadTree
     {
         public int TotalObjects { get; set; }
-        private int MAX_OBJECTS = 10;
-        private int MAX_LEVELS = 15;
+        private int MAX_OBJECTS = 8;
+        private int MAX_LEVELS = 10;
 
         private int level;
         private List<ICollidable> Objects;
@@ -103,40 +103,45 @@ namespace SecretProject.Class.CollisionDetection
 
         public void Insert(ICollidable objectBody)
         {
-            if (nodes[0] != null)
+            if (objectBody.Rectangle.Intersects(Game1.cam.CameraScreenRectangle))
             {
-                int index = GetIndex(objectBody);
 
-                if (index != -1)
+
+                if (nodes[0] != null)
                 {
-                    nodes[index].Insert(objectBody);
+                    int index = GetIndex(objectBody);
 
-                    return;
-                }
-            }
-
-            Objects.Add(objectBody);
-            this.TotalObjects++;
-
-            if (Objects.Count > MAX_OBJECTS && level < MAX_LEVELS)
-            {
-                if (nodes[0] == null)
-                {
-                    Split();
-                }
-
-                int i = 0;
-                while (i < Objects.Count)
-                {
-                    int index = GetIndex(Objects.ElementAt(i));
                     if (index != -1)
                     {
-                        nodes[index].Insert(Objects.ElementAt(i));
-                        Objects.RemoveAt(i);
+                        nodes[index].Insert(objectBody);
+
+                        return;
                     }
-                    else
+                }
+
+                Objects.Add(objectBody);
+
+
+                if (Objects.Count > MAX_OBJECTS && level < MAX_LEVELS)
+                {
+                    if (nodes[0] == null)
                     {
-                        i++;
+                        Split();
+                    }
+
+                    int i = 0;
+                    while (i < Objects.Count)
+                    {
+                        int index = GetIndex(Objects.ElementAt(i));
+                        if (index != -1)
+                        {
+                            nodes[index].Insert(Objects.ElementAt(i));
+                            Objects.RemoveAt(i);
+                        }
+                        else
+                        {
+                            i++;
+                        }
                     }
                 }
             }

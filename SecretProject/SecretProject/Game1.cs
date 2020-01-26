@@ -596,6 +596,7 @@ namespace SecretProject
             }
 
             Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(40, null));
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(162, null));
 
 
 

@@ -34,7 +34,6 @@ namespace SecretProject.Class.StageFolder
 
         Dog Nelja;
 
-        public CustomQuadTree CustomQuadTree { get; set; }
 
 
         public Town(string name, LocationType locationType, StageType stageType, GraphicsDevice graphics, ContentManager content, int tileSetNumber, Texture2D tileSet, string tmxMapPath, int dialogueToRetrieve, int backDropNumber) : base(name, locationType, stageType, graphics, content, tileSetNumber, tileSet, tmxMapPath, dialogueToRetrieve, backDropNumber)
@@ -106,7 +105,7 @@ namespace SecretProject.Class.StageFolder
         #region UPDATE
         public override void Update(GameTime gameTime, MouseManager mouse, Player player)
         {
-            this.CustomQuadTree = new CustomQuadTree(this.Graphics, this.MapRectangle);
+
             player.CollideOccured = false;
             this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
             for (int i = 0; i < this.Enemies.Count; i++)
@@ -117,17 +116,17 @@ namespace SecretProject.Class.StageFolder
             {
                 for (int z = 0; z < obj.Value.Count; z++)
                 {
-                    this.CustomQuadTree.Insert(obj.Value[z]);
+                    this.QuadTree.Insert(obj.Value[z]);
                 }
             }
             for (int i = 0; i < this.AllTiles.AllItems.Count; i++)
             {
-                this.CustomQuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
+                this.QuadTree.Insert(AllTiles.AllItems[i].ItemSprite);
             }
 
-            this.CustomQuadTree.Insert(player.BigCollider);
+            this.QuadTree.Insert(player.BigCollider);
 
-            this.CustomQuadTree.Insert(player.MainCollider);
+            this.QuadTree.Insert(player.MainCollider);
 
             foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
             {
@@ -138,14 +137,14 @@ namespace SecretProject.Class.StageFolder
                         grass.Value[g].Update(gameTime);
                     }
 
-                    this.CustomQuadTree.Insert(grass.Value[g]);
+                    this.QuadTree.Insert(grass.Value[g]);
 
                 }
             }
 
             foreach (Character character in this.CharactersPresent)
             {
-                this.CustomQuadTree.Insert(character.Collider);
+                this.QuadTree.Insert(character.Collider);
             }
             float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
@@ -334,7 +333,6 @@ namespace SecretProject.Class.StageFolder
 
                 if (this.ShowBorders)
                 {
-                    this.CustomQuadTree.Draw(spriteBatch);
                     player.DrawDebug(spriteBatch, .4f);
                     //ElixerNPC.DrawDebug(spriteBatch, .4f);
                     Nelja.DrawDebug(spriteBatch, 1f);

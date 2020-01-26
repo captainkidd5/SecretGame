@@ -571,14 +571,9 @@ namespace SecretProject.Class.Playable
         private void CheckAndHandleCollisions()
         {
             List<ICollidable> returnObjects = new List<ICollidable>();
-            if(Game1.GetCurrentStage() == Game1.Town)
-            {
-              Game1.Town.CustomQuadTree.RetrievePotentialCollisions(returnObjects, this.BigCollider);
-            }
-            else
-            {
+
                 Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.BigCollider);
-            }
+            
                 
             
             for (int i = 0; i < returnObjects.Count; i++)

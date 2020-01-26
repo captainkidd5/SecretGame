@@ -124,12 +124,12 @@ namespace SecretProject.Class.UI.StaminaStuff
             {
                 this.EnergyPoints[i].Draw(spriteBatch,this.StaminaEnergyColor);
             }
-            if (CurrentStamina > 0)
-            {
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Stamina drain timer " + this.StaminaDrainTimer.Time.ToString(), SimpleTimerDebugPosition, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
-                spriteBatch.DrawString(Game1.AllTextures.MenuText, "Energy left " + this.EnergyPoints[CurrentStamina - 1].CurrentEnergy.ToString(), LastEnergyLeft, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+            //if (CurrentStamina > 0)
+            //{
+            //    spriteBatch.DrawString(Game1.AllTextures.MenuText, "Stamina drain timer " + this.StaminaDrainTimer.Time.ToString(), SimpleTimerDebugPosition, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+            //    spriteBatch.DrawString(Game1.AllTextures.MenuText, "Energy left " + this.EnergyPoints[CurrentStamina - 1].CurrentEnergy.ToString(), LastEnergyLeft, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
 
-            }
+            //}
 
 
         }

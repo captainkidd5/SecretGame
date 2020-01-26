@@ -223,12 +223,8 @@ namespace SecretProject.Class.StageFolder
         public int portalIndex;
 
         public event EventHandler SceneChanged;
-
-        public void Update(GameTime gameTime, MouseManager mouse, Player player)
+        public void PerformQuadTreeInsertions(GameTime gameTime)
         {
-            player.CollideOccured = false;
-            this.QuadTree = new QuadTree(0, this.Cam.CameraScreenRectangle);
-
             for (int i = 0; i < WorldTileManager.RenderDistance; i++)
             {
                 for (int j = 0; j < WorldTileManager.RenderDistance; j++)
@@ -245,6 +241,7 @@ namespace SecretProject.Class.StageFolder
                             {
 
                                 this.QuadTree.Insert(obj.Value[z]);
+                                this.QuadTree.TotalObjects++;
 
                             }
                         }
@@ -259,7 +256,7 @@ namespace SecretProject.Class.StageFolder
                                 }
 
                                 this.QuadTree.Insert(grass.Value[g]);
-
+                                this.QuadTree.TotalObjects++;
                             }
                         }
 
@@ -268,7 +265,7 @@ namespace SecretProject.Class.StageFolder
                             if (this.Enemies[e] != null)
                             {
                                 this.QuadTree.Insert(this.Enemies[e].Collider);
-
+                                this.QuadTree.TotalObjects++;
                             }
 
                         }
@@ -276,18 +273,28 @@ namespace SecretProject.Class.StageFolder
                         for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
                         {
                             this.QuadTree.Insert(AllTiles.ActiveChunks[i, j].AllItems[item].ItemSprite);
-
+                            this.QuadTree.TotalObjects++;
                         }
                     }
 
 
                 }
             }
+
+
+            this.QuadTree.Insert(Game1.Player.MainCollider);
+            this.QuadTree.TotalObjects++;
+            this.QuadTree.Insert(Game1.Player.BigCollider);
+            this.QuadTree.TotalObjects++;
+        }
+
+        public void Update(GameTime gameTime, MouseManager mouse, Player player)
+        {
+            player.CollideOccured = false;
+            this.QuadTree = new QuadTree(0, this.Cam.CameraScreenRectangle);
+
+            PerformQuadTreeInsertions(gameTime);
             
-
-            this.QuadTree.Insert(player.MainCollider);
-
-            this.QuadTree.Insert(player.BigCollider);
 
 
 
