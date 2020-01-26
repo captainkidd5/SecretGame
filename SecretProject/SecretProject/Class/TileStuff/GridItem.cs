@@ -49,7 +49,7 @@ namespace SecretProject.Class.TileStuff
             {
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties.ContainsKey("newSource"))
                 {
-                    this.RectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["newSource"]);
+                    this.RectangleCoordinates = TileUtility.GetRectangeFromString(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["newSource"]);
 
 
                 }
@@ -62,7 +62,7 @@ namespace SecretProject.Class.TileStuff
                 //we use this so only the hitbox section of the tile to place is checking to see if tiles underneath are empty. 
                 if (tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties.ContainsKey("checkTile"))
                 {
-                    int[] newRectangleCoordinates = TileUtility.GetNewTileSourceRectangle(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["checkTile"]);
+                    int[] newRectangleCoordinates = TileUtility.GetRectangeFromString(tileManager.MapName.Tilesets[tileManager.TileSetNumber].Tiles[this.PlaceID].Properties["checkTile"]);
 
                     this.NegativeXTest = newRectangleCoordinates[0] / 16;
                     this.NegativeYTest = newRectangleCoordinates[1] / 16;
@@ -495,6 +495,11 @@ namespace SecretProject.Class.TileStuff
             
         }
         public void PlayerCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
         {
             throw new NotImplementedException();
         }

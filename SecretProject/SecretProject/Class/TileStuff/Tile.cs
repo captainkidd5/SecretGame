@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SecretProject.Class.NPCStuff;
 
 namespace SecretProject.Class.TileStuff
 {
@@ -10,7 +11,7 @@ namespace SecretProject.Class.TileStuff
         ForeGround = 3
     }
 
-    public class Tile
+    public class Tile : IEntity
     {
 
         private int gid;
@@ -57,9 +58,15 @@ namespace SecretProject.Class.TileStuff
             return (this.X << 16) | (this.Y << 9) | layer;
         }
 
+        public void PlayerCollisionInteraction()
+        {
+            this.ColorMultiplier = .5f;
+        }
 
-
-
+        public void Reset()
+        {
+            this.ColorMultiplier = 1f;
+        }
     }
 
 }

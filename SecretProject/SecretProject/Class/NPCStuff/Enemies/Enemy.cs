@@ -675,8 +675,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         }
 
-
-
-
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

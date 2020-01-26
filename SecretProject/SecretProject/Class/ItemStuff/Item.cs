@@ -221,5 +221,10 @@ namespace SecretProject.Class.ItemStuff
         {
             throw new NotImplementedException();
         }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

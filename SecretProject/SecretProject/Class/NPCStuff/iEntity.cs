@@ -4,5 +4,6 @@
     {
 
         void PlayerCollisionInteraction();
+        void Reset();
     }
 }

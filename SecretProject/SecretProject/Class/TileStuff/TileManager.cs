@@ -567,7 +567,7 @@ namespace SecretProject.Class.TileStuff
 
                             if (z == 3)
                             {
-                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White,
+                                spriteBatch.Draw(this.TileSet, new Vector2(this.AllTiles[z][i, j].DestinationRectangle.X, this.AllTiles[z][i, j].DestinationRectangle.Y), this.AllTiles[z][i, j].SourceRectangle, Color.White * this.AllTiles[z][i, j].ColorMultiplier,
                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
                             }

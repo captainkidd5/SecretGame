@@ -116,6 +116,10 @@ namespace SecretProject.Class.StageFolder
             {
                 for (int z = 0; z < obj.Value.Count; z++)
                 {
+                    if(obj.Value[z].ColliderType == ColliderType.TransperencyDetector)
+                    {
+                        obj.Value[z].Entity.Reset();
+                    }
                     this.QuadTree.Insert(obj.Value[z]);
                 }
             }

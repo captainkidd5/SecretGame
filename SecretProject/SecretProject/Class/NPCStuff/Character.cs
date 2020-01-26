@@ -755,6 +755,11 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             //spriteBatch.Draw(NextPointTexture, DebugNextPoint, color: Color.Blue, layerDepth: layerDepth);
         }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }

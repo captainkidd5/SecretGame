@@ -618,6 +618,13 @@ namespace SecretProject.Class.Playable
                         }
                     }
                 }
+                else if (returnObjects[i].ColliderType == ColliderType.TransperencyDetector) //used to make things transparent when walked behind.
+                {
+                    if(this.MainCollider.IsIntersecting(returnObjects[i]))
+                    {
+                        returnObjects[i].Entity.PlayerCollisionInteraction();
+                    }
+                }
                 else
                 {
                     if (this.IsMoving)
@@ -784,6 +791,11 @@ namespace SecretProject.Class.Playable
         public void PlayerCollisionInteraction()
         {
 
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
         }
     }
 }
