@@ -102,20 +102,26 @@ namespace SecretProject.Class.UI.StaminaStuff
 
         public void DecreaseStamina(int amount)
         {
-            int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(amount);
-            if (spillOverStamina > 0)
+            //removing will give error, but do it to enable death mechanic
+            if (CurrentStamina > 0)
             {
-                this.CurrentStamina--;
-                if (this.CurrentStamina <= 0)
+
+
+                int spillOverStamina = this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(amount);
+                if (spillOverStamina > 0)
                 {
-                    this.IsStaminaDepleted = true;
+                    this.CurrentStamina--;
+                    if (this.CurrentStamina <= 0)
+                    {
+                        this.IsStaminaDepleted = true;
 
-                    return;
+                        return;
+                    }
+
+                    this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(spillOverStamina);
+                    CheckStaminaEnergyColor();
+
                 }
-
-                this.EnergyPoints[this.CurrentStamina - 1].DecreaseStamina(spillOverStamina);
-                CheckStaminaEnergyColor();
-
             }
         }
 

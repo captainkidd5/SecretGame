@@ -19,7 +19,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 335, 0, 28, 48, 6, .15f, this.Position);
             this.NPCAnimatedSprite[3] = new Sprite(graphics, this.Texture, 503, 0, 28, 48, 6, .15f, this.Position);
             this.NPCRectangleXOffSet = 15;
-            this.NPCRectangleYOffSet = 40;
+            this.NPCRectangleYOffSet = 30;
             this.NPCRectangleHeightOffSet = 2;
             this.NPCRectangleWidthOffSet = 2;
             this.SpeakerID = 2;

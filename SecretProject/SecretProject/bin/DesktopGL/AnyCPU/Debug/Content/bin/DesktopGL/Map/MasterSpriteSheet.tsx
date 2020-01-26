@@ -2425,6 +2425,7 @@
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="521:25:5,669:5:2"/>
    <property name="newSource" value="-32,-64,80,80"/>
+   <property name="transparent" value="-16,-48, 48, 60"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="6" y="0.375" width="6" height="10.625"/>
@@ -2899,6 +2900,7 @@
   <properties>
    <property name="newHitBox" value="-16,0,48,16"/>
    <property name="newSource" value="-16,-16,48,32"/>
+   <property name="transparent" value="-16,-16, 48, 16"/>
   </properties>
  </tile>
  <tile id="3204">

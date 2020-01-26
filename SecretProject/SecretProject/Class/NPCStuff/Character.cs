@@ -676,21 +676,22 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                     DrawBasicNPC(spriteBatch);
                     return;
                 }
+                float num = .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y + this.NPCAnimatedSprite[0].DestinationRectangle.Height - this.NPCRectangleYOffSet));
                 switch (this.CurrentDirection)
                 {
 
                     case 0:
-                        float num = .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y + this.NPCAnimatedSprite[0].DestinationRectangle.Height));
-                        this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, this.Position, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y + this.NPCAnimatedSprite[0].DestinationRectangle.Height)));
+                       
+                        this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X, this.Position.Y - this.NPCRectangleYOffSet), num);
                         break;
                     case Dir.Left:
-                        this.NPCAnimatedSprite[1].DrawAnimation(spriteBatch, this.Position, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[1].DestinationRectangle.Y + this.NPCAnimatedSprite[1].DestinationRectangle.Height)));
+                        this.NPCAnimatedSprite[1].DrawAnimation(spriteBatch, new Vector2(this.Position.X, this.Position.Y - this.NPCRectangleYOffSet), num);
                         break;
                     case Dir.Right:
-                        this.NPCAnimatedSprite[2].DrawAnimation(spriteBatch, this.Position, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[2].DestinationRectangle.Y + this.NPCAnimatedSprite[2].DestinationRectangle.Height)));
+                        this.NPCAnimatedSprite[2].DrawAnimation(spriteBatch, new Vector2(this.Position.X, this.Position.Y - this.NPCRectangleYOffSet), num);
                         break;
                     case Dir.Up:
-                        this.NPCAnimatedSprite[3].DrawAnimation(spriteBatch, this.Position, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[3].DestinationRectangle.Y + this.NPCAnimatedSprite[3].DestinationRectangle.Height)));
+                        this.NPCAnimatedSprite[3].DrawAnimation(spriteBatch, new Vector2(this.Position.X, this.Position.Y - this.NPCRectangleYOffSet), num);
                         break;
                 }
             }

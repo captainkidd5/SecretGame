@@ -247,7 +247,11 @@ namespace SecretProject.Class.TileStuff
                 {
                     newGID = newGID = (int)GenerationType.Water + 1;
                 }
-                else if (perlinValue >= 0f && perlinValue < .12f)
+                else if (perlinValue >= 0f && perlinValue < .06f)
+                {
+                    newGID = (int)GenerationType.Grass + 1;
+                }
+                else if (perlinValue >= .09f && perlinValue < .12f)
                 {
                     newGID = (int)GenerationType.Grass + 1;
                 }
