@@ -1,17 +1,19 @@
 ﻿using SecretProject.Class.NPCStuff;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using XMLData.DialogueStuff;
+using System.Text;
+using System.Threading.Tasks;
 using XMLData.RouteStuff;
 
-namespace SecretProject.Class.DialogueStuff
+namespace SecretProject.Class.RouteStuff
 {
-    public class DialogueLibrary
+    public class RouteLibrary
     {
-        public List<DialogueHolder> Dialogue { get; set; }
-        public DialogueLibrary(List<DialogueHolder> dialogue)
+        public List<RouteSchedule> RouteSchedules { get; set; }
+        public RouteLibrary(List<RouteSchedule> routeSchedules)
         {
-            this.Dialogue = dialogue;
+            this.RouteSchedules = routeSchedules;
 
 
 
@@ -26,7 +28,7 @@ namespace SecretProject.Class.DialogueStuff
         /// <param name="day"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public DialogueSkeleton RetrieveDialogue(Character character, Month month, int day, string time)
+        public Route RetrieveRoute(Character character, Month month, int day, string time)
         {
             DialogueHolder holder = this.Dialogue.Find(x => x.SpeakerID == character.SpeakerID);
             DialogueDay dialogueDay = holder.AllDialogue.Find(x => x.Month == month && x.Day == day);
@@ -76,4 +78,5 @@ namespace SecretProject.Class.DialogueStuff
             return Game1.GlobalClock.GetTimeFromString(x.Time).CompareTo(Game1.GlobalClock.GetTimeFromString(y.Time));
         }
     }
+}
 }

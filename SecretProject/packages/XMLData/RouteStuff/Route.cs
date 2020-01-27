@@ -65,8 +65,7 @@ namespace XMLData.RouteStuff
         public int ID { get; set; }
         public Month Month { get; set; }
         public WeekDay WeekDay { get; set; }
-        public int TimeToStart { get; set; }
-        public int TimeToFinish { get; set; }
+        public string Time { get; set; }
         public string EndStage { get; set; }
         public int EndX { get; set; }
         public int EndY { get; set; }
