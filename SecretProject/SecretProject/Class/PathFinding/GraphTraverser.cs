@@ -70,7 +70,7 @@ namespace SecretProject.Class.PathFinding
 
             if (nodeStart.Equals(nodeEnd))
             {
-                Console.WriteLine(string.Join(" ", localPathList));
+              //  Console.WriteLine(string.Join(" ", localPathList));
                 nodeToReturn = localPathList[1];
                 // if match found then no need  
                 // to traverse more till depth  

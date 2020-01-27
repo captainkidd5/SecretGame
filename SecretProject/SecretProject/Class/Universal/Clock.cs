@@ -38,6 +38,7 @@ namespace SecretProject.Class.Universal
         public DayOfWeek WeekDay { get; set; }
 
         public event EventHandler DayChanged;
+        public event EventHandler HourChanged;
 
         public Calendar Calendar { get; set; }
 
@@ -63,6 +64,11 @@ namespace SecretProject.Class.Universal
             handler?.Invoke(this, e);
         }
 
+        public virtual void OnHourChanged(Object sender, EventArgs e)
+        {
+            EventHandler handler = HourChanged;
+            handler?.Invoke(this, e);
+        }
         public void PlayRandomInstance(int timeOfDay) //1 = day, 2 = night
         {
             //picks a sound effect based on the switch statement in soundboard
@@ -277,6 +283,7 @@ namespace SecretProject.Class.Universal
                 }
 
                 AdjustClockText();
+                OnHourChanged(this, EventArgs.Empty);
 
             }
             if (this.TotalHours > 23)

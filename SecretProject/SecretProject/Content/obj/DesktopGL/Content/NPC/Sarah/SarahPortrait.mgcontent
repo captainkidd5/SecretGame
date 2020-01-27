@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Sarah/SarahPortrait.png</SourceFile>
-  <SourceTime>2020-01-26T16:36:44.4024541-08:00</SourceTime>
+  <SourceTime>2020-01-27T11:10:45.3521446-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Sarah/SarahPortrait.xnb</DestFile>
-  <DestTime>2020-01-26T16:54:19.2606389-08:00</DestTime>
+  <DestTime>2020-01-27T11:16:06.8193366-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

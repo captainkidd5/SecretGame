@@ -16,7 +16,7 @@
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
-   <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
+   <TextToWrite>Sarah may be the only person in town who serves coffee, but dang does she do it right.</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
@@ -35,7 +35,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
-   <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
+   <TextToWrite>I'm already looking forward to seeing the sunrise! Its a bit cold but I certainly can't complain with a view like that. </TextToWrite>
     </Item>
 </DialogueSkeletons>
 </Item>

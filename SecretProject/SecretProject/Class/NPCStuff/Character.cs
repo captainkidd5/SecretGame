@@ -90,6 +90,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public EmoticonType CurrentEmoticon { get; set; }
 
         public Route CurrentRoute { get; set; }
+        public int TimeLastMoved { get; set; }
+        public int CurrentTime { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
@@ -120,9 +122,12 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 this.CharacterPortraitTexture = characterPortraitTexture;
             }
 
-            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
+            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 96, 96);
             this.CurrentPath = new List<PathFinderNode>();
             Game1.GlobalClock.DayChanged += OnDayIncreased;
+            Game1.GlobalClock.HourChanged += OnHourIncreased;
+            this.CurrentTime = Game1.GlobalClock.GlobalTime;
+            this.TimeLastMoved = this.CurrentTime;
         }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null)
@@ -161,7 +166,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         #region UPDATE METHODS
         public virtual void Update(GameTime gameTime, MouseManager mouse)
         {
-            this.IsMoving = true;
+            this.IsMoving = false;
             this.CollideOccured = false;
             this.Speed = this.BaseSpeed * Clock.ClockMultiplier;
             if (this.IsBasicNPC)
@@ -196,11 +201,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
 
 
-
-            for (int i = 0; i < 4; i++)
-            {
-                this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
-            }
+         
+                for (int i = 0; i < 4; i++)
+                {
+                    this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+                }
+            
+            
 
             UpdateDirection();
 
@@ -294,31 +301,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
                     }
                     DialogueSkeleton skeleton;
-                    //if (this.CurrentResearch != null && this.CurrentResearch.Complete && !this.CurrentResearch.Claimed)
-                    //{
-                    //    string itemStringToWrite = "error!";
-                    //    skeleton = Game1.DialogueLibrary.RetrieveDialogueNoTime(this.SpeakerID, 100);
-                    //    for (int i = 0; i < Game1.Player.UserInterface.CraftingMenu.Tabs.Length; i++)
-                    //    {
-                    //        for (int j = 0; j < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages.Count; j++)
-                    //        {
-                    //            for (int z = 0; z < Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips.Count; z++)
-                    //            {
-                    //                if (Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.ID == this.CurrentResearch.ID)
-                    //                {
-                    //                    Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Locked = false;
-                    //                    itemStringToWrite = Game1.Player.UserInterface.CraftingMenu.Tabs[i].Pages[j].ToolTips[z].Item.Name + " Unlocked!";
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //    this.CurrentResearch.Claimed = true;
-                    //    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 16, itemStringToWrite, 10f, Color.White, true, .5f);
-                    //}
-                    //else
-                    //{
+                    
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-                    //}
+                    
 
                     if (skeleton != null)
                     {
@@ -382,6 +367,19 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
             //}
         }
+
+        public void OnHourIncreased(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.RouteSchedule.Routes.Count; i++)
+            {
+                if (TestRoute(this.RouteSchedule.Routes[i]))
+                {
+                    this.CurrentRoute = this.RouteSchedule.Routes[i];
+                }
+
+
+            }
+        }
         #endregion
 
         #region PLAYER DIRECTION
@@ -429,24 +427,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             if (CurrentRoute == null)
             {
-                if (!this.CollideOccured)
-                {
 
-
-                    for (int i = 0; i < routeSchedule.Routes.Count; i++)
-                    {
-                        if(TestRoute(this.RouteSchedule.Routes[i]))
-                        {
-                            this.CurrentRoute = this.RouteSchedule.Routes[i];
-                        }
-                        
-
-                    }
-                }
             }
             else
             {
+                this.IsMoving = true;
                 MoveToTileRoute(gameTime, this.CurrentRoute);
+
             }
 
         }
