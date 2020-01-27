@@ -16,7 +16,9 @@ namespace SecretProject.Class.TileStuff
         FenceTiling = 456,
         StoneWallTiling = 452,
         OakFloorTiling = 632,
-        DirtCliffBottom = 3534
+        DirtCliffBottom = 3534,
+        LandSwamp = 935,
+        WaterSwamp = 940
 
     };
 
@@ -32,7 +34,9 @@ namespace SecretProject.Class.TileStuff
         FenceTiling = 7,
         OakFloorTiling = 8,
         StoneWallTiling = 9,
-        DirtCliffBottom = 10
+        DirtCliffBottom = 10,
+        LandSwamp = 11,
+        WaterSwamp = 12,
 
     }
     public class Procedural
@@ -84,6 +88,7 @@ namespace SecretProject.Class.TileStuff
         public TilingContainer StoneWall;
         public TilingContainer OakFloor;
         public TilingContainer DirtCliffBottom;
+        public TilingContainer LandSwamp;
 
         public List<TilingContainer> AllTilingContainers;
 
@@ -139,6 +144,8 @@ namespace SecretProject.Class.TileStuff
                 {
                     3534
                 }),
+                new TilingContainer(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()),
+                new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()),
             };
         }
 
@@ -193,8 +200,12 @@ namespace SecretProject.Class.TileStuff
             if (layer == 0)
             {
 
-
-                if (perlinValue >= .2f && perlinValue <= 1f)
+                if (perlinValue >= .3f && perlinValue <= 1f)
+                {
+                    //newGID = 1006;
+                    newGID = (int)GenerationType.LandSwamp + 1;
+                }
+                if (perlinValue >= .2f && perlinValue < .3f)
                 {
                     //newGID = 1006;
                     newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
@@ -243,9 +254,13 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 1)
             {
+                if (perlinValue >= .45f && perlinValue < 1f)
+                {
+                    newGID  = (int)GenerationType.WaterSwamp + 1;
+                }
                 if (perlinValue >= -.1f && perlinValue < .0f)
                 {
-                    newGID = newGID = (int)GenerationType.Water + 1;
+                    newGID = (int)GenerationType.Water + 1;
                 }
                 else if (perlinValue >= 0f && perlinValue < .06f)
                 {
