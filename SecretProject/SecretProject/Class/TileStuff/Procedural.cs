@@ -17,8 +17,8 @@ namespace SecretProject.Class.TileStuff
         StoneWallTiling = 452,
         OakFloorTiling = 632,
         DirtCliffBottom = 3534,
-        LandSwamp = 935,
-        WaterSwamp = 940
+        LandSwamp = 936,
+        WaterSwamp = 941
 
     };
 
@@ -254,7 +254,7 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 1)
             {
-                if (perlinValue >= .45f && perlinValue < 1f)
+                if (perlinValue >= .4f && perlinValue < 1f)
                 {
                     newGID  = (int)GenerationType.WaterSwamp + 1;
                 }

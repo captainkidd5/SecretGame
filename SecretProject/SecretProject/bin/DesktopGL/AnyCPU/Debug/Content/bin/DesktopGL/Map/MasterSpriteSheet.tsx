@@ -1124,7 +1124,7 @@
  </tile>
  <tile id="839">
   <properties>
-   <property name="generate" value="WaterSwamp"/>
+   <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
  <tile id="840">
@@ -1148,6 +1148,11 @@
   </properties>
  </tile>
  <tile id="844">
+  <properties>
+   <property name="generate" value="WaterSwamp"/>
+  </properties>
+ </tile>
+ <tile id="845">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -1296,9 +1301,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="939">
+ <tile id="938">
   <properties>
-   <property name="generate" value="WaterSwamp"/>
+   <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
  <tile id="940">
@@ -1317,6 +1322,11 @@
   </properties>
  </tile>
  <tile id="943">
+  <properties>
+   <property name="generate" value="WaterSwamp"/>
+  </properties>
+ </tile>
+ <tile id="944">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -1504,9 +1514,9 @@
    <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
- <tile id="1039">
+ <tile id="1038">
   <properties>
-   <property name="generate" value="WaterSwamp"/>
+   <property name="generate" value="LandSwamp"/>
   </properties>
  </tile>
  <tile id="1040">
@@ -1525,6 +1535,11 @@
   </properties>
  </tile>
  <tile id="1043">
+  <properties>
+   <property name="generate" value="WaterSwamp"/>
+  </properties>
+ </tile>
+ <tile id="1044">
   <properties>
    <property name="generate" value="WaterSwamp"/>
   </properties>
@@ -2303,7 +2318,6 @@
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
    <property name="loot" value="708"/>
-   <property name="spawnWith" value="1485"/>
   </properties>
   <objectgroup draworder="index">
    <object id="1" x="3" y="0.272727" width="7.72727" height="4"/>
@@ -2418,6 +2432,12 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="9" width="14" height="7"/>
   </objectgroup>
+ </tile>
+ <tile id="1680">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="708"/>
+  </properties>
  </tile>
  <tile id="1690">
   <properties>
@@ -4059,6 +4079,17 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="5"/>
+  </objectgroup>
+ </tile>
+ <tile id="4763">
+  <properties>
+   <property name="destructable" value="21,4,5,3"/>
+   <property name="loot" value="520"/>
+   <property name="newSource" value="-16,-64,48,80"/>
+   <property name="transparent" value="-16,-64, 48, 75"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="11" height="11"/>
   </objectgroup>
  </tile>
  <tile id="6067">
