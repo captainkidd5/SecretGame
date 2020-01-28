@@ -2731,6 +2731,21 @@
    <object id="1" x="1" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="2621">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2622">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2623">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="2624">
   <objectgroup draworder="index">
    <object id="1" x="0" y="10" width="16" height="6"/>

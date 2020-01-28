@@ -7,8 +7,7 @@
       <ID>1</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>5</TimeToStart>
-      <TimeToFinish>7</TimeToFinish>
+      <Time>5AM</Time>
        <EndStage>Town</EndStage>
       <EndX>90</EndX>
       <EndY>66</EndY>
@@ -17,8 +16,7 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>17</TimeToStart>
-      <TimeToFinish>19</TimeToFinish>
+      <Time>5PM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>36</EndX>
       <EndY>25</EndY>
@@ -27,8 +25,7 @@
       <ID>3</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>20</TimeToStart>
-      <TimeToFinish>22</TimeToFinish>
+      <Time>8PM</Time>
        <EndStage>KayaHouse</EndStage>
       <EndX>26</EndX>
       <EndY>18</EndY>

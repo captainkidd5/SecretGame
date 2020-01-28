@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.RouteStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.Universal;
@@ -370,15 +371,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
         public void OnHourIncreased(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.RouteSchedule.Routes.Count; i++)
-            {
-                if (TestRoute(this.RouteSchedule.Routes[i]))
-                {
-                    this.CurrentRoute = this.RouteSchedule.Routes[i];
-                }
 
-
-            }
+                    this.CurrentRoute = RouteLibrary.RetrieveRoute(this.RouteSchedule, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+   
         }
         #endregion
 
@@ -481,18 +476,18 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             // Return whether we've reached the goal or not
             return this.Position == goal;
         }
-        public bool TestRoute(Route route)
-        {
-            if (route.Month == Game1.GlobalClock.Calendar.CurrentMonth && route.WeekDay == (WeekDay)Game1.GlobalClock.Calendar.CurrentDay)
-            {
-                if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
-                    Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //public bool TestRoute(Route route)
+        //{
+        //    if (route.Month == Game1.GlobalClock.Calendar.CurrentMonth && route.WeekDay == (WeekDay)Game1.GlobalClock.Calendar.CurrentDay)
+        //    {
+        //        if (Game1.GlobalClock.TotalHours >= route.TimeToStart && Game1.GlobalClock.TotalHours <= route.TimeToFinish ||
+        //            Game1.GlobalClock.TotalHours >= route.TimeToStart && route.TimeToFinish <= route.TimeToStart)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
         public void MoveToTileRoute(GameTime gameTime, Route route)
         {
 

@@ -7,8 +7,7 @@
       <ID>1</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>7</TimeToStart>
-      <TimeToFinish>10</TimeToFinish>
+      <Time>7AM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>22</EndX>
       <EndY>20</EndY>
@@ -17,8 +16,7 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>11</TimeToStart>
-      <TimeToFinish>17</TimeToFinish>
+      <Time>11AM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>22</EndX>
       <EndY>30</EndY>

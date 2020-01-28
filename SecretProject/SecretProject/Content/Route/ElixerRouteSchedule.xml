@@ -7,8 +7,7 @@
       <ID>1</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>6</TimeToStart>
-      <TimeToFinish>15</TimeToFinish>
+      <Time>6AM</Time>
        <EndStage>ElixirHouse</EndStage>
       <EndX>32</EndX>
       <EndY>33</EndY>
@@ -17,8 +16,7 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>16</TimeToStart>
-      <TimeToFinish>21</TimeToFinish>
+      <Time>4PM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>40</EndX>
       <EndY>27</EndY>
@@ -27,8 +25,7 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>22</TimeToStart>
-      <TimeToFinish>2</TimeToFinish>
+      <Time>10PM</Time>
        <EndStage>ElixirHouse</EndStage>
       <EndX>33</EndX>
       <EndY>22</EndY>

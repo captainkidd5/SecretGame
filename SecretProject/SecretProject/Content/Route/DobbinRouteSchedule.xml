@@ -7,8 +7,7 @@
       <ID>1</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>5</TimeToStart>
-      <TimeToFinish>6</TimeToFinish>
+      <Time>5AM</Time>
        <EndStage>Town</EndStage>
       <EndX>80</EndX>
       <EndY>66</EndY>
@@ -18,8 +17,7 @@
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>7</TimeToStart>
-      <TimeToFinish>8</TimeToFinish>
+      <Time>7AM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>27</EndX>
       <EndY>29</EndY>
@@ -28,8 +26,7 @@
       <ID>3</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>9</TimeToStart>
-      <TimeToFinish>11</TimeToFinish>
+      <Time>9AM</Time>
        <EndStage>DobbinHouse</EndStage>
       <EndX>40</EndX>
       <EndY>36</EndY>
@@ -39,8 +36,7 @@
       <ID>4</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>17</TimeToStart>
-      <TimeToFinish>20</TimeToFinish>
+      <Time>5PM</Time>
        <EndStage>Cafe</EndStage>
       <EndX>27</EndX>
       <EndY>29</EndY>
@@ -50,8 +46,7 @@
       <ID>5</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
-      <TimeToStart>21</TimeToStart>
-      <TimeToFinish>24</TimeToFinish>
+      <Time>9PM</Time>
        <EndStage>DobbinHouse</EndStage>
       <EndX>28</EndX>
       <EndY>26</EndY>
