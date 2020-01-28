@@ -378,7 +378,7 @@ namespace SecretProject.Class.DialogueStuff
                             this.SpeechBox.Draw(spriteBatch, false);
                             if (this.SpeakerTexture != null)
                             {
-                                spriteBatch.Draw(this.SpeakerTexture, new Vector2(this.SpeechBox.position.X, this.SpeechBox.position.Y - 255), this.SpeakerPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
+                                spriteBatch.Draw(this.SpeakerTexture, new Vector2(this.SpeechBox.position.X, this.SpeechBox.position.Y - 276), this.SpeakerPortraitSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, 1f);
                             }
                             break;
 

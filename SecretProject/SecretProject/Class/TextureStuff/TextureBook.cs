@@ -80,6 +80,9 @@ namespace SecretProject.Class.TextureStuff
 
         public Texture2D Mippin;
 
+        public Texture2D Ned;
+        public Texture2D NedPortrait;
+
         //playeractions
 
 
@@ -209,8 +212,8 @@ namespace SecretProject.Class.TextureStuff
 
             Mippin = content.Load<Texture2D>("NPC/Mippin/mippin");
 
-
-
+            Ned = content.Load<Texture2D>("NPC/Ned/Ned");
+            NedPortrait = content.Load<Texture2D>("NPC/Ned/NedPortrait");
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
 

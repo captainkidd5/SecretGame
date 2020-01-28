@@ -202,6 +202,7 @@ namespace SecretProject
         public DialogueHolder SarahDialogue;
         public DialogueHolder BusinessSnailDialogue;
         public DialogueHolder MippinDialogue;
+        public DialogueHolder NedDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
@@ -209,6 +210,7 @@ namespace SecretProject
         public RouteSchedule JulianRouteSchedule;
         public RouteSchedule SarahRouteSchedule;
         public RouteSchedule MippinRouteSchedule;
+        public RouteSchedule NedRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
         public static LootBank LootBank;
@@ -246,6 +248,7 @@ namespace SecretProject
         public static Julian Julian;
         public static Sarah Sarah;
         public static Mippin Mippin;
+        public static Ned Ned;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -423,6 +426,7 @@ namespace SecretProject
             SarahDialogue = this.Content.Load<DialogueHolder>("Dialogue/SarahDialogue");
             BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
             MippinDialogue = this.Content.Load<DialogueHolder>("Dialogue/MippinDialogue");
+            NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
 
             DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
@@ -430,7 +434,8 @@ namespace SecretProject
             JulianRouteSchedule = this.Content.Load<RouteSchedule>("Route/JulianRouteSchedule");
             SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
             MippinRouteSchedule = this.Content.Load<RouteSchedule>("Route/MippinRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule };
+            NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule };
             for (int i = 0; i < AllSchedules.Count; i++)
             {
                 foreach (Route route in AllSchedules[i].Routes)
@@ -440,7 +445,7 @@ namespace SecretProject
             }
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue, MippinDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue, MippinDialogue, NedDialogue };
             foreach (DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
@@ -631,6 +636,7 @@ namespace SecretProject
             };
 
             Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], AllTextures.SarahPortrait) { FrameToSet = 0 };
+            Ned = new Ned("Ned", new Vector2(40, 15), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], AllTextures.NedPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixir,
@@ -640,7 +646,8 @@ namespace SecretProject
                 Julian,
                 Sarah,
                 BusinessSnail,
-                Mippin
+                Mippin,
+                Ned
             };
 
 

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.DialogueStuff.DialogueHolder">
+  <SpeakerID>9</SpeakerID>
+  <AllDialogue>
+<Item Type="XMLData.DialogueStuff.DialogueDay">
+<Month>Spring</Month>
+<Day>1</Day>
+<DialogueSkeletons>
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Time>4AM</Time>
+   <TextToWrite>It's always a race to see who's up first. Me, or the fish....</TextToWrite>
+    </Item>
+    
+       <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>2</SpeechID>
+    <Time>7AM</Time>
+   <TextToWrite>Hey.</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>3</SpeechID>
+    <Time>10AM</Time>
+   <TextToWrite>Looking to buy something? `</TextToWrite>
+   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+    </Item>
+  
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>4</SpeechID>
+    <Time>5PM</Time>
+   <TextToWrite>...</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>5</SpeechID>
+    <Time>8PM</Time>
+   <TextToWrite>Better get to bed, its always a race to see who can get to sleep first. Me, or the fish...</TextToWrite>
+    </Item>
+</DialogueSkeletons>
+</Item>
+  </AllDialogue>
+  </Asset>
+</XnaContent>
+
