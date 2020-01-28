@@ -4190,14 +4190,10 @@
  </tile>
  <tile id="7126">
   <properties>
+   <property name="action" value="enterPlayerHouse"/>
    <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
    <property name="transparent" value="-32, -96, 80, 112"/>
-  </properties>
- </tile>
- <tile id="7127">
-  <properties>
-   <property name="action" value="enterPlayerHouse"/>
   </properties>
  </tile>
  <tile id="7146">
@@ -4597,9 +4593,6 @@
   </animation>
  </tile>
  <tile id="8247">
-  <properties>
-   <property name="action" value="enterPortal"/>
-  </properties>
   <animation>
    <frame tileid="8747" duration="200"/>
   </animation>

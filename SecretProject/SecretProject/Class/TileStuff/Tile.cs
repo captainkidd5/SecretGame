@@ -60,13 +60,18 @@ namespace SecretProject.Class.TileStuff
 
         public void MouseCollisionInteraction()
         {
-            if (Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID + 1].Properties.ContainsKey("action"))
+            Chunk chunk = ChunkUtility.GetChunk(X / 16, Y / 16, Game1.OverWorld.AllTiles.ActiveChunks);
+            if(chunk != null)
             {
-                string action = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID + 1].Properties["action"];
+                if (Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties.ContainsKey("action"))
+                {
+                    string action = Game1.GetCurrentStage().AllTiles.MapName.Tilesets[Game1.OverWorld.AllTiles.TileSetNumber].Tiles[GID ].Properties["action"];
 
-             //   TileUtility.ActionHelper(this.LayerToDrawAt, this.X, this.Y, action, Game1.myMouseManager,  )
-                //z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[z][mouseI, mouseJ].GID].Properties["action"], mouse, this.ChunkUnderMouse
+                    TileUtility.ActionHelper((int)this.LayerToDrawAt, this.X, this.Y, action, Game1.myMouseManager, chunk);
+                    //z, mouseI, mouseJ, this.MapName.Tilesets[this.TileSetNumber].Tiles[this.ChunkUnderMouse.AllTiles[LayerToDrawAt][X, Y].GID].Properties["action"], mouse, this.ChunkUnderMouse
+                }
             }
+            
 
         }
 
