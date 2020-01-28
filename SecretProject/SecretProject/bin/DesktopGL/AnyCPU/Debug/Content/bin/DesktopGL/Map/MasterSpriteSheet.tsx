@@ -4627,6 +4627,10 @@
   </animation>
  </tile>
  <tile id="8347">
+  <properties>
+   <property name="newHitBox" value="-32,-64, 80,80 "/>
+   <property name="newSource" value="-32,-64, 80,80"/>
+  </properties>
   <animation>
    <frame tileid="8847" duration="200"/>
   </animation>

@@ -47,6 +47,7 @@ namespace SecretProject.Class.Playable
 
 
         public PlayerControls controls;
+        public bool EnableControls { get; set; }
 
         public Vector2 Position
         {
@@ -127,7 +128,10 @@ namespace SecretProject.Class.Playable
 
         //TAKEDAMAGE
         public SimpleTimer DamageImmunityTimer;
+        public SimpleTimer KnockBackTimer { get; set; }
         public bool IsImmuneToDamage { get; set; }
+        public bool IsBeingKnockedBack { get; private set; }
+        public Vector2 KnockBackVector { get; private set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
@@ -148,6 +152,7 @@ namespace SecretProject.Class.Playable
             this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             this.Inventory = new Inventory(30) { Money = 10000 };
 
+            this.EnableControls = true;
             controls = new PlayerControls(0);
 
 
@@ -159,6 +164,7 @@ namespace SecretProject.Class.Playable
 
             this.LockBounds = true;
             this.DamageImmunityTimer = new SimpleTimer(1.5f);
+            this.KnockBackTimer = new SimpleTimer(1f);
 
         }
 
@@ -224,11 +230,13 @@ namespace SecretProject.Class.Playable
         }
         private bool MoveTowardsPoint(Vector2 goal,float speed, GameTime gameTime)
         {
+            this.controls.IsMoving  = true;
+            this.EnableControls = true;
             if (this.Position == goal) return true;
 
             Vector2 direction = Vector2.Normalize(goal - this.Position);
 
-            this.Position += direction * speed;
+            this.PrimaryVelocity = direction * speed;
 
             if (Math.Abs(Vector2.Dot(direction, Vector2.Normalize(goal - this.Position)) + 1) < 0.1f)
                 this.Position = goal;
@@ -239,6 +247,17 @@ namespace SecretProject.Class.Playable
         {
             this.MoveToPosition = position;
             this.IsMovingTowardsPoint = true;
+        }
+        public void MoveAwayFromPoint(Vector2 positionToMoveAwayFrom, GameTime gameTime)
+        {
+
+            this.IsMoving = true;
+
+
+            Vector2 direction = Vector2.Normalize(positionToMoveAwayFrom - this.Position);
+
+            this.PrimaryVelocity += direction * 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
         }
 
         //adjusts current equipped items position based on direction player is facing
@@ -374,12 +393,16 @@ namespace SecretProject.Class.Playable
                         
                     }
                 }
+               
 
-                KeyboardState kState = Keyboard.GetState();
+
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Vector2 oldPosition = this.Position;
 
-
+                if(IsBeingKnockedBack)
+                {
+                    KnockBack(gameTime);
+                }
                 for (int i = 0; i < animations.GetLength(1); i++)
                 {
                     this.PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
@@ -483,8 +506,11 @@ namespace SecretProject.Class.Playable
                 {
                     controls.Update();
                 }
-
-                MoveFromKeys();
+                if(EnableControls)
+                {
+                    MoveFromKeys();
+                }
+                
 
                 this.MainCollider.Rectangle = this.ColliderRectangle;
 
@@ -651,7 +677,10 @@ namespace SecretProject.Class.Playable
                         {
                             if (Game1.EnablePlayerCollisions)
                             {
-                                this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, returnObjects[i]);
+                                if (this.MainCollider.HandleMove(this.Position, ref PrimaryVelocity, returnObjects[i]))
+                                { this.IsBeingKnockedBack = false; }
+
+
 
                             }
 
@@ -796,9 +825,18 @@ namespace SecretProject.Class.Playable
             this.UserInterface.Draw(spriteBatch);
         }
 
-        public void KnockBack(Dir direction, int amount)
+        public void KnockBack(GameTime gameTime)
         {
-            throw new NotImplementedException();
+
+            if(KnockBackTimer.Run(gameTime))
+            {
+                this.IsBeingKnockedBack = false;
+            }
+            else
+            {
+                MoveAwayFromPoint(this.KnockBackVector, gameTime);
+                EnableControls = false;
+            }
         }
 
         public void Interact()
@@ -808,10 +846,9 @@ namespace SecretProject.Class.Playable
 
 
 
-        public void TakeDamage(int dmgAmount, Vector2 knockBack)
+        public void TakeDamage(int dmgAmount)
         {
-            this.Health -= (int)dmgAmount;
-            this.Position -= (Vector2)knockBack;
+          //  this.Health -= (int)dmgAmount;
             this.IsImmuneToDamage = true;
             UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X +600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
         }
@@ -823,7 +860,31 @@ namespace SecretProject.Class.Playable
 
         public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
-            throw new NotImplementedException();
+            if (!this.IsImmuneToDamage)
+            {
+
+                IsBeingKnockedBack = true;
+                switch (directionAttackedFrom)
+                {
+                    case Dir.Down:
+                        this.KnockBackVector = new Vector2(this.Position.X, this.Position.Y + knockBack);
+                        break;
+                    case Dir.Right:
+                        this.KnockBackVector = new Vector2(this.Position.X + knockBack, this.Position.Y);
+                        break;
+                    case Dir.Left:
+                        this.KnockBackVector = new Vector2(this.Position.X - knockBack, this.Position.Y);
+                        break;
+                    case Dir.Up:
+                        this.KnockBackVector = new Vector2(this.Position.X, this.Position.Y - knockBack);
+                        break;
+                    default:
+                        this.KnockBackVector = new Vector2(this.Position.X, this.Position.Y - knockBack);
+                        break;
+                }
+
+                TakeDamage(dmgAmount);
+            }
         }
     }
 }

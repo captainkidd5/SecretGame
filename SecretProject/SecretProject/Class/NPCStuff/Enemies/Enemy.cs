@@ -90,8 +90,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
         //DAMAGE RELATED THINGS
-        public SimpleTimer PulseTimer { get; set; }
-        public Effect CurrentEffect { get; set; }
+
 
         public int HitPoints { get; protected set; }
         public Color DamageColor { get; protected set; }
@@ -125,13 +124,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.PrimaryPlayerInterationBehavior = primaryPlayerInteractionBehavior;
 
-            this.PulseTimer = new SimpleTimer(.25f);
+
             this.TimeInUnloadedChunk = 0f;
             this.CurrentChunkX = container.X;
             this.CurrentChunkY = container.Y;
             this.ObstacleGrid = container.PathGrid;
             this.CurrentBehaviour = CurrentBehaviour.Wander;
-            this.CurrentEffect = null;
+
 
 
             this.IsWorldNPC = true;
@@ -168,7 +167,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public virtual void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
-            this.CurrentEffect = null;
+
             if (this.TimeInUnloadedChunk > 100)
             {
                 enemies.Remove(this);
@@ -198,7 +197,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
                         if(!Game1.Player.IsImmuneToDamage)
                         {
-                            Game1.Player.TakeDamage(1, new Vector2(32, 32));
+                            Game1.Player.PlayerCollisionInteraction(1, 200,this.CurrentDirection);
                         }
                        
                     }
@@ -211,10 +210,19 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         returnObjects[i].InitialShuffDirection = this.CurrentDirection;
                     }
                 }
-                //else
-                //{
-                //    Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
-                //}
+                else
+                {
+                    if (this.IsMoving)
+                    {
+
+
+                        if (returnObjects[i].ColliderType == ColliderType.inert)
+                        {
+                            Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
+                        }
+                    }
+                    
+                }
 
 
                 // IsMoving = false;
@@ -247,12 +255,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
                         break;
                     case CurrentBehaviour.Hurt:
-                        this.CurrentEffect = Game1.AllTextures.Pulse;
-                        if (this.PulseTimer.Run(gameTime))
-                        {
-                           // this.HitPoints--;
                             this.CurrentBehaviour = CurrentBehaviour.Chase;
-                        }
+                        
 
                         break;
 
@@ -654,13 +658,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
             }
 
-            if (this.CurrentEffect != effect)
-            {
-                //spriteBatch.End();
-                //effect = this.CurrentEffect;
-                //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, transformMatrix: Game1.GetCurrentStage().Cam.getTransformation(graphics), effect: this.CurrentEffect, depthStencilState: DepthStencilState.Default);
 
-            }
             this.NPCAnimatedSprite[(int)this.CurrentDirection].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y)));
 
 

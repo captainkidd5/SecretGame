@@ -78,8 +78,9 @@ namespace SecretProject.Class.CollisionDetection
 
         }
 
-        public void HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
+        public bool HandleMove(Vector2 callPosition, ref Vector2 moveAmount, ICollidable objectBody)
         {
+            bool didEitherCollide = false;
             Vector2 newMove = Vector2.Zero;
             //Check collision in X direction
             if (moveAmount.X != 0f)
@@ -91,6 +92,7 @@ namespace SecretProject.Class.CollisionDetection
                 if (collided)
                 {
                     moveAmount = new Vector2(0, moveAmount.Y);
+                    didEitherCollide = true;
                 }
             }
 
@@ -104,8 +106,10 @@ namespace SecretProject.Class.CollisionDetection
                 if (collided)
                 {
                     moveAmount = new Vector2(moveAmount.X, 0);
+                    didEitherCollide = true;
                 }
             }
+            return didEitherCollide;
         }
 
 
