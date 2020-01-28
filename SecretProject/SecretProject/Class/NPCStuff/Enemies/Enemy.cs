@@ -189,7 +189,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 this.CollideOccured = true;
                 if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                 {
-                    //  this.CurrentBehaviour = PrimaryPlayerInterationBehavior;
+                    if(this.Collider.IsIntersecting(Game1.Player.MainCollider))
+                    {
+                        if(!Game1.Player.IsImmuneToDamage)
+                        {
+                            Game1.Player.TakeDamage(1, new Vector2(32, 32));
+                        }
+                       
+                    }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
                 {

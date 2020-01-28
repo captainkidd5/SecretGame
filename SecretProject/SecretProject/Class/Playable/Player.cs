@@ -133,7 +133,7 @@ namespace SecretProject.Class.Playable
         {
             this.content = content;
             this.Name = name;
-            this.Health = 3;
+            this.Health = 10;
             this.Position = position;
             this.Graphics = graphics;
             this.Texture = texture;

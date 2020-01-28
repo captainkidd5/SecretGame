@@ -609,7 +609,7 @@ namespace SecretProject
 
             Elixir = new Elixir("Elixer", new Vector2(35, 23), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(26, 28), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(26, 18), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2]) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(26, 18), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], AllTextures.KayaPortrait) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(121, 70), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3, AllTextures.SnawPortrait)
             {

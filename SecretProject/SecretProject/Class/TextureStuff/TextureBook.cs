@@ -65,6 +65,7 @@ namespace SecretProject.Class.TextureStuff
 
 
         public Texture2D KayaSpriteSheet;
+        public Texture2D KayaPortrait;
 
         public Texture2D SnawSpriteSheet;
         public Texture2D SnawPortrait;
@@ -200,6 +201,7 @@ namespace SecretProject.Class.TextureStuff
             Nelja = content.Load<Texture2D>("NPC/Enemy/nelga");
 
             KayaSpriteSheet = content.Load<Texture2D>("NPC/Kaya/KayaSpriteSheet");
+            KayaPortrait = content.Load<Texture2D>("NPC/Kaya/KayaPortrait");
 
             JulianSpriteSheet = content.Load<Texture2D>("NPC/Julian/Julian");
             JulianPortrait = content.Load<Texture2D>("NPC/Julian/julianPortrait");
