@@ -886,5 +886,10 @@ namespace SecretProject.Class.Playable
                 TakeDamage(dmgAmount);
             }
         }
+
+        public void MouseCollisionInteraction()
+        {
+           // throw new NotImplementedException();
+        }
     }
 }

@@ -227,5 +227,9 @@ namespace SecretProject.Class.ItemStuff
             throw new NotImplementedException();
         }
 
+        public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

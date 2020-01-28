@@ -713,5 +713,10 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         {
             throw new NotImplementedException();
         }
+
+        public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

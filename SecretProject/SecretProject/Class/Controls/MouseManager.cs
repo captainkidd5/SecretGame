@@ -215,10 +215,19 @@ namespace SecretProject.Class.Controls
                 Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.MouseCollider);
                 for(int i =0; i < returnObjects.Count;i++)
                 {
-                    if(this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
+                    if(returnObjects[i].ColliderType == ColliderType.inert)
                     {
-
+                        if (this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
+                        {
+                           // Tile tile = (Tile)returnObjects[i].Entity;
+                           if(returnObjects[i].Entity != null)
+                            {
+                                returnObjects[i].Entity.MouseCollisionInteraction();
+                            }
+                            
+                        }
                     }
+                    
                 }
             }
 
@@ -355,6 +364,11 @@ namespace SecretProject.Class.Controls
         }
 
         public void Reset()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void MouseCollisionInteraction()
         {
             throw new System.NotImplementedException();
         }

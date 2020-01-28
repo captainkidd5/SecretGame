@@ -6,6 +6,7 @@ namespace SecretProject.Class.NPCStuff
     {
 
         void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom);
+        void MouseCollisionInteraction();
         void Reset();
     }
 }

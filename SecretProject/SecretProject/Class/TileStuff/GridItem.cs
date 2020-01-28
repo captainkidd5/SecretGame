@@ -503,6 +503,11 @@ namespace SecretProject.Class.TileStuff
         {
             throw new NotImplementedException();
         }
+
+        public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

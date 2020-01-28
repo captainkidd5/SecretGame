@@ -430,7 +430,7 @@ namespace SecretProject.Class.TileStuff
                     {
                         if (this.AllTiles[z][mouseI, mouseJ].GID != -1)
                         {
-                            int TileKey = this.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
+                           // int TileKey = this.AllTiles[z][mouseI, mouseJ].GetTileKeyAsInt(z, this);
 
 
                             if (this.AllTiles[z][mouseI, mouseJ].DestinationRectangle.Intersects(Game1.Player.ClickRangeRectangle))

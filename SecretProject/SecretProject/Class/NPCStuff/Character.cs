@@ -743,6 +743,11 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             throw new NotImplementedException();
         }
+
+        public void MouseCollisionInteraction()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
     }

@@ -4190,8 +4190,9 @@
  </tile>
  <tile id="7126">
   <properties>
-   <property name="newHitBox" value="-32, -96, 80, 112"/>
+   <property name="newHitBox" value="-32, -48, 80, 60"/>
    <property name="newSource" value="-32, -96, 80, 112"/>
+   <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>
  <tile id="7127">
@@ -4591,9 +4592,6 @@
   </animation>
  </tile>
  <tile id="8246">
-  <properties>
-   <property name="lightSource" value="1,0,-48,DayTime"/>
-  </properties>
   <animation>
    <frame tileid="8746" duration="200"/>
   </animation>
@@ -4628,6 +4626,8 @@
  </tile>
  <tile id="8347">
   <properties>
+   <property name="action" value="enterPortal"/>
+   <property name="lightSource" value="1,0,-48,DayTime"/>
    <property name="newHitBox" value="-32,-64, 80,80 "/>
    <property name="newSource" value="-32,-64, 80,80"/>
   </properties>
