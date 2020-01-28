@@ -27,7 +27,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundID = 14;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
-            this.HitPoints = 2;
+            this.HitPoints = 5;
             this.DamageColor = Color.Black;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
         }

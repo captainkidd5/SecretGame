@@ -58,7 +58,7 @@ namespace SecretProject.Class.TileStuff
             return (this.X << 16) | (this.Y << 9) | layer;
         }
 
-        public void PlayerCollisionInteraction()
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             this.ColorMultiplier = .5f;
         }
@@ -67,6 +67,7 @@ namespace SecretProject.Class.TileStuff
         {
             this.ColorMultiplier = 1f;
         }
+
     }
 
 }

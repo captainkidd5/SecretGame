@@ -553,7 +553,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
 
         #region COMBAT
-        public void PlayerCollisionInteraction()
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             int amount = 5;
             switch (Game1.Player.controls.Direction)

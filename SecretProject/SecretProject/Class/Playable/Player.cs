@@ -340,6 +340,16 @@ namespace SecretProject.Class.Playable
 
             }
         }
+        public void TestImmunity(GameTime gameTime)
+        {
+            if (IsImmuneToDamage)
+            {
+                if (DamageImmunityTimer.Run(gameTime))
+                {
+                    this.IsImmuneToDamage = false;
+                }
+            }
+        }
 
         public bool CollideOccured { get; set; }
         public void Update(GameTime gameTime, List<Item> items, MouseManager mouse)
@@ -349,13 +359,7 @@ namespace SecretProject.Class.Playable
                 PrimaryVelocity = Vector2.Zero;
 
                 this.IsMoving = controls.IsMoving;
-                if(IsImmuneToDamage)
-                {
-                    if(DamageImmunityTimer.Run(gameTime))
-                    {
-                        this.IsImmuneToDamage = false;
-                    }
-                }
+                TestImmunity(gameTime);
                 if(IsMovingTowardsPoint)
                 {
                     UpdateAnimationPosition();   
@@ -598,7 +602,7 @@ namespace SecretProject.Class.Playable
 
                     if (this.BigCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.PlayerCollisionInteraction();
+                        returnObjects[i].Entity.PlayerCollisionInteraction(0, 5, this.controls.Direction);
                     }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
@@ -628,7 +632,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
-                            returnObjects[i].Entity.PlayerCollisionInteraction();
+                            returnObjects[i].Entity.PlayerCollisionInteraction(1, 10, this.controls.Direction);
                         }
                     }
                 }
@@ -636,7 +640,7 @@ namespace SecretProject.Class.Playable
                 {
                     if(this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.PlayerCollisionInteraction();
+                        returnObjects[i].Entity.PlayerCollisionInteraction(0, 10, this.controls.Direction);
                     }
                 }
                 else
@@ -802,20 +806,22 @@ namespace SecretProject.Class.Playable
             throw new NotImplementedException();
         }
 
-        public void PlayerCollisionInteraction()
-        {
 
-        }
 
         public void TakeDamage(int dmgAmount, Vector2 knockBack)
         {
-            this.Health -= dmgAmount;
-            this.Position -= knockBack;
+            this.Health -= (int)dmgAmount;
+            this.Position -= (Vector2)knockBack;
             this.IsImmuneToDamage = true;
             UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X +600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
         }
 
         public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new NotImplementedException();
         }

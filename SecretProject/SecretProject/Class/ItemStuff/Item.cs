@@ -169,7 +169,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void PlayerCollisionInteraction()
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             if (!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
             {
@@ -226,5 +226,6 @@ namespace SecretProject.Class.ItemStuff
         {
             throw new NotImplementedException();
         }
+
     }
 }

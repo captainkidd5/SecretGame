@@ -494,7 +494,7 @@ namespace SecretProject.Class.TileStuff
 
             
         }
-        public void PlayerCollisionInteraction()
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new NotImplementedException();
         }

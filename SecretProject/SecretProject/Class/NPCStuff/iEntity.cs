@@ -1,9 +1,11 @@
-﻿namespace SecretProject.Class.NPCStuff
+﻿using Microsoft.Xna.Framework;
+
+namespace SecretProject.Class.NPCStuff
 {
     public interface IEntity
     {
 
-        void PlayerCollisionInteraction();
+        void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom);
         void Reset();
     }
 }

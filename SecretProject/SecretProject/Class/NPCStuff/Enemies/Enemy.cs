@@ -32,7 +32,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
-    public class Enemy : INPC
+    public class Enemy : INPC , IEntity
     {
 
 
@@ -95,7 +95,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public int HitPoints { get; protected set; }
         public Color DamageColor { get; protected set; }
-        public SimpleTimer ImmuneTimer { get; private set; }
+        public SimpleTimer DamageImmunityTimer { get; private set; }
         public bool IsImmuneToDamage { get; private set; }
 
         public List<Loot> PossibleLoot { get; set; }
@@ -135,6 +135,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
             this.IsWorldNPC = true;
+            this.DamageImmunityTimer = new SimpleTimer(.5f);
         }
 
         public static Enemy GetEnemyFromType(EnemyType enemyType, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
@@ -181,6 +182,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
+            TestImmunity(gameTime);
             this.PrimaryVelocity = new Vector2(.5f, .5f);
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
             List<ICollidable> returnObjects = new List<ICollidable>();
@@ -310,7 +312,16 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
 
         }
-
+        public void TestImmunity(GameTime gameTime)
+        {
+            if (IsImmuneToDamage)
+            {
+                if (DamageImmunityTimer.Run(gameTime))
+                {
+                    this.IsImmuneToDamage = false;
+                }
+            }
+        }
 
         public bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
         {
@@ -586,43 +597,48 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void PlayerCollisionInteraction()
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
-            int amount = 10;
-            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
-            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
-            Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
-
-
-            this.CurrentBehaviour = CurrentBehaviour.Hurt;
-            switch (Game1.Player.controls.Direction)
+            if (!this.IsImmuneToDamage)
             {
-                case Dir.Down:
-                    this.Position = new Vector2(this.Position.X, this.Position.Y + amount);
-                    break;
-                case Dir.Right:
-                    this.Position = new Vector2(this.Position.X + amount, this.Position.Y);
-                    break;
-                case Dir.Left:
-                    this.Position = new Vector2(this.Position.X - amount, this.Position.Y);
-                    break;
-                case Dir.Up:
-                    this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
-                    break;
-                default:
-                    this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
-                    break;
-            }
 
-           
+
+
+                Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
+                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
+                Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
+
+
+                this.CurrentBehaviour = CurrentBehaviour.Hurt;
+                switch (directionAttackedFrom)
+                {
+                    case Dir.Down:
+                        this.Position = new Vector2(this.Position.X, this.Position.Y + knockBack);
+                        break;
+                    case Dir.Right:
+                        this.Position = new Vector2(this.Position.X + knockBack, this.Position.Y);
+                        break;
+                    case Dir.Left:
+                        this.Position = new Vector2(this.Position.X - knockBack, this.Position.Y);
+                        break;
+                    case Dir.Up:
+                        this.Position = new Vector2(this.Position.X, this.Position.Y - knockBack);
+                        break;
+                    default:
+                        this.Position = new Vector2(this.Position.X, this.Position.Y - knockBack);
+                        break;
+                }
+
+                TakeDamage(dmgAmount);
+            }
         }
 
-        public virtual void TakeDamage(int dmgAmount, Vector2 knockBack)
+        public virtual void TakeDamage(int dmgAmount)
         {
             this.HitPoints -= dmgAmount;
-            this.Position -= knockBack;
+
             this.IsImmuneToDamage = true;
-            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X + 600, this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
+            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.White, true, 3f, true));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
