@@ -291,6 +291,7 @@ namespace SecretProject.Class.StageFolder
             this.QuadTree.Insert(Game1.Player.MainCollider);
            
             this.QuadTree.Insert(Game1.Player.BigCollider);
+            this.QuadTree.Insert(Game1.myMouseManager.MouseCollider);
             
         }
 

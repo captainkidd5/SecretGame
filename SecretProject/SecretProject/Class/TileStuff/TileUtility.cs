@@ -284,7 +284,7 @@ namespace SecretProject.Class.TileStuff
                     Collider tempObjectBody = new Collider(container.GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
                             GetDestinationRectangle(tileToAssign).Y + rectangleCoords[1], rectangleCoords[2],
-                            rectangleCoords[3]), null, ColliderType.inert)
+                            rectangleCoords[3]), tileToAssign, ColliderType.inert)
                     { LocationKey = tileToAssign.TileKey };
 
                     if (container.Objects.ContainsKey(tileToAssign.TileKey))

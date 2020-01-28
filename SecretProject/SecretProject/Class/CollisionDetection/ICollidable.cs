@@ -14,7 +14,8 @@ namespace SecretProject.Class.CollisionDetection
         Undetectable = 5,
         PlayerBigBox = 6,
         TransperencyDetector = 7,
-        Projectile = 8
+        Projectile = 8,
+        MouseCollider = 9
     }
     public interface ICollidable
     {

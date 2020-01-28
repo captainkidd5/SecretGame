@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
+using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.TileStuff;
+using System.Collections.Generic;
 
 namespace SecretProject.Class.Controls
 {
@@ -20,7 +23,7 @@ namespace SecretProject.Class.Controls
         Chat = 200,
 
     }
-    public class MouseManager
+    public class MouseManager : IEntity
     {
         public bool IsDown { get; set; }
         public bool IsClicked { get; set; }
@@ -88,6 +91,8 @@ namespace SecretProject.Class.Controls
 
         GraphicsDevice graphicsDevice;
 
+        public Collider MouseCollider { get; set; }
+
         private MouseManager()
         {
 
@@ -116,6 +121,7 @@ namespace SecretProject.Class.Controls
             this.RequiredHoldTime = .15f;
 
             this.OldMouseInterfacePosition = Vector2.Zero;
+            this.MouseCollider = new Collider(graphicsDevice, new Rectangle(0,0,1,1), this, ColliderType.MouseCollider);
         }
 
         public void Update(GameTime gameTime)
@@ -199,6 +205,20 @@ namespace SecretProject.Class.Controls
                 if (oldMouse.RightButton == ButtonState.Pressed)
                 {
                     this.IsRightClicked = true;
+                }
+            }
+
+            if(WorldMouseRectangle.Intersects(Game1.Player.BigCollider.Rectangle))
+            {
+                this.MouseCollider.Rectangle = this.WorldMouseRectangle;
+                List<ICollidable> returnObjects = new List<ICollidable>();
+                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.MouseCollider);
+                for(int i =0; i < returnObjects.Count;i++)
+                {
+                    if(this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
+                    {
+
+                    }
                 }
             }
 
@@ -327,6 +347,16 @@ namespace SecretProject.Class.Controls
                 }
             }
             return tilesToReturn;
+        }
+
+        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new System.NotImplementedException();
         }
     }
 
