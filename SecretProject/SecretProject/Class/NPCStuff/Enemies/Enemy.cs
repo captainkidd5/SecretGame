@@ -7,6 +7,7 @@ using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -94,6 +95,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public int HitPoints { get; protected set; }
         public Color DamageColor { get; protected set; }
+        public SimpleTimer ImmuneTimer { get; private set; }
+        public bool IsImmuneToDamage { get; private set; }
 
         public List<Loot> PossibleLoot { get; set; }
 
@@ -245,7 +248,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         this.CurrentEffect = Game1.AllTextures.Pulse;
                         if (this.PulseTimer.Run(gameTime))
                         {
-                            this.HitPoints--;
+                           // this.HitPoints--;
                             this.CurrentBehaviour = CurrentBehaviour.Chase;
                         }
 
@@ -610,6 +613,16 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     this.Position = new Vector2(this.Position.X, this.Position.Y - amount);
                     break;
             }
+
+           
+        }
+
+        public virtual void TakeDamage(int dmgAmount, Vector2 knockBack)
+        {
+            this.HitPoints -= dmgAmount;
+            this.Position -= knockBack;
+            this.IsImmuneToDamage = true;
+            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X + 600, this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)

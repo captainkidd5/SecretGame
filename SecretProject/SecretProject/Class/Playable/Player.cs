@@ -812,6 +812,7 @@ namespace SecretProject.Class.Playable
             this.Health -= dmgAmount;
             this.Position -= knockBack;
             this.IsImmuneToDamage = true;
+            UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X +600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
         }
 
         public void Reset()

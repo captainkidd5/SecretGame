@@ -20,11 +20,20 @@ namespace SecretProject.Class.UI
         public float Scale { get; set; }
 
 
-        public RisingText(Vector2 start, float yEnd, string stringToWrite, float speed, Color color, bool fade = true, float scale = .5f)
+        public RisingText(Vector2 start, float yEnd, string stringToWrite, float speed, Color color, bool fade = true, float scale = .5f, bool drawToWorld = false)
         {
+            if(drawToWorld)
+            {
+                this.Start = Vector2.Transform(start, Matrix.Invert(Game1.cam.GetViewMatrix(Vector2.One)));
+                
+            }
+            else
+            {
+                this.Start = start;
+                
+            }
 
-            this.Start = start;
-            this.YEnd = yEnd;
+            this.YEnd = this.Start.Y - yEnd;
             this.RisingTextString = stringToWrite;
             this.Speed = speed;
             this.Color = color;
