@@ -120,9 +120,14 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        //WHIRLPOOL
         public Vector2 MoveToPosition { get; private set; }
         public bool IsMovingTowardsPoint { get; private set; }
         public bool TransportAfterMove { get; set; }
+
+        //TAKEDAMAGE
+        public SimpleTimer DamageImmunityTimer;
+        public bool IsImmuneToDamage { get; set; }
 
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
@@ -153,6 +158,7 @@ namespace SecretProject.Class.Playable
             LittleHitBoxRectangleTexture = Game1.Utility.GetBorderOnlyRectangleTexture(graphics, this.ColliderRectangle.Width, this.ColliderRectangle.Height, Color.White);
 
             this.LockBounds = true;
+            this.DamageImmunityTimer = new SimpleTimer(1.5f);
 
         }
 
@@ -343,7 +349,13 @@ namespace SecretProject.Class.Playable
                 PrimaryVelocity = Vector2.Zero;
 
                 this.IsMoving = controls.IsMoving;
-
+                if(IsImmuneToDamage)
+                {
+                    if(DamageImmunityTimer.Run(gameTime))
+                    {
+                        this.IsImmuneToDamage = false;
+                    }
+                }
                 if(IsMovingTowardsPoint)
                 {
                     UpdateAnimationPosition();   
@@ -793,6 +805,13 @@ namespace SecretProject.Class.Playable
         public void PlayerCollisionInteraction()
         {
 
+        }
+
+        public void TakeDamage(int dmgAmount, Vector2 knockBack)
+        {
+            this.Health -= dmgAmount;
+            this.Position -= knockBack;
+            this.IsImmuneToDamage = true;
         }
 
         public void Reset()
