@@ -278,8 +278,8 @@ namespace SecretProject
             MainMenuContentManager.RootDirectory = "Content";
 
             //set window dimensions
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             this.IsFixedTimeStep = false;
@@ -744,12 +744,16 @@ namespace SecretProject
                 //  ILocation location = GetCurrentStage();
                 // List<Portal> newStageTestPortals = GetCurrentStage().AllPortals;
                 Portal tempPortal = GetCurrentStage().AllPortals.Find(z => z.From == portal.To && z.To == portal.From);
-                float x = tempPortal.PortalStart.X;
-                float width = tempPortal.PortalStart.Width / 2;
-                float y = tempPortal.PortalStart.Y;
-                float safteyX = tempPortal.SafteyOffSetX;
-                float safteyY = tempPortal.SafteyOffSetY;
-                Player.position = new Vector2(x + width + safteyX, y + safteyY);
+                if(tempPortal != null)
+                {
+                    float x = tempPortal.PortalStart.X;
+                    float width = tempPortal.PortalStart.Width / 2;
+                    float y = tempPortal.PortalStart.Y;
+                    float safteyX = tempPortal.SafteyOffSetX;
+                    float safteyY = tempPortal.SafteyOffSetY;
+                    Player.position = new Vector2(x + width + safteyX, y + safteyY);
+                }
+                
                 //Player.UpdateMovementAnimationsOnce(gameTime);
 
             }

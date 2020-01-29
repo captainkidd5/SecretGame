@@ -548,7 +548,7 @@ namespace SecretProject.Class.TileStuff
                           this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
 
                       //  player house
-                        this.AllTiles[3][4, 6] = new Tile(4,6, 7127);
+                        this.AllTiles[3][15, 6] = new Tile(15,6, 7127);
 
                     }
                     else
