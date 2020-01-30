@@ -636,7 +636,7 @@ namespace SecretProject
                 IsBasicNPC = true
             };
 
-            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], AllTextures.SarahPortrait) { FrameToSet = 0 };
+            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], AllTextures.MippinPortrait) { FrameToSet = 0 };
             Ned = new Ned("Ned", new Vector2(45, 110), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], AllTextures.NedPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {

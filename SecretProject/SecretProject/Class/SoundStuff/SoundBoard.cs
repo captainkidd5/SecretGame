@@ -38,7 +38,7 @@ namespace SecretProject.Class.SoundStuff
 
 
         public SoundEffect WalkStone;
-
+        public SoundEffect CrunchStep;
 
         public SoundEffect Chirp1;
 
@@ -154,6 +154,7 @@ namespace SecretProject.Class.SoundStuff
 
 
             WalkStone = content.Load<SoundEffect>("SoundEffects/stoneStep");
+            CrunchStep = content.Load<SoundEffect>("SoundEffects/CrunchStep");
 
 
             Chirp1 = content.Load<SoundEffect>("SoundEffects/chirp1");
@@ -288,7 +289,7 @@ namespace SecretProject.Class.SoundStuff
             soundEffect.Play(this.GameVolume, pitch, 1f);
         }
 
-        public void PlaySoundWithRadius(Vector2 entityPosition)
+        public void PlaySoundWithRadius(Vector2 entityPosition, SoundEffect soundEffect, bool randomizePitch = false, float pitchCap = 1f)
         {
 
         }
@@ -397,6 +398,10 @@ namespace SecretProject.Class.SoundStuff
                         break;
                     case 17:
                         PlaySoundEffectInstance(PumpkinSmash);
+                        break;
+
+                    case 18:
+                        PlaySoundEffectInstance(CrunchStep);
                         break;
 
 

@@ -540,6 +540,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Mippin/mippin.png
 
+#begin NPC/Mippin/mippinPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Mippin/mippinPortrait.png
+
 #begin NPC/Ned/Ned.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1473,6 +1485,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/crickets1.wav
+
+#begin SoundEffects/CrunchStep.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/CrunchStep.wav
 
 #begin SoundEffects/DayTimeAmbience.wav
 /importer:WavImporter

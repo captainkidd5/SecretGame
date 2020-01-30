@@ -109,6 +109,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public EmoticonType CurrentEmoticon { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public SoundEffect IdleSoundEffect { get;  set; }
+        public float SoundLowerBound { get; set; }
+        public float SoundUpperBound { get; set; }
 
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
@@ -297,7 +299,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 if (this.SoundTimer <= 0)
                 {
                     Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
-                    this.SoundTimer = Game1.Utility.RFloat(5f, 15f);
+                    this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
 
                     RollPeriodicDrop(this.Position);
                 }

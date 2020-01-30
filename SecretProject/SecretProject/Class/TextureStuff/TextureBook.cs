@@ -80,6 +80,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D BusinessSnailPortrait;
 
         public Texture2D Mippin;
+        public Texture2D MippinPortrait;
 
         public Texture2D Ned;
         public Texture2D NedPortrait;
@@ -213,6 +214,7 @@ namespace SecretProject.Class.TextureStuff
             BusinessSnailPortrait = content.Load<Texture2D>("NPC/BusinessSnail/BusinessSnailPortrait");
 
             Mippin = content.Load<Texture2D>("NPC/Mippin/mippin");
+            MippinPortrait = content.Load<Texture2D>("NPC/Mippin/mippinPortrait");
 
             Ned = content.Load<Texture2D>("NPC/Ned/Ned");
             NedPortrait = content.Load<Texture2D>("NPC/Ned/NedPortrait");

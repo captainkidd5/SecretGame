@@ -57,6 +57,11 @@ namespace SecretProject.Class.Universal
 
         }
 
+        public Vector2 GetDistanceBetweenTwoVectors(Vector2 entity1, Vector2 entity2)
+        {
+            return entity1 - entity2;
+        }
+
         #region TileUtility
         public int[] ParseSpawnsWithKey(string gidString)
         {
