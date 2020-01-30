@@ -22,8 +22,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>11AM</Time>
        <EndStage>Cafe</EndStage>
-      <EndX>20</EndX>
-      <EndY>24</EndY>
+      <EndX>15</EndX>
+      <EndY>20</EndY>
     </Item>
     </Routes>
   </Asset>

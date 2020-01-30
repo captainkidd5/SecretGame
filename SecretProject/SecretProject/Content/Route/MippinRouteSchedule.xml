@@ -9,15 +9,15 @@
       <WeekDay>Monday</WeekDay>
       <Time>5AM</Time>
        <EndStage>Town</EndStage>
-      <EndX>26</EndX>
-      <EndY>88</EndY>
+      <EndX>43</EndX>
+      <EndY>14</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>5PM</Time>
-       <EndStage>Cafe</EndStage>
+       <EndStage>Town</EndStage>
       <EndX>36</EndX>
       <EndY>25</EndY>
     </Item>
@@ -27,8 +27,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>8PM</Time>
        <EndStage>KayaHouse</EndStage>
-      <EndX>26</EndX>
-      <EndY>18</EndY>
+      <EndX>36</EndX>
+      <EndY>83</EndY>
     </Item>
     </Routes>
   </Asset>

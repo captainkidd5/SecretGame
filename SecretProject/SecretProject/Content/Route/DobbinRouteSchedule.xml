@@ -19,8 +19,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>7AM</Time>
        <EndStage>Cafe</EndStage>
-      <EndX>27</EndX>
-      <EndY>29</EndY>
+      <EndX>7</EndX>
+      <EndY>20</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>3</ID>
@@ -37,9 +37,9 @@
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>5PM</Time>
-       <EndStage>Cafe</EndStage>
+       <EndStage>Town</EndStage>
       <EndX>27</EndX>
-      <EndY>29</EndY>
+      <EndY>48</EndY>
     </Item>
     
       <Item Type="XMLData.RouteStuff.Route">

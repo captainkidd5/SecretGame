@@ -9,8 +9,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>5AM</Time>
        <EndStage>Town</EndStage>
-      <EndX>90</EndX>
-      <EndY>66</EndY>
+      <EndX>76</EndX>
+      <EndY>64</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
@@ -18,8 +18,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>2PM</Time>
        <EndStage>Town</EndStage>
-      <EndX>89</EndX>
-      <EndY>108</EndY>
+      <EndX>50</EndX>
+      <EndY>29</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>4</ID>
@@ -27,8 +27,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>6PM</Time>
        <EndStage>Town</EndStage>
-      <EndX>77</EndX>
-      <EndY>74</EndY>
+      <EndX>89</EndX>
+      <EndY>104</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
       <ID>5</ID>
