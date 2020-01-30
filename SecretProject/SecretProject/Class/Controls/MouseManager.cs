@@ -208,26 +208,31 @@ namespace SecretProject.Class.Controls
                 }
             }
 
-            if(WorldMouseRectangle.Intersects(Game1.Player.BigCollider.Rectangle))
+            if (Game1.GetCurrentStage() != null)
             {
-                this.MouseCollider.Rectangle = this.WorldMouseRectangle;
-                List<ICollidable> returnObjects = new List<ICollidable>();
-                Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.MouseCollider);
-                for(int i =0; i < returnObjects.Count;i++)
+
+
+                if (WorldMouseRectangle.Intersects(Game1.Player.BigCollider.Rectangle))
                 {
-                    if(returnObjects[i].ColliderType == ColliderType.inert)
+                    this.MouseCollider.Rectangle = this.WorldMouseRectangle;
+                    List<ICollidable> returnObjects = new List<ICollidable>();
+                    Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.MouseCollider);
+                    for (int i = 0; i < returnObjects.Count; i++)
                     {
-                        if (this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
+                        if (returnObjects[i].ColliderType == ColliderType.inert)
                         {
-                           // Tile tile = (Tile)returnObjects[i].Entity;
-                           if(returnObjects[i].Entity != null)
+                            if (this.MouseCollider.Rectangle.Intersects(returnObjects[i].Rectangle))
                             {
-                                returnObjects[i].Entity.MouseCollisionInteraction();
+                                // Tile tile = (Tile)returnObjects[i].Entity;
+                                if (returnObjects[i].Entity != null)
+                                {
+                                    returnObjects[i].Entity.MouseCollisionInteraction();
+                                }
+
                             }
-                            
                         }
+
                     }
-                    
                 }
             }
 

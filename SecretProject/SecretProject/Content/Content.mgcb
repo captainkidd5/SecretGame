@@ -169,6 +169,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/MippinDialogue.xml
 
+#begin Dialogue/NedDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/NedDialogue.xml
+
 #begin Dialogue/SarahDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -499,6 +504,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Julian/julianPortrait.png
 
+#begin NPC/Kaya/kayaportrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Kaya/kayaportrait.png
+
 #begin NPC/Kaya/KayaSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -522,6 +539,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Mippin/mippin.png
+
+#begin NPC/Ned/Ned.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Ned/Ned.png
+
+#begin NPC/Ned/NedPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Ned/NedPortrait.png
 
 #begin NPC/Sarah/Sarah.png
 /importer:TextureImporter
@@ -1340,6 +1381,11 @@
 /processor:PassThroughProcessor
 /build:Route/MippinRouteSchedule.xml
 
+#begin Route/NedRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/NedRouteSchedule.xml
+
 #begin Route/SarahRouteSchedule.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -1392,6 +1438,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/bushCut.wav
 
+#begin SoundEffects/ChickenCluck.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/ChickenCluck.wav
+
 #begin SoundEffects/chirp1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1433,6 +1485,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/diggingDirt.wav
+
+#begin SoundEffects/dogbarking.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/dogbarking.wav
 
 #begin SoundEffects/exclamation.wav
 /importer:WavImporter
@@ -1511,6 +1569,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/pumpkinSquash.wav
+
+#begin SoundEffects/rabbitweet.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/rabbitweet.mp3
+
+#begin SoundEffects/rabbitweet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/rabbitweet.wav
 
 #begin SoundEffects/rainSound.wav
 /importer:WavImporter
@@ -1674,50 +1744,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin NPC/Ned/Ned.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Ned/Ned.png
-
-#begin NPC/Ned/NedPortrait.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Ned/NedPortrait.png
-
-#begin Route/NedRouteSchedule.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Route/NedRouteSchedule.xml
-
-#begin Dialogue/NedDialogue.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Dialogue/NedDialogue.xml
-
-#begin NPC/Kaya/kayaportrait.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:NPC/Kaya/kayaportrait.png
 

@@ -28,8 +28,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = 1f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.SoundID = 0;
-            this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
+            this.IdleSoundEffect = Game1.SoundManager.ChickenCluck1;
+            this.SoundTimer = Game1.Utility.RFloat(5f, 15f);
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };

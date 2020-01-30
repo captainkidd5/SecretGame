@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.StageFolder;
@@ -66,6 +67,10 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect PigGrunt2;
 
+        public SoundEffect ChickenCluck1;
+
+        public SoundEffect RabbitWeet;
+        public SoundEffect DogBark;
 
         public SoundEffect CropPluck;
 
@@ -177,7 +182,9 @@ namespace SecretProject.Class.SoundStuff
 
 
             PigGrunt2 = content.Load<SoundEffect>("SoundEffects/PigGrunt2");
-
+            ChickenCluck1 = content.Load<SoundEffect>("SoundEffects/ChickenCluck");
+            RabbitWeet = content.Load<SoundEffect>("SoundEffects/RabbitWeet");
+            DogBark = content.Load<SoundEffect>("SoundEffects/dogbarking");
 
             CropPluck = content.Load<SoundEffect>("SoundEffects/ropePop");
 
@@ -281,6 +288,11 @@ namespace SecretProject.Class.SoundStuff
             soundEffect.Play(this.GameVolume, pitch, 1f);
         }
 
+        public void PlaySoundWithRadius(Vector2 entityPosition)
+        {
+
+        }
+
         public void PlaySoundEffectOnce(SoundEffectInstance soundEffect, LocationType locationType)
         {
             if (Game1.GetCurrentStage() != null)
@@ -313,6 +325,8 @@ namespace SecretProject.Class.SoundStuff
             }
 
         }
+
+        
 
         public void PlaySoundEffectFromInt(int numberOfLoops, int soundKey)
         {

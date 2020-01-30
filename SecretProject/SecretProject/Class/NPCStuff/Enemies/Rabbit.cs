@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.SoundID = 0;
+            this.IdleSoundEffect = Game1.SoundManager.RabbitWeet;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.HitPoints = 2;
             this.DamageColor = Color.Black;

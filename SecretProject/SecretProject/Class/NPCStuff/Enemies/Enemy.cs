@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
@@ -80,7 +81,6 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public float SoundTimer { get; set; }
         public float SoundMin { get; set; }
         public float SoundMax { get; set; }
-        public int SoundID { get; set; }
 
         public Color DebugColor { get; set; }
         public List<PathFinderNode> CurrentPath { get; set; }
@@ -107,6 +107,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         public bool IsWorldNPC { get; set; }
         public EmoticonType CurrentEmoticon { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public SoundEffect IdleSoundEffect { get;  set; }
 
         public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
@@ -289,13 +291,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
-            if (this.SoundID != 0)
+            if (this.IdleSoundEffect != null)
             {
                 this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (this.SoundTimer <= 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectFromInt(1, this.SoundID);
-                    this.SoundTimer = Game1.Utility.RFloat(45f, 100f);
+                    Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
+                    this.SoundTimer = Game1.Utility.RFloat(5f, 15f);
 
                     RollPeriodicDrop(this.Position);
                 }
