@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/whirlPoolGlow.fx</SourceFile>
-  <SourceTime>2020-01-15T16:47:22.4022644-08:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Effects/whirlPoolGlow.xnb</DestFile>
-  <DestTime>2020-01-30T15:30:47.4306739-08:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Effects/whirlPoolGlow.fx</SourceFile>
+  <SourceTime>2020-01-15T12:36:03.6108422-08:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Effects/whirlPoolGlow.xnb</DestFile>
+  <DestTime>2020-01-31T09:56:22.9916895-08:00</DestTime>
   <Importer>EffectImporter</Importer>
-  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
-  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
   <Parameters>
     <Key>DebugMode</Key>
     <Value>Auto</Value>

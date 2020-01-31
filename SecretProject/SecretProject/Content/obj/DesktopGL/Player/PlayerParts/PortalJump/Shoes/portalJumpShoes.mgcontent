@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png</SourceFile>
-  <SourceTime>2020-01-18T09:24:35.0391027-08:00</SourceTime>
-  <DestFile>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.xnb</DestFile>
-  <DestTime>2020-01-30T15:30:53.191943-08:00</DestTime>
+  <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png</SourceFile>
+  <SourceTime>2020-01-17T14:26:31.7532949-08:00</SourceTime>
+  <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.xnb</DestFile>
+  <DestTime>2020-01-31T09:56:32.833456-08:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2017-03-01T07:05:36-08:00</ImporterTime>
+  <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2017-03-01T07:05:36-08:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T14:55:52-07:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

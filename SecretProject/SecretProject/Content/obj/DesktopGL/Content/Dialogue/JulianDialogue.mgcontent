@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Dialogue/JulianDialogue.xml</SourceFile>
-  <SourceTime>2020-01-27T12:58:44.1616675-08:00</SourceTime>
+  <SourceTime>2020-01-30T21:01:18.7498547-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Dialogue/JulianDialogue.xnb</DestFile>
-  <DestTime>2020-01-28T10:28:31.0917411-08:00</DestTime>
+  <DestTime>2020-01-30T21:02:37.1606666-08:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

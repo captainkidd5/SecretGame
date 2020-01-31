@@ -232,18 +232,6 @@
 /processorParam:TextureFormat=Color
 /build:Enemy/enemyship1.png
 
-#begin Item/Barrel.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/Barrel.png
-
 #begin Item/Cooking/CookingGuide.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -253,18 +241,6 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Item/Crafting/CraftingGuide.xml
-
-#begin Item/ItemAnimationsSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Item/ItemAnimationsSheet.png
 
 #begin Item/ItemHolder.xml
 /importer:XmlImporter
@@ -1426,6 +1402,12 @@
 /processorParam:Quality=Best
 /build:Songs/Lakescape.wav
 
+#begin Songs/MelodyOfTheSea.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/MelodyOfTheSea.wav
+
 #begin Songs/Title.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1762,10 +1744,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin Songs/MelodyOfTheSea.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/MelodyOfTheSea.wav
 

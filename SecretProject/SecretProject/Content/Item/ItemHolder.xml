@@ -57,6 +57,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Flask (Filled)</Name>
+<ID>29</ID>
+<Description>The start to a potion.</Description>
+<InvMaximum>99</InvMaximum><Price>25</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Stone Hammer</Name>
 <ID>40</ID>
 <Description>A basic tool for smashing rocks. </Description>
@@ -168,11 +175,25 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Leather Hide</Name>
+<ID>254</ID>
+<Description>A tough leather material.</Description>
+<InvMaximum>99</InvMaximum><Price>6</Price>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Boar Droppings</Name>
 <ID>294</ID>
 <Description>The plants love it.</Description>
 <InvMaximum>99</InvMaximum><Price>1</Price>
 </Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Butterfly Wings</Name>
+<ID>295</ID>
+<Description>Remnants of a butterfly.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+</Item>
+
 
 
 
@@ -290,6 +311,14 @@
 <ID>603</ID>
 <Description>An orb-shaped rune.</Description>
 <InvMaximum>99</InvMaximum><Price>25</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Coal</Name>
+<ID>604</ID>
+<Description>Perfect for fueling the furnace.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<FuelValue>5</FuelValue>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -648,6 +677,33 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Wheat</Name>
+<ID>1092</ID>
+<Description>A shuffle of wheat.</Description>
+<InvMaximum>99</InvMaximum><Price>2</Price>
+<Food>true</Food>
+<StaminaRestoreAmount>1</StaminaRestoreAmount>
+<VegetableValue>1</VegetableValue>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Flour</Name>
+<ID>1093</ID>
+<Description>Ground wheat, perfect for making breaded goods.</Description>
+<InvMaximum>99</InvMaximum><Price>2</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Bread (loaf)</Name>
+<ID>1094</ID>
+<Description>A fluffy loaf of bread.</Description>
+<InvMaximum>99</InvMaximum><Price>2</Price>
+<Food>true</Food>
+<StaminaRestoreAmount>20</StaminaRestoreAmount>
+<VegetableValue>1</VegetableValue>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Egg</Name>
 <ID>1095</ID>
 <Description>An unfertilized egg.</Description>
@@ -671,6 +727,15 @@
 <ID>1097</ID>
 <Description>Bits of smashed pumpkin.</Description>
 <InvMaximum>99</InvMaximum><Price>2</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Carrote</Name>
+<ID>1098</ID>
+<Description>A bright, orange carrote.</Description>
+<InvMaximum>99</InvMaximum><Price>1</Price>
+<Food>true</Food>
+<StaminaRestoreAmount>3</StaminaRestoreAmount>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
