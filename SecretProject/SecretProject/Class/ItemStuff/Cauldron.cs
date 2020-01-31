@@ -100,7 +100,7 @@ namespace SecretProject.Class.ItemStuff
 
         public bool IsItemAllowedToBeStored(Item item)
         {
-            if (item.Food == true)
+            if (Game1.ItemVault.GetItem(item.ID).Food == true)
             {
                 return true;
             }
@@ -114,7 +114,7 @@ namespace SecretProject.Class.ItemStuff
         {
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                if (this.ItemSlots[i].Inventory.currentInventory[0].SlotItems.Count <= 0)
+                if (this.ItemSlots[i].Inventory.currentInventory[0].ItemCount <= 0)
                 {
                     return false;
                 }
@@ -130,9 +130,9 @@ namespace SecretProject.Class.ItemStuff
             byte fruitValue = 0;
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
-                meatValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].MeatValue;
-                vegetableValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].VegetableValue;
-                fruitValue += this.ItemSlots[i].Inventory.currentInventory[0].SlotItems[0].FruitValue;
+                meatValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).MeatValue;
+                vegetableValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).VegetableValue;
+                fruitValue += Game1.ItemVault.GetItem(this.ItemSlots[i].Inventory.currentInventory[0].Item.ID).FruitValue;
             }
             Item cookedItem = Game1.ItemVault.GenerateNewItem(Game1.AllCookingRecipes.AllRecipes.Find(x => ((x.MeatValueMax > meatValue) && (x.MeatValueMin <= meatValue) &&
             (x.VegetableValueMax >= vegetableValue) && (x.VegetableValueMin <= vegetableValue) &&
@@ -142,7 +142,7 @@ namespace SecretProject.Class.ItemStuff
             {
                 for (int i = 0; i < this.ItemSlots.Count; i++)
                 {
-                    this.Inventory.currentInventory[i].SlotItems.RemoveAt(this.Inventory.currentInventory[i].SlotItems.Count - 1);
+                    this.Inventory.currentInventory[i].RemoveItemFromSlot();
                 }
             }
             return cookedItem;
@@ -192,14 +192,14 @@ namespace SecretProject.Class.ItemStuff
             }
             if (this.CookedItemSlot.Button.isClicked)
             {
-                if (this.CookedItemSlot.Inventory.currentInventory[0].SlotItems.Count > 0)
+                if (this.CookedItemSlot.Inventory.currentInventory[0].ItemCount > 0)
                 {
 
 
-                    if (Game1.Player.Inventory.TryAddItem(this.CookedItemSlot.Inventory.currentInventory[0].SlotItems[0]))
-                    {
-                        this.CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
-                    }
+                    //if (Game1.Player.Inventory.TryAddItem(this.CookedItemSlot.Inventory.currentInventory[0].ItemCount))
+                    //{
+                    //    this.CookedItemSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
+                    //}
                 }
             }
             for (int i = 0; i < this.ItemSlots.Count; i++)

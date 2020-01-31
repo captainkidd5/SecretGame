@@ -178,7 +178,7 @@ namespace SecretProject.Class.UI
             TryAddStock(item.ID, amountToSell);
             for (int i = 0; i < amountToSell; i++)
             {
-                Game1.Player.Inventory.Money += item.Price;
+                Game1.Player.Inventory.Money += Game1.ItemVault.GetItem(item.ID).Price;
             }
             Game1.Player.UserInterface.AllUISprites.Add(new UISprite(UISpriteType.Coin, Graphics, Game1.Player.UserInterface.BottomBar.GoldIconPosition, new Vector2(Game1.Player.UserInterface.BottomBar.GoldIconPosition.X, Game1.Player.UserInterface.BottomBar.GoldIconPosition.Y - 50),
                 Game1.Player.UserInterface.AllUISprites, 1, 3));
@@ -217,19 +217,19 @@ namespace SecretProject.Class.UI
             if (Stock > 0 && this.Button.IsHovered)
             {
                 Game1.Player.UserInterface.InfoBox.IsActive = true;
-                Game1.Player.UserInterface.InfoBox.FitText(this.Item.Description, 2f);
+                Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(Item.ID).Description, 2f);
                 // Game1.Player.UserInterface.InfoBox.StringToWrite = Item.Name + "\n " + Item.Description;
                 Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(drawPosition.X - 232, drawPosition.Y);
                 colorMultiplier = .5f;
                 if (this.Button.isClicked)
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(this.ItemID, null);
-                    if (Game1.Player.Inventory.Money >= item.Price)
+                    if (Game1.Player.Inventory.Money >= Game1.ItemVault.GetItem(item.ID).Price)
                     {
                         if (Game1.Player.Inventory.TryAddItem(item))
                         {
                             Stock--;
-                            Game1.Player.Inventory.Money -= item.Price;
+                            Game1.Player.Inventory.Money -= Game1.ItemVault.GetItem(item.ID).Price;
                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Sell1);
                         }
 
@@ -246,7 +246,7 @@ namespace SecretProject.Class.UI
         public void Draw(SpriteBatch spriteBatch, float backDropScale)
         {
             this.Button.Draw(spriteBatch, this.Button.BackGroundSourceRectangle, this.BackgroundSourceRectangle, Game1.AllTextures.MenuText,
-               Stock.ToString() + "\n \n                   " + this.Item.Name + "\n \n                   Price: " + this.Item.Price, drawPosition,
+               Stock.ToString() + "\n \n                   " + Game1.ItemVault.GetItem(Item.ID).Name + "\n \n                   Price: " + Game1.ItemVault.GetItem(Item.ID).Price, drawPosition,
                Color.White * colorMultiplier, backDropScale, this.Button.HitBoxScale, layerDepthCustom: Utility.StandardButtonDepth);
         }
 

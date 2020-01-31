@@ -111,16 +111,35 @@ namespace SecretProject.Class.ItemStuff
             }
             return false;
         }
+        public bool RemoveItem(Item item)
+        {
+            foreach (InventorySlot s in currentInventory)
+            {
+
+                if (s.Item == item)
+                {
+                    s.RemoveItemFromSlot();
+                    return true;
+                }
+
+
+            }
+            return false;
+        }
 
         public int FindNumberOfItemInInventory(int id)
         {
             int counter = 0;
             foreach (InventorySlot s in currentInventory)
             {
-                if (s.Item.ID == id)
+                if (s.Item != null)
                 {
-                    counter += s.ItemCount;
+                    if (s.Item.ID == id)
+                    {
+                        counter += s.ItemCount;
+                    }
                 }
+
 
             }
             return counter;
@@ -201,13 +220,14 @@ namespace SecretProject.Class.ItemStuff
 
         public bool AddItemToSlot(Item item)
         {
+
             if (this.Item == null)
             {
                 this.Item = item;
                 this.ItemCount = 1;
                 return true;
             }
-            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum)
+            else if (item.ID == this.Item.ID && this.ItemCount < Game1.ItemVault.GetItem(item.ID).InvMaximum)
             {
                 this.ItemCount++;
                 return true;

@@ -482,7 +482,7 @@ namespace SecretProject
             ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
             for (int i = 0; i < AllItems.AllItems.Count; i++)
             {
-                ItemVault.ItemDictionary.Add(AllItems.AllItems[0].ID, AllItems.AllItems[0]);
+                ItemVault.ItemDictionary.Add(AllItems.AllItems[i].ID, AllItems.AllItems[i]);
             }
 
 

@@ -40,10 +40,10 @@ namespace SecretProject.Class.ItemStuff
             this.Button.Update(Game1.myMouseManager);
             if (this.Inventory.currentInventory.Count > 0)
             {
-                this.Count = this.Inventory.currentInventory[this.Index].SlotItems.Count;
-                if (this.Inventory.currentInventory[this.Index].SlotItems.Count > 0)
+                this.Count = this.Inventory.currentInventory[this.Index].ItemCount;
+                if (this.Inventory.currentInventory[this.Index].ItemCount > 0)
                 {
-                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].SlotItems[0].SourceTextureRectangle;
+                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].Item.SourceTextureRectangle;
                     if (this.Button.isClicked)
                     {
                         if (this.Retrievable)
@@ -56,11 +56,11 @@ namespace SecretProject.Class.ItemStuff
                                 {
 
 
-                                    for (int shiftItem = this.Inventory.currentInventory[this.Index].SlotItems.Count - 1; shiftItem >= 0; shiftItem--)
+                                    for (int shiftItem = this.Inventory.currentInventory[this.Index].ItemCount - 1; shiftItem >= 0; shiftItem--)
                                     {
                                         if (Game1.Player.Inventory.TryAddItem(item))
                                         {
-                                            this.Inventory.currentInventory[this.Index].SlotItems.RemoveAt(shiftItem);
+                                            this.Inventory.currentInventory[this.Index].RemoveItemFromSlot();
                                             this.Count--;
                                         }
                                         else
@@ -78,8 +78,8 @@ namespace SecretProject.Class.ItemStuff
 
                 if (this.Count != 0)
                 {
-                    this.Button.Texture = this.Inventory.currentInventory[this.Index].SlotItems[0].ItemSprite.AtlasTexture;
-                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].SlotItems[0].SourceTextureRectangle;
+                    this.Button.Texture = this.Inventory.currentInventory[this.Index].Item.ItemSprite.AtlasTexture;
+                    this.Button.ItemSourceRectangleToDraw = this.Inventory.currentInventory[this.Index].Item.SourceTextureRectangle;
                 }
                 else
                 {

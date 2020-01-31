@@ -106,14 +106,14 @@ namespace SecretProject.Class.ItemStuff
                 this.IsInventoryHovered = true;
 
             }
-            if (this.SmeltSlot.Inventory.currentInventory[0].SlotItems.Count > 0 && this.ItemSlots[0].Inventory.currentInventory[0].SlotItems.Count > 0)
+            if (this.SmeltSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
             {
-                if (this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem != 0 && this.ItemSlots[0].Inventory.currentInventory[0].SlotItems[0].FuelValue > 0)
+                if (Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem != 0 && Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].Item.ID).FuelValue > 0)
                 {
                     if (this.SimpleTimer.Run(gameTime))
                     {
-                        this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0] = Game1.ItemVault.GenerateNewItem(this.SmeltSlot.Inventory.currentInventory[0].SlotItems[0].SmeltedItem, null);
-                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].SlotItems[0]);
+                      //  this.SmeltSlot.Inventory.currentInventory[0].ItemCount = Game1.ItemVault.GenerateNewItem(Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].Item.ID).SmeltedItem).ID, null, false, null);
+                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
                     }
                 }
             }

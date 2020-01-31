@@ -184,10 +184,10 @@ namespace SecretProject.Class.TileStuff
                                 binaryWriter.Write(storeableItem.Value.Location.Y);
                                 for (int s = 0; s < storeableItem.Value.Size; s++)
                                 {
-                                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count);
-                                    if (storeableItem.Value.Inventory.currentInventory[s].SlotItems.Count > 0)
+                                    binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].ItemCount);
+                                    if (storeableItem.Value.Inventory.currentInventory[s].ItemCount > 0)
                                     {
-                                        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].SlotItems[0].ID);
+                                        binaryWriter.Write(storeableItem.Value.Inventory.currentInventory[s].Item.ID);
                                     }
                                     else
                                     {

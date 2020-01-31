@@ -362,7 +362,7 @@ namespace SecretProject.Class.UI
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(this.ActiveRecipe, null);
                     Game1.Player.UserInterface.InfoBox.IsActive = true;
-                    Game1.Player.UserInterface.InfoBox.FitText(item.Name + ": " + item.Description, 1f);
+                    Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(item.ID).Name + ": " + Game1.ItemVault.GetItem(item.ID).Description, 1f);
                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(Game1.myMouseManager.Position.X, Game1.myMouseManager.Position.Y + 64);
                 }
                 if (this.CraftButton.isClicked && craftable)

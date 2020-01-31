@@ -53,12 +53,12 @@ namespace SecretProject.Class.SavingStuff
         //    for(int i=0; i< inventory.Capacity; i++)
         //    {
         //        //use this to keep track of the number of items each inventory slot has.
-        //        writer.Write(inventory.currentInventory[i].SlotItems.Count);
-        //        if (inventory.currentInventory[i].SlotItems.Count > 0)
+        //        writer.Write(inventory.currentInventory[i].ItemCount);
+        //        if (inventory.currentInventory[i].ItemCount > 0)
         //        {
-        //            for (int j = 0; j < inventory.currentInventory[i].SlotItems.Count; j++)
+        //            for (int j = 0; j < inventory.currentInventory[i].ItemCount; j++)
         //            {
-        //                WriteInventoryItem(inventory.currentInventory[i].SlotItems[0], writer, version);
+        //                WriteInventoryItem(inventory.currentInventory[i].ItemCount, writer, version);
         //            }
         //        }   
         //    } 
