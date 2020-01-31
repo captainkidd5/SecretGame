@@ -21,6 +21,9 @@ namespace XMLData.ItemStuff
         public int SmeltedItem { get; set; }
 
         [ContentSerializer(Optional = true)]
+        public int ProcessWoodItem { get; set; }
+
+        [ContentSerializer(Optional = true)]
         public int FuelValue { get; set; }
 
         [ContentSerializer(Optional = true)]

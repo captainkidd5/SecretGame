@@ -111,7 +111,8 @@ namespace SecretProject.Class.TileStuff
         #endregion
 
         /// <summary>
-        /// All new tiles should be "wrung through" this method. Makes sure all dictionaries etc will be aware of this new tile. 
+        /// All new tiles should be "wrung through" this method. Makes sure all dictionaries etc will be aware of this new tile. Also adds storable items to 
+        /// user interface list
         /// </summary>
         /// <param name="tileToAssign"></param>
         /// <param name="layer"></param>
@@ -252,6 +253,16 @@ namespace SecretProject.Class.TileStuff
                         if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
                         {
                             container.StoreableItems.Add(tileToAssign.TileKey, new Furnace(tileToAssign.TileKey, 3,
+                                    new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice));
+                        }
+
+                    }
+                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "saw")
+                    {
+
+                        if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
+                        {
+                            container.StoreableItems.Add(tileToAssign.TileKey, new SawTable(tileToAssign.TileKey, 3,
                                     new Vector2(GetDestinationRectangle(tileToAssign).X, GetDestinationRectangle(tileToAssign).Y), container.GraphicsDevice));
                         }
 
@@ -646,7 +657,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[z][i, j].TileKey]);
+                        Game1.Player.UserInterface.SwitchCurrentAccessedStorageItem(container.StoreableItems[container.AllTiles[3][i, j].TileKey]);
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.Activate(container.AllTiles[z][i, j]);
                         container.WasModifiedDuringInterval = true;
 
@@ -656,7 +667,17 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[z][i, j].TileKey];
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[3][i, j].TileKey];
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
+                        container.WasModifiedDuringInterval = true;
+
+                    }
+                    break;
+                case "saw":
+                    mouse.ChangeMouseTexture(CursorType.Normal);
+                    if (mouse.IsClicked)
+                    {
+                        Game1.Player.UserInterface.CurrentAccessedStorableItem = container.StoreableItems[container.AllTiles[3][i, j].TileKey];
                         Game1.Player.UserInterface.CurrentAccessedStorableItem.IsUpdating = true;
                         container.WasModifiedDuringInterval = true;
 

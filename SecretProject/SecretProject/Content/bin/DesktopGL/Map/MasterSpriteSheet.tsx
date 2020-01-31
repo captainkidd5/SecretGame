@@ -2492,6 +2492,12 @@
    <property name="loot" value="708"/>
   </properties>
  </tile>
+ <tile id="1681">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="1098"/>
+  </properties>
+ </tile>
  <tile id="1690">
   <properties>
    <property name="idleStart" value=""/>
@@ -2633,6 +2639,9 @@
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="15" height="11"/>
+  </objectgroup>
  </tile>
  <tile id="2012">
   <properties>
@@ -2661,7 +2670,6 @@
  </tile>
  <tile id="2051">
   <properties>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -2697,31 +2705,39 @@
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="2" width="14" height="9"/>
+  </objectgroup>
  </tile>
  <tile id="2142">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
  </tile>
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="22,0,0,8"/>
    <property name="loot" value="1202"/>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="14"/>
+  </objectgroup>
  </tile>
  <tile id="2144">
   <properties>
-   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="action" value="saw"/>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1201"/>
+   <property name="newHitBox" value="0,0, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
@@ -2801,6 +2817,14 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+ </tile>
+ <tile id="2339">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="15" height="11"/>
+  </objectgroup>
  </tile>
  <tile id="2433">
   <properties>

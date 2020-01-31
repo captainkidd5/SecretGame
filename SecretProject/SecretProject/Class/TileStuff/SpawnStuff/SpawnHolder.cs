@@ -34,6 +34,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new OverworldSpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
                 new OverworldSpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Red Mushroom
                 new OverworldSpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Blue Mushroom
+                 new OverworldSpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25, true){Unlocked = true }, //Carrotte
                 new OverworldSpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new OverworldSpawnElement(3439, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.DirtCliffBottom, 100,false, true){Unlocked = true }, //mineshaft
 

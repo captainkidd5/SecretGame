@@ -100,7 +100,7 @@ namespace SecretProject
 
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
-        public static bool EnableMusic = true;
+        public static bool EnableMusic = false;
 
         public static bool IsFirstTimeStartup;
 
@@ -589,6 +589,8 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1403, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
                 //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(335, null));
                 //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
                 //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));

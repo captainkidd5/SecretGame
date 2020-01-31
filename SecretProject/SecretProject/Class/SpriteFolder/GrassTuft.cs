@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.StageFolder;
 using System;
 using System.Collections.Generic;
 
@@ -93,10 +94,12 @@ namespace SecretProject.Class.SpriteFolder
         public void SelfDestruct()
         {
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BushCut);
-            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
-            Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
-            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
-            Game1.GetCurrentStage().ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
+            ILocation location = Game1.GetCurrentStage();
+            location.ParticleEngine.ActivationTime = .25f;
+            location.ParticleEngine.Color = Color.Green;
+            location.ParticleEngine.EmitterLocation = new Vector2(this.Rectangle.X, this.Rectangle.Y - 5);
+            location.ParticleEngine.LayerDepth = .5f + (this.DestinationRectangle.Y) * Game1.Utility.ForeGroundMultiplier + this.YOffSet;
+            location.AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(1092, this.Position, true, Game1.GetCurrentStage().AllTiles.GetItems(this.Position)), this.Position);
             this.TuftsIsPartOf.Remove(this);
         }
 
