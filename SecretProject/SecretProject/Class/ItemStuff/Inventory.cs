@@ -54,31 +54,13 @@ namespace SecretProject.Class.ItemStuff
 
         public bool TryAddItem(Item item)
         {
-            bool slotsAvailable = false;
             foreach (InventorySlot s in currentInventory)
             {
-                if (s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum)
-                {
-                    if (s.SlotItems.Count < s.Capacity)
-                    {
-                        s.AddItemToSlot(item);
-                        return true;
-                    }
-                }
-                if (s.SlotItems.Count == 0)
-                {
-                    slotsAvailable = true;
-                }
-            }
-            if (slotsAvailable)
-            {
-
-                if (AddToFirstEmptySlotOnly(item))
+                if (s.AddItemToSlot(item))
                 {
                     return true;
                 }
             }
-
             return false;
 
         }
@@ -88,7 +70,7 @@ namespace SecretProject.Class.ItemStuff
             foreach (InventorySlot s in currentInventory)
             {
 
-                if (s.SlotItems.Count == 0)
+                if (s.ItemCount == 0)
                 {
                     s.AddItemToSlot(item);
                     return true;
@@ -102,7 +84,7 @@ namespace SecretProject.Class.ItemStuff
         {
             foreach (InventorySlot s in currentInventory)
             {
-                if ((s.SlotItems.Any(x => x.ID == item.ID) && s.SlotItems.Count(x => x.ID == item.ID) < item.InvMaximum) || s.SlotItems.Count == 0)
+                if (s.IsPossibleToAddItem(item))
                 {
                     return true;
 
@@ -112,36 +94,22 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void RemoveItem(Item item)
-        {
-            bool removed = false;
-            foreach (InventorySlot s in currentInventory)
-            {
-                if (removed == false)
-                {
-                    if (s.SlotItems.Contains(item))
-                    {
-                        s.RemoveItemFromSlot();
-                        removed = true;
-                    }
-                }
-            }
-        }
 
-        public void RemoveItem(int id)
+        public bool RemoveItem(int id)
         {
-            bool removed = false;
+
             foreach (InventorySlot s in currentInventory)
             {
-                if (removed == false)
+
+                if (s.Item.ID == id)
                 {
-                    if (s.SlotItems.Any(x => x.ID == id))
-                    {
-                        s.RemoveItemFromSlot();
-                        removed = true;
-                    }
+                    s.RemoveItemFromSlot();
+                    return true;
                 }
+
+
             }
+            return false;
         }
 
         public int FindNumberOfItemInInventory(int id)
@@ -149,7 +117,10 @@ namespace SecretProject.Class.ItemStuff
             int counter = 0;
             foreach (InventorySlot s in currentInventory)
             {
-                counter += s.SlotItems.Count(x => x.ID == id);
+                if (s.Item.ID == id)
+                {
+                    counter += s.ItemCount;
+                }
 
             }
             return counter;
@@ -166,48 +137,82 @@ namespace SecretProject.Class.ItemStuff
 
     public class InventorySlot
     {
-        public int Capacity { get; set; }
-        public List<Item> SlotItems { get; set; }
-
-
         public Item Item { get; set; }
+        public int Capacity { get; set; }
+        public int ItemCount { get; set; }
 
         public bool IsCurrentSelection = false;
 
         public InventorySlot(Item item)
         {
-            this.SlotItems = new List<Item>(1);
-            this.SlotItems.Add(item);
             this.Item = item;
+            this.ItemCount = 1;
         }
 
 
 
         public InventorySlot()
         {
-            this.SlotItems = new List<Item>(1);
+
             this.Capacity = 999;
+            this.ItemCount = 0;
         }
 
         public InventorySlot(int capacity)
         {
-            this.SlotItems = new List<Item>(1);
+            this.ItemCount = 0;
             this.Capacity = capacity;
         }
 
         public Item GetItem()
         {
-            return this.SlotItems[0];
+            return this.Item;
         }
 
-        public void RemoveItemFromSlot()
+        public bool RemoveItemFromSlot()
         {
-            this.SlotItems.RemoveAt(this.SlotItems.Count - 1);
+            if (this.ItemCount <= 0)
+            {
+                return false;
+            }
+            this.ItemCount--;
+            if (this.ItemCount <= 0)
+            {
+                this.Item = null;
+                this.ItemCount = 0;
+            }
+            return true;
         }
 
-        public void AddItemToSlot(Item item)
+        public bool IsPossibleToAddItem(Item item)
         {
-            this.SlotItems.Add(item);
+            if (this.Item == null)
+            {
+
+                return true;
+            }
+            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum)
+            {
+
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddItemToSlot(Item item)
+        {
+            if (this.Item == null)
+            {
+                this.Item = item;
+                this.ItemCount = 1;
+                return true;
+            }
+            else if (this.ItemCount <= Game1.ItemVault.GetItem(item.ID).InvMaximum)
+            {
+                this.ItemCount++;
+                return true;
+            }
+            return false;
         }
 
     }

@@ -14,16 +14,12 @@ namespace SecretProject.Class.ItemStuff
 {
     public class Item : IEntity
     {
-        public string Name { get; set; }
+
         public int ID { get; set; }
-        public string Description { get; set; }
+
 
         public int Count { get; set; } = 0;
-        public int InvMaximum { get; set; }
-        public int WorldMaximum { get; set; }
 
-
-        public bool IsFull { get; set; }
         public bool Ignored { get; set; }
 
 
@@ -40,15 +36,15 @@ namespace SecretProject.Class.ItemStuff
         public GraphicsDevice Graphics { get; set; }
 
         public ContentManager Content { get; set; }
-        public bool IsPlantable { get; set; }
 
 
-        public string id { get; set; }
+
+
 
         public Rectangle SourceTextureRectangle { get; set; }
         public Rectangle DestinationTextureRectangle { get; set; }
 
-        public int Price { get; set; }
+
 
 
         public bool IsWorldItem { get; set; }
@@ -58,47 +54,34 @@ namespace SecretProject.Class.ItemStuff
 
         int directionY = Game1.Utility.RGenerator.Next(-2, 2);
 
-        public int SmeltedItem { get; set; }
-        public int FuelValue { get; set; }
+
         public int Durability { get; set; }
-        public int PlaceID { get; set; }
+
         public string TilingSet { get; set; }
         public int TilingLayer { get; set; }
-        public int StaminaRestoredAmount { get; set; }
+
         public ItemType ItemType { get; set; }
         public int AnimationColumn { get; set; }
         public int CrateType { get; set; }
 
         public GenerationType GenerationType { get; set; }
-        public bool Food { get; set; }
-        public byte MeatValue { get; set; }
-        public byte VegetableValue { get; set; }
-        public byte FruitValue { get; set; }
+
 
         public List<Item> AllItems { get; set; }
 
         public Item(ItemData itemData, List<Item> allItems)
         {
             this.AllItems = allItems;
-            this.Name = itemData.Name;
-            this.Description = itemData.Description;
-            this.InvMaximum = itemData.InvMaximum;
+
             this.ID = itemData.ID;
-            this.Price = itemData.Price;
+
 
             this.SourceTextureRectangle = Game1.AllTextures.GetItemTexture(this.ID, 40);
-            this.SmeltedItem = itemData.SmeltedItem;
-            this.FuelValue = itemData.FuelValue;
+
             this.Durability = itemData.Durability;
 
-            if (itemData.Plantable)
-            {
-                this.IsPlantable = itemData.Plantable;
-            }
 
-            this.PlaceID = itemData.PlaceID;
 
-            this.StaminaRestoredAmount = itemData.StaminaRestoreAmount;
             this.ItemType = itemData.Type;
             this.AnimationColumn = itemData.AnimationColumn;
 
@@ -114,10 +97,6 @@ namespace SecretProject.Class.ItemStuff
             this.TilingLayer = itemData.TilingLayer;
             this.CrateType = itemData.CrateType;
 
-            this.Food = itemData.Food;
-            this.MeatValue = itemData.MeatValue;
-            this.VegetableValue = itemData.VegetableValue;
-            this.FruitValue = itemData.FruitValue;
 
         }
         public void Load()

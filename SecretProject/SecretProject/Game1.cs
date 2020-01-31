@@ -479,6 +479,14 @@ namespace SecretProject
 
 
             AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
+            ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
+            for (int i = 0; i < AllItems.AllItems.Count; i++)
+            {
+                ItemVault.ItemDictionary.Add(AllItems.AllItems[0].ID, AllItems.AllItems[0]);
+            }
+
+
+            
             Procedural = new Procedural();
 
             Player.UserInterface = new UserInterface(Player, graphics.GraphicsDevice, this.Content, cam) { graphics = graphics.GraphicsDevice };

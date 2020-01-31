@@ -535,7 +535,7 @@ namespace SecretProject.Class.TileStuff
                             if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
                             {
                                 Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
-                                if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
+                                if (Game1.ItemVault.ItemDictionary[Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID].Plantable)
                                 {
                                     mouse.ChangeMouseTexture(CursorType.Planting);
                                     if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(2, container)))
@@ -569,7 +569,7 @@ namespace SecretProject.Class.TileStuff
                                         Item testItem = Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                                         if (testItem != null)
                                         {
-                                            if (Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().IsPlantable)
+                                            if (Game1.ItemVault.ItemDictionary[Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID].Plantable)
                                             {
 
                                                 mouse.ChangeMouseTexture(CursorType.Planting);

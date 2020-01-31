@@ -2,6 +2,7 @@
 using SecretProject.Class.TileStuff;
 using System;
 using System.Collections.Generic;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -9,6 +10,7 @@ namespace SecretProject.Class.ItemStuff
     {
         public Dictionary<int, GridItem> ExteriorGridItems { get; set; }
         public Dictionary<int, GridItem> InteriorGridItems { get; set; }
+        public Dictionary<int,ItemData> ItemDictionary { get; set; }
 
         public ItemBank()
         {
@@ -48,9 +50,14 @@ namespace SecretProject.Class.ItemStuff
             }
         }
 
+        public ItemData GetItem(int itemID)
+        {
+            return ItemDictionary[itemID];
+        }
+
         public Item GenerateNewItem(int id, Vector2? location, bool isWorldItem = false, List<Item> allItems = null)
         {
-            Item newItem = new Item(Game1.AllItems.GetItemFromID(id), allItems);
+            Item newItem = new Item(ItemDictionary[id], allItems);
 
             if (!(location == null))
             {

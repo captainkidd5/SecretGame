@@ -51,11 +51,11 @@ namespace SecretProject.Class.ItemStuff
             this.ItemSlots = new List<ItemStorageSlot>();
             for (int i = 0; i < 1; i++)
             {
-                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
+                this.ItemSlots.Add(new ItemStorageSlot(graphics, this.Inventory, i, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 4, this.BackDropPosition.Y  + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true));
 
             }
             this.SimpleTimer = new SimpleTimer(5f);
-            this.SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width / 2, this.BackDropPosition.Y), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
+            this.SmeltSlot = new ItemStorageSlot(graphics, new Inventory(1), 0, new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width -64, this.BackDropPosition.Y + 32 * this.BackDropScale), new Rectangle(208, 80, 32, 32), this.BackDropScale, true);
             this.TimerStringLocation = new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height);
 
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
