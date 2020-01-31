@@ -545,10 +545,10 @@ namespace SecretProject.Class.TileStuff
                     if (this.X == 0 && this.Y == 0)
                     {
                         //STARTING CHUNK
-                          this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
+                        //  this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
 
                       //  player house
-                        this.AllTiles[3][15, 6] = new Tile(15,6, 7127);
+                        this.AllTiles[3][8, 6] = new Tile(8,6, 7127);
 
                     }
                     else

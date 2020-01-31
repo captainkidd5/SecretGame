@@ -753,9 +753,22 @@ namespace SecretProject
                     float safteyY = tempPortal.SafteyOffSetY;
                     Player.position = new Vector2(x + width + safteyX, y + safteyY);
                 }
-                
+                else if (Game1.GetCurrentStage() == Town)
+                {
+                    Player.Position = new Vector2(1232, 304);
+                }
+                else if (Game1.GetCurrentStage() == OverWorld)
+                {
+                    Player.Position = new Vector2(128, 128);
+                }
+
+
                 //Player.UpdateMovementAnimationsOnce(gameTime);
 
+            }
+            if (Game1.GetCurrentStage() == PlayerHouse)
+            {
+                Player.Position = new Vector2(473, 670);
             }
             Player.UpdateMovementAnimationsOnce();
         }

@@ -615,6 +615,12 @@
    <property name="action" value="openProgressBook"/>
   </properties>
  </tile>
+ <tile id="2037">
+  <properties>
+   <property name="action" value="swapHouse"/>
+   <property name="newSource" value="0,-32, 16,48"/>
+  </properties>
+ </tile>
  <tile id="4743">
   <objectgroup draworder="index">
    <object id="1" x="0" y="15" width="16" height="1"/>

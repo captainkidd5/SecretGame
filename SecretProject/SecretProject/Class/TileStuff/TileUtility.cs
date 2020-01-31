@@ -672,6 +672,26 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                     break;
+                case "swapHouse":
+                    mouse.ChangeMouseTexture(CursorType.Door);
+                    if (mouse.IsClicked)
+                    {
+                        Portal portal = Game1.GetCurrentStage().AllPortals.Find(x => x.From == (int)Stages.PlayerHouse);
+                        string announcementString = string.Empty;
+                        if(portal.To == (int)(Stages.Town))
+                        {
+                            portal.To = (int)Stages.OverWorld;
+                            announcementString = "Rai!";
+                        }
+                        else
+                        {
+                            portal.To = (int)Stages.Town;
+                            announcementString = "Kai!";
+                        }
+                        
+                        Game1.Player.UserInterface.AddAlert(AlertSize.Medium, Game1.Utility.centerScreen, "Location set to " + announcementString);
+                    }
+                    break;
                 case "enterPortal":
                     if (mouse.IsClicked)
                     {

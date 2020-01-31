@@ -44,3 +44,5 @@ Simply run the project in Debug mode first, then load content
 ## Delete chunks on startup - paste this into pre build event command line:
 cd "Content\SaveFiles\Chunks"
 del *.* /q
+
+overwrite - https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files

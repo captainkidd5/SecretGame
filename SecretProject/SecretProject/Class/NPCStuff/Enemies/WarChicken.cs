@@ -29,6 +29,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.Speed = .05f;
             this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.ChickenCluck1;
+            this.SoundLowerBound = 20f;
+            this.SoundUpperBound = 35f;
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.HitPoints = 2;
