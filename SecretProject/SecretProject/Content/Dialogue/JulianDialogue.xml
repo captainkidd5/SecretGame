@@ -10,13 +10,13 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>Seems like my machines are also slow in the morning.</TextToWrite>
+   <TextToWrite>*Yawn* ... Good morning...</TextToWrite>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>9AM</Time>
-   <TextToWrite>Hey! Have you had breakfast yet?</TextToWrite>
+   <TextToWrite>Hey! Have you had breakfast yet? Sarah's Cafe is probably the best in town!</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

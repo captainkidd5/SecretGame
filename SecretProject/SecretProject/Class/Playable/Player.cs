@@ -458,6 +458,11 @@ namespace SecretProject.Class.Playable
                             UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
                         }
                     }
+                    else if(UserInterface.StaminaBar.IsDraining)
+                    {
+                        UserInterface.StaminaBar.IsDraining = false;
+                        UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
+                    }
                     for (int i = 0; i < animations.GetLength(0); i++)
                     {
                         for (int j = 0; j < animations.GetLength(1); j++)
@@ -831,6 +836,7 @@ namespace SecretProject.Class.Playable
             if(KnockBackTimer.Run(gameTime))
             {
                 this.IsBeingKnockedBack = false;
+                EnableControls = true;
             }
             else
             {

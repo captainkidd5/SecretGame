@@ -110,6 +110,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect DustStorm;
         public SoundEffect Lakescape;
         public SoundEffect Title;
+        public SoundEffect MelodyOfTheSea;
 
         //Event songs
         //Intro Scene
@@ -222,6 +223,7 @@ namespace SecretProject.Class.SoundStuff
             Lakescape = content.Load<SoundEffect>("Songs/Lakescape");
 
             Downpour = content.Load<SoundEffect>("Songs/Downpour");
+            MelodyOfTheSea = content.Load<SoundEffect>("Songs/MelodyOfTheSea");
 
             this.CurrentSong = Title;
             this.CurrentSongInstance = this.CurrentSong.CreateInstance();
@@ -250,12 +252,12 @@ namespace SecretProject.Class.SoundStuff
             switch (Game1.gameStages)
             {
                 case Stages.MainMenu:
-                    return Title;
+                    return MelodyOfTheSea;
                 case Stages.OverWorld:
 
                     return DustStorm;
                 case Stages.Town:
-                    return Lakescape;
+                    return MelodyOfTheSea;
                 default:
                     return Title;
 
@@ -352,7 +354,7 @@ namespace SecretProject.Class.SoundStuff
                         PlaySoundEffectInstance(WalkWood);
                         break;
                     case 4:
-                        PlaySoundEffectInstance(WalkSand);
+                        PlaySoundEffectInstance(CrunchStep);
                         break;
                     case 5:
 
@@ -401,7 +403,7 @@ namespace SecretProject.Class.SoundStuff
                         break;
 
                     case 18:
-                        PlaySoundEffectInstance(CrunchStep);
+                        PlaySoundEffectInstance(WalkSand);
                         break;
 
 

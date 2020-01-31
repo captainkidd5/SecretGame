@@ -1763,3 +1763,9 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin Songs/MelodyOfTheSea.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/MelodyOfTheSea.wav
+

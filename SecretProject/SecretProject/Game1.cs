@@ -100,7 +100,7 @@ namespace SecretProject
 
         public static bool EnablePlayerCollisions = true;
         public static bool EnableCutScenes = false;
-        public static bool EnableMusic = false;
+        public static bool EnableMusic = true;
 
         public static bool IsFirstTimeStartup;
 

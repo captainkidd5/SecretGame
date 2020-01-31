@@ -984,7 +984,7 @@
  <tile id="690">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
-   <property name="loot" value="753:100:2,752:20:2"/>
+   <property name="loot" value="753"/>
   </properties>
  </tile>
  <tile id="691">

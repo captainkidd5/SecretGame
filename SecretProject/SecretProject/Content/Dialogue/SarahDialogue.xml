@@ -10,32 +10,31 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
+   <TextToWrite>There's a lot of early risers in town, and you can be they want their coffee!</TextToWrite>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
-   <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
+   <TextToWrite>People seem to really like my coffee... although I'm not great at those fancy foam designs...</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>10AM</Time>
-   <TextToWrite>Looking to buy something? `</TextToWrite>
-   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+   <TextToWrite>Hey! We serve lunch here as well if you ever want a hot cooked meal!</TextToWrite>
     </Item>
   
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>4</SpeechID>
     <Time>5PM</Time>
-   <TextToWrite>I'm starved.</TextToWrite>
+   <TextToWrite>See anything interesting today?</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
-   <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
+   <TextToWrite>I better go to bed early, I know for a fact Dobbin is going to be up at the crack of dawn again.</TextToWrite>
     </Item>
 </DialogueSkeletons>
 </Item>
