@@ -28,7 +28,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
         Wander = 1,
         Chase = 2,
         Hurt = 3,
-        Flee = 4
+        Flee = 4,
     }
 
 

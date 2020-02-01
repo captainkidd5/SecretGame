@@ -735,7 +735,7 @@ namespace SecretProject
             Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;
             GetStageFromInt(currentStage).UnloadContent();
             gameStages = (Stages)stageToSwitchTo;
-            if (gameStages == Stages.OverWorld)
+            if (gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
             {
                 Game1.Player.LockBounds = false;
             }
