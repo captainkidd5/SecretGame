@@ -84,6 +84,8 @@ namespace SecretProject.Class.TileStuff
 
         public bool WasModifiedDuringInterval { get; set; }
 
+        public string ChunkPath { get; private set; }
+
 
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
@@ -128,6 +130,15 @@ namespace SecretProject.Class.TileStuff
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
 
+            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            {
+                this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
+            }
+            else
+            {
+                this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
+            }
+
         }
 
         public Rectangle GetChunkRectangle()
@@ -149,7 +160,7 @@ namespace SecretProject.Class.TileStuff
 
                     this.IsSaving = true;
                     this.AreReadersAndWritersDone = false;
-                    string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
+                    string path = this.ChunkPath + this.X + this.Y + ".dat";
                     using (FileStream fileStream = File.OpenWrite(path))
                     {
 
@@ -258,7 +269,7 @@ namespace SecretProject.Class.TileStuff
 
                     this.IsLoading = true;
                     this.AreReadersAndWritersDone = false;
-                    string path = @"Content/SaveFiles/Chunks/Chunk" + this.X + this.Y + ".dat";
+                    string path = this.ChunkPath + this.X + this.Y + ".dat";
                     using (FileStream fileStream = File.OpenRead(path))
                     {
 

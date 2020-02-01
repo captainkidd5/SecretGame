@@ -34,7 +34,6 @@ namespace SecretProject.Class.StageFolder
         public List<Enemy> Enemies { get; set; }
 
 
-        public int WorldSize { get; set; }
         public int StageIdentifier { get; set; }
         public string StageName { get; set; }
         public int TileWidth { get; set; }
@@ -117,9 +116,9 @@ namespace SecretProject.Class.StageFolder
             return true;
         }
 
-        public void LoadPreliminaryContent(int worldSize)
+        public void LoadPreliminaryContent()
         {
-            this.WorldSize = worldSize;
+ 
             this.AllNightLights = new List<LightSource>()
             {
 
@@ -520,10 +519,6 @@ namespace SecretProject.Class.StageFolder
 
         }
 
-        public void LoadPreliminaryContent()
-        {
-            throw new NotImplementedException();
-        }
 
         public void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration)
         {

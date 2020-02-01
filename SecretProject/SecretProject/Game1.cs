@@ -79,7 +79,7 @@ namespace SecretProject
         SanctuaryHub = 10,
         Forest = 11,
         ResearchStation = 12,
-        CaveWorld = 13,
+        UnderWorld = 13,
         MainMenu = 50,
         Exit = 55,
 
@@ -122,11 +122,12 @@ namespace SecretProject
         public static TmxStageBase GeneralStore;
         public static TmxStageBase KayaHouse;
         public static TmxStageBase Cafe;
-        public static World CaveWorld;
+        public static World UnderWorld;
         public static TmxStageBase DobbinHouseUpper;
         public static TmxStageBase SanctuaryHub;
         public static SanctuaryBase Forest;
         public static TmxStageBase ResearchStation;
+
 
         public static List<ILocation> AllStages;
         public static int CurrentStage;
@@ -344,8 +345,8 @@ namespace SecretProject
                     return KayaHouse;
                 case Stages.Cafe:
                     return Cafe;
-                case Stages.CaveWorld:
-                    return CaveWorld;
+                case Stages.UnderWorld:
+                    return UnderWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
                 case Stages.SanctuaryHub:
@@ -386,8 +387,8 @@ namespace SecretProject
                     return KayaHouse;
                 case Stages.Cafe:
                     return Cafe;
-                case Stages.CaveWorld:
-                    return CaveWorld;
+                case Stages.UnderWorld:
+                    return UnderWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
                 case Stages.SanctuaryHub:
@@ -515,7 +516,7 @@ namespace SecretProject
             GeneralStore = new TmxStageBase("GeneralStore", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/GeneralStore.tmx", 1, 0) { StageIdentifier = (int)Stages.GeneralStore };
             KayaHouse = new TmxStageBase("KayaHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/KayaHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.KayaHouse };
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
-            CaveWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.CaveWorld };
+            UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
             SanctuaryHub = new TmxStageBase("SanctuaryHub", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/SanctuaryHub.tmx", 1, 0) { StageIdentifier = (int)Stages.SanctuaryHub };
             Forest = new SanctuaryBase("Forest", LocationType.Exterior, StageType.Sanctuary, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
@@ -526,7 +527,7 @@ namespace SecretProject
 
 
 
-            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, SanctuaryHub, Forest, ResearchStation };
+            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, SanctuaryHub, Forest, ResearchStation, UnderWorld };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -873,6 +874,9 @@ namespace SecretProject
                     case Stages.ResearchStation:
                         ResearchStation.Update(gameTime, myMouseManager, Player);
                         break;
+                    case Stages.UnderWorld:
+                        ResearchStation.Update(gameTime, myMouseManager, Player);
+                        break;
 
                 }
 
@@ -981,6 +985,10 @@ namespace SecretProject
                 case Stages.ResearchStation:
                     this.GraphicsDevice.Clear(Color.Black);
                     ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    break;
+                case Stages.UnderWorld:
+                    this.GraphicsDevice.Clear(Color.Black);
+                    UnderWorld.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
 
             }

@@ -187,15 +187,9 @@ namespace SecretProject.Class.StageFolder
                         UnloadContent();
                         foreach (ILocation stage in Game1.AllStages)
                         {
-                            if (stage == Game1.OverWorld)
-                            {
-                                Game1.OverWorld.LoadPreliminaryContent(1);
-
-                            }
-                            else
-                            {
+       
                                 stage.LoadPreliminaryContent();
-                            }
+                            
 
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
@@ -208,14 +202,9 @@ namespace SecretProject.Class.StageFolder
                         UnloadContent();
                         foreach (ILocation stage in Game1.AllStages)
                         {
-                            if (stage == Game1.OverWorld)
-                            {
-                                Game1.OverWorld.LoadPreliminaryContent(1);
-                            }
-                            else
-                            {
+        
                                 stage.LoadPreliminaryContent();
-                            }
+                            
 
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
