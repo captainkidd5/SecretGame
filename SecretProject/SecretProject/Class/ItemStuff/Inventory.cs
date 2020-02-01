@@ -100,13 +100,15 @@ namespace SecretProject.Class.ItemStuff
 
             foreach (InventorySlot s in currentInventory)
             {
-
-                if (s.Item.ID == id)
+                if(s.Item != null)
                 {
-                    s.RemoveItemFromSlot();
-                    return true;
+                    if (s.Item.ID == id)
+                    {
+                        s.RemoveItemFromSlot();
+                        return true;
+                    }
                 }
-
+                
 
             }
             return false;

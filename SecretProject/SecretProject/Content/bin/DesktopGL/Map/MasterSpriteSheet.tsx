@@ -1204,12 +1204,14 @@
  </tile>
  <tile id="908">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="909">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
@@ -1441,6 +1443,7 @@
  </tile>
  <tile id="1008">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
@@ -1634,6 +1637,7 @@
  </tile>
  <tile id="1108">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
