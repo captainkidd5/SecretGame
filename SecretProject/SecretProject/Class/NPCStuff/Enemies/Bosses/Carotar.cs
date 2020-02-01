@@ -42,6 +42,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
             this.TimeInAirTimer = new SimpleTimer(6f);
             this.TimeBetweenAttacks = new SimpleTimer(3f);
+
         }
 
 
@@ -61,7 +62,11 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                 }
                 else
                 {
-                    this.Position = new Vector2(this.Position.X, this.Position.Y + 1f);
+                    Vector2 positionToMoveTowards =  Game1.Player.position - this.Position;
+                    positionToMoveTowards.Normalize();
+
+                    this.Position = new Vector2(this.Position.X + positionToMoveTowards.X, this.Position.Y + 1f);
+                    this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
                     if (this.NPCAnimatedSprite[0].CurrentFrame == 1)
                     {
                         this.NPCAnimatedSprite[0].CurrentFrame = 0;
@@ -185,26 +190,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
             }
 
 
-            if (this.IsMoving)
-            {
 
-                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                {
-                    this.NPCAnimatedSprite[i].UpdateAnimations(gameTime, this.Position);
-                }
-
-
-
-            }
-            else
-            {
-                for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
-                {
-                    this.NPCAnimatedSprite[i].SetFrame(0);
-                }
-
-
-            }
             if (this.IdleSoundEffect != null)
             {
                 this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;

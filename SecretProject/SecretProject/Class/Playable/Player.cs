@@ -678,7 +678,7 @@ namespace SecretProject.Class.Playable
                 {
                     if (this.IsMoving)
                     {
-                        if (returnObjects[i].Entity != this)
+                        if (returnObjects[i].Entity != this && returnObjects[i].ColliderType != ColliderType.MouseCollider)
                         {
                             if (Game1.EnablePlayerCollisions)
                             {
