@@ -194,7 +194,7 @@ namespace SecretProject.Class.TileStuff
 
         }
 
-        public int GetTileFromNoise(float perlinValue, float layer)
+        public int GetOverWorldTileFromNoise(float perlinValue, float layer)
         {
             int newGID = 0;
             if (layer == 0)
@@ -284,6 +284,36 @@ namespace SecretProject.Class.TileStuff
                 {
                     newGID = 1622;//SANDRUIN
                 }
+            }
+            else if (layer == 3)
+            {
+                if (perlinValue >= .15f && perlinValue <= .2f)
+                {
+
+                    newGID = 4124; //dirt cliff
+
+                }
+            }
+            return newGID;
+        }
+
+        public int GetUnderWorldTileFromNoise(float perlinValue, float layer)
+        {
+            int newGID = 0;
+            if (layer == 0)
+            {
+
+
+               
+                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
+
+                
+ 
+
+            }
+            else if (layer == 1)
+            {
+
             }
             else if (layer == 3)
             {

@@ -182,7 +182,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (!this.ActiveChunks[i, j].IsLoaded)
                     {
-                        if (Chunk.CheckIfChunkExistsInMemory(this.ActiveChunks[i, j].X, this.ActiveChunks[i, j].Y))
+                        if (Chunk.CheckIfChunkExistsInMemory(this.ActiveChunks[i, j].ChunkPath, this.ActiveChunks[i, j].X, this.ActiveChunks[i, j].Y))
                         {
                             this.ActiveChunks[i, j].Load();
                         }
@@ -421,7 +421,7 @@ namespace SecretProject.Class.TileStuff
 
             if (!chunk.IsLoaded && !chunk.IsDoneLoading)
             {
-                if (Chunk.CheckIfChunkExistsInMemory(chunk.X, chunk.Y))
+                if (Chunk.CheckIfChunkExistsInMemory(chunk.ChunkPath, chunk.X, chunk.Y))
                 {
                     Task.Run(() => chunk.Load());
                 }

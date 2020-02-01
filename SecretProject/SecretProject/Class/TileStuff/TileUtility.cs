@@ -704,7 +704,12 @@ namespace SecretProject.Class.TileStuff
                             portal.To = (int)Stages.OverWorld;
                             announcementString = "Rai!";
                         }
-                        else
+                        else if(portal.To == (int)(Stages.OverWorld))
+                        {
+                            portal.To = (int)Stages.UnderWorld;
+                            announcementString = "Underworld!";
+                        }
+                        else if(portal.To == (int)(Stages.UnderWorld))
                         {
                             portal.To = (int)Stages.Town;
                             announcementString = "Kai!";

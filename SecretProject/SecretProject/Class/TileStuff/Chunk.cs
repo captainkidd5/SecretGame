@@ -483,19 +483,39 @@ namespace SecretProject.Class.TileStuff
                     int[,,] ChunkLeftNoise = new int[4, 16, 16];
                     int[,,] ChunkRightNoise = new int[4, 16, 16];
 
-                    for (int z = 0; z < 4; z++)
+                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
-                        for (int i = 0; i < 16; i++)
+                        for (int z = 0; z < 4; z++)
                         {
-                            for (int j = 0; j < 16; j++)
+                            for (int i = 0; i < 16; i++)
                             {
-                                chunkAboveNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                ChunkBelowNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                ChunkLeftNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                ChunkRightNoise[z, i, j] = Game1.Procedural.GetTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                for (int j = 0; j < 16; j++)
+                                {
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                }
                             }
                         }
                     }
+                    else
+                    {
+                        for (int z = 0; z < 4; z++)
+                        {
+                            for (int i = 0; i < 16; i++)
+                            {
+                                for (int j = 0; j < 16; j++)
+                                {
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                }
+                            }
+                        }
+                    }
+                   
 
                     List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
             {
@@ -507,23 +527,45 @@ namespace SecretProject.Class.TileStuff
 
                     #endregion
 
-
-                    for (int z = 0; z < 4; z++)
+                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
-                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                        for (int z = 0; z < 4; z++)
                         {
-                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
                             {
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                {
 
 
-                                int newGID = Game1.Procedural.GetTileFromNoise(noise[i, j], z);
-                                this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+                                    int newGID = Game1.Procedural.GetOverWorldTileFromNoise(noise[i, j], z);
+                                    this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
 
+                                }
                             }
                         }
                     }
+                    else
+                    {
+                        for (int z = 0; z < 4; z++)
+                        {
+                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                            {
+                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
+                                {
+
+
+                                    int newGID = Game1.Procedural.GetUnderWorldTileFromNoise(noise[i, j], z);
+                                    this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+
+
+
+                                }
+                            }
+                        }
+                    }
+                    
 
                     for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
                     {
@@ -634,7 +676,7 @@ namespace SecretProject.Class.TileStuff
                                 TilingContainer container = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                                 if (container != null)
                                 {
-                                    Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+                                    Game1.GetCurrentStage().Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(container.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                                 }
 
 
@@ -657,10 +699,19 @@ namespace SecretProject.Class.TileStuff
 
         public void GenerateLandscape()
         {
-            //Specify GID + 1
-            for (int s = 0; s < Game1.OverWorldSpawnHolder.OverWorldSpawnElements.Count; s++)
+            List<SpawnElement> spawnElements;
+            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
-                OverworldSpawnElement element = Game1.OverWorldSpawnHolder.OverWorldSpawnElements[s];
+                spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
+            }
+            else
+            {
+                spawnElements = Game1.OverWorldSpawnHolder.UnderWorldSpawnElements;
+            }
+            //Specify GID + 1
+            for (int s = 0; s < spawnElements.Count; s++)
+            {
+                SpawnElement element = spawnElements[s];
 
                 if (element.Unlocked)
                 {
@@ -776,9 +827,10 @@ namespace SecretProject.Class.TileStuff
         }
 
         #region STATIC METHODS
-        public static bool CheckIfChunkExistsInMemory(int idX, int idY)
+        public static bool CheckIfChunkExistsInMemory(string chunkPath, int idX, int idY)
         {
-            if (File.Exists(@"Content/SaveFiles/Chunks/Chunk" + idX + idY + ".dat"))
+
+            if (File.Exists(chunkPath + idX + idY + ".dat"))
             {
                 return true;
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.TileStuff.SpawnStuff
 {
-    public class OverworldSpawnElement
+    public class SpawnElement
     {
         public int GID { get; private set; }
         public MapLayer MapLayerToPlace { get; private set; }
@@ -22,7 +22,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public bool Unlocked { get; set; }
 
 
-        public OverworldSpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,int frequency, bool zeroLayerOnly = false, bool assertLeftAndRight = false, int limit = 0)
+        public SpawnElement(int gid, MapLayer mapLayerToPlace, MapLayer mapLayerToCheckIfEmpty, GenerationType generationType,int frequency, bool zeroLayerOnly = false, bool assertLeftAndRight = false, int limit = 0)
         {
             this.GID = gid;
             this.MapLayerToPlace = mapLayerToPlace;

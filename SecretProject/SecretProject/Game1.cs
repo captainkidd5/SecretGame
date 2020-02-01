@@ -875,7 +875,7 @@ namespace SecretProject
                         ResearchStation.Update(gameTime, myMouseManager, Player);
                         break;
                     case Stages.UnderWorld:
-                        ResearchStation.Update(gameTime, myMouseManager, Player);
+                        UnderWorld.Update(gameTime, myMouseManager, Player);
                         break;
 
                 }

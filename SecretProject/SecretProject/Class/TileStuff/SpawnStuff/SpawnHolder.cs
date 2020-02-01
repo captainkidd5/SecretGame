@@ -8,50 +8,51 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 {
     public class SpawnHolder
     {
-        public List<OverworldSpawnElement> OverWorldSpawnElements { get; set; }
+        public List<SpawnElement> OverWorldSpawnElements { get; set; }
+        public List<SpawnElement> UnderWorldSpawnElements { get; set; }
 
 
         public SpawnHolder()
         {
-            this.OverWorldSpawnElements = new List<OverworldSpawnElement>()
+            this.OverWorldSpawnElements = new List<SpawnElement>()
             {
                 
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //Stone
-                new OverworldSpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
-                new OverworldSpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Grass, 50, true){Unlocked = true }, //Stick
-                new OverworldSpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
-                new OverworldSpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Grass, 150){Unlocked = true }, //Stone
-                new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 20){Unlocked = true }, //tree
-                new OverworldSpawnElement(2964, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
-                new OverworldSpawnElement(3664, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
-                new OverworldSpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5){Unlocked = true }, //ThunderBirch
-                new OverworldSpawnElement(1079, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //GrassTuft
-                new OverworldSpawnElement(1079, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //GrassTuft
-                new OverworldSpawnElement(1586, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
-                new OverworldSpawnElement(3161, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5, false, true){Unlocked = true }, //big stump
-                new OverworldSpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
-                new OverworldSpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = false }, //Pumpkin
-                new OverworldSpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
-                new OverworldSpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
-                new OverworldSpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Red Mushroom
-                new OverworldSpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Blue Mushroom
-                 new OverworldSpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25, true){Unlocked = true }, //Carrotte
-                new OverworldSpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
-                new OverworldSpawnElement(3439, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.DirtCliffBottom, 100,false, true){Unlocked = true }, //mineshaft
+                new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //Stone
+                new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
+                new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Grass, 50, true){Unlocked = true }, //Stick
+                new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
+                new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Grass, 150){Unlocked = true }, //Stone
+                new SpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 20){Unlocked = true }, //tree
+                new SpawnElement(2964, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
+                new SpawnElement(3664, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
+                new SpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5){Unlocked = true }, //ThunderBirch
+                new SpawnElement(1079, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //GrassTuft
+                new SpawnElement(1079, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //GrassTuft
+                new SpawnElement(1586, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5){Unlocked = true }, //Clue Fruit
+                new SpawnElement(3161, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 5, false, true){Unlocked = true }, //big stump
+                new SpawnElement(1664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Oak Tree
+                new SpawnElement(1381, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = false }, //Pumpkin
+                new SpawnElement(1278, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Stone, 50){Unlocked = true }, //Steel Vein
+                new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick
+                new SpawnElement(1582, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Red Mushroom
+                new SpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Blue Mushroom
+                 new SpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25, true){Unlocked = true }, //Carrotte
+                new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
+                new SpawnElement(3439, MapLayer.ForeGround, MapLayer.Buildings, GenerationType.DirtCliffBottom, 100,false, true){Unlocked = true }, //mineshaft
 
                 ////CROPS - goes by GID, not by item id
-                new OverworldSpawnElement(487, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloomberry
+                new SpawnElement(487, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloomberry
 
-                new OverworldSpawnElement(287, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloodcorn
+                new SpawnElement(287, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloodcorn
 
                 //DESERT
-                new OverworldSpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
-                new OverworldSpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
-                new OverworldSpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
+                new SpawnElement(664, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //palm tree
+                new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
+                new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
 
                 //SWAMP
-                new OverworldSpawnElement(4764, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp tree
-                new OverworldSpawnElement(1681, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp vine
+                new SpawnElement(4764, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp tree
+                new SpawnElement(1681, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp vine
 
 
                 //TileUtility.GenerateRandomlyDistributedTiles(2, 1286, GenerationType.Sand, 10, 0, this, true); //THORN
@@ -89,6 +90,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Grass, 25, 1, this); //oak3
             //TileUtility.GenerateRandomlyDistributedTiles(3, 2964, GenerationType.Dirt, 25, 0, this, true); //oak2
             //TileUtility.GenerateRandomlyDistributedTiles(3, 3664, GenerationType.Dirt, 25, 0, this, true); //oak3
+
+            this.UnderWorldSpawnElements = new List<SpawnElement>()
+            {
+            };
+
         }
 
         public void UnlockSpawnElement(int gid)
