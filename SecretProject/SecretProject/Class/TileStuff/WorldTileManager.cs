@@ -750,11 +750,11 @@ namespace SecretProject.Class.TileStuff
 
 
             }
-            Tile tile = ChunkUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, this.ActiveChunks);
-            if (tile != null)
-            {
-                tile.ColorMultiplier = .25f;
-            }
+            //Tile tile = ChunkUtility.GetChunkTile((int)Game1.Player.ColliderRectangle.X, (int)Game1.Player.ColliderRectangle.Y + 16, 3, this.ActiveChunks);
+            //if (tile != null)
+            //{
+            //    tile.ColorMultiplier = .25f;
+            //}
 
 
             if (this.GridItem != null)

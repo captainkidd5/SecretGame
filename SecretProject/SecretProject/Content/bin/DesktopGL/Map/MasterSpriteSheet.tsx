@@ -4415,54 +4415,61 @@
  <tile id="4725">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4726">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4727">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4728">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4729">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4730">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4731">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -4471,17 +4478,19 @@
  <tile id="4732">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4733">
   <properties>
    <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="0" y="15" width="16" height="1"/>
   </objectgroup>
  </tile>
  <tile id="4734">

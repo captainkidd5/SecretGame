@@ -46,6 +46,8 @@ namespace SecretProject.Class.SoundStuff
 
         public SoundEffect Chirp3;
 
+        public SoundEffect FoodBite;
+
         //GADGETS
         public SoundEffect PotLidOpen;
         public SoundEffect PotLidClose;
@@ -165,6 +167,8 @@ namespace SecretProject.Class.SoundStuff
 
 
             Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
+
+            FoodBite = content.Load<SoundEffect>("SoundEffects/foodBite");
 
             //GADGETS
             PotLidClose = content.Load<SoundEffect>("SoundEffects/PotLidClose");

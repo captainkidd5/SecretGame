@@ -1522,6 +1522,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/exclamation.wav
 
+#begin SoundEffects/foodBite.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/foodBite.wav
+
 #begin SoundEffects/FurnaceLight.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
