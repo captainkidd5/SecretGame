@@ -16,6 +16,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 {
     public class Carotar : Enemy
     {
+        public GraphicsDevice Graphics { get; set; }
         public SimpleTimer TimeInAirTimer { get; set; }
         public SimpleTimer TimeBetweenAttacks { get; set; }
 
@@ -27,7 +28,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
             this.NPCAnimatedSprite = new Sprite[1];
 
             this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 32, 32, 5, .15f, this.Position);
-
+            this.Graphics = graphics;
             this.NPCRectangleXOffSet = 15;
             this.NPCRectangleYOffSet = 15;
             this.NPCRectangleHeightOffSet = 4;
@@ -39,8 +40,8 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
             this.SoundUpperBound = 30f;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
             this.CurrentBehaviour = CurrentBehaviour.Wander;
-            this.HitPoints = 5;
-            this.DamageColor = Color.Black;
+            this.HitPoints = 15;
+            this.DamageColor = Color.White;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
 
             this.TimeInAirTimer = new SimpleTimer(6f);
@@ -65,20 +66,21 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                     {
                         this.NPCAnimatedSprite[0].SetFrame(4);
                     }
-                    this.ShadowScale -= .01f;
+                    this.ShadowScale += .01f;
+                    
                 }
                 else if (this.TimeInAirTimer.Time < this.TimeInAirTimer.TargetTime / 2)
                 {
                     DrawShadow = true;
-                    this.LandingSpot = new Vector2(Game1.Player.position.X, Game1.Player.position.Y + 32);
-                    this.ShadowScale += .01f;
-                    
-                  
+                    this.LandingSpot = new Vector2(Game1.Player.position.X + 10, Game1.Player.position.Y + 28);
+                    this.ShadowScale -= .01f;
+
+
                 }
                 else
                 {
                     DrawShadow = true;
-                    MoveTowardsPoint(LandingSpot, gameTime);
+                    MoveTowardsPoint(new Vector2(LandingSpot.X + 4, LandingSpot.Y), gameTime);
 
                     this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
                     if (this.NPCAnimatedSprite[0].CurrentFrame == 3)
@@ -192,6 +194,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                     case CurrentBehaviour.Flee:
                         if(!MoveTowardsPoint(LandingSpot, gameTime))
                         {
+                            this.ShadowScale -= .01f;
                             this.DrawShadow = true;
                             this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
                             if (this.NPCAnimatedSprite[0].CurrentFrame == 3)
@@ -201,8 +204,9 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                         }
                         else
                         {
-                            //if has waited for a bit carotar will start hopping again
-                            this.NPCAnimatedSprite[0].UpdateAnimationsBackwards(gameTime, this.Position);
+                            this.DrawShadow = false;
+                           //if has waited for a bit carotar will start hopping again
+                           this.NPCAnimatedSprite[0].UpdateAnimationsBackwards(gameTime, this.Position);
                             if (this.NPCAnimatedSprite[0].CurrentFrame == 4)
                             {
                                 this.NPCAnimatedSprite[0].SetFrame(0);
@@ -210,6 +214,9 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                             this.IsImmuneToDamage = false;
                             if (TimeBetweenAttacks.Run(gameTime))
                             {
+                                Enemy rabbit = Enemy.GetEnemyFromType(EnemyType.Rabbit, this.Position, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, true);
+                                rabbit.CurrentBehaviour = CurrentBehaviour.Chase;
+                                Game1.GetCurrentStage().Enemies.Add(rabbit);
                                 this.CurrentBehaviour = CurrentBehaviour.Chase;
                             }
                         }
@@ -257,7 +264,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
             if(DrawShadow)
             {
-                spriteBatch.Draw(Game1.AllTextures.CarotarShadow, this.LandingSpot, null, Color.White, 0f, Game1.Utility.Origin, this.ShadowScale, SpriteEffects.None, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+                spriteBatch.Draw(Game1.AllTextures.CarotarShadow, this.LandingSpot, null, Color.Black, 0f, new Vector2(16,16), this.ShadowScale, SpriteEffects.None, .3f );
             }
 
             this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
