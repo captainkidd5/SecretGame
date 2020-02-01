@@ -45,7 +45,8 @@ namespace SecretProject.Class.TileStuff
     }
     public class Procedural
     {
-        public FastNoise FastNoise;
+        public FastNoise OverworldNoise;
+        public FastNoise UnderWorldNoise;
 
 
 
@@ -101,30 +102,35 @@ namespace SecretProject.Class.TileStuff
         public Procedural()
         {
             //FASTNOISE
-            FastNoise = new FastNoise(500);
-            FastNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
-            FastNoise.SetFractalOctaves(5);
-            FastNoise.SetFractalLacunarity(3f);
+            OverworldNoise = new FastNoise(500);
+            OverworldNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
+            OverworldNoise.SetFractalOctaves(5);
+            OverworldNoise.SetFractalLacunarity(3f);
 
             //Smaller the smooth the biomes
-            FastNoise.SetFractalGain(.35f);
+            OverworldNoise.SetFractalGain(.35f);
 
             //larger the smaller the biomes
-            FastNoise.SetFrequency(.0065f);
+            OverworldNoise.SetFrequency(.0065f);
 
 
 
 
-            //   Grass = new TilingContainer(GenerationType.Grass, FillTilingDictionary(1014), new List<int>());
-            //Dirt = new TilingContainer(GenerationType.Dirt, FillTilingDictionary(1005), new List<int>());
-            //   Sand = new TilingContainer(GenerationType.Sand, FillTilingDictionary(1321), new List<int>());
-            //   SandRuin = new TilingContainer(GenerationType.SandRuin, FillTilingDictionary(1621), new List<int>());
-            //   Water = new TilingContainer(GenerationType.Water, FillTilingDictionary(426), new List<int>());
-            //   Stone = new TilingContainer(GenerationType.Stone, FillTilingDictionary(929), new List<int>());
-            //   DirtCliff = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(2934), new List<int>());
-            //   OakFence = new TilingContainer(GenerationType.OakFloorTiling, FillFenceTilingDictionary(632), new List<int>());
-            //   StoneWall = new TilingContainer(GenerationType.StoneWallTiling, FillFenceTilingDictionary(452), new List<int>());
-            //   OakFloor = new TilingContainer(GenerationType.DirtCliff, FillTilingDictionary(632), new List<int>());
+            //UNDERWORLDNOISE
+            UnderWorldNoise = new FastNoise(500);
+            UnderWorldNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
+            UnderWorldNoise.SetFractalOctaves(5);
+            UnderWorldNoise.SetFractalLacunarity(2f);
+
+            //Smaller the smooth the biomes
+            UnderWorldNoise.SetFractalGain(.15f);
+
+            //larger the smaller the biomes
+            UnderWorldNoise.SetFrequency(.03f);
+
+
+
+
 
             //MUST ADD IN THE SAME ORDER AS ENUM
             AllTilingContainers = new List<TilingContainer>()
@@ -150,7 +156,7 @@ namespace SecretProject.Class.TileStuff
                 }),
                 new TilingContainer(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()),
                 new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()),
-                new TilingContainer(GenerationType.DirtCliff, FillCliffTilingDictionary(4828), new List<int>()),
+                new TilingContainer(GenerationType.CaveCliff, FillCliffTilingDictionary(4828), new List<int>()),
                 new TilingContainer(GenerationType.CaveDirt, FillTilingDictionary(2001), new List<int>()),
             };
         }
@@ -323,7 +329,7 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 3)
             {
-                if (perlinValue >= .15f && perlinValue <= .2f)
+                if (perlinValue >= .05f && perlinValue <= .2f)
                 {
 
                     newGID = (int)GenerationType.CaveCliff + 1; //dirt cliff

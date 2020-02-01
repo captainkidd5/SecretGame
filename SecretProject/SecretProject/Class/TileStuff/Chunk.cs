@@ -9,6 +9,7 @@ using SecretProject.Class.NPCStuff.Enemies.Bosses;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -467,11 +468,22 @@ namespace SecretProject.Class.TileStuff
                     this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
                     float[,] noise = new float[16, 16];
 
+                    FastNoise noiseGenerator;
+
+                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                    {
+                        noiseGenerator = Game1.Procedural.OverworldNoise;
+                    }
+                    else
+                    {
+                        noiseGenerator = Game1.Procedural.UnderWorldNoise;
+                    }
+
                     for (int i = 0; i < 16; i++)
                     {
                         for (int j = 0; j < 16; j++)
                         {
-                            noise[i, j] = Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                            noise[i, j] = noiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
                         }
                     }
 
@@ -491,10 +503,10 @@ namespace SecretProject.Class.TileStuff
                             {
                                 for (int j = 0; j < 16; j++)
                                 {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                                 }
                             }
                         }
@@ -507,10 +519,10 @@ namespace SecretProject.Class.TileStuff
                             {
                                 for (int j = 0; j < 16; j++)
                                 {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.FastNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                                 }
                             }
                         }
@@ -612,10 +624,24 @@ namespace SecretProject.Class.TileStuff
                         GenerateLandscape();
                     }
 
-                    List<int> DirtCliffBottom = new List<int>()
+                    List<int> CliffBottomTiles;
+
+                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
-                      4222, 4223, 4224,4021,4025,4026,4027,4028
-                    };
+                        CliffBottomTiles = new List<int>()
+                        {
+                            4222, 4223, 4224,4021,4025,4026,4027,4028
+                        };
+                    }
+                    else
+                    {
+                        CliffBottomTiles = new List<int>()
+                        {
+                            4726, 4927, 4928,4929,4730,4731,4732,4733
+                        };
+                    }
+
+  
      
 
 
@@ -627,7 +653,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (z == 2)
                                 {
-                                    if (DirtCliffBottom.Contains(this.AllTiles[3][i, j].GID))
+                                    if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
                                     {
 
                                         int counter = 1;
@@ -726,27 +752,39 @@ namespace SecretProject.Class.TileStuff
 
         public void HandleCliffEdgeCases(List<int[,,]> AllAdjacentChunkNoise)
         {
+            int gidToTest = 0;
+            int gidBottomToTest = 0;
+            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            {
+                gidToTest = 4124;
+                gidBottomToTest = 4724;
+            }
+            else
+            {
+                gidToTest = 4829;
+                gidBottomToTest = 5429;
+            }
             //these gids are all +1
             for (int i = 0; i < 16; i++)
             {
                 for (int j = 15; j > 10; j--)
                 {
-                    if (AllAdjacentChunkNoise[0][3, i, j] == 4124)
+                    if (AllAdjacentChunkNoise[0][3, i, j] == gidToTest)
                     {
                         int newJIndex = j;
 
-                        int newCliffGID = 4224;
+                        int newCliffGID = gidToTest + 100;
                         for (int remainAbove = newJIndex; remainAbove < 15; remainAbove++)
                         {
                             newCliffGID += 100;
                         }
 
-                        for (int newY = 0; newCliffGID != 4724; newY++)
+                        for (int newY = 0; newCliffGID != gidBottomToTest; newY++)
                         {
 
                             newCliffGID += 100;
                             this.AllTiles[2][i, newY].GID = newCliffGID;
-                            if (newCliffGID != 4724)
+                            if (newCliffGID != gidBottomToTest)
                             {
                                 this.AllTiles[0][i, newY].GID = 0;
 

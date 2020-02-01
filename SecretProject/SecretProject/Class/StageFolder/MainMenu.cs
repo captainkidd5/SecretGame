@@ -34,6 +34,7 @@ namespace SecretProject.Class.StageFolder
 
         Button StartGameInTown;
         Button StartGameInWilderness;
+        Button StartGameInUnderWorld;
 
 
         Texture2D BackDrop;
@@ -76,8 +77,9 @@ namespace SecretProject.Class.StageFolder
 
             StartGameInTown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 100), CursorType.Normal);
             StartGameInWilderness = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
+           StartGameInUnderWorld = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
 
-            chooseWorldSizeButtons = new List<Button>() { StartGameInTown, StartGameInWilderness };
+            chooseWorldSizeButtons = new List<Button>() { StartGameInTown, StartGameInWilderness, StartGameInUnderWorld };
             //--------------------------------------
             //Load spritefonts
             font = Game1.AllTextures.MenuText;
@@ -212,6 +214,21 @@ namespace SecretProject.Class.StageFolder
                         menuState = MenuState.primary;
                         Game1.SwitchStage(0, Stages.OverWorld);
                     }
+                    else if (StartGameInUnderWorld.isClicked)
+                    {
+                        UnloadContent();
+                        foreach (ILocation stage in Game1.AllStages)
+                        {
+
+                            stage.LoadPreliminaryContent();
+
+
+                        }
+                        Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
+                        Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
+                        menuState = MenuState.primary;
+                        Game1.SwitchStage(0, Stages.UnderWorld);
+                    }
 
 
                     break;
@@ -247,6 +264,7 @@ namespace SecretProject.Class.StageFolder
                 case MenuState.play:
                     StartGameInTown.Draw(spriteBatch, font, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
                     StartGameInWilderness.Draw(spriteBatch, font, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    StartGameInUnderWorld.Draw(spriteBatch, font, "Go to underworld", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
                     break;
             }
