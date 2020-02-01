@@ -115,6 +115,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Rotation = 0f;
             this.RotationAnchor = 0f;
 
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
         }
 
 
@@ -157,6 +158,23 @@ namespace SecretProject.Class.SpriteFolder
             if (this.CurrentFrame == this.TotalFrames)
             {
                 this.CurrentFrame = 0;
+            }
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+
+        }
+
+        public void UpdateAnimationsBackwards(GameTime gameTime, Vector2 position)
+        {
+            Position = position;
+            this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (this.AnimationTimer <= 0)
+            {
+                this.CurrentFrame--;
+                this.AnimationTimer = this.AnimationSpeed;
+            }
+            if (this.CurrentFrame == -1)
+            {
+                this.CurrentFrame = this.TotalFrames - 1;
             }
             this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
 

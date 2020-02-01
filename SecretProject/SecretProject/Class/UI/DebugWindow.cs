@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.NPCStuff.Enemies.Bosses;
 using SecretProject.Class.TileStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -12,6 +14,8 @@ namespace SecretProject.Class.UI
 {
     public class DebugWindow : TextBox
     {
+
+        public GraphicsDevice GraphicsDevice { get; set; }
         public double ElapsedMS { get; set; }
 
         public Button DebugButton1 { get; set; }
@@ -28,8 +32,9 @@ namespace SecretProject.Class.UI
         public Button SpawnAnimalPack { get; set; }
 
         public List<Button> WeatherButtons { get; set; }
-        public DebugWindow(SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont, textBoxLocation, textToWrite, backDrop)
+        public DebugWindow(GraphicsDevice graphics, SpriteFont textFont, Vector2 textBoxLocation, string textToWrite, Texture2D backDrop, GraphicsDevice graphicsDevice) : base(textFont, textBoxLocation, textToWrite, backDrop)
         {
+            this.GraphicsDevice = graphics;
             this.ElapsedMS = 0d;
             this.DebugButton1 = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(position.X, position.Y - 200), CursorType.Normal);
             this.SpeedClockUp = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(544, 656, 16, 32), graphicsDevice, new Vector2(Game1.ScreenWidth * .8f, Game1.ScreenHeight / 2), CursorType.Normal) { HitBoxScale = 2f };
@@ -61,8 +66,10 @@ namespace SecretProject.Class.UI
                 if (this.DebugButton1.isClicked)
                 {
 
-                    Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
-                    Game1.GlobalClock.IncrementDay();
+                    //Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
+                    //Game1.GlobalClock.IncrementDay();
+
+                    Game1.GetCurrentStage().Enemies.Add(new Carotar("Carotar", new Vector2(50, 50), this.GraphicsDevice, Game1.AllTextures.Carotar, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, CurrentBehaviour.Wander));
 
 
                 }

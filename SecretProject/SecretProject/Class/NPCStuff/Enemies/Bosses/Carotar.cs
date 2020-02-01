@@ -19,6 +19,9 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
         public SimpleTimer TimeInAirTimer { get; set; }
         public SimpleTimer TimeBetweenAttacks { get; set; }
 
+        public bool DrawShadow { get; set; }
+        public float ShadowScale { get; set; }
+        public Vector2 LandingSpot { get; set; }
         public Carotar(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[1];
@@ -42,34 +45,45 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
             this.TimeInAirTimer = new SimpleTimer(6f);
             this.TimeBetweenAttacks = new SimpleTimer(3f);
+            this.ShadowScale = 1f;
+            this.LandingSpot = Vector2.Zero;
+            this.PrimaryVelocity = new Vector2(4, 4);
 
         }
 
 
         public void AttackPlayer(GameTime gameTime)
         {
-            
+           
             if(!this.TimeInAirTimer.Run(gameTime))
             {
-                if (this.TimeInAirTimer.Time < this.TimeInAirTimer.TargetTime / 2)
+                if (this.TimeInAirTimer.Time < this.TimeInAirTimer.TargetTime / 4)
                 {
-                    this.Position = new Vector2(this.Position.X, this.Position.Y - 1f);
+                    this.Position = new Vector2(this.Position.X, this.Position.Y - 4f);
                     this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
                     if(this.NPCAnimatedSprite[0].CurrentFrame == 0)
                     {
-                        this.NPCAnimatedSprite[0].CurrentFrame = 4;
+                        this.NPCAnimatedSprite[0].SetFrame(4);
                     }
+                    this.ShadowScale -= .01f;
+                }
+                else if (this.TimeInAirTimer.Time < this.TimeInAirTimer.TargetTime / 2)
+                {
+                    DrawShadow = true;
+                    this.LandingSpot = new Vector2(Game1.Player.position.X, Game1.Player.position.Y + 32);
+                    this.ShadowScale += .01f;
+                    
+                  
                 }
                 else
                 {
-                    Vector2 positionToMoveTowards =  Game1.Player.position - this.Position;
-                    positionToMoveTowards.Normalize();
+                    DrawShadow = true;
+                    MoveTowardsPoint(LandingSpot, gameTime);
 
-                    this.Position = new Vector2(this.Position.X + positionToMoveTowards.X, this.Position.Y + 1f);
                     this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
-                    if (this.NPCAnimatedSprite[0].CurrentFrame == 1)
+                    if (this.NPCAnimatedSprite[0].CurrentFrame == 3)
                     {
-                        this.NPCAnimatedSprite[0].CurrentFrame = 0;
+                        this.NPCAnimatedSprite[0].SetFrame(2);
                     }
                 }
             }
@@ -82,7 +96,8 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
         public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
-
+            this.IsImmuneToDamage = true;
+            DrawShadow = false;
             if (this.TimeInUnloadedChunk > 100)
             {
                 enemies.Remove(this);
@@ -97,7 +112,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
             //this.CurrentBehaviour = CurrentBehaviour.Wander;
             this.IsMoving = true;
             TestImmunity(gameTime);
-            this.PrimaryVelocity = new Vector2(.5f, .5f);
+
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
@@ -175,11 +190,32 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                         break;
 
                     case CurrentBehaviour.Flee:
-                        //if has waited for a bit carotar will start hopping again
-                        if(TimeBetweenAttacks.Run(gameTime))
+                        if(!MoveTowardsPoint(LandingSpot, gameTime))
                         {
-                            this.CurrentBehaviour = CurrentBehaviour.Chase;
+                            this.DrawShadow = true;
+                            this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
+                            if (this.NPCAnimatedSprite[0].CurrentFrame == 3)
+                            {
+                                this.NPCAnimatedSprite[0].SetFrame(2);
+                            }
                         }
+                        else
+                        {
+                            //if has waited for a bit carotar will start hopping again
+                            this.NPCAnimatedSprite[0].UpdateAnimationsBackwards(gameTime, this.Position);
+                            if (this.NPCAnimatedSprite[0].CurrentFrame == 4)
+                            {
+                                this.NPCAnimatedSprite[0].SetFrame(0);
+                            }
+                            this.IsImmuneToDamage = false;
+                            if (TimeBetweenAttacks.Run(gameTime))
+                            {
+                                this.CurrentBehaviour = CurrentBehaviour.Chase;
+                            }
+                        }
+
+                       
+                        
                         
                         break;
 
@@ -219,6 +255,10 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
 
             }
 
+            if(DrawShadow)
+            {
+                spriteBatch.Draw(Game1.AllTextures.CarotarShadow, this.LandingSpot, null, Color.White, 0f, Game1.Utility.Origin, this.ShadowScale, SpriteEffects.None, .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+            }
 
             this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
 

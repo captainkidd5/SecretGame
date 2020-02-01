@@ -95,7 +95,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public int HitPoints { get; protected set; }
         public Color DamageColor { get; protected set; }
         public SimpleTimer DamageImmunityTimer { get; private set; }
-        public bool IsImmuneToDamage { get; private set; }
+        public bool IsImmuneToDamage { get;  set; }
 
         public List<Loot> PossibleLoot { get; set; }
 

@@ -419,10 +419,6 @@ namespace SecretProject.Class.TileStuff
 
 
                             }
-                            else
-                            {
-                                Game1.GetCurrentStage().Enemies.Add(new Carotar("Carotar", new Vector2(50, 50), this.GraphicsDevice, Game1.AllTextures.Carotar, this, CurrentBehaviour.Wander));
-                            }
 
                             this.IsLoaded = true;
                             binaryReader.Close();
@@ -565,7 +561,7 @@ namespace SecretProject.Class.TileStuff
 
                       //  player house
                         this.AllTiles[3][8, 6] = new Tile(8,6, 7127);
-                        Game1.GetCurrentStage().Enemies.Add(new Carotar("Carotar", new Vector2(50, 50), this.GraphicsDevice, Game1.AllTextures.Carotar, this, CurrentBehaviour.Wander));
+
 
                     }
                     else
