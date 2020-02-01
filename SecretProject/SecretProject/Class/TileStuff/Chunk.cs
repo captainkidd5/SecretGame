@@ -131,7 +131,7 @@ namespace SecretProject.Class.TileStuff
             this.Random = new Random(Game1.Utility.RGenerator.Next(0, 1000));
             this.Locker = new object();
 
-            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
             }
@@ -210,7 +210,7 @@ namespace SecretProject.Class.TileStuff
 
                             }
                             binaryWriter.Write(this.AllItems.Count);
-                            for(int item =0; item < AllItems.Count; item ++)
+                            for (int item = 0; item < AllItems.Count; item++)
                             {
                                 binaryWriter.Write(AllItems[item].ID);
                                 binaryWriter.Write(AllItems[item].WorldPosition.X);
@@ -343,7 +343,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                             }
                             int itemCount = binaryReader.ReadInt32();
-                            for(int item = 0; item < itemCount; item++)
+                            for (int item = 0; item < itemCount; item++)
                             {
                                 Game1.ItemVault.GenerateNewItem(binaryReader.ReadInt32(), new Vector2(binaryReader.ReadSingle(), binaryReader.ReadSingle()), true, this.AllItems);
                             }
@@ -483,7 +483,7 @@ namespace SecretProject.Class.TileStuff
                     int[,,] ChunkLeftNoise = new int[4, 16, 16];
                     int[,,] ChunkRightNoise = new int[4, 16, 16];
 
-                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
                         for (int z = 0; z < 4; z++)
                         {
@@ -515,7 +515,7 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
-                   
+
 
                     List<int[,,]> AllAdjacentChunkNoise = new List<int[,,]>()
             {
@@ -565,7 +565,7 @@ namespace SecretProject.Class.TileStuff
                             }
                         }
                     }
-                    
+
 
                     for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
                     {
@@ -601,8 +601,8 @@ namespace SecretProject.Class.TileStuff
                         //STARTING CHUNK
                         //  this.AllTiles[2][10, 6] = new Tile(10,6, 8348);
 
-                      //  player house
-                        this.AllTiles[3][8, 6] = new Tile(8,6, 7127);
+                        //  player house
+                        this.AllTiles[3][8, 6] = new Tile(8, 6, 7127);
 
 
                     }
@@ -612,11 +612,11 @@ namespace SecretProject.Class.TileStuff
                         GenerateLandscape();
                     }
 
-                    List<int> CliffBottomTiles = new List<int>()
-        {
-            4222, 4223, 4224,4021,4025,4026,4027,4028
-        };
-
+                    List<int> DirtCliffBottom = new List<int>()
+                    {
+                      4222, 4223, 4224,4021,4025,4026,4027,4028
+                    };
+     
 
 
                     for (int z = 0; z < 4; z++)
@@ -627,7 +627,7 @@ namespace SecretProject.Class.TileStuff
                             {
                                 if (z == 2)
                                 {
-                                    if (CliffBottomTiles.Contains(this.AllTiles[3][i, j].GID))
+                                    if (DirtCliffBottom.Contains(this.AllTiles[3][i, j].GID))
                                     {
 
                                         int counter = 1;
@@ -700,7 +700,7 @@ namespace SecretProject.Class.TileStuff
         public void GenerateLandscape()
         {
             List<SpawnElement> spawnElements;
-            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 spawnElements = Game1.OverWorldSpawnHolder.OverWorldSpawnElements;
             }

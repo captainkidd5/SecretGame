@@ -12,13 +12,15 @@ namespace SecretProject.Class.TileStuff
         SandRuin = 1621,
         Water = 124,
         Stone = 929,
-        DirtCliff = 2934,
+        DirtCliff = 4123,
         FenceTiling = 456,
         StoneWallTiling = 452,
         OakFloorTiling = 632,
-        DirtCliffBottom = 3534,
+        DirtCliffBottom = 4723,
         LandSwamp = 936,
-        WaterSwamp = 941
+        WaterSwamp = 941,
+        CaveCliff = 4828,
+        CaveDirt = 2001
 
     };
 
@@ -37,6 +39,8 @@ namespace SecretProject.Class.TileStuff
         DirtCliffBottom = 10,
         LandSwamp = 11,
         WaterSwamp = 12,
+        CaveCliff = 13,
+        CaveDirt = 14
 
     }
     public class Procedural
@@ -146,6 +150,8 @@ namespace SecretProject.Class.TileStuff
                 }),
                 new TilingContainer(GenerationType.LandSwamp, FillTilingDictionary((int)GenerationType.LandSwamp), new List<int>()),
                 new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()),
+                new TilingContainer(GenerationType.DirtCliff, FillCliffTilingDictionary(4828), new List<int>()),
+                new TilingContainer(GenerationType.CaveDirt, FillTilingDictionary(2001), new List<int>()),
             };
         }
 
@@ -305,7 +311,7 @@ namespace SecretProject.Class.TileStuff
 
 
                
-                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
+                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles.Count)] + 1;
 
                 
  
@@ -320,7 +326,7 @@ namespace SecretProject.Class.TileStuff
                 if (perlinValue >= .15f && perlinValue <= .2f)
                 {
 
-                    newGID = 4124; //dirt cliff
+                    newGID = (int)GenerationType.CaveCliff + 1; //dirt cliff
 
                 }
             }
