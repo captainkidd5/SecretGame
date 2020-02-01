@@ -3329,6 +3329,14 @@
    <property name="transparent" value="-16,-16, 48, 16"/>
   </properties>
  </tile>
+ <tile id="3175">
+  <properties>
+   <property name="action" value="enterBurrow"/>
+   <property name="newHitBox" value="-16,0,48,16"/>
+   <property name="newSource" value="-16,-16,48,32"/>
+   <property name="transparent" value="-16,-16, 48, 16"/>
+  </properties>
+ </tile>
  <tile id="3204">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="4" height="16"/>

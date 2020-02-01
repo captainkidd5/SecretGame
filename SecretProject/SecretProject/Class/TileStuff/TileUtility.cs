@@ -343,7 +343,7 @@ namespace SecretProject.Class.TileStuff
                         {
                             for (int j = startJ; j < endJ; j++)
                             {
-                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX( container.X * 16  + x   + i  )  ,ChunkUtility.GetChunkY(container.Y  * 16 +  y   + j  )  , Game1.OverWorld.AllTiles.ActiveChunks);
+                                Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX( container.X * 16  + x   + i  )  ,ChunkUtility.GetChunkY(container.Y  * 16 +  y   + j  )  , Game1.GetCurrentStage().AllTiles.ActiveChunks);
                                 if (newChunk != null)
                                 {
                                     newChunk.PathGrid.UpdateGrid(ChunkUtility.GetLocalChunkCoord(x * 16 + i * 16), ChunkUtility.GetLocalChunkCoord(y * 16 + j * 16), 0);
