@@ -18,9 +18,10 @@ namespace SecretProject.Class.TileStuff
         OakFloorTiling = 632,
         DirtCliffBottom = 4723,
         LandSwamp = 936,
-        WaterSwamp = 941,
+        WaterSwamp = 940,
         CaveCliff = 4828,
-        CaveDirt = 2001
+        CaveDirt = 2001,
+        CaveWater = 640
 
     };
 
@@ -40,7 +41,8 @@ namespace SecretProject.Class.TileStuff
         LandSwamp = 11,
         WaterSwamp = 12,
         CaveCliff = 13,
-        CaveDirt = 14
+        CaveDirt = 14,
+        CaveWater = 15
 
     }
     public class Procedural
@@ -118,15 +120,15 @@ namespace SecretProject.Class.TileStuff
 
             //UNDERWORLDNOISE
             UnderWorldNoise = new FastNoise(500);
-            UnderWorldNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
+            UnderWorldNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
             UnderWorldNoise.SetFractalOctaves(5);
-            UnderWorldNoise.SetFractalLacunarity(2f);
+            UnderWorldNoise.SetFractalLacunarity(1.5f);
 
             //Smaller the smooth the biomes
-            UnderWorldNoise.SetFractalGain(.05f);
+            UnderWorldNoise.SetFractalGain(.04f);
 
             //larger the smaller the biomes
-            UnderWorldNoise.SetFrequency(.09f);
+            UnderWorldNoise.SetFrequency(.12f);
 
 
 
@@ -158,6 +160,7 @@ namespace SecretProject.Class.TileStuff
                 new TilingContainer(GenerationType.WaterSwamp, FillTilingDictionary((int)GenerationType.WaterSwamp), new List<int>()),
                 new TilingContainer(GenerationType.CaveCliff, FillCliffTilingDictionary(4828), new List<int>()),
                 new TilingContainer(GenerationType.CaveDirt, FillTilingDictionary(2001), new List<int>()),
+                new TilingContainer(GenerationType.CaveWater, FillTilingDictionary((int)GenerationType.CaveWater), new List<int>()),
             };
         }
 
@@ -325,14 +328,17 @@ namespace SecretProject.Class.TileStuff
             }
             else if (layer == 1)
             {
-
+                if (perlinValue >= -.2f && perlinValue < .0f)
+                {
+                    newGID = (int)GenerationType.CaveWater + 1;
+                }
             }
             else if (layer == 3)
             {
-                if (perlinValue >= .05f && perlinValue <= .2f)
+                if (perlinValue >= .0001f && perlinValue <= .6f)
                 {
 
-                    newGID = (int)GenerationType.CaveCliff + 1; //dirt cliff
+                    newGID = (int)GenerationType.CaveCliff + 1; 
 
                 }
             }

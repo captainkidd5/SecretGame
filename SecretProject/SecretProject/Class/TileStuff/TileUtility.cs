@@ -968,6 +968,7 @@ namespace SecretProject.Class.TileStuff
         /// <param name="limit">Maximum number of this type of tile we can spawn in a chunk</param>
         public static void GenerateRandomlyDistributedTiles(int layerToPlace, int gid, GenerationType type, int frequency, int layerToCheckIfEmpty, IInformationContainer container, bool onlyLayerZero = false, bool assertLeftAndRight = false, int limit = 0)
         {
+            
             int cap = container.Random.Next(0, frequency);
 
             int limitCounter = 0;
@@ -1020,7 +1021,10 @@ namespace SecretProject.Class.TileStuff
                     }
 
                 }
-
+                if(id == 3438 || id == 3439)
+                {
+                    Console.WriteLine("hi");
+                }
                 container.AllTiles[layer][newTileX, newTileY] = new Tile(newTileX, newTileY, id);
                 AddCropToTile(container.AllTiles[layer][newTileX, newTileY], newTileX, newTileY, layer, container, true);
                 return true;

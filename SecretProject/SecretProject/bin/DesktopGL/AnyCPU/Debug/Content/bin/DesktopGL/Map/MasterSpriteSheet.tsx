@@ -781,6 +781,42 @@
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
+ <tile id="539">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="4" width="12" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="540">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
+ <tile id="541">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="3" width="12" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="542">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
+ <tile id="543">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
+ <tile id="544">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
  <tile id="546">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="1" width="6" height="14"/>
@@ -850,6 +886,41 @@
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="639">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="640">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <animation>
+   <frame tileid="122" duration="400"/>
+   <frame tileid="121" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="641">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="642">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
+ <tile id="643">
+  <properties>
+   <property name="generate" value="CaveWater"/>
   </properties>
  </tile>
  <tile id="646">
@@ -1044,6 +1115,40 @@
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
+  </properties>
+ </tile>
+ <tile id="739">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="740">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="9" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="741">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="742">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+ </tile>
+ <tile id="743">
+  <properties>
+   <property name="generate" value="CaveWater"/>
   </properties>
  </tile>
  <tile id="778">
