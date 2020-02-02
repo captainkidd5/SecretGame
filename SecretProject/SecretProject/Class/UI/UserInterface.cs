@@ -27,6 +27,7 @@ namespace SecretProject.Class.UI
         ElixirShop = 4,
         KayaShop = 5,
         BusinessSnailShop = 6,
+        SarahShop = 7
         //LodgeInteior = 1,
         //Iliad = 2,
         //Exit = 3,

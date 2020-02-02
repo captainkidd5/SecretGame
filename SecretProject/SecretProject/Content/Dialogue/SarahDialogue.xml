@@ -10,7 +10,8 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>There's a lot of early risers in town, and you can be they want their coffee!</TextToWrite>
+   <TextToWrite>There's a lot of early risers in town, and you can bet they want their coffee! Can I get ya somethin? `</TextToWrite>
+      <SelectableOptions>yes~OpenSarahShop,no~ExitDialogue</SelectableOptions>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

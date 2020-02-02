@@ -256,6 +256,10 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.ActivateShop(OpenShop.KayaShop);
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
+                case "OpenSarahShop":
+                    Game1.Player.UserInterface.ActivateShop(OpenShop.SarahShop);
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+                    break;
 
                 case "OpenBusinessSnailShop":
                     Game1.Player.UserInterface.ActivateShop(OpenShop.BusinessSnailShop);

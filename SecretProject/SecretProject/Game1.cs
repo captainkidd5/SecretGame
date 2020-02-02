@@ -584,6 +584,9 @@ namespace SecretProject
             BuisnessSnailShop.ShopMenu.TryAddStock(601, 5);
             BuisnessSnailShop.ShopMenu.TryAddStock(1402, 1);
 
+            Shop SarahShop = new Shop(graphics.GraphicsDevice, 7, "SarahShop", new ShopMenu("SarahShopInventory", graphics.GraphicsDevice, 10));
+            SarahShop.ShopMenu.TryAddStock(1099, 15);
+            SarahShop.ShopMenu.TryAddStock(1100, 15);
             AllShops = new List<IShop>()
             {
                 ToolShop,
@@ -591,7 +594,8 @@ namespace SecretProject
                 JulianShop,
                 ElixirShop,
                 KayaShop,
-                BuisnessSnailShop
+                BuisnessSnailShop,
+                SarahShop
             };
             for (int i = 0; i < 30; i++)
             {
