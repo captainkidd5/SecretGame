@@ -1819,6 +1819,16 @@
    <property name="step" value="1"/>
   </properties>
  </tile>
+ <tile id="1126">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1127">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1149">
   <objectgroup draworder="index">
    <object id="1" x="4.22727" y="-0.0341" width="7.72727" height="15.8182"/>
@@ -1988,6 +1998,16 @@
   <properties>
    <property name="generate" value="Sand"/>
    <property name="step" value="18"/>
+  </properties>
+ </tile>
+ <tile id="1226">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1227">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1249">
@@ -2187,6 +2207,16 @@
    <property name="step" value="18"/>
   </properties>
  </tile>
+ <tile id="1326">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1327">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1349">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -2298,6 +2328,36 @@
   <properties>
    <property name="generate" value="Sand"/>
    <property name="step" value="18"/>
+  </properties>
+ </tile>
+ <tile id="1426">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1427">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1430">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1431">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1432">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1433">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1457">
@@ -2429,6 +2489,26 @@
    <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1530">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1531">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1532">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1533">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1550">
@@ -2590,6 +2670,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1630">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1631">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1632">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1633">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1648">
   <properties>
    <property name="newHitBox" value="-16, -10, 48, 26"/>
@@ -2724,6 +2824,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1730">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1731">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1732">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1733">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1752">
   <properties>
    <property name="layer" value="3"/>
@@ -2750,6 +2870,26 @@
   <animation>
    <frame tileid="1592" duration="100"/>
   </animation>
+ </tile>
+ <tile id="1830">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1831">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1832">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1833">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="1843">
   <properties>
@@ -3019,6 +3159,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2234">
   <properties>
@@ -3034,6 +3177,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2263">
   <properties>
@@ -3078,11 +3224,17 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2336">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2339">
   <properties>
@@ -3096,6 +3248,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2434">
   <properties>
@@ -3111,11 +3266,17 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2533">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2534">
   <properties>
@@ -3131,6 +3292,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2547">
   <properties>
@@ -3242,6 +3406,26 @@
  <tile id="2631">
   <objectgroup draworder="index">
    <object id="1" x="0" y="10" width="16" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="2633">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2634">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2635">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2636">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="2704">

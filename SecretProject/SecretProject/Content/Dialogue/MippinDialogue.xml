@@ -10,32 +10,20 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
+   <TextToWrite>Heeheehee!.</TextToWrite>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
-    <Time>7AM</Time>
-   <TextToWrite>I'm a latte' kind of guy.</TextToWrite>
+    <Time>1PM</Time>
+   <TextToWrite>...??</TextToWrite>
     </Item>
 
-    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
-    <SpeechID>3</SpeechID>
-    <Time>10AM</Time>
-   <TextToWrite>Looking to buy something? `</TextToWrite>
-   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
-    </Item>
-  
-    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
-    <SpeechID>4</SpeechID>
-    <Time>5PM</Time>
-   <TextToWrite>I'm starved.</TextToWrite>
-    </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
-   <TextToWrite>I'm already looking forward to seeing the sunrise!</TextToWrite>
+   <TextToWrite>....</TextToWrite>
     </Item>
 </DialogueSkeletons>
 </Item>

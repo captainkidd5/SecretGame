@@ -22,8 +22,8 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>10AM</Time>
-   <TextToWrite>Looking to buy something? `</TextToWrite>
-   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+   <TextToWrite>Have you ever been across the great sea? `</TextToWrite>
+   <SelectableOptions>yes~ Its a wonderful place.,no~Really? I highly recommend it.</SelectableOptions>
     </Item>
   
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

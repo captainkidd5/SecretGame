@@ -138,6 +138,16 @@
    <object id="1" x="0" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="406">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="407">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="448">
   <objectgroup draworder="index">
    <object id="1" x="7" y="0" width="9" height="16"/>
@@ -195,6 +205,16 @@
   <objectgroup draworder="index">
    <object id="1" x="1" y="4" width="8" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="506">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="507">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="545">
   <properties>
@@ -309,6 +329,16 @@
   <objectgroup draworder="index">
    <object id="1" x="0" y="3" width="8" height="11"/>
   </objectgroup>
+ </tile>
+ <tile id="609">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="610">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="656">
   <objectgroup draworder="index">
@@ -561,6 +591,9 @@
   <properties>
    <property name="newSource" value="0,-16,0,16"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="15"/>
+  </objectgroup>
  </tile>
  <tile id="1434">
   <properties>
@@ -580,39 +613,34 @@
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
- <tile id="1638">
-  <properties>
-   <property name="action" value="openProgressBook"/>
-  </properties>
- </tile>
- <tile id="1639">
-  <properties>
-   <property name="action" value="openProgressBook"/>
-  </properties>
- </tile>
  <tile id="1649">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="1650">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="1651">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
- <tile id="1738">
+ <tile id="1740">
   <properties>
-   <property name="action" value="openProgressBook"/>
-  </properties>
- </tile>
- <tile id="1739">
-  <properties>
-   <property name="action" value="openProgressBook"/>
+   <property name="newHitBox" value="0,0, 32, 16"/>
+   <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
  <tile id="2037">
