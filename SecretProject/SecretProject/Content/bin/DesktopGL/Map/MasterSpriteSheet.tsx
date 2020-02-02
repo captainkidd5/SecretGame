@@ -793,6 +793,9 @@
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="541">
   <properties>
@@ -806,16 +809,25 @@
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="543">
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="544">
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="546">
   <objectgroup draworder="index" id="2">
@@ -900,6 +912,9 @@
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
   <animation>
    <frame tileid="122" duration="400"/>
    <frame tileid="121" duration="400"/>
@@ -917,11 +932,17 @@
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="643">
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="646">
   <objectgroup draworder="index" id="2">
@@ -1145,11 +1166,17 @@
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="743">
   <properties>
    <property name="generate" value="CaveWater"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="778">
   <properties>
@@ -3532,6 +3559,21 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3141">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="12" width="15" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="3142">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="4" width="15" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="3143">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="15" height="4"/>
+  </objectgroup>
+ </tile>
  <tile id="3154">
   <properties>
    <property name="newHitBox" value="-16,-16,48,32"/>
@@ -3632,6 +3674,21 @@
  <tile id="3235">
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3241">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3242">
+  <properties>
+   <property name="action" value="goSurface"/>
+  </properties>
+ </tile>
+ <tile id="3243">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3304">
@@ -3736,6 +3793,16 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3341">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3343">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3392">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -3793,6 +3860,16 @@
    <property name="newHitBox" value="-16,-32,48,48"/>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+ </tile>
+ <tile id="3441">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3443">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3504">
   <objectgroup draworder="index" id="2">

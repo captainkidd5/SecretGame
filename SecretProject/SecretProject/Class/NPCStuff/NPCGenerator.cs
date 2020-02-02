@@ -13,7 +13,8 @@ namespace SecretProject.Class.NPCStuff
         Crab = 2,
         Rabbit = 3,
         Butterfly = 4,
-        WarChicken =5
+        WarChicken =5,
+        CaveToad = 6
     }
 
     public class NPCGenerator
@@ -27,16 +28,22 @@ namespace SecretProject.Class.NPCStuff
              new NPCSpawnData(NPCType.Rabbit, GenerationType.Dirt, .3f, .5f, .75f),
              
 
+
         };
 
         public static List<NPCSpawnData> SandCreatures = new List<NPCSpawnData>()
         {
             new NPCSpawnData(NPCType.Crab, GenerationType.Sand, .2f, .5f, .25f)
         };
+        public static List<NPCSpawnData> CaveCreatures = new List<NPCSpawnData>()
+        {
+            new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  0f, .7f, .75f),
+        };
         public static List<List<NPCSpawnData>> NPCInfo = new List<List<NPCSpawnData>>()
         {
             DirtCreatures,
-            SandCreatures
+            SandCreatures,
+            CaveCreatures
         };
 
 
@@ -184,6 +191,8 @@ namespace SecretProject.Class.NPCStuff
                     return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
                 case NPCType.WarChicken:
                     return new WarChicken("WarChicken", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                case NPCType.CaveToad:
+                    return new CaveToad("CaveToad", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
 
                 default:
                     return null;

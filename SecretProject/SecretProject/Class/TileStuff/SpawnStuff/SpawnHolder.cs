@@ -38,7 +38,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(1583, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5, true){Unlocked = true }, //Blue Mushroom
                  new SpawnElement(1682, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25, true){Unlocked = true }, //Carrotte
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
-                new SpawnElement(3439, MapLayer.ForeGround, MapLayer.ForeGround, GenerationType.DirtCliff, 600){Unlocked = true }, //mineshaft
+                new SpawnElement(3439, MapLayer.ForeGround, MapLayer.ForeGround, GenerationType.DirtCliff, 50){Unlocked = true }, //mineshaft
 
                 ////CROPS - goes by GID, not by item id
                 new SpawnElement(487, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //bloomberry

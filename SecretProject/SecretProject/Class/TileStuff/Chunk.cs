@@ -8,6 +8,7 @@ using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.NPCStuff.Enemies.Bosses;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.SpriteFolder;
+using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.Universal;
 using System;
@@ -399,10 +400,18 @@ namespace SecretProject.Class.TileStuff
                                 this.Tufts.Add(key, tufts);
                             }
 
-
+                            World world;
+                            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                            {
+                                world = Game1.OverWorld;
+                            }
+                            else
+                            {
+                                world = Game1.UnderWorld;
+                            }
                             if (this.X != 0 && this.Y != 0)
                             {
-                                if (Game1.OverWorld.Enemies.Count < 10)
+                                if (world.Enemies.Count < 10)
                                 {
 
 
@@ -412,7 +421,8 @@ namespace SecretProject.Class.TileStuff
                                         TilingContainer tilingContainer = Game1.Procedural.GetTilingContainerFromGID(tile.GenerationType);
                                         if (tilingContainer != null)
                                         {
-                                            Game1.OverWorld.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
+
+                                            world.Enemies.AddRange(this.NPCGenerator.SpawnNpcPack(tilingContainer.GenerationType, new Vector2(tile.DestinationRectangle.X, tile.DestinationRectangle.Y)));
                                         }
 
                                     }
