@@ -2001,6 +2001,9 @@
    <property name="loot" value="646"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1272">
   <properties>
@@ -2008,6 +2011,9 @@
    <property name="loot" value="645"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1273">
   <properties>
@@ -2015,6 +2021,9 @@
    <property name="loot" value="644"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1274">
   <properties>
@@ -2022,6 +2031,9 @@
    <property name="loot" value="643"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1275">
   <properties>
@@ -2029,6 +2041,9 @@
    <property name="loot" value="642"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1276">
   <properties>
@@ -2036,6 +2051,9 @@
    <property name="loot" value="641"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1277">
   <properties>
@@ -2043,8 +2061,8 @@
    <property name="loot" value="640"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.0909091" y="0.0909091" width="15.8182" height="14"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0.0909091" width="14" height="5.90909"/>
   </objectgroup>
  </tile>
  <tile id="1285">

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Weather;
 using System;
@@ -98,6 +99,15 @@ namespace SecretProject.Class.Universal
             OnDayChanged(this, EventArgs.Empty);
             PickWeather();
             this.Calendar.IncrementCalendar();
+
+            Game1.Player.UserInterface.TransitionSpeed = .005f;
+            Game1.Player.UserInterface.TransitionTimer.TargetTime = 4f;
+            Game1.Player.UserInterface.IsTransitioning = true;
+            Game1.GlobalClock.TotalHours = 6;
+            foreach (Character character in Game1.AllCharacters)
+            {
+                character.ResetEndOfDay();
+            }
 
             AdjustClockText();
             

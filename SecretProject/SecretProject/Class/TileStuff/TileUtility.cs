@@ -3,6 +3,7 @@ using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.LightStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -609,11 +610,7 @@ namespace SecretProject.Class.TileStuff
                     mouse.ChangeMouseTexture(CursorType.Normal);
                     if (mouse.IsClicked)
                     {
-                        Game1.Player.UserInterface.TransitionSpeed = .005f;
-                        Game1.Player.UserInterface.TransitionTimer.TargetTime = 4f;
-                        Game1.Player.UserInterface.IsTransitioning = true;
                         Game1.GlobalClock.IncrementDay();
-                        Game1.GlobalClock.TotalHours = 6;
                     }
                     break;
 

@@ -94,10 +94,17 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public int TimeLastMoved { get; set; }
         public int CurrentTime { get; set; }
 
+        public Stages HomeStage { get; set; }
+        public Vector2 HomePosition { get; set; }
+
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
         {
+            this.HomeStage = currentStageLocation;
+            
+
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
+            this.HomePosition = this.Position;
             this.Texture = spriteSheet;
             this.NPCAnimatedSprite = new Sprite[4];
             this.IsInEvent = false;
@@ -691,6 +698,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         {
             this.CurrentEmoticon = emoticonType;
             Game1.SoundManager.PlayEmoticonSound(emoticonType);
+        }
+
+        public void ResetEndOfDay()
+        {
+            this.Position = this.HomePosition;
+            this.CurrentStageLocation = this.HomeStage;
+
         }
 
 
