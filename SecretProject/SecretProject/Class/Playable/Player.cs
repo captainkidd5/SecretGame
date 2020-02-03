@@ -787,22 +787,24 @@ namespace SecretProject.Class.Playable
 
         public void DoPlayerAnimation(AnimationType animationType, float delayTimer = 0f, Item item = null)
         {
-            if (this.Position.Y < Game1.myMouseManager.WorldMousePosition.Y - 30)
+            Vector2 direction = Game1.myMouseManager.WorldMousePosition - this.Position;
+            Game1.myMouseManager.MouseAngleInRelationToPlayer = (float)(Math.Atan2(direction.X, direction.Y) * 180 / Math.PI);
+            if (Game1.myMouseManager.MouseAngleInRelationToPlayer > -45 && Game1.myMouseManager.MouseAngleInRelationToPlayer < 45)
             {
                 controls.Direction = Dir.Down;
 
             }
 
-            else if (Game1.Player.Position.Y > Game1.myMouseManager.WorldMousePosition.Y)
+            else if( Game1.myMouseManager.MouseAngleInRelationToPlayer >= 100 || Game1.myMouseManager.MouseAngleInRelationToPlayer <= -100)
             {
                 controls.Direction = Dir.Up;
             }
 
-            else if (this.Position.X < Game1.myMouseManager.WorldMousePosition.X)
+            else if (Game1.myMouseManager.MouseAngleInRelationToPlayer >= 45 && Game1.myMouseManager.MouseAngleInRelationToPlayer < 100)
             {
                 controls.Direction = Dir.Right;
             }
-            else if (this.Position.X > Game1.myMouseManager.WorldMousePosition.X)
+            else if (Game1.myMouseManager.MouseAngleInRelationToPlayer > -100 && Game1.myMouseManager.MouseAngleInRelationToPlayer <=-45)
             {
                 controls.Direction = Dir.Left;
             }
@@ -814,7 +816,7 @@ namespace SecretProject.Class.Playable
             {
                 PlayAnimation(animationType);
             }
-
+            
         }
 
 

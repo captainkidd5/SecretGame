@@ -93,6 +93,8 @@ namespace SecretProject.Class.Controls
 
         public Collider MouseCollider { get; set; }
 
+        public float MouseAngleInRelationToPlayer { get; set; }
+
         private MouseManager()
         {
 
@@ -114,7 +116,7 @@ namespace SecretProject.Class.Controls
             this.DoorInteractionSourceRectangle = new Rectangle(112, 288, 32, 32);
             this.NextChatWindowInteractionSourceRectangle = new Rectangle(80, 288, 32, 32);
 
-
+            this.MouseAngleInRelationToPlayer = 0f;
 
             //HELD
             this.HeldCursorSourceRectangle = this.NormalInteractionPressedSourceRectangle;
