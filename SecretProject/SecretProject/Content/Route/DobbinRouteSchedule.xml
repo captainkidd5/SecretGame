@@ -52,6 +52,56 @@
       <EndY>26</EndY>
     </Item>
 
+    <!-- TUESDAY !--> 
+     <Item Type="XMLData.RouteStuff.Route">
+      <ID>6</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>5AM</Time>
+       <EndStage>Town</EndStage>
+      <EndX>35</EndX>
+      <EndY>66</EndY>
+    </Item>
+
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>7</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>7AM</Time>
+       <EndStage>Cafe</EndStage>
+      <EndX>7</EndX>
+      <EndY>20</EndY>
+    </Item>
+     <Item Type="XMLData.RouteStuff.Route">
+      <ID>8</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>9AM</Time>
+       <EndStage>Town</EndStage>
+      <EndX>108</EndX>
+      <EndY>100</EndY>
+    </Item>
+
+     <Item Type="XMLData.RouteStuff.Route">
+      <ID>9</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>5PM</Time>
+       <EndStage>Town</EndStage>
+      <EndX>27</EndX>
+      <EndY>48</EndY>
+    </Item>
+    
+      <Item Type="XMLData.RouteStuff.Route">
+      <ID>10</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>9PM</Time>
+       <EndStage>DobbinHouse</EndStage>
+      <EndX>28</EndX>
+      <EndY>26</EndY>
+    </Item>
+
     </Routes>
   </Asset>
 </XnaContent>

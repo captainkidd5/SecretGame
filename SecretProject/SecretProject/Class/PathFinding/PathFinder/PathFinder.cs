@@ -393,6 +393,11 @@ namespace SecretProject.Class.PathFinding.PathFinder
             mStopped = true;
             return null;
         }
+
+        public List<PathFinderNode> FindPath(Point start, Point end, string entityName)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Inner Classes

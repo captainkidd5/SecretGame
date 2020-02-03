@@ -105,6 +105,8 @@ namespace SecretProject.Class.SoundStuff
 
         //COMBAT
         public SoundEffect Slash1;
+        public SoundEffect SwordSwing;
+        public SoundEffect SwordImpact;
         public SoundEffect BushCut;
 
         public SoundEffect Thunder1;
@@ -220,6 +222,8 @@ namespace SecretProject.Class.SoundStuff
 
             //COMBAT
             Slash1 = content.Load<SoundEffect>("SoundEffects/Slash1");
+            SwordSwing = content.Load<SoundEffect>("SoundEffects/swordSwing");
+            SwordImpact = content.Load<SoundEffect>("SoundEffects/swordImpact");
             BushCut = content.Load<SoundEffect>("SoundEffects/bushCut");
 
             //Songs
@@ -283,7 +287,7 @@ namespace SecretProject.Class.SoundStuff
             UIClick.Play(this.GameVolume, .5f, 1f);
         }
 
-        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false, float pitchCap = 1f)
+        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false, float pitchHighCap = 1f, float pitchLowCap = 0f)
         {
             //SoundEffectInstance instance = soundEffect.CreateInstance();
             //instance.Volume = volume;
@@ -292,7 +296,7 @@ namespace SecretProject.Class.SoundStuff
             float pitch = 0f;
             if (randomizePitch)
             {
-                pitch = Game1.Utility.RFloat(0, pitchCap);
+                pitch = Game1.Utility.RFloat(0, pitchHighCap);
             }
             soundEffect.Play(this.GameVolume, pitch, 1f);
         }

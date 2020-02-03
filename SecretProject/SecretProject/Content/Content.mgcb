@@ -1660,6 +1660,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/stoneStep.wav
 
+#begin SoundEffects/swordImpact.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/swordImpact.wav
+
+#begin SoundEffects/swordswing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/swordswing.wav
+
 #begin SoundEffects/textNoise.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

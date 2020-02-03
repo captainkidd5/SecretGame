@@ -6,6 +6,7 @@ using SecretProject.Class.Weather;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XMLData.RouteStuff;
 
 namespace SecretProject.Class.Universal
 {
@@ -36,7 +37,7 @@ namespace SecretProject.Class.Universal
         public float ClockSpeed { get; set; }
         TextBox ClockDisplay;
 
-        public DayOfWeek WeekDay { get; set; }
+        public WeekDay WeekDay { get; set; }
 
         public event EventHandler DayChanged;
         public event EventHandler HourChanged;
@@ -48,7 +49,7 @@ namespace SecretProject.Class.Universal
             ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
             // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
-            this.WeekDay = DayOfWeek.Monday;
+            this.WeekDay = WeekDay.Monday;
             ClockDisplay = new TextBox(Game1.AllTextures.MenuText, ClockPosition, this.GlobalTime.ToString() + "\n" + this.WeekDay.ToString(), Game1.AllTextures.UserInterfaceTileSet) { SourceRectangle = new Rectangle(432, 16, 80, 48) };
 
             this.ClockSpeed = 30f / ClockMultiplier;
@@ -88,13 +89,13 @@ namespace SecretProject.Class.Universal
         public void IncrementDay()
         {
             this.TotalDays++;
-            if (this.WeekDay < DayOfWeek.Sunday)
+            if (this.WeekDay < WeekDay.Sunday)
             {
                 this.WeekDay++;
             }
             else
             {
-                this.WeekDay = DayOfWeek.Monday;
+                this.WeekDay = WeekDay.Monday;
             }
             OnDayChanged(this, EventArgs.Empty);
             PickWeather();

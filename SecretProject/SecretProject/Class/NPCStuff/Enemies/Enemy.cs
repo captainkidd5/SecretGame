@@ -497,7 +497,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 {
                     start.Y = 15;
                 }
-                this.CurrentPath = finder.FindPath(start, end);
+                this.CurrentPath = finder.FindPath(start, end, this.Name);
                 if (this.CurrentPath == null)
                 {
                     this.CurrentPath = new List<PathFinderNode>();
@@ -548,7 +548,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         Point start = new Point(Math.Abs((int)this.Position.X / 16 - this.CurrentChunkX * 16),
                          (Math.Abs((int)this.Position.Y / 16 - this.CurrentChunkY * 16)));
 
-                        this.CurrentPath = finder.FindPath(start, end);
+                        this.CurrentPath = finder.FindPath(start, end,this.Name);
                         if (this.CurrentPath == null)
                         {
                             this.CurrentPath = new List<PathFinderNode>();
@@ -646,8 +646,9 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.HitPoints -= dmgAmount;
 
             this.IsImmuneToDamage = true;
-            Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
-            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.White, true, 3f, true));
+            Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f, .8f);
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordImpact, true, .5f);
+            Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 100f, Color.LightYellow, true, 3f, true));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)

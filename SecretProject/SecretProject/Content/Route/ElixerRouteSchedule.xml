@@ -10,7 +10,7 @@
       <Time>6AM</Time>
        <EndStage>ElixirHouse</EndStage>
       <EndX>32</EndX>
-      <EndY>33</EndY>
+      <EndY>35</EndY>
     </Item>
      <Item Type="XMLData.RouteStuff.Route">
       <ID>2</ID>
@@ -18,16 +18,45 @@
       <WeekDay>Monday</WeekDay>
       <Time>4PM</Time>
        <EndStage>Cafe</EndStage>
-      <EndX>40</EndX>
-      <EndY>27</EndY>
+      <EndX>20</EndX>
+      <EndY>20</EndY>
     </Item>
     <Item Type="XMLData.RouteStuff.Route">
-      <ID>2</ID>
+      <ID>3</ID>
       <Month>Spring</Month>
       <WeekDay>Monday</WeekDay>
       <Time>10PM</Time>
        <EndStage>ElixirHouse</EndStage>
-      <EndX>33</EndX>
+      <EndX>35</EndX>
+      <EndY>22</EndY>
+    </Item>
+
+<!-- TUESDAY !--> 
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>4</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>6AM</Time>
+       <EndStage>ElixirHouse</EndStage>
+      <EndX>32</EndX>
+      <EndY>35</EndY>
+    </Item>
+     <Item Type="XMLData.RouteStuff.Route">
+      <ID>5</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>4PM</Time>
+       <EndStage>Cafe</EndStage>
+      <EndX>20</EndX>
+      <EndY>20</EndY>
+    </Item>
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>6</ID>
+      <Month>Spring</Month>
+      <WeekDay>Tuesday</WeekDay>
+      <Time>10PM</Time>
+       <EndStage>ElixirHouse</EndStage>
+      <EndX>35</EndX>
       <EndY>22</EndY>
     </Item>
     </Routes>

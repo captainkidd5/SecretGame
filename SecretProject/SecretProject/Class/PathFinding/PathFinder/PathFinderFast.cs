@@ -194,8 +194,9 @@ namespace SecretProject.Class.PathFinding.PathFinder
             mStop = true;
         }
 
-        public List<PathFinderNode> FindPath(Point start, Point end)
+        public List<PathFinderNode> FindPath(Point start, Point end, string entityName)
         {
+            string entityname = entityName;
             lock (this)
             {
                 // HighResolutionTime.Start();

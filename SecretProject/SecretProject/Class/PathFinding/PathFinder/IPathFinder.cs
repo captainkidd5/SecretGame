@@ -94,7 +94,7 @@ namespace SecretProject.Class.PathFinding.PathFinder
 
         #region Methods
         void FindPathStop();
-        List<PathFinderNode> FindPath(Point start, Point end);
+        List<PathFinderNode> FindPath(Point start, Point end, string entityName);
         #endregion
 
     }

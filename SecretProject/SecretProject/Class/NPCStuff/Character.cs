@@ -531,7 +531,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
                          ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
                         Point end = new Point(route.EndX, route.EndY);
-                        this.CurrentPath = finder.FindPath(start, end);
+                        this.CurrentPath = finder.FindPath(start, end, this.Name);
                         if (this.CurrentPath == null)
                         {
                             throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
@@ -543,7 +543,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                          ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
                         Point end = FindIntermediateStages((int)this.CurrentStageLocation, route.StageToEndAt);
 
-                        this.CurrentPath = finder.FindPath(start, end);
+                        this.CurrentPath = finder.FindPath(start, end, this.Name);
                         if (this.CurrentPath == null)
                         {
                             throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
@@ -613,7 +613,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 Point start = new Point((int)(this.Position.X / 16),
                  (int)(this.Position.Y / 16));
                 Point end = new Point(endPoint.X, endPoint.Y);
-                this.EventCurrentPath = finder.FindPath(start, end);
+                this.EventCurrentPath = finder.FindPath(start, end,this.Name);
                 if (this.EventCurrentPath == null)
                 {
                     throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);

@@ -413,7 +413,7 @@ namespace SecretProject.Class.Playable
                     Item item = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem();
                     if (item.ItemType == XMLData.ItemStuff.ItemType.Sword)
                     {
-                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Slash1);
+                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordSwing, true, 1f);
                         DoPlayerAnimation(AnimationType.Swiping);
                     }
                     if (item.CrateType != 0)
