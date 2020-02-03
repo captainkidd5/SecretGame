@@ -23,7 +23,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleHeightOffSet = 4;
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.HitPoints = 1;
             this.DamageColor = Color.Red;

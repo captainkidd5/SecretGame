@@ -25,7 +25,7 @@ namespace SecretProject.Class.NPCStuff
             this.SpeakerID = 2;
             // NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NPCPathFindRectangle);
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             //DebugTexture = SetRectangleTexture(graphics, )
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.DebugColor = Color.HotPink;

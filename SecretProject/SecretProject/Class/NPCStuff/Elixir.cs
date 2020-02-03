@@ -24,7 +24,7 @@ namespace SecretProject.Class.NPCStuff
             this.NPCRectangleWidthOffSet = 8;
             //NPCPathFindRectangle = new Rectangle(0, 0, 1, 1);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NPCPathFindRectangle);
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.NPC);
             this.DebugColor = Color.DarkGreen;
         }

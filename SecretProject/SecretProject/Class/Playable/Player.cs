@@ -855,6 +855,10 @@ namespace SecretProject.Class.Playable
         public void TakeDamage(int dmgAmount)
         {
             this.Health -= (int)dmgAmount;
+            if(this.Health == 0)
+            {
+                this.Health = 6;
+            }
             this.IsImmuneToDamage = true;
             UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.MainCollider.Rectangle.X +600, this.MainCollider.Rectangle.Y), 100, "-" + dmgAmount.ToString(), 50f, Color.Red, true, 3f, true));
         }

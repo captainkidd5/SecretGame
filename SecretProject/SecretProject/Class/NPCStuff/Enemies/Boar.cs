@@ -20,10 +20,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.NPCRectangleXOffSet = 15;
             this.NPCRectangleYOffSet = 15;
-            this.NPCRectangleHeightOffSet = 4;
-            this.NPCRectangleWidthOffSet = 4;
+            this.NPCRectangleHeightOffSet =16;
+            this.NPCRectangleWidthOffSet = 16;
             this.Speed = .05f;
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.PigGrunt;
             this.SoundLowerBound = 20f;
             this.SoundUpperBound = 30f;

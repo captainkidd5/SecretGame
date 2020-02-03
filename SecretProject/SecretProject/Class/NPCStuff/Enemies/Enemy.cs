@@ -56,7 +56,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             set { }
         }
         public Texture2D Texture { get; set; }
-        public Texture2D DebugTexture { get; set; }
+        public Texture2D HitBoxTexture { get; set; }
 
         public float Speed { get; set; }
         //0 = down, 1 = left, 2 =  right, 3 = up
@@ -119,7 +119,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.Texture = spriteSheet;
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
 
             this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.NextPointRectangleTexture = SetRectangleTexture(graphics, this.NextPointRectangle);
@@ -187,7 +187,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.IsMoving = true;
             TestImmunity(gameTime);
             this.PrimaryVelocity = new Vector2(.5f, .5f);
-            this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
+            this.Collider.Rectangle = this.NPCHitBoxRectangle;
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
@@ -701,7 +701,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            spriteBatch.Draw(this.DebugTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.Blue, layerDepth: layerDepth);
+            spriteBatch.Draw(this.HitBoxTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: Color.Green, layerDepth: 1f);
             spriteBatch.Draw(this.NextPointRectangleTexture, new Vector2(this.NextPointRectangle.X + 8, this.NextPointRectangle.Y + 8), color: Color.White, layerDepth: layerDepth);
 
             if (this.CurrentPath != null)

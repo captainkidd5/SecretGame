@@ -23,7 +23,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleHeightOffSet = 4;
             this.NPCRectangleWidthOffSet = 4;
             this.Speed = .05f;
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.DogBark;
             this.SoundLowerBound = 20f;
             this.SoundUpperBound = 30f;

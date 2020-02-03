@@ -22,7 +22,7 @@ namespace SecretProject.Class.NPCStuff
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
         public Texture2D Texture { get; set; }
-        public Texture2D DebugTexture { get; set; }
+        public Texture2D HitBoxTexture { get; set; }
         public int NPCRectangleXOffSet { get; set; }
         public int NPCRectangleYOffSet { get; set; }
         public int NPCRectangleWidthOffSet { get; set; } = 1;
@@ -115,7 +115,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.CurrentDirection = 0;
 
             this.RouteSchedule = routeSchedule;
-            this.DebugTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
+            this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.NextPointRectangle = new Rectangle(0, 0, 16, 16);
             this.CurrentStageLocation = currentStageLocation;
             this.IsBasicNPC = isBasicNPC;
@@ -738,10 +738,10 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
         public void DrawDebug(SpriteBatch spriteBatch, float layerDepth)
         {
-            if (this.NextPointRectangleTexture != null && this.DebugTexture != null)
+            if (this.NextPointRectangleTexture != null && this.HitBoxTexture != null)
             {
                 //spriteBatch.Draw(NextPointRectangleTexture, new Vector2(this.NPCPathFindRectangle.X, this.NPCPathFindRectangle.Y), color: Color.White, layerDepth: layerDepth);
-                spriteBatch.Draw(this.DebugTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: this.DebugColor, layerDepth: 1f);
+                spriteBatch.Draw(this.HitBoxTexture, new Vector2(this.NPCHitBoxRectangle.X, this.NPCHitBoxRectangle.Y), color: this.DebugColor, layerDepth: 1f);
 
                 for (int i = 0; i < this.CurrentPath.Count - 1; i++)
                 {
