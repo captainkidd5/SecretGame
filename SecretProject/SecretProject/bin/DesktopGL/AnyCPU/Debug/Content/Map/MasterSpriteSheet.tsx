@@ -781,6 +781,54 @@
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
+ <tile id="539">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="4" y="4" width="12" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="540">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="541">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="2" x="0" y="3" width="12" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="542">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="543">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="544">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="546">
   <objectgroup draworder="index" id="2">
    <object id="1" x="5" y="1" width="6" height="14"/>
@@ -851,6 +899,50 @@
    <property name="generate" value="OakFloorTiling"/>
    <property name="loot" value="480:100:1"/>
   </properties>
+ </tile>
+ <tile id="639">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="640">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="122" duration="400"/>
+   <frame tileid="121" duration="400"/>
+  </animation>
+ </tile>
+ <tile id="641">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="642">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="643">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="646">
   <objectgroup draworder="index" id="2">
@@ -1046,6 +1138,46 @@
    <property name="loot" value="480:100:1"/>
   </properties>
  </tile>
+ <tile id="739">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="5" y="0" width="11" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="740">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="9" width="16" height="7"/>
+  </objectgroup>
+ </tile>
+ <tile id="741">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="11" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="742">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="743">
+  <properties>
+   <property name="generate" value="CaveWater"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="778">
   <properties>
    <property name="AssociatedTiles" value="678"/>
@@ -1204,12 +1336,14 @@
  </tile>
  <tile id="908">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="909">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
@@ -1441,6 +1575,7 @@
  </tile>
  <tile id="1008">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
@@ -1634,6 +1769,7 @@
  </tile>
  <tile id="1108">
   <properties>
+   <property name="action" value="diggable"/>
    <property name="generate" value="Dirt"/>
    <property name="step" value="4"/>
   </properties>
@@ -1681,6 +1817,16 @@
    <property name="generate" value="Grass"/>
    <property name="loot" value="1002"/>
    <property name="step" value="1"/>
+  </properties>
+ </tile>
+ <tile id="1126">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1127">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1149">
@@ -1854,6 +2000,16 @@
    <property name="step" value="18"/>
   </properties>
  </tile>
+ <tile id="1226">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1227">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1249">
   <objectgroup draworder="index">
    <object id="1" x="3.85227" y="0.181809" width="7.72727" height="15.8182"/>
@@ -1865,6 +2021,9 @@
    <property name="loot" value="646"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1272">
   <properties>
@@ -1872,6 +2031,9 @@
    <property name="loot" value="645"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1273">
   <properties>
@@ -1879,6 +2041,9 @@
    <property name="loot" value="644"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1274">
   <properties>
@@ -1886,6 +2051,9 @@
    <property name="loot" value="643"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1275">
   <properties>
@@ -1893,6 +2061,9 @@
    <property name="loot" value="642"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1276">
   <properties>
@@ -1900,6 +2071,9 @@
    <property name="loot" value="641"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0" width="14" height="5.90909"/>
+  </objectgroup>
  </tile>
  <tile id="1277">
   <properties>
@@ -1907,8 +2081,8 @@
    <property name="loot" value="640"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="0.0909091" y="0.0909091" width="15.8182" height="14"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="0.0909091" width="14" height="5.90909"/>
   </objectgroup>
  </tile>
  <tile id="1285">
@@ -2033,6 +2207,16 @@
    <property name="step" value="18"/>
   </properties>
  </tile>
+ <tile id="1326">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1327">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1349">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
@@ -2144,6 +2328,36 @@
   <properties>
    <property name="generate" value="Sand"/>
    <property name="step" value="18"/>
+  </properties>
+ </tile>
+ <tile id="1426">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1427">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1430">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1431">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1432">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1433">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1457">
@@ -2275,6 +2489,26 @@
    <property name="generate" value="SandRuin"/>
    <property name="loot" value="482:100:1"/>
    <property name="step" value="2"/>
+  </properties>
+ </tile>
+ <tile id="1530">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1531">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1532">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1533">
+  <properties>
+   <property name="step" value="3"/>
   </properties>
  </tile>
  <tile id="1550">
@@ -2436,6 +2670,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1630">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1631">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1632">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1633">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1648">
   <properties>
    <property name="newHitBox" value="-16, -10, 48, 26"/>
@@ -2490,6 +2744,12 @@
   <properties>
    <property name="destructable" value="-50,1,0,5"/>
    <property name="loot" value="708"/>
+  </properties>
+ </tile>
+ <tile id="1681">
+  <properties>
+   <property name="destructable" value="-50,1,0,5"/>
+   <property name="loot" value="1098"/>
   </properties>
  </tile>
  <tile id="1690">
@@ -2564,6 +2824,26 @@
    <property name="step" value="2"/>
   </properties>
  </tile>
+ <tile id="1730">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1731">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1732">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1733">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
  <tile id="1752">
   <properties>
    <property name="layer" value="3"/>
@@ -2590,6 +2870,26 @@
   <animation>
    <frame tileid="1592" duration="100"/>
   </animation>
+ </tile>
+ <tile id="1830">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1831">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1832">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
+ </tile>
+ <tile id="1833">
+  <properties>
+   <property name="step" value="3"/>
+  </properties>
  </tile>
  <tile id="1843">
   <properties>
@@ -2629,9 +2929,89 @@
    <object id="1" x="1" y="5" width="14" height="8"/>
   </objectgroup>
  </tile>
+ <tile id="1900">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1901">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1902">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1903">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1904">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="1905">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
  <tile id="1939">
   <properties>
    <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="15" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="2000">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2001">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2002">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2003">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2004">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="2012">
@@ -2661,7 +3041,6 @@
  </tile>
  <tile id="2051">
   <properties>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
@@ -2672,6 +3051,41 @@
  <tile id="2057">
   <properties>
    <property name="action" value="enterPlayerHouse"/>
+  </properties>
+ </tile>
+ <tile id="2100">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2101">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2102">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2103">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
+  </properties>
+ </tile>
+ <tile id="2104">
+  <properties>
+   <property name="action" value="diggable"/>
+   <property name="generate" value="CaveDirt"/>
+   <property name="step" value="4"/>
   </properties>
  </tile>
  <tile id="2112">
@@ -2697,31 +3111,39 @@
  <tile id="2139">
   <properties>
    <property name="action" value="cook"/>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="1" y="2" width="14" height="9"/>
+  </objectgroup>
  </tile>
  <tile id="2142">
   <properties>
    <property name="checkTile" value="0,0,16,16"/>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
  </tile>
  <tile id="2143">
   <properties>
    <property name="action" value="smelt"/>
-   <property name="checkTile" value="0,0,16,16"/>
    <property name="destructable" value="22,0,0,8"/>
    <property name="loot" value="1202"/>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-32,16,48"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="14"/>
+  </objectgroup>
  </tile>
  <tile id="2144">
   <properties>
-   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="action" value="saw"/>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="loot" value="1201"/>
+   <property name="newHitBox" value="0,0, 32, 16"/>
    <property name="newSource" value="0,-16,32,32"/>
   </properties>
  </tile>
@@ -2737,6 +3159,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2234">
   <properties>
@@ -2752,6 +3177,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2263">
   <properties>
@@ -2796,16 +3224,33 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2336">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2339">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="2" width="15" height="11"/>
+  </objectgroup>
  </tile>
  <tile id="2433">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2434">
   <properties>
@@ -2821,11 +3266,17 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2533">
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2534">
   <properties>
@@ -2841,6 +3292,9 @@
   <properties>
    <property name="step" value="2"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="2" x="13" y="0" width="3" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="2547">
   <properties>
@@ -2952,6 +3406,26 @@
  <tile id="2631">
   <objectgroup draworder="index">
    <object id="1" x="0" y="10" width="16" height="6"/>
+  </objectgroup>
+ </tile>
+ <tile id="2633">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2634">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2635">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="2636">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="2704">
@@ -3287,6 +3761,21 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3141">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="12" width="15" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="3142">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="4" width="15" height="4"/>
+  </objectgroup>
+ </tile>
+ <tile id="3143">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="12" width="15" height="4"/>
+  </objectgroup>
+ </tile>
  <tile id="3154">
   <properties>
    <property name="newHitBox" value="-16,-16,48,32"/>
@@ -3296,6 +3785,14 @@
  </tile>
  <tile id="3160">
   <properties>
+   <property name="newHitBox" value="-16,0,48,16"/>
+   <property name="newSource" value="-16,-16,48,32"/>
+   <property name="transparent" value="-16,-16, 48, 16"/>
+  </properties>
+ </tile>
+ <tile id="3175">
+  <properties>
+   <property name="action" value="enterBurrow"/>
    <property name="newHitBox" value="-16,0,48,16"/>
    <property name="newSource" value="-16,-16,48,32"/>
    <property name="transparent" value="-16,-16, 48, 16"/>
@@ -3379,6 +3876,21 @@
  <tile id="3235">
   <objectgroup draworder="index" id="2">
    <object id="1" x="12" y="0" width="4" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3241">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3242">
+  <properties>
+   <property name="action" value="goSurface"/>
+  </properties>
+ </tile>
+ <tile id="3243">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
   </objectgroup>
  </tile>
  <tile id="3304">
@@ -3483,6 +3995,16 @@
    <object id="1" x="12" y="0" width="4" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="3341">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3343">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="3392">
   <properties>
    <property name="newSource" value="0,-32,16,48"/>
@@ -3540,6 +4062,16 @@
    <property name="newHitBox" value="-16,-32,48,48"/>
    <property name="newSource" value="-16,-32,48,48"/>
   </properties>
+ </tile>
+ <tile id="3441">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="9" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="3443">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="7" y="0" width="9" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3504">
   <objectgroup draworder="index" id="2">
@@ -4264,6 +4796,95 @@
    <object id="1" x="0" y="0" width="16" height="5"/>
   </objectgroup>
  </tile>
+ <tile id="4725">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4726">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4727">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4728">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4729">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4730">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4731">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4732">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4733">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+   <property name="transparent" value="0,0,16,16"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="15" width="16" height="1"/>
+  </objectgroup>
+ </tile>
+ <tile id="4734">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="4763">
   <properties>
    <property name="destructable" value="21,4,5,3"/>
@@ -4273,6 +4894,374 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="1" y="2" width="11" height="11"/>
+  </objectgroup>
+ </tile>
+ <tile id="4826">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4827">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4828">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4829">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4830">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4831">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4832">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4833">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4926">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4927">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4928">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4929">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4930">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4931">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4932">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="4933">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5026">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5027">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5028">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5029">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5030">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5031">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5032">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5033">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5126">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5127">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5128">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5129">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5130">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5131">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5132">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5133">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5226">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5227">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5228">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5229">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5230">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5231">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5232">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5233">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5327">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5328">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5329">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="5427">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5428">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
+  </objectgroup>
+ </tile>
+ <tile id="5429">
+  <properties>
+   <property name="generate" value="CaveCliff"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="3"/>
   </objectgroup>
  </tile>
  <tile id="6067">

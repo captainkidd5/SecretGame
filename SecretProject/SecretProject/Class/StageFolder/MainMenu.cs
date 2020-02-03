@@ -17,170 +17,192 @@ namespace SecretProject.Class.StageFolder
 
         public enum MenuState
         {
-            primary = 0,
-            play = 1
+            Primary = 0,
+            Play = 1,
+            Settings = 2,
+            DevPanel = 3
 
         }
 
         //--------------------------------------
         //buttons
-        public MenuState menuState = MenuState.primary;
-        Button play;
-        Button Load;
+        public MenuState CurrentMenuState = MenuState.Primary;
+        Button Play;
+        Button Settings;
+        Button DevPanel;
         Button Exit;
+
+        //PLAY BUTTONs
+        Button NewGame;
+        Button Load;
+
+        //SETTINGS BUTTONS
+
         Button FullScreen;
 
-        //ChooseWorldSize Buttons
+        //Dev Buttons
 
         Button StartGameInTown;
         Button StartGameInWilderness;
         Button StartGameInUnderWorld;
 
+        //Universal Buttons
+        Button Back;
+
 
         Texture2D BackDrop;
-        Texture2D cloud1;
 
 
-        List<Button> primaryButtons;
-        List<Button> chooseWorldSizeButtons;
 
-        //--------------------------------------
-        //fonts
-        private SpriteFont font;
+        public List<Button> PrimaryButtons { get; set; }
+        public List<Button> PlayButtons { get; set; }
+        public List<Button> SettingsButtons { get; set; }
+        public List<Button> DevPanelButtons { get; set; }
 
-        //--------------------------------------
-        //button textures
 
+        //Random stuff
         SaveLoadManager mySave;
 
-        GraphicsDevice graphics;
-        ContentManager content;
+        GraphicsDevice Graphics;
+        ContentManager MainMenuContentManager;
 
-        List<Sprite> clouds;
+
 
 
 
         public MainMenu(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, MouseManager mouse, UserInterface userInterface)
         {
-            //--------------------------------------
-            //Load button textures
-            graphics = graphicsDevice;
-            this.content = content;
+ 
+            Graphics = graphicsDevice;
+            this.MainMenuContentManager = content;
 
-            //--------------------------------------
-            //Initialize Buttons
-            play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 100), CursorType.Normal);
+
+            //PRIMARY 
+            Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - 200, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 200, Game1.Utility.CenterScreenY), CursorType.Normal);
+            DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 400, Game1.Utility.CenterScreenY), CursorType.Normal);
+
+            PrimaryButtons = new List<Button>() { Play, Settings, Exit, DevPanel };
+
+
+            //PLAY
+            NewGame = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
             Load = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
-            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 300), CursorType.Normal);
-            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
-            primaryButtons = new List<Button>() { play, Load, Exit, FullScreen };
 
+            PlayButtons = new List<Button>()
+            {
+                NewGame, 
+                Load
+            };
+
+
+
+            //SETTINGS
+            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
+
+            SettingsButtons = new List<Button>()
+            {
+                FullScreen,
+            };
+
+
+            //DEVPANEL
+          
             StartGameInTown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 100), CursorType.Normal);
             StartGameInWilderness = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
            StartGameInUnderWorld = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
 
-            chooseWorldSizeButtons = new List<Button>() { StartGameInTown, StartGameInWilderness, StartGameInUnderWorld };
-            //--------------------------------------
-            //Load spritefonts
-            font = Game1.AllTextures.MenuText;
+            Back = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(600, 800), CursorType.Normal);
+
+            DevPanelButtons = new List<Button>() { StartGameInTown, StartGameInWilderness, StartGameInUnderWorld };
 
             mySave = new SaveLoadManager();
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
-            cloud1 = content.Load<Texture2D>("MainMenu/cloud1");
-            clouds = new List<Sprite>();
-            for (int i = 0; i < 5; i++)
-            {
-                clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
-                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
-                { Speed = (float)Game1.Utility.RFloat(5f, 50f) });
-            }
+
 
         }
 
         public void LoadBackGround()
         {
-            BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
+            BackDrop = MainMenuContentManager.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
-            cloud1 = content.Load<Texture2D>("MainMenu/cloud1");
-            clouds = new List<Sprite>();
-            for (int i = 0; i < 5; i++)
-            {
-                clouds.Add(new Sprite(graphics, cloud1, new Rectangle(0, 0, cloud1.Width, cloud1.Height),
-                    new Vector2(Game1.Utility.RGenerator.Next(0, 1000), Game1.Utility.RGenerator.Next(0, 300)), cloud1.Width, cloud1.Height)
-                { Speed = (float)Game1.Utility.RFloat(5f, 50f) });
-            }
+
         }
         public void UnloadContent()
         {
-            content.Unload();
-            clouds = null;
+            MainMenuContentManager.Unload();
+
         }
 
 
         public void Update(GameTime gameTime, MouseManager mouse, Game1 game)
         {
-            // customMouse.Update();
-            //--------------------------------------
-            //Update Buttons
-            //Game1.SoundManager.TitleInstance.Play();
-            Game1.isMyMouseVisible = true;
-            for (int i = 0; i < clouds.Count; i++)
-            {
-                if (clouds[i].Position.X > Game1.ScreenWidth)
-                {
-                    clouds[i].Position.X = -300;
-                    clouds[i].Position.Y = Game1.Utility.RGenerator.Next(0, 300);
-                }
-                clouds[i].Position.X += (float)(clouds[i].Speed * gameTime.ElapsedGameTime.TotalSeconds);
 
-            }
-            switch (menuState)
+            Game1.isMyMouseVisible = true;
+
+            switch (CurrentMenuState)
             {
-                case MenuState.primary:
-                    foreach (Button button in primaryButtons)
+                case MenuState.Primary:
+                    foreach (Button button in PrimaryButtons)
                     {
                         button.Update(mouse);
                     }
 
-                    //--------------------------------------
-                    //Check Conditions
-                    if (play.isClicked)
+
+                    if (Play.isClicked)
                     {
-                        menuState = MenuState.play;
+                        CurrentMenuState = MenuState.Play;
                         return;
                     }
-                    if (Load.isClicked)
+                    else if (Settings.isClicked)
                     {
-                        //foreach (ILocation stage in Game1.AllStages)
-                        //{
-                        //    if (stage == Game1.World)
-                        //    {
-                        //        Game1.World.LoadPreliminaryContent(1);
-                        //    }
-                        //    else
-                        //    {
-                        //        stage.LoadPreliminaryContent();
-                        //    }
-
-                        //}
-                        //mySave.Load(graphics);
-                        //this.menuState = MenuState.primary;
-                        //Game1.SwitchStage(0, Stages.World);
+                        this.CurrentMenuState = MenuState.Settings;
                     }
-                    if (Exit.isClicked)
+                    else if (Exit.isClicked)
                     {
                         game.Exit();
                     }
-
-                    if (FullScreen.isClicked)
+                    else if(DevPanel.isClicked)
                     {
-                        Game1.FullScreenToggle();
+                        this.CurrentMenuState = MenuState.DevPanel;
                     }
+
+                    
                     break;
 
-                case MenuState.play:
-                    foreach (Button button in chooseWorldSizeButtons)
+
+                case MenuState.Play:
+                    foreach(Button button in this.PlayButtons)
+                    {
+                        button.Update(Game1.myMouseManager);
+                    }
+
+                    if(NewGame.isClicked)
+                    {
+                        UnloadContent();
+                        foreach (ILocation stage in Game1.AllStages)
+                        {
+
+                            stage.LoadPreliminaryContent();
+
+
+                        }
+                        Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
+                        Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
+                        CurrentMenuState = MenuState.Primary;
+                        Game1.SwitchStage(0, Stages.Town);
+                    }
+                    else if(Load.isClicked)
+                    {
+                        System.Console.WriteLine("Load was clicked");
+                    }
+
+                    break;
+
+                case MenuState.DevPanel:
+                    foreach (Button button in DevPanelButtons)
                     {
                         button.Update(mouse);
                     }
@@ -196,7 +218,7 @@ namespace SecretProject.Class.StageFolder
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                        menuState = MenuState.primary;
+                        CurrentMenuState = MenuState.Primary;
                         Game1.SwitchStage(0, Stages.Town);
                     }
                     else if (StartGameInWilderness.isClicked)
@@ -211,7 +233,7 @@ namespace SecretProject.Class.StageFolder
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                        menuState = MenuState.primary;
+                        CurrentMenuState = MenuState.Primary;
                         Game1.SwitchStage(0, Stages.OverWorld);
                     }
                     else if (StartGameInUnderWorld.isClicked)
@@ -226,12 +248,31 @@ namespace SecretProject.Class.StageFolder
                         }
                         Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
                         Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
-                        menuState = MenuState.primary;
+                        CurrentMenuState = MenuState.Primary;
                         Game1.SwitchStage(0, Stages.UnderWorld);
                     }
 
 
                     break;
+
+                case MenuState.Settings:
+                    foreach(Button button in this.SettingsButtons)
+                    {
+                        button.Update(Game1.myMouseManager);
+                    }
+                    if (FullScreen.isClicked)
+                    {
+                        Game1.FullScreenToggle();
+                    }
+                    break;
+
+                    
+            }
+
+            Back.Update(Game1.myMouseManager);
+            if (Back.isClicked)
+            {
+                CurrentMenuState = MenuState.Primary;
             }
 
         }
@@ -244,30 +285,39 @@ namespace SecretProject.Class.StageFolder
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), null, Color.White, 0f, Game1.Utility.Origin, .75f, SpriteEffects.None, .5f);
-            for (int i = 0; i < clouds.Count; i++)
-            {
-                clouds[i].Draw(spriteBatch, .7f);
-            }
-            //--------------------------------------
+
             //Draw Buttons
-            switch (menuState)
+            switch (CurrentMenuState)
             {
-                case MenuState.primary:
+                case MenuState.Primary:
 
-                    play.Draw(spriteBatch, font, "Play", play.FontLocation, play.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Play.Draw(spriteBatch, Game1.AllTextures.MenuText, "Play", Play.FontLocation, Play.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Settings.Draw(spriteBatch, Game1.AllTextures.MenuText, "Settings", Settings.FontLocation, Settings.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
-                    Load.Draw(spriteBatch, font, "This does nothing", Load.FontLocation, Load.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    Exit.Draw(spriteBatch, font, "Exit", Exit.FontLocation, Exit.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    FullScreen.Draw(spriteBatch, font, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    break;
-
-                case MenuState.play:
-                    StartGameInTown.Draw(spriteBatch, font, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    StartGameInWilderness.Draw(spriteBatch, font, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
-                    StartGameInUnderWorld.Draw(spriteBatch, font, "Go to underworld", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Exit.Draw(spriteBatch, Game1.AllTextures.MenuText, "Exit", Exit.FontLocation, Exit.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    DevPanel.Draw(spriteBatch, Game1.AllTextures.MenuText, "Dev Panel", DevPanel.FontLocation, DevPanel.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
                     break;
+
+                case MenuState.Play:
+
+
+                    NewGame.Draw(spriteBatch, Game1.AllTextures.MenuText, "New Game", NewGame.FontLocation, NewGame.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    Load.Draw(spriteBatch, Game1.AllTextures.MenuText, "Load Game (not working yet)", Load.FontLocation, Load.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+
+                    break;
+                case MenuState.Settings:
+                    FullScreen.Draw(spriteBatch, Game1.AllTextures.MenuText, "FullScreen", FullScreen.FontLocation, FullScreen.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    break;
+                case MenuState.DevPanel:
+                    StartGameInTown.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to town", StartGameInTown.FontLocation, StartGameInTown.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    StartGameInWilderness.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to wilderness", StartGameInWilderness.FontLocation, StartGameInWilderness.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    StartGameInUnderWorld.Draw(spriteBatch, Game1.AllTextures.MenuText, "Go to underworld", StartGameInUnderWorld.FontLocation, StartGameInUnderWorld.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
+                    break;
+
             }
+
+            Back.Draw(spriteBatch, Game1.AllTextures.MenuText, "Back", Back.FontLocation, Back.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth);
 
 
             spriteBatch.End();
