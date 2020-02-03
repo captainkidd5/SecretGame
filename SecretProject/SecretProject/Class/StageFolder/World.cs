@@ -31,7 +31,7 @@ namespace SecretProject.Class.StageFolder
         public StageType StageType { get; set; }
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
-        public List<IProjectile> AllProjectiles { get; set; }
+        public List<Projectile> AllProjectiles { get; set; }
         public List<Enemy> Enemies { get; set; }
 
 
@@ -273,6 +273,12 @@ namespace SecretProject.Class.StageFolder
                                     
                                 }
 
+                            }
+
+                            for(int p = 0; p < AllProjectiles.Count; p++)
+                            {
+                                this.QuadTree.Insert(AllProjectiles[p].Collider);
+                                AllProjectiles[p].Update(gameTime);
                             }
 
                             for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)

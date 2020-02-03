@@ -78,7 +78,7 @@ namespace SecretProject.Class.StageFolder
         List<StringWrapper> AllTextToWrite { get; set; }
         List<INPC> OnScreenNPCS { get; set; }
         List<Enemy> Enemies { get; set; }
-        List<IProjectile> AllProjectiles { get; set; }
+        List<Projectile> AllProjectiles { get; set; }
 
         List<float> AllDepths { get; set; }
 
