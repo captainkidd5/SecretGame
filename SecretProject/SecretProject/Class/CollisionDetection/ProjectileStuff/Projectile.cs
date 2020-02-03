@@ -12,12 +12,19 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
     public class Projectile : ICollidable
     {
-        public ColliderType ColliderType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ColliderType ColliderType { get; set; }
         public string LocationKey { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Rectangle Rectangle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle Rectangle { get; set; }
         public Dir InitialShuffDirection { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IEntity Entity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public Vector2 OriginPosition { get; set; }
+
+        public Projectile()
+        {
+            this.ColliderType = ColliderType.Projectile;
+        }
 
         public void Update(GameTime gameTime)
         {

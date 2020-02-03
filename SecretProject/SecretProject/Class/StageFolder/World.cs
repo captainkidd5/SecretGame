@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
@@ -30,7 +31,7 @@ namespace SecretProject.Class.StageFolder
         public StageType StageType { get; set; }
         RenderTarget2D lightsTarget;
         RenderTarget2D mainTarget;
-
+        public List<IProjectile> AllProjectiles { get; set; }
         public List<Enemy> Enemies { get; set; }
 
 

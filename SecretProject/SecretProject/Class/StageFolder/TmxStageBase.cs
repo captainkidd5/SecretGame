@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
@@ -124,6 +125,7 @@ namespace SecretProject.Class.StageFolder
         public SanctuaryTracker SanctuaryTracker { get; set; }
 
         public List<Enemy> Enemies { get; set; }
+        public List<IProjectile> AllProjectiles { get; set; }
         public List<ParticleEngine> ParticleEngines { get; set; }
         #endregion
 

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CameraStuff;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.ItemStuff;
@@ -77,6 +78,7 @@ namespace SecretProject.Class.StageFolder
         List<StringWrapper> AllTextToWrite { get; set; }
         List<INPC> OnScreenNPCS { get; set; }
         List<Enemy> Enemies { get; set; }
+        List<IProjectile> AllProjectiles { get; set; }
 
         List<float> AllDepths { get; set; }
 
