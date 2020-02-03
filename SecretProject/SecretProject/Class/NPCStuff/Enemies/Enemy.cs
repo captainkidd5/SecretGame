@@ -112,9 +112,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public float SoundLowerBound { get; set; }
         public float SoundUpperBound { get; set; }
 
-        public Enemy(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
+        public List<Enemy> Pack { get; set; }
+        public bool HasPackAggression { get; set; }
+
+        public Enemy(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior)
         {
             this.Name = name;
+            this.Pack = pack;
             this.Position = position;
             this.Texture = spriteSheet;
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
@@ -141,21 +145,21 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.DamageImmunityTimer = new SimpleTimer(.5f);
         }
 
-        public static Enemy GetEnemyFromType(EnemyType enemyType, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
+        public static Enemy GetEnemyFromType(EnemyType enemyType, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, IInformationContainer container, bool isWorldNPC = false)
         {
             switch (enemyType)
             {
                 case EnemyType.Boar:
-                    return new Boar("Boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Boar("Boar", pack,position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Crab:
-                    return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Crab("Crab", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Rabbit:
-                    return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Rabbit("Rabbit", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
 
                 case EnemyType.Butterfly:
-                    return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
+                    return new Butterfly("Butterfly", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Wander) { IsWorldNPC = isWorldNPC };
                 default:
                     return null;
             }
@@ -646,6 +650,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.HitPoints -= dmgAmount;
 
             this.IsImmuneToDamage = true;
+            if(this.HasPackAggression)
+            {
+
+            }
+            for(int i =0; i < this.Pack.Count; i++)
+            {
+                Pack[i].CurrentBehaviour = CurrentBehaviour.Chase;
+            }
             Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f, .8f);
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 100f, Color.LightYellow, true, 3f, true));

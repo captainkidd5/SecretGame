@@ -1546,6 +1546,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/metalCraft.wav
 
+#begin SoundEffects/miningHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/miningHit.wav
+
 #begin SoundEffects/MiniReward.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

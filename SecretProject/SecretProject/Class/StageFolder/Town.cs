@@ -72,12 +72,12 @@ namespace SecretProject.Class.StageFolder
             SceneChanged += Game1.Player.UserInterface.HandleSceneChanged;
             this.AllTextToWrite = new List<StringWrapper>();
             this.QuadTree = new QuadTree(5, this.Cam.ViewPortRectangle);
-            Nelja = new Dog("Nelja", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.Nelja, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
+            Nelja = new Dog("Nelja", null, new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.Nelja, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false };
             this.IsLoaded = true;
             for(int b = 0; b < 5; b++)
             {
-                this.Enemies.Add(new Butterfly("butterfly", new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
-                this.Enemies.Add(new Chicken("Chicken", new Vector2(236, 770), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
+                this.Enemies.Add(new Butterfly("butterfly", null, new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
+                this.Enemies.Add(new Chicken("Chicken",null,  new Vector2(236, 770), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
             }
           
         }

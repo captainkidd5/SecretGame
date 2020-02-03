@@ -13,7 +13,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class Chicken : Enemy
     {
-        public Chicken(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
+        public Chicken(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

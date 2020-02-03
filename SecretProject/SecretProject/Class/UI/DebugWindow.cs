@@ -69,7 +69,7 @@ namespace SecretProject.Class.UI
                     //Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     //Game1.GlobalClock.IncrementDay();
 
-                    Game1.GetCurrentStage().Enemies.Add(new Carotar("Carotar", new Vector2(50, 50), this.GraphicsDevice, Game1.AllTextures.Carotar, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, CurrentBehaviour.Wander));
+                    Game1.GetCurrentStage().Enemies.Add(new Carotar("Carotar", null, new Vector2(50, 50), this.GraphicsDevice, Game1.AllTextures.Carotar, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, CurrentBehaviour.Wander));
 
 
                 }

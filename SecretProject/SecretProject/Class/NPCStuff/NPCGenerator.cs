@@ -132,7 +132,7 @@ namespace SecretProject.Class.NPCStuff
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);
-                enemyList.Add(info.GetNewEnemy(Graphics, positionToSpawn, this.Container));
+                enemyList.Add(info.GetNewEnemy(Graphics, enemyList, positionToSpawn, this.Container));
                 return true;
             }
             else
@@ -172,27 +172,27 @@ namespace SecretProject.Class.NPCStuff
             this.PackFrequency = packFrequency;
         }
 
-        public Enemy GetNewEnemy(GraphicsDevice graphics, Vector2 position, IInformationContainer container)
+        public Enemy GetNewEnemy(GraphicsDevice graphics, List<Enemy> pack, Vector2 position, IInformationContainer container)
         {
             switch (this.Type)
             {
                 case NPCType.Boar:
 
-                    return new Boar("boar", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
+                    return new Boar("boar", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true } ;
 
 
                 case NPCType.Crab:
-                    return new Crab("Crab", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
+                    return new Crab("Crab", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true };
 
                 case NPCType.Rabbit:
-                    return new Rabbit("Rabbit", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                    return new Rabbit("Rabbit", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
 
                 case NPCType.Butterfly:
-                    return new Butterfly("Butterfly", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                    return new Butterfly("Butterfly", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
                 case NPCType.WarChicken:
-                    return new WarChicken("WarChicken", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee);
+                    return new WarChicken("WarChicken", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Flee) { HasPackAggression = true };
                 case NPCType.CaveToad:
-                    return new CaveToad("CaveToad", position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase);
+                    return new CaveToad("CaveToad", pack, position, graphics, Game1.AllTextures.EnemySpriteSheet, container, CurrentBehaviour.Chase) { HasPackAggression = true };
 
                 default:
                     return null;

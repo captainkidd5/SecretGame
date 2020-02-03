@@ -26,6 +26,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect DigDirt;
 
         public SoundEffect StoneSmash;
+        public SoundEffect MiningHit;
 
 
         public SoundEffect WalkGrass;
@@ -148,6 +149,7 @@ namespace SecretProject.Class.SoundStuff
 
 
             StoneSmash = content.Load<SoundEffect>("SoundEffects/stoneSmash");
+            MiningHit = content.Load<SoundEffect>("SoundEffects/miningHit");
 
 
             WalkGrass = content.Load<SoundEffect>("SoundEffects/walkGrass");
@@ -354,25 +356,25 @@ namespace SecretProject.Class.SoundStuff
 
                     case 1:
 
-                        PlaySoundEffectInstance(WalkGrass);
+                        PlaySoundEffectInstance(WalkGrass, true, .2f);
                         break;
                     case 2:
-                        PlaySoundEffectInstance(WalkStone);
+                        PlaySoundEffectInstance(WalkStone, true, .2f);
                         break;
                     case 3:
 
-                        PlaySoundEffectInstance(WalkWood);
+                        PlaySoundEffectInstance(WalkWood, true, .2f);
                         break;
                     case 4:
-                        PlaySoundEffectInstance(CrunchStep);
+                        PlaySoundEffectInstance(CrunchStep, true, .2f);
                         break;
                     case 5:
 
-                        PlaySoundEffectInstance(this.PickUpItem);
+                        PlaySoundEffectInstance(this.PickUpItem, true, .2f);
                         break;
                     case 6:
 
-                        PlaySoundEffectInstance(GrassBreak);
+                        PlaySoundEffectInstance(GrassBreak, true, .2f);
                         break;
                     case 7:
 
@@ -380,17 +382,17 @@ namespace SecretProject.Class.SoundStuff
                         break;
                     case 8:
 
-                        PlaySoundEffectInstance(StoneSmash);
+                        PlaySoundEffectInstance(MiningHit, true, .2f);
                         break;
                     //day time sound effects
                     case 9:
-                        PlaySoundEffectInstance(Chirp1);
+                        PlaySoundEffectInstance(Chirp1, true);
                         break;
                     case 10:
-                        PlaySoundEffectInstance(Chirp2);
+                        PlaySoundEffectInstance(Chirp2, true);
                         break;
                     case 11:
-                        PlaySoundEffectInstance(Chirp3);
+                        PlaySoundEffectInstance(Chirp3, true);
                         break;
                     case 12:
                         PlaySoundEffectInstance(Crickets1);
@@ -400,13 +402,13 @@ namespace SecretProject.Class.SoundStuff
                         break;
 
                     case 14:
-                        PlaySoundEffectInstance(PigGrunt);
+                        PlaySoundEffectInstance(PigGrunt, true, .2f);
                         break;
                     case 15:
                         PlaySoundEffectInstance(PigGrunt2);
                         break;
                     case 16:
-                        PlaySoundEffectInstance(CropPluck);
+                        PlaySoundEffectInstance(CropPluck, true, .2f);
                         break;
                     case 17:
                         PlaySoundEffectInstance(PumpkinSmash);

@@ -23,7 +23,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
         public bool DrawShadow { get; set; }
         public float ShadowScale { get; set; }
         public Vector2 LandingSpot { get; set; }
-        public Carotar(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
+        public Carotar(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[1];
 
@@ -214,7 +214,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                             this.IsImmuneToDamage = false;
                             if (TimeBetweenAttacks.Run(gameTime))
                             {
-                                Enemy rabbit = Enemy.GetEnemyFromType(EnemyType.Rabbit, this.Position, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, true);
+                                Enemy rabbit = Enemy.GetEnemyFromType(EnemyType.Rabbit, null, this.Position, this.Graphics, Game1.GetCurrentStage().AllTiles.ChunkUnderPlayer, true);
                                 rabbit.CurrentBehaviour = CurrentBehaviour.Chase;
                                 Game1.GetCurrentStage().Enemies.Add(rabbit);
                                 this.CurrentBehaviour = CurrentBehaviour.Chase;

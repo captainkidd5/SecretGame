@@ -175,6 +175,24 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Wood Bow</Name>
+<ID>240</ID>
+<Description>A weak wooden bow. Launches Arrows.</Description>
+<InvMaximum>1</InvMaximum><Price>25</Price>
+<Durability>25</Durability>
+<Type>Axe</Type>
+<AnimationColumn>48</AnimationColumn>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Stone Arrow</Name>
+<ID>280</ID>
+<Description>Ammunition for bows.</Description>
+<InvMaximum>1</InvMaximum><Price>25</Price>
+<AnimationColumn>48</AnimationColumn>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Leather Hide</Name>
 <ID>254</ID>
 <Description>A tough leather material.</Description>
