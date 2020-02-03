@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
@@ -415,6 +416,10 @@ namespace SecretProject.Class.Playable
                     {
                         Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordSwing, true, 1f);
                         DoPlayerAnimation(AnimationType.Swiping);
+                    }
+                    else if(item.ItemType == XMLData.ItemStuff.ItemType.Bow)
+                    {
+                        Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.Direction, this.Position, 1f, 2f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
                     }
                     if (item.CrateType != 0)
                     {

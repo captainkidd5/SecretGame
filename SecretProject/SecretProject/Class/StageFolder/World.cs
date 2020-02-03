@@ -104,7 +104,8 @@ namespace SecretProject.Class.StageFolder
             this.OnScreenNPCS = new List<INPC>();
 
             this.ParticleEngines = new List<ParticleEngine>();
-            this.StaminaSafeDistance = 16 * 8; 
+            this.StaminaSafeDistance = 16 * 8;
+            this.AllProjectiles = new List<Projectile>();
 
         }
 
@@ -488,7 +489,10 @@ namespace SecretProject.Class.StageFolder
                         this.Enemies[i].DrawDebug(spriteBatch, 1f);
                     }
                 }
-
+                for(int p = 0; p < this.AllProjectiles.Count; p++)
+                {
+                    AllProjectiles[p].Draw(spriteBatch);
+                }
 
                 if (this.ShowBorders)
                 {

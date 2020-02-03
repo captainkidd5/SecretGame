@@ -156,6 +156,7 @@ namespace SecretProject.Class.StageFolder
             this.AllRisingText = new List<RisingText>();
 
             this.Enemies = new List<Enemy>();
+            this.AllProjectiles = new List<Projectile>();
         }
 
         public virtual void LoadPreliminaryContent()

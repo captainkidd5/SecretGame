@@ -13,6 +13,8 @@ namespace XMLData.ItemStuff
         Hammer = 22,
         Shovel = 23,
         Sword = 25,
+        Bow = 26,
+        Ammunition = 27,
         Tree = 40
 
     }

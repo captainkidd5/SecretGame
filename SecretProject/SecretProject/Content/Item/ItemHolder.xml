@@ -180,7 +180,7 @@
 <Description>A weak wooden bow. Launches Arrows.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
 <Durability>25</Durability>
-<Type>Axe</Type>
+<Type>Bow</Type>
 <AnimationColumn>48</AnimationColumn>
 </Item>
 
@@ -189,7 +189,7 @@
 <ID>280</ID>
 <Description>Ammunition for bows.</Description>
 <InvMaximum>1</InvMaximum><Price>25</Price>
-<AnimationColumn>48</AnimationColumn>
+<Type>Ammunition</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">

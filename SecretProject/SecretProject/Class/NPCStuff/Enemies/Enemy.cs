@@ -654,10 +654,14 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
 
             }
-            for(int i =0; i < this.Pack.Count; i++)
+            if(this.Pack != null)
             {
-                Pack[i].CurrentBehaviour = CurrentBehaviour.Chase;
+                for (int i = 0; i < this.Pack.Count; i++)
+                {
+                    Pack[i].CurrentBehaviour = CurrentBehaviour.Chase;
+                }
             }
+            
             Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f, .8f);
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 100f, Color.LightYellow, true, 3f, true));
