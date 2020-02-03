@@ -35,7 +35,8 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.DirectionFiredFrom = directionFiredFrom;
             this.CurrentPosition = startPosition;
             this.PositionToMoveTowards = positionToMoveToward;
-            this.DirectionVector = Vector2.Zero;
+            this.DirectionVector = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
+            this.DirectionVector.Normalize();
             this.Rotation = rotation;
             this.Speed = speed;
             this.PrimaryVelocity = new Vector2(Speed, Speed);
@@ -47,19 +48,38 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
         public void Update(GameTime gameTime)
         {
+            this.Speed -= .01f;
+            if(this.Speed <= 0)
+            {
+                this.Speed = 0;
+               // Game1.GetCurrentStage().AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.GetCurrentStage().AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
+                Game1.GetCurrentStage().AllProjectiles.Remove(this);
+                return;
+            }
+            this.PrimaryVelocity = new Vector2(Speed, Speed);
             this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4,4);
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
-                //if obj collided with item in list stop it from moving boom badda bing
-
+      
 
                 if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
                         returnObjects[i].Entity.PlayerCollisionInteraction(1, 5, this.DirectionFiredFrom);
+                        this.AllProjectiles.Remove(this);
+                        return;
+
+                    }
+                }
+                else if(returnObjects[i].ColliderType == ColliderType.inert)
+                {
+                    if (this.Collider.IsIntersecting(returnObjects[i]))
+                    {
+                        this.AllProjectiles.Remove(this);
+                        return;
 
                     }
                 }
@@ -71,17 +91,18 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 }
 
 
-                // IsMoving = false;
-
 
 
             }
-            MoveTowardsPoint(this.PositionToMoveTowards, gameTime);
+
+            this.CurrentPosition += this.DirectionVector * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, this.CurrentPosition, this.SourceRectangle, Color.White, this.Rotation, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, this.CurrentPosition, this.SourceRectangle, Color.White, this.Rotation + 2.4f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
         }
 
         public void MouseCollisionInteraction()
@@ -99,6 +120,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             throw new NotImplementedException();
         }
 
+        //for homing arrows?
         public bool MoveTowardsPoint(Vector2 goal, GameTime gameTime)
         {
             // If we're already at the goal return immediatly
