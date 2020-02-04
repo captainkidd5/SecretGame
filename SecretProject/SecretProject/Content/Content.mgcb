@@ -1444,6 +1444,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Alert1.wav
 
+#begin SoundEffects/arrowMiss.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/arrowMiss.wav
+
+#begin SoundEffects/bowdraw.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/bowdraw.wav
+
 #begin SoundEffects/bubble.WAV
 /importer:WavImporter
 /processor:SoundEffectProcessor

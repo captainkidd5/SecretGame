@@ -78,6 +78,10 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
+                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.ArrowMiss, true, .15f);
+                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
+                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
+                        Game1.GetCurrentStage().ParticleEngine.Color = Color.White;
                         this.AllProjectiles.Remove(this);
                         return;
 
