@@ -11,7 +11,7 @@
     <SpeechID>1</SpeechID>
     <Time>8AM</Time>
    <TextToWrite>Hey! Having a good morning? `</TextToWrite>
-      <SelectableOptions>yes~Lovely, I am as well. ,no~Aww. I'm sorry to hear that.. Maybe if you get some food in you you'll feel better..</SelectableOptions>
+      <SelectableOptions>yes~ Lovely, I am as well., no~ Aww. I'm sorry to hear that.. Maybe if you get some food in you you'll feel better..</SelectableOptions>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
