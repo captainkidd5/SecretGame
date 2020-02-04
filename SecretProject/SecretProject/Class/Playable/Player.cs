@@ -419,9 +419,14 @@ namespace SecretProject.Class.Playable
                     }
                     else if(item.ItemType == XMLData.ItemStuff.ItemType.Bow)
                     {
-                        CheckMouseRotationFromEntity(this.Position);
-                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
-                        Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90) , 40f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
+                        if(UserInterface.BackPack.Inventory.ContainsAtLeastOne(280))
+                        {
+                            CheckMouseRotationFromEntity(this.Position);
+                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
+                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 40f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
+                            UserInterface.BackPack.Inventory.RemoveItem(280);
+                        }
+                        
                     }
                     if (item.CrateType != 0)
                     {

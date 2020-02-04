@@ -188,7 +188,7 @@
 <Name>Stone Arrow</Name>
 <ID>280</ID>
 <Description>Ammunition for bows.</Description>
-<InvMaximum>1</InvMaximum><Price>25</Price>
+<InvMaximum>999</InvMaximum><Price>1</Price>
 <Type>Ammunition</Type>
 </Item>
 

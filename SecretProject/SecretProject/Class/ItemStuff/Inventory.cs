@@ -147,6 +147,23 @@ namespace SecretProject.Class.ItemStuff
             return counter;
         }
 
+        public bool ContainsAtLeastOne(int id)
+        {
+            foreach (InventorySlot s in currentInventory)
+            {
+                if (s.Item != null)
+                {
+                    if (s.Item.ID == id)
+                    {
+                        return true;
+                    }
+                }
+
+
+            }
+            return false;
+        }
+
 
         public void GetNextAvailableSlot()
         {
