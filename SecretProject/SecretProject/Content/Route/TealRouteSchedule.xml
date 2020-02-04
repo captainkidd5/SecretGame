@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+  <Asset Type="XMLData.RouteStuff.RouteSchedule">
+    <Test>1</Test>
+    <Routes>
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>1</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
+      <Time>7AM</Time>
+       <EndStage>Cafe</EndStage>
+      <EndX>12</EndX>
+      <EndY>15</EndY>
+    </Item>
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>2</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
+      <Time>11AM</Time>
+       <EndStage>Town</EndStage>
+      <EndX>68</EndX>
+      <EndY>29</EndY>
+    </Item>
+    <Item Type="XMLData.RouteStuff.Route">
+      <ID>3</ID>
+      <Month>Spring</Month>
+      <WeekDay>Monday</WeekDay>
+      <Time>4PM</Time>
+       <EndStage>Town</EndStage>
+      <EndX>87</EndX>
+      <EndY>73</EndY>
+    </Item>
+    </Routes>
+  </Asset>
+</XnaContent>

@@ -16,13 +16,13 @@
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
-   <TextToWrite>If you're heading into Raikai today keep a lookout for suspicious looking plants.</TextToWrite>
+   <TextToWrite>Sleep is for the birds.</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>10AM</Time>
-   <TextToWrite>Access the shop? `</TextToWrite>
+   <TextToWrite>Yes? `</TextToWrite>
    <SelectableOptions>yes~OpenElixirShop,no~ExitDialogue</SelectableOptions>
     </Item>
   
@@ -36,6 +36,12 @@
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
    <TextToWrite>The darkness invogorates me.</TextToWrite>
+    </Item>
+
+    <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>6</SpeechID>
+    <Time>10PM</Time>
+   <TextToWrite>You look tired.</TextToWrite>
     </Item>
 </DialogueSkeletons>
 </Item>

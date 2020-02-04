@@ -129,6 +129,40 @@
     </AllItemsRequired>
     </Item>
 
+<!-- Bow !-->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>240</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>520</ItemID>
+    <Count>15</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1041</ItemID>
+    <Count>3</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
+    <!-- Stone Arrow !-->
+    <Item Type="XMLData.ItemStuff.ItemRecipe">
+    <ItemToCraftID>280</ItemToCraftID>
+    <AllItemsRequired>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1000</ItemID>
+    <Count>1</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>520</ItemID>
+    <Count>2</Count>
+    </Item>
+    <Item Type="XMLData.ItemStuff.ItemsRequired">
+    <ItemID>1040</ItemID>
+    <Count>1</Count>
+    </Item>
+    </AllItemsRequired>
+    </Item>
+
 <!--Wooden Fence Post -->
 <Item Type="XMLData.ItemStuff.ItemRecipe">
     <ItemToCraftID>1162</ItemToCraftID>

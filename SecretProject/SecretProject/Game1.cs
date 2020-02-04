@@ -205,6 +205,7 @@ namespace SecretProject
         public DialogueHolder BusinessSnailDialogue;
         public DialogueHolder MippinDialogue;
         public DialogueHolder NedDialogue;
+        public DialogueHolder TealDialogue;
 
         public RouteSchedule DobbinRouteSchedule;
         public RouteSchedule ElixirRouteSchedule;
@@ -213,6 +214,7 @@ namespace SecretProject
         public RouteSchedule SarahRouteSchedule;
         public RouteSchedule MippinRouteSchedule;
         public RouteSchedule NedRouteSchedule;
+        public RouteSchedule TealRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
         public static ItemHolder AllItems;
         public static LootBank LootBank;
@@ -251,6 +253,7 @@ namespace SecretProject
         public static Sarah Sarah;
         public static Mippin Mippin;
         public static Ned Ned;
+        public static Teal Teal;
         public static List<Character> AllCharacters;
 
         //PORTALS
@@ -429,6 +432,7 @@ namespace SecretProject
             BusinessSnailDialogue = this.Content.Load<DialogueHolder>("Dialogue/BusinessSnailDialogue");
             MippinDialogue = this.Content.Load<DialogueHolder>("Dialogue/MippinDialogue");
             NedDialogue = this.Content.Load<DialogueHolder>("Dialogue/NedDialogue");
+            TealDialogue = this.Content.Load<DialogueHolder>("Dialogue/TealDialogue");
 
             DobbinRouteSchedule = this.Content.Load<RouteSchedule>("Route/DobbinRouteSchedule");
             ElixirRouteSchedule = this.Content.Load<RouteSchedule>("Route/ElixerRouteSchedule");
@@ -437,7 +441,8 @@ namespace SecretProject
             SarahRouteSchedule = this.Content.Load<RouteSchedule>("Route/SarahRouteSchedule");
             MippinRouteSchedule = this.Content.Load<RouteSchedule>("Route/MippinRouteSchedule");
             NedRouteSchedule = this.Content.Load<RouteSchedule>("Route/NedRouteSchedule");
-            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule };
+            TealRouteSchedule = this.Content.Load<RouteSchedule>("Route/TealRouteSchedule");
+            AllSchedules = new List<RouteSchedule>() { DobbinRouteSchedule, ElixirRouteSchedule, KayaRouteSchedule, JulianRouteSchedule, SarahRouteSchedule, MippinRouteSchedule, NedRouteSchedule, TealRouteSchedule };
             for (int i = 0; i < AllSchedules.Count; i++)
             {
                 foreach (Route route in AllSchedules[i].Routes)
@@ -447,7 +452,7 @@ namespace SecretProject
             }
             AllCrops = this.Content.Load<CropHolder>("Crop/CropStuff");
 
-            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue, MippinDialogue, NedDialogue };
+            List<DialogueHolder> tempListHolder = new List<DialogueHolder>() { ElixirDialogue, DobbinDialogue, SnawDialogue, KayaDialogue, JulianDialogue, SarahDialogue, BusinessSnailDialogue, MippinDialogue, NedDialogue, TealDialogue };
             foreach (DialogueHolder holder in tempListHolder)
             {
                 holder.RemoveAllNewLines();
@@ -654,6 +659,7 @@ namespace SecretProject
 
             Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], AllTextures.MippinPortrait) { FrameToSet = 0 };
             Ned = new Ned("Ned", new Vector2(45, 110), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], AllTextures.NedPortrait) { FrameToSet = 0 };
+            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], AllTextures.NedPortrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixir,
@@ -664,7 +670,8 @@ namespace SecretProject
                 Sarah,
                 BusinessSnail,
                 Mippin,
-                Ned
+                Ned,
+                Teal
             };
 
 

@@ -184,6 +184,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/SnawDialogue.xml
 
+#begin Dialogue/TealDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/TealDialogue.xml
+
 #begin Effects/lightmask.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -623,6 +628,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Snaw/SnawPortrait.png
+
+#begin NPC/Teal/Teal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Teal/Teal.png
 
 #begin Particles/fire1.png
 /importer:TextureImporter
@@ -1402,6 +1419,11 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Route/SarahRouteSchedule.xml
+
+#begin Route/TealRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/TealRouteSchedule.xml
 
 #begin SanctuaryStuff/ForestSanctuary.xml
 /importer:XmlImporter
