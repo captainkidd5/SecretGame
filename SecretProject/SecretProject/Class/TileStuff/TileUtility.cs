@@ -690,6 +690,16 @@ namespace SecretProject.Class.TileStuff
                         }
                     }
                     break;
+                case "enterBurrow":
+                    mouse.ChangeMouseTexture(CursorType.Door);
+                    {
+                        if (mouse.IsClicked)
+                        {
+                            
+                            Game1.SwitchStage(Game1.GetCurrentStageInt(), Stages.UnderWorld, null);
+                        }
+                    }
+                    break;
                 case "swapHouse":
                     mouse.ChangeMouseTexture(CursorType.Door);
                     if (mouse.IsClicked)

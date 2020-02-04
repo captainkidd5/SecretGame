@@ -129,7 +129,7 @@ namespace SecretProject.Class.UI
                     string newString = separatedString[1].ToLower();
 
                    newString = char.ToUpper(newString[0]) + newString.Substring(1);
-                    Stages newStage = (Stages)Enum.Parse(typeof(Stages), newString);
+                    Stages newStage = (Stages)Enum.Parse(typeof(Stages), newString, true);
                     Game1.SwitchStage(Game1.GetCurrentStageInt(), newStage);
                     break;
                 case "clear":

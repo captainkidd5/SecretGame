@@ -743,6 +743,7 @@ namespace SecretProject
             if (gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
             {
                 Game1.Player.LockBounds = false;
+                
             }
             else
             {
@@ -776,6 +777,7 @@ namespace SecretProject
                 else if (Game1.GetCurrentStage() == OverWorld)
                 {
                     Player.Position = new Vector2(128, 128);
+                  //  Game1.OverWorld.AllTiles.LoadInitialChunks(Game1.Player.Position);
                 }
 
 
