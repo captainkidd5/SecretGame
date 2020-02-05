@@ -644,6 +644,10 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
                 TakeDamage(dmgAmount);
             }
+            else
+            {
+               
+            }
         }
 
         public virtual void TakeDamage(int dmgAmount)

@@ -38,8 +38,8 @@ namespace SecretProject.Class.NPCStuff
         };
         public static List<NPCSpawnData> CaveCreatures = new List<NPCSpawnData>()
         {
-            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt,  0f, .7f, .75f),
-            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, .3f, .5f, .75f),
+            //new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  .5f, .7f, .75f),
+            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, .0f, .8f, 0f),
         };
         public static List<List<NPCSpawnData>> NPCInfo = new List<List<NPCSpawnData>>()
         {
@@ -108,7 +108,7 @@ namespace SecretProject.Class.NPCStuff
                     bool flag = true;
                     while (flag)
                     {
-                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, numberInPack, position);
+                        flag = DetermineNewNPCS(NPCPack, spawnData, spawnFrequency, ref numberInPack, position);
                     }
                 }
                 return NPCPack;
@@ -129,8 +129,14 @@ namespace SecretProject.Class.NPCStuff
             }
         }
 
-        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, int numberAlreadyInPack, Vector2 positionToSpawn)
+        public bool DetermineNewNPCS(List<Enemy> enemyList, NPCSpawnData info, float packFrequency, ref int numberAlreadyInPack, Vector2 positionToSpawn)
         {
+            if(numberAlreadyInPack == 0)
+            {
+                enemyList.Add(info.GetNewEnemy(Graphics, enemyList, positionToSpawn, this.Container));
+                numberAlreadyInPack++;
+                return true;
+            }
             if (Game1.Utility.RFloat(0, 1) < info.PackFrequency)
             {
                 DecrementPackValue(packFrequency);

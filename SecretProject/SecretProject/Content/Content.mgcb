@@ -1700,6 +1700,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Slash1.wav
 
+#begin SoundEffects/SlimeHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/SlimeHit.wav
+
 #begin SoundEffects/stoneSmash.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

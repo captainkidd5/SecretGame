@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
@@ -33,6 +34,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public List<Projectile> AllProjectiles { get; set; }
 
         public bool DamagesPlayer { get; set; }
+        public SoundEffect MissSound { get; set; }
 
         SimpleTimer TimeToLive;
         public Projectile(GraphicsDevice graphics, Collider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer)
@@ -53,6 +55,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(280, null).SourceTextureRectangle;
 
             this.TimeToLive = new SimpleTimer(8f);
+            this.MissSound = Game1.SoundManager.ArrowMiss;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -104,7 +107,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
-                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.ArrowMiss, true, .15f);
+                        Game1.SoundManager.PlaySoundEffectInstance(this.MissSound, true, .15f);
                         Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
                         Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
                         Game1.GetCurrentStage().ParticleEngine.Color = Color.White;

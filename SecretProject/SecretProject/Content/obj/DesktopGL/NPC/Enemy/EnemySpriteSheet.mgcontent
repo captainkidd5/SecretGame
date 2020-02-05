@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Enemy/EnemySpriteSheet.png</SourceFile>
-  <SourceTime>2020-02-02T10:32:26.4231743-08:00</SourceTime>
+  <SourceTime>2020-02-04T14:54:01.9607178-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/NPC/Enemy/EnemySpriteSheet.xnb</DestFile>
-  <DestTime>2020-02-04T16:13:07.8502838-08:00</DestTime>
+  <DestTime>2020-02-04T19:17:43.7963594-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

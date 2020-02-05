@@ -14,6 +14,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public SlimeBall(GraphicsDevice graphics, Collider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer) : base(graphics, colliderFiredFrom, directionFiredFrom, startPosition, rotation, speed, positionToMoveToward, allProjectiles, damagesPlayer)
         {
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(255, null).SourceTextureRectangle;
+            this.MissSound = Game1.SoundManager.SlimeHit;
         }
     }
 }
