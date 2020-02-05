@@ -1586,6 +1586,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/gearspin.wav
 
+#begin SoundEffects/grassCut.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/grassCut.wav
+
 #begin SoundEffects/metalCraft.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

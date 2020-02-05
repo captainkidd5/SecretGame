@@ -1300,6 +1300,23 @@
    <object id="1" x="0.500001" y="0.0909" width="7.72727" height="15.8182"/>
   </objectgroup>
  </tile>
+ <tile id="878">
+  <properties>
+   <property name="destructable" value="22,0,0,8"/>
+   <property name="idleStart" value=""/>
+   <property name="loot" value="1001"/>
+   <property name="tileSelectorAllowed" value="2"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="1" width="14" height="14"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="979" duration="80"/>
+   <frame tileid="980" duration="80"/>
+   <frame tileid="981" duration="80"/>
+   <frame tileid="982" duration="80"/>
+  </animation>
+ </tile>
  <tile id="896">
   <properties>
    <property name="destructable" value="-50,1,0,16"/>
@@ -1529,15 +1546,15 @@
    <property name="loot" value="1001"/>
    <property name="tileSelectorAllowed" value="2"/>
   </properties>
-  <objectgroup draworder="index">
-   <object id="1" x="1" y="1" width="13" height="13"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="1" width="14" height="14"/>
   </objectgroup>
   <animation>
-   <frame tileid="979" duration="100"/>
-   <frame tileid="980" duration="100"/>
-   <frame tileid="981" duration="100"/>
-   <frame tileid="982" duration="100"/>
-   <frame tileid="983" duration="100"/>
+   <frame tileid="979" duration="80"/>
+   <frame tileid="980" duration="80"/>
+   <frame tileid="981" duration="80"/>
+   <frame tileid="982" duration="80"/>
+   <frame tileid="983" duration="80"/>
   </animation>
  </tile>
  <tile id="986">

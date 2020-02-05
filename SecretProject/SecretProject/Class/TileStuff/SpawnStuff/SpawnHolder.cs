@@ -17,7 +17,8 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             this.OverWorldSpawnElements = new List<SpawnElement>()
             {
                 
-                new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //Stone
+                new SpawnElement(979, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone
+                new SpawnElement(879, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 25){Unlocked = true }, //Stone2
                 new SpawnElement(1581, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //rock
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Grass, 50, true){Unlocked = true }, //Stick
                 new SpawnElement(1580, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50, true){Unlocked = true }, //Stick

@@ -45,7 +45,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.NPCRectangleWidthOffSet = 16;
             this.Speed = .02f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
-            this.IdleSoundEffect = Game1.SoundManager.ToadCroak;
+            this.IdleSoundEffect = Game1.SoundManager.BushCut;
             this.SoundLowerBound = 20f;
             this.SoundUpperBound = 50;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
@@ -70,7 +70,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 {
 
 
-                    float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, Game1.Player.position);
+                    float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SporeShoot, true, .15f);
                     Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,true));
                     this.ShotsFiredDuringInterval++;

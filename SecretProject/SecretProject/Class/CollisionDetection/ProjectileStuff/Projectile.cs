@@ -77,6 +77,8 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
                 if (returnObjects[i].ColliderType == ColliderType.PlayerMainCollider)
                 {
+
+                    
                     if (DamagesPlayer)
                     {
                         if (this.Collider.Rectangle.Intersects(Game1.Player.MainCollider.Rectangle))
@@ -107,10 +109,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
-                        Game1.SoundManager.PlaySoundEffectInstance(this.MissSound, true, .15f);
-                        Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
-                        Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
-                        Game1.GetCurrentStage().ParticleEngine.Color = Color.White;
+                        Miss();
                         this.AllProjectiles.Remove(this);
                         return;
 
@@ -136,6 +135,14 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 return;
             }
 
+        }
+
+        public virtual void Miss()
+        {
+            Game1.SoundManager.PlaySoundEffectInstance(this.MissSound, true, .15f);
+            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
+            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
+            Game1.GetCurrentStage().ParticleEngine.Color = Color.White;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

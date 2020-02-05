@@ -16,5 +16,13 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(255, null).SourceTextureRectangle;
             this.MissSound = Game1.SoundManager.SlimeHit;
         }
+
+        public override void Miss()
+        {
+            Game1.SoundManager.PlaySoundEffectInstance(this.MissSound, true, .15f);
+            Game1.GetCurrentStage().ParticleEngine.ActivationTime = .05f;
+            Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.CurrentPosition;
+            Game1.GetCurrentStage().ParticleEngine.Color = Color.Green;
+        }
     }
 }

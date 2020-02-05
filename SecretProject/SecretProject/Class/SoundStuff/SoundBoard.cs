@@ -48,6 +48,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Chirp3;
 
         public SoundEffect FoodBite;
+        public SoundEffect GrassCut;
 
         //GADGETS
         public SoundEffect PotLidOpen;
@@ -55,6 +56,7 @@ namespace SecretProject.Class.SoundStuff
 
         //AMBIENT
         public SoundEffect Crickets1;
+
 
 
         public SoundEffect OwlHoot1;
@@ -181,6 +183,7 @@ namespace SecretProject.Class.SoundStuff
             Chirp3 = content.Load<SoundEffect>("SoundEffects/chirp3");
 
             FoodBite = content.Load<SoundEffect>("SoundEffects/foodBite");
+            GrassCut = content.Load<SoundEffect>("SoundEffects/grasscut");
 
             //GADGETS
             PotLidClose = content.Load<SoundEffect>("SoundEffects/PotLidClose");
@@ -234,6 +237,7 @@ namespace SecretProject.Class.SoundStuff
             SwordSwing = content.Load<SoundEffect>("SoundEffects/swordSwing");
             SwordImpact = content.Load<SoundEffect>("SoundEffects/swordImpact");
             BushCut = content.Load<SoundEffect>("SoundEffects/bushCut");
+
 
             //BOW AND ARROW
             BowShoot = content.Load<SoundEffect>("SoundEffects/bowDraw");
