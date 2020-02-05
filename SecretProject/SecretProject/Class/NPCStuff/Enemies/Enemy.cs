@@ -610,7 +610,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public virtual void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             if (!this.IsImmuneToDamage)
             {

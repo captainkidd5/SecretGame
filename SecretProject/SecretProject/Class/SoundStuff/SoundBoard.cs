@@ -114,8 +114,9 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect BowShoot;
         public SoundEffect ArrowMiss;
 
+        public SoundEffect SporeShoot;
         public SoundEffect SlimeHit;
-
+        
         public SoundEffect Thunder1;
 
         //songs
@@ -238,6 +239,7 @@ namespace SecretProject.Class.SoundStuff
             BowShoot = content.Load<SoundEffect>("SoundEffects/bowDraw");
             ArrowMiss = content.Load<SoundEffect>("SoundEffects/arrowMiss");
             SlimeHit = content.Load<SoundEffect>("SoundEffects/SlimeHit");
+            SporeShoot = content.Load<SoundEffect>("SoundEffects/SporeShoot");
 
             //Songs
             DustStorm = content.Load<SoundEffect>("Songs/DustStorm");

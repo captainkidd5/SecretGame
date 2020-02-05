@@ -50,7 +50,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundUpperBound = 50;
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
             this.HitPoints = 2;
-            this.DamageColor = Color.GreenYellow;
+            this.DamageColor = Color.DarkSeaGreen;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
 
             this.ShootTimer = new SimpleTimer(3f);
@@ -71,9 +71,10 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
                     float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, Game1.Player.position);
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SporeShoot, true, .15f);
                     Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,true));
                     this.ShotsFiredDuringInterval++;
+                    
                 }
             }
             else
@@ -206,6 +207,30 @@ namespace SecretProject.Class.NPCStuff.Enemies
         public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
             this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+        }
+
+        public override void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        {
+            if (!this.IsImmuneToDamage)
+            {
+
+
+
+                Game1.GetCurrentStage().ParticleEngine.ActivationTime = .25f;
+                Game1.GetCurrentStage().ParticleEngine.EmitterLocation = this.Position;
+                Game1.GetCurrentStage().ParticleEngine.Color = this.DamageColor;
+
+
+                this.CurrentBehaviour = CurrentBehaviour.Flee;
+               
+
+                TakeDamage(dmgAmount);
+                this.IsImmuneToDamage = true;
+            }
+            else
+            {
+
+            }
         }
     }
 }

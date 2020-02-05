@@ -38,8 +38,8 @@ namespace SecretProject.Class.NPCStuff
         };
         public static List<NPCSpawnData> CaveCreatures = new List<NPCSpawnData>()
         {
-            //new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  .5f, .7f, .75f),
-            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, .0f, .8f, 0f),
+            new NPCSpawnData(NPCType.CaveToad, GenerationType.CaveDirt,  .5f, .9f, .75f),
+            new NPCSpawnData(NPCType.SporeShooter, GenerationType.CaveDirt, .0f, .5f, 0f),
         };
         public static List<List<NPCSpawnData>> NPCInfo = new List<List<NPCSpawnData>>()
         {
