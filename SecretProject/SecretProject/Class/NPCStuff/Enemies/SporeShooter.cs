@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.CollisionDetection.ProjectileStuff;
 using SecretProject.Class.Controls;
 using SecretProject.Class.ItemStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +17,18 @@ namespace SecretProject.Class.NPCStuff.Enemies
 {
     public class SporeShooter : Enemy
     {
+        SimpleTimer ShootTimer;
+        SimpleTimer AttackCooldown;
+        int ShotsFiredDuringInterval;
         public SporeShooter(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[3];
 
-            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 384, 80, 16, 16, 2, .2f, this.Position);
-            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 400, 80, 16, 16, 2, .2f, this.Position);
-            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 416, 80, 16, 16, 2, .2f, this.Position);
+            this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 384, 80, 16, 16, 1, .2f, this.Position);
+            this.NPCAnimatedSprite[1] = new Sprite(graphics, this.Texture, 400, 80, 16, 16, 1, .2f, this.Position);
+            this.NPCAnimatedSprite[2] = new Sprite(graphics, this.Texture, 416, 80, 16, 16, 1, .2f, this.Position);
 
+            this.CurrentDirection = Dir.Down;
 
             this.NPCRectangleXOffSet = 0;
             this.NPCRectangleYOffSet = 0;
@@ -37,19 +43,38 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitPoints = 2;
             this.DamageColor = Color.GreenYellow;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
+
+            this.ShootTimer = new SimpleTimer(3f);
+            this.AttackCooldown = new SimpleTimer(.75f);
+            this.ShotsFiredDuringInterval = 0;
         }
 
         public void AttackPlayer(GameTime gameTime)
         {
+            this.CurrentDirection = Dir.Down;
+            if(this.ShotsFiredDuringInterval < 3)
+            {
+                if (AttackCooldown.Run(gameTime))
+                {
 
-            
 
+                    float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, Game1.Player.position);
+                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
+                    Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 40f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
+                    this.ShotsFiredDuringInterval++;
+                }
+            }
+            else
+            {
+                this.CurrentBehaviour = CurrentBehaviour.Flee;
+            }
+                     
         }
 
         public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
             this.IsImmuneToDamage = true;
-
+            this.IsMoving = true;
             if (this.TimeInUnloadedChunk > 100)
             {
                 enemies.Remove(this);
@@ -61,8 +86,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 enemies.Remove(this);
                 return;
             }
-            //this.CurrentBehaviour = CurrentBehaviour.Wander;
-            this.IsMoving = true;
+
             TestImmunity(gameTime);
 
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
@@ -74,63 +98,26 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 this.CollideOccured = true;
                 if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
                 {
-                    if (this.Collider.IsIntersecting(Game1.Player.MainCollider))
+                   if(this.Collider.Rectangle.Intersects(returnObjects[i].Rectangle))
                     {
-                        if (!Game1.Player.IsImmuneToDamage)
-                        {
-                            Game1.Player.PlayerCollisionInteraction(1, 200, this.CurrentDirection);
-                        }
-
+                        this.CurrentBehaviour = CurrentBehaviour.Chase;
                     }
                 }
-                else if (returnObjects[i].ColliderType == ColliderType.grass)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
-                        returnObjects[i].IsUpdating = true;
-                        returnObjects[i].InitialShuffDirection = this.CurrentDirection;
-                    }
-                }
-                else
-                {
-                    if (this.IsMoving)
-                    {
-
-
-                        //if (returnObjects[i].ColliderType == ColliderType.inert)
-                        //{
-                        //    Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
-                        //}
-                    }
-
-                }
-
-
-                // IsMoving = false;
-
-
 
             }
+            this.NPCAnimatedSprite[0].UpdateAnimations(gameTime, this.Position);
+          //  UpdateDirection();
 
-            UpdateDirection();
+            
 
-            if (mouse.WorldMouseRectangle.Intersects(this.NPCHitBoxRectangle))
-            {
-                mouse.ChangeMouseTexture(CursorType.Normal);
-                mouse.ToggleGeneralInteraction = true;
-                Game1.isMyMouseVisible = false;
 
-            }
 
-            if (this.IsMoving)
-            {
                 switch (this.CurrentBehaviour)
                 {
                     case CurrentBehaviour.Wander:
-                        //Wander(gameTime);
                         break;
-                    case CurrentBehaviour.Chase: //this is fight 
-                                                 // MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
+                    case CurrentBehaviour.Chase: 
+                        
                         AttackPlayer(gameTime);
                         break;
 
@@ -143,8 +130,11 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                     case CurrentBehaviour.Flee:
 
-
-
+                        if (this.ShootTimer.Run(gameTime))
+                        {
+                        this.ShotsFiredDuringInterval = 0;
+                            this.CurrentBehaviour = CurrentBehaviour.Chase;
+                        }
 
 
                         break;
@@ -153,7 +143,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 }
 
 
-            }
+            
 
 
 
@@ -171,6 +161,30 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
 
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics, ref Effect effect)
+        {
+            if (this.CurrentBehaviour == CurrentBehaviour.Hurt)
+            {
+
+                //Game1.AllTextures.Pulse.Parameters["SINLOC"].SetValue((float)Math.Sin((float)this.PulseTimer.Time * 2 / this.PulseTimer.TargetTime + (float)Math.PI / 2 * ((float)(Math.PI * 3))));
+                //Game1.AllTextures.Pulse.Parameters["filterColor"].SetValue(Color.Red.ToVector4());
+                //Game1.AllTextures.Pulse.CurrentTechnique.Passes[0].Apply();
+
+
+
+            }
+
+
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GraphicsDevice graphics)
+        {
+            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X - this.NPCRectangleXOffSet - 8, this.Position.Y - this.NPCRectangleYOffSet - 8), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
         }
     }
 }

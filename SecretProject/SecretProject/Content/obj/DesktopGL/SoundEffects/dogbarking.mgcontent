@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/dogbarking.wav</SourceFile>
   <SourceTime>2020-01-29T21:05:57.7256276-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/dogbarking.xnb</DestFile>
-  <DestTime>2020-02-03T10:13:26.0858668-08:00</DestTime>
+  <DestTime>2020-02-04T16:13:21.488113-08:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

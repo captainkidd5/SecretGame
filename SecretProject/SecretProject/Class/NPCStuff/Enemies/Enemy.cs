@@ -36,7 +36,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
     public class Enemy : INPC , IEntity
     {
 
-
+        public GraphicsDevice Graphics { get; set; }
         public string Name { get; set; }
         public Vector2 Position { get; set; }
         public Sprite[] NPCAnimatedSprite { get; set; }
@@ -120,6 +120,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.Name = name;
             this.Pack = pack;
             this.Position = position;
+            this.Graphics = graphics;
             this.Texture = spriteSheet;
             this.Collider = new Collider(graphics, this.NPCHitBoxRectangle, this, ColliderType.Enemy);
 

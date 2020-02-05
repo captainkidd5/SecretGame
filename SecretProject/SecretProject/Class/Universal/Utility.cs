@@ -181,6 +181,28 @@ namespace SecretProject.Class.Universal
             Matrix rotationMatrix = Matrix.CreateRotationZ(angle);
             return Vector2.Transform(pointToRotate - origin, rotationMatrix);
         }
+
+        /// <summary>
+        /// Gives the angle between two vectors in degrees
+        /// </summary>
+        /// <param name="mainEntity">entity checking from</param>
+        /// <param name="entity2">entity chaking to</param>
+        /// <returns></returns>
+        public float GetAngleBetweenTwoVectors(Vector2 mainEntity, Vector2 entity2)
+        {
+            Vector2 direction = mainEntity - entity2;
+
+
+            // Vector2 direction = Game1.myMouseManager.WorldMousePosition - positionToCheck;
+            float angle = MathHelper.ToDegrees((float)(Math.Atan2(direction.X, direction.Y)) * -1);
+            if (angle < 0)
+            {
+                angle = 360 - Math.Abs(angle);
+            }
+
+
+            return angle;
+        }
         #endregion
         public Texture2D GetColoredRectangle(GraphicsDevice graphics, int width, int height, Color desiredColor)
         {

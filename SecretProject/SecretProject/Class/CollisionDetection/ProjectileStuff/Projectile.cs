@@ -14,6 +14,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     public class Projectile : IEntity
     {
         public GraphicsDevice Graphics { get; private set; }
+        public IEntity EntityFiredFrom { get; set; }
         public Vector2 CurrentPosition { get; set; }
         public Vector2 PositionToMoveTowards { get; set; }
         public Vector2 DirectionVector { get; set; }
@@ -24,14 +25,15 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public float Rotation { get; private set; }
         public float Speed { get; private set; }
 
-        public Rectangle SourceRectangle { get; private set; }
+        public Rectangle SourceRectangle { get;  set; }
         public Collider Collider { get; set; }
 
         public List<Projectile> AllProjectiles { get; set; }
 
-        public Projectile(GraphicsDevice graphics, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles)
+        public Projectile(GraphicsDevice graphics, IEntity entityFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles)
         {
             this.Graphics = graphics;
+            this.EntityFiredFrom = entityFiredFrom;
             this.DirectionFiredFrom = directionFiredFrom;
             this.CurrentPosition = startPosition;
             this.PositionToMoveTowards = positionToMoveToward;
@@ -46,7 +48,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(280, null).SourceTextureRectangle;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             this.Speed -= .01f;
             if(this.Speed <= 0)
@@ -68,9 +70,13 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.PlayerCollisionInteraction(1, 5, this.DirectionFiredFrom);
-                        this.AllProjectiles.Remove(this);
-                        return;
+                        //if(returnObjects[i].Entity != this.EntityFiredFrom)
+                        //{
+                        //    returnObjects[i].Entity.PlayerCollisionInteraction(1, 5, this.DirectionFiredFrom);
+                        //    this.AllProjectiles.Remove(this);
+                        //    return;
+                        //}
+                        
 
                     }
                 }
@@ -104,7 +110,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Game1.AllTextures.ItemSpriteSheet, this.CurrentPosition, this.SourceRectangle, Color.White, this.Rotation + 2.4f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f);
         }

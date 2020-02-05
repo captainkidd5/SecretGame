@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/textNoise2.wav</SourceFile>
   <SourceTime>2020-01-15T11:59:06.3470145-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/textNoise2.xnb</DestFile>
-  <DestTime>2020-02-03T10:13:37.1538792-08:00</DestTime>
+  <DestTime>2020-02-04T16:13:29.5850005-08:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
