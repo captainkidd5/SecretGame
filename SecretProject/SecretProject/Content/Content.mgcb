@@ -164,6 +164,11 @@
 /processor:PassThroughProcessor
 /build:Dialogue/KayaDialogue.xml
 
+#begin Dialogue/MarcusDialogue.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Dialogue/MarcusDialogue.xml
+
 #begin Dialogue/MippinDialogue.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -532,6 +537,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:NPC/Kaya/KayaSpriteSheet.png
+
+#begin NPC/Marcus/Marcus.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Marcus/Marcus.png
 
 #begin NPC/Mippin/mippin.png
 /importer:TextureImporter
@@ -1416,6 +1433,11 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Route/KayaRouteSchedule.xml
+
+#begin Route/MarcusRouteSchedule.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Route/MarcusRouteSchedule.xml
 
 #begin Route/MippinRouteSchedule.xml
 /importer:XmlImporter
