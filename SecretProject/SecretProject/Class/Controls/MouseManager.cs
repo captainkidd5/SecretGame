@@ -365,7 +365,7 @@ namespace SecretProject.Class.Controls
             return tilesToReturn;
         }
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new System.NotImplementedException();
         }

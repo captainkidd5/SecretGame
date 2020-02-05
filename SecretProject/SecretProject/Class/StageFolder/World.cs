@@ -279,7 +279,7 @@ namespace SecretProject.Class.StageFolder
                             for(int p = 0; p < AllProjectiles.Count; p++)
                             {
                                 this.QuadTree.Insert(AllProjectiles[p].Collider);
-                                AllProjectiles[p].Update(gameTime);
+                                
                             }
 
                             for (int item = 0; item < this.AllTiles.ActiveChunks[i, j].AllItems.Count; item++)
@@ -334,7 +334,10 @@ namespace SecretProject.Class.StageFolder
 
                 player.Position = new Vector2(0, 0);
             }
-
+            for (int p = 0; p < AllProjectiles.Count; p++)
+            {
+                AllProjectiles[p].Update(gameTime);
+            }
 
             this.TextBuilder.Update(gameTime);
             if (Game1.CurrentWeather != WeatherType.None)

@@ -148,7 +148,7 @@ namespace SecretProject.Class.ItemStuff
 
         }
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             if (!this.Ignored && Game1.Player.Inventory.IsPossibleToAddItem(this))
             {

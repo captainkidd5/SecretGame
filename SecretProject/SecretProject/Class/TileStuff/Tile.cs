@@ -53,7 +53,7 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             this.ColorMultiplier = .5f;
         }

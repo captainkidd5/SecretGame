@@ -128,7 +128,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                     {
                         if (!Game1.Player.IsImmuneToDamage)
                         {
-                            Game1.Player.PlayerCollisionInteraction(1, 200, this.CurrentDirection);
+                            Game1.Player.DamageCollisionInteraction(1, 200, this.CurrentDirection);
                         }
 
                     }

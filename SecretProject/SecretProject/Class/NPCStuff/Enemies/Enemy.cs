@@ -206,7 +206,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     {
                         if(!Game1.Player.IsImmuneToDamage)
                         {
-                            Game1.Player.PlayerCollisionInteraction(1, 200,this.CurrentDirection);
+                            Game1.Player.DamageCollisionInteraction(1, 200,this.CurrentDirection);
                         }
                        
                     }
@@ -610,7 +610,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             }
         }
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             if (!this.IsImmuneToDamage)
             {

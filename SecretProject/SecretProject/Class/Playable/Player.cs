@@ -149,7 +149,7 @@ namespace SecretProject.Class.Playable
             this.PickUpItem = new Sprite[4, 5];
             this.PortalJump = new Sprite[4, 5];
 
-            this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.inert);
+            this.MainCollider = new Collider(graphics, this.ColliderRectangle, this, ColliderType.PlayerMainCollider);
             this.BigCollider = new Collider(graphics, this.ClickRangeRectangle, this, ColliderType.PlayerBigBox);
             this.Inventory = new Inventory(30) { Money = 10000 };
 
@@ -423,7 +423,7 @@ namespace SecretProject.Class.Playable
                         {
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 40f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
+                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                         }
                         
@@ -645,7 +645,7 @@ namespace SecretProject.Class.Playable
 
                     if (this.BigCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.PlayerCollisionInteraction(0, 5, this.controls.Direction);
+                        returnObjects[i].Entity.DamageCollisionInteraction(0, 5, this.controls.Direction);
                     }
                 }
                 else if (returnObjects[i].ColliderType == ColliderType.grass)
@@ -675,7 +675,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
-                            returnObjects[i].Entity.PlayerCollisionInteraction(1, 10, this.controls.Direction);
+                            returnObjects[i].Entity.DamageCollisionInteraction(1, 10, this.controls.Direction);
                         }
                     }
                 }
@@ -683,9 +683,10 @@ namespace SecretProject.Class.Playable
                 {
                     if(this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
-                        returnObjects[i].Entity.PlayerCollisionInteraction(0, 10, this.controls.Direction);
+                        returnObjects[i].Entity.DamageCollisionInteraction(0, 10, this.controls.Direction);
                     }
                 }
+
                 else
                 {
                     if (this.IsMoving)
@@ -897,7 +898,7 @@ namespace SecretProject.Class.Playable
             throw new NotImplementedException();
         }
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             if (!this.IsImmuneToDamage)
             {

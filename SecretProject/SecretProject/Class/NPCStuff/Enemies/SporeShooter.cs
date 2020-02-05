@@ -15,11 +15,20 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.NPCStuff.Enemies
 {
+    public enum SporeShooterState
+    {
+        Vulnerable = 0,
+        Shooting = 1,
+        Hiding = 2, 
+    }
     public class SporeShooter : Enemy
     {
         SimpleTimer ShootTimer;
         SimpleTimer AttackCooldown;
+        SimpleTimer HideTimer;
         int ShotsFiredDuringInterval;
+        public SporeShooterState ShooterState { get; set; }
+
         public SporeShooter(string name, List<Enemy> pack, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, IInformationContainer container, CurrentBehaviour primaryPlayerInteractionBehavior) : base(name, pack, position, graphics, spriteSheet, container, primaryPlayerInteractionBehavior)
         {
             this.NPCAnimatedSprite = new Sprite[3];
@@ -47,6 +56,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.ShootTimer = new SimpleTimer(3f);
             this.AttackCooldown = new SimpleTimer(.75f);
             this.ShotsFiredDuringInterval = 0;
+            this.ShooterState = SporeShooterState.Hiding;
+            this.HideTimer = new SimpleTimer(2f);
+            this.IsImmuneToDamage = true;
         }
 
         public void AttackPlayer(GameTime gameTime)
@@ -60,20 +72,20 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
                     float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, Game1.Player.position);
                     Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.BowShoot, true, .15f);
-                    Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 40f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles));
+                    Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,true));
                     this.ShotsFiredDuringInterval++;
                 }
             }
             else
             {
-                this.CurrentBehaviour = CurrentBehaviour.Flee;
+                this.CurrentBehaviour = CurrentBehaviour.Hurt;
             }
                      
         }
 
         public override void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
-            this.IsImmuneToDamage = true;
+
             this.IsMoving = true;
             if (this.TimeInUnloadedChunk > 100)
             {
@@ -87,7 +99,6 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 return;
             }
 
-            TestImmunity(gameTime);
 
             this.Collider.Rectangle = new Rectangle((int)(this.Position.X + this.NPCRectangleXOffSet / 2), (int)(this.Position.Y + this.NPCRectangleYOffSet / 2), (int)(this.NPCRectangleWidthOffSet * 2), (int)(this.NPCRectangleHeightOffSet * 2));
             List<ICollidable> returnObjects = new List<ICollidable>();
@@ -116,21 +127,31 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 {
                     case CurrentBehaviour.Wander:
                         break;
-                    case CurrentBehaviour.Chase: 
-                        
+                    case CurrentBehaviour.Chase:
+                    this.IsImmuneToDamage = true;
+                    this.ShooterState = SporeShooterState.Shooting;
                         AttackPlayer(gameTime);
                         break;
 
 
-                    case CurrentBehaviour.Hurt:
-                        this.CurrentBehaviour = CurrentBehaviour.Chase;
+                    case CurrentBehaviour.Hurt: //vulnerable in this case
+                    this.ShooterState = SporeShooterState.Vulnerable;
+                    this.IsImmuneToDamage = false;
+                    if(this.HideTimer.Run(gameTime))
+                    {
+                        this.CurrentBehaviour = CurrentBehaviour.Flee;
+                    }
+                        
 
 
                         break;
 
                     case CurrentBehaviour.Flee:
 
-                        if (this.ShootTimer.Run(gameTime))
+                    this.IsImmuneToDamage = true;
+                    this.ShooterState = SporeShooterState.Hiding;
+                    
+                    if (this.ShootTimer.Run(gameTime))
                         {
                         this.ShotsFiredDuringInterval = 0;
                             this.CurrentBehaviour = CurrentBehaviour.Chase;
@@ -177,7 +198,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             }
 
 
-            this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[0].DestinationRectangle.Y)));
+            this.NPCAnimatedSprite[(int)this.ShooterState].DrawAnimation(spriteBatch, new Vector2(this.Position.X , this.Position.Y), .5f + (Game1.Utility.ForeGroundMultiplier * ((float)this.NPCAnimatedSprite[(int)this.ShooterState].DestinationRectangle.Y)));
 
 
         }

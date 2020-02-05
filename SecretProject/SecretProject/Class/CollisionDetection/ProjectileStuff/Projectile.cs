@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.Universal;
 
 namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 {
@@ -14,7 +15,8 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     public class Projectile : IEntity
     {
         public GraphicsDevice Graphics { get; private set; }
-        public IEntity EntityFiredFrom { get; set; }
+        public Collider ColliderFiredFrom { get; set; }
+ 
         public Vector2 CurrentPosition { get; set; }
         public Vector2 PositionToMoveTowards { get; set; }
         public Vector2 DirectionVector { get; set; }
@@ -25,15 +27,18 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public float Rotation { get; private set; }
         public float Speed { get; private set; }
 
-        public Rectangle SourceRectangle { get;  set; }
+        public Rectangle SourceRectangle { get; set; }
         public Collider Collider { get; set; }
 
         public List<Projectile> AllProjectiles { get; set; }
 
-        public Projectile(GraphicsDevice graphics, IEntity entityFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles)
+        public bool DamagesPlayer { get; set; }
+
+        SimpleTimer TimeToLive;
+        public Projectile(GraphicsDevice graphics, Collider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer)
         {
             this.Graphics = graphics;
-            this.EntityFiredFrom = entityFiredFrom;
+            this.ColliderFiredFrom = colliderFiredFrom;
             this.DirectionFiredFrom = directionFiredFrom;
             this.CurrentPosition = startPosition;
             this.PositionToMoveTowards = positionToMoveToward;
@@ -44,43 +49,58 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             this.PrimaryVelocity = new Vector2(Speed, Speed);
             this.Collider = new Collider(this.Graphics, new Rectangle((int)startPosition.X, (int)startPosition.Y, 4, 4), this, ColliderType.Projectile);
             this.AllProjectiles = allProjectiles;
-
+            this.DamagesPlayer = damagesPlayer;
             this.SourceRectangle = Game1.ItemVault.GenerateNewItem(280, null).SourceTextureRectangle;
+
+            this.TimeToLive = new SimpleTimer(8f);
         }
 
         public virtual void Update(GameTime gameTime)
         {
             this.Speed -= .01f;
-            if(this.Speed <= 0)
+            if (this.Speed <= 0)
             {
                 this.Speed = 0;
-               // Game1.GetCurrentStage().AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.GetCurrentStage().AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
+                // Game1.GetCurrentStage().AllTiles.AddItem(Game1.ItemVault.GenerateNewItem(280, this.CurrentPosition, true, Game1.GetCurrentStage().AllTiles.GetItems(this.CurrentPosition)), this.CurrentPosition);
                 Game1.GetCurrentStage().AllProjectiles.Remove(this);
                 return;
             }
             this.PrimaryVelocity = new Vector2(Speed, Speed);
-            this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4,4);
+            this.Collider.Rectangle = new Rectangle((int)this.CurrentPosition.X, (int)this.CurrentPosition.Y, 4, 4);
             List<ICollidable> returnObjects = new List<ICollidable>();
             Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
             for (int i = 0; i < returnObjects.Count; i++)
             {
-      
+
+                if (returnObjects[i].ColliderType == ColliderType.PlayerMainCollider)
+                {
+                    if (DamagesPlayer)
+                    {
+                        if (this.Collider.Rectangle.Intersects(Game1.Player.MainCollider.Rectangle))
+                        {
+                            Game1.Player.TakeDamage(1);
+                            this.AllProjectiles.Remove(this);
+                        }
+                    }
+                }
 
                 if (returnObjects[i].ColliderType == ColliderType.Enemy)
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
-                        //if(returnObjects[i].Entity != this.EntityFiredFrom)
-                        //{
-                        //    returnObjects[i].Entity.PlayerCollisionInteraction(1, 5, this.DirectionFiredFrom);
-                        //    this.AllProjectiles.Remove(this);
-                        //    return;
-                        //}
-                        
+
+    
+                        if ((returnObjects[i].Rectangle != this.ColliderFiredFrom.Rectangle))
+                        {
+                            returnObjects[i].Entity.DamageCollisionInteraction(1, 5, this.DirectionFiredFrom);
+                            this.AllProjectiles.Remove(this);
+                            return;
+                        }
+
 
                     }
                 }
-                else if(returnObjects[i].ColliderType == ColliderType.inert)
+                else if (returnObjects[i].ColliderType == ColliderType.inert)
                 {
                     if (this.Collider.IsIntersecting(returnObjects[i]))
                     {
@@ -107,6 +127,11 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
             this.CurrentPosition += this.DirectionVector * (float)gameTime.ElapsedGameTime.TotalSeconds * Speed;
 
+            if(TimeToLive.Run(gameTime))
+            {
+                this.AllProjectiles.Remove(this);
+                return;
+            }
 
         }
 
@@ -120,7 +145,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
             throw new NotImplementedException();
         }
 
-        public void PlayerCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
+        public void DamageCollisionInteraction(int dmgAmount, int knockBack, Dir directionAttackedFrom)
         {
             throw new NotImplementedException();
         }

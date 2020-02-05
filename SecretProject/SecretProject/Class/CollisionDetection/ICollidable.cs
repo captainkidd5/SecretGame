@@ -16,6 +16,7 @@ namespace SecretProject.Class.CollisionDetection
         TransperencyDetector = 7,
         Projectile = 8,
         MouseCollider = 9,
+        PlayerMainCollider = 10
 
     }
     public interface ICollidable
