@@ -86,7 +86,7 @@ namespace SecretProject.Class.StageFolder
 
 
             //PLAY
-            this.ChooseGameMenu = new ChooseGameMenu(this.Graphics, new Vector2(1100, 400), 1f);
+            this.ChooseGameMenu = new ChooseGameMenu(this.Graphics, new Vector2(Game1.Utility.CenterScreenX - 400, Game1.Utility.CenterScreenY ), 3f);
 
 
 

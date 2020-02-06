@@ -18,8 +18,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public string String { get; set; }
         public Button Button { get; set; }
 
-        public SaveSlot(Button button)
+        public SaveSlot(int id, Button button)
         {
+            this.ID = id;
             this.String = "Empty";
             this.Button = button;
             
@@ -27,6 +28,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Update(GameTime gameTime)
         {
+            this.Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
                 if(this.Occupied)
@@ -46,7 +48,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.String, Button.Position, Color.Black, Game1.Utility.StandardTextDepth + .01f, Game1.Utility.StandardTextDepth + .02f, 1f);
-        }
+            this.Button.Draw( spriteBatch,new Rectangle(80,288, 32,32), Button.BackGroundSourceRectangle,
+                Game1.AllTextures.MenuText, this.String, Button.Position, Color.White, 3f, 3f, .8f, false);
+        
+            }
     }
 }
