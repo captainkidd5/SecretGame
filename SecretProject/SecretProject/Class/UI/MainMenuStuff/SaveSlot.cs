@@ -23,13 +23,19 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             this.Graphics = graphics;
             this.ID = id;
-            this.String = "Empty";
+           
             this.Button = button;
             if(Game1.SaveLoadManager.CheckIfSaveEmpty(this.ID))
             {
-                this.Occupied = true;
+                this.Occupied = false;
+                this.String = "Empty";
             }
-            this.String = "Occupied";
+            else
+            {
+                this.Occupied = true;
+                this.String = "Occupied";
+            }
+            
             
         }
 
@@ -42,6 +48,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 {
 
                     LoadSave();
+                    Game1.mainMenu.StartNewGame();
+                    return;
                 }
                 else
                 {

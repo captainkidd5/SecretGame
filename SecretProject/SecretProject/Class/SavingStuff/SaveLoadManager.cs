@@ -36,12 +36,12 @@ namespace SecretProject.Class.SavingStuff
             {
 
 
-                if (new FileInfo(AllSaves[iD - 1].Path).Length == 0)
+                if (new FileInfo(AllSaves[iD - 1].Path).Length != 0)
                 {
-                    return true;
+                    return false;
                 }
             }
-                return false;
+                return true;
             
         }
 
@@ -49,6 +49,7 @@ namespace SecretProject.Class.SavingStuff
         {
             FileStream fileStream = File.OpenWrite(GetSaveFileFromID(this.CurrentSave).Path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
+            File.WriteAllText(GetSaveFileFromID(this.CurrentSave).Path, string.Empty);
 
             binaryWriter.Write(this.CurrentSave);
             GameSerializer.Save(binaryWriter, OutputMessage, 1);

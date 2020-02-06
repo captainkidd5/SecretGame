@@ -177,7 +177,7 @@ namespace SecretProject.Class.ItemStuff
 
             for (int i = 0; i < this.currentInventory.Count; i++)
             {
-                
+                binaryWriter.Write(this.currentInventory[i].Capacity);
                 binaryWriter.Write(this.currentInventory[i].ItemCount);
                 if(this.currentInventory[i].ItemCount > 0)
                 {
@@ -187,6 +187,7 @@ namespace SecretProject.Class.ItemStuff
                 {
                     binaryWriter.Write(0);
                 }
+               
                 
             }
 
@@ -202,11 +203,14 @@ namespace SecretProject.Class.ItemStuff
             for(int i =0; i < currentInventoryCount; i++)
             {
                 InventorySlot slot = new InventorySlot();
+                int capacity = reader.ReadInt32();
+                slot.Capacity = capacity;
                 int itemId = reader.ReadInt32();
                 int itemCount = reader.ReadInt32();
                 if(itemCount > 0)
                 {
                     Item item = Game1.ItemVault.GenerateNewItem(itemId, null);
+                    slot.AddItemToSlot(item);
                     slot.Item = item;
                     slot.ItemCount = itemCount;
                 }
