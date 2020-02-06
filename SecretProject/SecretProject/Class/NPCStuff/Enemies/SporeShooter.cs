@@ -51,7 +51,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundTimer = Game1.Utility.RFloat(SoundLowerBound, SoundUpperBound);
             this.HitPoints = 2;
             this.DamageColor = Color.DarkSeaGreen;
-            this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
+            this.PossibleLoot = new List<Loot>() { new Loot(255, 100) };
 
             this.ShootTimer = new SimpleTimer(3f);
             this.AttackCooldown = new SimpleTimer(.75f);
