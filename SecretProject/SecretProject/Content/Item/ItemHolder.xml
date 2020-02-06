@@ -908,7 +908,7 @@
 <ID>1240</ID>
 <Description>Stores items.</Description>
 <InvMaximum>99</InvMaximum><Price>20</Price>
-<PlaceID>1852</PlaceID>
+<PlaceID>1755</PlaceID>
 <TilingLayer>3</TilingLayer>
 </Item>
 

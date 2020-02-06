@@ -61,13 +61,13 @@ namespace SecretProject.Class.ItemStuff
         {
             this.IsUpdating = true;
             this.Tile = tile;
-            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1759, 100);
 
         }
         public void Deactivate()
         {
             this.IsUpdating = false;
-            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1852, 100);
+            this.Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1755, 100);
         }
 
         public bool IsItemAllowedToBeStored(Item item)

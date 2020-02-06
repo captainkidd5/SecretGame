@@ -2868,6 +2868,39 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
+ <tile id="1755">
+  <properties>
+   <property name="action" value="chestLoot"/>
+   <property name="idleStart" value=""/>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <animation>
+   <frame tileid="1756" duration="80"/>
+   <frame tileid="1757" duration="80"/>
+   <frame tileid="1758" duration="80"/>
+   <frame tileid="1759" duration="80"/>
+  </animation>
+ </tile>
+ <tile id="1756">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1757">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1758">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
+ <tile id="1759">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+ </tile>
  <tile id="1790">
   <properties>
    <property name="action" value="sanctuaryAdd,123,0,0"/>
