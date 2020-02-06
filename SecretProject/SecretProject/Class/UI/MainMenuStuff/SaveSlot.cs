@@ -68,7 +68,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void StartNewSave()
         {
-            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
+            Game1.SaveLoadManager.CurrentSave = this.ID;
+            Game1.SaveLoadManager.Save();
         }
     }
 }

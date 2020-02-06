@@ -102,13 +102,13 @@ namespace SecretProject.Class.MenuStuff
     class MainEscPage : IPage
     {
         internal Button MenuButton { get; set; }
-        internal Button SettingsButton { get; set; }
+        internal Button SaveButton { get; set; }
         internal Button ReturnButton { get; set; }
         internal Button ToggleFullScreenButton { get; set; }
         List<Button> Buttons { get; set; }
 
         private string ReturnText { get; set; }
-        private string SettingsText { get; set; }
+        private string SaveText { get; set; }
         private string MenuText { get; set; }
         private string ToggleFullScreenButtonText;
 
@@ -119,19 +119,19 @@ namespace SecretProject.Class.MenuStuff
         {
             this.ReturnButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 16 * 2), CursorType.Normal, 2f);
 
-            this.SettingsButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 64 * 2), CursorType.Normal, 2f);
+            this.SaveButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 64 * 2), CursorType.Normal, 2f);
 
             this.MenuButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 112 * 2), CursorType.Normal, 2f);
             this.ToggleFullScreenButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(432, 16, 80, 48), graphicsDevice, new Vector2(Position.X + backgroundSourceRectangle.Width / 3, Position.Y + 160 * 2), CursorType.Normal, 2f);
 
             this.MenuText = "Exit Game";
-            this.SettingsText = "Save Game";
+            this.SaveText = "Save Game";
             this.ReturnText = "Return";
             ToggleFullScreenButtonText = "FullScreen Mode";
 
 
 
-            this.Buttons = new List<Button>() { this.MenuButton, this.SettingsButton, this.ReturnButton, this.ToggleFullScreenButton };
+            this.Buttons = new List<Button>() { this.MenuButton, this.SaveButton, this.ReturnButton, this.ToggleFullScreenButton };
         }
         public void Update(GameTime gameTime)
         {
@@ -151,10 +151,9 @@ namespace SecretProject.Class.MenuStuff
                 // isTextChanged = false;
             }
 
-            if (this.SettingsButton.isClicked)
+            if (this.SaveButton.isClicked)
             {
-                //  mySave.Save();
-                // isTextChanged = true;
+                Game1.SaveLoadManager.Save();
             }
 
             if (this.ToggleFullScreenButton.isClicked)
@@ -167,7 +166,7 @@ namespace SecretProject.Class.MenuStuff
         {
             this.MenuButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.MenuText, this.MenuButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
             this.ReturnButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.ReturnText, this.ReturnButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
-            this.SettingsButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.SettingsText, this.SettingsButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
+            this.SaveButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.SaveText, this.SaveButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
             this.ToggleFullScreenButton.Draw(spriteBatch, Game1.AllTextures.MenuText, ToggleFullScreenButtonText, this.ToggleFullScreenButton.FontLocation, Color.White, Utility.StandardButtonDepth + .01f, Utility.StandardButtonDepth + .02f, 2f);
 
         }

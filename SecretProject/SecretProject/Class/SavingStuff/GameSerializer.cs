@@ -19,6 +19,7 @@ namespace SecretProject.Class.SavingStuff
         //Can use this to check what values we are passing in.
 
         public static float Version = 1f;
+       
 
         public static void AppendOutputMessage(string outPutMessage, string thingToAppend)
         {
@@ -28,23 +29,16 @@ namespace SecretProject.Class.SavingStuff
 
 
         //order really really matters
-        public static void WritePlayer(Player player, BinaryWriter writer, string OutputMessage, float version)
+        public static void Save(BinaryWriter writer, string OutputMessage, float version)
         {
-
+            
             Game1.Player.Save(writer);
             
-            writer.Write(Game1.Player.Name);
-            AppendOutputMessage(OutputMessage, Game1.Player.Name);
-
-            //  WriteInventory(Game1.Player.Inventory, writer, OutputMessage, version);
-
         }
 
-        public static void ReadPlayer(Player player, BinaryReader reader, float version)
+        public static void Load(BinaryReader reader, float version)
         {
-            player.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
-            player.Name = reader.ReadString();
-            // player.Inventory = ReadInventory(player.Inventory, reader, version);
+            Game1.Player.Load(reader);
 
         }
 

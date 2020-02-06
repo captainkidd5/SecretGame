@@ -177,8 +177,17 @@ namespace SecretProject.Class.ItemStuff
 
             for (int i = 0; i < this.currentInventory.Count; i++)
             {
-                binaryWriter.Write(this.currentInventory[i].Item.ID);
+                
                 binaryWriter.Write(this.currentInventory[i].ItemCount);
+                if(this.currentInventory[i].ItemCount > 0)
+                {
+                    binaryWriter.Write(this.currentInventory[i].Item.ID);
+                }
+                else
+                {
+                    binaryWriter.Write(0);
+                }
+                
             }
 
         }

@@ -8,7 +8,7 @@ namespace SecretProject.Class.SavingStuff
     public class SaveLoadManager
     {
         public string OutputMessage;
-
+        public int CurrentSave = 1;
         public List<SaveFile> AllSaves { get; set; }
 
 
@@ -32,26 +32,27 @@ namespace SecretProject.Class.SavingStuff
 
         public bool CheckIfSaveEmpty(int iD)
         {
-            if (new FileInfo(AllSaves[iD - 1].Path).Length == 0)
+            if (File.Exists(AllSaves[iD - 1].Path))
             {
-                return true;
-            }
 
+
+                if (new FileInfo(AllSaves[iD - 1].Path).Length == 0)
+                {
+                    return true;
+                }
+            }
                 return false;
             
         }
 
-        public void Save(SaveFile saveFile)
+        public void Save()
         {
-
-
-            //ORDER REALLY MATTERS
-            FileStream fileStream = File.OpenWrite(saveFile.Path);
+            FileStream fileStream = File.OpenWrite(GetSaveFileFromID(this.CurrentSave).Path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
 
-            GameSerializer.WritePlayer(Game1.Player, binaryWriter, OutputMessage, 1);
-            //GameSerializer.WriteWorld(Game1.World, binaryWriter, 1);
-            GameSerializer.WriteClock(Game1.GlobalClock, binaryWriter, 1);
+            binaryWriter.Write(this.CurrentSave);
+            GameSerializer.Save(binaryWriter, OutputMessage, 1);
+
 
             binaryWriter.Flush();
             binaryWriter.Close();
@@ -62,9 +63,9 @@ namespace SecretProject.Class.SavingStuff
 
             FileStream fileStream = File.OpenRead(saveFile.Path);
             BinaryReader binaryReader = new BinaryReader(fileStream);
-            GameSerializer.ReadPlayer(Game1.Player, binaryReader, 1);
-            // GameSerializer.ReadWorld(Game1.World, graphics, binaryReader, 1);
-            GameSerializer.ReadClock(Game1.GlobalClock, binaryReader, 1);
+            this.CurrentSave = binaryReader.ReadInt32();
+            GameSerializer.Load(binaryReader, 1);
+
 
             binaryReader.Close();
 
