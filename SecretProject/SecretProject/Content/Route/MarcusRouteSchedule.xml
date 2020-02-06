@@ -36,8 +36,8 @@
       <WeekDay>Monday</WeekDay>
       <Time>6PM</Time>
        <EndStage>Town</EndStage>
-      <EndX>33</EndX>
-      <EndY>48</EndY>
+      <EndX>46</EndX>
+      <EndY>56</EndY>
     </Item>
     </Routes>
   </Asset>

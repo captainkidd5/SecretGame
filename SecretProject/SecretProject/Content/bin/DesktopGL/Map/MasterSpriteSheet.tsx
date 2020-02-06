@@ -5370,6 +5370,13 @@
    <property name="transparent" value="-32, -96, 80, 112"/>
   </properties>
  </tile>
+ <tile id="7132">
+  <properties>
+   <property name="newHitBox" value="-32, -48, 80, 60"/>
+   <property name="newSource" value="-48, -112, 112, 128"/>
+   <property name="transparent" value="-32, -96, 80, 112"/>
+  </properties>
+ </tile>
  <tile id="7146">
   <objectgroup draworder="index" id="2">
    <object id="1" x="11" y="0" width="5" height="16"/>

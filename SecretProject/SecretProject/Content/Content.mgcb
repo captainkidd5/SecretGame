@@ -550,6 +550,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/Marcus/Marcus.png
 
+#begin NPC/Marcus/MarcusPortrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:NPC/Marcus/MarcusPortrait.png
+
 #begin NPC/Mippin/mippin.png
 /importer:TextureImporter
 /processor:TextureProcessor

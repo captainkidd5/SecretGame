@@ -92,6 +92,7 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D TealPortrait;
 
         public Texture2D Marcus;
+        public Texture2D MarcusPotrait;
 
 
         //playeractions
@@ -236,6 +237,7 @@ namespace SecretProject.Class.TextureStuff
             TealPortrait = content.Load<Texture2D>("NPC/Teal/TealPortrait");
 
             Marcus = content.Load<Texture2D>("NPC/Marcus/Marcus");
+            MarcusPotrait = content.Load<Texture2D>("NPC/Marcus/MarcusPortrait");
 
             MenuText = content.Load<SpriteFont>("SpriteFont/MenuText");
 
