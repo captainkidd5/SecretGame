@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.SpriteFolder;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace SecretProject.Class.ItemStuff
@@ -14,22 +15,20 @@ namespace SecretProject.Class.ItemStuff
 
 
         public int ID { get; set; }
-        public string Name { get; set; }
-        public int ItemCount { get; set; }
-        public Sprite ItemSprite { get; set; }
         public int Capacity { get; set; }
 
         public int Money { get; set; } = 0;
 
 
-        private Inventory()
+        public Inventory()
         {
 
         }
 
+
+
         public Inventory(int capacity, int slotCapacity = 0)
         {
-            this.ItemCount = 0;
             this.Capacity = capacity;
             currentInventory = new List<InventorySlot>(this.Capacity - 1);
             for (int i = 0; i < this.Capacity; i++)
@@ -100,7 +99,7 @@ namespace SecretProject.Class.ItemStuff
 
             foreach (InventorySlot s in currentInventory)
             {
-                if(s.Item != null)
+                if (s.Item != null)
                 {
                     if (s.Item.ID == id)
                     {
@@ -108,7 +107,7 @@ namespace SecretProject.Class.ItemStuff
                         return true;
                     }
                 }
-                
+
 
             }
             return false;
@@ -169,6 +168,46 @@ namespace SecretProject.Class.ItemStuff
         {
 
         }
+        #region FILEIO
+        public void Save(BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(this.ID);
+            binaryWriter.Write(this.Money);
+            binaryWriter.Write(this.currentInventory.Count);
+
+            for (int i = 0; i < this.currentInventory.Count; i++)
+            {
+                binaryWriter.Write(this.currentInventory[i].Item.ID);
+                binaryWriter.Write(this.currentInventory[i].ItemCount);
+            }
+
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            
+            this.currentInventory = new List<InventorySlot>();
+            this.ID = reader.ReadInt32();
+            this.Money = reader.ReadInt32();
+            int currentInventoryCount = reader.ReadInt32();
+            for(int i =0; i < currentInventoryCount; i++)
+            {
+                InventorySlot slot = new InventorySlot();
+                int itemId = reader.ReadInt32();
+                int itemCount = reader.ReadInt32();
+                if(itemCount > 0)
+                {
+                    Item item = Game1.ItemVault.GenerateNewItem(itemId, null);
+                    slot.Item = item;
+                    slot.ItemCount = itemCount;
+                }
+                this.currentInventory.Add(slot);
+            }
+
+
+        }
+        #endregion
+
 
 
     }

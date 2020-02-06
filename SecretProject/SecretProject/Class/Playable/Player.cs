@@ -16,6 +16,7 @@ using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SecretProject.Class.Playable
 {
@@ -930,6 +931,18 @@ namespace SecretProject.Class.Playable
         public void MouseCollisionInteraction()
         {
            // throw new NotImplementedException();
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            writer.Write(this.Name);
+            this.Inventory.Save(writer);
+        }
+        public void Load(BinaryReader reader)
+        {
+            this.Name = reader.ReadString();
+            this.Inventory = new Inventory();
+            this.Inventory.Load(reader);
         }
     }
 }

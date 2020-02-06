@@ -17,19 +17,22 @@ namespace SecretProject.Class.SavingStuff
         /// <param name="thingToAppend"></param>
         /// 
         //Can use this to check what values we are passing in.
+
+        public static float Version = 1f;
+
         public static void AppendOutputMessage(string outPutMessage, string thingToAppend)
         {
             outPutMessage = outPutMessage + " " + thingToAppend;
         }
 
+
+
         //order really really matters
         public static void WritePlayer(Player player, BinaryWriter writer, string OutputMessage, float version)
         {
-            writer.Write(Game1.Player.Position.X);
-            AppendOutputMessage(OutputMessage, Game1.Player.Position.X.ToString());
-            writer.Write(Game1.Player.Position.Y);
-            AppendOutputMessage(OutputMessage, Game1.Player.Position.Y.ToString());
 
+            Game1.Player.Save(writer);
+            
             writer.Write(Game1.Player.Name);
             AppendOutputMessage(OutputMessage, Game1.Player.Name);
 
