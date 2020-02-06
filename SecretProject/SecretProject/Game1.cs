@@ -21,6 +21,7 @@ using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using SecretProject.Class.Weather;
+using SecretProject.Class.SavingStuff;
 //using XMLDataLib;
 
 using System.Collections.Generic;
@@ -272,6 +273,9 @@ namespace SecretProject
         //SanctuaryTrackers
         public static SanctuaryTracker ForestTracker;
 
+        //FILEIO
+        public static SaveLoadManager SaveLoadManager;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -421,6 +425,7 @@ namespace SecretProject
         #region LOADCONTENT
         protected override void LoadContent()
         {
+            SaveLoadManager = new SaveLoadManager();
             PresentationParameters = this.GraphicsDevice.PresentationParameters;
             MainTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             NightLightsTarget = new RenderTarget2D(this.GraphicsDevice, PresentationParameters.BackBufferWidth, PresentationParameters.BackBufferHeight, false, PresentationParameters.BackBufferFormat, DepthFormat.Depth24);

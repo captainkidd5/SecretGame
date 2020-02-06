@@ -13,16 +13,23 @@ namespace SecretProject.Class.UI.MainMenuStuff
 {
     public class SaveSlot
     {
+        public GraphicsDevice Graphics { get; set; }
         public int ID { get; set; }
         public bool Occupied { get; set; }
         public string String { get; set; }
         public Button Button { get; set; }
 
-        public SaveSlot(int id, Button button)
+        public SaveSlot(GraphicsDevice graphics, int id, Button button)
         {
+            this.Graphics = graphics;
             this.ID = id;
             this.String = "Empty";
             this.Button = button;
+            if(Game1.SaveLoadManager.CheckIfSaveEmpty(this.ID))
+            {
+                this.Occupied = true;
+            }
+            this.String = "Occupied";
             
         }
 
@@ -33,11 +40,12 @@ namespace SecretProject.Class.UI.MainMenuStuff
             {
                 if(this.Occupied)
                 {
-                    Game1.mainMenu.LoadSave(this.ID);
+
+                    LoadSave();
                 }
                 else
                 {
-                    Game1.mainMenu.StartNewSave(this.ID);
+                   StartNewSave();
                    
                     this.String = "Occupied";
                     Game1.mainMenu.StartNewGame();
@@ -52,5 +60,15 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 Game1.AllTextures.MenuText, this.String, Button.Position, Color.White, 3f, 3f, .8f, false);
         
             }
+
+        public void LoadSave()
+        {
+            Game1.SaveLoadManager.Load(this.Graphics,Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
+        }
+
+        public void StartNewSave()
+        {
+            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
+        }
     }
 }

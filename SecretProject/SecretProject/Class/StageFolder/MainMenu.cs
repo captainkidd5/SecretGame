@@ -60,7 +60,7 @@ namespace SecretProject.Class.StageFolder
 
 
         //Random stuff
-        public SaveLoadManager MySaveLoadManager { get; private set; }
+
 
         GraphicsDevice Graphics;
         ContentManager MainMenuContentManager;
@@ -111,7 +111,7 @@ namespace SecretProject.Class.StageFolder
 
             DevPanelButtons = new List<Button>() { StartGameInTown, StartGameInWilderness, StartGameInUnderWorld };
 
-            MySaveLoadManager = new SaveLoadManager();
+ 
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
 
@@ -129,15 +129,9 @@ namespace SecretProject.Class.StageFolder
             MainMenuContentManager.Unload();
 
         }
-        public void LoadSave(int saveNumber)
-        {
-            this.MySaveLoadManager.Load(this.Graphics, this.MySaveLoadManager.GetSaveFileFromID(saveNumber));
-        }
+      
 
-        public void StartNewSave(int saveNumber)
-        {
-            this.MySaveLoadManager.Save(this.MySaveLoadManager.GetSaveFileFromID(saveNumber));
-        }
+
        
 
 

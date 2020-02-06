@@ -32,11 +32,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.BackGroundSourceRectangle = new Rectangle(304, 365, 112, 163);
             this.ButtonSourceRectangle = new Rectangle(1024, 64, 112, 48);
 
-            SaveSlot1 = new SaveSlot(1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+            SaveSlot1 = new SaveSlot(graphics, 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100), CursorType.Normal, this.Scale, null));
-            SaveSlot2 = new SaveSlot(2, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+            SaveSlot2 = new SaveSlot(graphics, 2, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 200), CursorType.Normal, this.Scale, null));
-            SaveSlot3 = new SaveSlot(3, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+            SaveSlot3 = new SaveSlot(graphics, 3, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 300), CursorType.Normal, this.Scale, null));
             this.AllSaveSlots = new List<SaveSlot>()
             {

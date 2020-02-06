@@ -7,10 +7,11 @@ namespace SecretProject.Class.SavingStuff
 {
     public class SaveLoadManager
     {
-        public string fileName;
         public string OutputMessage;
 
         public List<SaveFile> AllSaves { get; set; }
+
+
 
         public SaveLoadManager()
         {
@@ -27,6 +28,17 @@ namespace SecretProject.Class.SavingStuff
         public SaveFile GetSaveFileFromID(int ID)
         {
             return AllSaves[ID - 1];
+        }
+
+        public bool CheckIfSaveEmpty(int iD)
+        {
+            if (new FileInfo(AllSaves[iD - 1].Path).Length == 0)
+            {
+                return true;
+            }
+
+                return false;
+            
         }
 
         public void Save(SaveFile saveFile)
