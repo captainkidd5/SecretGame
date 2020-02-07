@@ -213,7 +213,7 @@ namespace SecretProject.Class.MenuStuff
 
 
         //for toolbar
-        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f, bool centerImage = false)
+        public void Draw(SpriteBatch spriteBatch, Rectangle sourceRectangle, Rectangle backgroundSourceRectangle, SpriteFont font, string text, Vector2 fontLocation, Color tint, float backGroundScale = 1f, float scale = 1f, float layerDepthCustom = .9f, bool centerImage = false, float textScale = 1f)
         {
 
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, new Vector2(this.HitBoxRectangle.X, this.HitBoxRectangle.Y), backgroundSourceRectangle, tint, 0f, Game1.Utility.Origin, backGroundScale, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
@@ -228,7 +228,7 @@ namespace SecretProject.Class.MenuStuff
 
 
             //spriteBatch.Draw(Texture, sourceRectangle: sourceRectangle,destinationRectangle: Rectangle, color: Color, layerDepth: layerDepthCustom);
-            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, layerDepth: Utility.StandardButtonDepth + .02f);
+            spriteBatch.DrawString(font, text, fontLocation, tint, 0f, Game1.Utility.Origin, textScale, SpriteEffects.None, layerDepth: Utility.StandardButtonDepth + .02f);
         }
 
         //for crafting menu
@@ -247,10 +247,10 @@ namespace SecretProject.Class.MenuStuff
         }
 
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color textTint, float textureDepth, float textDepth, float scale = 1f)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 fontLocation, Color textTint, float textureDepth, float textDepth, float textScale = 1f)
         {
             spriteBatch.Draw(this.Texture, this.HitBoxRectangle, this.BackGroundSourceRectangle, Color, 0f, Game1.Utility.Origin, SpriteEffects.None, textureDepth);
-            spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, textDepth);
+            spriteBatch.DrawString(font, text, fontLocation, textTint, 0f, Game1.Utility.Origin, textScale, SpriteEffects.None, textDepth);
         }
 
         public void DrawNormal(SpriteBatch spriteBatch, Vector2 position, Rectangle sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float depth)

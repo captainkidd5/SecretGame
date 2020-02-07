@@ -59,7 +59,7 @@ namespace SecretProject.Class.UI
                 new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32), CursorType.Normal);
         }
 
-        public void Update(GameTime gameTime, List<Alert> alerts)
+        public virtual void Update(GameTime gameTime, List<Alert> alerts)
         {
             Game1.freeze = true;
             redEsc.Update(Game1.myMouseManager);
@@ -69,7 +69,7 @@ namespace SecretProject.Class.UI
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             redEsc.Draw(spriteBatch);
             this.NineSliceRectangle.Draw(spriteBatch);
