@@ -491,10 +491,6 @@ namespace SecretProject
 
             //ITEMS
             ItemVault = new ItemBank();
-
-            LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
-
-
             AllItems = this.Content.Load<ItemHolder>("Item/ItemHolder");
             ItemVault.ItemDictionary = new Dictionary<int, ItemData>();
             for (int i = 0; i < AllItems.AllItems.Count; i++)
@@ -502,6 +498,10 @@ namespace SecretProject
                 ItemVault.ItemDictionary.Add(AllItems.AllItems[i].ID, AllItems.AllItems[i]);
             }
 
+            LootBank = new LootBank(Content.Load<LootHolder>("Item/Loot/LootHolder"));
+
+
+           
 
             
             Procedural = new Procedural();

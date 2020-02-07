@@ -27,20 +27,15 @@ namespace SecretProject.Class.ItemStuff
 
 
 
-        public Inventory(int capacity, int slotCapacity = 0)
+        public Inventory(int capacity)
         {
             this.Capacity = capacity;
             currentInventory = new List<InventorySlot>(this.Capacity - 1);
             for (int i = 0; i < this.Capacity; i++)
             {
-                if (slotCapacity == 0)
-                {
+
                     currentInventory.Add(new InventorySlot());
-                }
-                else
-                {
-                    currentInventory.Add(new InventorySlot(slotCapacity));
-                }
+                
 
             }
 
@@ -172,12 +167,13 @@ namespace SecretProject.Class.ItemStuff
         public void Save(BinaryWriter binaryWriter)
         {
             binaryWriter.Write(this.ID);
+            binaryWriter.Write(this.Capacity);
             binaryWriter.Write(this.Money);
             binaryWriter.Write(this.currentInventory.Count);
 
             for (int i = 0; i < this.currentInventory.Count; i++)
             {
-                binaryWriter.Write(this.currentInventory[i].Capacity);
+
                 binaryWriter.Write(this.currentInventory[i].ItemCount);
                 if(this.currentInventory[i].ItemCount > 0)
                 {
@@ -198,17 +194,17 @@ namespace SecretProject.Class.ItemStuff
             
             this.currentInventory = new List<InventorySlot>();
             this.ID = reader.ReadInt32();
+            this.Capacity = reader.ReadInt32();
             this.Money = reader.ReadInt32();
             int currentInventoryCount = reader.ReadInt32();
             for(int i =0; i < currentInventoryCount; i++)
             {
                 InventorySlot slot = new InventorySlot();
-                int capacity = reader.ReadInt32();
-                slot.Capacity = capacity;
-                int itemId = reader.ReadInt32();
+                
                 int itemCount = reader.ReadInt32();
                 if(itemCount > 0)
                 {
+                    int itemId = reader.ReadInt32();
                     Item item = Game1.ItemVault.GenerateNewItem(itemId, null);
                     slot.AddItemToSlot(item);
                     slot.Item = item;
@@ -228,7 +224,6 @@ namespace SecretProject.Class.ItemStuff
     public class InventorySlot
     {
         public Item Item { get; set; }
-        public int Capacity { get; set; }
         public int ItemCount { get; set; }
 
         public bool IsCurrentSelection = false;
@@ -243,16 +238,10 @@ namespace SecretProject.Class.ItemStuff
 
         public InventorySlot()
         {
-
-            this.Capacity = 999;
             this.ItemCount = 0;
         }
 
-        public InventorySlot(int capacity)
-        {
-            this.ItemCount = 0;
-            this.Capacity = capacity;
-        }
+
 
         public Item GetItem()
         {

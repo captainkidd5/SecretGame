@@ -47,9 +47,13 @@ namespace SecretProject.Class.SavingStuff
 
         public void Save()
         {
+            if(File.Exists(GetSaveFileFromID(this.CurrentSave).Path))
+            {
+                File.WriteAllText(GetSaveFileFromID(this.CurrentSave).Path, string.Empty);
+            }
             FileStream fileStream = File.OpenWrite(GetSaveFileFromID(this.CurrentSave).Path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            File.WriteAllText(GetSaveFileFromID(this.CurrentSave).Path, string.Empty);
+           
 
             binaryWriter.Write(this.CurrentSave);
             GameSerializer.Save(binaryWriter, OutputMessage, 1);
