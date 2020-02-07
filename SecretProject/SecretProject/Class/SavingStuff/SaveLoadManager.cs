@@ -20,7 +20,7 @@ namespace SecretProject.Class.SavingStuff
             AllSaves = new List<SaveFile>()
             {
                 new SaveFile(1,@"Content/SaveFiles/GameSaves/BinarySave1.dat" ),
-                new SaveFile(2,@"Content/SaveFiles/GameSaves/BinarySave3.dat" ),
+                new SaveFile(2,@"Content/SaveFiles/GameSaves/BinarySave2.dat" ),
                 new SaveFile(3,@"Content/SaveFiles/GameSaves/BinarySave3.dat" ),
             };
 

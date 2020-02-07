@@ -139,6 +139,9 @@ namespace SecretProject.Class.MenuStuff
             Game1.mainMenu.LoadBackGround();
             Game1.gameStages = Stages.MainMenu;
             Game1.mainMenu.CurrentMenuState = StageFolder.MainMenu.MenuState.Primary;
+            Game1.mainMenu.IsDrawn = true;
+            Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+           //Game1.freeze = false;
         }
         public void Update(GameTime gameTime)
         {
