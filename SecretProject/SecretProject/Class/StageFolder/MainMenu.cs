@@ -77,10 +77,10 @@ namespace SecretProject.Class.StageFolder
 
             
             //PRIMARY 
-            Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - 200, Game1.Utility.CenterScreenY), CursorType.Normal);
-            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
-            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 200, Game1.Utility.CenterScreenY), CursorType.Normal);
-            DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 400, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - 200, Game1.Utility.CenterScreenY), CursorType.Normal, 2f);
+            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal, 2f);
+            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 200, Game1.Utility.CenterScreenY), CursorType.Normal, 2f);
+            DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 400, Game1.Utility.CenterScreenY), CursorType.Normal, 2f);
 
             PrimaryButtons = new List<Button>() { Play, Settings, Exit, DevPanel };
             
@@ -93,7 +93,7 @@ namespace SecretProject.Class.StageFolder
 
 
             //SETTINGS
-            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
+            FullScreen = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(1100, 400), CursorType.Normal, 2f);
 
             SettingsButtons = new List<Button>()
             {
@@ -103,11 +103,11 @@ namespace SecretProject.Class.StageFolder
 
             //DEVPANEL
           
-            StartGameInTown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 100), CursorType.Normal);
-            StartGameInWilderness = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 200), CursorType.Normal);
-           StartGameInUnderWorld = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(1100, 400), CursorType.Normal);
+            StartGameInTown = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(1100, 100), CursorType.Normal, 2f);
+            StartGameInWilderness = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(1100, 200), CursorType.Normal, 2f);
+           StartGameInUnderWorld = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(1100, 400), CursorType.Normal, 2f);
 
-            Back = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(600, 800), CursorType.Normal);
+            Back = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(400, Game1.ScreenHeight * .8f), CursorType.Normal);
 
             DevPanelButtons = new List<Button>() { StartGameInTown, StartGameInWilderness, StartGameInUnderWorld };
 

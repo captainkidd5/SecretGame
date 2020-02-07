@@ -57,7 +57,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 else
                 {
                    StartNewSave();
-                    this.String = Game1.GlobalClock.Calendar.CurrentMonth.ToString() + ", " + Game1.GlobalClock.Calendar.CurrentDay + DateTime.Now.ToString("h:mm:ss tt");
+                    this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
                     Game1.SaveLoadManager.Save( Game1.SaveLoadManager.MainMenuData, false);
                     
                     Game1.mainMenu.StartNewGame();
