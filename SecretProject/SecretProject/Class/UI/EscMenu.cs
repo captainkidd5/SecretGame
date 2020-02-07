@@ -133,6 +133,13 @@ namespace SecretProject.Class.MenuStuff
 
             this.Buttons = new List<Button>() { this.MenuButton, this.SaveButton, this.ReturnButton, this.ToggleFullScreenButton };
         }
+
+        public void ExitToMainMenu()
+        {
+            Game1.mainMenu.LoadBackGround();
+            Game1.gameStages = Stages.MainMenu;
+            Game1.mainMenu.CurrentMenuState = StageFolder.MainMenu.MenuState.Primary;
+        }
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < this.Buttons.Count; i++)
@@ -141,8 +148,9 @@ namespace SecretProject.Class.MenuStuff
             }
             if (this.MenuButton.isClicked)
             {
-                Game1.mainMenu.LoadBackGround();
-                Game1.gameStages = Stages.MainMenu;
+                Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, AlertSize.Medium, Game1.Utility.centerScreen, "Exit to main menu?",
+                    ExitToMainMenu);
+                
             }
 
             if (this.ReturnButton.isClicked)

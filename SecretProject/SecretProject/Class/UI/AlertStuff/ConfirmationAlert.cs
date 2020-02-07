@@ -14,28 +14,55 @@ namespace SecretProject.Class.UI.AlertStuff
     {
         public Button Yes { get; set; }
         public Button No { get; set; }
-        private Action actionToExecute;
-        public ConfirmationAlert(Action action, GraphicsDevice graphics, AlertSize size, Vector2 position, string text) : base (graphics, size, position, text)
+        private Action positiveAction;
+        private Action negativeAction;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positiveAction">action which will execute when player clicks yes. Cannot be null.</param>
+        /// <param name="negativeAction">action which will execute when player clicks no. Leave null to just close the alert with no further action.</param>
+        /// <param name="graphics"></param>
+        /// <param name="size"></param>
+        /// <param name="position"></param>
+        /// <param name="text"></param>
+        public ConfirmationAlert(Action positiveAction, Action negativeAction, GraphicsDevice graphics, AlertSize size, Vector2 position, string text) : base (graphics, size, position, text)
         {
-            this.actionToExecute = action;
+            this.positiveAction = positiveAction;
+            this.negativeAction = negativeAction;
             this.Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X + 100, position.Y + 40), Controls.CursorType.Chat, 2f);
             this.No = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X, position.Y + 40), Controls.CursorType.Chat, 2f);
         }
 
         public override void Update(GameTime gameTime, List<Alert> alerts)
         {
-            base.Update(gameTime, alerts);
+            redEsc.Update(Game1.myMouseManager);
+            if (redEsc.isClicked)
+            {
+                if (negativeAction != null)
+                {
+                    negativeAction.Invoke();
+                }
+                alerts.Remove(this);
+                return;
+            }
             Yes.Update(Game1.myMouseManager);
             No.Update(Game1.myMouseManager);
 
             if(Yes.isClicked)
             {
-                actionToExecute.Invoke();
+                alerts.Remove(this);
+                positiveAction.Invoke();
             }
             else if(No.isClicked)
             {
                 Game1.freeze = false;
                 alerts.Remove(this);
+                if (negativeAction != null)
+                {
+                    negativeAction.Invoke();
+                }
+                
+                
                 return;
             }
 

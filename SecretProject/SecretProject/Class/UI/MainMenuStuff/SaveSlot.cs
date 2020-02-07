@@ -47,22 +47,28 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
-                
-                if(this.Occupied)
+                Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);
+                if (this.Occupied)
                 {
+                    Game1.mainMenu.IsDrawn = false;
                     Action action = new Action(LoadSave);
-                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Button.Position, "Load Game?", action);
+                    
+                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Game1.Utility.centerScreen, "Load Game?", action, negativeAction);
 
                 }
                 else
                 {
+                    Game1.mainMenu.IsDrawn = false;
                     Action action = new Action(InitiateNewSave);
-                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Button.Position, "Start new game?", action);
+ 
+                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large,Game1.Utility.centerScreen, "Start new game?", action,negativeAction);
 
 
                 }
             }
         }
+
+
 
         public void InitiateNewSave()
         {
@@ -83,6 +89,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void LoadSave()
         {
+            Game1.mainMenu.IsDrawn = true;
             Game1.SaveLoadManager.Load(this.Graphics,Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
             Game1.mainMenu.StartNewGame();
         }

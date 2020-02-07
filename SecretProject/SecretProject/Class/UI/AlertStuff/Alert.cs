@@ -19,9 +19,12 @@ namespace SecretProject.Class.UI
     }
     public enum AlertSize
     {
-        Small = 0,
-        Medium = 1,
-        Large = 2
+        Tiny = 1,
+        Small = 2,
+        Medium = 5,
+        Large = 8,
+        XL = 15,
+        XXL = 20
     }
     public class Alert
     {
@@ -34,7 +37,7 @@ namespace SecretProject.Class.UI
         public Rectangle MiddleRectangle { get; set; }
         public Rectangle RightRectangle { get; set; }
 
-        private Button redEsc;
+        protected Button redEsc;
 
      
 
@@ -46,19 +49,9 @@ namespace SecretProject.Class.UI
             MiddleRectangle = new Rectangle(1040, 64, 16, 48);
             RightRectangle = new Rectangle(1120, 64, 16, 48);
 
-            switch (size)
-            {
-                case AlertSize.Small:
-                    this.NineSliceRectangle = new NineSliceRectangle(position, LeftRectangle, MiddleRectangle, RightRectangle, RectangleSize.Small);
-                    break;
-                case AlertSize.Medium:
-                    this.NineSliceRectangle = new NineSliceRectangle(position, LeftRectangle, MiddleRectangle, RightRectangle, RectangleSize.Medium);
-                    break;
 
-                case AlertSize.Large:
-                    this.NineSliceRectangle = new NineSliceRectangle(position, LeftRectangle, MiddleRectangle, RightRectangle, RectangleSize.Large);
-                    break;
-            }
+                    this.NineSliceRectangle = new NineSliceRectangle(position, LeftRectangle, MiddleRectangle, RightRectangle, (RectangleSize)size);
+
 
             this.Position = position;
             this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 2f);
