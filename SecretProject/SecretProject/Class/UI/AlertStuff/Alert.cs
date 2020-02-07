@@ -73,6 +73,7 @@ namespace SecretProject.Class.UI
             redEsc.Update(Game1.myMouseManager);
             if(redEsc.isClicked)
             {
+                Game1.freeze = false;
                 alerts.Remove(this);
             }
         }

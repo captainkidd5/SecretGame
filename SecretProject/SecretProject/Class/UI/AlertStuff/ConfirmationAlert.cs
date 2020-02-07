@@ -32,14 +32,20 @@ namespace SecretProject.Class.UI.AlertStuff
             {
                 actionToExecute.Invoke();
             }
+            else if(No.isClicked)
+            {
+                Game1.freeze = false;
+                alerts.Remove(this);
+                return;
+            }
 
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", Yes.Position, Color.White, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
-            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", No.Position, Color.White, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 2f);
+            Yes.Draw(spriteBatch, Game1.AllTextures.MenuText, "Yes", Yes.Position, Color.White, Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
+            No.Draw(spriteBatch, Game1.AllTextures.MenuText, "No", No.Position, Color.White, Utility.StandardButtonDepth + .03f, Game1.Utility.StandardTextDepth + .05f, 2f);
         }
     
     }

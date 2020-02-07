@@ -7,8 +7,10 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
+using SecretProject.Class.UI.AlertStuff;
 using SecretProject.Class.UI.MainMenuStuff;
 using SecretProject.Class.Universal;
+using System;
 using System.Collections.Generic;
 
 namespace SecretProject.Class.StageFolder
@@ -65,7 +67,7 @@ namespace SecretProject.Class.StageFolder
         GraphicsDevice Graphics;
         ContentManager MainMenuContentManager;
 
-
+        public List<Alert> AllAlerts { get; set; }
 
 
 
@@ -115,7 +117,7 @@ namespace SecretProject.Class.StageFolder
  
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
-            
+            this.AllAlerts = new List<Alert>();
 
         }
 
@@ -140,37 +142,44 @@ namespace SecretProject.Class.StageFolder
         {
 
             Game1.isMyMouseVisible = true;
-
-            switch (CurrentMenuState)
+            for (int i = 0; i < AllAlerts.Count; i++)
             {
-                //Choose between Play, Dev Panel, and Settings.
-                case MenuState.Primary:
+                AllAlerts[i].Update(gameTime, AllAlerts);
+            }
+            if (!Game1.freeze)
+            {
 
-                    UpdateMainState(gameTime, game);
-                    
-                    break;
+
+                switch (CurrentMenuState)
+                {
+                    //Choose between Play, Dev Panel, and Settings.
+                    case MenuState.Primary:
+
+                        UpdateMainState(gameTime, game);
+
+                        break;
 
                     //NewGame or Load Game
-                case MenuState.Play:
-                    UpdatePlayState(gameTime);
+                    case MenuState.Play:
+                        UpdatePlayState(gameTime);
 
-                    break;
+                        break;
 
                     //developer options
-                case MenuState.DevPanel:
-                    UpdateDevPanel(gameTime);
+                    case MenuState.DevPanel:
+                        UpdateDevPanel(gameTime);
 
 
-                    break;
+                        break;
 
                     //Go to settings menu
-                case MenuState.Settings:
-                    UpdateSettings(gameTime);
-                    break;
+                    case MenuState.Settings:
+                        UpdateSettings(gameTime);
+                        break;
 
-                    
+
+                }
             }
-
             Back.Update(Game1.myMouseManager);
             if (Back.isClicked)
             {
@@ -294,6 +303,21 @@ namespace SecretProject.Class.StageFolder
             }
         }
 
+        public void AddAlert(AlertType type, AlertSize size, Vector2 position, string text, Action action = null)
+        {
+            switch (type)
+            {
+                case AlertType.Confirmation:
+                    this.AllAlerts.Add(new ConfirmationAlert(action, this.Graphics, size, position, text));
+                    break;
+                default:
+                    this.AllAlerts.Add(new Alert(this.Graphics, size, position, text));
+                    break;
+            }
+
+            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Alert1);
+        }
+
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)
 
         {
@@ -302,7 +326,10 @@ namespace SecretProject.Class.StageFolder
             Game1.myMouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), null, Color.White, 0f, Game1.Utility.Origin, .75f, SpriteEffects.None, .5f);
 
-
+            for (int i = 0; i < AllAlerts.Count; i++)
+            {
+                AllAlerts[i].Draw(spriteBatch);
+            }
             switch (CurrentMenuState)
             {
                 case MenuState.Primary:

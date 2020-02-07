@@ -47,23 +47,31 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.Button.Update(Game1.myMouseManager);
             if(this.Button.isClicked)
             {
+                
                 if(this.Occupied)
                 {
+                    Action action = new Action(LoadSave);
+                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Button.Position, "Load Game?", action);
 
-                    LoadSave();
-                    Game1.mainMenu.StartNewGame();
-                    return;
                 }
                 else
                 {
-                   StartNewSave();
-                    this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
-                    Game1.SaveLoadManager.Save( Game1.SaveLoadManager.MainMenuData, false);
-                    
-                    Game1.mainMenu.StartNewGame();
-                    return;
+                    Action action = new Action(InitiateNewSave);
+                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Button.Position, "Start new game?", action);
+
+
                 }
             }
+        }
+
+        public void InitiateNewSave()
+        {
+            StartNewSave();
+            this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
+            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+
+            Game1.mainMenu.StartNewGame();
+            return;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -76,6 +84,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void LoadSave()
         {
             Game1.SaveLoadManager.Load(this.Graphics,Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
+            Game1.mainMenu.StartNewGame();
         }
 
         public void StartNewSave()
