@@ -12,6 +12,11 @@ using System.Threading.Tasks;
 
 namespace SecretProject.Class.UI
 {
+    public enum AlertType
+    {
+        Normal = 0,
+        Confirmation = 1,
+    }
     public enum AlertSize
     {
         Small = 0,
@@ -31,8 +36,11 @@ namespace SecretProject.Class.UI
 
         private Button redEsc;
 
-        public Alert(GraphicsDevice graphics,AlertSize size, Vector2 position, string text)
+     
+
+        public Alert( GraphicsDevice graphics,AlertSize size, Vector2 position, string text)
         {
+
             this.Graphics = graphics;
             LeftRectangle = new Rectangle(1024, 64, 16, 48);
             MiddleRectangle = new Rectangle(1040, 64, 16, 48);

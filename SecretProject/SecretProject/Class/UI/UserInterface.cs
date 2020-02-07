@@ -10,6 +10,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
+using SecretProject.Class.UI.AlertStuff;
 using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.UI.StaminaStuff;
 using SecretProject.Class.Universal;
@@ -171,9 +172,18 @@ namespace SecretProject.Class.UI
             this.CurrentAccessedStorableItem = building;
         }
 
-        public void AddAlert(AlertSize size, Vector2 position, string text)
+        public void AddAlert(AlertType type, AlertSize size, Vector2 position, string text, Action action = null)
         {
-            this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
+            switch(type)
+            {
+                case AlertType.Confirmation:
+                    this.AllAlerts.Add(new ConfirmationAlert(action, this.GraphicsDevice, size, position, text));
+                    break;
+                default:
+                    this.AllAlerts.Add(new Alert(this.GraphicsDevice, size, position, text));
+                    break;
+            }
+            
             Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Alert1);
         }
 

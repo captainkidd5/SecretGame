@@ -11,9 +11,12 @@ namespace SecretProject.Class.UI
 {
     public enum RectangleSize
     {
-        Small =1,
+        Tiny = 1,
+        Small =2,
         Medium = 5,
-        Large =20
+        Large =8,
+        XL = 15,
+        XXL = 20
     }
     public class NineSliceRectangle
     {

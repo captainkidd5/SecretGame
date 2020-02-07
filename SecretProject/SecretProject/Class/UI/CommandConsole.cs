@@ -112,7 +112,7 @@ namespace SecretProject.Class.UI
                     
                     break;
                 case "alert":
-                    Game1.Player.UserInterface.AddAlert((AlertSize)int.Parse(separatedString[1]), Game1.Utility.centerScreen, separatedString[2]);
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal, (AlertSize)int.Parse(separatedString[1]), Game1.Utility.centerScreen, separatedString[2]);
                     break;
                 case "showitems":
                     for (int i = 0; i < Game1.AllItems.AllItems.Count; i++)

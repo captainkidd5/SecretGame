@@ -139,11 +139,11 @@ namespace SecretProject.Class.UI.SanctuaryStuff
             {
                 Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(FinalRewardButton.Item);
                 FinalRewardButton.Description = TextBuilder.ParseText(Game1.ItemVault.GetItem((int)FinalReward.ItemUnlock).Name + " recipe has been added to the crafting guide!", 112 * 2.5f, 1.5f);
-                Game1.Player.UserInterface.AddAlert(AlertSize.Large, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
+                Game1.Player.UserInterface.AddAlert(AlertType.Normal,AlertSize.Large, Game1.Player.position, "You have earned a new reward, check the Sanctuary Log to claim it!");
                 if (this.GIDUnlock != 0)
                 {
                     Game1.OverWorldSpawnHolder.UnlockSpawnElement(this.GIDUnlock);
-                    Game1.Player.UserInterface.AddAlert(AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
+                    Game1.Player.UserInterface.AddAlert(AlertType.Normal,AlertSize.Large, Vector2.Zero, this.GIDUnlockDescription);
                 }
                 return true;
             }
