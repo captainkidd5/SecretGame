@@ -34,7 +34,7 @@ namespace SecretProject.Class.StageFolder
         Button Exit;
 
         //PLAY BUTTONs
-        ChooseGameMenu ChooseGameMenu;
+        public ChooseGameMenu ChooseGameMenu;
 
         //SETTINGS BUTTONS
 
@@ -77,13 +77,13 @@ namespace SecretProject.Class.StageFolder
 
             
             //PRIMARY 
-            Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - 200, Game1.Utility.CenterScreenY), CursorType.Normal);
-            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
-            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 200, Game1.Utility.CenterScreenY), CursorType.Normal);
-            DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(48, 176, 128, 64), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 400, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Play = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X - 200, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Settings = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X, Game1.Utility.CenterScreenY), CursorType.Normal);
+            Exit = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 200, Game1.Utility.CenterScreenY), CursorType.Normal);
+            DevPanel = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(1024, 64, 112, 48), graphicsDevice, new Vector2(Game1.Utility.centerScreen.X + 400, Game1.Utility.CenterScreenY), CursorType.Normal);
 
             PrimaryButtons = new List<Button>() { Play, Settings, Exit, DevPanel };
-
+            
 
             //PLAY
             this.ChooseGameMenu = new ChooseGameMenu(this.Graphics, new Vector2(Game1.Utility.CenterScreenX - 400, Game1.Utility.CenterScreenY ), 3f);
@@ -114,7 +114,7 @@ namespace SecretProject.Class.StageFolder
  
             BackDrop = content.Load<Texture2D>("MainMenu/MainMenuBackDrop");
 
-
+            
 
         }
 
@@ -223,6 +223,7 @@ namespace SecretProject.Class.StageFolder
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
             CurrentMenuState = MenuState.Primary;
+            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
             Game1.SwitchStage(0, Stages.Town);
         }
 

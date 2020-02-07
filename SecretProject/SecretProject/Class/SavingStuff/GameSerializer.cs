@@ -26,17 +26,36 @@ namespace SecretProject.Class.SavingStuff
             outPutMessage = outPutMessage + " " + thingToAppend;
         }
 
+        public static void SaveMainMenu(BinaryWriter writer, string OutputMessage, float version)
+        {
+
+            for (int i = 0; i < Game1.mainMenu.ChooseGameMenu.AllSaveSlots.Count; i++)
+            {
+                Game1.mainMenu.ChooseGameMenu.AllSaveSlots[i].SaveString(writer);
+            }
+
+        }
+
+        public static void LoadMainMenu(BinaryReader reader, float version)
+        {
+            for(int i =0; i < Game1.mainMenu.ChooseGameMenu.AllSaveSlots.Count; i++)
+            {
+                Game1.mainMenu.ChooseGameMenu.AllSaveSlots[i].LoadString(reader);
+            }
+
+        }
+
 
 
         //order really really matters
-        public static void Save(BinaryWriter writer, string OutputMessage, float version)
+        public static void SaveGameFile(BinaryWriter writer, string OutputMessage, float version)
         {
             
             Game1.Player.Save(writer);
             
         }
 
-        public static void Load(BinaryReader reader, float version)
+        public static void LoadGameFile(BinaryReader reader, float version)
         {
             Game1.Player.Load(reader);
 

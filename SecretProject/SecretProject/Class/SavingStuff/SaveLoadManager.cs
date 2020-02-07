@@ -11,6 +11,7 @@ namespace SecretProject.Class.SavingStuff
         public int CurrentSave = 1;
         public List<SaveFile> AllSaves { get; set; }
 
+        public SaveFile MainMenuData { get; set; }
 
 
         public SaveLoadManager()
@@ -18,10 +19,12 @@ namespace SecretProject.Class.SavingStuff
             //mySave = new SaveData();
             AllSaves = new List<SaveFile>()
             {
-                new SaveFile(1,@"Content/SaveFiles/BinarySave1.dat" ),
-                new SaveFile(2,@"Content/SaveFiles/BinarySave3.dat" ),
-                new SaveFile(3,@"Content/SaveFiles/BinarySave3.dat" ),
+                new SaveFile(1,@"Content/SaveFiles/GameSaves/BinarySave1.dat" ),
+                new SaveFile(2,@"Content/SaveFiles/GameSaves/BinarySave3.dat" ),
+                new SaveFile(3,@"Content/SaveFiles/GameSaves/BinarySave3.dat" ),
             };
+
+            MainMenuData = new SaveFile(0, @"Content/SaveFiles/Settings/MainMenu.dat");
 
         }
 
@@ -45,35 +48,54 @@ namespace SecretProject.Class.SavingStuff
             
         }
 
-        public void Save()
+        public void Save(SaveFile saveFile, bool isGameSave = true)
         {
-            if(File.Exists(GetSaveFileFromID(this.CurrentSave).Path))
+            if(File.Exists(saveFile.Path))
             {
-                File.WriteAllText(GetSaveFileFromID(this.CurrentSave).Path, string.Empty);
+                File.WriteAllText(saveFile.Path, string.Empty);
             }
-            FileStream fileStream = File.OpenWrite(GetSaveFileFromID(this.CurrentSave).Path);
+            FileStream fileStream = File.OpenWrite(saveFile.Path);
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
            
 
             binaryWriter.Write(this.CurrentSave);
-            GameSerializer.Save(binaryWriter, OutputMessage, 1);
+            if(isGameSave)
+            {
+                GameSerializer.SaveGameFile(binaryWriter, OutputMessage, 1);
+            }
+            else
+            {
+                GameSerializer.SaveMainMenu(binaryWriter, OutputMessage, 1);
+            }
+            
 
 
             binaryWriter.Flush();
             binaryWriter.Close();
         }
 
-        public void Load(GraphicsDevice graphics, SaveFile saveFile)
+        public void Load(GraphicsDevice graphics, SaveFile saveFile, bool isGameSave = true)
         {
-
-            FileStream fileStream = File.OpenRead(saveFile.Path);
-            BinaryReader binaryReader = new BinaryReader(fileStream);
-            this.CurrentSave = binaryReader.ReadInt32();
-            GameSerializer.Load(binaryReader, 1);
+            if (File.Exists(saveFile.Path))
+            {
 
 
-            binaryReader.Close();
+                FileStream fileStream = File.OpenRead(saveFile.Path);
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+                this.CurrentSave = binaryReader.ReadInt32();
+                if (isGameSave)
+                {
+                    GameSerializer.LoadGameFile(binaryReader, 1);
+                }
+                else
+                {
+                    GameSerializer.LoadMainMenu(binaryReader, 1);
+                }
 
+
+
+                binaryReader.Close();
+            }
 
         }
 
