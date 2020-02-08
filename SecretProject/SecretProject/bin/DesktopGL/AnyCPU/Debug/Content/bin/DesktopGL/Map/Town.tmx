@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="128" height="128" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="45">
+<map version="1.2" tiledversion="1.3.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="128" height="128" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="47">
  <tileset firstgid="1" source="MasterSpriteSheet.tsx"/>
  <tileset firstgid="10001" source="InteriorSpriteSheet.tsx"/>
  <layer id="1" name="background" width="128" height="128">
@@ -585,13 +585,22 @@
     <property name="standardTo" value="Cafe"/>
    </properties>
   </object>
-  <object id="44" x="1668" y="165" width="48.6667" height="15">
+  <object id="45" x="568" y="1735" width="15" height="27">
    <properties>
-    <property name="Click" value="false"/>
+    <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>
     <property name="SafteyOffSetY" value="50"/>
     <property name="standardFrom" value="Town"/>
-    <property name="standardTo" value="SanctuaryHub"/>
+    <property name="standardTo" value="LightHouse"/>
+   </properties>
+  </object>
+  <object id="46" x="737" y="866" width="15" height="27">
+   <properties>
+    <property name="Click" value="true"/>
+    <property name="SafteyOffSetX" value="0"/>
+    <property name="SafteyOffSetY" value="50"/>
+    <property name="standardFrom" value="Town"/>
+    <property name="standardTo" value="MarcusHouse"/>
    </properties>
   </object>
  </objectgroup>

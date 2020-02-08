@@ -77,9 +77,9 @@ namespace SecretProject
         Cafe = 8,
 
         DobbinHouseUpper = 9,
-        SanctuaryHub = 10,
+        MarcusHouse = 10,
         Forest = 11,
-        ResearchStation = 12,
+        LightHouse = 12,
         UnderWorld = 13,
         MainMenu = 50,
         Exit = 55,
@@ -126,9 +126,9 @@ namespace SecretProject
         public static TmxStageBase Cafe;
         public static World UnderWorld;
         public static TmxStageBase DobbinHouseUpper;
-        public static TmxStageBase SanctuaryHub;
+        public static TmxStageBase MarcusHouse;
         public static SanctuaryBase Forest;
-        public static TmxStageBase ResearchStation;
+        public static TmxStageBase LightHouse;
 
 
         public static List<ILocation> AllStages;
@@ -360,12 +360,12 @@ namespace SecretProject
                     return UnderWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
-                case Stages.SanctuaryHub:
-                    return SanctuaryHub;
+                case Stages.MarcusHouse:
+                    return MarcusHouse;
                 case Stages.Forest:
                     return Forest;
-                case Stages.ResearchStation:
-                    return ResearchStation;
+                case Stages.LightHouse:
+                    return LightHouse;
 
                 default:
                     return null;
@@ -402,12 +402,12 @@ namespace SecretProject
                     return UnderWorld;
                 case Stages.DobbinHouseUpper:
                     return DobbinHouseUpper;
-                case Stages.SanctuaryHub:
-                    return SanctuaryHub;
+                case Stages.MarcusHouse:
+                    return MarcusHouse;
                 case Stages.Forest:
                     return Forest;
-                case Stages.ResearchStation:
-                    return ResearchStation;
+                case Stages.LightHouse:
+                    return LightHouse;
                 default:
                     return null;
 
@@ -537,16 +537,16 @@ namespace SecretProject
             Cafe = new TmxStageBase("Cafe", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/Cafe.tmx", 1, 0) { StageIdentifier = (int)Stages.Cafe };
             UnderWorld = new World("CaveWorld", LocationType.Exterior, StageType.Procedural, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Town.tmx", 1, 0) { StageIdentifier = (int)Stages.UnderWorld };
             DobbinHouseUpper = new TmxStageBase("DobbinHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/DobbinHouseUpper.tmx", 1, 0) { StageIdentifier = (int)Stages.DobbinHouse };
-            SanctuaryHub = new TmxStageBase("SanctuaryHub", LocationType.Exterior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/SanctuaryHub.tmx", 1, 0) { StageIdentifier = (int)Stages.SanctuaryHub };
+            MarcusHouse = new TmxStageBase("MarcusHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/MarcusHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.MarcusHouse };
             Forest = new SanctuaryBase("Forest", LocationType.Exterior, StageType.Sanctuary, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.MasterTileSet, "Content/bin/DesktopGL/Map/Forest.tmx", 1, 0) { StageIdentifier = (int)Stages.Forest };
-            ResearchStation = new TmxStageBase("ResearchStation", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/ResearchStation.tmx", 1, 0) { StageIdentifier = (int)Stages.ResearchStation };
+            LightHouse = new TmxStageBase("LightHouse", LocationType.Interior, StageType.Standard, graphics.GraphicsDevice, HomeContentManager, 0, AllTextures.InteriorTileSet1, "Content/bin/DesktopGL/Map/LightHouse.tmx", 1, 0) { StageIdentifier = (int)Stages.LightHouse };
 
 
             GlobalClock = new Clock();
 
 
 
-            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, SanctuaryHub, Forest, ResearchStation, UnderWorld };
+            AllStages = new List<ILocation>() { Town, OverWorld, ElixirHouse, JulianHouse, DobbinHouse, PlayerHouse, GeneralStore, KayaHouse, Cafe, DobbinHouseUpper, MarcusHouse, Forest, LightHouse, UnderWorld };
             PortalGraph = new Graph(AllStages.Count);
 
 
@@ -752,9 +752,11 @@ namespace SecretProject
 
             Game1.Player.UserInterface.TransitionSpeed = .05f;
             Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;
-            GetStageFromInt(currentStage).UnloadContent();
+            ILocation location = GetStageFromInt(currentStage);
+            location.UnloadContent();
+            ILocation newLocation = GetStageFromInt(stageToSwitchTo);
             gameStages = (Stages)stageToSwitchTo;
-            if (gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
+            if (newLocation.LocationType == LocationType.Interior || gameStages == Stages.OverWorld || gameStages == Stages.UnderWorld)
             {
                 Game1.Player.LockBounds = false;
                 
@@ -886,14 +888,14 @@ namespace SecretProject
                     case Stages.DobbinHouseUpper:
                         DobbinHouseUpper.Update(gameTime, myMouseManager, Player);
                         break;
-                    case Stages.SanctuaryHub:
-                        SanctuaryHub.Update(gameTime, myMouseManager, Player);
+                    case Stages.MarcusHouse:
+                        MarcusHouse.Update(gameTime, myMouseManager, Player);
                         break;
                     case Stages.Forest:
                         Forest.Update(gameTime, myMouseManager, Player);
                         break;
-                    case Stages.ResearchStation:
-                        ResearchStation.Update(gameTime, myMouseManager, Player);
+                    case Stages.LightHouse:
+                        LightHouse.Update(gameTime, myMouseManager, Player);
                         break;
                     case Stages.UnderWorld:
                         UnderWorld.Update(gameTime, myMouseManager, Player);
@@ -995,17 +997,17 @@ namespace SecretProject
                     this.GraphicsDevice.Clear(Color.Black);
                     DobbinHouseUpper.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
-                case Stages.SanctuaryHub:
+                case Stages.MarcusHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    SanctuaryHub.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    MarcusHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.Forest:
                     this.GraphicsDevice.Clear(Color.Black);
                     Forest.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
-                case Stages.ResearchStation:
+                case Stages.LightHouse:
                     this.GraphicsDevice.Clear(Color.Black);
-                    ResearchStation.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
+                    LightHouse.Draw(graphics.GraphicsDevice, MainTarget, NightLightsTarget, DayLightsTarget, gameTime, spriteBatch, myMouseManager, Player);
                     break;
                 case Stages.UnderWorld:
                     this.GraphicsDevice.Clear(Color.Black);

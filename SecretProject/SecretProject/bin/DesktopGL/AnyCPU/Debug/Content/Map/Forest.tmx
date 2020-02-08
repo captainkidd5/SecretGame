@@ -300,15 +300,5 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Portal">
-  <object id="45" x="1006" y="359" width="8.33337" height="52.6667">
-   <properties>
-    <property name="Click" value="false"/>
-    <property name="SafteyOffSetX" value="-50"/>
-    <property name="SafteyOffSetY" value="0"/>
-    <property name="standardFrom" value="Forest"/>
-    <property name="standardTo" value="SanctuaryHub"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="5" name="Portal"/>
 </map>

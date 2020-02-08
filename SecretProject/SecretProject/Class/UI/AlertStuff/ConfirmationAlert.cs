@@ -29,8 +29,8 @@ namespace SecretProject.Class.UI.AlertStuff
         {
             this.positiveAction = positiveAction;
             this.negativeAction = negativeAction;
-            this.Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X + 120, position.Y + 40), Controls.CursorType.Chat, 3f);
-            this.No = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X, position.Y + 40), Controls.CursorType.Chat, 3f);
+            this.Yes = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X + 120, position.Y + 40), Controls.CursorType.Normal, 3f);
+            this.No = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(736, 32, 32, 32), graphics, new Vector2(position.X, position.Y + 40), Controls.CursorType.Normal, 3f);
         }
 
         public override void Update(GameTime gameTime, List<Alert> alerts)
