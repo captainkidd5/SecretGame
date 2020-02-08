@@ -14,7 +14,7 @@ namespace SecretProject.Class.NPCStuff
     public class Marcus : Character
     {
 
-        public Marcus(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Town, false, characterPortraitTexture)
+        public Marcus(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.MarcusHouse, false, characterPortraitTexture)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 
