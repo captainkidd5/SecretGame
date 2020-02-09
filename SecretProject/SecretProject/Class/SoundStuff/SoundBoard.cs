@@ -126,6 +126,7 @@ namespace SecretProject.Class.SoundStuff
         public SoundEffect Lakescape;
         public SoundEffect Title;
         public SoundEffect MelodyOfTheSea;
+        public SoundEffect DeeperAndDeeper;
 
         //Event songs
         //Intro Scene
@@ -253,6 +254,7 @@ namespace SecretProject.Class.SoundStuff
 
             Downpour = content.Load<SoundEffect>("Songs/Downpour");
             MelodyOfTheSea = content.Load<SoundEffect>("Songs/MelodyOfTheSea");
+            DeeperAndDeeper = content.Load<SoundEffect>("Songs/DeeperAndDeeper");
 
             this.CurrentSong = Title;
             this.CurrentSongInstance = this.CurrentSong.CreateInstance();
@@ -287,6 +289,8 @@ namespace SecretProject.Class.SoundStuff
                     return DustStorm;
                 case Stages.Town:
                     return MelodyOfTheSea;
+                case Stages.UnderWorld:
+                    return DeeperAndDeeper;
                 default:
                     return Title;
 

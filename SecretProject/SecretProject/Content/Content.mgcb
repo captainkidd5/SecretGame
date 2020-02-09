@@ -1897,3 +1897,9 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin Songs/DeeperAndDeeper.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/DeeperAndDeeper.wav
+
