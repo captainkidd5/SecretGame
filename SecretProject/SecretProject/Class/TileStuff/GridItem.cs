@@ -144,7 +144,7 @@ namespace SecretProject.Class.TileStuff
                             //    subY -= 16;
                             //}
 
-                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subX / 16 / 16), ChunkUtility.GetChunkY(container.Y * 16 + subY / 16 / 16), Game1.OverWorld.AllTiles.ActiveChunks);
+                            Chunk newChunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(container.X * 16 + subX / 16 / 16), ChunkUtility.GetChunkY(container.Y * 16 + subY / 16 / 16), Game1.GetCurrentStage().AllTiles.ActiveChunks);
 
 
                             int testX = ChunkUtility.GetLocalChunkCoord(subX);
@@ -181,7 +181,7 @@ namespace SecretProject.Class.TileStuff
                                 {
                                     Portal tempPortal = new Portal(3, 5, -56, 5, true);
                                     tempPortal.PortalStart = tileManager.ActiveChunks[activeChunkX, activeChunkY].AllTiles[3][ChunkUtility.GetLocalChunkCoord(subX), ChunkUtility.GetLocalChunkCoord(subY)].DestinationRectangle;
-                                    Game1.OverWorld.AllPortals.Add(tempPortal);
+                                    Game1.GetCurrentStage().AllPortals.Add(tempPortal);
 
                                     if (!Game1.PortalGraph.HasEdge(tempPortal.From, tempPortal.To))
                                     {

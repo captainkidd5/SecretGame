@@ -743,42 +743,42 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="532">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="533">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="534">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="535">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="536">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="539">
@@ -869,35 +869,35 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="632">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="633">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="634">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="635">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="639">
@@ -1107,35 +1107,35 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="732">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="733">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="734">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="735">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="739">
