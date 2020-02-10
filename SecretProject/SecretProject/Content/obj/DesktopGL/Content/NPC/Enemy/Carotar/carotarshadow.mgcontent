@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/Enemy/Carotar/carotarshadow.png</SourceFile>
-  <SourceTime>2020-02-01T09:49:06.9573806-08:00</SourceTime>
+  <SourceTime>2020-02-02T15:41:14-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/NPC/Enemy/Carotar/carotarshadow.xnb</DestFile>
-  <DestTime>2020-02-01T09:55:44.6848352-08:00</DestTime>
+  <DestTime>2020-02-09T12:36:00.4425839-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

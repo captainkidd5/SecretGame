@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/MainPlayer/MiningDown.png</SourceFile>
-  <SourceTime>2020-01-15T11:59:04.3845175-08:00</SourceTime>
+  <SourceTime>2020-01-15T16:47:24-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/Player/MainPlayer/MiningDown.xnb</DestFile>
-  <DestTime>2020-01-15T12:02:51.9400631-08:00</DestTime>
+  <DestTime>2020-02-09T12:36:02.2546926-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
