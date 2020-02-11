@@ -31,6 +31,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public List<SaveSlot> AllSaveSlots { get; set; }
 
+        public CharacterCreationMenu CharacterCreationMenu { get; set; }
+
         public ChooseGameMenu(GraphicsDevice graphics, Vector2 position, float scale)
         {
             this.Position = position;
@@ -51,6 +53,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 SaveSlot3
             };
             this.MenuChoice = ChooseGameState.SaveSlotSelection;
+            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, new Vector2(position.X, position.Y - 400));
         }
 
         public void Update(GameTime gameTime)
@@ -64,6 +67,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                     }
                     break;
                 case ChooseGameState.CreateNewCharacter:
+                    this.CharacterCreationMenu.Update(gameTime);
                     break;
             }
             
@@ -81,6 +85,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                     }
                     break;
                 case ChooseGameState.CreateNewCharacter:
+                    this.CharacterCreationMenu.Draw(spriteBatch);
                     break;
             }
             

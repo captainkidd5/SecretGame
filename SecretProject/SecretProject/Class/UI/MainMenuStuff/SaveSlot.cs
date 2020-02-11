@@ -58,7 +58,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 }
                 else
                 {
-                    Game1.mainMenu.IsDrawn = false;
+                  //  Game1.mainMenu.IsDrawn = false;
                     Action action = new Action(InitiateNewSave);
  
                     Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large,Game1.Utility.centerScreen, "Start new game?", action,negativeAction);
@@ -72,11 +72,12 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void InitiateNewSave()
         {
-            StartNewSave();
-            this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
-            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+            Game1.mainMenu.ChooseGameMenu.MenuChoice = ChooseGameState.CreateNewCharacter;
+            //StartNewSave();
+            //this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
+            //Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
 
-            Game1.mainMenu.StartNewGame();
+            //Game1.mainMenu.StartNewGame();
             return;
         }
 
