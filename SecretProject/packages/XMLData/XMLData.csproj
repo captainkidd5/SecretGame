@@ -49,6 +49,8 @@
     <Compile Include="ItemStuff\LootStuff\LootHolder.cs" />
     <Compile Include="ItemStuff\LootStuff\LootPiece.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestStuff\Quest.cs" />
+    <Compile Include="QuestStuff\QuestHolder.cs" />
     <Compile Include="RouteStuff\Route.cs" />
     <Compile Include="RouteStuff\RouteSchedule.cs" />
     <Compile Include="SanctuaryStuff\SanctuaryHolder.cs" />

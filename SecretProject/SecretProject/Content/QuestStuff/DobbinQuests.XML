@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+<Asset Type ="XMLData.QuestStuff.QuestHolder">
+  <ID>2</ID>
+  <AllQuests>
+    <Item Type="XMLData.QuestStuff.Quest">
+    <ID>1</ID>
+    <ItemsRequired>
+    <Item>1</Item>
+    </ItemsRequired>
+    <ItemUnlocked>3</ItemUnlocked>
+    <StartUpSpeech>Bring me five bloomberry</StartUpSpeech>
+    <CompletionSpeech>Thanks!</CompletionSpeech>
+    </Item>
+</AllQuests>
+
+  </Asset>
+</XnaContent>
+

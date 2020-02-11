@@ -1426,6 +1426,11 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
+#begin QuestStuff/DobbinQuests.XML
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/DobbinQuests.XML
+
 #begin Route/DobbinRouteSchedule.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -1475,6 +1480,12 @@
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:SanctuaryStuff/ForestSanctuary.xml
+
+#begin Songs/DeeperAndDeeper.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Songs/DeeperAndDeeper.wav
 
 #begin Songs/Downpour.wav
 /importer:WavImporter
@@ -1896,10 +1907,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin Songs/DeeperAndDeeper.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Songs/DeeperAndDeeper.wav
 

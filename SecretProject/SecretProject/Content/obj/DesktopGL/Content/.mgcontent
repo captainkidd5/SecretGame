@@ -146,6 +146,7 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/SarahRouteSchedule.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Route/TealRouteSchedule.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SanctuaryStuff/ForestSanctuary.xml</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Songs/DeeperAndDeeper.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Songs/Downpour.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Songs/DustStorm.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Songs/Lakescape.wav</File>
@@ -211,7 +212,6 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/Gondola.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/IntroPlayerSillohoutte.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/tallGrass.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Songs/DeeperAndDeeper.wav</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

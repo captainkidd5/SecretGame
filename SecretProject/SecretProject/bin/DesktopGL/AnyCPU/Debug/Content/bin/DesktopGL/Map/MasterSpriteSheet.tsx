@@ -5356,6 +5356,13 @@
    <property name="newSource" value="-48, -96, 128,112"/>
   </properties>
  </tile>
+ <tile id="6246">
+  <properties>
+   <property name="newHitBox" value="-64,-80,144,96"/>
+   <property name="newSource" value="-64,-192,144,208"/>
+   <property name="transparent" value="-64,-80,144,96"/>
+  </properties>
+ </tile>
  <tile id="6320">
   <properties>
    <property name="newHitBox" value="-32,-64, 96,64"/>
