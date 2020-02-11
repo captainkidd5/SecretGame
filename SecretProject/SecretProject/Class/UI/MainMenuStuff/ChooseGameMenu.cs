@@ -13,8 +13,14 @@ using System.Collections.Generic;
 
 namespace SecretProject.Class.UI.MainMenuStuff
 {
+    public enum ChooseGameState
+    {
+        SaveSlotSelection = 1,
+        CreateNewCharacter = 2
+    }
     public class ChooseGameMenu
     {
+        public ChooseGameState MenuChoice { get; set; }
         public Vector2 Position { get; set; }
         public float  Scale { get; set; }
         public Rectangle BackGroundSourceRectangle { get; private set; }
@@ -44,23 +50,40 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 SaveSlot2,
                 SaveSlot3
             };
+            this.MenuChoice = ChooseGameState.SaveSlotSelection;
         }
 
         public void Update(GameTime gameTime)
         {
-            for(int i =0; i < this.AllSaveSlots.Count; i++)
+            switch(this.MenuChoice)
             {
-                AllSaveSlots[i].Update(gameTime);
+                case ChooseGameState.SaveSlotSelection:
+                    for (int i = 0; i < this.AllSaveSlots.Count; i++)
+                    {
+                        AllSaveSlots[i].Update(gameTime);
+                    }
+                    break;
+                case ChooseGameState.CreateNewCharacter:
+                    break;
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
-            for (int i = 0; i < this.AllSaveSlots.Count; i++)
+            switch (this.MenuChoice)
             {
-                AllSaveSlots[i].Draw(spriteBatch);
+                case ChooseGameState.SaveSlotSelection:
+                    spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
+                    for (int i = 0; i < this.AllSaveSlots.Count; i++)
+                    {
+                        AllSaveSlots[i].Draw(spriteBatch);
+                    }
+                    break;
+                case ChooseGameState.CreateNewCharacter:
+                    break;
             }
+            
         }
     }
 }
