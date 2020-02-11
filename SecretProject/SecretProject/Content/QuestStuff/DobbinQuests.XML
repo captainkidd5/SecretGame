@@ -5,11 +5,10 @@
   <AllQuests>
     <Item Type="XMLData.QuestStuff.Quest">
     <ID>1</ID>
-    <ItemsRequired>
-    <Item>1</Item>
-    </ItemsRequired>
-    <ItemUnlocked>3</ItemUnlocked>
-    <StartUpSpeech>Bring me five bloomberry</StartUpSpeech>
+ <ItemsRequired>2</ItemsRequired>
+ 
+<ItemUnlocked>3</ItemUnlocked>
+    <StartupSpeech>Bring me five bloomberry</StartupSpeech>
     <CompletionSpeech>Thanks!</CompletionSpeech>
     </Item>
 </AllQuests>

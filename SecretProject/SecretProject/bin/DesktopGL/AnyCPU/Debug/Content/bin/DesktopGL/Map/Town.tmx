@@ -558,7 +558,7 @@
     <property name="standardTo" value="DobbinHouse"/>
    </properties>
   </object>
-  <object id="40" x="1356" y="941" width="19" height="36.6667">
+  <object id="40" x="1357" y="964" width="19" height="36.6667">
    <properties>
     <property name="Click" value="true"/>
     <property name="SafteyOffSetX" value="0"/>

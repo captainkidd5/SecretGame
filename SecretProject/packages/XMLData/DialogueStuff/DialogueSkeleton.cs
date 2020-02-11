@@ -10,7 +10,7 @@ namespace XMLData.DialogueStuff
 {
     public class DialogueSkeleton
     {
-        //who will be speaking?
+
         public int SpeechID { get; set; }
         public string Time { get; set; }
         public string TextToWrite { get; set; }

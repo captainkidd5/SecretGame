@@ -10,20 +10,22 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>Waking up early gives me a sense of accomplishment for the rest of the day.</TextToWrite>
+   <TextToWrite>You're up early. I'm guessing you get great pleasure from watching the sunrise as well? `</TextToWrite>
+    <SelectableOptions>There really is something magical about it. ~I wholeheardtedly agree.,Not particularly~ ...Oh?</SelectableOptions>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
-   <TextToWrite>Sarah may be the only person in town who serves coffee, but dang does she do it right.</TextToWrite>
+   <TextToWrite>Sarah's coffee is fantastic. If you're not into caffeine she also serves hot chocolate which I can personally vouch for.</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>10AM</Time>
-   <TextToWrite>Looking to buy something? `</TextToWrite>
-   <SelectableOptions>yes~OpenDobbinShop,no~ExitDialogue</SelectableOptions>
+   <TextToWrite>PLAYERNAME, good to see you. How can I help? `</TextToWrite>
+   <SelectableOptions>I'd like to see what's for sale.~OpenDobbinShop,Nevermind.~ExitDialogue</SelectableOptions>
+     <RequiredLocation>DobbinShop</RequiredLocation>
     </Item>
   
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
@@ -35,7 +37,8 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
-   <TextToWrite>I'm already looking forward to seeing the sunrise! Its a bit cold but I certainly can't complain with a view like that. </TextToWrite>
+   <TextToWrite>Will you be waking up early tomorrow? `</TextToWrite>
+       <SelectableOptions>Yep! ~The early bird gets the worm after all.,Probably not~ Well, everyone needs their rest I suppose.</SelectableOptions>
     </Item>
 </DialogueSkeletons>
 </Item>

@@ -22,7 +22,8 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>1PM</Time>
-   <TextToWrite>I think I heard some rustling in the bushes.</TextToWrite>
+   <TextToWrite>I think I heard some rustling in the bushes.`</TextToWrite>
+      <SelectableOptions>That's alarming.~Yes, It's probably nothing.~You're right.</SelectableOptions>
     </Item>
   
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">

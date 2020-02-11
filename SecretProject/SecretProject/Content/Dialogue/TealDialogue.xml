@@ -10,8 +10,8 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>8AM</Time>
-   <TextToWrite>Hey! Having a good morning? `</TextToWrite>
-      <SelectableOptions>yes~ Lovely, I am as well., no~ Aww. I'm sorry to hear that.. Maybe if you get some food in you you'll feel better..</SelectableOptions>
+   <TextToWrite>Hey! Having a good morning?`</TextToWrite>
+    <SelectableOptions>Yes thank you. ~Happy to hear it.,No.~ Oh. I'm sorry to hear that... I hope you feel better.</SelectableOptions>
     </Item>
     
        <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
@@ -29,13 +29,13 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>4</SpeechID>
     <Time>5PM</Time>
-   <TextToWrite>Evening.</TextToWrite>
+   <TextToWrite>Evening PLAYERNAME.</TextToWrite>
     </Item>
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>5</SpeechID>
     <Time>8PM</Time>
-   <TextToWrite>It's nice sharing a house with Sarah. She makes extra coffee on Sundays when she isn't working so I still get coffee.</TextToWrite>
+   <TextToWrite>Sarah makes coffee for me in the morning before she goes off to work... Isn't she just so thoughtful?</TextToWrite>
     </Item>
 </DialogueSkeletons>
 </Item>
