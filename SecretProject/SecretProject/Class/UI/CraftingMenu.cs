@@ -68,6 +68,10 @@ namespace SecretProject.Class.UI
             //stone sword
             this.Tabs[0].AddNewCraftableItem(160, 0,3, this.BackDropPosition, graphics, this);
 
+            //Bow
+            this.Tabs[0].AddNewCraftableItem(240, 0, 4, this.BackDropPosition, graphics, this);
+            this.Tabs[0].AddNewCraftableItem(280, 1, 4, this.BackDropPosition, graphics, this);
+
 
             //GIZMOS TAB 1
             //small cog

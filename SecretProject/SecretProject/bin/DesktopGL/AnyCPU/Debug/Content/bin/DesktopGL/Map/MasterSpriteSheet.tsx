@@ -1557,9 +1557,29 @@
    <frame tileid="983" duration="80"/>
   </animation>
  </tile>
+ <tile id="984">
+  <properties>
+   <property name="replace" value="0"/>
+  </properties>
+ </tile>
+ <tile id="985">
+  <properties>
+   <property name="replace" value="1"/>
+  </properties>
+ </tile>
  <tile id="986">
   <properties>
-   <property name="replace" value=""/>
+   <property name="replace" value="2"/>
+  </properties>
+ </tile>
+ <tile id="987">
+  <properties>
+   <property name="replace" value="3"/>
+  </properties>
+ </tile>
+ <tile id="988">
+  <properties>
+   <property name="replace" value="4"/>
   </properties>
  </tile>
  <tile id="1004">
@@ -2384,37 +2404,16 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
- <tile id="1472">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="0,-16,16,32"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1475">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="520:100:5"/>
-   <property name="spawnWith" value="1476,1477"/>
+   <property name="loot" value="520"/>
+   <property name="newHitBox" value="0,0,48,16"/>
+   <property name="newSource" value="0,0,48,16"/>
   </properties>
   <objectgroup draworder="index">
    <object id="2" x="5.18182" y="11.9091" width="10.7273" height="4"/>
   </objectgroup>
- </tile>
- <tile id="1476">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="1"/>
-   <property name="relationY" value="0"/>
-  </properties>
- </tile>
- <tile id="1477">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="2"/>
-   <property name="relationY" value="0"/>
-  </properties>
  </tile>
  <tile id="1484">
   <properties>
@@ -2564,7 +2563,7 @@
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="520"/>
-   <property name="spawnWith" value="1472"/>
+   <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="1" width="5" height="14"/>
@@ -2953,6 +2952,7 @@
    <property name="lightSource" value="1,0,-48,NightTime"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
+   <property name="transparent" value="0,-48,16,64"/>
   </properties>
   <objectgroup draworder="index">
    <object id="3" x="6.09091" y="0.727273" width="4.90909" height="8.90909"/>
@@ -6089,6 +6089,54 @@
   <animation>
    <frame tileid="8938" duration="200"/>
    <frame tileid="8538" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9427">
+  <animation>
+   <frame tileid="9327" duration="500"/>
+   <frame tileid="9227" duration="500"/>
+   <frame tileid="9327" duration="500"/>
+   <frame tileid="9427" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9428">
+  <animation>
+   <frame tileid="9328" duration="500"/>
+   <frame tileid="9228" duration="500"/>
+   <frame tileid="9328" duration="500"/>
+   <frame tileid="9428" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9429">
+  <animation>
+   <frame tileid="9329" duration="500"/>
+   <frame tileid="9229" duration="500"/>
+   <frame tileid="9329" duration="500"/>
+   <frame tileid="9429" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9430">
+  <animation>
+   <frame tileid="9330" duration="500"/>
+   <frame tileid="9230" duration="500"/>
+   <frame tileid="9330" duration="500"/>
+   <frame tileid="9430" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9431">
+  <animation>
+   <frame tileid="9331" duration="500"/>
+   <frame tileid="9231" duration="500"/>
+   <frame tileid="9331" duration="500"/>
+   <frame tileid="9431" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9432">
+  <animation>
+   <frame tileid="9332" duration="500"/>
+   <frame tileid="9232" duration="500"/>
+   <frame tileid="9332" duration="500"/>
+   <frame tileid="9432" duration="500"/>
   </animation>
  </tile>
  <tile id="9442">

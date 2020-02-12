@@ -132,7 +132,8 @@ namespace SecretProject.Class.TileStuff
                 //replaces tiles with wheat grass
                 if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("replace"))
                 {
-                    GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, 4, new Vector2(tileToAssign.DestinationRectangle.X + 8
+                    int grasstype = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["replace"]);
+                    GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, grasstype, new Vector2(tileToAssign.DestinationRectangle.X + 8
                                 , tileToAssign.DestinationRectangle.Y + 8));
                     List<GrassTuft> tufts = new List<GrassTuft>()
                     {
