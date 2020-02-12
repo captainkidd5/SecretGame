@@ -58,10 +58,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 }
                 else
                 {
-                  //  Game1.mainMenu.IsDrawn = false;
-                    Action action = new Action(InitiateNewSave);
- 
-                    Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large,Game1.Utility.centerScreen, "Start new game?", action,negativeAction);
+                    //  Game1.mainMenu.IsDrawn = false;
+                    InitiateNewSave();
+                    
 
 
                 }
@@ -73,11 +72,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void InitiateNewSave()
         {
             Game1.mainMenu.ChooseGameMenu.MenuChoice = ChooseGameState.CreateNewCharacter;
-            //StartNewSave();
-            //this.String = "Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
-            //Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+            Game1.mainMenu.ChooseGameMenu.CharacterCreationMenu.CurrentSaveSlot = this;
 
-            //Game1.mainMenu.StartNewGame();
             return;
         }
 
@@ -99,6 +95,10 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             Game1.SaveLoadManager.CurrentSave = this.ID;
             Game1.SaveLoadManager.Save(Game1.SaveLoadManager.GetSaveFileFromID(Game1.SaveLoadManager.CurrentSave));
+            this.String = Game1.Player.Name + ", Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
+            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+
+            Game1.mainMenu.StartNewGame();
         }
 
         public void SaveString(BinaryWriter writer)

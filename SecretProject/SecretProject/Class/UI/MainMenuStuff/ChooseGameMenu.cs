@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 SaveSlot3
             };
             this.MenuChoice = ChooseGameState.SaveSlotSelection;
-            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, new Vector2(position.X, position.Y - 400));
+            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, SaveSlot1, new Vector2(position.X, position.Y - 400));
         }
 
         public void Update(GameTime gameTime)

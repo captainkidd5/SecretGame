@@ -215,32 +215,7 @@ namespace SecretProject.Class.DialogueStuff
                         }
                         else if (typedTextLength < parsedText.Length - 1)
                         {
-                            if (parsedText[(int)typedTextLength + 1] == '#')
-                            {
-                                parsedText.Remove((int)typedTextLength, 1);
-                                //typedTextLength--;
-                                PauseUntilInput();
-
-                            }
-                            if (parsedText[(int)typedTextLength + 1] == '`')
-                            {
-                                parsedText.Remove((int)typedTextLength, 1);
-                                //typedTextLength--;
-                                PauseUntilInput();
-
-                                this.MoveToSelectableOptions = true;
-
-                            }
-
-                            if (parsedText[(int)typedTextLength + 1] == '%')
-                            {
-                                parsedText.Remove((int)typedTextLength, 1);
-                                //typedTextLength--;
-                                string speed = parsedText[(int)typedTextLength + 2].ToString() + parsedText[(int)typedTextLength + 3].ToString() + parsedText[(int)typedTextLength + 4].ToString();
-                                this.WriteSpeed = int.Parse(speed);
-                                parsedText = parsedText.Remove((int)typedTextLength + 1, 4);
-
-                            }
+                            HandleSpecialCase();
 
 
                             this.SpeedAnchor += (float)(gameTime.ElapsedGameTime.TotalMilliseconds / this.WriteSpeed);
@@ -256,6 +231,44 @@ namespace SecretProject.Class.DialogueStuff
                     }
 
                 }
+            }
+        }
+
+        public void HandleSpecialCase()
+        {
+            if (parsedText[(int)typedTextLength + 1] == '#')
+            {
+                parsedText.Remove((int)typedTextLength, 1);
+                //typedTextLength--;
+                PauseUntilInput();
+
+            }
+            if (parsedText[(int)typedTextLength + 1] == '`')
+            {
+                parsedText.Remove((int)typedTextLength, 1);
+                //typedTextLength--;
+                PauseUntilInput();
+
+                this.MoveToSelectableOptions = true;
+
+            }
+
+            if (parsedText[(int)typedTextLength + 1] == '%')
+            {
+                parsedText.Remove((int)typedTextLength, 1);
+                //typedTextLength--;
+                string speed = parsedText[(int)typedTextLength + 2].ToString() + parsedText[(int)typedTextLength + 3].ToString() + parsedText[(int)typedTextLength + 4].ToString();
+                this.WriteSpeed = int.Parse(speed);
+                parsedText = parsedText.Remove((int)typedTextLength + 1, 4);
+
+            }
+
+            if (parsedText[(int)typedTextLength + 1] == '$')
+            {
+                parsedText = parsedText.Remove((int)typedTextLength + 1, 1);
+                //typedTextLength--;
+                parsedText = parsedText.Insert((int)typedTextLength + 1, Game1.Player.Name);
+
             }
         }
 

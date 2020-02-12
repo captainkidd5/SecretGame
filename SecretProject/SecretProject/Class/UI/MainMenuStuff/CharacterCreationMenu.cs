@@ -12,7 +12,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
 {
     public class CharacterCreationMenu
     {
+        public SaveSlot CurrentSaveSlot { get; set; }
         public string StartButtonString { get; set; }
+        public string PlayerName { get; set; }
         public float Scale { get; set; }
         public GraphicsDevice Graphics { get; set; }
         public Vector2 Position { get; set; }
@@ -21,8 +23,10 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public TypingWindow TypingWindow { get; set; }
 
         public Button StartNewGameButton { get; set; }
-        public CharacterCreationMenu(GraphicsDevice graphics, Vector2 position)
+        public CharacterCreationMenu(GraphicsDevice graphics,SaveSlot saveSlot, Vector2 position)
         {
+            this.CurrentSaveSlot = saveSlot;
+            this.PlayerName = string.Empty;
             this.StartButtonString = "GO!";
             this.Scale = 3f;
             this.Graphics = graphics;
@@ -35,16 +39,35 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Update(GameTime gameTime)
         {
+            Game1.Player.position = this.Position;
             this.StartNewGameButton.Update(Game1.myMouseManager);
             this.TypingWindow.Update(gameTime);
+            this.PlayerName = TypingWindow.EnteredString;
+
+            if(this.StartNewGameButton.isClicked)
+            {
+                Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);
+                Action action = new Action(EnterGame);
+
+                Game1.mainMenu.AddAlert(AlertType.Confirmation, AlertSize.Large, Game1.Utility.centerScreen, "Start new game?", action, negativeAction);
+            }
+        }
+
+        public void EnterGame()
+        {
+            Game1.Player.Name = this.PlayerName;
+            this.CurrentSaveSlot.StartNewSave();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Game1.Player.Draw(spriteBatch, 1f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width /2 * this.Scale - this.CharacterPortraitWindow.Width /2 * Scale,
                 this.Position.Y + this.BackGroundSourceRectangle.Height/ 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale),this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             this.TypingWindow.Draw(spriteBatch);
             this.StartNewGameButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.StartButtonString, StartNewGameButton.Position, StartNewGameButton.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, this.Scale);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 2 * Scale,
+                this.Position.Y + this.BackGroundSourceRectangle.Height / 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale -32), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
         }
     }
 }

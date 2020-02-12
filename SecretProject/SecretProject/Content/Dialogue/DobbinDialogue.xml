@@ -10,7 +10,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>You're up early. I'm guessing you get great pleasure from watching the sunrise as well? `</TextToWrite>
+   <TextToWrite>You're up early, $. I'm guessing you get great pleasure from watching the sunrise as well? `</TextToWrite>
     <SelectableOptions>There really is something magical about it. ~I wholeheardtedly agree.,Not particularly~ ...Oh?</SelectableOptions>
     </Item>
     
