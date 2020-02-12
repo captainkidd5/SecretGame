@@ -237,7 +237,12 @@ namespace SecretProject.Class.TileStuff
         public Chunk GetChunkFromPosition(Vector2 entityPosition)
         {
             Point ChunkUnderEntity = new Point((int)(entityPosition.X / 16 / TileUtility.ChunkWidth), (int)(entityPosition.Y / 16 / TileUtility.ChunkHeight));
-            return this.ActiveChunks[ChunkUnderEntity.X, ChunkUnderEntity.Y];
+            Chunk chunk = ChunkUtility.GetChunk(ChunkUnderEntity.X, ChunkUnderEntity.Y, this.ActiveChunks);
+            if(chunk == null)
+            {
+                return ChunkUnderPlayer;
+            }
+            return chunk;
 
 
         }

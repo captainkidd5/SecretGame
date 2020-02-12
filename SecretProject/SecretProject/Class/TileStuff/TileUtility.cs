@@ -477,17 +477,17 @@ namespace SecretProject.Class.TileStuff
                                     switch (container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[z][i, j].GID].Properties["generate"])
                                     {
                                         case "Dirt":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true, container.AllItems));
                                             break;
                                         case "dirtBasic":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 86, container);
                                             container.AllItems.Add(Game1.ItemVault.GenerateNewItem(1006, container.AllTiles[z][i, j].GetPosition(container), true, container.AllItems));
                                             break;
                                         case "grassBasic":
-                                            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                             TileUtility.ReplaceTile(z, i, j, 1006, container);
                                             int cx = (int)Game1.myMouseManager.WorldMousePosition.X;
                                             int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
@@ -509,7 +509,7 @@ namespace SecretProject.Class.TileStuff
                                     if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(3, container)))
                                     {
 
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
@@ -543,7 +543,7 @@ namespace SecretProject.Class.TileStuff
                                     if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(2, container)))
                                     {
 
-                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);
@@ -579,7 +579,7 @@ namespace SecretProject.Class.TileStuff
                                                 {
                                                     if (tracker.UpdateCompletionGuide(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()))
                                                     {
-                                                        Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.DigDirt);
+                                                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);
                                                         Crop tempCrop = Game1.AllCrops.GetCropFromID(Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID);
 
                                                         TileUtility.ReplaceTile(3, i, j, tempCrop.GID + 1, container);

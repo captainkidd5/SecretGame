@@ -97,7 +97,8 @@ namespace SecretProject.Class.SoundStuff
 
 
         public SoundEffect FurnaceLight;
-
+        public SoundEffect FurnaceFire;
+        public SoundEffect FurnaceDone;
         public SoundEffect UnlockItem;
 
         public SoundEffect PumpkinSmash;
@@ -226,6 +227,8 @@ namespace SecretProject.Class.SoundStuff
 
 
             FurnaceLight = content.Load<SoundEffect>("SoundEffects/FurnaceLight");
+            FurnaceFire = content.Load<SoundEffect>("SoundEffects/furnaceFire");
+            FurnaceDone = content.Load<SoundEffect>("SoundEffects/furnacedone");
 
             UnlockItem = content.Load<SoundEffect>("SoundEffects/unlockitem");
             Thunder1 = content.Load<SoundEffect>("SoundEffects/Thunder1");
@@ -310,7 +313,7 @@ namespace SecretProject.Class.SoundStuff
             UIClick.Play(this.GameVolume, .5f, 1f);
         }
 
-        public void PlaySoundEffectInstance(SoundEffect soundEffect, bool randomizePitch = false, float pitchHighCap = 1f, float pitchLowCap = 0f)
+        public void PlaySoundEffect(SoundEffect soundEffect, bool randomizePitch = false, float pitchHighCap = 1f, float pitchLowCap = 0f)
         {
             //SoundEffectInstance instance = soundEffect.CreateInstance();
             //instance.Volume = volume;
@@ -356,7 +359,7 @@ namespace SecretProject.Class.SoundStuff
             switch (emoticonType)
             {
                 case EmoticonType.Exclamation:
-                    PlaySoundEffectInstance(this.Exclamation, true);
+                    PlaySoundEffect(this.Exclamation, true);
                     break;
             }
 
@@ -377,66 +380,66 @@ namespace SecretProject.Class.SoundStuff
 
                     case 1:
 
-                        PlaySoundEffectInstance(WalkGrass, true, .2f);
+                        PlaySoundEffect(WalkGrass, true, .2f);
                         break;
                     case 2:
-                        PlaySoundEffectInstance(WalkStone, true, .2f);
+                        PlaySoundEffect(WalkStone, true, .2f);
                         break;
                     case 3:
 
-                        PlaySoundEffectInstance(WalkWood, true, .2f);
+                        PlaySoundEffect(WalkWood, true, .2f);
                         break;
                     case 4:
-                        PlaySoundEffectInstance(CrunchStep, true, .2f);
+                        PlaySoundEffect(CrunchStep, true, .2f);
                         break;
                     case 5:
 
-                        PlaySoundEffectInstance(this.PickUpItem, true, .2f);
+                        PlaySoundEffect(this.PickUpItem, true, .2f);
                         break;
                     case 6:
 
-                        PlaySoundEffectInstance(GrassBreak, true, .2f);
+                        PlaySoundEffect(GrassBreak, true, .2f);
                         break;
                     case 7:
 
-                        PlaySoundEffectInstance(DigDirt);
+                        PlaySoundEffect(DigDirt);
                         break;
                     case 8:
 
-                        PlaySoundEffectInstance(MiningHit, true, .2f);
+                        PlaySoundEffect(MiningHit, true, .2f);
                         break;
                     //day time sound effects
                     case 9:
-                        PlaySoundEffectInstance(Chirp1, true);
+                        PlaySoundEffect(Chirp1, true);
                         break;
                     case 10:
-                        PlaySoundEffectInstance(Chirp2, true);
+                        PlaySoundEffect(Chirp2, true);
                         break;
                     case 11:
-                        PlaySoundEffectInstance(Chirp3, true);
+                        PlaySoundEffect(Chirp3, true);
                         break;
                     case 12:
-                        PlaySoundEffectInstance(Crickets1);
+                        PlaySoundEffect(Crickets1);
                         break;
                     case 13:
-                        PlaySoundEffectInstance(OwlHoot1);
+                        PlaySoundEffect(OwlHoot1);
                         break;
 
                     case 14:
-                        PlaySoundEffectInstance(PigGrunt, true, .2f);
+                        PlaySoundEffect(PigGrunt, true, .2f);
                         break;
                     case 15:
-                        PlaySoundEffectInstance(PigGrunt2);
+                        PlaySoundEffect(PigGrunt2);
                         break;
                     case 16:
-                        PlaySoundEffectInstance(CropPluck, true, .2f);
+                        PlaySoundEffect(CropPluck, true, .2f);
                         break;
                     case 17:
-                        PlaySoundEffectInstance(PumpkinSmash);
+                        PlaySoundEffect(PumpkinSmash);
                         break;
 
                     case 18:
-                        PlaySoundEffectInstance(WalkSand);
+                        PlaySoundEffect(WalkSand);
                         break;
 
 

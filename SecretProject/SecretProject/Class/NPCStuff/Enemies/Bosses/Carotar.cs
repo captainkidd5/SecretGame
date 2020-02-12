@@ -239,7 +239,7 @@ namespace SecretProject.Class.NPCStuff.Enemies.Bosses
                 this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (this.SoundTimer <= 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
+                    Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
                     this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
 
                     RollPeriodicDrop(this.Position);

@@ -40,7 +40,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                     break;
             }
 
-
+            this.IdleSoundEffect = Game1.SoundManager.SlimeHit;
 
 
             this.NPCRectangleXOffSet = 8;
@@ -52,8 +52,9 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.SoundTimer = Game1.Utility.RFloat(5f, 50f);
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
-            this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
-
+            this.PossibleLoot = new List<Loot>() { new Loot(295, 100) };
+            this.SoundLowerBound = 20f;
+            this.SoundUpperBound = 30f;
             this.Rotation = 0f;
             this.FlutterOffset = new Vector2(0, 0);
             this.FlutterTimer = new SimpleTimer(.5f);

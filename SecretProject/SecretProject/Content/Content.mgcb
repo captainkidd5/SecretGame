@@ -1824,3 +1824,15 @@
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
 
+#begin SoundEffects/furnacefire.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/furnacefire.wav
+
+#begin SoundEffects/FurnaceDone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FurnaceDone.wav
+

@@ -80,7 +80,7 @@ namespace SecretProject.Class.ItemStuff
                 this.IsUpdating = true;
                 this.Tile = tile;
                 TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 1939);
-                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidOpen, true);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidOpen, true);
             }
 
 
@@ -92,7 +92,7 @@ namespace SecretProject.Class.ItemStuff
                 this.IsUpdating = false;
                 // Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(2139,100);
                 TileUtility.GetTileRectangleFromProperty(this.Tile, false, null, 2139);
-                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PotLidClose, true);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PotLidClose, true);
                 this.SmokeParticleEngine.ClearParticles();
                 this.FireParticleEngine.ClearParticles();
             }

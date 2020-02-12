@@ -236,7 +236,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="8" width="6" height="4"/>
+   <object id="1" x="5" y="0" width="11" height="12"/>
   </objectgroup>
  </tile>
  <tile id="254">
@@ -247,7 +247,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="4" y="9" width="7" height="3"/>
+   <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="255">
@@ -258,7 +258,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="8" width="11" height="4"/>
+   <object id="2" x="0" y="0" width="11" height="12"/>
   </objectgroup>
  </tile>
  <tile id="256">
@@ -269,7 +269,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="6" y="9" width="4" height="4"/>
+   <object id="2" x="4" y="0" width="8" height="13"/>
   </objectgroup>
  </tile>
  <tile id="258">
@@ -527,7 +527,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="7" width="11" height="4"/>
+   <object id="1" x="5" y="0" width="11" height="11"/>
   </objectgroup>
  </tile>
  <tile id="454">
@@ -538,7 +538,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="2" y="7" width="11" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
  </tile>
  <tile id="455">
@@ -549,7 +549,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="7" width="11" height="4"/>
+   <object id="2" x="0" y="0" width="11" height="11"/>
   </objectgroup>
  </tile>
  <tile id="456">
@@ -561,7 +561,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="9" width="6" height="4"/>
+   <object id="2" x="4" y="0" width="8" height="13"/>
   </objectgroup>
  </tile>
  <tile id="458">
@@ -743,42 +743,42 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="532">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="533">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="534">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="535">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="536">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="539">
@@ -869,35 +869,35 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="632">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="633">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="634">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="635">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="639">
@@ -1107,35 +1107,35 @@
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="732">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="733">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="734">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="735">
   <properties>
    <property name="destructable" value="21,0,5,3"/>
    <property name="generate" value="OakFloorTiling"/>
-   <property name="loot" value="480:100:1"/>
+   <property name="loot" value="480"/>
   </properties>
  </tile>
  <tile id="739">
@@ -1557,9 +1557,29 @@
    <frame tileid="983" duration="80"/>
   </animation>
  </tile>
+ <tile id="984">
+  <properties>
+   <property name="replace" value="0"/>
+  </properties>
+ </tile>
+ <tile id="985">
+  <properties>
+   <property name="replace" value="1"/>
+  </properties>
+ </tile>
  <tile id="986">
   <properties>
-   <property name="replace" value=""/>
+   <property name="replace" value="2"/>
+  </properties>
+ </tile>
+ <tile id="987">
+  <properties>
+   <property name="replace" value="3"/>
+  </properties>
+ </tile>
+ <tile id="988">
+  <properties>
+   <property name="replace" value="4"/>
   </properties>
  </tile>
  <tile id="1004">
@@ -1724,7 +1744,7 @@
  </tile>
  <tile id="1049">
   <properties>
-   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newHitBox" value="0,-32,64,48"/>
    <property name="newSource" value="0,-48,64,64"/>
   </properties>
  </tile>
@@ -2384,37 +2404,16 @@
    <property name="relationY" value="-1"/>
   </properties>
  </tile>
- <tile id="1472">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="newSource" value="0,-16,16,32"/>
-   <property name="relationX" value="0"/>
-   <property name="relationY" value="-1"/>
-  </properties>
- </tile>
  <tile id="1475">
   <properties>
    <property name="destructable" value="21,4,1,3"/>
-   <property name="loot" value="520:100:5"/>
-   <property name="spawnWith" value="1476,1477"/>
+   <property name="loot" value="520"/>
+   <property name="newHitBox" value="0,0,48,16"/>
+   <property name="newSource" value="0,0,48,16"/>
   </properties>
   <objectgroup draworder="index">
    <object id="2" x="5.18182" y="11.9091" width="10.7273" height="4"/>
   </objectgroup>
- </tile>
- <tile id="1476">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="1"/>
-   <property name="relationY" value="0"/>
-  </properties>
- </tile>
- <tile id="1477">
-  <properties>
-   <property name="layer" value="3"/>
-   <property name="relationX" value="2"/>
-   <property name="relationY" value="0"/>
-  </properties>
  </tile>
  <tile id="1484">
   <properties>
@@ -2564,7 +2563,7 @@
   <properties>
    <property name="destructable" value="21,4,1,3"/>
    <property name="loot" value="520"/>
-   <property name="spawnWith" value="1472"/>
+   <property name="newSource" value="0,-32,16,48"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="2" y="1" width="5" height="14"/>
@@ -2953,6 +2952,7 @@
    <property name="lightSource" value="1,0,-48,NightTime"/>
    <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-48,16,64"/>
+   <property name="transparent" value="0,-48,16,64"/>
   </properties>
   <objectgroup draworder="index">
    <object id="3" x="6.09091" y="0.727273" width="4.90909" height="8.90909"/>
@@ -4583,6 +4583,17 @@
    <property name="generate" value="DirtCliff"/>
   </properties>
  </tile>
+ <tile id="4263">
+  <properties>
+   <property name="destructable" value="21,4,1,3"/>
+   <property name="loot" value="521:25:5,669:5:2"/>
+   <property name="newSource" value="-32,-64,80,80"/>
+   <property name="transparent" value="-16,-48, 48, 60"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="2" y="0" width="12" height="14"/>
+  </objectgroup>
+ </tile>
  <tile id="4280">
   <properties>
    <property name="action" value="triggerLift"/>
@@ -5356,6 +5367,13 @@
    <property name="newSource" value="-48, -96, 128,112"/>
   </properties>
  </tile>
+ <tile id="6246">
+  <properties>
+   <property name="newHitBox" value="-64,-80,144,96"/>
+   <property name="newSource" value="-64,-192,144,208"/>
+   <property name="transparent" value="-64,-80,144,96"/>
+  </properties>
+ </tile>
  <tile id="6320">
   <properties>
    <property name="newHitBox" value="-32,-64, 96,64"/>
@@ -6071,6 +6089,54 @@
   <animation>
    <frame tileid="8938" duration="200"/>
    <frame tileid="8538" duration="200"/>
+  </animation>
+ </tile>
+ <tile id="9427">
+  <animation>
+   <frame tileid="9327" duration="500"/>
+   <frame tileid="9227" duration="500"/>
+   <frame tileid="9327" duration="500"/>
+   <frame tileid="9427" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9428">
+  <animation>
+   <frame tileid="9328" duration="500"/>
+   <frame tileid="9228" duration="500"/>
+   <frame tileid="9328" duration="500"/>
+   <frame tileid="9428" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9429">
+  <animation>
+   <frame tileid="9329" duration="500"/>
+   <frame tileid="9229" duration="500"/>
+   <frame tileid="9329" duration="500"/>
+   <frame tileid="9429" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9430">
+  <animation>
+   <frame tileid="9330" duration="500"/>
+   <frame tileid="9230" duration="500"/>
+   <frame tileid="9330" duration="500"/>
+   <frame tileid="9430" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9431">
+  <animation>
+   <frame tileid="9331" duration="500"/>
+   <frame tileid="9231" duration="500"/>
+   <frame tileid="9331" duration="500"/>
+   <frame tileid="9431" duration="500"/>
+  </animation>
+ </tile>
+ <tile id="9432">
+  <animation>
+   <frame tileid="9332" duration="500"/>
+   <frame tileid="9232" duration="500"/>
+   <frame tileid="9332" duration="500"/>
+   <frame tileid="9432" duration="500"/>
   </animation>
  </tile>
  <tile id="9442">

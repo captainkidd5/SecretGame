@@ -184,7 +184,7 @@ namespace SecretProject.Class.UI
                     break;
             }
             
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Alert1);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
         public void Update(GameTime gameTime, KeyboardState oldKeyState, KeyboardState newKeyState, Inventory inventory, MouseManager mouse)

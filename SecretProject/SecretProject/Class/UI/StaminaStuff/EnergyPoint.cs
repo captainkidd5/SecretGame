@@ -34,7 +34,7 @@ namespace SecretProject.Class.UI.StaminaStuff
         public int IncreaseStamina(int amount)
         {
             this.CurrentEnergy += amount;
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.FoodBite, true, 1f);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.FoodBite, true, 1f);
             Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Utility.centerScreen, Game1.Utility.CenterScreenY - 100, "+" + amount.ToString(), 100f, Color.White, false, 2f));
             if (this.CurrentEnergy > 0)
             {

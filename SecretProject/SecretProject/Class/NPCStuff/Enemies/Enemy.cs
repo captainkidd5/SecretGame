@@ -303,7 +303,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                 this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (this.SoundTimer <= 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
+                    Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
                     this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
 
                     RollPeriodicDrop(this.Position);
@@ -320,7 +320,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             {
                 if (this.PossibleLoot[i].DidReceive())
                 {
-                   // Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.GetCurrentStage().AllTiles.GetItems(positionToDrop));
+                    Game1.ItemVault.GenerateNewItem(this.PossibleLoot[i].ID, positionToDrop, true, Game1.GetCurrentStage().AllTiles.GetItems(positionToDrop));
                 }
             }
 
@@ -655,20 +655,21 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.HitPoints -= dmgAmount;
 
             this.IsImmuneToDamage = true;
-            if(this.HasPackAggression)
+            if (this.HasPackAggression)
             {
 
-            }
-            if(this.Pack != null)
-            {
-                for (int i = 0; i < this.Pack.Count; i++)
+
+                if (this.Pack != null)
                 {
-                    Pack[i].CurrentBehaviour = CurrentBehaviour.Chase;
+                    for (int i = 0; i < this.Pack.Count; i++)
+                    {
+                        Pack[i].CurrentBehaviour = CurrentBehaviour.Chase;
+                    }
                 }
             }
             
-            Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f, .8f);
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SwordImpact, true, .5f);
+            Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.Player.UserInterface.AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X  + Game1.Utility.RNumber(-50, 50), this.NPCHitBoxRectangle.Y), 100, "-" + dmgAmount.ToString(), 100f, Color.LightYellow, true, 3f, true));
         }
 

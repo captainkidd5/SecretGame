@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
@@ -33,6 +34,13 @@ namespace SecretProject.Class.ItemStuff
         public Tile Tile { get; set; }
 
         private Button redEsc;
+
+        public Vector2 OrangeFlamePosition { get; set; }
+        public Vector2 OrangeFlameCurrentPosition { get; set; }
+        public Rectangle OrangeFlameSourceRectangle { get; set; }
+
+
+        public SoundEffectInstance FireSound { get; set; }
         public Furnace(string iD, int size, Vector2 location, GraphicsDevice graphics)
         {
             this.StorableItemType = StorableItemType.Cauldron;
@@ -60,6 +68,11 @@ namespace SecretProject.Class.ItemStuff
 
             redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), graphics,
                new Vector2(this.BackDropPosition.X + this.BackDropSourceRectangle.Width * this.BackDropScale, this.BackDropPosition.Y), CursorType.Normal);
+
+            this.OrangeFlamePosition = new Vector2(this.BackDropPosition.X + 32, this.BackDropPosition.Y + this.BackDropSourceRectangle.Height * BackDropScale - 40 * BackDropScale);
+            this.OrangeFlameCurrentPosition = this.OrangeFlamePosition;
+            this.OrangeFlameSourceRectangle = new Rectangle(272, 160, 32, 32);
+            this.FireSound = Game1.SoundManager.FurnaceFire.CreateInstance();
         }
         public void Activate(Tile tile)
         {
@@ -68,6 +81,8 @@ namespace SecretProject.Class.ItemStuff
             //Tile.SourceRectangle = TileUtility.GetSourceRectangleWithoutTile(1752, 100);
 
         }
+
+
 
         public void Deactivate()
         {
@@ -81,6 +96,7 @@ namespace SecretProject.Class.ItemStuff
         public void Update(GameTime gameTime)
         {
             this.IsInventoryHovered = false;
+            this.OrangeFlameCurrentPosition = new Vector2(this.OrangeFlamePosition.X, this.OrangeFlamePosition.Y - 10 * this.SimpleTimer.Time);
             if (!Game1.Player.ClickRangeRectangle.Intersects(new Rectangle((int)this.Location.X, (int)this.Location.Y, 16, 16)))
             {
                 this.IsUpdating = false;
@@ -106,14 +122,22 @@ namespace SecretProject.Class.ItemStuff
                 this.IsInventoryHovered = true;
 
             }
+            
             if (this.SmeltSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
             {
-                if (Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].GetItem().ID).SmeltedItem != 0 && Game1.ItemVault.GetItem(this.ItemSlots[0].Inventory.currentInventory[0].GetItem().ID).FuelValue > 0)
+                if (this.SmeltSlot.Inventory.currentInventory[0].GetItemData().SmeltedItem != 0 && this.ItemSlots[0].Inventory.currentInventory[0].GetItemData().FuelValue > 0)
                 {
+                    if(FireSound.State == SoundState.Stopped)
+                    {
+                        FireSound.Play();
+                    }
                     if (this.SimpleTimer.Run(gameTime))
                     {
-                        this.SmeltSlot.Inventory.currentInventory[0].AddItemToSlot(Game1.ItemVault.GenerateNewItem(this.SmeltSlot.Inventory.currentInventory[0].GetItem().ID, null));
-                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
+                        int newID = this.SmeltSlot.Inventory.currentInventory[0].GetItemData().SmeltedItem;
+                        this.SmeltSlot.Inventory.currentInventory[0].RemoveItemFromSlot();
+                        this.SmeltSlot.Inventory.currentInventory[0].AddItemToSlot(Game1.ItemVault.GenerateNewItem(newID, null));
+                        this.ItemSlots[0].Inventory.currentInventory[0].RemoveItemFromSlot();
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.FurnaceDone, true, .25f);
                     }
                 }
             }
@@ -121,6 +145,7 @@ namespace SecretProject.Class.ItemStuff
 
             {
                 this.SimpleTimer.Time = 0;
+                this.FireSound.Stop();
             }
 
             redEsc.Update(Game1.myMouseManager);
@@ -137,6 +162,8 @@ namespace SecretProject.Class.ItemStuff
         {
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.BackDropPosition, this.BackDropSourceRectangle,
                 Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth - .02f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.OrangeFlameCurrentPosition, this.OrangeFlameSourceRectangle,
+                Color.White, 0f, Game1.Utility.Origin, this.BackDropScale, SpriteEffects.None, Utility.StandardButtonDepth - .03f);
 
             for (int i = 0; i < this.ItemSlots.Count; i++)
             {
@@ -145,7 +172,7 @@ namespace SecretProject.Class.ItemStuff
 
             this.SmeltSlot.Draw(spriteBatch);
 
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.SimpleTimer.Time.ToString(), this.TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
+           // spriteBatch.DrawString(Game1.AllTextures.MenuText, this.SimpleTimer.Time.ToString(), this.TimerStringLocation, Color.White, 0f, Game1.Utility.Origin, 2f, SpriteEffects.None, Utility.StandardButtonDepth + .01f);
 
             redEsc.Draw(spriteBatch);
         }

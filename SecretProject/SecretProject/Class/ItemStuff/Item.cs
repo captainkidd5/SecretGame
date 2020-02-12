@@ -165,7 +165,7 @@ namespace SecretProject.Class.ItemStuff
                 if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
                 {
 
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PickUpItem);
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem);
                     this.AllItems.Remove(this);
                    // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
 

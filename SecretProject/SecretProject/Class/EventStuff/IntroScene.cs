@@ -65,8 +65,8 @@ namespace SecretProject.Class.EventStuff
             Game1.Player.IsDrawn = false;
             Game1.CurrentWeather = WeatherType.Rainy;
             Game1.cam.Pos = new Vector2(128, 500);
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Thunder1);
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Downpour);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Thunder1);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Downpour);
             Game1.EnableMusic = false;
             Game1.SoundManager.CurrentSongInstance.Stop();
             Game1.Player.UserInterface.IsTransitioning = true;

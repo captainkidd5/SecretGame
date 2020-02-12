@@ -139,7 +139,7 @@ namespace SecretProject.Class.TileStuff
         {
             for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
             {
-                for (int j = 0; j < ActiveChunks.GetUpperBound(0); j++)
+                for (int j = 0; j < ActiveChunks.GetUpperBound(1); j++)
                 {
                     if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
                     {
@@ -149,6 +149,20 @@ namespace SecretProject.Class.TileStuff
 
                 }
             }
+
+            //for (int i = 0; i < ActiveChunks.GetUpperBound(0); i++)
+            //{
+            //    for (int j = 0; j < ActiveChunks.GetUpperBound(1); j++)
+            //    {
+            //        if (ActiveChunks[i, j].X == chunkX && ActiveChunks[i, j].Y == chunkY)
+            //        {
+            //            return ActiveChunks[i, j];
+            //        }
+
+
+            //    }
+            //}
+
             return null;
         }
     }

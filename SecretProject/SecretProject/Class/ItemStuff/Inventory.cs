@@ -3,6 +3,7 @@ using SecretProject.Class.SpriteFolder;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.ItemStuff
 {
@@ -241,7 +242,10 @@ namespace SecretProject.Class.ItemStuff
             this.ItemCount = 0;
         }
 
-
+        public ItemData GetItemData()
+        {
+            return Game1.ItemVault.GetItem(this.Item.ID);
+        }
 
         public Item GetItem()
         {

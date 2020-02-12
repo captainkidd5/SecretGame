@@ -93,7 +93,7 @@ namespace SecretProject.Class.SpriteFolder
 
         public void SelfDestruct()
         {
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.GrassCut, true, .25f);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.GrassCut, true, .25f);
             ILocation location = Game1.GetCurrentStage();
             location.ParticleEngine.ActivationTime = .25f;
             location.ParticleEngine.Color = Color.Green;

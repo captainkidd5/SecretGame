@@ -173,7 +173,7 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
+                                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PlaceItem1, true, .075f);
 
 
 
@@ -414,7 +414,7 @@ namespace SecretProject.Class.TileStuff
         public void PlayPlacementSound()
         {
 
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.PlaceItem1, true, .075f);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PlaceItem1, true, .075f);
 
 
 

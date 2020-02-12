@@ -71,7 +71,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
 
                     float angleFromTarget = Game1.Utility.GetAngleBetweenTwoVectors(this.Position, new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y));
-                    Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.SporeShoot, true, .15f);
+                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SporeShoot, true, .15f);
                     Game1.GetCurrentStage().AllProjectiles.Add(new SlimeBall(this.Graphics,this.Collider, this.CurrentDirection, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(angleFromTarget - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,true));
                     this.ShotsFiredDuringInterval++;
                     
@@ -174,7 +174,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
                 this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (this.SoundTimer <= 0)
                 {
-                    Game1.SoundManager.PlaySoundEffectInstance(this.IdleSoundEffect, true, 1f);
+                    Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
                     this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
 
                     RollPeriodicDrop(this.Position);

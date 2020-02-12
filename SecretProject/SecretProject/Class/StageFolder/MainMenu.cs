@@ -322,7 +322,7 @@ namespace SecretProject.Class.StageFolder
                     break;
             }
 
-            Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.Alert1);
+            Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Alert1);
         }
 
         public void Draw(GraphicsDevice graphics, GameTime gameTime, SpriteBatch spriteBatch, MouseManager mouse)

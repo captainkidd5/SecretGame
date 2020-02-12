@@ -53,7 +53,7 @@ namespace SecretProject.Class.UI.SanctuaryStuff
                 this.String = "Completed! ";
                 this.ImageLocation = Game1.AllTextures.MenuText.MeasureString(this.String);
 
-                Game1.SoundManager.PlaySoundEffectInstance(Game1.SoundManager.MiniReward, true, .25f);
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.MiniReward, true, .25f);
                 if (CompletionPage.CheckFinalReward())
                 {
                     Game1.Player.UserInterface.AllRisingText.Add(new RisingText(Game1.Player.UserInterface.BottomBar.OpenSanctuaryMenu.Position,

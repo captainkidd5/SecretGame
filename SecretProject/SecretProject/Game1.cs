@@ -616,15 +616,13 @@ namespace SecretProject
                 BuisnessSnailShop,
                 SarahShop
             };
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1162, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1403, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1055, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
-            //    Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(280, null));
-            //}
+            for (int i = 0; i < 30; i++)
+            {
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(604, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
+
+            }
 
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(40, null));
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(162, null));
