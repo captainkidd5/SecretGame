@@ -108,14 +108,14 @@ namespace SecretProject.Class.ItemStuff
             }
             if (this.SmeltSlot.Inventory.currentInventory[0].ItemCount > 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount > 0)
             {
-                //if (this.SmeltSlot.Inventory.currentInventory[0].ItemCount.SmeltedItem != 0 && this.ItemSlots[0].Inventory.currentInventory[0].ItemCount.FuelValue > 0)
-                //{
-                //    if (this.SimpleTimer.Run(gameTime))
-                //    {
-                //        this.SmeltSlot.Inventory.currentInventory[0].ItemCount = Game1.ItemVault.GenerateNewItem(this.SmeltSlot.Inventory.currentInventory[0].ItemCount.SmeltedItem, null);
-                //        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
-                //    }
-                //}
+                if (Game1.ItemVault.GetItem(this.SmeltSlot.Inventory.currentInventory[0].GetItem().ID).SmeltedItem != 0 && Game1.ItemVault.GetItem(this.ItemSlots[0].Inventory.currentInventory[0].GetItem().ID).FuelValue > 0)
+                {
+                    if (this.SimpleTimer.Run(gameTime))
+                    {
+                        this.SmeltSlot.Inventory.currentInventory[0].AddItemToSlot(Game1.ItemVault.GenerateNewItem(this.SmeltSlot.Inventory.currentInventory[0].GetItem().ID, null));
+                        this.ItemSlots[0].Inventory.RemoveItem(this.ItemSlots[0].Inventory.currentInventory[0].ItemCount);
+                    }
+                }
             }
             else
 
