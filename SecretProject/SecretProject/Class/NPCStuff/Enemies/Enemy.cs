@@ -108,6 +108,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public bool IsWorldNPC { get; set; }
         public EmoticonType CurrentEmoticon { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public bool MakesPeriodicSound { get; set; }
         public SoundEffect IdleSoundEffect { get;  set; }
         public float SoundLowerBound { get; set; }
         public float SoundUpperBound { get; set; }
@@ -298,15 +299,20 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
             }
-            if (this.IdleSoundEffect != null)
+            if (this.MakesPeriodicSound)
             {
-                this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (this.SoundTimer <= 0)
-                {
-                    Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
-                    this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
 
-                    RollPeriodicDrop(this.Position);
+
+                if (this.IdleSoundEffect != null)
+                {
+                    this.SoundTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (this.SoundTimer <= 0)
+                    {
+                        Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f);
+                        this.SoundTimer = Game1.Utility.RFloat(this.SoundLowerBound, this.SoundUpperBound);
+
+
+                    }
                 }
             }
 

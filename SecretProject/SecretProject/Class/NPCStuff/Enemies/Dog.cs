@@ -32,6 +32,7 @@ namespace SecretProject.Class.NPCStuff.Enemies
             this.HitPoints = 2;
             this.DamageColor = Color.Black;
             this.PossibleLoot = new List<Loot>() { new Loot(294, 100) };
+            this.MakesPeriodicSound = true;
         }
     }
 }

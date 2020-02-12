@@ -11,6 +11,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.UI
 {
@@ -189,13 +190,14 @@ namespace SecretProject.Class.UI
                         this.IsAnySlotHovered = true;
                         if (this.AllSlots[i].ItemCounter > 0)
                         {
-                            TextBuilder.Activate(false, TextBoxType.normal, false, Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID).Name, 1f,
+                            ItemData itemData = Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID);
+                            TextBuilder.Activate(false, TextBoxType.normal, false, itemData.Name, 1f,
                       new Vector2(this.AllSlots[i].Position.X, this.AllSlots[i].Position.Y - 32), 200f);
                             Game1.Player.UserInterface.InfoBox.IsActive = true;
                             switch (Game1.Player.UserInterface.CurrentOpenInterfaceItem)
                             {
                                 case ExclusiveInterfaceItem.ShopMenu:
-                                    Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID).Name + ":  " + "Shop will buy for " + Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID).Price + ".", 1f);
+                                    Game1.Player.UserInterface.InfoBox.FitText(itemData.Name + ":  " + "Shop will buy for " + itemData.Price + ".", 1f);
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     if (this.AllSlots[i].isRightClicked)
                                     {
@@ -214,7 +216,9 @@ namespace SecretProject.Class.UI
                                     break;
 
                                 default:
-                                    Game1.Player.UserInterface.InfoBox.FitText(Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID).Name + ":  " + Game1.ItemVault.GetItem(this.Inventory.currentInventory[i].GetItem().ID).Description, 1f);
+                                    Game1.Player.UserInterface.InfoBox.DisplayTitle = true;
+                                    Game1.Player.UserInterface.InfoBox.FitTitleText(itemData.Name, 1f);
+                                    Game1.Player.UserInterface.InfoBox.FitText(itemData.Description, 1f);
                                     Game1.Player.UserInterface.InfoBox.WindowPosition = new Vector2(this.AllSlots[i].Position.X - Game1.Player.UserInterface.InfoBox.SourceRectangle.Width + 50, this.AllSlots[i].Position.Y - 150);
                                     break;
                             }
