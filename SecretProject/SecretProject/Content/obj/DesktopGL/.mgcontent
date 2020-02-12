@@ -5,13 +5,6 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/BackDrops/wilderness.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/Cursor1.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/PlantCursor.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/tileSelector.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBar.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBarButton.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/ToolBarButtonSelector.png</File>
-    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/transparentTextBox.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Button/userinterfaceTileSet.png</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Crop/CropStuff.xml</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/Debug/solidred.png</File>
@@ -215,13 +208,6 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/tallGrass.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
