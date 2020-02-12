@@ -23,7 +23,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
     <Time>10AM</Time>
-   <TextToWrite>PLAYERNAME, good to see you. How can I help? `</TextToWrite>
+   <TextToWrite>$, good to see you. How can I help? `</TextToWrite>
    <SelectableOptions>I'd like to see what's for sale.~OpenDobbinShop,Nevermind.~ExitDialogue</SelectableOptions>
      <RequiredLocation>DobbinShop</RequiredLocation>
     </Item>

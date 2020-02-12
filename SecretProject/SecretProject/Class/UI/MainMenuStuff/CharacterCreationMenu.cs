@@ -55,7 +55,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
         public void EnterGame()
         {
-            Game1.Player.Name = this.PlayerName;
+            Game1.Player.Name = char.ToUpper(this.PlayerName[0]) + this.PlayerName.Substring(1).ToLower();
             this.CurrentSaveSlot.StartNewSave();
         }
         public void Draw(SpriteBatch spriteBatch)

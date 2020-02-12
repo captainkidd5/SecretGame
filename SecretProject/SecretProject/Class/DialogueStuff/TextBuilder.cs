@@ -267,6 +267,7 @@ namespace SecretProject.Class.DialogueStuff
             {
                 parsedText = parsedText.Remove((int)typedTextLength + 1, 1);
                 //typedTextLength--;
+
                 parsedText = parsedText.Insert((int)typedTextLength + 1, Game1.Player.Name);
 
             }

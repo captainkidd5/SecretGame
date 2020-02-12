@@ -10,7 +10,7 @@
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>4AM</Time>
-   <TextToWrite>Hello... You must be PLAYERNAME. I heard someone new was in Town... # I specialize in creating potions. Stop by my house if you want to give me a hand
+   <TextToWrite>Hello... You must be $. I heard someone new was in Town... # I specialize in creating potions. Stop by my house if you want to give me a hand
    and learn more about potions in the meantime. ...Of course I'd compensate you with gold as well..</TextToWrite>
     </Item>
     
