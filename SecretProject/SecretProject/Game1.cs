@@ -621,6 +621,7 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(604, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
 
             }
 
@@ -635,7 +636,7 @@ namespace SecretProject
             Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
             Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
             Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], AllTextures.KayaPortrait) { FrameToSet = 0 };
-            Snaw = new Character("Snaw", new Vector2(121, 70), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
+            Snaw = new Character("Snaw", new Vector2(121, 67), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 3, AllTextures.SnawPortrait)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,

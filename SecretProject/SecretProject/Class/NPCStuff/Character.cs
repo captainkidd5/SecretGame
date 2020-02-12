@@ -153,7 +153,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             {
                 this.CharacterPortraitTexture = characterPortraitTexture;
             }
-            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 128, 128);
+            this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 96, 96);
         }
 
         public void ResetAnimations()
