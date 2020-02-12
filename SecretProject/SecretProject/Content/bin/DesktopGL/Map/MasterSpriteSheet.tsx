@@ -236,7 +236,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="8" width="6" height="4"/>
+   <object id="1" x="5" y="0" width="11" height="12"/>
   </objectgroup>
  </tile>
  <tile id="254">
@@ -247,7 +247,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="4" y="9" width="7" height="3"/>
+   <object id="1" x="0" y="0" width="16" height="12"/>
   </objectgroup>
  </tile>
  <tile id="255">
@@ -258,7 +258,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="8" width="11" height="4"/>
+   <object id="2" x="0" y="0" width="11" height="12"/>
   </objectgroup>
  </tile>
  <tile id="256">
@@ -269,7 +269,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="6" y="9" width="4" height="4"/>
+   <object id="2" x="4" y="0" width="8" height="13"/>
   </objectgroup>
  </tile>
  <tile id="258">
@@ -527,7 +527,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="7" width="11" height="4"/>
+   <object id="1" x="5" y="0" width="11" height="11"/>
   </objectgroup>
  </tile>
  <tile id="454">
@@ -538,7 +538,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="2" y="7" width="11" height="4"/>
+   <object id="1" x="0" y="0" width="16" height="11"/>
   </objectgroup>
  </tile>
  <tile id="455">
@@ -549,7 +549,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="2" x="0" y="7" width="11" height="4"/>
+   <object id="2" x="0" y="0" width="11" height="11"/>
   </objectgroup>
  </tile>
  <tile id="456">
@@ -561,7 +561,7 @@
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
   <objectgroup draworder="index" id="2">
-   <object id="1" x="5" y="9" width="6" height="4"/>
+   <object id="2" x="4" y="0" width="8" height="13"/>
   </objectgroup>
  </tile>
  <tile id="458">
@@ -1724,7 +1724,7 @@
  </tile>
  <tile id="1049">
   <properties>
-   <property name="newHitBox" value="0,8, 32, 16"/>
+   <property name="newHitBox" value="0,-32,64,48"/>
    <property name="newSource" value="0,-48,64,64"/>
   </properties>
  </tile>
