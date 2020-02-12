@@ -17,6 +17,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using XMLData.ItemStuff;
 
 namespace SecretProject.Class.Playable
 {
@@ -422,9 +423,10 @@ namespace SecretProject.Class.Playable
                     {
                         if(UserInterface.BackPack.Inventory.ContainsAtLeastOne(280))
                         {
+                            ItemData arrowData = Game1.ItemVault.GetItem(280);
                             CheckMouseRotationFromEntity(this.Position);
                             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.BowShoot, true, .15f);
-                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false));
+                            Game1.GetCurrentStage().AllProjectiles.Add(new Projectile(this.Graphics, this.MainCollider, this.Direction, new Vector2(this.Position.X + 8, this.Position.Y + 8), MathHelper.ToRadians(Game1.myMouseManager.MouseAngleInRelationToPlayer - 90), 160f, Vector2.Zero, Game1.GetCurrentStage().AllProjectiles,false, arrowData.Damage));
                             UserInterface.BackPack.Inventory.RemoveItem(280);
                         }
                         
@@ -676,7 +678,7 @@ namespace SecretProject.Class.Playable
                     {
                         if (this.ToolLine.IntersectsRectangle(returnObjects[i].Rectangle))
                         {
-                            returnObjects[i].Entity.DamageCollisionInteraction(1, 10, this.controls.Direction);
+                            returnObjects[i].Entity.DamageCollisionInteraction(Game1.ItemVault.GetItem(this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID).Damage, 10, this.controls.Direction);
                         }
                     }
                 }

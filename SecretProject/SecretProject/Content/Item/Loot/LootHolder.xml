@@ -50,7 +50,7 @@
                     </Item>
                 </LootPieces>
             </Item>
-
+        <!-- Fur Tree -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>2963</GID>
                 <LootPieces>
@@ -58,6 +58,25 @@
                         <Unlocked>true</Unlocked>
                         <ItemToSpawnID>520</ItemToSpawnID>
                         <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+            <!-- Steel Vein -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>1277</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>640</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>604</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
                     </Item>
                 </LootPieces>

@@ -33,6 +33,9 @@ namespace XMLData.ItemStuff
         public int Durability { get; set; }
 
         [ContentSerializer(Optional = true)]
+        public byte Damage { get; set; }
+
+        [ContentSerializer(Optional = true)]
         public int PlaceID { get; set; }
 
         [ContentSerializer(Optional = true)]

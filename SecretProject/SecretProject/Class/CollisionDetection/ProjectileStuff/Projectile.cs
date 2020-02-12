@@ -37,7 +37,9 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
         public SoundEffect MissSound { get; set; }
 
         SimpleTimer TimeToLive;
-        public Projectile(GraphicsDevice graphics, Collider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer)
+
+        public int DamageValue { get; set; }
+        public Projectile(GraphicsDevice graphics, Collider colliderFiredFrom, Dir directionFiredFrom, Vector2 startPosition, float rotation, float speed, Vector2 positionToMoveToward, List<Projectile> allProjectiles, bool damagesPlayer, int damage)
         {
             this.Graphics = graphics;
             this.ColliderFiredFrom = colliderFiredFrom;
@@ -56,6 +58,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
 
             this.TimeToLive = new SimpleTimer(8f);
             this.MissSound = Game1.SoundManager.ArrowMiss;
+            this.DamageValue = damage;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -83,7 +86,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
                     {
                         if (this.Collider.Rectangle.Intersects(Game1.Player.MainCollider.Rectangle))
                         {
-                            Game1.Player.TakeDamage(1);
+                            Game1.Player.TakeDamage(this.DamageValue);
                             this.AllProjectiles.Remove(this);
                         }
                     }
@@ -97,7 +100,7 @@ namespace SecretProject.Class.CollisionDetection.ProjectileStuff
     
                         if ((returnObjects[i].Rectangle != this.ColliderFiredFrom.Rectangle))
                         {
-                            returnObjects[i].Entity.DamageCollisionInteraction(1, 5, this.DirectionFiredFrom);
+                            returnObjects[i].Entity.DamageCollisionInteraction(this.DamageValue, 5, this.DirectionFiredFrom);
                             this.AllProjectiles.Remove(this);
                             return;
                         }

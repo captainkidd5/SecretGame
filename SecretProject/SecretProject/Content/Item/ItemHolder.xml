@@ -141,6 +141,7 @@
 <Description>A weak sword.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
 <Durability>25</Durability>
+<Damage>1</Damage>
 <Type>Sword</Type>
 </Item>
 
@@ -150,6 +151,7 @@
 <Description>A blade of shadows.</Description>
 <InvMaximum>1</InvMaximum><Price>50</Price>
 <Durability>25</Durability>
+<Damage>2</Damage>
 <Type>Sword</Type>
 </Item>
 
@@ -189,6 +191,7 @@
 <ID>280</ID>
 <Description>Ammunition for bows.</Description>
 <InvMaximum>999</InvMaximum><Price>1</Price>
+<Damage>4</Damage>
 <Type>Ammunition</Type>
 </Item>
 
