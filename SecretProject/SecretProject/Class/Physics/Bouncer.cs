@@ -27,7 +27,7 @@ namespace SecretProject.Class.Physics
             this.BounceObjectPosition = bounceObjectStartPosition;
             this.DirectionToBounce = directionToBounce;
 
-            this.VerticalFloor = this.VerticalSpeed * Game1.Utility.RFloat(.75f, 1.5f);
+            this.VerticalFloor = this.VerticalSpeed * Game1.Utility.RFloat(.75f, 3f);
             switch(DirectionToBounce)
             {
                 case Dir.Down:

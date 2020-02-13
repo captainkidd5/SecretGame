@@ -51,6 +51,9 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(1286, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 5, true){Unlocked = true }, //thorn bush
                 new SpawnElement(976, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Sand, 50, true){Unlocked = true }, //desert stone
 
+                //Wooden Boards
+                new SpawnElement(2052, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.OakFloorTiling, 50, false){Unlocked = true }, //Wood Barrel
+
                 //SWAMP
                 new SpawnElement(4764, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp tree
                 new SpawnElement(1681, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.LandSwamp, 5, true){Unlocked = true }, //Swamp vine

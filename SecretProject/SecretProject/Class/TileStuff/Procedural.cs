@@ -267,6 +267,10 @@ namespace SecretProject.Class.TileStuff
                 {
                     newGID = 1015; //GRASS
                 }
+                else if (perlinValue >= -.05f && perlinValue <-.047)
+                {
+                    newGID = (int)GenerationType.OakFloorTiling + 1;
+                }
 
                 else if (perlinValue >= -1f && perlinValue < -.1f)
                 {
