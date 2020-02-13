@@ -77,9 +77,6 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-        public SimpleTimer BounceTimer;
-        public bool IsBouncing { get; set; }
-        public Dir BounceDirection { get; set; }
 
 
         //for non animated sprites
@@ -133,7 +130,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Rectangle = this.DestinationRectangle;
         }
 
-
+        //only for dragging sprites in the UI
         public void Update(GameTime gameTime, Vector2 position)
         {
 
@@ -245,37 +242,7 @@ namespace SecretProject.Class.SpriteFolder
             spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f, SpriteEffects.None, layerDepth);
         }
 
-        public void Bounce(GameTime gameTime, float force)
-        {
-            float xDirectionMultiplier = 0;
-            float yDirectionMultiplier = 0;
-            switch (this.BounceDirection)
-            {
-                case Dir.Down:
-                    xDirectionMultiplier = 0f;
-                    yDirectionMultiplier = 1f;
-                    break;
-                case Dir.Left:
-                    xDirectionMultiplier = -1f;
-                    yDirectionMultiplier = 0f;
-                    break;
-                case Dir.Right:
-                    xDirectionMultiplier = 1f;
-                    yDirectionMultiplier = 0f;
-                    break;
-                case Dir.Up:
-                    xDirectionMultiplier = 0f;
-                    yDirectionMultiplier = -1f;
-                    break;
-            }
-
-            this.Position = new Vector2(this.Position.X + xDirectionMultiplier, this.Position.Y + yDirectionMultiplier);
-
-            if(BounceTimer.Run(gameTime))
-            {
-
-            }
-        }
+  
 
         public void Toss(GameTime gameTime, float x, float y)
         {

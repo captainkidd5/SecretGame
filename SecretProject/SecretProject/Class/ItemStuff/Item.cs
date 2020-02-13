@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
 using System;
@@ -68,6 +69,7 @@ namespace SecretProject.Class.ItemStuff
 
 
         public List<Item> AllItems { get; set; }
+        public Bouncer Bouncer { get; set; }
 
         public Item(ItemData itemData, List<Item> allItems)
         {
@@ -106,8 +108,9 @@ namespace SecretProject.Class.ItemStuff
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle,
                     WorldPosition, 16, 16)
                 {  TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item,
-                    Entity = this, BounceTimer = new Universal.SimpleTimer(1f),IsBouncing = true, BounceDirection = Game1.Player.Direction };
+                    Entity = this };
                 this.Ignored = true;
+                this.Bouncer = new Bouncer(WorldPosition, Game1.Player.controls.Direction);
                 AllItems.Add(this);
             }
             else
@@ -122,9 +125,13 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite.Update(gameTime);
 
-                if(this.ItemSprite.IsBouncing)
+                if(this.Bouncer != null)
                 {
-                    this.ItemSprite.Bounce(gameTime, 1f);
+                    this.ItemSprite.Position = Bouncer.Update(gameTime);
+                    if(!this.Bouncer.IsActive)
+                    {
+                        this.Bouncer = null;
+                    }
                 }
                 if (this.IsTossable == true)
                 {
@@ -183,8 +190,7 @@ namespace SecretProject.Class.ItemStuff
                 Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
                 dir.Normalize();
                 this.ItemSprite.Position += dir;
-                //ItemSprite.Position.X -= playerpos.X ;
-                //ItemSprite.Position.Y -= playerpos.Y;
+
 
             }
         }
