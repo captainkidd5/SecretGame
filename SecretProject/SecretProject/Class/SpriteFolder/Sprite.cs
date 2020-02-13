@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.Universal;
 using System;
 
 namespace SecretProject.Class.SpriteFolder
@@ -29,10 +30,8 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsWorldItem { get; set; } = false;
         public bool PickedUp { get; set; } = false;
         public bool IsBeingDragged { get; set; } = false;
-
-        public bool IsBobbing { get; set; } = false;
         public bool IsTossed { get; set; } = false;
-        public float BobberTimer { get; set; }
+
         public float TossTimer { get; set; }
 
 
@@ -78,6 +77,9 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
+        public SimpleTimer BounceTimer;
+        public bool IsBouncing { get; set; }
+        public Dir BounceDirection { get; set; }
 
 
         //for non animated sprites
@@ -243,26 +245,34 @@ namespace SecretProject.Class.SpriteFolder
             spriteBatch.Draw(this.AtlasTexture, position, this.SourceRectangle, Color.White, rotation, origin, 1f, SpriteEffects.None, layerDepth);
         }
 
-        public void Bobber(GameTime gameTime)
+        public void Bounce(GameTime gameTime, float force)
         {
-
-
-            if (this.IsBobbing)
+            float xDirectionMultiplier = 0;
+            float yDirectionMultiplier = 0;
+            switch (this.BounceDirection)
             {
-                this.BobberTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (this.BobberTimer > 3)
-                {
-                    this.BobberTimer = 0f;
-                }
-                if (this.BobberTimer < 1.5f)
-                {
-                    Position.Y += .05f;
-                }
+                case Dir.Down:
+                    xDirectionMultiplier = 0f;
+                    yDirectionMultiplier = 1f;
+                    break;
+                case Dir.Left:
+                    xDirectionMultiplier = -1f;
+                    yDirectionMultiplier = 0f;
+                    break;
+                case Dir.Right:
+                    xDirectionMultiplier = 1f;
+                    yDirectionMultiplier = 0f;
+                    break;
+                case Dir.Up:
+                    xDirectionMultiplier = 0f;
+                    yDirectionMultiplier = -1f;
+                    break;
+            }
 
-                if (this.BobberTimer >= 1.5f && this.BobberTimer < 3f)
-                {
-                    Position.Y -= .05f;
-                }
+            this.Position = new Vector2(this.Position.X + xDirectionMultiplier, this.Position.Y + yDirectionMultiplier);
+
+            if(BounceTimer.Run(gameTime))
+            {
 
             }
         }

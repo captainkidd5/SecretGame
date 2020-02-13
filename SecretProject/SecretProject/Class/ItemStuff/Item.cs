@@ -105,7 +105,8 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite = new Sprite(this.Graphics, Game1.AllTextures.ItemSpriteSheet, this.SourceTextureRectangle,
                     WorldPosition, 16, 16)
-                { IsBobbing = true, TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item, Entity = this };
+                {  TextureScaleX = .75f, TextureScaleY = .75f, IsWorldItem = true, LayerDepth = .7f, ColliderType = ColliderType.Item,
+                    Entity = this, BounceTimer = new Universal.SimpleTimer(1f),IsBouncing = true, BounceDirection = Game1.Player.Direction };
                 this.Ignored = true;
                 AllItems.Add(this);
             }
@@ -121,7 +122,10 @@ namespace SecretProject.Class.ItemStuff
             {
                 this.ItemSprite.Update(gameTime);
 
-
+                if(this.ItemSprite.IsBouncing)
+                {
+                    this.ItemSprite.Bounce(gameTime, 1f);
+                }
                 if (this.IsTossable == true)
                 {
                     this.ItemSprite.Toss(gameTime, 1f, 1f);
