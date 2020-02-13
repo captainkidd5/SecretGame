@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
 

@@ -4,6 +4,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.StageFolder;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 
 namespace SecretProject.Class.TileStuff

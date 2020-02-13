@@ -11,6 +11,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.Universal;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -479,14 +480,17 @@ namespace SecretProject.Class.TileStuff
                     float[,] bottomNoise = new float[16, 16];
                     float[,] topNoise = new float[16, 16];
                     FastNoise bottomNoiseGenerator;
+                    FastNoise topNoiseGenerator;
 
                     if(Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
                         bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
+                        topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
                     }
                     else
                     {
                         bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
+                        topNoiseGenerator = Game1.Procedural.OverworldFrontNoise; //change
                     }
 
                     for (int i = 0; i < 16; i++)
@@ -494,7 +498,7 @@ namespace SecretProject.Class.TileStuff
                         for (int j = 0; j < 16; j++)
                         {
                             bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
-                            topNoise[i,j]
+                            topNoise[i,j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
                         }
                     }
 
@@ -634,7 +638,7 @@ namespace SecretProject.Class.TileStuff
                     else
                     {
                         HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                        GenerateLandscape();
+                        GenerateLandscape(topNoise);
                     }
 
                     List<int> CliffBottomTiles;
@@ -736,7 +740,7 @@ namespace SecretProject.Class.TileStuff
             this.IsLoaded = false;
         }
 
-        public void GenerateLandscape()
+        public void GenerateLandscape(float[,] noise)
         {
             List<SpawnElement> spawnElements;
             if (Game1.GetCurrentStageInt() == Stages.OverWorld)

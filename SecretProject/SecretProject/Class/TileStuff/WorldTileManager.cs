@@ -11,6 +11,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff.SanctuaryStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,10 +161,10 @@ namespace SecretProject.Class.TileStuff
                     //If this errors its because there's a property in tiled which contains generate but has a value which isn't supported. Capitals matter!
                     if (this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties.ContainsKey("generate"))
                     {
-                        GenerationIndex generationIndex = (GenerationIndex)Enum.Parse(typeof(GenerationIndex), this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"]);
-                        if (!Game1.Procedural.AllTilingContainers[(int)generationIndex].GeneratableTiles.Contains(i))
+                        GenerationType generationIndex = (GenerationType)Enum.Parse(typeof(GenerationType), this.MapName.Tilesets[this.TileSetNumber].Tiles[i].Properties["generate"]);
+                        if (!Game1.Procedural.GetTilingContainerFromGID((GenerationType)generationIndex).GeneratableTiles.Contains(i))
                         {
-                            Game1.Procedural.AllTilingContainers[(int)generationIndex].GeneratableTiles.Add(i);
+                            Game1.Procedural.AllTilingContainers[(GenerationType)generationIndex].GeneratableTiles.Add(i);
                         }
                     }
                 }

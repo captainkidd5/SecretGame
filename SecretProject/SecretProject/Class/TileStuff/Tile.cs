@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 
 namespace SecretProject.Class.TileStuff
 {

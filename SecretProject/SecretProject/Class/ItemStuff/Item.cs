@@ -7,6 +7,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Physics;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using System;
 using System.Collections.Generic;
 using XMLData.ItemStuff;

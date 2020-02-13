@@ -6,6 +6,7 @@ using SecretProject.Class.MenuStuff;
 using SecretProject.Class.NPCStuff.Enemies;
 using SecretProject.Class.NPCStuff.Enemies.Bosses;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;

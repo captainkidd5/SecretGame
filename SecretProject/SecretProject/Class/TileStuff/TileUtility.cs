@@ -7,7 +7,7 @@ using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
-
+using SecretProject.Class.TileStuff.SpawnStuff;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -492,9 +492,9 @@ namespace SecretProject.Class.TileStuff
                                             int cx = (int)Game1.myMouseManager.WorldMousePosition.X;
                                             int cy = (int)Game1.myMouseManager.WorldMousePosition.Y;
 
-
-                                            WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[1].GeneratableTiles,
-                                        Game1.Procedural.AllTilingContainers[1].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
+                                            //might be wonky
+                                            WangManager.GroupReassignForTiling(cx, cy, 1006, Game1.Procedural.AllTilingContainers[GenerationType.Dirt].GeneratableTiles,
+                                        Game1.Procedural.AllTilingContainers[GenerationType.Dirt].TilingDictionary, 0, Game1.GetCurrentStage().AllTiles);
 
                                             break;
                                     }
