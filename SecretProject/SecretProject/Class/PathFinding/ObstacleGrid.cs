@@ -35,15 +35,15 @@ namespace SecretProject.Class.PathFinding
         //1 empty, 0 obstructed
         public void UpdateGrid(int indexI, int indexJ, GridStatus newValue)
         {
-          //  if(indexI < 16 && indexI >= 0)
-          //  {
-            //    if(indexJ < 16 && indexJ >= 0)
-             //   {
+            if (indexI >= 0)
+            {
+                if (indexJ >= 0)
+                {
                     Weight[indexI, indexJ] = (byte)newValue;
                     return;
-             //   }
-                
-           // }
+                }
+
+            }
             System.Console.WriteLine("Index Error");
             
         }
