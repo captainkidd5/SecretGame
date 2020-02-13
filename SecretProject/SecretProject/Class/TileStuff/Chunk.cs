@@ -476,24 +476,25 @@ namespace SecretProject.Class.TileStuff
                     IsDoneLoading = true;
                     this.IsGenerating = true;
                     this.PathGrid = new ObstacleGrid(this.MapWidth, this.MapHeight);
-                    float[,] noise = new float[16, 16];
-
-                    FastNoise noiseGenerator;
+                    float[,] bottomNoise = new float[16, 16];
+                    float[,] topNoise = new float[16, 16];
+                    FastNoise bottomNoiseGenerator;
 
                     if(Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
-                        noiseGenerator = Game1.Procedural.OverworldNoise;
+                        bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
                     }
                     else
                     {
-                        noiseGenerator = Game1.Procedural.UnderWorldNoise;
+                        bottomNoiseGenerator = Game1.Procedural.UnderWorldNoise;
                     }
 
                     for (int i = 0; i < 16; i++)
                     {
                         for (int j = 0; j < 16; j++)
                         {
-                            noise[i, j] = noiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                            bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                            topNoise[i,j]
                         }
                     }
 
@@ -513,10 +514,10 @@ namespace SecretProject.Class.TileStuff
                             {
                                 for (int j = 0; j < 16; j++)
                                 {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                                 }
                             }
                         }
@@ -559,7 +560,7 @@ namespace SecretProject.Class.TileStuff
                                 {
 
 
-                                    int newGID = Game1.Procedural.GetOverWorldTileFromNoise(noise[i, j], z);
+                                    int newGID = Game1.Procedural.GetOverWorldTileFromNoise(bottomNoise[i, j], z);
                                     this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
@@ -578,7 +579,7 @@ namespace SecretProject.Class.TileStuff
                                 {
 
 
-                                    int newGID = Game1.Procedural.GetUnderWorldTileFromNoise(noise[i, j], z);
+                                    int newGID = Game1.Procedural.GetUnderWorldTileFromNoise(bottomNoise[i, j], z);
                                     this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
