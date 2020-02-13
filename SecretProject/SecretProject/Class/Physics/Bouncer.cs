@@ -27,26 +27,27 @@ namespace SecretProject.Class.Physics
             this.BounceObjectPosition = bounceObjectStartPosition;
             this.DirectionToBounce = directionToBounce;
 
+            this.VerticalFloor = this.VerticalSpeed * Game1.Utility.RFloat(.75f, 1.5f);
             switch(DirectionToBounce)
             {
                 case Dir.Down:
-                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
+                    Velocity = new Vector2(HorizontalSpeed * Game1.Utility.RNumber(-1, 2), -this.VerticalSpeed);
                     break;
                 case Dir.Left:
                     Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Right:
-                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
+                    Velocity = new Vector2(-HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Up:
-                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
+                    Velocity = new Vector2(HorizontalSpeed * Game1.Utility.RNumber(-1, 2), -this.VerticalSpeed);
                     break;
                 default:
                     Velocity = new Vector2(HorizontalSpeed, - this.VerticalSpeed);
                     break;
             }
             this.BaseVelocity = Velocity;
-            this.VerticalFloor = bounceObjectStartPosition.Y + Game1.Utility.RNumber(5,10);
+            this.VerticalFloor = bounceObjectStartPosition.Y + Game1.Utility.RNumber(3,8);
             this.IsActive = true;
 
         }
@@ -64,7 +65,7 @@ namespace SecretProject.Class.Physics
                 
             }
 
-            if (Math.Abs(Velocity.X) <= .001 || Math.Abs(Velocity.Y) <= .03)
+            if (Math.Abs(Velocity.X) <= .0004 || Math.Abs(Velocity.Y) <= .005)
             {
                 this.IsActive = false;
             }
