@@ -172,25 +172,27 @@ namespace SecretProject.Class.ItemStuff
         {
             if (this.IsWorldItem)
             {
-
-                if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
-                {
-
-                    Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem);
-                    this.AllItems.Remove(this);
-                   // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
+                
 
 
-                    Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
-                    Game1.Player.UserInterface.BackPack.CheckGridItem();
+                    if (Game1.Player.MainCollider.IsIntersecting(this.ItemSprite))
+                    {
+
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PickUpItem);
+                        this.AllItems.Remove(this);
+                        // Game1.GetCurrentStage().AllTiles.GetItems(this.WorldPosition).Remove(this);
+
+
+                        Game1.Player.Inventory.TryAddItem(Game1.ItemVault.GenerateNewItem(this.ID, null));
+                        Game1.Player.UserInterface.BackPack.CheckGridItem();
 
 
 
-                }
-                Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
-                dir.Normalize();
-                this.ItemSprite.Position += dir;
-
+                    }
+                    Vector2 dir = new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y) - this.ItemSprite.Position;
+                    dir.Normalize();
+                    this.ItemSprite.Position += dir;
+                
 
             }
         }

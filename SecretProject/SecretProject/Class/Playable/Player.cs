@@ -646,7 +646,7 @@ namespace SecretProject.Class.Playable
                 if (returnObjects[i].ColliderType == ColliderType.Item)
                 {
 
-                    if (this.BigCollider.IsIntersecting(returnObjects[i]))
+                    if (this.MainCollider.IsIntersecting(returnObjects[i]))
                     {
                         returnObjects[i].Entity.DamageCollisionInteraction(0, 5, this.controls.Direction);
                     }

@@ -15,10 +15,12 @@ namespace SecretProject.Class.Physics
         public Vector2 Velocity { get; set; }
         public Dir DirectionToBounce { get; set; }
         public float VerticalFloor { get; set; }
+        public float VerticalSpeed { get; set; } = 2f;
+        public float HorizontalSpeed { get; set; } = .75f;
 
-        public Vector2 AirResistance { get; set; } = new Vector2(.25f, .9f);
+        public Vector2 AirResistance { get; set; } = new Vector2(2f, 12f);
         public bool IsActive { get; set; }
-        public int TimesBounced { get; set; }
+ 
 
         public Bouncer(Vector2 bounceObjectStartPosition, Dir directionToBounce)
         {
@@ -28,41 +30,41 @@ namespace SecretProject.Class.Physics
             switch(DirectionToBounce)
             {
                 case Dir.Down:
-                    Velocity = new Vector2(0, .1f);
+                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Left:
-                    Velocity = new Vector2(-.1f, -.1f);
+                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Right:
-                    Velocity = new Vector2(.1f, -.1f);
+                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
                     break;
                 case Dir.Up:
-                    Velocity = new Vector2(0, -.1f);
+                    Velocity = new Vector2(HorizontalSpeed, -this.VerticalSpeed);
+                    break;
+                default:
+                    Velocity = new Vector2(HorizontalSpeed, - this.VerticalSpeed);
                     break;
             }
             this.BaseVelocity = Velocity;
-            this.VerticalFloor = bounceObjectStartPosition.Y + 20;
+            this.VerticalFloor = bounceObjectStartPosition.Y + Game1.Utility.RNumber(5,10);
             this.IsActive = true;
-            this.TimesBounced = 0;
+
         }
 
         public Vector2 Update(GameTime gameTime)
         {
-            float newY = this.BounceObjectPosition.Y + (float)gameTime.ElapsedGameTime.TotalMilliseconds * Velocity.Y;
-            float newX = this.BounceObjectPosition.X + (float)gameTime.ElapsedGameTime.TotalMilliseconds * Velocity.X;
-            Velocity = new Vector2(Velocity.X * AirResistance.X, Velocity.Y * AirResistance.Y);
-            if(Math.Abs(Velocity.Y) <= .00001)
+
+            Velocity += AirResistance * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            this.BounceObjectPosition += Velocity;
+            if (this.BounceObjectPosition.Y >= this.VerticalFloor)
             {
-                Velocity = new Vector2(Velocity.X, Math.Abs(BaseVelocity.Y) * -1);
+                this.Velocity = this.BaseVelocity *.8f;
+                this.BaseVelocity = this.Velocity;
+
+                
             }
-            if(this.BounceObjectPosition.Y >= this.VerticalFloor)
-            {
-                Velocity = this.BaseVelocity / 2;
-                TimesBounced++;
-            }
-            this.BounceObjectPosition = new Vector2(newX, newY);
-           
-            if(TimesBounced >= 4)
+
+            if (Math.Abs(Velocity.X) <= .001 || Math.Abs(Velocity.Y) <= .03)
             {
                 this.IsActive = false;
             }
