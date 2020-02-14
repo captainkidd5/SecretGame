@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.QuestFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Teal : Character
     {
-        public Teal(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Town, false, characterPortraitTexture)
+        public Teal(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Town, false, questHandler, characterPortraitTexture)
         {
             this.NPCAnimatedSprite = new Sprite[4];
 

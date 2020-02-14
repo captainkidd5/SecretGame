@@ -31,6 +31,7 @@ using XMLData.ItemStuff.LootStuff;
 using XMLData.RouteStuff;
 using static SecretProject.Class.UI.CheckList;
 using XMLData.QuestStuff;
+using SecretProject.Class.QuestFolder;
 
 
 
@@ -221,17 +222,18 @@ namespace SecretProject
         public RouteSchedule MarcusRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
 
-        public QuestHolder DobbinQuests;
-        public QuestHolder ElixirQuests;
-        public QuestHolder KayaQuests;
-        public QuestHolder JulianQuests;
-        public QuestHolder SarahQuests;
-        public QuestHolder MippinQuests;
-        public QuestHolder NedQuests;
-        public QuestHolder TealQuests;
-        public QuestHolder MarcusQuests;
-        public QuestHolder SnawQuests;
-        public QuestHolder BusinessSnailQuests;
+        public QuestHandler DobbinQuests;
+        public QuestHandler ElixirQuests;
+        public QuestHandler KayaQuests;
+        public QuestHandler JulianQuests;
+        public QuestHandler SarahQuests;
+        public QuestHandler MippinQuests;
+        public QuestHandler NedQuests;
+        public QuestHandler TealQuests;
+        public QuestHandler MarcusQuests;
+        public QuestHandler SnawQuests;
+        public QuestHandler BusinessSnailQuests;
+        
         
 
         public static ItemHolder AllItems;
@@ -495,16 +497,16 @@ namespace SecretProject
             //SOUND
             SoundManager = new SoundBoard(this, this.Content);
 
-            DobbinQuests = Content.Load<QuestHolder>("QuestStuff/DobbinQuests");
-            ElixirQuests = Content.Load<QuestHolder>("QuestStuff/ElixirQuests");
-            KayaQuests = Content.Load<QuestHolder>("QuestStuff/KayaQuests");
-            JulianQuests = Content.Load<QuestHolder>("QuestStuff/JulianQuests");
-            MippinQuests = Content.Load<QuestHolder>("QuestStuff/MippinQuests");
-            TealQuests = Content.Load<QuestHolder>("QuestStuff/TealQuests");
-            MarcusQuests = Content.Load<QuestHolder>("QuestStuff/MarcusQuests");
-            NedQuests = Content.Load<QuestHolder>("QuestStuff/NedQuests");
-            SnawQuests = Content.Load<QuestHolder>("QuestStuff/SnawQuests");
-            BusinessSnailQuests = Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests");
+            DobbinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/DobbinQuests"));
+            ElixirQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/ElixirQuests"));
+            KayaQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/KayaQuests"));
+            JulianQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/JulianQuests"));
+            MippinQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MippinQuests"));
+            TealQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/TealQuests"));
+            MarcusQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/MarcusQuests"));
+            NedQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/NedQuests"));
+            SnawQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/SnawQuests"));
+            BusinessSnailQuests = new QuestHandler(Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests"));
 
             //PLAYERS
 
@@ -657,11 +659,11 @@ namespace SecretProject
             LineTexture = new Texture2D(graphics.GraphicsDevice, 1, 1);
             LineTexture.SetData<Color>(new Color[] { Color.White });
 
-            Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1], AllTextures.ElixirPortrait) { FrameToSet = 0 };
-            Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0], AllTextures.DobbinPortrait) { FrameToSet = 0 };
-            Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2], AllTextures.KayaPortrait) { FrameToSet = 0 };
+            Elixir = new Elixir("Elixer", new Vector2(23, 10), graphics.GraphicsDevice, Game1.AllTextures.ElixirSpriteSheet, AllSchedules[1],ElixirQuests, AllTextures.ElixirPortrait) { FrameToSet = 0 };
+            Dobbin = new Dobbin("Dobbin", new Vector2(18, 8), graphics.GraphicsDevice, Game1.AllTextures.DobbinSpriteSheet, AllSchedules[0],DobbinQuests, AllTextures.DobbinPortrait) { FrameToSet = 0 };
+            Kaya = new Kaya("Kaya", new Vector2(20, 19), graphics.GraphicsDevice, Game1.AllTextures.KayaSpriteSheet, AllSchedules[2],KayaQuests, AllTextures.KayaPortrait) { FrameToSet = 0 };
             Snaw = new Character("Snaw", new Vector2(121, 67), graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
-                3, AllTextures.SnawPortrait)
+                3,  AllTextures.SnawPortrait, SnawQuests)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.SnawSpriteSheet,
                 0, 0, 72, 96, 3, .3f, new Vector2(1280, 500)) { IsAnimated = true,  } },
@@ -671,10 +673,10 @@ namespace SecretProject
                 FrameToSet = 3,
                 IsBasicNPC = true
             };
-            Julian = new Julian("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], AllTextures.JulianPortrait) { FrameToSet = 0 };
-            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4], AllTextures.SarahPortrait) { FrameToSet = 0 };
+            Julian = new Julian("Julian", new Vector2(16, 9), graphics.GraphicsDevice, Game1.AllTextures.JulianSpriteSheet, AllSchedules[3], JulianQuests,AllTextures.JulianPortrait) { FrameToSet = 0 };
+            Sarah = new Sarah("Sarah", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.SarahSpriteSheet, AllSchedules[4],SarahQuests, AllTextures.SarahPortrait) { FrameToSet = 0 };
             BusinessSnail = new Character("Business Snail", new Vector2(34, 80), graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
-                1, AllTextures.BusinessSnailPortrait)
+                1,  AllTextures.BusinessSnailPortrait, BusinessSnailQuests)
             {
                 NPCAnimatedSprite = new Sprite[1] { new Sprite(graphics.GraphicsDevice, Game1.AllTextures.BusinessSnail,
                 0, 0, 32, 32, 1, 1f, new Vector2(1280, 600)) { IsAnimated = true,  } },
@@ -685,10 +687,10 @@ namespace SecretProject
                 IsBasicNPC = true
             };
 
-            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5], AllTextures.MippinPortrait) { FrameToSet = 0 };
-            Ned = new Ned("Ned", new Vector2(45, 110), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6], AllTextures.NedPortrait) { FrameToSet = 0 };
-            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7], AllTextures.TealPortrait) { FrameToSet = 0 };
-            Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8], AllTextures.MarcusPotrait) { FrameToSet = 0 };
+            Mippin = new Mippin("Mippin", new Vector2(40, 21), graphics.GraphicsDevice, Game1.AllTextures.Mippin, AllSchedules[5],MippinQuests, AllTextures.MippinPortrait) { FrameToSet = 0 };
+            Ned = new Ned("Ned", new Vector2(45, 110), graphics.GraphicsDevice, Game1.AllTextures.Ned, AllSchedules[6],NedQuests, AllTextures.NedPortrait) { FrameToSet = 0 };
+            Teal = new Teal("Teal", new Vector2(45, 80), graphics.GraphicsDevice, Game1.AllTextures.Teal, AllSchedules[7],TealQuests, AllTextures.TealPortrait) { FrameToSet = 0 };
+            Marcus = new Marcus("Marcus", new Vector2(11, 24), graphics.GraphicsDevice, Game1.AllTextures.Marcus, AllSchedules[8],MarcusQuests, AllTextures.MarcusPotrait) { FrameToSet = 0 };
             AllCharacters = new List<Character>()
             {
                 Elixir,

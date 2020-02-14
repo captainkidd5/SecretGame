@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.QuestFolder;
 using SecretProject.Class.SpriteFolder;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Mippin : Character
     {
-        public Mippin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.JulianHouse, false, characterPortraitTexture)
+        public Mippin(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.JulianHouse, false, questHandler, characterPortraitTexture)
         {
             this.SpeakerID = 8;
             this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 16, 32, 6, .06f, this.Position);

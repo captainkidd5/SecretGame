@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
+using SecretProject.Class.QuestFolder;
 using SecretProject.Class.SpriteFolder;
 using XMLData.RouteStuff;
 
@@ -8,7 +9,7 @@ namespace SecretProject.Class.NPCStuff
 {
     public class Sarah : Character
     {
-        public Sarah(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Cafe, false, characterPortraitTexture)
+        public Sarah(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.Cafe, false, questHandler, characterPortraitTexture)
         {
             this.SpeakerID = 6;
             this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 0, 0, 16, 32, 6, .15f, this.Position);

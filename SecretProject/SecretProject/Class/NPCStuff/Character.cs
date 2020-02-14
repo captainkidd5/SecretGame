@@ -5,6 +5,7 @@ using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.PathFinding;
 using SecretProject.Class.PathFinding.PathFinder;
+using SecretProject.Class.QuestFolder;
 using SecretProject.Class.RouteStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
@@ -97,7 +98,9 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public Stages HomeStage { get; set; }
         public Vector2 HomePosition { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, Texture2D characterPortraitTexture = null)
+        public QuestHandler QuestHandler { get; set; }
+
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC,QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
             
@@ -136,9 +139,10 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             Game1.GlobalClock.HourChanged += OnHourIncreased;
             this.CurrentTime = Game1.GlobalClock.GlobalTime;
             this.TimeLastMoved = this.CurrentTime;
+            this.QuestHandler = questHandler;
         }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null)
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null,QuestHandler questHandler = null )
         {
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
@@ -154,6 +158,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 this.CharacterPortraitTexture = characterPortraitTexture;
             }
             this.CharacterPortraitSourceRectangle = new Rectangle(0, 0, 96, 96);
+            this.QuestHandler = questHandler;
         }
 
         public void ResetAnimations()

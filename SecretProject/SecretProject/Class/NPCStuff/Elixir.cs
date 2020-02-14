@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.CollisionDetection;
-
+using SecretProject.Class.QuestFolder;
 using SecretProject.Class.SpriteFolder;
 using XMLData.RouteStuff;
 
@@ -11,7 +11,7 @@ namespace SecretProject.Class.NPCStuff
     {
 
 
-        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.ElixirHouse, false, characterPortraitTexture)
+        public Elixir(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, QuestHandler questHandler, Texture2D characterPortraitTexture) : base(name, position, graphics, spriteSheet, routeSchedule, Stages.ElixirHouse, false, questHandler, characterPortraitTexture)
         {
             this.SpeakerID = 1;
             this.NPCAnimatedSprite[0] = new Sprite(graphics, this.Texture, 48, 0, 16, 48, 6, .15f, this.Position);
