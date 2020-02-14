@@ -88,7 +88,12 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public List<NoiseInterval> OverWorldMidgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldBuildingsNoise { get; set; }
         public List<NoiseInterval> OverworldForegroundNoise { get; set; }
-        
+
+        public List<NoiseInterval> UnderWorldBackgroundNoise { get; set; }
+        public List<NoiseInterval> UnderWorldMidgroundNoise { get; set; }
+        public List<NoiseInterval> UnderWorldBuildingsNoise { get; set; }
+        public List<NoiseInterval> UnderworldForegroundNoise { get; set; }
+
 
         public NoiseConverter NoiseConverter { get; set; }
         public List<List<int>> AllGeneratableTiles;
@@ -191,7 +196,39 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f)
                 };
 
-            this.NoiseConverter = new NoiseConverter(this.OverWorldBackgroundNoise, this.OverWorldMidgroundNoise,this.OverWorldBuildingsNoise, this.OverworldForegroundNoise);
+            List<List<NoiseInterval>> allOverworldNoise = new List<List<NoiseInterval>>()
+            {
+                OverWorldBackgroundNoise,
+                OverWorldMidgroundNoise,
+                OverWorldBuildingsNoise,
+                OverworldForegroundNoise
+
+            };
+
+            this.UnderWorldBackgroundNoise = new List<NoiseInterval>()
+            {
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveDirt),-1f, 1f ),
+            };
+            this.UnderWorldMidgroundNoise = new List<NoiseInterval>()
+            {
+                new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveWater),-.2f, 0f ),
+            };
+            this.UnderWorldBuildingsNoise = new List<NoiseInterval>()
+            {
+            };
+            this.UnderworldForegroundNoise = new List<NoiseInterval>()
+            {
+                  new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.CaveCliff),.0001f, 1f ),
+            };
+            List<List<NoiseInterval>> allUnderWorldNoise = new List<List<NoiseInterval>>()
+            {
+                UnderWorldBackgroundNoise,
+                UnderWorldMidgroundNoise,
+                UnderWorldBuildingsNoise,
+                UnderworldForegroundNoise
+            };
+
+            this.NoiseConverter = new NoiseConverter(allOverworldNoise, allUnderWorldNoise);
 
         }
 
@@ -233,82 +270,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         }
 
-        public int GetOverWorldTileFromNoise(float perlinValue, float layer)
-        {
-          
-            int newGID = 0;
-            if (layer == 0)
-            {
 
-                if (perlinValue >=0f && perlinValue <= 1f)
-                {
-        
-                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.Dirt).GeneratableTiles.Count)] + 1;
-                }
-
-
-
-                else if (perlinValue >= -.1f && perlinValue < 0f)
-                {
-                    newGID = (int)GenerationType.Sand + 1;
-                }
-
-
-
-                else if (perlinValue >= -1f && perlinValue < -.1f)
-                {
-                    newGID = (int)GenerationType.Water + 1;
-                }
-
-
-            }
-
-            else if (layer == 1)
-            {
-               
-
-
-                 if (perlinValue >= .38f && perlinValue < 1f)
-                {
-                    newGID = (int)GenerationType.Stone + 1;
-                }
-
-                else if (perlinValue >= 0f && perlinValue < .06f)
-                {
-                    newGID = (int)GenerationType.Grass + 1;
-                }
-
-                else if (perlinValue >= .12f && perlinValue <= .123f)
-                {
-                    newGID = (int)GenerationType.Stone + 1;
-                }
-
-                else if (perlinValue >= .0f && perlinValue <= .3f)
-                {
-                    newGID = 1015; //GRASS
-                }
-                else if (perlinValue >= -.05f && perlinValue <-.047)
-                {
-                    newGID = (int)GenerationType.OakFloorTiling + 1;
-                }
-
-                else if (perlinValue >= -1f && perlinValue < -.1f)
-                {
-                    newGID = (int)GenerationType.Water + 1;
-                }
-            }
-            else if (layer == 3)
-            {
-                
-                if (perlinValue >= .4f && perlinValue <= 1f)
-                {
-
-                    newGID = 4124; //dirt cliff
-
-                }
-            }
-            return newGID;
-        }
 
         public int GetUnderWorldTileFromNoise(float perlinValue, float layer)
         {
@@ -317,11 +279,11 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             {
 
 
-               
-                    newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles.Count)] + 1;
 
-                
- 
+                newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles.Count)] + 1;
+
+
+
 
             }
             else if (layer == 1)
@@ -336,7 +298,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 if (perlinValue >= .0001f && perlinValue <= .6f)
                 {
 
-                    newGID = (int)GenerationType.CaveCliff + 1; 
+                    newGID = (int)GenerationType.CaveCliff + 1;
 
                 }
             }

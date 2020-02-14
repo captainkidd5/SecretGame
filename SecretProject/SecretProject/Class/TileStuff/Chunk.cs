@@ -533,10 +533,10 @@ namespace SecretProject.Class.TileStuff
                             {
                                 for (int j = 0; j < 16; j++)
                                 {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetOverWorldTileFromNoise(Game1.Procedural.OverworldBackNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
+                                    chunkAboveNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType,Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                    ChunkRightNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                                 }
                             }
                         }

@@ -8,40 +8,29 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 {
     public class NoiseConverter
     {
-        public List<NoiseInterval> OverWorldBackgroundNoise { get; set; }
-        public List<NoiseInterval> OverWorldMidgroudNoise { get; set; }
-        public List<NoiseInterval> OverWorldBuildingsNoise{ get; set; }
-        public List<NoiseInterval> OverworldForegroundNoise { get; set; }
+
 
         public List<List<NoiseInterval>> AllOverWorldIntervals{ get; set; }
+        public List<List<NoiseInterval>> AllUnderWorldIntervals{ get; set; }
 
-        public NoiseConverter(List<NoiseInterval> overWorldBackgroundNoise,
-            List<NoiseInterval> overWorldMidgroundNoise, List<NoiseInterval> overWorldBuildsingsNoise,
-            List<NoiseInterval> overworldForegroundNoise)
+        public NoiseConverter(List<List<NoiseInterval>> allOverworldNoise, List<List<NoiseInterval>> allUnderWorldNoise)
         {
-
-            this.OverWorldBackgroundNoise = overWorldBackgroundNoise;
-
-
-            this.OverWorldMidgroudNoise = overWorldMidgroundNoise;
-            this.OverWorldBuildingsNoise = overWorldBuildsingsNoise;
-
-            this.OverworldForegroundNoise = overworldForegroundNoise;
-
-            this.AllOverWorldIntervals = new List<List<NoiseInterval>>()
-            {
-                OverWorldBackgroundNoise,
-                OverWorldMidgroudNoise,
-                OverWorldBuildingsNoise,
-                OverworldForegroundNoise
-            };
-
+            this.AllOverWorldIntervals = allOverworldNoise;
+            this.AllUnderWorldIntervals = allUnderWorldNoise;
         }
         //not complete
         public int ConvertNoiseToGID(ChunkType chunkType, float noiseValue, int desiredLayer)
         {
-
-            List<NoiseInterval> noiseList = this.AllOverWorldIntervals[desiredLayer];
+            List<NoiseInterval> noiseList;
+            if (chunkType == ChunkType.Rai)
+            {
+                noiseList = this.AllOverWorldIntervals[desiredLayer];
+            }
+            else
+            {
+                noiseList = this.AllUnderWorldIntervals[desiredLayer];
+            }
+           
             for(int i =0; i < noiseList.Count; i++)
             {
                 if(noiseValue > noiseList[i].LowerBound && noiseValue <= noiseList[i].UpperBound)
