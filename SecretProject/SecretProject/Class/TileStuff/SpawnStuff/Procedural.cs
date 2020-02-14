@@ -88,6 +88,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         public List<NoiseInterval> OverWorldBuildingsNoise { get; set; }
         public List<NoiseInterval> OverworldForegroundNoise { get; set; }
 
+        public NoiseConverter NoiseConverter { get; set; }
         public List<List<int>> AllGeneratableTiles;
 
 
@@ -184,6 +185,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f)
                 };
 
+            this.NoiseConverter = new NoiseConverter(this.OverWorldBackgroundNoise, this.OverWorldBuildingsNoise, this.OverworldForegroundNoise);
 
         }
 
