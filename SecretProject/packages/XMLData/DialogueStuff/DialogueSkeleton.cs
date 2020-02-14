@@ -27,5 +27,8 @@ namespace XMLData.DialogueStuff
 
         [ContentSerializer(Optional = true)]
         public bool Once { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public bool HasQuestOptionBeenAdded { get; set; }
     }
 }

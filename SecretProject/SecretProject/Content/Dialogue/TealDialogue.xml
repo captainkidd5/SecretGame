@@ -6,7 +6,7 @@
 <Item Type="XMLData.DialogueStuff.DialogueDay">
 <Month>Spring</Month>
 <Day>1</Day>
-<DialogueSkeletons>
+<DialogueSkeletons> 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>8AM</Time>

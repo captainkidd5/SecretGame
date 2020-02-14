@@ -100,6 +100,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public QuestHandler QuestHandler { get; set; }
         public Quest ActiveQuest { get; set; }
         public bool HasActiveQuest { get; set; }
+        public bool HasBeenSpokenToAtLeastOnce { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC,QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
@@ -323,21 +324,34 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 if (mouse.IsClicked)
                 {
                     DialogueSkeleton skeleton;
-                    if (!this.HasActiveQuest)
+                    string textToWrite;
+                    if (!this.HasActiveQuest && HasBeenSpokenToAtLeastOnce)
                     {
                         GetQuest();
                         skeleton = this.ActiveQuest.MidQuestSkeleton;
+                        textToWrite = this.ActiveQuest.StartupSpeech;
                     }
                     else
                     {
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                        if(HasBeenSpokenToAtLeastOnce)
+                        {
+                            if(!skeleton.HasQuestOptionBeenAdded)
+                            {
+                                skeleton.SelectableOptions += ",Talk about Quest. ~LoadQuest";
+                                skeleton.HasQuestOptionBeenAdded = true;
+                            }
+                           
+                        }
+                        HasBeenSpokenToAtLeastOnce = true;
+                        textToWrite = skeleton.TextToWrite;
                     }
                    
                     
                        
                     
 
-                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f);
+                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + textToWrite, 2f);
 
     
                             Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;

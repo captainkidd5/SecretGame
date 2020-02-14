@@ -6,7 +6,7 @@
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>The SeaSlug Cocktail</QuestName>
     <QuestID>1</QuestID>
- <ItemsRequired>1101</ItemsRequired>
+ <ItemsRequired>1101</ItemsRequired> 
  
 <ItemUnlocked>3</ItemUnlocked>
     <StartupSpeech>I've been feeling under the weather lately... Say! I know exactly what would help me get ship-shape in no time. Ever heard

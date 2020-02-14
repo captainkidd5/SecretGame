@@ -20,7 +20,7 @@ namespace XMLData.DialogueStuff
             {
                 foreach(DialogueSkeleton skeleton in day.DialogueSkeletons)
                 {
-                    skeleton.SelectableOptions += ",Talk about Quest. ~LoadQuest";
+                    
                     skeleton.TextToWrite = skeleton.TextToWrite.Replace("\r", "").Replace("\n", "");
                 }
                 

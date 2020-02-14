@@ -17,7 +17,7 @@
     <SpeechID>2</SpeechID>
     <Time>7AM</Time>
    <TextToWrite>Hey.</TextToWrite>
-    </Item>
+    </Item> 
 
     <Item Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>3</SpeechID>
