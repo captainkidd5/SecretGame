@@ -30,6 +30,7 @@ using XMLData.ItemStuff;
 using XMLData.ItemStuff.LootStuff;
 using XMLData.RouteStuff;
 using static SecretProject.Class.UI.CheckList;
+using XMLData.QuestStuff;
 
 
 
@@ -219,6 +220,20 @@ namespace SecretProject
         public RouteSchedule TealRouteSchedule;
         public RouteSchedule MarcusRouteSchedule;
         public static List<RouteSchedule> AllSchedules;
+
+        public QuestHolder DobbinQuests;
+        public QuestHolder ElixirQuests;
+        public QuestHolder KayaQuests;
+        public QuestHolder JulianQuests;
+        public QuestHolder SarahQuests;
+        public QuestHolder MippinQuests;
+        public QuestHolder NedQuests;
+        public QuestHolder TealQuests;
+        public QuestHolder MarcusQuests;
+        public QuestHolder SnawQuests;
+        public QuestHolder BusinessSnailQuests;
+        
+
         public static ItemHolder AllItems;
         public static LootBank LootBank;
         public static CropHolder AllCrops;
@@ -480,8 +495,17 @@ namespace SecretProject
             //SOUND
             SoundManager = new SoundBoard(this, this.Content);
 
+            DobbinQuests = Content.Load<QuestHolder>("QuestStuff/DobbinQuests");
+            ElixirQuests = Content.Load<QuestHolder>("QuestStuff/ElixirQuests");
+            KayaQuests = Content.Load<QuestHolder>("QuestStuff/KayaQuests");
+            JulianQuests = Content.Load<QuestHolder>("QuestStuff/JulianQuests");
+            MippinQuests = Content.Load<QuestHolder>("QuestStuff/MippinQuests");
+            TealQuests = Content.Load<QuestHolder>("QuestStuff/TealQuests");
+            MarcusQuests = Content.Load<QuestHolder>("QuestStuff/MarcusQuests");
+            NedQuests = Content.Load<QuestHolder>("QuestStuff/NedQuests");
+            SnawQuests = Content.Load<QuestHolder>("QuestStuff/SnawQuests");
+            BusinessSnailQuests = Content.Load<QuestHolder>("QuestStuff/BusinessSnailQuests");
 
-            //ItemAtlas = Content.Load<Texture2D>("Item/ItemAnimationSheet");
             //PLAYERS
 
             LoadPlayer();

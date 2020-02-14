@@ -101,7 +101,7 @@ namespace SecretProject.Class.TileStuff
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
-            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 this.ChunkType = ChunkType.Rai;
             }
@@ -417,7 +417,7 @@ namespace SecretProject.Class.TileStuff
                             }
 
                             World world;
-                            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                             {
                                 world = Game1.OverWorld;
                             }
@@ -497,7 +497,7 @@ namespace SecretProject.Class.TileStuff
                     FastNoise bottomNoiseGenerator;
                     FastNoise topNoiseGenerator;
 
-                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
                         bottomNoiseGenerator = Game1.Procedural.OverworldBackNoise;
                         topNoiseGenerator = Game1.Procedural.OverworldFrontNoise;
@@ -513,7 +513,7 @@ namespace SecretProject.Class.TileStuff
                         for (int j = 0; j < 16; j++)
                         {
                             bottomNoise[i, j] = bottomNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
-                            topNoise[i,j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
+                            topNoise[i, j] = topNoiseGenerator.GetNoise(this.X * 16 + i, this.Y * 16 + j);
                         }
                     }
 
@@ -525,35 +525,29 @@ namespace SecretProject.Class.TileStuff
                     int[,,] ChunkLeftNoise = new int[4, 16, 16];
                     int[,,] ChunkRightNoise = new int[4, 16, 16];
 
+
+                    FastNoise noise;
                     if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
-                        for (int z = 0; z < 4; z++)
-                        {
-                            for (int i = 0; i < 16; i++)
-                            {
-                                for (int j = 0; j < 16; j++)
-                                {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType,Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, Game1.Procedural.OverworldBackNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
-                                }
-                            }
-                        }
+                        noise = Game1.Procedural.OverworldBackNoise;
+
                     }
                     else
                     {
-                        for (int z = 0; z < 4; z++)
+                        noise = Game1.Procedural.UnderWorldNoise;
+
+                    }
+
+                    for (int z = 0; z < 4; z++)
+                    {
+                        for (int i = 0; i < 16; i++)
                         {
-                            for (int i = 0; i < 16; i++)
+                            for (int j = 0; j < 16; j++)
                             {
-                                for (int j = 0; j < 16; j++)
-                                {
-                                    chunkAboveNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
-                                    ChunkBelowNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
-                                    ChunkLeftNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
-                                    ChunkRightNoise[z, i, j] = Game1.Procedural.GetUnderWorldTileFromNoise(Game1.Procedural.UnderWorldNoise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
-                                }
+                                chunkAboveNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y - 1) * 16 + j), z);
+                                ChunkBelowNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise(this.X * 16 + i, (this.Y + 1) * 16 + j), z);
+                                ChunkLeftNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X - 1) * 16 + i, this.Y * 16 + j), z);
+                                ChunkRightNoise[z, i, j] = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, noise.GetNoise((this.X + 1) * 16 + i, this.Y * 16 + j), z);
                             }
                         }
                     }
@@ -569,44 +563,26 @@ namespace SecretProject.Class.TileStuff
 
                     #endregion
 
-                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
+
+                    for (int z = 0; z < 4; z++)
                     {
-                        for (int z = 0; z < 4; z++)
+                        for (int i = 0; i < TileUtility.ChunkWidth; i++)
                         {
-                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
+                            for (int j = 0; j < TileUtility.ChunkHeight; j++)
                             {
-                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                                {
 
 
-                                    int newGID = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType,bottomNoise[i, j], z);
-                                    this.AllTiles[z][i, j] = new Tile(i, j, newGID);
+                                int newGID = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType, bottomNoise[i, j], z);
+                                this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
 
-                                }
                             }
                         }
                     }
-                    else
-                    {
-                        for (int z = 0; z < 4; z++)
-                        {
-                            for (int i = 0; i < TileUtility.ChunkWidth; i++)
-                            {
-                                for (int j = 0; j < TileUtility.ChunkHeight; j++)
-                                {
-
-
-                                    int newGID = Game1.Procedural.GetUnderWorldTileFromNoise(bottomNoise[i, j], z);
-                                    this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
 
-                                }
-                            }
-                        }
-                    }
 
 
                     for (int z = 0; z < 4; z++) //This loop needs to happen separately from the previous one because all tiles need to be set first.
@@ -646,7 +622,7 @@ namespace SecretProject.Class.TileStuff
                         //  player house
                         this.AllTiles[3][8, 6] = new Tile(8, 6, 7127);
 
-                        this.AllTiles[3][12,12] = new Tile(12, 12, 3176);
+                        this.AllTiles[3][12, 12] = new Tile(12, 12, 3176);
 
 
                     }
@@ -658,7 +634,7 @@ namespace SecretProject.Class.TileStuff
 
                     List<int> CliffBottomTiles;
 
-                    if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+                    if (Game1.GetCurrentStageInt() == Stages.OverWorld)
                     {
                         CliffBottomTiles = new List<int>()
                         {
@@ -673,8 +649,8 @@ namespace SecretProject.Class.TileStuff
                         };
                     }
 
-  
-     
+
+
 
 
                     for (int z = 0; z < 4; z++)
@@ -786,7 +762,7 @@ namespace SecretProject.Class.TileStuff
         {
             int gidToTest = 0;
             int gidBottomToTest = 0;
-            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
                 gidToTest = 4124;
                 gidBottomToTest = 4724;
@@ -899,6 +875,7 @@ namespace SecretProject.Class.TileStuff
         #region STATIC METHODS
         public static bool CheckIfChunkExistsInMemory(string chunkPath, int idX, int idY)
         {
+
 
             if (File.Exists(chunkPath + idX + idY + ".dat"))
             {

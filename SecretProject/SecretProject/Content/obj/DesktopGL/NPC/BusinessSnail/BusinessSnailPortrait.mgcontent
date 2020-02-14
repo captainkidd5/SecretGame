@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/NPC/BusinessSnail/BusinessSnailPortrait.png</SourceFile>
-  <SourceTime>2020-01-15T16:47:24-08:00</SourceTime>
+  <SourceTime>2020-02-12T14:42:05.584729-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/NPC/BusinessSnail/BusinessSnailPortrait.xnb</DestFile>
-  <DestTime>2020-02-12T12:44:53.7396847-08:00</DestTime>
+  <DestTime>2020-02-13T21:21:18.1367973-08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

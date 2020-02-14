@@ -787,6 +787,13 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Sea-Slug Cocktail</Name>
+<ID>1101</ID>
+<Description>Stinky, slimy, and apparantely quite refreshing.</Description>
+<InvMaximum>99</InvMaximum><Price>15</Price>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Pie Dish</Name>
 <ID>1135</ID>
 <Description>The starting point of any good pie.</Description>

@@ -1342,10 +1342,60 @@
 /processorParam:TextureFormat=Color
 /build:Player/Ship/ShipSpriteSheet.png
 
+#begin QuestStuff/BusinessSnailQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/BusinessSnailQuests.xml
+
 #begin QuestStuff/DobbinQuests.XML
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:QuestStuff/DobbinQuests.XML
+
+#begin QuestStuff/ElixirQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/ElixirQuests.xml
+
+#begin QuestStuff/JulianQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/JulianQuests.xml
+
+#begin QuestStuff/KayaQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/KayaQuests.xml
+
+#begin QuestStuff/MarcusQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/MarcusQuests.xml
+
+#begin QuestStuff/MippinQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/MippinQuests.xml
+
+#begin QuestStuff/NedQuests.XML
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/NedQuests.XML
+
+#begin QuestStuff/SarahQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/SarahQuests.xml
+
+#begin QuestStuff/SnawQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/SnawQuests.xml
+
+#begin QuestStuff/TealQuests.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:QuestStuff/TealQuests.xml
 
 #begin Route/DobbinRouteSchedule.xml
 /importer:XmlImporter
@@ -1534,6 +1584,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/foodBite.wav
+
+#begin SoundEffects/FurnaceDone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/FurnaceDone.wav
+
+#begin SoundEffects/furnacefire.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/furnacefire.wav
 
 #begin SoundEffects/FurnaceLight.wav
 /importer:WavImporter
@@ -1823,16 +1885,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:WorldProps/tallGrass.png
-
-#begin SoundEffects/furnacefire.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/furnacefire.wav
-
-#begin SoundEffects/FurnaceDone.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/FurnaceDone.wav
 

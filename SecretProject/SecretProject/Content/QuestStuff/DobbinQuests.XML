@@ -4,9 +4,9 @@
   <ID>2</ID>
   <AllQuests>
     <Item Type="XMLData.QuestStuff.Quest">
-    <ID>1</ID>
- <ItemsRequired>2</ItemsRequired>
- 
+    <QuestName>BloomBerry Harvester</QuestName>
+    <QuestID>1</QuestID>
+ <ItemsRequired>2 3</ItemsRequired>
 <ItemUnlocked>3</ItemUnlocked>
     <StartupSpeech>Bring me five bloomberry</StartupSpeech>
     <CompletionSpeech>Thanks!</CompletionSpeech>

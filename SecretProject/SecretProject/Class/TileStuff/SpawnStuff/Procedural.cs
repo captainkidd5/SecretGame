@@ -272,38 +272,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
 
 
-        public int GetUnderWorldTileFromNoise(float perlinValue, float layer)
-        {
-            int newGID = 0;
-            if (layer == 0)
-            {
-
-
-
-                newGID = Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles[Game1.Utility.RGenerator.Next(0, Game1.Procedural.GetTilingContainerFromGenerationType(GenerationType.CaveDirt).GeneratableTiles.Count)] + 1;
-
-
-
-
-            }
-            else if (layer == 1)
-            {
-                if (perlinValue >= -.2f && perlinValue < .0f)
-                {
-                    newGID = (int)GenerationType.CaveWater + 1;
-                }
-            }
-            else if (layer == 3)
-            {
-                if (perlinValue >= .0001f && perlinValue <= .6f)
-                {
-
-                    newGID = (int)GenerationType.CaveCliff + 1;
-
-                }
-            }
-            return newGID;
-        }
+       
 
         public enum RelativeChunkPosition
         {

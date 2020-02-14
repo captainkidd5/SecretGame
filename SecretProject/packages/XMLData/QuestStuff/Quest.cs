@@ -8,7 +8,8 @@ namespace XMLData.QuestStuff
 {
     public class Quest
     {
-        public int ID { get; set; }
+        public string QuestName { get; set; }
+        public int QuestID { get; set; }
         public List<int> ItemsRequired { get; set; }
         public int ItemUnlocked { get; set; }
         public string StartupSpeech { get; set; }
