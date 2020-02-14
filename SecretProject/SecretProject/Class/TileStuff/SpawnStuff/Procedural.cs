@@ -85,8 +85,10 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
         }
 
         public List<NoiseInterval> OverWorldBackgroundNoise { get; set; }
+        public List<NoiseInterval> OverWorldMidgroundNoise { get; set; }
         public List<NoiseInterval> OverWorldBuildingsNoise { get; set; }
         public List<NoiseInterval> OverworldForegroundNoise { get; set; }
+        
 
         public NoiseConverter NoiseConverter { get; set; }
         public List<List<int>> AllGeneratableTiles;
@@ -170,7 +172,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, 1f)
 
             };
-            this.OverWorldBuildingsNoise = new List<NoiseInterval>()
+            this.OverWorldMidgroundNoise = new List<NoiseInterval>()
                 {
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.1f ),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.OakFloorTiling),-.05f, -.047f),
@@ -179,13 +181,17 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Grass),0f, .06f),
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Stone),.38f,1f),
                 };
+            this.OverWorldBuildingsNoise = new List<NoiseInterval>()
+            {
+
+            };
 
             this.OverworldForegroundNoise = new List<NoiseInterval>()
                 {
                     new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.DirtCliff), .4f,1f)
                 };
 
-            this.NoiseConverter = new NoiseConverter(this.OverWorldBackgroundNoise, this.OverWorldBuildingsNoise, this.OverworldForegroundNoise);
+            this.NoiseConverter = new NoiseConverter(this.OverWorldBackgroundNoise, this.OverWorldMidgroundNoise,this.OverWorldBuildingsNoise, this.OverworldForegroundNoise);
 
         }
 

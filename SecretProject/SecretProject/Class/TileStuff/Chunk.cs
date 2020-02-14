@@ -20,8 +20,15 @@ using XMLData.ItemStuff;
 
 namespace SecretProject.Class.TileStuff
 {
+    public enum ChunkType
+    {
+        Rai = 1,
+        Unrai = 2
+    }
+
     public class Chunk : IInformationContainer
     {
+        public ChunkType ChunkType { get; set; }
         public Texture2D RectangleTexture { get; set; }
         //public WorldTileManager TileManager { get; set; }
         public int Type { get; set; }
@@ -94,6 +101,14 @@ namespace SecretProject.Class.TileStuff
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
+            if(Game1.GetCurrentStageInt() == Stages.OverWorld)
+            {
+                this.ChunkType = ChunkType.Rai;
+            }
+            else
+            {
+                this.ChunkType = ChunkType.Unrai;
+            }
             this.TileManager = tileManager;
 
             this.Type = 1;
@@ -564,7 +579,7 @@ namespace SecretProject.Class.TileStuff
                                 {
 
 
-                                    int newGID = Game1.Procedural.GetOverWorldTileFromNoise(bottomNoise[i, j], z);
+                                    int newGID = Game1.Procedural.NoiseConverter.ConvertNoiseToGID(this.ChunkType,bottomNoise[i, j], z);
                                     this.AllTiles[z][i, j] = new Tile(i, j, newGID);
 
 
