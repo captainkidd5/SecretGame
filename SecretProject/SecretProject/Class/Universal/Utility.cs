@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.DialogueStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.Playable;
 using SecretProject.Class.UI;
 using System;
@@ -243,7 +244,7 @@ namespace SecretProject.Class.Universal
             return texture;
         }
         #region SPEECHUTILITY
-        public void PerformSpeechAction(string action, int speakerID, string name)
+        public void PerformSpeechAction(string action, Character character)
         {
             
             switch (action)
@@ -276,6 +277,11 @@ namespace SecretProject.Class.Universal
                     Game1.Player.UserInterface.ActivateShop(OpenShop.BusinessSnailShop);
                     Game1.Player.UserInterface.TextBuilder.Reset();
                     break;
+                case "LoadQuest":
+                    Game1.Player.UserInterface.TextBuilder.Reset();
+                    Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.ActiveQuest.MidQuestSkeleton.TextToWrite, 2f);
+                    Game1.Player.UserInterface.TextBuilder.Skeleton = character.ActiveQuest.MidQuestSkeleton;
+                    break;
 
                 case "CheckCurrentProject":
 
@@ -284,8 +290,8 @@ namespace SecretProject.Class.Universal
                     break;
                 default:
                     Game1.Player.UserInterface.TextBuilder.Reset();
-                    Game1.Player.UserInterface.TextBuilder.SpeakerID = speakerID;
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, name + ": " + action, 2f, null, null);
+
+                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.Name + ": " + action, 2f);
 
                         //   Game1.freeze = true;
                         return;

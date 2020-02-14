@@ -51,6 +51,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public DialogueSkeleton Skeleton { get; set; }
 
+        public Character CharacterTalking { get; set; }
         public string SpeakerName { get; set; }
         public int SpeakerID { get; set; }
 
@@ -120,6 +121,7 @@ namespace SecretProject.Class.DialogueStuff
 
         public void ActivateCharacter(Character character,TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale)
         {
+            this.CharacterTalking = character;
             this.SpeakerTexture = character.CharacterPortraitTexture;
             this.SpeakerPortraitSourceRectangle = character.CharacterPortraitSourceRectangle;
             this.SpeakerID = character.SpeakerID;
@@ -164,7 +166,7 @@ namespace SecretProject.Class.DialogueStuff
                     ClearWindowForResponse();
                     foreach (SelectableOption option in SelectableOptions)
                     {
-                        option.Update(gameTime, this.SpeakerName, this.SpeakerID);
+                        option.Update(gameTime, this.CharacterTalking);
                     }
                 }
 
@@ -462,12 +464,12 @@ namespace SecretProject.Class.DialogueStuff
                 (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal);
         }
 
-        public void Update(GameTime gameTime, string speakerName, int speakerID)
+        public void Update(GameTime gameTime, Character characterTalking)
         {
             this.Button.UpdateSelectableText(Game1.myMouseManager);
             if (this.Button.isClicked)
             {
-                Game1.Utility.PerformSpeechAction(this.Action, speakerID, speakerName);
+                Game1.Utility.PerformSpeechAction(this.Action, characterTalking);
 
             }
 

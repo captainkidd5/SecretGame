@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLData.DialogueStuff;
 
 namespace XMLData.QuestStuff
 {
@@ -18,6 +19,7 @@ namespace XMLData.QuestStuff
         public List<int> ItemsRequired { get; set; }
         public int ItemUnlocked { get; set; }
         public string StartupSpeech { get; set; }
+        public DialogueSkeleton MidQuestSkeleton { get; set; }
         public string CompletionSpeech { get; set; }
     }
 }

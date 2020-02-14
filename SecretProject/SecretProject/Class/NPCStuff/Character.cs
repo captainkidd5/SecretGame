@@ -98,6 +98,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
+        public Quest ActiveQuest { get; set; }
         public bool HasActiveQuest { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC,QuestHandler questHandler, Texture2D characterPortraitTexture = null)
@@ -299,18 +300,17 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         #endregion
         #region SPEECH
 
-        public Quest GetQuest()
+        public void GetQuest()
         {
-            if(!HasActiveQuest)
-            {
+
                 Quest newQuest = QuestHandler.FetchCurrentQuest();
                 if(newQuest != null)
                 {
                     this.HasActiveQuest = true;
+                    this.ActiveQuest = newQuest;
                 }
-                return newQuest;
-            }
-            return null;
+            
+
         }
 
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
@@ -323,22 +323,29 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 if (mouse.IsClicked)
                 {
                     DialogueSkeleton skeleton;
-                    
+                    if (!this.HasActiveQuest)
+                    {
+                        GetQuest();
+                        skeleton = this.ActiveQuest.MidQuestSkeleton;
+                    }
+                    else
+                    {
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                    }
+                   
+                    
+                       
                     
 
-                    if (skeleton != null)
-                    {
                         Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f);
 
-                        if (skeleton.SelectableOptions != null)
-                        {
+    
                             Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
-                        }
+                        
 
                         UpdateDirectionVector(Game1.Player.position);
                         this.NPCAnimatedSprite[(int)this.CurrentDirection].SetFrame(frameToSet);
-                    }
+                    
 
 
 
