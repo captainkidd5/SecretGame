@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,10 @@ namespace XMLData.QuestStuff
     {
         public string QuestName { get; set; }
         public int QuestID { get; set; }
+
+        [ContentSerializer(Optional = true)]
+        public bool Completed { get; set; }
+
         public List<int> ItemsRequired { get; set; }
         public int ItemUnlocked { get; set; }
         public string StartupSpeech { get; set; }

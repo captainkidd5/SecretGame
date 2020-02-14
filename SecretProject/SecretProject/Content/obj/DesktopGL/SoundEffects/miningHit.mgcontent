@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/miningHit.wav</SourceFile>
   <SourceTime>2020-02-08T11:52:44-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/miningHit.xnb</DestFile>
-  <DestTime>2020-02-12T12:45:16.8020147-08:00</DestTime>
+  <DestTime>2020-02-14T11:11:18.7600271-08:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

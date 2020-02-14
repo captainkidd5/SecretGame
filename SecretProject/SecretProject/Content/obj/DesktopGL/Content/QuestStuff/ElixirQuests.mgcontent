@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/ElixirQuests.xml</SourceFile>
-  <SourceTime>2020-02-13T22:06:41.9549894-08:00</SourceTime>
+  <SourceTime>2020-02-14T11:13:42.5689236-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/ElixirQuests.xnb</DestFile>
-  <DestTime>2020-02-13T22:24:15.8508028-08:00</DestTime>
+  <DestTime>2020-02-14T11:14:28.3509726-08:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

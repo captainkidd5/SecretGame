@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/diggingDirt.wav</SourceFile>
   <SourceTime>2020-01-15T16:47:24-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/SoundEffects/diggingDirt.xnb</DestFile>
-  <DestTime>2020-02-12T12:45:14.0469488-08:00</DestTime>
+  <DestTime>2020-02-14T11:11:16.2825552-08:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

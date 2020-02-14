@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SecretProject.Class.Controls;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.NPCStuff;
 using SecretProject.Class.UI;
 using System;
 using System.Collections.Generic;
@@ -114,6 +115,32 @@ namespace SecretProject.Class.DialogueStuff
                     this.LineLimit = (float)lineLimit;
                 }
             }
+
+        }
+
+        public void ActivateCharacter(Character character,TextBoxType textBoxType, bool freezeStage, string stringToWrite, float scale)
+        {
+            this.SpeakerTexture = character.CharacterPortraitTexture;
+            this.SpeakerPortraitSourceRectangle = character.CharacterPortraitSourceRectangle;
+            this.SpeakerID = character.SpeakerID;
+            this.SpeakerName = character.Name;
+            this.IsActive = true;
+            this.TextBoxType = textBoxType;
+            this.FreezeStage = freezeStage;
+            this.StringToWrite = stringToWrite;
+            this.Scale = scale;
+            this.SpeedAnchor = .1f;
+            this.UseTextBox = true;
+
+
+            ChangedParsedText();
+
+            if (this.UseTextBox)
+            {
+                this.PositionToWriteTo = new Vector2(this.SpeechBox.DestinationRectangle.X, this.SpeechBox.DestinationRectangle.Y);
+                this.LineLimit = this.SpeechBox.DestinationRectangle.Width - 100;
+            }
+
 
         }
 

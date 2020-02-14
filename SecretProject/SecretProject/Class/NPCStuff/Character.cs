@@ -13,6 +13,7 @@ using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
 using XMLData.DialogueStuff;
+using XMLData.QuestStuff;
 using XMLData.RouteStuff;
 
 namespace SecretProject.Class.NPCStuff
@@ -92,13 +93,12 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public EmoticonType CurrentEmoticon { get; set; }
 
         public Route CurrentRoute { get; set; }
-        public int TimeLastMoved { get; set; }
-        public int CurrentTime { get; set; }
 
         public Stages HomeStage { get; set; }
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
+        public bool HasActiveQuest { get; set; }
 
         public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC,QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
@@ -137,8 +137,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.CurrentPath = new List<PathFinderNode>();
             Game1.GlobalClock.DayChanged += OnDayIncreased;
             Game1.GlobalClock.HourChanged += OnHourIncreased;
-            this.CurrentTime = Game1.GlobalClock.GlobalTime;
-            this.TimeLastMoved = this.CurrentTime;
+
             this.QuestHandler = questHandler;
         }
 
@@ -299,6 +298,21 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         }
         #endregion
         #region SPEECH
+
+        public Quest GetQuest()
+        {
+            if(!HasActiveQuest)
+            {
+                Quest newQuest = QuestHandler.FetchCurrentQuest();
+                if(newQuest != null)
+                {
+                    this.HasActiveQuest = true;
+                }
+                return newQuest;
+            }
+            return null;
+        }
+
         public void CheckSpeechInteraction(MouseManager mouse, int frameToSet)
         {
             if (mouse.WorldMouseRectangle.Intersects(this.NPCDialogueRectangle))
@@ -308,11 +322,6 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 Game1.isMyMouseVisible = false;
                 if (mouse.IsClicked)
                 {
-                    if (this.CharacterPortraitTexture != null)
-                    {
-                        Game1.Player.UserInterface.TextBuilder.SpeakerTexture = this.CharacterPortraitTexture;
-                        Game1.Player.UserInterface.TextBuilder.SpeakerPortraitSourceRectangle = this.CharacterPortraitSourceRectangle;
-                    }
                     DialogueSkeleton skeleton;
                     
                         skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
@@ -320,9 +329,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
 
                     if (skeleton != null)
                     {
-                        Game1.Player.UserInterface.TextBuilder.Activate(true, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f, null, null);
-                        Game1.Player.UserInterface.TextBuilder.SpeakerName = this.Name;
-                        Game1.Player.UserInterface.TextBuilder.SpeakerID = this.SpeakerID;
+                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + skeleton.TextToWrite, 2f);
+
                         if (skeleton.SelectableOptions != null)
                         {
                             Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;

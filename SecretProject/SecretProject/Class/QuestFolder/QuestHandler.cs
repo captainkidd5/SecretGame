@@ -15,5 +15,17 @@ namespace SecretProject.Class.QuestFolder
         {
             this.QuestHolder = questHolder;
         }
+
+        public Quest FetchCurrentQuest()
+        {
+            for(int i =0; i < QuestHolder.AllQuests.Count; i++)
+            {
+                if(!QuestHolder.AllQuests[i].Completed)
+                {
+                    return QuestHolder.AllQuests[i];
+                }
+            }
+            return null;
+        }
     }
 }
