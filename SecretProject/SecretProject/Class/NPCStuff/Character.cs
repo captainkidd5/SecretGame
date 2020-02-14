@@ -338,7 +338,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         {
                             if(!skeleton.HasQuestOptionBeenAdded)
                             {
-                                skeleton.SelectableOptions += ",Talk about Quest. ~LoadQuest";
+                                skeleton.TextToWrite += "`";
+                                skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
                                 skeleton.HasQuestOptionBeenAdded = true;
                             }
                            
