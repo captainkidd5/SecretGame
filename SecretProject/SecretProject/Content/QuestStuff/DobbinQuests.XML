@@ -8,9 +8,9 @@
     <QuestID>1</QuestID>
  <ItemsRequired>749 749 749 749 749</ItemsRequired>
   
-<ItemUnlocked>333</ItemUnlocked>
+<UnlockData>unlockWorldLoot,490,748</UnlockData>
     <StartupSpeech>Hey $, if you're heading into Rai anytime soon I was wondering if you could grab me something. #
-    I've been wanting those little blue berry bushes to grow on my farm. # Bring me five of them and I'll teach you the secret to growing them!</StartupSpeech>
+    I've been wanting those little blue berry bushes to grow on my farm. # Bring me five of them and I'll teach you the secret harvesting their seeds!</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>12AM</Time>
@@ -18,6 +18,22 @@
     <SelectableOptions>How can I harvest Bloomberry? ~It's easy, just find one in Rai and grab it. # Once you have all five come bring them back to me.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
     <CompletionSpeech>Ah yes these are perfect. As promised, here's the secret to growing Bloomberry.</CompletionSpeech>
+    </Item>
+    <Item Type="XMLData.QuestStuff.Quest">
+    <QuestName>BloodCorn Harvester</QuestName>
+    <QuestID>2</QuestID>
+ <ItemsRequired>749 749 749 749 749</ItemsRequired>
+  
+<UnlockData>unlockWorldLoot,290,750</UnlockData>
+    <StartupSpeech>Hey $, if you're heading into Rai anytime soon I was wondering if you could grab me something. #
+    I've been wanting BloodCorn bushes to grow on my farm. # Bring me five of them and I'll teach you the secret harvesting their seeds!</StartupSpeech>
+     <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
+    <SpeechID>1</SpeechID>
+    <Time>12AM</Time>
+   <TextToWrite>How's the collecting going? `</TextToWrite>
+    <SelectableOptions>How can I harvest Bloomberry? ~It's easy, just find one in Rai and grab it. # Once you have all five come bring them back to me.,Nevermind ~ ExitDialogue</SelectableOptions>
+    </MidQuestSkeleton>
+    <CompletionSpeech>Ah yes these are perfect. As promised, here's the secret to growing BloodCorn.</CompletionSpeech>
     </Item>
 </AllQuests>
 

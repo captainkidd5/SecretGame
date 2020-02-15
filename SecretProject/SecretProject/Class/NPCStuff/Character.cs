@@ -362,10 +362,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                                 HasActiveQuest = false;
                                 QuestHandler.ActiveQuest.Completed = true;
                             }
-                            if (QuestHandler.ActiveQuest.ItemUnlocked != 0)
-                            {
-                                Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(QuestHandler.ActiveQuest.ItemUnlocked);
-                            }
+                            QuestHandler.PerformReward();
+
 
                         }
                     }

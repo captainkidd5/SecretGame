@@ -7,13 +7,13 @@
                 <GID>290</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
-                        <Unlocked>true</Unlocked>
+                        <Unlocked>false</Unlocked>
                         <ItemToSpawnID>750</ItemToSpawnID>
                         <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
                     </Item>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
-                        <Unlocked>false</Unlocked>
+                        <Unlocked>true</Unlocked>
                         <ItemToSpawnID>751</ItemToSpawnID>
                         <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
@@ -25,13 +25,13 @@
                 <GID>490</GID>
                 <LootPieces>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
-                        <Unlocked>true</Unlocked>
+                        <Unlocked>false</Unlocked>
                         <ItemToSpawnID>748</ItemToSpawnID>
                         <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
                     </Item>
                     <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
-                        <Unlocked>false</Unlocked>
+                        <Unlocked>true</Unlocked>
                         <ItemToSpawnID>749</ItemToSpawnID>
                         <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
                         <ProbabilityOfSpawn>100</ProbabilityOfSpawn>

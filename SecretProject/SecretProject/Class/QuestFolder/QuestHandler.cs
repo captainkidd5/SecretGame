@@ -46,9 +46,9 @@ namespace SecretProject.Class.QuestFolder
             return true;
         }
 
-        public void PerformReward(string rewardString)
+        public void PerformReward()
         {
-            string[] options = rewardString.Split(',');
+            string[] options = ActiveQuest.UnlockData.Split(',');
            
           
 
