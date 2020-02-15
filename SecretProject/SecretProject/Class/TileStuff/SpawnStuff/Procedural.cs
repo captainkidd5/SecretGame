@@ -135,7 +135,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
             OverworldFrontNoise.SetFractalGain(.35f);
 
             //larger the smaller the biomes
-            OverworldFrontNoise.SetFrequency(.008f);
+            OverworldFrontNoise.SetFrequency(.0005f);
 
 
             //UNDERWORLDNOISE
@@ -184,6 +184,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Water),-1f, -.1f ),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Sand), -.1f, 0f),
                 new NoiseInterval(GetTilingContainerFromGenerationType(GenerationType.Dirt), 0f, 1f)
+
 
             };
             this.OverWorldMidgroundNoise = new List<NoiseInterval>()
