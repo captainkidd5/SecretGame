@@ -55,10 +55,13 @@ namespace SecretProject.Class.QuestFolder
             switch (options[0])
             {
                 case "unlockCraftingRecipe":
-                    Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(int.Parse(options[0]));
+                    Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(int.Parse(options[1]));
                     break;
 
                 case "unlockWorldLoot":
+                    int gidToUnlock = int.Parse(options[1]);
+                    int lootIDToUnlock = int.Parse(options[2]);
+                    Game1.LootBank.UnlockLootElement(gidToUnlock, lootIDToUnlock);
                     break;
             }
         }
