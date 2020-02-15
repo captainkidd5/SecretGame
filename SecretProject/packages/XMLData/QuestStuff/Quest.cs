@@ -18,8 +18,9 @@ namespace XMLData.QuestStuff
 
         public List<int> ItemsRequired { get; set; }
 
-        [ContentSerializer(Optional = true)]
         public string UnlockData { get; set; }
+        public string UnlockDescription { get; set; }
+
         public string StartupSpeech { get; set; }
         public DialogueSkeleton MidQuestSkeleton { get; set; }
         public string CompletionSpeech { get; set; }

@@ -56,6 +56,7 @@ namespace SecretProject.Class.QuestFolder
             {
                 case "unlockCraftingRecipe":
                     Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(int.Parse(options[1]));
+                    ;
                     break;
 
                 case "unlockWorldLoot":
@@ -64,6 +65,8 @@ namespace SecretProject.Class.QuestFolder
                     Game1.LootBank.UnlockLootElement(gidToUnlock, lootIDToUnlock);
                     break;
             }
+
+            Game1.Player.UserInterface.AddAlert(UI.AlertType.Normal, UI.AlertSize.Large, Game1.Utility.centerScreen, ActiveQuest.UnlockDescription);
         }
     }
 }

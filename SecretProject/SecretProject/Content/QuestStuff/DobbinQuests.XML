@@ -9,6 +9,7 @@
  <ItemsRequired>749 749 749 749 749</ItemsRequired>
   
 <UnlockData>unlockWorldLoot,490,748</UnlockData>
+<UnlockDescription>Bloomberry will now sometimes yield seeds when harvested.</UnlockDescription>
     <StartupSpeech>Hey $, if you're heading into Rai anytime soon I was wondering if you could grab me something. #
     I've been wanting those little blue berry bushes to grow on my farm. # Bring me five of them and I'll teach you the secret harvesting their seeds!</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
@@ -25,6 +26,7 @@
  <ItemsRequired>749 749 749 749 749</ItemsRequired>
   
 <UnlockData>unlockWorldLoot,290,750</UnlockData>
+<UnlockDescription>BloodCorn will now sometimes yield seeds when harvested.</UnlockDescription>
     <StartupSpeech>Hey $, if you're heading into Rai anytime soon I was wondering if you could grab me something. #
     I've been wanting BloodCorn bushes to grow on my farm. # Bring me five of them and I'll teach you the secret harvesting their seeds!</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
