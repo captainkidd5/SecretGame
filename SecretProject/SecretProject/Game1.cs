@@ -105,6 +105,7 @@ namespace SecretProject
         public static bool EnableCutScenes = false;
         public static bool EnableMusic = false;
         public static bool InfiniteArrows = false;
+        public static bool GenerateChunkLandscape = false;
 
         public static bool IsFirstTimeStartup;
 
@@ -648,10 +649,11 @@ namespace SecretProject
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(1202, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(640, null));
                 Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(334, null));
+                Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(280, null));
 
             }
 
-            //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(40, null));
+            Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(240, null));
             //Player.Inventory.TryAddItem(ItemVault.GenerateNewItem(162, null));
 
 

@@ -136,6 +136,8 @@ namespace SecretProject.Class.Playable
         public bool IsBeingKnockedBack { get; private set; }
         public Vector2 KnockBackVector { get; private set; }
 
+        public Vector2 WorldSquarePosition { get; set; }
+
         public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;

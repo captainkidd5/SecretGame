@@ -629,7 +629,11 @@ namespace SecretProject.Class.TileStuff
                     else
                     {
                         HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                        GenerateLandscape(topNoise);
+                        if(Game1.GenerateChunkLandscape)
+                        {
+                            GenerateLandscape(topNoise);
+                        }
+                       
                     }
 
                     List<int> CliffBottomTiles;

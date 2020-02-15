@@ -178,7 +178,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public virtual void Update(GameTime gameTime, MouseManager mouse, List<Enemy> enemies = null)
         {
 
-            if (this.TimeInUnloadedChunk > 100)
+            if (this.TimeInUnloadedChunk > 25)
             {
                 enemies.Remove(this);
                 return;
@@ -262,7 +262,13 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                         Wander(gameTime);
                         break;
                     case CurrentBehaviour.Chase:
-                        MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
+                        //   MoveTowardsPoint(new Vector2(Game1.Player.MainCollider.Rectangle.X, Game1.Player.MainCollider.Rectangle.Y), gameTime);
+                        int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
+                        int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
+                        int newTargetX = (int)Game1.Player.WorldSquarePosition.X;
+                        int newTargetY = (int)Game1.Player.WorldSquarePosition.Y;
+  
+                        MoveTowardsTarget(gameTime, newTargetX, newTargetY);
                         break;
                     case CurrentBehaviour.Hurt:
                             this.CurrentBehaviour = CurrentBehaviour.Chase;
@@ -374,31 +380,64 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
         }
 
-        public void MoveToTileChunk(GameTime gameTime)
-        {
 
+        public void MoveTowardsPointAndDecrementPath(GameTime gameTime)
+        {
+            if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + this.CurrentChunkX * 16 * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + this.CurrentChunkY * 16 * 16 + 8), gameTime))
+            {
+                this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
+            }
+        }
+        public void TryMoveTowardsNewChunk(GameTime gameTime)
+        {
+            UpdateCurrentChunk(this.NewChunk);
+            if (MoveTowardsPoint(new Vector2(this.NewStartX * 16 + this.CurrentChunkX * 16 * 16 + 8, this.NewStartY * 16 + this.CurrentChunkY * 16 * 16 + 8), gameTime))
+            {
+
+
+                // this.Position = new Vector2(NewStartX * 16 + CurrentChunkX * 16 * 16 + 8, NewStartY * 16 + CurrentChunkY * 16 * 16 + 8);
+                TryFindNewPath(this.OutOfChunkDestinationX, this.OutOfChunkDestinationY);
+
+                this.NeedsToMoveToNewChunk = false;
+            }
+        }
+
+        public void MoveTowardsTarget(GameTime gameTime, int targetX, int targetY)
+        {
             if (this.CurrentPath.Count > 0)
             {
-                if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16 + this.CurrentChunkX * 16 * 16 + 8, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16 + this.CurrentChunkY * 16 * 16 + 8), gameTime))
-                {
-                    this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
-                }
+                MoveTowardsPointAndDecrementPath(gameTime);
 
 
 
             }
             else if (this.NeedsToMoveToNewChunk)
             {
-                UpdateCurrentChunk(this.NewChunk);
-                if (MoveTowardsPoint(new Vector2(this.NewStartX * 16 + this.CurrentChunkX * 16 * 16 + 8, this.NewStartY * 16 + this.CurrentChunkY * 16 * 16 + 8), gameTime))
-                {
+                TryMoveTowardsNewChunk(gameTime);
+            }
+            else
+            {
+
+             
+                FindPathToNewTile(targetX, targetY);
 
 
-                    // this.Position = new Vector2(NewStartX * 16 + CurrentChunkX * 16 * 16 + 8, NewStartY * 16 + CurrentChunkY * 16 * 16 + 8);
-                    TryFindNewPath(this.OutOfChunkDestinationX, this.OutOfChunkDestinationY);
+            }
+        }
 
-                    this.NeedsToMoveToNewChunk = false;
-                }
+        public void WanderToTileChunk(GameTime gameTime)
+        {
+
+            if (this.CurrentPath.Count > 0)
+            {
+                MoveTowardsPointAndDecrementPath(gameTime);
+
+
+
+            }
+            else if (this.NeedsToMoveToNewChunk)
+            {
+                TryMoveTowardsNewChunk(gameTime);
             }
             else if (WanderTimer >= 0)
             {
@@ -409,72 +448,10 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
                 int currentTileX = (int)(this.Position.X / 16 - (this.CurrentChunkX * 16));
                 int currentTileY = (int)(this.Position.Y / 16 - (this.CurrentChunkY * 16));
-                int newX = Game1.Utility.RGenerator.Next(-10, 10);
-                int newY = Game1.Utility.RGenerator.Next(-10, 10);
-                if (currentTileX + newX < TileUtility.ChunkWidth && currentTileX + newX > 0 && currentTileY + newY < TileUtility.ChunkHeight && currentTileY + newY > 0)
-                {
-                    TryFindNewPath(currentTileX + newX, currentTileY + newY);
+                int newX = Game1.Utility.RGenerator.Next(-10, 10) + currentTileX;
+                int newY = Game1.Utility.RGenerator.Next(-10, 10) + currentTileY;
 
-                }
-                // point npc tried to go to is not in current chunk
-                else
-                {
-                    //basically makes sure tile found is in adjacent and NOT diagonal chunk
-                    if (!((currentTileX + newX > 15) && (currentTileX + newY > 15)) && !((currentTileX + newX < 0) && (currentTileY + newY < 0)))
-                    {
-                        Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(this.CurrentChunkX * 16 + (currentTileX + newX)), ChunkUtility.GetChunkY(this.CurrentChunkY * 16 + (currentTileY + newY)), Game1.OverWorld.AllTiles.ActiveChunks);
-                        if (chunk != null)
-                        {
-                            int startX = currentTileX + newX;
-                            int startY = currentTileY + newY;
-                            this.NewStartX = startX;
-                            this.NewStartY = startY;
-                            this.OutOfChunkDestinationX = startX;
-                            this.OutOfChunkDestinationY = startY;
-                            if (startX > 15)
-                            {
-                                startX = 15;
-                                this.OutOfChunkDestinationX = currentTileX + newX - 16;
-                                this.NewStartX = 0;
-                            }
-                            if (startX < 0)
-                            {
-                                startX = 0;
-                                this.OutOfChunkDestinationX = 16 - Math.Abs(currentTileX + newX);
-                                this.NewStartX = 15;
-                            }
-                            if (startY > 15)
-                            {
-                                startY = 15;
-                                this.OutOfChunkDestinationY = currentTileY + newY - 16;
-                                this.NewStartY = 0;
-                            }
-                            if (startY < 0)
-                            {
-                                startY = 0;
-                                this.OutOfChunkDestinationY = 16 - Math.Abs(currentTileY + newY);
-                                this.NewStartY = 15;
-                            }
-                            if (chunk.PathGrid.Weight[this.NewStartX, this.NewStartY] == 1)
-                            {
-                                if (TryFindNewPath(startX, startY))
-                                {
-                                    this.NewChunk = chunk;
-                                    this.NeedsToMoveToNewChunk = true;
-                                }
-
-                            }
-
-                            //UpdateCurrentChunk(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks));
-
-
-                        }
-
-
-                    }
-
-
-                }
+                FindPathToNewTile(newX, newY);
 
 
             }
@@ -486,6 +463,73 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
         public bool NeedsToMoveToNewChunk { get; set; }
         public IInformationContainer NewChunk { get; set; }
 
+        public void FindPathToNewTile(int newX, int newY)
+        {
+            if (newX < TileUtility.ChunkWidth && newX > 0 &&  newY < TileUtility.ChunkHeight && newY > 0)
+            {
+                TryFindNewPath(newX, newY);
+
+            }
+            // point npc tried to go to is not in current chunk
+            else
+            {
+                //basically makes sure tile found is in adjacent and NOT diagonal chunk
+                if (!((newX > 15) && (newY > 15)) && !((newX < 0) && (newY < 0)))
+                {
+                    Chunk chunk = ChunkUtility.GetChunk(ChunkUtility.GetChunkX(this.CurrentChunkX * 16 + (newX)), ChunkUtility.GetChunkY(this.CurrentChunkY * 16 + (newY)), Game1.OverWorld.AllTiles.ActiveChunks);
+                    if (chunk != null)
+                    {
+                        int startX = newX;
+                        int startY = newY;
+                        this.NewStartX = startX;
+                        this.NewStartY = startY;
+                        this.OutOfChunkDestinationX = startX;
+                        this.OutOfChunkDestinationY = startY;
+                        if (startX > 15)
+                        {
+                            startX = 15;
+                            this.OutOfChunkDestinationX =newX - 16;
+                            this.NewStartX = 0;
+                        }
+                        if (startX < 0)
+                        {
+                            startX = 0;
+                            this.OutOfChunkDestinationX = 16 - Math.Abs(newX);
+                            this.NewStartX = 15;
+                        }
+                        if (startY > 15)
+                        {
+                            startY = 15;
+                            this.OutOfChunkDestinationY = newY - 16;
+                            this.NewStartY = 0;
+                        }
+                        if (startY < 0)
+                        {
+                            startY = 0;
+                            this.OutOfChunkDestinationY = 16 - Math.Abs(newY);
+                            this.NewStartY = 15;
+                        }
+                        if (chunk.PathGrid.Weight[this.NewStartX, this.NewStartY] == 1)
+                        {
+                            if (TryFindNewPath(startX, startY))
+                            {
+                                this.NewChunk = chunk;
+                                this.NeedsToMoveToNewChunk = true;
+                            }
+
+                        }
+
+                        //UpdateCurrentChunk(TileUtility.GetChunk(currentTileX + newX, currentTileY + newY, Game1.OverWorld.AllTiles.ActiveChunks));
+
+
+                    }
+
+
+                }
+
+
+            }
+        }
 
         public bool TryFindNewPath(int endX, int endY)
         {
@@ -583,7 +627,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             WanderTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (this.IsWorldNPC)
             {
-                MoveToTileChunk(gameTime);
+                WanderToTileChunk(gameTime);
             }
             else
             {
@@ -673,7 +717,8 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
                     }
                 }
             }
-            
+            this.CurrentPath.Clear();
+            this.NeedsToMoveToNewChunk = false;
             Game1.SoundManager.PlaySoundEffect(this.IdleSoundEffect, true, 1f, .8f);
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.SwordImpact, true, .5f);
             Game1.GetCurrentStage().AllRisingText.Add(new RisingText(new Vector2(this.NPCHitBoxRectangle.X , this.NPCHitBoxRectangle.Y), 25, "-" + dmgAmount.ToString(), 75f, Color.LightYellow, true, 1f, false));

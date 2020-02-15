@@ -519,6 +519,8 @@ namespace SecretProject.Class.TileStuff
             this.StoreableItems = this.ChunkUnderPlayer.StoreableItems;
             this.ChunkPointUnderPlayerLastFrame = this.ChunkPointUnderPlayer;
 
+            Game1.Player.WorldSquarePosition = new Vector2((int)(Game1.Player.Position.X / 16), (int)(Game1.Player.Position.Y / 16));
+
             for (int a = WorldTileManager.RenderDistance / 2 - 1; a < WorldTileManager.RenderDistance / 2 + 2; a++)
             {
                 for (int b = WorldTileManager.RenderDistance / 2 - 1; b < WorldTileManager.RenderDistance / 2 + 2; b++)
