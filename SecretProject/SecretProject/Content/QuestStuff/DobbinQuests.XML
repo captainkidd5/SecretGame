@@ -4,20 +4,20 @@
   <ID>2</ID>
   <AllQuests>
     <Item Type="XMLData.QuestStuff.Quest">
-    <QuestName>The SeaSlug Cocktail</QuestName>
+    <QuestName>BloomBerry Harvester</QuestName>
     <QuestID>1</QuestID>
- <ItemsRequired>1101</ItemsRequired>
+ <ItemsRequired>749 749 749 749 749</ItemsRequired>
   
-<ItemUnlocked>3</ItemUnlocked>
-    <StartupSpeech>I've been feeling under the weather lately... #Say! I know exactly what would help me get ship-shape in no time. Ever heard
-    of a Sea-Slug Cocktail?# The recipe's simple: Brinebulb Juice mixed with exactly one plump Sea-Slug. Bring me one and I'll teach ya a thing or two about the sea.</StartupSpeech>
+<ItemUnlocked>333</ItemUnlocked>
+    <StartupSpeech>Hey $, if you're heading into Rai anytime soon I was wondering if you could grab me something. #
+    I've been wanting those little blue berry bushes to grow on my farm. # Bring me five of them and I'll teach you the secret to growing them!</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>12AM</Time>
-   <TextToWrite>Did you need some more help with making the Sea-Slug Cocktail? `</TextToWrite>
-    <SelectableOptions>Where can I find a Sea-Slug again? ~Take your fishing rod to any body of water and start fishing!,Nevermind ~ ExitDialogue</SelectableOptions>
+   <TextToWrite>How's the collecting going? `</TextToWrite>
+    <SelectableOptions>How can I harvest Bloomberry? ~It's easy, just find one in Rai and grab it. # Once you have all five come bring them back to me.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
-    <CompletionSpeech>Wonderful. Ned hastily gulbs down the cocktail, sea-slug and all. Ahhh that hit the spot... Thanks for that.</CompletionSpeech>
+    <CompletionSpeech>Ah yes these are perfect. As promised, here's the secret to growing Bloomberry.</CompletionSpeech>
     </Item>
 </AllQuests>
 

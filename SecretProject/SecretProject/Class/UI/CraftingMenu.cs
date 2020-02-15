@@ -132,16 +132,17 @@ namespace SecretProject.Class.UI
             this.CraftableRecipeBar = new CraftableRecipeBar(this, graphics, this.BackDropPosition, this.BackDropScale);
         }
 
-        public bool UnlockRecipe(Item item)
+        public bool UnlockRecipe(int id)
         {
             for(int i =0; i < Tabs.Length; i++)
             {
                 for(int j =0; j < Tabs[i].Pages.Count; j++)
                 {
-                    ToolTip toolTip = Tabs[i].Pages[j].ToolTips.Find(x => x.Item.ID == item.ID);
+                    ToolTip toolTip = Tabs[i].Pages[j].ToolTips.Find(x => x.Item.ID == id);
                     if(toolTip != null)
                     {
                         toolTip.Locked = false;
+                        Game1.Player.UserInterface.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.centerScreen, Game1.ItemVault.GetItem(id).Name + " has been unlocked!");
                         return true;
                     }
                     

@@ -279,8 +279,8 @@ namespace SecretProject.Class.Universal
                     break;
                 case "LoadQuest":
                     Game1.Player.UserInterface.TextBuilder.Reset();
-                    Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.ActiveQuest.MidQuestSkeleton.TextToWrite, 2f);
-                    Game1.Player.UserInterface.TextBuilder.Skeleton = character.ActiveQuest.MidQuestSkeleton;
+                    Game1.Player.UserInterface.TextBuilder.ActivateCharacter(character, TextBoxType.dialogue, true, character.QuestHandler.ActiveQuest.MidQuestSkeleton.TextToWrite, 2f);
+                    Game1.Player.UserInterface.TextBuilder.Skeleton = character.QuestHandler.ActiveQuest.MidQuestSkeleton;
                     break;
 
                 case "CheckCurrentProject":

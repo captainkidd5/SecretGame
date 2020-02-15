@@ -98,14 +98,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public Vector2 HomePosition { get; set; }
 
         public QuestHandler QuestHandler { get; set; }
-        public Quest ActiveQuest { get; set; }
         public bool HasActiveQuest { get; set; }
         public bool HasBeenSpokenToAtLeastOnce { get; set; }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC,QuestHandler questHandler, Texture2D characterPortraitTexture = null)
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, RouteSchedule routeSchedule, Stages currentStageLocation, bool isBasicNPC, QuestHandler questHandler, Texture2D characterPortraitTexture = null)
         {
             this.HomeStage = currentStageLocation;
-            
+
 
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
@@ -143,7 +142,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             this.QuestHandler = questHandler;
         }
 
-        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null,QuestHandler questHandler = null )
+        public Character(string name, Vector2 position, GraphicsDevice graphics, Texture2D spriteSheet, int animationFrames, Texture2D characterPortraitTexture = null, QuestHandler questHandler = null)
         {
             this.Name = name;
             this.Position = new Vector2(position.X * 16, position.Y * 16);
@@ -215,13 +214,13 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
             //this.CollideOccured = Collider.DidCollide(Game1.GetStageFromInt(CurrentStageLocation).AllTiles.Objects, Position);
 
 
-         
-                for (int i = 0; i < 4; i++)
-                {
-                    this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
-                }
-            
-            
+
+            for (int i = 0; i < 4; i++)
+            {
+                this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
+            }
+
+
 
             UpdateDirection();
 
@@ -301,16 +300,15 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         #endregion
         #region SPEECH
 
-        public void GetQuest()
+        public bool LoadNewQuest()
         {
-
-                Quest newQuest = QuestHandler.FetchCurrentQuest();
-                if(newQuest != null)
-                {
-                    this.HasActiveQuest = true;
-                    this.ActiveQuest = newQuest;
-                }
-            
+            Quest newQuest = QuestHandler.FetchCurrentQuest();
+            if (newQuest != null && !QuestHandler.ActiveQuest.Completed)
+            {
+                this.HasActiveQuest = true;
+                return true;
+            }
+            return false;
 
         }
 
@@ -325,48 +323,78 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 {
                     DialogueSkeleton skeleton;
                     string textToWrite;
+
                     if (!this.HasActiveQuest && HasBeenSpokenToAtLeastOnce)
                     {
-                        GetQuest();
-                        skeleton = this.ActiveQuest.MidQuestSkeleton;
-                        textToWrite = this.ActiveQuest.StartupSpeech;
-                    }
-                    else
-                    {
-                        skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-                        if(HasBeenSpokenToAtLeastOnce)
+                        if (LoadNewQuest())
                         {
-                            if(!skeleton.HasQuestOptionBeenAdded)
-                            {
-                                skeleton.TextToWrite += "`";
-                                skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
-                                skeleton.HasQuestOptionBeenAdded = true;
-                            }
-                           
+                            skeleton = QuestHandler.ActiveQuest.MidQuestSkeleton;
+                            textToWrite = QuestHandler.ActiveQuest.StartupSpeech;
+                            FinishUpDialogue(frameToSet, textToWrite, skeleton);
+                            return;
                         }
-                        HasBeenSpokenToAtLeastOnce = true;
-                        textToWrite = skeleton.TextToWrite;
+
+
                     }
-                   
-                    
-                       
-                    
 
-                        Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + textToWrite, 2f);
 
-    
-                            Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
-                        
+                    skeleton = Game1.DialogueLibrary.RetrieveDialogue(this, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+                    if (HasBeenSpokenToAtLeastOnce)
+                    {
+                        if (!skeleton.HasQuestOptionBeenAdded)
+                        {
+                            skeleton.TextToWrite += "`";
+                            skeleton.SelectableOptions += "Talk about Quest. ~LoadQuest, Exit. ~ExitDialogue";
+                            skeleton.HasQuestOptionBeenAdded = true;
+                        }
 
-                        UpdateDirectionVector(Game1.Player.position);
-                        this.NPCAnimatedSprite[(int)this.CurrentDirection].SetFrame(frameToSet);
-                    
+                    }
+                    HasBeenSpokenToAtLeastOnce = true;
+                    textToWrite = skeleton.TextToWrite;
+                    if (HasActiveQuest)
+                    {
+                        if (QuestHandler.CheckActiveQuestState())
+                        {
+                            for (int i = 0; i < QuestHandler.ActiveQuest.ItemsRequired.Count; i++)
+                            {
+                                Game1.Player.UserInterface.BackPack.Inventory.RemoveItem(QuestHandler.ActiveQuest.ItemsRequired[i]);
+                                textToWrite = QuestHandler.ActiveQuest.CompletionSpeech;
+                                HasActiveQuest = false;
+                                QuestHandler.ActiveQuest.Completed = true;
+                            }
+                            if (QuestHandler.ActiveQuest.ItemUnlocked != 0)
+                            {
+                                Game1.Player.UserInterface.CraftingMenu.UnlockRecipe(QuestHandler.ActiveQuest.ItemUnlocked);
+                            }
+
+                        }
+                    }
+
+
+
+
+
+
+                    FinishUpDialogue(frameToSet, textToWrite, skeleton);
+
 
 
 
                 }
 
             }
+        }
+
+        public void FinishUpDialogue(int frameToSet, string textToWrite, DialogueSkeleton skeleton)
+        {
+            Game1.Player.UserInterface.TextBuilder.ActivateCharacter(this, TextBoxType.dialogue, true, this.Name + ": " + textToWrite, 2f);
+
+
+            Game1.Player.UserInterface.TextBuilder.Skeleton = skeleton;
+
+
+            UpdateDirectionVector(Game1.Player.position);
+            this.NPCAnimatedSprite[(int)this.CurrentDirection].SetFrame(frameToSet);
         }
 
 
@@ -414,8 +442,8 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void OnHourIncreased(object sender, EventArgs e)
         {
 
-                    this.CurrentRoute = RouteLibrary.RetrieveRoute(this.RouteSchedule, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
-   
+            this.CurrentRoute = RouteLibrary.RetrieveRoute(this.RouteSchedule, Game1.GlobalClock.Calendar.CurrentMonth, Game1.GlobalClock.Calendar.CurrentDay, Game1.GlobalClock.GetStringFromTime());
+
         }
         #endregion
 
@@ -533,65 +561,65 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
         public void MoveToTileRoute(GameTime gameTime, Route route)
         {
 
-                if (this.CurrentPath.Count > 0)
+            if (this.CurrentPath.Count > 0)
+            {
+                if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
                 {
-                    if (MoveTowardsPoint(new Vector2(this.CurrentPath[this.CurrentPath.Count - 1].X * 16, this.CurrentPath[this.CurrentPath.Count - 1].Y * 16), gameTime))
-                    {
-                        this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
-                    }
-
-                    if (this.CurrentPath.Count == 0)
-                    {
-                        if (route.StageToEndAt != (int)this.CurrentStageLocation)
-                        {
-                            if (nodeToEndAt != (int)this.CurrentStageLocation)
-                            {
-                                this.Position = new Vector2(Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation).PortalStart.X + 16,
-                                Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation).PortalStart.Y + 32);
-                                Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
-                                this.CurrentStageLocation = (Stages)nodeToEndAt;
-                                Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
-                            }
-
-                        }
-                    }
-
+                    this.CurrentPath.RemoveAt(this.CurrentPath.Count - 1);
                 }
-                else if (this.Position != new Vector2(route.EndX * 16, route.EndY * 16))
-                {
-                    PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
-                    finder.SearchLimit = 10000;
-                    if (route.StageToEndAt == (int)this.CurrentStageLocation)
-                    {
-                        Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                         ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
-                        Point end = new Point(route.EndX, route.EndY);
-                        this.CurrentPath = finder.FindPath(start, end, this.Name);
-                        if (this.CurrentPath == null)
-                        {
-                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
-                        }
-                    }
-                    else
-                    {
-                        Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
-                         ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
-                        Point end = FindIntermediateStages((int)this.CurrentStageLocation, route.StageToEndAt);
 
-                        this.CurrentPath = finder.FindPath(start, end, this.Name);
-                        if (this.CurrentPath == null)
+                if (this.CurrentPath.Count == 0)
+                {
+                    if (route.StageToEndAt != (int)this.CurrentStageLocation)
+                    {
+                        if (nodeToEndAt != (int)this.CurrentStageLocation)
                         {
-                            throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                            this.Position = new Vector2(Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation).PortalStart.X + 16,
+                            Game1.GetStageFromInt((Stages)nodeToEndAt).AllPortals.Find(x => x.To == (int)this.CurrentStageLocation).PortalStart.Y + 32);
+                            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Remove(this);
+                            this.CurrentStageLocation = (Stages)nodeToEndAt;
+                            Game1.GetStageFromInt(this.CurrentStageLocation).CharactersPresent.Add(this);
                         }
+
+                    }
+                }
+
+            }
+            else if (this.Position != new Vector2(route.EndX * 16, route.EndY * 16))
+            {
+                PathFinderFast finder = new PathFinderFast(Game1.GetStageFromInt(this.CurrentStageLocation).AllTiles.PathGrid.Weight);
+                finder.SearchLimit = 10000;
+                if (route.StageToEndAt == (int)this.CurrentStageLocation)
+                {
+                    Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
+                     ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
+                    Point end = new Point(route.EndX, route.EndY);
+                    this.CurrentPath = finder.FindPath(start, end, this.Name);
+                    if (this.CurrentPath == null)
+                    {
+                        throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
                     }
                 }
                 else
                 {
-                    this.IsMoving = false;
-                    this.CurrentDirection = 0;
-                this.CurrentRoute = null;
+                    Point start = new Point((int)this.NPCPathFindRectangle.X / 16,
+                     ((int)this.NPCPathFindRectangle.Y - this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Height) / 16);
+                    Point end = FindIntermediateStages((int)this.CurrentStageLocation, route.StageToEndAt);
+
+                    this.CurrentPath = finder.FindPath(start, end, this.Name);
+                    if (this.CurrentPath == null)
+                    {
+                        throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
+                    }
                 }
-            
+            }
+            else
+            {
+                this.IsMoving = false;
+                this.CurrentDirection = 0;
+                this.CurrentRoute = null;
+            }
+
         }
 
         #region COMBAT
@@ -648,7 +676,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 Point start = new Point((int)(this.Position.X / 16),
                  (int)(this.Position.Y / 16));
                 Point end = new Point(endPoint.X, endPoint.Y);
-                this.EventCurrentPath = finder.FindPath(start, end,this.Name);
+                this.EventCurrentPath = finder.FindPath(start, end, this.Name);
                 if (this.EventCurrentPath == null)
                 {
                     throw new Exception(this.Name + " was unable to find a path between " + start + " and " + end);
@@ -705,7 +733,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                 {
 
                     case 0:
-                       
+
                         this.NPCAnimatedSprite[0].DrawAnimation(spriteBatch, new Vector2(this.Position.X, this.Position.Y - this.NPCRectangleYOffSet), num);
                         break;
                     case Dir.Left:

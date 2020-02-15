@@ -101,13 +101,22 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
 
         public Dictionary<GenerationType, TilingContainer> AllTilingContainers;
 
+        //OverworldFrontNoise = new FastNoise(500);
+        //OverworldFrontNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal); // Simplex
+        //    OverworldFrontNoise.SetFractalOctaves(6); // This many noise levels are added together
+        //    OverworldFrontNoise.SetFractalLacunarity(2.5f); // Each level/octave of noise gets this much times higher in frequency each time
 
+        //    //Smaller the smooth the biomes
+        //    OverworldFrontNoise.SetFractalGain(.35f); // each successive noise octave/level is this times as tall/influential compared to the previous
+
+        //    //larger the smaller the biomes
+        //    OverworldFrontNoise.SetFrequency(.008f);
 
         public Procedural()
         {
             //FASTNOISE
             OverworldBackNoise = new FastNoise(500);
-            OverworldBackNoise.SetNoiseType(FastNoise.NoiseType.PerlinFractal);
+            OverworldBackNoise.SetNoiseType(FastNoise.NoiseType.SimplexFractal);
             OverworldBackNoise.SetFractalOctaves(6);
             OverworldBackNoise.SetFractalLacunarity(2.5f);
 
