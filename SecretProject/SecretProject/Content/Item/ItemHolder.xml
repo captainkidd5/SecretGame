@@ -914,6 +914,24 @@
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
+<Name>Anvil</Name>
+<ID>1205</ID>
+<Description>An industrial light.</Description>
+<InvMaximum>99</InvMaximum><Price>500</Price>
+<PlaceID>2140</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Ore Extractor</Name>
+<ID>1206</ID>
+<Description>Extracts ore from the ground.</Description>
+<InvMaximum>99</InvMaximum><Price>500</Price>
+<PlaceID>2341</PlaceID>
+<TilingLayer>3</TilingLayer>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
 <Name>Basic Chest</Name>
 <ID>1240</ID>
 <Description>Stores items.</Description>

@@ -3334,6 +3334,18 @@
    <object id="1" x="1" y="2" width="15" height="11"/>
   </objectgroup>
  </tile>
+ <tile id="2341">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="3" x="2" y="0" width="12" height="14"/>
+  </objectgroup>
+  <animation>
+   <frame tileid="2541" duration="500"/>
+   <frame tileid="2741" duration="500"/>
+  </animation>
+ </tile>
  <tile id="2433">
   <properties>
    <property name="step" value="2"/>
@@ -3385,6 +3397,11 @@
   <objectgroup draworder="index" id="3">
    <object id="2" x="13" y="0" width="3" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="2541">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="2547">
   <properties>
@@ -3562,6 +3579,11 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="9" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="2741">
+  <properties>
+   <property name="newSource" value="0,-16,16,32"/>
+  </properties>
  </tile>
  <tile id="2804">
   <objectgroup draworder="index" id="2">
