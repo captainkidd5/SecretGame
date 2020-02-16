@@ -10,5 +10,7 @@ namespace XMLData.QuestStuff
     {
         public int ID { get; set; }
         public List<Quest> AllQuests { get; set; }
+
+
     }
 }

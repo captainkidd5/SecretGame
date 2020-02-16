@@ -4,21 +4,21 @@
   <ID>9</ID>
   <AllQuests>
     <Item Type="XMLData.QuestStuff.Quest">
-    <QuestName>The SeaSlug Cocktail</QuestName>
+    <QuestName>The Ore Extractor</QuestName>
     <QuestID>1</QuestID>
  <ItemsRequired>1101</ItemsRequired>
  
 <UnlockData>unlockWorldLoot,490,749</UnlockData>
-<UnlockDescription>Bloomberry will now sometimes yield seeds when harvested.</UnlockDescription>
-    <StartupSpeech>I've been feeling under the weather lately... Say! I know exactly what would help me get ship-shape in no time. Ever heard
-    of a Sea-Slug Cocktail? The recipe's simple: Brinebulb Juice mixed with exactly one plump Sea-Slug. Bring me one and I'll teach ya a thing or two about the sea.</StartupSpeech>
+<UnlockDescription>Ore extractor crafting recipe unlocked!</UnlockDescription>
+    <StartupSpeech>Oh, hello $. I've been working on a prototype for a new machine which can extract ore from the ground... # But I need something to finish up,
+    if you wouldn't mind bringing my 10 steel ore I'd be able to finish it. # ...and of course I'd teach you whatever I learn.</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>12AM</Time>
-   <TextToWrite>Did you need some more help with making the Sea-Slug Cocktail? `</TextToWrite>
-    <SelectableOptions>Where can I find a Sea-Slug again? ~Take your fishing rod to any body of water and start fishing!,Nevermind ~ ExitDialogue</SelectableOptions>
+   <TextToWrite>I still need 10 steel ore to finish my prototype. `</TextToWrite>
+    <SelectableOptions>Where can I find steel ore? ~Steel veins are usually found near cliffs. You'll need a pickaxe to mine it.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
-    <CompletionSpeech>Wonderful. Ned hastily gulbs down the cocktail, sea-slug and all. Ahhh that hit the spot... Thanks for that.</CompletionSpeech>
+    <CompletionSpeech>Oh yes these will do nicely. Here's my blueprints!</CompletionSpeech>
     </Item>
 </AllQuests>
 

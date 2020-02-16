@@ -16,7 +16,10 @@ namespace XMLData.QuestStuff
         [ContentSerializer(Optional = true)]
         public bool Completed { get; set; }
 
-        public List<int> ItemsRequired { get; set; }
+        [ContentSerializer(Optional = true)]
+        public List<int> AllRequiredItems { get; set; }
+
+        public string ItemsRequired { get; set; }
 
         public string UnlockData { get; set; }
         public string UnlockDescription { get; set; }

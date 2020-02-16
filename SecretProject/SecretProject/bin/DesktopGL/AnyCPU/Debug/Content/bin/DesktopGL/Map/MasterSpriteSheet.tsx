@@ -3336,9 +3336,11 @@
  </tile>
  <tile id="2341">
   <properties>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="3">
+   <object id="3" x="2" y="0" width="12" height="14"/>
+  </objectgroup>
   <animation>
    <frame tileid="2541" duration="500"/>
    <frame tileid="2741" duration="500"/>
@@ -3398,7 +3400,6 @@
  </tile>
  <tile id="2541">
   <properties>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>
@@ -3581,7 +3582,6 @@
  </tile>
  <tile id="2741">
   <properties>
-   <property name="newHitBox" value="0, -10, 16, 16"/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
  </tile>

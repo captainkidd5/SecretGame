@@ -16,6 +16,27 @@ namespace SecretProject.Class.QuestFolder
         public QuestHandler(QuestHolder questHolder)
         {
             this.QuestHolder = questHolder;
+            foreach(Quest quest in QuestHolder.AllQuests)
+            {
+                ParseQuestString(quest);
+            }
+        }
+
+        public void ParseQuestString(Quest quest)
+        {
+            List<int> itemIds = new List<int>();
+            string[] questString = quest.ItemsRequired.Split(',');
+
+            for(int i =0; i < questString.Length; i++)
+            {
+                int itemID = int.Parse(questString[i].Split(' ')[0]);
+                int itemCount = int.Parse(questString[i].Split(' ')[1]);
+                for(int j =0; j < itemCount; j++)
+                {
+                    itemIds.Add(itemID);
+                }
+            }
+            quest.AllRequiredItems = itemIds;
         }
 
         public Quest FetchCurrentQuest()
@@ -33,7 +54,7 @@ namespace SecretProject.Class.QuestFolder
 
         public bool CheckActiveQuestState()
         {
-            for(int i =0; i < this.ActiveQuest.ItemsRequired.Count; i++)
+            for(int i =0; i < this.ActiveQuest.AllRequiredItems.Count; i++)
             {
                 if(Game1.Player.UserInterface.BackPack.Inventory.ContainsAtLeastOne(this.ActiveQuest.ItemsRequired[i]))
                 {

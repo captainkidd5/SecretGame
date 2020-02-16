@@ -2913,6 +2913,9 @@
    <property name="idleStart" value=""/>
    <property name="newSource" value="0,-16,16,32"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
   <animation>
    <frame tileid="1756" duration="80"/>
    <frame tileid="1757" duration="80"/>
