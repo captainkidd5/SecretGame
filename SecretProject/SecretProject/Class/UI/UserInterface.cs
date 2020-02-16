@@ -11,6 +11,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.AlertStuff;
+using SecretProject.Class.UI.QuestStuff;
 using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.UI.StaminaStuff;
 using SecretProject.Class.Universal;
@@ -50,7 +51,8 @@ namespace SecretProject.Class.UI
         SanctuaryCheckList = 4,
         WarpGate = 5,
         CompletionHub = 7,
-        CommandConsole
+        CommandConsole = 8,
+        QuestLog = 9
 
     }
     public class UserInterface
@@ -98,6 +100,7 @@ namespace SecretProject.Class.UI
         public CurrentOpenProgressBook CurrentOpenProgressBook;
         public CompletionHub CompletionHub;
         public CommandConsole CommandConsole { get; set; }
+        public QuestLog QuestLog { get; set; }
 
 
         //keyboard
@@ -135,7 +138,7 @@ namespace SecretProject.Class.UI
             this.Player = player;
             this.CraftingMenu = new CraftingMenu(content, graphicsDevice);
             //CraftingMenu.LoadContent(content, GraphicsDevice);
-
+            this.QuestLog = new QuestLog(graphicsDevice);
 
 
             CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
@@ -268,7 +271,7 @@ namespace SecretProject.Class.UI
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
 
                     }
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
 
                         ActivateShop(OpenShop.ToolShop);
@@ -276,13 +279,13 @@ namespace SecretProject.Class.UI
 
                     }
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)))
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.T)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.T)))
                     {
                         this.TextBuilder.IsActive = !this.TextBuilder.IsActive;
                         this.TextBuilder.UseTextBox = true;
                     }
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
                     {
                         if (!this.Notes.IsActive)
                         {
@@ -292,14 +295,18 @@ namespace SecretProject.Class.UI
                         this.Notes.WindowPosition = Game1.Utility.centerScreen;
                     }
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
                     {
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
 
-                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
+                    }
+                    else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    {
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.QuestLog;
                     }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
@@ -383,6 +390,13 @@ namespace SecretProject.Class.UI
                     CompletionHub.Update(gameTime);
                     break;
 
+                case ExclusiveInterfaceItem.QuestLog:
+                    if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
+                    {
+                        CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
+                    }
+                    QuestLog.Update(gameTime);
+                    break;
 
 
                     //case ExclusiveInterfaceItem.CookingMenu:
@@ -515,6 +529,9 @@ namespace SecretProject.Class.UI
 
                     case ExclusiveInterfaceItem.CommandConsole:
                         CommandConsole.Draw(spriteBatch);
+                        break;
+                    case ExclusiveInterfaceItem.QuestLog:
+                        QuestLog.Draw(spriteBatch);
                         break;
                 }
 

@@ -328,6 +328,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                     {
                         if (LoadNewQuest())
                         {
+                            Game1.Player.UserInterface.QuestLog.AddNewQuest(QuestHandler);
                             skeleton = QuestHandler.ActiveQuest.MidQuestSkeleton;
                             textToWrite = QuestHandler.ActiveQuest.StartupSpeech;
                             FinishUpDialogue(frameToSet, textToWrite, skeleton);
