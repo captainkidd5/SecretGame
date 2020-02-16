@@ -33,11 +33,15 @@ namespace SecretProject.Class.Universal
         {
             RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(this.CenterScreenX, this.CenterScreenY);
-            ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
+            ClockPosition = new Vector2(Game1.ScreenWidth * .9f, Game1.ScreenHeight * .1f);
 
 
         }
 
+        public Vector2 CenterOnScreen(Rectangle sourceRectangle, float scale)
+        {
+            return new Vector2(centerScreen.X - sourceRectangle.Width * scale /2, centerScreen.Y - sourceRectangle.Height * scale /2);
+        }
 
 
 

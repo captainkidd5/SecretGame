@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,7 +67,7 @@ namespace SecretProject.Class.QuestFolder
                     break;
             }
 
-            Game1.Player.UserInterface.AddAlert(UI.AlertType.Normal, UI.AlertSize.XXL, new Microsoft.Xna.Framework.Vector2(Game1.Utility.ClockPosition.X - 64, Game1.Utility.ClockPosition.Y + 64), ActiveQuest.UnlockDescription);
+            Game1.Player.UserInterface.AddAlert(UI.AlertType.Normal, UI.AlertSize.XXL, Game1.Utility.CenterOnScreen(new Rectangle(0,0,64,64),2f), ActiveQuest.UnlockDescription);
         }
     }
 }

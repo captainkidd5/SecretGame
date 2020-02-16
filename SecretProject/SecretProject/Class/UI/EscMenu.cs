@@ -143,6 +143,10 @@ namespace SecretProject.Class.MenuStuff
             Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
            //Game1.freeze = false;
         }
+        public void ReturnToEscMenu()
+        {
+            Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
+        }
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < this.Buttons.Count; i++)
@@ -151,8 +155,9 @@ namespace SecretProject.Class.MenuStuff
             }
             if (this.MenuButton.isClicked)
             {
+                Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                 Game1.Player.UserInterface.AddAlert(AlertType.Confirmation, AlertSize.Medium, Game1.Utility.centerScreen, "Exit to main menu?",
-                    ExitToMainMenu);
+                    ExitToMainMenu, ReturnToEscMenu);
                 
             }
 
