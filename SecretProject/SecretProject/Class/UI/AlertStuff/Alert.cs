@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.Controls;
 using SecretProject.Class.DialogueStuff;
 using SecretProject.Class.MenuStuff;
+using SecretProject.Class.UI.ButtonStuff;
 using SecretProject.Class.Universal;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace SecretProject.Class.UI
         public Rectangle MiddleRectangle { get; set; }
         public Rectangle RightRectangle { get; set; }
 
-        protected Button redEsc;
+        protected RedEsc redEsc;
 
      
 
@@ -56,8 +57,7 @@ namespace SecretProject.Class.UI
             this.Position = position;
             this.Text = TextBuilder.ParseText(text, NineSliceRectangle.Width, 1f);
 
-            redEsc = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(0, 0, 32, 32), this.Graphics,
-                new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32), CursorType.Normal);
+            redEsc = new RedEsc(new Vector2(this.Position.X + this.NineSliceRectangle.Width - 32, this.Position.Y + 32),this.Graphics);
         }
 
         public virtual void Update(GameTime gameTime, List<Alert> alerts)
