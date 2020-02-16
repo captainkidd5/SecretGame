@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/TealQuests.xml</SourceFile>
-  <SourceTime>2020-02-14T17:23:41.5128303-08:00</SourceTime>
+  <SourceTime>2020-02-16T10:30:33.1053506-08:00</SourceTime>
   <DestFile>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/bin/DesktopGL/Content/QuestStuff/TealQuests.xnb</DestFile>
-  <DestTime>2020-02-14T17:23:47.1429289-08:00</DestTime>
+  <DestTime>2020-02-16T10:30:44.6353355-08:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2018-09-23T14:55:52-07:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

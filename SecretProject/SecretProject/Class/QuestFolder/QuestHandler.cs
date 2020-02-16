@@ -56,7 +56,7 @@ namespace SecretProject.Class.QuestFolder
         {
             for(int i =0; i < this.ActiveQuest.AllRequiredItems.Count; i++)
             {
-                if(Game1.Player.UserInterface.BackPack.Inventory.ContainsAtLeastOne(this.ActiveQuest.ItemsRequired[i]))
+                if(Game1.Player.UserInterface.BackPack.Inventory.ContainsAtLeastOne(this.ActiveQuest.AllRequiredItems[i]))
                 {
 
                 }

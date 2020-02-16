@@ -6,7 +6,7 @@
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>BloomBerry Harvester</QuestName>
     <QuestID>1</QuestID>
- <ItemsRequired>749 749 749 749 749</ItemsRequired>
+ <ItemsRequired>749 5</ItemsRequired>
   
 <UnlockData>unlockWorldLoot,490,748</UnlockData>
 <UnlockDescription>Bloomberry will now sometimes yield seeds when harvested.</UnlockDescription>
@@ -23,7 +23,7 @@
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>BloodCorn Harvester</QuestName>
     <QuestID>2</QuestID>
- <ItemsRequired>749 749 749 749 749</ItemsRequired>
+ <ItemsRequired>749 5</ItemsRequired>
   
 <UnlockData>unlockWorldLoot,290,750</UnlockData>
 <UnlockDescription>BloodCorn will now sometimes yield seeds when harvested.</UnlockDescription>

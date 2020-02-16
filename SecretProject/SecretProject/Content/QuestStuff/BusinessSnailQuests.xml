@@ -6,7 +6,7 @@
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>The SeaSlug Cocktail</QuestName>
     <QuestID>1</QuestID>
- <ItemsRequired>1101</ItemsRequired>
+ <ItemsRequired>1101 5</ItemsRequired>
   
 <UnlockData>unlockWorldLoot,490,749</UnlockData>
 <UnlockDescription>Bloomberry will now sometimes yield seeds when harvested.</UnlockDescription>
