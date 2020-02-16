@@ -11,6 +11,7 @@ namespace SecretProject.Class.UI.DayTransitionStuff
 {
     public class DayTransitioner
     {
+        public bool IsActive { get; set; }
         public Vector2 Position { get; set; }
         public string Text { get; set; }
         public float Scale { get; set; }
@@ -24,12 +25,20 @@ namespace SecretProject.Class.UI.DayTransitionStuff
 
         public void UpdateText()
         {
-            this.Text = Game1.GlobalClock.GetStringFromTime();
+            this.Text = Game1.GlobalClock.WeekDay.ToString() + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString() +
+                ", Year " + Game1.GlobalClock.Calendar.CurrentYear.ToString();
+            this.Position = Game1.Utility.CenterTextOnScreen(Game1.AllTextures.MenuText, this.Text, this.Scale);
+           
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Color color)
         {
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, this.Position, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            if (IsActive)
+            {
+
+
+                spriteBatch.DrawString(Game1.AllTextures.MenuText, this.Text, this.Position, color, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            }
         }
     }
 }

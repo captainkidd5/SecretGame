@@ -90,10 +90,10 @@ namespace SecretProject.Class.MenuStuff
             this.HitBoxRectangle = new Rectangle((int)Position.X, (int)Position.Y, (int)(this.BackGroundSourceRectangle.Width * this.HitBoxScale), (int)(this.BackGroundSourceRectangle.Height * this.HitBoxScale));
         }
         //for clickable text
-        public Button(Rectangle clickRangeRectangle, CursorType cursorType)
+        public Button(Rectangle clickRangeRectangle, CursorType cursorType, float hitBoxScale = 1f)
         {
-            this.HitBoxScale = 1f;
-            this.SelectableTextRectangle = clickRangeRectangle;
+            this.HitBoxScale = hitBoxScale;
+            this.SelectableTextRectangle = new Rectangle(clickRangeRectangle.X, clickRangeRectangle.Y, (int)(clickRangeRectangle.Width * hitBoxScale), (int)(clickRangeRectangle.Height * hitBoxScale));
         }
 
 

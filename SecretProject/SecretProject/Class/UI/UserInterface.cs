@@ -451,14 +451,19 @@ namespace SecretProject.Class.UI
           
         
 
-        public void BeginBlackTransition(float transitionSpeed, float targetTime = 2f)
+        public void BeginBlackTransition(float transitionSpeed, float targetTime = 2f, bool startOfNewDay = false)
         {
             this.TransitionTimer.ResetToZero();
             this.BlackTransitionColorMultiplier = 1f;
             this.IsTransitioning = true;
             this.TransitionSpeed = transitionSpeed;
-            this.TransitionTimer.TargetTime = 2f;
-            this.DayTransitioner.UpdateText();
+            this.TransitionTimer.TargetTime = targetTime;
+            if(startOfNewDay)
+            {
+                this.DayTransitioner.UpdateText();
+                this.DayTransitioner.IsActive = true;
+            }
+            
         }
 
         private void BlackTransition(GameTime gameTime)
@@ -475,6 +480,7 @@ namespace SecretProject.Class.UI
             {
                 this.BlackTransitionColorMultiplier = 1f;
                 this.IsTransitioning = false;
+                this.DayTransitioner.IsActive = false;
             }
 
         }
@@ -482,7 +488,7 @@ namespace SecretProject.Class.UI
         public void DrawTransitionTexture(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .99f);
-            this.DayTransitioner.Draw(spriteBatch);
+            this.DayTransitioner.Draw(spriteBatch, Color.White * this.BlackTransitionColorMultiplier);
         }
 
 

@@ -461,7 +461,8 @@ namespace SecretProject.Class.DialogueStuff
             this.Response = response;
             this.Action = action;
             this.Button = new Button(new Rectangle((int)position.X, (int)position.Y, (int)Game1.AllTextures.MenuText.MeasureString(response).X,
-                (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal);
+                (int)Game1.AllTextures.MenuText.MeasureString(response).Y), CursorType.Normal, 2f);
+ 
         }
 
         public void Update(GameTime gameTime, Character characterTalking)
