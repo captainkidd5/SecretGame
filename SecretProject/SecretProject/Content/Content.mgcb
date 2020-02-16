@@ -1639,6 +1639,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/owlHoot1.wav
 
+#begin SoundEffects/paperRuffleClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/paperRuffleClose.wav
+
+#begin SoundEffects/paperRuffleOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/paperRuffleOpen.wav
+
 #begin SoundEffects/pigGrunt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

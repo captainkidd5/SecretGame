@@ -182,6 +182,8 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/miningHit.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/MiniReward.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/owlHoot1.wav</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/paperRuffleClose.wav</File>
+    <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/paperRuffleOpen.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/pigGrunt.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/PigGrunt2.wav</File>
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/SoundEffects/placeItem1.wav</File>
@@ -220,6 +222,8 @@
     <File>C:/Users/SecretDingo/Desktop/SecretGame/SecretProject/SecretProject/Content/WorldProps/tallGrass.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

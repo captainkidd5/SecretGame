@@ -35,7 +35,7 @@ namespace SecretProject.Class.UI.QuestStuff
             this.Graphics = graphics;
             this.Position = Game1.Utility.centerScreen;
             this.BackgroundSourceRectangle = new Rectangle(624, 320, 160, 224);
-            this.Scale = 1f;
+            this.Scale = 3f;
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackgroundSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
             this.QuestButtons = new List<Button>();
 
@@ -55,6 +55,7 @@ namespace SecretProject.Class.UI.QuestStuff
             RedEsc.Update(Game1.myMouseManager);
             if(RedEsc.isClicked)
             {
+                Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleClose, true, .1f);
                 Game1.Player.UserInterface.CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
             }
             for(int i = 0; i < QuestButtons.Count; i++)

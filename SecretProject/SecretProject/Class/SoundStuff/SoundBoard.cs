@@ -142,6 +142,8 @@ namespace SecretProject.Class.SoundStuff
         //UI
         public SoundEffect UIClick;
         public SoundEffect Alert1;
+        public SoundEffect PageRuffleOpen;
+        public SoundEffect PageRuffleClose;
         public SoundBoard(Game1 game, ContentManager content)
         {
             this.PickUpItem = content.Load<SoundEffect>("SoundEffects/bubble");
@@ -268,6 +270,8 @@ namespace SecretProject.Class.SoundStuff
             //UI
             UIClick = content.Load<SoundEffect>("SoundEffects/UIClick");
             Alert1 = content.Load<SoundEffect>("SoundEffects/Alert1");
+            PageRuffleOpen = content.Load<SoundEffect>("SoundEffects/paperRuffleOpen");
+            PageRuffleClose = content.Load<SoundEffect>("SoundEffects/paperRuffleClose");
 
         }
         public void PlaySong()

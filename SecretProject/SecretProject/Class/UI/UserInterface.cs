@@ -306,6 +306,7 @@ namespace SecretProject.Class.UI
                     }
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
                     {
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleOpen, true, .1f);
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.QuestLog;
                     }
                     break;
@@ -393,6 +394,7 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.QuestLog:
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
                     {
+                        Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.PageRuffleClose, true, .1f);
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     QuestLog.Update(gameTime);

@@ -358,7 +358,7 @@ this.NPCAnimatedSprite[(int)this.CurrentDirection].DestinationRectangle.Y + this
                         {
                             for (int i = 0; i < QuestHandler.ActiveQuest.AllRequiredItems.Count; i++)
                             {
-                                Game1.Player.UserInterface.BackPack.Inventory.RemoveItem(QuestHandler.ActiveQuest.ItemsRequired[i]);
+                                Game1.Player.UserInterface.BackPack.Inventory.RemoveItem(QuestHandler.ActiveQuest.AllRequiredItems[i]);
                                 textToWrite = QuestHandler.ActiveQuest.CompletionSpeech;
                                 HasActiveQuest = false;
                                 QuestHandler.ActiveQuest.Completed = true;

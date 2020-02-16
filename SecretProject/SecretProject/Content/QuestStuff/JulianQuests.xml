@@ -6,12 +6,12 @@
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>The Ore Extractor</QuestName>
     <QuestID>1</QuestID>
- <ItemsRequired>1101 5</ItemsRequired>
+ <ItemsRequired>640 5</ItemsRequired>
  
 <UnlockData>unlockWorldLoot,490,749</UnlockData>
 <UnlockDescription>Ore extractor crafting recipe unlocked!</UnlockDescription>
     <StartupSpeech>Oh, hello $. I've been working on a prototype for a new machine which can extract ore from the ground... # But I need something to finish up,
-    if you wouldn't mind bringing my 10 steel ore I'd be able to finish it. # ...and of course I'd teach you whatever I learn.</StartupSpeech>
+    if you wouldn't mind bringing me 5 steel ore I'd be able to finish it. # ...and of course I'd teach you whatever I learn.</StartupSpeech>
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>12AM</Time>
