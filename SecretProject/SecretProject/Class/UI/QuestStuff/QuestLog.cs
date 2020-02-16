@@ -15,14 +15,23 @@ namespace SecretProject.Class.UI.QuestStuff
         public List<IPage> Quests { get; set; }
         public RedEsc RedEsc { get; set; }
 
+        public Vector2 Position { get; set; }
+        public Rectangle BackgroundSourceRectangle { get; set; }
+
+        public QuestPage ActiveQuestPage { get; set; }
+        public float Scale { get; set; }
+
         public QuestLog(GraphicsDevice graphics)
         {
-
+            this.Position = Game1.Utility.centerScreen;
+            this.BackgroundSourceRectangle = new Rectangle(624, 320, 160, 224);
+            this.Scale = 1f;
+            this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackgroundSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
         }
 
         public void AddNewQuest(QuestHandler quest)
         {
-            Quests.Add(new QuestPage())
+            Quests.Add(new QuestPage(quest, new Vector2(this.Position.X, this.Position.Y + 64 * Quests.Count)));
         }
 
         public void Update(GameTime gameTime)

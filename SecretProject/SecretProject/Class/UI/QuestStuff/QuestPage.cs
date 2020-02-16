@@ -18,14 +18,15 @@ namespace SecretProject.Class.UI.QuestStuff
         public Vector2 TextPosition { get; private set; }
         public Rectangle BackgroundSourceRectangle { get; private set; }
 
+        public Button Button { get; set; }
         public Button BackButton { get; private set; }
 
-        public QuestPage(QuestHandler questHandler, Vector2 textPosition, Rectangle backGroundSourceRectangle)
+        public QuestPage(QuestHandler questHandler, Vector2 textPosition)
         {
             this.Title = questHandler.ActiveQuest.QuestName;
             this.Description = questHandler.ActiveQuest.UnlockDescription;
             this.TextPosition = textPosition;
-            this.BackgroundSourceRectangle = backGroundSourceRectangle;
+            this.BackgroundSourceRectangle = new Rectangle(864, 48, 112, 32);
         }
 
         public void Update(GameTime gameTime)

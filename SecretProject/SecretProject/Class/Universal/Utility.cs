@@ -43,6 +43,11 @@ namespace SecretProject.Class.Universal
             return new Vector2(centerScreen.X - sourceRectangle.Width * scale /2, centerScreen.Y - sourceRectangle.Height * scale /2);
         }
 
+        public Vector2 CenterOnTopRightCorner(Rectangle sourceRectangle,Rectangle rectangleToPlace, Vector2 position, float scale)
+        {
+            return new Vector2(position.X + sourceRectangle.Width * scale - rectangleToPlace.Width * scale, position.Y);
+        }
+
 
 
 
