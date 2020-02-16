@@ -11,6 +11,7 @@ using SecretProject.Class.Playable;
 using SecretProject.Class.ShopStuff;
 using SecretProject.Class.Transportation;
 using SecretProject.Class.UI.AlertStuff;
+using SecretProject.Class.UI.DayTransitionStuff;
 using SecretProject.Class.UI.QuestStuff;
 using SecretProject.Class.UI.SanctuaryStuff;
 using SecretProject.Class.UI.StaminaStuff;
@@ -101,6 +102,7 @@ namespace SecretProject.Class.UI
         public CompletionHub CompletionHub;
         public CommandConsole CommandConsole { get; set; }
         public QuestLog QuestLog { get; set; }
+        public DayTransitioner DayTransitioner { get; set; }
 
 
         //keyboard
@@ -163,6 +165,7 @@ namespace SecretProject.Class.UI
             this.AllUISprites = new List<UISprite>();
 
             this.AllAlerts = new List<Alert>();
+            this.DayTransitioner = new DayTransitioner();
         }
 
         public void SwitchCurrentAccessedStorageItem(IStorableItemBuilding building)
@@ -268,12 +271,13 @@ namespace SecretProject.Class.UI
     
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.EscMenu;
 
                     }
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
-
+                        Game1.SoundManager.PlayOpenUI();
                         ActivateShop(OpenShop.ToolShop);
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.ShopMenu;
 
@@ -287,6 +291,7 @@ namespace SecretProject.Class.UI
 
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.N)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.N)))
                     {
+                        Game1.SoundManager.PlayOpenUI();
                         if (!this.Notes.IsActive)
                         {
                             this.Notes.FitText("This is a sample text to see how long the message can get before getting absolutely booled on", 1);
@@ -297,11 +302,13 @@ namespace SecretProject.Class.UI
 
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
                     {
+                        Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CraftingMenu;
                     }
 
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
+                        Game1.SoundManager.PlayOpenUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.CompletionHub;
                     }
                     else if ((Game1.OldKeyBoardState.IsKeyDown(Keys.L)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.L)))
@@ -311,11 +318,13 @@ namespace SecretProject.Class.UI
                     }
                     break;
                 case ExclusiveInterfaceItem.EscMenu:
+
                     this.Esc.Update(gameTime, mouse);
 
                     Game1.freeze = true;
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
@@ -328,12 +337,13 @@ namespace SecretProject.Class.UI
 
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.P)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.P)))
                     {
-
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     break;
@@ -341,11 +351,13 @@ namespace SecretProject.Class.UI
                     this.CraftingMenu.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.B)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.B)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Tab)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Tab)))
@@ -357,6 +369,7 @@ namespace SecretProject.Class.UI
                     Game1.SanctuaryCheckList.Update(gameTime, mouse);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
@@ -365,6 +378,7 @@ namespace SecretProject.Class.UI
                     CommandConsole.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Enter)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Enter)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
@@ -378,6 +392,7 @@ namespace SecretProject.Class.UI
                     this.WarpGate.Update(gameTime);
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Escape)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Escape)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
 
                     }
@@ -386,6 +401,7 @@ namespace SecretProject.Class.UI
                 case ExclusiveInterfaceItem.CompletionHub:
                     if ((Game1.OldKeyBoardState.IsKeyDown(Keys.Z)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.Z)))
                     {
+                        Game1.SoundManager.PlayCloseUI();
                         CurrentOpenInterfaceItem = ExclusiveInterfaceItem.None;
                     }
                     CompletionHub.Update(gameTime);
@@ -424,11 +440,16 @@ namespace SecretProject.Class.UI
             if (this.IsTransitioning)
             {
                 BlackTransition(gameTime);
+               
             }
 
             this.StaminaBar.Update(gameTime);
 
         }
+
+
+          
+        
 
         public void BeginBlackTransition(float transitionSpeed, float targetTime = 2f)
         {
@@ -437,6 +458,7 @@ namespace SecretProject.Class.UI
             this.IsTransitioning = true;
             this.TransitionSpeed = transitionSpeed;
             this.TransitionTimer.TargetTime = 2f;
+            this.DayTransitioner.UpdateText();
         }
 
         private void BlackTransition(GameTime gameTime)
@@ -459,7 +481,8 @@ namespace SecretProject.Class.UI
 
         public void DrawTransitionTexture(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, 1f); ;
+            spriteBatch.Draw(this.BlackTransitionTexture, Game1.Utility.Origin, null, Color.White * this.BlackTransitionColorMultiplier, 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, .99f);
+            this.DayTransitioner.Draw(spriteBatch);
         }
 
 

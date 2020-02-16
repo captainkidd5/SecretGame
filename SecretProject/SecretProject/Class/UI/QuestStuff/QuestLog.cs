@@ -33,9 +33,10 @@ namespace SecretProject.Class.UI.QuestStuff
         public QuestLog(GraphicsDevice graphics)
         {
             this.Graphics = graphics;
-            this.Position = Game1.Utility.centerScreen;
+         
             this.BackgroundSourceRectangle = new Rectangle(624, 320, 160, 224);
             this.Scale = 3f;
+            this.Position = Game1.Utility.CenterOnScreen(this.BackgroundSourceRectangle, this.Scale);
             this.RedEsc = new RedEsc(Game1.Utility.CenterOnTopRightCorner(this.BackgroundSourceRectangle, RedEsc.RedEscRectangle, this.Position, this.Scale), graphics);
             this.QuestButtons = new List<Button>();
 
@@ -81,7 +82,7 @@ namespace SecretProject.Class.UI.QuestStuff
 
             for (int i = 0; i < QuestButtons.Count; i++)
             {
-                QuestButtons[i].Draw(spriteBatch);
+                QuestButtons[i].Draw(spriteBatch, Game1.AllTextures.MenuText, Quests[i].Title, QuestButtons[i].Position, QuestButtons[i].Color, Utility.StandardButtonDepth + .01f, Game1.Utility.StandardTextDepth + .01f, this.Scale) ;
             }
             if(this.ActiveQuestPage != null)
             {
