@@ -66,7 +66,7 @@ namespace SecretProject.Class.QuestFolder
                     break;
             }
 
-            Game1.Player.UserInterface.AddAlert(UI.AlertType.Normal, UI.AlertSize.Large, Game1.Utility.centerScreen, ActiveQuest.UnlockDescription);
+            Game1.Player.UserInterface.AddAlert(UI.AlertType.Normal, UI.AlertSize.XXL, new Microsoft.Xna.Framework.Vector2(Game1.Utility.ClockPosition.X - 64, Game1.Utility.ClockPosition.Y + 64), ActiveQuest.UnlockDescription);
         }
     }
 }

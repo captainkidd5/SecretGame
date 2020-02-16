@@ -46,7 +46,7 @@ namespace SecretProject.Class.Universal
 
         public Clock()
         {
-            ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
+            ClockPosition = Game1.Utility.ClockPosition;
             // UnpausedTime = TimeSpan.Zero;
             LocalTime = TimeSpan.Zero;
             this.WeekDay = WeekDay.Monday;
@@ -101,9 +101,7 @@ namespace SecretProject.Class.Universal
             PickWeather();
             this.Calendar.IncrementCalendar();
 
-            Game1.Player.UserInterface.TransitionSpeed = .005f;
-            Game1.Player.UserInterface.TransitionTimer.TargetTime = 4f;
-            Game1.Player.UserInterface.IsTransitioning = true;
+            Game1.Player.UserInterface.BeginBlackTransition(.005f,4f);
             Game1.GlobalClock.TotalHours = 6;
             foreach (Character character in Game1.AllCharacters)
             {

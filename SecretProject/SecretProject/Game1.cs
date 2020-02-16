@@ -775,7 +775,7 @@ namespace SecretProject
 
         public static void SwitchStage(Stages currentStage, Stages stageToSwitchTo, Portal portal = null)
         {
-            Game1.Player.UserInterface.IsTransitioning = true;
+            Player.UserInterface.BeginBlackTransition(.05f);
 
             Game1.Player.UserInterface.TransitionSpeed = .05f;
             Game1.Player.UserInterface.TransitionTimer.TargetTime = 2f;

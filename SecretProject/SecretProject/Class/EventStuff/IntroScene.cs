@@ -69,7 +69,7 @@ namespace SecretProject.Class.EventStuff
             Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.Downpour);
             Game1.EnableMusic = false;
             Game1.SoundManager.CurrentSongInstance.Stop();
-            Game1.Player.UserInterface.IsTransitioning = true;
+            Game1.Player.UserInterface.BeginBlackTransition(.05f);
         }
 
 
@@ -84,7 +84,7 @@ namespace SecretProject.Class.EventStuff
 
             if (Game1.Player.UserInterface.IsTransitioning)
             {
-                Game1.Player.UserInterface.BeginTransitionCycle(gameTime);
+                Game1.Player.UserInterface.BeginBlackTransition(.05f);
             }
 
             //Game1.Player.UserInterface.TextBuilder.Update(gameTime);
@@ -305,9 +305,8 @@ namespace SecretProject.Class.EventStuff
                         if (StepsCompleted[this.CurrentStep] && !Game1.Player.UserInterface.TextBuilder.IsActive)
                         {
                             this.CurrentStep++;
-                            Game1.Player.UserInterface.TransitionSpeed = .005f;
-                            Game1.Player.UserInterface.TransitionTimer.TargetTime = 6f;
-                            Game1.Player.UserInterface.IsTransitioning = true;
+
+                            Game1.Player.UserInterface.BeginBlackTransition(.005f, 6f);
                         }
 
 

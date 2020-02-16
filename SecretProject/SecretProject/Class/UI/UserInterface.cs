@@ -110,7 +110,7 @@ namespace SecretProject.Class.UI
 
         //transition
         public Texture2D BlackTransitionTexture { get; set; }
-        public bool IsTransitioning { get; set; }
+        public bool IsTransitioning { get; private set; }
         public SimpleTimer TransitionTimer { get; set; }
         public float BlackTransitionColorMultiplier { get; set; }
 
@@ -407,14 +407,23 @@ namespace SecretProject.Class.UI
 
             if (this.IsTransitioning)
             {
-                BeginTransitionCycle(gameTime);
+                BlackTransition(gameTime);
             }
 
             this.StaminaBar.Update(gameTime);
 
         }
 
-        public void BeginTransitionCycle(GameTime gameTime)
+        public void BeginBlackTransition(float transitionSpeed, float targetTime = 2f)
+        {
+            this.TransitionTimer.ResetToZero();
+            this.BlackTransitionColorMultiplier = 1f;
+            this.IsTransitioning = true;
+            this.TransitionSpeed = transitionSpeed;
+            this.TransitionTimer.TargetTime = 2f;
+        }
+
+        private void BlackTransition(GameTime gameTime)
         {
             if (this.TransitionTimer.Time <= this.TransitionTimer.TargetTime)
             {
@@ -424,16 +433,12 @@ namespace SecretProject.Class.UI
             {
                 this.BlackTransitionColorMultiplier += this.TransitionSpeed;
             }
-            if (!this.TransitionTimer.Run(gameTime))
-            {
-                this.IsTransitioning = true;
-
-            }
-            else
+            if(this.TransitionTimer.Run(gameTime))
             {
                 this.BlackTransitionColorMultiplier = 1f;
                 this.IsTransitioning = false;
             }
+
         }
 
         public void DrawTransitionTexture(SpriteBatch spriteBatch)

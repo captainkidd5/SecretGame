@@ -59,7 +59,7 @@ namespace SecretProject.Class.EventStuff
 
             if (Game1.Player.UserInterface.IsTransitioning)
             {
-                Game1.Player.UserInterface.BeginTransitionCycle(gameTime);
+              //  Game1.Player.UserInterface.BlackTransition(gameTime);
             }
 
             Game1.Player.UserInterface.TextBuilder.Update(gameTime);

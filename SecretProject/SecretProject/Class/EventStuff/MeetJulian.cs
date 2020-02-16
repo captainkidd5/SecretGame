@@ -85,8 +85,8 @@ namespace SecretProject.Class.EventStuff
             Game1.Julian.IsMoving = false;
             Game1.Julian.ResetAnimations();
 
-            //Game1.Player.UserInterface.BeginTransitionCycle();
-            Game1.Player.UserInterface.IsTransitioning = true;
+            Game1.Player.UserInterface.BeginBlackTransition(.05f);
+
 
 
         }
@@ -105,7 +105,7 @@ namespace SecretProject.Class.EventStuff
 
             if (Game1.Player.UserInterface.IsTransitioning)
             {
-                Game1.Player.UserInterface.BeginTransitionCycle(gameTime);
+                //Game1.Player.UserInterface.BlackTransition(gameTime);
             }
             Game1.Player.UserInterface.Update(gameTime, Game1.OldKeyBoardState, Game1.NewKeyBoardState, Game1.Player.Inventory, Game1.myMouseManager);
             Game1.DobbinHouse.AllTiles.Update(gameTime, Game1.myMouseManager);

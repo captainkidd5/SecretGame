@@ -27,11 +27,13 @@ namespace SecretProject.Class.Universal
 
          public const float StandardButtonDepth = .7f;
         public float StandardTextDepth { get; set; } = .72f;
+        public Vector2 ClockPosition { get; set; }
 
         public Utility(int seed)
         {
             RGenerator = new Random(Seed: seed);
             centerScreen = new Vector2(this.CenterScreenX, this.CenterScreenY);
+            ClockPosition = new Vector2(Game1.PresentationParameters.BackBufferWidth * .9f, Game1.PresentationParameters.BackBufferHeight * .1f);
 
 
         }
