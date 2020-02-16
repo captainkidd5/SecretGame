@@ -15,10 +15,11 @@
      <MidQuestSkeleton Type="XMLData.DialogueStuff.DialogueSkeleton">
     <SpeechID>1</SpeechID>
     <Time>12AM</Time>
-   <TextToWrite>I still need 10 steel ore to finish my prototype. `</TextToWrite>
+   <TextToWrite>I still need 5 steel ore to finish my prototype. `</TextToWrite>
     <SelectableOptions>Where can I find steel ore? ~Steel veins are usually found near cliffs. You'll need a pickaxe to mine it.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
     <CompletionSpeech>Oh yes these will do nicely. Here's my blueprints!</CompletionSpeech>
+     <QuestLogDecription>Julian needs 5 steel ore so that he can complete his prototype. Once I have all 5 I should bring them to him.</QuestLogDecription>
     </Item>
 </AllQuests>
 

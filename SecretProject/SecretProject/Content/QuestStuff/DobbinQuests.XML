@@ -19,6 +19,7 @@
     <SelectableOptions>How can I harvest Bloomberry? ~It's easy, just find one in Rai and grab it. # Once you have all five come bring them back to me.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
     <CompletionSpeech>Ah yes these are perfect. As promised, here's the secret to growing Bloomberry.</CompletionSpeech>
+    <QuestLogDecription>Dobbin wants me to collect 5 BloomBerries from Rai. Once I have all 5 I should go and speak to him again.</QuestLogDecription>
     </Item>
     <Item Type="XMLData.QuestStuff.Quest">
     <QuestName>BloodCorn Harvester</QuestName>
@@ -36,6 +37,7 @@
     <SelectableOptions>How can I harvest Bloomberry? ~It's easy, just find one in Rai and grab it. # Once you have all five come bring them back to me.,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
     <CompletionSpeech>Ah yes these are perfect. As promised, here's the secret to growing BloodCorn.</CompletionSpeech>
+     <QuestLogDecription>Dobbin wants me to collect 5 BloomBerries from Rai. Once I have all 5 I should go and speak to him again.</QuestLogDecription>
     </Item>
 </AllQuests>
 

@@ -27,5 +27,6 @@ namespace XMLData.QuestStuff
         public string StartupSpeech { get; set; }
         public DialogueSkeleton MidQuestSkeleton { get; set; }
         public string CompletionSpeech { get; set; }
+        public string QuestLogDecription { get; set; }
     }
 }

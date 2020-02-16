@@ -18,6 +18,7 @@
     <SelectableOptions>Where can I find a Sea-Slug again? ~Take your fishing rod to any body of water and start fishing!,Nevermind ~ ExitDialogue</SelectableOptions>
     </MidQuestSkeleton>
     <CompletionSpeech>Wonderful. Ned hastily gulbs down the cocktail, sea-slug and all. Ahhh that hit the spot... Thanks for that.</CompletionSpeech>
+     <QuestLogDecription>Dobbin wants me to collect 5 BloomBerries from Rai. Once I have all 5 I should go and speak to him again.</QuestLogDecription>
     </Item>
 </AllQuests>
 

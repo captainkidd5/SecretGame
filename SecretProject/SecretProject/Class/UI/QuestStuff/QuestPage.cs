@@ -25,7 +25,7 @@ namespace SecretProject.Class.UI.QuestStuff
         public QuestPage(QuestHandler questHandler, Vector2 textPosition)
         {
             this.Title = questHandler.ActiveQuest.QuestName;
-            this.Description = questHandler.ActiveQuest.UnlockDescription;
+            this.Description = questHandler.ActiveQuest.QuestLogDecription;
             this.TextPosition = textPosition;
 
 

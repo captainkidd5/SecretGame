@@ -47,8 +47,21 @@ namespace SecretProject.Class.UI.QuestStuff
 
         public void AddNewQuest(QuestHandler quest)
         {
-            Quests.Add(new QuestPage(quest, new Vector2(this.Position.X, this.Position.Y + 80 * Quests.Count)));
-            QuestButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(864, 48, 112, 32), this.Graphics, new Vector2(this.Position.X, this.Position.Y + 64 * Quests.Count), Controls.CursorType.Normal, this.Scale));
+            Quests.Add(new QuestPage(quest, new Vector2(this.Position.X, this.Position.Y + 96)));
+            QuestButtons.Add(new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(624, 544, 160, 48), this.Graphics, new Vector2(this.Position.X, this.Position.Y + 48 * Quests.Count * Scale), Controls.CursorType.Normal, this.Scale));
+        }
+
+        public void RemoveCompletedQuest(QuestHandler quest)
+        {
+            for(int i =0; i < Quests.Count; i++)
+            {
+                if(Quests[i].Title == quest.ActiveQuest.QuestName)
+                {
+                    Quests.RemoveAt(i);
+                    QuestButtons.RemoveAt(i);
+                    return;
+                }
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -90,7 +103,7 @@ namespace SecretProject.Class.UI.QuestStuff
             {
                 for (int i = 0; i < QuestButtons.Count; i++)
                 {
-                    QuestButtons[i].Draw(spriteBatch, Game1.AllTextures.MenuText, Quests[i].Title, QuestButtons[i].Position, QuestButtons[i].Color, Utility.StandardButtonDepth + .01f, Game1.Utility.StandardTextDepth + .01f, this.Scale);
+                    QuestButtons[i].Draw(spriteBatch, Game1.AllTextures.MenuText, Quests[i].Title, QuestButtons[i].Position, QuestButtons[i].Color, Utility.StandardButtonDepth + .01f, Game1.Utility.StandardTextDepth + .01f, this.Scale - 1);
                 }
             }
             else
