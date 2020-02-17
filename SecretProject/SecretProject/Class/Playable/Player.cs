@@ -9,6 +9,7 @@ using SecretProject.Class.ItemStuff;
 using SecretProject.Class.NPCStuff;
 using SecretProject.Class.NPCStuff.CaptureCrateStuff;
 using SecretProject.Class.NPCStuff.Enemies;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.StageFolder;
 using SecretProject.Class.TileStuff;
@@ -32,7 +33,7 @@ namespace SecretProject.Class.Playable
     }
 
 
-    public class Player : IEntity
+    public class Player : IEntity 
     {
 
         public Vector2 position;

@@ -110,9 +110,9 @@ namespace SecretProject.Class.Universal
                 character.ResetEndOfDay();
             }
 
-            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
-            AdjustClockText();
             
+            AdjustClockText();
+            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
         }
 
         public int GetTimeFromString(string time)
@@ -326,12 +326,15 @@ namespace SecretProject.Class.Universal
 
         public void Save(BinaryWriter writer)
         {
+            writer.Write(this.TotalDays);
             Calendar.Save(writer);
         }
 
         public void Load(BinaryReader reader)
         {
+            this.TotalDays = reader.ReadInt32();
             Calendar.Load(reader);
+            AdjustClockText();
         }
     }
 }

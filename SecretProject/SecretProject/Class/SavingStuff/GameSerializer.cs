@@ -52,12 +52,18 @@ namespace SecretProject.Class.SavingStuff
         {
             
             Game1.Player.Save(writer);
-            Game1.OverWorld.SaveLocation();
+            if(Game1.OverWorld.IsLoaded)
+            {
+                Game1.OverWorld.SaveLocation();
+            }
+            
+            Game1.GlobalClock.Save(writer);
         }
 
         public static void LoadGameFile(BinaryReader reader, float version)
         {
             Game1.Player.Load(reader);
+            Game1.GlobalClock.Load(reader);
 
         }
 
