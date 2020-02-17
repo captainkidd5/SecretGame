@@ -25,9 +25,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             this.Graphics = graphics;
             this.ID = id;
-           
+
             this.Button = button;
-            if(Game1.SaveLoadManager.CheckIfSaveEmpty(this.ID))
+            if (Game1.SaveLoadManager.CheckIfSaveEmpty(this.ID))
             {
                 this.Occupied = false;
                 this.String = "Empty";
@@ -35,11 +35,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             else
             {
                 this.Occupied = true;
-               
+
                 this.String = "Occupied";
             }
-            
-            
+
+
         }
 
         public void Update(GameTime gameTime)
@@ -94,6 +94,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void StartNewSave()
         {
             Game1.SaveLoadManager.CurrentSave = this.ID;
+            string savePath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
+            System.IO.Directory.CreateDirectory(savePath);
+
+            Game1.SaveLoadManager.AllSaves.Add(new SaveFile(this.ID, savePath + "/_" + Game1.Player.Name + "PrimaryData"));
+            
             Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
             this.String = Game1.Player.Name + ", Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
             Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);

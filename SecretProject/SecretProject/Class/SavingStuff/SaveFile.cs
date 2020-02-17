@@ -15,6 +15,9 @@ namespace SecretProject.Class.SavingStuff
         {
             this.ID = id;
             this.Path = path;
+
         }
+
+       
     }
 }

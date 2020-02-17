@@ -42,15 +42,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
             SaveSlot1 = new SaveSlot(graphics, 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100), CursorType.Normal, this.Scale -1, null));
-            SaveSlot2 = new SaveSlot(graphics, 2, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
-                graphics, new Vector2(this.Position.X, this.Position.Y + 200), CursorType.Normal, this.Scale - 1, null));
-            SaveSlot3 = new SaveSlot(graphics, 3, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
-                graphics, new Vector2(this.Position.X, this.Position.Y + 300), CursorType.Normal, this.Scale- 1, null));
+
             this.AllSaveSlots = new List<SaveSlot>()
             {
                 SaveSlot1,
-                SaveSlot2,
-                SaveSlot3
+
             };
             this.MenuChoice = ChooseGameState.SaveSlotSelection;
             this.CharacterCreationMenu = new CharacterCreationMenu(graphics, SaveSlot1, new Vector2(position.X, position.Y - 400));

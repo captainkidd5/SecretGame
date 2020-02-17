@@ -105,7 +105,7 @@ namespace SecretProject
         public static bool EnableCutScenes = false;
         public static bool EnableMusic = false;
         public static bool InfiniteArrows = false;
-        public static bool GenerateChunkLandscape = false;
+        public static bool GenerateChunkLandscape = true;
 
         public static bool IsFirstTimeStartup;
 
