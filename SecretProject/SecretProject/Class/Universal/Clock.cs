@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SecretProject.Class.NPCStuff;
+using SecretProject.Class.SavingStuff;
 using SecretProject.Class.UI;
 using SecretProject.Class.Weather;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using XMLData.RouteStuff;
 
@@ -12,7 +14,7 @@ namespace SecretProject.Class.Universal
 {
     
 
-    public class Clock
+    public class Clock : ISaveable
     {
         public int GlobalTime { get; set; } = 0;
         public Vector2 ClockPosition;
@@ -108,6 +110,7 @@ namespace SecretProject.Class.Universal
                 character.ResetEndOfDay();
             }
 
+            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
             AdjustClockText();
             
         }
@@ -318,6 +321,17 @@ namespace SecretProject.Class.Universal
         {
             ClockDisplay.Draw(spriteBatch, true, 2f);
             //ClockDisplay.Draw(spriteBatch, this.ClockPosition, this.ClockPosition, ClockDisplay.SourceRectangle,2f);
+        }
+
+
+        public void Save(BinaryWriter writer)
+        {
+            Calendar.Save(writer);
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            Calendar.Load(reader);
         }
     }
 }

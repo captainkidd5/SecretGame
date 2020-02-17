@@ -439,6 +439,8 @@ namespace SecretProject.Class.TileStuff
 
         }
 
+        
+
         public void SaveAndDiscardChunk(Chunk chunk)
         {
             if(chunk.IsDoneLoading && chunk.IsLoaded)
@@ -962,6 +964,22 @@ namespace SecretProject.Class.TileStuff
 
             return this.PathGrid;
 
+        }
+
+        public void SaveTiles()
+        {
+            SaveAllChunks();
+        }
+
+        public void SaveAllChunks()
+        {
+            for (int i = 0; i < this.ActiveChunks.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.ActiveChunks.GetLength(1); j++)
+                {
+                    this.ActiveChunks[i, j].Save();
+                }
+            }
         }
     }
 }

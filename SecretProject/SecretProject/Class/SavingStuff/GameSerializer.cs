@@ -52,7 +52,7 @@ namespace SecretProject.Class.SavingStuff
         {
             
             Game1.Player.Save(writer);
-            
+            Game1.OverWorld.SaveLocation();
         }
 
         public static void LoadGameFile(BinaryReader reader, float version)
@@ -62,35 +62,9 @@ namespace SecretProject.Class.SavingStuff
         }
 
 
-        public static void WriteTile(Tile tile, BinaryWriter writer, float version)
-        {
-            writer.Write(tile.GID + 1);
-
-            writer.Write(tile.Y);
-            writer.Write(tile.X);
-
-            writer.Write(tile.LayerToDrawAt);
-            writer.Write(tile.LayerToDrawAtZOffSet);
 
 
-        }
 
-
-        public static void WriteClock(Clock clock, BinaryWriter writer, float version)
-        {
-            writer.Write(clock.GlobalTime);
-            writer.Write(clock.TotalDays);
-        }
-
-        public static void ReadClock(Clock clock, BinaryReader reader, float version)
-        {
-            int globalTime = reader.ReadInt32();
-            int totalDays = reader.ReadInt32();
-
-            clock.GlobalTime = globalTime;
-            clock.TotalDays = totalDays;
-
-        }
 
 
     }

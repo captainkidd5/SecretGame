@@ -112,6 +112,7 @@ namespace SecretProject.Class.StageFolder
         void AddTextToAllStrings(string message, Vector2 position, float endAtX, float endAtY, float rate, float duration);
         void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale);
 
+        void SaveLocation();
 
 
     }

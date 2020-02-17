@@ -234,7 +234,7 @@ namespace SecretProject.Class.StageFolder
             Game1.ItemVault.LoadExteriorContent(Game1.Town.AllTiles);
             Game1.ItemVault.LoadInteriorContent(Game1.OverWorld.AllTiles);
             CurrentMenuState = MenuState.Primary;
-            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+            Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
             Game1.SwitchStage(0, Stages.PlayerHouse);
         }
 

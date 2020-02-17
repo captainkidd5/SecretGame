@@ -543,5 +543,10 @@ namespace SecretProject.Class.StageFolder
         {
             this.AllRisingText.Add(new RisingText(Game1.Player.Position, yEnd, stringToWrite, speed, color, fade, scale));
         }
+
+        public void SaveLocation()
+        {
+            this.AllTiles.SaveTiles();
+        }
     }
 }

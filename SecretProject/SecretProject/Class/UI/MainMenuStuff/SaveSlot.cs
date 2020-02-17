@@ -94,9 +94,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void StartNewSave()
         {
             Game1.SaveLoadManager.CurrentSave = this.ID;
-            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.GetSaveFileFromID(Game1.SaveLoadManager.CurrentSave));
+            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
             this.String = Game1.Player.Name + ", Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
-            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.MainMenuData, false);
+            Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
 
             Game1.mainMenu.StartNewGame();
         }

@@ -5,6 +5,11 @@ using System.IO;
 
 namespace SecretProject.Class.SavingStuff
 {
+    public enum SaveType
+    {
+        GameSave = 1,
+        MenuSave = 2
+    }
     public class SaveLoadManager
     {
         public string OutputMessage;
@@ -48,9 +53,26 @@ namespace SecretProject.Class.SavingStuff
             
         }
 
-        public void Save(SaveFile saveFile, bool isGameSave = true)
+        public void SaveGameState(SaveType saveType)
         {
-            if(File.Exists(saveFile.Path))
+            if(saveType == SaveType.GameSave)
+            {
+                Save(Game1.SaveLoadManager.GetSaveFileFromID(Game1.SaveLoadManager.CurrentSave),true);
+            }
+            else if(saveType == SaveType.MenuSave)
+            {
+                Save(MainMenuData,false);
+            }
+            else
+            {
+                throw new System.Exception("Invalid savetype");
+            }
+        }
+
+        private void Save(SaveFile saveFile, bool isGameSave )
+        {
+
+            if (File.Exists(saveFile.Path))
             {
                 File.WriteAllText(saveFile.Path, string.Empty);
             }

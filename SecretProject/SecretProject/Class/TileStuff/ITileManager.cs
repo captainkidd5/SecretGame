@@ -59,5 +59,7 @@ namespace SecretProject.Class.TileStuff
 
         void AddItem(Item item, Vector2 position);
         List<Item> GetItems(Vector2 position);
+
+        void SaveTiles();
     }
 }
