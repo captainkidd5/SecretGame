@@ -239,6 +239,8 @@ namespace SecretProject.Class.TileStuff
                             foreach (KeyValuePair<string, Crop> crop in this.Crops)
                             {
                                 binaryWriter.Write(crop.Key);
+                                binaryWriter.Write(crop.Value.X);
+                                binaryWriter.Write(crop.Value.Y);
                                 binaryWriter.Write(crop.Value.ItemID);
                                 binaryWriter.Write(crop.Value.Name);
                                 binaryWriter.Write(crop.Value.GID);
@@ -369,6 +371,8 @@ namespace SecretProject.Class.TileStuff
                             for (int c = 0; c < cropCount; c++)
                             {
                                 string cropKey = binaryReader.ReadString();
+                                int cropX = binaryReader.ReadInt32();
+                                int cropY = binaryReader.ReadInt32();
                                 int itemID = binaryReader.ReadInt32();
                                 string name = binaryReader.ReadString();
                                 int gid = binaryReader.ReadInt32();
@@ -377,23 +381,24 @@ namespace SecretProject.Class.TileStuff
                                 int currentGrow = binaryReader.ReadInt32();
                                 bool harvestable = binaryReader.ReadBoolean();
                                 int dayPlanted = binaryReader.ReadInt32();
-                                int newCurrentGrowth = Game1.GlobalClock.TotalDays - dayPlanted;
-                                if (newCurrentGrowth > daysToGrow)
-                                {
-                                    newCurrentGrowth = daysToGrow;
-                                }
+                                //int newCurrentGrowth = Game1.GlobalClock.TotalDays - dayPlanted;
+                                //if (newCurrentGrowth > daysToGrow)
+                                //{
+                                //    newCurrentGrowth = daysToGrow;
+                                //}
                                 Crop crop = new Crop()
                                 {
                                     ItemID = itemID,
                                     Name = name,
-
+                                    X = cropX,
+                                    Y = cropY,
                                     BaseGID = baseGID,
                                     DaysToGrow = daysToGrow,
 
                                     Harvestable = harvestable,
                                     DayPlanted = dayPlanted,
-                                    CurrentGrowth = newCurrentGrowth,
-                                    GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[newCurrentGrowth].Id + 1,
+                                    CurrentGrowth = currentGrow,
+                                    GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
                                 this.Crops.Add(cropKey, crop);
                                 TileUtility.ReplaceTile(3, crop.X, crop.Y, crop.GID, this);
@@ -629,11 +634,11 @@ namespace SecretProject.Class.TileStuff
                     else
                     {
                         HandleCliffEdgeCases(AllAdjacentChunkNoise);
-                        if(Game1.GenerateChunkLandscape)
+                        if (Game1.GenerateChunkLandscape)
                         {
                             GenerateLandscape(topNoise);
                         }
-                       
+
                     }
 
                     List<int> CliffBottomTiles;
