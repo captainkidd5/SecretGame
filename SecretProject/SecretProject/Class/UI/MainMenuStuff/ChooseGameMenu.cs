@@ -9,7 +9,7 @@ using SecretProject.Class.SpriteFolder;
 using SecretProject.Class.UI;
 using SecretProject.Class.Universal;
 using System.Collections.Generic;
-
+using System.IO;
 
 namespace SecretProject.Class.UI.MainMenuStuff
 {
@@ -25,9 +25,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public float  Scale { get; set; }
         public Rectangle BackGroundSourceRectangle { get; private set; }
         public Rectangle ButtonSourceRectangle { get; set; }
-        public SaveSlot SaveSlot1 { get; private set; }
-        public SaveSlot SaveSlot2 { get; private set; }
-        public SaveSlot SaveSlot3 { get; private set; }
+
 
         public List<SaveSlot> AllSaveSlots { get; set; }
 
@@ -40,16 +38,24 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.BackGroundSourceRectangle = new Rectangle(304, 365, 112, 163);
             this.ButtonSourceRectangle = new Rectangle(1024, 64, 112, 48);
 
-            SaveSlot1 = new SaveSlot(graphics, 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
-                graphics, new Vector2(this.Position.X, this.Position.Y + 100), CursorType.Normal, this.Scale -1, null));
+            
 
-            this.AllSaveSlots = new List<SaveSlot>()
+            string[] directories = System.IO.Directory.GetDirectories(@"Content/SaveFiles/GameSaves");
+            int directoryCount = directories.Length;
+            this.AllSaveSlots = new List<SaveSlot>() ;
+            for (int i = 0; i < directoryCount; i++)
             {
-                SaveSlot1,
-
-            };
+                FileStream fileStream = File.OpenRead(System.IO.Directory.GetDirectories(directories[i])[0]); //first file in each save should always be the primary save data, no rearranging. 
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+                string saveName = binaryReader.ReadString();
+                this.AllSaveSlots.Add(new SaveSlot(graphics, i + 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+                graphics, new Vector2(this.Position.X, this.Position.Y + 100 * i), CursorType.Normal, this.Scale - 1, null), true, saveName));
+            }
+            SaveSlot EmptySaveSlot = new SaveSlot(graphics, 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+                graphics, new Vector2(this.Position.X, this.Position.Y + 100), CursorType.Normal, this.Scale - 1, null),false);
+            this.AllSaveSlots.Add(EmptySaveSlot);
             this.MenuChoice = ChooseGameState.SaveSlotSelection;
-            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, SaveSlot1, new Vector2(position.X, position.Y - 400));
+            this.CharacterCreationMenu = new CharacterCreationMenu(graphics, this.AllSaveSlots[this.AllSaveSlots.Count - 1], new Vector2(position.X, position.Y - 400));
         }
 
         public void Update(GameTime gameTime)

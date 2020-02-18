@@ -89,7 +89,7 @@ namespace SecretProject.Class.SavingStuff
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
            
 
-            binaryWriter.Write(this.CurrentSave);
+            binaryWriter.Write(saveFile.);
             if(isGameSave)
             {
                 GameSerializer.SaveGameFile(binaryWriter, OutputMessage, 1);

@@ -46,6 +46,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
             if(this.StartNewGameButton.isClicked)
             {
+                if(this.PlayerName == string.Empty)
+                {
+                    Game1.mainMenu.AddAlert(AlertType.Normal, AlertSize.Medium, Game1.Utility.CenterRectangleOnScreen(new Rectangle(0, 0, 64, 32), 2f), "Please enter a name");
+                    return;
+                }
                 Action negativeAction = new Action(Game1.mainMenu.ReturnToDefaultState);
                 Action action = new Action(EnterGame);
 

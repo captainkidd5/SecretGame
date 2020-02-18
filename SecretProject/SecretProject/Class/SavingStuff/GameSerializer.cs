@@ -26,22 +26,27 @@ namespace SecretProject.Class.SavingStuff
             outPutMessage = outPutMessage + " " + thingToAppend;
         }
 
+        /// <summary>
+        /// Save main menu preferences such as sound, video, etc
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="OutputMessage"></param>
+        /// <param name="version"></param>
         public static void SaveMainMenu(BinaryWriter writer, string OutputMessage, float version)
         {
 
-            for (int i = 0; i < Game1.mainMenu.ChooseGameMenu.AllSaveSlots.Count; i++)
-            {
-                Game1.mainMenu.ChooseGameMenu.AllSaveSlots[i].SaveString(writer);
-            }
+            
 
         }
 
+        /// <summary>
+        /// Used to load preferences such as sound, video, etc
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="version"></param>
         public static void LoadMainMenu(BinaryReader reader, float version)
         {
-            for(int i =0; i < Game1.mainMenu.ChooseGameMenu.AllSaveSlots.Count; i++)
-            {
-                Game1.mainMenu.ChooseGameMenu.AllSaveSlots[i].LoadString(reader);
-            }
+          
 
         }
 
