@@ -193,53 +193,7 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
             this.IsMoving = true;
             TestImmunity(gameTime);
             this.PrimaryVelocity = new Vector2(.5f, .5f);
-            this.Collider.Rectangle = this.NPCHitBoxRectangle;
-            List<ICollidable> returnObjects = new List<ICollidable>();
-            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
-            for (int i = 0; i < returnObjects.Count; i++)
-            {
-                //if obj collided with item in list stop it from moving boom badda bing
-
-                this.CollideOccured = true;
-                if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
-                {
-                    if(this.Collider.IsIntersecting(Game1.Player.MainCollider))
-                    {
-                        if(!Game1.Player.IsImmuneToDamage)
-                        {
-                            Game1.Player.DamageCollisionInteraction(1, 200,this.CurrentDirection);
-                        }
-                       
-                    }
-                }
-                else if (returnObjects[i].ColliderType == ColliderType.grass)
-                {
-                    if (this.Collider.IsIntersecting(returnObjects[i]))
-                    {
-                        returnObjects[i].IsUpdating = true;
-                        returnObjects[i].InitialShuffDirection = this.CurrentDirection;
-                    }
-                }
-                else
-                {
-                    if (this.IsMoving)
-                    {
-
-
-                        //if (returnObjects[i].ColliderType == ColliderType.inert)
-                        //{
-                        //    Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
-                        //}
-                    }
-                    
-                }
-
-
-                // IsMoving = false;
-
-
-
-            }
+            QuadTreeInsertion();
             for (int i = 0; i < this.NPCAnimatedSprite.Length; i++)
             {
                 this.NPCAnimatedSprite[i].UpdateAnimationPosition(this.Position);
@@ -324,6 +278,57 @@ this.NPCAnimatedSprite[0].DestinationRectangle.Y + 20, 8, 8);
 
 
 
+        }
+
+        public virtual void QuadTreeInsertion()
+        {
+            this.Collider.Rectangle = this.NPCHitBoxRectangle;
+            List<ICollidable> returnObjects = new List<ICollidable>();
+            Game1.GetCurrentStage().QuadTree.Retrieve(returnObjects, this.Collider);
+            for (int i = 0; i < returnObjects.Count; i++)
+            {
+                //if obj collided with item in list stop it from moving boom badda bing
+
+                //this.CollideOccured = true;
+                if (returnObjects[i].ColliderType == ColliderType.PlayerBigBox)
+                {
+                    if (this.Collider.IsIntersecting(Game1.Player.MainCollider))
+                    {
+                        if (!Game1.Player.IsImmuneToDamage)
+                        {
+                            Game1.Player.DamageCollisionInteraction(1, 200, this.CurrentDirection);
+                        }
+
+                    }
+                }
+                else if (returnObjects[i].ColliderType == ColliderType.grass)
+                {
+                    if (this.Collider.IsIntersecting(returnObjects[i]))
+                    {
+                        returnObjects[i].IsUpdating = true;
+                        returnObjects[i].InitialShuffDirection = this.CurrentDirection;
+                    }
+                }
+                else
+                {
+                    if (this.IsMoving)
+                    {
+
+
+                        //if (returnObjects[i].ColliderType == ColliderType.inert)
+                        //{
+                        //    Collider.HandleMove(Position, ref primaryVelocity, returnObjects[i]);
+                        //}
+                    }
+
+                }
+
+
+                // IsMoving = false;
+
+
+
+            }
         }
 
         public void RollPeriodicDrop(Vector2 positionToDrop)

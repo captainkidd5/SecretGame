@@ -151,11 +151,30 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
-                this.ChunkPath = Game1.SaveLoadManager.CurrentSave.ChunkPath + "/Chunk";
+                //just for debugging to save time not having to create a save every time we want to go directly to the wilderness
+                if (Game1.SaveLoadManager.CurrentSave != null)
+                {
+                    this.ChunkPath = Game1.SaveLoadManager.CurrentSave.ChunkPath + "/Chunk";
+                }
+                else
+                {
+                    this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
+                }
+                
             }
             else
             {
-                this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
+               
+                if (Game1.SaveLoadManager.CurrentSave != null)
+                {
+                    this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
+                }
+                else
+                {
+                    this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
+                }
+
+                   
             }
 
         }

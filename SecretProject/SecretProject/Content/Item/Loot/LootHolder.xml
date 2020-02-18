@@ -38,6 +38,42 @@
                     </Item>
                 </LootPieces>
             </Item>
+             <!-- Yallon Flower -->
+         <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>496</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>756</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>757</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+               <!-- Brine Bulb -->
+         <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>690</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>false</Unlocked>
+                        <ItemToSpawnID>752</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>753</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>1</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
         <!-- Oak -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>1663</GID>

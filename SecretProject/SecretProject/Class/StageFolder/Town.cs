@@ -77,7 +77,7 @@ namespace SecretProject.Class.StageFolder
             for(int b = 0; b < 5; b++)
             {
                 this.Enemies.Add(new Butterfly("butterfly", null, new Vector2(1200, 1300), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
-                this.Enemies.Add(new Chicken("Chicken",null,  new Vector2(236, 770), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
+                this.Enemies.Add(new Chicken("Chicken",null,  new Vector2(256, 512), this.Graphics, Game1.AllTextures.EnemySpriteSheet, (IInformationContainer)this.AllTiles, CurrentBehaviour.Wander) { IsWorldNPC = false });
             }
           
         }
@@ -107,11 +107,8 @@ namespace SecretProject.Class.StageFolder
         {
 
             player.CollideOccured = false;
-            this.QuadTree = new QuadTree(0, this.Cam.ViewPortRectangle);
-            for (int i = 0; i < this.Enemies.Count; i++)
-            {
-                this.Enemies[i].Update(gameTime, mouse);
-            }
+            this.QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
+            
             foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
             {
                 for (int z = 0; z < obj.Value.Count; z++)
@@ -132,6 +129,8 @@ namespace SecretProject.Class.StageFolder
 
             this.QuadTree.Insert(player.MainCollider);
 
+           
+
             foreach (KeyValuePair<string, List<GrassTuft>> grass in this.AllTiles.Tufts)
             {
                 for (int g = 0; g < grass.Value.Count; g++)
@@ -146,10 +145,17 @@ namespace SecretProject.Class.StageFolder
                 }
             }
 
+            foreach (Enemy enemy in Enemies)
+            {
+                this.QuadTree.Insert(enemy.Collider);
+            }
+
             foreach (Character character in this.CharactersPresent)
             {
                 this.QuadTree.Insert(character.Collider);
             }
+
+           
             float playerOldYPosition = player.position.Y;
             this.IsDark = Game1.GlobalClock.IsNight;
             Game1.myMouseManager.ToggleGeneralInteraction = false;
@@ -227,8 +233,10 @@ namespace SecretProject.Class.StageFolder
                 {
                     this.AllRisingText[i].Update(gameTime, this.AllRisingText);
                 }
-                //--------------------------------------
-                //Update sprites
+                for (int i = 0; i < this.Enemies.Count; i++)
+                {
+                    this.Enemies[i].Update(gameTime, mouse);
+                }
                 foreach (Sprite spr in this.AllSprites)
                 {
                     if (spr.IsBeingDragged == true)
