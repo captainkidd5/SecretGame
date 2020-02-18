@@ -47,10 +47,11 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.AllSaveSlots = new List<SaveSlot>() ;
             for (int i = 0; i < directoryCount; i++)
             {
-                FileStream fileStream = File.OpenRead(System.IO.Directory.GetFiles(directories[i])[0]); //first file in each save should always be the primary save data, no rearranging. 
+                string directoryString = Directory.GetFiles(directories[i])[0];
+                FileStream fileStream = File.OpenRead(directoryString); //first file in each save should always be the primary save data, no rearranging. 
                 BinaryReader binaryReader = new BinaryReader(fileStream);
                 string saveName = binaryReader.ReadString();
-                this.AllSaveSlots.Add(new SaveSlot(graphics, i + 1, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
+                this.AllSaveSlots.Add(new SaveSlot(graphics, i, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,
                 graphics, new Vector2(this.Position.X, this.Position.Y + 100 * i), CursorType.Normal, this.Scale - 1, null), true, saveName));
             }
             SaveSlot EmptySaveSlot = new SaveSlot(graphics, directoryCount, new Button(Game1.AllTextures.UserInterfaceTileSet, this.ButtonSourceRectangle,

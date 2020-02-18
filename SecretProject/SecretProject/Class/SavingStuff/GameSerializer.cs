@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SecretProject.Class.Playable;
 using SecretProject.Class.TileStuff;
+using SecretProject.Class.UI.MainMenuStuff;
 using SecretProject.Class.Universal;
 using System.IO;
 
@@ -53,9 +54,13 @@ namespace SecretProject.Class.SavingStuff
 
 
         //order really really matters
-        public static void SaveGameFile(BinaryWriter writer, string OutputMessage, float version)
+        public static void SaveGameFile(BinaryWriter writer, string OutputMessage, float version, SaveSlot saveSlot)
         {
-            
+            writer.Write(saveSlot.String); //only used to identify save name on main menu when choosing to load a game.
+            writer.Write(saveSlot.SavePath);
+            writer.Write(saveSlot.ChunkPath);
+            writer.Write(saveSlot.UnChunkPath);
+
             Game1.Player.Save(writer);
             if(Game1.OverWorld.IsLoaded)
             {
@@ -65,8 +70,12 @@ namespace SecretProject.Class.SavingStuff
             Game1.GlobalClock.Save(writer);
         }
 
-        public static void LoadGameFile(BinaryReader reader, float version)
+        public static void LoadGameFile(BinaryReader reader, float version, SaveSlot saveSlot)
         {
+            saveSlot.String = reader.ReadString();
+            saveSlot.SavePath = reader.ReadString();
+            saveSlot.ChunkPath = reader.ReadString();
+            saveSlot.UnChunkPath = reader.ReadString();
             Game1.Player.Load(reader);
             Game1.GlobalClock.Load(reader);
 

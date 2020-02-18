@@ -43,14 +43,9 @@ namespace SecretProject.Class.SavingStuff
             BinaryWriter binaryWriter = new BinaryWriter(fileStream);
            
 
-          //  binaryWriter.Write(saveSlot.String);
-
-                GameSerializer.SaveGameFile(binaryWriter, OutputMessage, 1);
+                GameSerializer.SaveGameFile(binaryWriter, OutputMessage, 1, saveSlot);
             
-            //else
-            //{
-            //    GameSerializer.SaveMainMenu(binaryWriter, OutputMessage, 1);
-            //}
+
             
 
 
@@ -67,11 +62,9 @@ namespace SecretProject.Class.SavingStuff
                 BinaryReader binaryReader = new BinaryReader(fileStream);
 
 
-                    GameSerializer.LoadGameFile(binaryReader, 1);
-                
+                    GameSerializer.LoadGameFile(binaryReader, 1, saveSlot);
 
-
-
+            CurrentSave = saveSlot;
 
                 binaryReader.Close();
             

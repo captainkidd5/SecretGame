@@ -151,11 +151,11 @@ namespace SecretProject.Class.TileStuff
 
             if (Game1.GetCurrentStageInt() == Stages.OverWorld)
             {
-                this.ChunkPath = @"Content/SaveFiles/Chunks/Chunk";
+                this.ChunkPath = Game1.SaveLoadManager.CurrentSave.ChunkPath + "/Chunk";
             }
             else
             {
-                this.ChunkPath = @"Content/SaveFiles/UnChunks/Chunk";
+                this.ChunkPath = Game1.SaveLoadManager.CurrentSave.UnChunkPath + "/Chunk";
             }
 
         }

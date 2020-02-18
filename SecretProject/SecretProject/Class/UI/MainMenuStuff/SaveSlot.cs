@@ -22,6 +22,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Button Button { get; set; }
 
         public string SavePath { get; set; }
+        public string ChunkPath { get; set; }
+        public string UnChunkPath { get; set; }
 
         public SaveSlot(GraphicsDevice graphics, int id, Button button, bool occupied, string saveName = null)
         {
@@ -97,9 +99,12 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             Game1.SaveLoadManager.CurrentSave = this;
             string directoryPath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
-            System.IO.Directory.CreateDirectory(directoryPath);
+            this.ChunkPath = directoryPath + "/" + Game1.Player.Name + "Chunks";
+            this.UnChunkPath = directoryPath + "/" + Game1.Player.Name + "UnChunks";
+            System.IO.Directory.CreateDirectory(ChunkPath);
+            System.IO.Directory.CreateDirectory(UnChunkPath);
 
-            this.SavePath = directoryPath + "/_" + Game1.Player.Name + "PrimaryData";
+            this.SavePath = directoryPath + "/" + Game1.Player.Name + "_PrimaryData";
             this.String = Game1.Player.Name + ", Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
             Game1.SaveLoadManager.Save(this);
             
