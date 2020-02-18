@@ -38,7 +38,6 @@
 <ID>14</ID>
 <Description>All that's left of a fish.</Description>
 <InvMaximum>99</InvMaximum><Price>25</Price>
-<Type>Axe</Type>
 </Item>
 
 <Item Type="XMLData.ItemStuff.ItemData">
@@ -978,6 +977,30 @@
 <Description>Can store clothing.</Description>
 <InvMaximum>99</InvMaximum><Price>20</Price>
 <PlaceID>-1540</PlaceID>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Oak Table</Name>
+<ID>1441</ID>
+<Description>A large table made from oak.</Description>
+<InvMaximum>99</InvMaximum><Price>20</Price>
+<PlaceID>-1740</PlaceID>
+</Item>
+
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Oak Chair</Name>
+<ID>1442</ID>
+<Description>Just a normal wooden chair.</Description>
+<InvMaximum>99</InvMaximum><Price>20</Price>
+<PlaceID>-913</PlaceID>
+</Item>
+<Item Type="XMLData.ItemStuff.ItemData">
+<Name>Blue Area Rug</Name>
+<ID>1480</ID>
+<Description>Pretty and blue.</Description>
+<InvMaximum>99</InvMaximum><Price>20</Price>
+<PlaceID>-2055</PlaceID>
+<TilingLayer>1</TilingLayer>
 </Item>
 
 

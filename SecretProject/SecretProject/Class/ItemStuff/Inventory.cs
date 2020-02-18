@@ -180,10 +180,7 @@ namespace SecretProject.Class.ItemStuff
                 {
                     binaryWriter.Write(this.currentInventory[i].Item.ID);
                 }
-                else
-                {
-                    binaryWriter.Write(0);
-                }
+
                
                 
             }

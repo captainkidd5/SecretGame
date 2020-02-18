@@ -385,7 +385,7 @@ namespace SecretProject.Class.TileStuff
                                 }
                                 else
                                 {
-                                    TileUtility.ReplaceTile(3, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
+                                    TileUtility.ReplaceTile(Game1.ItemVault.GetItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool()).TilingLayer, Game1.Player.UserInterface.TileSelector.IndexX, Game1.Player.UserInterface.TileSelector.IndexY,
                                     this.PlaceID + 1, container);
 
                                     Game1.Player.Inventory.RemoveItem(Game1.Player.UserInterface.BackPack.GetCurrentEquippedTool());
