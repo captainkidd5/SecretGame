@@ -112,7 +112,7 @@ namespace SecretProject.Class.Universal
 
             
             AdjustClockText();
-            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
+            Game1.SaveLoadManager.Save(Game1.SaveLoadManager.CurrentSave);
         }
 
         public int GetTimeFromString(string time)

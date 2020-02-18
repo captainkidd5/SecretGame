@@ -169,7 +169,7 @@ namespace SecretProject.Class.MenuStuff
 
             if (this.SaveButton.isClicked)
             {
-                Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
+                Game1.SaveLoadManager.Save(Game1.SaveLoadManager.CurrentSave);
             }
 
             if (this.ToggleFullScreenButton.isClicked)

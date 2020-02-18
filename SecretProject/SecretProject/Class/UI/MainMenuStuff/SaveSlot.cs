@@ -21,6 +21,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public string String { get; set; }
         public Button Button { get; set; }
 
+        public string SavePath { get; set; }
+
         public SaveSlot(GraphicsDevice graphics, int id, Button button, bool occupied, string saveName = null)
         {
             this.Graphics = graphics;
@@ -87,21 +89,21 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void LoadSave()
         {
             Game1.mainMenu.IsDrawn = true;
-            Game1.SaveLoadManager.Load(this.Graphics,Game1.SaveLoadManager.GetSaveFileFromID(this.ID));
+            Game1.SaveLoadManager.Load(this.Graphics,this);
             Game1.mainMenu.StartNewGame();
         }
 
         public void StartNewSave()
         {
-            Game1.SaveLoadManager.CurrentSave = this.ID;
-            string savePath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
-            System.IO.Directory.CreateDirectory(savePath);
+            Game1.SaveLoadManager.CurrentSave = this;
+            string directoryPath = "Content/SaveFiles/GameSaves/Save_" + this.ID.ToString() + "_" + Game1.Player.Name;
+            System.IO.Directory.CreateDirectory(directoryPath);
 
-            Game1.SaveLoadManager.AllSaves.Add(new SaveFile(this.ID, savePath + "/_" + Game1.Player.Name + "PrimaryData"));
+            this.SavePath = directoryPath + "/_" + Game1.Player.Name + "PrimaryData";
             this.String = Game1.Player.Name + ", Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + Game1.GlobalClock.Calendar.CurrentDay.ToString();
-            Game1.SaveLoadManager.SaveGameState(SaveType.GameSave);
+            Game1.SaveLoadManager.Save(this);
             
-            Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
+          //  Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
 
             Game1.mainMenu.StartNewGame();
         }
