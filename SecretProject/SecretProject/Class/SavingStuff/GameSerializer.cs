@@ -56,7 +56,8 @@ namespace SecretProject.Class.SavingStuff
         //order really really matters
         public static void SaveGameFile(BinaryWriter writer, string OutputMessage, float version, SaveSlot saveSlot)
         {
-            writer.Write(saveSlot.String); //only used to identify save name on main menu when choosing to load a game.
+            string saveNameString = Game1.Player.Name + "\n Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString();
+            writer.Write(saveNameString); //only used to identify save name on main menu when choosing to load a game.
             writer.Write(saveSlot.SavePath);
             writer.Write(saveSlot.ChunkPath);
             writer.Write(saveSlot.UnChunkPath);
