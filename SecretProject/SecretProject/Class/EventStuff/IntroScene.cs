@@ -324,7 +324,7 @@ namespace SecretProject.Class.EventStuff
                     Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 500, Game1.GlobalClock.WeekDay.ToString(), .015f, Color.White, true, 3f);
 
                     Game1.Player.IsDrawn = true;
-                    Game1.Player.UpdateMovementAnimationsOnce();
+                    //Game1.Player.UpdateMovementAnimationsOnce();
                     break;
 
             }

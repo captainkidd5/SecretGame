@@ -42,7 +42,7 @@ namespace SecretProject.Class.Playable
 
         public bool Activate { get; set; }
 
-        public Sprite[,] animations;
+
 
         public string Name { get; set; }
         public Inventory Inventory { get; set; }
@@ -139,7 +139,9 @@ namespace SecretProject.Class.Playable
 
         public Vector2 WorldSquarePosition { get; set; }
 
-        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames, int numberOfBodyParts, ContentManager content, GraphicsDevice graphics, MouseManager mouse)
+        public Wardrobe PlayerWardrobe { get; set; }
+
+        public Player(string name, Vector2 position, Texture2D texture, int numberOfFrames,  ContentManager content, GraphicsDevice graphics, MouseManager mouse)
         {
             this.content = content;
             this.Name = name;
@@ -148,7 +150,7 @@ namespace SecretProject.Class.Playable
             this.Graphics = graphics;
             this.Texture = texture;
             this.FrameNumber = numberOfFrames;
-            animations = new Sprite[numberOfFrames, numberOfBodyParts];
+
             this.Mining = new Sprite[4, 6];
             this.Swiping = new Sprite[4, 5];
             this.PickUpItem = new Sprite[4, 5];
@@ -172,6 +174,7 @@ namespace SecretProject.Class.Playable
             this.DamageImmunityTimer = new SimpleTimer(1.5f);
             this.KnockBackTimer = new SimpleTimer(1f);
 
+            this.PlayerWardrobe = new Wardrobe(graphics,position);
         }
 
 
@@ -341,30 +344,7 @@ namespace SecretProject.Class.Playable
 
         }
 
-        public void UpdateMovementAnimationsOnce()
-        {
-            for (int i = 0; i < animations.GetLength(0); i++)
-            {
-                for (int j = 0; j < animations.GetLength(1); j++)
-                {
-                    animations[i, j].SetFrame(0);
-                    animations[i, j].UpdateAnimationPosition(this.Position);
-                }
-            }
-        }
 
-        public void UpdateAnimationPosition()
-        {
-            for (int i = 0; i < animations.GetLength(0); i++)
-            {
-                for (int j = 0; j < animations.GetLength(1); j++)
-                {
-                    animations[i, j].UpdateAnimationPosition(this.Position);
-
-                }
-
-            }
-        }
         public void TestImmunity(GameTime gameTime)
         {
             if (IsImmuneToDamage)
@@ -387,7 +367,7 @@ namespace SecretProject.Class.Playable
                 TestImmunity(gameTime);
                 if(IsMovingTowardsPoint)
                 {
-                    UpdateAnimationPosition();   
+                    this.PlayerWardrobe.UpdateMovementAnimations(this.Position,true);   
                     if(MoveTowardsPoint(this.MoveToPosition, 1f, gameTime))
                     {
                         this.IsMovingTowardsPoint = false;
@@ -409,9 +389,9 @@ namespace SecretProject.Class.Playable
                 {
                     KnockBack(gameTime);
                 }
-                for (int i = 0; i < animations.GetLength(1); i++)
+                for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
                 {
-                    this.PlayerMovementAnimations[i] = animations[(int)controls.Direction, i];
+                    this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)controls.Direction, i];
                 }
 
                 if (mouse.IsClicked && this.UserInterface.BackPack.GetCurrentEquippedToolAsItem() != null)
@@ -481,12 +461,12 @@ namespace SecretProject.Class.Playable
                         UserInterface.StaminaBar.IsDraining = false;
                         UserInterface.StaminaBar.StaminaStatus.UpdateStaminaRectangle(false);
                     }
-                    for (int i = 0; i < animations.GetLength(0); i++)
+                    for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(0); i++)
                     {
-                        for (int j = 0; j < animations.GetLength(1); j++)
+                        for (int j = 0; j < PlayerWardrobe.BasicMovementAnimations.GetLength(1); j++)
                         {
-                            animations[i, j].UpdateAnimationPosition(this.Position);
-                            animations[i, j].UpdateAnimations(gameTime, position);
+                            PlayerWardrobe.BasicMovementAnimations[i, j].UpdateAnimationPosition(this.Position);
+                            PlayerWardrobe.BasicMovementAnimations[i, j].UpdateAnimations(gameTime, position);
 
                         }
 
@@ -599,32 +579,32 @@ namespace SecretProject.Class.Playable
                 {
                     case SecondaryDir.Right:
                         PrimaryVelocity.X = Speed1;
-                        for (int i = 0; i < animations.GetLength(1); i++)
+                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
                         {
-                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Right, i];
+                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Right, i];
                         }
                         break;
                     case SecondaryDir.Left:
                         PrimaryVelocity.X = -Speed1;
-                        for (int i = 0; i < animations.GetLength(1); i++)
+                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
                         {
-                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Left, i];
+                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Left, i];
                         }
 
                         break;
                     case SecondaryDir.Down:
                         PrimaryVelocity.Y = Speed1;
-                        for (int i = 0; i < animations.GetLength(1); i++)
+                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
                         {
-                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Down, i];
+                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Down, i];
                         }
 
                         break;
                     case SecondaryDir.Up:
                         PrimaryVelocity.Y = -Speed1;
-                        for (int i = 0; i < animations.GetLength(1); i++)
+                        for (int i = 0; i < PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
                         {
-                            this.PlayerMovementAnimations[i] = animations[(int)Dir.Up, i];
+                            this.PlayerMovementAnimations[i] = PlayerWardrobe.BasicMovementAnimations[(int)Dir.Up, i];
                         }
                         break;
 

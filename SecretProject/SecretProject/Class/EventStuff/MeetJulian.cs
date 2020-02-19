@@ -112,7 +112,7 @@ namespace SecretProject.Class.EventStuff
             Game1.Player.UserInterface.CinematicMode = true;
             Game1.cam.pos = new Vector2(500, 430);
             Game1.Player.Direction = Dir.Right;
-            Game1.Player.UpdateMovementAnimationsOnce();
+          //  Game1.Player.UpdateMovementAnimationsOnce();
 
             switch (this.CurrentStep)
             {
@@ -297,7 +297,7 @@ namespace SecretProject.Class.EventStuff
                     Game1.Player.UserInterface.CinematicMode = false;
 
                     Game1.Player.IsDrawn = true;
-                    Game1.Player.UpdateMovementAnimationsOnce();
+                  //  Game1.Player.UpdateMovementAnimationsOnce();
                     break;
 
             }
