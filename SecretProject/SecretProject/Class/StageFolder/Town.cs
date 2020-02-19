@@ -107,7 +107,7 @@ namespace SecretProject.Class.StageFolder
         {
 
             player.CollideOccured = false;
-            this.QuadTree = new QuadTree(0, Cam.CameraScreenRectangle);
+            this.QuadTree = new QuadTree(0, MapRectangle);
             
             foreach (KeyValuePair<string, List<ICollidable>> obj in this.AllTiles.Objects)
             {

@@ -24,8 +24,8 @@ namespace SecretProject.Class.NPCStuff.Enemies
 
             this.NPCRectangleXOffSet = 8;
             this.NPCRectangleYOffSet = 8;
-            this.NPCRectangleHeightOffSet = 4;
-            this.NPCRectangleWidthOffSet = 4;
+            this.NPCRectangleHeightOffSet = 16;
+            this.NPCRectangleWidthOffSet = 16;
             this.Speed = 1f;
             this.HitBoxTexture = SetRectangleTexture(graphics, this.NPCHitBoxRectangle);
             this.IdleSoundEffect = Game1.SoundManager.ChickenCluck1;
