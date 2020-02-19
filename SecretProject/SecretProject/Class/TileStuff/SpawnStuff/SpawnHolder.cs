@@ -27,6 +27,7 @@ namespace SecretProject.Class.TileStuff.SpawnStuff
                 new SpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 20){Unlocked = true }, //tree
                 new SpawnElement(2964, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
                 new SpawnElement(3664, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //tree
+                 new SpawnElement(4264, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 20){Unlocked = true }, //Pine tree
                 new SpawnElement(2264, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 5){Unlocked = true }, //ThunderBirch
                 new SpawnElement(1079, MapLayer.ForeGround, MapLayer.BackGround, GenerationType.Dirt, 50){Unlocked = true }, //GrassTuft
                 new SpawnElement(1079, MapLayer.ForeGround, MapLayer.MidGround, GenerationType.Grass, 50){Unlocked = true }, //GrassTuft

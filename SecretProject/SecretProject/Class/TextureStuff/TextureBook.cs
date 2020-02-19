@@ -158,10 +158,10 @@ namespace SecretProject.Class.TextureStuff
         {
             //Player
             PlayerBase = content.Load<Texture2D>("Player/PlayerParts/Base/base");
-            PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/blondeSpikyHair");
-            PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Pants/bluePants");
-            PlayerPants = content.Load<Texture2D>("Player/PlayerParts/Shirts/redShirt");
-            PlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Shoes/brownShoes");
+            PlayerHair = content.Load<Texture2D>("Player/PlayerParts/Hair/playerHair");
+            PlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Shirts/shirts");
+            PlayerPants = content.Load<Texture2D>("Player/PlayerParts/Pants/pants");
+            PlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Shoes/shoes");
 
             //ANIMATIONS
             //CHOPPING
