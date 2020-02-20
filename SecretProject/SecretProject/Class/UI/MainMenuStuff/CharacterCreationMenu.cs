@@ -51,20 +51,20 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.Scale = 3f;
             this.Graphics = graphics;
             this.Position = position;
-            this.BackGroundSourceRectangle = new Rectangle(832, 496, 192, 160);
-            this.CharacterPortraitWindow = new Rectangle(896, 432, 64, 64);
+            this.BackGroundSourceRectangle = new Rectangle(832, 496, 192, 192);
+            this.CharacterPortraitWindow = new Rectangle(896, 416, 64, 80);
 
 
             
-            this.TypingWindow = new TypingWindow(graphics, new Vector2(this.Position.X, this.Position.Y + this.BackGroundSourceRectangle.Height * this.Scale));
-            this.StartNewGameButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 656, 64, 22),
+            this.TypingWindow = new TypingWindow(graphics, new Vector2(this.Position.X + 16 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.Scale));
+            this.StartNewGameButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 720, 64, 22),
                 this.Graphics, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - 64 / 2 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height * this.Scale + TypingWindow.BackGroundSourceRectangle.Height * Scale), Controls.CursorType.Normal, 3f, null);
 
             Rectangle forwardRectangle = new Rectangle(384, 528, 32, 16);
             Rectangle backWardRectangle = new Rectangle(304, 528, 32, 16);
 
             this.PlayerPortraitDrawLocation = new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 2 * Scale,
-                this.Position.Y + this.BackGroundSourceRectangle.Height / 4 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale);
+                this.Position.Y + this.BackGroundSourceRectangle.Height / 3 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale);
             Vector2 customizationButtonPosition = new Vector2(PlayerPortraitDrawLocation.X + this.CharacterPortraitWindow.Width / 4 * Scale, PlayerPortraitDrawLocation.Y + this.CharacterPortraitWindow.Height  * this.Scale);
           
             this.HairFoward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
@@ -183,7 +183,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             for(int i =0; i < Game1.Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
             {
-                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 48, this.PlayerPortraitDrawLocation.Y), .9f - .01f * i,0f,5f);
+                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 54, this.PlayerPortraitDrawLocation.Y + 16), .9f - .01f * i,0f,5f);
             }
 
             for (int i = 0; i < this.CustomizationButtons.Count; i++)

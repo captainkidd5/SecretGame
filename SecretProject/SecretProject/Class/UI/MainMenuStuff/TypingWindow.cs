@@ -18,18 +18,26 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public Button Button { get; set; }
         public GraphicsDevice Graphics { get; set; }
         public Vector2 Position { get; set; }
+        public Vector2 InsertionIconPosition { get; set; }
+
+        public Rectangle IconSourceRectangle { get; set; }
         public Rectangle BackGroundSourceRectangle { get; set; }
 
         public string EnteredString { get; set; }
+
+        public SimpleTimer IconFlashTimer { get; set; }
+        public bool IsIconDrawn { get; set; }
 
         public TypingWindow(GraphicsDevice graphics,  Vector2 position)
         {
             this.Scale = 3f;
             this.Graphics = graphics;
             this.Position = position;
-            this.BackGroundSourceRectangle = new Rectangle(832, 624, 192, 32);
+            this.IconSourceRectangle = new Rectangle(832, 696, 2, 18);
+            this.BackGroundSourceRectangle = new Rectangle(848, 688, 160, 32);
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, this.BackGroundSourceRectangle, graphics, this.Position, Controls.CursorType.Normal, Scale, null);
             this.EnteredString = string.Empty;
+            this.IconFlashTimer = new SimpleTimer(1f);
         }
 
         public void Update(GameTime gameTime)
@@ -79,11 +87,22 @@ namespace SecretProject.Class.UI.MainMenuStuff
 
 
                 }
+
+               
+            }
+            this.InsertionIconPosition = new Vector2(this.Position.X + Game1.AllTextures.MenuText.MeasureString(this.EnteredString).X * this.Scale + 4, this.Position.Y + 4 * Scale);
+            if (this.IconFlashTimer.Run(gameTime))
+            {
+                this.IsIconDrawn = !IsIconDrawn;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             this.Button.Draw(spriteBatch, Game1.AllTextures.MenuText, this.EnteredString, Button.FontLocation, Button.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, 3f);
+            if(this.IsIconDrawn)
+            {
+                spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.InsertionIconPosition, this.IconSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, .9f);
+            }
         }
     }
 }
