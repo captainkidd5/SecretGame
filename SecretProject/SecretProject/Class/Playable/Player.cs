@@ -922,12 +922,14 @@ namespace SecretProject.Class.Playable
         {
             writer.Write(this.Name);
             this.Inventory.Save(writer);
+            this.PlayerWardrobe.Save(writer);
         }
         public void Load(BinaryReader reader)
         {
             this.Name = reader.ReadString();
             this.Inventory = new Inventory();
             this.Inventory.Load(reader);
+            this.PlayerWardrobe.Load(reader);
         }
     }
 }

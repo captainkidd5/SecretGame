@@ -196,8 +196,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,this.PlayerPortraitDrawLocation,this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             this.TypingWindow.Draw(spriteBatch);
             this.StartNewGameButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.StartButtonString, StartNewGameButton.Position, StartNewGameButton.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, this.Scale);
-            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 2 * Scale,
-                this.Position.Y + this.BackGroundSourceRectangle.Height / 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale -32), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.PlayerPortraitDrawLocation.X + 16, this.PlayerPortraitDrawLocation.Y + CharacterPortraitWindow.Height * Scale - 48), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth + .04f);
 
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Hair", new Vector2(HairFoward.Position.X - 96, HairFoward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, "Shirt", new Vector2(ShirtForward.Position.X - 96, ShirtForward.Position.Y + 4), Color.White, 0f, Game1.Utility.Origin, this.Scale - 1, SpriteEffects.None, Game1.Utility.StandardTextDepth);

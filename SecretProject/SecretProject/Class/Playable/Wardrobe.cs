@@ -124,12 +124,28 @@ namespace SecretProject.Class.Playable
 
         public void Save(BinaryWriter writer)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < BasicMovementAnimations.GetLength(1); i++)
+            {
+                writer.Write(BasicMovementAnimations[0,i].FirstFrameY);
+            }
         }
 
         public void Load(BinaryReader reader)
         {
-            throw new NotImplementedException();
+            int newSpriteY = 0;
+            for (int z = 0; z < BasicMovementAnimations.GetLength(1); z++)
+            {
+                newSpriteY = reader.ReadInt32();
+            }
+
+            for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
+            {
+   
+                for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
+                {
+                    BasicMovementAnimations[i, j].FirstFrameY = newSpriteY;
+                }
+            }
         }
     }
 }
