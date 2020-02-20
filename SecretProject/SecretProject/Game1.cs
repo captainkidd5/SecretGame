@@ -1093,7 +1093,7 @@ namespace SecretProject
 
             //SwipingDown
             // Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.SwipingTestTool, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000012f };
-            Player.Swiping[0, 0] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerHair, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000011f };
+            Player.Swiping[0, 0] = new Sprite(GraphicsDevice, Game1.AllTextures.PlayerHair, 0, 0, 16, 32, 5, .1f, Game1.Player.position) { LayerDepth = .00000011f };//, Color = Color.Black 
             Player.Swiping[0, 1] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000010f };
             Player.Swiping[0, 2] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerPants, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000009f };
             Player.Swiping[0, 3] = new Sprite(this.GraphicsDevice, Game1.AllTextures.SwipingPlayerShoes, 0, 0, 80, 64, 5, .05f, Game1.Player.position, -32, -14) { LayerDepth = .00000008f };

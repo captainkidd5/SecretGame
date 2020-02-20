@@ -99,6 +99,32 @@
                 </LootPieces>
             </Item>
 
+            <!-- ThunderBirch -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>2263</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>521</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
+            <!-- Pine Tree -->
+            <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
+                <GID>4263</GID>
+                <LootPieces>
+                    <Item Type ="XMLData.ItemStuff.LootStuff.LootPiece">
+                        <Unlocked>true</Unlocked>
+                        <ItemToSpawnID>520</ItemToSpawnID>
+                        <NumberOfItemsToSpawn>2</NumberOfItemsToSpawn>
+                        <ProbabilityOfSpawn>100</ProbabilityOfSpawn>
+                    </Item>
+                </LootPieces>
+            </Item>
+
             <!-- Steel Vein -->
             <Item Type ="XMLData.ItemStuff.LootStuff.LootData">
                 <GID>1277</GID>
