@@ -26,7 +26,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             this.Scale = 3f;
             this.Graphics = graphics;
-            this.Position = new Vector2(position.X, position.Y + 390);
+            this.Position = position;
             this.BackGroundSourceRectangle = new Rectangle(832, 624, 192, 32);
             this.Button = new Button(Game1.AllTextures.UserInterfaceTileSet, this.BackGroundSourceRectangle, graphics, this.Position, Controls.CursorType.Normal, Scale, null);
             this.EnteredString = string.Empty;
