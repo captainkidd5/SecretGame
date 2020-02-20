@@ -132,10 +132,11 @@ namespace SecretProject.Class.Playable
 
         public void Load(BinaryReader reader)
         {
-            int newSpriteY = 0;
+
+            int[] newYs = new int[BasicMovementAnimations.GetLength(1)];
             for (int z = 0; z < BasicMovementAnimations.GetLength(1); z++)
             {
-                newSpriteY = reader.ReadInt32();
+                newYs[z] = reader.ReadInt32();
             }
 
             for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
@@ -143,7 +144,7 @@ namespace SecretProject.Class.Playable
    
                 for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
                 {
-                    BasicMovementAnimations[i, j].FirstFrameY = newSpriteY;
+                    BasicMovementAnimations[i, j].FirstFrameY = newYs[j];
                 }
             }
         }

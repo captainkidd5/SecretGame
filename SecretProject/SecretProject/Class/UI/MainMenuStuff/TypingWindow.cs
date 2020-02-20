@@ -43,55 +43,72 @@ namespace SecretProject.Class.UI.MainMenuStuff
         public void Update(GameTime gameTime)
         {
             this.Button.Update(Game1.myMouseManager);
-            Keys[] pressedKeys = Game1.OldKeyBoardState.GetPressedKeys();
-            foreach (Keys key in pressedKeys)
+            if (this.IsActive && Game1.myMouseManager.IsClicked && !this.Button.isClicked)
             {
-                if ((Game1.OldKeyBoardState.IsKeyDown(key)) && (Game1.NewKeyBoardState.IsKeyUp(key)))
-                {
-                    string keyValue = string.Empty;
-                    if (key == Keys.Space)
-                    {
-                        keyValue = " ";
-                        this.EnteredString += keyValue;
-                    }
-                    else if (key == Keys.Back)
-                    {
-                        if (this.EnteredString.Length > 0)
-                        {
-                            this.EnteredString = this.EnteredString.TrimEnd(EnteredString[EnteredString.Length - 1]);
-                        }
-                    }
-                    else if (key == Keys.Enter)
-                    {
-                       // ProcessString();
-                        this.EnteredString = String.Empty;
-                        return;
-                    }
-                    else if ((int)key > 64 && (int)key < 91)
-                    {
-                        keyValue = key.ToString();
-                        this.EnteredString += keyValue;
-                    }
-                    else if ((int)key > 47 && (int)key < 58)
-                    {
-                        keyValue = key.ToString();
-                        keyValue = keyValue.TrimStart('D');
+                this.IsActive = false;
+                this.IsIconDrawn = false;
+            }
+            else if (this.Button.isClicked && !this.IsActive)
+            {
+                this.IsActive = true;
+            }
 
-                        this.EnteredString += keyValue;
-                    }
-                    else if (key == Keys.Subtract)
+
+            if (this.IsActive)
+            {
+
+
+                Keys[] pressedKeys = Game1.OldKeyBoardState.GetPressedKeys();
+                foreach (Keys key in pressedKeys)
+                {
+                    if ((Game1.OldKeyBoardState.IsKeyDown(key)) && (Game1.NewKeyBoardState.IsKeyUp(key)))
                     {
-                        keyValue = "-";
-                        this.EnteredString += keyValue;
+                        string keyValue = string.Empty;
+                        if (key == Keys.Space)
+                        {
+                            keyValue = " ";
+                            this.EnteredString += keyValue;
+                        }
+                        else if (key == Keys.Back)
+                        {
+                            if (this.EnteredString.Length > 0)
+                            {
+                                this.EnteredString = this.EnteredString.TrimEnd(EnteredString[EnteredString.Length - 1]);
+                            }
+                        }
+                        else if (key == Keys.Enter)
+                        {
+                            // ProcessString();
+                            this.IsActive = false;
+                            this.IsIconDrawn = false;
+                            return;
+                        }
+                        else if ((int)key > 64 && (int)key < 91)
+                        {
+                            keyValue = key.ToString();
+                            this.EnteredString += keyValue;
+                        }
+                        else if ((int)key > 47 && (int)key < 58)
+                        {
+                            keyValue = key.ToString();
+                            keyValue = keyValue.TrimStart('D');
+
+                            this.EnteredString += keyValue;
+                        }
+                        else if (key == Keys.Subtract)
+                        {
+                            keyValue = "-";
+                            this.EnteredString += keyValue;
+                        }
+
+
                     }
 
 
                 }
-
-               
             }
             this.InsertionIconPosition = new Vector2(this.Position.X + Game1.AllTextures.MenuText.MeasureString(this.EnteredString).X * this.Scale + 4, this.Position.Y + 4 * Scale);
-            if (this.IconFlashTimer.Run(gameTime))
+            if (this.IsActive && this.IconFlashTimer.Run(gameTime))
             {
                 this.IsIconDrawn = !IsIconDrawn;
             }
