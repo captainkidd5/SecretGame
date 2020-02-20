@@ -70,7 +70,7 @@ namespace SecretProject.Class.UI
                     //Game1.GetCurrentStage().ActivateNewRisingText(Game1.Player.Rectangle.Y, Game1.Player.Rectangle.Y - 32, "test", 25f, Color.White, true, .5f);
                     //Game1.GlobalClock.IncrementDay();
 
-                    Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Hair, Game1.Player.position);
+                    Game1.Player.PlayerWardrobe.CycleClothing(Playable.ClothingLayer.Shirt, Game1.Player.position);
 
 
                 }

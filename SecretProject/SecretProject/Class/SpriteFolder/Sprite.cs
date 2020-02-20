@@ -235,6 +235,21 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
+        public void DrawScalableAnimation(SpriteBatch spriteBatch, Vector2 currentPosition, float layerDepth, float rotation = 0f, float scale = 1f)
+        {
+            if (this.Flip)
+            {
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, sourceRectangle: this.SourceRectangle,
+                    color: this.Color * this.ColorMultiplier, effects: SpriteEffects.FlipHorizontally, rotation: rotation, layerDepth: layerDepth, scale: new Vector2(scale, scale));
+            }
+            else
+            {
+                spriteBatch.Draw(this.AtlasTexture, currentPosition, this.SourceRectangle, Color.White, 0f, Game1.Utility.Origin, scale, SpriteEffects.None, layerDepth);
+            }
+
+
+        }
+
         //for ship sprites
         public void DrawRotationalSprite(SpriteBatch spriteBatch, Vector2 position, float rotation, Vector2 origin, float layerDepth)
         {

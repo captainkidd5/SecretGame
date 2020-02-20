@@ -39,7 +39,6 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Update(GameTime gameTime)
         {
-            Game1.Player.position = this.Position;
             this.StartNewGameButton.Update(Game1.myMouseManager);
             this.TypingWindow.Update(gameTime);
             this.PlayerName = TypingWindow.EnteredString;
@@ -65,7 +64,12 @@ namespace SecretProject.Class.UI.MainMenuStuff
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Game1.Player.Draw(spriteBatch, 1f);
+            for(int i =0; i < Game1.Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
+            {
+                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 3 * Scale,
+                this.Position.Y + this.BackGroundSourceRectangle.Height / 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale), .9f - .01f * i,0f,6f);
+            }
+
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
             spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width /2 * this.Scale - this.CharacterPortraitWindow.Width /2 * Scale,
                 this.Position.Y + this.BackGroundSourceRectangle.Height/ 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale),this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth);

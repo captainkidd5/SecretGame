@@ -329,7 +329,7 @@ namespace SecretProject.Class.StageFolder
 
         {
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, null,SamplerState.PointClamp);
             Game1.myMouseManager.Draw(spriteBatch, 1f);
             spriteBatch.Draw(BackDrop, new Vector2(0, 0), null, Color.White, 0f, Game1.Utility.Origin, .75f, SpriteEffects.None, .5f);
 
