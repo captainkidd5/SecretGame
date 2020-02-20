@@ -55,10 +55,13 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.CharacterPortraitWindow = new Rectangle(896, 432, 64, 64);
             this.TypingWindow = new TypingWindow(graphics, position);
 
-            this.StartNewGameButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 656, 64,22), this.Graphics, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width /2 * this.Scale - 64 / 2 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height *this.Scale - 22 /2 * this.Scale + 32), Controls.CursorType.Normal, 3f, null);
+            this.StartNewGameButton = new Button(Game1.AllTextures.UserInterfaceTileSet, new Rectangle(896, 656, 64,22), this.Graphics, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width /2 * this.Scale - 64 / 2 * this.Scale, this.Position.Y + this.BackGroundSourceRectangle.Height *this.Scale ), Controls.CursorType.Normal, 3f, null);
             Rectangle forwardRectangle = new Rectangle(384, 528, 32, 16);
             Rectangle backWardRectangle = new Rectangle(304, 528, 32, 16);
-            Vector2 customizationButtonPosition = new Vector2(this.BackGroundSourceRectangle.Width  * this.Scale, this.Position.Y);
+
+            this.PlayerPortraitDrawLocation = new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 2 * Scale,
+                this.Position.Y + this.BackGroundSourceRectangle.Height / 4 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale);
+            Vector2 customizationButtonPosition = new Vector2(PlayerPortraitDrawLocation.X + this.CharacterPortraitWindow.Width / 4 * Scale, PlayerPortraitDrawLocation.Y + this.CharacterPortraitWindow.Height  * this.Scale);
 
             this.HairFoward = new Button(Game1.AllTextures.UserInterfaceTileSet, forwardRectangle, this.Graphics,
                new Vector2(customizationButtonPosition.X + 64, customizationButtonPosition.Y), CursorType.Normal, this.Scale);
@@ -92,11 +95,9 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 ShoesBackward
             };
 
-            
 
 
-            this.PlayerPortraitDrawLocation = new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 3 * Scale,
-                this.Position.Y + this.BackGroundSourceRectangle.Height / 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale);
+
         }
         public void Update(GameTime gameTime)
         {
@@ -178,7 +179,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
         {
             for(int i =0; i < Game1.Player.PlayerWardrobe.BasicMovementAnimations.GetLength(1); i++)
             {
-                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, this.PlayerPortraitDrawLocation, .9f - .01f * i,0f,6f);
+                Game1.Player.PlayerWardrobe.BasicMovementAnimations[0, i].DrawScalableAnimation(spriteBatch, new Vector2(this.PlayerPortraitDrawLocation.X + 48, this.PlayerPortraitDrawLocation.Y), .9f - .01f * i,0f,5f);
             }
 
             for (int i = 0; i < this.CustomizationButtons.Count; i++)
@@ -187,9 +188,8 @@ namespace SecretProject.Class.UI.MainMenuStuff
                 0f, Game1.Utility.Origin, CustomizationButtons[i].HitBoxScale, SpriteEffects.None, Utility.StandardButtonDepth);
             }
 
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
-            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width /2 * this.Scale - this.CharacterPortraitWindow.Width /2 * Scale,
-                this.Position.Y + this.BackGroundSourceRectangle.Height/ 2 * this.Scale - this.CharacterPortraitWindow.Height / 2 * Scale),this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, 3f, SpriteEffects.None, Game1.Utility.StandardTextDepth);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet, this.Position, this.BackGroundSourceRectangle, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth - .04f);
+            spriteBatch.Draw(Game1.AllTextures.UserInterfaceTileSet,this.PlayerPortraitDrawLocation,this.CharacterPortraitWindow, Color.White, 0f, Game1.Utility.Origin, this.Scale, SpriteEffects.None, Game1.Utility.StandardTextDepth);
             this.TypingWindow.Draw(spriteBatch);
             this.StartNewGameButton.Draw(spriteBatch, Game1.AllTextures.MenuText, this.StartButtonString, StartNewGameButton.Position, StartNewGameButton.Color, Utility.StandardButtonDepth, Game1.Utility.StandardTextDepth, this.Scale);
             spriteBatch.DrawString(Game1.AllTextures.MenuText, this.PlayerName, new Vector2(this.Position.X + this.BackGroundSourceRectangle.Width / 2 * this.Scale - this.CharacterPortraitWindow.Width / 2 * Scale,
