@@ -221,10 +221,10 @@ namespace SecretProject.Class.Playable
                     AdjustCurrentTool(controls.Direction, this.CurrentTool);
                     this.ToolLine = new Line(this.CurrentTool.Position, new Vector2(1, 1));
                     //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
-                    for (int i = 0; i < 4; i++)
-                    {
-                        PlayerWardrobe.SwipingAnimations[i, 0].FirstFrameY = textureColumn;
-                    }
+                    //for (int i = 0; i < 4; i++)
+                    //{
+                    //    PlayerWardrobe.SwipingAnimations[i, 0].FirstFrameY = textureColumn;
+                    //}
                     break;
 
                 case AnimationType.PortalJump:
