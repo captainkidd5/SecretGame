@@ -36,6 +36,7 @@ namespace SecretProject.Class.SpriteFolder
 
 
         //For Animation use only
+        public int CurrentFrameCounter { get; set; }
         public int CurrentFrame { get; set; }
         public int FirstFrameX { get; set; }
         public int FirstFrameY { get; set; }
@@ -77,7 +78,7 @@ namespace SecretProject.Class.SpriteFolder
         public bool IsUpdating { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-
+        public bool ChangesFrames { get; set; } // set to false if you don't want the animations to continue but still need a certain number of frames to maintain animation functionality
 
         //for non animated sprites
         public Sprite(GraphicsDevice graphics, Texture2D atlasTexture, Rectangle sourceRectangle, Vector2 position, int width, int height)
@@ -97,7 +98,7 @@ namespace SecretProject.Class.SpriteFolder
 
         //for animated sprites
         public Sprite(GraphicsDevice graphics, Texture2D atlasTexture, int firstFrameX, int firstFrameY, int frameWidth, int frameHeight, int totalFrames,
-            float animationSpeed, Vector2 positionToDrawTo, int offSetX = 0, int offSetY = 0)
+            float animationSpeed, Vector2 positionToDrawTo, int offSetX = 0, int offSetY = 0, bool changeFrames = true)
         {
             this.Graphics = graphics;
             this.AtlasTexture = atlasTexture;
@@ -113,6 +114,7 @@ namespace SecretProject.Class.SpriteFolder
             this.Color = Color.White;
             this.Rotation = 0f;
             this.RotationAnchor = 0f;
+            this.ChangesFrames = changeFrames;
 
             this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
         }
@@ -151,7 +153,11 @@ namespace SecretProject.Class.SpriteFolder
             this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (this.AnimationTimer <= 0)
             {
-                this.CurrentFrame++;
+                if(this.ChangesFrames)
+                {
+                    this.CurrentFrame++;
+                }
+              
                 this.AnimationTimer = this.AnimationSpeed;
             }
             if (this.CurrentFrame == this.TotalFrames)
@@ -192,7 +198,11 @@ namespace SecretProject.Class.SpriteFolder
             this.AnimationTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (this.AnimationTimer <= 0)
             {
-                this.CurrentFrame++;
+                if(this.ChangesFrames)
+                {
+                    this.CurrentFrame++;
+                }
+                
                 this.AnimationTimer = this.AnimationSpeed;
             }
             if (this.CurrentFrame == this.TotalFrames)
@@ -349,13 +359,21 @@ namespace SecretProject.Class.SpriteFolder
 
             if (this.AnimationTimer <= 0)
             {
-                this.CurrentFrame++;
+
+                    this.CurrentFrameCounter++;
+                
+
                 this.AnimationTimer = this.AnimationSpeed;
             }
-            if (this.CurrentFrame == this.TotalFrames)
+            if (this.CurrentFrameCounter == this.TotalFrames)
             {
-                this.CurrentFrame = 0;
+                this.CurrentFrameCounter = 0;
                 this.IsAnimated = false;
+            }
+
+            if(this.ChangesFrames)
+            {
+                this.CurrentFrame = CurrentFrameCounter;
             }
             this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
 

@@ -84,7 +84,7 @@ namespace SecretProject.Class.Playable
 
 
         public Sprite[,] Mining { get; set; }
-        public Sprite[,] Swiping { get; set; }
+
         public Sprite[,] PickUpItem { get; set; }
         public Sprite[,] PortalJump { get; set; }
         public Line ToolLine { get; set; }
@@ -152,7 +152,7 @@ namespace SecretProject.Class.Playable
             this.FrameNumber = numberOfFrames;
 
             this.Mining = new Sprite[4, 6];
-            this.Swiping = new Sprite[4, 5];
+
             this.PickUpItem = new Sprite[4, 5];
             this.PortalJump = new Sprite[4, 5];
 
@@ -214,7 +214,7 @@ namespace SecretProject.Class.Playable
 
                 case AnimationType.Swiping:
                     IsPerformingAction = true;
-                    CurrentAction = this.Swiping;
+                    CurrentAction = PlayerWardrobe.SwipingAnimations;
                     this.AnimationDirection = controls.Direction;
                     this.CurrentTool = this.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ItemSprite;
                     this.CurrentTool.Origin = new Vector2(this.CurrentTool.SourceRectangle.Width, this.CurrentTool.SourceRectangle.Height);
@@ -223,7 +223,7 @@ namespace SecretProject.Class.Playable
                     //new Vector2((float)Math.Tan(CurrentTool.Position.X), (float)Math.Tan(CurrentTool.Position.Y))
                     for (int i = 0; i < 4; i++)
                     {
-                        this.Swiping[i, 0].FirstFrameY = textureColumn;
+                        PlayerWardrobe.SwipingAnimations[i, 0].FirstFrameY = textureColumn;
                     }
                     break;
 

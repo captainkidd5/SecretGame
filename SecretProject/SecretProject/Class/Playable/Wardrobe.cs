@@ -33,6 +33,8 @@ namespace SecretProject.Class.Playable
         public int PantsIndex { get; set; }
         public int ShoesIndex { get; set; }
 
+        public int[] AllIndexes { get; set; }
+
 
         public Sprite[,] BasicMovementAnimations { get; set; }
 
@@ -46,6 +48,14 @@ namespace SecretProject.Class.Playable
             //Height of player part spritesheet. All should be the same. Each part has a width of 16 and a height of 32 so 64 would mean two different clothing options!
             this.MaxSpriteIndex = 64;
 
+            this.AllIndexes = new int[4]
+            {
+                HairIndex,
+                ShirtIndex,
+                PantsIndex,
+                ShoesIndex,
+            };
+
             this.BasicMovementAnimations = new Sprite[4, 5];
             BasicMovementAnimations[(int)Dir.Down, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 0, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000011f };//, Color = Color.Black };
             BasicMovementAnimations[(int)Dir.Down, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.PlayerShirt, 0, 32, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000010f };
@@ -54,26 +64,65 @@ namespace SecretProject.Class.Playable
             BasicMovementAnimations[(int)Dir.Down, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.PlayerBase, 0, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .000000007f };
 
 
-            //up
+
             BasicMovementAnimations[(int)Dir.Up, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 192, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000011f };
             BasicMovementAnimations[(int)Dir.Up, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.PlayerShirt, 192, 32, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000010f };
             BasicMovementAnimations[(int)Dir.Up, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 192, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000009f };
             BasicMovementAnimations[(int)Dir.Up, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 192, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000008f };
             BasicMovementAnimations[(int)Dir.Up, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.PlayerBase, 192, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .000000007f };
 
-            //Left
+
             BasicMovementAnimations[(int)Dir.Left, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000011f, Flip = true };
             BasicMovementAnimations[(int)Dir.Left, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.PlayerShirt, 96, 32, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000010f, Flip = true };
             BasicMovementAnimations[(int)Dir.Left, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000009f, Flip = true };
             BasicMovementAnimations[(int)Dir.Left, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000008f, Flip = true };
             BasicMovementAnimations[(int)Dir.Left, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.PlayerBase, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .000000007f, Flip = true };
 
-            //Right
+
             BasicMovementAnimations[(int)Dir.Right, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000011f };
             BasicMovementAnimations[(int)Dir.Right, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.PlayerShirt, 96, 32, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000010f };
             BasicMovementAnimations[(int)Dir.Right, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000009f };
             BasicMovementAnimations[(int)Dir.Right, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .00000008f };
             BasicMovementAnimations[(int)Dir.Right, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.PlayerBase, 96, 0, 16, 32, 6, .1f, playerPosition) { LayerDepth = .000000007f };
+
+
+            this.SwipingAnimations = new Sprite[4, 5];
+            SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 0, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000011f };
+            SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerShirt, 0, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .00000010f };
+            SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 0, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000009f };
+            SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 0, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000008f };
+            SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerBase, 0, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .000000007f };
+
+
+            SwipingAnimations[(int)Dir.Up, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 192, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000011f };
+            SwipingAnimations[(int)Dir.Up, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerShirt, 160, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .00000010f };
+            SwipingAnimations[(int)Dir.Up, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 192, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000009f };
+            SwipingAnimations[(int)Dir.Up, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 192, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000008f };
+            SwipingAnimations[(int)Dir.Up, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerBase, 160, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .000000007f };
+
+
+            SwipingAnimations[(int)Dir.Left, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000011f, Flip = true };
+            SwipingAnimations[(int)Dir.Left, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerShirt, 80, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .00000010f, Flip = true };
+            SwipingAnimations[(int)Dir.Left, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000009f, Flip = true };
+            SwipingAnimations[(int)Dir.Left, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000008f, Flip = true };
+            SwipingAnimations[(int)Dir.Left, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerBase, 80, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .000000007f, Flip = true };
+
+
+            SwipingAnimations[(int)Dir.Right, (int)ClothingLayer.Hair] = new Sprite(graphics, Game1.AllTextures.PlayerHair, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000011f };
+            SwipingAnimations[(int)Dir.Right, (int)ClothingLayer.Shirt] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerShirt, 80, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .00000010f };
+            SwipingAnimations[(int)Dir.Right, (int)ClothingLayer.Pants] = new Sprite(graphics, Game1.AllTextures.PlayerPants, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000009f };
+            SwipingAnimations[(int)Dir.Right, (int)ClothingLayer.Shoes] = new Sprite(graphics, Game1.AllTextures.PlayerShoes, 96, 0, 16, 32, 5, .05f, playerPosition, changeFrames: false) { LayerDepth = .00000008f };
+            SwipingAnimations[(int)Dir.Right, (int)ClothingLayer.Base] = new Sprite(graphics, Game1.AllTextures.SwipingPlayerBase, 80, 0, 16, 32, 5, .05f, playerPosition) { LayerDepth = .000000007f };
+
+
+
+
+            //    SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Hair] 
+            //SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Shirt]
+            //SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Pants]
+            //SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Shoes] 
+            //SwipingAnimations[(int)Dir.Down, (int)ClothingLayer.Base]
+            //SwipingUp
 
         }
 
@@ -111,7 +160,6 @@ namespace SecretProject.Class.Playable
                 newSpriteY = this.MaxSpriteIndex;
             }
 
-            float oldLayerDepth = BasicMovementAnimations[0, (int)layer].LayerDepth;
 
             for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
             {
@@ -122,31 +170,47 @@ namespace SecretProject.Class.Playable
             }
         }
 
+        public void CycleSwipingClothing()
+        {
+            for(int i =0; i < this.SwipingAnimations.GetLength(0); i++)
+            {
+                for(int j =0; j < this.SwipingAnimations.GetLength(1) - 1; j++)
+                {
+                    SwipingAnimations[i,j].FirstFrameY
+                }
+            }
+        }
+        
+        public void CycleBasicAnimations()
+        {
+            for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
+            {
+
+                for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
+                {
+                    BasicMovementAnimations[i, j].FirstFrameY = this.AllIndexes[j];
+                }
+            }
+        }
+
         public void Save(BinaryWriter writer)
         {
-            for (int i = 0; i < BasicMovementAnimations.GetLength(1); i++)
+            for (int i = 0; i < this.AllIndexes.Length; i++)
             {
-                writer.Write(BasicMovementAnimations[0,i].FirstFrameY);
+                writer.Write(this.AllIndexes[i]);
             }
         }
 
         public void Load(BinaryReader reader)
         {
 
-            int[] newYs = new int[BasicMovementAnimations.GetLength(1)];
-            for (int z = 0; z < BasicMovementAnimations.GetLength(1); z++)
+
+            for (int z = 0; z < AllIndexes.Length; z++)
             {
-                newYs[z] = reader.ReadInt32();
+                AllIndexes[z] = reader.ReadInt32();
             }
 
-            for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
-            {
-   
-                for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
-                {
-                    BasicMovementAnimations[i, j].FirstFrameY = newYs[j];
-                }
-            }
+            
         }
     }
 }

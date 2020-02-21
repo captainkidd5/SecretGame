@@ -91,11 +91,7 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PortalJump/Shirts/portalJumpShirt.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/PortalJump/Shoes/portalJumpShoes.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Base/swipingBase.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Hair/swipingBlondeHair.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Pants/swipingBluePants.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Shirts/swipingRedShirt.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Shoes/swipingBrownShoes.png</File>
-    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Tools/testSword.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/BusinessSnailQuests.xml</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/DobbinQuests.XML</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/QuestStuff/ElixirQuests.xml</File>
@@ -191,5 +187,6 @@
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Pants/pants.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Shirts/shirts.png</File>
     <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Shoes/shoes.png</File>
+    <File>C:/Users/armad/Desktop/SecretGame/SecretProject/SecretProject/Content/Player/PlayerParts/Swiping/Shirts/swipingShirts.png</File>
   </SourceFiles>
 </SourceFileCollection>

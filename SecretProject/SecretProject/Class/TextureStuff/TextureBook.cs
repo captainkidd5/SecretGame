@@ -32,11 +32,9 @@ namespace SecretProject.Class.TextureStuff
         public Texture2D ChoppingPlayerShoes;
 
         public Texture2D SwipingPlayerBase;
-        public Texture2D SwipingPlayerHair;
-        public Texture2D SwipingPlayerPants;
+
         public Texture2D SwipingPlayerShirt;
-        public Texture2D SwipingPlayerShoes;
-        public Texture2D SwipingTestTool;
+
 
         public Texture2D PickUpItemBase;
         public Texture2D PickUpItemBlondeHair;
@@ -179,11 +177,9 @@ namespace SecretProject.Class.TextureStuff
 
             //SWIPING
             SwipingPlayerBase = content.Load<Texture2D>("Player/PlayerParts/Swiping/Base/swipingBase");
-            SwipingPlayerHair = content.Load<Texture2D>("Player/PlayerParts/Swiping/Hair/swipingBlondeHair");
-            SwipingPlayerPants = content.Load<Texture2D>("Player/PlayerParts/Swiping/Pants/swipingBluePants");
-            SwipingPlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Swiping/Shirts/swipingRedShirt");
-            SwipingPlayerShoes = content.Load<Texture2D>("Player/PlayerParts/Swiping/Shoes/swipingBrownShoes");
-            SwipingTestTool = content.Load<Texture2D>("Player/PlayerParts/Swiping/Tools/testSword");
+
+            SwipingPlayerShirt = content.Load<Texture2D>("Player/PlayerParts/Swiping/Shirts/swipingShirts");
+
 
             PickUpItemBase = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Base/PickUpItemBase");
             PickUpItemBlondeHair = content.Load<Texture2D>("Player/PlayerParts/PickUpItem/Hair/PickUpItemBlondeHair");
