@@ -168,6 +168,13 @@ namespace SecretProject.Class.SpriteFolder
 
         }
 
+
+        public void UpdateSourceRectangle()
+        {
+            this.SourceRectangle = new Rectangle((int)(this.FirstFrameX + this.FrameWidth * this.CurrentFrame), (int)this.FirstFrameY, (int)this.FrameWidth, (int)this.FrameHeight);
+        }
+
+
         public void UpdateAnimationsBackwards(GameTime gameTime, Vector2 position)
         {
             Position = position;

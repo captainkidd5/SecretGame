@@ -163,30 +163,31 @@ namespace SecretProject.Class.Playable
 
             for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
             {
-                for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
-                {
                     BasicMovementAnimations[i, (int)layer].FirstFrameY = newSpriteY;
-                }
+                    
+                
             }
+            this.AllIndexes[(int)layer] = newSpriteY;
         }
 
         public void CycleSwipingClothing()
         {
-            for(int i =0; i < this.SwipingAnimations.GetLength(0); i++)
+            for(int i =0; i < this.AllIndexes.Length; i++)
             {
-                for(int j =0; j < this.SwipingAnimations.GetLength(1) - 1; j++)
+                for(int j =0; j < this.AllIndexes.Length; j++)
                 {
-                    SwipingAnimations[i,j].FirstFrameY
+                    SwipingAnimations[i, j].FirstFrameY = this.AllIndexes[j];
+                    SwipingAnimations[i, j].UpdateSourceRectangle();
                 }
             }
         }
         
         public void CycleBasicAnimations()
         {
-            for (int i = 0; i < BasicMovementAnimations.GetLength(0); i++)
+            for (int i = 0; i < this.AllIndexes.Length; i++)
             {
 
-                for (int j = 0; j < BasicMovementAnimations.GetLength(1); j++)
+                for (int j = 0; j < this.AllIndexes.Length; j++)
                 {
                     BasicMovementAnimations[i, j].FirstFrameY = this.AllIndexes[j];
                 }
@@ -209,7 +210,8 @@ namespace SecretProject.Class.Playable
             {
                 AllIndexes[z] = reader.ReadInt32();
             }
-
+            CycleBasicAnimations();
+            CycleSwipingClothing();
             
         }
     }
