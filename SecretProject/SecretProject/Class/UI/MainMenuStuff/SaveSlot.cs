@@ -102,7 +102,7 @@ namespace SecretProject.Class.UI.MainMenuStuff
             this.ChunkPath = directoryPath + "/" + Game1.Player.Name + "Chunks";
             this.UnChunkPath = directoryPath + "/" + Game1.Player.Name + "UnChunks";
             System.IO.Directory.CreateDirectory(ChunkPath);
-            System.IO.Directory.CreateDirectory(directoryPath);
+            System.IO.Directory.CreateDirectory(UnChunkPath);
 
             this.SavePath = directoryPath + "/" + Game1.Player.Name + "_PrimaryData";
             this.String = Game1.Player.Name + "\n Year " + Game1.GlobalClock.Calendar.CurrentYear + ", " + Game1.GlobalClock.Calendar.CurrentMonth.ToString() + " " + Game1.GlobalClock.Calendar.CurrentDay.ToString();

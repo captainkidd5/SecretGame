@@ -40,6 +40,10 @@ namespace XMLData.ItemStuff
                 this.Harvestable = true;
 
             }
+            if(CurrentGrowth >= DaysToGrow)
+            {
+                CurrentGrowth = DaysToGrow;
+            }
             
            
             

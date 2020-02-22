@@ -939,6 +939,10 @@ namespace SecretProject.Class.TileStuff
                     {
                         Crop crop = this.ActiveChunks[i, j].Crops.ElementAt(x).Value;
                         crop.CurrentGrowth = Game1.GlobalClock.TotalDays - crop.DayPlanted;
+                        if(crop.CurrentGrowth >= crop.DaysToGrow)
+                        {
+                            crop.CurrentGrowth = crop.DaysToGrow -1 ;
+                        }
                         if (crop.CurrentGrowth < this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames.Count)
                         {
                             int newGid = this.MapName.Tilesets[this.TileSetNumber].Tiles[crop.BaseGID].AnimationFrames[crop.CurrentGrowth].Id + 1;

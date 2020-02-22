@@ -417,6 +417,7 @@ namespace SecretProject.Class.TileStuff
                                     Harvestable = harvestable,
                                     DayPlanted = dayPlanted,
                                     CurrentGrowth = currentGrow,
+
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
                                 this.Crops.Add(cropKey, crop);
