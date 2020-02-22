@@ -540,7 +540,7 @@ namespace SecretProject.Class.TileStuff
                                 if (Game1.ItemVault.ItemDictionary[Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().ID].Plantable)
                                 {
                                     mouse.ChangeMouseTexture(CursorType.Planting);
-                                    if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(2, container)))
+                                    if (!container.Crops.ContainsKey(container.AllTiles[3][i, j].GetTileKeyStringNew(3, container)))
                                     {
 
                                         Game1.SoundManager.PlaySoundEffect(Game1.SoundManager.DigDirt);

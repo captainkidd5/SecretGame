@@ -405,6 +405,10 @@ namespace SecretProject.Class.TileStuff
                                 //{
                                 //    newCurrentGrowth = daysToGrow;
                                 //}
+                                if (currentGrow >= this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count)
+                                {
+                                    currentGrow = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames.Count - 1;
+                                }
                                 Crop crop = new Crop()
                                 {
                                     ItemID = itemID,
@@ -417,7 +421,7 @@ namespace SecretProject.Class.TileStuff
                                     Harvestable = harvestable,
                                     DayPlanted = dayPlanted,
                                     CurrentGrowth = currentGrow,
-
+                               
                                     GID = this.MapName.Tilesets[this.TileSetNumber].Tiles[baseGID].AnimationFrames[currentGrow].Id + 1,
                                 };
                                 this.Crops.Add(cropKey, crop);
