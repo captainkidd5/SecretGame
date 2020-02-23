@@ -89,6 +89,8 @@ namespace SecretProject.Class.TileStuff
         public List<SPlot> AllPlots { get; set; }
         public bool WasModifiedDuringInterval { get; set; }
 
+        public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
+
         #region CONSTRUCTORS
 
 
@@ -127,6 +129,7 @@ namespace SecretProject.Class.TileStuff
             this.Crops = new Dictionary<string, Crop>();
             this.AllItems = new List<Item>();
             this.ForeGroundOffSetDictionary = new Dictionary<float, string>();
+            this.TileSetDictionary = this.MapName.Tilesets[this.TileSetNumber].Tiles;
             Game1.GlobalClock.DayChanged += HandleClockChange;
             for (int i = 0; i < allLayers.Count; i++)
             {

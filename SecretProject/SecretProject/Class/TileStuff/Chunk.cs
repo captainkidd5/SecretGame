@@ -97,7 +97,7 @@ namespace SecretProject.Class.TileStuff
 
         public string ChunkPath { get; private set; }
 
-
+        public Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
         public Chunk(WorldTileManager tileManager, int x, int y, int arrayI, int arrayJ)
 
         {
@@ -176,6 +176,8 @@ namespace SecretProject.Class.TileStuff
 
                    
             }
+
+            this.TileSetDictionary = tileManager.MapName.Tilesets[this.TileSetNumber].Tiles;
 
         }
 

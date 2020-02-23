@@ -866,18 +866,19 @@ namespace SecretProject.Class.TileStuff
         /// <param name="container"></param>
         public static void InteractWithDestructableTile(int layer, GameTime gameTime, int x, int y, Rectangle destinationRectangle, IInformationContainer container)
         {
+            Tile tile = container.AllTiles[layer][x, y];
 
-            if (!container.AnimationFrames.ContainsKey(container.AllTiles[layer][x, y].TileKey) && !Game1.Player.IsPerformingAction)
+            if (!container.AnimationFrames.ContainsKey(tile.TileKey) && !Game1.Player.IsPerformingAction)
             {
-                AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]);
+                AnimationType actionType = Game1.Utility.GetRequiredTileTool(container.TileSetDictionary[tile.GID].Properties["destructable"]);
 
                 if (actionType == AnimationType.HandsPicking)  //this is out here because any equipped item should be able to pick it up no matter what
                 {
                     Game1.Player.DoPlayerAnimation(AnimationType.HandsPicking, .25f);
                     FinalizeTile(layer, gameTime, x, y, container, delayTimer: .25f);
-                    if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].TileKey))
+                    if (container.TileHitPoints.ContainsKey(tile.TileKey))
                     {
-                        container.TileHitPoints[container.AllTiles[layer][x, y].TileKey]--;
+                        container.TileHitPoints[tile.TileKey]--;
                     }
 
                 }
@@ -888,12 +889,12 @@ namespace SecretProject.Class.TileStuff
 
 
                         Game1.Player.DoPlayerAnimation(actionType, .25f, Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem());
-                        ToolInteraction(container.AllTiles[layer][x, y], gameTime, layer, x, y, Game1.Utility.GetTileDestructionSound(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]),
-                            Game1.Utility.GetTileEffectColor(container.MapName.Tilesets[container.TileSetNumber].Tiles[container.AllTiles[layer][x, y].GID].Properties["destructable"]), destinationRectangle, container);
+                        ToolInteraction(tile, gameTime, layer, x, y, Game1.Utility.GetTileDestructionSound(container.TileSetDictionary[tile.GID].Properties["destructable"]),
+                            Game1.Utility.GetTileEffectColor(container.TileSetDictionary[tile.GID].Properties["destructable"]), destinationRectangle, container);
                         Game1.Player.UserInterface.BackPack.GetCurrentEquippedToolAsItem().AlterDurability(1);
-                        if (container.TileHitPoints.ContainsKey(container.AllTiles[layer][x, y].TileKey))
+                        if (container.TileHitPoints.ContainsKey(tile.TileKey))
                         {
-                            container.TileHitPoints[container.AllTiles[layer][x, y].TileKey]--;
+                            container.TileHitPoints[tile.TileKey]--;
 
 
                         }

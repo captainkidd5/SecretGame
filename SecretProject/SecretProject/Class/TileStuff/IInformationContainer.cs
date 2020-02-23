@@ -34,6 +34,8 @@ namespace SecretProject.Class.TileStuff
         ObstacleGrid PathGrid { get; set; }
         Dictionary<string, List<GrassTuft>> Tufts { get; set; }
 
+        Dictionary<int, TmxTilesetTile> TileSetDictionary { get; set; }
+
         //specific to chunks
         int X { get; set; }
         int Y { get; set; }
