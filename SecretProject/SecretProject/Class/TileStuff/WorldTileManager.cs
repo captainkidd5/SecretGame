@@ -649,17 +649,6 @@ namespace SecretProject.Class.TileStuff
             for (int z = 0; z < 4; z++)
             {
 
-                //for (int mi = mouseI - 5; mi < mouseI + 5; mi++)
-                //{
-                //    for (int mj = mouseJ - 5; mj < mouseJ + 5; mj++)
-                //    {
-
-                //        Rectangle newIntersectionRectangle = new Rectangle(this.ChunkUnderPlayer.AllTiles[z][mi, mj].DestinationRectangle.X,
-                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].DestinationRectangle.Y,
-                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].SourceRectangle.Width,
-                //               this.ChunkUnderPlayer.AllTiles[z][mi, mj].SourceRectangle.Height);
-                //    }
-                //}
                 if (Game1.Player.IsMoving)
                 {
                     if (z == 0)
@@ -774,9 +763,6 @@ namespace SecretProject.Class.TileStuff
         }
 
 
-
-
-
         public void DrawTiles(SpriteBatch spriteBatch)
         {
 
@@ -788,8 +774,7 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (this.ActiveChunks[a, b].IsLoaded)
                     {
-                        //if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
-                        // {
+  
 
                         Chunk chunk = this.ActiveChunks[a, b];
                         int startI = CheckArrayLimits((Game1.cam.CameraScreenRectangle.X - 48) / 16 - chunk.X * 16);
@@ -797,11 +782,6 @@ namespace SecretProject.Class.TileStuff
 
                         int startY = CheckArrayLimits((Game1.cam.CameraScreenRectangle.Y - 48) / 16 - chunk.Y * 16);
                         int endY = CheckArrayLimits(Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128) / 16 - chunk.Y * 16);
-
-
-
-
-
 
                         if (Game1.GetCurrentStage().ShowBorders)
                         {

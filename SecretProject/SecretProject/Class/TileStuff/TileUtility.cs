@@ -111,6 +111,15 @@ namespace SecretProject.Class.TileStuff
 
         #endregion
 
+
+
+        public static bool GetProperty(Dictionary<int, TmxTilesetTile> tileSet, Tile tile, ref string property)
+        {
+
+            return tileSet[tile.GID].Properties.TryGetValue(property, out property);
+
+        }
+
         /// <summary>
         /// All new tiles should be "wrung through" this method. Makes sure all dictionaries etc will be aware of this new tile. Also adds storable items to 
         /// user interface list
@@ -122,17 +131,23 @@ namespace SecretProject.Class.TileStuff
         /// <param name="container"></param>
         public static void AssignProperties(Tile tileToAssign, int layer, int x, int y, IInformationContainer container)
         {
+            Dictionary<int, TmxTilesetTile> tileSet = container.MapName.Tilesets[container.TileSetNumber].Tiles;
 
             tileToAssign.DestinationRectangle = GetDestinationRectangle(tileToAssign);
             tileToAssign.SourceRectangle = GetSourceRectangle(tileToAssign, container.TileSetDimension);
             tileToAssign.TileKey = tileToAssign.GetTileKeyStringNew(layer, container);
-
-            if (container.MapName.Tilesets[container.TileSetNumber].Tiles.ContainsKey(tileToAssign.GID))
+            string propertyString = string.Empty;
+            if (tileSet.ContainsKey(tileToAssign.GID))
             {
                 //replaces tiles with wheat grass
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("replace"))
+
+                propertyString = "replace";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    int grasstype = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["replace"]);
+
+
+
+                    int grasstype = int.Parse(propertyString);
                     GrassTuft grassTuft = new GrassTuft(container.GraphicsDevice, grasstype, new Vector2(tileToAssign.DestinationRectangle.X + 8
                                 , tileToAssign.DestinationRectangle.Y + 8));
                     List<GrassTuft> tufts = new List<GrassTuft>()
@@ -144,7 +159,8 @@ namespace SecretProject.Class.TileStuff
                     return;
                 }
 
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count > 0 && !container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("idleStart"))
+
+                if (tileSet[tileToAssign.GID].AnimationFrames.Count > 0 && !tileSet[tileToAssign.GID].Properties.ContainsKey("idleStart"))
                 {
 
                     if (!container.AnimationFrames.ContainsKey(tileToAssign.TileKey))
@@ -155,17 +171,21 @@ namespace SecretProject.Class.TileStuff
 
 
 
-                        frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
-                        for (int i = 0; i < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames.Count; i++)
+                        frames.Add(new EditableAnimationFrame(tileSet[tileToAssign.GID].AnimationFrames[0].Duration, tileSet[tileToAssign.GID].AnimationFrames[0].Duration, tileToAssign.GID));
+                        for (int i = 0; i < tileSet[tileToAssign.GID].AnimationFrames.Count; i++)
                         {
-                            frames.Add(new EditableAnimationFrame(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].AnimationFrames[i]));
+                            frames.Add(new EditableAnimationFrame(tileSet[tileToAssign.GID].AnimationFrames[i]));
                         }
                         bool hasNewSource = false;
                         EditableAnimationFrameHolder frameHolder;
-                        if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
+                        propertyString = "newSource";
+                        if (GetProperty(tileSet, tileToAssign, ref propertyString))
                         {
+
+
+
                             hasNewSource = true;
-                            int[] nums = GetRectangeFromString(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newSource"]);
+                            int[] nums = GetRectangeFromString(propertyString);
 
                             frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID, hasNewSource: hasNewSource)
                             {
@@ -174,21 +194,25 @@ namespace SecretProject.Class.TileStuff
                                 OriginalWidth = nums[2],
                                 OriginalHeight = nums[3]
                             };
+
                         }
                         else
                         {
                             frameHolder = new EditableAnimationFrameHolder(frames, x, y, layer, tileToAssign.GID, hasNewSource: hasNewSource);
                         }
 
+
                         container.AnimationFrames.Add(tileToAssign.TileKey, frameHolder);
                     }
 
                 }
-
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("lightSource"))
+                propertyString = "lightSource";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    Vector2 lightOffSet = LightSource.ParseLightData(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"]);
-                    LightSource newLight = new LightSource(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["lightSource"], new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
+
+
+                    Vector2 lightOffSet = LightSource.ParseLightData(propertyString);
+                    LightSource newLight = new LightSource(propertyString, new Vector2(GetDestinationRectangle(tileToAssign).X + lightOffSet.X, GetDestinationRectangle(tileToAssign).Y + lightOffSet.Y));
 
                     if (newLight.LightType == LightType.NightTime)
                     {
@@ -206,30 +230,38 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                }
-
-
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("destructable"))
-                {
-                    container.TileHitPoints[tileToAssign.TileKey] = Game1.Utility.GetTileHitpoints(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["destructable"]);
 
                 }
 
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("layer"))
+                propertyString = "destructable";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    tileToAssign.LayerToDrawAt = int.Parse(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["layer"]);
-                    //grass = 1, stone = 2, wood = 3, sand = 4
+                    container.TileHitPoints[tileToAssign.TileKey] = Game1.Utility.GetTileHitpoints(propertyString);
                 }
 
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("generate"))
+                propertyString = "layer";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    tileToAssign.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["generate"]);
-                    //grass = 1, stone = 2, wood = 3, sand = 4
+                    tileToAssign.LayerToDrawAt = int.Parse(propertyString);
                 }
 
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("action"))
+
+                //grass = 1, stone = 2, wood = 3, sand = 4
+
+                propertyString = "generate";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "chestLoot")
+                    tileToAssign.GenerationType = (GenerationType)Enum.Parse(typeof(GenerationType), propertyString);
+                }
+
+
+                //grass = 1, stone = 2, wood = 3, sand = 4
+
+                propertyString = "action";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                {
+
+                    if (propertyString == "chestLoot")
                     {
 
                         if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
@@ -239,7 +271,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "cook")
+                    else if (propertyString == "cook")
                     {
 
                         if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
@@ -249,7 +281,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "smelt")
+                    else if (propertyString == "smelt")
                     {
 
                         if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
@@ -259,7 +291,7 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                    else if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["action"] == "saw")
+                    else if (propertyString == "saw")
                     {
 
                         if (!container.StoreableItems.ContainsKey(tileToAssign.TileKey))
@@ -269,12 +301,14 @@ namespace SecretProject.Class.TileStuff
                         }
 
                     }
-                }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newSource"))
-                {
-                    tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
 
                 }
+                propertyString = "newSource";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
+                {
+                    tileToAssign.SourceRectangle = GetTileRectangleFromProperty(tileToAssign, true, container, tileToAssign.GID);
+                }
+
                 if (layer == 3)
                 {
                     float randomOffSet = Game1.Utility.RFloat(Game1.Utility.ForeGroundMultiplier, Game1.Utility.ForeGroundMultiplier * 10);
@@ -289,10 +323,12 @@ namespace SecretProject.Class.TileStuff
 
                 }
 
-
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("newHitBox"))
+                propertyString = "newHitBox";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    int[] rectangleCoords = GetRectangeFromString(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["newHitBox"]);
+
+
+                    int[] rectangleCoords = GetRectangeFromString(propertyString);
 
                     Collider tempObjectBody = new Collider(container.GraphicsDevice,
                             new Rectangle(GetDestinationRectangle(tileToAssign).X + rectangleCoords[0],
@@ -358,8 +394,9 @@ namespace SecretProject.Class.TileStuff
 
                         }
                     }
+
                 }
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups.Count > 0)
+                if (tileSet[tileToAssign.GID].ObjectGroups.Count > 0)
                 {
 
                     container.PathGrid.UpdateGrid(x, y, 0);
@@ -374,9 +411,9 @@ namespace SecretProject.Class.TileStuff
                         container.Objects.Add(tileToAssign.TileKey, new List<ICollidable>());
                     }
 
-                    for (int k = 0; k < container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
+                    for (int k = 0; k < tileSet[tileToAssign.GID].ObjectGroups[0].Objects.Count; k++)
                     {
-                        TmxObject tempObj = container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].ObjectGroups[0].Objects[k];
+                        TmxObject tempObj = tileSet[tileToAssign.GID].ObjectGroups[0].Objects[k];
 
 
                         Collider tempObjectBody = new Collider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + (int)Math.Ceiling(tempObj.X),
@@ -391,9 +428,12 @@ namespace SecretProject.Class.TileStuff
                     }
                 }
 
-                if (container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties.ContainsKey("transparent"))
+                propertyString = "transparent";
+                if (GetProperty(tileSet, tileToAssign, ref propertyString))
                 {
-                    int[] nums = GetRectangeFromString(container.MapName.Tilesets[container.TileSetNumber].Tiles[tileToAssign.GID].Properties["transparent"]);
+
+
+                    int[] nums = GetRectangeFromString(propertyString);
                     Collider tempBody = new Collider(container.GraphicsDevice, new Rectangle(GetDestinationRectangle(tileToAssign).X + nums[0], GetDestinationRectangle(tileToAssign).Y + nums[1],
                         nums[2], nums[3]), tileToAssign, ColliderType.TransperencyDetector);
                     if (container.Objects.ContainsKey(tileToAssign.TileKey))
@@ -408,8 +448,8 @@ namespace SecretProject.Class.TileStuff
                         });
 
                     }
-                }
 
+                }
 
             }
 
