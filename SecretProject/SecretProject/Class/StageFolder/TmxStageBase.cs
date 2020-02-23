@@ -344,7 +344,10 @@ namespace SecretProject.Class.StageFolder
 
 
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
-
+            if (Game1.GetCurrentStage() != this)
+            {
+                return;
+            }
             if ((Game1.OldKeyBoardState.IsKeyDown(Keys.F1)) && (Game1.NewKeyBoardState.IsKeyUp(Keys.F1)))
             {
                 this.ShowBorders = !this.ShowBorders;
@@ -522,10 +525,7 @@ namespace SecretProject.Class.StageFolder
         {
             this.AllTextToWrite.Add(new StringWrapper(message, position, endAtX, endAtY, rate, duration));
         }
-        public Camera2D GetCamera()
-        {
-            return this.Cam;
-        }
+
 
         public void ActivateNewRisingText(float yStart, float yEnd, string stringToWrite, float speed, Color color, bool fade, float scale)
         {

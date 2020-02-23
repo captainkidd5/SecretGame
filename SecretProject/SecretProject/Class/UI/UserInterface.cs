@@ -451,7 +451,7 @@ namespace SecretProject.Class.UI
           
         
 
-        public void BeginBlackTransition(float transitionSpeed, float targetTime = 2f, bool startOfNewDay = false)
+        public void BeginBlackTransition(float transitionSpeed = .005f, float targetTime = 2f, bool startOfNewDay = false)
         {
             this.TransitionTimer.ResetToZero();
             this.BlackTransitionColorMultiplier = 1f;

@@ -789,13 +789,13 @@ namespace SecretProject.Class.TileStuff
                 {
                     if (this.ActiveChunks[a, b].IsLoaded)
                     {
-                        if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
-                        {
+                        //if (Game1.cam.CameraScreenRectangle.Intersects(this.ActiveChunks[a, b].GetChunkRectangle()))
+                       // {
                             int startI = (Game1.cam.CameraScreenRectangle.X - 48 )/ 16 - this.ActiveChunks[a, b].X * 16;
                             int endI = Game1.cam.CameraScreenRectangle.X / 16 + (Game1.cam.CameraScreenRectangle.Width + 32) / 16  - this.ActiveChunks[a, b].X * 16;
 
                             int startY = (Game1.cam.CameraScreenRectangle.Y - 48) / 16  - this.ActiveChunks[a, b].Y * 16;
-                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 48 )/ 16 - this.ActiveChunks[a, b].Y * 16;
+                            int endY = Game1.cam.CameraScreenRectangle.Y / 16 + (Game1.cam.CameraScreenRectangle.Height + 128 )/ 16 - this.ActiveChunks[a, b].Y * 16;
 
 
                             if (startI < 0)
@@ -853,15 +853,7 @@ namespace SecretProject.Class.TileStuff
 
                                             if (z == 3)
                                             {
-                                                //..float testOffset = this.ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet;
-                                                //if (testAllOffsets.Contains(testOffset))
-                                                //{
-                                                //    totalRepeats++;
-                                                //}
-                                                //else
-                                                //{
-                                                //    testAllOffsets.Add(testOffset);
-                                                //}
+
                                                 spriteBatch.Draw(this.TileSet, new Vector2(this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.X, this.ActiveChunks[a, b].AllTiles[z][i, j].DestinationRectangle.Y), this.ActiveChunks[a, b].AllTiles[z][i, j].SourceRectangle, Color.White * this.ActiveChunks[a, b].AllTiles[z][i, j].ColorMultiplier,
                                                 0f, Game1.Utility.Origin, 1f, SpriteEffects.None, this.AllDepths[z] + this.ActiveChunks[a, b].AllTiles[z][i, j].LayerToDrawAtZOffSet);
 
@@ -902,16 +894,9 @@ namespace SecretProject.Class.TileStuff
                             {
                                 this.ActiveChunks[a, b].AllItems[item].Draw(spriteBatch);
                             }
-                            //if (totalRepeats > 0)
-                            //{
-                            //    Console.WriteLine(totalRepeats.ToString());
-                            //}
 
 
-
-
-
-                        }
+                        //}
                     }
                 }
             }
@@ -921,6 +906,8 @@ namespace SecretProject.Class.TileStuff
 
             }
         }
+
+
 
         public void LoadInitialTileObjects(ILocation location)
         {

@@ -1,10 +1,12 @@
 ﻿
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SecretProject.Class.SavingStuff;
 
 namespace SecretProject.Class.CameraStuff
 {
-    public class Camera2D
+    public class Camera2D : ISaveable
     {
         protected float zoom;
         public Matrix transform;
@@ -117,6 +119,16 @@ namespace SecretProject.Class.CameraStuff
                 Matrix.CreateRotationZ(this.Rotation) *
                 Matrix.CreateScale(this.Zoom, this.Zoom, 1) *
                 Matrix.CreateTranslation(new Vector3(Origin, 0.0f));
+        }
+
+        public void Save(BinaryWriter writer)
+        {
+            writer.Write(this.Zoom);
+        }
+
+        public void Load(BinaryReader reader)
+        {
+            this.Zoom = reader.ReadSingle();
         }
     }
 }

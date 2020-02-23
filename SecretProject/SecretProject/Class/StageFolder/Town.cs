@@ -215,6 +215,10 @@ namespace SecretProject.Class.StageFolder
 
             //ParticleEngine.EmitterLocation = mouse.WorldMousePosition;
             Game1.Player.UserInterface.Update(gameTime, Game1.NewKeyBoardState, Game1.OldKeyBoardState, player.Inventory, mouse);
+            if(Game1.GetCurrentStage() != this)
+            {
+                return;
+            }
             if (Game1.CurrentWeather != WeatherType.None)
             {
                 Game1.AllWeather[Game1.CurrentWeather].Update(gameTime, this.LocationType);

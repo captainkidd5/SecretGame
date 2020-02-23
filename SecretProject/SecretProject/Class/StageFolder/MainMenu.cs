@@ -236,6 +236,7 @@ namespace SecretProject.Class.StageFolder
             CurrentMenuState = MenuState.Primary;
             //Game1.SaveLoadManager.SaveGameState(SaveType.MenuSave);
             Game1.SwitchStage(0, Stages.PlayerHouse);
+            Game1.Player.UserInterface.BeginBlackTransition(.005f);
         }
 
         public void UpdateDevPanel(GameTime gameTime)
